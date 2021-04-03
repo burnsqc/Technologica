@@ -1,0 +1,19 @@
+modLoader="javafml"
+loaderVersion="[35,)"
+logoFile="examplemod.png"
+license="All rights reserved"
+
+[[mods]]
+	modId="technologica"
+	version="1.0.0"
+	displayName="Technologica"
+	
+	credits="Basically just us"
+	authors="The Phantom, Queen Seeker, Linehart1"
+	description='''
+    Anything and everything we want.
+    
+    But mostly just fruits right now.
+    
+    Fruits and some ingots.
+    '''
