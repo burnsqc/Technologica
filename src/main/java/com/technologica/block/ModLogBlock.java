@@ -12,9 +12,7 @@ import net.minecraft.world.IBlockReader;
 public class ModLogBlock extends RotatedPillarBlock {
 
 	public ModLogBlock() {
-		super(Properties.create(Material.WOOD, (state) -> {
-			return state.get(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? MaterialColor.WOOD : MaterialColor.OBSIDIAN;
-		}).hardnessAndResistance(2.0F).harvestLevel(1).sound(SoundType.WOOD));
+		super(Properties.create(Material.WOOD, (state) -> {return state.get(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? MaterialColor.WOOD : MaterialColor.OBSIDIAN;}).hardnessAndResistance(2.0F).harvestLevel(1).sound(SoundType.WOOD));
 	}
 
 	@Override

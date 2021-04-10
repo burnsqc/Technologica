@@ -15,14 +15,14 @@ public class ModSetup {
 	public static final ItemGroup TECHNOLOGICA_FOOD = new ItemGroup("technologica_food") {
 		@Override
 		public ItemStack createIcon() {
-			return new ItemStack(Registration.COCONUT.get());
+			return new ItemStack(Registration.BANANA.get());
 		}
 	};
 
 	public static final ItemGroup TECHNOLOGICA_FLORA = new ItemGroup("technologica_flora") {
 		@Override
 		public ItemStack createIcon() {
-			return new ItemStack(Registration.CHERRY_LOG.get());
+			return new ItemStack(Registration.BANANA_SAPLING.get());
 		}
 	};
 
@@ -30,6 +30,13 @@ public class ModSetup {
 		@Override
 		public ItemStack createIcon() {
 			return new ItemStack(Registration.LITHIUM_INGOT.get());
+		}
+	};
+	
+	public static final ItemGroup TECHNOLOGICA_CRYPTICA = new ItemGroup("technologica_cryptica") {
+		@Override
+		public ItemStack createIcon() {
+			return new ItemStack(Registration.TOWERING_INFERNO_SAPLING.get());
 		}
 	};
 

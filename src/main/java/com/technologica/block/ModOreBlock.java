@@ -9,8 +9,6 @@ import net.minecraft.block.material.MaterialColor;
 public class ModOreBlock extends OreBlock {
 
 	public ModOreBlock() {
-		super(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(6.0F)
-				.sound(SoundType.STONE));
+		super(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(6.0F).sound(SoundType.STONE));
 	}
-
 }

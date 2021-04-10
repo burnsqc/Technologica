@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "technologica:banana_leaves",
+    "technologica:cherry_leaves",
+    "technologica:coconut_leaves",
+    "technologica:lemon_leaves",
+    "technologica:lime_leaves",
+    "technologica:orange_leaves",
+    "technologica:peach_leaves",
+    "technologica:pear_leaves"
+  ]
+}

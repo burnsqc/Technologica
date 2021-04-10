@@ -8,6 +8,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.mojang.serialization.codecs.RecordCodecBuilder.Instance;
 import com.mojang.serialization.codecs.RecordCodecBuilder.Mu;
+import com.technologica.setup.Registration;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
@@ -33,24 +34,46 @@ public class ConicalFoliagePlacer extends FoliagePlacer {
 	}
 
 	protected FoliagePlacerType<?> func_230371_a_() {
-		return FoliagePlacerType.BLOB;
+		return Registration.CONICAL.get();
 	}
 
-	protected void func_230372_a_(IWorldGenerationReader worldIn, Random randomIn, BaseTreeFeatureConfig configIn, int p_230372_4_, FoliagePlacer.Foliage p_230372_5_, int p_230372_6_, int p_230372_7_, Set<BlockPos> p_230372_8_, int p_230372_9_, MutableBoundingBox boundingBoxIn) 
+	//Generate foliage
+	protected void func_230372_a_(IWorldGenerationReader worldIn, Random randomIn, BaseTreeFeatureConfig configIn, int p_230372_4_, FoliagePlacer.Foliage p_230372_5_, int layersBelowTop, int diameter, Set<BlockPos> p_230372_8_, int topLayer, MutableBoundingBox boundingBoxIn) 
 	{
-		for (int i = p_230372_9_; i >= p_230372_9_ - p_230372_6_; --i) 
+		for (int layer = topLayer + 1; layer >= topLayer - layersBelowTop + 1; --layer) 
 		{
-			int j = Math.max(p_230372_7_ + p_230372_5_.func_236764_b_() - 1 - i / 2, 0);
-			this.func_236753_a_(worldIn, randomIn, configIn, p_230372_5_.func_236763_a_(), j, p_230372_8_, i, p_230372_5_.func_236765_c_(), boundingBoxIn);
+			int j = Math.max(diameter + p_230372_5_.func_236764_b_() - layer + 1, 0);
+			this.func_236753_a_(worldIn, randomIn, configIn, p_230372_5_.func_236763_a_(), j, p_230372_8_, layer, p_230372_5_.func_236765_c_(), boundingBoxIn);
 		}
 	}
 
-	public int func_230374_a_(Random randomIn, int p_230374_2_, BaseTreeFeatureConfig p_230374_3_) {
-		return this.layersBelowTop;
+	//Adjust number of layers based upon trunk height
+	public int func_230374_a_(Random randomIn, int i, BaseTreeFeatureConfig configIn) {
+		int trim;
+		if (i == 2) {
+			trim = i-1;
+		} else if(i == 3) {
+			trim = i-1;
+		} else {
+			trim = (randomIn.nextInt(5) == 0) ? i-1 : i-2;
+		}
+		return trim;
 	}
 
-	protected boolean func_230373_a_(Random randomIn, int p_230373_2_, int p_230373_3_, int p_230373_4_, int p_230373_5_, boolean p_230373_6_) 
-	{
-		return p_230373_2_ == p_230373_5_ && p_230373_4_ == p_230373_5_ && (randomIn.nextInt(2) == 0 || p_230373_3_ == 0);
+	//Prune foliage
+	protected boolean func_230373_a_(Random randomIn, int relativeZ, int relativeY, int relativeX, int p_230373_5_, boolean p_230373_6_) {
+		if (relativeY==1) {
+			return (relativeX + relativeZ >= 1);
+		} else if (relativeY==0) {
+			return (relativeX + relativeZ >= 2);
+		} else if (relativeY==-1) { 
+			return (relativeX + relativeZ >= 4);	
+		} else if (relativeY==-2) { 
+			return (relativeX + relativeZ >= 5);
+		} else if (relativeY==-3) { 
+			return (relativeX + relativeZ >= 7);
+		} else {  
+			return false;
+		}
 	}
 }

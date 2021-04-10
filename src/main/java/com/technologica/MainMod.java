@@ -7,6 +7,7 @@ import com.technologica.setup.ClientSetup;
 import com.technologica.setup.Config;
 import com.technologica.setup.ModSetup;
 import com.technologica.setup.Registration;
+import com.technologica.setup.RegistrationParticle;
 import com.technologica.world.gen.feature.ModFeatures;
 
 import net.minecraft.world.biome.Biome;
@@ -30,17 +31,20 @@ public class MainMod
 		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.CLIENT_CONFIG);
 		ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, Config.SERVER_CONFIG);
 		
+		FMLJavaModLoadingContext.get().getModEventBus().register(new RegistrationParticle());
+		
 		Registration.init();
 		
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(ModSetup::init);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientSetup::init);
+//		FMLJavaModLoadingContext.get().getModEventBus().addListener(RegistrationParticle::registerFactories);
 		
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, this::biomeModification);
 	}
 	
 	public void biomeModification(BiomeLoadingEvent biome) 
 	{
-		if (biome.getCategory().equals(Biome.Category.JUNGLE)) {
+		if (biome.getCategory().equals(Biome.Category.SWAMP)) {
 	    	biome.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION).add(() -> ModFeatures.BANANA_TREE_FEATURE);
 	    }
 	    else if (biome.getCategory().equals(Biome.Category.FOREST)) {

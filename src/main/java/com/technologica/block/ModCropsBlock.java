@@ -15,6 +15,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 
 public class ModCropsBlock extends CropsBlock {
+	public final int seedType;
 	private static final VoxelShape[] SHAPES = new VoxelShape[] {
 			Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D),
 			Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 3.0D, 16.0D),
@@ -25,12 +26,19 @@ public class ModCropsBlock extends CropsBlock {
 			Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
 			Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 9.0D, 16.0D) };
 
-	public ModCropsBlock() {
+	public ModCropsBlock(int seedTypeIn) {
 		super(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP));
+		seedType = seedTypeIn;
 	}
 
 	public IItemProvider getSeedsItem() {
-		return Registration.BLUEBERRY_SEEDS.get();
+		if (seedType == 1) {
+			return Registration.BLUEBERRY_SEEDS.get();	
+		} else if (seedType == 2) {
+			return Registration.GRAPE_SEEDS.get();
+		} else {
+			return Registration.STRAWBERRY_SEEDS.get();
+		}
 	}
 
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {

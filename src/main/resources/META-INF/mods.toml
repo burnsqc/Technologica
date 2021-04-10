@@ -1,6 +1,6 @@
 modLoader="javafml"
 loaderVersion="[35,)"
-logoFile="examplemod.png"
+logoFile="modconfiggraphic.png"
 license="All rights reserved"
 
 [[mods]]

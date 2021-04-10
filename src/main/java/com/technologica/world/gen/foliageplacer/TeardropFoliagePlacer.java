@@ -3,55 +3,89 @@ package com.technologica.world.gen.foliageplacer;
 import java.util.Random;
 import java.util.Set;
 
+import com.mojang.datafixers.Products.P3;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.mojang.serialization.codecs.RecordCodecBuilder.Instance;
+import com.mojang.serialization.codecs.RecordCodecBuilder.Mu;
+import com.technologica.setup.Registration;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.gen.IWorldGenerationReader;
 import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
 import net.minecraft.world.gen.feature.FeatureSpread;
-import net.minecraft.world.gen.foliageplacer.AcaciaFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.FoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.FoliagePlacerType;
 
 public class TeardropFoliagePlacer extends FoliagePlacer {
+	public static final Codec<TeardropFoliagePlacer> field_236738_a_ = RecordCodecBuilder.create((p_236742_0_) -> {return func_236740_a_(p_236742_0_).apply(p_236742_0_, TeardropFoliagePlacer::new);});
+	
+	protected final int layersBelowTop;
+	protected boolean largeTree;
 
-	public static final Codec<AcaciaFoliagePlacer> field_236736_a_ = RecordCodecBuilder.create((p_236737_0_) -> {
-		return func_242830_b(p_236737_0_).apply(p_236737_0_, AcaciaFoliagePlacer::new);
-	});
+	protected static <P extends TeardropFoliagePlacer> P3<Mu<P>, FeatureSpread, FeatureSpread, Integer> func_236740_a_(Instance<P> p_236740_0_) 
+	{
+		return func_242830_b(p_236740_0_).and(Codec.intRange(0, 16).fieldOf("height").forGetter((p_236741_0_) -> {return p_236741_0_.layersBelowTop;}));
+	}
 
-	public TeardropFoliagePlacer(FeatureSpread p_i241994_1_, FeatureSpread p_i241994_2_) {
-		super(p_i241994_1_, p_i241994_2_);
+	public TeardropFoliagePlacer(FeatureSpread p_i241995_1_, FeatureSpread p_i241995_2_, int layersBelowTopIn) {
+		super(p_i241995_1_, p_i241995_2_);
+		this.layersBelowTop = layersBelowTopIn;
+		this.largeTree = false;
 	}
 
 	protected FoliagePlacerType<?> func_230371_a_() {
-		return FoliagePlacerType.ACACIA;
+		return Registration.TEARDROP.get();
 	}
 
-	protected void func_230372_a_(IWorldGenerationReader p_230372_1_, Random p_230372_2_,
-			BaseTreeFeatureConfig p_230372_3_, int p_230372_4_, FoliagePlacer.Foliage p_230372_5_, int p_230372_6_,
-			int p_230372_7_, Set<BlockPos> p_230372_8_, int p_230372_9_, MutableBoundingBox p_230372_10_) {
-		boolean flag = p_230372_5_.func_236765_c_();
-		BlockPos blockpos = p_230372_5_.func_236763_a_().up(p_230372_9_);
-		this.func_236753_a_(p_230372_1_, p_230372_2_, p_230372_3_, blockpos, p_230372_7_ + p_230372_5_.func_236764_b_(),
-				p_230372_8_, -1 - p_230372_6_, flag, p_230372_10_);
-		this.func_236753_a_(p_230372_1_, p_230372_2_, p_230372_3_, blockpos, p_230372_7_ - 1, p_230372_8_, -p_230372_6_,
-				flag, p_230372_10_);
-		this.func_236753_a_(p_230372_1_, p_230372_2_, p_230372_3_, blockpos,
-				p_230372_7_ + p_230372_5_.func_236764_b_() - 1, p_230372_8_, 0, flag, p_230372_10_);
-	}
-
-	public int func_230374_a_(Random p_230374_1_, int p_230374_2_, BaseTreeFeatureConfig p_230374_3_) {
-		return 0;
-	}
-
-	protected boolean func_230373_a_(Random p_230373_1_, int p_230373_2_, int p_230373_3_, int p_230373_4_,
-			int p_230373_5_, boolean p_230373_6_) {
-		if (p_230373_3_ == 0) {
-			return (p_230373_2_ > 1 || p_230373_4_ > 1) && p_230373_2_ != 0 && p_230373_4_ != 0;
-		} else {
-			return p_230373_2_ == p_230373_5_ && p_230373_4_ == p_230373_5_ && p_230373_5_ > 0;
+	//Generate foliage
+	protected void func_230372_a_(IWorldGenerationReader worldIn, Random randomIn, BaseTreeFeatureConfig configIn, int p_230372_4_, FoliagePlacer.Foliage p_230372_5_, int layersBelowTop, int diameter, Set<BlockPos> p_230372_8_, int topLayer, MutableBoundingBox boundingBoxIn) 
+	{
+		for (int layer = topLayer + 3; layer >= topLayer + 3 - layersBelowTop; --layer) 
+		{
+			int j = Math.max(diameter + 1 + p_230372_5_.func_236764_b_(), 0);
+			this.func_236753_a_(worldIn, randomIn, configIn, p_230372_5_.func_236763_a_(), j, p_230372_8_, layer, p_230372_5_.func_236765_c_(), boundingBoxIn);
 		}
+	}
+
+	//Adjust number of layers based upon trunk height
+	public int func_230374_a_(Random randomIn, int i, BaseTreeFeatureConfig configIn) {
+		int trim;
+		if (i == 7) {
+			trim = i+1;
+			largeTree = true;
+		} else {
+			trim = layersBelowTop;
+			largeTree = false;
+		}
+		return trim;
+	}
+
+	//Prune foliage
+	protected boolean func_230373_a_(Random randomIn, int relativeZ, int relativeY, int relativeX, int p_230373_5_, boolean p_230373_6_) {
+		if (relativeY>=2) {
+			return (relativeX + relativeZ >= 1);
+		} else if (relativeY==1) {
+			return (relativeX + relativeZ >= 2);
+		} else if (relativeY==0) { 
+			return (relativeX >= 2 || relativeZ >= 2);	
+		} else if (relativeY==-1) { 
+			return (relativeX + relativeZ >= 3);
+		} else if (relativeY==-2) { 
+			return (relativeX + relativeZ >= 4 || relativeX >= 3 || relativeZ >= 3);
+		} else if (relativeY==-3) {
+			if (largeTree == true) {
+				return (relativeX + relativeZ >= 5);
+			} else {
+				return (relativeX >= 2 || relativeZ >= 2);
+			}
+		} else if (relativeY==-4) {
+			return (relativeX + relativeZ >= 4 || relativeX >= 3 || relativeZ >= 3);
+		} else if (relativeY==-5) {
+			return (relativeX >= 2 || relativeZ >= 2);
+		} else {
+			return false;
+		}		
 	}
 }
