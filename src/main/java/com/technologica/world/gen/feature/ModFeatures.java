@@ -26,7 +26,7 @@ public class ModFeatures extends Features {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(Registration.BANANA_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(Registration.BANANA_LEAVES.get().getDefaultState()),
-					new BlobFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(0), 3),
+					new PalmFoliagePlacer(FeatureSpread.func_242252_a(4), FeatureSpread.func_242252_a(1), 4),
 					new StraightTrunkPlacer(5, 2, 0), 
 					new TwoLayerFeature(1, 0, 1))).setIgnoreVines().build()));
 	

@@ -19,6 +19,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
@@ -91,10 +93,11 @@ public class ModLeavesBlock extends LeavesBlock {
 		if (state.get(AGE) == 7) {
 			spawnAsEntity(worldIn, pos.down(), new ItemStack(tile.getFruitStack().getItem(), 1));
 			tile.clear();
+			worldIn.playSound((PlayerEntity)null, pos, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1.0F, 0.8F + worldIn.rand.nextFloat() * 0.4F);
 			worldIn.setBlockState(pos, state.with(AGE, Integer.valueOf(0)), 4);
 			return ActionResultType.func_233537_a_(worldIn.isRemote);
 		} else {
-			return ActionResultType.func_233537_a_(worldIn.isRemote);
+			return ActionResultType.FAIL;
 		}
 	}
 
