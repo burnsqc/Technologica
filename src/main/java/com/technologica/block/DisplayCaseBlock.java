@@ -37,10 +37,12 @@ public class DisplayCaseBlock extends GlassBlock {
 
 	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		DisplayCaseTileEntity tile = getTileEntity(worldIn, pos);
+		ItemStack itemstack = player.getHeldItem(handIn);
 		if (tile.getDisplayStack().isEmpty()) {
-			if (!player.getHeldItem(handIn).isEmpty()) {
-				tile.setDisplayStack(player.getHeldItem(handIn));
-				player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+			if (!itemstack.isEmpty()) {;
+				tile.setDisplayStack(new ItemStack(itemstack.getItem(), 1));
+				itemstack.shrink(1);
+				player.inventory.setInventorySlotContents(player.inventory.currentItem, itemstack);
 				player.openContainer.detectAndSendChanges();
 			}
 		} else {
