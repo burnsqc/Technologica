@@ -35,7 +35,7 @@
                   ]
                 }
               ],
-              "name": "minecraft:acacia_leaves"
+              "name": "technologica:banana_leaves"
             },
             {
               "type": "minecraft:item",
@@ -55,6 +55,19 @@
                 }
               ],
               "name": "technologica:banana_sapling"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "technologica:banana_leaves",
+                  "properties": {
+                    "age": "7"
+                  }
+                }
+              ],
+              "name": "technologica:banana"
             }
           ]
         }

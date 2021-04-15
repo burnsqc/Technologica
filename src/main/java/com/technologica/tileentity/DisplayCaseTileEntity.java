@@ -12,11 +12,11 @@ import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 
-public class FruitTileEntity extends TileEntity {
+public class DisplayCaseTileEntity extends TileEntity {
 	private ItemStack stack = ItemStack.EMPTY;
 	
-	public FruitTileEntity() {
-		super(Registration.FRUIT_CROP.get());
+	public DisplayCaseTileEntity() {
+		super(Registration.DISPLAY_TILE.get());
 	}
 
 	@Override
@@ -24,11 +24,11 @@ public class FruitTileEntity extends TileEntity {
 		return new AxisAlignedBB(getPos(), getPos().add(1, -1, 1));
 	}
 	
-	public ItemStack getFruitStack() {
+	public ItemStack getDisplayStack() {
         return stack;
     }
 	
-	public void setFruitStack(ItemStack stackIn) {
+	public void setDisplayStack(ItemStack stackIn) {
         this.stack = stackIn;
         markDirty();
         if (world != null) {
@@ -37,7 +37,7 @@ public class FruitTileEntity extends TileEntity {
     }
 	
 	public void clear() {
-        this.setFruitStack(ItemStack.EMPTY);  
+        this.setDisplayStack(ItemStack.EMPTY);  
     }
 	
 	@Nullable
@@ -65,16 +65,16 @@ public class FruitTileEntity extends TileEntity {
 	@Override
 	public void read(BlockState state, CompoundNBT nbt) {
 		super.read(state, nbt);
-	    if (nbt.contains("FruitItem")) {
-	    	this.setFruitStack(ItemStack.read(nbt.getCompound("FruitItem")));
+	    if (nbt.contains("DisplayItem")) {
+	    	this.setDisplayStack(ItemStack.read(nbt.getCompound("DisplayItem")));
 	    }
 	}
 
 	@Override
 	public CompoundNBT write(CompoundNBT compound) {
 		super.write(compound);
-	    if (!this.getFruitStack().isEmpty()) {
-	    	compound.put("FruitItem", this.getFruitStack().write(new CompoundNBT()));
+	    if (!this.getDisplayStack().isEmpty()) {
+	    	compound.put("DisplayItem", this.getDisplayStack().write(new CompoundNBT()));
 	    }	   
 	    return compound;	    
 	}

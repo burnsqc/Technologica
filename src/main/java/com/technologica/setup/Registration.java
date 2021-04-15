@@ -2,6 +2,7 @@ package com.technologica.setup;
 
 import static com.technologica.MainMod.MODID;
 
+import com.technologica.block.DisplayCaseBlock;
 import com.technologica.block.ModCropsBlock;
 import com.technologica.block.ModLeavesBlock;
 import com.technologica.block.ModLogBlock;
@@ -17,6 +18,7 @@ import com.technologica.block.trees.PeachTree;
 import com.technologica.block.trees.PearTree;
 import com.technologica.block.trees.ToweringInfernoTree;
 import com.technologica.tileentity.FruitTileEntity;
+import com.technologica.tileentity.DisplayCaseTileEntity;
 import com.technologica.world.gen.foliageplacer.ConicalFoliagePlacer;
 import com.technologica.world.gen.foliageplacer.CylindricalFoliagePlacer;
 import com.technologica.world.gen.foliageplacer.PalmFoliagePlacer;
@@ -61,46 +63,38 @@ public class Registration
     //--------
     // BLOCKS
     //--------
-//    public static final RegistryObject<Block> BANANA_CROP = BLOCKS.register("banana_crop", () -> new ModFruitBlock(1));
     public static final RegistryObject<Block> BANANA_LEAVES = BLOCKS.register("banana_leaves", () -> new ModLeavesBlock(1));
     public static final RegistryObject<Block> BANANA_LOG = BLOCKS.register("banana_log", ModLogBlock::new);
     public static final RegistryObject<Block> BANANA_SAPLING = BLOCKS.register("banana_sapling", () -> new ModSaplingBlock(new BananaTree()));
     
     public static final RegistryObject<Block> BLUEBERRY_CROP = BLOCKS.register("blueberry_crop", () -> new ModCropsBlock(1));
     
-//    public static final RegistryObject<Block> CHERRY_CROP = BLOCKS.register("cherry_crop", () -> new ModFruitBlock(2));
     public static final RegistryObject<Block> CHERRY_LEAVES = BLOCKS.register("cherry_leaves", () -> new ModLeavesBlock(2));
     public static final RegistryObject<Block> CHERRY_LOG = BLOCKS.register("cherry_log", ModLogBlock::new);
     public static final RegistryObject<Block> CHERRY_SAPLING = BLOCKS.register("cherry_sapling", () -> new ModSaplingBlock(new CherryTree()));
     
-//    public static final RegistryObject<Block> COCONUT_CROP = BLOCKS.register("coconut_crop", () -> new ModFruitBlock(3));
     public static final RegistryObject<Block> COCONUT_LEAVES = BLOCKS.register("coconut_leaves", () -> new ModLeavesBlock(3));
     public static final RegistryObject<Block> COCONUT_LOG = BLOCKS.register("coconut_log", ModLogBlock::new);
     public static final RegistryObject<Block> COCONUT_SAPLING = BLOCKS.register("coconut_sapling", () -> new ModSaplingBlock(new CoconutTree()));
     
     public static final RegistryObject<Block> GRAPE_CROP = BLOCKS.register("grape_crop", () -> new ModCropsBlock(2));
     
-//    public static final RegistryObject<Block> LEMON_CROP = BLOCKS.register("lemon_crop", () -> new ModFruitBlock(4));
     public static final RegistryObject<Block> LEMON_LEAVES = BLOCKS.register("lemon_leaves", () -> new ModLeavesBlock(4));
     public static final RegistryObject<Block> LEMON_LOG = BLOCKS.register("lemon_log", ModLogBlock::new);
     public static final RegistryObject<Block> LEMON_SAPLING = BLOCKS.register("lemon_sapling", () -> new ModSaplingBlock(new LemonTree()));
        
-//    public static final RegistryObject<Block> LIME_CROP = BLOCKS.register("lime_crop", () -> new ModFruitBlock(5));
     public static final RegistryObject<Block> LIME_LEAVES = BLOCKS.register("lime_leaves", () -> new ModLeavesBlock(5));    
     public static final RegistryObject<Block> LIME_LOG = BLOCKS.register("lime_log", ModLogBlock::new);
     public static final RegistryObject<Block> LIME_SAPLING = BLOCKS.register("lime_sapling", () -> new ModSaplingBlock(new LimeTree()));
      
-//    public static final RegistryObject<Block> ORANGE_CROP = BLOCKS.register("orange_crop", () -> new ModFruitBlock(6));
     public static final RegistryObject<Block> ORANGE_LEAVES = BLOCKS.register("orange_leaves", () -> new ModLeavesBlock(6)); 
     public static final RegistryObject<Block> ORANGE_LOG = BLOCKS.register("orange_log", ModLogBlock::new);
     public static final RegistryObject<Block> ORANGE_SAPLING = BLOCKS.register("orange_sapling", () -> new ModSaplingBlock(new OrangeTree()));
     
-//    public static final RegistryObject<Block> PEACH_CROP = BLOCKS.register("peach_crop", () -> new ModFruitBlock(7));
     public static final RegistryObject<Block> PEACH_SAPLING = BLOCKS.register("peach_sapling", () -> new ModSaplingBlock(new PeachTree()));
     public static final RegistryObject<Block> PEACH_LEAVES = BLOCKS.register("peach_leaves", () -> new ModLeavesBlock(7)); 
     public static final RegistryObject<Block> PEACH_LOG = BLOCKS.register("peach_log", ModLogBlock::new);
            
-//    public static final RegistryObject<Block> PEAR_CROP = BLOCKS.register("pear_crop", () -> new ModFruitBlock(8));
     public static final RegistryObject<Block> PEAR_LEAVES = BLOCKS.register("pear_leaves", () -> new ModLeavesBlock(8));
     public static final RegistryObject<Block> PEAR_LOG = BLOCKS.register("pear_log", ModLogBlock::new);
     public static final RegistryObject<Block> PEAR_SAPLING = BLOCKS.register("pear_sapling", () -> new ModSaplingBlock(new PearTree()));
@@ -111,6 +105,8 @@ public class Registration
     
     public static final RegistryObject<Block> TOWERING_INFERNO_SAPLING = BLOCKS.register("towering_inferno_sapling", () -> new ModSaplingBlock(new ToweringInfernoTree()));
 
+    public static final RegistryObject<Block> DISPLAY_CASE = BLOCKS.register("display_case", DisplayCaseBlock::new);   
+    
     //------------
     // ITEMBLOCKS
     //------------
@@ -156,6 +152,8 @@ public class Registration
     
     public static final RegistryObject<Item> TOWERING_INFERNO_SAPLING_ITEM = ITEMS.register("towering_inferno_sapling", () -> new BlockItem(TOWERING_INFERNO_SAPLING.get(), new Item.Properties().group(ModSetup.TECHNOLOGICA_CRYPTICA)));
     
+    public static final RegistryObject<Item> DISPLAY_CASE_ITEM = ITEMS.register("display_case", () -> new BlockItem(DISPLAY_CASE.get(), new Item.Properties().group(ModSetup.TECHNOLOGICA_MINERAL))); 
+    
     //-------
     // ITEMS
     //-------
@@ -190,30 +188,31 @@ public class Registration
     //-------
     // TILES
     //-------
-    public static final RegistryObject<TileEntityType<FruitTileEntity>> BANANA_CROP = TILES.register("banana_crop", () -> TileEntityType.Builder.create(FruitTileEntity::new, BANANA_LEAVES.get()).build(null));
+    public static final RegistryObject<TileEntityType<FruitTileEntity>> FRUIT_CROP = TILES.register("fruit_crop", () -> TileEntityType.Builder.create(FruitTileEntity::new, 
+    		BANANA_LEAVES.get(), 
+    		CHERRY_LEAVES.get(), 
+    		COCONUT_LEAVES.get(),
+    		LEMON_LEAVES.get(),
+    		LIME_LEAVES.get(),
+    		ORANGE_LEAVES.get(),
+    		PEACH_LEAVES.get(),
+    		PEAR_LEAVES.get()).build(null));
+    public static final RegistryObject<TileEntityType<DisplayCaseTileEntity>> DISPLAY_TILE = TILES.register("display_tile", () -> TileEntityType.Builder.create(DisplayCaseTileEntity::new, DISPLAY_CASE.get()).build(null));
     
     //----------
     // ENTITIES
     //----------
-//    public static final RegistryObject<EntityType<?>> FRUIT_ENTITY = ENTITIES.register("fruit_entity", () -> EntityType.Builder.<ExperienceBottleEntity>create(ExperienceBottleEntity::new, EntityClassification.MISC).func_233608_b_(10).build(null));
     
     //----------
     // FOLIAGES
     //----------
-    public static final RegistryObject<FoliagePlacerType<?>> CONICAL = FOLIAGES.register("conical_foliage_placer", () -> new FoliagePlacerType<>(ConicalFoliagePlacer.field_236738_a_));
+    public static final RegistryObject<FoliagePlacerType<?>> CONICAL = FOLIAGES.register("conical_foliage_placer", () -> new FoliagePlacerType<>(ConicalFoliagePlacer.conicalCodec));
     public static final RegistryObject<FoliagePlacerType<?>> CYLINDRICAL = FOLIAGES.register("cylindrical_foliage_placer", () -> new FoliagePlacerType<>(CylindricalFoliagePlacer.cylindricalCodec));
     public static final RegistryObject<FoliagePlacerType<?>> PALM = FOLIAGES.register("palm_foliage_placer", () -> new FoliagePlacerType<>(PalmFoliagePlacer.palmCodec));
-    public static final RegistryObject<FoliagePlacerType<?>> TEARDROP = FOLIAGES.register("teardrop_foliage_placer", () -> new FoliagePlacerType<>(TeardropFoliagePlacer.field_236738_a_));
+    public static final RegistryObject<FoliagePlacerType<?>> TEARDROP = FOLIAGES.register("teardrop_foliage_placer", () -> new FoliagePlacerType<>(TeardropFoliagePlacer.teardropCodec));
     
     //-----------
     // PARTICLES
     //-----------
-//    public static final RegistryObject<BasicParticleType> BANANA_PARTICLE = PARTICLES.register("banana_particle", () -> new BasicParticleType(true));   
-//    public static final RegistryObject<BasicParticleType> CHERRY_PARTICLE = PARTICLES.register("cherry_particle", () -> new BasicParticleType(true));
-//    public static final RegistryObject<BasicParticleType> COCONUT_PARTICLE = PARTICLES.register("coconut_particle", () -> new BasicParticleType(true));
-//    public static final RegistryObject<BasicParticleType> LEMON_PARTICLE = PARTICLES.register("lemon_particle", () -> new BasicParticleType(true));
-//    public static final RegistryObject<BasicParticleType> LIME_PARTICLE = PARTICLES.register("lime_particle", () -> new BasicParticleType(true));
-//    public static final RegistryObject<BasicParticleType> ORANGE_PARTICLE = PARTICLES.register("orange_particle", () -> new BasicParticleType(true));
-//    public static final RegistryObject<BasicParticleType> PEACH_PARTICLE = PARTICLES.register("peach_particle", () -> new BasicParticleType(true));
-//    public static final RegistryObject<BasicParticleType> PEAR_PARTICLE = PARTICLES.register("pear_particle", () -> new BasicParticleType(true));   
+    
 }

@@ -19,7 +19,7 @@ import net.minecraft.world.gen.foliageplacer.FoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.FoliagePlacerType;
 
 public class ConicalFoliagePlacer extends FoliagePlacer {
-	public static final Codec<ConicalFoliagePlacer> field_236738_a_ = RecordCodecBuilder.create((p_236742_0_) -> {return func_236740_a_(p_236742_0_).apply(p_236742_0_, ConicalFoliagePlacer::new);});
+	public static final Codec<ConicalFoliagePlacer> conicalCodec = RecordCodecBuilder.create((p_236742_0_) -> {return func_236740_a_(p_236742_0_).apply(p_236742_0_, ConicalFoliagePlacer::new);});
 	
 	protected final int layersBelowTop;
 

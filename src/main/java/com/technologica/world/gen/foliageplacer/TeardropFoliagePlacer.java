@@ -19,7 +19,7 @@ import net.minecraft.world.gen.foliageplacer.FoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.FoliagePlacerType;
 
 public class TeardropFoliagePlacer extends FoliagePlacer {
-	public static final Codec<TeardropFoliagePlacer> field_236738_a_ = RecordCodecBuilder.create((p_236742_0_) -> {return func_236740_a_(p_236742_0_).apply(p_236742_0_, TeardropFoliagePlacer::new);});
+	public static final Codec<TeardropFoliagePlacer> teardropCodec = RecordCodecBuilder.create((p_236742_0_) -> {return func_236740_a_(p_236742_0_).apply(p_236742_0_, TeardropFoliagePlacer::new);});
 	
 	protected final int layersBelowTop;
 	protected boolean largeTree;
