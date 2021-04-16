@@ -78,7 +78,18 @@ public class MainMod
 	    			ModFeatures.PEAR_TREE_FEATURE.withChance(1.0F)), 
 	    			Features.SPRUCE))
 	    	.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT)
-	    	.withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(1, 0.1F, 1))));
+	    	.withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(1, 0.1F, 1))));			
+		}
+		else if (biome.getCategory().equals(Biome.Category.SWAMP)) {
+			biome.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION).add(() -> 
+	    	Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(
+	    			ModFeatures.KIWI_TREE_FEATURE.withChance(1.0F)), 
+	    			Features.SPRUCE))
+	    	.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT)
+	    	.withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(1, 0.1F, 1))));			
+		}
+		else if (biome.getCategory().equals(Biome.Category.DESERT)) {
+			biome.getGeneration().getFeatures(GenerationStage.Decoration.LAKES).add(() -> ModFeatures.OASIS_FEATURE);
 		}
     }	
 }

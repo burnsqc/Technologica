@@ -11,6 +11,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
+import net.minecraft.world.gen.feature.BlockStateFeatureConfig;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.FeatureSpread;
@@ -18,6 +19,8 @@ import net.minecraft.world.gen.feature.Features;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.TwoLayerFeature;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
+import net.minecraft.world.gen.placement.ChanceConfig;
+import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
 
 public class ModFeatures extends Features {
@@ -47,6 +50,15 @@ public class ModFeatures extends Features {
 					new PalmFoliagePlacer(FeatureSpread.func_242252_a(5), FeatureSpread.func_242252_a(1), 5),
 					new StraightTrunkPlacer(7, 5, 0), 
 					new TwoLayerFeature(0, 0, 0))).setIgnoreVines().build()));
+	
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> KIWI_TREE_FEATURE = register(
+			"kiwi_tree_feature",
+			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(Registration.KIWI_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(Registration.KIWI_LEAVES.get().getDefaultState()),
+					new ConicalFoliagePlacer(FeatureSpread.func_242252_a(0), FeatureSpread.func_242252_a(0), 2),
+					new StraightTrunkPlacer(2, 2, 0), 
+					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
 	
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> LEMON_TREE_FEATURE = register(
 			"lemon_tree_feature",
@@ -101,6 +113,12 @@ public class ModFeatures extends Features {
 					new CylindricalFoliagePlacer(FeatureSpread.func_242252_a(9), FeatureSpread.func_242252_a(0), 0),
 					new StraightTrunkPlacer(10, 10, 0), 
 					new TwoLayerFeature(0, 0, 0))).setIgnoreVines().build()));
+	
+	public static final ConfiguredFeature<?, ?> OASIS_FEATURE = register(
+			"oasis_feature", 
+			Feature.LAKE.withConfiguration(new BlockStateFeatureConfig(
+					Blocks.WATER.getDefaultState()))
+			.withPlacement(Placement.WATER_LAKE.configure(new ChanceConfig(4))));
 	
 	private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String key, ConfiguredFeature<FC, ?> configuredFeature) {
 		return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, key, configuredFeature);

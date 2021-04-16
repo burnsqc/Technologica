@@ -35,7 +35,7 @@
                   ]
                 }
               ],
-              "name": "minecraft:acacia_leaves"
+              "name": "technologica:orange_leaves"
             },
             {
               "type": "minecraft:item",
@@ -55,6 +55,19 @@
                 }
               ],
               "name": "technologica:orange_sapling"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "technologica:orange_leaves",
+                  "properties": {
+                    "age": "7"
+                  }
+                }
+              ],
+              "name": "technologica:orange"
             }
           ]
         }

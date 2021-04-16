@@ -61,7 +61,14 @@ public class ModLeavesBlock extends LeavesBlock {
 			spawnDrops(state, worldIn, pos);
 			worldIn.removeBlock(pos, false);
 		} else if (worldIn.isAirBlock(pos.down()) && state.get(AGE) <= 6) {
-			worldIn.setBlockState(pos, state.with(AGE, Integer.valueOf(state.get(AGE) + 1)), 4);
+			if (fruitType != 1 && fruitType != 3) {
+				worldIn.setBlockState(pos, state.with(AGE, Integer.valueOf(state.get(AGE) + 1)), 4);
+			} else {
+				if (state.get(DISTANCE) == 1) {
+					worldIn.setBlockState(pos, state.with(AGE, Integer.valueOf(state.get(AGE) + 1)), 4);
+				}
+			}			
+			
 			if (state.get(AGE) == 6) {
 				if (fruitType == 1) {
 					if (state.get(DISTANCE) == 1) {
@@ -74,14 +81,16 @@ public class ModLeavesBlock extends LeavesBlock {
 						tile.setFruitStack(new ItemStack(Registration.COCONUT.get()));
 					}
 				} else if (fruitType == 4) {
-					tile.setFruitStack(new ItemStack(Registration.LEMON.get()));
+					tile.setFruitStack(new ItemStack(Registration.KIWI.get()));
 				} else if (fruitType == 5) {
-					tile.setFruitStack(new ItemStack(Registration.LIME.get()));
+					tile.setFruitStack(new ItemStack(Registration.LEMON.get()));
 				} else if (fruitType == 6) {
-					tile.setFruitStack(new ItemStack(Registration.ORANGE.get()));
+					tile.setFruitStack(new ItemStack(Registration.LIME.get()));
 				} else if (fruitType == 7) {
-					tile.setFruitStack(new ItemStack(Registration.PEACH.get()));
+					tile.setFruitStack(new ItemStack(Registration.ORANGE.get()));
 				} else if (fruitType == 8) {
+					tile.setFruitStack(new ItemStack(Registration.PEACH.get()));
+				} else if (fruitType == 9) {
 					tile.setFruitStack(new ItemStack(Registration.PEAR.get()));
 				}
 			}

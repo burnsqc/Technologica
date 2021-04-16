@@ -11,14 +11,15 @@ import com.technologica.block.ModSaplingBlock;
 import com.technologica.block.trees.BananaTree;
 import com.technologica.block.trees.CherryTree;
 import com.technologica.block.trees.CoconutTree;
+import com.technologica.block.trees.KiwiTree;
 import com.technologica.block.trees.LemonTree;
 import com.technologica.block.trees.LimeTree;
 import com.technologica.block.trees.OrangeTree;
 import com.technologica.block.trees.PeachTree;
 import com.technologica.block.trees.PearTree;
 import com.technologica.block.trees.ToweringInfernoTree;
-import com.technologica.tileentity.FruitTileEntity;
 import com.technologica.tileentity.DisplayCaseTileEntity;
+import com.technologica.tileentity.FruitTileEntity;
 import com.technologica.world.gen.foliageplacer.ConicalFoliagePlacer;
 import com.technologica.world.gen.foliageplacer.CylindricalFoliagePlacer;
 import com.technologica.world.gen.foliageplacer.PalmFoliagePlacer;
@@ -79,23 +80,27 @@ public class Registration
     
     public static final RegistryObject<Block> GRAPE_CROP = BLOCKS.register("grape_crop", () -> new ModCropsBlock(2));
     
-    public static final RegistryObject<Block> LEMON_LEAVES = BLOCKS.register("lemon_leaves", () -> new ModLeavesBlock(4));
+    public static final RegistryObject<Block> KIWI_LEAVES = BLOCKS.register("kiwi_leaves", () -> new ModLeavesBlock(4));
+    public static final RegistryObject<Block> KIWI_LOG = BLOCKS.register("kiwi_log", ModLogBlock::new);
+    public static final RegistryObject<Block> KIWI_SAPLING = BLOCKS.register("kiwi_sapling", () -> new ModSaplingBlock(new KiwiTree()));
+    
+    public static final RegistryObject<Block> LEMON_LEAVES = BLOCKS.register("lemon_leaves", () -> new ModLeavesBlock(5));
     public static final RegistryObject<Block> LEMON_LOG = BLOCKS.register("lemon_log", ModLogBlock::new);
     public static final RegistryObject<Block> LEMON_SAPLING = BLOCKS.register("lemon_sapling", () -> new ModSaplingBlock(new LemonTree()));
        
-    public static final RegistryObject<Block> LIME_LEAVES = BLOCKS.register("lime_leaves", () -> new ModLeavesBlock(5));    
+    public static final RegistryObject<Block> LIME_LEAVES = BLOCKS.register("lime_leaves", () -> new ModLeavesBlock(6));    
     public static final RegistryObject<Block> LIME_LOG = BLOCKS.register("lime_log", ModLogBlock::new);
     public static final RegistryObject<Block> LIME_SAPLING = BLOCKS.register("lime_sapling", () -> new ModSaplingBlock(new LimeTree()));
      
-    public static final RegistryObject<Block> ORANGE_LEAVES = BLOCKS.register("orange_leaves", () -> new ModLeavesBlock(6)); 
+    public static final RegistryObject<Block> ORANGE_LEAVES = BLOCKS.register("orange_leaves", () -> new ModLeavesBlock(7)); 
     public static final RegistryObject<Block> ORANGE_LOG = BLOCKS.register("orange_log", ModLogBlock::new);
     public static final RegistryObject<Block> ORANGE_SAPLING = BLOCKS.register("orange_sapling", () -> new ModSaplingBlock(new OrangeTree()));
     
-    public static final RegistryObject<Block> PEACH_SAPLING = BLOCKS.register("peach_sapling", () -> new ModSaplingBlock(new PeachTree()));
-    public static final RegistryObject<Block> PEACH_LEAVES = BLOCKS.register("peach_leaves", () -> new ModLeavesBlock(7)); 
+    public static final RegistryObject<Block> PEACH_LEAVES = BLOCKS.register("peach_leaves", () -> new ModLeavesBlock(8)); 
     public static final RegistryObject<Block> PEACH_LOG = BLOCKS.register("peach_log", ModLogBlock::new);
+    public static final RegistryObject<Block> PEACH_SAPLING = BLOCKS.register("peach_sapling", () -> new ModSaplingBlock(new PeachTree()));
            
-    public static final RegistryObject<Block> PEAR_LEAVES = BLOCKS.register("pear_leaves", () -> new ModLeavesBlock(8));
+    public static final RegistryObject<Block> PEAR_LEAVES = BLOCKS.register("pear_leaves", () -> new ModLeavesBlock(9));
     public static final RegistryObject<Block> PEAR_LOG = BLOCKS.register("pear_log", ModLogBlock::new);
     public static final RegistryObject<Block> PEAR_SAPLING = BLOCKS.register("pear_sapling", () -> new ModSaplingBlock(new PearTree()));
         
@@ -125,6 +130,10 @@ public class Registration
     public static final RegistryObject<Item> COCONUT_SAPLING_ITEM = ITEMS.register("coconut_sapling", () -> new BlockItem(COCONUT_SAPLING.get(), new Item.Properties().group(ModSetup.TECHNOLOGICA_FLORA)));   
     
     public static final RegistryObject<Item> GRAPE_SEEDS = ITEMS.register("grape_seeds", () -> new BlockNamedItem(GRAPE_CROP.get(), new Item.Properties().group(ModSetup.TECHNOLOGICA_FLORA)));
+    
+    public static final RegistryObject<Item> KIWI_LEAVES_ITEM = ITEMS.register("kiwi_leaves", () -> new BlockItem(KIWI_LEAVES.get(), new Item.Properties().group(ModSetup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> KIWI_LOG_ITEM = ITEMS.register("kiwi_log", () -> new BlockItem(KIWI_LOG.get(), new Item.Properties().group(ModSetup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> KIWI_SAPLING_ITEM = ITEMS.register("kiwi_sapling", () -> new BlockItem(KIWI_SAPLING.get(), new Item.Properties().group(ModSetup.TECHNOLOGICA_FLORA)));
     
     public static final RegistryObject<Item> LEMON_LEAVES_ITEM = ITEMS.register("lemon_leaves", () -> new BlockItem(LEMON_LEAVES.get(), new Item.Properties().group(ModSetup.TECHNOLOGICA_FLORA)));
     public static final RegistryObject<Item> LEMON_LOG_ITEM = ITEMS.register("lemon_log", () -> new BlockItem(LEMON_LOG.get(), new Item.Properties().group(ModSetup.TECHNOLOGICA_FLORA)));
@@ -162,6 +171,7 @@ public class Registration
     public static final RegistryObject<Item> CHERRY = ITEMS.register("cherry", () -> new Item(new Item.Properties().group(ModSetup.TECHNOLOGICA_FOOD).food(new Food.Builder().hunger(1).saturation(0.1F).setAlwaysEdible().fastToEat().build())));
     public static final RegistryObject<Item> COCONUT = ITEMS.register("coconut", () -> new Item(new Item.Properties().group(ModSetup.TECHNOLOGICA_FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
     public static final RegistryObject<Item> GRAPE = ITEMS.register("grape", () -> new Item(new Item.Properties().group(ModSetup.TECHNOLOGICA_FOOD).food(new Food.Builder().hunger(1).saturation(0.1F).setAlwaysEdible().fastToEat().build())));
+    public static final RegistryObject<Item> KIWI = ITEMS.register("kiwi", () -> new Item(new Item.Properties().group(ModSetup.TECHNOLOGICA_FOOD).food(new Food.Builder().hunger(2).saturation(0.1F).setAlwaysEdible().fastToEat().build())));
     public static final RegistryObject<Item> LEMON = ITEMS.register("lemon", () -> new Item(new Item.Properties().group(ModSetup.TECHNOLOGICA_FOOD).food(new Food.Builder().hunger(1).saturation(0.1F).setAlwaysEdible().build())));
     public static final RegistryObject<Item> LIME = ITEMS.register("lime", () -> new Item(new Item.Properties().group(ModSetup.TECHNOLOGICA_FOOD).food(new Food.Builder().hunger(1).saturation(0.1F).setAlwaysEdible().build())));
     public static final RegistryObject<Item> ORANGE = ITEMS.register("orange", () -> new Item(new Item.Properties().group(ModSetup.TECHNOLOGICA_FOOD).food(new Food.Builder().hunger(3).saturation(0.1F).setAlwaysEdible().build())));
@@ -192,6 +202,7 @@ public class Registration
     		BANANA_LEAVES.get(), 
     		CHERRY_LEAVES.get(), 
     		COCONUT_LEAVES.get(),
+    		KIWI_LEAVES.get(),
     		LEMON_LEAVES.get(),
     		LIME_LEAVES.get(),
     		ORANGE_LEAVES.get(),

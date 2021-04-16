@@ -12,6 +12,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
@@ -41,6 +43,7 @@ public class DisplayCaseBlock extends GlassBlock {
 		if (tile.getDisplayStack().isEmpty()) {
 			if (!itemstack.isEmpty()) {;
 				tile.setDisplayStack(new ItemStack(itemstack.getItem(), 1));
+				worldIn.playSound((PlayerEntity)null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.rand.nextFloat() * 0.4F);
 				itemstack.shrink(1);
 				player.inventory.setInventorySlotContents(player.inventory.currentItem, itemstack);
 				player.openContainer.detectAndSendChanges();
@@ -48,6 +51,7 @@ public class DisplayCaseBlock extends GlassBlock {
 		} else {
 			ItemStack stack = tile.getDisplayStack();
 			tile.clear();
+			worldIn.playSound((PlayerEntity)null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.rand.nextFloat() * 0.4F);
 			if (!player.inventory.addItemStackToInventory(stack)) {
 				spawnAsEntity(worldIn, pos.up(), stack);
 			} else {
