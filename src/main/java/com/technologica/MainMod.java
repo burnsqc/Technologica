@@ -49,9 +49,7 @@ public class MainMod
 		if (biome.getCategory().equals(Biome.Category.JUNGLE)) {
 	    	biome.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION).add(() -> 
 	    	Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(
-	    			ModFeatures.BANANA_TREE_FEATURE.withChance(0.25F), 
-	    			ModFeatures.LEMON_TREE_FEATURE.withChance(0.25F),
-	    			ModFeatures.LIME_TREE_FEATURE.withChance(0.25F)),	    			 
+	    			ModFeatures.BANANA_TREE_FEATURE.withChance(0.5F)), 	    			 
 	    			ModFeatures.ORANGE_TREE_FEATURE))
 	    	.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT)
 	    	.withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(2, 0.1F, 1))));

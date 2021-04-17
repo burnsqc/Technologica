@@ -39,6 +39,13 @@ public class ModSetup {
 			return new ItemStack(Registration.TOWERING_INFERNO_SAPLING.get());
 		}
 	};
+	
+	public static final ItemGroup TECHNOLOGICA_DECORATIONS = new ItemGroup("technologica_decorations") {
+		@Override
+		public ItemStack createIcon() {
+			return new ItemStack(Registration.DISPLAY_CASE.get());
+		}
+	};
 
 	public static void init(final FMLCommonSetupEvent event) {
 	}

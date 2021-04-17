@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "technologica:banana_sapling",
+    "technologica:cherry_sapling",
+    "technologica:coconut_sapling",
+    "technologica:kiwi_sapling",
+    "technologica:lemon_sapling",
+    "technologica:lime_sapling",
+    "technologica:orange_sapling",
+    "technologica:peach_sapling",
+    "technologica:pear_sapling"
+  ]
+}

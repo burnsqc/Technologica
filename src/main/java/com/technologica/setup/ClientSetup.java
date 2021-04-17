@@ -23,14 +23,24 @@ public class ClientSetup {
 		event.enqueueWork(() -> {
 			RenderTypeLookup.setRenderLayer(Registration.BLUEBERRY_CROP.get(), RenderType.getCutoutMipped());
 			RenderTypeLookup.setRenderLayer(Registration.BANANA_SAPLING.get(), RenderType.getCutoutMipped());
+			RenderTypeLookup.setRenderLayer(Registration.POTTED_BANANA_SAPLING.get(), RenderType.getCutoutMipped());
 			RenderTypeLookup.setRenderLayer(Registration.CHERRY_SAPLING.get(), RenderType.getCutoutMipped());
+			RenderTypeLookup.setRenderLayer(Registration.POTTED_CHERRY_SAPLING.get(), RenderType.getCutoutMipped());
 			RenderTypeLookup.setRenderLayer(Registration.COCONUT_SAPLING.get(), RenderType.getCutoutMipped());
+			RenderTypeLookup.setRenderLayer(Registration.POTTED_COCONUT_SAPLING.get(), RenderType.getCutoutMipped());
+			RenderTypeLookup.setRenderLayer(Registration.GRAPE_CROP.get(), RenderType.getCutoutMipped());
 			RenderTypeLookup.setRenderLayer(Registration.KIWI_SAPLING.get(), RenderType.getCutoutMipped());
+			RenderTypeLookup.setRenderLayer(Registration.POTTED_KIWI_SAPLING.get(), RenderType.getCutoutMipped());
 			RenderTypeLookup.setRenderLayer(Registration.LEMON_SAPLING.get(), RenderType.getCutoutMipped());
+			RenderTypeLookup.setRenderLayer(Registration.POTTED_LEMON_SAPLING.get(), RenderType.getCutoutMipped());
 			RenderTypeLookup.setRenderLayer(Registration.LIME_SAPLING.get(), RenderType.getCutoutMipped());
+			RenderTypeLookup.setRenderLayer(Registration.POTTED_LIME_SAPLING.get(), RenderType.getCutoutMipped());
 			RenderTypeLookup.setRenderLayer(Registration.ORANGE_SAPLING.get(), RenderType.getCutoutMipped());
+			RenderTypeLookup.setRenderLayer(Registration.POTTED_ORANGE_SAPLING.get(), RenderType.getCutoutMipped());
 			RenderTypeLookup.setRenderLayer(Registration.PEACH_SAPLING.get(), RenderType.getCutoutMipped());
+			RenderTypeLookup.setRenderLayer(Registration.POTTED_PEACH_SAPLING.get(), RenderType.getCutoutMipped());
 			RenderTypeLookup.setRenderLayer(Registration.PEAR_SAPLING.get(), RenderType.getCutoutMipped());
+			RenderTypeLookup.setRenderLayer(Registration.POTTED_PEAR_SAPLING.get(), RenderType.getCutoutMipped());
 			RenderTypeLookup.setRenderLayer(Registration.STRAWBERRY_CROP.get(), RenderType.getCutoutMipped());
 			
 			RenderTypeLookup.setRenderLayer(Registration.DISPLAY_CASE.get(), RenderType.getTranslucent());

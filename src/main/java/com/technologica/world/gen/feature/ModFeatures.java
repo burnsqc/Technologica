@@ -116,10 +116,10 @@ public class ModFeatures extends Features {
 	
 	public static final ConfiguredFeature<?, ?> OASIS_FEATURE = register(
 			"oasis_feature", 
-			Feature.LAKE.withConfiguration(new BlockStateFeatureConfig(
+			Registration.OASIS.get().withConfiguration(new BlockStateFeatureConfig(
 					Blocks.WATER.getDefaultState()))
-			.withPlacement(Placement.WATER_LAKE.configure(new ChanceConfig(4))));
-	
+			.withPlacement(Placement.WATER_LAKE.configure(new ChanceConfig(100))));
+			
 	private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String key, ConfiguredFeature<FC, ?> configuredFeature) {
 		return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, key, configuredFeature);
 	}

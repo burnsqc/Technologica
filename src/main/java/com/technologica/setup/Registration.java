@@ -20,12 +20,16 @@ import com.technologica.block.trees.PearTree;
 import com.technologica.block.trees.ToweringInfernoTree;
 import com.technologica.tileentity.DisplayCaseTileEntity;
 import com.technologica.tileentity.FruitTileEntity;
+import com.technologica.world.gen.feature.OasisFeature;
 import com.technologica.world.gen.foliageplacer.ConicalFoliagePlacer;
 import com.technologica.world.gen.foliageplacer.CylindricalFoliagePlacer;
 import com.technologica.world.gen.foliageplacer.PalmFoliagePlacer;
 import com.technologica.world.gen.foliageplacer.TeardropFoliagePlacer;
 
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.FlowerPotBlock;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.BlockItem;
@@ -34,6 +38,8 @@ import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.particles.ParticleType;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.world.gen.feature.BlockStateFeatureConfig;
+import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.foliageplacer.FoliagePlacerType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -47,6 +53,7 @@ public class Registration
     private static final DeferredRegister<TileEntityType<?>> TILES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, MODID);
     private static final DeferredRegister<ContainerType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.CONTAINERS, MODID);
     private static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, MODID);
+    private static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, MODID);
     private static final DeferredRegister<FoliagePlacerType<?>> FOLIAGES = DeferredRegister.create(ForgeRegistries.FOLIAGE_PLACER_TYPES, MODID);
     private static final DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, MODID);
     
@@ -56,7 +63,8 @@ public class Registration
         ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
         TILES.register(FMLJavaModLoadingContext.get().getModEventBus());
         CONTAINERS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());  
+        ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus()); 
+        FEATURES.register(FMLJavaModLoadingContext.get().getModEventBus()); 
         FOLIAGES.register(FMLJavaModLoadingContext.get().getModEventBus()); 
         PARTICLES.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
@@ -67,42 +75,51 @@ public class Registration
     public static final RegistryObject<Block> BANANA_LEAVES = BLOCKS.register("banana_leaves", () -> new ModLeavesBlock(1));
     public static final RegistryObject<Block> BANANA_LOG = BLOCKS.register("banana_log", ModLogBlock::new);
     public static final RegistryObject<Block> BANANA_SAPLING = BLOCKS.register("banana_sapling", () -> new ModSaplingBlock(new BananaTree()));
+    public static final RegistryObject<Block> POTTED_BANANA_SAPLING = BLOCKS.register("potted_banana_sapling", () -> new FlowerPotBlock(BANANA_SAPLING.get(), AbstractBlock.Properties.create(Material.MISCELLANEOUS).zeroHardnessAndResistance().notSolid()));
     
     public static final RegistryObject<Block> BLUEBERRY_CROP = BLOCKS.register("blueberry_crop", () -> new ModCropsBlock(1));
     
     public static final RegistryObject<Block> CHERRY_LEAVES = BLOCKS.register("cherry_leaves", () -> new ModLeavesBlock(2));
     public static final RegistryObject<Block> CHERRY_LOG = BLOCKS.register("cherry_log", ModLogBlock::new);
     public static final RegistryObject<Block> CHERRY_SAPLING = BLOCKS.register("cherry_sapling", () -> new ModSaplingBlock(new CherryTree()));
+    public static final RegistryObject<Block> POTTED_CHERRY_SAPLING = BLOCKS.register("potted_cherry_sapling", () -> new FlowerPotBlock(CHERRY_SAPLING.get(), AbstractBlock.Properties.create(Material.MISCELLANEOUS).zeroHardnessAndResistance().notSolid()));
     
     public static final RegistryObject<Block> COCONUT_LEAVES = BLOCKS.register("coconut_leaves", () -> new ModLeavesBlock(3));
     public static final RegistryObject<Block> COCONUT_LOG = BLOCKS.register("coconut_log", ModLogBlock::new);
     public static final RegistryObject<Block> COCONUT_SAPLING = BLOCKS.register("coconut_sapling", () -> new ModSaplingBlock(new CoconutTree()));
+    public static final RegistryObject<Block> POTTED_COCONUT_SAPLING = BLOCKS.register("potted_coconut_sapling", () -> new FlowerPotBlock(COCONUT_SAPLING.get(), AbstractBlock.Properties.create(Material.MISCELLANEOUS).zeroHardnessAndResistance().notSolid()));
     
     public static final RegistryObject<Block> GRAPE_CROP = BLOCKS.register("grape_crop", () -> new ModCropsBlock(2));
     
     public static final RegistryObject<Block> KIWI_LEAVES = BLOCKS.register("kiwi_leaves", () -> new ModLeavesBlock(4));
     public static final RegistryObject<Block> KIWI_LOG = BLOCKS.register("kiwi_log", ModLogBlock::new);
     public static final RegistryObject<Block> KIWI_SAPLING = BLOCKS.register("kiwi_sapling", () -> new ModSaplingBlock(new KiwiTree()));
+    public static final RegistryObject<Block> POTTED_KIWI_SAPLING = BLOCKS.register("potted_kiwi_sapling", () -> new FlowerPotBlock(KIWI_SAPLING.get(), AbstractBlock.Properties.create(Material.MISCELLANEOUS).zeroHardnessAndResistance().notSolid()));
     
     public static final RegistryObject<Block> LEMON_LEAVES = BLOCKS.register("lemon_leaves", () -> new ModLeavesBlock(5));
     public static final RegistryObject<Block> LEMON_LOG = BLOCKS.register("lemon_log", ModLogBlock::new);
     public static final RegistryObject<Block> LEMON_SAPLING = BLOCKS.register("lemon_sapling", () -> new ModSaplingBlock(new LemonTree()));
+    public static final RegistryObject<Block> POTTED_LEMON_SAPLING = BLOCKS.register("potted_lemon_sapling", () -> new FlowerPotBlock(LEMON_SAPLING.get(), AbstractBlock.Properties.create(Material.MISCELLANEOUS).zeroHardnessAndResistance().notSolid()));
        
     public static final RegistryObject<Block> LIME_LEAVES = BLOCKS.register("lime_leaves", () -> new ModLeavesBlock(6));    
     public static final RegistryObject<Block> LIME_LOG = BLOCKS.register("lime_log", ModLogBlock::new);
     public static final RegistryObject<Block> LIME_SAPLING = BLOCKS.register("lime_sapling", () -> new ModSaplingBlock(new LimeTree()));
+    public static final RegistryObject<Block> POTTED_LIME_SAPLING = BLOCKS.register("potted_lime_sapling", () -> new FlowerPotBlock(LIME_SAPLING.get(), AbstractBlock.Properties.create(Material.MISCELLANEOUS).zeroHardnessAndResistance().notSolid()));
      
     public static final RegistryObject<Block> ORANGE_LEAVES = BLOCKS.register("orange_leaves", () -> new ModLeavesBlock(7)); 
     public static final RegistryObject<Block> ORANGE_LOG = BLOCKS.register("orange_log", ModLogBlock::new);
     public static final RegistryObject<Block> ORANGE_SAPLING = BLOCKS.register("orange_sapling", () -> new ModSaplingBlock(new OrangeTree()));
+    public static final RegistryObject<Block> POTTED_ORANGE_SAPLING = BLOCKS.register("potted_orange_sapling", () -> new FlowerPotBlock(ORANGE_SAPLING.get(), AbstractBlock.Properties.create(Material.MISCELLANEOUS).zeroHardnessAndResistance().notSolid()));
     
     public static final RegistryObject<Block> PEACH_LEAVES = BLOCKS.register("peach_leaves", () -> new ModLeavesBlock(8)); 
     public static final RegistryObject<Block> PEACH_LOG = BLOCKS.register("peach_log", ModLogBlock::new);
     public static final RegistryObject<Block> PEACH_SAPLING = BLOCKS.register("peach_sapling", () -> new ModSaplingBlock(new PeachTree()));
+    public static final RegistryObject<Block> POTTED_PEACH_SAPLING = BLOCKS.register("potted_peach_sapling", () -> new FlowerPotBlock(PEACH_SAPLING.get(), AbstractBlock.Properties.create(Material.MISCELLANEOUS).zeroHardnessAndResistance().notSolid()));
            
     public static final RegistryObject<Block> PEAR_LEAVES = BLOCKS.register("pear_leaves", () -> new ModLeavesBlock(9));
     public static final RegistryObject<Block> PEAR_LOG = BLOCKS.register("pear_log", ModLogBlock::new);
     public static final RegistryObject<Block> PEAR_SAPLING = BLOCKS.register("pear_sapling", () -> new ModSaplingBlock(new PearTree()));
+    public static final RegistryObject<Block> POTTED_PEAR_SAPLING = BLOCKS.register("potted_pear_sapling", () -> new FlowerPotBlock(PEAR_SAPLING.get(), AbstractBlock.Properties.create(Material.MISCELLANEOUS).zeroHardnessAndResistance().notSolid()));
         
     public static final RegistryObject<Block> STRAWBERRY_CROP = BLOCKS.register("strawberry_crop", () -> new ModCropsBlock(3));
     
@@ -161,7 +178,7 @@ public class Registration
     
     public static final RegistryObject<Item> TOWERING_INFERNO_SAPLING_ITEM = ITEMS.register("towering_inferno_sapling", () -> new BlockItem(TOWERING_INFERNO_SAPLING.get(), new Item.Properties().group(ModSetup.TECHNOLOGICA_CRYPTICA)));
     
-    public static final RegistryObject<Item> DISPLAY_CASE_ITEM = ITEMS.register("display_case", () -> new BlockItem(DISPLAY_CASE.get(), new Item.Properties().group(ModSetup.TECHNOLOGICA_MINERAL))); 
+    public static final RegistryObject<Item> DISPLAY_CASE_ITEM = ITEMS.register("display_case", () -> new BlockItem(DISPLAY_CASE.get(), new Item.Properties().group(ModSetup.TECHNOLOGICA_DECORATIONS))); 
     
     //-------
     // ITEMS
@@ -225,5 +242,5 @@ public class Registration
     //-----------
     // PARTICLES
     //-----------
-    
+    public static final RegistryObject<Feature<BlockStateFeatureConfig>> OASIS = FEATURES.register("oasis",() -> new OasisFeature(BlockStateFeatureConfig.field_236455_a_));
 }
