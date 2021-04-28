@@ -1,8 +1,9 @@
 package com.technologica.setup;
 
 import com.technologica.MainMod;
-import com.technologica.block.FruitRenderer;
 import com.technologica.block.DisplayCaseRenderer;
+import com.technologica.block.FruitRenderer;
+import com.technologica.block.PotionRenderer;
 
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -21,8 +22,10 @@ public class ClientSetup {
 
 	public static void init(final FMLClientSetupEvent event) {
 		event.enqueueWork(() -> {
+			RenderTypeLookup.setRenderLayer(Registration.ANCIENT_AMBROSIA_SAPLING.get(), RenderType.getCutoutMipped());
 			RenderTypeLookup.setRenderLayer(Registration.BLUEBERRY_CROP.get(), RenderType.getCutoutMipped());
 			RenderTypeLookup.setRenderLayer(Registration.BANANA_SAPLING.get(), RenderType.getCutoutMipped());
+			RenderTypeLookup.setRenderLayer(Registration.BENEVOLENT_APOTHECARY_SAPLING.get(), RenderType.getCutoutMipped());
 			RenderTypeLookup.setRenderLayer(Registration.POTTED_BANANA_SAPLING.get(), RenderType.getCutoutMipped());
 			RenderTypeLookup.setRenderLayer(Registration.CHERRY_SAPLING.get(), RenderType.getCutoutMipped());
 			RenderTypeLookup.setRenderLayer(Registration.POTTED_CHERRY_SAPLING.get(), RenderType.getCutoutMipped());
@@ -44,8 +47,12 @@ public class ClientSetup {
 			RenderTypeLookup.setRenderLayer(Registration.STRAWBERRY_CROP.get(), RenderType.getCutoutMipped());
 			
 			RenderTypeLookup.setRenderLayer(Registration.DISPLAY_CASE.get(), RenderType.getTranslucent());
+			RenderTypeLookup.setRenderLayer(Registration.AQUAMARINE_CRYSTAL.get(), RenderType.getTranslucent());
+			RenderTypeLookup.setRenderLayer(Registration.FLUORITE_CRYSTAL.get(), RenderType.getTranslucent());
+			RenderTypeLookup.setRenderLayer(Registration.ULEXITE_CRYSTAL.get(), RenderType.getTranslucent());
 			
 			ClientRegistry.bindTileEntityRenderer(Registration.FRUIT_CROP.get(), FruitRenderer::new);
+			ClientRegistry.bindTileEntityRenderer(Registration.POTION_CROP.get(), PotionRenderer::new);
 			ClientRegistry.bindTileEntityRenderer(Registration.DISPLAY_TILE.get(), DisplayCaseRenderer::new);
 		});
 	}

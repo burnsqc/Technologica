@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "technologica:block/ancient_ambrosia_sapling"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "technologica:block/ulexite_crystal",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "technologica:block/ulexite_crystal",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "technologica:block/ulexite_crystal",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "technologica:block/ulexite_crystal",
+      "x": 270
+    },
+    "facing=up": {
+      "model": "technologica:block/ulexite_crystal"
+    },
+    "facing=west": {
+      "model": "technologica:block/ulexite_crystal",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

@@ -3,6 +3,7 @@ package com.technologica.world.gen.feature;
 import com.technologica.setup.Registration;
 import com.technologica.world.gen.foliageplacer.ConicalFoliagePlacer;
 import com.technologica.world.gen.foliageplacer.CylindricalFoliagePlacer;
+import com.technologica.world.gen.foliageplacer.DishFoliagePlacer;
 import com.technologica.world.gen.foliageplacer.PalmFoliagePlacer;
 import com.technologica.world.gen.foliageplacer.TeardropFoliagePlacer;
 
@@ -19,6 +20,7 @@ import net.minecraft.world.gen.feature.Features;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.TwoLayerFeature;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
+import net.minecraft.world.gen.foliageplacer.MegaPineFoliagePlacer;
 import net.minecraft.world.gen.placement.ChanceConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
@@ -112,6 +114,60 @@ public class ModFeatures extends Features {
 					new SimpleBlockStateProvider(Blocks.FIRE.getDefaultState()),
 					new CylindricalFoliagePlacer(FeatureSpread.func_242252_a(9), FeatureSpread.func_242252_a(0), 0),
 					new StraightTrunkPlacer(10, 10, 0), 
+					new TwoLayerFeature(0, 0, 0))).setIgnoreVines().build()));
+	
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> THUNDEROUS_CONDUCTOR_TREE_FEATURE = register(
+			"thunderous_conductor_tree_feature",
+			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(Blocks.IRON_BLOCK.getDefaultState()),
+					new SimpleBlockStateProvider(Registration.CONDUCTIVE_LEAVES.get().getDefaultState()),
+					new DishFoliagePlacer(FeatureSpread.func_242252_a(9), FeatureSpread.func_242252_a(0), 3),
+					new StraightTrunkPlacer(10, 10, 0), 
+					new TwoLayerFeature(0, 0, 0))).setIgnoreVines().build()));
+	
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> CRYOGENIC_SPIRE_TREE_FEATURE = register(
+			"cryogenic_spire_tree_feature",
+			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(Blocks.ICE.getDefaultState()),
+					new SimpleBlockStateProvider(Registration.FROSTBITTEN_LEAVES.get().getDefaultState()),
+					new MegaPineFoliagePlacer(FeatureSpread.func_242252_a(0), FeatureSpread.func_242252_a(5), FeatureSpread.func_242253_a(13, 4)),
+					new StraightTrunkPlacer(10, 10, 0), 
+					new TwoLayerFeature(0, 0, 0))).setIgnoreVines().build()));
+	
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> ANCIENT_AMBROSIA_TREE_FEATURE = register(
+			"ancient_ambrosia_tree_feature",
+			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(Registration.FRUITFUL_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(Registration.FRUITFUL_LEAVES.get().getDefaultState()),
+					new ConicalFoliagePlacer(FeatureSpread.func_242252_a(0), FeatureSpread.func_242252_a(0), 2),
+					new StraightTrunkPlacer(4, 1, 0),
+					new TwoLayerFeature(0, 0, 0))).setIgnoreVines().build()));
+	
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> SERENDIPITOUS_APOTHECARY_TREE_FEATURE = register(
+			"serendipitous_apothecary_tree_feature",
+			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(Blocks.BIRCH_LOG.getDefaultState()),
+					new SimpleBlockStateProvider(Registration.ALCHEMICAL_LEAVES.get().getDefaultState()),
+					new ConicalFoliagePlacer(FeatureSpread.func_242252_a(0), FeatureSpread.func_242252_a(0), 2),
+					new StraightTrunkPlacer(4, 1, 0),
+					new TwoLayerFeature(0, 0, 0))).setIgnoreVines().build()));
+	
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> BENEVOLENT_APOTHECARY_TREE_FEATURE = register(
+			"benevolent_apothecary_tree_feature",
+			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(Registration.BENEVOLENT_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(Registration.BENEVOLENT_LEAVES.get().getDefaultState()),
+					new ConicalFoliagePlacer(FeatureSpread.func_242252_a(0), FeatureSpread.func_242252_a(0), 2),
+					new StraightTrunkPlacer(4, 1, 0),
+					new TwoLayerFeature(0, 0, 0))).setIgnoreVines().build()));
+	
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> MALEVOLENT_APOTHECARY_TREE_FEATURE = register(
+			"malevolent_apothecary_tree_feature",
+			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(Blocks.BIRCH_LOG.getDefaultState()),
+					new SimpleBlockStateProvider(Registration.MALEVOLENT_LEAVES.get().getDefaultState()),
+					new ConicalFoliagePlacer(FeatureSpread.func_242252_a(0), FeatureSpread.func_242252_a(0), 2),
+					new StraightTrunkPlacer(4, 1, 0),
 					new TwoLayerFeature(0, 0, 0))).setIgnoreVines().build()));
 	
 	public static final ConfiguredFeature<?, ?> OASIS_FEATURE = register(

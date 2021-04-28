@@ -12,6 +12,9 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.potion.PotionUtils;
+import net.minecraft.potion.Potions;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -29,12 +32,17 @@ import net.minecraft.world.server.ServerWorld;
 
 public class ModLeavesBlock extends LeavesBlock {
 	private int fruitType;
+	private boolean randomFruit;
 	public static final IntegerProperty AGE = BlockStateProperties.AGE_0_7;
 
 	public ModLeavesBlock(int fruitIn) {
 		super(AbstractBlock.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid());
 		this.setDefaultState(this.stateContainer.getBaseState().with(AGE, Integer.valueOf(0)).with(DISTANCE, Integer.valueOf(7)).with(PERSISTENT, Boolean.valueOf(false)));
-		fruitType = fruitIn;
+		if (fruitIn != 10) {
+			fruitType = fruitIn;
+		} else {
+			randomFruit = true;
+		}
 	}
 
 	@Override
@@ -68,16 +76,18 @@ public class ModLeavesBlock extends LeavesBlock {
 					worldIn.setBlockState(pos, state.with(AGE, Integer.valueOf(state.get(AGE) + 1)), 4);
 				}
 			}			
-			
 			if (state.get(AGE) == 6) {
+				if (randomFruit == true) {
+					fruitType = random.nextInt(9) + 1;
+				}
 				if (fruitType == 1) {
-					if (state.get(DISTANCE) == 1) {
+					if (state.get(DISTANCE) == 1 || randomFruit == true) {
 						tile.setFruitStack(new ItemStack(Registration.BANANA.get()));
 					}
 				} else if (fruitType == 2) {
 					tile.setFruitStack(new ItemStack(Registration.CHERRY.get()));
 				} else if (fruitType == 3) {
-					if (state.get(DISTANCE) == 1) {
+					if (state.get(DISTANCE) == 1 || randomFruit == true) {
 						tile.setFruitStack(new ItemStack(Registration.COCONUT.get()));
 					}
 				} else if (fruitType == 4) {
@@ -92,6 +102,39 @@ public class ModLeavesBlock extends LeavesBlock {
 					tile.setFruitStack(new ItemStack(Registration.PEACH.get()));
 				} else if (fruitType == 9) {
 					tile.setFruitStack(new ItemStack(Registration.PEAR.get()));
+				} else if (fruitType == 11) {
+					int potionType = random.nextInt(15);
+					if (potionType == 0) {
+						tile.setFruitStack(PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_NIGHT_VISION));
+					} else if (potionType == 1) {
+						tile.setFruitStack(PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_INVISIBILITY));
+					} else if (potionType == 2) {
+						tile.setFruitStack(PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_LEAPING));
+					} else if (potionType == 3) {
+						tile.setFruitStack(PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_FIRE_RESISTANCE));
+					} else if (potionType == 4) {
+						tile.setFruitStack(PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_SWIFTNESS));
+					} else if (potionType == 5) {
+						tile.setFruitStack(PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_WATER_BREATHING));
+					} else if (potionType == 6) {
+						tile.setFruitStack(PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.STRONG_HEALING));
+					} else if (potionType == 7) {
+						tile.setFruitStack(PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_REGENERATION));
+					} else if (potionType == 8) {
+						tile.setFruitStack(PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_STRENGTH));
+					} else if (potionType == 9) {
+						tile.setFruitStack(PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LUCK));
+					} else if (potionType == 10) {
+						tile.setFruitStack(PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_SLOW_FALLING));
+					} else if (potionType == 11) {
+						tile.setFruitStack(PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_SLOWNESS));
+					} else if (potionType == 12) {
+						tile.setFruitStack(PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.STRONG_HARMING));
+					} else if (potionType == 13) {
+						tile.setFruitStack(PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_POISON));
+					} else if (potionType == 14) {
+						tile.setFruitStack(PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_WEAKNESS));
+					}				
 				}
 			}
 		}	
@@ -100,11 +143,19 @@ public class ModLeavesBlock extends LeavesBlock {
 	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		FruitTileEntity tile = getTileEntity(worldIn, pos);
 		if (state.get(AGE) == 7) {
-			spawnAsEntity(worldIn, pos.down(), new ItemStack(tile.getFruitStack().getItem(), 1));
-			tile.clear();
-			worldIn.playSound((PlayerEntity)null, pos, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1.0F, 0.8F + worldIn.rand.nextFloat() * 0.4F);
-			worldIn.setBlockState(pos, state.with(AGE, Integer.valueOf(0)), 4);
-			return ActionResultType.func_233537_a_(worldIn.isRemote);
+			if (fruitType <= 10) {
+				spawnAsEntity(worldIn, pos.down(), new ItemStack(tile.getFruitStack().getItem(), 1).getStack());
+				tile.clear();
+				worldIn.playSound((PlayerEntity)null, pos, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1.0F, 0.8F + worldIn.rand.nextFloat() * 0.4F);
+				worldIn.setBlockState(pos, state.with(AGE, Integer.valueOf(0)), 4);
+				return ActionResultType.func_233537_a_(worldIn.isRemote);
+			} else {
+				spawnAsEntity(worldIn, pos.down(), tile.getFruitStack());
+				tile.clear();
+				worldIn.playSound((PlayerEntity)null, pos, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1.0F, 0.8F + worldIn.rand.nextFloat() * 0.4F);
+				worldIn.setBlockState(pos, state.with(AGE, Integer.valueOf(0)), 4);
+				return ActionResultType.func_233537_a_(worldIn.isRemote);
+			}
 		} else {
 			return ActionResultType.FAIL;
 		}

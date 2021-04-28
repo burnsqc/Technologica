@@ -29,7 +29,7 @@ public class ModSetup {
 	public static final ItemGroup TECHNOLOGICA_MINERAL = new ItemGroup("technologica_mineral") {
 		@Override
 		public ItemStack createIcon() {
-			return new ItemStack(Registration.LITHIUM_INGOT.get());
+			return new ItemStack(Registration.AQUAMARINE_CRYSTAL.get());
 		}
 	};
 	

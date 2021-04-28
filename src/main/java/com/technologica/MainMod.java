@@ -4,12 +4,15 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.google.common.collect.ImmutableList;
+import com.technologica.data.ModLanguageProvider;
+import com.technologica.data.ModLootTableProvider;
 import com.technologica.setup.ClientSetup;
 import com.technologica.setup.Config;
 import com.technologica.setup.ModSetup;
 import com.technologica.setup.Registration;
 import com.technologica.world.gen.feature.ModFeatures;
 
+import net.minecraft.data.DataGenerator;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
@@ -23,6 +26,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(MainMod.MODID)
@@ -42,6 +46,28 @@ public class MainMod
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientSetup::init);
 		
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, this::biomeModification);
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::gatherData);
+	}
+	
+	private void gatherData(final GatherDataEvent event) {
+		DataGenerator generator = event.getGenerator();
+		
+		if(event.includeClient()) {
+//			ExistingFileHelper helper = event.getExistingFileHelper();
+			
+			generator.addProvider(new ModLanguageProvider(generator, "en_us"));
+//			gen.addProvider(new TutorialItemModelProvider(gen, helper));
+//			gen.addProvider(new TutorialBlockStateProvider(gen, helper));
+		}
+		if(event.includeServer()) {
+//			TutorialBlockTagsProvider block_tags = new TutorialBlockTagsProvider(gen);
+			
+//			gen.addProvider(block_tags);
+//			gen.addProvider(new TutorialItemTagsProvider(gen, block_tags));
+//			gen.addProvider(new TutorialRecipeProvider(gen));
+			generator.addProvider(new ModLootTableProvider(generator));
+//			gen.addProvider(new TutorialAdvancementsProvider(gen));
+		}
 	}
 	
 	public void biomeModification(BiomeLoadingEvent biome) 
