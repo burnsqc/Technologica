@@ -1,0 +1,6 @@
+{
+  "parent": "technologica:block/crystal",
+  "textures": {
+    "crystal": "technologica:block/fluorite_crystal"
+  }
+}

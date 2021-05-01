@@ -22,8 +22,8 @@ import net.minecraft.util.ResourceLocation;
 public class ModLootTableProvider extends LootTableProvider {
 	private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootParameterSet>> loot_tables = ImmutableList.of(Pair.of(ModBlockLootTables::new, LootParameterSets.BLOCK));
 	
-	public ModLootTableProvider (DataGenerator dataGeneratorIn) {
-		super(dataGeneratorIn);
+	public ModLootTableProvider (DataGenerator generatorIn) {
+		super(generatorIn);
 	}
 	
 	@Override

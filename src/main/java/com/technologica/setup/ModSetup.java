@@ -40,7 +40,7 @@ public class ModSetup {
 		}
 	};
 	
-	public static final ItemGroup TECHNOLOGICA_DECORATIONS = new ItemGroup("technologica_decorations") {
+	public static final ItemGroup TECHNOLOGICA_DECORATIVE = new ItemGroup("technologica_decorative") {
 		@Override
 		public ItemStack createIcon() {
 			return new ItemStack(Registration.DISPLAY_CASE.get());

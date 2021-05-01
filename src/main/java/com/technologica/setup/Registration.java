@@ -27,6 +27,8 @@ import com.technologica.block.trees.PearTree;
 import com.technologica.block.trees.SerendipitousApothecaryTree;
 import com.technologica.block.trees.ThunderousConductorTree;
 import com.technologica.block.trees.ToweringInfernoTree;
+import com.technologica.entity.passive.DuckEntity;
+import com.technologica.items.ModSpawnEggItem;
 import com.technologica.tileentity.DisplayCaseTileEntity;
 import com.technologica.tileentity.FruitTileEntity;
 import com.technologica.tileentity.PotionTileEntity;
@@ -43,12 +45,16 @@ import net.minecraft.block.FlowerPotBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.SpawnEggItem;
 import net.minecraft.particles.ParticleType;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.world.gen.feature.BlockStateFeatureConfig;
@@ -226,7 +232,7 @@ public class Registration
     public static final RegistryObject<Item> FLUORITE_CRYSTAL_ITEM = 					ITEMS.register("fluorite_crystal", () -> 					new BlockItem(FLUORITE_CRYSTAL.get(), 					new Item.Properties().group(ModSetup.TECHNOLOGICA_MINERAL))); 
     public static final RegistryObject<Item> ULEXITE_CRYSTAL_ITEM = 					ITEMS.register("ulexite_crystal", () -> 					new BlockItem(ULEXITE_CRYSTAL.get(), 					new Item.Properties().group(ModSetup.TECHNOLOGICA_MINERAL))); 
       
-    public static final RegistryObject<Item> DISPLAY_CASE_ITEM = 						ITEMS.register("display_case", () -> 						new BlockItem(DISPLAY_CASE.get(), 						new Item.Properties().group(ModSetup.TECHNOLOGICA_DECORATIONS)));
+    public static final RegistryObject<Item> DISPLAY_CASE_ITEM = 						ITEMS.register("display_case", () -> 						new BlockItem(DISPLAY_CASE.get(), 						new Item.Properties().group(ModSetup.TECHNOLOGICA_DECORATIVE)));
     
 //-ITEMS-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //-------------------------------------------REGISTRY-OBJECT-------------------NAME-------------------------------------------------------------------ITEM-GROUP-----------------PROPERTIES------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -245,7 +251,6 @@ public class Registration
     
     public static final RegistryObject<Item> LITHIUM_INGOT = 	ITEMS.register("lithium_ingot", () -> 	new Item(new Item.Properties().group(ModSetup.TECHNOLOGICA_MINERAL)));
     public static final RegistryObject<Item> BERYLLIUM_INGOT =	ITEMS.register("beryllium_ingot", () ->	new Item(new Item.Properties().group(ModSetup.TECHNOLOGICA_MINERAL)));
-    public static final RegistryObject<Item> BORON_INGOT = 		ITEMS.register("boron_ingot", () -> 	new Item(new Item.Properties().group(ModSetup.TECHNOLOGICA_MINERAL)));
     public static final RegistryObject<Item> SODIUM_INGOT = 	ITEMS.register("sodium_ingot", () -> 	new Item(new Item.Properties().group(ModSetup.TECHNOLOGICA_MINERAL)));
     public static final RegistryObject<Item> MAGNESIUM_INGOT = 	ITEMS.register("magnesium_ingot", () -> new Item(new Item.Properties().group(ModSetup.TECHNOLOGICA_MINERAL)));
     public static final RegistryObject<Item> ALUMINUM_INGOT = 	ITEMS.register("aluminum_ingot", () -> 	new Item(new Item.Properties().group(ModSetup.TECHNOLOGICA_MINERAL)));
@@ -258,7 +263,26 @@ public class Registration
     public static final RegistryObject<Item> RUBIDIUM_INGOT =	ITEMS.register("rubidium_ingot", () -> 	new Item(new Item.Properties().group(ModSetup.TECHNOLOGICA_MINERAL)));
     public static final RegistryObject<Item> STRONTIUM_INGOT =	ITEMS.register("strontium_ingot", () -> new Item(new Item.Properties().group(ModSetup.TECHNOLOGICA_MINERAL)));
     public static final RegistryObject<Item> BARIUM_INGOT = 	ITEMS.register("barium_ingot", () -> 	new Item(new Item.Properties().group(ModSetup.TECHNOLOGICA_MINERAL)));
-          
+    
+    public static final RegistryObject<Item> BORON_CHUNK = 		ITEMS.register("boron_chunk", () -> 	new Item(new Item.Properties().group(ModSetup.TECHNOLOGICA_MINERAL)));
+    public static final RegistryObject<Item> CARBON_CHUNK = 	ITEMS.register("carbon_chunk", () -> 	new Item(new Item.Properties().group(ModSetup.TECHNOLOGICA_MINERAL)));
+    public static final RegistryObject<Item> SILICON_CHUNK = 	ITEMS.register("silicon_chunk", () -> 	new Item(new Item.Properties().group(ModSetup.TECHNOLOGICA_MINERAL)));
+    public static final RegistryObject<Item> PHOSPHORUS_CHUNK = ITEMS.register("phosphorus_chunk", () ->new Item(new Item.Properties().group(ModSetup.TECHNOLOGICA_MINERAL)));
+    public static final RegistryObject<Item> SULFUR_CHUNK = 	ITEMS.register("sulfur_chunk", () -> 	new Item(new Item.Properties().group(ModSetup.TECHNOLOGICA_MINERAL)));
+    public static final RegistryObject<Item> GERMANIUM_CHUNK = 	ITEMS.register("germanium_chunk", () -> new Item(new Item.Properties().group(ModSetup.TECHNOLOGICA_MINERAL)));
+    public static final RegistryObject<Item> ARSENIC_CHUNK = 	ITEMS.register("arsenic_chunk", () -> 	new Item(new Item.Properties().group(ModSetup.TECHNOLOGICA_MINERAL)));
+    public static final RegistryObject<Item> SELENIUM_CHUNK = 	ITEMS.register("selenium_chunk", () -> 	new Item(new Item.Properties().group(ModSetup.TECHNOLOGICA_MINERAL)));
+    public static final RegistryObject<Item> ANTIMONY_CHUNK = 	ITEMS.register("antimony_chunk", () -> 	new Item(new Item.Properties().group(ModSetup.TECHNOLOGICA_MINERAL)));
+    public static final RegistryObject<Item> TELLURIUM_CHUNK = 	ITEMS.register("tellurium_chunk", () -> new Item(new Item.Properties().group(ModSetup.TECHNOLOGICA_MINERAL)));
+    public static final RegistryObject<Item> IODINE_CHUNK = 	ITEMS.register("iodine_chunk", () -> 	new Item(new Item.Properties().group(ModSetup.TECHNOLOGICA_MINERAL)));
+    public static final RegistryObject<Item> ASTATINE_CHUNK = 	ITEMS.register("astatine_chunk", () -> 	new Item(new Item.Properties().group(ModSetup.TECHNOLOGICA_MINERAL)));
+         
+    public static final RegistryObject<Item> DUCK_SPAWN_EGG = 	ITEMS.register("duck_spawn_egg", 		ModSpawnEggItem::new); 
+
+//-FEATURES--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------TYPE-------------------------REGISTRY-OBJECT-------------------NAME------------------TYPE---------------------------------CODEC-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------    
+    public static final RegistryObject<EntityType<DuckEntity>>	DUCK = ENTITIES.register("duck", () -> EntityType.Builder.<DuckEntity>create(DuckEntity::new, EntityClassification.CREATURE).size(0.4F, 0.7F).trackingRange(10).build("duck"));
+    
 //-FEATURES--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //---------------------------------------------TYPE-------------------------REGISTRY-OBJECT-------------------NAME------------------TYPE---------------------------------CODEC-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public static final RegistryObject<Feature<BlockStateFeatureConfig>> 	OASIS = 		FEATURES.register("oasis", () -> 	new OasisFeature(BlockStateFeatureConfig.field_236455_a_));

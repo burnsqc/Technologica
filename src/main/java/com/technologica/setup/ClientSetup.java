@@ -4,6 +4,7 @@ import com.technologica.MainMod;
 import com.technologica.block.DisplayCaseRenderer;
 import com.technologica.block.FruitRenderer;
 import com.technologica.block.PotionRenderer;
+import com.technologica.client.renderer.entity.DuckRenderer;
 
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -14,6 +15,7 @@ import net.minecraftforge.client.event.RenderTooltipEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
@@ -54,6 +56,8 @@ public class ClientSetup {
 			ClientRegistry.bindTileEntityRenderer(Registration.FRUIT_CROP.get(), FruitRenderer::new);
 			ClientRegistry.bindTileEntityRenderer(Registration.POTION_CROP.get(), PotionRenderer::new);
 			ClientRegistry.bindTileEntityRenderer(Registration.DISPLAY_TILE.get(), DisplayCaseRenderer::new);
+			
+			RenderingRegistry.registerEntityRenderingHandler(Registration.DUCK.get(), DuckRenderer::new);
 		});
 	}
 

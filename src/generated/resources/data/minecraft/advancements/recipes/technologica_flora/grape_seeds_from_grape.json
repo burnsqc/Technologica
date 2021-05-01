@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:grape_seeds_from_grape"
+    ]
+  },
+  "criteria": {
+    "has_grape": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "technologica:grape"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:grape_seeds_from_grape"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_grape",
+      "has_the_recipe"
+    ]
+  ]
+}
