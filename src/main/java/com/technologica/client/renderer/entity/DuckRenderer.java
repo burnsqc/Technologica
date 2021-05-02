@@ -12,14 +12,15 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class DuckRenderer extends MobRenderer<DuckEntity, DuckModel<DuckEntity>> {
-   private static final ResourceLocation CHICKEN_TEXTURES = new ResourceLocation("textures/entity/chicken.png");
+   private static final ResourceLocation DUCK_TEXTURE = new ResourceLocation("textures/entity/chicken.png");
 
    public DuckRenderer(EntityRendererManager renderManagerIn) {
       super(renderManagerIn, new DuckModel<>(), 0.3F);
    }
 
+   @Override
    public ResourceLocation getEntityTexture(DuckEntity entity) {
-      return CHICKEN_TEXTURES;
+      return DUCK_TEXTURE;
    }
 
    protected float handleRotationFloat(DuckEntity livingBase, float partialTicks) {

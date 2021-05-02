@@ -133,7 +133,6 @@ public class DuckEntity extends AnimalEntity {
       if (compound.contains("EggLayTime")) {
          this.timeUntilNextEgg = compound.getInt("EggLayTime");
       }
-
    }
 
    public void writeAdditional(CompoundNBT compound) {
@@ -154,7 +153,6 @@ public class DuckEntity extends AnimalEntity {
       if (passenger instanceof LivingEntity) {
          ((LivingEntity)passenger).renderYawOffset = this.renderYawOffset;
       }
-
    }
 
    public boolean isChickenJockey() {

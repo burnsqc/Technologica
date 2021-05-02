@@ -1,7 +1,7 @@
 package com.technologica.data;
 
 import com.technologica.MainMod;
-import com.technologica.setup.ModSetup;
+import com.technologica.setup.ModItemGroup;
 import com.technologica.setup.Registration;
 
 import net.minecraft.data.DataGenerator;
@@ -114,11 +114,12 @@ public class ModLanguageProvider extends LanguageProvider {
 		addItem(Registration.TELLURIUM_CHUNK, "Tellurium Chunk");
 		addItem(Registration.IODINE_CHUNK, "Iodine Chunk");
 		addItem(Registration.ASTATINE_CHUNK, "Astatine Chunk");
-		addItemGroup(ModSetup.TECHNOLOGICA_FOOD, "Food");
-		addItemGroup(ModSetup.TECHNOLOGICA_FLORA, "Flora");
-		addItemGroup(ModSetup.TECHNOLOGICA_MINERAL, "Mineral");
-		addItemGroup(ModSetup.TECHNOLOGICA_CRYPTICA, "Cryptica");
-		addItemGroup(ModSetup.TECHNOLOGICA_DECORATIVE, "Decorative");
+		addItemGroup(ModItemGroup.TECHNOLOGICA_FLORA, "Flora");
+		addItemGroup(ModItemGroup.TECHNOLOGICA_FAUNA, "Fauna");
+		addItemGroup(ModItemGroup.TECHNOLOGICA_MINERAL, "Mineral");
+		addItemGroup(ModItemGroup.TECHNOLOGICA_FOOD, "Food");
+		addItemGroup(ModItemGroup.TECHNOLOGICA_DECORATIVE, "Decorative");
+		addItemGroup(ModItemGroup.TECHNOLOGICA_CRYPTICA, "Cryptica");
 	}
 	
 	public void addItemGroup(ItemGroup key, String name) {

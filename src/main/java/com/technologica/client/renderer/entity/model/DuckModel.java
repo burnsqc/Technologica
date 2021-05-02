@@ -55,6 +55,7 @@ public class DuckModel<T extends Entity> extends AgeableModel<T> {
       return ImmutableList.of(this.body, this.rightLeg, this.leftLeg, this.rightWing, this.leftWing);
    }
 
+   @Override
    public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
       this.head.rotateAngleX = headPitch * ((float)Math.PI / 180F);
       this.head.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
