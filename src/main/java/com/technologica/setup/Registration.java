@@ -27,8 +27,10 @@ import com.technologica.block.trees.PearTree;
 import com.technologica.block.trees.SerendipitousApothecaryTree;
 import com.technologica.block.trees.ThunderousConductorTree;
 import com.technologica.block.trees.ToweringInfernoTree;
+import com.technologica.entity.monster.SharkEntity;
 import com.technologica.entity.passive.DuckEntity;
 import com.technologica.entity.passive.GrizzlyBearEntity;
+import com.technologica.entity.passive.ZebraEntity;
 import com.technologica.items.ModSpawnEggItem;
 import com.technologica.tileentity.DisplayCaseTileEntity;
 import com.technologica.tileentity.FruitTileEntity;
@@ -277,27 +279,27 @@ public class Registration
          
     public static final RegistryObject<Item> DUCK_SPAWN_EGG = ITEMS.register("duck_spawn_egg", () -> new ModSpawnEggItem(1)); 
     public static final RegistryObject<Item> GRIZZLY_BEAR_SPAWN_EGG = ITEMS.register("grizzly_bear_spawn_egg", () -> new ModSpawnEggItem(2));
+    public static final RegistryObject<Item> SHARK_SPAWN_EGG = ITEMS.register("shark_spawn_egg", () -> new ModSpawnEggItem(3));
+    public static final RegistryObject<Item> ZEBRA_SPAWN_EGG = ITEMS.register("zebra_spawn_egg", () -> new ModSpawnEggItem(4));
 
-//-ENTITIES--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//---------------------------------------------TYPE-------------------------REGISTRY-OBJECT-------------------NAME------------------TYPE---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------    
-    public static final RegistryObject<EntityType<DuckEntity>>				DUCK = 			ENTITIES.register("duck", () -> 		EntityType.Builder.<DuckEntity>create(DuckEntity::new, EntityClassification.CREATURE).size(0.4F, 0.7F).trackingRange(10).build("duck"));
-    public static final RegistryObject<EntityType<GrizzlyBearEntity>> GRIZZLY_BEAR = ENTITIES.register("grizzly_bear", () -> EntityType.Builder.<GrizzlyBearEntity>create(GrizzlyBearEntity::new, EntityClassification.CREATURE).size(0.4F, 0.7F).trackingRange(10).build("grizzly_bear"));
+//ENTITIES
+    public static final RegistryObject<EntityType<DuckEntity>> DUCK = ENTITIES.register("duck", () -> EntityType.Builder.<DuckEntity>create(DuckEntity::new, EntityClassification.CREATURE).size(0.4F, 0.7F).trackingRange(10).build("duck"));
+    public static final RegistryObject<EntityType<GrizzlyBearEntity>> GRIZZLY_BEAR = ENTITIES.register("grizzly_bear", () -> EntityType.Builder.<GrizzlyBearEntity>create(GrizzlyBearEntity::new, EntityClassification.CREATURE).size(1.4F, 1.4F).trackingRange(10).build("grizzly_bear"));
+    public static final RegistryObject<EntityType<SharkEntity>> SHARK = ENTITIES.register("shark", () -> EntityType.Builder.<SharkEntity>create(SharkEntity::new, EntityClassification.CREATURE).size(0.9F, 0.6F).trackingRange(10).build("shark"));
+    public static final RegistryObject<EntityType<ZebraEntity>> ZEBRA = ENTITIES.register("zebra", () -> EntityType.Builder.<ZebraEntity>create(ZebraEntity::new, EntityClassification.CREATURE).size(1.3964844F, 1.6F).trackingRange(10).build("zebra"));
     
-//-FEATURES--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//---------------------------------------------TYPE-------------------------REGISTRY-OBJECT-------------------NAME------------------TYPE---------------------------------CODEC-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    public static final RegistryObject<Feature<BlockStateFeatureConfig>> 	OASIS = 		FEATURES.register("oasis", () -> 	new OasisFeature(BlockStateFeatureConfig.field_236455_a_));
+//FEATURES
+    public static final RegistryObject<Feature<BlockStateFeatureConfig>> OASIS = FEATURES.register("oasis", () -> new OasisFeature(BlockStateFeatureConfig.field_236455_a_));
     
-//-FOLIAGES--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//-----------------------------------------------------------REGISTRY-OBJECT------------------NAME----------------------------------------------------------TYPE-------------------------CODEC---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    public static final RegistryObject<FoliagePlacerType<?>> CONICAL = 		FOLIAGES.register("conical_foliage_placer", () -> 		new FoliagePlacerType<>(ConicalFoliagePlacer		.conicalCodec));
-    public static final RegistryObject<FoliagePlacerType<?>> CYLINDRICAL = 	FOLIAGES.register("cylindrical_foliage_placer", () -> 	new FoliagePlacerType<>(CylindricalFoliagePlacer	.cylindricalCodec));
-    public static final RegistryObject<FoliagePlacerType<?>> DISH = 		FOLIAGES.register("dish_foliage_placer", () -> 			new FoliagePlacerType<>(DishFoliagePlacer			.dishCodec));
-    public static final RegistryObject<FoliagePlacerType<?>> PALM = 		FOLIAGES.register("palm_foliage_placer", () -> 			new FoliagePlacerType<>(PalmFoliagePlacer			.palmCodec));
-    public static final RegistryObject<FoliagePlacerType<?>> TEARDROP = 	FOLIAGES.register("teardrop_foliage_placer", () -> 		new FoliagePlacerType<>(TeardropFoliagePlacer		.teardropCodec));    
+//FOLIAGE PLACERS
+    public static final RegistryObject<FoliagePlacerType<?>> CONICAL = FOLIAGES.register("conical_foliage_placer", () -> new FoliagePlacerType<>(ConicalFoliagePlacer.conicalCodec));
+    public static final RegistryObject<FoliagePlacerType<?>> CYLINDRICAL = FOLIAGES.register("cylindrical_foliage_placer", () -> new FoliagePlacerType<>(CylindricalFoliagePlacer.cylindricalCodec));
+    public static final RegistryObject<FoliagePlacerType<?>> DISH = FOLIAGES.register("dish_foliage_placer", () -> new FoliagePlacerType<>(DishFoliagePlacer.dishCodec));
+    public static final RegistryObject<FoliagePlacerType<?>> PALM = FOLIAGES.register("palm_foliage_placer", () -> new FoliagePlacerType<>(PalmFoliagePlacer.palmCodec));
+    public static final RegistryObject<FoliagePlacerType<?>> TEARDROP = FOLIAGES.register("teardrop_foliage_placer", () -> new FoliagePlacerType<>(TeardropFoliagePlacer.teardropCodec));    
     
-//-TILE-ENTITIES---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//----------------------------------------------------TYPE----------------------REGISTRY-OBJECT----------------NAME---------------------------------------------------TYPE--------------------------BLOCKS---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    public static final RegistryObject<TileEntityType<FruitTileEntity>> 		FRUIT_CROP = 	TILES.register("fruit_crop", () -> 		TileEntityType.Builder.create(FruitTileEntity::new, 		BANANA_LEAVES.get(), CHERRY_LEAVES.get(), COCONUT_LEAVES.get(), KIWI_LEAVES.get(), LEMON_LEAVES.get(), LIME_LEAVES.get(), ORANGE_LEAVES.get(), PEACH_LEAVES.get(), PEAR_LEAVES.get(), FRUITFUL_LEAVES.get(), ALCHEMICAL_LEAVES.get()).build(null));
-    public static final RegistryObject<TileEntityType<PotionTileEntity>> 		POTION_CROP = 	TILES.register("potion_crop", () -> 	TileEntityType.Builder.create(PotionTileEntity::new, 		BENEVOLENT_LEAVES.get(), MALEVOLENT_LEAVES.get()).build(null));
-    public static final RegistryObject<TileEntityType<DisplayCaseTileEntity>>	DISPLAY_TILE = 	TILES.register("display_tile", () -> 	TileEntityType.Builder.create(DisplayCaseTileEntity::new, 	DISPLAY_CASE.get()).build(null));
+//TILE ENTITIES
+    public static final RegistryObject<TileEntityType<FruitTileEntity>> FRUIT_CROP = TILES.register("fruit_crop", () -> TileEntityType.Builder.create(FruitTileEntity::new, BANANA_LEAVES.get(), CHERRY_LEAVES.get(), COCONUT_LEAVES.get(), KIWI_LEAVES.get(), LEMON_LEAVES.get(), LIME_LEAVES.get(), ORANGE_LEAVES.get(), PEACH_LEAVES.get(), PEAR_LEAVES.get(), FRUITFUL_LEAVES.get(), ALCHEMICAL_LEAVES.get()).build(null));
+    public static final RegistryObject<TileEntityType<PotionTileEntity>> POTION_CROP = TILES.register("potion_crop", () -> TileEntityType.Builder.create(PotionTileEntity::new, BENEVOLENT_LEAVES.get(), MALEVOLENT_LEAVES.get()).build(null));
+    public static final RegistryObject<TileEntityType<DisplayCaseTileEntity>> DISPLAY_TILE = TILES.register("display_tile", () -> TileEntityType.Builder.create(DisplayCaseTileEntity::new, DISPLAY_CASE.get()).build(null));
 }

@@ -1,6 +1,7 @@
 package com.technologica.client.renderer.entity;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
+import com.technologica.MainMod;
 import com.technologica.client.renderer.entity.model.GrizzlyBearModel;
 import com.technologica.entity.passive.GrizzlyBearEntity;
 
@@ -12,7 +13,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class GrizzlyBearRenderer extends MobRenderer<GrizzlyBearEntity, GrizzlyBearModel<GrizzlyBearEntity>> {
-   private static final ResourceLocation GRIZZLY_BEAR_TEXTURE = new ResourceLocation("textures/entity/bear/polarbear.png");
+   private static final ResourceLocation GRIZZLY_BEAR_TEXTURE = new ResourceLocation(MainMod.MODID, "textures/entity/grizzly_bear.png");
 
    public GrizzlyBearRenderer(EntityRendererManager renderManagerIn) {
       super(renderManagerIn, new GrizzlyBearModel<>(), 0.9F);

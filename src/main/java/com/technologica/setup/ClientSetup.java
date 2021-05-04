@@ -1,10 +1,12 @@
 package com.technologica.setup;
 
-import com.technologica.block.DisplayCaseRenderer;
-import com.technologica.block.FruitRenderer;
-import com.technologica.block.PotionRenderer;
+import com.technologica.client.renderer.DisplayCaseRenderer;
+import com.technologica.client.renderer.FruitRenderer;
+import com.technologica.client.renderer.PotionRenderer;
 import com.technologica.client.renderer.entity.DuckRenderer;
 import com.technologica.client.renderer.entity.GrizzlyBearRenderer;
+import com.technologica.client.renderer.entity.SharkRenderer;
+import com.technologica.client.renderer.entity.ZebraRenderer;
 
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -17,6 +19,8 @@ public class ClientSetup {
 	public static void init(final FMLClientSetupEvent event) {
 		RenderingRegistry.registerEntityRenderingHandler(Registration.DUCK.get(), DuckRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(Registration.GRIZZLY_BEAR.get(), GrizzlyBearRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(Registration.SHARK.get(), SharkRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(Registration.ZEBRA.get(), ZebraRenderer::new);
 		
 		event.enqueueWork(() -> {
 			RenderTypeLookup.setRenderLayer(Registration.ANCIENT_AMBROSIA_SAPLING.get(), RenderType.getCutoutMipped());

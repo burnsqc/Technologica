@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.UUID;
 import java.util.function.Predicate;
+
 import javax.annotation.Nullable;
 
 import com.technologica.setup.Registration;
@@ -23,6 +24,7 @@ import net.minecraft.entity.Pose;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.entity.ai.goal.FollowParentGoal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
@@ -30,9 +32,14 @@ import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.ai.goal.RandomWalkingGoal;
 import net.minecraft.entity.ai.goal.ResetAngerGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
+import net.minecraft.entity.ai.goal.TemptGoal;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.BeeEntity;
+import net.minecraft.entity.passive.fish.SalmonEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -56,113 +63,114 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class GrizzlyBearEntity extends AnimalEntity implements IAngerable {
-   private static final DataParameter<Boolean> IS_STANDING = EntityDataManager.createKey(GrizzlyBearEntity.class, DataSerializers.BOOLEAN);
-   private float clientSideStandAnimation0;
-   private float clientSideStandAnimation;
-   private int warningSoundTicks;
-   private static final RangedInteger field_234217_by_ = TickRangeConverter.convertRange(20, 39);
-   private int field_234218_bz_;
-   private UUID field_234216_bA_;
+	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(Items.SALMON);
+	private static final DataParameter<Boolean> IS_STANDING = EntityDataManager.createKey(GrizzlyBearEntity.class, DataSerializers.BOOLEAN);
+	private float clientSideStandAnimation0;
+	private float clientSideStandAnimation;
+	private int warningSoundTicks;
+	private static final RangedInteger angerTimeRange = TickRangeConverter.convertRange(20, 39);
+	private int angerTime;
+	private UUID angerTarget;
 
-   public GrizzlyBearEntity(EntityType<? extends GrizzlyBearEntity> type, World worldIn) {
-      super(type, worldIn);
-   }
+	public GrizzlyBearEntity(EntityType<? extends GrizzlyBearEntity> type, World worldIn) {
+		super(type, worldIn);
+	}
 
-   public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
-      return  Registration.GRIZZLY_BEAR.get().create(p_241840_1_);
-   }
+	//Spawning
+	public AgeableEntity func_241840_a(ServerWorld serverWorldIn, AgeableEntity p_241840_2_) {
+		return Registration.GRIZZLY_BEAR.get().create(serverWorldIn);
+	}
 
-   public boolean isBreedingItem(ItemStack stack) {
-      return false;
-   }
+	//Breeding
+	public boolean isBreedingItem(ItemStack stack) {
+		return false;
+	}
 
-   protected void registerGoals() {
-      super.registerGoals();
-      this.goalSelector.addGoal(0, new SwimGoal(this));
-      this.goalSelector.addGoal(1, new GrizzlyBearEntity.MeleeAttackGoal());
-      this.goalSelector.addGoal(1, new GrizzlyBearEntity.PanicGoal());
-      this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
-      this.goalSelector.addGoal(5, new RandomWalkingGoal(this, 1.0D));
-      this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-      this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
-      this.targetSelector.addGoal(1, new GrizzlyBearEntity.HurtByTargetGoal());
-      this.targetSelector.addGoal(2, new GrizzlyBearEntity.AttackPlayerGoal());
-      this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, this::func_233680_b_));
-//      this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, FoxEntity.class, 10, true, true, (Predicate<LivingEntity>)null));
-      this.targetSelector.addGoal(5, new ResetAngerGoal<>(this, false));
-   }
+	//Register Attributes, Goals, and Data
+	public static AttributeModifierMap.MutableAttribute registerAttributes() {
+		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 30.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 6.0D);
+	}
+   
+	protected void registerGoals() {
+		super.registerGoals();
+		this.goalSelector.addGoal(0, new SwimGoal(this));
+		this.goalSelector.addGoal(1, new GrizzlyBearEntity.MeleeAttackGoal());
+		this.goalSelector.addGoal(1, new GrizzlyBearEntity.PanicGoal());
+		this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, false, TEMPTATION_ITEMS));
+		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
+		this.goalSelector.addGoal(5, new RandomWalkingGoal(this, 1.0D));
+		this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
+		this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
+		this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, BeeEntity.class, 8.0F, 1.5D, 1.5D));
+		this.targetSelector.addGoal(1, new GrizzlyBearEntity.HurtByTargetGoal());
+		this.targetSelector.addGoal(2, new GrizzlyBearEntity.AttackPlayerGoal());
+		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, this::func_233680_b_));
+		this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, SalmonEntity.class, 10, true, true, (Predicate<LivingEntity>)null));
+		this.targetSelector.addGoal(5, new ResetAngerGoal<>(this, false));
+	}
+	
+	protected void registerData() {
+		super.registerData();
+	    this.dataManager.register(IS_STANDING, false);
+	}
 
-   public static AttributeModifierMap.MutableAttribute registerAttributes() {
-      return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 30.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 6.0D);
-   }
+	public static boolean func_223320_c(EntityType<GrizzlyBearEntity> entityTypeIn, IWorld p_223320_1_, SpawnReason reason, BlockPos p_223320_3_, Random randomIn) {
+		Optional<RegistryKey<Biome>> optional = p_223320_1_.func_242406_i(p_223320_3_);
+		if (!Objects.equals(optional, Optional.of(Biomes.FROZEN_OCEAN)) && !Objects.equals(optional, Optional.of(Biomes.DEEP_FROZEN_OCEAN))) {
+			return canAnimalSpawn(entityTypeIn, p_223320_1_, reason, p_223320_3_, randomIn);
+		} else {
+			return p_223320_1_.getLightSubtracted(p_223320_3_, 0) > 8 && p_223320_1_.getBlockState(p_223320_3_.down()).isIn(Blocks.ICE);
+		}
+	}
+	
+	
+   
+   	//Anger
+   	public void func_230258_H__() {
+   		this.setAngerTime(angerTimeRange.getRandomWithinRange(this.rand));
+   	}
 
-   public static boolean func_223320_c(EntityType<GrizzlyBearEntity> p_223320_0_, IWorld p_223320_1_, SpawnReason reason, BlockPos p_223320_3_, Random p_223320_4_) {
-      Optional<RegistryKey<Biome>> optional = p_223320_1_.func_242406_i(p_223320_3_);
-      if (!Objects.equals(optional, Optional.of(Biomes.FROZEN_OCEAN)) && !Objects.equals(optional, Optional.of(Biomes.DEEP_FROZEN_OCEAN))) {
-         return canAnimalSpawn(p_223320_0_, p_223320_1_, reason, p_223320_3_, p_223320_4_);
-      } else {
-         return p_223320_1_.getLightSubtracted(p_223320_3_, 0) > 8 && p_223320_1_.getBlockState(p_223320_3_.down()).isIn(Blocks.ICE);
-      }
-   }
+   	public void setAngerTime(int time) {
+   		this.angerTime = time;
+   	}
 
-   public void readAdditional(CompoundNBT compound) {
-      super.readAdditional(compound);
-      this.readAngerNBT((ServerWorld)this.world, compound);
-   }
+   	public int getAngerTime() {
+   		return this.angerTime;
+   	}
 
-   public void writeAdditional(CompoundNBT compound) {
-      super.writeAdditional(compound);
-      this.writeAngerNBT(compound);
-   }
+   	public void setAngerTarget(@Nullable UUID target) {
+   		this.angerTarget = target;
+   	}
 
-   public void func_230258_H__() {
-      this.setAngerTime(field_234217_by_.getRandomWithinRange(this.rand));
-   }
+   	public UUID getAngerTarget() {
+   		return this.angerTarget;
+   	}
 
-   public void setAngerTime(int time) {
-      this.field_234218_bz_ = time;
-   }
+   	//Audio
+   	protected SoundEvent getAmbientSound() {
+   		return this.isChild() ? SoundEvents.ENTITY_POLAR_BEAR_AMBIENT_BABY : SoundEvents.ENTITY_POLAR_BEAR_AMBIENT;
+   	}
 
-   public int getAngerTime() {
-      return this.field_234218_bz_;
-   }
+   	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+   		return SoundEvents.ENTITY_POLAR_BEAR_HURT;
+   	}
 
-   public void setAngerTarget(@Nullable UUID target) {
-      this.field_234216_bA_ = target;
-   }
+   	protected SoundEvent getDeathSound() {
+   		return SoundEvents.ENTITY_POLAR_BEAR_DEATH;
+   	}
 
-   public UUID getAngerTarget() {
-      return this.field_234216_bA_;
-   }
+   	protected void playStepSound(BlockPos pos, BlockState blockIn) {
+   		this.playSound(SoundEvents.ENTITY_POLAR_BEAR_STEP, 0.15F, 1.0F);
+   	}
 
-   protected SoundEvent getAmbientSound() {
-      return this.isChild() ? SoundEvents.ENTITY_POLAR_BEAR_AMBIENT_BABY : SoundEvents.ENTITY_POLAR_BEAR_AMBIENT;
-   }
+   	protected void playWarningSound() {
+   		if (this.warningSoundTicks <= 0) {
+   			this.playSound(SoundEvents.ENTITY_POLAR_BEAR_WARNING, 1.0F, this.getSoundPitch());
+   			this.warningSoundTicks = 40;
+   		}
+   	}
 
-   protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-      return SoundEvents.ENTITY_POLAR_BEAR_HURT;
-   }
-
-   protected SoundEvent getDeathSound() {
-      return SoundEvents.ENTITY_POLAR_BEAR_DEATH;
-   }
-
-   protected void playStepSound(BlockPos pos, BlockState blockIn) {
-      this.playSound(SoundEvents.ENTITY_POLAR_BEAR_STEP, 0.15F, 1.0F);
-   }
-
-   protected void playWarningSound() {
-      if (this.warningSoundTicks <= 0) {
-         this.playSound(SoundEvents.ENTITY_POLAR_BEAR_WARNING, 1.0F, this.getSoundPitch());
-         this.warningSoundTicks = 40;
-      }
-
-   }
-
-   protected void registerData() {
-      super.registerData();
-      this.dataManager.register(IS_STANDING, false);
-   }
+   
 
    public void tick() {
       super.tick();
@@ -229,7 +237,6 @@ public class GrizzlyBearEntity extends AnimalEntity implements IAngerable {
       if (spawnDataIn == null) {
          spawnDataIn = new AgeableEntity.AgeableData(1.0F);
       }
-
       return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
    }
 
@@ -328,4 +335,15 @@ public class GrizzlyBearEntity extends AnimalEntity implements IAngerable {
          return !GrizzlyBearEntity.this.isChild() && !GrizzlyBearEntity.this.isBurning() ? false : super.shouldExecute();
       }
    }
+   
+   	//NBT
+   	public void readAdditional(CompoundNBT compound) {
+   		super.readAdditional(compound);
+   		this.readAngerNBT((ServerWorld)this.world, compound);
+   	}
+
+   	public void writeAdditional(CompoundNBT compound) {
+   		super.writeAdditional(compound);
+   		this.writeAngerNBT(compound);
+   	}
 }

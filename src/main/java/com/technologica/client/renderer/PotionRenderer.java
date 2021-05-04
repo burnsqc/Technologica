@@ -1,4 +1,4 @@
-package com.technologica.block;
+package com.technologica.client.renderer;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.technologica.tileentity.PotionTileEntity;

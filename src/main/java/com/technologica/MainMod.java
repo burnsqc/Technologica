@@ -8,6 +8,7 @@ import com.technologica.setup.CommonSetup;
 import com.technologica.setup.Config;
 import com.technologica.setup.GatherData;
 import com.technologica.setup.ModBiomeModifier;
+import com.technologica.setup.ModEntityModifier;
 import com.technologica.setup.Registration;
 
 import net.minecraftforge.common.MinecraftForge;
@@ -34,5 +35,6 @@ public class MainMod {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(GatherData::init);
 		
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, ModBiomeModifier::init);	
+		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, ModEntityModifier::init);	
 	}
 }

@@ -1,5 +1,6 @@
 package com.technologica.client.renderer.entity;
 
+import com.technologica.MainMod;
 import com.technologica.client.renderer.entity.model.DuckModel;
 import com.technologica.entity.passive.DuckEntity;
 
@@ -12,13 +13,12 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class DuckRenderer extends MobRenderer<DuckEntity, DuckModel<DuckEntity>> {
-   private static final ResourceLocation DUCK_TEXTURE = new ResourceLocation("textures/entity/chicken.png");
+   private static final ResourceLocation DUCK_TEXTURE = new ResourceLocation(MainMod.MODID, "textures/entity/duck.png");
 
    public DuckRenderer(EntityRendererManager renderManagerIn) {
       super(renderManagerIn, new DuckModel<>(), 0.3F);
    }
 
-   @Override
    public ResourceLocation getEntityTexture(DuckEntity entity) {
       return DUCK_TEXTURE;
    }

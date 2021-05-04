@@ -36,6 +36,10 @@ public class ModSpawnEggItem extends Item {
     		entityType = Registration.DUCK.get();
     	} else if (entityTypeInt == 2) {
     		entityType = Registration.GRIZZLY_BEAR.get();
+    	} else if (entityTypeInt == 3) {
+    		entityType = Registration.SHARK.get();
+    	} else if (entityTypeInt == 4) {
+    		entityType = Registration.ZEBRA.get();
     	}
     	
     	World world = context.getWorld();
