@@ -142,8 +142,8 @@ public class ZebraModel<T extends AbstractHorseEntity> extends AgeableModel<T> {
 
    public void setLivingAnimations(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
       super.setLivingAnimations(entityIn, limbSwing, limbSwingAmount, partialTick);
-      float f = MathHelper.rotLerp(entityIn.prevRenderYawOffset, entityIn.renderYawOffset, partialTick);
-      float f1 = MathHelper.rotLerp(entityIn.prevRotationYawHead, entityIn.rotationYawHead, partialTick);
+      float f = MathHelper.interpolateAngle(entityIn.prevRenderYawOffset, entityIn.renderYawOffset, partialTick);
+      float f1 = MathHelper.interpolateAngle(entityIn.prevRotationYawHead, entityIn.rotationYawHead, partialTick);
       float f2 = MathHelper.lerp(partialTick, entityIn.prevRotationPitch, entityIn.rotationPitch);
       float f3 = f1 - f;
       float f4 = f2 * ((float)Math.PI / 180F);

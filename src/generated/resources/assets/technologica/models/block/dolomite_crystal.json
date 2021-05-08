@@ -1,5 +1,5 @@
 {
-  "parent": "technologica:block/crystal",
+  "parent": "technologica:block/cubic_crystal",
   "textures": {
     "crystal": "technologica:block/dolomite_crystal"
   }

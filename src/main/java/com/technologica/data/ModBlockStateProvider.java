@@ -28,6 +28,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		simpleBlock(Registration.LITHIUM_CLAY);
 		simpleBlock(Registration.SALT);
 		simpleBlock(Registration.BAUXITE_ORE);
+		simpleBlock(Registration.CHROMITE_ORE);
+		simpleBlock(Registration.ILMENITE_ORE);
+		simpleBlock(Registration.PYROLUSITE_ORE);
+		simpleBlock(Registration.COBALTITE_ORE);
+		simpleBlock(Registration.GARNIERITE_ORE);
 		simpleBlock(Registration.BORAX_ORE);
 		simpleBlock(Registration.MAGNESITE_ORE);
 		simpleBlock(Registration.SPODUMENE_ORE);
@@ -67,14 +72,25 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		crossBlock(Registration.ANCIENT_AMBROSIA_SAPLING);
 		crossBlock(Registration.BENEVOLENT_APOTHECARY_SAPLING);	
 		
+		flowerPotCrossBlock(Registration.POTTED_BANANA_SAPLING);
+		flowerPotCrossBlock(Registration.POTTED_CHERRY_SAPLING);
+		flowerPotCrossBlock(Registration.POTTED_COCONUT_SAPLING);
+		flowerPotCrossBlock(Registration.POTTED_KIWI_SAPLING);
+		flowerPotCrossBlock(Registration.POTTED_LEMON_SAPLING);
+		flowerPotCrossBlock(Registration.POTTED_LIME_SAPLING);
+		flowerPotCrossBlock(Registration.POTTED_ORANGE_SAPLING);
+		flowerPotCrossBlock(Registration.POTTED_PEACH_SAPLING);
+		flowerPotCrossBlock(Registration.POTTED_PEAR_SAPLING);
+		
 		cropBlock(Registration.BLUEBERRY_CROP);
 		cropBlock(Registration.GRAPE_CROP);
 		cropBlock(Registration.STRAWBERRY_CROP);
 		
-		crystalBlock(Registration.AQUAMARINE_CRYSTAL);
-		crystalBlock(Registration.DOLOMITE_CRYSTAL);
-		crystalBlock(Registration.FLUORITE_CRYSTAL);
-		crystalBlock(Registration.ULEXITE_CRYSTAL);
+		hexagonalCrystalBlock(Registration.AQUAMARINE_CRYSTAL);
+		hexagonalCrystalBlock(Registration.FLUORITE_CRYSTAL);
+		hexagonalCrystalBlock(Registration.ULEXITE_CRYSTAL);
+		
+		cubicCrystalBlock(Registration.DOLOMITE_CRYSTAL);
 		
 		displayBlock(Registration.DISPLAY_CASE);
 	}	
@@ -91,13 +107,24 @@ public class ModBlockStateProvider extends BlockStateProvider {
         return models().cross(name(block), blockTexture(block));
     }
 	
+	public ModelFile flowerPotCross(Block block) {
+		ResourceLocation location = block.getRegistryName();
+		String flowerPath = location.getPath().replaceAll("potted_", "");
+		return models().singleTexture(name(block), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + flowerPath));
+    }
+	
 	public ModelFile crop(Block block, String stage) {
         return models().crop(name(block) + stage, extend(blockTexture(block), stage));
     }
 	
-	public ModelFile crystal(Block block) {
+	public ModelFile hexagonal_crystal(Block block) {
 		ResourceLocation location = block.getRegistryName();
-		return models().singleTexture(name(block), modLoc("crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block" + "/" + location.getPath()));
+		return models().singleTexture(name(block), modLoc("hexagonal_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block" + "/" + location.getPath()));
+    }
+	
+	public ModelFile cubic_crystal(Block block) {
+		ResourceLocation location = block.getRegistryName();
+		return models().singleTexture(name(block), modLoc("cubic_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block" + "/" + location.getPath()));
     }
 	
 	public ModelFile display(Block block) {
@@ -126,6 +153,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
         this.crossBlockItem(block, new ModelFile.UncheckedModelFile("item/generated"));
 	}
 	
+	public void flowerPotCrossBlock(Supplier<? extends Block> blockSupplier) {							
+		Block block = blockSupplier.get();														
+		getVariantBuilder(block).partialState().setModels(new ConfiguredModel(flowerPotCross(block)));
+	}
+	
 	public void cropBlock(Supplier<? extends Block> blockSupplier) {							
 		Block block = blockSupplier.get();														
 		getVariantBuilder(block)
@@ -139,16 +171,28 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			.partialState().with(ModCropsBlock.AGE, 7).modelForState().modelFile(crop(block, "_stage3")).addModel();
 	}
 	
-	public void crystalBlock(Supplier<? extends Block> blockSupplier) {
+	public void hexagonalCrystalBlock(Supplier<? extends Block> blockSupplier) {
 		Block block = blockSupplier.get();	
 		getVariantBuilder(block)
-			.partialState().with(ModCrystalBlock.FACING, Direction.NORTH).modelForState().modelFile(crystal(block)).rotationX(90).addModel()
-			.partialState().with(ModCrystalBlock.FACING, Direction.EAST).modelForState().modelFile(crystal(block)).rotationX(90).rotationY(90).addModel()
-			.partialState().with(ModCrystalBlock.FACING, Direction.SOUTH).modelForState().modelFile(crystal(block)).rotationX(270).addModel()
-			.partialState().with(ModCrystalBlock.FACING, Direction.WEST).modelForState().modelFile(crystal(block)).rotationX(90).rotationY(270).addModel()
-			.partialState().with(ModCrystalBlock.FACING, Direction.UP).modelForState().modelFile(crystal(block)).addModel()
-			.partialState().with(ModCrystalBlock.FACING, Direction.DOWN).modelForState().modelFile(crystal(block)).rotationX(180).addModel();
-		this.simpleBlockItem(block, crystal(block));
+			.partialState().with(ModCrystalBlock.FACING, Direction.NORTH).modelForState().modelFile(hexagonal_crystal(block)).rotationX(90).addModel()
+			.partialState().with(ModCrystalBlock.FACING, Direction.EAST).modelForState().modelFile(hexagonal_crystal(block)).rotationX(90).rotationY(90).addModel()
+			.partialState().with(ModCrystalBlock.FACING, Direction.SOUTH).modelForState().modelFile(hexagonal_crystal(block)).rotationX(270).addModel()
+			.partialState().with(ModCrystalBlock.FACING, Direction.WEST).modelForState().modelFile(hexagonal_crystal(block)).rotationX(90).rotationY(270).addModel()
+			.partialState().with(ModCrystalBlock.FACING, Direction.UP).modelForState().modelFile(hexagonal_crystal(block)).addModel()
+			.partialState().with(ModCrystalBlock.FACING, Direction.DOWN).modelForState().modelFile(hexagonal_crystal(block)).rotationX(180).addModel();
+		this.simpleBlockItem(block, hexagonal_crystal(block));
+    }
+	
+	public void cubicCrystalBlock(Supplier<? extends Block> blockSupplier) {
+		Block block = blockSupplier.get();	
+		getVariantBuilder(block)
+			.partialState().with(ModCrystalBlock.FACING, Direction.NORTH).modelForState().modelFile(cubic_crystal(block)).rotationX(90).addModel()
+			.partialState().with(ModCrystalBlock.FACING, Direction.EAST).modelForState().modelFile(cubic_crystal(block)).rotationX(90).rotationY(90).addModel()
+			.partialState().with(ModCrystalBlock.FACING, Direction.SOUTH).modelForState().modelFile(cubic_crystal(block)).rotationX(270).addModel()
+			.partialState().with(ModCrystalBlock.FACING, Direction.WEST).modelForState().modelFile(cubic_crystal(block)).rotationX(90).rotationY(270).addModel()
+			.partialState().with(ModCrystalBlock.FACING, Direction.UP).modelForState().modelFile(cubic_crystal(block)).addModel()
+			.partialState().with(ModCrystalBlock.FACING, Direction.DOWN).modelForState().modelFile(cubic_crystal(block)).rotationX(180).addModel();
+		this.simpleBlockItem(block, cubic_crystal(block));
     }
 	
 	public void displayBlock(Supplier<? extends Block> blockSupplier) {

@@ -46,12 +46,34 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(Registration.CALCIUM_INGOT);
 		simpleItem(Registration.SCANDIUM_INGOT);
 		simpleItem(Registration.TITANIUM_INGOT);
+		simpleItem(Registration.VANADIUM_INGOT);
 		simpleItem(Registration.CHROMIUM_INGOT);
-		simpleItem(Registration.CAESIUM_INGOT);
+		simpleItem(Registration.MANGANESE_INGOT);
+		simpleItem(Registration.COBALT_INGOT);
+		simpleItem(Registration.NICKEL_INGOT);
+		simpleItem(Registration.COPPER_INGOT);
+		simpleItem(Registration.ZINC_INGOT);
+		simpleItem(Registration.GALLIUM_INGOT);
 		simpleItem(Registration.RUBIDIUM_INGOT);
 		simpleItem(Registration.STRONTIUM_INGOT);
+		simpleItem(Registration.YTTRIUM_INGOT);
+		simpleItem(Registration.TECHNETIUM_INGOT);
+		simpleItem(Registration.RUTHENIUM_INGOT);
+		simpleItem(Registration.RHODIUM_INGOT);
+		simpleItem(Registration.PALLADIUM_INGOT);
+		simpleItem(Registration.SILVER_INGOT);
+		simpleItem(Registration.CAESIUM_INGOT);
 		simpleItem(Registration.BARIUM_INGOT);
+		simpleItem(Registration.LUTETIUM_INGOT);
+		simpleItem(Registration.RHENIUM_INGOT);
+		simpleItem(Registration.OSMIUM_INGOT);
+		simpleItem(Registration.IRIDIUM_INGOT);
+		simpleItem(Registration.PLATINUM_INGOT);
+		simpleItem(Registration.FRANCIUM_INGOT);
+		simpleItem(Registration.RADIUM_INGOT);
+		simpleItem(Registration.LAWRENCIUM_INGOT);
 		
+		simpleItem(Registration.LITHIUM_CLAY_BALL);
 		simpleItem(Registration.BORON_CHUNK);
 		simpleItem(Registration.CARBON_CHUNK);
 		simpleItem(Registration.SILICON_CHUNK);
@@ -64,6 +86,11 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(Registration.TELLURIUM_CHUNK);
 		simpleItem(Registration.IODINE_CHUNK);
 		simpleItem(Registration.ASTATINE_CHUNK);
+		
+//		simpleItem(Registration.DUCK_SPAWN_EGG);
+//		simpleItem(Registration.GRIZZLY_BEAR_SPAWN_EGG);
+//		simpleItem(Registration.SHARK_SPAWN_EGG);
+//		simpleItem(Registration.ZEBRA_SPAWN_EGG);
 	}
 	
 	public void simpleItem(Supplier<? extends Item> itemSupplier) {

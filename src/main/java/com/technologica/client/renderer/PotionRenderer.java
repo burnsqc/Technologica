@@ -22,7 +22,8 @@ public class PotionRenderer extends TileEntityRenderer<PotionTileEntity> {
     @Override
     public void render(PotionTileEntity tileEntity, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay) {       
     	ItemStack stack = tileEntity.getPotionStack();
-    	ClientPlayerEntity clientplayerentity = Minecraft.getInstance().player;
+    	Minecraft minecraft = Minecraft.getInstance();
+    	ClientPlayerEntity clientplayerentity = minecraft.player;
     	if (!stack.isEmpty()) {
         	matrixStack.push();       	
         	matrixStack.translate(0.5, -0.2, 0.5);

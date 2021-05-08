@@ -3,6 +3,7 @@ package com.technologica;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.technologica.fluid.FluidRegistration;
 import com.technologica.setup.ClientSetup;
 import com.technologica.setup.CommonSetup;
 import com.technologica.setup.Config;
@@ -11,6 +12,7 @@ import com.technologica.setup.ModBiomeModifier;
 import com.technologica.setup.ModEntityModifier;
 import com.technologica.setup.Registration;
 
+import net.minecraft.fluid.Fluid;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -33,6 +35,8 @@ public class MainMod {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(CommonSetup::init);	//1st event during mod lifecycle startup
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientSetup::init);	//2nd event during mod lifecycle startup
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(GatherData::init);
+		
+		FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(Fluid.class, FluidRegistration::register);
 		
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, ModBiomeModifier::init);	
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, ModEntityModifier::init);	

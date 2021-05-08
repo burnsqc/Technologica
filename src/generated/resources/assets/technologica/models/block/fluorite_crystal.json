@@ -1,5 +1,5 @@
 {
-  "parent": "technologica:block/crystal",
+  "parent": "technologica:block/hexagonal_crystal",
   "textures": {
     "crystal": "technologica:block/fluorite_crystal"
   }

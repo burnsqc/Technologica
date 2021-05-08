@@ -26,8 +26,7 @@ public class ModSaplingBlock extends BushBlock implements IGrowable {
 	private final Tree tree;
 
 	public ModSaplingBlock(Tree treeIn) {
-		super(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly()
-				.zeroHardnessAndResistance().sound(SoundType.PLANT));
+		super(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT));
 		this.tree = treeIn;
 		this.setDefaultState(this.stateContainer.getBaseState().with(STAGE, Integer.valueOf(0)));
 	}

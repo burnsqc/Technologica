@@ -22,7 +22,8 @@ public class FruitRenderer extends TileEntityRenderer<FruitTileEntity> {
     @Override
     public void render(FruitTileEntity tileEntity, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay) {       
     	ItemStack stack = tileEntity.getFruitStack();
-    	ClientPlayerEntity clientplayerentity = Minecraft.getInstance().player;
+    	Minecraft minecraft = Minecraft.getInstance();
+    	ClientPlayerEntity clientplayerentity = minecraft.player;
     	if (!stack.isEmpty()) {
         	matrixStack.push();       	
         	matrixStack.translate(0.5, -0.3, 0.5);

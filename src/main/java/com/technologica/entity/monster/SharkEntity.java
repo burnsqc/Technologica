@@ -59,7 +59,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
@@ -234,7 +233,7 @@ public class SharkEntity extends WaterMobEntity implements IAngerable {
       }
    }
 
-   public static boolean func_223364_b(EntityType<SharkEntity> p_223364_0_, IWorld p_223364_1_, SpawnReason reason, BlockPos p_223364_3_, Random p_223364_4_) {
+   public static boolean func_223364_b(EntityType<SharkEntity> p_223364_0_, World p_223364_1_, SpawnReason reason, BlockPos p_223364_3_, Random p_223364_4_) {
       if (p_223364_3_.getY() > 45 && p_223364_3_.getY() < p_223364_1_.getSeaLevel()) {
          Optional<RegistryKey<Biome>> optional = p_223364_1_.func_242406_i(p_223364_3_);
          return (!Objects.equals(optional, Optional.of(Biomes.OCEAN)) || !Objects.equals(optional, Optional.of(Biomes.DEEP_OCEAN))) && p_223364_1_.getFluidState(p_223364_3_).isTagged(FluidTags.WATER);

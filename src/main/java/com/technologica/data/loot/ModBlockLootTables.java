@@ -75,6 +75,11 @@ public class ModBlockLootTables extends BlockLootTables {
 		registerDropSelfLootTable(Registration.LITHIUM_CLAY.get());
 		registerDropSelfLootTable(Registration.SALT.get());
 		registerDropSelfLootTable(Registration.BAUXITE_ORE.get());
+		registerDropSelfLootTable(Registration.CHROMITE_ORE.get());
+		registerDropSelfLootTable(Registration.ILMENITE_ORE.get());
+		registerDropSelfLootTable(Registration.PYROLUSITE_ORE.get());
+		registerDropSelfLootTable(Registration.COBALTITE_ORE.get());
+		registerDropSelfLootTable(Registration.GARNIERITE_ORE.get());
 		registerDropSelfLootTable(Registration.BORAX_ORE.get());
 		registerDropSelfLootTable(Registration.MAGNESITE_ORE.get());
 		registerDropSelfLootTable(Registration.SPODUMENE_ORE.get());
