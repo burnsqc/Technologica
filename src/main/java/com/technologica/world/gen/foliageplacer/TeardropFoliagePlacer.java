@@ -34,7 +34,7 @@ public class TeardropFoliagePlacer extends FoliagePlacer {
 		this.largeTree = false;
 	}
 
-	protected FoliagePlacerType<?> func_230371_a_() {
+	protected FoliagePlacerType<?> getPlacerType() {
 		return ModFoliagePlacers.TEARDROP.get();
 	}
 

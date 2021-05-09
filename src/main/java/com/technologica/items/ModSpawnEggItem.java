@@ -51,7 +51,7 @@ public class ModSpawnEggItem extends Item {
            Direction direction = context.getFace();
            BlockState blockstate = world.getBlockState(blockpos);
            
-		if (blockstate.isIn(Blocks.SPAWNER)) {
+		if (blockstate.matchesBlock(Blocks.SPAWNER)) {
               TileEntity tileentity = world.getTileEntity(blockpos);
               if (tileentity instanceof MobSpawnerTileEntity) {
                  AbstractSpawner abstractspawner = ((MobSpawnerTileEntity)tileentity).getSpawnerBaseLogic();
@@ -64,7 +64,7 @@ public class ModSpawnEggItem extends Item {
            }
 
            BlockPos blockpos1;
-           if (blockstate.getCollisionShape(world, blockpos).isEmpty()) {
+           if (blockstate.getCollisionShapeUncached(world, blockpos).isEmpty()) {
               blockpos1 = blockpos;
            } else {
               blockpos1 = blockpos.offset(direction);

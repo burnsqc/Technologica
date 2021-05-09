@@ -77,7 +77,7 @@ public class GrizzlyBearEntity extends AnimalEntity implements IAngerable {
 	}
 
 	//Spawning
-	public AgeableEntity func_241840_a(ServerWorld serverWorldIn, AgeableEntity p_241840_2_) {
+	public AgeableEntity createChild(ServerWorld serverWorldIn, AgeableEntity mate) {
 		return ModEntities.GRIZZLY_BEAR.get().create(serverWorldIn);
 	}
 
@@ -119,7 +119,7 @@ public class GrizzlyBearEntity extends AnimalEntity implements IAngerable {
 		if (!Objects.equals(optional, Optional.of(Biomes.FROZEN_OCEAN)) && !Objects.equals(optional, Optional.of(Biomes.DEEP_FROZEN_OCEAN))) {
 			return canAnimalSpawn(entityTypeIn, p_223320_1_, reason, p_223320_3_, randomIn);
 		} else {
-			return p_223320_1_.getLightSubtracted(p_223320_3_, 0) > 8 && p_223320_1_.getBlockState(p_223320_3_.down()).isIn(Blocks.ICE);
+			return p_223320_1_.getLightSubtracted(p_223320_3_, 0) > 8 && p_223320_1_.getBlockState(p_223320_3_.down()).matchesBlock(Blocks.ICE);
 		}
 	}
 	
@@ -295,22 +295,22 @@ public class GrizzlyBearEntity extends AnimalEntity implements IAngerable {
 
       protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
          double d0 = this.getAttackReachSqr(enemy);
-         if (distToEnemySqr <= d0 && this.func_234040_h_()) {
-            this.func_234039_g_();
+         if (distToEnemySqr <= d0 && this.isSwingOnCooldown()) {
+            this.resetSwingCooldown();
             this.attacker.attackEntityAsMob(enemy);
             GrizzlyBearEntity.this.setStanding(false);
          } else if (distToEnemySqr <= d0 * 2.0D) {
-            if (this.func_234040_h_()) {
+            if (this.isSwingOnCooldown()) {
                GrizzlyBearEntity.this.setStanding(false);
-               this.func_234039_g_();
+               this.resetSwingCooldown();
             }
 
-            if (this.func_234041_j_() <= 10) {
+            if (this.getSwingCooldown() <= 10) {
                GrizzlyBearEntity.this.setStanding(true);
                GrizzlyBearEntity.this.playWarningSound();
             }
          } else {
-            this.func_234039_g_();
+            this.resetSwingCooldown();
             GrizzlyBearEntity.this.setStanding(false);
          }
 

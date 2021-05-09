@@ -179,25 +179,25 @@ public class ZebraEntity extends AbstractHorseEntity {
       return SoundEvents.ENTITY_HORSE_ANGRY;
    }
 
-   public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
-      ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
+   public ActionResultType getEntityInteractionResult(PlayerEntity playerIn, Hand hand) {
+      ItemStack itemstack = playerIn.getHeldItem(hand);
       if (!this.isChild()) {
-         if (this.isTame() && p_230254_1_.isSecondaryUseActive()) {
-            this.openGUI(p_230254_1_);
+         if (this.isTame() && playerIn.isSecondaryUseActive()) {
+            this.openGUI(playerIn);
             return ActionResultType.func_233537_a_(this.world.isRemote);
          }
 
          if (this.isBeingRidden()) {
-            return super.func_230254_b_(p_230254_1_, p_230254_2_);
+            return super.getEntityInteractionResult(playerIn, hand);
          }
       }
 
       if (!itemstack.isEmpty()) {
          if (this.isBreedingItem(itemstack)) {
-            return this.func_241395_b_(p_230254_1_, itemstack);
+            return this.func_241395_b_(playerIn, itemstack);
          }
 
-         ActionResultType actionresulttype = itemstack.interactWithEntity(p_230254_1_, this, p_230254_2_);
+         ActionResultType actionresulttype = itemstack.interactWithEntity(playerIn, this, hand);
          if (actionresulttype.isSuccessOrConsume()) {
             return actionresulttype;
          }
@@ -209,15 +209,15 @@ public class ZebraEntity extends AbstractHorseEntity {
 
          boolean flag = !this.isChild() && !this.isHorseSaddled() && itemstack.getItem() == Items.SADDLE;
          if (this.isArmor(itemstack) || flag) {
-            this.openGUI(p_230254_1_);
+            this.openGUI(playerIn);
             return ActionResultType.func_233537_a_(this.world.isRemote);
          }
       }
 
       if (this.isChild()) {
-         return super.func_230254_b_(p_230254_1_, p_230254_2_);
+         return super.getEntityInteractionResult(playerIn, hand);
       } else {
-         this.mountTo(p_230254_1_);
+         this.mountTo(playerIn);
          return ActionResultType.func_233537_a_(this.world.isRemote);
       }
    }
@@ -231,13 +231,13 @@ public class ZebraEntity extends AbstractHorseEntity {
 //      }
 //   }
 
-   public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+   public AgeableEntity createChild(ServerWorld world, AgeableEntity mate) {
       AbstractHorseEntity abstracthorseentity;
-      if (p_241840_2_ instanceof DonkeyEntity) {
-         abstracthorseentity = EntityType.MULE.create(p_241840_1_);
+      if (mate instanceof DonkeyEntity) {
+         abstracthorseentity = EntityType.MULE.create(world);
       } else {
-         ZebraEntity horseentity = (ZebraEntity)p_241840_2_;
-         abstracthorseentity = EntityType.HORSE.create(p_241840_1_);
+         ZebraEntity horseentity = (ZebraEntity)mate;
+         abstracthorseentity = EntityType.HORSE.create(world);
          int i = this.rand.nextInt(9);
          CoatColors coatcolors;
          if (i < 4) {
@@ -261,7 +261,7 @@ public class ZebraEntity extends AbstractHorseEntity {
          ((ZebraEntity)abstracthorseentity).func_234238_a_(coatcolors, coattypes);
       }
 
-      this.setOffspringAttributes(p_241840_2_, abstracthorseentity);
+      this.setOffspringAttributes(mate, abstracthorseentity);
       return abstracthorseentity;
    }
 

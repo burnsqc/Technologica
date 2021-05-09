@@ -217,19 +217,19 @@ public class SharkEntity extends WaterMobEntity implements IAngerable {
 
    }
 
-   protected ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
-      ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
+   protected ActionResultType getEntityInteractionResult(PlayerEntity playerIn, Hand hand) {
+      ItemStack itemstack = playerIn.getHeldItem(hand);
       if (!itemstack.isEmpty() && itemstack.getItem().isIn(ItemTags.FISHES)) {
          if (!this.world.isRemote) {
             this.playSound(SoundEvents.ENTITY_DOLPHIN_EAT, 1.0F, 1.0F);
          }
-         if (!p_230254_1_.abilities.isCreativeMode) {
+         if (!playerIn.abilities.isCreativeMode) {
             itemstack.shrink(1);
          }
 
          return ActionResultType.func_233537_a_(this.world.isRemote);
       } else {
-         return super.func_230254_b_(p_230254_1_, p_230254_2_);
+         return super.getEntityInteractionResult(playerIn, hand);
       }
    }
 
@@ -249,21 +249,21 @@ public class SharkEntity extends WaterMobEntity implements IAngerable {
 
 	      protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
 	         double d0 = this.getAttackReachSqr(enemy);
-	         if (distToEnemySqr <= d0 && this.func_234040_h_()) {
-	            this.func_234039_g_();
+	         if (distToEnemySqr <= d0 && this.isSwingOnCooldown()) {
+	            this.resetSwingCooldown();
 	            this.attacker.attackEntityAsMob(enemy);
 	            
 	         } else if (distToEnemySqr <= d0 * 2.0D) {
-	            if (this.func_234040_h_()) {
+	            if (this.isSwingOnCooldown()) {
 	               
-	               this.func_234039_g_();
+	               this.resetSwingCooldown();
 	            }
 
-	            if (this.func_234041_j_() <= 10) {
+	            if (this.getSwingCooldown() <= 10) {
 	               
 	            }
 	         } else {
-	            this.func_234039_g_();
+	            this.resetSwingCooldown();
 	           
 	         }
 

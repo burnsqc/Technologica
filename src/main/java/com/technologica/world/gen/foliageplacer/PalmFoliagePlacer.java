@@ -32,7 +32,7 @@ public class PalmFoliagePlacer extends FoliagePlacer {
 		this.layers = layersIn - 1;
 	}
 
-	protected FoliagePlacerType<?> func_230371_a_() {
+	protected FoliagePlacerType<?> getPlacerType() {
 		return ModFoliagePlacers.PALM.get();
 	}
 

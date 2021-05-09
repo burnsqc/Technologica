@@ -17,8 +17,8 @@ import net.minecraft.world.gen.feature.structure.Structure;
 
 public class OasisFeature extends Feature<BlockStateFeatureConfig> {
 
-	public OasisFeature(Codec<BlockStateFeatureConfig> p_i231968_1_) {
-		super(p_i231968_1_);
+	public OasisFeature(Codec<BlockStateFeatureConfig> codec) {
+		super(codec);
 	}
 
 	public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BlockStateFeatureConfig config) {
@@ -92,19 +92,19 @@ public class OasisFeature extends Feature<BlockStateFeatureConfig> {
 				
 				for (int relativeX = 0; relativeX < 16; ++relativeX) {
 					for (int relativeZ = 0; relativeZ < 16; ++relativeZ) {
-						if (reader.getBlockState(pos.add(relativeX, 4, relativeZ)).isIn(Blocks.GRASS_BLOCK)) {
+						if (reader.getBlockState(pos.add(relativeX, 4, relativeZ)).matchesBlock(Blocks.GRASS_BLOCK)) {
 							if (rand.nextInt(30) == 0) {
 								if (rand.nextBoolean() == true) {
 									ModConfiguredFeatures.LEMON_TREE_FEATURE.generate(reader, generator, rand, pos.add(relativeX, 5, relativeZ)); 
 								} else {
 									ModConfiguredFeatures.LIME_TREE_FEATURE.generate(reader, generator, rand, pos.add(relativeX, 5, relativeZ));
 								}
-							} else if (reader.getBlockState(pos.add(relativeX + 1, 4, relativeZ)).isIn(Blocks.WATER) 
-									|| reader.getBlockState(pos.add(relativeX - 1, 4, relativeZ)).isIn(Blocks.WATER) 
-									|| reader.getBlockState(pos.add(relativeX, 4, relativeZ + 1)).isIn(Blocks.WATER)
-									|| reader.getBlockState(pos.add(relativeX, 4, relativeZ - 1)).isIn(Blocks.WATER)) {
+							} else if (reader.getBlockState(pos.add(relativeX + 1, 4, relativeZ)).matchesBlock(Blocks.WATER) 
+									|| reader.getBlockState(pos.add(relativeX - 1, 4, relativeZ)).matchesBlock(Blocks.WATER) 
+									|| reader.getBlockState(pos.add(relativeX, 4, relativeZ + 1)).matchesBlock(Blocks.WATER)
+									|| reader.getBlockState(pos.add(relativeX, 4, relativeZ - 1)).matchesBlock(Blocks.WATER)) {
 								Features.PATCH_SUGAR_CANE_DESERT.generate(reader, generator, rand, pos.add(relativeX, 5, relativeZ));
-							} else if (reader.getBlockState(pos.add(relativeX + 1, 5, relativeZ)).isIn(Blocks.AIR)) {						
+							} else if (reader.getBlockState(pos.add(relativeX + 1, 5, relativeZ)).matchesBlock(Blocks.AIR)) {						
 								if (rand.nextInt(4) == 0) {
 									reader.setBlockState(pos.add(relativeX, 5, relativeZ), Blocks.GRASS.getDefaultState(), 2);
 								} else if (rand.nextInt(4) == 1) {

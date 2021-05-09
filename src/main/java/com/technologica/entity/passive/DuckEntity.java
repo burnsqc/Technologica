@@ -68,7 +68,7 @@ public class DuckEntity extends AnimalEntity {
 	}
 	
 	//Spawning
-	public DuckEntity func_241840_a(ServerWorld serverWorldIn, AgeableEntity ageableEntityIn) {
+	public DuckEntity createChild(ServerWorld serverWorldIn, AgeableEntity ageableEntityIn) {
 		return ModEntities.DUCK.get().create(serverWorldIn);
 	}
 	

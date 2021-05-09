@@ -12,7 +12,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class ModFeatures {
 	private static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, MODID);
 
-	public static final RegistryObject<Feature<BlockStateFeatureConfig>> OASIS = FEATURES.register("oasis", () -> new OasisFeature(BlockStateFeatureConfig.field_236455_a_));
+	public static final RegistryObject<Feature<BlockStateFeatureConfig>> OASIS = FEATURES.register("oasis", () -> new OasisFeature(BlockStateFeatureConfig.CODEC));
 	
 	public static void register() 
     {

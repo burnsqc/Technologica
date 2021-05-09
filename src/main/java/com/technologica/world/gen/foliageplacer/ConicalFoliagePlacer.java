@@ -32,7 +32,7 @@ public class ConicalFoliagePlacer extends FoliagePlacer {
 		this.layersBelowTop = layersBelowTopIn;
 	}
 
-	protected FoliagePlacerType<?> func_230371_a_() {
+	protected FoliagePlacerType<?> getPlacerType() {
 		return ModFoliagePlacers.CONICAL.get();
 	}
 

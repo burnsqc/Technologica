@@ -16,7 +16,6 @@ import net.minecraft.world.gen.feature.BlockStateFeatureConfig;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.FeatureSpread;
-import net.minecraft.world.gen.feature.Features;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.TwoLayerFeature;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
@@ -25,14 +24,14 @@ import net.minecraft.world.gen.placement.ChanceConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
 
-public class ModConfiguredFeatures extends Features {
+public class ModConfiguredFeatures {
 	
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> BANANA_TREE_FEATURE = register(
 			"banana_tree_feature",
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(ModBlocks.BANANA_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(ModBlocks.BANANA_LEAVES.get().getDefaultState()),
-					new PalmFoliagePlacer(FeatureSpread.func_242252_a(4), FeatureSpread.func_242252_a(1), 4),
+					new PalmFoliagePlacer(FeatureSpread.create(4), FeatureSpread.create(1), 4),
 					new StraightTrunkPlacer(5, 2, 0), 
 					new TwoLayerFeature(1, 0, 1))).setIgnoreVines().build()));
 	
@@ -41,7 +40,7 @@ public class ModConfiguredFeatures extends Features {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(ModBlocks.CHERRY_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(ModBlocks.CHERRY_LEAVES.get().getDefaultState()),
-					new BlobFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(0), 3),
+					new BlobFoliagePlacer(FeatureSpread.create(2), FeatureSpread.create(0), 3),
 					new StraightTrunkPlacer(5, 2, 0), 
 					new TwoLayerFeature(1, 0, 1))).setIgnoreVines().build()));
 	
@@ -50,7 +49,7 @@ public class ModConfiguredFeatures extends Features {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(ModBlocks.COCONUT_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(ModBlocks.COCONUT_LEAVES.get().getDefaultState()),
-					new PalmFoliagePlacer(FeatureSpread.func_242252_a(5), FeatureSpread.func_242252_a(1), 5),
+					new PalmFoliagePlacer(FeatureSpread.create(5), FeatureSpread.create(1), 5),
 					new StraightTrunkPlacer(7, 5, 0), 
 					new TwoLayerFeature(0, 0, 0))).setIgnoreVines().build()));
 	
@@ -59,7 +58,7 @@ public class ModConfiguredFeatures extends Features {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(ModBlocks.KIWI_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(ModBlocks.KIWI_LEAVES.get().getDefaultState()),
-					new ConicalFoliagePlacer(FeatureSpread.func_242252_a(0), FeatureSpread.func_242252_a(0), 2),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
 					new StraightTrunkPlacer(2, 2, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
 	
@@ -68,7 +67,7 @@ public class ModConfiguredFeatures extends Features {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(ModBlocks.LEMON_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(ModBlocks.LEMON_LEAVES.get().getDefaultState()),
-					new ConicalFoliagePlacer(FeatureSpread.func_242252_a(0), FeatureSpread.func_242252_a(0), 2),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
 					new StraightTrunkPlacer(2, 2, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
 	
@@ -77,7 +76,7 @@ public class ModConfiguredFeatures extends Features {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(ModBlocks.LIME_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(ModBlocks.LIME_LEAVES.get().getDefaultState()),
-					new ConicalFoliagePlacer(FeatureSpread.func_242252_a(0), FeatureSpread.func_242252_a(0), 2),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
 					new StraightTrunkPlacer(2, 2, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
 	
@@ -86,7 +85,7 @@ public class ModConfiguredFeatures extends Features {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(ModBlocks.ORANGE_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(ModBlocks.ORANGE_LEAVES.get().getDefaultState()),
-					new ConicalFoliagePlacer(FeatureSpread.func_242252_a(0), FeatureSpread.func_242252_a(0), 2),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
 					new StraightTrunkPlacer(4, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
 	
@@ -95,7 +94,7 @@ public class ModConfiguredFeatures extends Features {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(ModBlocks.PEACH_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(ModBlocks.PEACH_LEAVES.get().getDefaultState()),
-					new BlobFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(0), 3),
+					new BlobFoliagePlacer(FeatureSpread.create(2), FeatureSpread.create(0), 3),
 					new StraightTrunkPlacer(5, 2, 0),  
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
 	
@@ -104,7 +103,7 @@ public class ModConfiguredFeatures extends Features {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(ModBlocks.PEAR_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(ModBlocks.PEAR_LEAVES.get().getDefaultState()),
-					new TeardropFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(0), 6),
+					new TeardropFoliagePlacer(FeatureSpread.create(2), FeatureSpread.create(0), 6),
 					new StraightTrunkPlacer(5, 2, 0), 
 					new TwoLayerFeature(1, 0, 1))).setIgnoreVines().build()));
 
@@ -113,7 +112,7 @@ public class ModConfiguredFeatures extends Features {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(Blocks.COAL_BLOCK.getDefaultState()),
 					new SimpleBlockStateProvider(Blocks.FIRE.getDefaultState()),
-					new CylindricalFoliagePlacer(FeatureSpread.func_242252_a(9), FeatureSpread.func_242252_a(0), 0),
+					new CylindricalFoliagePlacer(FeatureSpread.create(9), FeatureSpread.create(0), 0),
 					new StraightTrunkPlacer(10, 10, 0), 
 					new TwoLayerFeature(0, 0, 0))).setIgnoreVines().build()));
 	
@@ -122,7 +121,7 @@ public class ModConfiguredFeatures extends Features {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(Blocks.IRON_BLOCK.getDefaultState()),
 					new SimpleBlockStateProvider(ModBlocks.CONDUCTIVE_LEAVES.get().getDefaultState()),
-					new DishFoliagePlacer(FeatureSpread.func_242252_a(9), FeatureSpread.func_242252_a(0), 3),
+					new DishFoliagePlacer(FeatureSpread.create(9), FeatureSpread.create(0), 3),
 					new StraightTrunkPlacer(10, 10, 0), 
 					new TwoLayerFeature(0, 0, 0))).setIgnoreVines().build()));
 	
@@ -131,7 +130,7 @@ public class ModConfiguredFeatures extends Features {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(Blocks.ICE.getDefaultState()),
 					new SimpleBlockStateProvider(ModBlocks.FROSTBITTEN_LEAVES.get().getDefaultState()),
-					new MegaPineFoliagePlacer(FeatureSpread.func_242252_a(0), FeatureSpread.func_242252_a(5), FeatureSpread.func_242253_a(13, 4)),
+					new MegaPineFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(5), FeatureSpread.create(13, 4)),
 					new StraightTrunkPlacer(10, 10, 0), 
 					new TwoLayerFeature(0, 0, 0))).setIgnoreVines().build()));
 	
@@ -140,7 +139,7 @@ public class ModConfiguredFeatures extends Features {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(ModBlocks.FRUITFUL_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(ModBlocks.FRUITFUL_LEAVES.get().getDefaultState()),
-					new ConicalFoliagePlacer(FeatureSpread.func_242252_a(0), FeatureSpread.func_242252_a(0), 2),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
 					new StraightTrunkPlacer(4, 1, 0),
 					new TwoLayerFeature(0, 0, 0))).setIgnoreVines().build()));
 	
@@ -149,7 +148,7 @@ public class ModConfiguredFeatures extends Features {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(Blocks.BIRCH_LOG.getDefaultState()),
 					new SimpleBlockStateProvider(ModBlocks.ALCHEMICAL_LEAVES.get().getDefaultState()),
-					new ConicalFoliagePlacer(FeatureSpread.func_242252_a(0), FeatureSpread.func_242252_a(0), 2),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
 					new StraightTrunkPlacer(4, 1, 0),
 					new TwoLayerFeature(0, 0, 0))).setIgnoreVines().build()));
 	
@@ -158,7 +157,7 @@ public class ModConfiguredFeatures extends Features {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(ModBlocks.BENEVOLENT_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(ModBlocks.BENEVOLENT_LEAVES.get().getDefaultState()),
-					new ConicalFoliagePlacer(FeatureSpread.func_242252_a(0), FeatureSpread.func_242252_a(0), 2),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
 					new StraightTrunkPlacer(4, 1, 0),
 					new TwoLayerFeature(0, 0, 0))).setIgnoreVines().build()));
 	
@@ -167,7 +166,7 @@ public class ModConfiguredFeatures extends Features {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(Blocks.BIRCH_LOG.getDefaultState()),
 					new SimpleBlockStateProvider(ModBlocks.MALEVOLENT_LEAVES.get().getDefaultState()),
-					new ConicalFoliagePlacer(FeatureSpread.func_242252_a(0), FeatureSpread.func_242252_a(0), 2),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
 					new StraightTrunkPlacer(4, 1, 0),
 					new TwoLayerFeature(0, 0, 0))).setIgnoreVines().build()));
 	
