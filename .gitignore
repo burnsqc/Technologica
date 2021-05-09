@@ -5,7 +5,7 @@ bin
 .metadata
 .classpath
 .project
-.cache
+*.cache
 
 # idea
 out
