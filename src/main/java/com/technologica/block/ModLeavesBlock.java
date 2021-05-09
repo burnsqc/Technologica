@@ -1,7 +1,7 @@
 package com.technologica.block;
 import java.util.Random;
 
-import com.technologica.setup.Registration;
+import com.technologica.items.ModItems;
 import com.technologica.tileentity.FruitTileEntity;
 
 import net.minecraft.block.AbstractBlock;
@@ -82,26 +82,26 @@ public class ModLeavesBlock extends LeavesBlock {
 				}
 				if (fruitType == 1) {
 					if (state.get(DISTANCE) == 1 || randomFruit == true) {
-						tile.setFruitStack(new ItemStack(Registration.BANANA.get()));
+						tile.setFruitStack(new ItemStack(ModItems.BANANA.get()));
 					}
 				} else if (fruitType == 2) {
-					tile.setFruitStack(new ItemStack(Registration.CHERRY.get()));
+					tile.setFruitStack(new ItemStack(ModItems.CHERRY.get()));
 				} else if (fruitType == 3) {
 					if (state.get(DISTANCE) == 1 || randomFruit == true) {
-						tile.setFruitStack(new ItemStack(Registration.COCONUT.get()));
+						tile.setFruitStack(new ItemStack(ModItems.COCONUT.get()));
 					}
 				} else if (fruitType == 4) {
-					tile.setFruitStack(new ItemStack(Registration.KIWI.get()));
+					tile.setFruitStack(new ItemStack(ModItems.KIWI.get()));
 				} else if (fruitType == 5) {
-					tile.setFruitStack(new ItemStack(Registration.LEMON.get()));
+					tile.setFruitStack(new ItemStack(ModItems.LEMON.get()));
 				} else if (fruitType == 6) {
-					tile.setFruitStack(new ItemStack(Registration.LIME.get()));
+					tile.setFruitStack(new ItemStack(ModItems.LIME.get()));
 				} else if (fruitType == 7) {
-					tile.setFruitStack(new ItemStack(Registration.ORANGE.get()));
+					tile.setFruitStack(new ItemStack(ModItems.ORANGE.get()));
 				} else if (fruitType == 8) {
-					tile.setFruitStack(new ItemStack(Registration.PEACH.get()));
+					tile.setFruitStack(new ItemStack(ModItems.PEACH.get()));
 				} else if (fruitType == 9) {
-					tile.setFruitStack(new ItemStack(Registration.PEAR.get()));
+					tile.setFruitStack(new ItemStack(ModItems.PEAR.get()));
 				} else if (fruitType == 11) {
 					int potionType = random.nextInt(15);
 					if (potionType == 0) {

@@ -1,6 +1,6 @@
 package com.technologica.block;
 
-import com.technologica.setup.Registration;
+import com.technologica.items.ModItems;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -33,11 +33,11 @@ public class ModCropsBlock extends CropsBlock {
 
 	public IItemProvider getSeedsItem() {
 		if (seedType == 1) {
-			return Registration.BLUEBERRY_SEEDS.get();	
+			return ModItems.BLUEBERRY_SEEDS.get();	
 		} else if (seedType == 2) {
-			return Registration.GRAPE_SEEDS.get();
+			return ModItems.GRAPE_SEEDS.get();
 		} else {
-			return Registration.STRAWBERRY_SEEDS.get();
+			return ModItems.STRAWBERRY_SEEDS.get();
 		}
 	}
 

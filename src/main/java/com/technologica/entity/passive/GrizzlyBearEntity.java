@@ -8,7 +8,7 @@ import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
 
-import com.technologica.setup.Registration;
+import com.technologica.entity.ModEntities;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -78,7 +78,7 @@ public class GrizzlyBearEntity extends AnimalEntity implements IAngerable {
 
 	//Spawning
 	public AgeableEntity func_241840_a(ServerWorld serverWorldIn, AgeableEntity p_241840_2_) {
-		return Registration.GRIZZLY_BEAR.get().create(serverWorldIn);
+		return ModEntities.GRIZZLY_BEAR.get().create(serverWorldIn);
 	}
 
 	//Breeding

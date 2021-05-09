@@ -1,6 +1,6 @@
 package com.technologica.entity.passive;
 
-import com.technologica.setup.Registration;
+import com.technologica.entity.ModEntities;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.AgeableEntity;
@@ -69,7 +69,7 @@ public class DuckEntity extends AnimalEntity {
 	
 	//Spawning
 	public DuckEntity func_241840_a(ServerWorld serverWorldIn, AgeableEntity ageableEntityIn) {
-		return Registration.DUCK.get().create(serverWorldIn);
+		return ModEntities.DUCK.get().create(serverWorldIn);
 	}
 	
 	//Animation

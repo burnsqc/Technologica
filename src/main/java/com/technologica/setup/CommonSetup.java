@@ -1,5 +1,7 @@
 package com.technologica.setup;
 
+import com.technologica.block.ModBlocks;
+import com.technologica.entity.ModEntities;
 import com.technologica.entity.monster.SharkEntity;
 import com.technologica.entity.passive.DuckEntity;
 import com.technologica.entity.passive.GrizzlyBearEntity;
@@ -13,21 +15,21 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 public class CommonSetup {
 
 	public static void init(final FMLCommonSetupEvent event) {
-		GlobalEntityTypeAttributes.put(Registration.DUCK.get(), DuckEntity.registerAttributes().create());
-		GlobalEntityTypeAttributes.put(Registration.GRIZZLY_BEAR.get(), GrizzlyBearEntity.registerAttributes().create());
-		GlobalEntityTypeAttributes.put(Registration.SHARK.get(), SharkEntity.registerAttributes().create());
-		GlobalEntityTypeAttributes.put(Registration.ZEBRA.get(), ZebraEntity.func_234237_fg_().create());
+		GlobalEntityTypeAttributes.put(ModEntities.DUCK.get(), DuckEntity.registerAttributes().create());
+		GlobalEntityTypeAttributes.put(ModEntities.GRIZZLY_BEAR.get(), GrizzlyBearEntity.registerAttributes().create());
+		GlobalEntityTypeAttributes.put(ModEntities.SHARK.get(), SharkEntity.registerAttributes().create());
+		GlobalEntityTypeAttributes.put(ModEntities.ZEBRA.get(), ZebraEntity.func_234237_fg_().create());
 		
 		event.enqueueWork(() -> {
-			((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(Registration.BANANA_SAPLING.getId(), Registration.POTTED_BANANA_SAPLING::get);
-			((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(Registration.CHERRY_SAPLING.getId(), Registration.POTTED_CHERRY_SAPLING::get);
-			((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(Registration.COCONUT_SAPLING.getId(), Registration.POTTED_COCONUT_SAPLING::get);
-			((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(Registration.KIWI_SAPLING.getId(), Registration.POTTED_KIWI_SAPLING::get);
-			((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(Registration.LEMON_SAPLING.getId(), Registration.POTTED_LEMON_SAPLING::get);
-			((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(Registration.LIME_SAPLING.getId(), Registration.POTTED_LIME_SAPLING::get);
-			((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(Registration.ORANGE_SAPLING.getId(), Registration.POTTED_ORANGE_SAPLING::get);
-			((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(Registration.PEACH_SAPLING.getId(), Registration.POTTED_PEACH_SAPLING::get);
-			((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(Registration.PEAR_SAPLING.getId(), Registration.POTTED_PEAR_SAPLING::get);
+			((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.BANANA_SAPLING.getId(), ModBlocks.POTTED_BANANA_SAPLING::get);
+			((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.CHERRY_SAPLING.getId(), ModBlocks.POTTED_CHERRY_SAPLING::get);
+			((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.COCONUT_SAPLING.getId(), ModBlocks.POTTED_COCONUT_SAPLING::get);
+			((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.KIWI_SAPLING.getId(), ModBlocks.POTTED_KIWI_SAPLING::get);
+			((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.LEMON_SAPLING.getId(), ModBlocks.POTTED_LEMON_SAPLING::get);
+			((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.LIME_SAPLING.getId(), ModBlocks.POTTED_LIME_SAPLING::get);
+			((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.ORANGE_SAPLING.getId(), ModBlocks.POTTED_ORANGE_SAPLING::get);
+			((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.PEACH_SAPLING.getId(), ModBlocks.POTTED_PEACH_SAPLING::get);
+			((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.PEAR_SAPLING.getId(), ModBlocks.POTTED_PEAR_SAPLING::get);
 		});
 	}
 	

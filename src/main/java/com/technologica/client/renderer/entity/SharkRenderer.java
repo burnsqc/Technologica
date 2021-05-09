@@ -1,6 +1,6 @@
 package com.technologica.client.renderer.entity;
 
-import com.technologica.MainMod;
+import com.technologica.Technologica;
 import com.technologica.client.renderer.entity.model.SharkModel;
 import com.technologica.entity.monster.SharkEntity;
 
@@ -12,7 +12,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class SharkRenderer extends MobRenderer<SharkEntity, SharkModel<SharkEntity>> {
-   private static final ResourceLocation SHARK_TEXTURE = new ResourceLocation(MainMod.MODID, "textures/entity/shark.png");
+   private static final ResourceLocation SHARK_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/shark.png");
 
    public SharkRenderer(EntityRendererManager renderManagerIn) {
       super(renderManagerIn, new SharkModel<>(), 0.7F);

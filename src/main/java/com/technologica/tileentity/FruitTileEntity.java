@@ -2,8 +2,6 @@ package com.technologica.tileentity;
 
 import javax.annotation.Nullable;
 
-import com.technologica.setup.Registration;
-
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -16,7 +14,7 @@ public class FruitTileEntity extends TileEntity {
 	private ItemStack stack = ItemStack.EMPTY;
 	
 	public FruitTileEntity() {
-		super(Registration.FRUIT_CROP.get());
+		super(ModTileEntities.FRUIT_CROP.get());
 	}
 
 	@Override

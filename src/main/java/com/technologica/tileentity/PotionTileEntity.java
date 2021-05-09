@@ -2,8 +2,6 @@ package com.technologica.tileentity;
 
 import javax.annotation.Nullable;
 
-import com.technologica.setup.Registration;
-
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.projectile.PotionEntity;
 import net.minecraft.item.ItemStack;
@@ -22,7 +20,7 @@ public class PotionTileEntity extends TileEntity implements ITickableTileEntity 
 	public static final IntegerProperty AGE = BlockStateProperties.AGE_0_7;
 	
 	public PotionTileEntity() {
-		super(Registration.POTION_CROP.get());
+		super(ModTileEntities.POTION_CROP.get());
 	}
 
 	@Override

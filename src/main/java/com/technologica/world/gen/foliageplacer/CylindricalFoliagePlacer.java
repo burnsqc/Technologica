@@ -8,7 +8,6 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.mojang.serialization.codecs.RecordCodecBuilder.Instance;
 import com.mojang.serialization.codecs.RecordCodecBuilder.Mu;
-import com.technologica.setup.Registration;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
@@ -34,7 +33,7 @@ public class CylindricalFoliagePlacer extends FoliagePlacer {
 	}
 
 	protected FoliagePlacerType<?> func_230371_a_() {
-		return Registration.CYLINDRICAL.get();
+		return ModFoliagePlacers.CYLINDRICAL.get();
 	}
 
 	//Generate foliage

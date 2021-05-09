@@ -2,10 +2,10 @@ package com.technologica.data;
 
 import java.util.function.Supplier;
 
-import com.technologica.MainMod;
+import com.technologica.Technologica;
+import com.technologica.block.ModBlocks;
 import com.technologica.block.ModCropsBlock;
 import com.technologica.block.ModCrystalBlock;
-import com.technologica.setup.Registration;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.RotatedPillarBlock;
@@ -20,79 +20,79 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 public class ModBlockStateProvider extends BlockStateProvider {
 
 	public ModBlockStateProvider(DataGenerator generatorIn, ExistingFileHelper helperIn) {
-		super(generatorIn, MainMod.MODID, helperIn);
+		super(generatorIn, Technologica.MODID, helperIn);
 	}
 
 	@Override
 	protected void registerStatesAndModels() {
-		simpleBlock(Registration.LITHIUM_CLAY);
-		simpleBlock(Registration.SALT);
-		simpleBlock(Registration.BAUXITE_ORE);
-		simpleBlock(Registration.CHROMITE_ORE);
-		simpleBlock(Registration.ILMENITE_ORE);
-		simpleBlock(Registration.PYROLUSITE_ORE);
-		simpleBlock(Registration.COBALTITE_ORE);
-		simpleBlock(Registration.GARNIERITE_ORE);
-		simpleBlock(Registration.BORAX_ORE);
-		simpleBlock(Registration.MAGNESITE_ORE);
-		simpleBlock(Registration.SPODUMENE_ORE);
-		simpleBlock(Registration.BANANA_LEAVES);
-		simpleBlock(Registration.CHERRY_LEAVES);
-		simpleBlock(Registration.COCONUT_LEAVES);
-		simpleBlock(Registration.KIWI_LEAVES);
-		simpleBlock(Registration.LEMON_LEAVES);
-		simpleBlock(Registration.LIME_LEAVES);
-		simpleBlock(Registration.ORANGE_LEAVES);
-		simpleBlock(Registration.PEACH_LEAVES);
-		simpleBlock(Registration.PEAR_LEAVES);
-		simpleBlock(Registration.FRUITFUL_LEAVES);
-		simpleBlock(Registration.BENEVOLENT_LEAVES);
+		simpleBlock(ModBlocks.LITHIUM_CLAY);
+		simpleBlock(ModBlocks.SALT);
+		simpleBlock(ModBlocks.BAUXITE_ORE);
+		simpleBlock(ModBlocks.CHROMITE_ORE);
+		simpleBlock(ModBlocks.ILMENITE_ORE);
+		simpleBlock(ModBlocks.PYROLUSITE_ORE);
+		simpleBlock(ModBlocks.COBALTITE_ORE);
+		simpleBlock(ModBlocks.GARNIERITE_ORE);
+		simpleBlock(ModBlocks.BORAX_ORE);
+		simpleBlock(ModBlocks.MAGNESITE_ORE);
+		simpleBlock(ModBlocks.SPODUMENE_ORE);
+		simpleBlock(ModBlocks.BANANA_LEAVES);
+		simpleBlock(ModBlocks.CHERRY_LEAVES);
+		simpleBlock(ModBlocks.COCONUT_LEAVES);
+		simpleBlock(ModBlocks.KIWI_LEAVES);
+		simpleBlock(ModBlocks.LEMON_LEAVES);
+		simpleBlock(ModBlocks.LIME_LEAVES);
+		simpleBlock(ModBlocks.ORANGE_LEAVES);
+		simpleBlock(ModBlocks.PEACH_LEAVES);
+		simpleBlock(ModBlocks.PEAR_LEAVES);
+		simpleBlock(ModBlocks.FRUITFUL_LEAVES);
+		simpleBlock(ModBlocks.BENEVOLENT_LEAVES);
 		
-		logBlock(Registration.BANANA_LOG);
-		logBlock(Registration.CHERRY_LOG);
-		logBlock(Registration.COCONUT_LOG);
-		logBlock(Registration.KIWI_LOG);
-		logBlock(Registration.LEMON_LOG);
-		logBlock(Registration.LIME_LOG);
-		logBlock(Registration.ORANGE_LOG);
-		logBlock(Registration.PEACH_LOG);
-		logBlock(Registration.PEAR_LOG);
-		logBlock(Registration.FRUITFUL_LOG);
-		logBlock(Registration.BENEVOLENT_LOG);
+		logBlock(ModBlocks.BANANA_LOG);
+		logBlock(ModBlocks.CHERRY_LOG);
+		logBlock(ModBlocks.COCONUT_LOG);
+		logBlock(ModBlocks.KIWI_LOG);
+		logBlock(ModBlocks.LEMON_LOG);
+		logBlock(ModBlocks.LIME_LOG);
+		logBlock(ModBlocks.ORANGE_LOG);
+		logBlock(ModBlocks.PEACH_LOG);
+		logBlock(ModBlocks.PEAR_LOG);
+		logBlock(ModBlocks.FRUITFUL_LOG);
+		logBlock(ModBlocks.BENEVOLENT_LOG);
 		
-		crossBlock(Registration.BANANA_SAPLING);
-		crossBlock(Registration.CHERRY_SAPLING);
-		crossBlock(Registration.COCONUT_SAPLING);
-		crossBlock(Registration.KIWI_SAPLING);
-		crossBlock(Registration.LEMON_SAPLING);
-		crossBlock(Registration.LIME_SAPLING);
-		crossBlock(Registration.ORANGE_SAPLING);
-		crossBlock(Registration.PEACH_SAPLING);
-		crossBlock(Registration.PEAR_SAPLING);
-		crossBlock(Registration.ANCIENT_AMBROSIA_SAPLING);
-		crossBlock(Registration.BENEVOLENT_APOTHECARY_SAPLING);	
+		crossBlock(ModBlocks.BANANA_SAPLING);
+		crossBlock(ModBlocks.CHERRY_SAPLING);
+		crossBlock(ModBlocks.COCONUT_SAPLING);
+		crossBlock(ModBlocks.KIWI_SAPLING);
+		crossBlock(ModBlocks.LEMON_SAPLING);
+		crossBlock(ModBlocks.LIME_SAPLING);
+		crossBlock(ModBlocks.ORANGE_SAPLING);
+		crossBlock(ModBlocks.PEACH_SAPLING);
+		crossBlock(ModBlocks.PEAR_SAPLING);
+		crossBlock(ModBlocks.ANCIENT_AMBROSIA_SAPLING);
+		crossBlock(ModBlocks.BENEVOLENT_APOTHECARY_SAPLING);	
 		
-		flowerPotCrossBlock(Registration.POTTED_BANANA_SAPLING);
-		flowerPotCrossBlock(Registration.POTTED_CHERRY_SAPLING);
-		flowerPotCrossBlock(Registration.POTTED_COCONUT_SAPLING);
-		flowerPotCrossBlock(Registration.POTTED_KIWI_SAPLING);
-		flowerPotCrossBlock(Registration.POTTED_LEMON_SAPLING);
-		flowerPotCrossBlock(Registration.POTTED_LIME_SAPLING);
-		flowerPotCrossBlock(Registration.POTTED_ORANGE_SAPLING);
-		flowerPotCrossBlock(Registration.POTTED_PEACH_SAPLING);
-		flowerPotCrossBlock(Registration.POTTED_PEAR_SAPLING);
+		flowerPotCrossBlock(ModBlocks.POTTED_BANANA_SAPLING);
+		flowerPotCrossBlock(ModBlocks.POTTED_CHERRY_SAPLING);
+		flowerPotCrossBlock(ModBlocks.POTTED_COCONUT_SAPLING);
+		flowerPotCrossBlock(ModBlocks.POTTED_KIWI_SAPLING);
+		flowerPotCrossBlock(ModBlocks.POTTED_LEMON_SAPLING);
+		flowerPotCrossBlock(ModBlocks.POTTED_LIME_SAPLING);
+		flowerPotCrossBlock(ModBlocks.POTTED_ORANGE_SAPLING);
+		flowerPotCrossBlock(ModBlocks.POTTED_PEACH_SAPLING);
+		flowerPotCrossBlock(ModBlocks.POTTED_PEAR_SAPLING);
 		
-		cropBlock(Registration.BLUEBERRY_CROP);
-		cropBlock(Registration.GRAPE_CROP);
-		cropBlock(Registration.STRAWBERRY_CROP);
+		cropBlock(ModBlocks.BLUEBERRY_CROP);
+		cropBlock(ModBlocks.GRAPE_CROP);
+		cropBlock(ModBlocks.STRAWBERRY_CROP);
 		
-		hexagonalCrystalBlock(Registration.AQUAMARINE_CRYSTAL);
-		hexagonalCrystalBlock(Registration.FLUORITE_CRYSTAL);
-		hexagonalCrystalBlock(Registration.ULEXITE_CRYSTAL);
+		hexagonalCrystalBlock(ModBlocks.AQUAMARINE_CRYSTAL);
+		hexagonalCrystalBlock(ModBlocks.FLUORITE_CRYSTAL);
+		hexagonalCrystalBlock(ModBlocks.ULEXITE_CRYSTAL);
 		
-		cubicCrystalBlock(Registration.DOLOMITE_CRYSTAL);
+		cubicCrystalBlock(ModBlocks.DOLOMITE_CRYSTAL);
 		
-		displayBlock(Registration.DISPLAY_CASE);
+		displayBlock(ModBlocks.DISPLAY_CASE);
 	}	
 	
 	private String name(Block block) {

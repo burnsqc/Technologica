@@ -2,8 +2,6 @@ package com.technologica.tileentity;
 
 import javax.annotation.Nullable;
 
-import com.technologica.setup.Registration;
-
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -16,7 +14,7 @@ public class DisplayCaseTileEntity extends TileEntity {
 	private ItemStack stack = ItemStack.EMPTY;
 	
 	public DisplayCaseTileEntity() {
-		super(Registration.DISPLAY_TILE.get());
+		super(ModTileEntities.DISPLAY_TILE.get());
 	}
 
 	@Override
