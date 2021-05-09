@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "technologica:brine_source",
+    "technologica:brine_flowing"
+  ]
+}

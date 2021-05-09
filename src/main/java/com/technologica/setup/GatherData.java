@@ -2,6 +2,7 @@ package com.technologica.setup;
 
 import com.technologica.data.ModBlockStateProvider;
 import com.technologica.data.ModBlockTagsProvider;
+import com.technologica.data.ModFluidTagsProvider;
 import com.technologica.data.ModItemModelProvider;
 import com.technologica.data.ModItemTagsProvider;
 import com.technologica.data.ModLanguageProvider;
@@ -29,6 +30,7 @@ public class GatherData {
 			generator.addProvider(new ModItemTagsProvider(generator, modBlockTagsProvider, helper));
 			generator.addProvider(new ModRecipeProvider(generator));
 			generator.addProvider(new ModLootTableProvider(generator));
+			generator.addProvider(new ModFluidTagsProvider(generator, helper));
 		}	
 	}
 }
