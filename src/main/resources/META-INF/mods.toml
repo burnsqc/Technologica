@@ -17,3 +17,15 @@ license="All rights reserved"
     
     Fruits and some ingots.
     '''
+[[dependencies.technologica]] 
+    modId="forge" 
+    mandatory=true
+    versionRange="[35.0.0,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.technologica]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.4]"
+    ordering="NONE"
+    side="BOTH"
