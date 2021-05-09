@@ -5,7 +5,7 @@ bin
 .metadata
 .classpath
 .project
-*.cache
+src/generated/resources/.cache
 
 # idea
 out
