@@ -5,6 +5,7 @@ import com.technologica.entity.ModEntities;
 import com.technologica.entity.monster.SharkEntity;
 import com.technologica.entity.passive.DuckEntity;
 import com.technologica.entity.passive.GrizzlyBearEntity;
+import com.technologica.entity.passive.OstrichEntity;
 import com.technologica.entity.passive.ZebraEntity;
 
 import net.minecraft.block.Blocks;
@@ -17,6 +18,7 @@ public class CommonSetup {
 	public static void init(final FMLCommonSetupEvent event) {
 		GlobalEntityTypeAttributes.put(ModEntities.DUCK.get(), DuckEntity.registerAttributes().create());
 		GlobalEntityTypeAttributes.put(ModEntities.GRIZZLY_BEAR.get(), GrizzlyBearEntity.registerAttributes().create());
+		GlobalEntityTypeAttributes.put(ModEntities.OSTRICH.get(), OstrichEntity.func_234237_fg_().create());
 		GlobalEntityTypeAttributes.put(ModEntities.SHARK.get(), SharkEntity.registerAttributes().create());
 		GlobalEntityTypeAttributes.put(ModEntities.ZEBRA.get(), ZebraEntity.func_234237_fg_().create());
 		

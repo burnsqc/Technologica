@@ -206,6 +206,7 @@ public class ModLanguageProvider extends LanguageProvider {
 		
 		addItem(ModItems.DUCK_SPAWN_EGG, "Duck Spawn Egg");
 		addItem(ModItems.GRIZZLY_BEAR_SPAWN_EGG, "Grizzly Bear Spawn Egg");
+		addItem(ModItems.OSTRICH_SPAWN_EGG, "Ostrich Spawn Egg");
 		addItem(ModItems.SHARK_SPAWN_EGG, "Shark Spawn Egg");
 		addItem(ModItems.ZEBRA_SPAWN_EGG, "Zebra Spawn Egg");
 		

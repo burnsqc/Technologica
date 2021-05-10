@@ -37,8 +37,10 @@ public class ModSpawnEggItem extends Item {
     	} else if (entityTypeInt == 2) {
     		entityType = ModEntities.GRIZZLY_BEAR.get();
     	} else if (entityTypeInt == 3) {
-    		entityType = ModEntities.SHARK.get();
+    		entityType = ModEntities.OSTRICH.get();
     	} else if (entityTypeInt == 4) {
+    		entityType = ModEntities.SHARK.get();
+    	} else if (entityTypeInt == 5) {
     		entityType = ModEntities.ZEBRA.get();
     	}
     	

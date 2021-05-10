@@ -6,6 +6,7 @@ import com.technologica.client.renderer.FruitRenderer;
 import com.technologica.client.renderer.PotionRenderer;
 import com.technologica.client.renderer.entity.DuckRenderer;
 import com.technologica.client.renderer.entity.GrizzlyBearRenderer;
+import com.technologica.client.renderer.entity.OstrichRenderer;
 import com.technologica.client.renderer.entity.SharkRenderer;
 import com.technologica.client.renderer.entity.ZebraRenderer;
 import com.technologica.entity.ModEntities;
@@ -23,6 +24,7 @@ public class ClientSetup {
 	public static void init(final FMLClientSetupEvent event) {
 		RenderingRegistry.registerEntityRenderingHandler(ModEntities.DUCK.get(), DuckRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ModEntities.GRIZZLY_BEAR.get(), GrizzlyBearRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ModEntities.OSTRICH.get(), OstrichRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ModEntities.SHARK.get(), SharkRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ModEntities.ZEBRA.get(), ZebraRenderer::new);
 		

@@ -91,6 +91,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 		
 //		simpleItem(ModItems.DUCK_SPAWN_EGG);
 //		simpleItem(ModItems.GRIZZLY_BEAR_SPAWN_EGG);
+//		simpleItem(ModItems.OSTRICH_SPAWN_EGG);
 //		simpleItem(ModItems.SHARK_SPAWN_EGG);
 //		simpleItem(ModItems.ZEBRA_SPAWN_EGG);
 	}

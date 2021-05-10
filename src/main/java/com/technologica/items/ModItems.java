@@ -212,8 +212,9 @@ public class ModItems {
          
     public static final RegistryObject<Item> DUCK_SPAWN_EGG = ITEMS.register("duck_spawn_egg", () -> new ModSpawnEggItem(1)); 
     public static final RegistryObject<Item> GRIZZLY_BEAR_SPAWN_EGG = ITEMS.register("grizzly_bear_spawn_egg", () -> new ModSpawnEggItem(2));
-    public static final RegistryObject<Item> SHARK_SPAWN_EGG = ITEMS.register("shark_spawn_egg", () -> new ModSpawnEggItem(3));
-    public static final RegistryObject<Item> ZEBRA_SPAWN_EGG = ITEMS.register("zebra_spawn_egg", () -> new ModSpawnEggItem(4));
+    public static final RegistryObject<Item> OSTRICH_SPAWN_EGG = ITEMS.register("ostrich_spawn_egg", () -> new ModSpawnEggItem(3));
+    public static final RegistryObject<Item> SHARK_SPAWN_EGG = ITEMS.register("shark_spawn_egg", () -> new ModSpawnEggItem(4));
+    public static final RegistryObject<Item> ZEBRA_SPAWN_EGG = ITEMS.register("zebra_spawn_egg", () -> new ModSpawnEggItem(5));
     
     public static final RegistryObject<Item> BRINE_BUCKET = ITEMS.register("brine_bucket", () -> new BucketItem(ModFluids.BRINE_SOURCE, new Properties().group(ModItemGroup.TECHNOLOGICA_MINERAL).maxStackSize(1)));
     public static final RegistryObject<Item> MERCURY_BUCKET = ITEMS.register("mercury_bucket", () -> new BucketItem(ModFluids.MERCURY_SOURCE, new Properties().group(ModItemGroup.TECHNOLOGICA_MINERAL).maxStackSize(1)));
@@ -224,3 +225,4 @@ public class ModItems {
         ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 }
+	
