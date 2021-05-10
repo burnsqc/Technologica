@@ -59,6 +59,7 @@ public class ModLeavesBlock extends LeavesBlock {
         return (FruitTileEntity) world.getTileEntity(pos);
     }
 
+	@Override
 	public boolean ticksRandomly(BlockState state) {
 		return !state.get(PERSISTENT);
 	}

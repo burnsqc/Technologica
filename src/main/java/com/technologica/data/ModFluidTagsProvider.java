@@ -18,6 +18,8 @@ public class ModFluidTagsProvider extends FluidTagsProvider {
 	protected void registerTags() {
 		getOrCreateBuilder(FluidTags.WATER).add(
 				ModFluids.BRINE_SOURCE.get(),
-				ModFluids.BRINE_FLOWING.get());
+				ModFluids.BRINE_FLOWING.get(),
+				ModFluids.MERCURY_SOURCE.get(),
+				ModFluids.MERCURY_FLOWING.get());
 	}
 }

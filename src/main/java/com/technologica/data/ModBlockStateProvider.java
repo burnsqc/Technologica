@@ -4,10 +4,10 @@ import java.util.function.Supplier;
 
 import com.technologica.Technologica;
 import com.technologica.block.ModBlocks;
-import com.technologica.block.ModCropsBlock;
 import com.technologica.block.ModCrystalBlock;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.CropsBlock;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.util.Direction;
@@ -161,14 +161,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	public void cropBlock(Supplier<? extends Block> blockSupplier) {							
 		Block block = blockSupplier.get();														
 		getVariantBuilder(block)
-			.partialState().with(ModCropsBlock.AGE, 0).modelForState().modelFile(crop(block, "_stage0")).addModel()
-			.partialState().with(ModCropsBlock.AGE, 1).modelForState().modelFile(crop(block, "_stage0")).addModel()
-			.partialState().with(ModCropsBlock.AGE, 2).modelForState().modelFile(crop(block, "_stage1")).addModel()
-			.partialState().with(ModCropsBlock.AGE, 3).modelForState().modelFile(crop(block, "_stage1")).addModel()
-			.partialState().with(ModCropsBlock.AGE, 4).modelForState().modelFile(crop(block, "_stage2")).addModel()
-			.partialState().with(ModCropsBlock.AGE, 5).modelForState().modelFile(crop(block, "_stage2")).addModel()
-			.partialState().with(ModCropsBlock.AGE, 6).modelForState().modelFile(crop(block, "_stage2")).addModel()
-			.partialState().with(ModCropsBlock.AGE, 7).modelForState().modelFile(crop(block, "_stage3")).addModel();
+			.partialState().with(CropsBlock.AGE, 0).modelForState().modelFile(crop(block, "_stage0")).addModel()
+			.partialState().with(CropsBlock.AGE, 1).modelForState().modelFile(crop(block, "_stage0")).addModel()
+			.partialState().with(CropsBlock.AGE, 2).modelForState().modelFile(crop(block, "_stage1")).addModel()
+			.partialState().with(CropsBlock.AGE, 3).modelForState().modelFile(crop(block, "_stage1")).addModel()
+			.partialState().with(CropsBlock.AGE, 4).modelForState().modelFile(crop(block, "_stage2")).addModel()
+			.partialState().with(CropsBlock.AGE, 5).modelForState().modelFile(crop(block, "_stage2")).addModel()
+			.partialState().with(CropsBlock.AGE, 6).modelForState().modelFile(crop(block, "_stage2")).addModel()
+			.partialState().with(CropsBlock.AGE, 7).modelForState().modelFile(crop(block, "_stage3")).addModel();
 	}
 	
 	public void hexagonalCrystalBlock(Supplier<? extends Block> blockSupplier) {

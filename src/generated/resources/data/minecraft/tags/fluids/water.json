@@ -2,6 +2,8 @@
   "replace": false,
   "values": [
     "technologica:brine_source",
-    "technologica:brine_flowing"
+    "technologica:brine_flowing",
+    "technologica:mercury_source",
+    "technologica:mercury_flowing"
   ]
 }

@@ -216,7 +216,10 @@ public class ModItems {
     public static final RegistryObject<Item> ZEBRA_SPAWN_EGG = ITEMS.register("zebra_spawn_egg", () -> new ModSpawnEggItem(4));
     
     public static final RegistryObject<Item> BRINE_BUCKET = ITEMS.register("brine_bucket", () -> new BucketItem(ModFluids.BRINE_SOURCE, new Properties().group(ModItemGroup.TECHNOLOGICA_MINERAL).maxStackSize(1)));
-	public static void register() 
+    public static final RegistryObject<Item> MERCURY_BUCKET = ITEMS.register("mercury_bucket", () -> new BucketItem(ModFluids.MERCURY_SOURCE, new Properties().group(ModItemGroup.TECHNOLOGICA_MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> HYDROGEN_BUCKET = ITEMS.register("hydrogen_bucket", () -> new BucketItem(ModFluids.HYDROGEN_SOURCE, new Properties().group(ModItemGroup.TECHNOLOGICA_MINERAL).maxStackSize(1)));
+    
+    public static void register() 
     {
         ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
