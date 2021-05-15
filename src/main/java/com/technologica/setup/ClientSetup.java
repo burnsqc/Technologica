@@ -1,14 +1,14 @@
 package com.technologica.setup;
 
 import com.technologica.block.ModBlocks;
-import com.technologica.client.renderer.DisplayCaseRenderer;
-import com.technologica.client.renderer.FruitRenderer;
-import com.technologica.client.renderer.PotionRenderer;
 import com.technologica.client.renderer.entity.DuckRenderer;
 import com.technologica.client.renderer.entity.GrizzlyBearRenderer;
 import com.technologica.client.renderer.entity.OstrichRenderer;
 import com.technologica.client.renderer.entity.SharkRenderer;
 import com.technologica.client.renderer.entity.ZebraRenderer;
+import com.technologica.client.renderer.tileentity.DisplayCaseTileEntityRenderer;
+import com.technologica.client.renderer.tileentity.FruitTileEntityRenderer;
+import com.technologica.client.renderer.tileentity.PotionTileEntityRenderer;
 import com.technologica.entity.ModEntities;
 import com.technologica.fluid.ModFluids;
 import com.technologica.tileentity.ModTileEntities;
@@ -66,9 +66,9 @@ public class ClientSetup {
 			RenderTypeLookup.setRenderLayer(ModFluids.BRINE_SOURCE.get(), RenderType.getTranslucent());
 			RenderTypeLookup.setRenderLayer(ModFluids.BRINE_FLOWING.get(), RenderType.getTranslucent());
 			
-			ClientRegistry.bindTileEntityRenderer(ModTileEntities.FRUIT_CROP.get(), FruitRenderer::new);
-			ClientRegistry.bindTileEntityRenderer(ModTileEntities.POTION_CROP.get(), PotionRenderer::new);
-			ClientRegistry.bindTileEntityRenderer(ModTileEntities.DISPLAY_TILE.get(), DisplayCaseRenderer::new);
+			ClientRegistry.bindTileEntityRenderer(ModTileEntities.FRUIT_CROP.get(), FruitTileEntityRenderer::new);
+			ClientRegistry.bindTileEntityRenderer(ModTileEntities.POTION_CROP.get(), PotionTileEntityRenderer::new);
+			ClientRegistry.bindTileEntityRenderer(ModTileEntities.DISPLAY_TILE.get(), DisplayCaseTileEntityRenderer::new);
 		});
 	}
 }

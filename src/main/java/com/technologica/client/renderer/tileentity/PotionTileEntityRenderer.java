@@ -1,9 +1,10 @@
-package com.technologica.client.renderer;
+package com.technologica.client.renderer.tileentity;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.technologica.tileentity.DisplayCaseTileEntity;
+import com.technologica.tileentity.PotionTileEntity;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.model.IBakedModel;
@@ -13,20 +14,20 @@ import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.vector.Vector3f;
 
-public class DisplayCaseRenderer extends TileEntityRenderer<DisplayCaseTileEntity> {
-    public DisplayCaseRenderer(TileEntityRendererDispatcher rendererDispatcherIn) {
+public class PotionTileEntityRenderer extends TileEntityRenderer<PotionTileEntity> {
+    public PotionTileEntityRenderer(TileEntityRendererDispatcher rendererDispatcherIn) {
         super(rendererDispatcherIn);
     }
 
     @Override
-    public void render(DisplayCaseTileEntity tileEntity, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay) {       
-    	ItemStack stack = tileEntity.getDisplayStack();
-    	long time = System.currentTimeMillis();
-    	float angle = (time / 25) % 360;
+    public void render(PotionTileEntity tileEntity, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay) {       
+    	ItemStack stack = tileEntity.getPotionStack();
+    	Minecraft minecraft = Minecraft.getInstance();
+    	ClientPlayerEntity clientplayerentity = minecraft.player;
     	if (!stack.isEmpty()) {
         	matrixStack.push();       	
-        	matrixStack.translate(0.5, 0.3, 0.5);
-        	matrixStack.rotate(Vector3f.YN.rotationDegrees(angle));
+        	matrixStack.translate(0.5, -0.2, 0.5);
+        	matrixStack.rotate(Vector3f.YN.rotationDegrees(clientplayerentity.rotationYaw));
         	ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
         	IBakedModel ibakedmodel = itemRenderer.getItemModelWithOverrides(stack, tileEntity.getWorld(), null);
         	itemRenderer.renderItem(stack, ItemCameraTransforms.TransformType.GROUND, true, matrixStack, buffer, combinedLight, combinedOverlay, ibakedmodel);       	

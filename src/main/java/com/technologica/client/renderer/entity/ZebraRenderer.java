@@ -14,13 +14,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public final class ZebraRenderer extends AbstractHorseRenderer<ZebraEntity, HorseModel<ZebraEntity>> {
 	private static final ResourceLocation ZEBRA_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/zebra.png");
 
-   public ZebraRenderer(EntityRendererManager renderManagerIn) {
-      super(renderManagerIn, new HorseModel<>(0.0F), 1.1F);
+	public ZebraRenderer(EntityRendererManager renderManagerIn) {
+		super(renderManagerIn, new HorseModel<>(0.0F), 1.1F);
 //      this.addLayer(new ZebraMarkingsLayer(this));
 //      this.addLayer(new LeatherZebraArmorLayer(this));
-   }
+	}
 
-   public ResourceLocation getEntityTexture(ZebraEntity entity) {
-	      return ZEBRA_TEXTURE;
-	   }
+	public ResourceLocation getEntityTexture(ZebraEntity entity) {
+		return ZEBRA_TEXTURE;
+	}
 }

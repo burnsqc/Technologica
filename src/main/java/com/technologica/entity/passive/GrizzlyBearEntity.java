@@ -1,8 +1,5 @@
 package com.technologica.entity.passive;
 
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Random;
 import java.util.UUID;
 import java.util.function.Predicate;
 
@@ -11,7 +8,6 @@ import javax.annotation.Nullable;
 import com.technologica.entity.ModEntities;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntitySize;
@@ -33,8 +29,8 @@ import net.minecraft.entity.ai.goal.RandomWalkingGoal;
 import net.minecraft.entity.ai.goal.ResetAngerGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.TemptGoal;
-import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.BeeEntity;
+import net.minecraft.entity.passive.PolarBearEntity;
 import net.minecraft.entity.passive.fish.SalmonEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -46,7 +42,6 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.RangedInteger;
-import net.minecraft.util.RegistryKey;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.TickRangeConverter;
@@ -54,15 +49,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class GrizzlyBearEntity extends AnimalEntity implements IAngerable {
+public class GrizzlyBearEntity extends PolarBearEntity implements IAngerable {
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(Items.SALMON);
 	private static final DataParameter<Boolean> IS_STANDING = EntityDataManager.createKey(GrizzlyBearEntity.class, DataSerializers.BOOLEAN);
 	private float clientSideStandAnimation0;
@@ -72,7 +64,7 @@ public class GrizzlyBearEntity extends AnimalEntity implements IAngerable {
 	private int angerTime;
 	private UUID angerTarget;
 
-	public GrizzlyBearEntity(EntityType<? extends GrizzlyBearEntity> type, World worldIn) {
+	public GrizzlyBearEntity(EntityType<GrizzlyBearEntity> type, World worldIn) {
 		super(type, worldIn);
 	}
 
@@ -113,17 +105,6 @@ public class GrizzlyBearEntity extends AnimalEntity implements IAngerable {
 		super.registerData();
 	    this.dataManager.register(IS_STANDING, false);
 	}
-
-	public static boolean func_223320_c(EntityType<GrizzlyBearEntity> entityTypeIn, IWorld p_223320_1_, SpawnReason reason, BlockPos p_223320_3_, Random randomIn) {
-		Optional<RegistryKey<Biome>> optional = p_223320_1_.func_242406_i(p_223320_3_);
-		if (!Objects.equals(optional, Optional.of(Biomes.FROZEN_OCEAN)) && !Objects.equals(optional, Optional.of(Biomes.DEEP_FROZEN_OCEAN))) {
-			return canAnimalSpawn(entityTypeIn, p_223320_1_, reason, p_223320_3_, randomIn);
-		} else {
-			return p_223320_1_.getLightSubtracted(p_223320_3_, 0) > 8 && p_223320_1_.getBlockState(p_223320_3_.down()).matchesBlock(Blocks.ICE);
-		}
-	}
-	
-	
    
    	//Anger
    	public void func_230258_H__() {

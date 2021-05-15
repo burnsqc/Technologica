@@ -1,4 +1,4 @@
-package com.technologica.client.renderer;
+package com.technologica.client.renderer.tileentity;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.technologica.tileentity.FruitTileEntity;
@@ -14,8 +14,8 @@ import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.vector.Vector3f;
 
-public class FruitRenderer extends TileEntityRenderer<FruitTileEntity> {
-    public FruitRenderer(TileEntityRendererDispatcher rendererDispatcherIn) {
+public class FruitTileEntityRenderer extends TileEntityRenderer<FruitTileEntity> {
+    public FruitTileEntityRenderer(TileEntityRendererDispatcher rendererDispatcherIn) {
         super(rendererDispatcherIn);
     }
 
