@@ -14,6 +14,7 @@ import net.minecraft.util.Direction;
 
 public class ModCrystalBlock extends Block {
 	public static final DirectionProperty FACING = BlockStateProperties.FACING;
+
 	public ModCrystalBlock() {
 		super(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(6.0F).sound(SoundType.GLASS).notSolid());
 		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH));

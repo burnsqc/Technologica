@@ -1,0 +1,61 @@
+{
+  "scale": 0.2,
+  "effects": {
+    "mood_sound": {
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000,
+      "block_search_extent": 8,
+      "offset": 2.0
+    },
+    "sky_color": 7907327,
+    "foliage_color": 6975545,
+    "fog_color": 12638463,
+    "water_color": 4159204,
+    "water_fog_color": 329011
+  },
+  "surface_builder": "minecraft:swamp",
+  "carvers": {
+    "air": [
+      "minecraft:nether_cave"
+    ]
+  },
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "minecraft:bamboo_light",
+      "minecraft:trees_jungle",
+      "minecraft:flower_swamp",
+      "minecraft:patch_grass_normal",
+      "minecraft:patch_waterlilly",
+      "minecraft:brown_mushroom_swamp",
+      "minecraft:red_mushroom_swamp",
+      "minecraft:patch_sugar_cane_swamp",
+      "minecraft:seagrass_swamp",
+      "minecraft:vines"
+    ],
+    []
+  ],
+  "starts": [],
+  "spawners": {
+    "monster": [],
+    "creature": [],
+    "ambient": [],
+    "water_creature": [],
+    "water_ambient": [],
+    "misc": []
+  },
+  "spawn_costs": {},
+  "player_spawn_friendly": false,
+  "precipitation": "rain",
+  "temperature": 0.95,
+  "downfall": 0.9,
+  "category": "jungle",
+  "depth": 0.1
+}

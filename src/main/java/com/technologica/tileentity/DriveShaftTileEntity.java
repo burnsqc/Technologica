@@ -3,33 +3,46 @@ package com.technologica.tileentity;
 import javax.annotation.Nullable;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
 
-public class DisplayCaseTileEntity extends TileEntity {
-	private ItemStack stack = ItemStack.EMPTY;
+public class DriveShaftTileEntity extends TileEntity {
+	private int rpm = 0;
+	private int torque = 0;
+	private Boolean pulley = false;
 	
-	public DisplayCaseTileEntity() {
-		super(ModTileEntities.DISPLAY_TILE.get());
+	public DriveShaftTileEntity() {
+		super(ModTileEntities.DRIVE_SHAFT_TILE.get());
 	}
 	
-	public ItemStack getDisplayStack() {
-        return stack;
-    }
+	public void setRPM(int rpmIn) {
+		rpm = rpmIn;
+	}
 	
-	public void setDisplayStack(ItemStack stackIn) {
-        this.stack = stackIn;
+	public int getRPM() {
+		return rpm;
+	}
+	
+	public void setTorque(int torqueIn) {
+		torque = torqueIn;
+	}
+	
+	public int getTorque() {
+		return torque;
+	}
+	
+	public void setPulley(Boolean pulleyIn) {
+		pulley = pulleyIn;
         markDirty();
         if (world != null) {
         	world.notifyBlockUpdate(pos, getBlockState(), getBlockState(), 2); 
         }
     }
 	
-	public void clear() {
-        this.setDisplayStack(ItemStack.EMPTY);  
+	public Boolean getPulley() {
+        return pulley;
     }
 	
 	@Nullable
@@ -58,16 +71,16 @@ public class DisplayCaseTileEntity extends TileEntity {
 	public void read(BlockState state, CompoundNBT nbt) {
 		super.read(state, nbt);
 	    if (nbt.contains("DisplayItem")) {
-	    	this.setDisplayStack(ItemStack.read(nbt.getCompound("DisplayItem")));
+//	    	this.setDisplayStack(ItemStack.read(nbt.getCompound("DisplayItem")));
 	    }
 	}
 
 	@Override
 	public CompoundNBT write(CompoundNBT compound) {
 		super.write(compound);
-	    if (!this.getDisplayStack().isEmpty()) {
-	    	compound.put("DisplayItem", this.getDisplayStack().write(new CompoundNBT()));
-	    }	   
+//	    if (!this.getDisplayStack().isEmpty()) {
+//	    	compound.put("DisplayItem", this.getDisplayStack().write(new CompoundNBT()));
+//	    }	   
 	    return compound;	    
 	}
 }

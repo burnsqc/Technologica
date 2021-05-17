@@ -204,6 +204,9 @@ public class ModLanguageProvider extends LanguageProvider {
 		
 		addItem(ModItems.BRINE_BUCKET, "Brine Bucket");
 		
+		addItem(ModItems.HAMMER, "Hammer");
+		addItem(ModItems.WRENCH, "Wrench");
+		
 		addItem(ModItems.DUCK_SPAWN_EGG, "Duck Spawn Egg");
 		addItem(ModItems.GRIZZLY_BEAR_SPAWN_EGG, "Grizzly Bear Spawn Egg");
 		addItem(ModItems.OSTRICH_SPAWN_EGG, "Ostrich Spawn Egg");

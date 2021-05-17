@@ -89,11 +89,14 @@ public class ModItemModelProvider extends ItemModelProvider {
 		
 		simpleItem(ModItems.BRINE_BUCKET);
 		
-//		simpleItem(ModItems.DUCK_SPAWN_EGG);
-//		simpleItem(ModItems.GRIZZLY_BEAR_SPAWN_EGG);
+		simpleItem(ModItems.HAMMER);
+		simpleItem(ModItems.WRENCH);
+		
+		simpleItem(ModItems.DUCK_SPAWN_EGG);
+		simpleItem(ModItems.GRIZZLY_BEAR_SPAWN_EGG);
 //		simpleItem(ModItems.OSTRICH_SPAWN_EGG);
 //		simpleItem(ModItems.SHARK_SPAWN_EGG);
-//		simpleItem(ModItems.ZEBRA_SPAWN_EGG);
+		simpleItem(ModItems.ZEBRA_SPAWN_EGG);
 	}
 	
 	public void simpleItem(Supplier<? extends Item> itemSupplier) {

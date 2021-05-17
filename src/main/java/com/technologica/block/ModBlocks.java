@@ -126,7 +126,9 @@ public class ModBlocks {
     public static final RegistryObject<FlowingFluidBlock> MERCURY = BLOCKS.register("mercury", () -> new FlowingFluidBlock(ModFluids.MERCURY_SOURCE, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
     public static final RegistryObject<FlowingFluidBlock> HYDROGEN = BLOCKS.register("hydrogen", () -> new FlowingFluidBlock(ModFluids.HYDROGEN_SOURCE, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
     
-    public static final RegistryObject<Block> DISPLAY_CASE = BLOCKS.register("display_case", DisplayCaseBlock::new);   
+    public static final RegistryObject<Block> DISPLAY_CASE = BLOCKS.register("display_case", DisplayCaseBlock::new);  
+    
+    public static final RegistryObject<Block> DRIVE_SHAFT = BLOCKS.register("drive_shaft", ModDriveShaftBlock::new); 
 	
 	public static void register() 
     {

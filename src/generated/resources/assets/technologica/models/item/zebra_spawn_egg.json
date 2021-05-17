@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "technologica:item/zebra_spawn_egg"
+  }
+}

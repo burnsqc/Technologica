@@ -7,6 +7,7 @@ import com.technologica.client.renderer.entity.OstrichRenderer;
 import com.technologica.client.renderer.entity.SharkRenderer;
 import com.technologica.client.renderer.entity.ZebraRenderer;
 import com.technologica.client.renderer.tileentity.DisplayCaseTileEntityRenderer;
+import com.technologica.client.renderer.tileentity.DriveShaftTileEntityRenderer;
 import com.technologica.client.renderer.tileentity.FruitTileEntityRenderer;
 import com.technologica.client.renderer.tileentity.PotionTileEntityRenderer;
 import com.technologica.entity.ModEntities;
@@ -69,6 +70,7 @@ public class ClientSetup {
 			ClientRegistry.bindTileEntityRenderer(ModTileEntities.FRUIT_CROP.get(), FruitTileEntityRenderer::new);
 			ClientRegistry.bindTileEntityRenderer(ModTileEntities.POTION_CROP.get(), PotionTileEntityRenderer::new);
 			ClientRegistry.bindTileEntityRenderer(ModTileEntities.DISPLAY_TILE.get(), DisplayCaseTileEntityRenderer::new);
+			ClientRegistry.bindTileEntityRenderer(ModTileEntities.DRIVE_SHAFT_TILE.get(), DriveShaftTileEntityRenderer::new);
 		});
 	}
 }
