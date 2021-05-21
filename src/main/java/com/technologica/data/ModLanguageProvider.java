@@ -96,6 +96,19 @@ public class ModLanguageProvider extends LanguageProvider {
 		addItem(ModItems.GRAPE_SEEDS, "Grape Seeds");
 		addItem(ModItems.STRAWBERRY_SEEDS, "Strawberry Seeds");
 		
+		addItem(ModItems.BANANAS_FOSTER, "Bananas Foster");
+		addItem(ModItems.BLACK_FOREST_CAKE, "Black Forest Cake");
+		addItem(ModItems.BLUEBERRY_CHEESECAKE, "Blueberry Cheesecake");
+		addItem(ModItems.COCONUT_CREAM_PIE, "Coconut Cream Pie");
+		addItem(ModItems.GRAPE_SHAVED_ICE, "Grape Shaved Ice");
+		addItem(ModItems.KEY_LIME_MOUSSE, "Key Lime Mousse");
+		addItem(ModItems.KIWI_SORBET, "Kiwi Sorbet");
+		addItem(ModItems.LEMON_BAR, "Lemon Bar");
+		addItem(ModItems.ORANGE_DREAMSICLE, "Orange Dreamsicle");
+		addItem(ModItems.PEACH_COBBLER, "Peach Cobbler");
+		addItem(ModItems.PEAR_TART, "Pear Tart");
+		addItem(ModItems.STRAWBERRY_SHORTCAKE, "Strawberry Shortcake");
+		
 		addItem(ModItems.LITHIUM_INGOT, "Lithium Ingot");
 		addItem(ModItems.BERYLLIUM_INGOT, "Beryllium Ingot");
 		addItem(ModItems.SODIUM_INGOT, "Sodium Ingot");
@@ -222,6 +235,7 @@ public class ModLanguageProvider extends LanguageProvider {
 		addItemGroup(ModItemGroup.TECHNOLOGICA_FAUNA, "Fauna");
 		addItemGroup(ModItemGroup.TECHNOLOGICA_MINERAL, "Mineral");
 		addItemGroup(ModItemGroup.TECHNOLOGICA_FOOD, "Food");
+		addItemGroup(ModItemGroup.TECHNOLOGICA_RECIPE, "Recipe");
 		addItemGroup(ModItemGroup.TECHNOLOGICA_MACHINERY, "Machinery");
 		addItemGroup(ModItemGroup.TECHNOLOGICA_DECORATIVE, "Decorative");
 		addItemGroup(ModItemGroup.TECHNOLOGICA_CRYPTICA, "Cryptica");

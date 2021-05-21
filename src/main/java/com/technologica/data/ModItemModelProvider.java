@@ -33,6 +33,19 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.PEAR);
 		simpleItem(ModItems.STRAWBERRY);
 		
+		simpleItem(ModItems.BANANAS_FOSTER);
+		simpleItem(ModItems.BLACK_FOREST_CAKE);
+		simpleItem(ModItems.BLUEBERRY_CHEESECAKE);
+		simpleItem(ModItems.COCONUT_CREAM_PIE);
+		simpleItem(ModItems.GRAPE_SHAVED_ICE);
+		simpleItem(ModItems.KEY_LIME_MOUSSE);
+		simpleItem(ModItems.KIWI_SORBET);
+		simpleItem(ModItems.LEMON_BAR);
+		simpleItem(ModItems.ORANGE_DREAMSICLE);
+		simpleItem(ModItems.PEACH_COBBLER);
+		simpleItem(ModItems.PEAR_TART);
+		simpleItem(ModItems.STRAWBERRY_SHORTCAKE);
+		
 		simpleItem(ModItems.BLUEBERRY_SEEDS);
 		simpleItem(ModItems.GRAPE_SEEDS);
 		simpleItem(ModItems.STRAWBERRY_SEEDS);
