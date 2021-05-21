@@ -23,11 +23,11 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
-public class ModPotionLeavesBlock extends LeavesBlock {
+public class PotionLeavesBlock extends LeavesBlock {
 	private int potionType;
 	public static final IntegerProperty AGE = BlockStateProperties.AGE_0_7;
 
-	public ModPotionLeavesBlock(int potionIn) {
+	public PotionLeavesBlock(int potionIn) {
 		super(AbstractBlock.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid());
 		this.setDefaultState(this.stateContainer.getBaseState().with(AGE, Integer.valueOf(0)).with(DISTANCE, Integer.valueOf(7)).with(PERSISTENT, Boolean.valueOf(false)));
 		potionType = potionIn;

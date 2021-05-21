@@ -2,23 +2,47 @@ package com.technologica.tileentity;
 
 import javax.annotation.Nullable;
 
+import com.technologica.block.LineShaftBlock;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Direction;
 
-public class DriveShaftTileEntity extends TileEntity {
+public class LineShaftTileEntity extends TileEntity {
 	private int rpm = 0;
 	private int torque = 0;
-	private Boolean pulley = false;
+	private Direction checkConnections1;
+	private Direction checkConnections2;
 	
-	public DriveShaftTileEntity() {
-		super(ModTileEntities.DRIVE_SHAFT_TILE.get());
+	public LineShaftTileEntity() {
+		super(ModTileEntities.LINE_SHAFT_TILE.get());
 	}
 	
 	public void setRPM(int rpmIn) {
-		rpm = rpmIn;
+		this.rpm = rpmIn;
+		
+		if (this.getBlockState().get(LineShaftBlock.AXIS) == Direction.Axis.X) {
+			this.checkConnections1 = Direction.EAST;
+			this.checkConnections2 = Direction.WEST;
+		} else if (this.getBlockState().get(LineShaftBlock.AXIS) == Direction.Axis.Y) {
+			this.checkConnections1 = Direction.UP;
+			this.checkConnections2 = Direction.DOWN;
+		} else {
+			this.checkConnections1 = Direction.SOUTH;
+			this.checkConnections2 = Direction.NORTH;
+		}
+		
+		TileEntity connection = world.getTileEntity(this.getPos().offset(checkConnections1));
+		if (connection instanceof LineShaftTileEntity && connection.getBlockState().get(LineShaftBlock.AXIS) == this.getBlockState().get(LineShaftBlock.AXIS) && ((LineShaftTileEntity) connection).getRPM() != this.rpm) {
+			((LineShaftTileEntity) world.getTileEntity(this.getPos().offset(checkConnections1))).setRPM(rpm);
+		}
+		connection = world.getTileEntity(this.getPos().offset(checkConnections2));
+		if (connection instanceof LineShaftTileEntity && connection.getBlockState().get(LineShaftBlock.AXIS) == this.getBlockState().get(LineShaftBlock.AXIS) && ((LineShaftTileEntity) connection).getRPM() != this.rpm) {
+			((LineShaftTileEntity) world.getTileEntity(this.getPos().offset(checkConnections2))).setRPM(rpm);
+		}
 	}
 	
 	public int getRPM() {
@@ -32,18 +56,6 @@ public class DriveShaftTileEntity extends TileEntity {
 	public int getTorque() {
 		return torque;
 	}
-	
-	public void setPulley(Boolean pulleyIn) {
-		pulley = pulleyIn;
-        markDirty();
-        if (world != null) {
-        	world.notifyBlockUpdate(pos, getBlockState(), getBlockState(), 2); 
-        }
-    }
-	
-	public Boolean getPulley() {
-        return pulley;
-    }
 	
 	@Nullable
 	public SUpdateTileEntityPacket getUpdatePacket() {

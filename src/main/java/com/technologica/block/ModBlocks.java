@@ -51,11 +51,11 @@ public class ModBlocks {
     public static final RegistryObject<Block> FRUITFUL_LEAVES = BLOCKS.register("fruitful_leaves", () -> new ModLeavesBlock(10));
     public static final RegistryObject<Block> ALCHEMICAL_LEAVES = BLOCKS.register("alchemical_leaves", () -> new ModLeavesBlock(11));
     
-    public static final RegistryObject<Block> BENEVOLENT_LEAVES = BLOCKS.register("benevolent_leaves", () -> new ModPotionLeavesBlock(1));
-    public static final RegistryObject<Block> MALEVOLENT_LEAVES = BLOCKS.register("malevolent_leaves", () -> new ModPotionLeavesBlock(2));
+    public static final RegistryObject<Block> BENEVOLENT_LEAVES = BLOCKS.register("benevolent_leaves", () -> new PotionLeavesBlock(1));
+    public static final RegistryObject<Block> MALEVOLENT_LEAVES = BLOCKS.register("malevolent_leaves", () -> new PotionLeavesBlock(2));
     
-    public static final RegistryObject<Block> CONDUCTIVE_LEAVES = BLOCKS.register("conductive_leaves", () -> new ModMagicLeavesBlock(1));
-    public static final RegistryObject<Block> FROSTBITTEN_LEAVES = BLOCKS.register("frostbitten_leaves", () -> new ModMagicLeavesBlock(2)); 
+    public static final RegistryObject<Block> CONDUCTIVE_LEAVES = BLOCKS.register("conductive_leaves", () -> new MagicLeavesBlock(1));
+    public static final RegistryObject<Block> FROSTBITTEN_LEAVES = BLOCKS.register("frostbitten_leaves", () -> new MagicLeavesBlock(2)); 
        
     public static final RegistryObject<Block> BANANA_LOG = BLOCKS.register("banana_log", ModLogBlock::new);
     public static final RegistryObject<Block> CHERRY_LOG = BLOCKS.register("cherry_log", ModLogBlock::new);
@@ -128,8 +128,12 @@ public class ModBlocks {
     
     public static final RegistryObject<Block> DISPLAY_CASE = BLOCKS.register("display_case", DisplayCaseBlock::new);  
     
-    public static final RegistryObject<Block> DRIVE_SHAFT = BLOCKS.register("drive_shaft", ModDriveShaftBlock::new); 
-	
+    public static final RegistryObject<Block> SMALL_PULLEY = BLOCKS.register("small_pulley", () -> new Block(AbstractBlock.Properties.create(Material.IRON).hardnessAndResistance(1.0F).sound(SoundType.ANVIL).notSolid())); 
+    public static final RegistryObject<Block> MEDIUM_PULLEY = BLOCKS.register("medium_pulley", () -> new Block(AbstractBlock.Properties.create(Material.IRON).hardnessAndResistance(1.0F).sound(SoundType.ANVIL).notSolid())); 
+    public static final RegistryObject<Block> LARGE_PULLEY = BLOCKS.register("large_pulley", () -> new Block(AbstractBlock.Properties.create(Material.IRON).hardnessAndResistance(1.0F).sound(SoundType.ANVIL).notSolid())); 
+    
+    public static final RegistryObject<Block> LINE_SHAFT = BLOCKS.register("line_shaft", LineShaftBlock::new); 
+    
 	public static void register() 
     {
         BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());

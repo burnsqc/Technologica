@@ -11,10 +11,9 @@ import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.BucketItem;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.item.Item.Properties;
 import net.minecraft.item.ItemTier;
 import net.minecraft.item.PickaxeItem;
-import net.minecraft.item.Item.Properties;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
@@ -94,7 +93,11 @@ public class ModItems {
       
     public static final RegistryObject<Item> DISPLAY_CASE_ITEM = ITEMS.register("display_case", () -> new BlockItem(ModBlocks.DISPLAY_CASE.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_DECORATIVE)));
     
-    public static final RegistryObject<Item> DRIVE_SHAFT_ITEM = ITEMS.register("drive_shaft", () -> new BlockItem(ModBlocks.DRIVE_SHAFT.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_DECORATIVE)));
+    public static final RegistryObject<Item> SMALL_PULLEY_ITEM = ITEMS.register("small_pulley", () -> new BlockNamedItem(ModBlocks.SMALL_PULLEY.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_MACHINERY)));
+    public static final RegistryObject<Item> MEDIUM_PULLEY_ITEM = ITEMS.register("medium_pulley", () -> new BlockNamedItem(ModBlocks.MEDIUM_PULLEY.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_MACHINERY)));
+    public static final RegistryObject<Item> LARGE_PULLEY_ITEM = ITEMS.register("large_pulley", () -> new BlockNamedItem(ModBlocks.LARGE_PULLEY.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_MACHINERY)));
+    
+    public static final RegistryObject<Item> LINE_SHAFT_ITEM = ITEMS.register("line_shaft", () -> new BlockNamedItem(ModBlocks.LINE_SHAFT.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_MACHINERY)));
     
     public static final RegistryObject<Item> BANANA = ITEMS.register("banana", () -> new Item(new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
     public static final RegistryObject<Item> BLUEBERRY = ITEMS.register("blueberry", () -> new Item(new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FOOD).food(new Food.Builder().hunger(1).saturation(0.1F).setAlwaysEdible().fastToEat().build())));
@@ -225,8 +228,9 @@ public class ModItems {
     public static final RegistryObject<Item> MERCURY_BUCKET = ITEMS.register("mercury_bucket", () -> new BucketItem(ModFluids.MERCURY_SOURCE, new Properties().group(ModItemGroup.TECHNOLOGICA_MINERAL).maxStackSize(1)));
     public static final RegistryObject<Item> HYDROGEN_BUCKET = ITEMS.register("hydrogen_bucket", () -> new BucketItem(ModFluids.HYDROGEN_SOURCE, new Properties().group(ModItemGroup.TECHNOLOGICA_MINERAL).maxStackSize(1)));
     
-    public static final RegistryObject<Item> HAMMER = ITEMS.register("hammer", () -> new PickaxeItem(ItemTier.IRON, 1, -2.8F, (new Item.Properties()).group(ItemGroup.TOOLS)));
-    public static final RegistryObject<Item> WRENCH = ITEMS.register("wrench", () -> new PickaxeItem(ItemTier.IRON, 1, -2.8F, (new Item.Properties()).group(ItemGroup.TOOLS)));
+    public static final RegistryObject<Item> HAMMER = ITEMS.register("hammer", () -> new PickaxeItem(ItemTier.IRON, 1, -2.8F, (new Item.Properties()).group(ModItemGroup.TECHNOLOGICA_MACHINERY)));
+    public static final RegistryObject<Item> PIPE_WRENCH = ITEMS.register("pipe_wrench", () -> new PickaxeItem(ItemTier.IRON, 1, -2.8F, (new Item.Properties()).group(ModItemGroup.TECHNOLOGICA_MACHINERY)));
+    public static final RegistryObject<Item> WRENCH = ITEMS.register("wrench", () -> new PickaxeItem(ItemTier.IRON, 1, -2.8F, (new Item.Properties()).group(ModItemGroup.TECHNOLOGICA_MACHINERY)));
     
     public static void register() {
         ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());

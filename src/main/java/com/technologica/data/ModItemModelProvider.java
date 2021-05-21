@@ -90,7 +90,13 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.BRINE_BUCKET);
 		
 		simpleItem(ModItems.HAMMER);
+		simpleItem(ModItems.PIPE_WRENCH);
 		simpleItem(ModItems.WRENCH);
+		
+		simpleItem(ModItems.SMALL_PULLEY_ITEM);
+		simpleItem(ModItems.MEDIUM_PULLEY_ITEM);
+		simpleItem(ModItems.LARGE_PULLEY_ITEM);
+		simpleItem(ModItems.LINE_SHAFT_ITEM);
 		
 		simpleItem(ModItems.DUCK_SPAWN_EGG);
 		simpleItem(ModItems.GRIZZLY_BEAR_SPAWN_EGG);

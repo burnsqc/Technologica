@@ -13,10 +13,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.server.ServerWorld;
 
-public class ModMagicLeavesBlock extends LeavesBlock {
+public class MagicLeavesBlock extends LeavesBlock {
 	private int leavesType;
 
-	public ModMagicLeavesBlock(int leavesTypeIn) {
+	public MagicLeavesBlock(int leavesTypeIn) {
 		super(AbstractBlock.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid());
 		this.setDefaultState(this.stateContainer.getBaseState().with(DISTANCE, Integer.valueOf(7)).with(PERSISTENT, Boolean.valueOf(false)));
 		leavesType = leavesTypeIn;

@@ -89,6 +89,11 @@ public class ModBlockLootTables extends BlockLootTables {
 		registerDropSelfLootTable(ModBlocks.ULEXITE_CRYSTAL.get());
 		
 		registerDropSelfLootTable(ModBlocks.DISPLAY_CASE.get());
+		
+		registerDropSelfLootTable(ModBlocks.LINE_SHAFT.get());
+		registerDropSelfLootTable(ModBlocks.SMALL_PULLEY.get());
+		registerDropSelfLootTable(ModBlocks.MEDIUM_PULLEY.get());
+		registerDropSelfLootTable(ModBlocks.LARGE_PULLEY.get());
 	}
 	
 	@Override

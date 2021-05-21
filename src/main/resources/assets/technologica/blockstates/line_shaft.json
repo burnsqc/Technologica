@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "axis=x,level=0": {
+      "model": "technologica:block/line_shaft_no_pulley",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,level=0": {
+      "model": "technologica:block/line_shaft_no_pulley"
+    },
+    "axis=z,level=0": {
+      "model": "technologica:block/line_shaft_no_pulley",
+      "x": 90
+    },
+    "axis=x,level=1": {
+  	  "model": "technologica:block/line_shaft_small_pulley",
+      "x": 90,
+      "y": 90
+  	},
+    "axis=y,level=1": {
+      "model": "technologica:block/line_shaft_small_pulley"
+    },
+    "axis=z,level=1": {
+      "model": "technologica:block/line_shaft_small_pulley",
+      "x": 90
+    },
+    "axis=x,level=2": {
+      "model": "technologica:block/line_shaft_medium_pulley",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,level=2": {
+      "model": "technologica:block/line_shaft_medium_pulley"
+    },
+    "axis=z,level=2": {
+      "model": "technologica:block/line_shaft_medium_pulley",
+      "x": 90
+    },
+    "axis=x,level=3": {
+  	  "model": "technologica:block/line_shaft_large_pulley",
+      "x": 90,
+      "y": 90
+  	},
+    "axis=y,level=3": {
+      "model": "technologica:block/line_shaft_large_pulley"
+    },
+    "axis=z,level=3": {
+      "model": "technologica:block/line_shaft_large_pulley",
+      "x": 90
+    }
+  }
+}
