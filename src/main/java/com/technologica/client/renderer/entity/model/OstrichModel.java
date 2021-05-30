@@ -12,18 +12,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class OstrichModel<T extends AbstractHorseEntity> extends AgeableModel<T> {
 	protected final ModelRenderer body;
+	protected final ModelRenderer leftWing;
+	protected final ModelRenderer rightWing;
 	protected final ModelRenderer neck;
 	protected final ModelRenderer head;
-	protected final ModelRenderer mane;
-	protected final ModelRenderer nose;
-	private final ModelRenderer leftEar;
-	private final ModelRenderer rightEar;
-	private final ModelRenderer backLeftLeg;
-	private final ModelRenderer backRightLeg;
+	protected final ModelRenderer beak;
 	private final ModelRenderer frontLeftLeg;
 	private final ModelRenderer frontRightLeg;
-	private final ModelRenderer babyBackLeftLeg;
-	private final ModelRenderer babyBackRightLeg;
 	private final ModelRenderer babyFrontLeftLeg;
 	private final ModelRenderer babyFrontRightLeg;
 	private final ModelRenderer tail;
@@ -43,74 +38,51 @@ public class OstrichModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 		this.textureWidth = 64;
 		this.textureHeight = 64;
 
-		this.body = new ModelRenderer(this, 0, 32);
-		this.body.addBox(-5.0F, -8.0F, -17.0F, 10.0F, 10.0F, 22.0F, 0.05F);
+		this.body = new ModelRenderer(this, 0, 50);
+		this.body.addBox(-5.0F, -8.0F, -19.0F, 10.0F, 7.0F, 13.0F, 0.05F);
 		this.body.setRotationPoint(0.0F, 11.0F, 5.0F);
 		
+		this.leftWing = new ModelRenderer(this, 0, 50);
+		this.leftWing.mirror = true;
+		this.leftWing.addBox(-6.0F, 3.0F, -14.0F, 1.0F, 6.0F, 14.0F, p_i51065_1_);
+		this.leftWing.setRotationPoint(0F, 0F, 0F);
+		
+		this.rightWing = new ModelRenderer(this, 0, 50);
+		this.rightWing.addBox(5.0F, 3.0F, -14.0F, 1.0F, 6.0F, 14.0F, p_i51065_1_);
+		this.rightWing.setRotationPoint(0F, 0F, 0F);
+		
 		this.neck = new ModelRenderer(this, 0, 35);
-		this.neck.addBox(-2.05F, -6.0F, -2.0F, 4.0F, 12.0F, 7.0F);
+		this.neck.addBox(-1.05F, -15.0F, -2.0F, 2.0F, 16.0F, 3.0F);
 		this.neck.rotateAngleX = ((float) Math.PI / 6F);
 		
-		this.mane = new ModelRenderer(this, 56, 36);
-		this.mane.addBox(-1.0F, -11.0F, 5.01F, 2.0F, 16.0F, 2.0F, p_i51065_1_);
-		this.neck.addChild(this.mane);
-		
 		this.head = new ModelRenderer(this, 0, 13);
-		this.head.addBox(-3.0F, -11.0F, -2.0F, 6.0F, 5.0F, 7.0F, p_i51065_1_);
+		this.head.addBox(-2.0F, -17.0F, -4.0F, 4.0F, 3.0F, 5.0F, p_i51065_1_);
 		this.neck.addChild(this.head);
 		
-		this.nose = new ModelRenderer(this, 0, 25);
-		this.nose.addBox(-2.0F, -11.0F, -7.0F, 4.0F, 5.0F, 5.0F, p_i51065_1_);
-		this.neck.addChild(this.nose);
+		this.beak = new ModelRenderer(this, 0, 25);
+		this.beak.addBox(-1.0F, -15.0F, -6.0F, 2.0F, 1.0F, 5.0F, p_i51065_1_);
+		this.neck.addChild(this.beak);
 		
-		this.leftEar = new ModelRenderer(this, 19, 16);
-		this.leftEar.addBox(0.55F, -13.0F, 4.0F, 2.0F, 3.0F, 1.0F, -0.001F);
-		this.neck.addChild(this.leftEar);
-		
-		this.rightEar = new ModelRenderer(this, 19, 16);
-		this.rightEar.addBox(-2.55F, -13.0F, 4.0F, 2.0F, 3.0F, 1.0F, -0.001F);
-		this.neck.addChild(this.rightEar);
-		
-		this.backLeftLeg = new ModelRenderer(this, 48, 21);
-		this.backLeftLeg.mirror = true;
-		this.backLeftLeg.addBox(-3.0F, -1.01F, -1.0F, 4.0F, 11.0F, 4.0F, p_i51065_1_);
-		this.backLeftLeg.setRotationPoint(4.0F, 14.0F, 7.0F);
-		
-		this.backRightLeg = new ModelRenderer(this, 48, 21);
-		this.backRightLeg.addBox(-1.0F, -1.01F, -1.0F, 4.0F, 11.0F, 4.0F, p_i51065_1_);
-		this.backRightLeg.setRotationPoint(-4.0F, 14.0F, 7.0F);
-		
-		this.frontLeftLeg = new ModelRenderer(this, 48, 21);
+		this.frontLeftLeg = new ModelRenderer(this, 48, 27);
 		this.frontLeftLeg.mirror = true;
-		this.frontLeftLeg.addBox(-3.0F, -1.01F, -1.9F, 4.0F, 11.0F, 4.0F, p_i51065_1_);
+		this.frontLeftLeg.addBox(-3.0F, -7.01F, 1.9F, 2.0F, 17.0F, 2.0F, p_i51065_1_);
 		this.frontLeftLeg.setRotationPoint(4.0F, 6.0F, -12.0F);
 		
-		this.frontRightLeg = new ModelRenderer(this, 48, 21);
-		this.frontRightLeg.addBox(-1.0F, -1.01F, -1.9F, 4.0F, 11.0F, 4.0F, p_i51065_1_);
+		this.frontRightLeg = new ModelRenderer(this, 48, 27);
+		this.frontRightLeg.addBox(1.0F, -7.01F, 1.9F, 2.0F, 17.0F, 2.0F, p_i51065_1_);
 		this.frontRightLeg.setRotationPoint(-4.0F, 6.0F, -12.0F);
 		
-		this.tail = new ModelRenderer(this, 42, 36);
-		this.tail.addBox(-1.5F, 0.0F, 0.0F, 3.0F, 14.0F, 4.0F, p_i51065_1_);
-		this.tail.setRotationPoint(0.0F, -5.0F, 2.0F);
-		this.tail.rotateAngleX = ((float) Math.PI / 6F);
+		this.tail = new ModelRenderer(this, 0, 15);
+		this.tail.addBox(-1.5F, -7F, -8.0F, 3.0F, 2.0F, 5.0F, p_i51065_1_);
 		this.body.addChild(this.tail);
-		
-		this.babyBackLeftLeg = new ModelRenderer(this, 48, 21);
-		this.babyBackLeftLeg.mirror = true;
-		this.babyBackLeftLeg.addBox(-3.0F, -1.01F, -1.0F, 4.0F, 11.0F, 4.0F, p_i51065_1_, p_i51065_1_ + 5.5F, p_i51065_1_);
-		this.babyBackLeftLeg.setRotationPoint(4.0F, 14.0F, 7.0F);
-		
-		this.babyBackRightLeg = new ModelRenderer(this, 48, 21);
-		this.babyBackRightLeg.addBox(-1.0F, -1.01F, -1.0F, 4.0F, 11.0F, 4.0F, p_i51065_1_, p_i51065_1_ + 5.5F, p_i51065_1_);
-		this.babyBackRightLeg.setRotationPoint(-4.0F, 14.0F, 7.0F);
 		
 		this.babyFrontLeftLeg = new ModelRenderer(this, 48, 21);
 		this.babyFrontLeftLeg.mirror = true;
-		this.babyFrontLeftLeg.addBox(-3.0F, -1.01F, -1.9F, 4.0F, 11.0F, 4.0F, p_i51065_1_, p_i51065_1_ + 5.5F, p_i51065_1_);
+		this.babyFrontLeftLeg.addBox(-3.0F, -1.01F, -1.9F, 4.0F, 24.0F, 4.0F, p_i51065_1_, p_i51065_1_ + 5.5F, p_i51065_1_);
 		this.babyFrontLeftLeg.setRotationPoint(4.0F, 6.0F, -12.0F);
 		
 		this.babyFrontRightLeg = new ModelRenderer(this, 48, 21);
-		this.babyFrontRightLeg.addBox(-1.0F, -1.01F, -1.9F, 4.0F, 11.0F, 4.0F, p_i51065_1_, p_i51065_1_ + 5.5F, p_i51065_1_);
+		this.babyFrontRightLeg.addBox(-1.0F, -1.01F, -1.9F, 4.0F, 24.0F, 4.0F, p_i51065_1_, p_i51065_1_ + 5.5F, p_i51065_1_);
 		this.babyFrontRightLeg.setRotationPoint(-4.0F, 6.0F, -12.0F);
 		
 		this.saddle = new ModelRenderer(this, 26, 0);
@@ -152,12 +124,14 @@ public class OstrichModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 	}
 
 	protected Iterable<ModelRenderer> getBodyParts() {
-		return ImmutableList.of(this.body, this.backLeftLeg, this.backRightLeg, this.frontLeftLeg, this.frontRightLeg, this.babyBackLeftLeg, this.babyBackRightLeg, this.babyFrontLeftLeg, this.babyFrontRightLeg);
+		return ImmutableList.of(this.body, this.frontLeftLeg, this.frontRightLeg, this.leftWing, this.rightWing, this.babyFrontLeftLeg, this.babyFrontRightLeg);
 	}
 
 	public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netneckYaw, float neckPitch) {
 		boolean flag = entityIn.isHorseSaddled();
 		boolean flag1 = entityIn.isBeingRidden();
+//	      this.rightWing.rotateAngleZ = ageInTicks;
+//	      this.leftWing.rotateAngleZ = -ageInTicks;
 		for (ModelRenderer modelrenderer : this.saddles) {
 			modelrenderer.showModel = flag;
 		}
@@ -166,7 +140,6 @@ public class OstrichModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 		}
 		this.body.rotationPointY = 11.0F;
 	}
-
 	public void setLivingAnimations(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
 		super.setLivingAnimations(entityIn, limbSwing, limbSwingAmount, partialTick);
 		float f = MathHelper.interpolateAngle(entityIn.prevRenderYawOffset, entityIn.renderYawOffset, partialTick);
@@ -187,7 +160,6 @@ public class OstrichModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 		float f6 = entityIn.getRearingAmount(partialTick);
 		float f7 = 1.0F - f6;
 		float f8 = entityIn.getMouthOpennessAngle(partialTick);
-		boolean flag = entityIn.tailCounter != 0;
 		float f9 = (float) entityIn.ticksExisted + partialTick;
 		this.neck.rotationPointY = 4.0F;
 		this.neck.rotationPointZ = -12.0F;
@@ -203,7 +175,6 @@ public class OstrichModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 		this.neck.rotationPointY = f6 * -4.0F + f5 * 11.0F + (1.0F - Math.max(f6, f5)) * this.neck.rotationPointY;
 		this.neck.rotationPointZ = f6 * -4.0F + f5 * -12.0F + (1.0F - Math.max(f6, f5)) * this.neck.rotationPointZ;
 		this.body.rotateAngleX = f6 * (-(float) Math.PI / 4F) + f7 * this.body.rotateAngleX;
-		float f14 = 0.2617994F * f6;
 		float f15 = MathHelper.cos(f9 * 0.6F + (float) Math.PI);
 		this.frontLeftLeg.rotationPointY = 2.0F * f6 + 14.0F * f7;
 		this.frontLeftLeg.rotationPointZ = -6.0F * f6 - 10.0F * f7;
@@ -211,24 +182,8 @@ public class OstrichModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 		this.frontRightLeg.rotationPointZ = this.frontLeftLeg.rotationPointZ;
 		float f16 = ((-(float) Math.PI / 3F) + f15) * f6 + f12 * f7;
 		float f17 = ((-(float) Math.PI / 3F) - f15) * f6 - f12 * f7;
-		this.backLeftLeg.rotateAngleX = f14 - f11 * 0.5F * limbSwingAmount * f7;
-		this.backRightLeg.rotateAngleX = f14 + f11 * 0.5F * limbSwingAmount * f7;
 		this.frontLeftLeg.rotateAngleX = f16;
 		this.frontRightLeg.rotateAngleX = f17;
-		this.tail.rotateAngleX = ((float) Math.PI / 6F) + limbSwingAmount * 0.75F;
-		this.tail.rotationPointY = -5.0F + limbSwingAmount;
-		this.tail.rotationPointZ = 2.0F + limbSwingAmount * 2.0F;
-		if (flag) {
-			this.tail.rotateAngleY = MathHelper.cos(f9 * 0.7F);
-		} else {
-			this.tail.rotateAngleY = 0.0F;
-		}
-		this.babyBackLeftLeg.rotationPointY = this.backLeftLeg.rotationPointY;
-		this.babyBackLeftLeg.rotationPointZ = this.backLeftLeg.rotationPointZ;
-		this.babyBackLeftLeg.rotateAngleX = this.backLeftLeg.rotateAngleX;
-		this.babyBackRightLeg.rotationPointY = this.backRightLeg.rotationPointY;
-		this.babyBackRightLeg.rotationPointZ = this.backRightLeg.rotationPointZ;
-		this.babyBackRightLeg.rotateAngleX = this.backRightLeg.rotateAngleX;
 		this.babyFrontLeftLeg.rotationPointY = this.frontLeftLeg.rotationPointY;
 		this.babyFrontLeftLeg.rotationPointZ = this.frontLeftLeg.rotationPointZ;
 		this.babyFrontLeftLeg.rotateAngleX = this.frontLeftLeg.rotateAngleX;
@@ -236,12 +191,8 @@ public class OstrichModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 		this.babyFrontRightLeg.rotationPointZ = this.frontRightLeg.rotationPointZ;
 		this.babyFrontRightLeg.rotateAngleX = this.frontRightLeg.rotateAngleX;
 		boolean flag1 = entityIn.isChild();
-		this.backLeftLeg.showModel = !flag1;
-		this.backRightLeg.showModel = !flag1;
 		this.frontLeftLeg.showModel = !flag1;
 		this.frontRightLeg.showModel = !flag1;
-		this.babyBackLeftLeg.showModel = flag1;
-		this.babyBackRightLeg.showModel = flag1;
 		this.babyFrontLeftLeg.showModel = flag1;
 		this.babyFrontRightLeg.showModel = flag1;
 		this.body.rotationPointY = flag1 ? 10.8F : 0.0F;
