@@ -47,6 +47,5 @@ public class LineShaftTileEntityRenderer extends TileEntityRenderer<LineShaftTil
         
         blockModelRenderer.renderModel(tileEntity.getWorld(), blockrendererdispatcher.getModelForState(tileEntity.getBlockState()), tileEntity.getBlockState(), tileEntity.getPos(), matrixStack, buffer.getBuffer(RenderType.getSolid()), false, new Random(), 42, combinedOverlay, tileEntity.getModelData());
         matrixStack.pop();
-        
     }
 }

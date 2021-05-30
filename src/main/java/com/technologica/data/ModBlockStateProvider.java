@@ -4,7 +4,7 @@ import java.util.function.Supplier;
 
 import com.technologica.Technologica;
 import com.technologica.block.ModBlocks;
-import com.technologica.block.ModCrystalBlock;
+import com.technologica.block.CrystalBlock;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.CropsBlock;
@@ -174,24 +174,24 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	public void hexagonalCrystalBlock(Supplier<? extends Block> blockSupplier) {
 		Block block = blockSupplier.get();	
 		getVariantBuilder(block)
-			.partialState().with(ModCrystalBlock.FACING, Direction.NORTH).modelForState().modelFile(hexagonal_crystal(block)).rotationX(90).addModel()
-			.partialState().with(ModCrystalBlock.FACING, Direction.EAST).modelForState().modelFile(hexagonal_crystal(block)).rotationX(90).rotationY(90).addModel()
-			.partialState().with(ModCrystalBlock.FACING, Direction.SOUTH).modelForState().modelFile(hexagonal_crystal(block)).rotationX(270).addModel()
-			.partialState().with(ModCrystalBlock.FACING, Direction.WEST).modelForState().modelFile(hexagonal_crystal(block)).rotationX(90).rotationY(270).addModel()
-			.partialState().with(ModCrystalBlock.FACING, Direction.UP).modelForState().modelFile(hexagonal_crystal(block)).addModel()
-			.partialState().with(ModCrystalBlock.FACING, Direction.DOWN).modelForState().modelFile(hexagonal_crystal(block)).rotationX(180).addModel();
+			.partialState().with(CrystalBlock.FACING, Direction.NORTH).modelForState().modelFile(hexagonal_crystal(block)).rotationX(90).addModel()
+			.partialState().with(CrystalBlock.FACING, Direction.EAST).modelForState().modelFile(hexagonal_crystal(block)).rotationX(90).rotationY(90).addModel()
+			.partialState().with(CrystalBlock.FACING, Direction.SOUTH).modelForState().modelFile(hexagonal_crystal(block)).rotationX(270).addModel()
+			.partialState().with(CrystalBlock.FACING, Direction.WEST).modelForState().modelFile(hexagonal_crystal(block)).rotationX(90).rotationY(270).addModel()
+			.partialState().with(CrystalBlock.FACING, Direction.UP).modelForState().modelFile(hexagonal_crystal(block)).addModel()
+			.partialState().with(CrystalBlock.FACING, Direction.DOWN).modelForState().modelFile(hexagonal_crystal(block)).rotationX(180).addModel();
 		this.simpleBlockItem(block, hexagonal_crystal(block));
     }
 	
 	public void cubicCrystalBlock(Supplier<? extends Block> blockSupplier) {
 		Block block = blockSupplier.get();	
 		getVariantBuilder(block)
-			.partialState().with(ModCrystalBlock.FACING, Direction.NORTH).modelForState().modelFile(cubic_crystal(block)).rotationX(90).addModel()
-			.partialState().with(ModCrystalBlock.FACING, Direction.EAST).modelForState().modelFile(cubic_crystal(block)).rotationX(90).rotationY(90).addModel()
-			.partialState().with(ModCrystalBlock.FACING, Direction.SOUTH).modelForState().modelFile(cubic_crystal(block)).rotationX(270).addModel()
-			.partialState().with(ModCrystalBlock.FACING, Direction.WEST).modelForState().modelFile(cubic_crystal(block)).rotationX(90).rotationY(270).addModel()
-			.partialState().with(ModCrystalBlock.FACING, Direction.UP).modelForState().modelFile(cubic_crystal(block)).addModel()
-			.partialState().with(ModCrystalBlock.FACING, Direction.DOWN).modelForState().modelFile(cubic_crystal(block)).rotationX(180).addModel();
+			.partialState().with(CrystalBlock.FACING, Direction.NORTH).modelForState().modelFile(cubic_crystal(block)).rotationX(90).addModel()
+			.partialState().with(CrystalBlock.FACING, Direction.EAST).modelForState().modelFile(cubic_crystal(block)).rotationX(90).rotationY(90).addModel()
+			.partialState().with(CrystalBlock.FACING, Direction.SOUTH).modelForState().modelFile(cubic_crystal(block)).rotationX(270).addModel()
+			.partialState().with(CrystalBlock.FACING, Direction.WEST).modelForState().modelFile(cubic_crystal(block)).rotationX(90).rotationY(270).addModel()
+			.partialState().with(CrystalBlock.FACING, Direction.UP).modelForState().modelFile(cubic_crystal(block)).addModel()
+			.partialState().with(CrystalBlock.FACING, Direction.DOWN).modelForState().modelFile(cubic_crystal(block)).rotationX(180).addModel();
 		this.simpleBlockItem(block, cubic_crystal(block));
     }
 	

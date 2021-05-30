@@ -50,7 +50,7 @@ public class DisplayCaseBlock extends GlassBlock {
 			}
 		} else {
 			ItemStack stack = tile.getDisplayStack();
-			tile.clear();
+			tile.setDisplayStack(ItemStack.EMPTY);
 			worldIn.playSound((PlayerEntity)null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.rand.nextFloat() * 0.4F);
 			if (!player.inventory.addItemStackToInventory(stack)) {
 				spawnAsEntity(worldIn, pos.up(), stack);

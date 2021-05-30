@@ -1,6 +1,7 @@
 package com.technologica.setup;
 
 import com.technologica.block.ModBlocks;
+import com.technologica.capabilities.ModCapabilities;
 import com.technologica.entity.ModEntities;
 import com.technologica.entity.monster.SharkEntity;
 import com.technologica.entity.passive.DuckEntity;
@@ -16,6 +17,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 public class CommonSetup {
 
 	public static void init(final FMLCommonSetupEvent event) {
+		ModCapabilities.register();
 		GlobalEntityTypeAttributes.put(ModEntities.DUCK.get(), DuckEntity.registerAttributes().create());
 		GlobalEntityTypeAttributes.put(ModEntities.GRIZZLY_BEAR.get(), GrizzlyBearEntity.registerAttributes().create());
 		GlobalEntityTypeAttributes.put(ModEntities.OSTRICH.get(), OstrichEntity.func_234237_fg_().create());

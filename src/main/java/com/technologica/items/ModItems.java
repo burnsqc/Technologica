@@ -97,7 +97,8 @@ public class ModItems {
     public static final RegistryObject<Item> MEDIUM_PULLEY_ITEM = ITEMS.register("medium_pulley", () -> new BlockNamedItem(ModBlocks.MEDIUM_PULLEY.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_MACHINERY)));
     public static final RegistryObject<Item> LARGE_PULLEY_ITEM = ITEMS.register("large_pulley", () -> new BlockNamedItem(ModBlocks.LARGE_PULLEY.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_MACHINERY)));
     
-    public static final RegistryObject<Item> LINE_SHAFT_ITEM = ITEMS.register("line_shaft", () -> new BlockNamedItem(ModBlocks.LINE_SHAFT.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_MACHINERY)));
+    public static final RegistryObject<Item> STEEL_SHAFT = ITEMS.register("steel_shaft", () -> new Item(new Item.Properties().group(ModItemGroup.TECHNOLOGICA_MACHINERY)));
+    public static final RegistryObject<Item> LINE_SHAFT_HANGER_ITEM = ITEMS.register("line_shaft_hanger", () -> new BlockItem(ModBlocks.LINE_SHAFT_HANGER.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_MACHINERY)));
     
     public static final RegistryObject<Item> BANANA = ITEMS.register("banana", () -> new Item(new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
     public static final RegistryObject<Item> BLUEBERRY = ITEMS.register("blueberry", () -> new Item(new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FOOD).food(new Food.Builder().hunger(1).saturation(0.1F).setAlwaysEdible().fastToEat().build())));
@@ -242,7 +243,7 @@ public class ModItems {
     public static final RegistryObject<Item> HYDROGEN_BUCKET = ITEMS.register("hydrogen_bucket", () -> new BucketItem(ModFluids.HYDROGEN_SOURCE, new Properties().group(ModItemGroup.TECHNOLOGICA_MINERAL).maxStackSize(1)));
     
     public static final RegistryObject<Item> HAMMER = ITEMS.register("hammer", () -> new PickaxeItem(ItemTier.IRON, 1, -2.8F, (new Item.Properties()).group(ModItemGroup.TECHNOLOGICA_MACHINERY)));
-    public static final RegistryObject<Item> PIPE_WRENCH = ITEMS.register("pipe_wrench", () -> new PickaxeItem(ItemTier.IRON, 1, -2.8F, (new Item.Properties()).group(ModItemGroup.TECHNOLOGICA_MACHINERY)));
+    public static final RegistryObject<Item> PIPE_WRENCH = ITEMS.register("pipe_wrench", () -> new PipeWrenchItem(ItemTier.IRON, 1, -2.8F, (new Item.Properties()).group(ModItemGroup.TECHNOLOGICA_MACHINERY)));
     public static final RegistryObject<Item> WRENCH = ITEMS.register("wrench", () -> new PickaxeItem(ItemTier.IRON, 1, -2.8F, (new Item.Properties()).group(ModItemGroup.TECHNOLOGICA_MACHINERY)));
     
     public static void register() {

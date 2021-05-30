@@ -1,0 +1,54 @@
+{
+  "variants": {
+    "facing=down,axis=x": {
+      "model": "technologica:block/line_shaft_hanger2",
+      "x": 180
+    },
+    "facing=down,axis=z": {
+      "model": "technologica:block/line_shaft_hanger",
+      "x": 180
+    },
+    "facing=up,axis=x": {
+      "model": "technologica:block/line_shaft_hanger2"
+    },
+    "facing=up,axis=z": {
+      "model": "technologica:block/line_shaft_hanger"
+    },
+    "facing=north,axis=x": {
+      "model": "technologica:block/line_shaft_hanger2",
+      "x": 90
+    },
+    "facing=north,axis=y": {
+      "model": "technologica:block/line_shaft_hanger",
+      "x": 90
+    },
+    "facing=south,axis=x": {
+      "model": "technologica:block/line_shaft_hanger2",
+      "x": 270
+    },
+    "facing=south,axis=y": {
+      "model": "technologica:block/line_shaft_hanger",
+      "x": 270
+    },
+    "facing=west,axis=y": {
+      "model": "technologica:block/line_shaft_hanger",
+      "x": 90,
+      "y": 270
+    },
+    "facing=west,axis=z": {
+      "model": "technologica:block/line_shaft_hanger2",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east,axis=y": {
+      "model": "technologica:block/line_shaft_hanger",
+      "x": 90,
+      "y": 90
+    },
+    "facing=east,axis=z": {
+      "model": "technologica:block/line_shaft_hanger2",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

@@ -28,10 +28,6 @@ public class DisplayCaseTileEntity extends TileEntity {
         }
     }
 	
-	public void clear() {
-        this.setDisplayStack(ItemStack.EMPTY);  
-    }
-	
 	@Nullable
 	public SUpdateTileEntityPacket getUpdatePacket() {
 		return new SUpdateTileEntityPacket(this.pos, 10, this.getUpdateTag());

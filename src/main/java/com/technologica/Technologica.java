@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.technologica.block.ModBlocks;
+import com.technologica.capabilities.ModCapabilities;
 import com.technologica.entity.ModEntities;
 import com.technologica.fluid.ModFluids;
 import com.technologica.items.ModItems;
@@ -49,7 +50,6 @@ public class Technologica {
 		ModFeatures.register();
 		LOGGER.info("REGISTERING WORLDGEN - FOLIAGE PLACER TYPES");
 		ModFoliagePlacers.register();
-		
 		
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(CommonSetup::init);	//1st event during mod lifecycle startup
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientSetup::init);	//2nd event during mod lifecycle startup

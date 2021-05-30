@@ -220,10 +220,11 @@ public class ModLanguageProvider extends LanguageProvider {
 		addItem(ModItems.HAMMER, "Hammer");
 		addItem(ModItems.PIPE_WRENCH, "Pipe Wrench");
 		addItem(ModItems.WRENCH, "Wrench");
-		addItem(ModItems.LINE_SHAFT_ITEM, "Steel Shaft");
+		addItem(ModItems.STEEL_SHAFT, "Steel Shaft");
 		addItem(ModItems.SMALL_PULLEY_ITEM, "Small Pulley");
 		addItem(ModItems.MEDIUM_PULLEY_ITEM, "Medium Pulley");
 		addItem(ModItems.LARGE_PULLEY_ITEM, "Large Pulley");
+		addItem(ModItems.LINE_SHAFT_HANGER_ITEM, "Line Shaft Hanger");
 		
 		addItem(ModItems.DUCK_SPAWN_EGG, "Duck Spawn Egg");
 		addItem(ModItems.GRIZZLY_BEAR_SPAWN_EGG, "Grizzly Bear Spawn Egg");

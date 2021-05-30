@@ -94,6 +94,7 @@ public class ModBlockLootTables extends BlockLootTables {
 		registerDropSelfLootTable(ModBlocks.SMALL_PULLEY.get());
 		registerDropSelfLootTable(ModBlocks.MEDIUM_PULLEY.get());
 		registerDropSelfLootTable(ModBlocks.LARGE_PULLEY.get());
+		registerDropSelfLootTable(ModBlocks.LINE_SHAFT_HANGER.get());
 	}
 	
 	@Override

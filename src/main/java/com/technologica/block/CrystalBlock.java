@@ -12,16 +12,15 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 
-public class ModCrystalBlock extends Block {
+public class CrystalBlock extends Block {
 	public static final DirectionProperty FACING = BlockStateProperties.FACING;
 
-	public ModCrystalBlock() {
+	public CrystalBlock() {
 		super(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(6.0F).sound(SoundType.GLASS).notSolid());
 		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH));
 	}
 
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		System.out.println(context.getFace());
 		return this.getDefaultState().with(FACING, context.getFace());
 	}
 	
