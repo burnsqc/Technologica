@@ -11,13 +11,13 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.common.util.INBTSerializable;
 
 public class Link implements ILink, INBTSerializable<CompoundNBT> {
-	private boolean link;
+	private boolean linking;
 	private BlockPos linkAnchorPos;
 	private BlockState linkAnchorState;
 	private String message;
 	
 	public Link() {
-		this.link = true;
+		this.linking = true;
 		this.linkAnchorPos = null;
 		this.linkAnchorState = null;
 		this.message = null;
@@ -26,17 +26,17 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 	@Override
 	public void setLink(BlockPos posIn, BlockState stateIn, PlayerEntity playerIn) {
 		if (linkAnchorPos == null) {
-			link = false;
+			linking = false;
 			linkAnchorPos = posIn;
 			linkAnchorState = stateIn;
 			message = "LINK STARTED";
 		} else {
 			if (posIn == linkAnchorPos) {
-				link = false;
+				linking = false;
 				linkAnchorPos = null;
 				message = "LINK STOPPED";
 			} else if (stateIn.get(TwelveDirectionBlock.AXIS) != linkAnchorState.get(TwelveDirectionBlock.AXIS)) {
-				link = false;
+				linking = false;
 				linkAnchorPos = null;
 				message = "LINK FAILED: AXIS MISALIGNMENT";
 			}
@@ -52,7 +52,7 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 					break;
 			}	
 		}
-		if (link) {	
+		if (linking) {	
 		}
 		playerIn.sendMessage(new StringTextComponent(message), Util.DUMMY_UUID);
 		message = null;
@@ -60,10 +60,13 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 
 	@Override
 	public CompoundNBT serializeNBT() {
-		return null;
+		CompoundNBT nbt = new CompoundNBT();
+		nbt.putBoolean("link", this.linking);
+		return nbt;
 	}
 
 	@Override
 	public void deserializeNBT(CompoundNBT nbt) {
+		this.linking = nbt.getBoolean("linking");
 	}
 }

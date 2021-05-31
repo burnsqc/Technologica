@@ -2,18 +2,12 @@ package com.technologica.capabilities;
 
 import java.util.concurrent.Callable;
 
-import com.technologica.items.PipeWrenchItem;
-
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.INBT;
 import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class ModCapabilities {
 
@@ -41,13 +35,4 @@ public class ModCapabilities {
 			return new Link();
 		}
 	}
-	
-	@SubscribeEvent
-	public void attachCapability(AttachCapabilitiesEvent<ItemStack> event)
-	{
-		final ResourceLocation LINK_CAP = null;
-		if (event.getObject().getItem() instanceof PipeWrenchItem) return;
-	 		event.addCapability(LINK_CAP, new LinkProvider());
-		}
-
 }
