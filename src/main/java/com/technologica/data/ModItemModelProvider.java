@@ -110,6 +110,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.MEDIUM_PULLEY_ITEM);
 		simpleItem(ModItems.LARGE_PULLEY_ITEM);
 		simpleItem(ModItems.STEEL_SHAFT);
+		simpleItem(ModItems.PULLEY_BELT);
 		
 		simpleItem(ModItems.DUCK_SPAWN_EGG);
 		simpleItem(ModItems.GRIZZLY_BEAR_SPAWN_EGG);

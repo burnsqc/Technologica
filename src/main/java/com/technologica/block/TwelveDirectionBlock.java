@@ -10,7 +10,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.IntegerProperty;
@@ -21,10 +20,8 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Direction.Axis;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
@@ -70,18 +67,12 @@ public class TwelveDirectionBlock extends Block{
 			worldIn.setBlockState(posIn, stateIn.with(AXIS, axis), 2);
 		
 		} else if (tool == ModItems.PIPE_WRENCH.get()) {
-			
 			if (!playerIn.isCrouching()) {
 				if (!tile.getShaft()) {
 					tile.setShaft(true);
 				}
-			
 			}
-		
-		} else if (tool == ModItems.HAMMER.get()) {
-			int rpm = tile.getRPM() == 0 ? 60 : 0;
-			tile.setRPM(rpm);
-		}
+		} 
 		return ActionResultType.func_233537_a_(worldIn.isRemote);
 	}
 	
@@ -94,31 +85,6 @@ public class TwelveDirectionBlock extends Block{
 		return this.getDefaultState().with(FACING, context.getFace()).with(AXIS, adirection[i].getAxis());
 	}
 	
-	
-/*	
-	private static BlockState updateDistance(BlockState state, IWorld worldIn, BlockPos pos) {
-	      int i = 7;
-	      BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
-
-	      for(Direction direction : Direction.values()) {
-	         blockpos$mutable.setAndMove(pos, direction);
-	         i = Math.min(i, getDistance(worldIn.getBlockState(blockpos$mutable)) + 1);
-	         if (i == 1) {
-	            break;
-	         }
-	      }
-
-	      return state.with(DISTANCE, Integer.valueOf(i));
-	   }
-
-	   private static int getDistance(BlockState neighbor) {
-	      if (BlockTags.LOGS.contains(neighbor.getBlock())) {
-	         return 0;
-	      } else {
-	         return neighbor.getBlock() instanceof LeavesBlock ? neighbor.get(DISTANCE) : 7;
-	      }
-	   }
-*/	
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
 		builder.add(FACING).add(AXIS).add(DISTANCE);
 		super.fillStateContainer(builder);

@@ -3,50 +3,125 @@ package com.technologica.tileentity;
 import javax.annotation.Nullable;
 
 import com.technologica.block.LineShaftBlock;
+import com.technologica.block.TwelveDirectionBlock;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.NBTUtil;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
+import net.minecraft.util.math.BlockPos;
 
 public class LineShaftTileEntity extends TileEntity {
+	
+	private BlockPos beltPos = null;
 	private int rpm = 0;
 	private int torque = 0;
-	private Direction checkConnections1;
-	private Direction checkConnections2;
 	
 	public LineShaftTileEntity() {
 		super(ModTileEntities.LINE_SHAFT_TILE.get());
 	}
 	
-	public void setRPM(int rpmIn) {
+	public void setBeltPos(BlockPos posIn) {
+		this.beltPos = posIn;
+	}
+	
+	public BlockPos getBeltPos() {
+		return this.beltPos;
+	}
+	
+	public void setRPMBoth(int rpmIn) {
 		this.rpm = rpmIn;
+		this.setRPMPos(this.rpm);
+		this.setRPMNeg(this.rpm);
+	}
+	
+	public void setRPMPos (int rpmIn) {
+		TileEntity connection;
 		
+		this.rpm = rpmIn;
 		if (this.getBlockState().get(LineShaftBlock.AXIS) == Direction.Axis.X) {
-			this.checkConnections1 = Direction.EAST;
-			this.checkConnections2 = Direction.WEST;
+			connection = world.getTileEntity(this.getPos().offset(Direction.EAST));
 		} else if (this.getBlockState().get(LineShaftBlock.AXIS) == Direction.Axis.Y) {
-			this.checkConnections1 = Direction.UP;
-			this.checkConnections2 = Direction.DOWN;
+			connection = world.getTileEntity(this.getPos().offset(Direction.UP));
 		} else {
-			this.checkConnections1 = Direction.SOUTH;
-			this.checkConnections2 = Direction.NORTH;
+			connection = world.getTileEntity(this.getPos().offset(Direction.SOUTH));
 		}
 		
-		TileEntity connection = world.getTileEntity(this.getPos().offset(checkConnections1));
-		if (connection instanceof LineShaftTileEntity && connection.getBlockState().get(LineShaftBlock.AXIS) == this.getBlockState().get(LineShaftBlock.AXIS) && ((LineShaftTileEntity) connection).getRPM() != this.rpm) {
-			((LineShaftTileEntity) world.getTileEntity(this.getPos().offset(checkConnections1))).setRPM(rpm);
+		if (connection instanceof LineShaftTileEntity && connection.getBlockState().get(LineShaftBlock.AXIS) == this.getBlockState().get(LineShaftBlock.AXIS)) {
+			((LineShaftTileEntity) connection).setRPMPos(this.rpm);
+		} else if (connection instanceof LineShaftHangerTileEntity && connection.getBlockState().get(TwelveDirectionBlock.AXIS) == this.getBlockState().get(LineShaftBlock.AXIS)) {
+			((LineShaftHangerTileEntity) connection).setRPMPos(this.rpm);
 		}
-		connection = world.getTileEntity(this.getPos().offset(checkConnections2));
-		if (connection instanceof LineShaftTileEntity && connection.getBlockState().get(LineShaftBlock.AXIS) == this.getBlockState().get(LineShaftBlock.AXIS) && ((LineShaftTileEntity) connection).getRPM() != this.rpm) {
-			((LineShaftTileEntity) world.getTileEntity(this.getPos().offset(checkConnections2))).setRPM(rpm);
+		
+		if (this.getBeltPos() != null) {
+			connection = world.getTileEntity(this.beltPos);
+			int mult1;
+			int mult2;
+			if (this.getBlockState().get(LineShaftBlock.PULLEY) == 1) {
+				mult1 = 1;
+			} else if (this.getBlockState().get(LineShaftBlock.PULLEY) == 2) {
+				mult1 = 2;
+			} else {
+				mult1 = 4;
+			}
+			if (connection.getBlockState().get(LineShaftBlock.PULLEY) == 1) {
+				mult2 = 1;
+			} else if (this.getBlockState().get(LineShaftBlock.PULLEY) == 2) {
+				mult2 = 2;
+			} else {
+				mult2 = 4;
+			}
+			
+			((LineShaftTileEntity) connection).setRPMBoth(this.rpm * mult1 / mult2);
+		}
+	}
+	
+	public void setRPMNeg (int rpmIn) {
+		TileEntity connection;
+		
+		this.rpm = rpmIn;
+		if (this.getBlockState().get(LineShaftBlock.AXIS) == Direction.Axis.X) {
+			connection = world.getTileEntity(this.getPos().offset(Direction.WEST));
+		} else if (this.getBlockState().get(LineShaftBlock.AXIS) == Direction.Axis.Y) {
+			connection = world.getTileEntity(this.getPos().offset(Direction.DOWN));
+		} else {
+			connection = world.getTileEntity(this.getPos().offset(Direction.NORTH));
+		}
+		
+		if (connection instanceof LineShaftTileEntity && connection.getBlockState().get(LineShaftBlock.AXIS) == this.getBlockState().get(LineShaftBlock.AXIS)) {
+			((LineShaftTileEntity) connection).setRPMNeg(this.rpm);
+		} else if (connection instanceof LineShaftHangerTileEntity && connection.getBlockState().get(TwelveDirectionBlock.AXIS) == this.getBlockState().get(LineShaftBlock.AXIS)) {
+			((LineShaftHangerTileEntity) connection).setRPMNeg(this.rpm);
+		}
+		
+		if (this.getBeltPos() != null) {
+			connection = world.getTileEntity(this.beltPos);
+			int mult1;
+			int mult2;
+			if (this.getBlockState().get(LineShaftBlock.PULLEY) == 1) {
+				mult1 = 1;
+			} else if (this.getBlockState().get(LineShaftBlock.PULLEY) == 2) {
+				mult1 = 2;
+			} else {
+				mult1 = 4;
+			}
+			if (connection.getBlockState().get(LineShaftBlock.PULLEY) == 1) {
+				mult2 = 1;
+			} else if (this.getBlockState().get(LineShaftBlock.PULLEY) == 2) {
+				mult2 = 2;
+			} else {
+				mult2 = 4;
+			}
+			
+			((LineShaftTileEntity) connection).setRPMBoth(this.rpm * mult1 / mult2);
 		}
 	}
 	
 	public int getRPM() {
-		return rpm;
+		return this.rpm;
 	}
 	
 	public void setTorque(int torqueIn) {
@@ -82,17 +157,17 @@ public class LineShaftTileEntity extends TileEntity {
 	@Override
 	public void read(BlockState state, CompoundNBT nbt) {
 		super.read(state, nbt);
-	    if (nbt.contains("DisplayItem")) {
-//	    	this.setDisplayStack(ItemStack.read(nbt.getCompound("DisplayItem")));
-	    }
+		if (nbt.contains("BeltPos")) {
+			this.setBeltPos(NBTUtil.readBlockPos(nbt.getCompound("BeltPos")));
+		}
 	}
 
 	@Override
 	public CompoundNBT write(CompoundNBT compound) {
 		super.write(compound);
-//	    if (!this.getDisplayStack().isEmpty()) {
-//	    	compound.put("DisplayItem", this.getDisplayStack().write(new CompoundNBT()));
-//	    }	   
+		if (this.beltPos != null) {
+			compound.put("BeltPos", NBTUtil.writeBlockPos(this.beltPos));
+		}	   
 	    return compound;	    
 	}
 }

@@ -13,7 +13,7 @@ public class LinkProvider implements ICapabilitySerializable<INBT> {
 
 	@CapabilityInject(ILink.class)
 	public static final Capability<ILink> LINK_CAP = null;
-	private static final LazyOptional<ILink> instance = LazyOptional.of(LINK_CAP::getDefaultInstance);
+	private static final LazyOptional<ILink> instance = LazyOptional.of(Link::new);
 
 	@Nonnull
 	@Override

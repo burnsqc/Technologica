@@ -225,6 +225,7 @@ public class ModLanguageProvider extends LanguageProvider {
 		addItem(ModItems.MEDIUM_PULLEY_ITEM, "Medium Pulley");
 		addItem(ModItems.LARGE_PULLEY_ITEM, "Large Pulley");
 		addItem(ModItems.LINE_SHAFT_HANGER_ITEM, "Line Shaft Hanger");
+		addItem(ModItems.PULLEY_BELT, "Pulley Belt");
 		
 		addItem(ModItems.DUCK_SPAWN_EGG, "Duck Spawn Egg");
 		addItem(ModItems.GRIZZLY_BEAR_SPAWN_EGG, "Grizzly Bear Spawn Egg");

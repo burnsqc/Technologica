@@ -50,18 +50,23 @@ public class PipeWrenchItem extends ToolItem {
 
 	public ActionResultType onItemUse(ItemUseContext context) {
    		World world = context.getWorld();
-   		BlockPos blockpos = context.getPos();
-   		BlockState blockstate = world.getBlockState(blockpos);
-   		PlayerEntity player = context.getPlayer();
-       
-   		ItemStack stack = player.getHeldItem(context.getHand());
-   		
-   		ILink linkcapability = (ILink) stack.getCapability(LinkProvider.LINK_CAP);
-   		
-   		if (blockstate.matchesBlock(ModBlocks.LINE_SHAFT_HANGER.get())) {
-   			linkcapability.setLink(blockpos, blockstate, player);
+   		if (!world.isRemote) {
+   			BlockPos pos = context.getPos();
+   			BlockState state = world.getBlockState(pos);
+   			if (state.matchesBlock(ModBlocks.LINE_SHAFT_HANGER.get())) {
+   				PlayerEntity player = context.getPlayer();
+   	   			ItemStack stack = player.getHeldItem(context.getHand());
+   	   			ILink linkCapability = stack.getCapability(LinkProvider.LINK_CAP).orElseThrow(null);
+   				if (!linkCapability.getLinking()) {
+   					linkCapability.startLink(world, pos, state, player);
+   				} else {
+   					linkCapability.stopLink(pos, state);
+   					if (linkCapability.checkAxis() && linkCapability.checkInlinePos() && linkCapability.checkObstructed() && linkCapability.checkDistance() && linkCapability.checkMaterial()) {
+   						linkCapability.createLineShaft();
+   					}
+   				}
+   			}
    		}
-   		
    		return ActionResultType.PASS;  
    	}
 	

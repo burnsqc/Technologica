@@ -98,6 +98,7 @@ public class ModItems {
     public static final RegistryObject<Item> LARGE_PULLEY_ITEM = ITEMS.register("large_pulley", () -> new BlockNamedItem(ModBlocks.LARGE_PULLEY.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_MACHINERY)));
     
     public static final RegistryObject<Item> STEEL_SHAFT = ITEMS.register("steel_shaft", () -> new Item(new Item.Properties().group(ModItemGroup.TECHNOLOGICA_MACHINERY)));
+    public static final RegistryObject<Item> PULLEY_BELT = ITEMS.register("pulley_belt", PulleyBeltItem::new);
     public static final RegistryObject<Item> LINE_SHAFT_HANGER_ITEM = ITEMS.register("line_shaft_hanger", () -> new BlockItem(ModBlocks.LINE_SHAFT_HANGER.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_MACHINERY)));
     
     public static final RegistryObject<Item> BANANA = ITEMS.register("banana", () -> new Item(new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));

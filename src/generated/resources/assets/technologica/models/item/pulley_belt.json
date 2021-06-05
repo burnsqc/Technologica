@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "technologica:item/line_shaft"
+    "layer0": "technologica:item/pulley_belt"
   }
 }
