@@ -39,27 +39,31 @@ import net.minecraft.world.server.ServerWorld;
 public class OstrichEntity extends AbstractHorseEntity {
    private static final UUID ARMOR_MODIFIER_UUID = UUID.fromString("556E1665-8B10-40C8-8F9D-CF9B1667F295");
    private static final DataParameter<Integer> HORSE_VARIANT = EntityDataManager.createKey(OstrichEntity.class, DataSerializers.VARINT);
+   public static final String ARMOR_ITEM = "ArmorItem";
 
    public OstrichEntity(EntityType<? extends OstrichEntity> type, World worldIn) {
       super(type, worldIn);
    }
 
+   @Override
    public void func_230273_eI_() {
       this.getAttribute(Attributes.MAX_HEALTH).setBaseValue((double)this.getModifiedMaxHealth());
       this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(this.getModifiedMovementSpeed());
       this.getAttribute(Attributes.HORSE_JUMP_STRENGTH).setBaseValue(this.getModifiedJumpStrength());
    }
    
+   @Override
    protected void registerData() {
       super.registerData();
       this.dataManager.register(HORSE_VARIANT, 0);
    }
 
+   @Override
    public void writeAdditional(CompoundNBT compound) {
       super.writeAdditional(compound);
       compound.putInt("Variant", this.func_234241_eS_());
       if (!this.horseChest.getStackInSlot(1).isEmpty()) {
-         compound.put("ArmorItem", this.horseChest.getStackInSlot(1).write(new CompoundNBT()));
+         compound.put(ARMOR_ITEM, this.horseChest.getStackInSlot(1).write(new CompoundNBT()));
       }
 
    }
@@ -76,11 +80,12 @@ public class OstrichEntity extends AbstractHorseEntity {
    /**
     * (abstract) Protected helper method to read subclass entity data from NBT.
     */
+   @Override
    public void readAdditional(CompoundNBT compound) {
       super.readAdditional(compound);
       this.func_234242_w_(compound.getInt("Variant"));
-      if (compound.contains("ArmorItem", 10)) {
-         ItemStack itemstack = ItemStack.read(compound.getCompound("ArmorItem"));
+      if (compound.contains(ARMOR_ITEM, 10)) {
+         ItemStack itemstack = ItemStack.read(compound.getCompound(ARMOR_ITEM));
          if (!itemstack.isEmpty() && this.isArmor(itemstack)) {
             this.horseChest.setInventorySlotContents(1, itemstack);
          }
@@ -109,6 +114,7 @@ public class OstrichEntity extends AbstractHorseEntity {
       return CoatTypes.func_234248_a_((this.func_234241_eS_() & '\uff00') >> 8);
    }
 
+   @Override
    protected void func_230275_fc_() {
       if (!this.world.isRemote) {
          super.func_230275_fc_();
@@ -134,6 +140,7 @@ public class OstrichEntity extends AbstractHorseEntity {
    /**
     * Called by InventoryBasic.onInventoryChanged() on a array that is never filled.
     */
+   @Override
    public void onInventoryChanged(IInventory invBasic) {
       ItemStack itemstack = this.func_213803_dV();
       super.onInventoryChanged(invBasic);
@@ -144,6 +151,7 @@ public class OstrichEntity extends AbstractHorseEntity {
 
    }
 
+   @Override
    protected void playGallopSound(SoundType p_190680_1_) {
       super.playGallopSound(p_190680_1_);
       if (this.rand.nextInt(10) == 0) {
@@ -154,31 +162,37 @@ public class OstrichEntity extends AbstractHorseEntity {
       if (isArmor(stack)) stack.onHorseArmorTick(world, this);
    }
 
+   @Override
    protected SoundEvent getAmbientSound() {
       super.getAmbientSound();
       return SoundEvents.ENTITY_HORSE_AMBIENT;
    }
 
+   @Override
    protected SoundEvent getDeathSound() {
       super.getDeathSound();
       return SoundEvents.ENTITY_HORSE_DEATH;
    }
 
+   @Override
    @Nullable
    protected SoundEvent func_230274_fe_() {
       return SoundEvents.ENTITY_HORSE_EAT;
    }
 
+   @Override
    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
       super.getHurtSound(damageSourceIn);
       return SoundEvents.ENTITY_HORSE_HURT;
    }
 
+   @Override
    protected SoundEvent getAngrySound() {
       super.getAngrySound();
       return SoundEvents.ENTITY_HORSE_ANGRY;
    }
 
+   @Override
    public ActionResultType getEntityInteractionResult(PlayerEntity playerIn, Hand hand) {
       ItemStack itemstack = playerIn.getHeldItem(hand);
       if (!this.isChild()) {
@@ -231,6 +245,7 @@ public class OstrichEntity extends AbstractHorseEntity {
 //      }
 //   }
 
+   @Override
    public AgeableEntity createChild(ServerWorld world, AgeableEntity mate) {
       AbstractHorseEntity abstracthorseentity;
       if (mate instanceof DonkeyEntity) {
@@ -265,14 +280,17 @@ public class OstrichEntity extends AbstractHorseEntity {
       return abstracthorseentity;
    }
 
+   @Override
    public boolean func_230276_fq_() {
       return true;
    }
 
+   @Override
    public boolean isArmor(ItemStack stack) {
       return stack.getItem() instanceof HorseArmorItem;
    }
 
+   @Override
    @Nullable
    public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
       CoatColors coatcolors;

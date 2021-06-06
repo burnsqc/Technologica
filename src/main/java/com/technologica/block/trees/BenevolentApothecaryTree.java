@@ -13,7 +13,6 @@ import net.minecraft.world.gen.feature.ConfiguredFeature;
 public class BenevolentApothecaryTree extends Tree {
 	@Nullable
 	protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean largeHive) {
-		new ModConfiguredFeatures();
 		return ModConfiguredFeatures.BENEVOLENT_APOTHECARY_TREE_FEATURE;
 	}
 }

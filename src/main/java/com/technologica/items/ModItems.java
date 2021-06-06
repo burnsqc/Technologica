@@ -22,6 +22,10 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class ModItems {
 	private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
 
+	private ModItems() {
+       // use private constructor to hide default constructor
+   }
+
 	public static final RegistryObject<Item> BANANA_LEAVES_ITEM = ITEMS.register("banana_leaves", () -> new BlockItem(ModBlocks.BANANA_LEAVES.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
     public static final RegistryObject<Item> CHERRY_LEAVES_ITEM = ITEMS.register("cherry_leaves", () -> new BlockItem(ModBlocks.CHERRY_LEAVES.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
     public static final RegistryObject<Item> COCONUT_LEAVES_ITEM = ITEMS.register("coconut_leaves", () -> new BlockItem(ModBlocks.COCONUT_LEAVES.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));

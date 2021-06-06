@@ -18,13 +18,13 @@ import net.minecraft.world.gen.foliageplacer.FoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.FoliagePlacerType;
 
 public class PalmFoliagePlacer extends FoliagePlacer {
-	public static final Codec<PalmFoliagePlacer> palmCodec = RecordCodecBuilder.create((p_236742_0_) -> {return func_236740_a_(p_236742_0_).apply(p_236742_0_, PalmFoliagePlacer::new);});
+	public static final Codec<PalmFoliagePlacer> palmCodec = RecordCodecBuilder.create(p_236742_0_ -> func_236740_a_(p_236742_0_).apply(p_236742_0_, PalmFoliagePlacer::new));
 	
 	protected final int layers;
 
 	protected static <P extends PalmFoliagePlacer> P3<Mu<P>, FeatureSpread, FeatureSpread, Integer> func_236740_a_(Instance<P> p_236740_0_) 
 	{
-		return func_242830_b(p_236740_0_).and(Codec.intRange(0, 16).fieldOf("height").forGetter((p_236741_0_) -> {return p_236741_0_.layers;}));
+		return func_242830_b(p_236740_0_).and(Codec.intRange(0, 16).fieldOf("height").forGetter(p_236741_0_ -> p_236741_0_.layers));
 	}
 
 	public PalmFoliagePlacer(FeatureSpread width, FeatureSpread verticalOffset, int layersIn) {
@@ -54,15 +54,15 @@ public class PalmFoliagePlacer extends FoliagePlacer {
 	//Prune foliage
 	protected boolean func_230373_a_(Random randomIn, int relativeZ, int relativeY, int relativeX, int p_230373_5_, boolean p_230373_6_) {
 		if (relativeY==1) {
-			return (relativeX != 0 && relativeZ != 0 || relativeX + relativeZ >= 4 || relativeX + relativeZ <= 1);
+			return relativeX != 0 && relativeZ != 0 || relativeX + relativeZ >= 4 || relativeX + relativeZ <= 1;
 		} else if (relativeY==0) {
-			return (relativeX != 0 && relativeZ != 0 || relativeX + relativeZ >= 3);
+			return relativeX != 0 && relativeZ != 0 || relativeX + relativeZ >= 3;
 		} else if (relativeY==-1) { 
-			return ((relativeX != relativeZ && relativeX != (relativeZ + 1)) || relativeX + relativeZ >= 7 );
+			return relativeX != relativeZ && relativeX != relativeZ + 1 || relativeX + relativeZ >= 7;
 		} else if (relativeY==-2) { 
-			return (relativeX != 0 && relativeZ != 0);
+			return relativeX != 0 && relativeZ != 0;
 		} else if (relativeY==-3) { 
-			return ((relativeX != relativeZ && relativeX != (relativeZ + 1)) || relativeX + relativeZ >= 7 );
+			return relativeX != relativeZ && relativeX != relativeZ + 1 || relativeX + relativeZ >= 7;
 		} else {
 			return false;
 		}

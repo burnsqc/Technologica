@@ -15,6 +15,10 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 
 public class ModEntityModifier {
 
+	private ModEntityModifier() {
+		// hide constructor for class with only static members
+	}
+
 	public static void init(final EntityJoinWorldEvent event) {
 		Entity entity = event.getEntity();
 		if (entity instanceof BeeEntity) {

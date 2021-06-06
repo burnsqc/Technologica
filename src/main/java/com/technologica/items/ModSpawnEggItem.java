@@ -57,7 +57,9 @@ public class ModSpawnEggItem extends Item {
               TileEntity tileentity = world.getTileEntity(blockpos);
               if (tileentity instanceof MobSpawnerTileEntity) {
                  AbstractSpawner abstractspawner = ((MobSpawnerTileEntity)tileentity).getSpawnerBaseLogic();
-                 abstractspawner.setEntityType(entityType);
+                 if (entityType != null) {
+                    abstractspawner.setEntityType(entityType);
+                 }
                  tileentity.markDirty();
                  world.notifyBlockUpdate(blockpos, blockstate, blockstate, 3);
                  itemstack.shrink(1);
@@ -73,7 +75,7 @@ public class ModSpawnEggItem extends Item {
            }
 
            
-           if (entityType.spawn((ServerWorld)world, itemstack, context.getPlayer(), blockpos1, SpawnReason.SPAWN_EGG, true, !Objects.equals(blockpos, blockpos1) && direction == Direction.UP) != null) {
+           if (entityType != null && entityType.spawn((ServerWorld)world, itemstack, context.getPlayer(), blockpos1, SpawnReason.SPAWN_EGG, true, !Objects.equals(blockpos, blockpos1) && direction == Direction.UP) != null) {
               itemstack.shrink(1);
            }
 
