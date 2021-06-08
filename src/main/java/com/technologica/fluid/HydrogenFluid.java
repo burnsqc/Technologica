@@ -2,10 +2,12 @@ package com.technologica.fluid;
 
 import static com.technologica.Technologica.MODID;
 
+import java.util.Map;
 import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import com.google.common.collect.Maps;
 import com.technologica.block.ModBlocks;
 import com.technologica.items.ModItems;
 
@@ -27,6 +29,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
@@ -36,6 +40,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fluids.FluidAttributes;
 
 public abstract class HydrogenFluid extends FlowingFluid {
+	private final Map<FluidState, VoxelShape> field_215669_f = Maps.newIdentityHashMap();
+	
 	public Fluid getFlowingFluid() {
 		return ModFluids.HYDROGEN_FLOWING.get();
 	}
@@ -47,46 +53,7 @@ public abstract class HydrogenFluid extends FlowingFluid {
 	public Item getFilledBucket() {
 		return ModItems.HYDROGEN_BUCKET.get();
 	}
-/*	
-	@Override
-	protected void flowAround(IWorld worldIn, BlockPos pos, FluidState stateIn) {
-	      if (!stateIn.isEmpty()) {
-	         BlockState blockstate = worldIn.getBlockState(pos);
-	         BlockPos blockpos = pos.up();
-	         BlockState blockstate1 = worldIn.getBlockState(blockpos);
-	         FluidState fluidstate = this.calculateCorrectFlowingState(worldIn, blockpos, blockstate1);
-	         if (this.canFlow(worldIn, pos, blockstate, Direction.UP, blockpos, blockstate1, worldIn.getFluidState(blockpos), fluidstate.getFluid())) {
-	            this.flowInto(worldIn, blockpos, blockstate1, Direction.UP, fluidstate);
-	            
-	         
-	            this.func_207937_a(worldIn, pos, stateIn, blockstate);
-	         }
 
-	      }
-	   }
-	
-	private void func_207937_a(IWorld p_207937_1_, BlockPos p_207937_2_, FluidState p_207937_3_, BlockState p_207937_4_) {
-	      int i = p_207937_3_.getLevel() - this.getLevelDecreasePerBlock(p_207937_1_);
-	      if (p_207937_3_.get(FALLING)) {
-	         i = 7;
-	      }
-
-	      if (i > 0) {
-	         Map<Direction, FluidState> map = this.func_205572_b(p_207937_1_, p_207937_2_, p_207937_4_);
-
-	         for(Entry<Direction, FluidState> entry : map.entrySet()) {
-	            Direction direction = Direction.UP;
-	            FluidState fluidstate = entry.getValue();
-	            BlockPos blockpos = p_207937_2_.offset(direction);
-	            BlockState blockstate = p_207937_1_.getBlockState(blockpos);
-	            if (this.canFlow(p_207937_1_, p_207937_2_, p_207937_4_, direction, blockpos, blockstate, p_207937_1_.getFluidState(blockpos), fluidstate.getFluid())) {
-	               this.flowInto(p_207937_1_, blockpos, blockstate, direction, fluidstate);
-	            }
-	         }
-
-	      }
-	   }
-*/	
 	@Override
 	public void tick(World worldIn, BlockPos pos, FluidState state) {
 		if (state.isSource() && worldIn.isAirBlock(pos.up())) {	
@@ -113,43 +80,7 @@ public abstract class HydrogenFluid extends FlowingFluid {
 
 	      this.flowAround(worldIn, pos, state);
 	   }
-/*	
-	@Override
-	protected FluidState calculateCorrectFlowingState(IWorldReader worldIn, BlockPos pos, BlockState blockStateIn) {
-	      int i = 0;
-	      int j = 0;
 
-	      for(Direction direction : Direction.Plane.HORIZONTAL) {
-	         BlockPos blockpos = pos.offset(direction);
-	         BlockState blockstate = worldIn.getBlockState(blockpos);
-	         FluidState fluidstate = blockstate.getFluidState();
-	         if (fluidstate.getFluid().isEquivalentTo(this)) {
-	            if (fluidstate.isSource() && net.minecraftforge.event.ForgeEventFactory.canCreateFluidSource(worldIn, blockpos, blockstate, this.canSourcesMultiply())) {
-	               ++j;
-	            }
-
-	            i = Math.max(i, fluidstate.getLevel());
-	         }
-	      }
-
-	      if (j >= 2) {
-	         BlockState blockstate1 = worldIn.getBlockState(pos.up());
-	         if (blockstate1.getMaterial().isSolid()) {
-	            return this.getStillFluidState(false);
-	         }
-	      }
-
-	      BlockPos blockpos1 = pos.down();
-	      BlockState blockstate2 = worldIn.getBlockState(blockpos1);
-	      FluidState fluidstate2 = blockstate2.getFluidState();
-	      if (!fluidstate2.isEmpty() && fluidstate2.getFluid().isEquivalentTo(this)) {
-	         return this.getFlowingFluidState(8, true);
-	      } else {
-	         int k = i - this.getLevelDecreasePerBlock(worldIn);
-	         return k <= 0 ? Fluids.EMPTY.getDefaultState() : this.getFlowingFluidState(k, false);
-	      }
-	   }
-*/	
 	@Override
 	public FluidAttributes createAttributes() {
 		return FluidAttributes.builder(new ResourceLocation(MODID, "block/brine_still"), new ResourceLocation(MODID, "block/brine_flow")).build(ModFluids.HYDROGEN_SOURCE.get());
@@ -201,8 +132,7 @@ public abstract class HydrogenFluid extends FlowingFluid {
 		return 3;
 	}
 
-	public boolean canDisplace(FluidState fluidState, IBlockReader blockReader, BlockPos pos, Fluid fluid,
-			Direction direction) {
+	public boolean canDisplace(FluidState fluidState, IBlockReader blockReader, BlockPos pos, Fluid fluid, Direction direction) {
 		return direction == Direction.UP && !fluid.isIn(FluidTags.WATER);
 	}
 
@@ -234,4 +164,16 @@ public abstract class HydrogenFluid extends FlowingFluid {
 			return true;
 		}
 	}
+/*	
+	private static boolean isFullHeight(FluidState fluidStateIn, IBlockReader p_215666_1_, BlockPos blockPosIn) {
+		return fluidStateIn.getFluid().isEquivalentTo(p_215666_1_.getFluidState(blockPosIn.up()).getFluid());
+	}
+	
+	@Override
+	public VoxelShape func_215664_b(FluidState fluidStateIn, IBlockReader p_215664_2_, BlockPos blockPosIn) {
+		return fluidStateIn.getLevel() == 9 && isFullHeight(fluidStateIn, p_215664_2_, blockPosIn) ? VoxelShapes.fullCube() : this.field_215669_f.computeIfAbsent(fluidStateIn, (p_215668_2_) -> {
+			return VoxelShapes.create(0.0D, 1.0D - (double)p_215668_2_.getActualHeight(p_215664_2_, blockPosIn), 0.0D, 1.0D, 1.0D, 1.0D);
+		});
+	}
+	*/
 }

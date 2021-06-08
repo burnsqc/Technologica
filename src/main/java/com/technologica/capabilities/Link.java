@@ -212,7 +212,10 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 	@Override
 	public void createBelt() {
 		this.linkTile1 = this.world.getTileEntity(this.linkPos1);
+		this.linkTile2 = this.world.getTileEntity(this.linkPos2);
 		((LineShaftTileEntity) this.linkTile1).setBeltPos(this.linkPos2);
+		((LineShaftTileEntity) this.linkTile2).setBeltPos(this.linkPos1);
+		((LineShaftTileEntity) this.linkTile1).setRatio();
 		this.world.notifyBlockUpdate(this.linkPos1, this.linkState1, this.linkState1, 3);
 		this.message = "LINK SUCCESS";
 		this.player.sendMessage(new StringTextComponent(message), Util.DUMMY_UUID);	

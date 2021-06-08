@@ -1,5 +1,6 @@
 package com.technologica.client.renderer.tileentity;
 
+import java.util.Arrays;
 import java.util.Random;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -17,13 +18,14 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.inventory.container.PlayerContainer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.vector.Quaternion;
 import net.minecraft.util.math.vector.Vector3f;
 
 public class LineShaftTileEntityRenderer extends TileEntityRenderer<LineShaftTileEntity> {
-
-	public static final ResourceLocation MAGICBLOCK_TEXTURE = new ResourceLocation(Technologica.MODID, "block/pulley");
+	public static final ResourceLocation PULLEY_BELT_TEXTURE = new ResourceLocation(Technologica.MODID, "block/pulley");
 	
 	public LineShaftTileEntityRenderer(TileEntityRendererDispatcher rendererDispatcherIn) {
         super(rendererDispatcherIn);
@@ -35,43 +37,24 @@ public class LineShaftTileEntityRenderer extends TileEntityRenderer<LineShaftTil
 	
     @Override
     public void render(LineShaftTileEntity tileEntity, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay) {  
-    	TextureAtlasSprite sprite = Minecraft.getInstance().getAtlasSpriteGetter(PlayerContainer.LOCATION_BLOCKS_TEXTURE).apply(MAGICBLOCK_TEXTURE);
+    	TextureAtlasSprite sprite = Minecraft.getInstance().getAtlasSpriteGetter(PlayerContainer.LOCATION_BLOCKS_TEXTURE).apply(PULLEY_BELT_TEXTURE);
         IVertexBuilder builder = buffer.getBuffer(RenderType.getSolid());
     	
-    	long time = System.currentTimeMillis() * 6 * tileEntity.getRPM() / 1000;
-    	float angle = time % 360;
     	BlockRendererDispatcher blockrendererdispatcher = Minecraft.getInstance().getBlockRendererDispatcher();
     	BlockModelRenderer blockModelRenderer = blockrendererdispatcher.getBlockModelRenderer();
       	
         matrixStack.push();  
         
 		if (tileEntity.getBeltPos() != null) {
-			float radius1;
-			float radius2;
-			if (tileEntity.getBlockState().get(LineShaftBlock.PULLEY) == 1) {
-				radius1 = 0.25F;
-			} else if (tileEntity.getBlockState().get(LineShaftBlock.PULLEY) == 2) {
-				radius1 = 0.5F;
-			} else {
-				radius1 = 1.0F;
-			}
-			if (tileEntity.getWorld().getTileEntity(tileEntity.getBeltPos()).getBlockState().get(LineShaftBlock.PULLEY) == 1) {
-				radius2 = 0.25F;
-			} else if (tileEntity.getWorld().getTileEntity(tileEntity.getBeltPos()).getBlockState().get(LineShaftBlock.PULLEY) == 2) {
-				radius2 = 0.5F;
-			} else {
-				radius2 = 1.0F;
+			if (tileEntity.getRatio() == 1.0) {
+				
 			}
 			
 			if (tileEntity.getBlockState().get(LineShaftBlock.AXIS) == Direction.Axis.X) {	
 				
-				double a = Math.asin(Math.abs(radius1-radius2)/(Math.abs(tileEntity.getBeltPos().getY()-tileEntity.getPos().getY())^2+Math.abs(tileEntity.getBeltPos().getZ()-tileEntity.getPos().getZ())^2));
-				float yPos1 = (float) ((float) Math.abs(radius1-radius2)*Math.cos(a));
-				float zPos1 = (float) ((float) Math.abs(radius1-radius2)*Math.sin(a));
-				
-				
-				
-				
+//				double a = Math.asin(Math.abs(radius1-radius2)/(Math.abs(tileEntity.getBeltPos().getY()-tileEntity.getPos().getY())^2+Math.abs(tileEntity.getBeltPos().getZ()-tileEntity.getPos().getZ())^2));
+//				float yPos1 = (float) ((float) Math.abs(radius1-radius2)*Math.cos(a));
+//				float zPos1 = (float) ((float) Math.abs(radius1-radius2)*Math.sin(a));
 				
 				add(builder, matrixStack, 0.375f, 0.5f, 0.5f, sprite.getMinU()+0.01f, sprite.getMinV());
 		        add(builder, matrixStack, 0.625f, 0.5f, 0.5f, sprite.getMaxU()-0.005f, sprite.getMinV());
@@ -105,26 +88,55 @@ public class LineShaftTileEntityRenderer extends TileEntityRenderer<LineShaftTil
 			}
 		}
         
-        if (tileEntity.getBlockState().get(LineShaftBlock.AXIS) == Direction.Axis.X) {
-        	matrixStack.translate(0.0, 0.5, 0.5);
-        	matrixStack.rotate(Vector3f.XP.rotationDegrees(angle));
-        	matrixStack.translate(0.0, -0.5, -0.5);
-        } else if (tileEntity.getBlockState().get(LineShaftBlock.AXIS) == Direction.Axis.Y) {
-        	matrixStack.translate(0.5, 0.0, 0.5);
-        	matrixStack.rotate(Vector3f.YP.rotationDegrees(angle));
-        	matrixStack.translate(-0.5, 0.0, -0.5);
-        } else {
-        	matrixStack.translate(0.5, 0.5, 0.0);
-        	matrixStack.rotate(Vector3f.ZP.rotationDegrees(angle));
-        	matrixStack.translate(-0.5, -0.5, 0.0);
-        }
+        matrixStack.translate(offset(tileEntity)[0], offset(tileEntity)[1], offset(tileEntity)[2]);
+        matrixStack.rotate(angle(tileEntity));
+        matrixStack.translate(-offset(tileEntity)[0], -offset(tileEntity)[1], -offset(tileEntity)[2]);
         
         blockModelRenderer.renderModel(tileEntity.getWorld(), blockrendererdispatcher.getModelForState(tileEntity.getBlockState()), tileEntity.getBlockState(), tileEntity.getPos(), matrixStack, buffer.getBuffer(RenderType.getSolid()), false, new Random(), 42, combinedOverlay, tileEntity.getModelData());
-        matrixStack.pop();
+        matrixStack.pop(); 
+    }    
+    
+    private double[] offset(TileEntity tileEntityIn) {
+    	double[] offset = new double[3];
+    	Arrays.fill(offset,  0.5f);
+    	
+    	switch(tileEntityIn.getBlockState().get(LineShaftBlock.AXIS)) {
+		case X:
+			offset[0] = 0.0d;
+			break;
+		case Y:
+			offset[1] = 0.0d;
+			break;
+		case Z:
+			offset[2] = 0.0d;
+			break;
+    	}
+
+    	return offset;
+    }
+    
+    private Quaternion angle(TileEntity tileEntityIn) {
+    	long time = System.currentTimeMillis() * 6 * ((LineShaftTileEntity) tileEntityIn).getRPM() / 1000;
+    	float angle = time % 360;
+    	Vector3f vector = Vector3f.XP;
+    	
+    	switch (tileEntityIn.getBlockState().get(LineShaftBlock.AXIS)) {
+		case X:
+			vector = Vector3f.XP;
+			break;
+		case Y:
+			vector = Vector3f.YP;
+			break;
+		case Z:
+			vector = Vector3f.ZP;
+			break;    	
+    	}
+    
+    	return vector.rotationDegrees(angle);
     }
     
     @Override
     public boolean isGlobalRenderer(LineShaftTileEntity te) {
-    	return true;
-    }
+        return true;
+     }
 }
