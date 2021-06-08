@@ -25,6 +25,7 @@ public class PulleyBeltItem extends Item {
 		super(new Item.Properties().maxStackSize(1).group(ModItemGroup.TECHNOLOGICA_MACHINERY));
 	}
 
+	@Override
 	public ActionResultType onItemUse(ItemUseContext context) {
    		World world = context.getWorld();
    		if (!world.isRemote) {
@@ -33,7 +34,7 @@ public class PulleyBeltItem extends Item {
    			if (state.matchesBlock(ModBlocks.LINE_SHAFT.get()) && state.get(LineShaftBlock.PULLEY) > 0) {
    				PlayerEntity player = context.getPlayer();
    	   			ItemStack stack = player.getHeldItem(context.getHand());
-   	   			ILink linkCapability = stack.getCapability(LinkProvider.LINK_CAP).orElseThrow(null);
+   	   			ILink linkCapability = stack.getCapability(LinkProvider.LINK_CAP).orElseThrow(NullPointerException::new);
    				if (!linkCapability.getLinking()) {
    					linkCapability.startLink(world, pos, state, player);
    				} else {

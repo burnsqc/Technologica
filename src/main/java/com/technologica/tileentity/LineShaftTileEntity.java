@@ -16,13 +16,15 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
 
+import static net.minecraft.block.RotatedPillarBlock.AXIS;
+
 public class LineShaftTileEntity extends TileEntity {
 	
 	private BlockPos beltPos = null;
 	private int rpm = 0;
 	private int torque = 0;
 	private float ratio;
-	
+
 	public LineShaftTileEntity() {
 		super(ModTileEntities.LINE_SHAFT_TILE.get());
 	}
@@ -34,7 +36,7 @@ public class LineShaftTileEntity extends TileEntity {
             mbb.expandTo(new MutableBoundingBox(getBeltPos(), getBeltPos()));
         return AxisAlignedBB.toImmutable(mbb);
     }
-	
+
 	public void setBeltPos(BlockPos posIn) {
 		this.beltPos = posIn;
 	}
@@ -49,8 +51,8 @@ public class LineShaftTileEntity extends TileEntity {
 		TileEntity connection3 = null;
 		
 		this.rpm = rpmIn;
-		
-		switch(getBlockState().get(LineShaftBlock.AXIS)) {
+
+		switch(getBlockState().get(AXIS)) {
 		case X:
 			connection1 = world.getTileEntity(this.getPos().offset(Direction.EAST));
 			connection2 = world.getTileEntity(this.getPos().offset(Direction.WEST));
@@ -62,29 +64,29 @@ public class LineShaftTileEntity extends TileEntity {
 		case Z:
 			connection1 = world.getTileEntity(this.getPos().offset(Direction.SOUTH));
 			connection2 = world.getTileEntity(this.getPos().offset(Direction.NORTH));
-			break;			
+			break;
 		}
 		
-		if (connection1 instanceof LineShaftTileEntity && connection1.getBlockState().get(LineShaftBlock.AXIS) == this.getBlockState().get(LineShaftBlock.AXIS)) {
+		if (connection1 instanceof LineShaftTileEntity && connection1.getBlockState().get(AXIS) == this.getBlockState().get(AXIS)) {
 			if (((LineShaftTileEntity) connection1).getRPM() != this.rpm) {
 				((LineShaftTileEntity) connection1).setRPM(this.rpm);
 			}
-		} else if (connection1 instanceof LineShaftHangerTileEntity && connection1.getBlockState().get(TwelveDirectionBlock.AXIS) == this.getBlockState().get(LineShaftBlock.AXIS)) {
+		} else if (connection1 instanceof LineShaftHangerTileEntity && connection1.getBlockState().get(TwelveDirectionBlock.AXIS) == this.getBlockState().get(AXIS)) {
 			if (((LineShaftHangerTileEntity) connection1).getRPM() != this.rpm) {
 				((LineShaftHangerTileEntity) connection1).setRPM(this.rpm);
-			}	
+			}
 		}
 		
-		if (connection2 instanceof LineShaftTileEntity && connection2.getBlockState().get(LineShaftBlock.AXIS) == this.getBlockState().get(LineShaftBlock.AXIS)) {
+		if (connection2 instanceof LineShaftTileEntity && connection2.getBlockState().get(AXIS) == this.getBlockState().get(AXIS)) {
 			if (((LineShaftTileEntity) connection2).getRPM() != this.rpm) {
 				((LineShaftTileEntity) connection2).setRPM(this.rpm);
 			}
-		} else if (connection2 instanceof LineShaftHangerTileEntity && connection2.getBlockState().get(TwelveDirectionBlock.AXIS) == this.getBlockState().get(LineShaftBlock.AXIS)) {
+		} else if (connection2 instanceof LineShaftHangerTileEntity && connection2.getBlockState().get(TwelveDirectionBlock.AXIS) == this.getBlockState().get(AXIS)) {
 			if (((LineShaftHangerTileEntity) connection2).getRPM() != this.rpm) {
 				((LineShaftHangerTileEntity) connection2).setRPM(this.rpm);
-			}	
+			}
 		}
-		
+
 		if (getBeltPos() != null) {
 			connection3 = world.getTileEntity(this.beltPos);
 			int mult1;
@@ -103,24 +105,24 @@ public class LineShaftTileEntity extends TileEntity {
 			} else {
 				mult2 = 4;
 			}
-			
+
 			if (((LineShaftTileEntity) connection3).getRPM() != this.rpm) {
 				((LineShaftTileEntity) connection3).setRPM(this.rpm * mult1 / mult2);
 			}
 		}
 	}
 	
-	
-	
+
+
 	public int getRPM() {
 		return this.rpm;
 	}
-	
+
 	public void setRatio() {
 		TileEntity connection = world.getTileEntity(this.beltPos);
 		float radius1;
 		float radius2;
-		
+
 		if (this.getBlockState().get(LineShaftBlock.PULLEY) == 1) {
 			radius1 = 0.25f;
 		} else if (this.getBlockState().get(LineShaftBlock.PULLEY) == 2) {
@@ -128,7 +130,7 @@ public class LineShaftTileEntity extends TileEntity {
 		} else {
 			radius1 = 1.0f;
 		}
-		
+
 		if (connection.getBlockState().get(LineShaftBlock.PULLEY) == 1) {
 			radius2 = 0.25f;
 		} else if (this.getBlockState().get(LineShaftBlock.PULLEY) == 2) {
@@ -136,10 +138,10 @@ public class LineShaftTileEntity extends TileEntity {
 		} else {
 			radius2 = 1.0f;
 		}
-			
-		this.ratio =  radius1/radius2; 
+
+		this.ratio =  radius1/radius2;
 	}
-		
+
 	public float getRatio() {
 		return this.ratio;
 	}
@@ -152,6 +154,7 @@ public class LineShaftTileEntity extends TileEntity {
 		return torque;
 	}
 	
+	@Override
 	@Nullable
 	public SUpdateTileEntityPacket getUpdatePacket() {
 		return new SUpdateTileEntityPacket(this.pos, 10, this.getUpdateTag());

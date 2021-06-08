@@ -13,7 +13,6 @@ import net.minecraft.world.gen.feature.ConfiguredFeature;
 public class ThunderousConductorTree extends Tree {
 	@Nullable
 	protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean largeHive) {
-		new ModConfiguredFeatures();
 		return ModConfiguredFeatures.THUNDEROUS_CONDUCTOR_TREE_FEATURE;
 	}
 }

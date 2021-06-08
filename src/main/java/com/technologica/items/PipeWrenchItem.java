@@ -32,6 +32,7 @@ public class PipeWrenchItem extends ToolItem {
 		super((float) attackDamageIn, attackSpeedIn, tier, EFFECTIVE_ON, builder.addToolType(net.minecraftforge.common.ToolType.PICKAXE, tier.getHarvestLevel()));
 	}
 
+	@Override
 	public boolean canHarvestBlock(BlockState blockIn) {
 		int i = this.getTier().getHarvestLevel();
 		if (blockIn.getHarvestTool() == net.minecraftforge.common.ToolType.PICKAXE) {
@@ -41,6 +42,7 @@ public class PipeWrenchItem extends ToolItem {
 		return material == Material.ROCK || material == Material.IRON || material == Material.ANVIL;
 	}
 
+	@Override
 	public float getDestroySpeed(ItemStack stack, BlockState state) {
 		Material material = state.getMaterial();
 		return material != Material.IRON && material != Material.ANVIL && material != Material.ROCK
@@ -48,6 +50,7 @@ public class PipeWrenchItem extends ToolItem {
 				: this.efficiency;
 	}
 
+	@Override
 	public ActionResultType onItemUse(ItemUseContext context) {
    		World world = context.getWorld();
    		if (!world.isRemote) {
@@ -56,7 +59,7 @@ public class PipeWrenchItem extends ToolItem {
    			if (state.matchesBlock(ModBlocks.LINE_SHAFT_HANGER.get())) {
    				PlayerEntity player = context.getPlayer();
    	   			ItemStack stack = player.getHeldItem(context.getHand());
-   	   			ILink linkCapability = stack.getCapability(LinkProvider.LINK_CAP).orElseThrow(null);
+   	   			ILink linkCapability = stack.getCapability(LinkProvider.LINK_CAP).orElseThrow(NullPointerException::new);
    				if (!linkCapability.getLinking()) {
    					linkCapability.startLink(world, pos, state, player);
    				} else {

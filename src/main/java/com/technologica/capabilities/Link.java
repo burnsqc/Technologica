@@ -26,7 +26,10 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.util.INBTSerializable;
 
+import static net.minecraft.block.RotatedPillarBlock.AXIS;
+
 public class Link implements ILink, INBTSerializable<CompoundNBT> {
+	public static final String BOOLEAN_LINKING_KEY = "linking";
 	private boolean linking = false;
 	private World world;
 	private BlockPos linkPos1 = BlockPos.ZERO;
@@ -86,17 +89,17 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 		boolean bool = false;
 		switch (this.axis) {
 		case X:
-			bool = (this.linkPos1.getY() == this.linkPos2.getY() && this.linkPos1.getZ() == this.linkPos2.getZ()) ? true : false;
+			bool = this.linkPos1.getY() == this.linkPos2.getY() && this.linkPos1.getZ() == this.linkPos2.getZ();
 			this.direction = this.linkPos1.getX() > this.linkPos2.getX() ? Direction.WEST : Direction.EAST;
 			this.distance = Math.abs(this.linkPos1.getX() - this.linkPos2.getX());
 			break;
 		case Y:
-			bool = (this.linkPos1.getX() == this.linkPos2.getX() && this.linkPos1.getZ() == this.linkPos2.getZ()) ? true : false;
+			bool = this.linkPos1.getX() == this.linkPos2.getX() && this.linkPos1.getZ() == this.linkPos2.getZ();
 			this.direction = this.linkPos1.getY() > this.linkPos2.getY() ? Direction.DOWN : Direction.UP;
 			this.distance = Math.abs(this.linkPos1.getY() - this.linkPos2.getY());
 			break;
 		case Z:
-			bool = (this.linkPos1.getX() == this.linkPos2.getX() && this.linkPos1.getY() == this.linkPos2.getY()) ? true : false;
+			bool = this.linkPos1.getX() == this.linkPos2.getX() && this.linkPos1.getY() == this.linkPos2.getY();
 			this.direction = this.linkPos1.getZ() > this.linkPos2.getZ() ? Direction.NORTH : Direction.SOUTH;
 			this.distance = Math.abs(this.linkPos1.getZ() - this.linkPos2.getZ());
 			break;
@@ -113,17 +116,17 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 		boolean bool = false;
 		switch (this.axis) {
 		case X:
-			bool = this.linkPos1.getX() == this.linkPos2.getX() ? true : false;
+			bool = this.linkPos1.getX() == this.linkPos2.getX();
 			this.direction = this.linkPos1.getX() > this.linkPos2.getX() ? Direction.WEST : Direction.EAST;
 			this.distance = Math.abs(this.linkPos1.getX() - this.linkPos2.getX());
 			break;
 		case Y:
-			bool = this.linkPos1.getY() == this.linkPos2.getY() ? true : false;
+			bool = this.linkPos1.getY() == this.linkPos2.getY();
 			this.direction = this.linkPos1.getY() > this.linkPos2.getY() ? Direction.DOWN : Direction.UP;
 			this.distance = Math.abs(this.linkPos1.getY() - this.linkPos2.getY());
 			break;
 		case Z:
-			bool = this.linkPos1.getZ() == this.linkPos2.getZ() ? true : false;
+			bool = this.linkPos1.getZ() == this.linkPos2.getZ();
 			this.direction = this.linkPos1.getZ() > this.linkPos2.getZ() ? Direction.NORTH : Direction.SOUTH;
 			this.distance = Math.abs(this.linkPos1.getZ() - this.linkPos2.getZ());
 			break;
@@ -155,8 +158,8 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 		boolean bool1 = false;
 		boolean bool2 = false;
 		
-		bool1 = this.distance < 10 ? true : false;
-		bool2 = this.distance > 1 ? true : false;
+		bool1 = this.distance < 10;
+		bool2 = this.distance > 1;
 		if (!bool1) {
 			this.message = "LINK FAILED: DISTANCE TOO FAR";
 			this.player.sendMessage(new StringTextComponent(message), Util.DUMMY_UUID);
@@ -186,7 +189,7 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 		        count = count + stack.getCount();
 		    }    
 		}
-		bool = this.distance - 1 + shaft1 + shaft2 > count ? false : true;
+		bool = this.distance - 1 + shaft1 + shaft2 <= count;
 		if (!bool) {
 			this.message = "LINK FAILED: MATERIAL SHORTAGE";
 			this.player.sendMessage(new StringTextComponent(message), Util.DUMMY_UUID);
@@ -202,8 +205,8 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 		this.world.notifyBlockUpdate(this.linkPos2, this.linkState2, this.linkState2, 3);
 		
 		for (int k = 1; k < this.distance; k++) {
-			this.world.setBlockState(this.linkPos1.offset(this.direction, k), ModBlocks.LINE_SHAFT.get().getDefaultState().with(LineShaftBlock.AXIS, this.axis), 3);
-			this.world.notifyBlockUpdate(this.linkPos1.offset(this.direction, k), Blocks.AIR.getDefaultState(), ModBlocks.LINE_SHAFT.get().getDefaultState().with(LineShaftBlock.AXIS, this.axis), 3);
+			this.world.setBlockState(this.linkPos1.offset(this.direction, k), ModBlocks.LINE_SHAFT.get().getDefaultState().with(AXIS, this.axis), 3);
+			this.world.notifyBlockUpdate(this.linkPos1.offset(this.direction, k), Blocks.AIR.getDefaultState(), ModBlocks.LINE_SHAFT.get().getDefaultState().with(AXIS, this.axis), 3);
 		}
 		this.message = "LINK SUCCESS";
 		this.player.sendMessage(new StringTextComponent(message), Util.DUMMY_UUID);	
@@ -224,20 +227,20 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 	@Override
 	public CompoundNBT serializeNBT() {
 		CompoundNBT nbt = new CompoundNBT();
-		nbt.putBoolean("linking", this.linking);
+		nbt.putBoolean(BOOLEAN_LINKING_KEY, this.linking);
 		return nbt;
 	}
 
 	@Override
 	public void deserializeNBT(CompoundNBT nbt) {
-		this.linking = nbt.getBoolean("linking");
+		this.linking = nbt.getBoolean(BOOLEAN_LINKING_KEY);
 	}
 	
 	public static class LinkStorage implements IStorage<ILink> {
 		@Override
 		public INBT writeNBT(Capability<ILink> capability, ILink instance, Direction side) {
 			CompoundNBT nbt = new CompoundNBT();
-			nbt.putBoolean("linking", instance.getLinking());
+			nbt.putBoolean(BOOLEAN_LINKING_KEY, instance.getLinking());
 			return nbt;
 		}
 

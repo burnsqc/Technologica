@@ -25,6 +25,10 @@ import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
 
 public class ModConfiguredFeatures {
+
+	private ModConfiguredFeatures() {
+		// use private constructor to hide default constructor
+	}
 	
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> BANANA_TREE_FEATURE = register(
 			"banana_tree_feature",

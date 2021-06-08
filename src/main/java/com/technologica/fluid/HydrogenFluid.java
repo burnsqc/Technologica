@@ -2,15 +2,10 @@ package com.technologica.fluid;
 
 import static com.technologica.Technologica.MODID;
 
-import java.util.Map;
 import java.util.Random;
-
 import javax.annotation.Nullable;
-
-import com.google.common.collect.Maps;
 import com.technologica.block.ModBlocks;
 import com.technologica.items.ModItems;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -29,8 +24,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
@@ -40,32 +33,34 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fluids.FluidAttributes;
 
 public abstract class HydrogenFluid extends FlowingFluid {
-	private final Map<FluidState, VoxelShape> field_215669_f = Maps.newIdentityHashMap();
-	
+
+	@Override
 	public Fluid getFlowingFluid() {
 		return ModFluids.HYDROGEN_FLOWING.get();
 	}
 
+	@Override
 	public Fluid getStillFluid() {
 		return ModFluids.HYDROGEN_SOURCE.get();
 	}
 
+	@Override
 	public Item getFilledBucket() {
 		return ModItems.HYDROGEN_BUCKET.get();
 	}
 
 	@Override
 	public void tick(World worldIn, BlockPos pos, FluidState state) {
-		if (state.isSource() && worldIn.isAirBlock(pos.up())) {	
+		if (state.isSource() && worldIn.isAirBlock(pos.up())) {
 			worldIn.setBlockState(pos.up(), state.getBlockState(), 3);
 	    	worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
 		}
 		if (!state.isSource()) {
 			FluidState fluidstate = this.calculateCorrectFlowingState(worldIn, pos, worldIn.getBlockState(pos));
 	        	int i = this.func_215667_a(worldIn, pos, state, fluidstate);
-	        	
-	         
-	         
+
+
+
 	         if (fluidstate.isEmpty()) {
 	            state = fluidstate;
 //	            worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
@@ -86,9 +81,10 @@ public abstract class HydrogenFluid extends FlowingFluid {
 		return FluidAttributes.builder(new ResourceLocation(MODID, "block/brine_still"), new ResourceLocation(MODID, "block/brine_flow")).build(ModFluids.HYDROGEN_SOURCE.get());
 	}
 
+	@Override
 	@OnlyIn(Dist.CLIENT)
 	public void animateTick(World worldIn, BlockPos pos, FluidState state, Random random) {
-		if (!state.isSource() && !state.get(FALLING)) {
+		if (!state.isSource() && Boolean.FALSE.equals(state.get(FALLING))) {
 			if (random.nextInt(64) == 0) {
 				worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_WATER_AMBIENT, SoundCategory.BLOCKS, random.nextFloat() * 0.25F + 0.75F, random.nextFloat() + 0.5F, false);
 			}
@@ -97,83 +93,86 @@ public abstract class HydrogenFluid extends FlowingFluid {
 		}
 	}
 
+	@Override
 	@Nullable
 	@OnlyIn(Dist.CLIENT)
 	public IParticleData getDripParticleData() {
 		return ParticleTypes.DRIPPING_WATER;
 	}
 
+	@Override
 	protected boolean canSourcesMultiply() {
 		return false;
 	}
 
+	@Override
 	protected void beforeReplacingBlock(IWorld worldIn, BlockPos pos, BlockState state) {
 		TileEntity tileentity = state.hasTileEntity() ? worldIn.getTileEntity(pos) : null;
 		Block.spawnDrops(state, worldIn, pos, tileentity);
 	}
 
+	@Override
 	public int getSlopeFindDistance(IWorldReader worldIn) {
 		return 4;
 	}
 
+	@Override
 	public BlockState getBlockState(FluidState state) {
 		return ModBlocks.HYDROGEN.get().getDefaultState().with(FlowingFluidBlock.LEVEL, Integer.valueOf(getLevelFromState(state)));
 	}
 
+	@Override
 	public boolean isEquivalentTo(Fluid fluidIn) {
 		return fluidIn == ModFluids.HYDROGEN_SOURCE.get() || fluidIn == ModFluids.HYDROGEN_FLOWING.get();
 	}
 
+	@Override
 	public int getLevelDecreasePerBlock(IWorldReader worldIn) {
 		return 1;
 	}
 
+	@Override
 	public int getTickRate(IWorldReader p_205569_1_) {
 		return 3;
 	}
 
+	@Override
 	public boolean canDisplace(FluidState fluidState, IBlockReader blockReader, BlockPos pos, Fluid fluid, Direction direction) {
 		return direction == Direction.UP && !fluid.isIn(FluidTags.WATER);
 	}
 
+	@Override
 	protected float getExplosionResistance() {
 		return 100.0F;
 	}
 
 	public static class Flowing extends HydrogenFluid {
+		@Override
 		protected void fillStateContainer(StateContainer.Builder<Fluid, FluidState> builder) {
 			super.fillStateContainer(builder);
 			builder.add(LEVEL_1_8);
 		}
 
+		@Override
 		public int getLevel(FluidState state) {
 			return state.get(LEVEL_1_8);
 		}
 
+		@Override
 		public boolean isSource(FluidState state) {
 			return false;
 		}
 	}
 
 	public static class Source extends HydrogenFluid {
+		@Override
 		public int getLevel(FluidState state) {
 			return 8;
 		}
 
+		@Override
 		public boolean isSource(FluidState state) {
 			return true;
 		}
 	}
-/*	
-	private static boolean isFullHeight(FluidState fluidStateIn, IBlockReader p_215666_1_, BlockPos blockPosIn) {
-		return fluidStateIn.getFluid().isEquivalentTo(p_215666_1_.getFluidState(blockPosIn.up()).getFluid());
-	}
-	
-	@Override
-	public VoxelShape func_215664_b(FluidState fluidStateIn, IBlockReader p_215664_2_, BlockPos blockPosIn) {
-		return fluidStateIn.getLevel() == 9 && isFullHeight(fluidStateIn, p_215664_2_, blockPosIn) ? VoxelShapes.fullCube() : this.field_215669_f.computeIfAbsent(fluidStateIn, (p_215668_2_) -> {
-			return VoxelShapes.create(0.0D, 1.0D - (double)p_215668_2_.getActualHeight(p_215664_2_, blockPosIn), 0.0D, 1.0D, 1.0D, 1.0D);
-		});
-	}
-	*/
 }

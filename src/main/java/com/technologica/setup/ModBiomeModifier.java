@@ -14,7 +14,11 @@ import net.minecraftforge.event.world.BiomeLoadingEvent;
 
 public class ModBiomeModifier {
 
-	public static void init(final BiomeLoadingEvent biome) 
+	private ModBiomeModifier() {
+		// hide constructor for class with only static members
+	}
+
+	public static void init(final BiomeLoadingEvent biome)
 	{
 		if (biome.getCategory().equals(Biome.Category.JUNGLE)) {
 	    	biome.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION).add(() -> 

@@ -13,7 +13,6 @@ import net.minecraft.world.gen.feature.ConfiguredFeature;
 public class AncientAmbrosiaTree extends Tree {
 	@Nullable
 	protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean largeHive) {
-		new ModConfiguredFeatures();
 		return ModConfiguredFeatures.ANCIENT_AMBROSIA_TREE_FEATURE;
 	}
 }

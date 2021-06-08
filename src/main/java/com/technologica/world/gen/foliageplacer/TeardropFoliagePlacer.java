@@ -18,14 +18,14 @@ import net.minecraft.world.gen.foliageplacer.FoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.FoliagePlacerType;
 
 public class TeardropFoliagePlacer extends FoliagePlacer {
-	public static final Codec<TeardropFoliagePlacer> teardropCodec = RecordCodecBuilder.create((p_236742_0_) -> {return func_236740_a_(p_236742_0_).apply(p_236742_0_, TeardropFoliagePlacer::new);});
+	public static final Codec<TeardropFoliagePlacer> teardropCodec = RecordCodecBuilder.create(p_236742_0_ -> func_236740_a_(p_236742_0_).apply(p_236742_0_, TeardropFoliagePlacer::new));
 	
 	protected final int layersBelowTop;
 	protected boolean largeTree;
 
 	protected static <P extends TeardropFoliagePlacer> P3<Mu<P>, FeatureSpread, FeatureSpread, Integer> func_236740_a_(Instance<P> p_236740_0_) 
 	{
-		return func_242830_b(p_236740_0_).and(Codec.intRange(0, 16).fieldOf("height").forGetter((p_236741_0_) -> {return p_236741_0_.layersBelowTop;}));
+		return func_242830_b(p_236740_0_).and(Codec.intRange(0, 16).fieldOf("height").forGetter(p_236741_0_ -> p_236741_0_.layersBelowTop));
 	}
 
 	public TeardropFoliagePlacer(FeatureSpread p_i241995_1_, FeatureSpread p_i241995_2_, int layersBelowTopIn) {
@@ -34,12 +34,14 @@ public class TeardropFoliagePlacer extends FoliagePlacer {
 		this.largeTree = false;
 	}
 
+	@Override
 	protected FoliagePlacerType<?> getPlacerType() {
 		return ModFoliagePlacers.TEARDROP.get();
 	}
 
 	//Generate foliage
-	protected void func_230372_a_(IWorldGenerationReader worldIn, Random randomIn, BaseTreeFeatureConfig configIn, int p_230372_4_, FoliagePlacer.Foliage p_230372_5_, int layersBelowTop, int diameter, Set<BlockPos> p_230372_8_, int topLayer, MutableBoundingBox boundingBoxIn) 
+	@Override
+	protected void func_230372_a_(IWorldGenerationReader worldIn, Random randomIn, BaseTreeFeatureConfig configIn, int p_230372_4_, FoliagePlacer.Foliage p_230372_5_, int layersBelowTop, int diameter, Set<BlockPos> p_230372_8_, int topLayer, MutableBoundingBox boundingBoxIn)
 	{
 		for (int layer = topLayer + 3; layer >= topLayer + 3 - layersBelowTop; --layer) 
 		{
@@ -49,6 +51,7 @@ public class TeardropFoliagePlacer extends FoliagePlacer {
 	}
 
 	//Adjust number of layers based upon trunk height
+	@Override
 	public int func_230374_a_(Random randomIn, int i, BaseTreeFeatureConfig configIn) {
 		int trim;
 		if (i == 7) {
@@ -62,27 +65,28 @@ public class TeardropFoliagePlacer extends FoliagePlacer {
 	}
 
 	//Prune foliage
+	@Override
 	protected boolean func_230373_a_(Random randomIn, int relativeZ, int relativeY, int relativeX, int p_230373_5_, boolean p_230373_6_) {
 		if (relativeY>=2) {
-			return (relativeX + relativeZ >= 1);
+			return relativeX + relativeZ >= 1;
 		} else if (relativeY==1) {
-			return (relativeX + relativeZ >= 2);
+			return relativeX + relativeZ >= 2;
 		} else if (relativeY==0) { 
-			return (relativeX >= 2 || relativeZ >= 2);	
+			return relativeX >= 2 || relativeZ >= 2;
 		} else if (relativeY==-1) { 
-			return (relativeX + relativeZ >= 3);
+			return relativeX + relativeZ >= 3;
 		} else if (relativeY==-2) { 
-			return (relativeX + relativeZ >= 4 || relativeX >= 3 || relativeZ >= 3);
+			return relativeX + relativeZ >= 4 || relativeX >= 3 || relativeZ >= 3;
 		} else if (relativeY==-3) {
-			if (largeTree == true) {
-				return (relativeX + relativeZ >= 5);
+			if (largeTree) {
+				return relativeX + relativeZ >= 5;
 			} else {
-				return (relativeX >= 2 || relativeZ >= 2);
+				return relativeX >= 2 || relativeZ >= 2;
 			}
 		} else if (relativeY==-4) {
-			return (relativeX + relativeZ >= 4 || relativeX >= 3 || relativeZ >= 3);
+			return relativeX + relativeZ >= 4 || relativeX >= 3 || relativeZ >= 3;
 		} else if (relativeY==-5) {
-			return (relativeX >= 2 || relativeZ >= 2);
+			return relativeX >= 2 || relativeZ >= 2;
 		} else {
 			return false;
 		}		

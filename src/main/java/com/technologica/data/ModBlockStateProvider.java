@@ -19,6 +19,9 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class ModBlockStateProvider extends BlockStateProvider {
 
+	public static final String CRYSTAL_TEXTURE_KEY = "crystal";
+	public static final String BLOCK = "block";
+
 	public ModBlockStateProvider(DataGenerator generatorIn, ExistingFileHelper helperIn) {
 		super(generatorIn, Technologica.MODID, helperIn);
 	}
@@ -109,7 +112,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	
 	public ModelFile flowerPotCross(Block block) {
 		ResourceLocation location = block.getRegistryName();
-		String flowerPath = location.getPath().replaceAll("potted_", "");
+		String flowerPath = null;
+		if (location != null) {
+			flowerPath = location.getPath().replaceAll("potted_", "");
+		}
 		return models().singleTexture(name(block), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + flowerPath));
     }
 	
@@ -119,12 +125,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	
 	public ModelFile hexagonal_crystal(Block block) {
 		ResourceLocation location = block.getRegistryName();
-		return models().singleTexture(name(block), modLoc("hexagonal_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block" + "/" + location.getPath()));
+		return models().singleTexture(name(block), modLoc("hexagonal_crystal"), CRYSTAL_TEXTURE_KEY, blockTexture(block)).texture(CRYSTAL_TEXTURE_KEY, new ResourceLocation(location.getNamespace(), BLOCK + "/" + location.getPath()));
     }
 	
 	public ModelFile cubic_crystal(Block block) {
 		ResourceLocation location = block.getRegistryName();
-		return models().singleTexture(name(block), modLoc("cubic_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block" + "/" + location.getPath()));
+		return models().singleTexture(name(block), modLoc("cubic_crystal"), CRYSTAL_TEXTURE_KEY, blockTexture(block)).texture(CRYSTAL_TEXTURE_KEY, new ResourceLocation(location.getNamespace(), BLOCK + "/" + location.getPath()));
     }
 	
 	public ModelFile display(Block block) {
@@ -203,11 +209,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	
 	public void crossBlockItem(Block block, ModelFile model) {
 		ResourceLocation location = block.getRegistryName();
-        itemModels().getBuilder(location.getPath()).parent(model).texture("layer0", new ResourceLocation(location.getNamespace(), "block" + "/" + location.getPath()));
+        itemModels().getBuilder(location.getPath()).parent(model).texture("layer0", new ResourceLocation(location.getNamespace(), BLOCK + "/" + location.getPath()));
     }
 	
 	public void crystalBlockItem(Block block, ModelFile model) {
 		ResourceLocation location = block.getRegistryName();
-        itemModels().getBuilder(location.getPath()).parent(model).texture("layer0", new ResourceLocation(location.getNamespace(), "block" + "/" + location.getPath()));
+        itemModels().getBuilder(location.getPath()).parent(model).texture("layer0", new ResourceLocation(location.getNamespace(), BLOCK + "/" + location.getPath()));
     }
 }

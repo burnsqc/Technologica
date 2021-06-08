@@ -8,7 +8,6 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.technologica.Technologica;
 import com.technologica.block.LineShaftBlock;
 import com.technologica.tileentity.LineShaftTileEntity;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockModelRenderer;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
@@ -23,6 +22,10 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Quaternion;
 import net.minecraft.util.math.vector.Vector3f;
+
+import java.util.Random;
+
+import static net.minecraft.block.RotatedPillarBlock.AXIS;
 
 public class LineShaftTileEntityRenderer extends TileEntityRenderer<LineShaftTileEntity> {
 	public static final ResourceLocation PULLEY_BELT_TEXTURE = new ResourceLocation(Technologica.MODID, "block/pulley");
@@ -39,19 +42,19 @@ public class LineShaftTileEntityRenderer extends TileEntityRenderer<LineShaftTil
     public void render(LineShaftTileEntity tileEntity, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay) {  
     	TextureAtlasSprite sprite = Minecraft.getInstance().getAtlasSpriteGetter(PlayerContainer.LOCATION_BLOCKS_TEXTURE).apply(PULLEY_BELT_TEXTURE);
         IVertexBuilder builder = buffer.getBuffer(RenderType.getSolid());
-    	
+
     	BlockRendererDispatcher blockrendererdispatcher = Minecraft.getInstance().getBlockRendererDispatcher();
     	BlockModelRenderer blockModelRenderer = blockrendererdispatcher.getBlockModelRenderer();
-      	
-        matrixStack.push();  
-        
+
+        matrixStack.push();
+
 		if (tileEntity.getBeltPos() != null) {
 			if (tileEntity.getRatio() == 1.0) {
-				
+
 			}
-			
-			if (tileEntity.getBlockState().get(LineShaftBlock.AXIS) == Direction.Axis.X) {	
-				
+
+			if (tileEntity.getBlockState().get(LineShaftBlock.AXIS) == Direction.Axis.X) {
+
 //				double a = Math.asin(Math.abs(radius1-radius2)/(Math.abs(tileEntity.getBeltPos().getY()-tileEntity.getPos().getY())^2+Math.abs(tileEntity.getBeltPos().getZ()-tileEntity.getPos().getZ())^2));
 //				float yPos1 = (float) ((float) Math.abs(radius1-radius2)*Math.cos(a));
 //				float zPos1 = (float) ((float) Math.abs(radius1-radius2)*Math.sin(a));
@@ -91,15 +94,15 @@ public class LineShaftTileEntityRenderer extends TileEntityRenderer<LineShaftTil
         matrixStack.translate(offset(tileEntity)[0], offset(tileEntity)[1], offset(tileEntity)[2]);
         matrixStack.rotate(angle(tileEntity));
         matrixStack.translate(-offset(tileEntity)[0], -offset(tileEntity)[1], -offset(tileEntity)[2]);
-        
+
         blockModelRenderer.renderModel(tileEntity.getWorld(), blockrendererdispatcher.getModelForState(tileEntity.getBlockState()), tileEntity.getBlockState(), tileEntity.getPos(), matrixStack, buffer.getBuffer(RenderType.getSolid()), false, new Random(), 42, combinedOverlay, tileEntity.getModelData());
-        matrixStack.pop(); 
-    }    
-    
+        matrixStack.pop();
+    }
+
     private double[] offset(TileEntity tileEntityIn) {
     	double[] offset = new double[3];
     	Arrays.fill(offset,  0.5f);
-    	
+
     	switch(tileEntityIn.getBlockState().get(LineShaftBlock.AXIS)) {
 		case X:
 			offset[0] = 0.0d;
@@ -114,12 +117,12 @@ public class LineShaftTileEntityRenderer extends TileEntityRenderer<LineShaftTil
 
     	return offset;
     }
-    
+
     private Quaternion angle(TileEntity tileEntityIn) {
     	long time = System.currentTimeMillis() * 6 * ((LineShaftTileEntity) tileEntityIn).getRPM() / 1000;
     	float angle = time % 360;
     	Vector3f vector = Vector3f.XP;
-    	
+
     	switch (tileEntityIn.getBlockState().get(LineShaftBlock.AXIS)) {
 		case X:
 			vector = Vector3f.XP;
@@ -129,12 +132,12 @@ public class LineShaftTileEntityRenderer extends TileEntityRenderer<LineShaftTil
 			break;
 		case Z:
 			vector = Vector3f.ZP;
-			break;    	
+			break;
     	}
-    
+
     	return vector.rotationDegrees(angle);
     }
-    
+
     @Override
     public boolean isGlobalRenderer(LineShaftTileEntity te) {
         return true;
