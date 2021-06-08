@@ -14,7 +14,11 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 
 public class GatherData {
-	
+
+	private GatherData() {
+		// hide constructor for class with only static members
+	}
+
 	public static void init(final GatherDataEvent event) {
 		DataGenerator generator = event.getGenerator();
 		ExistingFileHelper helper = event.getExistingFileHelper();

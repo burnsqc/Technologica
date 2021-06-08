@@ -32,7 +32,7 @@ public class LineShaftHangerTileEntityRenderer extends TileEntityRenderer<LineSh
     		float angle = time % 360;
     		BlockRendererDispatcher blockrendererdispatcher = Minecraft.getInstance().getBlockRendererDispatcher();
     		BlockModelRenderer blockModelRenderer = blockrendererdispatcher.getBlockModelRenderer();
-    		BlockState state = ModBlocks.LINE_SHAFT.get().getDefaultState();
+	      BlockState state; // this state assignment will always be overwritten later in the method
     		LineShaftTileEntity tileEntity2 = new LineShaftTileEntity();
     		
     		matrixStack.push();  

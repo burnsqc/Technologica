@@ -36,14 +36,17 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fluids.FluidAttributes;
 
 public abstract class HydrogenFluid extends FlowingFluid {
+	@Override
 	public Fluid getFlowingFluid() {
 		return ModFluids.HYDROGEN_FLOWING.get();
 	}
 
+	@Override
 	public Fluid getStillFluid() {
 		return ModFluids.HYDROGEN_SOURCE.get();
 	}
 
+	@Override
 	public Item getFilledBucket() {
 		return ModItems.HYDROGEN_BUCKET.get();
 	}
@@ -155,9 +158,10 @@ public abstract class HydrogenFluid extends FlowingFluid {
 		return FluidAttributes.builder(new ResourceLocation(MODID, "block/brine_still"), new ResourceLocation(MODID, "block/brine_flow")).build(ModFluids.HYDROGEN_SOURCE.get());
 	}
 
+	@Override
 	@OnlyIn(Dist.CLIENT)
 	public void animateTick(World worldIn, BlockPos pos, FluidState state, Random random) {
-		if (!state.isSource() && !state.get(FALLING)) {
+		if (!state.isSource() && Boolean.FALSE.equals(state.get(FALLING))) {
 			if (random.nextInt(64) == 0) {
 				worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_WATER_AMBIENT, SoundCategory.BLOCKS, random.nextFloat() * 0.25F + 0.75F, random.nextFloat() + 0.5F, false);
 			}
@@ -166,70 +170,85 @@ public abstract class HydrogenFluid extends FlowingFluid {
 		}
 	}
 
+	@Override
 	@Nullable
 	@OnlyIn(Dist.CLIENT)
 	public IParticleData getDripParticleData() {
 		return ParticleTypes.DRIPPING_WATER;
 	}
 
+	@Override
 	protected boolean canSourcesMultiply() {
 		return false;
 	}
 
+	@Override
 	protected void beforeReplacingBlock(IWorld worldIn, BlockPos pos, BlockState state) {
 		TileEntity tileentity = state.hasTileEntity() ? worldIn.getTileEntity(pos) : null;
 		Block.spawnDrops(state, worldIn, pos, tileentity);
 	}
 
+	@Override
 	public int getSlopeFindDistance(IWorldReader worldIn) {
 		return 4;
 	}
 
+	@Override
 	public BlockState getBlockState(FluidState state) {
 		return ModBlocks.HYDROGEN.get().getDefaultState().with(FlowingFluidBlock.LEVEL, Integer.valueOf(getLevelFromState(state)));
 	}
 
+	@Override
 	public boolean isEquivalentTo(Fluid fluidIn) {
 		return fluidIn == ModFluids.HYDROGEN_SOURCE.get() || fluidIn == ModFluids.HYDROGEN_FLOWING.get();
 	}
 
+	@Override
 	public int getLevelDecreasePerBlock(IWorldReader worldIn) {
 		return 1;
 	}
 
+	@Override
 	public int getTickRate(IWorldReader p_205569_1_) {
 		return 3;
 	}
 
+	@Override
 	public boolean canDisplace(FluidState fluidState, IBlockReader blockReader, BlockPos pos, Fluid fluid,
-			Direction direction) {
+	                           Direction direction) {
 		return direction == Direction.UP && !fluid.isIn(FluidTags.WATER);
 	}
 
+	@Override
 	protected float getExplosionResistance() {
 		return 100.0F;
 	}
 
 	public static class Flowing extends HydrogenFluid {
+		@Override
 		protected void fillStateContainer(StateContainer.Builder<Fluid, FluidState> builder) {
 			super.fillStateContainer(builder);
 			builder.add(LEVEL_1_8);
 		}
 
+		@Override
 		public int getLevel(FluidState state) {
 			return state.get(LEVEL_1_8);
 		}
 
+		@Override
 		public boolean isSource(FluidState state) {
 			return false;
 		}
 	}
 
 	public static class Source extends HydrogenFluid {
+		@Override
 		public int getLevel(FluidState state) {
 			return 8;
 		}
 
+		@Override
 		public boolean isSource(FluidState state) {
 			return true;
 		}

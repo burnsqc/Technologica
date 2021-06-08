@@ -140,6 +140,8 @@ public class OstrichModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 		}
 		this.body.rotationPointY = 11.0F;
 	}
+
+	@Override
 	public void setLivingAnimations(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
 		super.setLivingAnimations(entityIn, limbSwing, limbSwingAmount, partialTick);
 		float f = MathHelper.interpolateAngle(entityIn.prevRenderYawOffset, entityIn.renderYawOffset, partialTick);

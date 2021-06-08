@@ -69,12 +69,14 @@ public class GrizzlyBearEntity extends PolarBearEntity implements IAngerable {
 	}
 
 	//Spawning
-	public AgeableEntity createChild(ServerWorld serverWorldIn, AgeableEntity mate) {
+	@Override
+   public AgeableEntity createChild(ServerWorld serverWorldIn, AgeableEntity mate) {
 		return ModEntities.GRIZZLY_BEAR.get().create(serverWorldIn);
 	}
 
 	//Breeding
-	public boolean isBreedingItem(ItemStack stack) {
+	@Override
+   public boolean isBreedingItem(ItemStack stack) {
 		return false;
 	}
 
@@ -83,7 +85,8 @@ public class GrizzlyBearEntity extends PolarBearEntity implements IAngerable {
 		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 30.0D).createMutableAttribute(Attributes.FOLLOW_RANGE, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 6.0D);
 	}
    
-	protected void registerGoals() {
+	@Override
+   protected void registerGoals() {
 		super.registerGoals();
 		this.goalSelector.addGoal(0, new SwimGoal(this));
 		this.goalSelector.addGoal(1, new GrizzlyBearEntity.MeleeAttackGoal());
@@ -101,50 +104,61 @@ public class GrizzlyBearEntity extends PolarBearEntity implements IAngerable {
 		this.targetSelector.addGoal(5, new ResetAngerGoal<>(this, false));
 	}
 	
-	protected void registerData() {
+	@Override
+   protected void registerData() {
 		super.registerData();
 	    this.dataManager.register(IS_STANDING, false);
 	}
    
    	//Anger
-   	public void func_230258_H__() {
+   	@Override
+      public void func_230258_H__() {
    		this.setAngerTime(angerTimeRange.getRandomWithinRange(this.rand));
    	}
 
-   	public void setAngerTime(int time) {
+   	@Override
+      public void setAngerTime(int time) {
    		this.angerTime = time;
    	}
 
-   	public int getAngerTime() {
+   	@Override
+      public int getAngerTime() {
    		return this.angerTime;
    	}
 
-   	public void setAngerTarget(@Nullable UUID target) {
+   	@Override
+      public void setAngerTarget(@Nullable UUID target) {
    		this.angerTarget = target;
    	}
 
-   	public UUID getAngerTarget() {
+   	@Override
+      public UUID getAngerTarget() {
    		return this.angerTarget;
    	}
 
    	//Audio
-   	protected SoundEvent getAmbientSound() {
+   	@Override
+      protected SoundEvent getAmbientSound() {
    		return this.isChild() ? SoundEvents.ENTITY_POLAR_BEAR_AMBIENT_BABY : SoundEvents.ENTITY_POLAR_BEAR_AMBIENT;
    	}
 
-   	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+   	@Override
+      protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
    		return SoundEvents.ENTITY_POLAR_BEAR_HURT;
    	}
 
-   	protected SoundEvent getDeathSound() {
+   	@Override
+      protected SoundEvent getDeathSound() {
    		return SoundEvents.ENTITY_POLAR_BEAR_DEATH;
    	}
 
-   	protected void playStepSound(BlockPos pos, BlockState blockIn) {
+   	@Override
+      protected void playStepSound(BlockPos pos, BlockState blockIn) {
    		this.playSound(SoundEvents.ENTITY_POLAR_BEAR_STEP, 0.15F, 1.0F);
    	}
 
-   	protected void playWarningSound() {
+   	@Override
+      protected void playWarningSound() {
    		if (this.warningSoundTicks <= 0) {
    			this.playSound(SoundEvents.ENTITY_POLAR_BEAR_WARNING, 1.0F, this.getSoundPitch());
    			this.warningSoundTicks = 40;
@@ -153,6 +167,7 @@ public class GrizzlyBearEntity extends PolarBearEntity implements IAngerable {
 
    
 
+   @Override
    public void tick() {
       super.tick();
       if (this.world.isRemote) {
@@ -178,6 +193,7 @@ public class GrizzlyBearEntity extends PolarBearEntity implements IAngerable {
 
    }
 
+   @Override
    public EntitySize getSize(Pose poseIn) {
       if (this.clientSideStandAnimation > 0.0F) {
          float f = this.clientSideStandAnimation / 6.0F;
@@ -188,6 +204,7 @@ public class GrizzlyBearEntity extends PolarBearEntity implements IAngerable {
       }
    }
 
+   @Override
    public boolean attackEntityAsMob(Entity entityIn) {
       boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttributeValue(Attributes.ATTACK_DAMAGE)));
       if (flag) {
@@ -197,23 +214,28 @@ public class GrizzlyBearEntity extends PolarBearEntity implements IAngerable {
       return flag;
    }
 
+   @Override
    public boolean isStanding() {
       return this.dataManager.get(IS_STANDING);
    }
 
+   @Override
    public void setStanding(boolean standing) {
       this.dataManager.set(IS_STANDING, standing);
    }
 
+   @Override
    @OnlyIn(Dist.CLIENT)
    public float getStandingAnimationScale(float p_189795_1_) {
       return MathHelper.lerp(p_189795_1_, this.clientSideStandAnimation0, this.clientSideStandAnimation) / 6.0F;
    }
 
+   @Override
    protected float getWaterSlowDown() {
       return 0.98F;
    }
 
+   @Override
    public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
       if (spawnDataIn == null) {
          spawnDataIn = new AgeableEntity.AgeableData(1.0F);
@@ -226,6 +248,7 @@ public class GrizzlyBearEntity extends PolarBearEntity implements IAngerable {
          super(GrizzlyBearEntity.this, PlayerEntity.class, 20, true, true, (Predicate<LivingEntity>)null);
       }
 
+      @Override
       public boolean shouldExecute() {
          if (GrizzlyBearEntity.this.isChild()) {
             return false;
@@ -242,6 +265,7 @@ public class GrizzlyBearEntity extends PolarBearEntity implements IAngerable {
          }
       }
 
+      @Override
       protected double getTargetDistance() {
          return super.getTargetDistance() * 0.5D;
       }
@@ -252,6 +276,7 @@ public class GrizzlyBearEntity extends PolarBearEntity implements IAngerable {
          super(GrizzlyBearEntity.this);
       }
 
+      @Override
       public void startExecuting() {
          super.startExecuting();
          if (GrizzlyBearEntity.this.isChild()) {
@@ -261,6 +286,7 @@ public class GrizzlyBearEntity extends PolarBearEntity implements IAngerable {
 
       }
 
+      @Override
       protected void setAttackTarget(MobEntity mobIn, LivingEntity targetIn) {
          if (mobIn instanceof GrizzlyBearEntity && !mobIn.isChild()) {
             super.setAttackTarget(mobIn, targetIn);
@@ -274,6 +300,7 @@ public class GrizzlyBearEntity extends PolarBearEntity implements IAngerable {
          super(GrizzlyBearEntity.this, 1.25D, true);
       }
 
+      @Override
       protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
          double d0 = this.getAttackReachSqr(enemy);
          if (distToEnemySqr <= d0 && this.isSwingOnCooldown()) {
@@ -297,11 +324,13 @@ public class GrizzlyBearEntity extends PolarBearEntity implements IAngerable {
 
       }
 
+      @Override
       public void resetTask() {
          GrizzlyBearEntity.this.setStanding(false);
          super.resetTask();
       }
 
+      @Override
       protected double getAttackReachSqr(LivingEntity attackTarget) {
          return (double)(4.0F + attackTarget.getWidth());
       }
@@ -312,18 +341,21 @@ public class GrizzlyBearEntity extends PolarBearEntity implements IAngerable {
          super(GrizzlyBearEntity.this, 2.0D);
       }
 
+      @Override
       public boolean shouldExecute() {
-         return !GrizzlyBearEntity.this.isChild() && !GrizzlyBearEntity.this.isBurning() ? false : super.shouldExecute();
+         return (GrizzlyBearEntity.this.isChild() || GrizzlyBearEntity.this.isBurning()) && super.shouldExecute();
       }
    }
    
    	//NBT
-   	public void readAdditional(CompoundNBT compound) {
+   	@Override
+      public void readAdditional(CompoundNBT compound) {
    		super.readAdditional(compound);
    		this.readAngerNBT((ServerWorld)this.world, compound);
    	}
 
-   	public void writeAdditional(CompoundNBT compound) {
+   	@Override
+      public void writeAdditional(CompoundNBT compound) {
    		super.writeAdditional(compound);
    		this.writeAngerNBT(compound);
    	}
