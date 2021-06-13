@@ -53,6 +53,7 @@ public class Technologica {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(CommonSetup::init);	//1st event during mod lifecycle startup
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientSetup::init);	//2nd event during mod lifecycle startup
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(GatherData::init);
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientSetup::stitch);
 		
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, ModBiomeModifier::init);	
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, ModEntityModifier::init);	

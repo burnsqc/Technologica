@@ -139,7 +139,7 @@ public class LineShaftTileEntity extends TileEntity {
 			radius2 = 1.0f;
 		}
 
-		this.ratio =  radius1/radius2;
+		this.ratio =  radius1-radius2;
 	}
 
 	public float getRatio() {
