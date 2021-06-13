@@ -23,9 +23,11 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Quaternion;
 import net.minecraft.util.math.vector.Vector3f;
+import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class LineShaftTileEntityRenderer extends TileEntityRenderer<LineShaftTileEntity> {
-	public static final ResourceLocation PULLEY_BELT_TEXTURE = new ResourceLocation(Technologica.MODID, "block/pulley");
+	public static final ResourceLocation PULLEY_BELT_TEXTURE = new ResourceLocation(Technologica.MODID, "block/pulley_belt");
 	
 	public LineShaftTileEntityRenderer(TileEntityRendererDispatcher rendererDispatcherIn) {
         super(rendererDispatcherIn);
@@ -36,40 +38,40 @@ public class LineShaftTileEntityRenderer extends TileEntityRenderer<LineShaftTil
         IVertexBuilder builder = buffer.getBuffer(RenderType.getSolid());
 
         //NORTH
-        add(builder, matrixStack, x, 	 y, 	z + d, sprite.getMinU()+0.01f, sprite.getMinV());
-        add(builder, matrixStack, x + w, y, 	z + d, sprite.getMaxU()-0.005f, sprite.getMinV());
-        add(builder, matrixStack, x + w, y + h, z + d, sprite.getMaxU()-0.005f, sprite.getMaxV());
-        add(builder, matrixStack, x, 	 y + h, z + d, sprite.getMinU()+0.01f, sprite.getMaxV());
+        add(builder, matrixStack, x, 	 y, 	z + d, sprite.getInterpolatedU(10), sprite.getMinV());
+        add(builder, matrixStack, x + w, y, 	z + d, sprite.getInterpolatedU(11), sprite.getMinV());
+        add(builder, matrixStack, x + w, y + h, z + d, sprite.getInterpolatedU(11), sprite.getMaxV());
+        add(builder, matrixStack, x, 	 y + h, z + d, sprite.getInterpolatedU(10), sprite.getMaxV());
         
         //EAST
-        add(builder, matrixStack, x + w, y, 	z + d, sprite.getMinU()+0.01f, sprite.getMinV());
-        add(builder, matrixStack, x + w, y, 	z, 	   sprite.getMaxU()-0.005f, sprite.getMinV());
-        add(builder, matrixStack, x + w, y + h, z, 	   sprite.getMaxU()-0.005f, sprite.getMaxV());
-        add(builder, matrixStack, x + w, y + h, z + d, sprite.getMinU()+0.01f, sprite.getMaxV());
+        add(builder, matrixStack, x + w, y, 	z + d, sprite.getInterpolatedU(10), sprite.getInterpolatedV(1));
+        add(builder, matrixStack, x + w, y, 	z, 	   sprite.getInterpolatedU(11), sprite.getInterpolatedV(1));
+        add(builder, matrixStack, x + w, y + h, z, 	   sprite.getInterpolatedU(11), sprite.getInterpolatedV(2));
+        add(builder, matrixStack, x + w, y + h, z + d, sprite.getInterpolatedU(10), sprite.getInterpolatedV(2));
         
         //SOUTH
-        add(builder, matrixStack, x + w, y, 	z,     sprite.getMinU()+0.01f, sprite.getMinV());
-        add(builder, matrixStack, x, 	 y, 	z,     sprite.getMaxU()-0.005f, sprite.getMinV());
-        add(builder, matrixStack, x, 	 y + h, z,     sprite.getMaxU()-0.005f, sprite.getMaxV());
-        add(builder, matrixStack, x + w, y + h, z,     sprite.getMinU()+0.01f, sprite.getMaxV());
+        add(builder, matrixStack, x + w, y, 	z,     sprite.getInterpolatedU(10), sprite.getMinV());
+        add(builder, matrixStack, x, 	 y, 	z,     sprite.getInterpolatedU(11), sprite.getMinV());
+        add(builder, matrixStack, x, 	 y + h, z,     sprite.getInterpolatedU(11), sprite.getMinV()+0.001f);
+        add(builder, matrixStack, x + w, y + h, z,     sprite.getInterpolatedU(10), sprite.getMinV()+0.001f);
         
         //WEST
-        add(builder, matrixStack, x, 	 y, 	z, 	   sprite.getMinU()+0.01f, sprite.getMinV());
-        add(builder, matrixStack, x, 	 y, 	z + d, sprite.getMaxU()-0.005f, sprite.getMinV());
-        add(builder, matrixStack, x, 	 y + h, z + d, sprite.getMaxU()-0.005f, sprite.getMaxV());
-        add(builder, matrixStack, x, 	 y + h, z, 	   sprite.getMinU()+0.01f, sprite.getMaxV());
+        add(builder, matrixStack, x, 	 y, 	z, 	   sprite.getInterpolatedU(10), sprite.getMinV());
+        add(builder, matrixStack, x, 	 y, 	z + d, sprite.getInterpolatedU(11), sprite.getMinV());
+        add(builder, matrixStack, x, 	 y + h, z + d, sprite.getInterpolatedU(11), sprite.getMinV()+0.001f);
+        add(builder, matrixStack, x, 	 y + h, z, 	   sprite.getInterpolatedU(10), sprite.getMinV()+0.001f);
         
         //UP
-        add(builder, matrixStack, x, 	 y + h, z + d, sprite.getMinU()+0.01f, sprite.getMinV());
-        add(builder, matrixStack, x + w, y + h, z + d, sprite.getMaxU()-0.005f, sprite.getMinV());
-        add(builder, matrixStack, x + w, y + h, z, 	   sprite.getMaxU()-0.005f, sprite.getMaxV());
-        add(builder, matrixStack, x, 	 y + h, z, 	   sprite.getMinU()+0.01f, sprite.getMaxV());
+        add(builder, matrixStack, x, 	 y + h, z + d, sprite.getInterpolatedU(10), sprite.getMinV());
+        add(builder, matrixStack, x + w, y + h, z + d, sprite.getInterpolatedU(11), sprite.getMinV());
+        add(builder, matrixStack, x + w, y + h, z, 	   sprite.getInterpolatedU(11), sprite.getMinV()+0.001f);
+        add(builder, matrixStack, x, 	 y + h, z, 	   sprite.getInterpolatedU(10), sprite.getMinV()+0.001f);
         
         //DOWN
-        add(builder, matrixStack, x, 	 y, 	z, 	   sprite.getMinU()+0.01f, sprite.getMinV());
-        add(builder, matrixStack, x + w, y, 	z, 	   sprite.getMaxU()-0.005f, sprite.getMinV());
-        add(builder, matrixStack, x + w, y, 	z + d, sprite.getMaxU()-0.005f, sprite.getMaxV());
-        add(builder, matrixStack, x, 	 y, 	z + d, sprite.getMinU()+0.01f, sprite.getMaxV());
+        add(builder, matrixStack, x, 	 y, 	z, 	   sprite.getInterpolatedU(10), sprite.getMinV());
+        add(builder, matrixStack, x + w, y, 	z, 	   sprite.getInterpolatedU(11), sprite.getMinV());
+        add(builder, matrixStack, x + w, y, 	z + d, sprite.getInterpolatedU(11), sprite.getMinV()+0.001f);
+        add(builder, matrixStack, x, 	 y, 	z + d, sprite.getInterpolatedU(10), sprite.getMinV()+0.001f);
 	}
 	
 	private void add(IVertexBuilder renderer, MatrixStack stack, float x, float y, float z, float u, float v) {
@@ -101,35 +103,11 @@ public class LineShaftTileEntityRenderer extends TileEntityRenderer<LineShaftTil
 			} else if (tileEntity.getBlockState().get(LineShaftBlock.AXIS) == Direction.Axis.Y) {	
 				matrixStack.rotate(Vector3f.ZP.rotationDegrees(90));
 				matrixStack.translate(0, -1, 0);
-				addBox(matrixStack, buffer, 0.375f, 0.5f, 0.5f, 0.25f, tileEntity.getBeltPos().getY() - tileEntity.getPos().getY(), tileEntity.getBeltPos().getZ() - tileEntity.getPos().getZ());
-				
-/*				
-				add(builder, matrixStack, 0.5f + tileEntity.getBeltPos().getX() - tileEntity.getPos().getX(), 0.375f, 0.5f + tileEntity.getBeltPos().getZ() - tileEntity.getPos().getZ(), sprite.getMinU()+0.01f, sprite.getMinV());
-		        add(builder, matrixStack, 0.5f + tileEntity.getBeltPos().getX() - tileEntity.getPos().getX(), 0.625f, 0.5f + tileEntity.getBeltPos().getZ() - tileEntity.getPos().getZ(), sprite.getMaxU()-0.005f, sprite.getMinV());
-		        add(builder, matrixStack, 0.5f, 0.625f, 0.5f, sprite.getMaxU()-0.005f, sprite.getMaxV());
-		        add(builder, matrixStack, 0.5f, 0.375f, 0.5f, sprite.getMinU()+0.01f, sprite.getMaxV());
-		        
-		        add(builder, matrixStack, 0.5f, 0.375f, 0.5f, sprite.getMinU()+0.01f, sprite.getMaxV());
-		        add(builder, matrixStack, 0.5f, 0.625f, 0.5f, sprite.getMaxU()-0.005f, sprite.getMaxV());
-		        add(builder, matrixStack, 0.5f + tileEntity.getBeltPos().getX() - tileEntity.getPos().getX(), 0.625f, 0.5f + tileEntity.getBeltPos().getZ() - tileEntity.getPos().getZ(), sprite.getMaxU()-0.005f, sprite.getMinV());
-		        add(builder, matrixStack, 0.5f + tileEntity.getBeltPos().getX() - tileEntity.getPos().getX(), 0.375f, 0.5f + tileEntity.getBeltPos().getZ() - tileEntity.getPos().getZ(), sprite.getMinU()+0.01f, sprite.getMinV());  
-*/			
+				addBox(matrixStack, buffer, 0.375f, 0.5f, 0.5f, 0.25f, tileEntity.getBeltPos().getY() - tileEntity.getPos().getY(), tileEntity.getBeltPos().getZ() - tileEntity.getPos().getZ());				
 			} else {
 				matrixStack.rotate(Vector3f.YP.rotationDegrees(90));
 				matrixStack.translate(-1, 0, 0);
 				addBox(matrixStack, buffer, 0.375f, 0.5f, 0.5f, 0.25f, tileEntity.getBeltPos().getY() - tileEntity.getPos().getY(), tileEntity.getBeltPos().getZ() - tileEntity.getPos().getZ());
-				
-/*				
-				add(builder, matrixStack, 0.5f, 0.5f, 0.375f, sprite.getMinU()+0.01f, sprite.getMinV());
-		        add(builder, matrixStack, 0.5f, 0.5f, 0.625f, sprite.getMaxU()-0.005f, sprite.getMinV());
-		        add(builder, matrixStack, 0.5f + tileEntity.getBeltPos().getX() - tileEntity.getPos().getX(), 0.5f + tileEntity.getBeltPos().getY() - tileEntity.getPos().getY(), 0.625f, sprite.getMaxU()-0.005f, sprite.getMaxV());
-		        add(builder, matrixStack, 0.5f + tileEntity.getBeltPos().getX() - tileEntity.getPos().getX(), 0.5f + tileEntity.getBeltPos().getY() - tileEntity.getPos().getY(), 0.375f, sprite.getMinU()+0.01f, sprite.getMaxV());
-		        
-		        add(builder, matrixStack, 0.5f + tileEntity.getBeltPos().getX() - tileEntity.getPos().getX(), 0.5f + tileEntity.getBeltPos().getY() - tileEntity.getPos().getY(), 0.375f, sprite.getMinU()+0.01f, sprite.getMaxV());
-		        add(builder, matrixStack, 0.5f + tileEntity.getBeltPos().getX() - tileEntity.getPos().getX(), 0.5f + tileEntity.getBeltPos().getY() - tileEntity.getPos().getY(), 0.625f, sprite.getMaxU()-0.005f, sprite.getMaxV());
-		        add(builder, matrixStack, 0.5f, 0.5f, 0.625f, sprite.getMaxU()-0.005f, sprite.getMinV());
-		        add(builder, matrixStack, 0.5f, 0.5f, 0.375f, sprite.getMinU()+0.01f, sprite.getMinV());  
-*/	
 			}
 		}
         matrixStack.pop();
@@ -187,4 +165,11 @@ public class LineShaftTileEntityRenderer extends TileEntityRenderer<LineShaftTil
     public boolean isGlobalRenderer(LineShaftTileEntity te) {
         return true;
      }
+    
+    @SubscribeEvent
+    public static void onTextureStitch(TextureStitchEvent.Pre event) {
+        if (event.getMap().getTextureLocation().equals(PlayerContainer.LOCATION_BLOCKS_TEXTURE)) {
+        	event.addSprite(PULLEY_BELT_TEXTURE);
+        }
+    }
 }
