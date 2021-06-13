@@ -1,8 +1,9 @@
 package com.technologica.capabilities;
 
+import static net.minecraft.block.RotatedPillarBlock.AXIS;
+
 import java.util.concurrent.Callable;
 
-import com.technologica.block.LineShaftBlock;
 import com.technologica.block.ModBlocks;
 import com.technologica.block.TwelveDirectionBlock;
 import com.technologica.items.ModItems;
@@ -25,8 +26,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.util.INBTSerializable;
-
-import static net.minecraft.block.RotatedPillarBlock.AXIS;
 
 public class Link implements ILink, INBTSerializable<CompoundNBT> {
 	public static final String BOOLEAN_LINKING_KEY = "linking";
