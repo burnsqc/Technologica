@@ -56,5 +56,15 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
 				ModBlocks.ORANGE_LEAVES.get(),
 				ModBlocks.PEACH_LEAVES.get(),
 				ModBlocks.PEAR_LEAVES.get());
+		getOrCreateBuilder(BlockTags.PLANKS).add(
+				ModBlocks.BANANA_PLANKS.get(),
+				ModBlocks.CHERRY_PLANKS.get(),
+				ModBlocks.COCONUT_PLANKS.get(),
+				ModBlocks.KIWI_PLANKS.get(),
+				ModBlocks.LEMON_PLANKS.get(),
+				ModBlocks.LIME_PLANKS.get(),
+				ModBlocks.ORANGE_PLANKS.get(),
+				ModBlocks.PEACH_PLANKS.get(),
+				ModBlocks.PEAR_PLANKS.get());
 	}
 }

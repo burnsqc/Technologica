@@ -41,6 +41,16 @@ public class ModBlockLootTables extends BlockLootTables {
 		registerDropSelfLootTable(ModBlocks.CONDUCTIVE_LOG.get());
 		registerDropSelfLootTable(ModBlocks.FROSTBITTEN_LOG.get());
 		
+		registerDropSelfLootTable(ModBlocks.BANANA_PLANKS.get());
+		registerDropSelfLootTable(ModBlocks.CHERRY_PLANKS.get());
+		registerDropSelfLootTable(ModBlocks.COCONUT_PLANKS.get());
+		registerDropSelfLootTable(ModBlocks.KIWI_PLANKS.get());
+		registerDropSelfLootTable(ModBlocks.LEMON_PLANKS.get());
+		registerDropSelfLootTable(ModBlocks.LIME_PLANKS.get());
+		registerDropSelfLootTable(ModBlocks.ORANGE_PLANKS.get());
+		registerDropSelfLootTable(ModBlocks.PEACH_PLANKS.get());
+		registerDropSelfLootTable(ModBlocks.PEAR_PLANKS.get());
+		
 		registerDropSelfLootTable(ModBlocks.BANANA_SAPLING.get());
 		registerDropSelfLootTable(ModBlocks.CHERRY_SAPLING.get());
 		registerDropSelfLootTable(ModBlocks.COCONUT_SAPLING.get());

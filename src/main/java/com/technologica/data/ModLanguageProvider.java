@@ -35,6 +35,15 @@ public class ModLanguageProvider extends LanguageProvider {
 		addBlock(ModBlocks.ORANGE_LOG, "Orange Log");
 		addBlock(ModBlocks.PEACH_LOG, "Peach Log");
 		addBlock(ModBlocks.PEAR_LOG, "Pear Log");
+		addBlock(ModBlocks.BANANA_PLANKS, "Banana Planks");
+		addBlock(ModBlocks.CHERRY_PLANKS, "Cherry Planks");
+		addBlock(ModBlocks.COCONUT_PLANKS, "Coconut Planks");
+		addBlock(ModBlocks.KIWI_PLANKS, "Kiwi Planks");
+		addBlock(ModBlocks.LEMON_PLANKS, "Lemon Planks");
+		addBlock(ModBlocks.LIME_PLANKS, "Lime Planks");
+		addBlock(ModBlocks.ORANGE_PLANKS, "Orange Planks");
+		addBlock(ModBlocks.PEACH_PLANKS, "Peach Planks");
+		addBlock(ModBlocks.PEAR_PLANKS, "Pear Planks");
 		addBlock(ModBlocks.BANANA_SAPLING, "Banana Sapling");
 		addBlock(ModBlocks.CHERRY_SAPLING, "Cherry Sapling");
 		addBlock(ModBlocks.COCONUT_SAPLING, "Coconut Sapling");
@@ -237,7 +246,6 @@ public class ModLanguageProvider extends LanguageProvider {
 		addItemGroup(ModItemGroup.TECHNOLOGICA_FAUNA, "Fauna");
 		addItemGroup(ModItemGroup.TECHNOLOGICA_MINERAL, "Mineral");
 		addItemGroup(ModItemGroup.TECHNOLOGICA_FOOD, "Food");
-		addItemGroup(ModItemGroup.TECHNOLOGICA_RECIPE, "Recipe");
 		addItemGroup(ModItemGroup.TECHNOLOGICA_MACHINERY, "Machinery");
 		addItemGroup(ModItemGroup.TECHNOLOGICA_DECORATIVE, "Decorative");
 		addItemGroup(ModItemGroup.TECHNOLOGICA_CRYPTICA, "Cryptica");

@@ -17,7 +17,6 @@ public class ModItemGroup extends ItemGroup {
 	public static final ModItemGroup TECHNOLOGICA_FAUNA = new ModItemGroup("technologica_fauna", () -> new ItemStack(ModItems.DUCK_SPAWN_EGG.get()));
 	public static final ModItemGroup TECHNOLOGICA_MINERAL = new ModItemGroup("technologica_mineral", () -> new ItemStack(ModBlocks.AQUAMARINE_CRYSTAL.get()));
 	public static final ModItemGroup TECHNOLOGICA_FOOD = new ModItemGroup("technologica_food", () -> new ItemStack(ModItems.BANANA.get()));
-	public static final ModItemGroup TECHNOLOGICA_RECIPE = new ModItemGroup("technologica_recipe", () -> new ItemStack(ModItems.BLUEBERRY_CHEESECAKE.get()));
 	public static final ModItemGroup TECHNOLOGICA_MACHINERY = new ModItemGroup("technologica_machinery", () -> new ItemStack(ModItems.WRENCH.get()));
 	public static final ModItemGroup TECHNOLOGICA_DECORATIVE = new ModItemGroup("technologica_decorative", () -> new ItemStack(ModBlocks.DISPLAY_CASE.get()));
 	public static final ModItemGroup TECHNOLOGICA_CRYPTICA = new ModItemGroup("technologica_cryptica", () -> new ItemStack(ModBlocks.ANCIENT_AMBROSIA_SAPLING.get()));

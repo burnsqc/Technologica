@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:pear_tart_from_pear"
+    ]
+  },
+  "criteria": {
+    "has_pear": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "technologica:pear"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:pear_tart_from_pear"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_pear",
+      "has_the_recipe"
+    ]
+  ]
+}

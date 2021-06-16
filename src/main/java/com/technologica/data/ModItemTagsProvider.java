@@ -47,5 +47,15 @@ public class ModItemTagsProvider extends ItemTagsProvider {
 				ModItems.ORANGE_LEAVES_ITEM.get(),
 				ModItems.PEACH_LEAVES_ITEM.get(),
 				ModItems.PEAR_LEAVES_ITEM.get());
+		getOrCreateBuilder(ItemTags.PLANKS).add(
+				ModItems.BANANA_PLANKS_ITEM.get(),
+				ModItems.CHERRY_PLANKS_ITEM.get(),
+		        ModItems.COCONUT_PLANKS_ITEM.get(),
+		        ModItems.KIWI_PLANKS_ITEM.get(),
+		        ModItems.LEMON_PLANKS_ITEM.get(),
+		        ModItems.LIME_PLANKS_ITEM.get(),
+		        ModItems.ORANGE_PLANKS_ITEM.get(),
+		        ModItems.PEACH_PLANKS_ITEM.get(),
+		        ModItems.PEAR_PLANKS_ITEM.get());
 	}
 }

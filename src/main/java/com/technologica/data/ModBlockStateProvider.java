@@ -63,6 +63,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		logBlock(ModBlocks.FRUITFUL_LOG);
 		logBlock(ModBlocks.BENEVOLENT_LOG);
 		
+		simpleBlock(ModBlocks.BANANA_PLANKS);
+		simpleBlock(ModBlocks.CHERRY_PLANKS);
+		simpleBlock(ModBlocks.COCONUT_PLANKS);
+		simpleBlock(ModBlocks.KIWI_PLANKS);
+		simpleBlock(ModBlocks.LEMON_PLANKS);
+		simpleBlock(ModBlocks.LIME_PLANKS);
+		simpleBlock(ModBlocks.ORANGE_PLANKS);
+		simpleBlock(ModBlocks.PEACH_PLANKS);
+		simpleBlock(ModBlocks.PEAR_PLANKS);
+		
 		crossBlock(ModBlocks.BANANA_SAPLING);
 		crossBlock(ModBlocks.CHERRY_SAPLING);
 		crossBlock(ModBlocks.COCONUT_SAPLING);
