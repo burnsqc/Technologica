@@ -9,7 +9,9 @@ import com.technologica.block.CrystalBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.CropsBlock;
 import net.minecraft.block.RotatedPillarBlock;
+import net.minecraft.block.SlabBlock;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.state.properties.SlabType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -72,6 +74,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		simpleBlock(ModBlocks.ORANGE_PLANKS);
 		simpleBlock(ModBlocks.PEACH_PLANKS);
 		simpleBlock(ModBlocks.PEAR_PLANKS);
+		
+		slabBlock(ModBlocks.BANANA_SLAB, new ResourceLocation("technologica:block/banana_planks"));
+		slabBlock(ModBlocks.CHERRY_SLAB, new ResourceLocation("technologica:block/cherry_planks"));
+		slabBlock(ModBlocks.COCONUT_SLAB, new ResourceLocation("technologica:block/coconut_planks"));
+		slabBlock(ModBlocks.KIWI_SLAB, new ResourceLocation("technologica:block/kiwi_planks"));
+		slabBlock(ModBlocks.LEMON_SLAB, new ResourceLocation("technologica:block/lemon_planks"));
+		slabBlock(ModBlocks.LIME_SLAB, new ResourceLocation("technologica:block/lime_planks"));
+		slabBlock(ModBlocks.ORANGE_SLAB, new ResourceLocation("technologica:block/orange_planks"));
+		slabBlock(ModBlocks.PEACH_SLAB, new ResourceLocation("technologica:block/peach_planks"));
+		slabBlock(ModBlocks.PEAR_SLAB, new ResourceLocation("technologica:block/pear_planks"));
 		
 		crossBlock(ModBlocks.BANANA_SAPLING);
 		crossBlock(ModBlocks.CHERRY_SAPLING);
@@ -147,6 +159,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		return models().withExistingParent(name(block), modLoc("display")).texture("case", blockTexture(block)).texture("base", new ResourceLocation("block/black_wool"));
     }
 	
+	public ModelFile slab(Block block) {
+        return models().slab(name(block), blockTexture(block), blockTexture(block), blockTexture(block));
+    }
+	
 	public ModelFile cubeColumn(Block block) {
         return models().cubeColumn(name(block), blockTexture(block), extend(blockTexture(block), "_top"));
     }
@@ -155,6 +171,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		Block block = blockSupplier.get();														
 		getVariantBuilder(block).partialState().setModels(new ConfiguredModel(cubeAll(block)));
 		this.simpleBlockItem(block, cubeAll(block));											
+    }
+	
+    public void slabBlock(Supplier<? extends Block> blockSupplier, ResourceLocation doubleslab) {
+    	SlabBlock block = (SlabBlock) blockSupplier.get();
+        getVariantBuilder(block).partialState().with(SlabBlock.TYPE, SlabType.BOTTOM).addModels(new ConfiguredModel(models().slab(name(block), blockTexture(block), blockTexture(block), blockTexture(block)))).partialState().with(SlabBlock.TYPE, SlabType.TOP).addModels(new ConfiguredModel(models().slabTop(name(block) + "_top", blockTexture(block), blockTexture(block), blockTexture(block)))).partialState().with(SlabBlock.TYPE, SlabType.DOUBLE).addModels(new ConfiguredModel(models().getExistingFile(doubleslab)));
+        this.simpleBlockItem(block, slab(block));
     }
 	
 	public void logBlock(Supplier<? extends Block> blockSupplier) {					

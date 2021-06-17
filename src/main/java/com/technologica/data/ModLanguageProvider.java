@@ -44,6 +44,15 @@ public class ModLanguageProvider extends LanguageProvider {
 		addBlock(ModBlocks.ORANGE_PLANKS, "Orange Planks");
 		addBlock(ModBlocks.PEACH_PLANKS, "Peach Planks");
 		addBlock(ModBlocks.PEAR_PLANKS, "Pear Planks");
+		addBlock(ModBlocks.BANANA_SLAB, "Banana Slab");
+		addBlock(ModBlocks.CHERRY_SLAB, "Cherry Slab");
+		addBlock(ModBlocks.COCONUT_SLAB, "Coconut Slab");
+		addBlock(ModBlocks.KIWI_SLAB, "Kiwi Slab");
+		addBlock(ModBlocks.LEMON_SLAB, "Lemon Slab");
+		addBlock(ModBlocks.LIME_SLAB, "Lime Slab");
+		addBlock(ModBlocks.ORANGE_SLAB, "Orange Slab");
+		addBlock(ModBlocks.PEACH_SLAB, "Peach Slab");
+		addBlock(ModBlocks.PEAR_SLAB, "Pear Slab");
 		addBlock(ModBlocks.BANANA_SAPLING, "Banana Sapling");
 		addBlock(ModBlocks.CHERRY_SAPLING, "Cherry Sapling");
 		addBlock(ModBlocks.COCONUT_SAPLING, "Coconut Sapling");

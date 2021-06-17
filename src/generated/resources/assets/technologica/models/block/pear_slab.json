@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "side": "technologica:block/pear_slab",
+    "bottom": "technologica:block/pear_slab",
+    "top": "technologica:block/pear_slab"
+  }
+}
