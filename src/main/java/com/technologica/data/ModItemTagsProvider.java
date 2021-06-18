@@ -57,5 +57,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
 		        ModItems.ORANGE_PLANKS_ITEM.get(),
 		        ModItems.PEACH_PLANKS_ITEM.get(),
 		        ModItems.PEAR_PLANKS_ITEM.get());
+		getOrCreateBuilder(ItemTags.WOODEN_TRAPDOORS).add(
+				ModItems.BANANA_TRAPDOOR_ITEM.get());
 	}
 }

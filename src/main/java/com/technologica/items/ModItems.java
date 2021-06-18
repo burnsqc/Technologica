@@ -78,6 +78,26 @@ public class ModItems {
     public static final RegistryObject<Item> PEACH_SLAB_ITEM = ITEMS.register("peach_slab", () -> new BlockItem(ModBlocks.PEACH_SLAB.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
     public static final RegistryObject<Item> PEAR_SLAB_ITEM = ITEMS.register("pear_slab", () -> new BlockItem(ModBlocks.PEAR_SLAB.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
     
+    public static final RegistryObject<Item> BANANA_BOOKSHELF_ITEM = ITEMS.register("banana_bookshelf", () -> new BlockItem(ModBlocks.BANANA_BOOKSHELF.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> CHERRY_BOOKSHELF_ITEM = ITEMS.register("cherry_bookshelf", () -> new BlockItem(ModBlocks.CHERRY_BOOKSHELF.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> COCONUT_BOOKSHELF_ITEM = ITEMS.register("coconut_bookshelf", () -> new BlockItem(ModBlocks.COCONUT_BOOKSHELF.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> KIWI_BOOKSHELF_ITEM = ITEMS.register("kiwi_bookshelf", () -> new BlockItem(ModBlocks.KIWI_BOOKSHELF.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> LEMON_BOOKSHELF_ITEM = ITEMS.register("lemon_bookshelf", () -> new BlockItem(ModBlocks.LEMON_BOOKSHELF.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> LIME_BOOKSHELF_ITEM = ITEMS.register("lime_bookshelf", () -> new BlockItem(ModBlocks.LIME_BOOKSHELF.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> ORANGE_BOOKSHELF_ITEM = ITEMS.register("orange_bookshelf", () -> new BlockItem(ModBlocks.ORANGE_BOOKSHELF.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> PEACH_BOOKSHELF_ITEM = ITEMS.register("peach_bookshelf",	() -> new BlockItem(ModBlocks.PEACH_BOOKSHELF.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> PEAR_BOOKSHELF_ITEM = ITEMS.register("pear_bookshelf", () -> new BlockItem(ModBlocks.PEAR_BOOKSHELF.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA))); 
+    
+    public static final RegistryObject<Item> BANANA_TRAPDOOR_ITEM = ITEMS.register("banana_trapdoor", () -> new BlockItem(ModBlocks.BANANA_TRAPDOOR.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> CHERRY_TRAPDOOR_ITEM = ITEMS.register("cherry_trapdoor", () -> new BlockItem(ModBlocks.CHERRY_TRAPDOOR.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> COCONUT_TRAPDOOR_ITEM = ITEMS.register("coconut_trapdoor", () -> new BlockItem(ModBlocks.COCONUT_TRAPDOOR.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> KIWI_TRAPDOOR_ITEM = ITEMS.register("kiwi_trapdoor", () -> new BlockItem(ModBlocks.KIWI_TRAPDOOR.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> LEMON_TRAPDOOR_ITEM = ITEMS.register("lemon_trapdoor", () -> new BlockItem(ModBlocks.LEMON_TRAPDOOR.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> LIME_TRAPDOOR_ITEM = ITEMS.register("lime_trapdoor", () -> new BlockItem(ModBlocks.LIME_TRAPDOOR.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> ORANGE_TRAPDOOR_ITEM = ITEMS.register("orange_trapdoor", () -> new BlockItem(ModBlocks.ORANGE_TRAPDOOR.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> PEACH_TRAPDOOR_ITEM = ITEMS.register("peach_trapdoor",	() -> new BlockItem(ModBlocks.PEACH_TRAPDOOR.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> PEAR_TRAPDOOR_ITEM = ITEMS.register("pear_trapdoor", () -> new BlockItem(ModBlocks.PEAR_TRAPDOOR.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA))); 
+    
     public static final RegistryObject<Item> BANANA_SAPLING_ITEM = ITEMS.register("banana_sapling", () -> new BlockItem(ModBlocks.BANANA_SAPLING.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));  
     public static final RegistryObject<Item> CHERRY_SAPLING_ITEM = ITEMS.register("cherry_sapling", () -> new BlockItem(ModBlocks.CHERRY_SAPLING.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
     public static final RegistryObject<Item> COCONUT_SAPLING_ITEM = ITEMS.register("coconut_sapling", () -> new BlockItem(ModBlocks.COCONUT_SAPLING.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA))); 

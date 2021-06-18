@@ -65,6 +65,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		logBlock(ModBlocks.FRUITFUL_LOG);
 		logBlock(ModBlocks.BENEVOLENT_LOG);
 		
+		columnBlock(ModBlocks.BANANA_BOOKSHELF);
+		columnBlock(ModBlocks.CHERRY_BOOKSHELF);
+		columnBlock(ModBlocks.COCONUT_BOOKSHELF);
+		columnBlock(ModBlocks.KIWI_BOOKSHELF);
+		columnBlock(ModBlocks.LEMON_BOOKSHELF);
+		columnBlock(ModBlocks.LIME_BOOKSHELF);
+		columnBlock(ModBlocks.ORANGE_BOOKSHELF);
+		columnBlock(ModBlocks.PEACH_BOOKSHELF);
+		columnBlock(ModBlocks.PEAR_BOOKSHELF);
+		
 		simpleBlock(ModBlocks.BANANA_PLANKS);
 		simpleBlock(ModBlocks.CHERRY_PLANKS);
 		simpleBlock(ModBlocks.COCONUT_PLANKS);
@@ -84,6 +94,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		slabBlock(ModBlocks.ORANGE_SLAB, new ResourceLocation("technologica:block/orange_planks"));
 		slabBlock(ModBlocks.PEACH_SLAB, new ResourceLocation("technologica:block/peach_planks"));
 		slabBlock(ModBlocks.PEAR_SLAB, new ResourceLocation("technologica:block/pear_planks"));
+		
+		Block(ModBlocks.BANANA_TRAPDOOR);
 		
 		crossBlock(ModBlocks.BANANA_SAPLING);
 		crossBlock(ModBlocks.CHERRY_SAPLING);
@@ -171,6 +183,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		Block block = blockSupplier.get();														
 		getVariantBuilder(block).partialState().setModels(new ConfiguredModel(cubeAll(block)));
 		this.simpleBlockItem(block, cubeAll(block));											
+    }
+	
+	public void columnBlock(Supplier<? extends Block> blockSupplier) {							
+		Block block = blockSupplier.get();														
+		getVariantBuilder(block).partialState().setModels(new ConfiguredModel(cubeColumn(block)));
+		this.simpleBlockItem(block, cubeColumn(block));											
     }
 	
     public void slabBlock(Supplier<? extends Block> blockSupplier, ResourceLocation doubleslab) {

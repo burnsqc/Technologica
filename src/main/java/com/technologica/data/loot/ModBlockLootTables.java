@@ -61,6 +61,18 @@ public class ModBlockLootTables extends BlockLootTables {
 		registerDropSelfLootTable(ModBlocks.PEACH_SLAB.get());
 		registerDropSelfLootTable(ModBlocks.PEAR_SLAB.get());
 		
+		registerDropSelfLootTable(ModBlocks.BANANA_BOOKSHELF.get());
+		registerDropSelfLootTable(ModBlocks.CHERRY_BOOKSHELF.get());
+		registerDropSelfLootTable(ModBlocks.COCONUT_BOOKSHELF.get());
+		registerDropSelfLootTable(ModBlocks.KIWI_BOOKSHELF.get());
+		registerDropSelfLootTable(ModBlocks.LEMON_BOOKSHELF.get());
+		registerDropSelfLootTable(ModBlocks.LIME_BOOKSHELF.get());
+		registerDropSelfLootTable(ModBlocks.ORANGE_BOOKSHELF.get());
+		registerDropSelfLootTable(ModBlocks.PEACH_BOOKSHELF.get());
+		registerDropSelfLootTable(ModBlocks.PEAR_BOOKSHELF.get());
+		
+		registerDropSelfLootTable(ModBlocks.BANANA_TRAPDOOR.get());
+		
 		registerDropSelfLootTable(ModBlocks.BANANA_SAPLING.get());
 		registerDropSelfLootTable(ModBlocks.CHERRY_SAPLING.get());
 		registerDropSelfLootTable(ModBlocks.COCONUT_SAPLING.get());
