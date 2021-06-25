@@ -95,8 +95,8 @@ public class ModItems {
     public static final RegistryObject<Item> LEMON_TRAPDOOR_ITEM = ITEMS.register("lemon_trapdoor", () -> new BlockItem(ModBlocks.LEMON_TRAPDOOR.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
     public static final RegistryObject<Item> LIME_TRAPDOOR_ITEM = ITEMS.register("lime_trapdoor", () -> new BlockItem(ModBlocks.LIME_TRAPDOOR.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
     public static final RegistryObject<Item> ORANGE_TRAPDOOR_ITEM = ITEMS.register("orange_trapdoor", () -> new BlockItem(ModBlocks.ORANGE_TRAPDOOR.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
-    public static final RegistryObject<Item> PEACH_TRAPDOOR_ITEM = ITEMS.register("peach_trapdoor",	() -> new BlockItem(ModBlocks.PEACH_TRAPDOOR.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
-    public static final RegistryObject<Item> PEAR_TRAPDOOR_ITEM = ITEMS.register("pear_trapdoor", () -> new BlockItem(ModBlocks.PEAR_TRAPDOOR.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA))); 
+    public static final RegistryObject<Item> PEACH_TRAPDOOR_ITEM = ITEMS.register("peach_trapdoor", () -> new BlockItem(ModBlocks.PEACH_TRAPDOOR.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> PEAR_TRAPDOOR_ITEM = ITEMS.register("pear_trapdoor", () -> new BlockItem(ModBlocks.PEAR_TRAPDOOR.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
     
     public static final RegistryObject<Item> BANANA_SAPLING_ITEM = ITEMS.register("banana_sapling", () -> new BlockItem(ModBlocks.BANANA_SAPLING.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));  
     public static final RegistryObject<Item> CHERRY_SAPLING_ITEM = ITEMS.register("cherry_sapling", () -> new BlockItem(ModBlocks.CHERRY_SAPLING.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));

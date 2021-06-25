@@ -58,6 +58,15 @@ public class ModItemTagsProvider extends ItemTagsProvider {
 		        ModItems.PEACH_PLANKS_ITEM.get(),
 		        ModItems.PEAR_PLANKS_ITEM.get());
 		getOrCreateBuilder(ItemTags.WOODEN_TRAPDOORS).add(
-				ModItems.BANANA_TRAPDOOR_ITEM.get());
+				ModItems.BANANA_TRAPDOOR_ITEM.get(),
+	 			ModItems.CHERRY_TRAPDOOR_ITEM.get(),
+	 			ModItems.COCONUT_TRAPDOOR_ITEM.get(),
+	 			ModItems.KIWI_TRAPDOOR_ITEM.get(),
+	 			ModItems.LEMON_TRAPDOOR_ITEM.get(),
+	 			ModItems.LIME_TRAPDOOR_ITEM.get(),
+	 			ModItems.ORANGE_TRAPDOOR_ITEM.get(),
+	 			ModItems.PEACH_TRAPDOOR_ITEM.get(),
+	 			ModItems.PEAR_TRAPDOOR_ITEM.get());
+	 			
 	}
 }

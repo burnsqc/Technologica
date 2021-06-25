@@ -62,6 +62,16 @@ public class ClientSetup {
          RenderTypeLookup.setRenderLayer(ModBlocks.GRAPE_CROP.get(), RenderType.getCutoutMipped());
          RenderTypeLookup.setRenderLayer(ModBlocks.STRAWBERRY_CROP.get(), RenderType.getCutoutMipped());
 
+         RenderTypeLookup.setRenderLayer(ModBlocks.BANANA_TRAPDOOR.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.CHERRY_TRAPDOOR.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.COCONUT_TRAPDOOR.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.KIWI_TRAPDOOR.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.LEMON_TRAPDOOR.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.LIME_TRAPDOOR.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.ORANGE_TRAPDOOR.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.PEACH_TRAPDOOR.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.PEAR_TRAPDOOR.get(), RenderType.getCutoutMipped());
+         
          RenderTypeLookup.setRenderLayer(ModBlocks.DISPLAY_CASE.get(), RenderType.getTranslucent());
 
          RenderTypeLookup.setRenderLayer(ModBlocks.AQUAMARINE_CRYSTAL.get(), RenderType.getTranslucent());

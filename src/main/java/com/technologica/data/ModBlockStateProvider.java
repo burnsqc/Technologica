@@ -10,7 +10,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.CropsBlock;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.block.SlabBlock;
+import net.minecraft.block.TrapDoorBlock;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.state.properties.Half;
 import net.minecraft.state.properties.SlabType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
@@ -95,7 +97,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		slabBlock(ModBlocks.PEACH_SLAB, new ResourceLocation("technologica:block/peach_planks"));
 		slabBlock(ModBlocks.PEAR_SLAB, new ResourceLocation("technologica:block/pear_planks"));
 		
-		Block(ModBlocks.BANANA_TRAPDOOR);
+		trapdoorBlock(ModBlocks.BANANA_TRAPDOOR, new ResourceLocation("technologica:block/banana_trapdoor"), true);
+		trapdoorBlock(ModBlocks.CHERRY_TRAPDOOR, new ResourceLocation("technologica:block/cherry_trapdoor"), true);
+		trapdoorBlock(ModBlocks.COCONUT_TRAPDOOR, new ResourceLocation("technologica:block/coconut_trapdoor"), true);
+		trapdoorBlock(ModBlocks.KIWI_TRAPDOOR, new ResourceLocation("technologica:block/kiwi_trapdoor"), true);
+		trapdoorBlock(ModBlocks.LEMON_TRAPDOOR, new ResourceLocation("technologica:block/lemon_trapdoor"), true);
+		trapdoorBlock(ModBlocks.LIME_TRAPDOOR, new ResourceLocation("technologica:block/lime_trapdoor"), true);
+		trapdoorBlock(ModBlocks.ORANGE_TRAPDOOR, new ResourceLocation("technologica:block/orange_trapdoor"), true);
+		trapdoorBlock(ModBlocks.PEACH_TRAPDOOR, new ResourceLocation("technologica:block/peach_trapdoor"), true);
+		trapdoorBlock(ModBlocks.PEAR_TRAPDOOR, new ResourceLocation("technologica:block/pear_trapdoor"), true);
 		
 		crossBlock(ModBlocks.BANANA_SAPLING);
 		crossBlock(ModBlocks.CHERRY_SAPLING);
@@ -107,7 +117,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		crossBlock(ModBlocks.PEACH_SAPLING);
 		crossBlock(ModBlocks.PEAR_SAPLING);
 		crossBlock(ModBlocks.ANCIENT_AMBROSIA_SAPLING);
-		crossBlock(ModBlocks.BENEVOLENT_APOTHECARY_SAPLING);	
+		crossBlock(ModBlocks.BENEVOLENT_APOTHECARY_SAPLING);
 		
 		flowerPotCrossBlock(ModBlocks.POTTED_BANANA_SAPLING);
 		flowerPotCrossBlock(ModBlocks.POTTED_CHERRY_SAPLING);
@@ -197,6 +207,38 @@ public class ModBlockStateProvider extends BlockStateProvider {
         this.simpleBlockItem(block, slab(block));
     }
 	
+    public void trapdoorBlock(Supplier<? extends Block> blockSupplier, ResourceLocation texture, boolean orientable) {
+    	TrapDoorBlock block = (TrapDoorBlock) blockSupplier.get();
+        trapdoorBlockInternal(block, block.getRegistryName().toString(), texture, orientable);
+    }
+    
+    private void trapdoorBlockInternal(TrapDoorBlock block, String baseName, ResourceLocation texture, boolean orientable) {
+        ModelFile bottom = orientable ? models().trapdoorOrientableBottom(baseName + "_bottom", texture) : models().trapdoorBottom(baseName + "_bottom", texture);
+        ModelFile top = orientable ? models().trapdoorOrientableTop(baseName + "_top", texture) : models().trapdoorTop(baseName + "_top", texture);
+        ModelFile open = orientable ? models().trapdoorOrientableOpen(baseName + "_open", texture) : models().trapdoorOpen(baseName + "_open", texture);
+        trapdoorBlock(block, bottom, top, open, orientable);
+    }
+
+    public void trapdoorBlock(TrapDoorBlock block, ModelFile bottom, ModelFile top, ModelFile open, boolean orientable) {
+        getVariantBuilder(block).forAllStatesExcept(state -> {
+            int xRot = 0;
+            int yRot = ((int) state.get(TrapDoorBlock.HORIZONTAL_FACING).getHorizontalAngle()) + 180;
+            boolean isOpen = state.get(TrapDoorBlock.OPEN);
+            if (orientable && isOpen && state.get(TrapDoorBlock.HALF) == Half.TOP) {
+                xRot += 180;
+                yRot += 180;
+            }
+            if (!orientable && !isOpen) {
+                yRot = 0;
+            }
+            yRot %= 360;
+            return ConfiguredModel.builder().modelFile(isOpen ? open : state.get(TrapDoorBlock.HALF) == Half.TOP ? top : bottom)
+                    .rotationX(xRot)
+                    .rotationY(yRot)
+                    .build();
+        }, TrapDoorBlock.POWERED, TrapDoorBlock.WATERLOGGED);
+    }
+    
 	public void logBlock(Supplier<? extends Block> blockSupplier) {					
 		RotatedPillarBlock block = (RotatedPillarBlock) blockSupplier.get();		
 		axisBlock(block, blockTexture(block), extend(blockTexture(block), "_top"));	
