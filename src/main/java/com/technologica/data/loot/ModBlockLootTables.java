@@ -81,6 +81,36 @@ public class ModBlockLootTables extends BlockLootTables {
 		registerDropSelfLootTable(ModBlocks.PEACH_TRAPDOOR.get());
 		registerDropSelfLootTable(ModBlocks.PEAR_TRAPDOOR.get());
 		
+		registerDropSelfLootTable(ModBlocks.BANANA_DOOR.get());
+		registerDropSelfLootTable(ModBlocks.CHERRY_DOOR.get());
+		registerDropSelfLootTable(ModBlocks.COCONUT_DOOR.get());
+		registerDropSelfLootTable(ModBlocks.KIWI_DOOR.get());
+		registerDropSelfLootTable(ModBlocks.LEMON_DOOR.get());
+		registerDropSelfLootTable(ModBlocks.LIME_DOOR.get());
+		registerDropSelfLootTable(ModBlocks.ORANGE_DOOR.get());
+		registerDropSelfLootTable(ModBlocks.PEACH_DOOR.get());
+		registerDropSelfLootTable(ModBlocks.PEAR_DOOR.get());
+		
+		registerDropSelfLootTable(ModBlocks.BANANA_FENCE.get());
+		registerDropSelfLootTable(ModBlocks.CHERRY_FENCE.get());
+		registerDropSelfLootTable(ModBlocks.COCONUT_FENCE.get());
+		registerDropSelfLootTable(ModBlocks.KIWI_FENCE.get());
+		registerDropSelfLootTable(ModBlocks.LEMON_FENCE.get());
+		registerDropSelfLootTable(ModBlocks.LIME_FENCE.get());
+		registerDropSelfLootTable(ModBlocks.ORANGE_FENCE.get());
+		registerDropSelfLootTable(ModBlocks.PEACH_FENCE.get());
+		registerDropSelfLootTable(ModBlocks.PEAR_FENCE.get());
+		
+		registerDropSelfLootTable(ModBlocks.BANANA_FENCE_GATE.get());
+		registerDropSelfLootTable(ModBlocks.CHERRY_FENCE_GATE.get());
+		registerDropSelfLootTable(ModBlocks.COCONUT_FENCE_GATE.get());
+		registerDropSelfLootTable(ModBlocks.KIWI_FENCE_GATE.get());
+		registerDropSelfLootTable(ModBlocks.LEMON_FENCE_GATE.get());
+		registerDropSelfLootTable(ModBlocks.LIME_FENCE_GATE.get());
+		registerDropSelfLootTable(ModBlocks.ORANGE_FENCE_GATE.get());
+		registerDropSelfLootTable(ModBlocks.PEACH_FENCE_GATE.get());
+		registerDropSelfLootTable(ModBlocks.PEAR_FENCE_GATE.get());
+		
 		registerDropSelfLootTable(ModBlocks.BANANA_SAPLING.get());
 		registerDropSelfLootTable(ModBlocks.CHERRY_SAPLING.get());
 		registerDropSelfLootTable(ModBlocks.COCONUT_SAPLING.get());

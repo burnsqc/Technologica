@@ -66,5 +66,45 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
 				ModBlocks.ORANGE_PLANKS.get(),
 				ModBlocks.PEACH_PLANKS.get(),
 				ModBlocks.PEAR_PLANKS.get());
+		getOrCreateBuilder(BlockTags.WOODEN_TRAPDOORS).add(
+				ModBlocks.BANANA_TRAPDOOR.get(),
+	 			ModBlocks.CHERRY_TRAPDOOR.get(),
+	 			ModBlocks.COCONUT_TRAPDOOR.get(),
+	 			ModBlocks.KIWI_TRAPDOOR.get(),
+	 			ModBlocks.LEMON_TRAPDOOR.get(),
+	 			ModBlocks.LIME_TRAPDOOR.get(),
+	 			ModBlocks.ORANGE_TRAPDOOR.get(),
+	 			ModBlocks.PEACH_TRAPDOOR.get(),
+	 			ModBlocks.PEAR_TRAPDOOR.get());
+		getOrCreateBuilder(BlockTags.WOODEN_DOORS).add(
+				ModBlocks.BANANA_DOOR.get(),
+	 			ModBlocks.CHERRY_DOOR.get(),
+	 			ModBlocks.COCONUT_DOOR.get(),
+	 			ModBlocks.KIWI_DOOR.get(),
+	 			ModBlocks.LEMON_DOOR.get(),
+	 			ModBlocks.LIME_DOOR.get(),
+	 			ModBlocks.ORANGE_DOOR.get(),
+	 			ModBlocks.PEACH_DOOR.get(),
+	 			ModBlocks.PEAR_DOOR.get());
+		getOrCreateBuilder(BlockTags.WOODEN_FENCES).add(
+				ModBlocks.BANANA_FENCE.get(),
+	 			ModBlocks.CHERRY_FENCE.get(),
+	 			ModBlocks.COCONUT_FENCE.get(),
+	 			ModBlocks.KIWI_FENCE.get(),
+	 			ModBlocks.LEMON_FENCE.get(),
+	 			ModBlocks.LIME_FENCE.get(),
+	 			ModBlocks.ORANGE_FENCE.get(),
+	 			ModBlocks.PEACH_FENCE.get(),
+	 			ModBlocks.PEAR_FENCE.get());
+		getOrCreateBuilder(BlockTags.FENCE_GATES).add(
+				ModBlocks.BANANA_FENCE_GATE.get(),
+	 			ModBlocks.CHERRY_FENCE_GATE.get(),
+	 			ModBlocks.COCONUT_FENCE_GATE.get(),
+	 			ModBlocks.KIWI_FENCE_GATE.get(),
+	 			ModBlocks.LEMON_FENCE_GATE.get(),
+	 			ModBlocks.LIME_FENCE_GATE.get(),
+	 			ModBlocks.ORANGE_FENCE_GATE.get(),
+	 			ModBlocks.PEACH_FENCE_GATE.get(),
+	 			ModBlocks.PEAR_FENCE_GATE.get());
 	}
 }

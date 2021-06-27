@@ -67,6 +67,26 @@ public class ModItemTagsProvider extends ItemTagsProvider {
 	 			ModItems.ORANGE_TRAPDOOR_ITEM.get(),
 	 			ModItems.PEACH_TRAPDOOR_ITEM.get(),
 	 			ModItems.PEAR_TRAPDOOR_ITEM.get());
+		getOrCreateBuilder(ItemTags.WOODEN_DOORS).add(
+				ModItems.BANANA_DOOR_ITEM.get(),
+	 			ModItems.CHERRY_DOOR_ITEM.get(),
+	 			ModItems.COCONUT_DOOR_ITEM.get(),
+	 			ModItems.KIWI_DOOR_ITEM.get(),
+	 			ModItems.LEMON_DOOR_ITEM.get(),
+	 			ModItems.LIME_DOOR_ITEM.get(),
+	 			ModItems.ORANGE_DOOR_ITEM.get(),
+	 			ModItems.PEACH_DOOR_ITEM.get(),
+	 			ModItems.PEAR_DOOR_ITEM.get());
+		getOrCreateBuilder(ItemTags.WOODEN_FENCES).add(
+				ModItems.BANANA_FENCE_ITEM.get(),
+	 			ModItems.CHERRY_FENCE_ITEM.get(),
+	 			ModItems.COCONUT_FENCE_ITEM.get(),
+	 			ModItems.KIWI_FENCE_ITEM.get(),
+	 			ModItems.LEMON_FENCE_ITEM.get(),
+	 			ModItems.LIME_FENCE_ITEM.get(),
+	 			ModItems.ORANGE_FENCE_ITEM.get(),
+	 			ModItems.PEACH_FENCE_ITEM.get(),
+	 			ModItems.PEAR_FENCE_ITEM.get());
 	 			
 	}
 }

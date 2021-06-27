@@ -3,15 +3,20 @@ package com.technologica.data;
 import java.util.function.Supplier;
 
 import com.technologica.Technologica;
-import com.technologica.block.ModBlocks;
 import com.technologica.block.CrystalBlock;
+import com.technologica.block.ModBlocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.CropsBlock;
+import net.minecraft.block.DoorBlock;
+import net.minecraft.block.FenceBlock;
+import net.minecraft.block.FenceGateBlock;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.TrapDoorBlock;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.state.properties.DoorHingeSide;
+import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.state.properties.Half;
 import net.minecraft.state.properties.SlabType;
 import net.minecraft.util.Direction;
@@ -107,6 +112,28 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		trapdoorBlock(ModBlocks.PEACH_TRAPDOOR, new ResourceLocation("technologica:block/peach_trapdoor"), true);
 		trapdoorBlock(ModBlocks.PEAR_TRAPDOOR, new ResourceLocation("technologica:block/pear_trapdoor"), true);
 		
+		doorBlock(ModBlocks.BANANA_DOOR, new ResourceLocation("technologica:block/banana_door_bottom"), new ResourceLocation("technologica:block/banana_door_top"));
+		
+		fenceBlock(ModBlocks.BANANA_FENCE, new ResourceLocation("technologica:block/banana_planks"));
+		fenceBlock(ModBlocks.CHERRY_FENCE, new ResourceLocation("technologica:block/cherry_planks"));
+		fenceBlock(ModBlocks.COCONUT_FENCE, new ResourceLocation("technologica:block/coconut_planks"));
+		fenceBlock(ModBlocks.KIWI_FENCE, new ResourceLocation("technologica:block/kiwi_planks"));
+		fenceBlock(ModBlocks.LEMON_FENCE, new ResourceLocation("technologica:block/lemon_planks"));
+		fenceBlock(ModBlocks.LIME_FENCE, new ResourceLocation("technologica:block/lime_planks"));
+		fenceBlock(ModBlocks.ORANGE_FENCE, new ResourceLocation("technologica:block/orange_planks"));
+		fenceBlock(ModBlocks.PEACH_FENCE, new ResourceLocation("technologica:block/peach_planks"));
+		fenceBlock(ModBlocks.PEAR_FENCE, new ResourceLocation("technologica:block/pear_planks"));
+		
+		fenceGateBlock(ModBlocks.BANANA_FENCE_GATE, new ResourceLocation("technologica:block/banana_planks"));
+		fenceGateBlock(ModBlocks.CHERRY_FENCE_GATE, new ResourceLocation("technologica:block/cherry_planks"));
+		fenceGateBlock(ModBlocks.COCONUT_FENCE_GATE, new ResourceLocation("technologica:block/coconut_planks"));
+		fenceGateBlock(ModBlocks.KIWI_FENCE_GATE, new ResourceLocation("technologica:block/kiwi_planks"));
+		fenceGateBlock(ModBlocks.LEMON_FENCE_GATE, new ResourceLocation("technologica:block/lemon_planks"));
+		fenceGateBlock(ModBlocks.LIME_FENCE_GATE, new ResourceLocation("technologica:block/lime_planks"));
+		fenceGateBlock(ModBlocks.ORANGE_FENCE_GATE, new ResourceLocation("technologica:block/orange_planks"));
+		fenceGateBlock(ModBlocks.PEACH_FENCE_GATE, new ResourceLocation("technologica:block/peach_planks"));
+		fenceGateBlock(ModBlocks.PEAR_FENCE_GATE, new ResourceLocation("technologica:block/pear_planks"));
+		
 		crossBlock(ModBlocks.BANANA_SAPLING);
 		crossBlock(ModBlocks.CHERRY_SAPLING);
 		crossBlock(ModBlocks.COCONUT_SAPLING);
@@ -185,6 +212,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
         return models().slab(name(block), blockTexture(block), blockTexture(block), blockTexture(block));
     }
 	
+	public ModelFile door(Block block) {
+        return models().withExistingParent(name(block), mcLoc("item/generated")).texture("bottom", extend(blockTexture(block), "_bottom")).texture("top", extend(blockTexture(block), "_top"));
+    }
+	
 	public ModelFile cubeColumn(Block block) {
         return models().cubeColumn(name(block), blockTexture(block), extend(blockTexture(block), "_top"));
     }
@@ -205,6 +236,43 @@ public class ModBlockStateProvider extends BlockStateProvider {
     	SlabBlock block = (SlabBlock) blockSupplier.get();
         getVariantBuilder(block).partialState().with(SlabBlock.TYPE, SlabType.BOTTOM).addModels(new ConfiguredModel(models().slab(name(block), blockTexture(block), blockTexture(block), blockTexture(block)))).partialState().with(SlabBlock.TYPE, SlabType.TOP).addModels(new ConfiguredModel(models().slabTop(name(block) + "_top", blockTexture(block), blockTexture(block), blockTexture(block)))).partialState().with(SlabBlock.TYPE, SlabType.DOUBLE).addModels(new ConfiguredModel(models().getExistingFile(doubleslab)));
         this.simpleBlockItem(block, slab(block));
+    }
+    
+    public void doorBlock(Supplier<? extends Block> blockSupplier, ResourceLocation bottom, ResourceLocation top) {
+    	DoorBlock block = (DoorBlock) blockSupplier.get();
+        doorBlockInternal(block, block.getRegistryName().toString(), bottom, top);
+        this.simpleBlockItem(block, door(block));
+    }
+
+    public void doorBlock(DoorBlock block, String name, ResourceLocation bottom, ResourceLocation top) {
+        doorBlockInternal(block, name + "_door", bottom, top);
+    }
+
+    private void doorBlockInternal(DoorBlock block, String baseName, ResourceLocation bottom, ResourceLocation top) {
+        ModelFile bottomLeft = models().doorBottomLeft(baseName + "_bottom", bottom, top);
+        ModelFile bottomRight = models().doorBottomRight(baseName + "_bottom_hinge", bottom, top);
+        ModelFile topLeft = models().doorTopLeft(baseName + "_top", bottom, top);
+        ModelFile topRight = models().doorTopRight(baseName + "_top_hinge", bottom, top);
+        doorBlock(block, bottomLeft, bottomRight, topLeft, topRight);
+    }
+
+    public void doorBlock(DoorBlock block, ModelFile bottomLeft, ModelFile bottomRight, ModelFile topLeft, ModelFile topRight) {
+        getVariantBuilder(block).forAllStatesExcept(state -> {
+            int yRot = ((int) state.get(DoorBlock.FACING).getHorizontalAngle()) + 90;
+            boolean rh = state.get(DoorBlock.HINGE) == DoorHingeSide.RIGHT;
+            boolean open = state.get(DoorBlock.OPEN);
+            boolean right = rh ^ open;
+            if (open) {
+                yRot += 90;
+            }
+            if (rh && open) {
+                yRot += 180;
+            }
+            yRot %= 360;
+            return ConfiguredModel.builder().modelFile(state.get(DoorBlock.HALF) == DoubleBlockHalf.LOWER ? (right ? bottomRight : bottomLeft) : (right ? topRight : topLeft))
+                    .rotationY(yRot)
+                    .build();
+        }, DoorBlock.POWERED);
     }
 	
     public void trapdoorBlock(Supplier<? extends Block> blockSupplier, ResourceLocation texture, boolean orientable) {
@@ -237,6 +305,52 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     .rotationY(yRot)
                     .build();
         }, TrapDoorBlock.POWERED, TrapDoorBlock.WATERLOGGED);
+    }
+    
+    public void fenceBlock(Supplier<? extends Block> blockSupplier, ResourceLocation texture) {
+    	FenceBlock block = (FenceBlock) blockSupplier.get();
+        String baseName = block.getRegistryName().toString();
+        fourWayBlock(block, models().fencePost(baseName + "_post", texture), models().fenceSide(baseName + "_side", texture));
+        this.simpleBlockItem(block, models().fenceInventory(name(block) + "_inventory", texture));
+    }
+
+    public void fenceBlock(FenceBlock block, String name, ResourceLocation texture) {
+        fourWayBlock(block, models().fencePost(name + "_fence_post", texture), models().fenceSide(name + "_fence_side", texture));
+    }
+    
+    public void fenceGateBlock(Supplier<? extends Block> blockSupplier, ResourceLocation texture) {
+    	FenceGateBlock block = (FenceGateBlock) blockSupplier.get();
+        fenceGateBlockInternal(block, block.getRegistryName().toString(), texture);
+        this.simpleBlockItem(block, models().fenceGate(name(block), texture));
+    }
+
+    public void fenceGateBlock(FenceGateBlock block, String name, ResourceLocation texture) {
+        fenceGateBlockInternal(block, name + "_fence_gate", texture);
+    }
+
+    private void fenceGateBlockInternal(FenceGateBlock block, String baseName, ResourceLocation texture) {
+        ModelFile gate = models().fenceGate(baseName, texture);
+        ModelFile gateOpen = models().fenceGateOpen(baseName + "_open", texture);
+        ModelFile gateWall = models().fenceGateWall(baseName + "_wall", texture);
+        ModelFile gateWallOpen = models().fenceGateWallOpen(baseName + "_wall_open", texture);
+        fenceGateBlock(block, gate, gateOpen, gateWall, gateWallOpen);
+    }
+
+    public void fenceGateBlock(FenceGateBlock block, ModelFile gate, ModelFile gateOpen, ModelFile gateWall, ModelFile gateWallOpen) {
+        getVariantBuilder(block).forAllStatesExcept(state -> {
+            ModelFile model = gate;
+            if (state.get(FenceGateBlock.IN_WALL)) {
+                model = gateWall;
+            }
+            if (state.get(FenceGateBlock.OPEN)) {
+                model = model == gateWall ? gateWallOpen : gateOpen;
+            }
+            return ConfiguredModel.builder()
+                    .modelFile(model)
+                    .rotationY((int) state.get(FenceGateBlock.HORIZONTAL_FACING).getHorizontalAngle())
+                    .uvLock(true)
+                    .build();
+        }, FenceGateBlock.POWERED);
     }
     
 	public void logBlock(Supplier<? extends Block> blockSupplier) {					

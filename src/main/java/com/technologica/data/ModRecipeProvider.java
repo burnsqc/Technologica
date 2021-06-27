@@ -4,13 +4,11 @@ import java.util.function.Consumer;
 
 import com.technologica.items.ModItems;
 
-import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.RecipeProvider;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Items;
-import net.minecraft.tags.ItemTags;
 
 public class ModRecipeProvider extends RecipeProvider {
 

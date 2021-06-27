@@ -98,6 +98,36 @@ public class ModItems {
     public static final RegistryObject<Item> PEACH_TRAPDOOR_ITEM = ITEMS.register("peach_trapdoor", () -> new BlockItem(ModBlocks.PEACH_TRAPDOOR.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
     public static final RegistryObject<Item> PEAR_TRAPDOOR_ITEM = ITEMS.register("pear_trapdoor", () -> new BlockItem(ModBlocks.PEAR_TRAPDOOR.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
     
+    public static final RegistryObject<Item> BANANA_DOOR_ITEM = ITEMS.register("banana_door", () -> new BlockItem(ModBlocks.BANANA_DOOR.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> CHERRY_DOOR_ITEM = ITEMS.register("cherry_door", () -> new BlockItem(ModBlocks.CHERRY_DOOR.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> COCONUT_DOOR_ITEM = ITEMS.register("coconut_door", () -> new BlockItem(ModBlocks.COCONUT_DOOR.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> KIWI_DOOR_ITEM = ITEMS.register("kiwi_door", () -> new BlockItem(ModBlocks.KIWI_DOOR.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> LEMON_DOOR_ITEM = ITEMS.register("lemon_door", () -> new BlockItem(ModBlocks.LEMON_DOOR.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> LIME_DOOR_ITEM = ITEMS.register("lime_door", () -> new BlockItem(ModBlocks.LIME_DOOR.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> ORANGE_DOOR_ITEM = ITEMS.register("orange_door", () -> new BlockItem(ModBlocks.ORANGE_DOOR.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> PEACH_DOOR_ITEM = ITEMS.register("peach_door", () -> new BlockItem(ModBlocks.PEACH_DOOR.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> PEAR_DOOR_ITEM = ITEMS.register("pear_door", () -> new BlockItem(ModBlocks.PEAR_DOOR.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    
+    public static final RegistryObject<Item> BANANA_FENCE_ITEM = ITEMS.register("banana_fence", () -> new BlockItem(ModBlocks.BANANA_FENCE.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> CHERRY_FENCE_ITEM = ITEMS.register("cherry_fence", () -> new BlockItem(ModBlocks.CHERRY_FENCE.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> COCONUT_FENCE_ITEM = ITEMS.register("coconut_fence", () -> new BlockItem(ModBlocks.COCONUT_FENCE.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> KIWI_FENCE_ITEM = ITEMS.register("kiwi_fence", () -> new BlockItem(ModBlocks.KIWI_FENCE.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> LEMON_FENCE_ITEM = ITEMS.register("lemon_fence", () -> new BlockItem(ModBlocks.LEMON_FENCE.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> LIME_FENCE_ITEM = ITEMS.register("lime_fence", () -> new BlockItem(ModBlocks.LIME_FENCE.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> ORANGE_FENCE_ITEM = ITEMS.register("orange_fence", () -> new BlockItem(ModBlocks.ORANGE_FENCE.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> PEACH_FENCE_ITEM = ITEMS.register("peach_fence", () -> new BlockItem(ModBlocks.PEACH_FENCE.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> PEAR_FENCE_ITEM = ITEMS.register("pear_fence", () -> new BlockItem(ModBlocks.PEAR_FENCE.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    
+    public static final RegistryObject<Item> BANANA_FENCE_GATE_ITEM = ITEMS.register("banana_fence_gate", () -> new BlockItem(ModBlocks.BANANA_FENCE_GATE.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> CHERRY_FENCE_GATE_ITEM = ITEMS.register("cherry_fence_gate", () -> new BlockItem(ModBlocks.CHERRY_FENCE_GATE.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> COCONUT_FENCE_GATE_ITEM = ITEMS.register("coconut_fence_gate", () -> new BlockItem(ModBlocks.COCONUT_FENCE_GATE.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> KIWI_FENCE_GATE_ITEM = ITEMS.register("kiwi_fence_gate", () -> new BlockItem(ModBlocks.KIWI_FENCE_GATE.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> LEMON_FENCE_GATE_ITEM = ITEMS.register("lemon_fence_gate", () -> new BlockItem(ModBlocks.LEMON_FENCE_GATE.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> LIME_FENCE_GATE_ITEM = ITEMS.register("lime_fence_gate", () -> new BlockItem(ModBlocks.LIME_FENCE_GATE.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> ORANGE_FENCE_GATE_ITEM = ITEMS.register("orange_fence_gate", () -> new BlockItem(ModBlocks.ORANGE_FENCE_GATE.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> PEACH_FENCE_GATE_ITEM = ITEMS.register("peach_fence_gate", () -> new BlockItem(ModBlocks.PEACH_FENCE_GATE.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> PEAR_FENCE_GATE_ITEM = ITEMS.register("pear_fence_gate", () -> new BlockItem(ModBlocks.PEAR_FENCE_GATE.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    
     public static final RegistryObject<Item> BANANA_SAPLING_ITEM = ITEMS.register("banana_sapling", () -> new BlockItem(ModBlocks.BANANA_SAPLING.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));  
     public static final RegistryObject<Item> CHERRY_SAPLING_ITEM = ITEMS.register("cherry_sapling", () -> new BlockItem(ModBlocks.CHERRY_SAPLING.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
     public static final RegistryObject<Item> COCONUT_SAPLING_ITEM = ITEMS.register("coconut_sapling", () -> new BlockItem(ModBlocks.COCONUT_SAPLING.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA))); 
