@@ -138,8 +138,10 @@ public class ModBlockLootTables extends BlockLootTables {
 		registerDropSelfLootTable(ModBlocks.POTTED_PEACH_SAPLING.get());
 		registerDropSelfLootTable(ModBlocks.POTTED_PEAR_SAPLING.get());
 		
+		registerDropSelfLootTable(ModBlocks.BLACKBERRY_CROP.get());
 		registerDropSelfLootTable(ModBlocks.BLUEBERRY_CROP.get());
 		registerDropSelfLootTable(ModBlocks.GRAPE_CROP.get());
+		registerDropSelfLootTable(ModBlocks.RASPBERRY_CROP.get());
 		registerDropSelfLootTable(ModBlocks.STRAWBERRY_CROP.get());
 		
 		registerDropSelfLootTable(ModBlocks.LITHIUM_CLAY.get());

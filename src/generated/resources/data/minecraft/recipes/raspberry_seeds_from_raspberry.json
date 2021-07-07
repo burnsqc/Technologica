@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "technologica:raspberry"
+    }
+  ],
+  "result": {
+    "item": "technologica:raspberry_seeds",
+    "count": 2
+  }
+}

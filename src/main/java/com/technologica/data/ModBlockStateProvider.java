@@ -156,8 +156,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		flowerPotCrossBlock(ModBlocks.POTTED_PEACH_SAPLING);
 		flowerPotCrossBlock(ModBlocks.POTTED_PEAR_SAPLING);
 		
+		cropBlock(ModBlocks.BLACKBERRY_CROP);
 		cropBlock(ModBlocks.BLUEBERRY_CROP);
 		cropBlock(ModBlocks.GRAPE_CROP);
+		cropBlock(ModBlocks.RASPBERRY_CROP);
 		cropBlock(ModBlocks.STRAWBERRY_CROP);
 		
 		hexagonalCrystalBlock(ModBlocks.AQUAMARINE_CRYSTAL);

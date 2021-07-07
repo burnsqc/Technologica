@@ -144,6 +144,7 @@ public class ModLanguageProvider extends LanguageProvider {
 		addBlock(ModBlocks.DISPLAY_CASE, "Display Case");
 		
 		addItem(ModItems.BANANA, "Banana");
+		addItem(ModItems.BLACKBERRY, "Blackberries");
 		addItem(ModItems.BLUEBERRY, "Blueberries");
 		addItem(ModItems.CHERRY, "Cherries");
 		addItem(ModItems.COCONUT, "Coconut");
@@ -154,9 +155,12 @@ public class ModLanguageProvider extends LanguageProvider {
 		addItem(ModItems.ORANGE, "Orange");
 		addItem(ModItems.PEACH, "Peach");
 		addItem(ModItems.PEAR, "Pear");
+		addItem(ModItems.RASPBERRY, "Raspberries");
 		addItem(ModItems.STRAWBERRY, "Strawberry");
+		addItem(ModItems.BLACKBERRY_SEEDS, "Blackberry Seeds");
 		addItem(ModItems.BLUEBERRY_SEEDS, "Blueberry Seeds");
 		addItem(ModItems.GRAPE_SEEDS, "Grape Seeds");
+		addItem(ModItems.RASPBERRY_SEEDS, "Raspberry Seeds");
 		addItem(ModItems.STRAWBERRY_SEEDS, "Strawberry Seeds");
 		
 		addItem(ModItems.BANANAS_FOSTER, "Bananas Foster");
