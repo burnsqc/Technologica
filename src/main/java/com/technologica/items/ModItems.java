@@ -20,7 +20,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class ModItems {
-	private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
+	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
 
 	private ModItems() {
        // use private constructor to hide default constructor
@@ -57,6 +57,7 @@ public class ModItems {
     public static final RegistryObject<Item> MALEVOLENT_LOG_ITEM = ITEMS.register("melvolent_log", () -> new BlockItem(ModBlocks.MALEVOLENT_LOG.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_CRYPTICA)));
     public static final RegistryObject<Item> CONDUCTIVE_LOG_ITEM = ITEMS.register("conductive_log", () -> new BlockItem(ModBlocks.CONDUCTIVE_LOG.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_CRYPTICA)));
     public static final RegistryObject<Item> FROSTBITTEN_LOG_ITEM = ITEMS.register("frostbitten_log", () -> new BlockItem(ModBlocks.FROSTBITTEN_LOG.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_CRYPTICA)));
+    public static final RegistryObject<Item> INFERNAL_LOG_ITEM = ITEMS.register("infernal_log", () -> new BlockItem(ModBlocks.INFERNAL_LOG.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_CRYPTICA)));
     
     public static final RegistryObject<Item> BANANA_PLANKS_ITEM = ITEMS.register("banana_planks", () -> new BlockItem(ModBlocks.BANANA_PLANKS.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
     public static final RegistryObject<Item> CHERRY_PLANKS_ITEM = ITEMS.register("cherry_planks", () -> new BlockItem(ModBlocks.CHERRY_PLANKS.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
@@ -77,6 +78,16 @@ public class ModItems {
     public static final RegistryObject<Item> ORANGE_SLAB_ITEM = ITEMS.register("orange_slab", () -> new BlockItem(ModBlocks.ORANGE_SLAB.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
     public static final RegistryObject<Item> PEACH_SLAB_ITEM = ITEMS.register("peach_slab", () -> new BlockItem(ModBlocks.PEACH_SLAB.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
     public static final RegistryObject<Item> PEAR_SLAB_ITEM = ITEMS.register("pear_slab", () -> new BlockItem(ModBlocks.PEAR_SLAB.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    
+    public static final RegistryObject<Item> BANANA_STAIRS_ITEM = ITEMS.register("banana_stairs", () -> new BlockItem(ModBlocks.BANANA_STAIRS.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> CHERRY_STAIRS_ITEM = ITEMS.register("cherry_stairs", () -> new BlockItem(ModBlocks.CHERRY_STAIRS.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> COCONUT_STAIRS_ITEM = ITEMS.register("coconut_stairs", () -> new BlockItem(ModBlocks.COCONUT_STAIRS.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> KIWI_STAIRS_ITEM = ITEMS.register("kiwi_stairs", () -> new BlockItem(ModBlocks.KIWI_STAIRS.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> LEMON_STAIRS_ITEM = ITEMS.register("lemon_stairs", () -> new BlockItem(ModBlocks.LEMON_STAIRS.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> LIME_STAIRS_ITEM = ITEMS.register("lime_stairs", () -> new BlockItem(ModBlocks.LIME_STAIRS.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> ORANGE_STAIRS_ITEM = ITEMS.register("orange_stairs", () -> new BlockItem(ModBlocks.ORANGE_STAIRS.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> PEACH_STAIRS_ITEM = ITEMS.register("peach_stairs", () -> new BlockItem(ModBlocks.PEACH_STAIRS.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> PEAR_STAIRS_ITEM = ITEMS.register("pear_stairs", () -> new BlockItem(ModBlocks.PEAR_STAIRS.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
     
     public static final RegistryObject<Item> BANANA_BOOKSHELF_ITEM = ITEMS.register("banana_bookshelf", () -> new BlockItem(ModBlocks.BANANA_BOOKSHELF.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
     public static final RegistryObject<Item> CHERRY_BOOKSHELF_ITEM = ITEMS.register("cherry_bookshelf", () -> new BlockItem(ModBlocks.CHERRY_BOOKSHELF.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));

@@ -47,6 +47,11 @@ public class ClientSetup {
 
          RenderTypeLookup.setRenderLayer(ModBlocks.ANCIENT_AMBROSIA_SAPLING.get(), RenderType.getCutoutMipped());
          RenderTypeLookup.setRenderLayer(ModBlocks.BENEVOLENT_APOTHECARY_SAPLING.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.MALEVOLENT_APOTHECARY_SAPLING.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.SERENDIPITOUS_APOTHECARY_SAPLING.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.CRYOGENIC_SPIRE_SAPLING.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.THUNDEROUS_CONDUCTOR_SAPLING.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.TOWERING_INFERNO_SAPLING.get(), RenderType.getCutoutMipped());
 
          RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_BANANA_SAPLING.get(), RenderType.getCutoutMipped());
          RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_CHERRY_SAPLING.get(), RenderType.getCutoutMipped());

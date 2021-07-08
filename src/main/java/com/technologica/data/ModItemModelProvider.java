@@ -32,7 +32,6 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.PEACH);
 		simpleItem(ModItems.PEAR);
 		simpleItem(ModItems.STRAWBERRY);
-		
 		simpleItem(ModItems.BANANAS_FOSTER);
 		simpleItem(ModItems.BLACK_FOREST_CAKE);
 		simpleItem(ModItems.BLUEBERRY_CHEESECAKE);
@@ -45,11 +44,9 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.PEACH_COBBLER);
 		simpleItem(ModItems.PEAR_TART);
 		simpleItem(ModItems.STRAWBERRY_SHORTCAKE);
-		
 		simpleItem(ModItems.BLUEBERRY_SEEDS);
 		simpleItem(ModItems.GRAPE_SEEDS);
 		simpleItem(ModItems.STRAWBERRY_SEEDS);
-		
 		simpleItem(ModItems.LITHIUM_INGOT);
 		simpleItem(ModItems.BERYLLIUM_INGOT);
 		simpleItem(ModItems.SODIUM_INGOT);
@@ -85,7 +82,6 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.FRANCIUM_INGOT);
 		simpleItem(ModItems.RADIUM_INGOT);
 		simpleItem(ModItems.LAWRENCIUM_INGOT);
-		
 		simpleItem(ModItems.LITHIUM_CLAY_BALL);
 		simpleItem(ModItems.BORON_CHUNK);
 		simpleItem(ModItems.CARBON_CHUNK);
@@ -99,19 +95,15 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.TELLURIUM_CHUNK);
 		simpleItem(ModItems.IODINE_CHUNK);
 		simpleItem(ModItems.ASTATINE_CHUNK);
-		
 		simpleItem(ModItems.BRINE_BUCKET);
-		
 		simpleItem(ModItems.HAMMER);
 		simpleItem(ModItems.PIPE_WRENCH);
 		simpleItem(ModItems.WRENCH);
-		
 		simpleItem(ModItems.SMALL_PULLEY_ITEM);
 		simpleItem(ModItems.MEDIUM_PULLEY_ITEM);
 		simpleItem(ModItems.LARGE_PULLEY_ITEM);
 		simpleItem(ModItems.STEEL_SHAFT);
 		simpleItem(ModItems.PULLEY_BELT);
-		
 		simpleItem(ModItems.DUCK_SPAWN_EGG);
 		simpleItem(ModItems.GRIZZLY_BEAR_SPAWN_EGG);
 		simpleItem(ModItems.OSTRICH_SPAWN_EGG);

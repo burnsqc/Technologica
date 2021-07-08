@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "technologica:block/malevolent_apothecary_sapling"
+  }
+}

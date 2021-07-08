@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "side": "technologica:block/lime_planks",
+    "bottom": "technologica:block/lime_planks",
+    "top": "technologica:block/lime_planks"
+  }
+}

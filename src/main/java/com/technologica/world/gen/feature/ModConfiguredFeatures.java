@@ -114,7 +114,7 @@ public class ModConfiguredFeatures {
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> TOWERING_INFERNO_TREE_FEATURE = register(
 			"towering_inferno_tree_feature",
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(Blocks.COAL_BLOCK.getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.INFERNAL_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(Blocks.FIRE.getDefaultState()),
 					new CylindricalFoliagePlacer(FeatureSpread.create(9), FeatureSpread.create(0), 0),
 					new StraightTrunkPlacer(10, 10, 0), 
@@ -123,7 +123,7 @@ public class ModConfiguredFeatures {
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> THUNDEROUS_CONDUCTOR_TREE_FEATURE = register(
 			"thunderous_conductor_tree_feature",
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(Blocks.IRON_BLOCK.getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.CONDUCTIVE_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(ModBlocks.CONDUCTIVE_LEAVES.get().getDefaultState()),
 					new DishFoliagePlacer(FeatureSpread.create(9), FeatureSpread.create(0), 3),
 					new StraightTrunkPlacer(10, 10, 0), 
@@ -132,7 +132,7 @@ public class ModConfiguredFeatures {
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> CRYOGENIC_SPIRE_TREE_FEATURE = register(
 			"cryogenic_spire_tree_feature",
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(Blocks.ICE.getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.FROSTBITTEN_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(ModBlocks.FROSTBITTEN_LEAVES.get().getDefaultState()),
 					new MegaPineFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(5), FeatureSpread.create(13, 4)),
 					new StraightTrunkPlacer(10, 10, 0), 
@@ -150,7 +150,7 @@ public class ModConfiguredFeatures {
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> SERENDIPITOUS_APOTHECARY_TREE_FEATURE = register(
 			"serendipitous_apothecary_tree_feature",
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(Blocks.BIRCH_LOG.getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.ALCHEMICAL_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(ModBlocks.ALCHEMICAL_LEAVES.get().getDefaultState()),
 					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
 					new StraightTrunkPlacer(4, 1, 0),
@@ -168,7 +168,7 @@ public class ModConfiguredFeatures {
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> MALEVOLENT_APOTHECARY_TREE_FEATURE = register(
 			"malevolent_apothecary_tree_feature",
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(Blocks.BIRCH_LOG.getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.MALEVOLENT_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(ModBlocks.MALEVOLENT_LEAVES.get().getDefaultState()),
 					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
 					new StraightTrunkPlacer(4, 1, 0),
