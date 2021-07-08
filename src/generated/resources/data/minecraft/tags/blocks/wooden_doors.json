@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "technologica:banana_door",
+    "technologica:cherry_door",
+    "technologica:coconut_door",
+    "technologica:kiwi_door",
+    "technologica:lemon_door",
+    "technologica:lime_door",
+    "technologica:orange_door",
+    "technologica:peach_door",
+    "technologica:pear_door"
+  ]
+}

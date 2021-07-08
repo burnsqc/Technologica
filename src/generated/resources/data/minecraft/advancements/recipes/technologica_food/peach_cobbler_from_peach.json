@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:peach_cobbler_from_peach"
+    ]
+  },
+  "criteria": {
+    "has_peach": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "technologica:peach"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:peach_cobbler_from_peach"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_peach",
+      "has_the_recipe"
+    ]
+  ]
+}

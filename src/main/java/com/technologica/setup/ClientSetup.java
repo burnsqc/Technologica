@@ -1,22 +1,31 @@
 package com.technologica.setup;
 
+import static com.technologica.client.renderer.tileentity.LineShaftTileEntityRenderer.PULLEY_BELT_TEXTURE;
+
 import com.technologica.block.ModBlocks;
-import com.technologica.client.renderer.entity.*;
-import com.technologica.client.renderer.tileentity.*;
+import com.technologica.client.renderer.entity.DuckRenderer;
+import com.technologica.client.renderer.entity.GrizzlyBearRenderer;
+import com.technologica.client.renderer.entity.OstrichRenderer;
+import com.technologica.client.renderer.entity.SharkRenderer;
+import com.technologica.client.renderer.entity.ZebraRenderer;
+import com.technologica.client.renderer.tileentity.DisplayCaseTileEntityRenderer;
+import com.technologica.client.renderer.tileentity.FruitTileEntityRenderer;
+import com.technologica.client.renderer.tileentity.LineShaftHangerTileEntityRenderer;
+import com.technologica.client.renderer.tileentity.LineShaftTileEntityRenderer;
+import com.technologica.client.renderer.tileentity.PotionTileEntityRenderer;
 import com.technologica.entity.ModEntities;
 import com.technologica.fluid.ModFluids;
 import com.technologica.tileentity.ModTileEntities;
+
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.inventory.container.PlayerContainer;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 public class ClientSetup {
-
-   private ClientSetup() {
-      // hide constructor for class with only static members
-   }
 
    public static void init(final FMLClientSetupEvent event) {
       RenderingRegistry.registerEntityRenderingHandler(ModEntities.DUCK.get(), DuckRenderer::new);
@@ -49,10 +58,32 @@ public class ClientSetup {
          RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_PEACH_SAPLING.get(), RenderType.getCutoutMipped());
          RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_PEAR_SAPLING.get(), RenderType.getCutoutMipped());
 
+         RenderTypeLookup.setRenderLayer(ModBlocks.BLACKBERRY_CROP.get(), RenderType.getCutoutMipped());
          RenderTypeLookup.setRenderLayer(ModBlocks.BLUEBERRY_CROP.get(), RenderType.getCutoutMipped());
          RenderTypeLookup.setRenderLayer(ModBlocks.GRAPE_CROP.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.RASPBERRY_CROP.get(), RenderType.getCutoutMipped());
          RenderTypeLookup.setRenderLayer(ModBlocks.STRAWBERRY_CROP.get(), RenderType.getCutoutMipped());
 
+         RenderTypeLookup.setRenderLayer(ModBlocks.BANANA_TRAPDOOR.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.CHERRY_TRAPDOOR.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.COCONUT_TRAPDOOR.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.KIWI_TRAPDOOR.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.LEMON_TRAPDOOR.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.LIME_TRAPDOOR.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.ORANGE_TRAPDOOR.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.PEACH_TRAPDOOR.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.PEAR_TRAPDOOR.get(), RenderType.getCutoutMipped());
+         
+         RenderTypeLookup.setRenderLayer(ModBlocks.BANANA_DOOR.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.CHERRY_DOOR.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.COCONUT_DOOR.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.KIWI_DOOR.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.LEMON_DOOR.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.LIME_DOOR.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.ORANGE_DOOR.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.PEACH_DOOR.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.PEAR_DOOR.get(), RenderType.getCutoutMipped());
+         
          RenderTypeLookup.setRenderLayer(ModBlocks.DISPLAY_CASE.get(), RenderType.getTranslucent());
 
          RenderTypeLookup.setRenderLayer(ModBlocks.AQUAMARINE_CRYSTAL.get(), RenderType.getTranslucent());
@@ -69,5 +100,11 @@ public class ClientSetup {
          ClientRegistry.bindTileEntityRenderer(ModTileEntities.LINE_SHAFT_TILE.get(), LineShaftTileEntityRenderer::new);
          ClientRegistry.bindTileEntityRenderer(ModTileEntities.LINE_SHAFT_HANGER_TILE.get(), LineShaftHangerTileEntityRenderer::new);
       });
+   }
+   
+   public static void stitch(final TextureStitchEvent.Pre event) {
+	   if (event.getMap().getTextureLocation().equals(PlayerContainer.LOCATION_BLOCKS_TEXTURE)) {
+	       	event.addSprite(PULLEY_BELT_TEXTURE);
+	   }
    }
 }

@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "technologica:banana_fence",
+    "technologica:cherry_fence",
+    "technologica:coconut_fence",
+    "technologica:kiwi_fence",
+    "technologica:lemon_fence",
+    "technologica:lime_fence",
+    "technologica:orange_fence",
+    "technologica:peach_fence",
+    "technologica:pear_fence"
+  ]
+}

@@ -81,6 +81,12 @@ public class LineShaftBlock extends RotatedPillarBlock {
 		return bool;		
 	}
 	
+	@Override
+	public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
+		LineShaftTileEntity tile = getTileEntity(worldIn, pos);
+		tile.setBeltPos(null);
+	}
+	
 	//Tile Entity
 	@Override
 	public boolean hasTileEntity(BlockState state) {
@@ -105,9 +111,9 @@ public class LineShaftBlock extends RotatedPillarBlock {
 		
 		if (tool == ModItems.HAMMER.get()) {
 			if (tile.getRPM() == 0) {
-				tile.setRPMBoth(60);
+				tile.setRPM(60);
 			} else {
-				tile.setRPMBoth(0);
+				tile.setRPM(0);
 			}
 			
 		} else if (tool == ModItems.PIPE_WRENCH.get()) {
