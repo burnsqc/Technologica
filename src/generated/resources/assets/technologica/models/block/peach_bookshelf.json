@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "side": "technologica:block/peach_bookshelf",
-    "end": "technologica:block/peach_bookshelf_top"
-  }
-}

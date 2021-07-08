@@ -1,9 +1,8 @@
 package com.technologica.tileentity;
 
-import static net.minecraft.block.RotatedPillarBlock.AXIS;
-
 import javax.annotation.Nullable;
 
+import com.technologica.block.LineShaftBlock;
 import com.technologica.block.TwelveDirectionBlock;
 
 import net.minecraft.block.BlockState;
@@ -12,6 +11,8 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
+
+import static net.minecraft.block.RotatedPillarBlock.AXIS;
 
 public class LineShaftHangerTileEntity extends TileEntity {
 	public static final String ITEM_NAME = "Shaft";
@@ -24,45 +25,41 @@ public class LineShaftHangerTileEntity extends TileEntity {
 		super(ModTileEntities.LINE_SHAFT_HANGER_TILE.get());
 	}
 	
-	public void setRPM (int rpmIn) {
-		TileEntity connection3 = null;
-		TileEntity connection2 = null;
+	public void setRPMPos (int rpmIn) {
+		TileEntity connection;
 		
 		this.rpm = rpmIn;
-
-		switch(getBlockState().get(AXIS)) {
-		case X:
-			connection3 = world.getTileEntity(this.getPos().offset(Direction.EAST));
-			connection2 = world.getTileEntity(this.getPos().offset(Direction.WEST));
-			break;
-		case Y:
-			connection3 = world.getTileEntity(this.getPos().offset(Direction.UP));
-			connection2 = world.getTileEntity(this.getPos().offset(Direction.DOWN));
-			break;
-		case Z:
-			connection3 = world.getTileEntity(this.getPos().offset(Direction.SOUTH));
-			connection2 = world.getTileEntity(this.getPos().offset(Direction.NORTH));
-			break;
+		if (this.getBlockState().get(AXIS) == Direction.Axis.X) {
+			connection = world.getTileEntity(this.getPos().offset(Direction.EAST));
+		} else if (this.getBlockState().get(AXIS) == Direction.Axis.Y) {
+			connection = world.getTileEntity(this.getPos().offset(Direction.UP));
+		} else {
+			connection = world.getTileEntity(this.getPos().offset(Direction.SOUTH));
 		}
 		
-		if (connection3 instanceof LineShaftTileEntity && connection3.getBlockState().get(AXIS) == this.getBlockState().get(AXIS)) {
-			if (((LineShaftTileEntity) connection3).getRPM() != this.rpm) {
-				((LineShaftTileEntity) connection3).setRPM(this.rpm);
-			}
-		} else if (connection3 instanceof LineShaftHangerTileEntity && connection3.getBlockState().get(TwelveDirectionBlock.AXIS) == this.getBlockState().get(AXIS)) {
-			if (((LineShaftHangerTileEntity) connection3).getRPM() != this.rpm) {
-				((LineShaftHangerTileEntity) connection3).setRPM(this.rpm);
-			}
+		if (connection instanceof LineShaftTileEntity && connection.getBlockState().get(AXIS) == this.getBlockState().get(AXIS)) {
+			((LineShaftTileEntity) connection).setRPMPos(this.rpm);
+		} else if (connection instanceof LineShaftHangerTileEntity && connection.getBlockState().get(TwelveDirectionBlock.AXIS) == this.getBlockState().get(AXIS)) {
+			((LineShaftHangerTileEntity) connection).setRPMPos(this.rpm);
+		}
+	}
+	
+	public void setRPMNeg (int rpmIn) {
+		TileEntity connection;
+		
+		this.rpm = rpmIn;
+		if (this.getBlockState().get(AXIS) == Direction.Axis.X) {
+			connection = world.getTileEntity(this.getPos().offset(Direction.WEST));
+		} else if (this.getBlockState().get(AXIS) == Direction.Axis.Y) {
+			connection = world.getTileEntity(this.getPos().offset(Direction.DOWN));
+		} else {
+			connection = world.getTileEntity(this.getPos().offset(Direction.NORTH));
 		}
 		
-		if (connection2 instanceof LineShaftTileEntity && connection2.getBlockState().get(AXIS) == this.getBlockState().get(AXIS)) {
-			if (((LineShaftTileEntity) connection2).getRPM() != this.rpm) {
-				((LineShaftTileEntity) connection2).setRPM(this.rpm);
-			}
-		} else if (connection2 instanceof LineShaftHangerTileEntity && connection2.getBlockState().get(TwelveDirectionBlock.AXIS) == this.getBlockState().get(AXIS)) {
-			if (((LineShaftHangerTileEntity) connection2).getRPM() != this.rpm) {
-				((LineShaftHangerTileEntity) connection2).setRPM(this.rpm);
-			}
+		if (connection instanceof LineShaftTileEntity && connection.getBlockState().get(AXIS) == this.getBlockState().get(AXIS)) {
+			((LineShaftTileEntity) connection).setRPMNeg(this.rpm);
+		} else if (connection instanceof LineShaftHangerTileEntity && connection.getBlockState().get(TwelveDirectionBlock.AXIS) == this.getBlockState().get(AXIS)) {
+			((LineShaftHangerTileEntity) connection).setRPMNeg(this.rpm);
 		}
 	}
 	
