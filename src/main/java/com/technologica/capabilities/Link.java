@@ -1,9 +1,8 @@
 package com.technologica.capabilities;
 
-import static net.minecraft.block.RotatedPillarBlock.AXIS;
-
 import java.util.concurrent.Callable;
 
+import com.technologica.block.LineShaftBlock;
 import com.technologica.block.ModBlocks;
 import com.technologica.block.TwelveDirectionBlock;
 import com.technologica.items.ModItems;
@@ -26,6 +25,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.util.INBTSerializable;
+
+import static net.minecraft.block.RotatedPillarBlock.AXIS;
 
 public class Link implements ILink, INBTSerializable<CompoundNBT> {
 	public static final String BOOLEAN_LINKING_KEY = "linking";
@@ -214,10 +215,7 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 	@Override
 	public void createBelt() {
 		this.linkTile1 = this.world.getTileEntity(this.linkPos1);
-		this.linkTile2 = this.world.getTileEntity(this.linkPos2);
 		((LineShaftTileEntity) this.linkTile1).setBeltPos(this.linkPos2);
-		((LineShaftTileEntity) this.linkTile2).setBeltPos(this.linkPos1);
-		((LineShaftTileEntity) this.linkTile1).setRatio();
 		this.world.notifyBlockUpdate(this.linkPos1, this.linkState1, this.linkState1, 3);
 		this.message = "LINK SUCCESS";
 		this.player.sendMessage(new StringTextComponent(message), Util.DUMMY_UUID);	

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "side": "technologica:block/peach_slab",
-    "bottom": "technologica:block/peach_slab",
-    "top": "technologica:block/peach_slab"
-  }
-}

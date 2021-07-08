@@ -47,46 +47,5 @@ public class ModItemTagsProvider extends ItemTagsProvider {
 				ModItems.ORANGE_LEAVES_ITEM.get(),
 				ModItems.PEACH_LEAVES_ITEM.get(),
 				ModItems.PEAR_LEAVES_ITEM.get());
-		getOrCreateBuilder(ItemTags.PLANKS).add(
-				ModItems.BANANA_PLANKS_ITEM.get(),
-				ModItems.CHERRY_PLANKS_ITEM.get(),
-		        ModItems.COCONUT_PLANKS_ITEM.get(),
-		        ModItems.KIWI_PLANKS_ITEM.get(),
-		        ModItems.LEMON_PLANKS_ITEM.get(),
-		        ModItems.LIME_PLANKS_ITEM.get(),
-		        ModItems.ORANGE_PLANKS_ITEM.get(),
-		        ModItems.PEACH_PLANKS_ITEM.get(),
-		        ModItems.PEAR_PLANKS_ITEM.get());
-		getOrCreateBuilder(ItemTags.WOODEN_TRAPDOORS).add(
-				ModItems.BANANA_TRAPDOOR_ITEM.get(),
-	 			ModItems.CHERRY_TRAPDOOR_ITEM.get(),
-	 			ModItems.COCONUT_TRAPDOOR_ITEM.get(),
-	 			ModItems.KIWI_TRAPDOOR_ITEM.get(),
-	 			ModItems.LEMON_TRAPDOOR_ITEM.get(),
-	 			ModItems.LIME_TRAPDOOR_ITEM.get(),
-	 			ModItems.ORANGE_TRAPDOOR_ITEM.get(),
-	 			ModItems.PEACH_TRAPDOOR_ITEM.get(),
-	 			ModItems.PEAR_TRAPDOOR_ITEM.get());
-		getOrCreateBuilder(ItemTags.WOODEN_DOORS).add(
-				ModItems.BANANA_DOOR_ITEM.get(),
-	 			ModItems.CHERRY_DOOR_ITEM.get(),
-	 			ModItems.COCONUT_DOOR_ITEM.get(),
-	 			ModItems.KIWI_DOOR_ITEM.get(),
-	 			ModItems.LEMON_DOOR_ITEM.get(),
-	 			ModItems.LIME_DOOR_ITEM.get(),
-	 			ModItems.ORANGE_DOOR_ITEM.get(),
-	 			ModItems.PEACH_DOOR_ITEM.get(),
-	 			ModItems.PEAR_DOOR_ITEM.get());
-		getOrCreateBuilder(ItemTags.WOODEN_FENCES).add(
-				ModItems.BANANA_FENCE_ITEM.get(),
-	 			ModItems.CHERRY_FENCE_ITEM.get(),
-	 			ModItems.COCONUT_FENCE_ITEM.get(),
-	 			ModItems.KIWI_FENCE_ITEM.get(),
-	 			ModItems.LEMON_FENCE_ITEM.get(),
-	 			ModItems.LIME_FENCE_ITEM.get(),
-	 			ModItems.ORANGE_FENCE_ITEM.get(),
-	 			ModItems.PEACH_FENCE_ITEM.get(),
-	 			ModItems.PEAR_FENCE_ITEM.get());
-	 			
 	}
 }
