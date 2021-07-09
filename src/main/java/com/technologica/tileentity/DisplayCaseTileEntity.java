@@ -10,6 +10,7 @@ import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
 
 public class DisplayCaseTileEntity extends TileEntity {
+	public static final String ITEM_NAME = "DisplayItem";
 	private ItemStack stack = ItemStack.EMPTY;
 	
 	public DisplayCaseTileEntity() {
@@ -28,6 +29,7 @@ public class DisplayCaseTileEntity extends TileEntity {
         }
     }
 	
+	@Override
 	@Nullable
 	public SUpdateTileEntityPacket getUpdatePacket() {
 		return new SUpdateTileEntityPacket(this.pos, 10, this.getUpdateTag());
@@ -53,8 +55,8 @@ public class DisplayCaseTileEntity extends TileEntity {
 	@Override
 	public void read(BlockState state, CompoundNBT nbt) {
 		super.read(state, nbt);
-	    if (nbt.contains("DisplayItem")) {
-	    	this.setDisplayStack(ItemStack.read(nbt.getCompound("DisplayItem")));
+	    if (nbt.contains(ITEM_NAME)) {
+	    	this.setDisplayStack(ItemStack.read(nbt.getCompound(ITEM_NAME)));
 	    }
 	}
 
@@ -62,7 +64,7 @@ public class DisplayCaseTileEntity extends TileEntity {
 	public CompoundNBT write(CompoundNBT compound) {
 		super.write(compound);
 	    if (!this.getDisplayStack().isEmpty()) {
-	    	compound.put("DisplayItem", this.getDisplayStack().write(new CompoundNBT()));
+	    	compound.put(ITEM_NAME, this.getDisplayStack().write(new CompoundNBT()));
 	    }	   
 	    return compound;	    
 	}

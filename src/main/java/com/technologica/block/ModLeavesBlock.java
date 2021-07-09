@@ -64,6 +64,8 @@ public class ModLeavesBlock extends LeavesBlock {
 		return !state.get(PERSISTENT);
 	}
 
+	@Override
+	@Deprecated
 	public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
 		FruitTileEntity tile = getTileEntity(worldIn, pos);
 		if (state.get(DISTANCE) == 7) {
@@ -71,24 +73,24 @@ public class ModLeavesBlock extends LeavesBlock {
 			worldIn.removeBlock(pos, false);
 		} else if (worldIn.isAirBlock(pos.down()) && state.get(AGE) <= 6) {
 			if (fruitType != 1 && fruitType != 3) {
-				worldIn.setBlockState(pos, state.with(AGE, Integer.valueOf(state.get(AGE) + 1)), 4);
+				worldIn.setBlockState(pos, state.with(AGE, state.get(AGE) + 1), 4);
 			} else {
 				if (state.get(DISTANCE) == 1) {
-					worldIn.setBlockState(pos, state.with(AGE, Integer.valueOf(state.get(AGE) + 1)), 4);
+					worldIn.setBlockState(pos, state.with(AGE, state.get(AGE) + 1), 4);
 				}
 			}			
 			if (state.get(AGE) == 6) {
-				if (randomFruit == true) {
+				if (randomFruit) {
 					fruitType = random.nextInt(9) + 1;
 				}
 				if (fruitType == 1) {
-					if (state.get(DISTANCE) == 1 || randomFruit == true) {
+					if (state.get(DISTANCE) == 1 || randomFruit) {
 						tile.setFruitStack(new ItemStack(ModItems.BANANA.get()));
 					}
 				} else if (fruitType == 2) {
 					tile.setFruitStack(new ItemStack(ModItems.CHERRY.get()));
 				} else if (fruitType == 3) {
-					if (state.get(DISTANCE) == 1 || randomFruit == true) {
+					if (state.get(DISTANCE) == 1 || randomFruit) {
 						tile.setFruitStack(new ItemStack(ModItems.COCONUT.get()));
 					}
 				} else if (fruitType == 4) {
@@ -141,6 +143,8 @@ public class ModLeavesBlock extends LeavesBlock {
 		}	
 	}
 
+	@Override
+	@Deprecated
 	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		FruitTileEntity tile = getTileEntity(worldIn, pos);
 		if (state.get(AGE) == 7) {

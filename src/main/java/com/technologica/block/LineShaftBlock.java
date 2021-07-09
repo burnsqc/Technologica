@@ -41,6 +41,7 @@ public class LineShaftBlock extends RotatedPillarBlock {
 	}
 
 	//States
+	@Override
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
 		builder.add(PULLEY);
 		super.fillStateContainer(builder);
@@ -48,6 +49,7 @@ public class LineShaftBlock extends RotatedPillarBlock {
 	
 	//Placement
 	@Override
+	@Deprecated
 	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
 	    if (!isValidPosition(state, worldIn, pos)) {
 	    	worldIn.destroyBlock(pos, true);
@@ -55,29 +57,38 @@ public class LineShaftBlock extends RotatedPillarBlock {
 	}
 
 	@Override
+	@Deprecated
 	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
 		worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 0);
 	    return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 	}
 	
 	@Override
+	@Deprecated
 	public boolean isValidPosition(BlockState stateIn, IWorldReader worldIn, BlockPos pos) {
 		boolean bool = false;
 		switch (stateIn.get(AXIS)) {
 		case X:
-			bool = worldIn.getBlockState(pos.east()).getBlock() ==  ModBlocks.LINE_SHAFT_HANGER.get() || worldIn.getBlockState(pos.west()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || (worldIn.getBlockState(pos.east()).getBlock() ==  ModBlocks.LINE_SHAFT.get() && worldIn.getBlockState(pos.west()).getBlock() == ModBlocks.LINE_SHAFT.get()) ? true : false;
+			bool = worldIn.getBlockState(pos.east()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || worldIn.getBlockState(pos.west()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || (worldIn.getBlockState(pos.east()).getBlock() == ModBlocks.LINE_SHAFT.get() && worldIn.getBlockState(pos.west()).getBlock() == ModBlocks.LINE_SHAFT.get());
 			break;
 		case Y:
-			bool = worldIn.getBlockState(pos.up()).getBlock() ==  ModBlocks.LINE_SHAFT_HANGER.get() || worldIn.getBlockState(pos.down()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || (worldIn.getBlockState(pos.up()).getBlock() ==  ModBlocks.LINE_SHAFT.get() && worldIn.getBlockState(pos.down()).getBlock() == ModBlocks.LINE_SHAFT.get()) ? true : false;
+			bool = worldIn.getBlockState(pos.up()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || worldIn.getBlockState(pos.down()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || (worldIn.getBlockState(pos.up()).getBlock() == ModBlocks.LINE_SHAFT.get() && worldIn.getBlockState(pos.down()).getBlock() == ModBlocks.LINE_SHAFT.get());
 			break;
 		case Z:
-			bool = worldIn.getBlockState(pos.north()).getBlock() ==  ModBlocks.LINE_SHAFT_HANGER.get() || worldIn.getBlockState(pos.south()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || (worldIn.getBlockState(pos.north()).getBlock() ==  ModBlocks.LINE_SHAFT.get() && worldIn.getBlockState(pos.south()).getBlock() == ModBlocks.LINE_SHAFT.get()) ? true : false;
+			bool = worldIn.getBlockState(pos.north()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || worldIn.getBlockState(pos.south()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || (worldIn.getBlockState(pos.north()).getBlock() == ModBlocks.LINE_SHAFT.get() && worldIn.getBlockState(pos.south()).getBlock() == ModBlocks.LINE_SHAFT.get());
 			break;
 	}
 		return bool;		
 	}
 	
+	@Override
+	public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
+		LineShaftTileEntity tile = getTileEntity(worldIn, pos);
+		tile.setBeltPos(null);
+	}
+	
 	//Tile Entity
+	@Override
 	public boolean hasTileEntity(BlockState state) {
 		return true;
 	}
@@ -92,15 +103,17 @@ public class LineShaftBlock extends RotatedPillarBlock {
     }
 	
 	//Interaction
+	@Override
+	@Deprecated
 	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		LineShaftTileEntity tile = getTileEntity(worldIn, pos);
 		Item tool = player.getHeldItem(handIn).getItem();
 		
 		if (tool == ModItems.HAMMER.get()) {
 			if (tile.getRPM() == 0) {
-				tile.setRPMBoth(60);
+				tile.setRPM(60);
 			} else {
-				tile.setRPMBoth(0);
+				tile.setRPM(0);
 			}
 			
 		} else if (tool == ModItems.PIPE_WRENCH.get()) {
@@ -124,6 +137,7 @@ public class LineShaftBlock extends RotatedPillarBlock {
 	
 	//Render
 	@Override
+	@Deprecated
 	public BlockRenderType getRenderType(BlockState state) {
 		return BlockRenderType.ENTITYBLOCK_ANIMATED;
 	}		

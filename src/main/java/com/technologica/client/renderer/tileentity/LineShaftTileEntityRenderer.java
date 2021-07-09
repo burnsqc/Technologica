@@ -1,5 +1,6 @@
 package com.technologica.client.renderer.tileentity;
 
+import java.util.Arrays;
 import java.util.Random;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -17,114 +18,165 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.inventory.container.PlayerContainer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.vector.Quaternion;
 import net.minecraft.util.math.vector.Vector3f;
 
 public class LineShaftTileEntityRenderer extends TileEntityRenderer<LineShaftTileEntity> {
-
-	public static final ResourceLocation MAGICBLOCK_TEXTURE = new ResourceLocation(Technologica.MODID, "block/pulley");
+	public static final ResourceLocation PULLEY_BELT_TEXTURE = new ResourceLocation(Technologica.MODID, "block/pulley_belt");
 	
 	public LineShaftTileEntityRenderer(TileEntityRendererDispatcher rendererDispatcherIn) {
         super(rendererDispatcherIn);
     }
 
+	private void addBox(MatrixStack matrixStack, IRenderTypeBuffer buffer, float x, float y, float z, float w, float h, float d) {
+		TextureAtlasSprite sprite = Minecraft.getInstance().getAtlasSpriteGetter(PlayerContainer.LOCATION_BLOCKS_TEXTURE).apply(PULLEY_BELT_TEXTURE);
+        IVertexBuilder builder = buffer.getBuffer(RenderType.getSolid());
+
+        //NORTH
+        /*
+        add(builder, matrixStack, x, 	 y, 	z + d, sprite.getMinU(), sprite.getMinV());
+        add(builder, matrixStack, x + w, y, 	z + d, sprite.getMaxU(), sprite.getMinV());
+        add(builder, matrixStack, x + w, y + h, z + d, sprite.getMaxU(), sprite.getMaxV());
+        add(builder, matrixStack, x, 	 y + h, z + d, sprite.getMinU(), sprite.getMaxV());
+        */
+        
+        //EAST
+        add(builder, matrixStack, x + w, y, 	z + d, sprite.getInterpolatedU(1), sprite.getMinV());
+        add(builder, matrixStack, x + w, y, 	z, 	   sprite.getMinU(), sprite.getMinV());
+        add(builder, matrixStack, x + w, y + h, z, 	   sprite.getMinU(), sprite.getMaxV());
+        add(builder, matrixStack, x + w, y + h, z + d, sprite.getInterpolatedU(1), sprite.getMaxV());
+        
+        //SOUTH
+        /*
+        add(builder, matrixStack, x + w, y, 	z,     sprite.getMinU(), sprite.getMinV());
+        add(builder, matrixStack, x, 	 y, 	z,     sprite.getMaxU(), sprite.getMinV());
+        add(builder, matrixStack, x, 	 y + h, z,     sprite.getMaxU(), sprite.getMaxV());
+        add(builder, matrixStack, x + w, y + h, z,     sprite.getMinU(), sprite.getMaxV());
+        */
+        
+        //WEST
+        add(builder, matrixStack, x, 	 y, 	z, 	   sprite.getInterpolatedU(15), sprite.getMinV());
+        add(builder, matrixStack, x, 	 y, 	z + d, sprite.getMaxU(), sprite.getMinV());
+        add(builder, matrixStack, x, 	 y + h, z + d, sprite.getMaxU(), sprite.getMaxV());
+        add(builder, matrixStack, x, 	 y + h, z, 	   sprite.getInterpolatedU(15), sprite.getMaxV());
+        
+        //UP
+        add(builder, matrixStack, x, 	 y + h, z + d, sprite.getMinU(), sprite.getMinV());
+        add(builder, matrixStack, x + w, y + h, z + d, sprite.getInterpolatedU(4), sprite.getMinV());
+        add(builder, matrixStack, x + w, y + h, z, 	   sprite.getInterpolatedU(4), sprite.getMaxV());
+        add(builder, matrixStack, x, 	 y + h, z, 	   sprite.getMinU(), sprite.getMaxV());
+        
+        //DOWN
+        add(builder, matrixStack, x, 	 y, 	z, 	   sprite.getMinU(), sprite.getMinV());
+        add(builder, matrixStack, x + w, y, 	z, 	   sprite.getInterpolatedU(4), sprite.getMinV());
+        add(builder, matrixStack, x + w, y, 	z + d, sprite.getInterpolatedU(4), sprite.getMaxV());
+        add(builder, matrixStack, x, 	 y, 	z + d, sprite.getMinU(), sprite.getMaxV());
+	}
+	
 	private void add(IVertexBuilder renderer, MatrixStack stack, float x, float y, float z, float u, float v) {
         renderer.pos(stack.getLast().getMatrix(), x, y, z).color(1.0f, 1.0f, 1.0f, 1.0f).tex(u, v).lightmap(0, 240).normal(1, 0, 0).endVertex();
     }
 	
     @Override
     public void render(LineShaftTileEntity tileEntity, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay) {  
-    	TextureAtlasSprite sprite = Minecraft.getInstance().getAtlasSpriteGetter(PlayerContainer.LOCATION_BLOCKS_TEXTURE).apply(MAGICBLOCK_TEXTURE);
-        IVertexBuilder builder = buffer.getBuffer(RenderType.getSolid());
-    	
-    	long time = System.currentTimeMillis() * 6 * tileEntity.getRPM() / 1000;
-    	float angle = time % 360;
     	BlockRendererDispatcher blockrendererdispatcher = Minecraft.getInstance().getBlockRendererDispatcher();
     	BlockModelRenderer blockModelRenderer = blockrendererdispatcher.getBlockModelRenderer();
-      	
-        matrixStack.push();  
-        
-		if (tileEntity.getBeltPos() != null) {
-			float radius1;
-			float radius2;
-			if (tileEntity.getBlockState().get(LineShaftBlock.PULLEY) == 1) {
-				radius1 = 0.25F;
-			} else if (tileEntity.getBlockState().get(LineShaftBlock.PULLEY) == 2) {
-				radius1 = 0.5F;
-			} else {
-				radius1 = 1.0F;
-			}
-			if (tileEntity.getWorld().getTileEntity(tileEntity.getBeltPos()).getBlockState().get(LineShaftBlock.PULLEY) == 1) {
-				radius2 = 0.25F;
-			} else if (tileEntity.getWorld().getTileEntity(tileEntity.getBeltPos()).getBlockState().get(LineShaftBlock.PULLEY) == 2) {
-				radius2 = 0.5F;
-			} else {
-				radius2 = 1.0F;
+
+        matrixStack.push();
+
+		if (tileEntity.getBeltPos() != null) {		
+			float angle = 0;
+			float radius1 = tileEntity.getBlockState().get(LineShaftBlock.PULLEY);
+			if (radius1 == 1) {
+				radius1 = 0.25f;
+			} else if (radius1 == 2) {
+				radius1 = 0.5f;
+			} else if (radius1 == 3) {
+				radius1 = 1.0f;
 			}
 			
-			if (tileEntity.getBlockState().get(LineShaftBlock.AXIS) == Direction.Axis.X) {	
-				
-				double a = Math.asin(Math.abs(radius1-radius2)/(Math.abs(tileEntity.getBeltPos().getY()-tileEntity.getPos().getY())^2+Math.abs(tileEntity.getBeltPos().getZ()-tileEntity.getPos().getZ())^2));
-				float yPos1 = (float) ((float) Math.abs(radius1-radius2)*Math.cos(a));
-				float zPos1 = (float) ((float) Math.abs(radius1-radius2)*Math.sin(a));
-				
-				
-				
-				
-				
-				add(builder, matrixStack, 0.375f, 0.5f, 0.5f, sprite.getMinU()+0.01f, sprite.getMinV());
-		        add(builder, matrixStack, 0.625f, 0.5f, 0.5f, sprite.getMaxU()-0.005f, sprite.getMinV());
-		        add(builder, matrixStack, 0.625f, 0.5f + tileEntity.getBeltPos().getY() - tileEntity.getPos().getY(), 0.5f + tileEntity.getBeltPos().getZ() - tileEntity.getPos().getZ(), sprite.getMaxU()-0.005f, sprite.getMaxV());
-		        add(builder, matrixStack, 0.375f, 0.5f + tileEntity.getBeltPos().getY() - tileEntity.getPos().getY(), 0.5f + tileEntity.getBeltPos().getZ() - tileEntity.getPos().getZ(), sprite.getMinU()+0.01f, sprite.getMaxV());
-
-		        add(builder, matrixStack, 0.375f, 0.5f + tileEntity.getBeltPos().getY() - tileEntity.getPos().getY(), 0.5f + tileEntity.getBeltPos().getZ() - tileEntity.getPos().getZ(), sprite.getMinU()+0.01f, sprite.getMaxV());
-		        add(builder, matrixStack, 0.625f, 0.5f + tileEntity.getBeltPos().getY() - tileEntity.getPos().getY(), 0.5f + tileEntity.getBeltPos().getZ() - tileEntity.getPos().getZ(), sprite.getMaxU()-0.005f, sprite.getMaxV());
-		        add(builder, matrixStack, 0.625f, 0.5f, 0.5f, sprite.getMaxU()-0.005f, sprite.getMinV());
-		        add(builder, matrixStack, 0.375f, 0.5f, 0.5f, sprite.getMinU()+0.01f, sprite.getMinV());  
-			} else if (tileEntity.getBlockState().get(LineShaftBlock.AXIS) == Direction.Axis.Y) {		
-				add(builder, matrixStack, 0.5f + tileEntity.getBeltPos().getX() - tileEntity.getPos().getX(), 0.375f, 0.5f + tileEntity.getBeltPos().getZ() - tileEntity.getPos().getZ(), sprite.getMinU()+0.01f, sprite.getMinV());
-		        add(builder, matrixStack, 0.5f + tileEntity.getBeltPos().getX() - tileEntity.getPos().getX(), 0.625f, 0.5f + tileEntity.getBeltPos().getZ() - tileEntity.getPos().getZ(), sprite.getMaxU()-0.005f, sprite.getMinV());
-		        add(builder, matrixStack, 0.5f, 0.625f, 0.5f, sprite.getMaxU()-0.005f, sprite.getMaxV());
-		        add(builder, matrixStack, 0.5f, 0.375f, 0.5f, sprite.getMinU()+0.01f, sprite.getMaxV());
-		        
-		        add(builder, matrixStack, 0.5f, 0.375f, 0.5f, sprite.getMinU()+0.01f, sprite.getMaxV());
-		        add(builder, matrixStack, 0.5f, 0.625f, 0.5f, sprite.getMaxU()-0.005f, sprite.getMaxV());
-		        add(builder, matrixStack, 0.5f + tileEntity.getBeltPos().getX() - tileEntity.getPos().getX(), 0.625f, 0.5f + tileEntity.getBeltPos().getZ() - tileEntity.getPos().getZ(), sprite.getMaxU()-0.005f, sprite.getMinV());
-		        add(builder, matrixStack, 0.5f + tileEntity.getBeltPos().getX() - tileEntity.getPos().getX(), 0.375f, 0.5f + tileEntity.getBeltPos().getZ() - tileEntity.getPos().getZ(), sprite.getMinU()+0.01f, sprite.getMinV());  
+			if (tileEntity.getPos().getZ() - tileEntity.getBeltPos().getZ() != 0) {
+				angle = (float) Math.atan((float) ((float) tileEntity.getPos().getY() - (float) tileEntity.getBeltPos().getY()) / ((float) tileEntity.getPos().getZ() - (float) tileEntity.getBeltPos().getZ())) * 180 / (float) Math.PI;
 			} else {
-				add(builder, matrixStack, 0.5f, 0.5f, 0.375f, sprite.getMinU()+0.01f, sprite.getMinV());
-		        add(builder, matrixStack, 0.5f, 0.5f, 0.625f, sprite.getMaxU()-0.005f, sprite.getMinV());
-		        add(builder, matrixStack, 0.5f + tileEntity.getBeltPos().getX() - tileEntity.getPos().getX(), 0.5f + tileEntity.getBeltPos().getY() - tileEntity.getPos().getY(), 0.625f, sprite.getMaxU()-0.005f, sprite.getMaxV());
-		        add(builder, matrixStack, 0.5f + tileEntity.getBeltPos().getX() - tileEntity.getPos().getX(), 0.5f + tileEntity.getBeltPos().getY() - tileEntity.getPos().getY(), 0.375f, sprite.getMinU()+0.01f, sprite.getMaxV());
-		        
-		        add(builder, matrixStack, 0.5f + tileEntity.getBeltPos().getX() - tileEntity.getPos().getX(), 0.5f + tileEntity.getBeltPos().getY() - tileEntity.getPos().getY(), 0.375f, sprite.getMinU()+0.01f, sprite.getMaxV());
-		        add(builder, matrixStack, 0.5f + tileEntity.getBeltPos().getX() - tileEntity.getPos().getX(), 0.5f + tileEntity.getBeltPos().getY() - tileEntity.getPos().getY(), 0.625f, sprite.getMaxU()-0.005f, sprite.getMaxV());
-		        add(builder, matrixStack, 0.5f, 0.5f, 0.625f, sprite.getMaxU()-0.005f, sprite.getMinV());
-		        add(builder, matrixStack, 0.5f, 0.5f, 0.375f, sprite.getMinU()+0.01f, sprite.getMinV());  
+				angle = (tileEntity.getPos().getY() > tileEntity.getBeltPos().getY()) ? (float) -90.0f: (float) 90.0f;
+			}
+			
+			
+			if (tileEntity.getBlockState().get(LineShaftBlock.AXIS) == Direction.Axis.X) {
+				matrixStack.translate(0, 0.5d, 0.5d);
+				matrixStack.rotate(Vector3f.XN.rotationDegrees(angle));
+				
+				addBox(matrixStack, buffer, 0.376f, 0, 0, 0.248f, 0.0625f, (float) Math.sqrt(Math.pow(tileEntity.getBeltPos().getZ() - tileEntity.getPos().getZ(), 2) + Math.pow(tileEntity.getBeltPos().getY() - tileEntity.getPos().getY(), 2)));
+				//0.5f + radius1 - 0.03125f, 0.5f
+//				addBox(matrixStack, buffer, 0.376f, 0.5f - radius1 - 0.03125f, 0.5f, 0.248f, 0.0625f, tileEntity.getBeltPos().getZ() - tileEntity.getPos().getZ());
+//				matrixStack.translate(-offset(tileEntity)[0], -offset(tileEntity)[1], -offset(tileEntity)[2]);
+				
+			} else if (tileEntity.getBlockState().get(LineShaftBlock.AXIS) == Direction.Axis.Y) {	
+				matrixStack.rotate(Vector3f.ZP.rotationDegrees(90));
+				matrixStack.translate(0, -1, 0);
+				addBox(matrixStack, buffer, 0.375f, 0.5f, 0.5f, 0.25f, tileEntity.getBeltPos().getY() - tileEntity.getPos().getY(), tileEntity.getBeltPos().getZ() - tileEntity.getPos().getZ());				
+			} else {
+				matrixStack.rotate(Vector3f.YP.rotationDegrees(90));
+				matrixStack.translate(-1, 0, 0);
+				addBox(matrixStack, buffer, 0.375f, 0.5f, 0.5f, 0.25f, tileEntity.getBeltPos().getY() - tileEntity.getPos().getY(), tileEntity.getBeltPos().getZ() - tileEntity.getPos().getZ());
 			}
 		}
-        
-        if (tileEntity.getBlockState().get(LineShaftBlock.AXIS) == Direction.Axis.X) {
-        	matrixStack.translate(0.0, 0.5, 0.5);
-        	matrixStack.rotate(Vector3f.XP.rotationDegrees(angle));
-        	matrixStack.translate(0.0, -0.5, -0.5);
-        } else if (tileEntity.getBlockState().get(LineShaftBlock.AXIS) == Direction.Axis.Y) {
-        	matrixStack.translate(0.5, 0.0, 0.5);
-        	matrixStack.rotate(Vector3f.YP.rotationDegrees(angle));
-        	matrixStack.translate(-0.5, 0.0, -0.5);
-        } else {
-        	matrixStack.translate(0.5, 0.5, 0.0);
-        	matrixStack.rotate(Vector3f.ZP.rotationDegrees(angle));
-        	matrixStack.translate(-0.5, -0.5, 0.0);
-        }
-        
+        matrixStack.pop();
+		
+		matrixStack.push();
+		
+        matrixStack.translate(offset(tileEntity)[0], offset(tileEntity)[1], offset(tileEntity)[2]);
+        matrixStack.rotate(angle(tileEntity));
+        matrixStack.translate(-offset(tileEntity)[0], -offset(tileEntity)[1], -offset(tileEntity)[2]);
+
         blockModelRenderer.renderModel(tileEntity.getWorld(), blockrendererdispatcher.getModelForState(tileEntity.getBlockState()), tileEntity.getBlockState(), tileEntity.getPos(), matrixStack, buffer.getBuffer(RenderType.getSolid()), false, new Random(), 42, combinedOverlay, tileEntity.getModelData());
         matrixStack.pop();
     }
-    
+
+    private double[] offset(TileEntity tileEntityIn) {
+    	double[] offset = new double[3];
+    	Arrays.fill(offset,  0.5f);
+
+    	switch(tileEntityIn.getBlockState().get(LineShaftBlock.AXIS)) {
+		case X:
+			offset[0] = 0.0d;
+			break;
+		case Y:
+			offset[1] = 0.0d;
+			break;
+		case Z:
+			offset[2] = 0.0d;
+			break;
+    	}
+
+    	return offset;
+    }
+
+    private Quaternion angle(TileEntity tileEntityIn) {
+    	long time = System.currentTimeMillis() * 6 * ((LineShaftTileEntity) tileEntityIn).getRPM() / 1000;
+    	float angle = time % 360;
+    	Vector3f vector = Vector3f.XP;
+
+    	switch (tileEntityIn.getBlockState().get(LineShaftBlock.AXIS)) {
+		case X:
+			vector = Vector3f.XP;
+			break;
+		case Y:
+			vector = Vector3f.YP;
+			break;
+		case Z:
+			vector = Vector3f.ZP;
+			break;
+    	}
+
+    	return vector.rotationDegrees(angle);
+    }
+
     @Override
     public boolean isGlobalRenderer(LineShaftTileEntity te) {
-    	return true;
-    }
+        return true;
+     }
 }

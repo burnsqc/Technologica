@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:raspberry_seeds_from_raspberry"
+    ]
+  },
+  "criteria": {
+    "has_raspberry": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "technologica:raspberry"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:raspberry_seeds_from_raspberry"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_raspberry",
+      "has_the_recipe"
+    ]
+  ]
+}

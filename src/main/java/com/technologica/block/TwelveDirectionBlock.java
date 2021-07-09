@@ -35,10 +35,12 @@ public class TwelveDirectionBlock extends Block{
 		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.UP).with(AXIS, Direction.Axis.Y));
 	}
 
+	@Override
 	public boolean hasTileEntity(BlockState state) {
 		return true;
 	}
 
+	@Override
 	public TileEntity createTileEntity(BlockState state, IBlockReader world) {
 		return new LineShaftHangerTileEntity();
 	}
@@ -47,6 +49,7 @@ public class TwelveDirectionBlock extends Block{
 		return (LineShaftHangerTileEntity) world.getTileEntity(pos);
 	}
 
+	@Override
 	public ActionResultType onBlockActivated(BlockState stateIn, World worldIn, BlockPos posIn, PlayerEntity playerIn, Hand handIn, BlockRayTraceResult hitIn) {
 		LineShaftHangerTileEntity tile = getTileEntity(worldIn, posIn);
 		Item tool = playerIn.getHeldItem(handIn).getItem();
@@ -67,15 +70,14 @@ public class TwelveDirectionBlock extends Block{
 			worldIn.setBlockState(posIn, stateIn.with(AXIS, axis), 2);
 		
 		} else if (tool == ModItems.PIPE_WRENCH.get()) {
-			if (!playerIn.isCrouching()) {
-				if (!tile.getShaft()) {
-					tile.setShaft(true);
-				}
+			if (!playerIn.isCrouching() && !tile.getShaft()) {
+				tile.setShaft(true);
 			}
 		} 
 		return ActionResultType.func_233537_a_(worldIn.isRemote);
 	}
 	
+	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		int i = 0;
 		Direction[] adirection = context.getNearestLookingDirections();
@@ -85,8 +87,9 @@ public class TwelveDirectionBlock extends Block{
 		return this.getDefaultState().with(FACING, context.getFace()).with(AXIS, adirection[i].getAxis());
 	}
 	
+	@Override
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
 		builder.add(FACING).add(AXIS).add(DISTANCE);
 		super.fillStateContainer(builder);
 	}
-};
+}

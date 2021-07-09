@@ -16,6 +16,7 @@ import net.minecraft.util.Util;
 import net.minecraft.util.math.AxisAlignedBB;
 
 public class PotionTileEntity extends TileEntity implements ITickableTileEntity {
+	public static final String POTION_ITEM = "PotionItem";
 	private ItemStack stack = ItemStack.EMPTY;
 	public static final IntegerProperty AGE = BlockStateProperties.AGE_0_7;
 	
@@ -46,13 +47,17 @@ public class PotionTileEntity extends TileEntity implements ITickableTileEntity 
 
 	@Override
 	public void tick() {
-		if (this.getPotionStack() != ItemStack.EMPTY && world.isPlayerWithin((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, 5.0D)) {
-			this.world.addEntity(Util.make(new PotionEntity(world, pos.getX(), pos.getY(), pos.getZ()), (potion) -> {potion.setItem(getPotionStack());}));
-			clear();
-			world.setBlockState(pos, this.getBlockState().with(AGE, Integer.valueOf(0)), 4);
+		if (this.getPotionStack() != ItemStack.EMPTY) {
+			assert world != null;
+			if (world.isPlayerWithin((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, 5.0D)) {
+				this.world.addEntity(Util.make(new PotionEntity(world, pos.getX(), pos.getY(), pos.getZ()), potion -> potion.setItem(getPotionStack())));
+				clear();
+				world.setBlockState(pos, this.getBlockState().with(AGE, 0), 4);
+			}
 		}
 	}
 	
+	@Override
 	@Nullable
 	public SUpdateTileEntityPacket getUpdatePacket() {
 		return new SUpdateTileEntityPacket(this.pos, 10, this.getUpdateTag());
@@ -78,8 +83,8 @@ public class PotionTileEntity extends TileEntity implements ITickableTileEntity 
 	@Override
 	public void read(BlockState state, CompoundNBT nbt) {
 		super.read(state, nbt);
-	    if (nbt.contains("PotionItem")) {
-	    	this.setPotionStack(ItemStack.read(nbt.getCompound("PotionItem")));
+	    if (nbt.contains(POTION_ITEM)) {
+	    	this.setPotionStack(ItemStack.read(nbt.getCompound(POTION_ITEM)));
 	    }
 	}
 
@@ -87,7 +92,7 @@ public class PotionTileEntity extends TileEntity implements ITickableTileEntity 
 	public CompoundNBT write(CompoundNBT compound) {
 		super.write(compound);
 	    if (!this.getPotionStack().isEmpty()) {
-	    	compound.put("PotionItem", this.getPotionStack().write(new CompoundNBT()));
+	    	compound.put(POTION_ITEM, this.getPotionStack().write(new CompoundNBT()));
 	    }	   
 	    return compound;	    
 	}

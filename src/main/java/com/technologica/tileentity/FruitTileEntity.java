@@ -11,6 +11,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 
 public class FruitTileEntity extends TileEntity {
+	public static final String ITEM_NAME = "FruitItem";
 	private ItemStack stack = ItemStack.EMPTY;
 	
 	public FruitTileEntity() {
@@ -38,6 +39,7 @@ public class FruitTileEntity extends TileEntity {
         this.setFruitStack(ItemStack.EMPTY);  
     }
 	
+	@Override
 	@Nullable
 	public SUpdateTileEntityPacket getUpdatePacket() {
 		return new SUpdateTileEntityPacket(this.pos, 10, this.getUpdateTag());
@@ -63,8 +65,8 @@ public class FruitTileEntity extends TileEntity {
 	@Override
 	public void read(BlockState state, CompoundNBT nbt) {
 		super.read(state, nbt);
-	    if (nbt.contains("FruitItem")) {
-	    	this.setFruitStack(ItemStack.read(nbt.getCompound("FruitItem")));
+	    if (nbt.contains(ITEM_NAME)) {
+	    	this.setFruitStack(ItemStack.read(nbt.getCompound(ITEM_NAME)));
 	    }
 	}
 
@@ -72,7 +74,7 @@ public class FruitTileEntity extends TileEntity {
 	public CompoundNBT write(CompoundNBT compound) {
 		super.write(compound);
 	    if (!this.getFruitStack().isEmpty()) {
-	    	compound.put("FruitItem", this.getFruitStack().write(new CompoundNBT()));
+	    	compound.put(ITEM_NAME, this.getFruitStack().write(new CompoundNBT()));
 	    }	   
 	    return compound;	    
 	}

@@ -25,10 +25,12 @@ public class DisplayCaseBlock extends GlassBlock {
 		super(AbstractBlock.Properties.create(Material.GLASS).hardnessAndResistance(0.3F).sound(SoundType.GLASS).notSolid());
 	}
 
+	@Override
 	public boolean hasTileEntity(BlockState state) {
 		return true;
 	}
 
+	@Override
 	public TileEntity createTileEntity(BlockState state, IBlockReader world) {
 		return new DisplayCaseTileEntity();
 	}
@@ -37,11 +39,13 @@ public class DisplayCaseBlock extends GlassBlock {
 		return (DisplayCaseTileEntity) world.getTileEntity(pos);
 	}
 
+	@Override
+	@Deprecated
 	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		DisplayCaseTileEntity tile = getTileEntity(worldIn, pos);
 		ItemStack itemstack = player.getHeldItem(handIn);
 		if (tile.getDisplayStack().isEmpty()) {
-			if (!itemstack.isEmpty()) {;
+			if (!itemstack.isEmpty()) {
 				tile.setDisplayStack(new ItemStack(itemstack.getItem(), 1));
 				worldIn.playSound((PlayerEntity)null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.rand.nextFloat() * 0.4F);
 				itemstack.shrink(1);
@@ -51,7 +55,7 @@ public class DisplayCaseBlock extends GlassBlock {
 		} else {
 			ItemStack stack = tile.getDisplayStack();
 			tile.setDisplayStack(ItemStack.EMPTY);
-			worldIn.playSound((PlayerEntity)null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.rand.nextFloat() * 0.4F);
+			worldIn.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.rand.nextFloat() * 0.4F);
 			if (!player.inventory.addItemStackToInventory(stack)) {
 				spawnAsEntity(worldIn, pos.up(), stack);
 			} else {

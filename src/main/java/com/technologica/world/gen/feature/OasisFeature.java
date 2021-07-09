@@ -94,7 +94,7 @@ public class OasisFeature extends Feature<BlockStateFeatureConfig> {
 					for (int relativeZ = 0; relativeZ < 16; ++relativeZ) {
 						if (reader.getBlockState(pos.add(relativeX, 4, relativeZ)).matchesBlock(Blocks.GRASS_BLOCK)) {
 							if (rand.nextInt(30) == 0) {
-								if (rand.nextBoolean() == true) {
+								if (rand.nextBoolean()) {
 									ModConfiguredFeatures.LEMON_TREE_FEATURE.generate(reader, generator, rand, pos.add(relativeX, 5, relativeZ)); 
 								} else {
 									ModConfiguredFeatures.LIME_TREE_FEATURE.generate(reader, generator, rand, pos.add(relativeX, 5, relativeZ));

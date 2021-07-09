@@ -18,14 +18,16 @@ public class MagicLeavesBlock extends LeavesBlock {
 
 	public MagicLeavesBlock(int leavesTypeIn) {
 		super(AbstractBlock.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid());
-		this.setDefaultState(this.stateContainer.getBaseState().with(DISTANCE, Integer.valueOf(7)).with(PERSISTENT, Boolean.valueOf(false)));
+		this.setDefaultState(this.stateContainer.getBaseState().with(DISTANCE, 7).with(PERSISTENT, Boolean.FALSE));
 		leavesType = leavesTypeIn;
 	}
 
+	@Override
 	public boolean ticksRandomly(BlockState state) {
 		return !state.get(PERSISTENT);
 	}
 
+	@Override
 	public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
 		if (leavesType == 1) {
 			LightningBoltEntity lightningboltentity = EntityType.LIGHTNING_BOLT.create(worldIn);

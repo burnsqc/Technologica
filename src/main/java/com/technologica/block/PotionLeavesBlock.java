@@ -47,10 +47,13 @@ public class PotionLeavesBlock extends LeavesBlock {
 		return (PotionTileEntity) world.getTileEntity(pos);
     }
 
+	@Override
 	public boolean ticksRandomly(BlockState state) {
 		return !state.get(PERSISTENT);
 	}
 	
+	@Override
+	@Deprecated
 	public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
 		PotionTileEntity tile = getTileEntity(worldIn, pos);
 		if (state.get(DISTANCE) == 7) {

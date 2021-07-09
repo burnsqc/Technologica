@@ -18,6 +18,10 @@ public class Config {
 	public static ForgeConfigSpec.IntValue FIRSTBLOCK_TICKS;
 	public static ForgeConfigSpec.DoubleValue ROTATION_SPEED;
 
+	private Config() {
+		// hide constructor for class with only static members
+	}
+
 	static {
 		ForgeConfigSpec.Builder SERVER_BUILDER = new ForgeConfigSpec.Builder();
 		ForgeConfigSpec.Builder CLIENT_BUILDER = new ForgeConfigSpec.Builder();
