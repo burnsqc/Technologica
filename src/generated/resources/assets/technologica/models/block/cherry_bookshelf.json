@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cube_column",
   "textures": {
     "side": "technologica:block/cherry_bookshelf",
-    "end": "technologica:block/cherry_bookshelf_top"
+    "end": "technologica:block/cherry_planks"
   }
 }

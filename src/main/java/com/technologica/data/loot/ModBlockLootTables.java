@@ -40,6 +40,7 @@ public class ModBlockLootTables extends BlockLootTables {
 		registerDropSelfLootTable(ModBlocks.MALEVOLENT_LOG.get());
 		registerDropSelfLootTable(ModBlocks.CONDUCTIVE_LOG.get());
 		registerDropSelfLootTable(ModBlocks.FROSTBITTEN_LOG.get());
+		registerDropSelfLootTable(ModBlocks.INFERNAL_LOG.get());
 		
 		registerDropSelfLootTable(ModBlocks.BANANA_PLANKS.get());
 		registerDropSelfLootTable(ModBlocks.CHERRY_PLANKS.get());
@@ -60,6 +61,16 @@ public class ModBlockLootTables extends BlockLootTables {
 		registerDropSelfLootTable(ModBlocks.ORANGE_SLAB.get());
 		registerDropSelfLootTable(ModBlocks.PEACH_SLAB.get());
 		registerDropSelfLootTable(ModBlocks.PEAR_SLAB.get());
+		
+		registerDropSelfLootTable(ModBlocks.BANANA_STAIRS.get());
+		registerDropSelfLootTable(ModBlocks.CHERRY_STAIRS.get());
+		registerDropSelfLootTable(ModBlocks.COCONUT_STAIRS.get());
+		registerDropSelfLootTable(ModBlocks.KIWI_STAIRS.get());
+		registerDropSelfLootTable(ModBlocks.LEMON_STAIRS.get());
+		registerDropSelfLootTable(ModBlocks.LIME_STAIRS.get());
+		registerDropSelfLootTable(ModBlocks.ORANGE_STAIRS.get());
+		registerDropSelfLootTable(ModBlocks.PEACH_STAIRS.get());
+		registerDropSelfLootTable(ModBlocks.PEAR_STAIRS.get());
 		
 		registerDropSelfLootTable(ModBlocks.BANANA_BOOKSHELF.get());
 		registerDropSelfLootTable(ModBlocks.CHERRY_BOOKSHELF.get());

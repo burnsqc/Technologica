@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/slab_top",
   "textures": {
-    "side": "technologica:block/kiwi_slab",
-    "bottom": "technologica:block/kiwi_slab",
-    "top": "technologica:block/kiwi_slab"
+    "side": "technologica:block/kiwi_planks",
+    "bottom": "technologica:block/kiwi_planks",
+    "top": "technologica:block/kiwi_planks"
   }
 }

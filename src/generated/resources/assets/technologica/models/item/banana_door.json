@@ -1,3 +1,6 @@
 {
-  "parent": "technologica:block/banana_door"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "technologica:item/banana_door"
+  }
 }
