@@ -185,7 +185,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		getVariantBuilder(block).partialState().setModels(new ConfiguredModel(models().singleTexture(name(block), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + block.getRegistryName().getPath().replaceAll("potted_", "")))));
 	}
 	
-	public void cropBlock(Block block) {
+	ublic void cropBlock(Block block) {
 		getVariantBuilder(block)
 			.partialState().with(CropsBlock.AGE, 0).modelForState().modelFile(models().crop(name(block) + "_stage0", extend(blockTexture(block), "_stage0"))).addModel()
 			.partialState().with(CropsBlock.AGE, 1).modelForState().modelFile(models().crop(name(block) + "_stage1", extend(blockTexture(block), "_stage1"))).addModel()
