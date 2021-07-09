@@ -63,8 +63,10 @@ public class ClientSetup {
          RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_PEACH_SAPLING.get(), RenderType.getCutoutMipped());
          RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_PEAR_SAPLING.get(), RenderType.getCutoutMipped());
 
+         RenderTypeLookup.setRenderLayer(ModBlocks.BLACKBERRY_CROP.get(), RenderType.getCutoutMipped());
          RenderTypeLookup.setRenderLayer(ModBlocks.BLUEBERRY_CROP.get(), RenderType.getCutoutMipped());
          RenderTypeLookup.setRenderLayer(ModBlocks.GRAPE_CROP.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.RASPBERRY_CROP.get(), RenderType.getCutoutMipped());
          RenderTypeLookup.setRenderLayer(ModBlocks.STRAWBERRY_CROP.get(), RenderType.getCutoutMipped());
 
          RenderTypeLookup.setRenderLayer(ModBlocks.BANANA_TRAPDOOR.get(), RenderType.getCutoutMipped());

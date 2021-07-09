@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "technologica:blackberry"
+    }
+  ],
+  "result": {
+    "item": "technologica:blackberry_seeds",
+    "count": 2
+  }
+}

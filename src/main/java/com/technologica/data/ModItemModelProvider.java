@@ -21,6 +21,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 	@Override
 	protected void registerModels() {
 		simpleItem(ModItems.BANANA);
+		simpleItem(ModItems.BLACKBERRY);
 		simpleItem(ModItems.BLUEBERRY);
 		simpleItem(ModItems.CHERRY);
 		simpleItem(ModItems.COCONUT);
@@ -31,6 +32,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.ORANGE);
 		simpleItem(ModItems.PEACH);
 		simpleItem(ModItems.PEAR);
+		simpleItem(ModItems.RASPBERRY);
 		simpleItem(ModItems.STRAWBERRY);
 		simpleItem(ModItems.BANANAS_FOSTER);
 		simpleItem(ModItems.BLACK_FOREST_CAKE);
@@ -44,8 +46,10 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.PEACH_COBBLER);
 		simpleItem(ModItems.PEAR_TART);
 		simpleItem(ModItems.STRAWBERRY_SHORTCAKE);
+		simpleItem(ModItems.BLACKBERRY_SEEDS);
 		simpleItem(ModItems.BLUEBERRY_SEEDS);
 		simpleItem(ModItems.GRAPE_SEEDS);
+		simpleItem(ModItems.RASPBERRY_SEEDS);
 		simpleItem(ModItems.STRAWBERRY_SEEDS);
 		simpleItem(ModItems.LITHIUM_INGOT);
 		simpleItem(ModItems.BERYLLIUM_INGOT);
