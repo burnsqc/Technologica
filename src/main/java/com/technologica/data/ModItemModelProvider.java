@@ -21,6 +21,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 	@Override
 	protected void registerModels() {
 		simpleItem(ModItems.BANANA);
+		simpleItem(ModItems.BARLEY);
 		simpleItem(ModItems.BLACKBERRY);
 		simpleItem(ModItems.BLUEBERRY);
 		simpleItem(ModItems.CHERRY);
@@ -29,11 +30,14 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.KIWI);
 		simpleItem(ModItems.LEMON);
 		simpleItem(ModItems.LIME);
+		simpleItem(ModItems.OATS);
 		simpleItem(ModItems.ORANGE);
 		simpleItem(ModItems.PEACH);
 		simpleItem(ModItems.PEAR);
 		simpleItem(ModItems.RASPBERRY);
+		simpleItem(ModItems.RYE);
 		simpleItem(ModItems.STRAWBERRY);
+		
 		simpleItem(ModItems.BANANAS_FOSTER);
 		simpleItem(ModItems.BLACK_FOREST_CAKE);
 		simpleItem(ModItems.BLUEBERRY_CHEESECAKE);
@@ -46,11 +50,18 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.PEACH_COBBLER);
 		simpleItem(ModItems.PEAR_TART);
 		simpleItem(ModItems.STRAWBERRY_SHORTCAKE);
+		
+		simpleItem(ModItems.ASPARAGUS_SEEDS);
+		simpleItem(ModItems.BARLEY_SEEDS);
 		simpleItem(ModItems.BLACKBERRY_SEEDS);
 		simpleItem(ModItems.BLUEBERRY_SEEDS);
+		simpleItem(ModItems.CELERY_SEEDS);
 		simpleItem(ModItems.GRAPE_SEEDS);
+		simpleItem(ModItems.OATS_SEEDS);
 		simpleItem(ModItems.RASPBERRY_SEEDS);
+		simpleItem(ModItems.RYE_SEEDS);
 		simpleItem(ModItems.STRAWBERRY_SEEDS);
+		
 		simpleItem(ModItems.LITHIUM_INGOT);
 		simpleItem(ModItems.BERYLLIUM_INGOT);
 		simpleItem(ModItems.SODIUM_INGOT);
