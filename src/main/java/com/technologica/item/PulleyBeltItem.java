@@ -21,7 +21,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 public class PulleyBeltItem extends Item {
 
 	public PulleyBeltItem() {
-		super(new Item.Properties().maxStackSize(1).group(ModItemGroup.TECHNOLOGICA_MACHINERY));
+		super(new Item.Properties().maxStackSize(1).group(ModItemGroup.MACHINERY));
 	}
 
 	@Override

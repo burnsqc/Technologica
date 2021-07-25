@@ -24,13 +24,13 @@ public class ModLanguageProvider extends LanguageProvider {
 		addItems(ModItems.ITEMS.getEntries());
 		
 		addItemGroups(
-			ModItemGroup.TECHNOLOGICA_FLORA,
-			ModItemGroup.TECHNOLOGICA_FAUNA,
-			ModItemGroup.TECHNOLOGICA_MINERAL,
-			ModItemGroup.TECHNOLOGICA_FOOD,
-			ModItemGroup.TECHNOLOGICA_MACHINERY,
-			ModItemGroup.TECHNOLOGICA_DECORATIVE,
-			ModItemGroup.TECHNOLOGICA_CRYPTICA
+			ModItemGroup.FLORA,
+			ModItemGroup.FAUNA,
+			ModItemGroup.MINERAL,
+			ModItemGroup.FOOD,
+			ModItemGroup.MACHINERY,
+			ModItemGroup.DECORATIVE,
+			ModItemGroup.CRYPTICA
 		);
 	}
 	

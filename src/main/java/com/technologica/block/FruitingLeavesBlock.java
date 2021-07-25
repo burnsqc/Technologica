@@ -1,5 +1,6 @@
 package com.technologica.block;
 import java.util.Random;
+import java.util.function.Supplier;
 
 import com.technologica.item.ModItems;
 import com.technologica.tileentity.FruitTileEntity;
@@ -11,6 +12,7 @@ import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.potion.PotionUtils;
@@ -30,19 +32,15 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
-public class ModLeavesBlock extends LeavesBlock {
-	private int fruitType;
-	private boolean randomFruit;
-	public static final IntegerProperty AGE = BlockStateProperties.AGE_0_7;
+public class FruitingLeavesBlock extends LeavesBlock {
+	private Supplier<Item>[] fruit;
+	public static final IntegerProperty AGE = BlockStateProperties.AGE_0_15;
 
-	public ModLeavesBlock(int fruitIn) {
+	@SafeVarargs
+	public FruitingLeavesBlock(Supplier<Item>... fruitIn) {
 		super(AbstractBlock.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid());
-		this.setDefaultState(this.stateContainer.getBaseState().with(AGE, Integer.valueOf(0)).with(DISTANCE, Integer.valueOf(7)).with(PERSISTENT, Boolean.valueOf(false)));
-		if (fruitIn != 10) {
-			fruitType = fruitIn;
-		} else {
-			randomFruit = true;
-		}
+		this.setDefaultState(this.stateContainer.getBaseState().with(AGE, Integer.valueOf(0)).with(DISTANCE, 7).with(PERSISTENT, false));
+		fruit = fruitIn;
 	}
 
 	@Override
@@ -65,47 +63,23 @@ public class ModLeavesBlock extends LeavesBlock {
 	}
 
 	@Override
-	@Deprecated
-	public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-		FruitTileEntity tile = getTileEntity(worldIn, pos);
-		if (state.get(DISTANCE) == 7) {
-			spawnDrops(state, worldIn, pos);
-			worldIn.removeBlock(pos, false);
-		} else if (worldIn.isAirBlock(pos.down()) && state.get(AGE) <= 6) {
-			if (fruitType != 1 && fruitType != 3) {
-				worldIn.setBlockState(pos, state.with(AGE, state.get(AGE) + 1), 4);
+	public void randomTick(BlockState stateIn, ServerWorld worldIn, BlockPos posIn, Random random) {
+		FruitTileEntity tile = getTileEntity(worldIn, posIn);
+		
+		if (stateIn.get(DISTANCE) == 7) {
+			spawnDrops(stateIn, worldIn, posIn);
+			worldIn.removeBlock(posIn, false);
+		
+		} else if (worldIn.isAirBlock(posIn.down()) && stateIn.get(AGE) <= 14) {
+			if (fruit[0].get().equals(ModItems.BANANA.get()) || fruit[0].get().equals(ModItems.COCONUT.get())) {
+				if (stateIn.get(DISTANCE) == 1) {
+					worldIn.setBlockState(posIn, stateIn.with(AGE, stateIn.get(AGE) + 1), 4);
+				}
 			} else {
-				if (state.get(DISTANCE) == 1) {
-					worldIn.setBlockState(pos, state.with(AGE, state.get(AGE) + 1), 4);
-				}
-			}			
-			if (state.get(AGE) == 6) {
-				if (randomFruit) {
-					fruitType = random.nextInt(9) + 1;
-				}
-				if (fruitType == 1) {
-					if (state.get(DISTANCE) == 1 || randomFruit) {
-						tile.setFruitStack(new ItemStack(ModItems.BANANA.get()));
-					}
-				} else if (fruitType == 2) {
-					tile.setFruitStack(new ItemStack(ModItems.CHERRY.get()));
-				} else if (fruitType == 3) {
-					if (state.get(DISTANCE) == 1 || randomFruit) {
-						tile.setFruitStack(new ItemStack(ModItems.COCONUT.get()));
-					}
-				} else if (fruitType == 4) {
-					tile.setFruitStack(new ItemStack(ModItems.KIWI.get()));
-				} else if (fruitType == 5) {
-					tile.setFruitStack(new ItemStack(ModItems.LEMON.get()));
-				} else if (fruitType == 6) {
-					tile.setFruitStack(new ItemStack(ModItems.LIME.get()));
-				} else if (fruitType == 7) {
-					tile.setFruitStack(new ItemStack(ModItems.ORANGE.get()));
-				} else if (fruitType == 8) {
-					tile.setFruitStack(new ItemStack(ModItems.PEACH.get()));
-				} else if (fruitType == 9) {
-					tile.setFruitStack(new ItemStack(ModItems.PEAR.get()));
-				} else if (fruitType == 11) {
+				worldIn.setBlockState(posIn, stateIn.with(AGE, stateIn.get(AGE) + 1), 4);
+			}	
+			if (stateIn.get(AGE) == 14) {
+				if (fruit[0].get().equals(Items.POTION)) {
 					int potionType = random.nextInt(15);
 					if (potionType == 0) {
 						tile.setFruitStack(PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_NIGHT_VISION));
@@ -138,29 +112,23 @@ public class ModLeavesBlock extends LeavesBlock {
 					} else if (potionType == 14) {
 						tile.setFruitStack(PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_WEAKNESS));
 					}				
-				}
+				} else {
+					tile.setFruitStack(new ItemStack(fruit[random.nextInt(fruit.length)].get()));
+				}	
 			}
+		
 		}	
 	}
 
 	@Override
-	@Deprecated
 	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		FruitTileEntity tile = getTileEntity(worldIn, pos);
-		if (state.get(AGE) == 7) {
-			if (fruitType <= 10) {
-				spawnAsEntity(worldIn, pos.down(), new ItemStack(tile.getFruitStack().getItem(), 1).getStack());
-				tile.clear();
-				worldIn.playSound((PlayerEntity)null, pos, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1.0F, 0.8F + worldIn.rand.nextFloat() * 0.4F);
-				worldIn.setBlockState(pos, state.with(AGE, Integer.valueOf(0)), 4);
-				return ActionResultType.func_233537_a_(worldIn.isRemote);
-			} else {
-				spawnAsEntity(worldIn, pos.down(), tile.getFruitStack());
-				tile.clear();
-				worldIn.playSound((PlayerEntity)null, pos, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1.0F, 0.8F + worldIn.rand.nextFloat() * 0.4F);
-				worldIn.setBlockState(pos, state.with(AGE, Integer.valueOf(0)), 4);
-				return ActionResultType.func_233537_a_(worldIn.isRemote);
-			}
+		if (state.get(AGE) == 15) {
+			spawnAsEntity(worldIn, pos.down(), tile.getFruitStack());
+			tile.clear();
+			worldIn.playSound((PlayerEntity)null, pos, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1.0F, 0.8F + worldIn.rand.nextFloat() * 0.4F);
+			worldIn.setBlockState(pos, state.with(AGE, Integer.valueOf(0)), 4);
+			return ActionResultType.func_233537_a_(worldIn.isRemote);
 		} else {
 			return ActionResultType.FAIL;
 		}

@@ -24,7 +24,7 @@ public class ModSpawnEggItem extends Item {
 	private int entityTypeInt;
 	
     public ModSpawnEggItem(int entityTypeIntIn) {
-        super(new Item.Properties().maxStackSize(1).group(ModItemGroup.TECHNOLOGICA_FAUNA));
+        super(new Item.Properties().maxStackSize(1).group(ModItemGroup.FAUNA));
         entityTypeInt = entityTypeIntIn;
     }
 

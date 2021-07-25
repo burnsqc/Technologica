@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "technologica:banana_slab",
+    "technologica:cherry_slab",
+    "technologica:coconut_slab",
+    "technologica:kiwi_slab",
+    "technologica:lemon_slab",
+    "technologica:lime_slab",
+    "technologica:orange_slab",
+    "technologica:peach_slab",
+    "technologica:pear_slab"
+  ]
+}

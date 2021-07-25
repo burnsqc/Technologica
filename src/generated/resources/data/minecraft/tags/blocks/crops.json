@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": [
+    "technologica:asparagus_crop",
+    "technologica:barley_crop",
+    "technologica:blackberry_crop",
+    "technologica:blueberry_crop",
+    "technologica:broccoli_crop",
+    "technologica:celery_crop",
+    "technologica:grape_crop",
+    "technologica:oats_crop",
+    "technologica:raspberry_crop",
+    "technologica:rye_crop",
+    "technologica:strawberry_crop"
+  ]
+}

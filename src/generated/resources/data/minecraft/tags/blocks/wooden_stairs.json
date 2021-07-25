@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "technologica:banana_stairs",
+    "technologica:cherry_stairs",
+    "technologica:coconut_stairs",
+    "technologica:kiwi_stairs",
+    "technologica:lemon_stairs",
+    "technologica:lime_stairs",
+    "technologica:orange_stairs",
+    "technologica:peach_stairs",
+    "technologica:pear_stairs"
+  ]
+}

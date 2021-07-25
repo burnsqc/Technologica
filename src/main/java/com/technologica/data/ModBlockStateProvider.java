@@ -7,7 +7,7 @@ import com.technologica.Technologica;
 import com.technologica.block.CrystalBlock;
 import com.technologica.block.MagicLeavesBlock;
 import com.technologica.block.ModBlocks;
-import com.technologica.block.ModLeavesBlock;
+import com.technologica.block.FruitingLeavesBlock;
 import com.technologica.block.ModLogBlock;
 import com.technologica.block.PotionLeavesBlock;
 
@@ -51,7 +51,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	private final void automaticBlock(Collection<RegistryObject<Block>> collection) {
 		for(Supplier<? extends Block> blockSupplier:collection) {
 			Block block = blockSupplier.get();
-			if (block instanceof ModLeavesBlock || block instanceof PotionLeavesBlock || block instanceof MagicLeavesBlock || block.getClass() == Block.class || block instanceof OreBlock) {
+			if (block instanceof FruitingLeavesBlock || block instanceof PotionLeavesBlock || block instanceof MagicLeavesBlock || block.getClass() == Block.class || block instanceof OreBlock) {
 				if (!block.getRegistryName().getPath().contains("pulley") && !block.getRegistryName().getPath().contains("bookshelf")) {
 					simpleBlock(block);
 					this.simpleBlockItem(block, cubeAll(block));

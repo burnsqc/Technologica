@@ -139,6 +139,7 @@
   "item.technologica.aluminum_ingot": "Aluminum Ingot",
   "item.technologica.americium_ingot": "Americium Ingot",
   "item.technologica.antimony_chunk": "Antimony Chunk",
+  "item.technologica.apricot": "Apricot",
   "item.technologica.arsenic_chunk": "Arsenic Chunk",
   "item.technologica.asparagus": "Asparagus",
   "item.technologica.asparagus_seeds": "Asparagus Seeds",
@@ -315,11 +316,11 @@
   "item.technologica.zinc_ingot": "Zinc Ingot",
   "item.technologica.zirconium_ingot": "Zirconium Ingot",
   "item.technologica.zucchini": "Zucchini",
-  "itemGroup.technologica_cryptica": "Technologica Cryptica",
-  "itemGroup.technologica_decorative": "Technologica Decorative",
-  "itemGroup.technologica_fauna": "Technologica Fauna",
-  "itemGroup.technologica_flora": "Technologica Flora",
-  "itemGroup.technologica_food": "Technologica Food",
-  "itemGroup.technologica_machinery": "Technologica Machinery",
-  "itemGroup.technologica_mineral": "Technologica Mineral"
+  "itemGroup.cryptica": "Cryptica",
+  "itemGroup.decorative": "Decorative",
+  "itemGroup.fauna": "Fauna",
+  "itemGroup.flora": "Flora",
+  "itemGroup.food": "Food",
+  "itemGroup.machinery": "Machinery",
+  "itemGroup.mineral": "Mineral"
 }
