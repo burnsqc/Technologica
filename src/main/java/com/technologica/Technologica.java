@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import com.technologica.block.ModBlocks;
 import com.technologica.entity.ModEntities;
 import com.technologica.fluid.ModFluids;
-import com.technologica.items.ModItems;
+import com.technologica.item.ModItems;
 import com.technologica.setup.ClientSetup;
 import com.technologica.setup.CommonSetup;
 import com.technologica.setup.Config;

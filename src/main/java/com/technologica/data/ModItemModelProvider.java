@@ -3,7 +3,7 @@ package com.technologica.data;
 import java.util.function.Supplier;
 
 import com.technologica.Technologica;
-import com.technologica.items.ModItems;
+import com.technologica.item.ModItems;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Item;

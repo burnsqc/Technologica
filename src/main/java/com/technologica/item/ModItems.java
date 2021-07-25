@@ -1,10 +1,9 @@
-package com.technologica.items;
+package com.technologica.item;
 
 import static com.technologica.Technologica.MODID;
 
 import com.technologica.block.ModBlocks;
 import com.technologica.fluid.ModFluids;
-import com.technologica.setup.ModItemGroup;
 
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockNamedItem;

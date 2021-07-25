@@ -6,7 +6,7 @@ import java.util.concurrent.Callable;
 
 import com.technologica.block.ModBlocks;
 import com.technologica.block.TwelveDirectionBlock;
-import com.technologica.items.ModItems;
+import com.technologica.item.ModItems;
 import com.technologica.tileentity.LineShaftHangerTileEntity;
 import com.technologica.tileentity.LineShaftTileEntity;
 

@@ -1,6 +1,6 @@
 package com.technologica.block;
 
-import com.technologica.items.ModItems;
+import com.technologica.item.ModItems;
 import com.technologica.tileentity.LineShaftHangerTileEntity;
 
 import net.minecraft.block.Block;

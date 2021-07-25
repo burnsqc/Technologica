@@ -1,9 +1,8 @@
-package com.technologica.items;
+package com.technologica.item;
 
 import java.util.Objects;
 
 import com.technologica.entity.ModEntities;
-import com.technologica.setup.ModItemGroup;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;

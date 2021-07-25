@@ -1,7 +1,7 @@
 package com.technologica.block;
 import java.util.Random;
 
-import com.technologica.items.ModItems;
+import com.technologica.item.ModItems;
 import com.technologica.tileentity.FruitTileEntity;
 
 import net.minecraft.block.AbstractBlock;

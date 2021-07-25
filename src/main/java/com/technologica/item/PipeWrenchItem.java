@@ -1,4 +1,4 @@
-package com.technologica.items;
+package com.technologica.item;
 
 import java.util.Set;
 

@@ -1,10 +1,9 @@
-package com.technologica.setup;
+package com.technologica.item;
 
 import java.util.function.Supplier;
 
 import com.technologica.Technologica;
 import com.technologica.block.ModBlocks;
-import com.technologica.items.ModItems;
 
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;

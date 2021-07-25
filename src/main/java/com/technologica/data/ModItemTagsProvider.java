@@ -1,7 +1,7 @@
 package com.technologica.data;
 
 import com.technologica.Technologica;
-import com.technologica.items.ModItems;
+import com.technologica.item.ModItems;
 
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;

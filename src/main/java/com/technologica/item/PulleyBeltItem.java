@@ -1,4 +1,4 @@
-package com.technologica.items;
+package com.technologica.item;
 
 import javax.annotation.Nullable;
 
@@ -6,7 +6,6 @@ import com.technologica.block.LineShaftBlock;
 import com.technologica.block.ModBlocks;
 import com.technologica.capabilities.ILink;
 import com.technologica.capabilities.LinkProvider;
-import com.technologica.setup.ModItemGroup;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
