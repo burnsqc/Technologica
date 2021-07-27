@@ -134,6 +134,13 @@ public class FruitingLeavesBlock extends LeavesBlock {
 		}
 	}
 
+	public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+		if (!state.matchesBlock(newState.getBlock())) {
+			FruitTileEntity tile = getTileEntity(worldIn, pos);
+			spawnAsEntity(worldIn, pos.down(), tile.getFruitStack());
+		}
+	}
+	
 	@Override
 	public int getFlammability(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
 		return 30;

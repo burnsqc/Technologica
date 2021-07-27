@@ -56,12 +56,20 @@ public class DisplayCaseBlock extends GlassBlock {
 			ItemStack stack = tile.getDisplayStack();
 			tile.setDisplayStack(ItemStack.EMPTY);
 			worldIn.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.rand.nextFloat() * 0.4F);
-			if (!player.inventory.addItemStackToInventory(stack)) {
+			if (!player.inventory.addItemStackToInventory(tile.getDisplayStack())) {
 				spawnAsEntity(worldIn, pos.up(), stack);
 			} else {
 				player.openContainer.detectAndSendChanges();
 			}
 		}
 		return ActionResultType.func_233537_a_(worldIn.isRemote);
+	}
+	
+	public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+		if (!state.matchesBlock(newState.getBlock())) {
+			DisplayCaseTileEntity tile = getTileEntity(worldIn, pos);
+			spawnAsEntity(worldIn, pos.up(), tile.getDisplayStack());
+			tile.setDisplayStack(ItemStack.EMPTY);
+		}
 	}
 }

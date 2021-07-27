@@ -5,21 +5,14 @@ import java.util.function.Supplier;
 
 import com.technologica.Technologica;
 import com.technologica.block.CrystalBlock;
-import com.technologica.block.MagicLeavesBlock;
 import com.technologica.block.ModBlocks;
-import com.technologica.block.FruitingLeavesBlock;
-import com.technologica.block.ModLogBlock;
-import com.technologica.block.PotionLeavesBlock;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.CropsBlock;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.block.FenceBlock;
 import net.minecraft.block.FenceGateBlock;
-import net.minecraft.block.FlowerPotBlock;
-import net.minecraft.block.OreBlock;
 import net.minecraft.block.RotatedPillarBlock;
-import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.StairsBlock;
 import net.minecraft.block.TrapDoorBlock;
@@ -43,36 +36,39 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 	@Override
 	protected void registerStatesAndModels() {
-		automaticBlock(ModBlocks.BLOCKS.getEntries());
-		cubicCrystalBlock(ModBlocks.DOLOMITE_CRYSTAL.get());
-		displayBlock(ModBlocks.DISPLAY_CASE.get());
+		automaticBlockState(ModBlocks.BLOCKS.getEntries());
 	}	
 	
-	private final void automaticBlock(Collection<RegistryObject<Block>> collection) {
+	/**
+	 * Iterates through a deferred register of blocks, generating blockstates, block models, and item models for each entry.
+	 * This only works if the translation keys are consistent.  This is really only intended to work for mod blocks which are similar to vanilla.
+	 * This saves a lot of time when adding one new tree which leads to logs, leaves, planks, stairs, doors, etc. 
+	 * @param collection a collection of deferred register block entries
+	 */
+	
+	private final void automaticBlockState(Collection<RegistryObject<Block>> collection) {
 		for(Supplier<? extends Block> blockSupplier:collection) {
 			Block block = blockSupplier.get();
-			if (block instanceof FruitingLeavesBlock || block instanceof PotionLeavesBlock || block instanceof MagicLeavesBlock || block.getClass() == Block.class || block instanceof OreBlock) {
-				if (!block.getRegistryName().getPath().contains("pulley") && !block.getRegistryName().getPath().contains("bookshelf")) {
-					simpleBlock(block);
-					this.simpleBlockItem(block, cubeAll(block));
-				} else if (block.getRegistryName().getPath().contains("bookshelf")) {
-					bookshelfBlock(block);
-				}
-			} else if (block instanceof ModLogBlock) logBlock(block);	
-			else if (block instanceof SlabBlock) slabBlock(block);
-			else if (block instanceof StairsBlock) stairsBlock(block);
-			else if (block instanceof FenceBlock) fenceBlock(block);
-			else if (block instanceof FenceGateBlock) fenceGateBlock(block);
-			else if (block instanceof SaplingBlock) crossBlock(block);
-			else if (block instanceof FlowerPotBlock) flowerPotCrossBlock(block);
-			else if (block instanceof CropsBlock) cropBlock(block);
-			else if (block instanceof DoorBlock) doorBlock(block);
-			else if (block instanceof TrapDoorBlock) trapdoorBlock(block);
-			else if (block instanceof CrystalBlock) {
-				if (!block.getRegistryName().getPath().contains("dolomite")) {
-					hexagonalCrystalBlock(block);
-				}
-			}
+				
+			if (block.getRegistryName().getPath().contains("leaves")) simpleBlock(block);
+			else if (block.getRegistryName().getPath().contains("planks")) simpleBlock(block);
+			else if (block.getRegistryName().getPath().contains("salt")) simpleBlock(block);
+			else if (block.getRegistryName().getPath().contains("clay")) simpleBlock(block);
+			else if (block.getRegistryName().getPath().contains("ore")) simpleBlock(block);
+			else if (block.getRegistryName().getPath().contains("bookshelf")) bookshelfBlock(block);	
+			else if (block.getRegistryName().getPath().contains("log")) logBlock(block);	
+			else if (block.getRegistryName().getPath().contains("slab")) slabBlock(block);
+			else if (block.getRegistryName().getPath().contains("stairs")) stairsBlock(block);
+			else if (block.getRegistryName().getPath().contains("fence") && !block.getRegistryName().getPath().contains("gate")) fenceBlock(block);
+			else if (block.getRegistryName().getPath().contains("fence_gate")) fenceGateBlock(block);
+			else if (block.getRegistryName().getPath().contains("sapling") && !block.getRegistryName().getPath().contains("potted")) crossBlock(block);
+			else if (block.getRegistryName().getPath().contains("potted")) flowerPotCrossBlock(block);
+			else if (block.getRegistryName().getPath().contains("crop")) cropBlock(block);
+			else if (block.getRegistryName().getPath().contains("door") && !block.getRegistryName().getPath().contains("trap")) doorBlock(block);
+			else if (block.getRegistryName().getPath().contains("trapdoor")) trapdoorBlock(block);
+			else if (block.getRegistryName().getPath().contains("crystal") && !block.getRegistryName().getPath().contains("dolomite")) hexagonalCrystalBlock(block);
+			else if (block.getRegistryName().getPath().contains("dolomite")) cubicCrystalBlock(block);
+			else if (block.getRegistryName().getPath().contains("display")) displayBlock(block);
 		}
 	}
 	
@@ -136,6 +132,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	/*
 	 * Blockstate, block model, and item model providers
 	 */
+	
+	public void simpleBlock(Block block) {
+		simpleBlock(block, cubeAll(block));
+		this.simpleBlockItem(block, cubeAll(block));		
+    }
+	
 	public void bookshelfBlock(Block block) {
 		getVariantBuilder(block).partialState().setModels(new ConfiguredModel(models().cubeColumn(name(block), blockTexture(block), replace(blockTexture(block), "bookshelf", "planks"))));
 		this.simpleBlockItem(block, cubeColumn(block));		

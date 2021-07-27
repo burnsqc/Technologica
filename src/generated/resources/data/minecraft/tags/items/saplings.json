@@ -9,6 +9,13 @@
     "technologica:lime_sapling",
     "technologica:orange_sapling",
     "technologica:peach_sapling",
-    "technologica:pear_sapling"
+    "technologica:pear_sapling",
+    "technologica:ancient_ambrosia_sapling",
+    "technologica:cryogenic_spire_sapling",
+    "technologica:thunderous_conductor_sapling",
+    "technologica:towering_inferno_sapling",
+    "technologica:serendipitous_apothecary_sapling",
+    "technologica:benevolent_apothecary_sapling",
+    "technologica:malevolent_apothecary_sapling"
   ]
 }

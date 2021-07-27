@@ -25,11 +25,16 @@ import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
 
 public class ModConfiguredFeatures {
-
-	private ModConfiguredFeatures() {
-		// use private constructor to hide default constructor
-	}
-	
+/*	
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> APRICOT_TREE_FEATURE = register(
+			"apricot_tree_feature",
+			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(ModBlocks.APRICOT_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.APRICOT_LEAVES.get().getDefaultState()),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new StraightTrunkPlacer(4, 1, 0), 
+					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
+*/	
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> BANANA_TREE_FEATURE = register(
 			"banana_tree_feature",
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(

@@ -6,6 +6,15 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "technologica:peach_door",
+              "properties": {
+                "half": "lower"
+              }
+            }
+          ],
           "name": "technologica:peach_door"
         }
       ],

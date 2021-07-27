@@ -28,6 +28,7 @@ public class ModLanguageProvider extends LanguageProvider {
 			ModItemGroup.FAUNA,
 			ModItemGroup.MINERAL,
 			ModItemGroup.FOOD,
+			ModItemGroup.CONSTRUCTION,
 			ModItemGroup.MACHINERY,
 			ModItemGroup.DECORATIVE,
 			ModItemGroup.CRYPTICA

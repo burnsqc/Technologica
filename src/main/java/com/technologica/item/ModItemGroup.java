@@ -16,6 +16,7 @@ public class ModItemGroup extends ItemGroup {
 	public static final ModItemGroup FAUNA = new ModItemGroup("fauna", () -> new ItemStack(ModItems.DUCK_SPAWN_EGG.get()));
 	public static final ModItemGroup MINERAL = new ModItemGroup("mineral", () -> new ItemStack(ModBlocks.AQUAMARINE_CRYSTAL.get()));
 	public static final ModItemGroup FOOD = new ModItemGroup("food", () -> new ItemStack(ModItems.BANANA.get()));
+	public static final ModItemGroup CONSTRUCTION = new ModItemGroup("construction", () -> new ItemStack(ModBlocks.CHERRY_PLANKS.get()));
 	public static final ModItemGroup MACHINERY = new ModItemGroup("machinery", () -> new ItemStack(ModItems.WRENCH.get()));
 	public static final ModItemGroup DECORATIVE = new ModItemGroup("decorative", () -> new ItemStack(ModBlocks.DISPLAY_CASE.get()));
 	public static final ModItemGroup CRYPTICA = new ModItemGroup("cryptica", () -> new ItemStack(ModBlocks.ANCIENT_AMBROSIA_SAPLING.get()));
