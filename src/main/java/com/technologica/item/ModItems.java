@@ -52,23 +52,36 @@ public class ModItems {
 //    public static final RegistryObject<Item> RED_BEANS = ITEMS.register("red_beans", () -> new BlockNamedItem(ModBlocks.RED_BEAN_CROP.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
     public static final RegistryObject<Item> RYE_SEEDS = ITEMS.register("rye_seeds", () -> new BlockNamedItem(ModBlocks.RYE_CROP.get(), new Item.Properties().group(ModItemGroup.FLORA)));
 //    public static final RegistryObject<Item> SOY_BEANS = ITEMS.register("soy_beans", () -> new BlockNamedItem(ModBlocks.SOY_BEAN_CROP.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> STRAWBERRY_SEEDS = ITEMS.register("strawberry_seeds", () -> new BlockNamedItem(ModBlocks.STRAWBERRY_CROP.get(), new Item.Properties().group(ModItemGroup.FLORA)));
 //    public static final RegistryObject<Item> SQUASH_SEEDS = ITEMS.register("squash_seeds", () -> new BlockNamedItem(ModBlocks.SQUASH_CROP.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
 //    public static final RegistryObject<Item> SWEET_POTATO_SEEDS = ITEMS.register("sweet_potato_seeds", () -> new BlockNamedItem(ModBlocks.SWEET_POTATO_CROP.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
 //    public static final RegistryObject<Item> TEA_SEEDS = ITEMS.register("tea_seeds", () -> new BlockNamedItem(ModBlocks.TEA_CROP.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
 //    public static final RegistryObject<Item> TOMATO_SEEDS = ITEMS.register("tomato_seeds", () -> new BlockNamedItem(ModBlocks.TOMATO_CROP.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
 //    public static final RegistryObject<Item> TURNIP_SEEDS = ITEMS.register("turnip_seeds", () -> new BlockNamedItem(ModBlocks.TURNIP_CROP.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
 //    public static final RegistryObject<Item> ZUCCHINI_SEEDS = ITEMS.register("zucchini_seeds", () -> new BlockNamedItem(ModBlocks.ZUCCHINI_CROP.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
-    public static final RegistryObject<Item> STRAWBERRY_SEEDS = ITEMS.register("strawberry_seeds", () -> new BlockNamedItem(ModBlocks.STRAWBERRY_CROP.get(), new Item.Properties().group(ModItemGroup.FLORA)));
-	
+    
+//    public static final RegistryObject<Item> APRICOT_SAPLING_ITEM = ITEMS.register("apricot_sapling", () -> new BlockItem(ModBlocks.APRICOT_SAPLING.get(), new Item.Properties().group(ModItemGroup.FLORA)));  
+//    public static final RegistryObject<Item> ASPEN_SAPLING_ITEM = ITEMS.register("aspen_sapling", () -> new BlockItem(ModBlocks.ASPEN_SAPLING.get(), new Item.Properties().group(ModItemGroup.FLORA)));  
+//    public static final RegistryObject<Item> AVACADO_SAPLING_ITEM = ITEMS.register("avacado_sapling", () -> new BlockItem(ModBlocks.AVACADO_SAPLING.get(), new Item.Properties().group(ModItemGroup.FLORA)));  
     public static final RegistryObject<Item> BANANA_SAPLING_ITEM = ITEMS.register("banana_sapling", () -> new BlockItem(ModBlocks.BANANA_SAPLING.get(), new Item.Properties().group(ModItemGroup.FLORA)));  
     public static final RegistryObject<Item> CHERRY_SAPLING_ITEM = ITEMS.register("cherry_sapling", () -> new BlockItem(ModBlocks.CHERRY_SAPLING.get(), new Item.Properties().group(ModItemGroup.FLORA)));
+//    public static final RegistryObject<Item> CHESTNUT_SAPLING_ITEM = ITEMS.register("chectnut_sapling", () -> new BlockItem(ModBlocks.CHESTNUT_SAPLING.get(), new Item.Properties().group(ModItemGroup.FLORA)));   
     public static final RegistryObject<Item> COCONUT_SAPLING_ITEM = ITEMS.register("coconut_sapling", () -> new BlockItem(ModBlocks.COCONUT_SAPLING.get(), new Item.Properties().group(ModItemGroup.FLORA))); 
+//    public static final RegistryObject<Item> EBONY_SAPLING_ITEM = ITEMS.register("ebony_sapling", () -> new BlockItem(ModBlocks.EBONY_SAPLING.get(), new Item.Properties().group(ModItemGroup.FLORA)));  
     public static final RegistryObject<Item> KIWI_SAPLING_ITEM = ITEMS.register("kiwi_sapling", () -> new BlockItem(ModBlocks.KIWI_SAPLING.get(), new Item.Properties().group(ModItemGroup.FLORA)));
 	public static final RegistryObject<Item> LEMON_SAPLING_ITEM = ITEMS.register("lemon_sapling", () -> new BlockItem(ModBlocks.LEMON_SAPLING.get(), new Item.Properties().group(ModItemGroup.FLORA)));   	
     public static final RegistryObject<Item> LIME_SAPLING_ITEM = ITEMS.register("lime_sapling", () -> new BlockItem(ModBlocks.LIME_SAPLING.get(), new Item.Properties().group(ModItemGroup.FLORA)));   
+//    public static final RegistryObject<Item> MAHOGANY_SAPLING_ITEM = ITEMS.register("mahogany_sapling", () -> new BlockItem(ModBlocks.MAHOGANY_SAPLING.get(), new Item.Properties().group(ModItemGroup.FLORA)));  
+//    public static final RegistryObject<Item> MAPLE_SAPLING_ITEM = ITEMS.register("maple_sapling", () -> new BlockItem(ModBlocks.MAPLE_SAPLING.get(), new Item.Properties().group(ModItemGroup.FLORA)));  
     public static final RegistryObject<Item> ORANGE_SAPLING_ITEM = ITEMS.register("orange_sapling", () -> new BlockItem(ModBlocks.ORANGE_SAPLING.get(), new Item.Properties().group(ModItemGroup.FLORA)));      
     public static final RegistryObject<Item> PEACH_SAPLING_ITEM = ITEMS.register("peach_sapling", () -> new BlockItem(ModBlocks.PEACH_SAPLING.get(), new Item.Properties().group(ModItemGroup.FLORA)));    
     public static final RegistryObject<Item> PEAR_SAPLING_ITEM = ITEMS.register("pear_sapling", () -> new BlockItem(ModBlocks.PEAR_SAPLING.get(), new Item.Properties().group(ModItemGroup.FLORA)));
+//    public static final RegistryObject<Item> PLUM_SAPLING_ITEM = ITEMS.register("plum_sapling", () -> new BlockItem(ModBlocks.PLUM_SAPLING.get(), new Item.Properties().group(ModItemGroup.FLORA)));  
+//    public static final RegistryObject<Item> REDWOOD_SAPLING_ITEM = ITEMS.register("redwood_sapling", () -> new BlockItem(ModBlocks.REDWOOD_SAPLING.get(), new Item.Properties().group(ModItemGroup.FLORA)));  
+//    public static final RegistryObject<Item> RUBBER_SAPLING_ITEM = ITEMS.register("rubber_sapling", () -> new BlockItem(ModBlocks.RUBBER_SAPLING.get(), new Item.Properties().group(ModItemGroup.FLORA)));  
+//    public static final RegistryObject<Item> TEAK_SAPLING_ITEM = ITEMS.register("teak_sapling", () -> new BlockItem(ModBlocks.TEAK_SAPLING.get(), new Item.Properties().group(ModItemGroup.FLORA)));  
+//    public static final RegistryObject<Item> WALNUT_SAPLING_ITEM = ITEMS.register("walnut_sapling", () -> new BlockItem(ModBlocks.WALNUT_SAPLING.get(), new Item.Properties().group(ModItemGroup.FLORA)));  
+//    public static final RegistryObject<Item> ZEBRAWOOD_SAPLING_ITEM = ITEMS.register("zebrawood_sapling", () -> new BlockItem(ModBlocks.ZEBRAWOOD_SAPLING.get(), new Item.Properties().group(ModItemGroup.FLORA)));  
     public static final RegistryObject<Item> ANCIENT_AMBROSIA_SAPLING_ITEM = ITEMS.register("ancient_ambrosia_sapling", () -> new BlockItem(ModBlocks.ANCIENT_AMBROSIA_SAPLING.get(), new Item.Properties().group(ModItemGroup.CRYPTICA)));
     public static final RegistryObject<Item> CRYOGENIC_SPIRE_SAPLING_ITEM = ITEMS.register("cryogenic_spire_sapling", () -> new BlockItem(ModBlocks.CRYOGENIC_SPIRE_SAPLING.get(), new Item.Properties().group(ModItemGroup.CRYPTICA)));
     public static final RegistryObject<Item> THUNDEROUS_CONDUCTOR_SAPLING_ITEM = ITEMS.register("thunderous_conductor_sapling", () -> new BlockItem(ModBlocks.THUNDEROUS_CONDUCTOR_SAPLING.get(), new Item.Properties().group(ModItemGroup.CRYPTICA)));
@@ -77,15 +90,28 @@ public class ModItems {
     public static final RegistryObject<Item> BENEVOLENT_APOTHECARY_SAPLING_ITEM = ITEMS.register("benevolent_apothecary_sapling", () -> new BlockItem(ModBlocks.BENEVOLENT_APOTHECARY_SAPLING.get(), new Item.Properties().group(ModItemGroup.CRYPTICA)));
     public static final RegistryObject<Item> MALEVOLENT_APOTHECARY_SAPLING_ITEM = ITEMS.register("malevolent_apothecary_sapling", () -> new BlockItem(ModBlocks.MALEVOLENT_APOTHECARY_SAPLING.get(), new Item.Properties().group(ModItemGroup.CRYPTICA)));	
 	
-	public static final RegistryObject<Item> BANANA_LEAVES_ITEM = ITEMS.register("banana_leaves", () -> new BlockItem(ModBlocks.BANANA_LEAVES.get(), new Item.Properties().group(ModItemGroup.FLORA)));
+//    public static final RegistryObject<Item> APRICOT_LEAVES_ITEM = ITEMS.register("apricot_leaves", () -> new BlockItem(ModBlocks.APRICOT_LEAVES.get(), new Item.Properties().group(ModItemGroup.FLORA)));
+//    public static final RegistryObject<Item> ASPEN_LEAVES_ITEM = ITEMS.register("aspen_leaves", () -> new BlockItem(ModBlocks.ASPEN_LEAVES.get(), new Item.Properties().group(ModItemGroup.FLORA)));	
+//    public static final RegistryObject<Item> AVACADO_LEAVES_ITEM = ITEMS.register("avacado_leaves", () -> new BlockItem(ModBlocks.AVACADO_LEAVES.get(), new Item.Properties().group(ModItemGroup.FLORA)));
+    public static final RegistryObject<Item> BANANA_LEAVES_ITEM = ITEMS.register("banana_leaves", () -> new BlockItem(ModBlocks.BANANA_LEAVES.get(), new Item.Properties().group(ModItemGroup.FLORA)));
     public static final RegistryObject<Item> CHERRY_LEAVES_ITEM = ITEMS.register("cherry_leaves", () -> new BlockItem(ModBlocks.CHERRY_LEAVES.get(), new Item.Properties().group(ModItemGroup.FLORA)));
+//    public static final RegistryObject<Item> CHESTNUT_LEAVES_ITEM = ITEMS.register("chestnut_leaves", () -> new BlockItem(ModBlocks.CHESTNUT_LEAVES.get(), new Item.Properties().group(ModItemGroup.FLORA)));    
     public static final RegistryObject<Item> COCONUT_LEAVES_ITEM = ITEMS.register("coconut_leaves", () -> new BlockItem(ModBlocks.COCONUT_LEAVES.get(), new Item.Properties().group(ModItemGroup.FLORA)));
+//    public static final RegistryObject<Item> EBONY_LEAVES_ITEM = ITEMS.register("ebony_leaves", () -> new BlockItem(ModBlocks.EBONY_LEAVES.get(), new Item.Properties().group(ModItemGroup.FLORA)));
     public static final RegistryObject<Item> KIWI_LEAVES_ITEM = ITEMS.register("kiwi_leaves", () -> new BlockItem(ModBlocks.KIWI_LEAVES.get(), new Item.Properties().group(ModItemGroup.FLORA)));
     public static final RegistryObject<Item> LEMON_LEAVES_ITEM = ITEMS.register("lemon_leaves", () -> new BlockItem(ModBlocks.LEMON_LEAVES.get(), new Item.Properties().group(ModItemGroup.FLORA)));
     public static final RegistryObject<Item> LIME_LEAVES_ITEM = ITEMS.register("lime_leaves", () -> new BlockItem(ModBlocks.LIME_LEAVES.get(), new Item.Properties().group(ModItemGroup.FLORA)));
+//    public static final RegistryObject<Item> MAHOGANY_LEAVES_ITEM = ITEMS.register("mahogany_leaves", () -> new BlockItem(ModBlocks.MAHOGANY_LEAVES.get(), new Item.Properties().group(ModItemGroup.FLORA)));
+//    public static final RegistryObject<Item> MAPLE_LEAVES_ITEM = ITEMS.register("maple_leaves", () -> new BlockItem(ModBlocks.MAPLE_LEAVES.get(), new Item.Properties().group(ModItemGroup.FLORA)));
     public static final RegistryObject<Item> ORANGE_LEAVES_ITEM = ITEMS.register("orange_leaves", () -> new BlockItem(ModBlocks.ORANGE_LEAVES.get(), new Item.Properties().group(ModItemGroup.FLORA)));
     public static final RegistryObject<Item> PEACH_LEAVES_ITEM = ITEMS.register("peach_leaves", () -> new BlockItem(ModBlocks.PEACH_LEAVES.get(), new Item.Properties().group(ModItemGroup.FLORA)));
     public static final RegistryObject<Item> PEAR_LEAVES_ITEM = ITEMS.register("pear_leaves", () -> new BlockItem(ModBlocks.PEAR_LEAVES.get(), new Item.Properties().group(ModItemGroup.FLORA)));
+//    public static final RegistryObject<Item> PLUM_LEAVES_ITEM = ITEMS.register("plum_leaves", () -> new BlockItem(ModBlocks.PLUM_LEAVES.get(), new Item.Properties().group(ModItemGroup.FLORA)));    
+//    public static final RegistryObject<Item> REDWOOD_LEAVES_ITEM = ITEMS.register("redwood_leaves", () -> new BlockItem(ModBlocks.REDWOOD_LEAVES.get(), new Item.Properties().group(ModItemGroup.FLORA)));
+//    public static final RegistryObject<Item> RUBBER_LEAVES_ITEM = ITEMS.register("rubber_leaves", () -> new BlockItem(ModBlocks.RUBBER_LEAVES.get(), new Item.Properties().group(ModItemGroup.FLORA)));
+//    public static final RegistryObject<Item> TEAK_LEAVES_ITEM = ITEMS.register("teak_leaves", () -> new BlockItem(ModBlocks.TEAK_LEAVES.get(), new Item.Properties().group(ModItemGroup.FLORA)));
+//    public static final RegistryObject<Item> WALNUT_LEAVES_ITEM = ITEMS.register("walnut_leaves", () -> new BlockItem(ModBlocks.WALNUT_LEAVES.get(), new Item.Properties().group(ModItemGroup.FLORA)));
+//    public static final RegistryObject<Item> ZEBRAWOOD_LEAVES_ITEM = ITEMS.register("zebrawood_leaves", () -> new BlockItem(ModBlocks.ZEBRAWOOD_LEAVES.get(), new Item.Properties().group(ModItemGroup.FLORA)));
     public static final RegistryObject<Item> FRUITFUL_LEAVES_ITEM = ITEMS.register("fruitful_leaves", () -> new BlockItem(ModBlocks.FRUITFUL_LEAVES.get(), new Item.Properties().group(ModItemGroup.CRYPTICA)));
     public static final RegistryObject<Item> ALCHEMICAL_LEAVES_ITEM = ITEMS.register("alchemical_leaves", () -> new BlockItem(ModBlocks.ALCHEMICAL_LEAVES.get(), new Item.Properties().group(ModItemGroup.CRYPTICA)));
     public static final RegistryObject<Item> BENEVOLENT_LEAVES_ITEM = ITEMS.register("benevolent_leaves", () -> new BlockItem(ModBlocks.BENEVOLENT_LEAVES.get(), new Item.Properties().group(ModItemGroup.CRYPTICA)));
@@ -239,8 +265,9 @@ public class ModItems {
      * FOOD
      */
     
-    public static final RegistryObject<Item> APRICOT = ITEMS.register("apricot", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
+//    public static final RegistryObject<Item> APRICOT = ITEMS.register("apricot", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
     public static final RegistryObject<Item> ASPARAGUS = ITEMS.register("asparagus", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
+//    public static final RegistryObject<Item> AVACADO = ITEMS.register("avacado", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
     public static final RegistryObject<Item> BANANA = ITEMS.register("banana", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
     public static final RegistryObject<Item> BARLEY = ITEMS.register("barley", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD)));
     public static final RegistryObject<Item> BROCCOLI = ITEMS.register("broccoli", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
@@ -248,6 +275,7 @@ public class ModItems {
     public static final RegistryObject<Item> BLUEBERRY = ITEMS.register("blueberry", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(1).saturation(0.1F).setAlwaysEdible().fastToEat().build())));
     public static final RegistryObject<Item> CELERY = ITEMS.register("celery", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
     public static final RegistryObject<Item> CHERRY = ITEMS.register("cherry", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(1).saturation(0.1F).setAlwaysEdible().fastToEat().build())));
+//    public static final RegistryObject<Item> CHESTNUT = ITEMS.register("chestnut", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
 //    public static final RegistryObject<Item> CHILI_PEPPER = ITEMS.register("chili_pepper", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
     public static final RegistryObject<Item> COCONUT = ITEMS.register("coconut", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
 //    public static final RegistryObject<Item> CUCUMBER = ITEMS.register("cucumber", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
@@ -267,6 +295,7 @@ public class ModItems {
 //    public static final RegistryObject<Item> PEANUT = ITEMS.register("peanut", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
     public static final RegistryObject<Item> PEAR = ITEMS.register("pear", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(3).saturation(0.1F).setAlwaysEdible().build())));
 //    public static final RegistryObject<Item> PINEAPPLE = ITEMS.register("pineapple", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
+//    public static final RegistryObject<Item> PLUM = ITEMS.register("plum", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
 //    public static final RegistryObject<Item> PURPLE_CABBAGE = ITEMS.register("purple_cabbage", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
 //    public static final RegistryObject<Item> RADISH = ITEMS.register("radish", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
     public static final RegistryObject<Item> RASPBERRY = ITEMS.register("raspberry", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
@@ -276,6 +305,7 @@ public class ModItems {
     public static final RegistryObject<Item> STRAWBERRY = ITEMS.register("strawberry", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(1).saturation(0.1F).setAlwaysEdible().fastToEat().build())));  
 //    public static final RegistryObject<Item> TOMATO = ITEMS.register("tomato", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
 //    public static final RegistryObject<Item> TURNIP = ITEMS.register("turnip", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
+//    public static final RegistryObject<Item> WALNUT = ITEMS.register("walnut", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
 //    public static final RegistryObject<Item> ZUCCHINI = ITEMS.register("zucchini", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
     
     public static final RegistryObject<Item> BANANAS_FOSTER = ITEMS.register("bananas_foster", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
@@ -296,15 +326,28 @@ public class ModItems {
      * CONSTRUCTION
      */
     
+//    public static final RegistryObject<Item> APRICOT_LOG_ITEM = ITEMS.register("apricot_log", () -> new BlockItem(ModBlocks.APRICOT_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+//    public static final RegistryObject<Item> ASPEN_LOG_ITEM = ITEMS.register("aspen_log", () -> new BlockItem(ModBlocks.ASPEN_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+//    public static final RegistryObject<Item> AVACADO_LOG_ITEM = ITEMS.register("avacado_log", () -> new BlockItem(ModBlocks.AVACADO_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> BANANA_LOG_ITEM = ITEMS.register("banana_log", () -> new BlockItem(ModBlocks.BANANA_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> CHERRY_LOG_ITEM = ITEMS.register("cherry_log", () -> new BlockItem(ModBlocks.CHERRY_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+//    public static final RegistryObject<Item> CHESTNUT_LOG_ITEM = ITEMS.register("chestnut_log", () -> new BlockItem(ModBlocks.CHESTNUT_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));    
     public static final RegistryObject<Item> COCONUT_LOG_ITEM = ITEMS.register("coconut_log", () -> new BlockItem(ModBlocks.COCONUT_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+//    public static final RegistryObject<Item> EBONY_LOG_ITEM = ITEMS.register("ebony_log", () -> new BlockItem(ModBlocks.EBONY_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));    
     public static final RegistryObject<Item> KIWI_LOG_ITEM = ITEMS.register("kiwi_log", () -> new BlockItem(ModBlocks.KIWI_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> LEMON_LOG_ITEM = ITEMS.register("lemon_log", () -> new BlockItem(ModBlocks.LEMON_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> LIME_LOG_ITEM = ITEMS.register("lime_log", () -> new BlockItem(ModBlocks.LIME_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+//    public static final RegistryObject<Item> MAHOGANY_LOG_ITEM = ITEMS.register("mahogany_log", () -> new BlockItem(ModBlocks.MAHOGANY_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));    
+//    public static final RegistryObject<Item> MAPLE_LOG_ITEM = ITEMS.register("maple_log", () -> new BlockItem(ModBlocks.MAPLE_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> ORANGE_LOG_ITEM = ITEMS.register("orange_log", () -> new BlockItem(ModBlocks.ORANGE_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEACH_LOG_ITEM = ITEMS.register("peach_log",	() -> new BlockItem(ModBlocks.PEACH_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEAR_LOG_ITEM = ITEMS.register("pear_log", () -> new BlockItem(ModBlocks.PEAR_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION))); 
+//  public static final RegistryObject<Item> PLUM_LOG_ITEM = ITEMS.register("plum_log", () -> new BlockItem(ModBlocks.PLUM_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));    
+//  public static final RegistryObject<Item> REDWOOD_LOG_ITEM = ITEMS.register("redwood_log", () -> new BlockItem(ModBlocks.REDWOOD_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+//  public static final RegistryObject<Item> RUBBER_LOG_ITEM = ITEMS.register("rubber_log", () -> new BlockItem(ModBlocks.RUBBER_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+//  public static final RegistryObject<Item> TEAK_LOG_ITEM = ITEMS.register("teak_log", () -> new BlockItem(ModBlocks.TEAK_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+//  public static final RegistryObject<Item> WALNUT_LOG_ITEM = ITEMS.register("walnut_log", () -> new BlockItem(ModBlocks.WALNUT_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+//  public static final RegistryObject<Item> ZEBRAWOOD_LOG_ITEM = ITEMS.register("zebrawood_log", () -> new BlockItem(ModBlocks.ZEBRAWOOD_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> FRUITFUL_LOG_ITEM = ITEMS.register("fruitful_log", () -> new BlockItem(ModBlocks.FRUITFUL_LOG.get(), new Item.Properties().group(ModItemGroup.CRYPTICA)));
     public static final RegistryObject<Item> ALCHEMICAL_LOG_ITEM = ITEMS.register("alchemical_log", () -> new BlockItem(ModBlocks.ALCHEMICAL_LOG.get(), new Item.Properties().group(ModItemGroup.CRYPTICA)));
     public static final RegistryObject<Item> BENEVOLENT_LOG_ITEM = ITEMS.register("benevolent_log", () -> new BlockItem(ModBlocks.BENEVOLENT_LOG.get(), new Item.Properties().group(ModItemGroup.CRYPTICA)));
