@@ -25,16 +25,34 @@ import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
 
 public class ModConfiguredFeatures {
-/*	
+	
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> APRICOT_TREE_FEATURE = register(
 			"apricot_tree_feature",
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(ModBlocks.APRICOT_LOG.get().getDefaultState()),
-					new SimpleBlockStateProvider(ModBlocks.APRICOT_LEAVES.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.BANANA_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.BANANA_LEAVES.get().getDefaultState()),
 					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
 					new StraightTrunkPlacer(4, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
-*/	
+	
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> ASPEN_TREE_FEATURE = register(
+			"aspen_tree_feature",
+			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(ModBlocks.BANANA_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.BANANA_LEAVES.get().getDefaultState()),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new StraightTrunkPlacer(4, 1, 0), 
+					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
+	
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> AVACADO_TREE_FEATURE = register(
+			"avacado_tree_feature",
+			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(ModBlocks.BANANA_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.BANANA_LEAVES.get().getDefaultState()),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new StraightTrunkPlacer(4, 1, 0), 
+					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
+	
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> BANANA_TREE_FEATURE = register(
 			"banana_tree_feature",
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
@@ -53,6 +71,15 @@ public class ModConfiguredFeatures {
 					new StraightTrunkPlacer(5, 2, 0), 
 					new TwoLayerFeature(1, 0, 1))).setIgnoreVines().build()));
 	
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> CHESTNUT_TREE_FEATURE = register(
+			"chestnut_tree_feature",
+			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(ModBlocks.BANANA_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.BANANA_LEAVES.get().getDefaultState()),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new StraightTrunkPlacer(4, 1, 0), 
+					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
+	
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> COCONUT_TREE_FEATURE = register(
 			"coconut_tree_feature",
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
@@ -61,6 +88,15 @@ public class ModConfiguredFeatures {
 					new PalmFoliagePlacer(FeatureSpread.create(5), FeatureSpread.create(1), 5),
 					new StraightTrunkPlacer(7, 5, 0), 
 					new TwoLayerFeature(0, 0, 0))).setIgnoreVines().build()));
+	
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> EBONY_TREE_FEATURE = register(
+			"ebony_tree_feature",
+			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(ModBlocks.BANANA_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.BANANA_LEAVES.get().getDefaultState()),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new StraightTrunkPlacer(4, 1, 0), 
+					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
 	
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> KIWI_TREE_FEATURE = register(
 			"kiwi_tree_feature",
@@ -87,6 +123,24 @@ public class ModConfiguredFeatures {
 					new SimpleBlockStateProvider(ModBlocks.LIME_LEAVES.get().getDefaultState()),
 					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
 					new StraightTrunkPlacer(2, 2, 0), 
+					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
+	
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> MAHOGANY_TREE_FEATURE = register(
+			"mahogany_tree_feature",
+			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(ModBlocks.BANANA_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.BANANA_LEAVES.get().getDefaultState()),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new StraightTrunkPlacer(4, 1, 0), 
+					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
+	
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> MAPLE_TREE_FEATURE = register(
+			"maple_tree_feature",
+			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(ModBlocks.BANANA_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.BANANA_LEAVES.get().getDefaultState()),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new StraightTrunkPlacer(4, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
 	
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> ORANGE_TREE_FEATURE = register(
@@ -116,6 +170,60 @@ public class ModConfiguredFeatures {
 					new StraightTrunkPlacer(5, 2, 0), 
 					new TwoLayerFeature(1, 0, 1))).setIgnoreVines().build()));
 
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> PLUM_TREE_FEATURE = register(
+			"plum_tree_feature",
+			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(ModBlocks.BANANA_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.BANANA_LEAVES.get().getDefaultState()),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new StraightTrunkPlacer(4, 1, 0), 
+					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
+	
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> REDWOOD_TREE_FEATURE = register(
+			"redwood_tree_feature",
+			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(ModBlocks.BANANA_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.BANANA_LEAVES.get().getDefaultState()),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new StraightTrunkPlacer(4, 1, 0), 
+					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
+	
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> RUBBER_TREE_FEATURE = register(
+			"rubber_tree_feature",
+			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(ModBlocks.BANANA_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.BANANA_LEAVES.get().getDefaultState()),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new StraightTrunkPlacer(4, 1, 0), 
+					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
+	
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> TEAK_TREE_FEATURE = register(
+			"teak_tree_feature",
+			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(ModBlocks.BANANA_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.BANANA_LEAVES.get().getDefaultState()),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new StraightTrunkPlacer(4, 1, 0), 
+					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
+	
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> WALNUT_TREE_FEATURE = register(
+			"walnut_tree_feature",
+			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(ModBlocks.BANANA_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.BANANA_LEAVES.get().getDefaultState()),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new StraightTrunkPlacer(4, 1, 0), 
+					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
+	
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> ZEBRAWOOD_TREE_FEATURE = register(
+			"zebrawood_tree_feature",
+			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(ModBlocks.BANANA_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.BANANA_LEAVES.get().getDefaultState()),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new StraightTrunkPlacer(4, 1, 0), 
+					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
+	
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> TOWERING_INFERNO_TREE_FEATURE = register(
 			"towering_inferno_tree_feature",
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
