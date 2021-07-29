@@ -44,7 +44,6 @@ public class ClientSetup {
          RenderTypeLookup.setRenderLayer(ModBlocks.ORANGE_SAPLING.get(), RenderType.getCutoutMipped());
          RenderTypeLookup.setRenderLayer(ModBlocks.PEACH_SAPLING.get(), RenderType.getCutoutMipped());
          RenderTypeLookup.setRenderLayer(ModBlocks.PEAR_SAPLING.get(), RenderType.getCutoutMipped());
-
          RenderTypeLookup.setRenderLayer(ModBlocks.ANCIENT_AMBROSIA_SAPLING.get(), RenderType.getCutoutMipped());
          RenderTypeLookup.setRenderLayer(ModBlocks.BENEVOLENT_APOTHECARY_SAPLING.get(), RenderType.getCutoutMipped());
          RenderTypeLookup.setRenderLayer(ModBlocks.MALEVOLENT_APOTHECARY_SAPLING.get(), RenderType.getCutoutMipped());
