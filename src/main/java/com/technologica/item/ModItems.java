@@ -119,6 +119,8 @@ public class ModItems {
     public static final RegistryObject<Item> CONDUCTIVE_LEAVES_ITEM = ITEMS.register("conductive_leaves", () -> new BlockItem(ModBlocks.CONDUCTIVE_LEAVES.get(), new Item.Properties().group(ModItemGroup.CRYPTICA)));
     public static final RegistryObject<Item> FROSTBITTEN_LEAVES_ITEM = ITEMS.register("frostbitten_leaves", () -> new BlockItem(ModBlocks.FROSTBITTEN_LEAVES.get(), new Item.Properties().group(ModItemGroup.CRYPTICA)));
     
+    public static final RegistryObject<Item> COTTON = ITEMS.register("cotton", () -> new Item(new Item.Properties().group(ModItemGroup.FLORA)));
+    
     /**
 	 * FAUNA
 	 */
