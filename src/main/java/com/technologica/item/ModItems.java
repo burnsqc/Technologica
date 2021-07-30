@@ -32,10 +32,10 @@ public class ModItems {
     public static final RegistryObject<Item> BROCCOLI_SEEDS = ITEMS.register("broccoli_seeds", () -> new BlockNamedItem(ModBlocks.BROCCOLI_CROP.get(), new Item.Properties().group(ModItemGroup.FLORA)));
     public static final RegistryObject<Item> CELERY_SEEDS = ITEMS.register("celery_seeds", () -> new BlockNamedItem(ModBlocks.CELERY_CROP.get(), new Item.Properties().group(ModItemGroup.FLORA)));
 //    public static final RegistryObject<Item> CHILI_PEPPER_SEEDS = ITEMS.register("chili_pepper_seeds", () -> new BlockNamedItem(ModBlocks.CHILI_PEPPER_CROP.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
-//    public static final RegistryObject<Item> COFFEE_BEANS = ITEMS.register("coffee_beans", () -> new BlockNamedItem(ModBlocks.COFFEE_BEAN_CROP.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> COFFEE_BEANS = ITEMS.register("coffee_beans", () -> new BlockNamedItem(ModBlocks.COFFEE_BEAN_CROP.get(), new Item.Properties().group(ModItemGroup.FLORA)));
 //    public static final RegistryObject<Item> COTTON_SEEDS = ITEMS.register("cotton_seeds", () -> new BlockNamedItem(ModBlocks.COTTON_CROP.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
 //    public static final RegistryObject<Item> CUCUMBER_SEEDS = ITEMS.register("cucumber_seeds", () -> new BlockNamedItem(ModBlocks.CUCUMBER_CROP.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
-//    public static final RegistryObject<Item> GARLIC_SEEDS = ITEMS.register("garlic_seeds", () -> new BlockNamedItem(ModBlocks.GARLIC_CROP.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> GARLIC_SEEDS = ITEMS.register("garlic_seeds", () -> new BlockNamedItem(ModBlocks.GARLIC_CROP.get(), new Item.Properties().group(ModItemGroup.FLORA)));
 //    public static final RegistryObject<Item> GINGER_SEEDS = ITEMS.register("ginger_seeds", () -> new BlockNamedItem(ModBlocks.GINGER_CROP.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
     public static final RegistryObject<Item> GRAPE_SEEDS = ITEMS.register("grape_seeds", () -> new BlockNamedItem(ModBlocks.GRAPE_CROP.get(), new Item.Properties().group(ModItemGroup.FLORA)));
 //    public static final RegistryObject<Item> LETTUCE_SEEDS = ITEMS.register("lettuce_seeds", () -> new BlockNamedItem(ModBlocks.LETTUCE_CROP.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
@@ -56,7 +56,7 @@ public class ModItems {
     public static final RegistryObject<Item> SQUASH_SEEDS = ITEMS.register("squash_seeds", () -> new BlockNamedItem(ModBlocks.SQUASH_CROP.get(), new Item.Properties().group(ModItemGroup.FLORA)));
     public static final RegistryObject<Item> SWEET_POTATO_SEEDS = ITEMS.register("sweet_potato_seeds", () -> new BlockNamedItem(ModBlocks.SWEET_POTATO_CROP.get(), new Item.Properties().group(ModItemGroup.FLORA)));
 //    public static final RegistryObject<Item> TEA_SEEDS = ITEMS.register("tea_seeds", () -> new BlockNamedItem(ModBlocks.TEA_CROP.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
-//    public static final RegistryObject<Item> TOMATO_SEEDS = ITEMS.register("tomato_seeds", () -> new BlockNamedItem(ModBlocks.TOMATO_CROP.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> TOMATO_SEEDS = ITEMS.register("tomato_seeds", () -> new BlockNamedItem(ModBlocks.TOMATO_CROP.get(), new Item.Properties().group(ModItemGroup.FLORA)));
     public static final RegistryObject<Item> TURNIP_SEEDS = ITEMS.register("turnip_seeds", () -> new BlockNamedItem(ModBlocks.TURNIP_CROP.get(), new Item.Properties().group(ModItemGroup.FLORA)));
     public static final RegistryObject<Item> ZUCCHINI_SEEDS = ITEMS.register("zucchini_seeds", () -> new BlockNamedItem(ModBlocks.ZUCCHINI_CROP.get(), new Item.Properties().group(ModItemGroup.FLORA)));
     

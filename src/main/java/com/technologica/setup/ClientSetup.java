@@ -68,6 +68,8 @@ public class ClientSetup {
          RenderTypeLookup.setRenderLayer(ModBlocks.BLUEBERRY_CROP.get(), RenderType.getCutoutMipped());
          RenderTypeLookup.setRenderLayer(ModBlocks.BROCCOLI_CROP.get(), RenderType.getCutoutMipped());
          RenderTypeLookup.setRenderLayer(ModBlocks.CELERY_CROP.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.COFFEE_BEAN_CROP.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.GARLIC_CROP.get(), RenderType.getCutoutMipped());
          RenderTypeLookup.setRenderLayer(ModBlocks.GRAPE_CROP.get(), RenderType.getCutoutMipped());
          RenderTypeLookup.setRenderLayer(ModBlocks.OATS_CROP.get(), RenderType.getCutoutMipped());
          RenderTypeLookup.setRenderLayer(ModBlocks.RADISH_CROP.get(), RenderType.getCutoutMipped());
@@ -76,6 +78,7 @@ public class ClientSetup {
          RenderTypeLookup.setRenderLayer(ModBlocks.SQUASH_CROP.get(), RenderType.getCutoutMipped());
          RenderTypeLookup.setRenderLayer(ModBlocks.STRAWBERRY_CROP.get(), RenderType.getCutoutMipped());
          RenderTypeLookup.setRenderLayer(ModBlocks.SWEET_POTATO_CROP.get(), RenderType.getCutoutMipped());
+         RenderTypeLookup.setRenderLayer(ModBlocks.TOMATO_CROP.get(), RenderType.getCutoutMipped());
          RenderTypeLookup.setRenderLayer(ModBlocks.TURNIP_CROP.get(), RenderType.getCutoutMipped());
          RenderTypeLookup.setRenderLayer(ModBlocks.ZUCCHINI_CROP.get(), RenderType.getCutoutMipped());
 

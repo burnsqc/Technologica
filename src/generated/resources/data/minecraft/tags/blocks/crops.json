@@ -7,6 +7,8 @@
     "technologica:blueberry_crop",
     "technologica:broccoli_crop",
     "technologica:celery_crop",
+    "technologica:coffee_bean_crop",
+    "technologica:garlic_crop",
     "technologica:grape_crop",
     "technologica:oats_crop",
     "technologica:radish_crop",
@@ -15,6 +17,7 @@
     "technologica:squash_crop",
     "technologica:strawberry_crop",
     "technologica:sweet_potato_crop",
+    "technologica:tomato_crop",
     "technologica:turnip_crop",
     "technologica:zucchini_crop"
   ]
