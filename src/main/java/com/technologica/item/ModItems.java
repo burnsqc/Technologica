@@ -31,9 +31,9 @@ public class ModItems {
     public static final RegistryObject<Item> BLUEBERRY_SEEDS = ITEMS.register("blueberry_seeds", () -> new BlockNamedItem(ModBlocks.BLUEBERRY_CROP.get(), new Item.Properties().group(ModItemGroup.FLORA)));
     public static final RegistryObject<Item> BROCCOLI_SEEDS = ITEMS.register("broccoli_seeds", () -> new BlockNamedItem(ModBlocks.BROCCOLI_CROP.get(), new Item.Properties().group(ModItemGroup.FLORA)));
     public static final RegistryObject<Item> CELERY_SEEDS = ITEMS.register("celery_seeds", () -> new BlockNamedItem(ModBlocks.CELERY_CROP.get(), new Item.Properties().group(ModItemGroup.FLORA)));
-//    public static final RegistryObject<Item> CHILI_PEPPER_SEEDS = ITEMS.register("chili_pepper_seeds", () -> new BlockNamedItem(ModBlocks.CHILI_PEPPER_CROP.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> CHILI_PEPPER_SEEDS = ITEMS.register("chili_pepper_seeds", () -> new BlockNamedItem(ModBlocks.CHILI_PEPPER_CROP.get(), new Item.Properties().group(ModItemGroup.FLORA)));
     public static final RegistryObject<Item> COFFEE_BEANS = ITEMS.register("coffee_beans", () -> new BlockNamedItem(ModBlocks.COFFEE_BEAN_CROP.get(), new Item.Properties().group(ModItemGroup.FLORA)));
-//    public static final RegistryObject<Item> COTTON_SEEDS = ITEMS.register("cotton_seeds", () -> new BlockNamedItem(ModBlocks.COTTON_CROP.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> COTTON_SEEDS = ITEMS.register("cotton_seeds", () -> new BlockNamedItem(ModBlocks.COTTON_CROP.get(), new Item.Properties().group(ModItemGroup.FLORA)));
 //    public static final RegistryObject<Item> CUCUMBER_SEEDS = ITEMS.register("cucumber_seeds", () -> new BlockNamedItem(ModBlocks.CUCUMBER_CROP.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
     public static final RegistryObject<Item> GARLIC_SEEDS = ITEMS.register("garlic_seeds", () -> new BlockNamedItem(ModBlocks.GARLIC_CROP.get(), new Item.Properties().group(ModItemGroup.FLORA)));
 //    public static final RegistryObject<Item> GINGER_SEEDS = ITEMS.register("ginger_seeds", () -> new BlockNamedItem(ModBlocks.GINGER_CROP.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
