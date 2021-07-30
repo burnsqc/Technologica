@@ -234,6 +234,36 @@ public class ModBlocks {
     public static final RegistryObject<Block> CONDUCTIVE_LOG = BLOCKS.register("conductive_log", ModLogBlock::new);
     public static final RegistryObject<Block> FROSTBITTEN_LOG = BLOCKS.register("frostbitten_log", ModLogBlock::new);
     public static final RegistryObject<Block> INFERNAL_LOG = BLOCKS.register("infernal_log", ModLogBlock::new);
+    
+//  public static final RegistryObject<Block> APRICOT_WOOD = BLOCKS.register("apricot_wood", ModLogBlock::new);  
+//  public static final RegistryObject<Block> ASPEN_WOOD = BLOCKS.register("aspen_wood", ModLogBlock::new);  
+//  public static final RegistryObject<Block> AVACADO_WOOD = BLOCKS.register("avacado_wood", ModLogBlock::new);  
+    public static final RegistryObject<Block> BANANA_WOOD = BLOCKS.register("banana_wood", ModLogBlock::new);
+    public static final RegistryObject<Block> CHERRY_WOOD = BLOCKS.register("cherry_wood", ModLogBlock::new);
+//  public static final RegistryObject<Block> CHESTNUT_WOOD = BLOCKS.register("chestnut_wood", ModLogBlock::new);  
+    public static final RegistryObject<Block> COCONUT_WOOD = BLOCKS.register("coconut_wood", ModLogBlock::new);
+//  public static final RegistryObject<Block> EBONY_WOOD = BLOCKS.register("ebony_wood", ModLogBlock::new);  
+    public static final RegistryObject<Block> KIWI_WOOD = BLOCKS.register("kiwi_wood", ModLogBlock::new);
+    public static final RegistryObject<Block> LEMON_WOOD = BLOCKS.register("lemon_wood", ModLogBlock::new);
+    public static final RegistryObject<Block> LIME_WOOD = BLOCKS.register("lime_wood", ModLogBlock::new);
+//  public static final RegistryObject<Block> MAHOGANY_WOOD = BLOCKS.register("mahogany_wood", ModLogBlock::new); 
+//  public static final RegistryObject<Block> MAPLE_WOOD = BLOCKS.register("maple_wood", ModLogBlock::new);  
+    public static final RegistryObject<Block> ORANGE_WOOD = BLOCKS.register("orange_wood", ModLogBlock::new);
+    public static final RegistryObject<Block> PEACH_WOOD = BLOCKS.register("peach_wood", ModLogBlock::new);
+    public static final RegistryObject<Block> PEAR_WOOD = BLOCKS.register("pear_wood", ModLogBlock::new);
+//  public static final RegistryObject<Block> PLUM_WOOD = BLOCKS.register("plum_wood", ModLogBlock::new); 
+//  public static final RegistryObject<Block> REDWOOD_WOOD = BLOCKS.register("redwood_wood", ModLogBlock::new);  
+//  public static final RegistryObject<Block> RUBBER_WOOD = BLOCKS.register("rubber_wood", ModLogBlock::new); 
+//  public static final RegistryObject<Block> TEAK_WOOD = BLOCKS.register("teak_wood", ModLogBlock::new);  
+//  public static final RegistryObject<Block> WALNUT_WOOD = BLOCKS.register("walnut_wood", ModLogBlock::new);  
+//  public static final RegistryObject<Block> ZEBRAWOOD_WOOD = BLOCKS.register("zebrawood_wood", ModLogBlock::new);  
+    public static final RegistryObject<Block> FRUITFUL_WOOD = BLOCKS.register("fruitful_wood", ModLogBlock::new);
+    public static final RegistryObject<Block> ALCHEMICAL_WOOD = BLOCKS.register("alchemical_wood", ModLogBlock::new); 
+    public static final RegistryObject<Block> BENEVOLENT_WOOD = BLOCKS.register("benevolent_wood", ModLogBlock::new);
+    public static final RegistryObject<Block> MALEVOLENT_WOOD = BLOCKS.register("malevolent_wood", ModLogBlock::new);
+    public static final RegistryObject<Block> CONDUCTIVE_WOOD = BLOCKS.register("conductive_wood", ModLogBlock::new);
+    public static final RegistryObject<Block> FROSTBITTEN_WOOD = BLOCKS.register("frostbitten_wood", ModLogBlock::new);
+    public static final RegistryObject<Block> INFERNAL_WOOD = BLOCKS.register("infernal_wood", ModLogBlock::new);
    
 //    public static final RegistryObject<Block> APRICOT_PLANKS = BLOCKS.register("apricot_planks", () -> new Block(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
 //    public static final RegistryObject<Block> ASPEN_PLANKS = BLOCKS.register("aspen_planks", () -> new Block(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
@@ -334,6 +364,16 @@ public class ModBlocks {
     public static final RegistryObject<Block> ORANGE_TRAPDOOR = BLOCKS.register("orange_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> PEACH_TRAPDOOR = BLOCKS.register("peach_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> PEAR_TRAPDOOR = BLOCKS.register("pear_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
+    
+//    public static final RegistryObject<Block> BANANA_TRAPDOOR = BLOCKS.register("banana_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
+//    public static final RegistryObject<Block> CHERRY_TRAPDOOR = BLOCKS.register("cherry_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
+//    public static final RegistryObject<Block> COCONUT_TRAPDOOR = BLOCKS.register("coconut_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
+//    public static final RegistryObject<Block> KIWI_TRAPDOOR = BLOCKS.register("kiwi_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
+//    public static final RegistryObject<Block> LEMON_TRAPDOOR = BLOCKS.register("lemon_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
+//    public static final RegistryObject<Block> LIME_TRAPDOOR = BLOCKS.register("lime_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
+//    public static final RegistryObject<Block> ORANGE_TRAPDOOR = BLOCKS.register("orange_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
+//    public static final RegistryObject<Block> PEACH_TRAPDOOR = BLOCKS.register("peach_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
+//    public static final RegistryObject<Block> PEAR_TRAPDOOR = BLOCKS.register("pear_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     
     /**
      * MACHINERY

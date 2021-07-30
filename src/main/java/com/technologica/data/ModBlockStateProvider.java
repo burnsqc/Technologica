@@ -56,11 +56,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			else if (block.getRegistryName().getPath().contains("clay")) simpleBlock(block);
 			else if (block.getRegistryName().getPath().contains("ore")) simpleBlock(block);
 			else if (block.getRegistryName().getPath().contains("bookshelf")) bookshelfBlock(block);	
-			else if (block.getRegistryName().getPath().contains("log")) logBlock(block);	
+			else if (block.getRegistryName().getPath().contains("log")) logBlock(block);
+			else if (block.getRegistryName().getPath().contains("wood")) woodBlock(block);
 			else if (block.getRegistryName().getPath().contains("slab")) slabBlock(block);
 			else if (block.getRegistryName().getPath().contains("stairs")) stairsBlock(block);
 			else if (block.getRegistryName().getPath().contains("fence") && !block.getRegistryName().getPath().contains("gate")) fenceBlock(block);
 			else if (block.getRegistryName().getPath().contains("fence_gate")) fenceGateBlock(block);
+			else if (block.getRegistryName().getPath().contains("pressure_plate")) pressurePlateBlock(block);
 			else if (block.getRegistryName().getPath().contains("sapling") && !block.getRegistryName().getPath().contains("potted")) crossBlock(block);
 			else if (block.getRegistryName().getPath().contains("potted")) flowerPotCrossBlock(block);
 			else if (block.getRegistryName().getPath().contains("crop")) cropBlock(block);
@@ -90,6 +92,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	public ModelFile cubeColumn(Block block) {
 		if (block.getRegistryName().getPath().contains("bookshelf")) {
 			return models().cubeColumn(name(block), blockTexture(block), replace(blockTexture(block), "bookshelf", "planks"));
+		} else if (block.getRegistryName().getPath().contains("wood")) {
+			return models().cubeColumn(name(block), replace(blockTexture(block), "wood", "log"), replace(blockTexture(block), "wood", "log"));
 		} else {
 			return models().cubeColumn(name(block), blockTexture(block), extend(blockTexture(block), "_top"));
 		}
@@ -113,6 +117,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	
 	public ModelFile trapdoor(Block block) {
 		return models().trapdoorBottom(name(block), blockTexture(block));
+	}
+	
+	public ModelFile pressurePlate(Block block) {
+		ResourceLocation location = block.getRegistryName();
+		return models().singleTexture(name(block), mcLoc("pressure_plate_up"), CRYSTAL_TEXTURE_KEY, blockTexture(block)).texture(CRYSTAL_TEXTURE_KEY, new ResourceLocation(location.getNamespace(), BLOCK + "/" + location.getPath()));
 	}
 	
 	public ModelFile hexagonalCrystal(Block block) {
@@ -148,6 +157,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	    this.simpleBlockItem(block, cubeColumn(block));			
 	}
 	
+	public void woodBlock(Block block) {
+		axisBlock((RotatedPillarBlock) block, models().cubeColumn(name(block), replace(blockTexture(block), "wood", "log"), replace(blockTexture(block), "wood", "log")), models().cubeColumnHorizontal(name(block), replace(blockTexture(block), "wood", "log"), replace(blockTexture(block), "wood", "log")));
+	    this.simpleBlockItem(block, cubeColumn(block));			
+	}
+	
 	public void slabBlock(Block block) {
 		slabBlock((SlabBlock) block, replace(blockTexture(block), "slab", "planks"), replace(blockTexture(block), "slab", "planks"));
 	    this.simpleBlockItem(block, slab(block));
@@ -174,6 +188,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
     	
     public void trapdoorBlock(Block block) {
+    	trapdoorBlock((TrapDoorBlock) block, blockTexture(block), true);
+    	this.simpleBlockItem(block, trapdoor(block));
+    }
+    
+    public void pressurePlateBlock(Block block) {
     	trapdoorBlock((TrapDoorBlock) block, blockTexture(block), true);
     	this.simpleBlockItem(block, trapdoor(block));
     }
