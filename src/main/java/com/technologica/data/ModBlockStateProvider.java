@@ -67,6 +67,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			else if (block.getRegistryName().getPath().contains("fence_gate")) fenceGateBlock(block);
 			else if (block.getRegistryName().getPath().contains("pressure_plate")) pressurePlateBlock(block);
 			else if (block.getRegistryName().getPath().contains("button")) buttonBlock(block);
+			else if (block.getRegistryName().getPath().contains("sign")) signBlock(block);
 			else if (block.getRegistryName().getPath().contains("sapling") && !block.getRegistryName().getPath().contains("potted")) crossBlock(block);
 			else if (block.getRegistryName().getPath().contains("potted")) flowerPotCrossBlock(block);
 			else if (block.getRegistryName().getPath().contains("crop")) cropBlock(block);
@@ -156,8 +157,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	public ModelFile buttonInventory(Block block) {
         return models().withExistingParent(name(block) + "_inventory", BLOCK + "/button_inventory").texture("texture", replace(blockTexture(block), "_button", "_planks"));
     }
-
 	
+	public ModelFile sign(Block block) {
+        ResourceLocation location = block.getRegistryName();
+        return models().getBuilder(location.getPath()).texture("particle", replace(blockTexture(block), "_sign", "_planks"));
+    }
+
 	/*
 	 * Blockstate, block model, and item model providers
 	 */
@@ -248,6 +253,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
     	this.simpleBlockItem(block, buttonInventory(block));
     }
     
+    public void signBlock(Block block) {
+		getVariantBuilder(block).partialState().setModels(new ConfiguredModel(sign(block)));
+	    this.signItem(block, new ModelFile.UncheckedModelFile("item/generated"));	
+	}
+    
 	public void crossBlock(Block block) {
 		getVariantBuilder(block).partialState().setModels(new ConfiguredModel(models().cross(name(block), blockTexture(block))));
 	    this.crossBlockItem(block, new ModelFile.UncheckedModelFile("item/generated"));	
@@ -305,13 +315,18 @@ public class ModBlockStateProvider extends BlockStateProvider {
         itemModels().getBuilder(location.getPath()).parent(model).texture("layer0", new ResourceLocation(location.getNamespace(), "item/" + location.getPath()));
 	}
 	
+	public void signItem(Block block, ModelFile model) {
+		ResourceLocation location = block.getRegistryName();
+        itemModels().getBuilder(location.getPath()).parent(model).texture("layer0", new ResourceLocation(location.getNamespace(), "item/" + location.getPath()));
+	}
+	
 	public void crossBlockItem(Block block, ModelFile model) {
 		ResourceLocation location = block.getRegistryName();
-        itemModels().getBuilder(location.getPath()).parent(model).texture("layer0", new ResourceLocation(location.getNamespace(), BLOCK + "/" + location.getPath()));
+        itemModels().getBuilder(location.getPath()).parent(model).texture("layer0", new ResourceLocation(location.getNamespace(), "block/" + location.getPath()));
     }
 	
 	public void crystalBlockItem(Block block, ModelFile model) {
 		ResourceLocation location = block.getRegistryName();
-        itemModels().getBuilder(location.getPath()).parent(model).texture("layer0", new ResourceLocation(location.getNamespace(), BLOCK + "/" + location.getPath()));
+        itemModels().getBuilder(location.getPath()).parent(model).texture("layer0", new ResourceLocation(location.getNamespace(), "block/" + location.getPath()));
     }
 }

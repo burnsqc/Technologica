@@ -36,8 +36,10 @@ import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.StairsBlock;
+import net.minecraft.block.StandingSignBlock;
 import net.minecraft.block.TrapDoorBlock;
 import net.minecraft.block.WoodButtonBlock;
+import net.minecraft.block.WoodType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.Items;
@@ -386,6 +388,16 @@ public class ModBlocks {
     public static final RegistryObject<Block> ORANGE_BUTTON = BLOCKS.register("orange_button", () -> new WoodButtonBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> PEACH_BUTTON = BLOCKS.register("peach_button", () -> new WoodButtonBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> PEAR_BUTTON = BLOCKS.register("pear_button", () -> new WoodButtonBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    
+    public static final RegistryObject<Block> BANANA_SIGN = BLOCKS.register("banana_sign", () -> new StandingSignBlock(AbstractBlock.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), WoodType.OAK));
+    public static final RegistryObject<Block> CHERRY_SIGN = BLOCKS.register("cherry_sign", () -> new StandingSignBlock(AbstractBlock.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), WoodType.OAK));
+    public static final RegistryObject<Block> COCONUT_SIGN = BLOCKS.register("coconut_sign", () -> new StandingSignBlock(AbstractBlock.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), WoodType.OAK));
+    public static final RegistryObject<Block> KIWI_SIGN = BLOCKS.register("kiwi_sign", () -> new StandingSignBlock(AbstractBlock.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), WoodType.OAK));
+    public static final RegistryObject<Block> LEMON_SIGN = BLOCKS.register("lemon_sign", () -> new StandingSignBlock(AbstractBlock.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), WoodType.OAK));
+    public static final RegistryObject<Block> LIME_SIGN = BLOCKS.register("lime_sign", () -> new StandingSignBlock(AbstractBlock.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), WoodType.OAK));
+    public static final RegistryObject<Block> ORANGE_SIGN = BLOCKS.register("orange_sign", () -> new StandingSignBlock(AbstractBlock.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), WoodType.OAK));
+    public static final RegistryObject<Block> PEACH_SIGN = BLOCKS.register("peach_sign", () -> new StandingSignBlock(AbstractBlock.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), WoodType.OAK));
+    public static final RegistryObject<Block> PEAR_SIGN = BLOCKS.register("pear_sign", () -> new StandingSignBlock(AbstractBlock.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), WoodType.OAK));
     
     /**
      * MACHINERY
