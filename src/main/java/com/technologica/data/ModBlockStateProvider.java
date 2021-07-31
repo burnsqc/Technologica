@@ -12,6 +12,7 @@ import net.minecraft.block.CropsBlock;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.block.FenceBlock;
 import net.minecraft.block.FenceGateBlock;
+import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.StairsBlock;
@@ -19,6 +20,7 @@ import net.minecraft.block.TrapDoorBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Direction.Axis;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -193,10 +195,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
     
     public void pressurePlateBlock(Block block) {
-    	trapdoorBlock((TrapDoorBlock) block, blockTexture(block), true);
+    	getVariantBuilder(block)
+        	.partialState().with(PressurePlateBlock.POWERED, false).modelForState().modelFile(vertical).addModel()
+        	.partialState().with(PressurePlateBlock.POWERED, true).modelForState().modelFile(vertical).rotationX(90).addModel()
     	this.simpleBlockItem(block, trapdoor(block));
     }
-	
+    
 	public void crossBlock(Block block) {
 		getVariantBuilder(block).partialState().setModels(new ConfiguredModel(models().cross(name(block), blockTexture(block))));
 	    this.crossBlockItem(block, new ModelFile.UncheckedModelFile("item/generated"));	
