@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "technologica:banana_pressure_plate",
+    "technologica:cherry_pressure_plate",
+    "technologica:coconut_pressure_plate",
+    "technologica:kiwi_pressure_plate",
+    "technologica:lemon_pressure_plate",
+    "technologica:lime_pressure_plate",
+    "technologica:orange_pressure_plate",
+    "technologica:peach_pressure_plate",
+    "technologica:pear_pressure_plate"
+  ]
+}

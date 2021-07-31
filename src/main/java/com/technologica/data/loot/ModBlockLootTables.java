@@ -18,6 +18,7 @@ import net.minecraft.block.FenceBlock;
 import net.minecraft.block.FenceGateBlock;
 import net.minecraft.block.FlowerPotBlock;
 import net.minecraft.block.LeavesBlock;
+import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.StairsBlock;
@@ -74,7 +75,7 @@ public class ModBlockLootTables extends BlockLootTables {
 			else if (block.getClass().equals(FenceGateBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(DoorBlock.class)) registerLootTable(block, BlockLootTables::registerDoor);
 			else if (block.getClass().equals(TrapDoorBlock.class)) registerDropSelfLootTable(block);
-		
+			else if (block.getClass().equals(PressurePlateBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getRegistryName().getPath().contains("ore")) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(CrystalBlock.class)) registerDropSelfLootTable(block);
 			

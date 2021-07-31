@@ -20,7 +20,6 @@ import net.minecraft.block.TrapDoorBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Direction.Axis;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -121,11 +120,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		return models().trapdoorBottom(name(block), blockTexture(block));
 	}
 	
-	public ModelFile pressurePlate(Block block) {
-		ResourceLocation location = block.getRegistryName();
-		return models().singleTexture(name(block), mcLoc("pressure_plate_up"), CRYSTAL_TEXTURE_KEY, blockTexture(block)).texture(CRYSTAL_TEXTURE_KEY, new ResourceLocation(location.getNamespace(), BLOCK + "/" + location.getPath()));
-	}
-	
 	public ModelFile hexagonalCrystal(Block block) {
 		ResourceLocation location = block.getRegistryName();
 		return models().singleTexture(name(block), modLoc("hexagonal_crystal"), CRYSTAL_TEXTURE_KEY, blockTexture(block)).texture(CRYSTAL_TEXTURE_KEY, new ResourceLocation(location.getNamespace(), BLOCK + "/" + location.getPath()));
@@ -139,6 +133,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	public ModelFile display(Block block) {
 		return models().withExistingParent(name(block), modLoc("display")).texture("case", blockTexture(block)).texture("base", new ResourceLocation("block/black_wool"));
     }
+	
+	public ModelFile pressurePlate(Block block) {
+        return models().withExistingParent(name(block), "block" + "/pressure_plate_up").texture("texture", replace(blockTexture(block), "_pressure_plate", "_planks"));
+    }
+	
+	public ModelFile pressurePlateDown(Block block) {
+        return models().withExistingParent(name(block), "block" + "/pressure_plate_down").texture("texture", replace(blockTexture(block), "_pressure_plate", "_planks"));
+    }
+
 	
 	/*
 	 * Blockstate, block model, and item model providers
@@ -196,9 +199,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
     
     public void pressurePlateBlock(Block block) {
     	getVariantBuilder(block)
-        	.partialState().with(PressurePlateBlock.POWERED, false).modelForState().modelFile(vertical).addModel()
-        	.partialState().with(PressurePlateBlock.POWERED, true).modelForState().modelFile(vertical).rotationX(90).addModel()
-    	this.simpleBlockItem(block, trapdoor(block));
+        	.partialState().with(PressurePlateBlock.POWERED, false).modelForState().modelFile(pressurePlate(block)).addModel()
+        	.partialState().with(PressurePlateBlock.POWERED, true).modelForState().modelFile(pressurePlateDown(block)).addModel();
+    	this.simpleBlockItem(block, pressurePlate(block));
     }
     
 	public void crossBlock(Block block) {

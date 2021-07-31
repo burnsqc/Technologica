@@ -468,6 +468,16 @@ public class ModItems {
     public static final RegistryObject<Item> PEACH_TRAPDOOR_ITEM = ITEMS.register("peach_trapdoor", () -> new BlockItem(ModBlocks.PEACH_TRAPDOOR.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEAR_TRAPDOOR_ITEM = ITEMS.register("pear_trapdoor", () -> new BlockItem(ModBlocks.PEAR_TRAPDOOR.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
     
+    public static final RegistryObject<Item> BANANA_PRESSURE_PLATE_ITEM = ITEMS.register("banana_pressure_plate", () -> new BlockItem(ModBlocks.BANANA_PRESSURE_PLATE.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> CHERRY_PRESSURE_PLATE_ITEM = ITEMS.register("cherry_pressure_plate", () -> new BlockItem(ModBlocks.CHERRY_PRESSURE_PLATE.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> COCONUT_PRESSURE_PLATE_ITEM = ITEMS.register("coconut_pressure_plate", () -> new BlockItem(ModBlocks.COCONUT_PRESSURE_PLATE.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> KIWI_PRESSURE_PLATE_ITEM = ITEMS.register("kiwi_pressure_plate", () -> new BlockItem(ModBlocks.KIWI_PRESSURE_PLATE.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> LEMON_PRESSURE_PLATE_ITEM = ITEMS.register("lemon_pressure_plate", () -> new BlockItem(ModBlocks.LEMON_PRESSURE_PLATE.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> LIME_PRESSURE_PLATE_ITEM = ITEMS.register("lime_pressure_plate", () -> new BlockItem(ModBlocks.LIME_PRESSURE_PLATE.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> ORANGE_PRESSURE_PLATE_ITEM = ITEMS.register("orange_pressure_plate", () -> new BlockItem(ModBlocks.ORANGE_PRESSURE_PLATE.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> PEACH_PRESSURE_PLATE_ITEM = ITEMS.register("peach_pressure_plate", () -> new BlockItem(ModBlocks.PEACH_PRESSURE_PLATE.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> PEAR_PRESSURE_PLATE_ITEM = ITEMS.register("pear_pressure_plate", () -> new BlockItem(ModBlocks.PEAR_PRESSURE_PLATE.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    
     /**
      * MACHINERY
      */
