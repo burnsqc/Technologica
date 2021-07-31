@@ -23,6 +23,7 @@ import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.StairsBlock;
 import net.minecraft.block.TrapDoorBlock;
+import net.minecraft.block.WoodButtonBlock;
 import net.minecraft.data.loot.BlockLootTables;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -76,6 +77,7 @@ public class ModBlockLootTables extends BlockLootTables {
 			else if (block.getClass().equals(DoorBlock.class)) registerLootTable(block, BlockLootTables::registerDoor);
 			else if (block.getClass().equals(TrapDoorBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(PressurePlateBlock.class)) registerDropSelfLootTable(block);
+			else if (block.getClass().equals(WoodButtonBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getRegistryName().getPath().contains("ore")) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(CrystalBlock.class)) registerDropSelfLootTable(block);
 			

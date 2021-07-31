@@ -478,6 +478,16 @@ public class ModItems {
     public static final RegistryObject<Item> PEACH_PRESSURE_PLATE_ITEM = ITEMS.register("peach_pressure_plate", () -> new BlockItem(ModBlocks.PEACH_PRESSURE_PLATE.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEAR_PRESSURE_PLATE_ITEM = ITEMS.register("pear_pressure_plate", () -> new BlockItem(ModBlocks.PEAR_PRESSURE_PLATE.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
     
+    public static final RegistryObject<Item> BANANA_BUTTON_ITEM = ITEMS.register("banana_button", () -> new BlockItem(ModBlocks.BANANA_BUTTON.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> CHERRY_BUTTON_ITEM = ITEMS.register("cherry_button", () -> new BlockItem(ModBlocks.CHERRY_BUTTON.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> COCONUT_BUTTON_ITEM = ITEMS.register("coconut_button", () -> new BlockItem(ModBlocks.COCONUT_BUTTON.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> KIWI_BUTTON_ITEM = ITEMS.register("kiwi_button", () -> new BlockItem(ModBlocks.KIWI_BUTTON.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> LEMON_BUTTON_ITEM = ITEMS.register("lemon_button", () -> new BlockItem(ModBlocks.LEMON_BUTTON.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> LIME_BUTTON_ITEM = ITEMS.register("lime_button", () -> new BlockItem(ModBlocks.LIME_BUTTON.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> ORANGE_BUTTON_ITEM = ITEMS.register("orange_button", () -> new BlockItem(ModBlocks.ORANGE_BUTTON.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> PEACH_BUTTON_ITEM = ITEMS.register("peach_button", () -> new BlockItem(ModBlocks.PEACH_BUTTON.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> PEAR_BUTTON_ITEM = ITEMS.register("pear_button", () -> new BlockItem(ModBlocks.PEAR_BUTTON.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    
     /**
      * MACHINERY
      */

@@ -17,7 +17,9 @@ import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.StairsBlock;
 import net.minecraft.block.TrapDoorBlock;
+import net.minecraft.block.WoodButtonBlock;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.state.properties.AttachFace;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -64,6 +66,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			else if (block.getRegistryName().getPath().contains("fence") && !block.getRegistryName().getPath().contains("gate")) fenceBlock(block);
 			else if (block.getRegistryName().getPath().contains("fence_gate")) fenceGateBlock(block);
 			else if (block.getRegistryName().getPath().contains("pressure_plate")) pressurePlateBlock(block);
+			else if (block.getRegistryName().getPath().contains("button")) buttonBlock(block);
 			else if (block.getRegistryName().getPath().contains("sapling") && !block.getRegistryName().getPath().contains("potted")) crossBlock(block);
 			else if (block.getRegistryName().getPath().contains("potted")) flowerPotCrossBlock(block);
 			else if (block.getRegistryName().getPath().contains("crop")) cropBlock(block);
@@ -135,11 +138,23 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
 	
 	public ModelFile pressurePlate(Block block) {
-        return models().withExistingParent(name(block), "block" + "/pressure_plate_up").texture("texture", replace(blockTexture(block), "_pressure_plate", "_planks"));
+        return models().withExistingParent(name(block), BLOCK + "/pressure_plate_up").texture("texture", replace(blockTexture(block), "_pressure_plate", "_planks"));
     }
 	
 	public ModelFile pressurePlateDown(Block block) {
-        return models().withExistingParent(name(block), "block" + "/pressure_plate_down").texture("texture", replace(blockTexture(block), "_pressure_plate", "_planks"));
+        return models().withExistingParent(name(block) + "_down", BLOCK + "/pressure_plate_down").texture("texture", replace(blockTexture(block), "_pressure_plate", "_planks"));
+    }
+	
+	public ModelFile button(Block block) {
+        return models().withExistingParent(name(block), BLOCK + "/button").texture("texture", replace(blockTexture(block), "_button", "_planks"));
+    }
+	
+	public ModelFile buttonPressed(Block block) {
+        return models().withExistingParent(name(block) + "_pressed", BLOCK + "/button_pressed").texture("texture", replace(blockTexture(block), "_button", "_planks"));
+    }
+	
+	public ModelFile buttonInventory(Block block) {
+        return models().withExistingParent(name(block) + "_inventory", BLOCK + "/button_inventory").texture("texture", replace(blockTexture(block), "_button", "_planks"));
     }
 
 	
@@ -152,11 +167,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		this.simpleBlockItem(block, cubeAll(block));		
     }
 	
-	public void bookshelfBlock(Block block) {
-		getVariantBuilder(block).partialState().setModels(new ConfiguredModel(models().cubeColumn(name(block), blockTexture(block), replace(blockTexture(block), "bookshelf", "planks"))));
-		this.simpleBlockItem(block, cubeColumn(block));		
-    }
-	
 	public void logBlock(Block block) {
 		logBlock((RotatedPillarBlock) block);
 	    this.simpleBlockItem(block, cubeColumn(block));			
@@ -166,6 +176,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		axisBlock((RotatedPillarBlock) block, models().cubeColumn(name(block), replace(blockTexture(block), "wood", "log"), replace(blockTexture(block), "wood", "log")), models().cubeColumnHorizontal(name(block), replace(blockTexture(block), "wood", "log"), replace(blockTexture(block), "wood", "log")));
 	    this.simpleBlockItem(block, cubeColumn(block));			
 	}
+	
+	public void bookshelfBlock(Block block) {
+		getVariantBuilder(block).partialState().setModels(new ConfiguredModel(models().cubeColumn(name(block), blockTexture(block), replace(blockTexture(block), "bookshelf", "planks"))));
+		this.simpleBlockItem(block, cubeColumn(block));		
+    }
 	
 	public void slabBlock(Block block) {
 		slabBlock((SlabBlock) block, replace(blockTexture(block), "slab", "planks"), replace(blockTexture(block), "slab", "planks"));
@@ -199,9 +214,38 @@ public class ModBlockStateProvider extends BlockStateProvider {
     
     public void pressurePlateBlock(Block block) {
     	getVariantBuilder(block)
-        	.partialState().with(PressurePlateBlock.POWERED, false).modelForState().modelFile(pressurePlate(block)).addModel()
+    		.partialState().with(PressurePlateBlock.POWERED, false).modelForState().modelFile(pressurePlate(block)).addModel()
         	.partialState().with(PressurePlateBlock.POWERED, true).modelForState().modelFile(pressurePlateDown(block)).addModel();
     	this.simpleBlockItem(block, pressurePlate(block));
+    }
+    
+    public void buttonBlock(Block block) {
+    	getVariantBuilder(block)
+    		.partialState().with(WoodButtonBlock.FACE, AttachFace.CEILING).with(WoodButtonBlock.HORIZONTAL_FACING, Direction.EAST).with(WoodButtonBlock.POWERED, false).modelForState().modelFile(button(block)).rotationY(270).rotationX(180).addModel()
+    		.partialState().with(WoodButtonBlock.FACE, AttachFace.CEILING).with(WoodButtonBlock.HORIZONTAL_FACING, Direction.EAST).with(WoodButtonBlock.POWERED, true).modelForState().modelFile(buttonPressed(block)).rotationY(270).rotationX(180).addModel()
+    		.partialState().with(WoodButtonBlock.FACE, AttachFace.CEILING).with(WoodButtonBlock.HORIZONTAL_FACING, Direction.NORTH).with(WoodButtonBlock.POWERED, false).modelForState().modelFile(button(block)).rotationY(180).rotationX(180).addModel()
+    		.partialState().with(WoodButtonBlock.FACE, AttachFace.CEILING).with(WoodButtonBlock.HORIZONTAL_FACING, Direction.NORTH).with(WoodButtonBlock.POWERED, true).modelForState().modelFile(buttonPressed(block)).rotationY(180).rotationX(180).addModel()
+    		.partialState().with(WoodButtonBlock.FACE, AttachFace.CEILING).with(WoodButtonBlock.HORIZONTAL_FACING, Direction.SOUTH).with(WoodButtonBlock.POWERED, false).modelForState().modelFile(button(block)).rotationX(180).addModel()
+    		.partialState().with(WoodButtonBlock.FACE, AttachFace.CEILING).with(WoodButtonBlock.HORIZONTAL_FACING, Direction.SOUTH).with(WoodButtonBlock.POWERED, true).modelForState().modelFile(buttonPressed(block)).rotationX(180).addModel()
+    		.partialState().with(WoodButtonBlock.FACE, AttachFace.CEILING).with(WoodButtonBlock.HORIZONTAL_FACING, Direction.WEST).with(WoodButtonBlock.POWERED, false).modelForState().modelFile(button(block)).rotationY(90).rotationX(180).addModel()
+    		.partialState().with(WoodButtonBlock.FACE, AttachFace.CEILING).with(WoodButtonBlock.HORIZONTAL_FACING, Direction.WEST).with(WoodButtonBlock.POWERED, true).modelForState().modelFile(buttonPressed(block)).rotationY(90).rotationX(180).addModel()
+    		.partialState().with(WoodButtonBlock.FACE, AttachFace.FLOOR).with(WoodButtonBlock.HORIZONTAL_FACING, Direction.EAST).with(WoodButtonBlock.POWERED, false).modelForState().modelFile(button(block)).rotationY(90).addModel()
+    		.partialState().with(WoodButtonBlock.FACE, AttachFace.FLOOR).with(WoodButtonBlock.HORIZONTAL_FACING, Direction.EAST).with(WoodButtonBlock.POWERED, true).modelForState().modelFile(buttonPressed(block)).rotationY(90).addModel()
+    		.partialState().with(WoodButtonBlock.FACE, AttachFace.FLOOR).with(WoodButtonBlock.HORIZONTAL_FACING, Direction.NORTH).with(WoodButtonBlock.POWERED, false).modelForState().modelFile(button(block)).addModel()
+    		.partialState().with(WoodButtonBlock.FACE, AttachFace.FLOOR).with(WoodButtonBlock.HORIZONTAL_FACING, Direction.NORTH).with(WoodButtonBlock.POWERED, true).modelForState().modelFile(buttonPressed(block)).addModel()
+    		.partialState().with(WoodButtonBlock.FACE, AttachFace.FLOOR).with(WoodButtonBlock.HORIZONTAL_FACING, Direction.SOUTH).with(WoodButtonBlock.POWERED, false).modelForState().modelFile(button(block)).rotationY(180).addModel()
+    		.partialState().with(WoodButtonBlock.FACE, AttachFace.FLOOR).with(WoodButtonBlock.HORIZONTAL_FACING, Direction.SOUTH).with(WoodButtonBlock.POWERED, true).modelForState().modelFile(buttonPressed(block)).rotationY(180).addModel()
+    		.partialState().with(WoodButtonBlock.FACE, AttachFace.FLOOR).with(WoodButtonBlock.HORIZONTAL_FACING, Direction.WEST).with(WoodButtonBlock.POWERED, false).modelForState().modelFile(button(block)).rotationY(270).addModel()
+    		.partialState().with(WoodButtonBlock.FACE, AttachFace.FLOOR).with(WoodButtonBlock.HORIZONTAL_FACING, Direction.WEST).with(WoodButtonBlock.POWERED, true).modelForState().modelFile(buttonPressed(block)).rotationY(270).addModel()
+    		.partialState().with(WoodButtonBlock.FACE, AttachFace.WALL).with(WoodButtonBlock.HORIZONTAL_FACING, Direction.EAST).with(WoodButtonBlock.POWERED, false).modelForState().modelFile(button(block)).rotationY(90).rotationX(90).uvLock(true).addModel()
+    		.partialState().with(WoodButtonBlock.FACE, AttachFace.WALL).with(WoodButtonBlock.HORIZONTAL_FACING, Direction.EAST).with(WoodButtonBlock.POWERED, true).modelForState().modelFile(buttonPressed(block)).rotationY(90).rotationX(90).uvLock(true).addModel()
+    		.partialState().with(WoodButtonBlock.FACE, AttachFace.WALL).with(WoodButtonBlock.HORIZONTAL_FACING, Direction.NORTH).with(WoodButtonBlock.POWERED, false).modelForState().modelFile(button(block)).rotationX(90).uvLock(true).addModel()
+    		.partialState().with(WoodButtonBlock.FACE, AttachFace.WALL).with(WoodButtonBlock.HORIZONTAL_FACING, Direction.NORTH).with(WoodButtonBlock.POWERED, true).modelForState().modelFile(buttonPressed(block)).rotationX(90).uvLock(true).addModel()
+    		.partialState().with(WoodButtonBlock.FACE, AttachFace.WALL).with(WoodButtonBlock.HORIZONTAL_FACING, Direction.SOUTH).with(WoodButtonBlock.POWERED, false).modelForState().modelFile(button(block)).rotationY(180).rotationX(90).uvLock(true).addModel()
+    		.partialState().with(WoodButtonBlock.FACE, AttachFace.WALL).with(WoodButtonBlock.HORIZONTAL_FACING, Direction.SOUTH).with(WoodButtonBlock.POWERED, true).modelForState().modelFile(buttonPressed(block)).rotationY(180).rotationX(90).uvLock(true).addModel()
+    		.partialState().with(WoodButtonBlock.FACE, AttachFace.WALL).with(WoodButtonBlock.HORIZONTAL_FACING, Direction.WEST).with(WoodButtonBlock.POWERED, false).modelForState().modelFile(button(block)).rotationY(270).rotationX(90).uvLock(true).addModel()
+    		.partialState().with(WoodButtonBlock.FACE, AttachFace.WALL).with(WoodButtonBlock.HORIZONTAL_FACING, Direction.WEST).with(WoodButtonBlock.POWERED, true).modelForState().modelFile(buttonPressed(block)).rotationY(270).rotationX(90).uvLock(true).addModel();
+    	this.simpleBlockItem(block, buttonInventory(block));
     }
     
 	public void crossBlock(Block block) {
@@ -251,6 +295,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		getVariantBuilder(block).partialState().setModels(new ConfiguredModel(display(block)));
 		this.simpleBlockItem(block, display(block));
     }
+	
+	/*
+	 * Item model providers
+	 */
 	
 	public void doorBlockItem(Block block, ModelFile model) {
 		ResourceLocation location = block.getRegistryName();

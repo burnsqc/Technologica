@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "technologica:banana_button",
+    "technologica:cherry_button",
+    "technologica:coconut_button",
+    "technologica:kiwi_button",
+    "technologica:lemon_button",
+    "technologica:lime_button",
+    "technologica:orange_button",
+    "technologica:peach_button",
+    "technologica:pear_button"
+  ]
+}
