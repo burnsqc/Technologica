@@ -19,6 +19,7 @@ import com.technologica.tileentity.ModTileEntities;
 
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.client.renderer.tileentity.SignTileEntityRenderer;
 import net.minecraft.inventory.container.PlayerContainer;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -117,6 +118,7 @@ public class ClientSetup {
          RenderTypeLookup.setRenderLayer(ModFluids.BRINE_SOURCE.get(), RenderType.getTranslucent());
          RenderTypeLookup.setRenderLayer(ModFluids.BRINE_FLOWING.get(), RenderType.getTranslucent());
 
+         ClientRegistry.bindTileEntityRenderer(ModTileEntities.SIGN.get(), SignTileEntityRenderer::new);
          ClientRegistry.bindTileEntityRenderer(ModTileEntities.FRUIT_CROP.get(), FruitTileEntityRenderer::new);
          ClientRegistry.bindTileEntityRenderer(ModTileEntities.POTION_CROP.get(), PotionTileEntityRenderer::new);
          ClientRegistry.bindTileEntityRenderer(ModTileEntities.DISPLAY_TILE.get(), DisplayCaseTileEntityRenderer::new);

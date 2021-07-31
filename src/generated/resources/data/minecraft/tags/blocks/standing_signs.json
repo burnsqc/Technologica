@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "technologica:banana_sign",
+    "technologica:cherry_sign",
+    "technologica:coconut_sign",
+    "technologica:kiwi_sign",
+    "technologica:lemon_sign",
+    "technologica:lime_sign",
+    "technologica:orange_sign",
+    "technologica:peach_sign",
+    "technologica:pear_sign"
+  ]
+}

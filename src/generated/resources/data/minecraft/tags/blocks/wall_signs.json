@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "technologica:banana_wall_sign",
+    "technologica:cherry_wall_sign",
+    "technologica:coconut_wall_sign",
+    "technologica:kiwi_wall_sign",
+    "technologica:lemon_wall_sign",
+    "technologica:lime_wall_sign",
+    "technologica:orange_wall_sign",
+    "technologica:peach_wall_sign",
+    "technologica:pear_wall_sign"
+  ]
+}

@@ -160,7 +160,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	
 	public ModelFile sign(Block block) {
         ResourceLocation location = block.getRegistryName();
-        return models().getBuilder(location.getPath()).texture("particle", replace(blockTexture(block), "_sign", "_planks"));
+        return models().getBuilder(location.getPath()).texture("particle", replace(replace(blockTexture(block), "_wall", ""), "_sign", "_planks"));
     }
 
 	/*
@@ -317,7 +317,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	
 	public void signItem(Block block, ModelFile model) {
 		ResourceLocation location = block.getRegistryName();
-        itemModels().getBuilder(location.getPath()).parent(model).texture("layer0", new ResourceLocation(location.getNamespace(), "item/" + location.getPath()));
+        itemModels().getBuilder(location.getPath()).parent(model).texture("layer0", replace(replace(blockTexture(block), "_wall", ""), "block", "item"));
 	}
 	
 	public void crossBlockItem(Block block, ModelFile model) {

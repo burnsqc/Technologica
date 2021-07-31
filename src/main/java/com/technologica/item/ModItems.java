@@ -13,6 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Item.Properties;
 import net.minecraft.item.ItemTier;
 import net.minecraft.item.PickaxeItem;
+import net.minecraft.item.SignItem;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
@@ -487,6 +488,16 @@ public class ModItems {
     public static final RegistryObject<Item> ORANGE_BUTTON_ITEM = ITEMS.register("orange_button", () -> new BlockItem(ModBlocks.ORANGE_BUTTON.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEACH_BUTTON_ITEM = ITEMS.register("peach_button", () -> new BlockItem(ModBlocks.PEACH_BUTTON.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEAR_BUTTON_ITEM = ITEMS.register("pear_button", () -> new BlockItem(ModBlocks.PEAR_BUTTON.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    
+    public static final RegistryObject<Item> BANANA_SIGN_ITEM = ITEMS.register("banana_sign", () -> new SignItem((new Item.Properties()).maxStackSize(16).group(ModItemGroup.CONSTRUCTION), ModBlocks.BANANA_SIGN.get(), ModBlocks.BANANA_WALL_SIGN.get()));
+    public static final RegistryObject<Item> CHERRY_SIGN_ITEM = ITEMS.register("cherry_sign", () -> new SignItem((new Item.Properties()).maxStackSize(16).group(ModItemGroup.CONSTRUCTION), ModBlocks.CHERRY_SIGN.get(), ModBlocks.CHERRY_WALL_SIGN.get()));
+    public static final RegistryObject<Item> COCONUT_SIGN_ITEM = ITEMS.register("coconut_sign", () -> new SignItem((new Item.Properties()).maxStackSize(16).group(ModItemGroup.CONSTRUCTION), ModBlocks.COCONUT_SIGN.get(), ModBlocks.COCONUT_WALL_SIGN.get()));
+    public static final RegistryObject<Item> KIWI_SIGN_ITEM = ITEMS.register("kiwi_sign", () -> new SignItem((new Item.Properties()).maxStackSize(16).group(ModItemGroup.CONSTRUCTION), ModBlocks.KIWI_SIGN.get(), ModBlocks.KIWI_WALL_SIGN.get()));
+    public static final RegistryObject<Item> LEMON_SIGN_ITEM = ITEMS.register("lemon_sign", () -> new SignItem((new Item.Properties()).maxStackSize(16).group(ModItemGroup.CONSTRUCTION), ModBlocks.LEMON_SIGN.get(), ModBlocks.LEMON_WALL_SIGN.get()));
+    public static final RegistryObject<Item> LIME_SIGN_ITEM = ITEMS.register("lime_sign", () -> new SignItem((new Item.Properties()).maxStackSize(16).group(ModItemGroup.CONSTRUCTION), ModBlocks.LIME_SIGN.get(), ModBlocks.LIME_WALL_SIGN.get()));
+    public static final RegistryObject<Item> ORANGE_SIGN_ITEM = ITEMS.register("orange_sign", () -> new SignItem((new Item.Properties()).maxStackSize(16).group(ModItemGroup.CONSTRUCTION), ModBlocks.ORANGE_SIGN.get(), ModBlocks.ORANGE_WALL_SIGN.get()));
+    public static final RegistryObject<Item> PEACH_SIGN_ITEM = ITEMS.register("peach_sign", () -> new SignItem((new Item.Properties()).maxStackSize(16).group(ModItemGroup.CONSTRUCTION), ModBlocks.PEACH_SIGN.get(), ModBlocks.PEACH_WALL_SIGN.get()));
+    public static final RegistryObject<Item> PEAR_SIGN_ITEM = ITEMS.register("pear_sign", () -> new SignItem((new Item.Properties()).maxStackSize(16).group(ModItemGroup.CONSTRUCTION), ModBlocks.PEAR_SIGN.get(), ModBlocks.PEAR_WALL_SIGN.get()));
     
     /**
      * MACHINERY
