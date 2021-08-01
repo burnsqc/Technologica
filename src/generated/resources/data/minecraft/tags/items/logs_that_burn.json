@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "technologica:aspen_log",
     "technologica:banana_log",
     "technologica:cherry_log",
     "technologica:coconut_log",

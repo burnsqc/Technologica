@@ -63,7 +63,7 @@ public class ModItems {
     public static final RegistryObject<Item> ZUCCHINI_SEEDS = ITEMS.register("zucchini_seeds", () -> new BlockNamedItem(ModBlocks.ZUCCHINI_CROP.get(), new Item.Properties().group(ModItemGroup.FLORA)));
     
 //    public static final RegistryObject<Item> APRICOT_SAPLING_ITEM = ITEMS.register("apricot_sapling", () -> new BlockItem(ModBlocks.APRICOT_SAPLING.get(), new Item.Properties().group(ModItemGroup.FLORA)));  
-//    public static final RegistryObject<Item> ASPEN_SAPLING_ITEM = ITEMS.register("aspen_sapling", () -> new BlockItem(ModBlocks.ASPEN_SAPLING.get(), new Item.Properties().group(ModItemGroup.FLORA)));  
+    public static final RegistryObject<Item> ASPEN_SAPLING_ITEM = ITEMS.register("aspen_sapling", () -> new BlockItem(ModBlocks.ASPEN_SAPLING.get(), new Item.Properties().group(ModItemGroup.FLORA)));  
 //    public static final RegistryObject<Item> AVACADO_SAPLING_ITEM = ITEMS.register("avacado_sapling", () -> new BlockItem(ModBlocks.AVACADO_SAPLING.get(), new Item.Properties().group(ModItemGroup.FLORA)));  
     public static final RegistryObject<Item> BANANA_SAPLING_ITEM = ITEMS.register("banana_sapling", () -> new BlockItem(ModBlocks.BANANA_SAPLING.get(), new Item.Properties().group(ModItemGroup.FLORA)));  
     public static final RegistryObject<Item> CHERRY_SAPLING_ITEM = ITEMS.register("cherry_sapling", () -> new BlockItem(ModBlocks.CHERRY_SAPLING.get(), new Item.Properties().group(ModItemGroup.FLORA)));
@@ -93,7 +93,7 @@ public class ModItems {
     public static final RegistryObject<Item> MALEVOLENT_APOTHECARY_SAPLING_ITEM = ITEMS.register("malevolent_apothecary_sapling", () -> new BlockItem(ModBlocks.MALEVOLENT_APOTHECARY_SAPLING.get(), new Item.Properties().group(ModItemGroup.CRYPTICA)));	
 	
 //    public static final RegistryObject<Item> APRICOT_LEAVES_ITEM = ITEMS.register("apricot_leaves", () -> new BlockItem(ModBlocks.APRICOT_LEAVES.get(), new Item.Properties().group(ModItemGroup.FLORA)));
-//    public static final RegistryObject<Item> ASPEN_LEAVES_ITEM = ITEMS.register("aspen_leaves", () -> new BlockItem(ModBlocks.ASPEN_LEAVES.get(), new Item.Properties().group(ModItemGroup.FLORA)));	
+    public static final RegistryObject<Item> ASPEN_LEAVES_ITEM = ITEMS.register("aspen_leaves", () -> new BlockItem(ModBlocks.ASPEN_LEAVES.get(), new Item.Properties().group(ModItemGroup.FLORA)));	
 //    public static final RegistryObject<Item> AVACADO_LEAVES_ITEM = ITEMS.register("avacado_leaves", () -> new BlockItem(ModBlocks.AVACADO_LEAVES.get(), new Item.Properties().group(ModItemGroup.FLORA)));
     public static final RegistryObject<Item> BANANA_LEAVES_ITEM = ITEMS.register("banana_leaves", () -> new BlockItem(ModBlocks.BANANA_LEAVES.get(), new Item.Properties().group(ModItemGroup.FLORA)));
     public static final RegistryObject<Item> CHERRY_LEAVES_ITEM = ITEMS.register("cherry_leaves", () -> new BlockItem(ModBlocks.CHERRY_LEAVES.get(), new Item.Properties().group(ModItemGroup.FLORA)));
@@ -331,7 +331,7 @@ public class ModItems {
      */
     
 //    public static final RegistryObject<Item> APRICOT_LOG_ITEM = ITEMS.register("apricot_log", () -> new BlockItem(ModBlocks.APRICOT_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
-//    public static final RegistryObject<Item> ASPEN_LOG_ITEM = ITEMS.register("aspen_log", () -> new BlockItem(ModBlocks.ASPEN_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> ASPEN_LOG_ITEM = ITEMS.register("aspen_log", () -> new BlockItem(ModBlocks.ASPEN_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
 //    public static final RegistryObject<Item> AVACADO_LOG_ITEM = ITEMS.register("avacado_log", () -> new BlockItem(ModBlocks.AVACADO_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> BANANA_LOG_ITEM = ITEMS.register("banana_log", () -> new BlockItem(ModBlocks.BANANA_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> CHERRY_LOG_ITEM = ITEMS.register("cherry_log", () -> new BlockItem(ModBlocks.CHERRY_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));

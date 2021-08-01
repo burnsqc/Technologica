@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "technologica:aspen_sapling",
     "technologica:banana_sapling",
     "technologica:cherry_sapling",
     "technologica:coconut_sapling",

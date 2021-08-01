@@ -38,11 +38,11 @@ public class ModConfiguredFeatures {
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> ASPEN_TREE_FEATURE = register(
 			"aspen_tree_feature",
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(ModBlocks.BANANA_LOG.get().getDefaultState()),
-					new SimpleBlockStateProvider(ModBlocks.BANANA_LEAVES.get().getDefaultState()),
-					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
-					new StraightTrunkPlacer(4, 1, 0), 
-					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
+					new SimpleBlockStateProvider(ModBlocks.ASPEN_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.ASPEN_LEAVES.get().getDefaultState()),
+					new BlobFoliagePlacer(FeatureSpread.create(2), FeatureSpread.create(0), 3),
+					new StraightTrunkPlacer(5, 2, 0), 
+					new TwoLayerFeature(1, 0, 1))).setIgnoreVines().build()));
 	
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> AVACADO_TREE_FEATURE = register(
 			"avacado_tree_feature",
