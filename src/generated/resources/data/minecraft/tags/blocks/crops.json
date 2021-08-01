@@ -9,6 +9,7 @@
     "technologica:celery_crop",
     "technologica:chili_pepper_crop",
     "technologica:coffee_bean_crop",
+    "technologica:corn_crop",
     "technologica:cotton_crop",
     "technologica:garlic_crop",
     "technologica:grape_crop",

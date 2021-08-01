@@ -7,6 +7,7 @@ import com.technologica.block.CrystalBlock;
 import com.technologica.block.FruitingLeavesBlock;
 import com.technologica.block.ModBlocks;
 import com.technologica.block.ModLogBlock;
+import com.technologica.block.TallCropsBlock;
 import com.technologica.item.ModItems;
 
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
@@ -85,7 +86,7 @@ public class ModBlockLootTables extends BlockLootTables {
 			else if (block.getRegistryName().getPath().contains("ore")) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(CrystalBlock.class)) registerDropSelfLootTable(block);
 			
-			else if (block.getClass().equals(CropsBlock.class)) {
+			else if (block.getClass().equals(CropsBlock.class) || block.getClass().equals(TallCropsBlock.class)) {
 				Collection<RegistryObject<Item>> itemCollection = ModItems.ITEMS.getEntries();
 				Item yield = Items.WHEAT;
 				

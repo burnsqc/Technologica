@@ -15,11 +15,6 @@ import static net.minecraft.entity.passive.horse.AbstractHorseEntity.func_234237
 
 public class CommonSetup {
 
-   private CommonSetup() {
-      // hide constructor for class with only static members
-   }
-
-
    public static void init(final FMLCommonSetupEvent event) {
       ModCapabilities.register();
       GlobalEntityTypeAttributes.put(ModEntities.DUCK.get(), DuckEntity.registerAttributes().create());
