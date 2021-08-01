@@ -49,6 +49,8 @@ public class ClientSetup {
 		event.enqueueWork(() -> {
 			automaticCutoutMipped(ModBlocks.BLOCKS.getEntries());
       
+			RenderTypeLookup.setRenderLayer(ModBlocks.BANANA_SIGN.get(), RenderType.getTranslucent());
+			
 			RenderTypeLookup.setRenderLayer(ModBlocks.DISPLAY_CASE.get(), RenderType.getTranslucent());
 
 			RenderTypeLookup.setRenderLayer(ModBlocks.AQUAMARINE_CRYSTAL.get(), RenderType.getTranslucent());
