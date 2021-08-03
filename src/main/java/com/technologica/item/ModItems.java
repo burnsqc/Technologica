@@ -44,7 +44,7 @@ public class ModItems {
 //    public static final RegistryObject<Item> MUSTARD_SEEDS = ITEMS.register("mustard_seeds", () -> new BlockNamedItem(ModBlocks.MUSTARD_GREENS_CROP.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
     public static final RegistryObject<Item> OATS_SEEDS = ITEMS.register("oats_seeds", () -> new BlockNamedItem(ModBlocks.OATS_CROP.get(), new Item.Properties().group(ModItemGroup.FLORA)));
 //    public static final RegistryObject<Item> ONION_SEEDS = ITEMS.register("onion_seeds", () -> new BlockNamedItem(ModBlocks.ONION_CROP.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
-//    public static final RegistryObject<Item> PEA_SEEDS = ITEMS.register("pea_seeds", () -> new BlockNamedItem(ModBlocks.PEA_CROP.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
+    public static final RegistryObject<Item> PEA_SEEDS = ITEMS.register("pea_seeds", () -> new BlockNamedItem(ModBlocks.PEA_CROP.get(), new Item.Properties().group(ModItemGroup.FLORA)));
 //    public static final RegistryObject<Item> PEANUT_SEEDS = ITEMS.register("peanut_seeds", () -> new BlockNamedItem(ModBlocks.PEANUT_CROP.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
 //    public static final RegistryObject<Item> PEPPERCORNS = ITEMS.register("peppercorns", () -> new BlockNamedItem(ModBlocks.PEPPERCORN_CROP.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
 //    public static final RegistryObject<Item> PINEAPPLE_SEEDS = ITEMS.register("pineapple_seeds", () -> new BlockNamedItem(ModBlocks.PINEAPPLE_CROP.get(), new Item.Properties().group(ModItemGroup.TECHNOLOGICA_FLORA)));
@@ -294,7 +294,7 @@ public class ModItems {
     public static final RegistryObject<Item> OATS = ITEMS.register("oats", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD)));
 //    public static final RegistryObject<Item> ONION = ITEMS.register("onion", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
     public static final RegistryObject<Item> ORANGE = ITEMS.register("orange", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(3).saturation(0.1F).setAlwaysEdible().build())));
-//    public static final RegistryObject<Item> PEAS = ITEMS.register("peas", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
+    public static final RegistryObject<Item> PEAS = ITEMS.register("peas", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
     public static final RegistryObject<Item> PEACH = ITEMS.register("peach", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(3).saturation(0.1F).setAlwaysEdible().build())));
 //    public static final RegistryObject<Item> PEANUT = ITEMS.register("peanut", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
     public static final RegistryObject<Item> PEAR = ITEMS.register("pear", () -> new Item(new Item.Properties().group(ModItemGroup.FOOD).food(new Food.Builder().hunger(3).saturation(0.1F).setAlwaysEdible().build())));
