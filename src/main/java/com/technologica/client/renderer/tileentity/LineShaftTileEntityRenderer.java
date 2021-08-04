@@ -44,10 +44,10 @@ public class LineShaftTileEntityRenderer extends TileEntityRenderer<LineShaftTil
         */
         
         //EAST
-        add(builder, matrixStack, x2, y2, z4, sprite.getInterpolatedU(1), sprite.getMinV());
-        add(builder, matrixStack, x2, y1, z3, sprite.getMinU(), sprite.getMinV());
-        add(builder, matrixStack, x2, y3, z1, sprite.getMinU(), sprite.getMaxV());
-        add(builder, matrixStack, x2, y4, z2, sprite.getInterpolatedU(1), sprite.getMaxV());
+        add(builder, matrixStack, x2, y4, z4, sprite.getInterpolatedU(1), sprite.getMinV());
+        add(builder, matrixStack, x2, y3, z3, sprite.getMinU(), sprite.getMinV());
+        add(builder, matrixStack, x2, y2, z2, sprite.getMinU(), sprite.getMaxV());
+        add(builder, matrixStack, x2, y1, z1, sprite.getInterpolatedU(1), sprite.getMaxV());
         
         //SOUTH
         /*
@@ -58,22 +58,24 @@ public class LineShaftTileEntityRenderer extends TileEntityRenderer<LineShaftTil
         */
         
         //WEST
+       
         add(builder, matrixStack, x1, y1, z1, sprite.getInterpolatedU(15), sprite.getMinV());
         add(builder, matrixStack, x1, y2, z2, sprite.getMaxU(), sprite.getMinV());
-        add(builder, matrixStack, x1, y4, z4, sprite.getMaxU(), sprite.getMaxV());
-        add(builder, matrixStack, x1, y3, z3, sprite.getInterpolatedU(15), sprite.getMaxV());
+        add(builder, matrixStack, x1, y3, z3, sprite.getMaxU(), sprite.getMaxV());
+        add(builder, matrixStack, x1, y4, z4, sprite.getInterpolatedU(15), sprite.getMaxV());
         
         //UP
-        add(builder, matrixStack, x1, y4, z4, sprite.getMinU(), sprite.getMinV());
-        add(builder, matrixStack, x2, y4, z4, sprite.getInterpolatedU(4), sprite.getMinV());
-        add(builder, matrixStack, x2, y3, z3, sprite.getInterpolatedU(4), sprite.getMaxV());
-        add(builder, matrixStack, x1, y3, z3, sprite.getMinU(), sprite.getMaxV());
+        add(builder, matrixStack, x1, y3, z3, sprite.getMinU(), sprite.getMinV());
+        add(builder, matrixStack, x2, y3, z3, sprite.getInterpolatedU(4), sprite.getMinV());
+        add(builder, matrixStack, x2, y4, z4, sprite.getInterpolatedU(4), sprite.getMaxV());
+        add(builder, matrixStack, x1, y4, z4, sprite.getMinU(), sprite.getMaxV());
         
         //DOWN
         add(builder, matrixStack, x1, y1, z1, sprite.getMinU(), sprite.getMinV());
         add(builder, matrixStack, x2, y1, z1, sprite.getInterpolatedU(4), sprite.getMinV());
         add(builder, matrixStack, x2, y2, z2, sprite.getInterpolatedU(4), sprite.getMaxV());
         add(builder, matrixStack, x1, y2, z2, sprite.getMinU(), sprite.getMaxV());
+        
 	}
 	
 	private void add(IVertexBuilder renderer, MatrixStack stack, float x, float y, float z, float u, float v) {
@@ -121,7 +123,7 @@ public class LineShaftTileEntityRenderer extends TileEntityRenderer<LineShaftTil
 			switch(tileEntity.getBlockState().get(LineShaftBlock.AXIS)) {
 			case X:
 				matrixStack.translate(0, 0.5d, 0.5d);
-				matrixStack.rotate(Vector3f.XN.rotationDegrees(angle));
+//				matrixStack.rotate(Vector3f.XN.rotationDegrees(angle));
 				float[] coords = ModMathHelper.CircleTangents((float) tileEntity.getPos().getZ(), (float) tileEntity.getPos().getY(), (float) tileEntity.getBeltPos().getZ(), (float) tileEntity.getBeltPos().getY(), radius1, radius2);
 				addBox(matrixStack, buffer, 0.376f, coords[1] - tileEntity.getPos().getY(), coords[0] - tileEntity.getPos().getZ(), 0.624f, coords[3] - tileEntity.getPos().getY(), coords[2] - tileEntity.getPos().getZ(), coords[5] - tileEntity.getPos().getY(), coords[4] - tileEntity.getPos().getZ(), coords[7] - tileEntity.getPos().getY(), coords[6] - tileEntity.getPos().getZ());
 				break;

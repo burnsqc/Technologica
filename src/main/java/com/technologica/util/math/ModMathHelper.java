@@ -2,33 +2,31 @@ package com.technologica.util.math;
 
 public class ModMathHelper {
 	
-	public static float[] CircleTangents(Float pos1x, Float pos1y, Float pos2x, Float pos2y, Float radius1, Float radius2) {
+	public static float[] CircleTangents(float x1, float y1, float x2, float y2, float r1, float r2) {
 		float[] coords = new float[8];
 		
-		float radiusI1 = radius1 - 0.0625F;
-		float radiusO1 = radius1 + 0.0625F;
-		float radiusI2 = radius2 - 0.0625F;
-		float radiusO2 = radius2 + 0.0625F;
+		float r1I = r1 - 0.03125F;
+		float r1O = r1 + 0.03125F;
+		float r2I = r2 - 0.03125F;
+		float r2O = r2 + 0.03125F;
 		
-		float distance = (float) Math.sqrt((Math.pow(pos1x - pos2x, 2) + Math.pow(pos1y - pos2y, 2))); 
-		float length = (float) Math.sqrt(Math.pow(distance, 2) - Math.pow(radiusI1 - radiusI2, 2));
-		float hypotenuse = (float) Math.sqrt(Math.pow(length, 2) + Math.pow(radiusI1, 2));
-		float theta = (float) (Math.acos((Math.pow(radiusI1, 2) + Math.pow(distance, 2) - Math.pow(hypotenuse, 2)) / (2 * radiusI1 * distance)) + Math.atan((pos2y - pos1y) / (pos2x - pos1x)));
+		float d = (float) Math.sqrt((Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2))); 
+		float l = (float) Math.sqrt(Math.pow(d, 2) - Math.pow(r1 - r2, 2));
+		float h = (float) Math.sqrt(Math.pow(l, 2) + Math.pow(r2, 2));
+		float theta1 = (float) (Math.atan2(y2 - y1, x2 - x1) + Math.acos((Math.pow(r1, 2) + Math.pow(d, 2) - Math.pow(h, 2)) / (2 * r1 * d)));
+		float theta2 = (float) (Math.atan2(y2 - y1, x2 - x1) - Math.acos((Math.pow(r1, 2) + Math.pow(d, 2) - Math.pow(h, 2)) / (2 * r1 * d)));
 		
-		coords[0] = (float) (pos1x + radiusI1 * Math.cos(theta));
-		coords[1] = (float) (pos1y + radiusI1 * Math.sin(theta));
-		coords[2] = (float) (pos2x + radiusI2 * Math.cos(theta));
-		coords[3] = (float) (pos2y + radiusI2 * Math.sin(theta));
+		coords[0] = (float) (x1 + r1I * Math.cos(theta1));
+		coords[1] = (float) (y1 + r1I * Math.sin(theta1));
 		
-		float distance2 = (float) Math.sqrt((Math.pow(pos1x - pos2x, 2) + Math.pow(pos1y - pos2y, 2))); 
-		float length2 = (float) Math.sqrt(Math.pow(distance2, 2) - Math.pow(radiusO1 - radiusO2, 2));
-		float hypotenuse2 = (float) Math.sqrt(Math.pow(length2, 2) + Math.pow(radiusO1, 2));
-		float theta2 = (float) (Math.acos((Math.pow(radiusO1, 2) + Math.pow(distance2, 2) - Math.pow(hypotenuse2, 2)) / (2 * radiusO1 * distance2)) + Math.atan((pos2y - pos1y) / (pos2x - pos1x)));
+		coords[2] = (float) (x2 + r2I * Math.cos(theta1));
+		coords[3] = (float) (y2 + r2I * Math.sin(theta1));
+			
+		coords[4] = (float) (x2 + r2O * Math.cos(theta1));
+		coords[5] = (float) (y2 + r2O * Math.sin(theta1));
 		
-		coords[4] = (float) (pos1x + radiusO1 * Math.cos(theta2));
-		coords[5] = (float) (pos1y + radiusO1 * Math.sin(theta2));
-		coords[6] = (float) (pos2x + radiusO2 * Math.cos(theta2));
-		coords[7] = (float) (pos2y + radiusO2 * Math.sin(theta2));
+		coords[6] = (float) (x1 + r1O * Math.cos(theta1));
+		coords[7] = (float) (y1 + r1O * Math.sin(theta1));
 		
 		return coords;
 	}
