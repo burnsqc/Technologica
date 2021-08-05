@@ -90,7 +90,7 @@ public class LineShaftTileEntityRenderer extends TileEntityRenderer<LineShaftTil
         matrixStack.push();
 
 		if (tileEntity.getBeltPos() != null) {		
-			float angle = 0;
+			
 			float radius1 = tileEntity.getBlockState().get(LineShaftBlock.PULLEY);
 			float radius2;
 			if (tileEntity.getWorld().getTileEntity(tileEntity.getBeltPos()) instanceof LineShaftTileEntity) {
@@ -114,16 +114,9 @@ public class LineShaftTileEntityRenderer extends TileEntityRenderer<LineShaftTil
 				radius2 = 1.0f;
 			}
 			
-			if (tileEntity.getPos().getZ() - tileEntity.getBeltPos().getZ() != 0) {
-				angle = (float) Math.atan((float) ((float) tileEntity.getPos().getY() - (float) tileEntity.getBeltPos().getY()) / ((float) tileEntity.getPos().getZ() - (float) tileEntity.getBeltPos().getZ())) * 180 / (float) Math.PI;
-			} else {
-				angle = (tileEntity.getPos().getY() > tileEntity.getBeltPos().getY()) ? (float) -90.0f: (float) 90.0f;
-			}
-			
 			switch(tileEntity.getBlockState().get(LineShaftBlock.AXIS)) {
 			case X:
 				matrixStack.translate(0, 0.5d, 0.5d);
-//				matrixStack.rotate(Vector3f.XN.rotationDegrees(angle));
 				float[] coords = ModMathHelper.CircleTangents((float) tileEntity.getPos().getZ(), (float) tileEntity.getPos().getY(), (float) tileEntity.getBeltPos().getZ(), (float) tileEntity.getBeltPos().getY(), radius1, radius2);
 				addBox(matrixStack, buffer, 0.376f, coords[1] - tileEntity.getPos().getY(), coords[0] - tileEntity.getPos().getZ(), 0.624f, coords[3] - tileEntity.getPos().getY(), coords[2] - tileEntity.getPos().getZ(), coords[5] - tileEntity.getPos().getY(), coords[4] - tileEntity.getPos().getZ(), coords[7] - tileEntity.getPos().getY(), coords[6] - tileEntity.getPos().getZ());
 				break;
