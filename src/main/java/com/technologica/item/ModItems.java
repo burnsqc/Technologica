@@ -513,7 +513,7 @@ public class ModItems {
     public static final RegistryObject<Item> HAMMER = ITEMS.register("hammer", () -> new PickaxeItem(ItemTier.IRON, 1, -2.8F, (new Item.Properties()).group(ModItemGroup.MACHINERY)));
     public static final RegistryObject<Item> PIPE_WRENCH = ITEMS.register("pipe_wrench", () -> new PipeWrenchItem(ItemTier.IRON, 1, -2.8F, (new Item.Properties()).group(ModItemGroup.MACHINERY)));
     public static final RegistryObject<Item> WRENCH = ITEMS.register("wrench", () -> new PickaxeItem(ItemTier.IRON, 1, -2.8F, (new Item.Properties()).group(ModItemGroup.MACHINERY)));
-    public static final RegistryObject<Item> MOTOR_ITEM = ITEMS.register("motor", () -> new BlockItem(ModBlocks.MOTOR.get(), new Item.Properties().group(ModItemGroup.MACHINERY)));
+    public static final RegistryObject<Item> SIMPLE_MOTOR_ITEM = ITEMS.register("simple_motor", () -> new BlockItem(ModBlocks.SIMPLE_MOTOR.get(), new Item.Properties().group(ModItemGroup.MACHINERY)));
     
     /**
      * DECORATIVE

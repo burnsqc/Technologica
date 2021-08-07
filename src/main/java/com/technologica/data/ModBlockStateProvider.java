@@ -6,9 +6,11 @@ import java.util.function.Supplier;
 import com.technologica.Technologica;
 import com.technologica.block.CrystalBlock;
 import com.technologica.block.ModBlocks;
+import com.technologica.block.TwentyFourDirectionBlock;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.CropsBlock;
+import net.minecraft.block.DirectionalBlock;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.block.FenceBlock;
 import net.minecraft.block.FenceGateBlock;
@@ -77,6 +79,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			else if (block.getRegistryName().getPath().contains("crystal") && !block.getRegistryName().getPath().contains("dolomite")) hexagonalCrystalBlock(block);
 			else if (block.getRegistryName().getPath().contains("dolomite")) cubicCrystalBlock(block);
 			else if (block.getRegistryName().getPath().contains("display")) displayBlock(block);
+			else if (block instanceof TwentyFourDirectionBlock) twentyFourDirectionBlock(block);
 		}
 	}
 	
@@ -133,6 +136,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	public ModelFile cubicCrystal(Block block) {
 		ResourceLocation location = block.getRegistryName();
 		return models().singleTexture(name(block), modLoc("cubic_crystal"), CRYSTAL_TEXTURE_KEY, blockTexture(block)).texture(CRYSTAL_TEXTURE_KEY, new ResourceLocation(location.getNamespace(), BLOCK + "/" + location.getPath()));
+    }
+	
+	public ModelFile motor(Block block) {
+		return models().withExistingParent(name(block), modLoc("motor")).texture("motor", blockTexture(block));
+    }
+	
+	public ModelFile motor2(Block block) {
+		return models().withExistingParent(name(block) + "2", modLoc("motor2")).texture("motor", blockTexture(block));
     }
 	
 	public ModelFile display(Block block) {
@@ -316,6 +327,47 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			.partialState().with(CrystalBlock.FACING, Direction.UP).modelForState().modelFile(cubicCrystal(block)).addModel()
 			.partialState().with(CrystalBlock.FACING, Direction.DOWN).modelForState().modelFile(cubicCrystal(block)).rotationX(180).addModel();
 		this.simpleBlockItem(block, cubicCrystal(block));
+    }
+	
+	public void twentyFourDirectionBlock(Block block) {
+    	getVariantBuilder(block)
+    		.partialState().with(DirectionalBlock.FACING, Direction.NORTH).with(TwentyFourDirectionBlock.SUB_FACING, Direction.NORTH).modelForState().modelFile(motor(block)).rotationX(90).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.NORTH).with(TwentyFourDirectionBlock.SUB_FACING, Direction.EAST).modelForState().modelFile(motor2(block)).rotationX(90).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.NORTH).with(TwentyFourDirectionBlock.SUB_FACING, Direction.SOUTH).modelForState().modelFile(motor(block)).rotationX(90).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.NORTH).with(TwentyFourDirectionBlock.SUB_FACING, Direction.WEST).modelForState().modelFile(motor2(block)).rotationX(90).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.NORTH).with(TwentyFourDirectionBlock.SUB_FACING, Direction.UP).modelForState().modelFile(motor(block)).rotationX(90).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.NORTH).with(TwentyFourDirectionBlock.SUB_FACING, Direction.DOWN).modelForState().modelFile(motor(block)).rotationX(90).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.EAST).with(TwentyFourDirectionBlock.SUB_FACING, Direction.NORTH).modelForState().modelFile(motor2(block)).rotationY(90).rotationX(90).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.EAST).with(TwentyFourDirectionBlock.SUB_FACING, Direction.EAST).modelForState().modelFile(motor(block)).rotationY(90).rotationX(90).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.EAST).with(TwentyFourDirectionBlock.SUB_FACING, Direction.SOUTH).modelForState().modelFile(motor2(block)).rotationY(90).rotationX(90).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.EAST).with(TwentyFourDirectionBlock.SUB_FACING, Direction.WEST).modelForState().modelFile(motor(block)).rotationY(90).rotationX(90).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.EAST).with(TwentyFourDirectionBlock.SUB_FACING, Direction.UP).modelForState().modelFile(motor(block)).rotationY(90).rotationX(90).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.EAST).with(TwentyFourDirectionBlock.SUB_FACING, Direction.DOWN).modelForState().modelFile(motor(block)).rotationY(90).rotationX(90).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.SOUTH).with(TwentyFourDirectionBlock.SUB_FACING, Direction.NORTH).modelForState().modelFile(motor(block)).rotationY(180).rotationX(90).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.SOUTH).with(TwentyFourDirectionBlock.SUB_FACING, Direction.EAST).modelForState().modelFile(motor2(block)).rotationY(180).rotationX(90).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.SOUTH).with(TwentyFourDirectionBlock.SUB_FACING, Direction.SOUTH).modelForState().modelFile(motor(block)).rotationY(180).rotationX(90).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.SOUTH).with(TwentyFourDirectionBlock.SUB_FACING, Direction.WEST).modelForState().modelFile(motor2(block)).rotationY(180).rotationX(90).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.SOUTH).with(TwentyFourDirectionBlock.SUB_FACING, Direction.UP).modelForState().modelFile(motor(block)).rotationY(180).rotationX(90).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.SOUTH).with(TwentyFourDirectionBlock.SUB_FACING, Direction.DOWN).modelForState().modelFile(motor(block)).rotationY(180).rotationX(90).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.WEST).with(TwentyFourDirectionBlock.SUB_FACING, Direction.NORTH).modelForState().modelFile(motor2(block)).rotationY(270).rotationX(90).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.WEST).with(TwentyFourDirectionBlock.SUB_FACING, Direction.EAST).modelForState().modelFile(motor(block)).rotationY(270).rotationX(90).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.WEST).with(TwentyFourDirectionBlock.SUB_FACING, Direction.SOUTH).modelForState().modelFile(motor2(block)).rotationY(270).rotationX(90).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.WEST).with(TwentyFourDirectionBlock.SUB_FACING, Direction.WEST).modelForState().modelFile(motor(block)).rotationY(270).rotationX(90).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.WEST).with(TwentyFourDirectionBlock.SUB_FACING, Direction.UP).modelForState().modelFile(motor(block)).rotationY(270).rotationX(90).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.WEST).with(TwentyFourDirectionBlock.SUB_FACING, Direction.DOWN).modelForState().modelFile(motor(block)).rotationY(270).rotationX(90).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.UP).with(TwentyFourDirectionBlock.SUB_FACING, Direction.NORTH).modelForState().modelFile(motor(block)).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.UP).with(TwentyFourDirectionBlock.SUB_FACING, Direction.EAST).modelForState().modelFile(motor(block)).rotationY(90).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.UP).with(TwentyFourDirectionBlock.SUB_FACING, Direction.SOUTH).modelForState().modelFile(motor(block)).rotationY(180).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.UP).with(TwentyFourDirectionBlock.SUB_FACING, Direction.WEST).modelForState().modelFile(motor(block)).rotationY(270).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.UP).with(TwentyFourDirectionBlock.SUB_FACING, Direction.UP).modelForState().modelFile(motor(block)).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.UP).with(TwentyFourDirectionBlock.SUB_FACING, Direction.DOWN).modelForState().modelFile(motor(block)).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.DOWN).with(TwentyFourDirectionBlock.SUB_FACING, Direction.NORTH).modelForState().modelFile(motor(block)).rotationX(180).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.DOWN).with(TwentyFourDirectionBlock.SUB_FACING, Direction.EAST).modelForState().modelFile(motor(block)).rotationX(180).rotationY(90).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.DOWN).with(TwentyFourDirectionBlock.SUB_FACING, Direction.SOUTH).modelForState().modelFile(motor(block)).rotationX(180).rotationY(180).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.DOWN).with(TwentyFourDirectionBlock.SUB_FACING, Direction.WEST).modelForState().modelFile(motor(block)).rotationX(180).rotationY(270).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.DOWN).with(TwentyFourDirectionBlock.SUB_FACING, Direction.UP).modelForState().modelFile(motor(block)).rotationX(180).addModel()
+    		.partialState().with(DirectionalBlock.FACING, Direction.DOWN).with(TwentyFourDirectionBlock.SUB_FACING, Direction.DOWN).modelForState().modelFile(motor(block)).rotationX(180).addModel();
+    	this.simpleBlockItem(block, motor(block));
     }
 	
 	public void displayBlock(Block block) {

@@ -1,0 +1,6 @@
+{
+  "parent": "technologica:block/motor",
+  "textures": {
+    "motor": "technologica:block/simple_motor"
+  }
+}
