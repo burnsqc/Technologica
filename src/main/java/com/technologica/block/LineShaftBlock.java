@@ -69,7 +69,7 @@ public class LineShaftBlock extends RotatedPillarBlock {
 		boolean bool = false;
 		switch (stateIn.get(AXIS)) {
 		case X:
-			bool = worldIn.getBlockState(pos.east()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || worldIn.getBlockState(pos.west()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || (worldIn.getBlockState(pos.east()).getBlock() == ModBlocks.LINE_SHAFT.get() && worldIn.getBlockState(pos.west()).getBlock() == ModBlocks.LINE_SHAFT.get());
+			bool = worldIn.getBlockState(pos.east()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || worldIn.getBlockState(pos.west()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || (worldIn.getBlockState(pos.east()).getBlock() == ModBlocks.LINE_SHAFT.get() && worldIn.getBlockState(pos.west()).getBlock() == ModBlocks.LINE_SHAFT.get() || worldIn.getBlockState(pos.east()).getBlock() == ModBlocks.SIMPLE_MOTOR.get() || worldIn.getBlockState(pos.west()).getBlock() == ModBlocks.SIMPLE_MOTOR.get());
 			break;
 		case Y:
 			bool = worldIn.getBlockState(pos.up()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || worldIn.getBlockState(pos.down()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || (worldIn.getBlockState(pos.up()).getBlock() == ModBlocks.LINE_SHAFT.get() && worldIn.getBlockState(pos.down()).getBlock() == ModBlocks.LINE_SHAFT.get());
