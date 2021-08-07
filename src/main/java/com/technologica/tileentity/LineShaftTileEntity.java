@@ -106,14 +106,12 @@ public class LineShaftTileEntity extends TileEntity {
 				mult2 = 4;
 			}
 
-			if (((LineShaftTileEntity) connection3).getRPM() != this.rpm) {
+			if (((LineShaftTileEntity) connection3).getRPM() != this.rpm * mult1 / mult2) {
 				((LineShaftTileEntity) connection3).setRPM(this.rpm * mult1 / mult2);
 			}
 		}
 	}
 	
-
-
 	public int getRPM() {
 		return this.rpm;
 	}
@@ -183,6 +181,9 @@ public class LineShaftTileEntity extends TileEntity {
 		if (nbt.contains("BeltPos")) {
 			this.setBeltPos(NBTUtil.readBlockPos(nbt.getCompound("BeltPos")));
 		}
+		if (nbt.contains("rpm")) {
+			this.rpm = nbt.getInt("rpm");
+		}
 	}
 
 	@Override
@@ -190,7 +191,8 @@ public class LineShaftTileEntity extends TileEntity {
 		super.write(compound);
 		if (this.beltPos != null) {
 			compound.put("BeltPos", NBTUtil.writeBlockPos(this.beltPos));
-		}	   
+		}	  
+		compound.putInt("rpm", this.rpm);
 	    return compound;	    
 	}
 }
