@@ -211,8 +211,8 @@ public class ModBoatEntity extends Entity {
       case BANANA:
       default:
          return ModItems.BANANA_BOAT.get();
-      case SPRUCE:
-         return Items.SPRUCE_BOAT;
+      case CHERRY:
+         return ModItems.CHERRY_BOAT.get();
       case BIRCH:
          return Items.BIRCH_BOAT;
       case JUNGLE:
@@ -917,7 +917,7 @@ public class ModBoatEntity extends Entity {
 
    public static enum Type {
       BANANA(ModBlocks.BANANA_PLANKS.get(), "banana"),
-      SPRUCE(Blocks.SPRUCE_PLANKS, "spruce"),
+      CHERRY(ModBlocks.CHERRY_PLANKS.get(), "cherry"),
       BIRCH(Blocks.BIRCH_PLANKS, "birch"),
       JUNGLE(Blocks.JUNGLE_PLANKS, "jungle"),
       ACACIA(Blocks.ACACIA_PLANKS, "acacia"),

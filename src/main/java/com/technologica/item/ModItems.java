@@ -502,6 +502,7 @@ public class ModItems {
     public static final RegistryObject<Item> PEAR_SIGN_ITEM = ITEMS.register("pear_sign", () -> new SignItem((new Item.Properties()).maxStackSize(16).group(ModItemGroup.CONSTRUCTION), ModBlocks.PEAR_SIGN.get(), ModBlocks.PEAR_WALL_SIGN.get()));
     
     public static final RegistryObject<Item> BANANA_BOAT = ITEMS.register("banana_boat", () -> new ModBoatItem(ModBoatEntity.Type.BANANA, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> CHERRY_BOAT = ITEMS.register("cherry_boat", () -> new ModBoatItem(ModBoatEntity.Type.CHERRY, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
     
     /**
      * MACHINERY
