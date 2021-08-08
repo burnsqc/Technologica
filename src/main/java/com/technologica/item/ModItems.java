@@ -401,6 +401,14 @@ public class ModItems {
     public static final RegistryObject<Item> PEACH_PLANKS_ITEM = ITEMS.register("peach_planks", () -> new BlockItem(ModBlocks.PEACH_PLANKS.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEAR_PLANKS_ITEM = ITEMS.register("pear_planks", () -> new BlockItem(ModBlocks.PEAR_PLANKS.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
     
+    public static final RegistryObject<Item> SPRUCE_BOOKSHELF_ITEM = ITEMS.register("spruce_bookshelf", () -> new BlockItem(ModBlocks.SPRUCE_BOOKSHELF.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> BIRCH_BOOKSHELF_ITEM = ITEMS.register("birch_bookshelf", () -> new BlockItem(ModBlocks.BIRCH_BOOKSHELF.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> JUNGLE_BOOKSHELF_ITEM = ITEMS.register("jungle_bookshelf", () -> new BlockItem(ModBlocks.JUNGLE_BOOKSHELF.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> ACACIA_BOOKSHELF_ITEM = ITEMS.register("acacia_bookshelf", () -> new BlockItem(ModBlocks.ACACIA_BOOKSHELF.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> DARK_OAK_BOOKSHELF_ITEM = ITEMS.register("dark_oak_bookshelf", () -> new BlockItem(ModBlocks.DARK_OAK_BOOKSHELF.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> CRIMSON_BOOKSHELF_ITEM = ITEMS.register("crimson_bookshelf", () -> new BlockItem(ModBlocks.CRIMSON_BOOKSHELF.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> WARPED_BOOKSHELF_ITEM = ITEMS.register("warped_bookshelf", () -> new BlockItem(ModBlocks.WARPED_BOOKSHELF.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+       
     public static final RegistryObject<Item> BANANA_BOOKSHELF_ITEM = ITEMS.register("banana_bookshelf", () -> new BlockItem(ModBlocks.BANANA_BOOKSHELF.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> CHERRY_BOOKSHELF_ITEM = ITEMS.register("cherry_bookshelf", () -> new BlockItem(ModBlocks.CHERRY_BOOKSHELF.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> COCONUT_BOOKSHELF_ITEM = ITEMS.register("coconut_bookshelf", () -> new BlockItem(ModBlocks.COCONUT_BOOKSHELF.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));

@@ -6,7 +6,6 @@ import java.util.function.Supplier;
 import com.technologica.block.CrystalBlock;
 import com.technologica.block.FruitingLeavesBlock;
 import com.technologica.block.ModBlocks;
-import com.technologica.block.ModBookshelfBlock;
 import com.technologica.block.ModFenceBlock;
 import com.technologica.block.ModFenceGateBlock;
 import com.technologica.block.ModLogBlock;
@@ -75,7 +74,7 @@ public class ModBlockLootTables extends BlockLootTables {
 			else if (block.getClass().equals(SaplingBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(FlowerPotBlock.class)) registerFlowerPot(block);
 			else if (block.getClass().equals(ModPlanksBlock.class)) registerDropSelfLootTable(block);
-			else if (block.getClass().equals(ModBookshelfBlock.class)) registerLootTable(block, (bookshelf) -> droppingWithSilkTouchOrRandomly(bookshelf, Items.BOOK, ConstantRange.of(3)));
+			else if (block.getTranslationKey().contains("bookshelf")) registerLootTable(block, (bookshelf) -> droppingWithSilkTouchOrRandomly(bookshelf, Items.BOOK, ConstantRange.of(3)));
 			else if (block.getClass().equals(ModSlabBlock.class)) registerLootTable(block, BlockLootTables::droppingSlab);
 			else if (block.getClass().equals(ModStairsBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(ModFenceBlock.class)) registerDropSelfLootTable(block);

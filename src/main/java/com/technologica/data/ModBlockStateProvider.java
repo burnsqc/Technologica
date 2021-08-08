@@ -100,7 +100,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	 */
 	public ModelFile cubeColumn(Block block) {
 		if (block.getRegistryName().getPath().contains("bookshelf")) {
-			return models().cubeColumn(name(block), blockTexture(block), replace(blockTexture(block), "bookshelf", "planks"));
+			ResourceLocation end = blockTexture(block);
+			if (block.getTranslationKey().contains("spruce") || block.getTranslationKey().contains("birch") || block.getTranslationKey().contains("jungle") || block.getTranslationKey().contains("acacia") || block.getTranslationKey().contains("dark_oak") || block.getTranslationKey().contains("crimson") || block.getTranslationKey().contains("warped")) {
+				end = mcLoc(blockTexture(block).getPath());	
+			}
+			return models().cubeColumn(name(block), blockTexture(block), replace(end, "bookshelf", "planks"));
 		} else if (block.getRegistryName().getPath().contains("wood")) {
 			return models().cubeColumn(name(block), replace(blockTexture(block), "wood", "log"), replace(blockTexture(block), "wood", "log"));
 		} else {
@@ -199,7 +203,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	}
 	
 	public void bookshelfBlock(Block block) {
-		getVariantBuilder(block).partialState().setModels(new ConfiguredModel(models().cubeColumn(name(block), blockTexture(block), replace(blockTexture(block), "bookshelf", "planks"))));
+		ResourceLocation end = blockTexture(block);
+		if (block.getTranslationKey().contains("spruce") || block.getTranslationKey().contains("birch") || block.getTranslationKey().contains("jungle") || block.getTranslationKey().contains("acacia") || block.getTranslationKey().contains("dark_oak") || block.getTranslationKey().contains("crimson") || block.getTranslationKey().contains("warped")) {
+			end = mcLoc(blockTexture(block).getPath());	
+		}
+		getVariantBuilder(block).partialState().setModels(new ConfiguredModel(models().cubeColumn(name(block), blockTexture(block), replace(end, "bookshelf", "planks"))));
 		this.simpleBlockItem(block, cubeColumn(block));		
     }
 	
