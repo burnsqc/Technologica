@@ -238,6 +238,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> FROSTBITTEN_LOG = BLOCKS.register("frostbitten_log", ModLogBlock::new);
     public static final RegistryObject<Block> INFERNAL_LOG = BLOCKS.register("infernal_log", ModLogBlock::new);
     
+    public static final RegistryObject<Block> STRIPPED_CHERRY_LOG = BLOCKS.register("stripped_cherry_log", ModLogBlock::new);
+    
 //  public static final RegistryObject<Block> APRICOT_WOOD = BLOCKS.register("apricot_wood", ModLogBlock::new);  
 //  public static final RegistryObject<Block> ASPEN_WOOD = BLOCKS.register("aspen_wood", ModLogBlock::new);  
 //  public static final RegistryObject<Block> AVACADO_WOOD = BLOCKS.register("avacado_wood", ModLogBlock::new);  
@@ -267,6 +269,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> CONDUCTIVE_WOOD = BLOCKS.register("conductive_wood", ModLogBlock::new);
     public static final RegistryObject<Block> FROSTBITTEN_WOOD = BLOCKS.register("frostbitten_wood", ModLogBlock::new);
     public static final RegistryObject<Block> INFERNAL_WOOD = BLOCKS.register("infernal_wood", ModLogBlock::new);
+    
+    public static final RegistryObject<Block> STRIPPED_CHERRY_WOOD = BLOCKS.register("stripped_cherry_wood", ModLogBlock::new);
    
 //    public static final RegistryObject<Block> APRICOT_PLANKS = BLOCKS.register("apricot_planks", ModPlanksBlock::new);
 //    public static final RegistryObject<Block> ASPEN_PLANKS = BLOCKS.register("aspen_planks", ModPlanksBlock::new);

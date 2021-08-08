@@ -361,35 +361,39 @@ public class ModItems {
     public static final RegistryObject<Item> FROSTBITTEN_LOG_ITEM = ITEMS.register("frostbitten_log", () -> new BlockItem(ModBlocks.FROSTBITTEN_LOG.get(), new Item.Properties().group(ModItemGroup.CRYPTICA)));
     public static final RegistryObject<Item> INFERNAL_LOG_ITEM = ITEMS.register("infernal_log", () -> new BlockItem(ModBlocks.INFERNAL_LOG.get(), new Item.Properties().group(ModItemGroup.CRYPTICA)));
     
+    public static final RegistryObject<Item> STRIPPED_CHERRY_LOG_ITEM = ITEMS.register("stripped_cherry_log", () -> new BlockItem(ModBlocks.STRIPPED_CHERRY_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    
 //  public static final RegistryObject<Item> APRICOT_WOOD_ITEM = ITEMS.register("apricot_wood", () -> new BlockItem(ModBlocks.APRICOT_WOOD.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
 //  public static final RegistryObject<Item> ASPEN_WOOD_ITEM = ITEMS.register("aspen_wood", () -> new BlockItem(ModBlocks.ASPEN_WOOD.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
 //  public static final RegistryObject<Item> AVACADO_WOOD_ITEM = ITEMS.register("avacado_wood", () -> new BlockItem(ModBlocks.AVACADO_WOOD.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
-  public static final RegistryObject<Item> BANANA_WOOD_ITEM = ITEMS.register("banana_wood", () -> new BlockItem(ModBlocks.BANANA_WOOD.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
-  public static final RegistryObject<Item> CHERRY_WOOD_ITEM = ITEMS.register("cherry_wood", () -> new BlockItem(ModBlocks.CHERRY_WOOD.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> BANANA_WOOD_ITEM = ITEMS.register("banana_wood", () -> new BlockItem(ModBlocks.BANANA_WOOD.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> CHERRY_WOOD_ITEM = ITEMS.register("cherry_wood", () -> new BlockItem(ModBlocks.CHERRY_WOOD.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
 //  public static final RegistryObject<Item> CHESTNUT_WOOD_ITEM = ITEMS.register("chestnut_wood", () -> new BlockItem(ModBlocks.CHESTNUT_WOOD.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));    
-  public static final RegistryObject<Item> COCONUT_WOOD_ITEM = ITEMS.register("coconut_wood", () -> new BlockItem(ModBlocks.COCONUT_WOOD.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> COCONUT_WOOD_ITEM = ITEMS.register("coconut_wood", () -> new BlockItem(ModBlocks.COCONUT_WOOD.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
 //  public static final RegistryObject<Item> EBONY_WOOD_ITEM = ITEMS.register("ebony_wood", () -> new BlockItem(ModBlocks.EBONY_WOOD.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));    
-  public static final RegistryObject<Item> KIWI_WOOD_ITEM = ITEMS.register("kiwi_wood", () -> new BlockItem(ModBlocks.KIWI_WOOD.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
-  public static final RegistryObject<Item> LEMON_WOOD_ITEM = ITEMS.register("lemon_wood", () -> new BlockItem(ModBlocks.LEMON_WOOD.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
-  public static final RegistryObject<Item> LIME_WOOD_ITEM = ITEMS.register("lime_wood", () -> new BlockItem(ModBlocks.LIME_WOOD.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> KIWI_WOOD_ITEM = ITEMS.register("kiwi_wood", () -> new BlockItem(ModBlocks.KIWI_WOOD.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> LEMON_WOOD_ITEM = ITEMS.register("lemon_wood", () -> new BlockItem(ModBlocks.LEMON_WOOD.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> LIME_WOOD_ITEM = ITEMS.register("lime_wood", () -> new BlockItem(ModBlocks.LIME_WOOD.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
 //  public static final RegistryObject<Item> MAHOGANY_WOOD_ITEM = ITEMS.register("mahogany_wood", () -> new BlockItem(ModBlocks.MAHOGANY_WOOD.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));    
 //  public static final RegistryObject<Item> MAPLE_WOOD_ITEM = ITEMS.register("maple_wood", () -> new BlockItem(ModBlocks.MAPLE_WOOD.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
-  public static final RegistryObject<Item> ORANGE_WOOD_ITEM = ITEMS.register("orange_wood", () -> new BlockItem(ModBlocks.ORANGE_WOOD.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
-  public static final RegistryObject<Item> PEACH_WOOD_ITEM = ITEMS.register("peach_wood",	() -> new BlockItem(ModBlocks.PEACH_WOOD.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
-  public static final RegistryObject<Item> PEAR_WOOD_ITEM = ITEMS.register("pear_wood", () -> new BlockItem(ModBlocks.PEAR_WOOD.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION))); 
+    public static final RegistryObject<Item> ORANGE_WOOD_ITEM = ITEMS.register("orange_wood", () -> new BlockItem(ModBlocks.ORANGE_WOOD.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> PEACH_WOOD_ITEM = ITEMS.register("peach_wood",	() -> new BlockItem(ModBlocks.PEACH_WOOD.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> PEAR_WOOD_ITEM = ITEMS.register("pear_wood", () -> new BlockItem(ModBlocks.PEAR_WOOD.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION))); 
 //public static final RegistryObject<Item> PLUM_WOOD_ITEM = ITEMS.register("plum_wood", () -> new BlockItem(ModBlocks.PLUM_WOOD.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));    
 //public static final RegistryObject<Item> REDWOOD_WOOD_ITEM = ITEMS.register("redwood_wood", () -> new BlockItem(ModBlocks.REDWOOD_WOOD.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
 //public static final RegistryObject<Item> RUBBER_WOOD_ITEM = ITEMS.register("rubber_wood", () -> new BlockItem(ModBlocks.RUBBER_WOOD.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
 //public static final RegistryObject<Item> TEAK_WOOD_ITEM = ITEMS.register("teak_wood", () -> new BlockItem(ModBlocks.TEAK_WOOD.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
 //public static final RegistryObject<Item> WALNUT_WOOD_ITEM = ITEMS.register("walnut_wood", () -> new BlockItem(ModBlocks.WALNUT_WOOD.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
 //public static final RegistryObject<Item> ZEBRAWOOD_WOOD_ITEM = ITEMS.register("zebrawood_wood", () -> new BlockItem(ModBlocks.ZEBRAWOOD_WOOD.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
-  public static final RegistryObject<Item> FRUITFUL_WOOD_ITEM = ITEMS.register("fruitful_wood", () -> new BlockItem(ModBlocks.FRUITFUL_WOOD.get(), new Item.Properties().group(ModItemGroup.CRYPTICA)));
-  public static final RegistryObject<Item> ALCHEMICAL_WOOD_ITEM = ITEMS.register("alchemical_wood", () -> new BlockItem(ModBlocks.ALCHEMICAL_WOOD.get(), new Item.Properties().group(ModItemGroup.CRYPTICA)));
-  public static final RegistryObject<Item> BENEVOLENT_WOOD_ITEM = ITEMS.register("benevolent_wood", () -> new BlockItem(ModBlocks.BENEVOLENT_WOOD.get(), new Item.Properties().group(ModItemGroup.CRYPTICA)));
-  public static final RegistryObject<Item> MALEVOLENT_WOOD_ITEM = ITEMS.register("malevolent_wood", () -> new BlockItem(ModBlocks.MALEVOLENT_WOOD.get(), new Item.Properties().group(ModItemGroup.CRYPTICA)));
-  public static final RegistryObject<Item> CONDUCTIVE_WOOD_ITEM = ITEMS.register("conductive_wood", () -> new BlockItem(ModBlocks.CONDUCTIVE_WOOD.get(), new Item.Properties().group(ModItemGroup.CRYPTICA)));
-  public static final RegistryObject<Item> FROSTBITTEN_WOOD_ITEM = ITEMS.register("frostbitten_wood", () -> new BlockItem(ModBlocks.FROSTBITTEN_WOOD.get(), new Item.Properties().group(ModItemGroup.CRYPTICA)));
-  public static final RegistryObject<Item> INFERNAL_WOOD_ITEM = ITEMS.register("infernal_wood", () -> new BlockItem(ModBlocks.INFERNAL_WOOD.get(), new Item.Properties().group(ModItemGroup.CRYPTICA)));
+    public static final RegistryObject<Item> FRUITFUL_WOOD_ITEM = ITEMS.register("fruitful_wood", () -> new BlockItem(ModBlocks.FRUITFUL_WOOD.get(), new Item.Properties().group(ModItemGroup.CRYPTICA)));
+    public static final RegistryObject<Item> ALCHEMICAL_WOOD_ITEM = ITEMS.register("alchemical_wood", () -> new BlockItem(ModBlocks.ALCHEMICAL_WOOD.get(), new Item.Properties().group(ModItemGroup.CRYPTICA)));
+    public static final RegistryObject<Item> BENEVOLENT_WOOD_ITEM = ITEMS.register("benevolent_wood", () -> new BlockItem(ModBlocks.BENEVOLENT_WOOD.get(), new Item.Properties().group(ModItemGroup.CRYPTICA)));
+    public static final RegistryObject<Item> MALEVOLENT_WOOD_ITEM = ITEMS.register("malevolent_wood", () -> new BlockItem(ModBlocks.MALEVOLENT_WOOD.get(), new Item.Properties().group(ModItemGroup.CRYPTICA)));
+    public static final RegistryObject<Item> CONDUCTIVE_WOOD_ITEM = ITEMS.register("conductive_wood", () -> new BlockItem(ModBlocks.CONDUCTIVE_WOOD.get(), new Item.Properties().group(ModItemGroup.CRYPTICA)));
+    public static final RegistryObject<Item> FROSTBITTEN_WOOD_ITEM = ITEMS.register("frostbitten_wood", () -> new BlockItem(ModBlocks.FROSTBITTEN_WOOD.get(), new Item.Properties().group(ModItemGroup.CRYPTICA)));
+    public static final RegistryObject<Item> INFERNAL_WOOD_ITEM = ITEMS.register("infernal_wood", () -> new BlockItem(ModBlocks.INFERNAL_WOOD.get(), new Item.Properties().group(ModItemGroup.CRYPTICA)));
+    
+    public static final RegistryObject<Item> STRIPPED_CHERRY_WOOD_ITEM = ITEMS.register("stripped_cherry_wood", () -> new BlockItem(ModBlocks.STRIPPED_CHERRY_WOOD.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
     
     public static final RegistryObject<Item> BANANA_PLANKS_ITEM = ITEMS.register("banana_planks", () -> new BlockItem(ModBlocks.BANANA_PLANKS.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> CHERRY_PLANKS_ITEM = ITEMS.register("cherry_planks", () -> new BlockItem(ModBlocks.CHERRY_PLANKS.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
