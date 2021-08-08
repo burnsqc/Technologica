@@ -3,6 +3,7 @@ package com.technologica.item;
 import static com.technologica.Technologica.MODID;
 
 import com.technologica.block.ModBlocks;
+import com.technologica.entity.item.ModBoatEntity;
 import com.technologica.fluid.ModFluids;
 
 import net.minecraft.item.BlockItem;
@@ -499,6 +500,8 @@ public class ModItems {
     public static final RegistryObject<Item> ORANGE_SIGN_ITEM = ITEMS.register("orange_sign", () -> new SignItem((new Item.Properties()).maxStackSize(16).group(ModItemGroup.CONSTRUCTION), ModBlocks.ORANGE_SIGN.get(), ModBlocks.ORANGE_WALL_SIGN.get()));
     public static final RegistryObject<Item> PEACH_SIGN_ITEM = ITEMS.register("peach_sign", () -> new SignItem((new Item.Properties()).maxStackSize(16).group(ModItemGroup.CONSTRUCTION), ModBlocks.PEACH_SIGN.get(), ModBlocks.PEACH_WALL_SIGN.get()));
     public static final RegistryObject<Item> PEAR_SIGN_ITEM = ITEMS.register("pear_sign", () -> new SignItem((new Item.Properties()).maxStackSize(16).group(ModItemGroup.CONSTRUCTION), ModBlocks.PEAR_SIGN.get(), ModBlocks.PEAR_WALL_SIGN.get()));
+    
+    public static final RegistryObject<Item> BANANA_BOAT = ITEMS.register("banana_boat", () -> new ModBoatItem(ModBoatEntity.Type.BANANA, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
     
     /**
      * MACHINERY

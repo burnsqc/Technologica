@@ -14,7 +14,7 @@ public class ModMathHelper {
 		float l = (float) Math.sqrt(Math.pow(d, 2) - Math.pow(r1 - r2, 2));
 		float h = (float) Math.sqrt(Math.pow(l, 2) + Math.pow(r2, 2));
 		float theta1 = (float) (Math.atan2(y2 - y1, x2 - x1) + Math.acos((Math.pow(r1, 2) + Math.pow(d, 2) - Math.pow(h, 2)) / (2 * r1 * d)));
-		float theta2 = (float) (Math.atan2(y2 - y1, x2 - x1) - Math.acos((Math.pow(r1, 2) + Math.pow(d, 2) - Math.pow(h, 2)) / (2 * r1 * d)));
+//		float theta2 = (float) (Math.atan2(y2 - y1, x2 - x1) - Math.acos((Math.pow(r1, 2) + Math.pow(d, 2) - Math.pow(h, 2)) / (2 * r1 * d)));
 		
 		coords[0] = (float) (x1 + r1I * Math.cos(theta1));
 		coords[1] = (float) (y1 + r1I * Math.sin(theta1));
