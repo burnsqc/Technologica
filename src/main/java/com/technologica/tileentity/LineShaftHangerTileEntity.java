@@ -29,6 +29,7 @@ public class LineShaftHangerTileEntity extends TileEntity {
 		TileEntity connection2 = null;
 		
 		this.rpm = rpmIn;
+		this.getWorld().notifyBlockUpdate(this.pos, this.getBlockState(), this.getBlockState(), 3);
 
 		switch(getBlockState().get(AXIS)) {
 		case X:
@@ -115,11 +116,15 @@ public class LineShaftHangerTileEntity extends TileEntity {
 	    if (nbt.contains(ITEM_NAME)) {
 	    	this.setShaft(nbt.getBoolean(ITEM_NAME));
 	    }
+	    if (nbt.contains("rpm")) {
+			this.rpm = nbt.getInt("rpm");
+		}
 	}
 
 	@Override
 	public CompoundNBT write(CompoundNBT compound) {
 		super.write(compound);
+		compound.putInt("rpm", this.rpm);
 	    compound.putBoolean(ITEM_NAME, this.getShaft());
 	    return compound;	    
 	}

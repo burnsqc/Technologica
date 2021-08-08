@@ -23,6 +23,8 @@ import net.minecraft.world.World;
 
 public class MotorBlock extends TwentyFourDirectionBlock {
 	public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
+	public int maxRPM = 60;
+	public int maxTorque = 100;
 	
 	public MotorBlock() {
 		super(AbstractBlock.Properties.create(Material.IRON).hardnessAndResistance(0.3F).sound(SoundType.ANVIL).notSolid());
@@ -47,18 +49,15 @@ public class MotorBlock extends TwentyFourDirectionBlock {
 	
 	@Override
 	public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
-		if (!worldIn.isRemote) {
-			if (worldIn.isBlockPowered(fromPos) && worldIn.getBlockState(pos.offset(state.get(SUB_FACING))).getBlock() instanceof LineShaftBlock) {
+		if (!worldIn.isRemote && worldIn.getBlockState(pos.offset(state.get(SUB_FACING))).getBlock() instanceof LineShaftBlock) {
+			if (worldIn.isBlockPowered(fromPos)) {
 				LineShaftTileEntity tile = (LineShaftTileEntity) worldIn.getTileEntity(pos.offset(state.get(SUB_FACING)));  
 				tile.setRPM(60);
-//				worldIn.setBlockState(pos, state.with(POWERED, true), 3);
-//				worldIn.notifyBlockUpdate(pos, state.with(POWERED, false), state.with(POWERED, true), 3);
-//				worldIn.getPendingBlockTicks().scheduleTick(pos.offset(state.get(SUB_FACING)), this, 2);
-			} else if (!worldIn.isBlockPowered(fromPos) && worldIn.getBlockState(pos.offset(state.get(SUB_FACING))).getBlock() instanceof LineShaftBlock) {
+				worldIn.setBlockState(pos, state.with(POWERED, true), 3);
+			} else if (!worldIn.isBlockPowered(fromPos)) {
 				LineShaftTileEntity tile = (LineShaftTileEntity) worldIn.getTileEntity(pos.offset(state.get(SUB_FACING)));  
 				tile.setRPM(0);
-//				worldIn.setBlockState(pos, state.with(POWERED, false), 3);
-//				worldIn.notifyBlockUpdate(pos, state.with(POWERED, true), state.with(POWERED, false), 3);
+				worldIn.setBlockState(pos, state.with(POWERED, false), 3);
 			}
 		}
 	}

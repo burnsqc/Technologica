@@ -51,7 +51,8 @@ public class LineShaftTileEntity extends TileEntity {
 		TileEntity connection3 = null;
 		
 		this.rpm = rpmIn;
-
+		this.getWorld().notifyBlockUpdate(this.pos, this.getBlockState(), this.getBlockState(), 3);
+		
 		switch(getBlockState().get(AXIS)) {
 		case X:
 			connection1 = world.getTileEntity(this.getPos().offset(Direction.EAST));
@@ -89,18 +90,23 @@ public class LineShaftTileEntity extends TileEntity {
 
 		if (getBeltPos() != null) {
 			connection3 = world.getTileEntity(this.beltPos);
+			int pulley1 = getBlockState().get(LineShaftBlock.PULLEY);
+			int pulley2 = connection3.getBlockState().get(LineShaftBlock.PULLEY);
+			
 			int mult1;
 			int mult2;
-			if (this.getBlockState().get(LineShaftBlock.PULLEY) == 1) {
+			
+			if (pulley1 == 1) {
 				mult1 = 1;
-			} else if (this.getBlockState().get(LineShaftBlock.PULLEY) == 2) {
+			} else if (pulley1 == 2) {
 				mult1 = 2;
 			} else {
 				mult1 = 4;
 			}
-			if (connection3.getBlockState().get(LineShaftBlock.PULLEY) == 1) {
+			
+			if (pulley2 == 1) {
 				mult2 = 1;
-			} else if (this.getBlockState().get(LineShaftBlock.PULLEY) == 2) {
+			} else if (pulley2 == 2) {
 				mult2 = 2;
 			} else {
 				mult2 = 4;
@@ -189,10 +195,10 @@ public class LineShaftTileEntity extends TileEntity {
 	@Override
 	public CompoundNBT write(CompoundNBT compound) {
 		super.write(compound);
+		compound.putInt("rpm", this.rpm);
 		if (this.beltPos != null) {
 			compound.put("BeltPos", NBTUtil.writeBlockPos(this.beltPos));
 		}	  
-		compound.putInt("rpm", this.rpm);
 	    return compound;	    
 	}
 }

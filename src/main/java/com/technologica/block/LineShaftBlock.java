@@ -72,10 +72,10 @@ public class LineShaftBlock extends RotatedPillarBlock {
 			bool = worldIn.getBlockState(pos.east()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || worldIn.getBlockState(pos.west()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || (worldIn.getBlockState(pos.east()).getBlock() == ModBlocks.LINE_SHAFT.get() && worldIn.getBlockState(pos.west()).getBlock() == ModBlocks.LINE_SHAFT.get() || worldIn.getBlockState(pos.east()).getBlock() == ModBlocks.SIMPLE_MOTOR.get() || worldIn.getBlockState(pos.west()).getBlock() == ModBlocks.SIMPLE_MOTOR.get());
 			break;
 		case Y:
-			bool = worldIn.getBlockState(pos.up()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || worldIn.getBlockState(pos.down()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || (worldIn.getBlockState(pos.up()).getBlock() == ModBlocks.LINE_SHAFT.get() && worldIn.getBlockState(pos.down()).getBlock() == ModBlocks.LINE_SHAFT.get());
+			bool = worldIn.getBlockState(pos.up()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || worldIn.getBlockState(pos.down()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || (worldIn.getBlockState(pos.up()).getBlock() == ModBlocks.LINE_SHAFT.get() && worldIn.getBlockState(pos.down()).getBlock() == ModBlocks.LINE_SHAFT.get() || worldIn.getBlockState(pos.up()).getBlock() == ModBlocks.SIMPLE_MOTOR.get() || worldIn.getBlockState(pos.down()).getBlock() == ModBlocks.SIMPLE_MOTOR.get());
 			break;
 		case Z:
-			bool = worldIn.getBlockState(pos.north()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || worldIn.getBlockState(pos.south()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || (worldIn.getBlockState(pos.north()).getBlock() == ModBlocks.LINE_SHAFT.get() && worldIn.getBlockState(pos.south()).getBlock() == ModBlocks.LINE_SHAFT.get());
+			bool = worldIn.getBlockState(pos.north()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || worldIn.getBlockState(pos.south()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || (worldIn.getBlockState(pos.north()).getBlock() == ModBlocks.LINE_SHAFT.get() && worldIn.getBlockState(pos.south()).getBlock() == ModBlocks.LINE_SHAFT.get() || worldIn.getBlockState(pos.north()).getBlock() == ModBlocks.SIMPLE_MOTOR.get() || worldIn.getBlockState(pos.south()).getBlock() == ModBlocks.SIMPLE_MOTOR.get());
 			break;
 	}
 		return bool;		

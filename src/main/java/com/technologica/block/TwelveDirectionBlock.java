@@ -5,6 +5,7 @@ import com.technologica.tileentity.LineShaftHangerTileEntity;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
@@ -69,9 +70,11 @@ public class TwelveDirectionBlock extends Block{
 			}
 			worldIn.setBlockState(posIn, stateIn.with(AXIS, axis), 2);
 		
-		} else if (tool == ModItems.PIPE_WRENCH.get()) {
+		} else if (tool == ModItems.STEEL_SHAFT.get()) {
 			if (!playerIn.isCrouching() && !tile.getShaft()) {
 				tile.setShaft(true);
+			} else if (!playerIn.isCrouching() && tile.getShaft() && hitIn.getFace().getAxis() == stateIn.get(AXIS)) {
+				worldIn.setBlockState(hitIn.getPos().offset(hitIn.getFace()), ModBlocks.LINE_SHAFT.get().getDefaultState().with(RotatedPillarBlock.AXIS, stateIn.get(AXIS)), 3);
 			}
 		} 
 		return ActionResultType.func_233537_a_(worldIn.isRemote);
