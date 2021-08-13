@@ -531,7 +531,9 @@ public class ModItems {
     public static final RegistryObject<Item> HAMMER = ITEMS.register("hammer", () -> new PickaxeItem(ItemTier.IRON, 1, -2.8F, (new Item.Properties()).group(ModItemGroup.MACHINERY)));
     public static final RegistryObject<Item> PIPE_WRENCH = ITEMS.register("pipe_wrench", () -> new PipeWrenchItem(ItemTier.IRON, 1, -2.8F, (new Item.Properties()).group(ModItemGroup.MACHINERY)));
     public static final RegistryObject<Item> WRENCH = ITEMS.register("wrench", () -> new PickaxeItem(ItemTier.IRON, 1, -2.8F, (new Item.Properties()).group(ModItemGroup.MACHINERY)));
-    public static final RegistryObject<Item> SIMPLE_MOTOR_ITEM = ITEMS.register("simple_motor", () -> new BlockItem(ModBlocks.SIMPLE_MOTOR.get(), new Item.Properties().group(ModItemGroup.MACHINERY)));
+    public static final RegistryObject<Item> MOTOR_1HP_ITEM = ITEMS.register("motor_1hp", () -> new BlockItem(ModBlocks.MOTOR_1HP.get(), new Item.Properties().group(ModItemGroup.MACHINERY)));
+    public static final RegistryObject<Item> MOTOR_5HP_ITEM = ITEMS.register("motor_5hp", () -> new BlockItem(ModBlocks.MOTOR_5HP.get(), new Item.Properties().group(ModItemGroup.MACHINERY)));
+    public static final RegistryObject<Item> MOTOR_20HP_ITEM = ITEMS.register("motor_20hp", () -> new BlockItem(ModBlocks.MOTOR_20HP.get(), new Item.Properties().group(ModItemGroup.MACHINERY)));
     
     /**
      * DECORATIVE

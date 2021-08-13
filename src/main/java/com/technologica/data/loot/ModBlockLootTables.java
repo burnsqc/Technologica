@@ -52,7 +52,9 @@ public class ModBlockLootTables extends BlockLootTables {
 		registerDropSelfLootTable(ModBlocks.SMALL_PULLEY.get());
 		registerDropSelfLootTable(ModBlocks.MEDIUM_PULLEY.get());
 		registerDropSelfLootTable(ModBlocks.LARGE_PULLEY.get());
-		registerDropSelfLootTable(ModBlocks.SIMPLE_MOTOR.get());
+		registerDropSelfLootTable(ModBlocks.MOTOR_1HP.get());
+		registerDropSelfLootTable(ModBlocks.MOTOR_5HP.get());
+		registerDropSelfLootTable(ModBlocks.MOTOR_20HP.get());
 		
 		registerDropSelfLootTable(ModBlocks.DISPLAY_CASE.get());
 	}

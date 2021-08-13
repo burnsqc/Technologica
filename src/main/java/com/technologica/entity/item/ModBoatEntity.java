@@ -5,11 +5,11 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.technologica.block.ModBlocks;
+import com.technologica.entity.ModEntities;
 import com.technologica.item.ModItems;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.LilyPadBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntitySize;
@@ -17,7 +17,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.Pose;
-import net.minecraft.entity.item.BoatEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.WaterMobEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -87,13 +86,13 @@ public class ModBoatEntity extends Entity {
    private float rockingAngle;
    private float prevRockingAngle;
 
-   public ModBoatEntity(EntityType<? extends BoatEntity> type, World world) {
+   public ModBoatEntity(EntityType<? extends ModBoatEntity> type, World world) {
       super(type, world);
       this.preventEntitySpawning = true;
    }
 
    public ModBoatEntity(World worldIn, double x, double y, double z) {
-      this(EntityType.BOAT, worldIn);
+      this(ModEntities.MOD_BOAT.get(), worldIn);
       this.setPosition(x, y, z);
       this.setMotion(Vector3d.ZERO);
       this.prevPosX = x;
@@ -113,7 +112,7 @@ public class ModBoatEntity extends Entity {
       this.dataManager.register(TIME_SINCE_HIT, 0);
       this.dataManager.register(FORWARD_DIRECTION, 1);
       this.dataManager.register(DAMAGE_TAKEN, 0.0F);
-      this.dataManager.register(BOAT_TYPE, BoatEntity.Type.OAK.ordinal());
+      this.dataManager.register(BOAT_TYPE, ModBoatEntity.Type.BANANA.ordinal());
       this.dataManager.register(LEFT_PADDLE, false);
       this.dataManager.register(RIGHT_PADDLE, false);
       this.dataManager.register(ROCKING_TICKS, 0);
@@ -152,7 +151,6 @@ public class ModBoatEntity extends Entity {
    /**
     * Called when the entity is attacked.
     */
-   @Deprecated
    public boolean attackEntityFrom(DamageSource source, float amount) {
       if (this.isInvulnerableTo(source)) {
          return false;
@@ -213,14 +211,6 @@ public class ModBoatEntity extends Entity {
          return ModItems.BANANA_BOAT.get();
       case CHERRY:
          return ModItems.CHERRY_BOAT.get();
-      case BIRCH:
-         return Items.BIRCH_BOAT;
-      case JUNGLE:
-         return Items.JUNGLE_BOAT;
-      case ACACIA:
-         return Items.ACACIA_BOAT;
-      case DARK_OAK:
-         return Items.DARK_OAK_BOAT;
       }
    }
 
@@ -237,7 +227,6 @@ public class ModBoatEntity extends Entity {
    /**
     * Returns true if other Entities should be prevented from moving through this Entity.
     */
-   @Deprecated
    public boolean canBeCollidedWith() {
       return !this.removed;
    }
@@ -588,7 +577,6 @@ public class ModBoatEntity extends Entity {
    /**
     * Update the boat's speed, based on momentum.
     */
-   
    private void updateMotion() {
       double d1 = this.hasNoGravity() ? 0.0D : (double)-0.04F;
       double d2 = 0.0D;
@@ -658,7 +646,6 @@ public class ModBoatEntity extends Entity {
       }
    }
 
-   @Deprecated
    public void updatePassenger(Entity passenger) {
       if (this.isPassenger(passenger)) {
          float f = 0.0F;
@@ -766,7 +753,6 @@ public class ModBoatEntity extends Entity {
       }
    }
 
-   @Deprecated
    protected void updateFallState(double y, boolean onGroundIn, BlockState state, BlockPos pos) {
       this.lastYd = this.getMotion().y;
       if (!this.isPassenger()) {
@@ -917,12 +903,8 @@ public class ModBoatEntity extends Entity {
 
    public static enum Type {
       BANANA(ModBlocks.BANANA_PLANKS.get(), "banana"),
-      CHERRY(ModBlocks.CHERRY_PLANKS.get(), "cherry"),
-      BIRCH(Blocks.BIRCH_PLANKS, "birch"),
-      JUNGLE(Blocks.JUNGLE_PLANKS, "jungle"),
-      ACACIA(Blocks.ACACIA_PLANKS, "acacia"),
-      DARK_OAK(Blocks.DARK_OAK_PLANKS, "dark_oak");
-
+      CHERRY(ModBlocks.CHERRY_PLANKS.get(), "cherry");
+      
       private final String name;
       private final Block block;
 

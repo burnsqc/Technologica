@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "technologica:simple_motor"
+          "name": "technologica:motor_5hp"
         }
       ],
       "conditions": [

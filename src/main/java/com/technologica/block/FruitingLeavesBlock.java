@@ -39,31 +39,31 @@ public class FruitingLeavesBlock extends LeavesBlock {
 	@SafeVarargs
 	public FruitingLeavesBlock(Supplier<Item>... fruitIn) {
 		super(AbstractBlock.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid());
-		this.setDefaultState(this.stateContainer.getBaseState().with(AGE, Integer.valueOf(0)).with(DISTANCE, 7).with(PERSISTENT, false));
+		this.setDefaultState(this.stateContainer.getBaseState().with(AGE, 0).with(DISTANCE, 7).with(PERSISTENT, false));
 		fruit = fruitIn;
 	}
 
 	@Override
-	public boolean hasTileEntity(BlockState state) {
+	public boolean hasTileEntity(BlockState stateIn) {
 		return true;
 	}
 
 	@Override
-	public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+	public TileEntity createTileEntity(BlockState stateIn, IBlockReader worldIn) {
 		return new FruitTileEntity();
 	}
 	
-	public FruitTileEntity getTileEntity(World world, BlockPos pos) {
-        return (FruitTileEntity) world.getTileEntity(pos);
+	public FruitTileEntity getTileEntity(World worldIn, BlockPos posIn) {
+        return (FruitTileEntity) worldIn.getTileEntity(posIn);
     }
 
 	@Override
-	public boolean ticksRandomly(BlockState state) {
-		return !state.get(PERSISTENT);
+	public boolean ticksRandomly(BlockState stateIn) {
+		return !stateIn.get(PERSISTENT);
 	}
 
 	@Override
-	public void randomTick(BlockState stateIn, ServerWorld worldIn, BlockPos posIn, Random random) {
+	public void randomTick(BlockState stateIn, ServerWorld worldIn, BlockPos posIn, Random randomIn) {
 		FruitTileEntity tile = getTileEntity(worldIn, posIn);
 		
 		if (stateIn.get(DISTANCE) == 7) {
@@ -80,7 +80,7 @@ public class FruitingLeavesBlock extends LeavesBlock {
 			}	
 			if (stateIn.get(AGE) == 14) {
 				if (fruit[0].get().equals(Items.POTION)) {
-					int potionType = random.nextInt(15);
+					int potionType = randomIn.nextInt(15);
 					if (potionType == 0) {
 						tile.setFruitStack(PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_NIGHT_VISION));
 					} else if (potionType == 1) {
@@ -113,7 +113,7 @@ public class FruitingLeavesBlock extends LeavesBlock {
 						tile.setFruitStack(PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_WEAKNESS));
 					}				
 				} else {
-					tile.setFruitStack(new ItemStack(fruit[random.nextInt(fruit.length)].get()));
+					tile.setFruitStack(new ItemStack(fruit[randomIn.nextInt(fruit.length)].get()));
 				}	
 			}
 		
@@ -121,13 +121,13 @@ public class FruitingLeavesBlock extends LeavesBlock {
 	}
 
 	@Override
-	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		FruitTileEntity tile = getTileEntity(worldIn, pos);
-		if (state.get(AGE) == 15) {
-			spawnAsEntity(worldIn, pos.down(), tile.getFruitStack());
+	public ActionResultType onBlockActivated(BlockState stateIn, World worldIn, BlockPos posIn, PlayerEntity playerIn, Hand handIn, BlockRayTraceResult hitIn) {
+		FruitTileEntity tile = getTileEntity(worldIn, posIn);
+		if (stateIn.get(AGE) == 15) {
+			spawnAsEntity(worldIn, posIn.down(), tile.getFruitStack());
 			tile.clear();
-			worldIn.playSound((PlayerEntity)null, pos, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1.0F, 0.8F + worldIn.rand.nextFloat() * 0.4F);
-			worldIn.setBlockState(pos, state.with(AGE, Integer.valueOf(0)), 4);
+			worldIn.playSound((PlayerEntity)null, posIn, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1.0F, 0.8F + worldIn.rand.nextFloat() * 0.4F);
+			worldIn.setBlockState(posIn, stateIn.with(AGE, Integer.valueOf(0)), 4);
 			return ActionResultType.func_233537_a_(worldIn.isRemote);
 		} else {
 			return ActionResultType.FAIL;

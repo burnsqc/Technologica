@@ -9,6 +9,7 @@ import com.technologica.block.ModBlocks;
 import com.technologica.block.TallCropsBlock;
 import com.technologica.client.renderer.entity.DuckRenderer;
 import com.technologica.client.renderer.entity.GrizzlyBearRenderer;
+import com.technologica.client.renderer.entity.ModBoatRenderer;
 import com.technologica.client.renderer.entity.OstrichRenderer;
 import com.technologica.client.renderer.entity.SharkRenderer;
 import com.technologica.client.renderer.entity.ZebraRenderer;
@@ -16,6 +17,7 @@ import com.technologica.client.renderer.tileentity.DisplayCaseTileEntityRenderer
 import com.technologica.client.renderer.tileentity.FruitTileEntityRenderer;
 import com.technologica.client.renderer.tileentity.LineShaftHangerTileEntityRenderer;
 import com.technologica.client.renderer.tileentity.LineShaftTileEntityRenderer;
+import com.technologica.client.renderer.tileentity.ModSignTileEntityRenderer;
 import com.technologica.client.renderer.tileentity.PotionTileEntityRenderer;
 import com.technologica.entity.ModEntities;
 import com.technologica.fluid.ModFluids;
@@ -29,7 +31,6 @@ import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.TrapDoorBlock;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.client.renderer.tileentity.SignTileEntityRenderer;
 import net.minecraft.inventory.container.PlayerContainer;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.fml.RegistryObject;
@@ -40,6 +41,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 public class ClientSetup {
 
 	public static void init(final FMLClientSetupEvent event) {
+		RenderingRegistry.registerEntityRenderingHandler(ModEntities.MOD_BOAT.get(), ModBoatRenderer::new);
+		
 		RenderingRegistry.registerEntityRenderingHandler(ModEntities.DUCK.get(), DuckRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ModEntities.GRIZZLY_BEAR.get(), GrizzlyBearRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ModEntities.OSTRICH.get(), OstrichRenderer::new);
@@ -48,9 +51,7 @@ public class ClientSetup {
 
 		event.enqueueWork(() -> {
 			automaticCutoutMipped(ModBlocks.BLOCKS.getEntries());
-      
-			RenderTypeLookup.setRenderLayer(ModBlocks.BANANA_SIGN.get(), RenderType.getTranslucent());
-			
+      			
 			RenderTypeLookup.setRenderLayer(ModBlocks.DISPLAY_CASE.get(), RenderType.getTranslucent());
 
 			RenderTypeLookup.setRenderLayer(ModBlocks.AQUAMARINE_CRYSTAL.get(), RenderType.getTranslucent());
@@ -60,7 +61,7 @@ public class ClientSetup {
     	  	RenderTypeLookup.setRenderLayer(ModFluids.BRINE_SOURCE.get(), RenderType.getTranslucent());
     	  	RenderTypeLookup.setRenderLayer(ModFluids.BRINE_FLOWING.get(), RenderType.getTranslucent());
 
-    	  	ClientRegistry.bindTileEntityRenderer(ModTileEntities.SIGN.get(), SignTileEntityRenderer::new);
+    	  	ClientRegistry.bindTileEntityRenderer(ModTileEntities.MOD_SIGN.get(), ModSignTileEntityRenderer::new);
     	  	ClientRegistry.bindTileEntityRenderer(ModTileEntities.FRUIT_CROP.get(), FruitTileEntityRenderer::new);
     	  	ClientRegistry.bindTileEntityRenderer(ModTileEntities.POTION_CROP.get(), PotionTileEntityRenderer::new);
     	  	ClientRegistry.bindTileEntityRenderer(ModTileEntities.DISPLAY_TILE.get(), DisplayCaseTileEntityRenderer::new);

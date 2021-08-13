@@ -28,10 +28,6 @@ public class ModBoatItem extends Item {
 	      this.type = typeIn;
 	   }
 
-	   /**
-	    * Called to trigger the item's "innate" right click behavior. To handle when this item is used on a Block, see
-	    * {@link #onItemUse}.
-	    */
 	   public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
 	      ItemStack itemstack = playerIn.getHeldItem(handIn);
 	      RayTraceResult raytraceresult = rayTrace(worldIn, playerIn, RayTraceContext.FluidMode.ANY);
@@ -52,14 +48,14 @@ public class ModBoatItem extends Item {
 	         }
 
 	         if (raytraceresult.getType() == RayTraceResult.Type.BLOCK) {
-	            ModBoatEntity boatentity = new ModBoatEntity(worldIn, raytraceresult.getHitVec().x, raytraceresult.getHitVec().y, raytraceresult.getHitVec().z);
-	            boatentity.setBoatType(this.type);
-	            boatentity.rotationYaw = playerIn.rotationYaw;
-	            if (!worldIn.hasNoCollisions(boatentity, boatentity.getBoundingBox().grow(-0.1D))) {
+	            ModBoatEntity modBoatEntity = new ModBoatEntity(worldIn, raytraceresult.getHitVec().x, raytraceresult.getHitVec().y, raytraceresult.getHitVec().z);
+	            modBoatEntity.setBoatType(this.type);
+	            modBoatEntity.rotationYaw = playerIn.rotationYaw;
+	            if (!worldIn.hasNoCollisions(modBoatEntity, modBoatEntity.getBoundingBox().grow(-0.1D))) {
 	               return ActionResult.resultFail(itemstack);
 	            } else {
 	               if (!worldIn.isRemote) {
-	                  worldIn.addEntity(boatentity);
+	                  worldIn.addEntity(modBoatEntity);
 	                  if (!playerIn.abilities.isCreativeMode) {
 	                     itemstack.shrink(1);
 	                  }

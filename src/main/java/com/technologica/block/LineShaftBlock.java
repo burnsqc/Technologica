@@ -69,13 +69,13 @@ public class LineShaftBlock extends RotatedPillarBlock {
 		boolean bool = false;
 		switch (stateIn.get(AXIS)) {
 		case X:
-			bool = worldIn.getBlockState(pos.east()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || worldIn.getBlockState(pos.west()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || (worldIn.getBlockState(pos.east()).getBlock() == ModBlocks.LINE_SHAFT.get() && worldIn.getBlockState(pos.west()).getBlock() == ModBlocks.LINE_SHAFT.get() || worldIn.getBlockState(pos.east()).getBlock() == ModBlocks.SIMPLE_MOTOR.get() || worldIn.getBlockState(pos.west()).getBlock() == ModBlocks.SIMPLE_MOTOR.get());
+			bool = worldIn.getBlockState(pos.east()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || worldIn.getBlockState(pos.west()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || (worldIn.getBlockState(pos.east()).getBlock() == ModBlocks.LINE_SHAFT.get() && worldIn.getBlockState(pos.west()).getBlock() == ModBlocks.LINE_SHAFT.get() || worldIn.getBlockState(pos.east()).getBlock() instanceof MotorBlock || worldIn.getBlockState(pos.west()).getBlock() instanceof MotorBlock);
 			break;
 		case Y:
-			bool = worldIn.getBlockState(pos.up()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || worldIn.getBlockState(pos.down()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || (worldIn.getBlockState(pos.up()).getBlock() == ModBlocks.LINE_SHAFT.get() && worldIn.getBlockState(pos.down()).getBlock() == ModBlocks.LINE_SHAFT.get() || worldIn.getBlockState(pos.up()).getBlock() == ModBlocks.SIMPLE_MOTOR.get() || worldIn.getBlockState(pos.down()).getBlock() == ModBlocks.SIMPLE_MOTOR.get());
+			bool = worldIn.getBlockState(pos.up()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || worldIn.getBlockState(pos.down()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || (worldIn.getBlockState(pos.up()).getBlock() == ModBlocks.LINE_SHAFT.get() && worldIn.getBlockState(pos.down()).getBlock() == ModBlocks.LINE_SHAFT.get() || worldIn.getBlockState(pos.up()).getBlock() instanceof MotorBlock || worldIn.getBlockState(pos.down()).getBlock() instanceof MotorBlock);
 			break;
 		case Z:
-			bool = worldIn.getBlockState(pos.north()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || worldIn.getBlockState(pos.south()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || (worldIn.getBlockState(pos.north()).getBlock() == ModBlocks.LINE_SHAFT.get() && worldIn.getBlockState(pos.south()).getBlock() == ModBlocks.LINE_SHAFT.get() || worldIn.getBlockState(pos.north()).getBlock() == ModBlocks.SIMPLE_MOTOR.get() || worldIn.getBlockState(pos.south()).getBlock() == ModBlocks.SIMPLE_MOTOR.get());
+			bool = worldIn.getBlockState(pos.north()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || worldIn.getBlockState(pos.south()).getBlock() == ModBlocks.LINE_SHAFT_HANGER.get() || (worldIn.getBlockState(pos.north()).getBlock() == ModBlocks.LINE_SHAFT.get() && worldIn.getBlockState(pos.south()).getBlock() == ModBlocks.LINE_SHAFT.get() || worldIn.getBlockState(pos.north()).getBlock() instanceof MotorBlock || worldIn.getBlockState(pos.south()).getBlock() instanceof MotorBlock);
 			break;
 	}
 		return bool;		
@@ -109,14 +109,7 @@ public class LineShaftBlock extends RotatedPillarBlock {
 		LineShaftTileEntity tile = getTileEntity(worldIn, pos);
 		Item tool = player.getHeldItem(handIn).getItem();
 		
-		if (tool == ModItems.HAMMER.get()) {
-			if (tile.getRPM() == 0) {
-				tile.setRPM(60);
-			} else {
-				tile.setRPM(0);
-			}
-			
-		} else if (tool == ModItems.PIPE_WRENCH.get()) {
+		if (tool == ModItems.PIPE_WRENCH.get()) {
 			worldIn.setBlockState(pos, state.with(PULLEY, Integer.valueOf(0)), 1);
 			worldIn.playSound((PlayerEntity)null, pos, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.rand.nextFloat() * 0.4F);
 			

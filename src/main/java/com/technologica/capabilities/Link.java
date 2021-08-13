@@ -217,8 +217,8 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 		this.linkTile2 = this.world.getTileEntity(this.linkPos2);
 		((LineShaftTileEntity) this.linkTile1).setBeltPos(this.linkPos2);
 		((LineShaftTileEntity) this.linkTile2).setBeltPos(this.linkPos1);
-		((LineShaftTileEntity) this.linkTile1).setRatio();
 		this.world.notifyBlockUpdate(this.linkPos1, this.linkState1, this.linkState1, 3);
+		this.world.notifyBlockUpdate(this.linkPos2, this.linkState2, this.linkState2, 3);
 		this.message = "LINK SUCCESS";
 		this.player.sendMessage(new StringTextComponent(message), Util.DUMMY_UUID);	
 	}
@@ -248,7 +248,6 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 			if (!(instance instanceof Link)) {
 				throw new IllegalArgumentException("Can not deserialize to an instance that isn't the default implementation");
 			}
-			
 		}
 	}
 	
