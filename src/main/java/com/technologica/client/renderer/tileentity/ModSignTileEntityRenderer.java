@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.technologica.Technologica;
 import com.technologica.tileentity.ModSignTileEntity;
 
 import net.minecraft.block.AbstractSignBlock;
@@ -21,14 +22,14 @@ import net.minecraft.client.renderer.tileentity.SignTileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.util.IReorderingProcessor;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class ModSignTileEntityRenderer extends TileEntityRenderer<ModSignTileEntity> {
-   
-   private final SignTileEntityRenderer.SignModel model = new SignTileEntityRenderer.SignModel();
+	private final SignTileEntityRenderer.SignModel model = new SignTileEntityRenderer.SignModel();
 
    public ModSignTileEntityRenderer(TileEntityRendererDispatcher rendererDispatcherIn) {
       super(rendererDispatcherIn);
@@ -84,13 +85,14 @@ public class ModSignTileEntityRenderer extends TileEntityRenderer<ModSignTileEnt
    }
 
    public static RenderMaterial getMaterial(Block blockIn) {
-      WoodType woodtype;
+	   
+      WoodType woodType;
       if (blockIn instanceof AbstractSignBlock) {
-         woodtype = ((AbstractSignBlock)blockIn).getWoodType();
+         woodType = ((AbstractSignBlock)blockIn).getWoodType();
       } else {
-         woodtype = WoodType.OAK;
+         woodType = WoodType.OAK;
       }
 
-      return Atlases.getSignMaterial(woodtype);
+      return new RenderMaterial(Atlases.SIGN_ATLAS, new ResourceLocation(Technologica.MODID, "entity/signs/" + woodType.getName()));
    }
 }

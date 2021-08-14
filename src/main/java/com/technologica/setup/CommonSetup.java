@@ -6,6 +6,8 @@ import com.technologica.entity.ModEntities;
 import com.technologica.entity.monster.SharkEntity;
 import com.technologica.entity.passive.DuckEntity;
 import com.technologica.entity.passive.GrizzlyBearEntity;
+import com.technologica.network.play.server.PacketHandler;
+
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FlowerPotBlock;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
@@ -17,6 +19,7 @@ public class CommonSetup {
 
    public static void init(final FMLCommonSetupEvent event) {
       ModCapabilities.register();
+      PacketHandler.onCommonSetupEvent();
       GlobalEntityTypeAttributes.put(ModEntities.DUCK.get(), DuckEntity.registerAttributes().create());
       GlobalEntityTypeAttributes.put(ModEntities.GRIZZLY_BEAR.get(), GrizzlyBearEntity.registerAttributes().create());
       GlobalEntityTypeAttributes.put(ModEntities.OSTRICH.get(), func_234237_fg_().create());

@@ -505,7 +505,7 @@ public class ModItems {
     public static final RegistryObject<Item> PEACH_BUTTON_ITEM = ITEMS.register("peach_button", () -> new BlockItem(ModBlocks.PEACH_BUTTON.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEAR_BUTTON_ITEM = ITEMS.register("pear_button", () -> new BlockItem(ModBlocks.PEAR_BUTTON.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
     
-    public static final RegistryObject<Item> BANANA_SIGN_ITEM = ITEMS.register("banana_sign", () -> new SignItem((new Item.Properties()).maxStackSize(16).group(ModItemGroup.CONSTRUCTION), ModBlocks.BANANA_SIGN.get(), ModBlocks.BANANA_WALL_SIGN.get()));
+    public static final RegistryObject<Item> BANANA_SIGN_ITEM = ITEMS.register("banana_sign", () -> new ModSignItem((new Item.Properties()).maxStackSize(16).group(ModItemGroup.CONSTRUCTION), ModBlocks.BANANA_SIGN.get(), ModBlocks.BANANA_WALL_SIGN.get()));
     public static final RegistryObject<Item> CHERRY_SIGN_ITEM = ITEMS.register("cherry_sign", () -> new SignItem((new Item.Properties()).maxStackSize(16).group(ModItemGroup.CONSTRUCTION), ModBlocks.CHERRY_SIGN.get(), ModBlocks.CHERRY_WALL_SIGN.get()));
     public static final RegistryObject<Item> COCONUT_SIGN_ITEM = ITEMS.register("coconut_sign", () -> new SignItem((new Item.Properties()).maxStackSize(16).group(ModItemGroup.CONSTRUCTION), ModBlocks.COCONUT_SIGN.get(), ModBlocks.COCONUT_WALL_SIGN.get()));
     public static final RegistryObject<Item> KIWI_SIGN_ITEM = ITEMS.register("kiwi_sign", () -> new SignItem((new Item.Properties()).maxStackSize(16).group(ModItemGroup.CONSTRUCTION), ModBlocks.KIWI_SIGN.get(), ModBlocks.KIWI_WALL_SIGN.get()));

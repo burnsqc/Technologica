@@ -1,10 +1,9 @@
 package com.technologica.setup;
 
-import static com.technologica.client.renderer.tileentity.LineShaftTileEntityRenderer.PULLEY_BELT_TEXTURE;
-
 import java.util.Collection;
 import java.util.function.Supplier;
 
+import com.technologica.Technologica;
 import com.technologica.block.ModBlocks;
 import com.technologica.block.TallCropsBlock;
 import com.technologica.client.renderer.entity.DuckRenderer;
@@ -29,9 +28,11 @@ import net.minecraft.block.DoorBlock;
 import net.minecraft.block.FlowerPotBlock;
 import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.TrapDoorBlock;
+import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.inventory.container.PlayerContainer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -72,7 +73,17 @@ public class ClientSetup {
    
 	public static void stitch(final TextureStitchEvent.Pre event) {
 		if (event.getMap().getTextureLocation().equals(PlayerContainer.LOCATION_BLOCKS_TEXTURE)) {
-			event.addSprite(PULLEY_BELT_TEXTURE);
+			event.addSprite(new ResourceLocation(Technologica.MODID, "block/pulley_belt"));
+		} else if (event.getMap().getTextureLocation().equals(Atlases.SIGN_ATLAS)) {
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/banana"));
+//			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/cherry"));
+//			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/coconut"));
+//			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/kiwi"));
+//			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/lemon"));
+//			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/lime"));
+//			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/orange"));
+//			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/peach"));
+//			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/pear"));
 		}
 	}
    
