@@ -37,7 +37,7 @@ public class ModSOpenSignMenuPacket {
 			tileentity.setWorldAndPos(mc.world, msg.signPosition);
 		}
 		
-		ctx.get().enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> ClientHandler.handlePacket(msg.signPosition)));
+		ctx.get().enqueueWork(() -> DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientHandler.handlePacket(msg.signPosition)));
 		ctx.get().setPacketHandled(true);
 	}	
 }
