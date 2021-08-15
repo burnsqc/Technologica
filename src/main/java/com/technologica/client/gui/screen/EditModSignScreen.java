@@ -31,7 +31,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public class ModEditSignScreen extends Screen {
+public class EditModSignScreen extends Screen {
    private final SignTileEntityRenderer.SignModel signModel = new SignTileEntityRenderer.SignModel();
    /** Reference to the sign object. */
    private final ModSignTileEntity tileSign;
@@ -42,7 +42,7 @@ public class ModEditSignScreen extends Screen {
    private TextInputUtil textInputUtil;
    private final String[] field_238846_r_;
 
-   public ModEditSignScreen(ModSignTileEntity teSign) {
+   public EditModSignScreen(ModSignTileEntity teSign) {
       super(new TranslationTextComponent("sign.edit"));
       this.field_238846_r_ = IntStream.range(0, 4).mapToObj(teSign::getText).map(ITextComponent::getString).toArray((p_243354_0_) -> {
          return new String[p_243354_0_];

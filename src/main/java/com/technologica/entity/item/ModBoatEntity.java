@@ -29,7 +29,6 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.network.play.client.CSteerBoatPacket;
-import net.minecraft.network.play.server.SSpawnObjectPacket;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.ActionResultType;
@@ -52,6 +51,7 @@ import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 public class ModBoatEntity extends Entity {
    private static final DataParameter<Integer> TIME_SINCE_HIT = EntityDataManager.createKey(ModBoatEntity.class, DataSerializers.VARINT);
@@ -876,7 +876,7 @@ public class ModBoatEntity extends Entity {
    }
 
    public IPacket<?> createSpawnPacket() {
-      return new SSpawnObjectPacket(this);
+      return NetworkHooks.getEntitySpawningPacket(this);
    }
 
    public boolean canSwim() {

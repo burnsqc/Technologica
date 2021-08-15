@@ -9,10 +9,7 @@ import com.technologica.entity.item.ModBoatEntity;
 import net.minecraft.client.renderer.entity.model.SegmentedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
 public class ModBoatModel extends SegmentedModel<ModBoatEntity> {
    private final ModelRenderer[] paddles = new ModelRenderer[2];
    private final ModelRenderer noWater;

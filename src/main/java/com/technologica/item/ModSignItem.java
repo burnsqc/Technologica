@@ -2,7 +2,7 @@ package com.technologica.item;
 
 import javax.annotation.Nullable;
 
-import com.technologica.network.play.server.ModSOpenSignMenuPacket;
+import com.technologica.network.play.server.SOpenModSignMenuPacket;
 import com.technologica.network.play.server.Packets;
 import com.technologica.tileentity.ModSignTileEntity;
 
@@ -33,7 +33,7 @@ public class ModSignItem extends SignItem {
 			ServerPlayerEntity player = (ServerPlayerEntity) playerIn;
 			signTile.setPlayer(player);
 			
-			Packets.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), new ModSOpenSignMenuPacket(pos));
+			Packets.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), new SOpenModSignMenuPacket(pos));
 		}
 		
 		return flag;
