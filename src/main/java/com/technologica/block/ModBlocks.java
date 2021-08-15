@@ -213,7 +213,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> CHERRY_LOG = BLOCKS.register("cherry_log", ModLogBlock::new);
 //  public static final RegistryObject<Block> CHESTNUT_LOG = BLOCKS.register("chestnut_log", ModLogBlock::new);  
     public static final RegistryObject<Block> COCONUT_LOG = BLOCKS.register("coconut_log", ModLogBlock::new);
-//  public static final RegistryObject<Block> EBONY_LOG = BLOCKS.register("ebony_log", ModLogBlock::new);  
+  public static final RegistryObject<Block> EBONY_LOG = BLOCKS.register("ebony_log", ModLogBlock::new);  
     public static final RegistryObject<Block> KIWI_LOG = BLOCKS.register("kiwi_log", ModLogBlock::new);
     public static final RegistryObject<Block> LEMON_LOG = BLOCKS.register("lemon_log", ModLogBlock::new);
     public static final RegistryObject<Block> LIME_LOG = BLOCKS.register("lime_log", ModLogBlock::new);
