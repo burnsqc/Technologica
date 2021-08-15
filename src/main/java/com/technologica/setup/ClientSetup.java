@@ -10,6 +10,7 @@ import com.technologica.client.renderer.entity.DuckRenderer;
 import com.technologica.client.renderer.entity.GrizzlyBearRenderer;
 import com.technologica.client.renderer.entity.ModBoatRenderer;
 import com.technologica.client.renderer.entity.OstrichRenderer;
+import com.technologica.client.renderer.entity.ScorpionRenderer;
 import com.technologica.client.renderer.entity.SharkRenderer;
 import com.technologica.client.renderer.entity.ZebraRenderer;
 import com.technologica.client.renderer.tileentity.DisplayCaseTileEntityRenderer;
@@ -47,6 +48,7 @@ public class ClientSetup {
 		RenderingRegistry.registerEntityRenderingHandler(ModEntities.DUCK.get(), DuckRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ModEntities.GRIZZLY_BEAR.get(), GrizzlyBearRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ModEntities.OSTRICH.get(), OstrichRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ModEntities.SCORPION.get(), ScorpionRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ModEntities.SHARK.get(), SharkRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ModEntities.ZEBRA.get(), ZebraRenderer::new);
 

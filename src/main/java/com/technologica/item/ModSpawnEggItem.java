@@ -41,6 +41,8 @@ public class ModSpawnEggItem extends Item {
     		entityType = ModEntities.SHARK.get();
     	} else if (entityTypeInt == 5) {
     		entityType = ModEntities.ZEBRA.get();
+    	} else if (entityTypeInt == 6) {
+    		entityType = ModEntities.SCORPION.get();
     	}
     	
     	World world = context.getWorld();

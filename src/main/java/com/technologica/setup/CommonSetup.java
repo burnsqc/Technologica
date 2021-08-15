@@ -3,6 +3,7 @@ package com.technologica.setup;
 import com.technologica.block.ModBlocks;
 import com.technologica.capabilities.ModCapabilities;
 import com.technologica.entity.ModEntities;
+import com.technologica.entity.monster.ScorpionEntity;
 import com.technologica.entity.monster.SharkEntity;
 import com.technologica.entity.passive.DuckEntity;
 import com.technologica.entity.passive.GrizzlyBearEntity;
@@ -23,6 +24,7 @@ public class CommonSetup {
       GlobalEntityTypeAttributes.put(ModEntities.DUCK.get(), DuckEntity.registerAttributes().create());
       GlobalEntityTypeAttributes.put(ModEntities.GRIZZLY_BEAR.get(), GrizzlyBearEntity.registerAttributes().create());
       GlobalEntityTypeAttributes.put(ModEntities.OSTRICH.get(), func_234237_fg_().create());
+      GlobalEntityTypeAttributes.put(ModEntities.SCORPION.get(), ScorpionEntity.registerAttributes().create());
       GlobalEntityTypeAttributes.put(ModEntities.SHARK.get(), SharkEntity.registerAttributes().create());
       GlobalEntityTypeAttributes.put(ModEntities.ZEBRA.get(), func_234237_fg_().create());
 
