@@ -340,7 +340,7 @@ public class ModItems {
     public static final RegistryObject<Item> CHERRY_LOG_ITEM = ITEMS.register("cherry_log", () -> new BlockItem(ModBlocks.CHERRY_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
 //    public static final RegistryObject<Item> CHESTNUT_LOG_ITEM = ITEMS.register("chestnut_log", () -> new BlockItem(ModBlocks.CHESTNUT_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));    
     public static final RegistryObject<Item> COCONUT_LOG_ITEM = ITEMS.register("coconut_log", () -> new BlockItem(ModBlocks.COCONUT_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
-//    public static final RegistryObject<Item> EBONY_LOG_ITEM = ITEMS.register("ebony_log", () -> new BlockItem(ModBlocks.EBONY_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));    
+    public static final RegistryObject<Item> EBONY_LOG_ITEM = ITEMS.register("ebony_log", () -> new BlockItem(ModBlocks.EBONY_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));    
     public static final RegistryObject<Item> KIWI_LOG_ITEM = ITEMS.register("kiwi_log", () -> new BlockItem(ModBlocks.KIWI_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> LEMON_LOG_ITEM = ITEMS.register("lemon_log", () -> new BlockItem(ModBlocks.LEMON_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> LIME_LOG_ITEM = ITEMS.register("lime_log", () -> new BlockItem(ModBlocks.LIME_LOG.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
