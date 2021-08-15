@@ -3,7 +3,7 @@ package com.technologica.item;
 import javax.annotation.Nullable;
 
 import com.technologica.network.play.server.ModSOpenSignMenuPacket;
-import com.technologica.network.play.server.PacketHandler;
+import com.technologica.network.play.server.Packets;
 import com.technologica.tileentity.ModSignTileEntity;
 
 import net.minecraft.block.Block;
@@ -14,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.SignItem;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.network.PacketDistributor;
 
 public class ModSignItem extends SignItem {
 		
@@ -24,15 +25,17 @@ public class ModSignItem extends SignItem {
 	@Override
 	protected boolean onBlockPlaced(BlockPos pos, World worldIn, @Nullable PlayerEntity playerIn, ItemStack stack, BlockState state) {
 		boolean flag = setTileEntityNBT(worldIn, playerIn, pos, stack);
+		
+		
 		if (!worldIn.isRemote && !flag && playerIn != null) {
 			ModSignTileEntity signTile = (ModSignTileEntity) worldIn.getTileEntity(pos);
 			
 			ServerPlayerEntity player = (ServerPlayerEntity) playerIn;
 			signTile.setPlayer(player);
 			
-			PacketHandler.INSTANCE.sendToServer(new ModSOpenSignMenuPacket(pos));	
+			Packets.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), new ModSOpenSignMenuPacket(pos));
 		}
 		
 		return flag;
-	}	
+	}
 }
