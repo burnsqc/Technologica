@@ -24,12 +24,12 @@
     "technologica:teak_planks",
     "technologica:walnut_planks",
     "technologica:zebrawood_planks",
-    "technologica:fruitful_planks",
     "technologica:alchemical_planks",
     "technologica:benevolent_planks",
-    "technologica:malevolent_planks",
     "technologica:conductive_planks",
     "technologica:frostbitten_planks",
-    "technologica:infernal_planks"
+    "technologica:fruitful_planks",
+    "technologica:infernal_planks",
+    "technologica:malevolent_planks"
   ]
 }

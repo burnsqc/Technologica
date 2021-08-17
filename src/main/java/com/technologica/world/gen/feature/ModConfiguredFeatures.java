@@ -188,6 +188,15 @@ public class ModConfiguredFeatures {
 					new StraightTrunkPlacer(4, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
 	
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> ROSEWOOD_TREE_FEATURE = register(
+			"redwood_tree_feature",
+			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(ModBlocks.BANANA_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.BANANA_LEAVES.get().getDefaultState()),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new StraightTrunkPlacer(4, 1, 0), 
+					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
+	
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> RUBBER_TREE_FEATURE = register(
 			"rubber_tree_feature",
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
