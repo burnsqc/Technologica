@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "technologica:block/mustard_greens_crop_stage4"
+  }
+}

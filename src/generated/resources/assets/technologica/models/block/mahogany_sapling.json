@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "technologica:block/mahogany_sapling"
+  }
+}

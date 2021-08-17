@@ -1,0 +1,6 @@
+{
+  "parent": "technologica:block/tall_crop",
+  "textures": {
+    "crop": "technologica:block/peppercorn_crop_stage1"
+  }
+}

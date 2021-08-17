@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "technologica:block/walnut_bookshelf",
+    "end": "technologica:block/walnut_planks"
+  }
+}
