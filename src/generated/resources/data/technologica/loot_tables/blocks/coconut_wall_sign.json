@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "technologica:coconut_sign"
+          "name": "minecraft:air"
         }
       ],
       "conditions": [
