@@ -6,7 +6,9 @@ import java.util.function.Supplier;
 import com.technologica.Technologica;
 import com.technologica.block.CrystalBlock;
 import com.technologica.block.ModBlocks;
+import com.technologica.block.TallCropsBlock;
 import com.technologica.block.TwentyFourDirectionBlock;
+import com.technologica.block.WaterCropsBlock;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.CropsBlock;
@@ -22,6 +24,7 @@ import net.minecraft.block.TrapDoorBlock;
 import net.minecraft.block.WoodButtonBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.state.properties.AttachFace;
+import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -72,8 +75,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			else if (block.getRegistryName().getPath().contains("sign")) signBlock(block);
 			else if (block.getRegistryName().getPath().contains("sapling") && !block.getRegistryName().getPath().contains("potted")) crossBlock(block);
 			else if (block.getRegistryName().getPath().contains("potted")) flowerPotCrossBlock(block);
-			else if (block.getRegistryName().getPath().contains("crop") && !block.getRegistryName().getPath().contains("corn")) cropBlock(block);
-			else if (block.getRegistryName().getPath().contains("corn_crop")) tallCropBlock(block);
+			else if (block.getClass() == CropsBlock.class) cropBlock(block);
+			else if (block.getClass() == TallCropsBlock.class) tallCropBlock(block);
+			else if (block.getClass() == WaterCropsBlock.class) tallCropBlock(block);
 			else if (block.getRegistryName().getPath().contains("door") && !block.getRegistryName().getPath().contains("trap")) doorBlock(block);
 			else if (block.getRegistryName().getPath().contains("trapdoor")) trapdoorBlock(block);
 			else if (block.getRegistryName().getPath().contains("crystal") && !block.getRegistryName().getPath().contains("dolomite")) hexagonalCrystalBlock(block);
@@ -305,14 +309,22 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	
 	public void tallCropBlock(Block block) {
 		getVariantBuilder(block)
-			.partialState().with(CropsBlock.AGE, 0).modelForState().modelFile(tallCrop(name(block) + "_stage0", extend(blockTexture(block), "_stage0"))).addModel()
-			.partialState().with(CropsBlock.AGE, 1).modelForState().modelFile(tallCrop(name(block) + "_stage1", extend(blockTexture(block), "_stage1"))).addModel()
-			.partialState().with(CropsBlock.AGE, 2).modelForState().modelFile(tallCrop(name(block) + "_stage2", extend(blockTexture(block), "_stage2"))).addModel()
-			.partialState().with(CropsBlock.AGE, 3).modelForState().modelFile(tallCrop(name(block) + "_stage3", extend(blockTexture(block), "_stage3"))).addModel()
-			.partialState().with(CropsBlock.AGE, 4).modelForState().modelFile(tallCrop(name(block) + "_stage4", extend(blockTexture(block), "_stage4"))).addModel()
-			.partialState().with(CropsBlock.AGE, 5).modelForState().modelFile(tallCrop(name(block) + "_stage5", extend(blockTexture(block), "_stage5"))).addModel()
-			.partialState().with(CropsBlock.AGE, 6).modelForState().modelFile(tallCrop(name(block) + "_stage6", extend(blockTexture(block), "_stage6"))).addModel()
-			.partialState().with(CropsBlock.AGE, 7).modelForState().modelFile(tallCrop(name(block) + "_stage7", extend(blockTexture(block), "_stage7"))).addModel();
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropsBlock.AGE, 0).modelForState().modelFile(models().crop(name(block) + "_lower_stage0", extend(blockTexture(block), "_lower_stage0"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropsBlock.AGE, 1).modelForState().modelFile(models().crop(name(block) + "_lower_stage1", extend(blockTexture(block), "_lower_stage1"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropsBlock.AGE, 2).modelForState().modelFile(models().crop(name(block) + "_lower_stage2", extend(blockTexture(block), "_lower_stage2"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropsBlock.AGE, 3).modelForState().modelFile(models().crop(name(block) + "_lower_stage3", extend(blockTexture(block), "_lower_stage3"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropsBlock.AGE, 4).modelForState().modelFile(models().crop(name(block) + "_lower_stage4", extend(blockTexture(block), "_lower_stage4"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropsBlock.AGE, 5).modelForState().modelFile(models().crop(name(block) + "_lower_stage5", extend(blockTexture(block), "_lower_stage5"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropsBlock.AGE, 6).modelForState().modelFile(models().crop(name(block) + "_lower_stage6", extend(blockTexture(block), "_lower_stage6"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropsBlock.AGE, 7).modelForState().modelFile(models().crop(name(block) + "_lower_stage7", extend(blockTexture(block), "_lower_stage7"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropsBlock.AGE, 0).modelForState().modelFile(models().crop(name(block) + "_upper_stage0", extend(blockTexture(block), "_upper_stage0"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropsBlock.AGE, 1).modelForState().modelFile(models().crop(name(block) + "_upper_stage1", extend(blockTexture(block), "_upper_stage1"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropsBlock.AGE, 2).modelForState().modelFile(models().crop(name(block) + "_upper_stage2", extend(blockTexture(block), "_upper_stage2"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropsBlock.AGE, 3).modelForState().modelFile(models().crop(name(block) + "_upper_stage3", extend(blockTexture(block), "_upper_stage3"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropsBlock.AGE, 4).modelForState().modelFile(models().crop(name(block) + "_upper_stage4", extend(blockTexture(block), "_upper_stage4"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropsBlock.AGE, 5).modelForState().modelFile(models().crop(name(block) + "_upper_stage5", extend(blockTexture(block), "_upper_stage5"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropsBlock.AGE, 6).modelForState().modelFile(models().crop(name(block) + "_upper_stage6", extend(blockTexture(block), "_upper_stage6"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropsBlock.AGE, 7).modelForState().modelFile(models().crop(name(block) + "_upper_stage7", extend(blockTexture(block), "_upper_stage7"))).addModel();
 	}
 	
 	public void hexagonalCrystalBlock(Block block) {

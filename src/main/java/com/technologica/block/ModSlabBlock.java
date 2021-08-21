@@ -14,7 +14,6 @@ public class ModSlabBlock extends SlabBlock {
 
 	public ModSlabBlock() {
 		super(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD));
-		
 	}
 
 	@Override

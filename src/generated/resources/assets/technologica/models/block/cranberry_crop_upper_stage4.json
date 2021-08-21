@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "technologica:block/cranberry_crop_upper_stage4"
+  }
+}

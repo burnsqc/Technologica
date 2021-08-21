@@ -36,6 +36,7 @@ public class ModItems {
     public static final RegistryObject<Item> COFFEE_BEANS = ITEMS.register("coffee_beans", () -> new BlockNamedItem(ModBlocks.COFFEE_BEAN_CROP.get(), new Item.Properties().group(ModItemGroup.FLORA)));
     public static final RegistryObject<Item> CORN_SEEDS = ITEMS.register("corn_seeds", () -> new BlockNamedItem(ModBlocks.CORN_CROP.get(), new Item.Properties().group(ModItemGroup.FLORA)));
     public static final RegistryObject<Item> COTTON_SEEDS = ITEMS.register("cotton_seeds", () -> new BlockNamedItem(ModBlocks.COTTON_CROP.get(), new Item.Properties().group(ModItemGroup.FLORA)));
+    public static final RegistryObject<Item> CRANBERRY_SEEDS = ITEMS.register("cranberry_seeds", () -> new BlockNamedItem(ModBlocks.CRANBERRY_CROP.get(), new Item.Properties().group(ModItemGroup.FLORA)));
     public static final RegistryObject<Item> CUCUMBER_SEEDS = ITEMS.register("cucumber_seeds", () -> new BlockNamedItem(ModBlocks.CUCUMBER_CROP.get(), new Item.Properties().group(ModItemGroup.FLORA)));
     public static final RegistryObject<Item> GARLIC_SEEDS = ITEMS.register("garlic_seeds", () -> new BlockNamedItem(ModBlocks.GARLIC_CROP.get(), new Item.Properties().group(ModItemGroup.FLORA)));
     public static final RegistryObject<Item> GINGER_SEEDS = ITEMS.register("ginger_seeds", () -> new BlockNamedItem(ModBlocks.GINGER_CROP.get(), new Item.Properties().group(ModItemGroup.FLORA)));
@@ -806,8 +807,36 @@ public class ModItems {
     public static final RegistryObject<Item> INFERNAL_SIGN_ITEM = ITEMS.register("infernal_sign", () -> new BlockItem(ModBlocks.INFERNAL_SIGN.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> MALEVOLENT_SIGN_ITEM = ITEMS.register("malevolent_sign", () -> new BlockItem(ModBlocks.MALEVOLENT_SIGN.get(), new Item.Properties().group(ModItemGroup.CONSTRUCTION)));
     
+    public static final RegistryObject<Item> APRICOT_BOAT = ITEMS.register("apricot_boat", () -> new ModBoatItem(ModBoatEntity.Type.APRICOT, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> ASPEN_BOAT = ITEMS.register("aspen_boat", () -> new ModBoatItem(ModBoatEntity.Type.ASPEN, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> AVOCADO_BOAT = ITEMS.register("avocado_boat", () -> new ModBoatItem(ModBoatEntity.Type.AVOCADO, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> BANANA_BOAT = ITEMS.register("banana_boat", () -> new ModBoatItem(ModBoatEntity.Type.BANANA, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> CHERRY_BOAT = ITEMS.register("cherry_boat", () -> new ModBoatItem(ModBoatEntity.Type.CHERRY, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> CHESTNUT_BOAT = ITEMS.register("chestnut_boat", () -> new ModBoatItem(ModBoatEntity.Type.CHESTNUT, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> COCONUT_BOAT = ITEMS.register("coconut_boat", () -> new ModBoatItem(ModBoatEntity.Type.COCONUT, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> EBONY_BOAT = ITEMS.register("ebony_boat", () -> new ModBoatItem(ModBoatEntity.Type.EBONY, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> KIWI_BOAT = ITEMS.register("kiwi_boat", () -> new ModBoatItem(ModBoatEntity.Type.KIWI, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> LEMON_BOAT = ITEMS.register("lemon_boat", () -> new ModBoatItem(ModBoatEntity.Type.LEMON, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> LIME_BOAT = ITEMS.register("lime_boat", () -> new ModBoatItem(ModBoatEntity.Type.LIME, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> MAHOGANY_BOAT = ITEMS.register("mahogany_boat", () -> new ModBoatItem(ModBoatEntity.Type.MAHOGANY, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> MAPLE_BOAT = ITEMS.register("maple_boat", () -> new ModBoatItem(ModBoatEntity.Type.MAPLE, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> ORANGE_BOAT = ITEMS.register("orange_boat", () -> new ModBoatItem(ModBoatEntity.Type.ORANGE, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> PEACH_BOAT = ITEMS.register("peach_boat", () -> new ModBoatItem(ModBoatEntity.Type.PEACH, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> PEAR_BOAT = ITEMS.register("pear_boat", () -> new ModBoatItem(ModBoatEntity.Type.PEAR, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> PLUM_BOAT = ITEMS.register("plum_boat", () -> new ModBoatItem(ModBoatEntity.Type.PLUM, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> REDWOOD_BOAT = ITEMS.register("redwood_boat", () -> new ModBoatItem(ModBoatEntity.Type.REDWOOD, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> ROSEWOOD_BOAT = ITEMS.register("rosewood_boat", () -> new ModBoatItem(ModBoatEntity.Type.ROSEWOOD, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> RUBBER_BOAT = ITEMS.register("rubber_boat", () -> new ModBoatItem(ModBoatEntity.Type.RUBBER, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> TEAK_BOAT = ITEMS.register("teak_boat", () -> new ModBoatItem(ModBoatEntity.Type.TEAK, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> WALNUT_BOAT = ITEMS.register("walnut_boat", () -> new ModBoatItem(ModBoatEntity.Type.WALNUT, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> ZEBRAWOOD_BOAT = ITEMS.register("zebrawood_boat", () -> new ModBoatItem(ModBoatEntity.Type.ZEBRAWOOD, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> ALCHEMICAL_BOAT = ITEMS.register("alchemical_boat", () -> new ModBoatItem(ModBoatEntity.Type.ALCHEMICAL, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> BENEVOLENT_BOAT = ITEMS.register("benevolent_boat", () -> new ModBoatItem(ModBoatEntity.Type.BENEVOLENT, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> CONDUCTIVE_BOAT = ITEMS.register("conductive_boat", () -> new ModBoatItem(ModBoatEntity.Type.CONDUCTIVE, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> FROSTBITTEN_BOAT = ITEMS.register("frostbitten_boat", () -> new ModBoatItem(ModBoatEntity.Type.FROSTBITTEN, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> FRUITFUL_BOAT = ITEMS.register("fruitful_boat", () -> new ModBoatItem(ModBoatEntity.Type.FRUITFUL, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> INFERNAL_BOAT = ITEMS.register("infernal_boat", () -> new ModBoatItem(ModBoatEntity.Type.INFERNAL, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> MALEVOLENT_BOAT = ITEMS.register("malevolent_boat", () -> new ModBoatItem(ModBoatEntity.Type.MALEVOLENT, (new Item.Properties()).maxStackSize(1).group(ModItemGroup.CONSTRUCTION)));
     
     /**
      * MACHINERY
