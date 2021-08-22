@@ -38,7 +38,6 @@ import com.technologica.item.ModItems;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.CropsBlock;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.block.FlowerPotBlock;
 import net.minecraft.block.FlowingFluidBlock;
@@ -63,43 +62,43 @@ public class ModBlocks {
 	 * FLORA
 	 */
 	
-    public static final RegistryObject<Block> ASPARAGUS_CROP = BLOCKS.register("asparagus_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
-    public static final RegistryObject<Block> BARLEY_CROP = BLOCKS.register("barley_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
-    public static final RegistryObject<Block> BLACKBERRY_CROP = BLOCKS.register("blackberry_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
-    public static final RegistryObject<Block> BLUEBERRY_CROP = BLOCKS.register("blueberry_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
-    public static final RegistryObject<Block> BROCCOLI_CROP = BLOCKS.register("broccoli_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
-    public static final RegistryObject<Block> CELERY_CROP = BLOCKS.register("celery_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
-    public static final RegistryObject<Block> CHILI_PEPPER_CROP = BLOCKS.register("chili_pepper_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
-    public static final RegistryObject<Block> COFFEE_BEAN_CROP = BLOCKS.register("coffee_bean_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));    
+    public static final RegistryObject<Block> ASPARAGUS_CROP = BLOCKS.register("asparagus_crop", () -> new ModCropsBlock(() -> ModItems.ASPARAGUS_SEEDS.get()));
+    public static final RegistryObject<Block> BARLEY_CROP = BLOCKS.register("barley_crop", () -> new ModCropsBlock(() -> ModItems.BARLEY_SEEDS.get()));
+    public static final RegistryObject<Block> BLACKBERRY_CROP = BLOCKS.register("blackberry_crop", () -> new ModCropsBlock(() -> ModItems.BLACKBERRY_SEEDS.get()));
+    public static final RegistryObject<Block> BLUEBERRY_CROP = BLOCKS.register("blueberry_crop", () -> new ModCropsBlock(() -> ModItems.BLUEBERRY_SEEDS.get()));
+    public static final RegistryObject<Block> BROCCOLI_CROP = BLOCKS.register("broccoli_crop", () -> new ModCropsBlock(() -> ModItems.BROCCOLI_SEEDS.get()));
+    public static final RegistryObject<Block> CELERY_CROP = BLOCKS.register("celery_crop", () -> new ModCropsBlock(() -> ModItems.CELERY_SEEDS.get()));
+    public static final RegistryObject<Block> CHILI_PEPPER_CROP = BLOCKS.register("chili_pepper_crop", () -> new ModCropsBlock(() -> ModItems.CHILI_PEPPER_SEEDS.get()));
+    public static final RegistryObject<Block> COFFEE_BEAN_CROP = BLOCKS.register("coffee_bean_crop", () -> new ModCropsBlock(() -> ModItems.COFFEE_BEANS.get()));    
     public static final RegistryObject<Block> CORN_CROP = BLOCKS.register("corn_crop", () -> new TallCropsBlock(() -> ModItems.CORN_SEEDS.get()));
-    public static final RegistryObject<Block> COTTON_CROP = BLOCKS.register("cotton_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
+    public static final RegistryObject<Block> COTTON_CROP = BLOCKS.register("cotton_crop", () -> new ModCropsBlock(() -> ModItems.COTTON_SEEDS.get()));
     public static final RegistryObject<Block> CRANBERRY_CROP = BLOCKS.register("cranberry_crop", () -> new WaterCropsBlock(() -> ModItems.CRANBERRY_SEEDS.get()));
-    public static final RegistryObject<Block> CUCUMBER_CROP = BLOCKS.register("cucumber_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
-    public static final RegistryObject<Block> GARLIC_CROP = BLOCKS.register("garlic_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
-    public static final RegistryObject<Block> GINGER_CROP = BLOCKS.register("ginger_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
-    public static final RegistryObject<Block> GRAPE_CROP = BLOCKS.register("grape_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
-    public static final RegistryObject<Block> LETTUCE_CROP = BLOCKS.register("lettuce_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
-    public static final RegistryObject<Block> MUSTARD_GREENS_CROP = BLOCKS.register("mustard_greens_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
-    public static final RegistryObject<Block> OATS_CROP = BLOCKS.register("oats_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
-    public static final RegistryObject<Block> ONION_CROP = BLOCKS.register("onion_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
-    public static final RegistryObject<Block> PEA_CROP = BLOCKS.register("pea_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
-    public static final RegistryObject<Block> PEANUT_CROP = BLOCKS.register("peanut_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
+    public static final RegistryObject<Block> CUCUMBER_CROP = BLOCKS.register("cucumber_crop", () -> new ModCropsBlock(() -> ModItems.CUCUMBER_SEEDS.get()));
+    public static final RegistryObject<Block> GARLIC_CROP = BLOCKS.register("garlic_crop", () -> new ModCropsBlock(() -> ModItems.GARLIC_SEEDS.get()));
+    public static final RegistryObject<Block> GINGER_CROP = BLOCKS.register("ginger_crop", () -> new ModCropsBlock(() -> ModItems.GINGER_SEEDS.get()));
+    public static final RegistryObject<Block> GRAPE_CROP = BLOCKS.register("grape_crop", () -> new ModCropsBlock(() -> ModItems.GRAPE_SEEDS.get()));
+    public static final RegistryObject<Block> LETTUCE_CROP = BLOCKS.register("lettuce_crop", () -> new ModCropsBlock(() -> ModItems.LETTUCE_SEEDS.get()));
+    public static final RegistryObject<Block> MUSTARD_GREENS_CROP = BLOCKS.register("mustard_greens_crop", () -> new ModCropsBlock(() -> ModItems.MUSTARD_SEEDS.get()));
+    public static final RegistryObject<Block> OATS_CROP = BLOCKS.register("oats_crop", () -> new ModCropsBlock(() -> ModItems.OATS_SEEDS.get()));
+    public static final RegistryObject<Block> ONION_CROP = BLOCKS.register("onion_crop", () -> new ModCropsBlock(() -> ModItems.ONION_SEEDS.get()));
+    public static final RegistryObject<Block> PEA_CROP = BLOCKS.register("pea_crop", () -> new ModCropsBlock(() -> ModItems.PEA_SEEDS.get()));
+    public static final RegistryObject<Block> PEANUT_CROP = BLOCKS.register("peanut_crop", () -> new ModCropsBlock(() -> ModItems.PEANUT.get()));
     public static final RegistryObject<Block> PEPPERCORN_CROP = BLOCKS.register("peppercorn_crop", () -> new TallCropsBlock(() -> ModItems.PEPPERCORNS.get()));
-    public static final RegistryObject<Block> PINEAPPLE_CROP = BLOCKS.register("pineapple_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
-    public static final RegistryObject<Block> PURPLE_CABBAGE_CROP = BLOCKS.register("purple_cabbage_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
-    public static final RegistryObject<Block> RADISH_CROP = BLOCKS.register("radish_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
-    public static final RegistryObject<Block> RASPBERRY_CROP = BLOCKS.register("raspberry_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
-    public static final RegistryObject<Block> RED_BEAN_CROP = BLOCKS.register("red_bean_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
+    public static final RegistryObject<Block> PINEAPPLE_CROP = BLOCKS.register("pineapple_crop", () -> new ModCropsBlock(() -> ModItems.PINEAPPLE_SEEDS.get()));
+    public static final RegistryObject<Block> PURPLE_CABBAGE_CROP = BLOCKS.register("purple_cabbage_crop", () -> new ModCropsBlock(() -> ModItems.PURPLE_CABBAGE_SEEDS.get()));
+    public static final RegistryObject<Block> RADISH_CROP = BLOCKS.register("radish_crop", () -> new ModCropsBlock(() -> ModItems.RADISH_SEEDS.get()));
+    public static final RegistryObject<Block> RASPBERRY_CROP = BLOCKS.register("raspberry_crop", () -> new ModCropsBlock(() -> ModItems.RASPBERRY_SEEDS.get()));
+    public static final RegistryObject<Block> RED_BEAN_CROP = BLOCKS.register("red_bean_crop", () -> new ModCropsBlock(() -> ModItems.RED_BEANS.get()));
     public static final RegistryObject<Block> RICE_CROP = BLOCKS.register("rice_crop", () -> new WaterCropsBlock(() -> ModItems.RICE_SEEDS.get()));
-    public static final RegistryObject<Block> RYE_CROP = BLOCKS.register("rye_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
-    public static final RegistryObject<Block> SOYBEAN_CROP = BLOCKS.register("soybean_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
-    public static final RegistryObject<Block> SQUASH_CROP = BLOCKS.register("squash_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
-    public static final RegistryObject<Block> STRAWBERRY_CROP = BLOCKS.register("strawberry_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
-    public static final RegistryObject<Block> SWEET_POTATO_CROP = BLOCKS.register("sweet_potato_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
-    public static final RegistryObject<Block> TEA_CROP = BLOCKS.register("tea_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
-    public static final RegistryObject<Block> TOMATO_CROP = BLOCKS.register("tomato_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
-    public static final RegistryObject<Block> TURNIP_CROP = BLOCKS.register("turnip_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
-    public static final RegistryObject<Block> ZUCCHINI_CROP = BLOCKS.register("zucchini_crop", () -> new CropsBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
+    public static final RegistryObject<Block> RYE_CROP = BLOCKS.register("rye_crop", () -> new ModCropsBlock(() -> ModItems.RYE_SEEDS.get()));
+    public static final RegistryObject<Block> SOYBEAN_CROP = BLOCKS.register("soybean_crop", () -> new ModCropsBlock(() -> ModItems.SOYBEANS.get()));
+    public static final RegistryObject<Block> SQUASH_CROP = BLOCKS.register("squash_crop", () -> new ModCropsBlock(() -> ModItems.SQUASH_SEEDS.get()));
+    public static final RegistryObject<Block> STRAWBERRY_CROP = BLOCKS.register("strawberry_crop", () -> new ModCropsBlock(() -> ModItems.STRAWBERRY_SEEDS.get()));
+    public static final RegistryObject<Block> SWEET_POTATO_CROP = BLOCKS.register("sweet_potato_crop", () -> new ModCropsBlock(() -> ModItems.SWEET_POTATO_SEEDS.get()));
+    public static final RegistryObject<Block> TEA_CROP = BLOCKS.register("tea_crop", () -> new ModCropsBlock(() -> ModItems.TEA_SEEDS.get()));
+    public static final RegistryObject<Block> TOMATO_CROP = BLOCKS.register("tomato_crop", () -> new ModCropsBlock(() -> ModItems.TOMATO_SEEDS.get()));
+    public static final RegistryObject<Block> TURNIP_CROP = BLOCKS.register("turnip_crop", () -> new ModCropsBlock(() -> ModItems.TURNIP_SEEDS.get()));
+    public static final RegistryObject<Block> ZUCCHINI_CROP = BLOCKS.register("zucchini_crop", () -> new ModCropsBlock(() -> ModItems.ZUCCHINI_SEEDS.get()));
 	
     public static final RegistryObject<Block> APRICOT_SAPLING = BLOCKS.register("apricot_sapling", () -> new SaplingBlock(new ApricotTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));  
     public static final RegistryObject<Block> ASPEN_SAPLING = BLOCKS.register("aspen_sapling", () -> new SaplingBlock(new AspenTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));  
@@ -724,6 +723,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> FRUITFUL_WALL_SIGN = BLOCKS.register("fruitful_wall_sign", () -> new ModWallSignBlock(AbstractBlock.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), ModWoodType.FRUITFUL));
     public static final RegistryObject<Block> INFERNAL_WALL_SIGN = BLOCKS.register("infernal_wall_sign", () -> new ModWallSignBlock(AbstractBlock.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), ModWoodType.INFERNAL));
     public static final RegistryObject<Block> MALEVOLENT_WALL_SIGN = BLOCKS.register("malevolent_wall_sign", () -> new ModWallSignBlock(AbstractBlock.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), ModWoodType.MALEVOLENT));
+    
     /**
      * MACHINERY
      */

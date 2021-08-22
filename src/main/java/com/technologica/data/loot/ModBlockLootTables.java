@@ -6,6 +6,7 @@ import java.util.function.Supplier;
 import com.technologica.block.CrystalBlock;
 import com.technologica.block.FruitingLeavesBlock;
 import com.technologica.block.ModBlocks;
+import com.technologica.block.ModCropsBlock;
 import com.technologica.block.ModFenceBlock;
 import com.technologica.block.ModFenceGateBlock;
 import com.technologica.block.ModLogBlock;
@@ -37,7 +38,6 @@ import net.minecraft.loot.conditions.BlockStateProperty;
 import net.minecraftforge.fml.RegistryObject;
 
 public class ModBlockLootTables extends BlockLootTables {
-	
 	private static final float[] DEFAULT_SAPLING_DROP_RATES = new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F};
 	
 	@Override
@@ -65,7 +65,7 @@ public class ModBlockLootTables extends BlockLootTables {
 	 * mod blocks with loot tables which replicate vanilla loot tables 
 	 * and mod blocks which have multiple entries with identically formatted loot tables.  
 	 * All other cases should be handled as exceptions.
-	 * Primary evaluation criteria is an entry's class, with secondary evaluation criteria being translation key when the primary criteria is not enough to positively identify the appropriate loot table. 
+	 * Primary evaluation criteria is a block's class, with secondary evaluation criteria being translation key when the primary criteria is not enough to positively identify the appropriate loot table. 
 	 * @param collection a collection of block deferred registry entries
 	 */
 	
@@ -91,7 +91,7 @@ public class ModBlockLootTables extends BlockLootTables {
 			else if (block.getRegistryName().getPath().contains("ore")) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(CrystalBlock.class)) registerDropSelfLootTable(block);
 			
-			else if (block.getClass().equals(CropsBlock.class) || block.getClass().equals(TallCropsBlock.class) || block.getClass().equals(WaterCropsBlock.class)) {
+			else if (block.getClass().equals(ModCropsBlock.class) || block.getClass().equals(TallCropsBlock.class) || block.getClass().equals(WaterCropsBlock.class)) {
 				Collection<RegistryObject<Item>> itemCollection = ModItems.ITEMS.getEntries();
 				Item yield = Items.WHEAT;
 				
