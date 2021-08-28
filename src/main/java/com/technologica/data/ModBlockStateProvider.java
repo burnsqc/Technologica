@@ -109,7 +109,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 				end = mcLoc(blockTexture(block).getPath());	
 			}
 			return models().cubeColumn(name(block), blockTexture(block), replace(end, "bookshelf", "planks"));
-		} else if (block.getRegistryName().getPath().contains("wood")) {
+		} else if (block.getRegistryName().getPath().contains("_wood")) {
 			return models().cubeColumn(name(block), replace(blockTexture(block), "_wood", "_log"), replace(blockTexture(block), "_wood", "_log"));
 		} else {
 			return models().cubeColumn(name(block), blockTexture(block), extend(blockTexture(block), "_top"));
