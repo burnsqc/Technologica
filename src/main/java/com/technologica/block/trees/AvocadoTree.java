@@ -13,6 +13,6 @@ import net.minecraft.world.gen.feature.ConfiguredFeature;
 public class AvocadoTree extends Tree {
 	@Nullable
 	protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean largeHive) {
-		return ModConfiguredFeatures.AVACADO_TREE_FEATURE;
+		return ModConfiguredFeatures.AVOCADO_TREE_FEATURE;
 	}
 }

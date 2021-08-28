@@ -29,8 +29,8 @@ public class ModConfiguredFeatures {
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> APRICOT_TREE_FEATURE = register(
 			"apricot_tree_feature",
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(ModBlocks.BANANA_LOG.get().getDefaultState()),
-					new SimpleBlockStateProvider(ModBlocks.BANANA_LEAVES.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.APRICOT_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.APRICOT_LEAVES.get().getDefaultState()),
 					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
 					new StraightTrunkPlacer(4, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
@@ -44,11 +44,11 @@ public class ModConfiguredFeatures {
 					new StraightTrunkPlacer(5, 2, 0), 
 					new TwoLayerFeature(1, 0, 1))).setIgnoreVines().build()));
 	
-	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> AVACADO_TREE_FEATURE = register(
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> AVOCADO_TREE_FEATURE = register(
 			"avacado_tree_feature",
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(ModBlocks.BANANA_LOG.get().getDefaultState()),
-					new SimpleBlockStateProvider(ModBlocks.BANANA_LEAVES.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.AVOCADO_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.AVOCADO_LEAVES.get().getDefaultState()),
 					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
 					new StraightTrunkPlacer(4, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
@@ -74,8 +74,8 @@ public class ModConfiguredFeatures {
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> CHESTNUT_TREE_FEATURE = register(
 			"chestnut_tree_feature",
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(ModBlocks.BANANA_LOG.get().getDefaultState()),
-					new SimpleBlockStateProvider(ModBlocks.BANANA_LEAVES.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.CHESTNUT_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.CHESTNUT_LEAVES.get().getDefaultState()),
 					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
 					new StraightTrunkPlacer(4, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
@@ -92,8 +92,8 @@ public class ModConfiguredFeatures {
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> EBONY_TREE_FEATURE = register(
 			"ebony_tree_feature",
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(ModBlocks.BANANA_LOG.get().getDefaultState()),
-					new SimpleBlockStateProvider(ModBlocks.BANANA_LEAVES.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.EBONY_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.EBONY_LEAVES.get().getDefaultState()),
 					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
 					new StraightTrunkPlacer(4, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
@@ -128,8 +128,8 @@ public class ModConfiguredFeatures {
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> MAHOGANY_TREE_FEATURE = register(
 			"mahogany_tree_feature",
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(ModBlocks.BANANA_LOG.get().getDefaultState()),
-					new SimpleBlockStateProvider(ModBlocks.BANANA_LEAVES.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.MAHOGANY_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.MAHOGANY_LEAVES.get().getDefaultState()),
 					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
 					new StraightTrunkPlacer(4, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
@@ -137,8 +137,8 @@ public class ModConfiguredFeatures {
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> MAPLE_TREE_FEATURE = register(
 			"maple_tree_feature",
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(ModBlocks.BANANA_LOG.get().getDefaultState()),
-					new SimpleBlockStateProvider(ModBlocks.BANANA_LEAVES.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.MAPLE_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.MAPLE_LEAVES.get().getDefaultState()),
 					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
 					new StraightTrunkPlacer(4, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
@@ -173,8 +173,8 @@ public class ModConfiguredFeatures {
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> PLUM_TREE_FEATURE = register(
 			"plum_tree_feature",
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(ModBlocks.BANANA_LOG.get().getDefaultState()),
-					new SimpleBlockStateProvider(ModBlocks.BANANA_LEAVES.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.PLUM_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.PLUM_LEAVES.get().getDefaultState()),
 					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
 					new StraightTrunkPlacer(4, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
@@ -182,17 +182,17 @@ public class ModConfiguredFeatures {
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> REDWOOD_TREE_FEATURE = register(
 			"redwood_tree_feature",
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(ModBlocks.BANANA_LOG.get().getDefaultState()),
-					new SimpleBlockStateProvider(ModBlocks.BANANA_LEAVES.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.REDWOOD_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.REDWOOD_LEAVES.get().getDefaultState()),
 					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
 					new StraightTrunkPlacer(4, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
 	
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> ROSEWOOD_TREE_FEATURE = register(
-			"redwood_tree_feature",
+			"rosewood_tree_feature",
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(ModBlocks.BANANA_LOG.get().getDefaultState()),
-					new SimpleBlockStateProvider(ModBlocks.BANANA_LEAVES.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.ROSEWOOD_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.ROSEWOOD_LEAVES.get().getDefaultState()),
 					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
 					new StraightTrunkPlacer(4, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
@@ -200,8 +200,8 @@ public class ModConfiguredFeatures {
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> RUBBER_TREE_FEATURE = register(
 			"rubber_tree_feature",
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(ModBlocks.BANANA_LOG.get().getDefaultState()),
-					new SimpleBlockStateProvider(ModBlocks.BANANA_LEAVES.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.RUBBER_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.RUBBER_LEAVES.get().getDefaultState()),
 					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
 					new StraightTrunkPlacer(4, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
@@ -209,8 +209,8 @@ public class ModConfiguredFeatures {
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> TEAK_TREE_FEATURE = register(
 			"teak_tree_feature",
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(ModBlocks.BANANA_LOG.get().getDefaultState()),
-					new SimpleBlockStateProvider(ModBlocks.BANANA_LEAVES.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.TEAK_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.TEAK_LEAVES.get().getDefaultState()),
 					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
 					new StraightTrunkPlacer(4, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
@@ -218,8 +218,8 @@ public class ModConfiguredFeatures {
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> WALNUT_TREE_FEATURE = register(
 			"walnut_tree_feature",
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(ModBlocks.BANANA_LOG.get().getDefaultState()),
-					new SimpleBlockStateProvider(ModBlocks.BANANA_LEAVES.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.WALNUT_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.WALNUT_LEAVES.get().getDefaultState()),
 					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
 					new StraightTrunkPlacer(4, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
@@ -227,8 +227,8 @@ public class ModConfiguredFeatures {
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> ZEBRAWOOD_TREE_FEATURE = register(
 			"zebrawood_tree_feature",
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
-					new SimpleBlockStateProvider(ModBlocks.BANANA_LOG.get().getDefaultState()),
-					new SimpleBlockStateProvider(ModBlocks.BANANA_LEAVES.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.ZEBRAWOOD_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(ModBlocks.ZEBRAWOOD_LEAVES.get().getDefaultState()),
 					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
 					new StraightTrunkPlacer(4, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
