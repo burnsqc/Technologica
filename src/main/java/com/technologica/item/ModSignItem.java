@@ -10,6 +10,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SignItem;
 import net.minecraft.util.math.BlockPos;
@@ -18,8 +19,8 @@ import net.minecraftforge.fml.network.PacketDistributor;
 
 public class ModSignItem extends SignItem {
 		
-	public ModSignItem(Properties propertiesIn, Block floorBlockIn, Block wallBlockIn) {
-		super(propertiesIn, floorBlockIn, wallBlockIn);
+	public ModSignItem(Block floorBlockIn, Block wallBlockIn) {
+		super(new Item.Properties().group(ModItemGroup.CONSTRUCTION), floorBlockIn, wallBlockIn);
 	}
 
 	@Override
