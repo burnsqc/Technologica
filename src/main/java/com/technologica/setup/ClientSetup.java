@@ -78,11 +78,11 @@ public class ClientSetup {
 			event.addSprite(new ResourceLocation(Technologica.MODID, "block/pulley_belt"));
 		} else if (event.getMap().getTextureLocation().equals(Atlases.SIGN_ATLAS)) {
 			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/banana"));
-//			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/cherry"));
-//			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/coconut"));
-//			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/kiwi"));
-//			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/lemon"));
-//			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/lime"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/cherry"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/coconut"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/kiwi"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/lemon"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/lime"));
 //			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/orange"));
 //			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/peach"));
 //			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/pear"));
