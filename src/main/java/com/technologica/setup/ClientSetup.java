@@ -77,15 +77,29 @@ public class ClientSetup {
 		if (event.getMap().getTextureLocation().equals(PlayerContainer.LOCATION_BLOCKS_TEXTURE)) {
 			event.addSprite(new ResourceLocation(Technologica.MODID, "block/pulley_belt"));
 		} else if (event.getMap().getTextureLocation().equals(Atlases.SIGN_ATLAS)) {
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/apricot"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/aspen"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/avocado"));
 			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/banana"));
 			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/cherry"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/chestnut"));
 			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/coconut"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/ebony"));
 			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/kiwi"));
 			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/lemon"));
 			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/lime"));
-//			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/orange"));
-//			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/peach"));
-//			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/pear"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/mahogany"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/maple"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/orange"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/peach"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/pear"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/plum"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/redwood"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/rosewood"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/rubber"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/teak"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/walnut"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/zebrawood"));
 		}
 	}
    
