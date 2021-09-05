@@ -1,5 +1,11 @@
 package com.technologica.setup;
 
+import static net.minecraft.entity.passive.horse.AbstractHorseEntity.func_234237_fg_;
+
+import java.util.Collection;
+import java.util.function.Supplier;
+
+import com.technologica.Technologica;
 import com.technologica.block.ModBlocks;
 import com.technologica.capabilities.ModCapabilities;
 import com.technologica.entity.ModEntities;
@@ -14,16 +20,19 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.FlowerPotBlock;
 import net.minecraft.block.SaplingBlock;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
+import net.minecraft.util.RegistryKey;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeManager;
+import net.minecraftforge.common.BiomeManager.BiomeEntry;
+import net.minecraftforge.common.BiomeManager.BiomeType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
-import static net.minecraft.entity.passive.horse.AbstractHorseEntity.func_234237_fg_;
-
-import java.util.Collection;
-import java.util.function.Supplier;
-
 public class CommonSetup {
-
+	public static final RegistryKey<Biome> saltFlatsBiomeKey = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, new ResourceLocation(Technologica.MODID, "salt_flats"));
+	
 	public static void init(final FMLCommonSetupEvent event) {
 		ModCapabilities.register();
 		Packets.onCommonSetupEvent();
@@ -36,6 +45,7 @@ public class CommonSetup {
 
 		event.enqueueWork(() -> {
 			automaticFlowerPots(ModBlocks.BLOCKS.getEntries());
+			BiomeManager.addBiome(BiomeType.DESERT, new BiomeEntry(saltFlatsBiomeKey, 1000));
 		});
 	}
 

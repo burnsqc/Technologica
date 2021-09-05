@@ -11,8 +11,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class ModTileEntities {
-	private static final DeferredRegister<TileEntityType<?>> TILEENTITIES = DeferredRegister
-			.create(ForgeRegistries.TILE_ENTITIES, MODID);
+	private static final DeferredRegister<TileEntityType<?>> TILEENTITIES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, MODID);
 
 	public static final RegistryObject<TileEntityType<ModSignTileEntity>> MOD_SIGN = TILEENTITIES.register("mod_sign",
 			() -> TileEntityType.Builder.create(ModSignTileEntity::new,
@@ -94,20 +93,19 @@ public class ModTileEntities {
 					ModBlocks.WALNUT_LEAVES.get(),
 					ModBlocks.FRUITFUL_LEAVES.get(),
 					ModBlocks.ALCHEMICAL_LEAVES.get()).build(null));
-	public static final RegistryObject<TileEntityType<PotionTileEntity>> POTION_CROP = TILEENTITIES.register(
-			"potion_crop",
-			() -> TileEntityType.Builder
-					.create(PotionTileEntity::new, ModBlocks.BENEVOLENT_LEAVES.get(), ModBlocks.MALEVOLENT_LEAVES.get())
-					.build(null));
-	public static final RegistryObject<TileEntityType<DisplayCaseTileEntity>> DISPLAY_TILE = TILEENTITIES.register(
-			"display_tile",
-			() -> TileEntityType.Builder.create(DisplayCaseTileEntity::new, ModBlocks.DISPLAY_CASE.get()).build(null));
-	public static final RegistryObject<TileEntityType<LineShaftTileEntity>> LINE_SHAFT_TILE = TILEENTITIES.register(
-			"line_shaft_tile",
-			() -> TileEntityType.Builder.create(LineShaftTileEntity::new, ModBlocks.LINE_SHAFT.get()).build(null));
-	public static final RegistryObject<TileEntityType<LineShaftHangerTileEntity>> LINE_SHAFT_HANGER_TILE = TILEENTITIES
-			.register("line_shaft_hanger_tile", () -> TileEntityType.Builder
-					.create(LineShaftHangerTileEntity::new, ModBlocks.LINE_SHAFT_HANGER.get()).build(null));
+	public static final RegistryObject<TileEntityType<PotionTileEntity>> POTION_CROP = TILEENTITIES.register("potion_crop",
+			() -> TileEntityType.Builder.create(PotionTileEntity::new, 
+					ModBlocks.BENEVOLENT_LEAVES.get(), 
+					ModBlocks.MALEVOLENT_LEAVES.get()).build(null));
+	public static final RegistryObject<TileEntityType<DisplayCaseTileEntity>> DISPLAY_TILE = TILEENTITIES.register("display_tile",
+			() -> TileEntityType.Builder.create(DisplayCaseTileEntity::new, 
+					ModBlocks.DISPLAY_CASE.get()).build(null));
+	public static final RegistryObject<TileEntityType<LineShaftTileEntity>> LINE_SHAFT_TILE = TILEENTITIES.register("line_shaft_tile",
+			() -> TileEntityType.Builder.create(LineShaftTileEntity::new, 
+					ModBlocks.LINE_SHAFT.get()).build(null));
+	public static final RegistryObject<TileEntityType<LineShaftHangerTileEntity>> LINE_SHAFT_HANGER_TILE = TILEENTITIES.register("line_shaft_hanger_tile", 
+			() -> TileEntityType.Builder.create(LineShaftHangerTileEntity::new, 
+					ModBlocks.LINE_SHAFT_HANGER.get()).build(null));
 
 	public static void register() {
 		TILEENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
