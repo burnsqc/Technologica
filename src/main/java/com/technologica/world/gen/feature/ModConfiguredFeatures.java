@@ -1,5 +1,6 @@
 package com.technologica.world.gen.feature;
 
+import com.google.common.collect.ImmutableList;
 import com.technologica.block.ModBlocks;
 import com.technologica.world.gen.foliageplacer.ConicalFoliagePlacer;
 import com.technologica.world.gen.foliageplacer.CylindricalFoliagePlacer;
@@ -7,6 +8,7 @@ import com.technologica.world.gen.foliageplacer.DishFoliagePlacer;
 import com.technologica.world.gen.foliageplacer.PalmFoliagePlacer;
 import com.technologica.world.gen.foliageplacer.TeardropFoliagePlacer;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
@@ -16,16 +18,19 @@ import net.minecraft.world.gen.feature.BlockStateFeatureConfig;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.FeatureSpread;
+import net.minecraft.world.gen.feature.Features;
 import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.world.gen.feature.MultipleRandomFeatureConfig;
 import net.minecraft.world.gen.feature.TwoLayerFeature;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.MegaPineFoliagePlacer;
+import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
 import net.minecraft.world.gen.placement.ChanceConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
 
 public class ModConfiguredFeatures {
-	
+		
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> APRICOT_TREE_FEATURE = register(
 			"apricot_tree_feature",
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
@@ -296,7 +301,15 @@ public class ModConfiguredFeatures {
 					new StraightTrunkPlacer(4, 1, 0),
 					new TwoLayerFeature(0, 0, 0))).setIgnoreVines().build()));
 	
+	public static final ConfiguredFeature<?, ?> LAKE_BRINE_FEATURE = register("lake_brine_feature", ModFeatures.LAKE_BRINE.get().withConfiguration(new BlockStateFeatureConfig(States.BRINE_BLOCK)).withPlacement(Placement.WATER_LAKE.configure(new ChanceConfig(4))));
 	public static final ConfiguredFeature<?, ?> OASIS_FEATURE = register("oasis_feature", ModFeatures.OASIS.get().withConfiguration(new BlockStateFeatureConfig(Blocks.WATER.getDefaultState())).withPlacement(Placement.WATER_LAKE.configure(new ChanceConfig(100))));
+	
+	public static final ConfiguredFeature<?, ?> REDWOOD_FOREST_VEGETATION = register("redwood_forest_vegetation", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(ModConfiguredFeatures.REDWOOD_TREE_FEATURE.withChance(1.0F)), ModConfiguredFeatures.REDWOOD_TREE_FEATURE)).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(10, 0.1F, 1))));
+	public static final ConfiguredFeature<?, ?> RAINFOREST_VEGETATION = register("rainforest_vegetation", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(ModConfiguredFeatures.ROSEWOOD_TREE_FEATURE.withChance(0.5F)), ModConfiguredFeatures.ROSEWOOD_TREE_FEATURE)).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(10, 0.1F, 1))));
+	
+	public static final class States {
+		protected static final BlockState BRINE_BLOCK = ModBlocks.BRINE.get().getDefaultState();
+	}
 	
 	private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String key, ConfiguredFeature<FC, ?> configuredFeature) {
 		return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, key, configuredFeature);

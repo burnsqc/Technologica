@@ -1,13 +1,13 @@
 {
   "config": {
     "top_material": {
-      "Name": "technologica:salt"
+      "Name": "minecraft:red_sand"
     },
     "under_material": {
-      "Name": "minecraft:white_terracotta"
+      "Name": "minecraft:stone"
     },
     "underwater_material": {
-      "Name": "minecraft:gravel"
+      "Name": "technologica:lithium_clay"
     }
   },
   "type": "technologica:salt_flats"
