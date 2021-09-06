@@ -1,5 +1,5 @@
 {
-  "scale": 0.025,
+  "scale": 0.2,
   "effects": {
     "mood_sound": {
       "sound": "minecraft:ambient.cave",
@@ -7,14 +7,12 @@
       "block_search_extent": 8,
       "offset": 2.0
     },
-    "sky_color": 7254527,
-    "foliage_color": 10387789,
-    "grass_color": 9470285,
+    "sky_color": 8233983,
     "fog_color": 12638463,
     "water_color": 4159204,
     "water_fog_color": 329011
   },
-  "surface_builder": "technologica:salt_flats",
+  "surface_builder": "minecraft:grass",
   "carvers": {
     "air": [
       "minecraft:cave",
@@ -24,6 +22,7 @@
   "features": [
     [],
     [
+      "minecraft:lake_water",
       "minecraft:lake_lava"
     ],
     [],
@@ -35,27 +34,40 @@
       "minecraft:ore_gravel",
       "minecraft:ore_granite",
       "minecraft:ore_diorite",
-      "minecraft:ore_andesite"
+      "minecraft:ore_andesite",
+      "minecraft:ore_coal",
+      "minecraft:ore_iron",
+      "minecraft:ore_gold",
+      "minecraft:ore_redstone",
+      "minecraft:ore_diamond",
+      "minecraft:ore_lapis"
     ],
     [],
     [
-      "minecraft:patch_grass_badlands",
-      "minecraft:patch_dead_bush_badlands",
+      "minecraft:patch_large_fern",
+      "technologica:rainforest_vegetation",
+      "minecraft:flower_default",
+      "minecraft:patch_grass_taiga_2",
+      "minecraft:brown_mushroom_taiga",
+      "minecraft:red_mushroom_taiga",
       "minecraft:brown_mushroom_normal",
       "minecraft:red_mushroom_normal",
-      "minecraft:patch_sugar_cane_badlands",
-      "minecraft:patch_cactus_decorated",
+      "minecraft:patch_sugar_cane",
+      "minecraft:patch_pumpkin",
       "minecraft:spring_water",
-      "minecraft:spring_lava"
+      "minecraft:spring_lava",
+      "minecraft:patch_berry_sparse"
     ],
     [
       "minecraft:freeze_top_layer"
     ]
   ],
   "starts": [
-    "minecraft:mineshaft_mesa",
+    "minecraft:village_taiga",
+    "minecraft:pillager_outpost",
+    "minecraft:mineshaft",
     "minecraft:stronghold",
-    "minecraft:ruined_portal_mountain"
+    "minecraft:ruined_portal"
   ],
   "spawners": {
     "monster": [
@@ -108,7 +120,26 @@
         "maxCount": 1
       }
     ],
-    "creature": [],
+    "creature": [
+      {
+        "type": "minecraft:wolf",
+        "weight": 8,
+        "minCount": 4,
+        "maxCount": 4
+      },
+      {
+        "type": "minecraft:rabbit",
+        "weight": 4,
+        "minCount": 2,
+        "maxCount": 3
+      },
+      {
+        "type": "minecraft:fox",
+        "weight": 8,
+        "minCount": 2,
+        "maxCount": 4
+      }
+    ],
     "ambient": [
       {
         "type": "minecraft:bat",
@@ -122,10 +153,10 @@
     "misc": []
   },
   "spawn_costs": {},
-  "player_spawn_friendly": false,
-  "precipitation": "none",
-  "temperature": 2.0,
-  "downfall": 0.0,
-  "category": "mesa",
-  "depth": 0.1
+  "player_spawn_friendly": true,
+  "precipitation": "rain",
+  "temperature": 0.25,
+  "downfall": 0.8,
+  "category": "taiga",
+  "depth": 0.2
 }

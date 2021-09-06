@@ -17,6 +17,7 @@ import com.technologica.tileentity.ModTileEntities;
 import com.technologica.world.biome.ModBiomes;
 import com.technologica.world.gen.feature.ModFeatures;
 import com.technologica.world.gen.foliageplacer.ModFoliagePlacers;
+import com.technologica.world.gen.surfacebuilders.ModSurfaceBuilders;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -46,12 +47,14 @@ public class Technologica {
 		LOGGER.info("REGISTERING GAME OBJECTS - TILE ENTITIES");
 		ModTileEntities.register();
 		
-		LOGGER.info("REGISTERING WORLDGEN - BIOMES");
-		ModBiomes.register();
 		LOGGER.info("REGISTERING WORLDGEN - FEATURES");
 		ModFeatures.register();
 		LOGGER.info("REGISTERING WORLDGEN - FOLIAGE PLACER TYPES");
 		ModFoliagePlacers.register();
+		LOGGER.info("REGISTERING WORLDGEN - SURFACE BUILDERS");
+		ModSurfaceBuilders.register();
+		LOGGER.info("REGISTERING WORLDGEN - BIOMES");
+		ModBiomes.register();
 		
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(CommonSetup::init);	//1st event during mod lifecycle startup
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientSetup::init);	//2nd event during mod lifecycle startup
