@@ -7,6 +7,7 @@ import com.technologica.Technologica;
 import com.technologica.block.ModBlocks;
 import com.technologica.block.ModCropsBlock;
 import com.technologica.block.TallCropsBlock;
+import com.technologica.block.WaterCropsBlock;
 import com.technologica.client.renderer.entity.DuckRenderer;
 import com.technologica.client.renderer.entity.GrizzlyBearRenderer;
 import com.technologica.client.renderer.entity.ModBoatRenderer;
@@ -110,6 +111,7 @@ public class ClientSetup {
 			if (
 				block.getClass().equals(ModCropsBlock.class) ||
 				block.getClass().equals(TallCropsBlock.class) ||
+				block.getClass().equals(WaterCropsBlock.class) ||
 				block.getClass().equals(SaplingBlock.class) ||
 				block.getClass().equals(FlowerPotBlock.class) ||
 				block.getClass().equals(DoorBlock.class)||
