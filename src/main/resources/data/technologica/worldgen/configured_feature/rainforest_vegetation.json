@@ -6,11 +6,11 @@
           "config": {
             "features": [
               {
-                "feature": "technologica:redwood",
+                "feature": "technologica:rosewood",
                 "chance": 0.66666666
               }
             ],
-            "default": "minecraft:spruce"
+            "default": "technologica:banana"
           },
           "type": "minecraft:random_selector"
         },

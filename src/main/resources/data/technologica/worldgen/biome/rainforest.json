@@ -7,7 +7,7 @@
       "block_search_extent": 8,
       "offset": 2.0
     },
-    "sky_color": 8233983,
+    "sky_color": 7842047,
     "fog_color": 12638463,
     "water_color": 4159204,
     "water_fog_color": 329011
@@ -47,7 +47,6 @@
       "minecraft:patch_large_fern",
       "technologica:rainforest_vegetation",
       "minecraft:flower_default",
-      "minecraft:patch_grass_taiga_2",
       "minecraft:brown_mushroom_taiga",
       "minecraft:red_mushroom_taiga",
       "minecraft:brown_mushroom_normal",
@@ -63,11 +62,10 @@
     ]
   ],
   "starts": [
-    "minecraft:village_taiga",
-    "minecraft:pillager_outpost",
+    "minecraft:jungle_pyramid",
     "minecraft:mineshaft",
     "minecraft:stronghold",
-    "minecraft:ruined_portal"
+    "minecraft:ruined_portal_jungle"
   ],
   "spawners": {
     "monster": [
@@ -122,22 +120,22 @@
     ],
     "creature": [
       {
-        "type": "minecraft:wolf",
-        "weight": 8,
+        "type": "minecraft:pig",
+        "weight": 10,
         "minCount": 4,
         "maxCount": 4
       },
       {
-        "type": "minecraft:rabbit",
-        "weight": 4,
-        "minCount": 2,
-        "maxCount": 3
+        "type": "minecraft:chicken",
+        "weight": 10,
+        "minCount": 4,
+        "maxCount": 4
       },
       {
-        "type": "minecraft:fox",
-        "weight": 8,
-        "minCount": 2,
-        "maxCount": 4
+        "type": "minecraft:parrot",
+        "weight": 10,
+        "minCount": 1,
+        "maxCount": 1
       }
     ],
     "ambient": [
@@ -152,11 +150,11 @@
     "water_ambient": [],
     "misc": []
   },
-  "spawn_costs": {},
+ "spawn_costs": {},
   "player_spawn_friendly": true,
   "precipitation": "rain",
-  "temperature": 0.25,
-  "downfall": 0.8,
-  "category": "taiga",
-  "depth": 0.2
+  "temperature": 0.95,
+  "downfall": 1.0,
+  "category": "jungle",
+  "depth": 0.9
 }
