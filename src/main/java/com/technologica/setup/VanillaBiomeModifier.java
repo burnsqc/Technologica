@@ -12,9 +12,9 @@ import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 
-public class ModBiomeModifier {
+public class VanillaBiomeModifier {
 
-	private ModBiomeModifier() {
+	private VanillaBiomeModifier() {
 		// hide constructor for class with only static members
 	}
 

@@ -11,8 +11,8 @@ import com.technologica.setup.ClientSetup;
 import com.technologica.setup.CommonSetup;
 import com.technologica.setup.Config;
 import com.technologica.setup.GatherData;
-import com.technologica.setup.ModBiomeModifier;
-import com.technologica.setup.ModEntityModifier;
+import com.technologica.setup.VanillaBiomeModifier;
+import com.technologica.setup.VanillaEntityModifier;
 import com.technologica.tileentity.ModTileEntities;
 import com.technologica.world.biome.ModBiomes;
 import com.technologica.world.gen.feature.ModFeatures;
@@ -61,7 +61,7 @@ public class Technologica {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(GatherData::init);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientSetup::stitch);
 		
-		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, ModBiomeModifier::init);	
-		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, ModEntityModifier::init);	
+		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, VanillaBiomeModifier::init);	
+		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, VanillaEntityModifier::init);	
 	}
 }

@@ -234,14 +234,14 @@ public class ModBlocks {
     public static final RegistryObject<Block> LEMON_LOG = BLOCKS.register("lemon_log", ModLogBlock::new);
     public static final RegistryObject<Block> LIME_LOG = BLOCKS.register("lime_log", ModLogBlock::new);
     public static final RegistryObject<Block> MAHOGANY_LOG = BLOCKS.register("mahogany_log", ModLogBlock::new); 
-    public static final RegistryObject<Block> MAPLE_LOG = BLOCKS.register("maple_log", ModLogBlock::new);  
+    public static final RegistryObject<Block> MAPLE_LOG = BLOCKS.register("maple_log", SapLogBlock::new);  
     public static final RegistryObject<Block> ORANGE_LOG = BLOCKS.register("orange_log", ModLogBlock::new);
     public static final RegistryObject<Block> PEACH_LOG = BLOCKS.register("peach_log", ModLogBlock::new);
     public static final RegistryObject<Block> PEAR_LOG = BLOCKS.register("pear_log", ModLogBlock::new);
     public static final RegistryObject<Block> PLUM_LOG = BLOCKS.register("plum_log", ModLogBlock::new); 
     public static final RegistryObject<Block> REDWOOD_LOG = BLOCKS.register("redwood_log", ModLogBlock::new);
     public static final RegistryObject<Block> ROSEWOOD_LOG = BLOCKS.register("rosewood_log", ModLogBlock::new);
-    public static final RegistryObject<Block> RUBBER_LOG = BLOCKS.register("rubber_log", ModLogBlock::new); 
+    public static final RegistryObject<Block> RUBBER_LOG = BLOCKS.register("rubber_log", SapLogBlock::new); 
     public static final RegistryObject<Block> TEAK_LOG = BLOCKS.register("teak_log", ModLogBlock::new);  
     public static final RegistryObject<Block> WALNUT_LOG = BLOCKS.register("walnut_log", ModLogBlock::new);  
     public static final RegistryObject<Block> ZEBRAWOOD_LOG = BLOCKS.register("zebrawood_log", ModLogBlock::new);  
@@ -737,6 +737,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> MOTOR_1HP = BLOCKS.register("motor_1hp", () -> new MotorBlock(100, 60)); 
     public static final RegistryObject<Block> MOTOR_5HP = BLOCKS.register("motor_5hp", () -> new MotorBlock(200, 120));
     public static final RegistryObject<Block> MOTOR_20HP = BLOCKS.register("motor_20hp", () -> new MotorBlock(400, 240));
+    public static final RegistryObject<Block> TREE_TAP = BLOCKS.register("tree_tap", () -> new TreeTapBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.IRON).setRequiresTool().hardnessAndResistance(5.0F).sound(SoundType.WOOD).notSolid()));
     
     /**
      * DECORATIVE

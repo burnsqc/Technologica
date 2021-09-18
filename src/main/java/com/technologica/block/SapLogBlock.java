@@ -28,17 +28,17 @@ public class SapLogBlock extends ModLogBlock {
 	
 	@Override
 	public void randomTick(BlockState stateIn, ServerWorld worldIn, BlockPos posIn, Random randomIn) {
-		worldIn.setBlockState(posIn, stateIn.with(AGE, stateIn.get(AGE) + 1), 4);
+		worldIn.setBlockState(posIn, stateIn.with(AGE, stateIn.get(AGE) + 1), 3);
 	}
 
 	@Override
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-		builder.add(AGE);
+		builder.add(PERSISTENT).add(AGE);
 		super.fillStateContainer(builder);
 	}
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		return this.getDefaultState().with(PERSISTENT, Boolean.valueOf(true));
+		return this.getDefaultState().with(AXIS, context.getFace().getAxis()).with(PERSISTENT, Boolean.valueOf(true));
 	}
 }

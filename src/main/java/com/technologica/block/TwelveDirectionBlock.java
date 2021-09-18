@@ -13,7 +13,6 @@ import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
-import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
@@ -29,7 +28,6 @@ import net.minecraft.world.World;
 public class TwelveDirectionBlock extends Block{
 	public static final DirectionProperty FACING = BlockStateProperties.FACING;
 	public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS;
-	public static final IntegerProperty DISTANCE = BlockStateProperties.DISTANCE_1_7;
 	
 	protected TwelveDirectionBlock() {
 		super(Properties.create(Material.IRON).hardnessAndResistance(2.0F).harvestLevel(1).sound(SoundType.ANVIL).notSolid());
@@ -92,7 +90,7 @@ public class TwelveDirectionBlock extends Block{
 	
 	@Override
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-		builder.add(FACING).add(AXIS).add(DISTANCE);
+		builder.add(FACING).add(AXIS);
 		super.fillStateContainer(builder);
 	}
 }

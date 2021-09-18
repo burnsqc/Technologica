@@ -13,9 +13,9 @@ import net.minecraft.entity.passive.BeeEntity;
 import net.minecraft.entity.passive.fish.TropicalFishEntity;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 
-public class ModEntityModifier {
+public class VanillaEntityModifier {
 
-	private ModEntityModifier() {
+	private VanillaEntityModifier() {
 		// hide constructor for class with only static members
 	}
 

@@ -1,0 +1,6 @@
+{
+  "parent": "technologica:block/tree_tap",
+  "textures": {
+    "tree_tap": "technologica:block/tree_tap"
+  }
+}

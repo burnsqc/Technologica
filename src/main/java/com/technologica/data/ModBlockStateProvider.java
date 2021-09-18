@@ -5,6 +5,7 @@ import java.util.function.Supplier;
 
 import com.technologica.Technologica;
 import com.technologica.block.CrystalBlock;
+import com.technologica.block.FourDirectionBlock;
 import com.technologica.block.ModBlocks;
 import com.technologica.block.ModCropsBlock;
 import com.technologica.block.TallCropsBlock;
@@ -83,6 +84,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			else if (block.getRegistryName().getPath().contains("crystal") && !block.getRegistryName().getPath().contains("dolomite")) hexagonalCrystalBlock(block);
 			else if (block.getRegistryName().getPath().contains("dolomite")) cubicCrystalBlock(block);
 			else if (block.getRegistryName().getPath().contains("display")) displayBlock(block);
+			else if (block instanceof FourDirectionBlock) fourDirectionBlock(block);
 			else if (block instanceof TwentyFourDirectionBlock) twentyFourDirectionBlock(block);
 		}
 	}
@@ -153,6 +155,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	public ModelFile motor2(Block block) {
 		return models().withExistingParent(name(block) + "2", modLoc("motor2")).texture("motor", blockTexture(block));
     }
+	
+	public ModelFile treeTap(Block block) {
+		return models().withExistingParent(name(block), modLoc("tree_tap")).texture("tree_tap", blockTexture(block));
+	}
 	
 	public ModelFile display(Block block) {
 		return models().withExistingParent(name(block), modLoc("display")).texture("case", blockTexture(block)).texture("base", new ResourceLocation("block/black_wool"));
@@ -347,6 +353,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			.partialState().with(CrystalBlock.FACING, Direction.UP).modelForState().modelFile(cubicCrystal(block)).addModel()
 			.partialState().with(CrystalBlock.FACING, Direction.DOWN).modelForState().modelFile(cubicCrystal(block)).rotationX(180).addModel();
 		this.simpleBlockItem(block, cubicCrystal(block));
+    }
+	
+	public void fourDirectionBlock(Block block) {
+    	getVariantBuilder(block)
+    		.partialState().with(FourDirectionBlock.HORIZONTAL_FACING, Direction.NORTH).modelForState().modelFile(treeTap(block)).addModel()
+    		.partialState().with(FourDirectionBlock.HORIZONTAL_FACING, Direction.EAST).modelForState().modelFile(treeTap(block)).rotationY(90).addModel()
+    		.partialState().with(FourDirectionBlock.HORIZONTAL_FACING, Direction.SOUTH).modelForState().modelFile(treeTap(block)).rotationY(180).addModel()
+    		.partialState().with(FourDirectionBlock.HORIZONTAL_FACING, Direction.WEST).modelForState().modelFile(treeTap(block)).rotationY(270).addModel();
     }
 	
 	public void twentyFourDirectionBlock(Block block) {
