@@ -59,7 +59,7 @@ public class FruitingLeavesBlock extends LeavesBlock {
 
 	@Override
 	public boolean ticksRandomly(BlockState stateIn) {
-		return !stateIn.get(PERSISTENT);
+		return !stateIn.get(PERSISTENT) && stateIn.get(AGE) <= 14;
 	}
 
 	@Override
