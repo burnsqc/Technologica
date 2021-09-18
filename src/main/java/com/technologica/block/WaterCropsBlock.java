@@ -10,7 +10,6 @@ import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Item;
 import net.minecraft.state.properties.DoubleBlockHalf;
-import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
@@ -23,13 +22,29 @@ public class WaterCropsBlock extends TallCropsBlock implements ILiquidContainer 
 	}
 	
 	@Override
-	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-	      BlockPos blockpos = pos.down();
-	      if (state.getBlock() == this) {
-	         return worldIn.getBlockState(blockpos).canSustainPlant(worldIn, blockpos, Direction.UP, this);
-	      }
-	      return this.isValidGround(worldIn.getBlockState(blockpos), worldIn, blockpos);
-	   }
+	public boolean isValidPosition(BlockState stateIn, IWorldReader worldIn, BlockPos posIn) {
+		Boolean unobstructed;
+		BlockPos ground = posIn.down();
+		
+		if (stateIn.get(HALF) == DoubleBlockHalf.LOWER) {
+			if (stateIn.get(AGE) <= 3) {
+				unobstructed = isAir(worldIn.getBlockState(posIn.up()));
+			} else {
+				if (worldIn.getBlockState(posIn.up()).getBlock() == this) {
+					unobstructed = worldIn.getBlockState(posIn.up()).get(HALF) == DoubleBlockHalf.UPPER;
+				} else {
+					unobstructed = false;
+				}
+			}
+			return isValidGround(worldIn.getBlockState(ground), worldIn, ground) && unobstructed;
+		} else {
+			if (worldIn.getBlockState(ground).getBlock() == this) {
+				return worldIn.getBlockState(ground).get(HALF) == DoubleBlockHalf.LOWER && worldIn.getBlockState(ground).get(AGE) >= 4;
+			} else {
+				return false;
+			}
+		}
+	}
 	
 	@Override
 	protected boolean isValidGround(BlockState stateIn, IBlockReader worldIn, BlockPos posIn) {
@@ -51,7 +66,6 @@ public class WaterCropsBlock extends TallCropsBlock implements ILiquidContainer 
 		} else {
 			return Fluids.EMPTY.getDefaultState();
 		}
-		
 	}
 
 	@Override
