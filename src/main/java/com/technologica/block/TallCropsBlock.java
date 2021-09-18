@@ -3,20 +3,13 @@ package com.technologica.block;
 import java.util.Random;
 import java.util.function.Supplier;
 
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.CropsBlock;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.DoubleBlockHalf;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
@@ -27,7 +20,7 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
-public class TallCropsBlock extends CropsBlock {
+public class TallCropsBlock extends ModCropsBlock {
 	private Supplier<Item> seeds;
 	public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 	private static final VoxelShape[] SHAPE_BY_AGE_LOWER = new VoxelShape[] {
@@ -50,7 +43,7 @@ public class TallCropsBlock extends CropsBlock {
 			Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D) };
 
 	public TallCropsBlock(Supplier<Item> seedsIn) {
-		super(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP));
+		super(seedsIn);
 		seeds = seedsIn;
 		this.setDefaultState(this.stateContainer.getBaseState().with(HALF, DoubleBlockHalf.LOWER).with(AGE, 0));
 	}
@@ -65,38 +58,45 @@ public class TallCropsBlock extends CropsBlock {
 	}
 
 	@Override
-	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-	      BlockPos blockpos = pos.down();
-	      if (state.getBlock() == this) {
-	         return worldIn.getBlockState(blockpos).canSustainPlant(worldIn, blockpos, Direction.UP, this);
-	      }
-	      return isValidGround(worldIn.getBlockState(blockpos), worldIn, blockpos);
-	   }
-	
-	@Override
-	protected boolean isValidGround(BlockState stateIn, IBlockReader worldIn, BlockPos posIn) {
-		if (stateIn.matchesBlock(Blocks.FARMLAND)) {
-			return stateIn.matchesBlock(Blocks.FARMLAND) && worldIn.getBlockState(posIn.offset(Direction.UP, 2)).getBlock() == Blocks.AIR;
-		} else if (stateIn.matchesBlock(this)) {
-			return stateIn.get(HALF) == DoubleBlockHalf.LOWER && stateIn.get(AGE) >= 4;
+	public boolean isValidPosition(BlockState stateIn, IWorldReader worldIn, BlockPos posIn) {
+		Boolean unobstructed;
+		BlockPos ground = posIn.down();
+		
+		if (stateIn.get(HALF) == DoubleBlockHalf.LOWER) {
+			if (stateIn.get(AGE) <= 3) {
+				unobstructed = isAir(worldIn.getBlockState(posIn.up()));
+			} else {
+				if (worldIn.getBlockState(posIn.up()).getBlock() == this) {
+					unobstructed = worldIn.getBlockState(posIn.up()).get(HALF) == DoubleBlockHalf.UPPER;
+				} else {
+					unobstructed = false;
+				}
+			}
+			return worldIn.getBlockState(ground).canSustainPlant(worldIn, ground, Direction.UP, this) && unobstructed;
 		} else {
-			return false;
+			if (worldIn.getBlockState(ground).getBlock() == this) {
+				return worldIn.getBlockState(ground).get(HALF) == DoubleBlockHalf.LOWER && worldIn.getBlockState(ground).get(AGE) >= 4;
+			} else {
+				return false;
+			}
 		}
 	}
-
+	
 	@Override
 	public boolean ticksRandomly(BlockState stateIn) {
 		return !this.isMaxAge(stateIn) && stateIn.get(HALF) == DoubleBlockHalf.LOWER;
 	}
-	
+
 	@Override
 	public void randomTick(BlockState stateIn, ServerWorld worldIn, BlockPos posIn, Random randomIn) {
-		if (!worldIn.isAreaLoaded(posIn, 1)) return;
+		if (!worldIn.isAreaLoaded(posIn, 1))
+			return;
 		if (worldIn.getLightSubtracted(posIn, 0) >= 9) {
 			int i = this.getAge(stateIn);
 			if (i < this.getMaxAge()) {
 				float f = getGrowthChance(this, worldIn, posIn);
-				if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, posIn, stateIn, randomIn.nextInt((int) (25.0F / f) + 1) == 0)) {
+				if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, posIn, stateIn,
+						randomIn.nextInt((int) (25.0F / f) + 1) == 0)) {
 					worldIn.setBlockState(posIn, this.withAge(i + 1).with(HALF, stateIn.get(HALF)), 2);
 
 					if (stateIn.get(HALF) == DoubleBlockHalf.LOWER && worldIn.isAirBlock(posIn.up()) && i + 1 >= 4) {
@@ -112,7 +112,7 @@ public class TallCropsBlock extends CropsBlock {
 			}
 		}
 	}
-	
+
 	@Override
 	public void grow(World worldIn, BlockPos posIn, BlockState stateIn) {
 		int i = this.getAge(stateIn) + this.getBonemealAgeIncrease(worldIn);
@@ -130,42 +130,17 @@ public class TallCropsBlock extends CropsBlock {
 		if (worldIn.getBlockState(posIn.up()).matchesBlock(this)) {
 			worldIn.setBlockState(posIn.up(), this.withAge(i).with(HALF, DoubleBlockHalf.UPPER), 2);
 		}
-		
+
 		if (stateIn.get(HALF) == DoubleBlockHalf.UPPER) {
 			worldIn.setBlockState(posIn.down(), this.withAge(i).with(HALF, DoubleBlockHalf.LOWER), 2);
 		}
 	}
 
 	@Override
-	public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
-		if (!worldIn.isRemote) {
-			if (player.isCreative()) {
-				removeBottomHalf(worldIn, pos, state, player);
-			} else {
-				spawnDrops(state, worldIn, pos, (TileEntity) null, player, player.getHeldItemMainhand());
-			}
-		}
-
-		super.onBlockHarvested(worldIn, pos, state, player);
-	}
-
-	protected static void removeBottomHalf(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-		DoubleBlockHalf doubleblockhalf = state.get(HALF);
-		if (doubleblockhalf == DoubleBlockHalf.UPPER) {
-			BlockPos blockpos = pos.down();
-			BlockState blockstate = world.getBlockState(blockpos);
-			if (blockstate.getBlock() == state.getBlock() && blockstate.get(HALF) == DoubleBlockHalf.LOWER) {
-				world.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 35);
-				world.playEvent(player, 2001, blockpos, Block.getStateId(blockstate));
-			}
-		}
-	}
-
-	@Override
 	protected IItemProvider getSeedsItem() {
-	      return seeds.get();
-	   }
-	
+		return seeds.get();
+	}
+
 	@Override
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
 		builder.add(HALF);
