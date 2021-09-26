@@ -854,6 +854,8 @@ public class ModItems {
     public static final RegistryObject<Item> MOTOR_1HP_ITEM = ITEMS.register("motor_1hp", () -> new BlockItem(ModBlocks.MOTOR_1HP.get(), new Item.Properties().group(ModItemGroup.MACHINERY)));
     public static final RegistryObject<Item> MOTOR_5HP_ITEM = ITEMS.register("motor_5hp", () -> new BlockItem(ModBlocks.MOTOR_5HP.get(), new Item.Properties().group(ModItemGroup.MACHINERY)));
     public static final RegistryObject<Item> MOTOR_20HP_ITEM = ITEMS.register("motor_20hp", () -> new BlockItem(ModBlocks.MOTOR_20HP.get(), new Item.Properties().group(ModItemGroup.MACHINERY)));
+    public static final RegistryObject<Item> SAWBLADE = ITEMS.register("sawblade", () -> new Item(new Item.Properties().group(ModItemGroup.MACHINERY)));
+    public static final RegistryObject<Item> SAWMILL_ITEM = ITEMS.register("sawmill", () -> new BlockItem(ModBlocks.SAWMILL.get(), new Item.Properties().group(ModItemGroup.MACHINERY)));
     
     /**
      * DECORATIVE

@@ -738,6 +738,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> MOTOR_5HP = BLOCKS.register("motor_5hp", () -> new MotorBlock(200, 120));
     public static final RegistryObject<Block> MOTOR_20HP = BLOCKS.register("motor_20hp", () -> new MotorBlock(400, 240));
     public static final RegistryObject<Block> TREE_TAP = BLOCKS.register("tree_tap", () -> new TreeTapBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.IRON).setRequiresTool().hardnessAndResistance(5.0F).sound(SoundType.WOOD).notSolid()));
+    public static final RegistryObject<Block> SAWMILL = BLOCKS.register("sawmill", () -> new SawmillBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.IRON).setRequiresTool().hardnessAndResistance(5.0F).sound(SoundType.WOOD).notSolid()));
     
     /**
      * DECORATIVE

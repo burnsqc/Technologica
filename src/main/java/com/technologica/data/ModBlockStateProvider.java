@@ -5,10 +5,10 @@ import java.util.function.Supplier;
 
 import com.technologica.Technologica;
 import com.technologica.block.CrystalBlock;
-import com.technologica.block.FourDirectionBlock;
 import com.technologica.block.ModBlocks;
 import com.technologica.block.ModCropsBlock;
 import com.technologica.block.TallCropsBlock;
+import com.technologica.block.TreeTapBlock;
 import com.technologica.block.TwentyFourDirectionBlock;
 import com.technologica.block.WaterCropsBlock;
 
@@ -18,6 +18,7 @@ import net.minecraft.block.DirectionalBlock;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.block.FenceBlock;
 import net.minecraft.block.FenceGateBlock;
+import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.block.SlabBlock;
@@ -84,7 +85,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			else if (block.getRegistryName().getPath().contains("crystal") && !block.getRegistryName().getPath().contains("dolomite")) hexagonalCrystalBlock(block);
 			else if (block.getRegistryName().getPath().contains("dolomite")) cubicCrystalBlock(block);
 			else if (block.getRegistryName().getPath().contains("display")) displayBlock(block);
-			else if (block instanceof FourDirectionBlock) fourDirectionBlock(block);
+			else if (block instanceof TreeTapBlock) fourDirectionBlock(block);
 			else if (block instanceof TwentyFourDirectionBlock) twentyFourDirectionBlock(block);
 		}
 	}
@@ -357,10 +358,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	
 	public void fourDirectionBlock(Block block) {
     	getVariantBuilder(block)
-    		.partialState().with(FourDirectionBlock.HORIZONTAL_FACING, Direction.NORTH).modelForState().modelFile(treeTap(block)).addModel()
-    		.partialState().with(FourDirectionBlock.HORIZONTAL_FACING, Direction.EAST).modelForState().modelFile(treeTap(block)).rotationY(90).addModel()
-    		.partialState().with(FourDirectionBlock.HORIZONTAL_FACING, Direction.SOUTH).modelForState().modelFile(treeTap(block)).rotationY(180).addModel()
-    		.partialState().with(FourDirectionBlock.HORIZONTAL_FACING, Direction.WEST).modelForState().modelFile(treeTap(block)).rotationY(270).addModel();
+    		.partialState().with(HorizontalBlock.HORIZONTAL_FACING, Direction.NORTH).modelForState().modelFile(treeTap(block)).addModel()
+    		.partialState().with(HorizontalBlock.HORIZONTAL_FACING, Direction.EAST).modelForState().modelFile(treeTap(block)).rotationY(90).addModel()
+    		.partialState().with(HorizontalBlock.HORIZONTAL_FACING, Direction.SOUTH).modelForState().modelFile(treeTap(block)).rotationY(180).addModel()
+    		.partialState().with(HorizontalBlock.HORIZONTAL_FACING, Direction.WEST).modelForState().modelFile(treeTap(block)).rotationY(270).addModel();
     }
 	
 	public void twentyFourDirectionBlock(Block block) {

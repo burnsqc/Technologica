@@ -8,7 +8,11 @@ import com.google.common.collect.Maps;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.HorizontalBlock;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.state.DirectionProperty;
+import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -16,7 +20,8 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
-public class TreeTapBlock extends FourDirectionBlock {
+public class TreeTapBlock extends HorizontalBlock {
+	public static final DirectionProperty HORIZONTAL_FACING = BlockStateProperties.HORIZONTAL_FACING;
 	private static final Map<Direction, VoxelShape> SHAPES = Maps
 			.newEnumMap(ImmutableMap.of(
 					Direction.NORTH, Block.makeCuboidShape(6.0D, 6.0D, 11.0D, 10.0D, 11.0D, 16.0D),
@@ -38,13 +43,13 @@ public class TreeTapBlock extends FourDirectionBlock {
 
 	public void animateTick(BlockState stateIn, World worldIn, BlockPos posIn, Random randomIn) {
 		if (worldIn.isRemote) {
-			if (worldIn.getBlockState(posIn.offset(stateIn.get(FourDirectionBlock.HORIZONTAL_FACING).getOpposite())).getBlock() instanceof SapLogBlock) {
-				if (worldIn.getBlockState(posIn.offset(stateIn.get(FourDirectionBlock.HORIZONTAL_FACING).getOpposite())).get(SapLogBlock.AGE) == 15) {
+			if (worldIn.getBlockState(posIn.offset(stateIn.get(HorizontalBlock.HORIZONTAL_FACING).getOpposite())).getBlock() instanceof SapLogBlock) {
+				if (worldIn.getBlockState(posIn.offset(stateIn.get(HorizontalBlock.HORIZONTAL_FACING).getOpposite())).get(SapLogBlock.AGE) == 15) {
 					double d0 = 0;
 					double d1 = 0;
 					double d2 = 0;
 					
-					switch (stateIn.get(FourDirectionBlock.HORIZONTAL_FACING)) {
+					switch (stateIn.get(HorizontalBlock.HORIZONTAL_FACING)) {
 						case EAST:
 							d0 = (double) posIn.getX() + 0.28D;
 							d1 = (double) posIn.getY() + 0.3D;
@@ -71,5 +76,11 @@ public class TreeTapBlock extends FourDirectionBlock {
 				}
 			}
 		}
+	}
+	
+	@Override
+	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+		builder.add(HORIZONTAL_FACING);
+		super.fillStateContainer(builder);
 	}
 }

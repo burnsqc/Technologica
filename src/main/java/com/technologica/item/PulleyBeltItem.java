@@ -6,6 +6,7 @@ import com.technologica.block.LineShaftBlock;
 import com.technologica.block.ModBlocks;
 import com.technologica.capabilities.ILink;
 import com.technologica.capabilities.LinkProvider;
+import com.technologica.util.Radius;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -30,7 +31,7 @@ public class PulleyBeltItem extends Item {
    		if (!world.isRemote) {
    			BlockPos pos = context.getPos();
    			BlockState state = world.getBlockState(pos);
-   			if (state.matchesBlock(ModBlocks.LINE_SHAFT.get()) && state.get(LineShaftBlock.PULLEY) > 0) {
+   			if (state.matchesBlock(ModBlocks.LINE_SHAFT.get()) && state.get(LineShaftBlock.RADIUS) != Radius.NONE) {
    				PlayerEntity player = context.getPlayer();
    	   			ItemStack stack = player.getHeldItem(context.getHand());
    	   			ILink linkCapability = stack.getCapability(LinkProvider.LINK_CAP).orElseThrow(NullPointerException::new);

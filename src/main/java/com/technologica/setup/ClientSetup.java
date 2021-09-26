@@ -21,6 +21,7 @@ import com.technologica.client.renderer.tileentity.LineShaftHangerTileEntityRend
 import com.technologica.client.renderer.tileentity.LineShaftTileEntityRenderer;
 import com.technologica.client.renderer.tileentity.ModSignTileEntityRenderer;
 import com.technologica.client.renderer.tileentity.PotionTileEntityRenderer;
+import com.technologica.client.renderer.tileentity.SawmillTileEntityRenderer;
 import com.technologica.entity.ModEntities;
 import com.technologica.fluid.ModFluids;
 import com.technologica.tileentity.ModTileEntities;
@@ -62,7 +63,8 @@ public class ClientSetup {
 			RenderTypeLookup.setRenderLayer(ModBlocks.FLUORITE_CRYSTAL.get(), RenderType.getTranslucent());
 			RenderTypeLookup.setRenderLayer(ModBlocks.ULEXITE_CRYSTAL.get(), RenderType.getTranslucent());
 			RenderTypeLookup.setRenderLayer(ModBlocks.DOLOMITE_CRYSTAL.get(), RenderType.getTranslucent());
-    	  	RenderTypeLookup.setRenderLayer(ModFluids.BRINE_SOURCE.get(), RenderType.getTranslucent());
+    	  	
+			RenderTypeLookup.setRenderLayer(ModFluids.BRINE_SOURCE.get(), RenderType.getTranslucent());
     	  	RenderTypeLookup.setRenderLayer(ModFluids.BRINE_FLOWING.get(), RenderType.getTranslucent());
 
     	  	ClientRegistry.bindTileEntityRenderer(ModTileEntities.MOD_SIGN.get(), ModSignTileEntityRenderer::new);
@@ -71,6 +73,7 @@ public class ClientSetup {
     	  	ClientRegistry.bindTileEntityRenderer(ModTileEntities.DISPLAY_TILE.get(), DisplayCaseTileEntityRenderer::new);
     	  	ClientRegistry.bindTileEntityRenderer(ModTileEntities.LINE_SHAFT_TILE.get(), LineShaftTileEntityRenderer::new);
     	  	ClientRegistry.bindTileEntityRenderer(ModTileEntities.LINE_SHAFT_HANGER_TILE.get(), LineShaftHangerTileEntityRenderer::new);
+    	  	ClientRegistry.bindTileEntityRenderer(ModTileEntities.SAWMILL_TILE.get(), SawmillTileEntityRenderer::new);
 		});
 	}
    
