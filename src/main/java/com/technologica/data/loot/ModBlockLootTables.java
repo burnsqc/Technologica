@@ -3,6 +3,7 @@ package com.technologica.data.loot;
 import java.util.Collection;
 import java.util.function.Supplier;
 
+import com.technologica.block.ChairBlock;
 import com.technologica.block.CrystalBlock;
 import com.technologica.block.FourDirectionBlock;
 import com.technologica.block.FruitingLeavesBlock;
@@ -16,7 +17,9 @@ import com.technologica.block.ModSlabBlock;
 import com.technologica.block.ModStairsBlock;
 import com.technologica.block.ModStandingSignBlock;
 import com.technologica.block.ModWallSignBlock;
+import com.technologica.block.SapLogBlock;
 import com.technologica.block.TallCropsBlock;
+import com.technologica.block.TreeTapBlock;
 import com.technologica.block.WaterCropsBlock;
 import com.technologica.item.ModItems;
 
@@ -92,6 +95,9 @@ public class ModBlockLootTables extends BlockLootTables {
 			else if (block.getRegistryName().getPath().contains("ore")) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(CrystalBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(FourDirectionBlock.class)) registerDropSelfLootTable(block);
+			else if (block.getClass().equals(SapLogBlock.class)) registerDropSelfLootTable(block);
+			else if (block.getClass().equals(ChairBlock.class)) registerDropSelfLootTable(block);
+			else if (block.getClass().equals(TreeTapBlock.class)) registerDropSelfLootTable(block);
 			
 			else if (block.getClass().equals(ModCropsBlock.class) || block.getClass().equals(TallCropsBlock.class) || block.getClass().equals(WaterCropsBlock.class)) {
 				Collection<RegistryObject<Item>> itemCollection = ModItems.ITEMS.getEntries();

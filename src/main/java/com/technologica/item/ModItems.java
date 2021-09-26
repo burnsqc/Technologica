@@ -860,8 +860,29 @@ public class ModItems {
      */
     
     public static final RegistryObject<Item> DISPLAY_CASE_ITEM = ITEMS.register("display_case", () -> new BlockItem(ModBlocks.DISPLAY_CASE.get(), new Item.Properties().group(ModItemGroup.DECORATIVE)));
-    
-    
+    public static final RegistryObject<Item> APRICOT_CHAIR_ITEM = ITEMS.register("apricot_chair", () -> new BlockItem(ModBlocks.APRICOT_CHAIR.get(), new Item.Properties().group(ModItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> ASPEN_CHAIR_ITEM = ITEMS.register("aspen_chair", () -> new BlockItem(ModBlocks.ASPEN_CHAIR.get(), new Item.Properties().group(ModItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> AVOCADO_CHAIR_ITEM = ITEMS.register("avocado_chair", () -> new BlockItem(ModBlocks.AVOCADO_CHAIR.get(), new Item.Properties().group(ModItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> BANANA_CHAIR_ITEM = ITEMS.register("banana_chair", () -> new BlockItem(ModBlocks.BANANA_CHAIR.get(), new Item.Properties().group(ModItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> CHERRY_CHAIR_ITEM = ITEMS.register("cherry_chair", () -> new BlockItem(ModBlocks.CHERRY_CHAIR.get(), new Item.Properties().group(ModItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> CHESTNUT_CHAIR_ITEM = ITEMS.register("chestnut_chair", () -> new BlockItem(ModBlocks.CHESTNUT_CHAIR.get(), new Item.Properties().group(ModItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> COCONUT_CHAIR_ITEM = ITEMS.register("coconut_chair", () -> new BlockItem(ModBlocks.COCONUT_CHAIR.get(), new Item.Properties().group(ModItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> EBONY_CHAIR_ITEM = ITEMS.register("ebony_chair", () -> new BlockItem(ModBlocks.EBONY_CHAIR.get(), new Item.Properties().group(ModItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> KIWI_CHAIR_ITEM = ITEMS.register("kiwi_chair", () -> new BlockItem(ModBlocks.KIWI_CHAIR.get(), new Item.Properties().group(ModItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> LEMON_CHAIR_ITEM = ITEMS.register("lemon_chair", () -> new BlockItem(ModBlocks.LEMON_CHAIR.get(), new Item.Properties().group(ModItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> LIME_CHAIR_ITEM = ITEMS.register("lime_chair", () -> new BlockItem(ModBlocks.LIME_CHAIR.get(), new Item.Properties().group(ModItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> MAHOGANY_CHAIR_ITEM = ITEMS.register("mahogany_chair", () -> new BlockItem(ModBlocks.MAHOGANY_CHAIR.get(), new Item.Properties().group(ModItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> MAPLE_CHAIR_ITEM = ITEMS.register("maple_chair", () -> new BlockItem(ModBlocks.MAPLE_CHAIR.get(), new Item.Properties().group(ModItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> ORANGE_CHAIR_ITEM = ITEMS.register("orange_chair", () -> new BlockItem(ModBlocks.ORANGE_CHAIR.get(), new Item.Properties().group(ModItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> PEACH_CHAIR_ITEM = ITEMS.register("peach_chair", () -> new BlockItem(ModBlocks.PEACH_CHAIR.get(), new Item.Properties().group(ModItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> PEAR_CHAIR_ITEM = ITEMS.register("pear_chair", () -> new BlockItem(ModBlocks.PEAR_CHAIR.get(), new Item.Properties().group(ModItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> PLUM_CHAIR_ITEM = ITEMS.register("plum_chair", () -> new BlockItem(ModBlocks.PLUM_CHAIR.get(), new Item.Properties().group(ModItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> REDWOOD_CHAIR_ITEM = ITEMS.register("redwood_chair", () -> new BlockItem(ModBlocks.REDWOOD_CHAIR.get(), new Item.Properties().group(ModItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> ROSEWOOD_CHAIR_ITEM = ITEMS.register("rosewood_chair", () -> new BlockItem(ModBlocks.ROSEWOOD_CHAIR.get(), new Item.Properties().group(ModItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> RUBBER_CHAIR_ITEM = ITEMS.register("rubber_chair", () -> new BlockItem(ModBlocks.RUBBER_CHAIR.get(), new Item.Properties().group(ModItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> TEAK_CHAIR_ITEM = ITEMS.register("teak_chair", () -> new BlockItem(ModBlocks.TEAK_CHAIR.get(), new Item.Properties().group(ModItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> WALNUT_CHAIR_ITEM = ITEMS.register("walnut_chair", () -> new BlockItem(ModBlocks.WALNUT_CHAIR.get(), new Item.Properties().group(ModItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> ZEBRAWOOD_CHAIR_ITEM = ITEMS.register("zebrawood_chair", () -> new BlockItem(ModBlocks.ZEBRAWOOD_CHAIR.get(), new Item.Properties().group(ModItemGroup.DECORATIVE)));
     
     public static void register() {
         ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());

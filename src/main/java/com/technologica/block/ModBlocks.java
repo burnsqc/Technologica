@@ -346,36 +346,36 @@ public class ModBlocks {
     public static final RegistryObject<Block> STRIPPED_FROSTBITTEN_WOOD = BLOCKS.register("stripped_frostbitten_wood", ModLogBlock::new);
     public static final RegistryObject<Block> STRIPPED_INFERNAL_WOOD = BLOCKS.register("stripped_infernal_wood", ModLogBlock::new);
    
-    public static final RegistryObject<Block> APRICOT_PLANKS = BLOCKS.register("apricot_planks", ModPlanksBlock::new);
-    public static final RegistryObject<Block> ASPEN_PLANKS = BLOCKS.register("aspen_planks", ModPlanksBlock::new);
-    public static final RegistryObject<Block> AVOCADO_PLANKS = BLOCKS.register("avocado_planks", ModPlanksBlock::new);
-    public static final RegistryObject<Block> BANANA_PLANKS = BLOCKS.register("banana_planks", ModPlanksBlock::new);
-    public static final RegistryObject<Block> CHERRY_PLANKS = BLOCKS.register("cherry_planks", ModPlanksBlock::new);
-    public static final RegistryObject<Block> CHESTNUT_PLANKS = BLOCKS.register("chestnut_planks", ModPlanksBlock::new);
-    public static final RegistryObject<Block> COCONUT_PLANKS = BLOCKS.register("coconut_planks", ModPlanksBlock::new);
-    public static final RegistryObject<Block> EBONY_PLANKS = BLOCKS.register("ebony_planks", ModPlanksBlock::new);
-    public static final RegistryObject<Block> KIWI_PLANKS = BLOCKS.register("kiwi_planks", ModPlanksBlock::new);
-    public static final RegistryObject<Block> LEMON_PLANKS = BLOCKS.register("lemon_planks", ModPlanksBlock::new);
-    public static final RegistryObject<Block> LIME_PLANKS = BLOCKS.register("lime_planks", ModPlanksBlock::new);
-    public static final RegistryObject<Block> MAHOGANY_PLANKS = BLOCKS.register("mahogany_planks", ModPlanksBlock::new);    
-    public static final RegistryObject<Block> MAPLE_PLANKS = BLOCKS.register("maple_planks", ModPlanksBlock::new);
-    public static final RegistryObject<Block> ORANGE_PLANKS = BLOCKS.register("orange_planks", ModPlanksBlock::new);
-    public static final RegistryObject<Block> PEACH_PLANKS = BLOCKS.register("peach_planks", ModPlanksBlock::new);
-    public static final RegistryObject<Block> PEAR_PLANKS = BLOCKS.register("pear_planks", ModPlanksBlock::new);
-    public static final RegistryObject<Block> PLUM_PLANKS = BLOCKS.register("plum_planks", ModPlanksBlock::new);
-    public static final RegistryObject<Block> REDWOOD_PLANKS = BLOCKS.register("redwood_planks", ModPlanksBlock::new);
-    public static final RegistryObject<Block> ROSEWOOD_PLANKS = BLOCKS.register("rosewood_planks", ModPlanksBlock::new);
-    public static final RegistryObject<Block> RUBBER_PLANKS = BLOCKS.register("rubber_planks", ModPlanksBlock::new);
-    public static final RegistryObject<Block> TEAK_PLANKS = BLOCKS.register("teak_planks", ModPlanksBlock::new);
-    public static final RegistryObject<Block> WALNUT_PLANKS = BLOCKS.register("walnut_planks", ModPlanksBlock::new);
-    public static final RegistryObject<Block> ZEBRAWOOD_PLANKS = BLOCKS.register("zebrawood_planks", ModPlanksBlock::new);
-    public static final RegistryObject<Block> ALCHEMICAL_PLANKS = BLOCKS.register("alchemical_planks", ModPlanksBlock::new);
-    public static final RegistryObject<Block> BENEVOLENT_PLANKS = BLOCKS.register("benevolent_planks", ModPlanksBlock::new);
-    public static final RegistryObject<Block> CONDUCTIVE_PLANKS = BLOCKS.register("conductive_planks", ModPlanksBlock::new);
-    public static final RegistryObject<Block> FROSTBITTEN_PLANKS = BLOCKS.register("frostbitten_planks", ModPlanksBlock::new);
-    public static final RegistryObject<Block> FRUITFUL_PLANKS = BLOCKS.register("fruitful_planks", ModPlanksBlock::new);
-    public static final RegistryObject<Block> INFERNAL_PLANKS = BLOCKS.register("infernal_planks", ModPlanksBlock::new);
-    public static final RegistryObject<Block> MALEVOLENT_PLANKS = BLOCKS.register("malevolent_planks", ModPlanksBlock::new);
+    public static final RegistryObject<Block> APRICOT_PLANKS = BLOCKS.register("apricot_planks", () -> new ModPlanksBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> ASPEN_PLANKS = BLOCKS.register("aspen_planks", () -> new ModPlanksBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> AVOCADO_PLANKS = BLOCKS.register("avocado_planks", () -> new ModPlanksBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> BANANA_PLANKS = BLOCKS.register("banana_planks", () -> new ModPlanksBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> CHERRY_PLANKS = BLOCKS.register("cherry_planks", () -> new ModPlanksBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> CHESTNUT_PLANKS = BLOCKS.register("chestnut_planks", () -> new ModPlanksBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> COCONUT_PLANKS = BLOCKS.register("coconut_planks", () -> new ModPlanksBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> EBONY_PLANKS = BLOCKS.register("ebony_planks", () -> new ModPlanksBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> KIWI_PLANKS = BLOCKS.register("kiwi_planks", () -> new ModPlanksBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> LEMON_PLANKS = BLOCKS.register("lemon_planks", () -> new ModPlanksBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> LIME_PLANKS = BLOCKS.register("lime_planks", () -> new ModPlanksBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> MAHOGANY_PLANKS = BLOCKS.register("mahogany_planks", () -> new ModPlanksBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));    
+    public static final RegistryObject<Block> MAPLE_PLANKS = BLOCKS.register("maple_planks", () -> new ModPlanksBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> ORANGE_PLANKS = BLOCKS.register("orange_planks", () -> new ModPlanksBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> PEACH_PLANKS = BLOCKS.register("peach_planks", () -> new ModPlanksBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> PEAR_PLANKS = BLOCKS.register("pear_planks", () -> new ModPlanksBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> PLUM_PLANKS = BLOCKS.register("plum_planks", () -> new ModPlanksBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> REDWOOD_PLANKS = BLOCKS.register("redwood_planks", () -> new ModPlanksBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> ROSEWOOD_PLANKS = BLOCKS.register("rosewood_planks", () -> new ModPlanksBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> RUBBER_PLANKS = BLOCKS.register("rubber_planks", () -> new ModPlanksBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> TEAK_PLANKS = BLOCKS.register("teak_planks", () -> new ModPlanksBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> WALNUT_PLANKS = BLOCKS.register("walnut_planks", () -> new ModPlanksBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> ZEBRAWOOD_PLANKS = BLOCKS.register("zebrawood_planks", () -> new ModPlanksBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> ALCHEMICAL_PLANKS = BLOCKS.register("alchemical_planks", () -> new ModPlanksBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> BENEVOLENT_PLANKS = BLOCKS.register("benevolent_planks", () -> new ModPlanksBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> CONDUCTIVE_PLANKS = BLOCKS.register("conductive_planks", () -> new ModPlanksBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> FROSTBITTEN_PLANKS = BLOCKS.register("frostbitten_planks", () -> new ModPlanksBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> FRUITFUL_PLANKS = BLOCKS.register("fruitful_planks", () -> new ModPlanksBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> INFERNAL_PLANKS = BLOCKS.register("infernal_planks", () -> new ModPlanksBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> MALEVOLENT_PLANKS = BLOCKS.register("malevolent_planks", () -> new ModPlanksBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
     
     public static final RegistryObject<Block> APRICOT_SLAB = BLOCKS.register("apricot_slab", ModSlabBlock::new);
     public static final RegistryObject<Block> ASPEN_SLAB = BLOCKS.register("aspen_slab", ModSlabBlock::new);
@@ -743,8 +743,30 @@ public class ModBlocks {
      * DECORATIVE
      */
     
-    public static final RegistryObject<Block> DISPLAY_CASE = BLOCKS.register("display_case", DisplayCaseBlock::new);  
-    
+    public static final RegistryObject<Block> DISPLAY_CASE = BLOCKS.register("display_case", DisplayCaseBlock::new);
+    public static final RegistryObject<Block> APRICOT_CHAIR = BLOCKS.register("apricot_chair", ChairBlock::new);
+    public static final RegistryObject<Block> ASPEN_CHAIR = BLOCKS.register("aspen_chair", ChairBlock::new);
+    public static final RegistryObject<Block> AVOCADO_CHAIR = BLOCKS.register("avocado_chair", ChairBlock::new);
+    public static final RegistryObject<Block> BANANA_CHAIR = BLOCKS.register("banana_chair", ChairBlock::new);
+    public static final RegistryObject<Block> CHERRY_CHAIR = BLOCKS.register("cherry_chair", ChairBlock::new);
+    public static final RegistryObject<Block> CHESTNUT_CHAIR = BLOCKS.register("chestnut_chair", ChairBlock::new);
+    public static final RegistryObject<Block> COCONUT_CHAIR = BLOCKS.register("coconut_chair", ChairBlock::new);
+    public static final RegistryObject<Block> EBONY_CHAIR = BLOCKS.register("ebony_chair", ChairBlock::new);
+    public static final RegistryObject<Block> KIWI_CHAIR = BLOCKS.register("kiwi_chair", ChairBlock::new);
+    public static final RegistryObject<Block> LEMON_CHAIR = BLOCKS.register("lemon_chair", ChairBlock::new);
+    public static final RegistryObject<Block> LIME_CHAIR = BLOCKS.register("lime_chair", ChairBlock::new);
+    public static final RegistryObject<Block> MAHOGANY_CHAIR = BLOCKS.register("mahogany_chair", ChairBlock::new);
+    public static final RegistryObject<Block> MAPLE_CHAIR = BLOCKS.register("maple_chair", ChairBlock::new);
+    public static final RegistryObject<Block> ORANGE_CHAIR = BLOCKS.register("orange_chair", ChairBlock::new);
+    public static final RegistryObject<Block> PEACH_CHAIR = BLOCKS.register("peach_chair", ChairBlock::new);
+    public static final RegistryObject<Block> PEAR_CHAIR = BLOCKS.register("pear_chair", ChairBlock::new);
+    public static final RegistryObject<Block> PLUM_CHAIR = BLOCKS.register("plum_chair", ChairBlock::new);
+    public static final RegistryObject<Block> REDWOOD_CHAIR = BLOCKS.register("redwood_chair", ChairBlock::new);
+    public static final RegistryObject<Block> ROSEWOOD_CHAIR = BLOCKS.register("rosewood_chair", ChairBlock::new);
+    public static final RegistryObject<Block> RUBBER_CHAIR = BLOCKS.register("rubber_chair", ChairBlock::new);
+    public static final RegistryObject<Block> TEAK_CHAIR = BLOCKS.register("teak_chair", ChairBlock::new);
+    public static final RegistryObject<Block> WALNUT_CHAIR = BLOCKS.register("walnut_chair", ChairBlock::new);
+    public static final RegistryObject<Block> ZEBRAWOOD_CHAIR = BLOCKS.register("zebrawood_chair", ChairBlock::new);
     
     
 	public static void register() 

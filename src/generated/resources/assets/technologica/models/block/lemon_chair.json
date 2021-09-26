@@ -1,0 +1,6 @@
+{
+  "parent": "technologica:block/chair",
+  "textures": {
+    "planks": "technologica:block/lemon_planks"
+  }
+}

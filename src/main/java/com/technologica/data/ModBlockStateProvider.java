@@ -75,6 +75,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			else if (block.getRegistryName().getPath().contains("pressure_plate")) pressurePlateBlock(block);
 			else if (block.getRegistryName().getPath().contains("button")) buttonBlock(block);
 			else if (block.getRegistryName().getPath().contains("sign")) signBlock(block);
+			else if (block.getRegistryName().getPath().contains("chair")) chairBlock(block);
 			else if (block.getRegistryName().getPath().contains("sapling") && !block.getRegistryName().getPath().contains("potted")) crossBlock(block);
 			else if (block.getRegistryName().getPath().contains("potted")) flowerPotCrossBlock(block);
 			else if (block.getClass().equals(ModCropsBlock.class)) cropBlock(block);
@@ -120,6 +121,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	
 	public ModelFile slab(Block block) {
 		return models().slab(name(block), replace(blockTexture(block), "slab", "planks"), replace(blockTexture(block), "slab", "planks"), replace(blockTexture(block), "slab", "planks"));
+	}
+	
+	public ModelFile chair(Block block) {
+		ResourceLocation location = block.getRegistryName();
+		return models().singleTexture(name(block), modLoc("chair"), "planks", replace(blockTexture(block), "chair", "planks"));
 	}
 	
 	public ModelFile stairs(Block block) {
@@ -200,6 +206,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	public void simpleBlock(Block block) {
 		simpleBlock(block, cubeAll(block));
 		this.simpleBlockItem(block, cubeAll(block));		
+    }
+	
+	public void chairBlock(Block block) {
+		getVariantBuilder(block).partialState().setModels(new ConfiguredModel(chair(block)));
+	    this.simpleBlockItem(block, chair(block));
     }
 	
 	public void logBlock(Block block) {
