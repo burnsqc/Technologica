@@ -5,7 +5,6 @@ import java.util.function.Supplier;
 
 import com.technologica.block.ChairBlock;
 import com.technologica.block.CrystalBlock;
-import com.technologica.block.FourDirectionBlock;
 import com.technologica.block.FruitingLeavesBlock;
 import com.technologica.block.ModBlocks;
 import com.technologica.block.ModCropsBlock;
@@ -18,6 +17,10 @@ import com.technologica.block.ModStairsBlock;
 import com.technologica.block.ModStandingSignBlock;
 import com.technologica.block.ModWallSignBlock;
 import com.technologica.block.SapLogBlock;
+<<<<<<< HEAD
+=======
+import com.technologica.block.SawmillBlock;
+>>>>>>> f6f2af2a47e9af4c8bedb4d348a7ed5620e35a9e
 import com.technologica.block.TallCropsBlock;
 import com.technologica.block.TreeTapBlock;
 import com.technologica.block.WaterCropsBlock;
@@ -78,6 +81,7 @@ public class ModBlockLootTables extends BlockLootTables {
 			Block block = blockSupplier.get();
 			
 			if (block.getClass().equals(ModLogBlock.class)) registerDropSelfLootTable(block);
+			else if (block.getClass().equals(SapLogBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(SaplingBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(FlowerPotBlock.class)) registerFlowerPot(block);
 			else if (block.getClass().equals(ModPlanksBlock.class)) registerDropSelfLootTable(block);
@@ -94,10 +98,15 @@ public class ModBlockLootTables extends BlockLootTables {
 			else if (block.getClass().equals(ModWallSignBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getRegistryName().getPath().contains("ore")) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(CrystalBlock.class)) registerDropSelfLootTable(block);
+<<<<<<< HEAD
 			else if (block.getClass().equals(FourDirectionBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(SapLogBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(ChairBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(TreeTapBlock.class)) registerDropSelfLootTable(block);
+=======
+			else if (block.getClass().equals(TreeTapBlock.class)) registerDropSelfLootTable(block);
+			else if (block.getClass().equals(SawmillBlock.class)) registerDropSelfLootTable(block);
+>>>>>>> f6f2af2a47e9af4c8bedb4d348a7ed5620e35a9e
 			
 			else if (block.getClass().equals(ModCropsBlock.class) || block.getClass().equals(TallCropsBlock.class) || block.getClass().equals(WaterCropsBlock.class)) {
 				Collection<RegistryObject<Item>> itemCollection = ModItems.ITEMS.getEntries();

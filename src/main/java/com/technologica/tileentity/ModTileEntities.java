@@ -106,6 +106,9 @@ public class ModTileEntities {
 	public static final RegistryObject<TileEntityType<LineShaftHangerTileEntity>> LINE_SHAFT_HANGER_TILE = TILEENTITIES.register("line_shaft_hanger_tile", 
 			() -> TileEntityType.Builder.create(LineShaftHangerTileEntity::new, 
 					ModBlocks.LINE_SHAFT_HANGER.get()).build(null));
+	public static final RegistryObject<TileEntityType<SawmillTileEntity>> SAWMILL_TILE = TILEENTITIES.register("sawmill_tile", 
+			() -> TileEntityType.Builder.create(SawmillTileEntity::new, 
+					ModBlocks.SAWMILL.get()).build(null));
 
 	public static void register() {
 		TILEENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());

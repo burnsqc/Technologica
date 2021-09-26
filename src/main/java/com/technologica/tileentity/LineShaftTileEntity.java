@@ -8,6 +8,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.technologica.block.LineShaftBlock;
+import com.technologica.util.Radius;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
@@ -138,30 +139,14 @@ public class LineShaftTileEntity extends TileEntity {
 		return shafts;
 	}
 	
-	public void setSpin(int torqueIn, int rpmIn) {
+	public void setSpin(float torqueIn, float rpmIn) {
 		if (getBeltPos() != null) {
 			TileEntity beltedPulley = world.getTileEntity(this.beltPos);
-			int pulley1 = getBlockState().get(LineShaftBlock.PULLEY);
-			int pulley2 = beltedPulley.getBlockState().get(LineShaftBlock.PULLEY);
+			Radius pulley1 = getBlockState().get(LineShaftBlock.RADIUS);
+			Radius pulley2 = beltedPulley.getBlockState().get(LineShaftBlock.RADIUS);
 			
-			if (pulley1 == 1) {
-				pulley1 = 1;
-			} else if (pulley1 == 2) {
-				pulley1 = 2;
-			} else {
-				pulley1 = 4;
-			}
-			
-			if (pulley2 == 1) {
-				pulley2 = 1;
-			} else if (pulley2 == 2) {
-				pulley2 = 2;
-			} else {
-				pulley2 = 4;
-			}
-			
-			int torqueMultiplier = pulley2/pulley1;
-			int rpmMultiplier = pulley1/pulley2;
+			float torqueMultiplier = pulley2.getRadius()/pulley1.getRadius();
+			float rpmMultiplier = pulley1.getRadius()/pulley2.getRadius();
 			
 			if (((LineShaftTileEntity) beltedPulley).getRPM() != this.rpm*rpmMultiplier) {
 				((LineShaftTileEntity) beltedPulley).setSpin(this.torque*torqueMultiplier, this.rpm*rpmMultiplier);

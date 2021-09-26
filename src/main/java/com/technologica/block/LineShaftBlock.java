@@ -3,7 +3,9 @@ package com.technologica.block;
 import java.util.Random;
 
 import com.technologica.item.ModItems;
+import com.technologica.state.properties.ModBlockStateProperties;
 import com.technologica.tileentity.LineShaftTileEntity;
+import com.technologica.util.Radius;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -14,9 +16,8 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
-import net.minecraft.state.IntegerProperty;
+import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
@@ -32,18 +33,18 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 public class LineShaftBlock extends RotatedPillarBlock {
-	public static final IntegerProperty PULLEY = BlockStateProperties.LEVEL_0_3;
+	public static final EnumProperty<Radius> RADIUS = ModBlockStateProperties.RADIUS;
 	
 	//Constructor
 	public LineShaftBlock() {
 		super(AbstractBlock.Properties.create(Material.IRON).hardnessAndResistance(0.3F).sound(SoundType.ANVIL).notSolid());
-		this.setDefaultState(this.stateContainer.getBaseState().with(PULLEY, Integer.valueOf(0)));
+		this.setDefaultState(this.stateContainer.getBaseState().with(RADIUS, Radius.NONE));
 	}
 
 	//States
 	@Override
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-		builder.add(PULLEY);
+		builder.add(RADIUS);
 		super.fillStateContainer(builder);
 	}
 	
@@ -110,18 +111,18 @@ public class LineShaftBlock extends RotatedPillarBlock {
 		Item tool = player.getHeldItem(handIn).getItem();
 		
 		if (tool == ModItems.PIPE_WRENCH.get()) {
-			worldIn.setBlockState(pos, state.with(PULLEY, Integer.valueOf(0)), 1);
+			worldIn.setBlockState(pos, state.with(RADIUS, Radius.NONE), 1);
 			worldIn.playSound((PlayerEntity)null, pos, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.rand.nextFloat() * 0.4F);
 			
-		} else if (tile.getBlockState().get(PULLEY) == 0) {
+		} else if (tile.getBlockState().get(RADIUS).getRadius() == 0) {
 			if (tool == ModItems.SMALL_PULLEY_ITEM.get()) {
-				worldIn.setBlockState(pos, state.with(PULLEY, Integer.valueOf(1)), 1);
+				worldIn.setBlockState(pos, state.with(RADIUS, Radius.SMALL), 1);
 				worldIn.playSound((PlayerEntity)null, pos, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.rand.nextFloat() * 0.4F);
 			} else if (tool == ModItems.MEDIUM_PULLEY_ITEM.get()) {
-				worldIn.setBlockState(pos, state.with(PULLEY, Integer.valueOf(2)), 1);
+				worldIn.setBlockState(pos, state.with(RADIUS, Radius.MEDIUM), 1);
 				worldIn.playSound((PlayerEntity)null, pos, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.rand.nextFloat() * 0.4F);
 			} else if (tool == ModItems.LARGE_PULLEY_ITEM.get()) {
-				worldIn.setBlockState(pos, state.with(PULLEY, Integer.valueOf(3)), 1);
+				worldIn.setBlockState(pos, state.with(RADIUS, Radius.LARGE), 1);
 				worldIn.playSound((PlayerEntity)null, pos, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.rand.nextFloat() * 0.4F);
 			}
 		}
