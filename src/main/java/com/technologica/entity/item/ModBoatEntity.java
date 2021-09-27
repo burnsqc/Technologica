@@ -163,7 +163,7 @@ public class ModBoatEntity extends Entity {
 	public boolean attackEntityFrom(DamageSource source, float amount) {
 		if (this.isInvulnerableTo(source)) {
 			return false;
-		} else if (!this.world.isRemote && !this.removed) {
+		} else if (!this.world.isRemote && isAlive()) {
 			this.setForwardDirection(-this.getForwardDirection());
 			this.setTimeSinceHit(10);
 			this.setDamageTaken(this.getDamageTaken() + amount * 10.0F);
@@ -242,7 +242,7 @@ public class ModBoatEntity extends Entity {
 	 * Entity.
 	 */
 	public boolean canBeCollidedWith() {
-		return !this.removed;
+		return isAlive();
 	}
 
 	/**
@@ -692,7 +692,7 @@ public class ModBoatEntity extends Entity {
 	public void updatePassenger(Entity passenger) {
 		if (this.isPassenger(passenger)) {
 			float f = 0.0F;
-			float f1 = (float) ((this.removed ? (double) 0.01F : this.getMountedYOffset()) + passenger.getYOffset());
+			float f1 = (float) ((isAlive() ? (double) 0.01F : this.getMountedYOffset()) + passenger.getYOffset());
 			if (this.getPassengers().size() > 1) {
 				int i = this.getPassengers().indexOf(passenger);
 				if (i == 0) {
@@ -812,7 +812,7 @@ public class ModBoatEntity extends Entity {
 					}
 
 					this.onLivingFall(this.fallDistance, 1.0F);
-					if (!this.world.isRemote && !this.removed) {
+					if (!this.world.isRemote && !isAlive()) {
 						this.remove();
 						if (this.world.getGameRules().getBoolean(GameRules.DO_ENTITY_DROPS)) {
 							for (int i = 0; i < 3; ++i) {

@@ -5,12 +5,8 @@ import java.util.function.Supplier;
 import com.technologica.item.ModItems;
 import com.technologica.tileentity.FruitTileEntity;
 
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.LeavesBlock;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -22,7 +18,6 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
@@ -32,17 +27,23 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
-public class FruitingLeavesBlock extends LeavesBlock {
+public class FruitingLeavesBlock extends ModLeavesBlock {
 	private Supplier<Item>[] fruit;
 	public static final IntegerProperty AGE = BlockStateProperties.AGE_0_15;
 
 	@SafeVarargs
 	public FruitingLeavesBlock(Supplier<Item>... fruitIn) {
-		super(AbstractBlock.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid());
+		super();
 		this.setDefaultState(this.stateContainer.getBaseState().with(AGE, 0).with(DISTANCE, 7).with(PERSISTENT, false));
 		fruit = fruitIn;
 	}
 
+	@Override
+	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builderIn) {
+		builderIn.add(AGE);
+		super.fillStateContainer(builderIn);
+	}
+	
 	@Override
 	public boolean hasTileEntity(BlockState stateIn) {
 		return true;
@@ -134,26 +135,10 @@ public class FruitingLeavesBlock extends LeavesBlock {
 		}
 	}
 
-	public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-		if (!state.matchesBlock(newState.getBlock())) {
-			FruitTileEntity tile = getTileEntity(worldIn, pos);
-			spawnAsEntity(worldIn, pos.down(), tile.getFruitStack());
+	public void onReplaced(BlockState state, World worldIn, BlockPos posIn, BlockState newStateIn, boolean isMovingIn) {
+		if (!state.matchesBlock(newStateIn.getBlock())) {
+			FruitTileEntity tile = getTileEntity(worldIn, posIn);
+			spawnAsEntity(worldIn, posIn.down(), tile.getFruitStack());
 		}
-	}
-	
-	@Override
-	public int getFlammability(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
-		return 30;
-	}
-
-	@Override
-	public int getFireSpreadSpeed(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
-		return 60;
-	}
-
-	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-		builder.add(AGE);
-		super.fillStateContainer(builder);
 	}
 }

@@ -209,10 +209,10 @@ public class ModBlocks {
     public static final RegistryObject<Block> MAGNESITE_ORE = BLOCKS.register("magnesite_ore", () -> new OreBlock(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(6.0F).sound(SoundType.STONE)));
     public static final RegistryObject<Block> SPODUMENE_ORE = BLOCKS.register("spodumene_ore", () -> new OreBlock(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(6.0F).sound(SoundType.STONE)));
     
-    public static final RegistryObject<Block> AQUAMARINE_CRYSTAL = BLOCKS.register("aquamarine_crystal", CrystalBlock::new);
-    public static final RegistryObject<Block> DOLOMITE_CRYSTAL = BLOCKS.register("dolomite_crystal", CrystalBlock::new);
-    public static final RegistryObject<Block> FLUORITE_CRYSTAL = BLOCKS.register("fluorite_crystal", CrystalBlock::new);
-    public static final RegistryObject<Block> ULEXITE_CRYSTAL = BLOCKS.register("ulexite_crystal", CrystalBlock::new);
+    public static final RegistryObject<Block> AQUAMARINE_CRYSTAL = BLOCKS.register("aquamarine_crystal", () -> new TwentyFourDirectionBlock(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(6.0F).sound(SoundType.GLASS).notSolid()));
+    public static final RegistryObject<Block> DOLOMITE_CRYSTAL = BLOCKS.register("dolomite_crystal", () -> new TwentyFourDirectionBlock(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(6.0F).sound(SoundType.GLASS).notSolid()));
+    public static final RegistryObject<Block> FLUORITE_CRYSTAL = BLOCKS.register("fluorite_crystal", () -> new TwentyFourDirectionBlock(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(6.0F).sound(SoundType.GLASS).notSolid()));
+    public static final RegistryObject<Block> ULEXITE_CRYSTAL = BLOCKS.register("ulexite_crystal", () -> new TwentyFourDirectionBlock(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(6.0F).sound(SoundType.GLASS).notSolid()));
     
     public static final RegistryObject<FlowingFluidBlock> BRINE = BLOCKS.register("brine", () -> new FlowingFluidBlock(ModFluids.BRINE_SOURCE, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
     public static final RegistryObject<FlowingFluidBlock> MERCURY = BLOCKS.register("mercury", () -> new FlowingFluidBlock(ModFluids.MERCURY_SOURCE, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
@@ -744,7 +744,6 @@ public class ModBlocks {
      * DECORATIVE
      */
     
-    public static final RegistryObject<Block> DISPLAY_CASE = BLOCKS.register("display_case", DisplayCaseBlock::new);
     public static final RegistryObject<Block> APRICOT_CHAIR = BLOCKS.register("apricot_chair", ChairBlock::new);
     public static final RegistryObject<Block> ASPEN_CHAIR = BLOCKS.register("aspen_chair", ChairBlock::new);
     public static final RegistryObject<Block> AVOCADO_CHAIR = BLOCKS.register("avocado_chair", ChairBlock::new);
@@ -768,7 +767,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> TEAK_CHAIR = BLOCKS.register("teak_chair", ChairBlock::new);
     public static final RegistryObject<Block> WALNUT_CHAIR = BLOCKS.register("walnut_chair", ChairBlock::new);
     public static final RegistryObject<Block> ZEBRAWOOD_CHAIR = BLOCKS.register("zebrawood_chair", ChairBlock::new);
-    
+    public static final RegistryObject<Block> DISPLAY_CASE = BLOCKS.register("display_case", DisplayCaseBlock::new);
     
 	public static void register() 
     {

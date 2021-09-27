@@ -13,11 +13,10 @@ import net.minecraft.util.Direction;
 public class TwentyFourDirectionBlock extends DirectionalBlock{
 	public static final DirectionProperty SUB_FACING = ModBlockStateProperties.SUB_FACING;
 	
-	protected TwentyFourDirectionBlock(Properties builder) {
-		super(builder);
+	protected TwentyFourDirectionBlock(Properties propertiesIn) {
+		super(propertiesIn);
 	}
 
-	//States
 	@Override
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
 		builder.add(FACING, SUB_FACING);

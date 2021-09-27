@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 import com.technologica.block.ChairBlock;
-import com.technologica.block.CrystalBlock;
 import com.technologica.block.FruitingLeavesBlock;
 import com.technologica.block.ModBlocks;
 import com.technologica.block.ModCropsBlock;
@@ -20,6 +19,7 @@ import com.technologica.block.SapLogBlock;
 import com.technologica.block.SawmillBlock;
 import com.technologica.block.TallCropsBlock;
 import com.technologica.block.TreeTapBlock;
+import com.technologica.block.TwentyFourDirectionBlock;
 import com.technologica.block.WaterCropsBlock;
 import com.technologica.item.ModItems;
 
@@ -94,7 +94,7 @@ public class ModBlockLootTables extends BlockLootTables {
 			else if (block.getClass().equals(ModStandingSignBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(ModWallSignBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getRegistryName().getPath().contains("ore")) registerDropSelfLootTable(block);
-			else if (block.getClass().equals(CrystalBlock.class)) registerDropSelfLootTable(block);
+			else if (block.getClass().equals(TwentyFourDirectionBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(SapLogBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(ChairBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(TreeTapBlock.class)) registerDropSelfLootTable(block);

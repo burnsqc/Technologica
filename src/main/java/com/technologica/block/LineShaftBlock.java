@@ -35,33 +35,30 @@ import net.minecraft.world.server.ServerWorld;
 public class LineShaftBlock extends RotatedPillarBlock {
 	public static final EnumProperty<Radius> RADIUS = ModBlockStateProperties.RADIUS;
 	
-	//Constructor
 	public LineShaftBlock() {
 		super(AbstractBlock.Properties.create(Material.IRON).hardnessAndResistance(0.3F).sound(SoundType.ANVIL).notSolid());
 		this.setDefaultState(this.stateContainer.getBaseState().with(RADIUS, Radius.NONE));
 	}
 
-	//States
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-		builder.add(RADIUS);
-		super.fillStateContainer(builder);
+	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builderIn) {
+		builderIn.add(RADIUS);
+		super.fillStateContainer(builderIn);
 	}
 	
-	//Placement
 	@Override
 	@Deprecated
-	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-	    if (!isValidPosition(state, worldIn, pos)) {
-	    	worldIn.destroyBlock(pos, true);
+	public void tick(BlockState stateIn, ServerWorld worldIn, BlockPos posIn, Random randomIn) {
+	    if (!isValidPosition(stateIn, worldIn, posIn)) {
+	    	worldIn.destroyBlock(posIn, true);
 	    }
 	}
 
 	@Override
 	@Deprecated
-	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+	public BlockState updatePostPlacement(BlockState stateIn, Direction directionIn, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
 		worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 0);
-	    return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+	    return super.updatePostPlacement(stateIn, directionIn, facingState, worldIn, currentPos, facingPos);
 	}
 	
 	@Override
