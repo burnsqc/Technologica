@@ -209,7 +209,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
 	
 	public void chairBlock(Block block) {
-		getVariantBuilder(block).partialState().setModels(new ConfiguredModel(chair(block)));
+		getVariantBuilder(block)
+		.partialState().with(HorizontalBlock.HORIZONTAL_FACING, Direction.EAST).modelForState().modelFile(chair(block)).rotationY(90).addModel()
+		.partialState().with(HorizontalBlock.HORIZONTAL_FACING, Direction.NORTH).modelForState().modelFile(chair(block)).addModel()
+		.partialState().with(HorizontalBlock.HORIZONTAL_FACING, Direction.SOUTH).modelForState().modelFile(chair(block)).rotationY(180).addModel()
+		.partialState().with(HorizontalBlock.HORIZONTAL_FACING, Direction.WEST).modelForState().modelFile(chair(block)).rotationY(270).addModel();
 	    this.simpleBlockItem(block, chair(block));
     }
 	
