@@ -3,9 +3,7 @@ package com.technologica.client.renderer.tileentity;
 import java.util.Random;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.technologica.block.LineShaftBlock;
 import com.technologica.item.ModItems;
-import com.technologica.tileentity.LineShaftTileEntity;
 import com.technologica.tileentity.SawmillTileEntity;
 
 import net.minecraft.block.Block;
@@ -22,7 +20,6 @@ import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.vector.Quaternion;
 import net.minecraft.util.math.vector.Vector3f;

@@ -1,5 +1,5 @@
 {
-  "parent": "technologica:block/tree_tap",
+  "parent": "technologica:block/tap",
   "textures": {
     "tree_tap": "technologica:block/tree_tap"
   }

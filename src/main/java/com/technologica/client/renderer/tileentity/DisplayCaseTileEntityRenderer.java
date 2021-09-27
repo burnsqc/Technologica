@@ -26,6 +26,7 @@ public class DisplayCaseTileEntityRenderer extends TileEntityRenderer<DisplayCas
     	if (!stack.isEmpty()) {
         	matrixStack.push();       	
         	matrixStack.translate(0.5, 0.3, 0.5);
+        	matrixStack.rotate(Vector3f.YN.rotationDegrees(angle));
         	ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
         	IBakedModel ibakedmodel = itemRenderer.getItemModelWithOverrides(stack, tileEntity.getWorld(), null);
         	itemRenderer.renderItem(stack, ItemCameraTransforms.TransformType.GROUND, true, matrixStack, buffer, combinedLight, combinedOverlay, ibakedmodel);       	

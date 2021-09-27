@@ -125,7 +125,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	}
 	
 	public ModelFile chair(Block block) {
-		ResourceLocation location = block.getRegistryName();
 		return models().singleTexture(name(block), modLoc("chair"), "planks", replace(blockTexture(block), "chair", "planks"));
 	}
 	
@@ -164,7 +163,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
 	
 	public ModelFile treeTap(Block block) {
-		return models().withExistingParent(name(block), modLoc("tree_tap")).texture("tree_tap", blockTexture(block));
+		return models().withExistingParent(name(block), modLoc("tap")).texture("tree_tap", blockTexture(block));
 	}
 	
 	public ModelFile display(Block block) {
