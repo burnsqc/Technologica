@@ -77,17 +77,17 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			
 			else if (path.contains("_bookshelf")) singleBlockState(block, bookshelfModel(block));
 			else if (path.contains("_sapling") && !path.contains("potted")) crossBlockState(block, crossModel(block));
-			else if (path.contains("potted")) flowerPotCrossBlock(block, flowerPotCrossModel(block));
+			else if (path.contains("potted")) crossBlockState(block, flowerPotCrossModel(block));
 			else if (path.contains("_pressure_plate")) pressurePlateBlockState(block, pressurePlateModel(block), pressurePlateDownModel(block));
 			else if (path.contains("_log")) axisBlockState(block, logModel(block), logHorizontalModel(block));
 			else if (path.contains("_wood")) axisBlockState(block, woodModel(block), woodModel(block));
 			else if (path.contains("_slab")) slabBlockState(block, slabBottomModel(block), slabTopModel(block), slabDoubleModel(block));
 			else if (path.contains("_button")) buttonBlockState(block, buttonModel(block), buttonPressedModel(block), buttonInventoryModel(block));
-			else if (path.contains("tree_tap")) fourDirectionBlockState(block, treeTap(block));
-			else if (path.contains("_chair")) fourDirectionBlockState(block, chair(block));
-			else if (path.contains("_crystal") && !path.contains("dolomite")) twentyFourDirectionBlockState(block, hexagonalCrystal(block), hexagonalCrystal(block));
-			else if (path.contains("_crystal") && path.contains("dolomite")) twentyFourDirectionBlockState(block, cubicCrystal(block), cubicCrystal(block));
-			else if (path.contains("motor")) twentyFourDirectionBlockState(block, motor(block), motor2(block));
+			else if (path.contains("tree_tap")) fourDirectionBlockState(block, treeTapModel(block));
+			else if (path.contains("_chair")) fourDirectionBlockState(block, chairModel(block));
+			else if (path.contains("_crystal") && !path.contains("dolomite")) twentyFourDirectionBlockState(block, hexagonalCrystalModel(block), hexagonalCrystalModel(block));
+			else if (path.contains("_crystal") && path.contains("dolomite")) twentyFourDirectionBlockState(block, cubicCrystalModel(block), cubicCrystalModel(block));
+			else if (path.contains("motor")) twentyFourDirectionBlockState(block, motorModel(block), motor2Model(block));
 			else if (path.contains("display_case")) singleBlockState(block, displayModel(block));
 		}
 	}
@@ -140,7 +140,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		return models().stairs(StringHelper.getPath(block), StringHelper.replace(blockTexture(block), "stairs", "planks"), StringHelper.replace(blockTexture(block), "stairs", "planks"), StringHelper.replace(blockTexture(block), "stairs", "planks"));
 	}
 	
-	public ModelFile chair(Block block) {
+	public ModelFile chairModel(Block block) {
 		return models().singleTexture(StringHelper.getPath(block), modLoc("chair"), "planks", StringHelper.replace(blockTexture(block), "chair", "planks"));
 	}
 	
@@ -156,25 +156,25 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		return models().trapdoorBottom(StringHelper.getPath(block), blockTexture(block));
 	}
 	
-	public ModelFile hexagonalCrystal(Block block) {
+	public ModelFile hexagonalCrystalModel(Block block) {
 		ResourceLocation location = block.getRegistryName();
 		return models().singleTexture(StringHelper.getPath(block), modLoc("hexagonal_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath()));
     }
 	
-	public ModelFile cubicCrystal(Block block) {
+	public ModelFile cubicCrystalModel(Block block) {
 		ResourceLocation location = block.getRegistryName();
 		return models().singleTexture(StringHelper.getPath(block), modLoc("cubic_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath()));
     }
 	
-	public ModelFile motor(Block block) {
+	public ModelFile motorModel(Block block) {
 		return models().withExistingParent(StringHelper.getPath(block), modLoc("motor")).texture("motor", blockTexture(block));
     }
 	
-	public ModelFile motor2(Block block) {
+	public ModelFile motor2Model(Block block) {
 		return models().withExistingParent(StringHelper.getPath(block) + "2", modLoc("motor2")).texture("motor", blockTexture(block));
     }
 	
-	public ModelFile treeTap(Block block) {
+	public ModelFile treeTapModel(Block block) {
 		return models().withExistingParent(StringHelper.getPath(block), modLoc("tap")).texture("tree_tap", blockTexture(block));
 	}
 	
@@ -355,11 +355,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	}
     
 	public void crossBlockState(Block block, ModelFile blockModel) {
-		getVariantBuilder(block)
-			.partialState().setModels(new ConfiguredModel(blockModel));
-	}
-	
-	public void flowerPotCrossBlock(Block block, ModelFile blockModel) {
 		getVariantBuilder(block)
 			.partialState().setModels(new ConfiguredModel(blockModel));
 	}
