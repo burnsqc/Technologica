@@ -6,7 +6,7 @@ import java.util.stream.IntStream;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
-import com.technologica.block.ModBlocks;
+import com.technologica.block.TechnologicaBlocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -28,8 +28,8 @@ public class SaltFlatsSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig
 	private static final BlockState BROWN_TERRACOTTA = Blocks.BROWN_TERRACOTTA.getDefaultState();
 	private static final BlockState WHITE_TERRACOTTA = Blocks.WHITE_TERRACOTTA.getDefaultState();
 	private static final BlockState LIGHT_GRAY_TERRACOTTA = Blocks.LIGHT_GRAY_TERRACOTTA.getDefaultState();
-	private static final BlockState SALT = ModBlocks.SALT.get().getDefaultState();
-	private static final BlockState BRINE = ModBlocks.BRINE.get().getDefaultState();
+	private static final BlockState SALT = TechnologicaBlocks.SALT.get().getDefaultState();
+	private static final BlockState BRINE = TechnologicaBlocks.BRINE.get().getDefaultState();
 		
 	protected BlockState[] blockStateArray;
 	protected long field_215433_b;

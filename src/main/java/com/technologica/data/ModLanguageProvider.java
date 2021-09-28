@@ -4,8 +4,8 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 import com.technologica.Technologica;
-import com.technologica.item.ModItemGroup;
-import com.technologica.item.ModItems;
+import com.technologica.item.TechnologicaItemGroup;
+import com.technologica.item.TechnologicaItems;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Item;
@@ -21,17 +21,17 @@ public class ModLanguageProvider extends LanguageProvider {
 
 	@Override
 	protected void addTranslations() {
-		addItems(ModItems.ITEMS.getEntries());
+		addItems(TechnologicaItems.ITEMS.getEntries());
 		
 		addItemGroups(
-			ModItemGroup.FLORA,
-			ModItemGroup.FAUNA,
-			ModItemGroup.MINERAL,
-			ModItemGroup.FOOD,
-			ModItemGroup.CONSTRUCTION,
-			ModItemGroup.MACHINERY,
-			ModItemGroup.DECORATIVE,
-			ModItemGroup.CRYPTICA
+			TechnologicaItemGroup.FLORA,
+			TechnologicaItemGroup.FAUNA,
+			TechnologicaItemGroup.MINERAL,
+			TechnologicaItemGroup.FOOD,
+			TechnologicaItemGroup.CONSTRUCTION,
+			TechnologicaItemGroup.MACHINERY,
+			TechnologicaItemGroup.DECORATIVE,
+			TechnologicaItemGroup.CRYPTICA
 		);
 	}
 	

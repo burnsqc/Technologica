@@ -1,7 +1,7 @@
 package com.technologica.network.play.server;
 
 import com.technologica.client.gui.screen.EditModSignScreen;
-import com.technologica.tileentity.ModSignTileEntity;
+import com.technologica.tileentity.VanillaSignTileEntity;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.tileentity.TileEntity;
@@ -19,12 +19,12 @@ public class ClientHandlers {
 				Minecraft mc = Minecraft.getInstance();
 				TileEntity tileentity = mc.world.getTileEntity(signPosition);
 				
-				if (!(tileentity instanceof ModSignTileEntity)) {
-					tileentity = new ModSignTileEntity();
+				if (!(tileentity instanceof VanillaSignTileEntity)) {
+					tileentity = new VanillaSignTileEntity();
 					tileentity.setWorldAndPos(mc.world, signPosition);
 				}
 				
-				mc.displayGuiScreen(new EditModSignScreen((ModSignTileEntity) tileentity));
+				mc.displayGuiScreen(new EditModSignScreen((VanillaSignTileEntity) tileentity));
 			}
 		};
 	}

@@ -5,7 +5,7 @@ import java.util.Set;
 import javax.annotation.Nullable;
 
 import com.google.common.collect.ImmutableSet;
-import com.technologica.block.ModBlocks;
+import com.technologica.block.TechnologicaBlocks;
 import com.technologica.capabilities.ILink;
 import com.technologica.capabilities.LinkProvider;
 
@@ -26,7 +26,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 public class PipeWrenchItem extends ToolItem {
 
-	private static final Set<Block> EFFECTIVE_ON = ImmutableSet.of(ModBlocks.LINE_SHAFT_HANGER.get());
+	private static final Set<Block> EFFECTIVE_ON = ImmutableSet.of(TechnologicaBlocks.LINE_SHAFT_HANGER.get());
 
 	public PipeWrenchItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, Item.Properties builder) {
 		super((float) attackDamageIn, attackSpeedIn, tier, EFFECTIVE_ON, builder.addToolType(net.minecraftforge.common.ToolType.PICKAXE, tier.getHarvestLevel()));
@@ -56,7 +56,7 @@ public class PipeWrenchItem extends ToolItem {
    		if (!world.isRemote) {
    			BlockPos pos = context.getPos();
    			BlockState state = world.getBlockState(pos);
-   			if (state.matchesBlock(ModBlocks.LINE_SHAFT_HANGER.get())) {
+   			if (state.matchesBlock(TechnologicaBlocks.LINE_SHAFT_HANGER.get())) {
    				PlayerEntity player = context.getPlayer();
    	   			ItemStack stack = player.getHeldItem(context.getHand());
    	   			ILink linkCapability = stack.getCapability(LinkProvider.LINK_CAP).orElseThrow(NullPointerException::new);

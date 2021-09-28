@@ -4,7 +4,8 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 import com.technologica.Technologica;
-import com.technologica.item.ModItems;
+import com.technologica.item.TechnologicaItems;
+import com.technologica.util.text.StringHelper;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.BlockItem;
@@ -24,7 +25,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 	
 	@Override
 	protected void registerModels() {
-		automaticItemModel(ModItems.ITEMS.getEntries());
+		automaticItemModel(TechnologicaItems.ITEMS.getEntries());
 	}
 	
 	private final void automaticItemModel(Collection<RegistryObject<Item>> collection) {
@@ -32,6 +33,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 			Item item = itemSupplier.get();
 				
 			if (item instanceof BlockNamedItem) simpleItem(item);
+			else if (item instanceof BlockItem && StringHelper.getPath(item).contains("_sapling")) simpleBlockItem(item);
 			else if (!(item instanceof BlockItem)) simpleItem(item);
 		}
 	}
@@ -39,5 +41,10 @@ public class ModItemModelProvider extends ItemModelProvider {
 	public void simpleItem(Item item) {
 		ResourceLocation location = item.getRegistryName();
 		this.getBuilder(location.getPath()).parent(new ModelFile.UncheckedModelFile("item/generated")).texture("layer0", new ResourceLocation(location.getNamespace(), ITEM_FOLDER + "/" + location.getPath()));
+	}
+	
+	public void simpleBlockItem(Item item) {
+		ResourceLocation location = item.getRegistryName();
+		this.getBuilder(location.getPath()).parent(new ModelFile.UncheckedModelFile("item/generated")).texture("layer0", new ResourceLocation(location.getNamespace(), "block/" + location.getPath()));
 	}
 }

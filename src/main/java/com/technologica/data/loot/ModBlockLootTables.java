@@ -5,23 +5,24 @@ import java.util.function.Supplier;
 
 import com.technologica.block.ChairBlock;
 import com.technologica.block.FruitingLeavesBlock;
-import com.technologica.block.ModBlocks;
-import com.technologica.block.ModCropsBlock;
-import com.technologica.block.ModFenceBlock;
-import com.technologica.block.ModFenceGateBlock;
-import com.technologica.block.ModLogBlock;
-import com.technologica.block.ModPlanksBlock;
-import com.technologica.block.ModSlabBlock;
-import com.technologica.block.ModStairsBlock;
-import com.technologica.block.ModStandingSignBlock;
-import com.technologica.block.ModWallSignBlock;
+import com.technologica.block.TechnologicaBlocks;
+import com.technologica.block.VanillaCropsBlock;
+import com.technologica.block.VanillaFenceBlock;
+import com.technologica.block.VanillaFenceGateBlock;
+import com.technologica.block.VanillaLogBlock;
+import com.technologica.block.VanillaPlanksBlock;
+import com.technologica.block.VanillaSlabBlock;
+import com.technologica.block.VanillaStairsBlock;
+import com.technologica.block.VanillaStandingSignBlock;
+import com.technologica.block.VanillaWallSignBlock;
 import com.technologica.block.SapLogBlock;
 import com.technologica.block.SawmillBlock;
 import com.technologica.block.TallCropsBlock;
 import com.technologica.block.TreeTapBlock;
 import com.technologica.block.TwentyFourDirectionBlock;
 import com.technologica.block.WaterCropsBlock;
-import com.technologica.item.ModItems;
+import com.technologica.item.TechnologicaItems;
+import com.technologica.util.text.StringHelper;
 
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.Block;
@@ -46,21 +47,21 @@ public class ModBlockLootTables extends BlockLootTables {
 	
 	@Override
 	protected void addTables() {
-		automaticBlockState(ModBlocks.BLOCKS.getEntries());
+		automaticLootTable(TechnologicaBlocks.BLOCKS.getEntries());
 		
-		registerLootTable(ModBlocks.LITHIUM_CLAY.get(), (clay) -> droppingWithSilkTouchOrRandomly(clay, ModItems.LITHIUM_CLAY_BALL.get(), ConstantRange.of(4)));
-		registerDropSelfLootTable(ModBlocks.SALT.get());
+		registerLootTable(TechnologicaBlocks.LITHIUM_CLAY.get(), (clay) -> droppingWithSilkTouchOrRandomly(clay, TechnologicaItems.LITHIUM_CLAY_BALL.get(), ConstantRange.of(4)));
+		registerDropSelfLootTable(TechnologicaBlocks.SALT.get());
 		
-		registerDropSelfLootTable(ModBlocks.LINE_SHAFT_HANGER.get());
-		registerDropping(ModBlocks.LINE_SHAFT.get(), ModItems.STEEL_SHAFT.get());
-		registerDropSelfLootTable(ModBlocks.SMALL_PULLEY.get());
-		registerDropSelfLootTable(ModBlocks.MEDIUM_PULLEY.get());
-		registerDropSelfLootTable(ModBlocks.LARGE_PULLEY.get());
-		registerDropSelfLootTable(ModBlocks.MOTOR_1HP.get());
-		registerDropSelfLootTable(ModBlocks.MOTOR_5HP.get());
-		registerDropSelfLootTable(ModBlocks.MOTOR_20HP.get());
+		registerDropSelfLootTable(TechnologicaBlocks.LINE_SHAFT_HANGER.get());
+		registerDropping(TechnologicaBlocks.LINE_SHAFT.get(), TechnologicaItems.STEEL_SHAFT.get());
+		registerDropSelfLootTable(TechnologicaBlocks.SMALL_PULLEY.get());
+		registerDropSelfLootTable(TechnologicaBlocks.MEDIUM_PULLEY.get());
+		registerDropSelfLootTable(TechnologicaBlocks.LARGE_PULLEY.get());
+		registerDropSelfLootTable(TechnologicaBlocks.MOTOR_1HP.get());
+		registerDropSelfLootTable(TechnologicaBlocks.MOTOR_5HP.get());
+		registerDropSelfLootTable(TechnologicaBlocks.MOTOR_20HP.get());
 		
-		registerDropSelfLootTable(ModBlocks.DISPLAY_CASE.get());
+		registerDropSelfLootTable(TechnologicaBlocks.DISPLAY_CASE.get());
 	}
 	
 	/**
@@ -73,26 +74,26 @@ public class ModBlockLootTables extends BlockLootTables {
 	 * @param collection a collection of block deferred registry entries
 	 */
 	
-	private final void automaticBlockState(Collection<RegistryObject<Block>> blockCollection) {
+	private final void automaticLootTable(Collection<RegistryObject<Block>> blockCollection) {
 		for(Supplier<? extends Block> blockSupplier:blockCollection) {
 			Block block = blockSupplier.get();
 			
-			if (block.getClass().equals(ModLogBlock.class)) registerDropSelfLootTable(block);
+			if (block.getClass().equals(VanillaLogBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(SapLogBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(SaplingBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(FlowerPotBlock.class)) registerFlowerPot(block);
-			else if (block.getClass().equals(ModPlanksBlock.class)) registerDropSelfLootTable(block);
+			else if (block.getClass().equals(VanillaPlanksBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getTranslationKey().contains("bookshelf")) registerLootTable(block, (bookshelf) -> droppingWithSilkTouchOrRandomly(bookshelf, Items.BOOK, ConstantRange.of(3)));
-			else if (block.getClass().equals(ModSlabBlock.class)) registerLootTable(block, BlockLootTables::droppingSlab);
-			else if (block.getClass().equals(ModStairsBlock.class)) registerDropSelfLootTable(block);
-			else if (block.getClass().equals(ModFenceBlock.class)) registerDropSelfLootTable(block);
-			else if (block.getClass().equals(ModFenceGateBlock.class)) registerDropSelfLootTable(block);
+			else if (block.getClass().equals(VanillaSlabBlock.class)) registerLootTable(block, BlockLootTables::droppingSlab);
+			else if (block.getClass().equals(VanillaStairsBlock.class)) registerDropSelfLootTable(block);
+			else if (block.getClass().equals(VanillaFenceBlock.class)) registerDropSelfLootTable(block);
+			else if (block.getClass().equals(VanillaFenceGateBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(DoorBlock.class)) registerLootTable(block, BlockLootTables::registerDoor);
 			else if (block.getClass().equals(TrapDoorBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(PressurePlateBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(WoodButtonBlock.class)) registerDropSelfLootTable(block);
-			else if (block.getClass().equals(ModStandingSignBlock.class)) registerDropSelfLootTable(block);
-			else if (block.getClass().equals(ModWallSignBlock.class)) registerDropSelfLootTable(block);
+			else if (block.getClass().equals(VanillaStandingSignBlock.class)) registerDropSelfLootTable(block);
+			else if (block.getClass().equals(VanillaWallSignBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getRegistryName().getPath().contains("ore")) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(TwentyFourDirectionBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(SapLogBlock.class)) registerDropSelfLootTable(block);
@@ -101,8 +102,8 @@ public class ModBlockLootTables extends BlockLootTables {
 			else if (block.getClass().equals(TreeTapBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(SawmillBlock.class)) registerDropSelfLootTable(block);
 			
-			else if (block.getClass().equals(ModCropsBlock.class) || block.getClass().equals(TallCropsBlock.class) || block.getClass().equals(WaterCropsBlock.class)) {
-				Collection<RegistryObject<Item>> itemCollection = ModItems.ITEMS.getEntries();
+			else if (block.getClass().equals(VanillaCropsBlock.class) || block.getClass().equals(TallCropsBlock.class) || block.getClass().equals(WaterCropsBlock.class)) {
+				Collection<RegistryObject<Item>> itemCollection = TechnologicaItems.ITEMS.getEntries();
 				Item yield = Items.WHEAT;
 				
 				for(Supplier<? extends Item> itemSupplier:itemCollection) {
@@ -116,7 +117,7 @@ public class ModBlockLootTables extends BlockLootTables {
 				Block sapling = Blocks.OAK_SAPLING;
 				for(Supplier<? extends Block> blockSupplier2:blockCollection) {
 					Block block2 = blockSupplier2.get();
-					if (replace(block.getRegistryName().getPath(), "leaves", "sapling").equals(block2.getRegistryName().getPath())) sapling = block2;
+					if (StringHelper.replace(block.getRegistryName().getPath(), "leaves", "sapling").equals(block2.getRegistryName().getPath())) sapling = block2;
 				}	
 				registerLootTable(block, droppingWithChancesAndSticks(block, sapling, DEFAULT_SAPLING_DROP_RATES));
 			} else if (!block.getClass().equals(FruitingLeavesBlock.class) && !block.getClass().equals(LeavesBlock.class) && block instanceof LeavesBlock) {
@@ -125,12 +126,8 @@ public class ModBlockLootTables extends BlockLootTables {
 		}
 	}
 	
-	private String replace(String original, String regex, String replacement) {
-        return new String(original.replaceAll(regex, replacement));
-    }
-	
 	@Override
 	protected Iterable<Block> getKnownBlocks() {
-		return ModBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
+		return TechnologicaBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
 	}
 }

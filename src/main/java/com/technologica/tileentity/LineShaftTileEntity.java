@@ -28,7 +28,7 @@ public class LineShaftTileEntity extends TileEntity {
 	private int torque = 0;
 
 	public LineShaftTileEntity() {
-		super(ModTileEntities.LINE_SHAFT_TILE.get());
+		super(TechnologicaTileEntities.LINE_SHAFT_TILE.get());
 	}
 	
 	@Override

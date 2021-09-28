@@ -2,7 +2,7 @@ package com.technologica.item;
 
 import java.util.Objects;
 
-import com.technologica.entity.ModEntities;
+import com.technologica.entity.TechnologicaEntities;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -24,7 +24,7 @@ public class ModSpawnEggItem extends Item {
 	private int entityTypeInt;
 	
     public ModSpawnEggItem(int entityTypeIntIn) {
-        super(new Item.Properties().maxStackSize(1).group(ModItemGroup.FAUNA));
+        super(new Item.Properties().maxStackSize(1).group(TechnologicaItemGroup.FAUNA));
         entityTypeInt = entityTypeIntIn;
     }
 
@@ -32,17 +32,17 @@ public class ModSpawnEggItem extends Item {
     public ActionResultType onItemUse(ItemUseContext context) {
     	EntityType<?> entityType = null;
     	if (entityTypeInt == 1) {
-    		entityType = ModEntities.DUCK.get();
+    		entityType = TechnologicaEntities.DUCK.get();
     	} else if (entityTypeInt == 2) {
-    		entityType = ModEntities.GRIZZLY_BEAR.get();
+    		entityType = TechnologicaEntities.GRIZZLY_BEAR.get();
     	} else if (entityTypeInt == 3) {
-    		entityType = ModEntities.OSTRICH.get();
+    		entityType = TechnologicaEntities.OSTRICH.get();
     	} else if (entityTypeInt == 4) {
-    		entityType = ModEntities.SHARK.get();
+    		entityType = TechnologicaEntities.SHARK.get();
     	} else if (entityTypeInt == 5) {
-    		entityType = ModEntities.ZEBRA.get();
+    		entityType = TechnologicaEntities.ZEBRA.get();
     	} else if (entityTypeInt == 6) {
-    		entityType = ModEntities.SCORPION.get();
+    		entityType = TechnologicaEntities.SCORPION.get();
     	}
     	
     	World world = context.getWorld();

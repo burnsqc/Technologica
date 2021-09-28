@@ -4,13 +4,13 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 import com.technologica.Technologica;
-import com.technologica.block.ModBlocks;
-import com.technologica.block.ModCropsBlock;
+import com.technologica.block.TechnologicaBlocks;
+import com.technologica.block.VanillaCropsBlock;
 import com.technologica.block.TallCropsBlock;
 import com.technologica.block.WaterCropsBlock;
 import com.technologica.client.renderer.entity.DuckRenderer;
 import com.technologica.client.renderer.entity.GrizzlyBearRenderer;
-import com.technologica.client.renderer.entity.ModBoatRenderer;
+import com.technologica.client.renderer.entity.VanillaBoatRenderer;
 import com.technologica.client.renderer.entity.OstrichRenderer;
 import com.technologica.client.renderer.entity.ScorpionRenderer;
 import com.technologica.client.renderer.entity.SharkRenderer;
@@ -19,12 +19,12 @@ import com.technologica.client.renderer.tileentity.DisplayCaseTileEntityRenderer
 import com.technologica.client.renderer.tileentity.FruitTileEntityRenderer;
 import com.technologica.client.renderer.tileentity.LineShaftHangerTileEntityRenderer;
 import com.technologica.client.renderer.tileentity.LineShaftTileEntityRenderer;
-import com.technologica.client.renderer.tileentity.ModSignTileEntityRenderer;
+import com.technologica.client.renderer.tileentity.VanillaSignTileEntityRenderer;
 import com.technologica.client.renderer.tileentity.PotionTileEntityRenderer;
 import com.technologica.client.renderer.tileentity.SawmillTileEntityRenderer;
-import com.technologica.entity.ModEntities;
-import com.technologica.fluid.ModFluids;
-import com.technologica.tileentity.ModTileEntities;
+import com.technologica.entity.TechnologicaEntities;
+import com.technologica.fluid.TechnologicaFluids;
+import com.technologica.tileentity.TechnologicaTileEntities;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.DoorBlock;
@@ -45,35 +45,35 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 public class ClientSetup {
 
 	public static void init(final FMLClientSetupEvent event) {
-		RenderingRegistry.registerEntityRenderingHandler(ModEntities.MOD_BOAT.get(), ModBoatRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntities.MOD_BOAT.get(), VanillaBoatRenderer::new);
 		
-		RenderingRegistry.registerEntityRenderingHandler(ModEntities.DUCK.get(), DuckRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(ModEntities.GRIZZLY_BEAR.get(), GrizzlyBearRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(ModEntities.OSTRICH.get(), OstrichRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(ModEntities.SCORPION.get(), ScorpionRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(ModEntities.SHARK.get(), SharkRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(ModEntities.ZEBRA.get(), ZebraRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntities.DUCK.get(), DuckRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntities.GRIZZLY_BEAR.get(), GrizzlyBearRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntities.OSTRICH.get(), OstrichRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntities.SCORPION.get(), ScorpionRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntities.SHARK.get(), SharkRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntities.ZEBRA.get(), ZebraRenderer::new);
 
 		event.enqueueWork(() -> {
-			automaticCutoutMipped(ModBlocks.BLOCKS.getEntries());
+			automaticCutoutMipped(TechnologicaBlocks.BLOCKS.getEntries());
       			
-			RenderTypeLookup.setRenderLayer(ModBlocks.DISPLAY_CASE.get(), RenderType.getTranslucent());
+			RenderTypeLookup.setRenderLayer(TechnologicaBlocks.DISPLAY_CASE.get(), RenderType.getTranslucent());
 
-			RenderTypeLookup.setRenderLayer(ModBlocks.AQUAMARINE_CRYSTAL.get(), RenderType.getTranslucent());
-			RenderTypeLookup.setRenderLayer(ModBlocks.FLUORITE_CRYSTAL.get(), RenderType.getTranslucent());
-			RenderTypeLookup.setRenderLayer(ModBlocks.ULEXITE_CRYSTAL.get(), RenderType.getTranslucent());
-			RenderTypeLookup.setRenderLayer(ModBlocks.DOLOMITE_CRYSTAL.get(), RenderType.getTranslucent());
+			RenderTypeLookup.setRenderLayer(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get(), RenderType.getTranslucent());
+			RenderTypeLookup.setRenderLayer(TechnologicaBlocks.FLUORITE_CRYSTAL.get(), RenderType.getTranslucent());
+			RenderTypeLookup.setRenderLayer(TechnologicaBlocks.ULEXITE_CRYSTAL.get(), RenderType.getTranslucent());
+			RenderTypeLookup.setRenderLayer(TechnologicaBlocks.DOLOMITE_CRYSTAL.get(), RenderType.getTranslucent());
     	  	
-			RenderTypeLookup.setRenderLayer(ModFluids.BRINE_SOURCE.get(), RenderType.getTranslucent());
-    	  	RenderTypeLookup.setRenderLayer(ModFluids.BRINE_FLOWING.get(), RenderType.getTranslucent());
+			RenderTypeLookup.setRenderLayer(TechnologicaFluids.BRINE_SOURCE.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.BRINE_FLOWING.get(), RenderType.getTranslucent());
 
-    	  	ClientRegistry.bindTileEntityRenderer(ModTileEntities.MOD_SIGN.get(), ModSignTileEntityRenderer::new);
-    	  	ClientRegistry.bindTileEntityRenderer(ModTileEntities.FRUIT_CROP.get(), FruitTileEntityRenderer::new);
-    	  	ClientRegistry.bindTileEntityRenderer(ModTileEntities.POTION_CROP.get(), PotionTileEntityRenderer::new);
-    	  	ClientRegistry.bindTileEntityRenderer(ModTileEntities.DISPLAY_TILE.get(), DisplayCaseTileEntityRenderer::new);
-    	  	ClientRegistry.bindTileEntityRenderer(ModTileEntities.LINE_SHAFT_TILE.get(), LineShaftTileEntityRenderer::new);
-    	  	ClientRegistry.bindTileEntityRenderer(ModTileEntities.LINE_SHAFT_HANGER_TILE.get(), LineShaftHangerTileEntityRenderer::new);
-    	  	ClientRegistry.bindTileEntityRenderer(ModTileEntities.SAWMILL_TILE.get(), SawmillTileEntityRenderer::new);
+    	  	ClientRegistry.bindTileEntityRenderer(TechnologicaTileEntities.MOD_SIGN.get(), VanillaSignTileEntityRenderer::new);
+    	  	ClientRegistry.bindTileEntityRenderer(TechnologicaTileEntities.FRUIT_CROP.get(), FruitTileEntityRenderer::new);
+    	  	ClientRegistry.bindTileEntityRenderer(TechnologicaTileEntities.POTION_CROP.get(), PotionTileEntityRenderer::new);
+    	  	ClientRegistry.bindTileEntityRenderer(TechnologicaTileEntities.DISPLAY_TILE.get(), DisplayCaseTileEntityRenderer::new);
+    	  	ClientRegistry.bindTileEntityRenderer(TechnologicaTileEntities.LINE_SHAFT_TILE.get(), LineShaftTileEntityRenderer::new);
+    	  	ClientRegistry.bindTileEntityRenderer(TechnologicaTileEntities.LINE_SHAFT_HANGER_TILE.get(), LineShaftHangerTileEntityRenderer::new);
+    	  	ClientRegistry.bindTileEntityRenderer(TechnologicaTileEntities.SAWMILL_TILE.get(), SawmillTileEntityRenderer::new);
 		});
 	}
    
@@ -112,7 +112,7 @@ public class ClientSetup {
 			Block block = blockSupplier.get();
 			
 			if (
-				block.getClass().equals(ModCropsBlock.class) ||
+				block.getClass().equals(VanillaCropsBlock.class) ||
 				block.getClass().equals(TallCropsBlock.class) ||
 				block.getClass().equals(WaterCropsBlock.class) ||
 				block.getClass().equals(SaplingBlock.class) ||

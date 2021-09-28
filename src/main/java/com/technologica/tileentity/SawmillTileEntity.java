@@ -17,7 +17,7 @@ public class SawmillTileEntity extends TileEntity implements ITickableTileEntity
 	private double logPos;
 	
 	public SawmillTileEntity() {
-		super(ModTileEntities.SAWMILL_TILE.get());
+		super(TechnologicaTileEntities.SAWMILL_TILE.get());
 	}
 
 	public boolean getBlade() {

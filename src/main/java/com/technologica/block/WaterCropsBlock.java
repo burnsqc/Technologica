@@ -15,10 +15,27 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 
+/**
+ * Special one-off class for water crops.
+ * Created to handle crops which grow upwards beyond a single block and the lower block must be in water.
+ */
 public class WaterCropsBlock extends TallCropsBlock implements ILiquidContainer {
 
 	public WaterCropsBlock(Supplier<Item> seedsIn) {
 		super(seedsIn);
+	}
+	
+	/*
+	 * Minecraft Methods
+	 */
+	
+	@Override
+	public FluidState getFluidState(BlockState stateIn) {
+		if (stateIn.get(HALF) == DoubleBlockHalf.LOWER) {
+			return Fluids.WATER.getStillFluidState(false);
+		} else {
+			return Fluids.EMPTY.getDefaultState();
+		}
 	}
 	
 	@Override
@@ -60,21 +77,12 @@ public class WaterCropsBlock extends TallCropsBlock implements ILiquidContainer 
 	}
 	
 	@Override
-	public FluidState getFluidState(BlockState state) {
-		if (state.get(HALF) == DoubleBlockHalf.LOWER) {
-			return Fluids.WATER.getStillFluidState(false);
-		} else {
-			return Fluids.EMPTY.getDefaultState();
-		}
-	}
-
-	@Override
-	public boolean canContainFluid(IBlockReader worldIn, BlockPos pos, BlockState state, Fluid fluidIn) {
+	public boolean canContainFluid(IBlockReader worldIn, BlockPos posIn, BlockState stateIn, Fluid fluidIn) {
 		return false;
 	}
 
 	@Override
-	public boolean receiveFluid(IWorld worldIn, BlockPos pos, BlockState state, FluidState fluidStateIn) {
+	public boolean receiveFluid(IWorld worldIn, BlockPos posIn, BlockState stateIn, FluidState fluidStateIn) {
 		return false;
 	}
 }

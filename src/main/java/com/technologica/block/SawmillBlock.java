@@ -4,8 +4,12 @@ import java.util.Random;
 
 import com.technologica.tileentity.SawmillTileEntity;
 
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particles.BlockParticleData;
@@ -21,44 +25,46 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
+/**
+ * Special one-off class for the sawmill.
+ * Created to handle player interaction and associated tile entity.
+ */
 public class SawmillBlock extends HorizontalBlock {
 
-	protected SawmillBlock(Properties builder) {
-		super(builder);
+	protected SawmillBlock() {
+		super(AbstractBlock.Properties.create(Material.IRON, MaterialColor.IRON).setRequiresTool().hardnessAndResistance(5.0F).sound(SoundType.ANVIL).notSolid());
 	}
 	
-	@Override
-	public boolean hasTileEntity(BlockState state) {
-		return true;
-	}
-
-	@Override
-	public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-		return new SawmillTileEntity();
-	}
-
-	public SawmillTileEntity getTileEntity(World world, BlockPos pos) {
-		return (SawmillTileEntity) world.getTileEntity(pos);
+	/*
+	 * Technologica Methods
+	 */
+	
+	public SawmillTileEntity getTileEntity(World worldIn, BlockPos posIn) {
+		return (SawmillTileEntity) worldIn.getTileEntity(posIn);
 	}
 	
+	/*
+	 * Minecraft Methods
+	 */
+	
 	@Override
-	@Deprecated
-	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		SawmillTileEntity tile = getTileEntity(worldIn, pos);
-		ItemStack itemstack = player.getHeldItem(handIn);
+	public ActionResultType onBlockActivated(BlockState stateIn, World worldIn, BlockPos posIn, PlayerEntity playerIn, Hand handIn, BlockRayTraceResult hitIn) {
+		SawmillTileEntity tile = getTileEntity(worldIn, posIn);
+		ItemStack itemstack = playerIn.getHeldItem(handIn);
 		
 		if (tile.getLog().isEmpty() && worldIn.isRemote()) {
 			if (ItemTags.LOGS.contains(itemstack.getItem())) {
 				tile.setLog(new ItemStack(itemstack.getItem(), 1));
-				worldIn.playSound((PlayerEntity)null, pos, SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.rand.nextFloat() * 0.4F);
+				worldIn.playSound((PlayerEntity)null, posIn, SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.rand.nextFloat() * 0.4F);
 				itemstack.shrink(1);
-				player.inventory.setInventorySlotContents(player.inventory.currentItem, itemstack);
-				player.openContainer.detectAndSendChanges();
+				playerIn.inventory.setInventorySlotContents(playerIn.inventory.currentItem, itemstack);
+				playerIn.openContainer.detectAndSendChanges();
 			}
 		}
 		return ActionResultType.func_233537_a_(worldIn.isRemote);
 	}
 	
+	@Override
 	public void animateTick(BlockState stateIn, World worldIn, BlockPos posIn, Random randomIn) {
 		if (worldIn.isRemote && getTileEntity(worldIn, posIn).isSawing()) {
 			double d0 = (double) posIn.getX() + randomIn.nextDouble();
@@ -67,5 +73,19 @@ public class SawmillBlock extends HorizontalBlock {
 	        worldIn.addParticle(ParticleTypes.POOF, d0, d1, d2, 0.0D, 0.0D, 0.0D);
 	        worldIn.addParticle(new BlockParticleData(ParticleTypes.FALLING_DUST, stateIn), d0, d1, d2, 0.0D, 0.0D, 0.0D);
 		}
+	}
+	
+	/*
+	 * Forge Methods
+	 */
+	
+	@Override
+	public boolean hasTileEntity(BlockState stateIn) {
+		return true;
+	}
+
+	@Override
+	public TileEntity createTileEntity(BlockState stateIn, IBlockReader worldIn) {
+		return new SawmillTileEntity();
 	}
 }

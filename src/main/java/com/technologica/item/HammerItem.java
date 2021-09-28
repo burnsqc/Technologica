@@ -1,6 +1,6 @@
 package com.technologica.item;
 
-import com.technologica.block.ModBlocks;
+import com.technologica.block.TechnologicaBlocks;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
@@ -25,8 +25,8 @@ public class HammerItem extends Item {
    		if (!world.isRemote) {
    			BlockPos pos = context.getPos();
    			BlockState state = world.getBlockState(pos);
-   			if (state.matchesBlock(ModBlocks.RUBBER_LOG.get())) {
-   				world.setBlockState(pos.offset(context.getFace()), ModBlocks.TREE_TAP.get().getDefaultState().with(HorizontalBlock.HORIZONTAL_FACING, context.getFace()), 3);
+   			if (state.matchesBlock(TechnologicaBlocks.RUBBER_LOG.get())) {
+   				world.setBlockState(pos.offset(context.getFace()), TechnologicaBlocks.TREE_TAP.get().getDefaultState().with(HorizontalBlock.HORIZONTAL_FACING, context.getFace()), 3);
    				world.playSound((PlayerEntity)null, pos, SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 1.0F, 0.8F + world.rand.nextFloat() * 0.4F);
    				return ActionResultType.SUCCESS;
    			}

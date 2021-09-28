@@ -6,13 +6,13 @@ import java.util.Random;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalBlock;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.state.DirectionProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -20,8 +20,11 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
-public class TreeTapBlock extends HorizontalBlock {
-	public static final DirectionProperty HORIZONTAL_FACING = HorizontalBlock.HORIZONTAL_FACING;
+/**
+ * Special one-off class for tree taps.
+ * Created to handle voxel shape and animation.
+ */
+public class TreeTapBlock extends FourDirectionBlock {
 	private static final Map<Direction, VoxelShape> SHAPES = Maps
 			.newEnumMap(ImmutableMap.of(
 					Direction.NORTH, Block.makeCuboidShape(6.0D, 6.0D, 11.0D, 10.0D, 11.0D, 16.0D),
@@ -29,27 +32,29 @@ public class TreeTapBlock extends HorizontalBlock {
 					Direction.WEST,	Block.makeCuboidShape(11.0D, 6.0D, 6.0D, 16.0D, 11.0D, 10.0D), 
 					Direction.EAST, Block.makeCuboidShape(0.0D, 6.0D, 6.0D, 5.0D, 11.0D, 10.0D)));
 
-	public TreeTapBlock(Properties propertiesIn) {
-		super(propertiesIn);
+	public TreeTapBlock() {
+		super(AbstractBlock.Properties.create(Material.IRON, MaterialColor.IRON).setRequiresTool().hardnessAndResistance(5.0F).sound(SoundType.WOOD).notSolid());
 	}
 
-	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-		return getShapeForState(state);
+	/*
+	 * Minecraft Methods
+	 */
+	
+	@Override
+	public VoxelShape getShape(BlockState stateIn, IBlockReader worldIn, BlockPos posIn, ISelectionContext contextIn) {
+		return SHAPES.get(stateIn.get(FourDirectionBlock.NESW_FACING));
 	}
 
-	public static VoxelShape getShapeForState(BlockState state) {
-		return SHAPES.get(state.get(HORIZONTAL_FACING));
-	}
-
+	@Override
 	public void animateTick(BlockState stateIn, World worldIn, BlockPos posIn, Random randomIn) {
 		if (worldIn.isRemote) {
-			if (worldIn.getBlockState(posIn.offset(stateIn.get(HorizontalBlock.HORIZONTAL_FACING).getOpposite())).getBlock() instanceof SapLogBlock) {
-				if (worldIn.getBlockState(posIn.offset(stateIn.get(HorizontalBlock.HORIZONTAL_FACING).getOpposite())).get(SapLogBlock.AGE) == 15) {
+			if (worldIn.getBlockState(posIn.offset(stateIn.get(FourDirectionBlock.NESW_FACING).getOpposite())).getBlock() instanceof SapLogBlock) {
+				if (worldIn.getBlockState(posIn.offset(stateIn.get(FourDirectionBlock.NESW_FACING).getOpposite())).get(SapLogBlock.AGE) == 15) {
 					double d0 = 0;
 					double d1 = 0;
 					double d2 = 0;
 					
-					Direction facing = stateIn.get(BlockStateProperties.HORIZONTAL_FACING);
+					Direction facing = stateIn.get(FourDirectionBlock.NESW_FACING);
 					
 					switch (facing) {
 						case EAST:
@@ -84,11 +89,5 @@ public class TreeTapBlock extends HorizontalBlock {
 				}
 			}
 		}
-	}
-	
-	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-		builder.add(HORIZONTAL_FACING);
-		super.fillStateContainer(builder);
 	}
 }

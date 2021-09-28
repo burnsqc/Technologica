@@ -33,7 +33,7 @@ public class CylindricalFoliagePlacer extends FoliagePlacer {
 	}
 
 	protected FoliagePlacerType<?> getPlacerType() {
-		return ModFoliagePlacers.CYLINDRICAL.get();
+		return TechnologicaFoliagePlacers.CYLINDRICAL.get();
 	}
 
 	//Generate foliage

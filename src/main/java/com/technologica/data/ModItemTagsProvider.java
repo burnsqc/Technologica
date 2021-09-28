@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 import com.technologica.Technologica;
-import com.technologica.item.ModItems;
+import com.technologica.item.TechnologicaItems;
 
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
@@ -22,7 +22,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
 	
 	@Override
 	protected void registerTags() {
-		automaticItemTags(ModItems.ITEMS.getEntries());
+		automaticItemTags(TechnologicaItems.ITEMS.getEntries());
 	}
 	
 	/**

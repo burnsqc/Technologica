@@ -6,9 +6,9 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 import com.technologica.Technologica;
-import com.technologica.block.ModBlocks;
-import com.technologica.capabilities.ModCapabilities;
-import com.technologica.entity.ModEntities;
+import com.technologica.block.TechnologicaBlocks;
+import com.technologica.capabilities.TechnologicaCapabilities;
+import com.technologica.entity.TechnologicaEntities;
 import com.technologica.entity.monster.ScorpionEntity;
 import com.technologica.entity.monster.SharkEntity;
 import com.technologica.entity.passive.DuckEntity;
@@ -36,17 +36,17 @@ public class CommonSetup {
 	public static final RegistryKey<Biome> rainforestBiomeKey = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, new ResourceLocation(Technologica.MODID, "rainforest"));
 	
 	public static void init(final FMLCommonSetupEvent event) {
-		ModCapabilities.register();
+		TechnologicaCapabilities.register();
 		Packets.onCommonSetupEvent();
-		GlobalEntityTypeAttributes.put(ModEntities.DUCK.get(), DuckEntity.registerAttributes().create());
-		GlobalEntityTypeAttributes.put(ModEntities.GRIZZLY_BEAR.get(), GrizzlyBearEntity.registerAttributes().create());
-		GlobalEntityTypeAttributes.put(ModEntities.OSTRICH.get(), func_234237_fg_().create());
-		GlobalEntityTypeAttributes.put(ModEntities.SCORPION.get(), ScorpionEntity.registerAttributes().create());
-		GlobalEntityTypeAttributes.put(ModEntities.SHARK.get(), SharkEntity.registerAttributes().create());
-		GlobalEntityTypeAttributes.put(ModEntities.ZEBRA.get(), func_234237_fg_().create());
+		GlobalEntityTypeAttributes.put(TechnologicaEntities.DUCK.get(), DuckEntity.registerAttributes().create());
+		GlobalEntityTypeAttributes.put(TechnologicaEntities.GRIZZLY_BEAR.get(), GrizzlyBearEntity.registerAttributes().create());
+		GlobalEntityTypeAttributes.put(TechnologicaEntities.OSTRICH.get(), func_234237_fg_().create());
+		GlobalEntityTypeAttributes.put(TechnologicaEntities.SCORPION.get(), ScorpionEntity.registerAttributes().create());
+		GlobalEntityTypeAttributes.put(TechnologicaEntities.SHARK.get(), SharkEntity.registerAttributes().create());
+		GlobalEntityTypeAttributes.put(TechnologicaEntities.ZEBRA.get(), func_234237_fg_().create());
 
 		event.enqueueWork(() -> {
-			automaticFlowerPots(ModBlocks.BLOCKS.getEntries());
+			automaticFlowerPots(TechnologicaBlocks.BLOCKS.getEntries());
 			BiomeManager.addBiome(BiomeType.DESERT, new BiomeEntry(saltFlatsBiomeKey, 1000));
 			BiomeManager.addBiome(BiomeType.COOL, new BiomeEntry(redwoodForestBiomeKey, 1000));
 			BiomeManager.addBiome(BiomeType.WARM, new BiomeEntry(rainforestBiomeKey, 1000));

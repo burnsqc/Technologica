@@ -6,8 +6,8 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.technologica.client.renderer.tileentity.ModSignTileEntityRenderer;
-import com.technologica.tileentity.ModSignTileEntity;
+import com.technologica.client.renderer.tileentity.VanillaSignTileEntityRenderer;
+import com.technologica.tileentity.VanillaSignTileEntity;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.StandingSignBlock;
@@ -34,7 +34,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 public class EditModSignScreen extends Screen {
    private final SignTileEntityRenderer.SignModel signModel = new SignTileEntityRenderer.SignModel();
    /** Reference to the sign object. */
-   private final ModSignTileEntity tileSign;
+   private final VanillaSignTileEntity tileSign;
    /** Counts the number of screen updates. */
    private int updateCounter;
    /** The index of the line that is being edited. */
@@ -42,7 +42,7 @@ public class EditModSignScreen extends Screen {
    private TextInputUtil textInputUtil;
    private final String[] field_238846_r_;
 
-   public EditModSignScreen(ModSignTileEntity teSign) {
+   public EditModSignScreen(VanillaSignTileEntity teSign) {
       super(new TranslationTextComponent("sign.edit"));
       this.field_238846_r_ = IntStream.range(0, 4).mapToObj(teSign::getText).map(ITextComponent::getString).toArray((p_243354_0_) -> {
          return new String[p_243354_0_];
@@ -132,7 +132,7 @@ public class EditModSignScreen extends Screen {
       matrixStack.push();
       matrixStack.scale(f1, -f1, -f1);
       IRenderTypeBuffer.Impl irendertypebuffer$impl = this.minecraft.getRenderTypeBuffers().getBufferSource();
-      RenderMaterial rendermaterial = ModSignTileEntityRenderer.getMaterial(blockstate.getBlock());
+      RenderMaterial rendermaterial = VanillaSignTileEntityRenderer.getMaterial(blockstate.getBlock());
       IVertexBuilder ivertexbuilder = rendermaterial.getBuffer(irendertypebuffer$impl, this.signModel::getRenderType);
       this.signModel.signBoard.render(matrixStack, ivertexbuilder, 15728880, OverlayTexture.NO_OVERLAY);
       if (flag) {

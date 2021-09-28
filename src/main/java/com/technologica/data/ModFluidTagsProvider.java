@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 import com.technologica.Technologica;
-import com.technologica.fluid.ModFluids;
+import com.technologica.fluid.TechnologicaFluids;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.FluidTagsProvider;
@@ -21,7 +21,7 @@ public class ModFluidTagsProvider extends FluidTagsProvider {
 
 	@Override
 	protected void registerTags() {
-		automaticFluidTags(ModFluids.FLUIDS.getEntries());
+		automaticFluidTags(TechnologicaFluids.FLUIDS.getEntries());
 	}
 	
 	/**

@@ -4,21 +4,21 @@ import net.minecraftforge.fml.config.ModConfig.Type;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.technologica.block.ModBlocks;
-import com.technologica.entity.ModEntities;
-import com.technologica.fluid.ModFluids;
-import com.technologica.item.ModItems;
+import com.technologica.block.TechnologicaBlocks;
+import com.technologica.entity.TechnologicaEntities;
+import com.technologica.fluid.TechnologicaFluids;
+import com.technologica.item.TechnologicaItems;
 import com.technologica.setup.ClientSetup;
 import com.technologica.setup.CommonSetup;
 import com.technologica.setup.Config;
 import com.technologica.setup.GatherData;
 import com.technologica.setup.VanillaBiomeModifier;
 import com.technologica.setup.VanillaEntityModifier;
-import com.technologica.tileentity.ModTileEntities;
-import com.technologica.world.biome.ModBiomes;
-import com.technologica.world.gen.feature.ModFeatures;
-import com.technologica.world.gen.foliageplacer.ModFoliagePlacers;
-import com.technologica.world.gen.surfacebuilders.ModSurfaceBuilders;
+import com.technologica.tileentity.TechnologicaTileEntities;
+import com.technologica.world.biome.TechnologicaBiomes;
+import com.technologica.world.gen.feature.TechnologicaFeatures;
+import com.technologica.world.gen.foliageplacer.TechnologicaFoliagePlacers;
+import com.technologica.world.gen.surfacebuilders.TechnologicaSurfaceBuilders;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -36,24 +36,24 @@ public class Technologica {
 		ModLoadingContext.get().registerConfig(Type.COMMON, Config.SPEC, "technologica-common.toml");
 			
 		LOGGER.info("REGISTERING GAME OBJECTS - BLOCKS");
-		ModBlocks.register();
+		TechnologicaBlocks.register();
 		LOGGER.info("REGISTERING GAME OBJECTS - FLUIDS");
-		ModFluids.register();
+		TechnologicaFluids.register();
 		LOGGER.info("REGISTERING GAME OBJECTS - ITEMS");
-		ModItems.register();
+		TechnologicaItems.register();
 		LOGGER.info("REGISTERING GAME OBJECTS - ENTITIES");
-		ModEntities.register();
+		TechnologicaEntities.register();
 		LOGGER.info("REGISTERING GAME OBJECTS - TILE ENTITIES");
-		ModTileEntities.register();
+		TechnologicaTileEntities.register();
 		
 		LOGGER.info("REGISTERING WORLDGEN - FEATURES");
-		ModFeatures.register();
+		TechnologicaFeatures.register();
 		LOGGER.info("REGISTERING WORLDGEN - FOLIAGE PLACER TYPES");
-		ModFoliagePlacers.register();
+		TechnologicaFoliagePlacers.register();
 		LOGGER.info("REGISTERING WORLDGEN - SURFACE BUILDERS");
-		ModSurfaceBuilders.register();
+		TechnologicaSurfaceBuilders.register();
 		LOGGER.info("REGISTERING WORLDGEN - BIOMES");
-		ModBiomes.register();
+		TechnologicaBiomes.register();
 		
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(CommonSetup::init);	//1st event during mod lifecycle startup
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientSetup::init);	//2nd event during mod lifecycle startup

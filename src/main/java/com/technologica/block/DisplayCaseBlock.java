@@ -19,35 +19,45 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
+/**
+ * Special one-off class for the display case.    
+ * Created to handle player interaction and associated tile entity.
+ */
 public class DisplayCaseBlock extends GlassBlock {
 
 	public DisplayCaseBlock() {
 		super(AbstractBlock.Properties.create(Material.GLASS).hardnessAndResistance(0.3F).sound(SoundType.GLASS).notSolid());
 	}
 
-	@Override
-	public boolean hasTileEntity(BlockState stateIn) {
-		return true;
-	}
-
-	@Override
-	public TileEntity createTileEntity(BlockState stateIn, IBlockReader worldIn) {
-		return new DisplayCaseTileEntity();
-	}
-
+	/*
+	 * Technologica Methods
+	 */
+	
 	public DisplayCaseTileEntity getTileEntity(World worldIn, BlockPos posIn) {
 		return (DisplayCaseTileEntity) worldIn.getTileEntity(posIn);
 	}
 
+	/*
+	 * Minecraft Methods
+	 */
+
 	@Override
-	@Deprecated
+	public void onReplaced(BlockState stateIn, World worldIn, BlockPos posIn, BlockState newStateIn, boolean isMovingIn) {
+		if (!stateIn.matchesBlock(newStateIn.getBlock())) {
+			DisplayCaseTileEntity tile = getTileEntity(worldIn, posIn);
+			spawnAsEntity(worldIn, posIn.up(), tile.getDisplayStack());
+			tile.setDisplayStack(ItemStack.EMPTY);
+		}
+	}
+	
+	@Override
 	public ActionResultType onBlockActivated(BlockState stateIn, World worldIn, BlockPos posIn, PlayerEntity playerIn, Hand handIn, BlockRayTraceResult hitIn) {
 		DisplayCaseTileEntity tile = getTileEntity(worldIn, posIn);
 		ItemStack itemstack = playerIn.getHeldItem(handIn);
 		if (tile.getDisplayStack().isEmpty()) {
 			if (!itemstack.isEmpty()) {
 				tile.setDisplayStack(new ItemStack(itemstack.getItem(), 1));
-				worldIn.playSound((PlayerEntity)null, posIn, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.rand.nextFloat() * 0.4F);
+				worldIn.playSound((PlayerEntity) null, posIn, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.rand.nextFloat() * 0.4F);
 				itemstack.shrink(1);
 				playerIn.inventory.setInventorySlotContents(playerIn.inventory.currentItem, itemstack);
 				playerIn.openContainer.detectAndSendChanges();
@@ -64,13 +74,18 @@ public class DisplayCaseBlock extends GlassBlock {
 		}
 		return ActionResultType.func_233537_a_(worldIn.isRemote);
 	}
-	
+
+	/*
+	 * Forge Methods
+	 */
+
 	@Override
-	public void onReplaced(BlockState stateIn, World worldIn, BlockPos posIn, BlockState newStateIn, boolean isMovingIn) {
-		if (!stateIn.matchesBlock(newStateIn.getBlock())) {
-			DisplayCaseTileEntity tile = getTileEntity(worldIn, posIn);
-			spawnAsEntity(worldIn, posIn.up(), tile.getDisplayStack());
-			tile.setDisplayStack(ItemStack.EMPTY);
-		}
+	public boolean hasTileEntity(BlockState stateIn) {
+		return true;
+	}
+
+	@Override
+	public TileEntity createTileEntity(BlockState stateIn, IBlockReader worldIn) {
+		return new DisplayCaseTileEntity();
 	}
 }

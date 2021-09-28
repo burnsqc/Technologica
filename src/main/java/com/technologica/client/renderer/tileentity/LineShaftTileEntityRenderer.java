@@ -9,7 +9,7 @@ import com.technologica.Technologica;
 import com.technologica.block.LineShaftBlock;
 import com.technologica.tileentity.LineShaftTileEntity;
 import com.technologica.util.Radius;
-import com.technologica.util.math.ModMathHelper;
+import com.technologica.util.math.MathHelper;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockModelRenderer;
@@ -89,20 +89,20 @@ public class LineShaftTileEntityRenderer extends TileEntityRenderer<LineShaftTil
 			switch(tileEntity.getBlockState().get(LineShaftBlock.AXIS)) {
 			case X:
 				matrixStack.translate(0, 0.5d, 0.5d);
-				coords = ModMathHelper.CircleTangents((float) tileEntity.getPos().getZ(), (float) tileEntity.getPos().getY(), (float) tileEntity.getBeltPos().getZ(), (float) tileEntity.getBeltPos().getY(), radius1.getRadius(), radius2.getRadius());
+				coords = MathHelper.CircleTangents((float) tileEntity.getPos().getZ(), (float) tileEntity.getPos().getY(), (float) tileEntity.getBeltPos().getZ(), (float) tileEntity.getBeltPos().getY(), radius1.getRadius(), radius2.getRadius());
 				addBox(matrixStack, buffer, 0.376f, coords[1] - tileEntity.getPos().getY(), coords[0] - tileEntity.getPos().getZ(), 0.624f, coords[3] - tileEntity.getPos().getY(), coords[2] - tileEntity.getPos().getZ(), coords[5] - tileEntity.getPos().getY(), coords[4] - tileEntity.getPos().getZ(), coords[7] - tileEntity.getPos().getY(), coords[6] - tileEntity.getPos().getZ());
 				break;
 			case Y:
 				matrixStack.rotate(Vector3f.YP.rotationDegrees(90));
 				matrixStack.rotate(Vector3f.ZP.rotationDegrees(90));
 				matrixStack.translate(0, 0.5d, 0.5d);
-				coords = ModMathHelper.CircleTangents((float) tileEntity.getPos().getX(), (float) tileEntity.getPos().getZ(), (float) tileEntity.getBeltPos().getX(), (float) tileEntity.getBeltPos().getZ(), radius1.getRadius(), radius2.getRadius());
+				coords = MathHelper.CircleTangents((float) tileEntity.getPos().getX(), (float) tileEntity.getPos().getZ(), (float) tileEntity.getBeltPos().getX(), (float) tileEntity.getBeltPos().getZ(), radius1.getRadius(), radius2.getRadius());
 				addBox(matrixStack, buffer, 0.376f, coords[1] - tileEntity.getPos().getZ(), coords[0] - tileEntity.getPos().getX(), 0.624f, coords[3] - tileEntity.getPos().getZ(), coords[2] - tileEntity.getPos().getX(), coords[5] - tileEntity.getPos().getZ(), coords[4] - tileEntity.getPos().getX(), coords[7] - tileEntity.getPos().getZ(), coords[6] - tileEntity.getPos().getX());
 				break;
 			case Z:
 				matrixStack.rotate(Vector3f.YP.rotationDegrees(90));
 				matrixStack.translate(-1, 0.5d, 0.5d);
-				coords = ModMathHelper.CircleTangents((float) tileEntity.getPos().getX(), (float) tileEntity.getPos().getY(), (float) tileEntity.getBeltPos().getX(), (float) tileEntity.getBeltPos().getY(), radius1.getRadius(), radius2.getRadius());
+				coords = MathHelper.CircleTangents((float) tileEntity.getPos().getX(), (float) tileEntity.getPos().getY(), (float) tileEntity.getBeltPos().getX(), (float) tileEntity.getBeltPos().getY(), radius1.getRadius(), radius2.getRadius());
 				addBox(matrixStack, buffer, 0.376f, coords[1] - tileEntity.getPos().getY(), coords[0] - tileEntity.getPos().getX(), 0.624f, coords[3] - tileEntity.getPos().getY(), coords[2] - tileEntity.getPos().getX(), coords[5] - tileEntity.getPos().getY(), coords[4] - tileEntity.getPos().getX(), coords[7] - tileEntity.getPos().getY(), coords[6] - tileEntity.getPos().getX());
 				break;
 			}

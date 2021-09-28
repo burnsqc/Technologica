@@ -3,7 +3,7 @@ package com.technologica.client.renderer.tileentity;
 import java.util.Random;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.technologica.item.ModItems;
+import com.technologica.item.TechnologicaItems;
 import com.technologica.tileentity.SawmillTileEntity;
 
 import net.minecraft.block.Block;
@@ -38,7 +38,7 @@ public class SawmillTileEntityRenderer extends TileEntityRenderer<SawmillTileEnt
     	BlockRendererDispatcher blockrendererdispatcher = Minecraft.getInstance().getBlockRendererDispatcher();
 		BlockModelRenderer blockModelRenderer = blockrendererdispatcher.getBlockModelRenderer();
     	
-		ItemStack blade = new ItemStack(ModItems.SAWBLADE.get().getItem(), 1);
+		ItemStack blade = new ItemStack(TechnologicaItems.SAWBLADE.get().getItem(), 1);
 		ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
     	IBakedModel ibakedmodel = itemRenderer.getItemModelWithOverrides(blade, tileEntity.getWorld(), null);
 		

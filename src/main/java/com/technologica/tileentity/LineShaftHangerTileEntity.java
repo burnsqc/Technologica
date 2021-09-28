@@ -29,7 +29,7 @@ public class LineShaftHangerTileEntity extends TileEntity {
 	}
 	
 	public LineShaftHangerTileEntity() {
-		super(ModTileEntities.LINE_SHAFT_HANGER_TILE.get());
+		super(TechnologicaTileEntities.LINE_SHAFT_HANGER_TILE.get());
 	}
 	
 	public void setTorque(int torqueIn) {

@@ -3,7 +3,7 @@ package com.technologica.item;
 import javax.annotation.Nullable;
 
 import com.technologica.block.LineShaftBlock;
-import com.technologica.block.ModBlocks;
+import com.technologica.block.TechnologicaBlocks;
 import com.technologica.capabilities.ILink;
 import com.technologica.capabilities.LinkProvider;
 import com.technologica.util.Radius;
@@ -22,7 +22,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 public class PulleyBeltItem extends Item {
 
 	public PulleyBeltItem() {
-		super(new Item.Properties().maxStackSize(1).group(ModItemGroup.MACHINERY));
+		super(new Item.Properties().maxStackSize(1).group(TechnologicaItemGroup.MACHINERY));
 	}
 
 	@Override
@@ -31,7 +31,7 @@ public class PulleyBeltItem extends Item {
    		if (!world.isRemote) {
    			BlockPos pos = context.getPos();
    			BlockState state = world.getBlockState(pos);
-   			if (state.matchesBlock(ModBlocks.LINE_SHAFT.get()) && state.get(LineShaftBlock.RADIUS) != Radius.NONE) {
+   			if (state.matchesBlock(TechnologicaBlocks.LINE_SHAFT.get()) && state.get(LineShaftBlock.RADIUS) != Radius.NONE) {
    				PlayerEntity player = context.getPlayer();
    	   			ItemStack stack = player.getHeldItem(context.getHand());
    	   			ILink linkCapability = stack.getCapability(LinkProvider.LINK_CAP).orElseThrow(NullPointerException::new);

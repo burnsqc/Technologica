@@ -33,7 +33,7 @@ public class PalmFoliagePlacer extends FoliagePlacer {
 	}
 
 	protected FoliagePlacerType<?> getPlacerType() {
-		return ModFoliagePlacers.PALM.get();
+		return TechnologicaFoliagePlacers.PALM.get();
 	}
 
 	//Generate foliage

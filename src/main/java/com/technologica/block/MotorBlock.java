@@ -1,6 +1,6 @@
 package com.technologica.block;
 
-import com.technologica.item.ModItems;
+import com.technologica.item.TechnologicaItems;
 import com.technologica.tileentity.LineShaftHangerTileEntity;
 import com.technologica.tileentity.LineShaftTileEntity;
 
@@ -23,6 +23,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
 
+/**
+ * Special one-off class for motors.
+ * Created to handle player interaction and RPM/torque setting for line shafts.
+ */
 public class MotorBlock extends TwentyFourDirectionBlock {
 	public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 	public int maxRPM = 0;
@@ -35,22 +39,9 @@ public class MotorBlock extends TwentyFourDirectionBlock {
 		maxRPM = maxRPMIn; 
 	}
 	
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builderIn) {
-		builderIn.add(POWERED);
-		super.fillStateContainer(builderIn);
-	}
-	
-	//Interaction
-	@Override
-	@Deprecated
-	public ActionResultType onBlockActivated(BlockState stateIn, World worldIn, BlockPos posIn, PlayerEntity playerIn, Hand handIn, BlockRayTraceResult hitIn) {
-		Item tool = playerIn.getHeldItem(handIn).getItem();
-			
-		if (tool == ModItems.STEEL_SHAFT.get() && hitIn.getFace() == stateIn.get(SUB_FACING) && worldIn.isAirBlock(hitIn.getPos().offset(hitIn.getFace()))) {
-			worldIn.setBlockState(hitIn.getPos().offset(hitIn.getFace()), ModBlocks.LINE_SHAFT.get().getDefaultState().with(RotatedPillarBlock.AXIS, stateIn.get(SUB_FACING).getAxis()), 3);
-		}
-		return ActionResultType.func_233537_a_(worldIn.isRemote);
-	}
+	/*
+	 * Minecraft Methods
+	 */
 	
 	@Override
 	public void neighborChanged(BlockState stateIn, World worldIn, BlockPos posIn, Block blockIn, BlockPos fromPosIn, boolean isMovingIn) {
@@ -72,5 +63,21 @@ public class MotorBlock extends TwentyFourDirectionBlock {
 				}
 			}
 		}
+	}
+	
+	@Override
+	public ActionResultType onBlockActivated(BlockState stateIn, World worldIn, BlockPos posIn, PlayerEntity playerIn, Hand handIn, BlockRayTraceResult hitIn) {
+		Item tool = playerIn.getHeldItem(handIn).getItem();
+			
+		if (tool == TechnologicaItems.STEEL_SHAFT.get() && hitIn.getFace() == stateIn.get(SUB_FACING) && worldIn.isAirBlock(hitIn.getPos().offset(hitIn.getFace()))) {
+			worldIn.setBlockState(hitIn.getPos().offset(hitIn.getFace()), TechnologicaBlocks.LINE_SHAFT.get().getDefaultState().with(RotatedPillarBlock.AXIS, stateIn.get(SUB_FACING).getAxis()), 3);
+		}
+		return ActionResultType.func_233537_a_(worldIn.isRemote);
+	}
+	
+	@Override
+	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builderIn) {
+		builderIn.add(POWERED);
+		super.fillStateContainer(builderIn);
 	}
 }

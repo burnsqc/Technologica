@@ -4,9 +4,9 @@ import static net.minecraft.block.RotatedPillarBlock.AXIS;
 
 import java.util.concurrent.Callable;
 
-import com.technologica.block.ModBlocks;
+import com.technologica.block.TechnologicaBlocks;
 import com.technologica.block.TwelveDirectionBlock;
-import com.technologica.item.ModItems;
+import com.technologica.item.TechnologicaItems;
 import com.technologica.tileentity.LineShaftHangerTileEntity;
 import com.technologica.tileentity.LineShaftTileEntity;
 
@@ -184,7 +184,7 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 		
 		for(int i = 0; i < inv.getSizeInventory(); i++) {
 		    ItemStack stack = inv.getStackInSlot(i);  
-		    if(stack.getItem() == ModItems.STEEL_SHAFT.get()) {
+		    if(stack.getItem() == TechnologicaItems.STEEL_SHAFT.get()) {
 		        count = count + stack.getCount();
 		    }    
 		}
@@ -204,8 +204,8 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 		this.world.notifyBlockUpdate(this.linkPos2, this.linkState2, this.linkState2, 3);
 		
 		for (int k = 1; k < this.distance; k++) {
-			this.world.setBlockState(this.linkPos1.offset(this.direction, k), ModBlocks.LINE_SHAFT.get().getDefaultState().with(AXIS, this.axis), 3);
-			this.world.notifyBlockUpdate(this.linkPos1.offset(this.direction, k), Blocks.AIR.getDefaultState(), ModBlocks.LINE_SHAFT.get().getDefaultState().with(AXIS, this.axis), 3);
+			this.world.setBlockState(this.linkPos1.offset(this.direction, k), TechnologicaBlocks.LINE_SHAFT.get().getDefaultState().with(AXIS, this.axis), 3);
+			this.world.notifyBlockUpdate(this.linkPos1.offset(this.direction, k), Blocks.AIR.getDefaultState(), TechnologicaBlocks.LINE_SHAFT.get().getDefaultState().with(AXIS, this.axis), 3);
 		}
 		this.message = "LINK SUCCESS";
 		this.player.sendMessage(new StringTextComponent(message), Util.DUMMY_UUID);	
