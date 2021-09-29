@@ -17,7 +17,7 @@ import net.minecraft.world.IBlockReader;
 public class VanillaFenceGateBlock extends FenceGateBlock {
 
 	public VanillaFenceGateBlock() {
-		super(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD));
+		super(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD));
 	}
 	
 	/*

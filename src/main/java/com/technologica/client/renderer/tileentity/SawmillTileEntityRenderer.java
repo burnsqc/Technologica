@@ -42,13 +42,15 @@ public class SawmillTileEntityRenderer extends TileEntityRenderer<SawmillTileEnt
 		ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
     	IBakedModel ibakedmodel = itemRenderer.getItemModelWithOverrides(blade, tileEntity.getWorld(), null);
 		
-		matrixStack.push();
-    	matrixStack.translate(0.5, 0.9, 0.5);
-    	matrixStack.rotate(angle());
-    	matrixStack.scale(2.25F, 2.25F, 1.0F);
-    	itemRenderer.renderItem(blade, ItemCameraTransforms.TransformType.NONE, true, matrixStack, buffer, combinedLight, combinedOverlay, ibakedmodel); 
-    	matrixStack.pop();
-		
+    	if (tileEntity.getBlade()) {
+    		matrixStack.push();
+    		matrixStack.translate(0.5, 0.9, 0.5);
+    		matrixStack.rotate(angle());
+    		matrixStack.scale(2.25F, 2.25F, 1.0F);
+    		itemRenderer.renderItem(blade, ItemCameraTransforms.TransformType.NONE, true, matrixStack, buffer, combinedLight, combinedOverlay, ibakedmodel); 
+    		matrixStack.pop();
+    	}
+    		
     	if (!stack.isEmpty()) {
     		matrixStack.push();
     		BlockState state = log.getDefaultState().with(RotatedPillarBlock.AXIS, Direction.Axis.X);

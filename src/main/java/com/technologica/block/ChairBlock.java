@@ -6,11 +6,17 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.entity.Pose;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.World;
 
 /**
  * Special one-off class for chairs.    
@@ -32,6 +38,13 @@ public class ChairBlock extends FourDirectionBlock {
 		return CHAIR_HITBOX;
 	}
 
+	@Override
+	public ActionResultType onBlockActivated(BlockState stateIn, World worldIn, BlockPos posIn, PlayerEntity playerIn, Hand handIn, BlockRayTraceResult hitIn) {
+		playerIn.moveForced(posIn.getX(), posIn.getY(), posIn.getZ());;
+		playerIn.setPose(Pose.SLEEPING);
+		return ActionResultType.func_233537_a_(worldIn.isRemote);
+	}
+	
 	/*
 	 * Forge Methods
 	 */

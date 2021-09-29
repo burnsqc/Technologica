@@ -17,15 +17,15 @@ import net.minecraft.block.DoorBlock;
 import net.minecraft.block.FenceBlock;
 import net.minecraft.block.FenceGateBlock;
 import net.minecraft.block.PressurePlateBlock;
+import net.minecraft.block.RotatedPillarBlock;
+import net.minecraft.block.SlabBlock;
 import net.minecraft.block.StairsBlock;
 import net.minecraft.block.TrapDoorBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.state.properties.AttachFace;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.DoubleBlockHalf;
-import net.minecraft.state.properties.SlabType;
 import net.minecraft.util.Direction;
-import net.minecraft.util.Direction.Axis;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
@@ -55,40 +55,59 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		for(Supplier<? extends Block> blockSupplier:collection) {
 			Block block = blockSupplier.get();
 			String path = StringHelper.getPath(block);
+			ResourceLocation texture = blockTexture(block);
 				
-			if (path.contains("leaves")) singleBlockState(block, cubeAll(block));
-			else if (path.contains("planks")) singleBlockState(block, cubeAll(block));
-			else if (path.contains("salt")) singleBlockState(block, cubeAll(block));
-			else if (path.contains("clay")) singleBlockState(block, cubeAll(block));
-			else if (path.contains("ore")) singleBlockState(block, cubeAll(block));
+			if (path.contains("leaves")) simpleBlock(block);
+			else if (path.contains("_planks")) simpleBlock(block);
+			else if (path.contains("salt")) simpleBlock(block);
+			else if (path.contains("_clay")) simpleBlock(block);
+			else if (path.contains("_ore")) simpleBlock(block);
+			else if (path.contains("_bookshelf"))  {
+				ResourceLocation end = blockTexture(block);
+				if (StringHelper.getPath(block).contains("spruce") || block.getTranslationKey().contains("birch") || block.getTranslationKey().contains("jungle") || block.getTranslationKey().contains("acacia") || block.getTranslationKey().contains("dark_oak") || block.getTranslationKey().contains("crimson") || block.getTranslationKey().contains("warped")) {
+					end = mcLoc(blockTexture(block).getPath());	
+				}
+				simpleBlock(block, models().cubeColumn(path, blockTexture(block), StringHelper.replace(end, "bookshelf", "planks")));
+			}
+			else if (path.contains("_log")) logBlock((RotatedPillarBlock) block);
+			else if (path.contains("_wood")) {
+				texture = StringHelper.replace(blockTexture(block), "_wood", "_log");
+				axisBlock((RotatedPillarBlock) block, models().cubeColumn(path, texture, texture), models().cubeColumn(path, texture, texture));
+			} else if (path.contains("_slab")) {
+				texture = StringHelper.replace(blockTexture(block), "_slab", "_planks");
+				slabBlock((SlabBlock) block, texture, texture);
+			} else if (path.contains("_stairs")) {
+				texture = StringHelper.replace(blockTexture(block), "_stairs", "_planks");
+				stairsBlock((StairsBlock) block, texture);
+			} else if (path.contains("_fence") && !path.contains("_gate")) {
+				texture = StringHelper.replace(blockTexture(block), "_fence", "_planks");
+				fenceBlock((FenceBlock) block, texture);
+			} else if (path.contains("_fence_gate")) {
+				texture = StringHelper.replace(blockTexture(block), "_fence_gate", "_planks");
+				fenceGateBlock((FenceGateBlock) block, texture);
+			}
+			else if (path.contains("_door") && !path.contains("trap")) doorBlock((DoorBlock) block, StringHelper.extend(blockTexture(block), "_bottom"), StringHelper.extend(blockTexture(block), "_top"));
+			else if (path.contains("_trapdoor")) trapdoorBlock((TrapDoorBlock) block, blockTexture(block), true);
+			else if (path.contains("_sign")) signBlock(block);
+			else if (path.contains("small_pulley")) simpleBlock(block, smallPulleyModel(block));
+			else if (path.contains("medium_pulley")) simpleBlock(block, mediumPulleyModel(block));
+			else if (path.contains("large_pulley")) simpleBlock(block, largePulleyModel(block));
+			else if (path.contains("display_case")) simpleBlock(block, displayModel(block));
+			else if (path.contains("_sapling") && !path.contains("potted")) simpleBlock(block, models().cross(path, texture));
+			else if (path.contains("potted")) simpleBlock(block, models().singleTexture(path, mcLoc("flower_pot_cross"), "plant", modLoc("block/" + path.replaceAll("potted_", ""))));
 			
 			
-	
-			else if (path.contains("fence") && !path.contains("gate")) fenceBlock(block);
-			else if (path.contains("fence_gate")) fenceGateBlock(block);
-			else if (path.contains("sign")) signBlock(block);
+			
 			else if (block.getClass().equals(VanillaCropsBlock.class)) cropBlock(block);
 			else if (block.getClass().equals(TallCropsBlock.class) || block.getClass().equals(WaterCropsBlock.class)) tallCropBlock(block);
-			else if (path.contains("door") && !path.contains("trap")) doorBlock(block);
-			else if (path.contains("trapdoor")) trapdoorBlock(block);
-			else if (path.contains("_stairs")) stairsBlockState(block);
-			
-			
-			
-			else if (path.contains("_bookshelf")) singleBlockState(block, bookshelfModel(block));
-			else if (path.contains("_sapling") && !path.contains("potted")) crossBlockState(block, crossModel(block));
-			else if (path.contains("potted")) crossBlockState(block, flowerPotCrossModel(block));
 			else if (path.contains("_pressure_plate")) pressurePlateBlockState(block, pressurePlateModel(block), pressurePlateDownModel(block));
-			else if (path.contains("_log")) axisBlockState(block, logModel(block), logHorizontalModel(block));
-			else if (path.contains("_wood")) axisBlockState(block, woodModel(block), woodModel(block));
-			else if (path.contains("_slab")) slabBlockState(block, slabBottomModel(block), slabTopModel(block), slabDoubleModel(block));
 			else if (path.contains("_button")) buttonBlockState(block, buttonModel(block), buttonPressedModel(block), buttonInventoryModel(block));
 			else if (path.contains("tree_tap")) fourDirectionBlockState(block, treeTapModel(block));
 			else if (path.contains("_chair")) fourDirectionBlockState(block, chairModel(block));
 			else if (path.contains("_crystal") && !path.contains("dolomite")) twentyFourDirectionBlockState(block, hexagonalCrystalModel(block), hexagonalCrystalModel(block));
 			else if (path.contains("_crystal") && path.contains("dolomite")) twentyFourDirectionBlockState(block, cubicCrystalModel(block), cubicCrystalModel(block));
 			else if (path.contains("motor")) twentyFourDirectionBlockState(block, motorModel(block), motor2Model(block));
-			else if (path.contains("display_case")) singleBlockState(block, displayModel(block));
+			
 		}
 	}
 	
@@ -96,64 +115,23 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	 * ModelFiles
 	 */
 	
-	public ModelFile crossModel(Block block) {
-		return models().cross(StringHelper.getPath(block), blockTexture(block));
-	}
+	public ModelFile smallPulleyModel(Block block) {
+		ResourceLocation location = block.getRegistryName();
+		return models().withExistingParent(StringHelper.getPath(block), modLoc("small_pulley")).texture("pulley", new ResourceLocation(location.getNamespace(), "block/pulley"));
+    }
 	
-	public ModelFile flowerPotCrossModel(Block block) {
-		return models().singleTexture(StringHelper.getPath(block), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + block.getRegistryName().getPath().replaceAll("potted_", "")));
-	}
+	public ModelFile mediumPulleyModel(Block block) {
+		ResourceLocation location = block.getRegistryName();
+		return models().withExistingParent(StringHelper.getPath(block), modLoc("medium_pulley")).texture("pulley", new ResourceLocation(location.getNamespace(), "block/pulley"));
+    }
 	
-	public ModelFile bookshelfModel(Block block) {
-		ResourceLocation end = blockTexture(block);
-		if (StringHelper.getPath(block).contains("spruce") || block.getTranslationKey().contains("birch") || block.getTranslationKey().contains("jungle") || block.getTranslationKey().contains("acacia") || block.getTranslationKey().contains("dark_oak") || block.getTranslationKey().contains("crimson") || block.getTranslationKey().contains("warped")) {
-			end = mcLoc(blockTexture(block).getPath());	
-		}
-		return models().cubeColumn(StringHelper.getPath(block), blockTexture(block), StringHelper.replace(end, "bookshelf", "planks"));
-	}
-	
-	public ModelFile logModel(Block block) {
-		return models().cubeColumn(StringHelper.getPath(block), blockTexture(block), StringHelper.extend(blockTexture(block), "_top"));
-	}
-	
-	public ModelFile logHorizontalModel(Block block) {
-		return models().cubeColumnHorizontal(StringHelper.getPath(block) + "_horizontal", blockTexture(block), StringHelper.extend(blockTexture(block), "_top"));
-	}
-	
-	public ModelFile woodModel(Block block) {
-		return models().cubeColumn(StringHelper.getPath(block), StringHelper.replace(blockTexture(block), "_wood", "_log"), StringHelper.replace(blockTexture(block), "_wood", "_log"));
-	}
-	
-	public ModelFile slabBottomModel(Block block) {
-		return models().slab(StringHelper.getPath(block), StringHelper.replace(blockTexture(block), "slab", "planks"), StringHelper.replace(blockTexture(block), "slab", "planks"), StringHelper.replace(blockTexture(block), "slab", "planks"));
-	}
-	
-	public ModelFile slabTopModel(Block block) {
-		return models().slabTop(StringHelper.getPath(block) + "_top", StringHelper.replace(blockTexture(block), "slab", "planks"), StringHelper.replace(blockTexture(block), "slab", "planks"), StringHelper.replace(blockTexture(block), "slab", "planks"));
-	}
-	
-	public ModelFile slabDoubleModel(Block block) {
-		return models().getExistingFile(StringHelper.replace(blockTexture(block), "slab", "planks"));
-	}
-	
-	public ModelFile stairs(Block block) {
-		return models().stairs(StringHelper.getPath(block), StringHelper.replace(blockTexture(block), "stairs", "planks"), StringHelper.replace(blockTexture(block), "stairs", "planks"), StringHelper.replace(blockTexture(block), "stairs", "planks"));
-	}
+	public ModelFile largePulleyModel(Block block) {
+		ResourceLocation location = block.getRegistryName();
+		return models().withExistingParent(StringHelper.getPath(block), modLoc("large_pulley")).texture("pulley", new ResourceLocation(location.getNamespace(), "block/pulley"));
+    }
 	
 	public ModelFile chairModel(Block block) {
 		return models().singleTexture(StringHelper.getPath(block), modLoc("chair"), "planks", StringHelper.replace(blockTexture(block), "chair", "planks"));
-	}
-	
-	public ModelFile fence(Block block) {
-		return models().fenceInventory(StringHelper.getPath(block) + "_inventory", StringHelper.replace(blockTexture(block), "fence", "planks"));
-	}
-	
-	public ModelFile fenceGate(Block block) {
-		return models().fenceGate(StringHelper.getPath(block), StringHelper.replace(blockTexture(block), "fence_gate", "planks"));
-	}
-	
-	public ModelFile trapdoor(Block block) {
-		return models().trapdoorBottom(StringHelper.getPath(block), blockTexture(block));
 	}
 	
 	public ModelFile hexagonalCrystalModel(Block block) {
@@ -215,33 +193,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	 * Blockstate, block model, and item model providers
 	 */
 	
-	public void singleBlockState(Block block, ModelFile blockModel) {
-		getVariantBuilder(block)
-			.partialState().setModels(new ConfiguredModel(blockModel));
-		this.simpleBlockItem(block, blockModel);		
-    }
-	
 	public void pressurePlateBlockState(Block block, ModelFile blockModel1, ModelFile blockModel2) {
     	getVariantBuilder(block)
     		.partialState().with(PressurePlateBlock.POWERED, false).modelForState().modelFile(blockModel1).addModel()
         	.partialState().with(PressurePlateBlock.POWERED, true).modelForState().modelFile(blockModel2).addModel();
     	this.simpleBlockItem(block, blockModel1);
-    }
-	
-	public void axisBlockState(Block block, ModelFile blockModel1, ModelFile blockModel2) {
-		getVariantBuilder(block)
-	        .partialState().with(BlockStateProperties.AXIS, Axis.Y).modelForState().modelFile(blockModel1).addModel()
-	        .partialState().with(BlockStateProperties.AXIS, Axis.Z).modelForState().modelFile(blockModel2).rotationX(90).addModel()
-	        .partialState().with(BlockStateProperties.AXIS, Axis.X).modelForState().modelFile(blockModel2).rotationX(90).rotationY(90).addModel();
-	    this.simpleBlockItem(block, blockModel1);			
-	}
-	
-	public void slabBlockState(Block block, ModelFile blockModel1, ModelFile blockModel2, ModelFile blockModel3) {
-		getVariantBuilder(block)
-	        .partialState().with(BlockStateProperties.SLAB_TYPE, SlabType.BOTTOM).setModels(new ConfiguredModel(blockModel1))
-	        .partialState().with(BlockStateProperties.SLAB_TYPE, SlabType.TOP).setModels(new ConfiguredModel(blockModel2))
-	        .partialState().with(BlockStateProperties.SLAB_TYPE, SlabType.DOUBLE).setModels(new ConfiguredModel(blockModel3));
-	    this.simpleBlockItem(block, slabBottomModel(block));
     }
 	
 	public void fourDirectionBlockState(Block block, ModelFile blockModel) {
@@ -323,42 +279,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
     	this.simpleBlockItem(block, itemModel);
     }
 	
-	public void stairsBlockState(Block block) {
-		stairsBlock((StairsBlock) block, StringHelper.replace(blockTexture(block), "stairs", "planks"));
-	    this.simpleBlockItem(block, stairs(block));
-    }
-	
-	public void fenceBlock(Block block) {
-		fenceBlock((FenceBlock) block, StringHelper.replace(blockTexture(block), "fence", "planks"));
-	    this.simpleBlockItem(block, fence(block));
-    }
-	
-	public void fenceGateBlock(Block block) {
-		fenceGateBlock((FenceGateBlock) block, StringHelper.replace(blockTexture(block), "fence_gate", "planks"));
-	    this.simpleBlockItem(block, fenceGate(block));
-    }
-	
-    public void doorBlock(Block block) {
-    	doorBlock((DoorBlock) block, StringHelper.extend(blockTexture(block), "_bottom"), StringHelper.extend(blockTexture(block), "_top"));
-        this.doorBlockItem(block, new ModelFile.UncheckedModelFile("item/generated"));
-    }
-    	
-    public void trapdoorBlock(Block block) {
-    	trapdoorBlock((TrapDoorBlock) block, blockTexture(block), true);
-    	this.simpleBlockItem(block, trapdoor(block));
-    }
-    
     public void signBlock(Block block) {
 		getVariantBuilder(block)
 			.partialState().setModels(new ConfiguredModel(sign(block)));
 	    this.signItem(block, new ModelFile.UncheckedModelFile("item/generated"));	
 	}
     
-	public void crossBlockState(Block block, ModelFile blockModel) {
-		getVariantBuilder(block)
-			.partialState().setModels(new ConfiguredModel(blockModel));
-	}
-	
 	public void cropBlock(Block block) {
 		getVariantBuilder(block)
 			.partialState().with(CropsBlock.AGE, 0).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_stage0", StringHelper.extend(blockTexture(block), "_stage0"))).addModel()

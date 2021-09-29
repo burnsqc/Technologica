@@ -45,6 +45,6 @@ public class ModItemModelProvider extends ItemModelProvider {
 	
 	public void simpleBlockItem(Item item) {
 		ResourceLocation location = item.getRegistryName();
-		this.getBuilder(location.getPath()).parent(new ModelFile.UncheckedModelFile("item/generated")).texture("layer0", new ResourceLocation(location.getNamespace(), "block/" + location.getPath()));
+		this.getBuilder(location.getPath()).parent(new ModelFile.UncheckedModelFile("item/generated")).texture("layer0", new ResourceLocation(location.getNamespace(), BLOCK_FOLDER + "/" + location.getPath()));
 	}
 }
