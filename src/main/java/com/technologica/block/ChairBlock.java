@@ -41,7 +41,7 @@ public class ChairBlock extends FourDirectionBlock {
 	@Override
 	public ActionResultType onBlockActivated(BlockState stateIn, World worldIn, BlockPos posIn, PlayerEntity playerIn, Hand handIn, BlockRayTraceResult hitIn) {
 		playerIn.moveForced(posIn.getX(), posIn.getY(), posIn.getZ());;
-		playerIn.setPose(Pose.SLEEPING);
+		playerIn.setPose(Pose.STANDING);
 		return ActionResultType.func_233537_a_(worldIn.isRemote);
 	}
 	
