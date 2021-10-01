@@ -22,7 +22,7 @@
             },
             {
               "type": "minecraft:item",
-              "name": "technologica:peppercorns"
+              "name": "technologica:peppercorn_seeds"
             }
           ]
         }
@@ -44,7 +44,7 @@
               }
             }
           ],
-          "name": "technologica:peppercorns"
+          "name": "technologica:peppercorn_seeds"
         }
       ],
       "conditions": [
