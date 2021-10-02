@@ -2,6 +2,7 @@ package com.technologica.block;
 
 import java.util.Random;
 
+import com.technologica.item.TechnologicaItems;
 import com.technologica.tileentity.SawmillTileEntity;
 
 import net.minecraft.block.AbstractBlock;
@@ -10,6 +11,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particles.BlockParticleData;
 import net.minecraft.particles.ParticleTypes;
@@ -50,8 +52,9 @@ public class SawmillBlock extends FourDirectionBlock {
 	public ActionResultType onBlockActivated(BlockState stateIn, World worldIn, BlockPos posIn, PlayerEntity playerIn, Hand handIn, BlockRayTraceResult hitIn) {
 		SawmillTileEntity tile = getTileEntity(worldIn, posIn);
 		ItemStack itemstack = playerIn.getHeldItem(handIn);
+		Item item = playerIn.getHeldItem(handIn).getItem();
 		
-		if (tile.getLog().isEmpty() && worldIn.isRemote()) {
+		if (tile.getLog().isEmpty()) {
 			if (ItemTags.LOGS.contains(itemstack.getItem())) {
 				tile.setLog(new ItemStack(itemstack.getItem(), 1));
 				worldIn.playSound((PlayerEntity)null, posIn, SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.rand.nextFloat() * 0.4F);
@@ -59,6 +62,10 @@ public class SawmillBlock extends FourDirectionBlock {
 				playerIn.inventory.setInventorySlotContents(playerIn.inventory.currentItem, itemstack);
 				playerIn.openContainer.detectAndSendChanges();
 			}
+		} else if (item == TechnologicaItems.SAWBLADE.get()) {
+			tile.setBlade(true);
+			worldIn.playSound((PlayerEntity)null, posIn, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.rand.nextFloat() * 0.4F);
+			itemstack.shrink(1);
 		}
 		return ActionResultType.func_233537_a_(worldIn.isRemote);
 	}
