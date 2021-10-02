@@ -57,34 +57,51 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			String path = StringHelper.getPath(block);
 			ResourceLocation texture = blockTexture(block);
 				
-			if (path.contains("leaves")) simpleBlock(block);
-			else if (path.contains("_planks")) simpleBlock(block);
-			else if (path.contains("salt")) simpleBlock(block);
-			else if (path.contains("_clay")) simpleBlock(block);
-			else if (path.contains("_ore")) simpleBlock(block);
-			else if (path.contains("_bookshelf"))  {
+			if (path.contains("leaves")) {
+				simpleBlock(block);
+				simpleBlockItem(block, cubeAll(block));
+			} else if (path.contains("_planks")) {
+				simpleBlock(block);
+				simpleBlockItem(block, cubeAll(block));
+			} else if (path.contains("salt")) {
+				simpleBlock(block);
+				simpleBlockItem(block, cubeAll(block));
+			} else if (path.contains("_clay")) {
+				simpleBlock(block);
+				simpleBlockItem(block, cubeAll(block));
+			} else if (path.contains("_ore")) {
+				simpleBlock(block);
+				simpleBlockItem(block, cubeAll(block));
+			} else if (path.contains("_bookshelf"))  {
 				ResourceLocation end = blockTexture(block);
 				if (StringHelper.getPath(block).contains("spruce") || block.getTranslationKey().contains("birch") || block.getTranslationKey().contains("jungle") || block.getTranslationKey().contains("acacia") || block.getTranslationKey().contains("dark_oak") || block.getTranslationKey().contains("crimson") || block.getTranslationKey().contains("warped")) {
 					end = mcLoc(blockTexture(block).getPath());	
 				}
 				simpleBlock(block, models().cubeColumn(path, blockTexture(block), StringHelper.replace(end, "bookshelf", "planks")));
-			}
-			else if (path.contains("_log")) logBlock((RotatedPillarBlock) block);
-			else if (path.contains("_wood")) {
+				simpleBlockItem(block, models().cubeColumn(path, blockTexture(block), StringHelper.replace(end, "bookshelf", "planks")));
+			} else if (path.contains("_log")) {
+				logBlock((RotatedPillarBlock) block);
+				simpleBlockItem(block, models().cubeColumn(path, blockTexture(block), new ResourceLocation(blockTexture(block) + "_top")));
+			} else if (path.contains("_wood")) {
 				texture = StringHelper.replace(blockTexture(block), "_wood", "_log");
 				axisBlock((RotatedPillarBlock) block, models().cubeColumn(path, texture, texture), models().cubeColumn(path, texture, texture));
+				simpleBlockItem(block, models().cubeColumn(path, texture, texture));
 			} else if (path.contains("_slab")) {
 				texture = StringHelper.replace(blockTexture(block), "_slab", "_planks");
 				slabBlock((SlabBlock) block, texture, texture);
+				simpleBlockItem(block, models().slab(path, texture, texture, texture));
 			} else if (path.contains("_stairs")) {
 				texture = StringHelper.replace(blockTexture(block), "_stairs", "_planks");
 				stairsBlock((StairsBlock) block, texture);
+				simpleBlockItem(block, models().stairs(path, texture, texture, texture));
 			} else if (path.contains("_fence") && !path.contains("_gate")) {
 				texture = StringHelper.replace(blockTexture(block), "_fence", "_planks");
 				fenceBlock((FenceBlock) block, texture);
+				simpleBlockItem(block, models().fenceInventory(path + "_inventory", texture));
 			} else if (path.contains("_fence_gate")) {
 				texture = StringHelper.replace(blockTexture(block), "_fence_gate", "_planks");
 				fenceGateBlock((FenceGateBlock) block, texture);
+				simpleBlockItem(block, models().fenceGate(path, texture));
 			}
 			else if (path.contains("_door") && !path.contains("trap")) doorBlock((DoorBlock) block, StringHelper.extend(blockTexture(block), "_bottom"), StringHelper.extend(blockTexture(block), "_top"));
 			else if (path.contains("_trapdoor")) trapdoorBlock((TrapDoorBlock) block, blockTexture(block), true);
@@ -92,7 +109,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			else if (path.contains("small_pulley")) simpleBlock(block, smallPulleyModel(block));
 			else if (path.contains("medium_pulley")) simpleBlock(block, mediumPulleyModel(block));
 			else if (path.contains("large_pulley")) simpleBlock(block, largePulleyModel(block));
-			else if (path.contains("display_case")) simpleBlock(block, displayModel(block));
+			else if (path.contains("display_case")) {
+				simpleBlock(block, displayModel(block));
+				simpleBlockItem(block, displayModel(block));
+			}
 			else if (path.contains("_sapling") && !path.contains("potted")) simpleBlock(block, models().cross(path, texture));
 			else if (path.contains("potted")) simpleBlock(block, models().singleTexture(path, mcLoc("flower_pot_cross"), "plant", modLoc("block/" + path.replaceAll("potted_", ""))));
 			
@@ -100,7 +120,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			
 			else if (block.getClass().equals(VanillaCropsBlock.class)) cropBlock(block);
 			else if (block.getClass().equals(TallCropsBlock.class) || block.getClass().equals(WaterCropsBlock.class)) tallCropBlock(block);
-			else if (path.contains("_pressure_plate")) pressurePlateBlockState(block, pressurePlateModel(block), pressurePlateDownModel(block));
+			else if (path.contains("_pressure_plate")) {
+				pressurePlateBlockState(block, pressurePlateModel(block), pressurePlateDownModel(block));
+			}
+			
 			else if (path.contains("_button")) buttonBlockState(block, buttonModel(block), buttonPressedModel(block), buttonInventoryModel(block));
 			else if (path.contains("tree_tap")) fourDirectionBlockState(block, treeTapModel(block));
 			else if (path.contains("_chair")) fourDirectionBlockState(block, chairModel(block));
