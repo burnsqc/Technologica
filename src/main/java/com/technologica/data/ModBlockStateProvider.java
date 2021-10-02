@@ -126,7 +126,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			
 			else if (path.contains("_button")) buttonBlockState(block, buttonModel(block), buttonPressedModel(block), buttonInventoryModel(block));
 			else if (path.contains("tree_tap")) fourDirectionBlockState(block, treeTapModel(block));
-			else if (path.contains("_chair")) fourDirectionBlockState(block, chairModel(block));
+			else if (path.contains("_chair")) {
+				ResourceLocation planks = StringHelper.replace(blockTexture(block), "chair", "planks");
+				if (path.contains("oak") || path.contains("spruce") || path.contains("birch") || path.contains("jungle") || path.contains("acacia") || path.contains("dark_oak") || path.contains("crimson") || path.contains("warped")) {
+					planks = mcLoc(StringHelper.replace(blockTexture(block).getPath(), "chair", "planks"));	
+				}
+				fourDirectionBlockState(block, chairModel(block, planks));
+			}
 			else if (path.contains("_crystal") && !path.contains("dolomite")) twentyFourDirectionBlockState(block, hexagonalCrystalModel(block), hexagonalCrystalModel(block));
 			else if (path.contains("_crystal") && path.contains("dolomite")) twentyFourDirectionBlockState(block, cubicCrystalModel(block), cubicCrystalModel(block));
 			else if (path.contains("motor")) twentyFourDirectionBlockState(block, motorModel(block), motor2Model(block));
@@ -153,8 +159,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		return models().withExistingParent(StringHelper.getPath(block), modLoc("large_pulley")).texture("pulley", new ResourceLocation(location.getNamespace(), "block/pulley"));
     }
 	
-	public ModelFile chairModel(Block block) {
-		return models().singleTexture(StringHelper.getPath(block), modLoc("chair"), "planks", StringHelper.replace(blockTexture(block), "chair", "planks"));
+	public ModelFile chairModel(Block block, ResourceLocation texture) {
+		return models().singleTexture(StringHelper.getPath(block), modLoc("chair"), "planks", texture);
 	}
 	
 	public ModelFile hexagonalCrystalModel(Block block) {
