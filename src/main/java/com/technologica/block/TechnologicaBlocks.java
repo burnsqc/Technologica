@@ -744,19 +744,25 @@ public class TechnologicaBlocks {
      * DECORATIVE
      */
     
+    public static final RegistryObject<Block> ACACIA_CHAIR = BLOCKS.register("acacia_chair", ChairBlock::new);
     public static final RegistryObject<Block> APRICOT_CHAIR = BLOCKS.register("apricot_chair", ChairBlock::new);
     public static final RegistryObject<Block> ASPEN_CHAIR = BLOCKS.register("aspen_chair", ChairBlock::new);
     public static final RegistryObject<Block> AVOCADO_CHAIR = BLOCKS.register("avocado_chair", ChairBlock::new);
     public static final RegistryObject<Block> BANANA_CHAIR = BLOCKS.register("banana_chair", ChairBlock::new);
+    public static final RegistryObject<Block> BIRCH_CHAIR = BLOCKS.register("birch_chair", ChairBlock::new);
     public static final RegistryObject<Block> CHERRY_CHAIR = BLOCKS.register("cherry_chair", ChairBlock::new);
     public static final RegistryObject<Block> CHESTNUT_CHAIR = BLOCKS.register("chestnut_chair", ChairBlock::new);
     public static final RegistryObject<Block> COCONUT_CHAIR = BLOCKS.register("coconut_chair", ChairBlock::new);
+    public static final RegistryObject<Block> CRIMSON_CHAIR = BLOCKS.register("crimson_chair", ChairBlock::new);
+    public static final RegistryObject<Block> DARK_OAK_CHAIR = BLOCKS.register("dark_oak_chair", ChairBlock::new);
     public static final RegistryObject<Block> EBONY_CHAIR = BLOCKS.register("ebony_chair", ChairBlock::new);
+    public static final RegistryObject<Block> JUNGLE_CHAIR = BLOCKS.register("jungle_chair", ChairBlock::new);
     public static final RegistryObject<Block> KIWI_CHAIR = BLOCKS.register("kiwi_chair", ChairBlock::new);
     public static final RegistryObject<Block> LEMON_CHAIR = BLOCKS.register("lemon_chair", ChairBlock::new);
     public static final RegistryObject<Block> LIME_CHAIR = BLOCKS.register("lime_chair", ChairBlock::new);
     public static final RegistryObject<Block> MAHOGANY_CHAIR = BLOCKS.register("mahogany_chair", ChairBlock::new);
     public static final RegistryObject<Block> MAPLE_CHAIR = BLOCKS.register("maple_chair", ChairBlock::new);
+    public static final RegistryObject<Block> OAK_CHAIR = BLOCKS.register("oak_chair", ChairBlock::new);
     public static final RegistryObject<Block> ORANGE_CHAIR = BLOCKS.register("orange_chair", ChairBlock::new);
     public static final RegistryObject<Block> PEACH_CHAIR = BLOCKS.register("peach_chair", ChairBlock::new);
     public static final RegistryObject<Block> PEAR_CHAIR = BLOCKS.register("pear_chair", ChairBlock::new);
@@ -764,8 +770,10 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> REDWOOD_CHAIR = BLOCKS.register("redwood_chair", ChairBlock::new);
     public static final RegistryObject<Block> ROSEWOOD_CHAIR = BLOCKS.register("rosewood_chair", ChairBlock::new);
     public static final RegistryObject<Block> RUBBER_CHAIR = BLOCKS.register("rubber_chair", ChairBlock::new);
+    public static final RegistryObject<Block> SPRUCE_CHAIR = BLOCKS.register("spruce_chair", ChairBlock::new);
     public static final RegistryObject<Block> TEAK_CHAIR = BLOCKS.register("teak_chair", ChairBlock::new);
     public static final RegistryObject<Block> WALNUT_CHAIR = BLOCKS.register("walnut_chair", ChairBlock::new);
+    public static final RegistryObject<Block> WARPED_CHAIR = BLOCKS.register("warped_chair", ChairBlock::new);
     public static final RegistryObject<Block> ZEBRAWOOD_CHAIR = BLOCKS.register("zebrawood_chair", ChairBlock::new);
     public static final RegistryObject<Block> DISPLAY_CASE = BLOCKS.register("display_case", DisplayCaseBlock::new);
     

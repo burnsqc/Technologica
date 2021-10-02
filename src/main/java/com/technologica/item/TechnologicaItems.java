@@ -867,19 +867,25 @@ public class TechnologicaItems {
      */
     
     public static final RegistryObject<Item> DISPLAY_CASE_ITEM = ITEMS.register("display_case", () -> new BlockItem(TechnologicaBlocks.DISPLAY_CASE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> ACACIA_CHAIR_ITEM = ITEMS.register("acacia_chair", () -> new BlockItem(TechnologicaBlocks.ACACIA_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> APRICOT_CHAIR_ITEM = ITEMS.register("apricot_chair", () -> new BlockItem(TechnologicaBlocks.APRICOT_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> ASPEN_CHAIR_ITEM = ITEMS.register("aspen_chair", () -> new BlockItem(TechnologicaBlocks.ASPEN_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> AVOCADO_CHAIR_ITEM = ITEMS.register("avocado_chair", () -> new BlockItem(TechnologicaBlocks.AVOCADO_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> BANANA_CHAIR_ITEM = ITEMS.register("banana_chair", () -> new BlockItem(TechnologicaBlocks.BANANA_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> BIRCH_CHAIR_ITEM = ITEMS.register("birch_chair", () -> new BlockItem(TechnologicaBlocks.BIRCH_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> CHERRY_CHAIR_ITEM = ITEMS.register("cherry_chair", () -> new BlockItem(TechnologicaBlocks.CHERRY_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> CHESTNUT_CHAIR_ITEM = ITEMS.register("chestnut_chair", () -> new BlockItem(TechnologicaBlocks.CHESTNUT_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> COCONUT_CHAIR_ITEM = ITEMS.register("coconut_chair", () -> new BlockItem(TechnologicaBlocks.COCONUT_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> CRIMSON_CHAIR_ITEM = ITEMS.register("crimson_chair", () -> new BlockItem(TechnologicaBlocks.CRIMSON_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> DARK_OAK_CHAIR_ITEM = ITEMS.register("dark_oak_chair", () -> new BlockItem(TechnologicaBlocks.DARK_OAK_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> EBONY_CHAIR_ITEM = ITEMS.register("ebony_chair", () -> new BlockItem(TechnologicaBlocks.EBONY_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> JUNGLE_CHAIR_ITEM = ITEMS.register("jungle_chair", () -> new BlockItem(TechnologicaBlocks.JUNGLE_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> KIWI_CHAIR_ITEM = ITEMS.register("kiwi_chair", () -> new BlockItem(TechnologicaBlocks.KIWI_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> LEMON_CHAIR_ITEM = ITEMS.register("lemon_chair", () -> new BlockItem(TechnologicaBlocks.LEMON_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> LIME_CHAIR_ITEM = ITEMS.register("lime_chair", () -> new BlockItem(TechnologicaBlocks.LIME_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> MAHOGANY_CHAIR_ITEM = ITEMS.register("mahogany_chair", () -> new BlockItem(TechnologicaBlocks.MAHOGANY_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> MAPLE_CHAIR_ITEM = ITEMS.register("maple_chair", () -> new BlockItem(TechnologicaBlocks.MAPLE_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> OAK_CHAIR_ITEM = ITEMS.register("oak_chair", () -> new BlockItem(TechnologicaBlocks.OAK_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> ORANGE_CHAIR_ITEM = ITEMS.register("orange_chair", () -> new BlockItem(TechnologicaBlocks.ORANGE_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> PEACH_CHAIR_ITEM = ITEMS.register("peach_chair", () -> new BlockItem(TechnologicaBlocks.PEACH_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> PEAR_CHAIR_ITEM = ITEMS.register("pear_chair", () -> new BlockItem(TechnologicaBlocks.PEAR_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
@@ -887,8 +893,10 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> REDWOOD_CHAIR_ITEM = ITEMS.register("redwood_chair", () -> new BlockItem(TechnologicaBlocks.REDWOOD_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> ROSEWOOD_CHAIR_ITEM = ITEMS.register("rosewood_chair", () -> new BlockItem(TechnologicaBlocks.ROSEWOOD_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> RUBBER_CHAIR_ITEM = ITEMS.register("rubber_chair", () -> new BlockItem(TechnologicaBlocks.RUBBER_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> SPRUCE_CHAIR_ITEM = ITEMS.register("spruce_chair", () -> new BlockItem(TechnologicaBlocks.SPRUCE_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> TEAK_CHAIR_ITEM = ITEMS.register("teak_chair", () -> new BlockItem(TechnologicaBlocks.TEAK_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> WALNUT_CHAIR_ITEM = ITEMS.register("walnut_chair", () -> new BlockItem(TechnologicaBlocks.WALNUT_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> WARPED_CHAIR_ITEM = ITEMS.register("warped_chair", () -> new BlockItem(TechnologicaBlocks.WARPED_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> ZEBRAWOOD_CHAIR_ITEM = ITEMS.register("zebrawood_chair", () -> new BlockItem(TechnologicaBlocks.ZEBRAWOOD_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     
     public static void register() {
