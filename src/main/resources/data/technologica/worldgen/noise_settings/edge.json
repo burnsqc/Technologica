@@ -10,12 +10,17 @@
     "Properties": {
       "level": "0"
     },
-    "Name": "minecraft:lava"
+    "Name": "minecraft:water"
   },
-  "bedrock_roof_position": 0,
-  "bedrock_floor_position": 0,
-  "sea_level": 128,
+  "bedrock_roof_position": -20,
+  "bedrock_floor_position": -20,
+  "sea_level": 0,
   "structures": {
+    "stronghold": {
+      "distance": 32,
+      "spread": 3,
+      "count": 128
+    },
     "structures": {
       "minecraft:monument": {
         "spacing": 32,
@@ -58,8 +63,8 @@
         "salt": 14357620
       },
       "minecraft:ruined_portal": {
-        "spacing": 25,
-        "separation": 10,
+        "spacing": 40,
+        "separation": 15,
         "salt": 34222645
       },
       "minecraft:pillager_outpost": {
@@ -110,28 +115,28 @@
     }
   },
   "noise": {
-    "simplex_surface_noise": false,
-    "size_vertical": 2,
+    "simplex_surface_noise": true,
+    "size_vertical": 1,
     "density_factor": 0.0,
-    "density_offset": 0.019921875,
+    "density_offset": 0.0,
     "top_slide": {
-      "target": 120,
-      "size": 3,
-      "offset": 0
+      "target": -3000,
+      "size": 64,
+      "offset": -46
     },
     "bottom_slide": {
-      "target": 320,
-      "size": 4,
-      "offset": -1
+      "target": -30,
+      "size": 7,
+      "offset": 1
     },
-    "size_horizontal": 1,
+    "size_horizontal": 2,
     "min_y": 0,
     "height": 128,
     "sampling": {
-      "xz_scale": 1.0,
-      "y_scale": 3.0,
+      "xz_scale": 2.0,
+      "y_scale": 1.0,
       "xz_factor": 80.0,
-      "y_factor": 60.0
+      "y_factor": 160.0
     }
   },
   "default_block": {

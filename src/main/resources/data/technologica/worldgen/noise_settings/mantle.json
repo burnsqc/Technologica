@@ -10,12 +10,17 @@
     "Properties": {
       "level": "0"
     },
-    "Name": "minecraft:lava"
+    "Name": "minecraft:water"
   },
   "bedrock_roof_position": 0,
   "bedrock_floor_position": 0,
-  "sea_level": 128,
+  "sea_level": 32,
   "structures": {
+    "stronghold": {
+      "distance": 32,
+      "spread": 3,
+      "count": 128
+    },
     "structures": {
       "minecraft:monument": {
         "spacing": 32,
