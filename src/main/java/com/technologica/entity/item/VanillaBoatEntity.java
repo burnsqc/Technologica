@@ -54,20 +54,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class VanillaBoatEntity extends Entity {
-	private static final DataParameter<Integer> TIME_SINCE_HIT = EntityDataManager.createKey(VanillaBoatEntity.class,
-			DataSerializers.VARINT);
-	private static final DataParameter<Integer> FORWARD_DIRECTION = EntityDataManager.createKey(VanillaBoatEntity.class,
-			DataSerializers.VARINT);
-	private static final DataParameter<Float> DAMAGE_TAKEN = EntityDataManager.createKey(VanillaBoatEntity.class,
-			DataSerializers.FLOAT);
-	private static final DataParameter<Integer> BOAT_TYPE = EntityDataManager.createKey(VanillaBoatEntity.class,
-			DataSerializers.VARINT);
-	private static final DataParameter<Boolean> LEFT_PADDLE = EntityDataManager.createKey(VanillaBoatEntity.class,
-			DataSerializers.BOOLEAN);
-	private static final DataParameter<Boolean> RIGHT_PADDLE = EntityDataManager.createKey(VanillaBoatEntity.class,
-			DataSerializers.BOOLEAN);
-	private static final DataParameter<Integer> ROCKING_TICKS = EntityDataManager.createKey(VanillaBoatEntity.class,
-			DataSerializers.VARINT);
+	private static final DataParameter<Integer> TIME_SINCE_HIT = EntityDataManager.createKey(VanillaBoatEntity.class, DataSerializers.VARINT);
+	private static final DataParameter<Integer> FORWARD_DIRECTION = EntityDataManager.createKey(VanillaBoatEntity.class, DataSerializers.VARINT);
+	private static final DataParameter<Float> DAMAGE_TAKEN = EntityDataManager.createKey(VanillaBoatEntity.class, DataSerializers.FLOAT);
+	private static final DataParameter<Integer> BOAT_TYPE = EntityDataManager.createKey(VanillaBoatEntity.class, DataSerializers.VARINT);
+	private static final DataParameter<Boolean> LEFT_PADDLE = EntityDataManager.createKey(VanillaBoatEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> RIGHT_PADDLE = EntityDataManager.createKey(VanillaBoatEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Integer> ROCKING_TICKS = EntityDataManager.createKey(VanillaBoatEntity.class, DataSerializers.VARINT);
 	private final float[] paddlePositions = new float[2];
 	private float momentum;
 	private float outOfControlTicks;
@@ -218,11 +211,68 @@ public class VanillaBoatEntity extends Entity {
 
 	public Item getItemBoat() {
 		switch (this.getBoatType()) {
+		case ALCHEMICAL:
+			return TechnologicaItems.ALCHEMICAL_BOAT.get();
+		case APRICOT:
+			return TechnologicaItems.APRICOT_BOAT.get();
+		case ASPEN:
+			return TechnologicaItems.ASPEN_BOAT.get();
+		case AVOCADO:
+			return TechnologicaItems.AVOCADO_BOAT.get();
 		case BANANA:
-		default:
 			return TechnologicaItems.BANANA_BOAT.get();
+		case BENEVOLENT:
+			return TechnologicaItems.BENEVOLENT_BOAT.get();
 		case CHERRY:
 			return TechnologicaItems.CHERRY_BOAT.get();
+		case CHESTNUT:
+			return TechnologicaItems.CHESTNUT_BOAT.get();
+		case COCONUT:
+			return TechnologicaItems.COCONUT_BOAT.get();
+		case CONDUCTIVE:
+			return TechnologicaItems.CONDUCTIVE_BOAT.get();
+		case EBONY:
+			return TechnologicaItems.EBONY_BOAT.get();
+		case FROSTBITTEN:
+			return TechnologicaItems.FROSTBITTEN_BOAT.get();
+		case FRUITFUL:
+			return TechnologicaItems.FRUITFUL_BOAT.get();
+		case INFERNAL:
+			return TechnologicaItems.INFERNAL_BOAT.get();
+		case KIWI:
+			return TechnologicaItems.KIWI_BOAT.get();
+		case LEMON:
+			return TechnologicaItems.LEMON_BOAT.get();
+		case LIME:
+			return TechnologicaItems.LIME_BOAT.get();
+		case MAHOGANY:
+			return TechnologicaItems.MAHOGANY_BOAT.get();
+		case MALEVOLENT:
+			return TechnologicaItems.MALEVOLENT_BOAT.get();
+		case MAPLE:
+			return TechnologicaItems.MAPLE_BOAT.get();
+		case ORANGE:
+			return TechnologicaItems.ORANGE_BOAT.get();
+		case PEACH:
+			return TechnologicaItems.PEACH_BOAT.get();
+		case PEAR:
+			return TechnologicaItems.PEAR_BOAT.get();
+		case PLUM:
+			return TechnologicaItems.PLUM_BOAT.get();
+		case REDWOOD:
+			return TechnologicaItems.REDWOOD_BOAT.get();
+		case ROSEWOOD:
+			return TechnologicaItems.ROSEWOOD_BOAT.get();
+		case RUBBER:
+			return TechnologicaItems.RUBBER_BOAT.get();
+		case TEAK:
+			return TechnologicaItems.TEAK_BOAT.get();
+		case WALNUT:
+			return TechnologicaItems.WALNUT_BOAT.get();
+		case ZEBRAWOOD:
+			return TechnologicaItems.ZEBRAWOOD_BOAT.get();
+		default:
+			return TechnologicaItems.APRICOT_BOAT.get();
 		}
 	}
 
