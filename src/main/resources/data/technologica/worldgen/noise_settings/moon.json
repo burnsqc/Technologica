@@ -14,7 +14,7 @@
   },
   "bedrock_roof_position": -20,
   "bedrock_floor_position": 0,
-  "sea_level": 63,
+  "sea_level": 0,
   "structures": {
     "stronghold": {
       "distance": 32,

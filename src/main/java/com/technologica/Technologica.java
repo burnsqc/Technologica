@@ -15,6 +15,7 @@ import com.technologica.setup.GatherData;
 import com.technologica.setup.VanillaBiomeModifier;
 import com.technologica.setup.VanillaEntityModifier;
 import com.technologica.tileentity.TechnologicaTileEntities;
+import com.technologica.util.LowGrav;
 import com.technologica.world.biome.TechnologicaBiomes;
 import com.technologica.world.gen.feature.TechnologicaFeatures;
 import com.technologica.world.gen.foliageplacer.TechnologicaFoliagePlacers;
@@ -62,5 +63,6 @@ public class Technologica {
 		
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, VanillaBiomeModifier::init);	
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, VanillaEntityModifier::init);	
+		MinecraftForge.EVENT_BUS.register(new LowGrav());
 	}
 }

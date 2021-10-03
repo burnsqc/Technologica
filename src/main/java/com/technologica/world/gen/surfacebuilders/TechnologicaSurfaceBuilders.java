@@ -13,6 +13,7 @@ public class TechnologicaSurfaceBuilders {
 	public static final DeferredRegister<SurfaceBuilder<?>> SURFACE_BUILDERS = DeferredRegister.create(ForgeRegistries.SURFACE_BUILDERS, MODID);
 	
 	public static final RegistryObject<SaltFlatsSurfaceBuilder> SALT_FLATS_SURFACE_BUILDER = SURFACE_BUILDERS.register("salt_flats", () -> new SaltFlatsSurfaceBuilder(SurfaceBuilderConfig.CODEC));
+	public static final RegistryObject<ShatteredMoonSurfaceBuilder> DISRUPTED_CORRIDORS_SURFACE_BUILDER = SURFACE_BUILDERS.register("disrupted_corridors", () -> new ShatteredMoonSurfaceBuilder(SurfaceBuilderConfig.CODEC));
 	
 	public static void register() 
     {

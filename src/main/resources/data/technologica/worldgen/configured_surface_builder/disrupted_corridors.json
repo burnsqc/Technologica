@@ -1,0 +1,17 @@
+{
+  "config": {
+    "top_material": {
+      "Properties": {
+        "snowy": "false"
+      },
+      "Name": "minecraft:stone"
+    },
+    "under_material": {
+      "Name": "minecraft:stone"
+    },
+    "underwater_material": {
+      "Name": "minecraft:stone"
+    }
+  },
+  "type": "technologica:disrupted_corridors"
+}

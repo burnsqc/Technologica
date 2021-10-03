@@ -62,6 +62,21 @@ public class TechnologicaBiomes {
 					.withSkyColor(0).build())
 			.withMobSpawnSettings(MobSpawnInfo.EMPTY)
 			.withGenerationSettings(BiomeGenerationSettings.DEFAULT_SETTINGS).build());
+	public static final RegistryObject<Biome> SHATTERED_MOON = BIOMES.register("shattered_moon", () -> new Biome.Builder()
+			.precipitation(RainType.NONE)
+			.category(Category.MESA)
+			.depth(0)
+			.scale(0)
+			.temperature(0)
+			.withTemperatureModifier(TemperatureModifier.NONE)
+			.downfall(0)
+			.setEffects(new BiomeAmbience.Builder()
+					.setFogColor(0)
+					.setWaterColor(0)
+					.setWaterFogColor(0)
+					.withSkyColor(0).build())
+			.withMobSpawnSettings(MobSpawnInfo.EMPTY)
+			.withGenerationSettings(BiomeGenerationSettings.DEFAULT_SETTINGS).build());
 	
 	public static void register() 
     {
