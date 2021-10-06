@@ -323,8 +323,7 @@ public class VanillaBoatEntity extends Entity {
 	public void tick() {
 		this.previousStatus = this.status;
 		this.status = this.getBoatStatus();
-		if (this.status != VanillaBoatEntity.Status.UNDER_WATER
-				&& this.status != VanillaBoatEntity.Status.UNDER_FLOWING_WATER) {
+		if (this.status != VanillaBoatEntity.Status.UNDER_WATER && this.status != VanillaBoatEntity.Status.UNDER_FLOWING_WATER) {
 			this.outOfControlTicks = 0.0F;
 		} else {
 			++this.outOfControlTicks;
@@ -387,18 +386,14 @@ public class VanillaBoatEntity extends Entity {
 		}
 
 		this.doBlockCollisions();
-		List<Entity> list = this.world.getEntitiesInAABBexcluding(this,
-				this.getBoundingBox().grow((double) 0.2F, (double) -0.01F, (double) 0.2F),
-				EntityPredicates.pushableBy(this));
+		List<Entity> list = this.world.getEntitiesInAABBexcluding(this, this.getBoundingBox().grow((double) 0.2F, (double) -0.01F, (double) 0.2F), EntityPredicates.pushableBy(this));
 		if (!list.isEmpty()) {
 			boolean flag = !this.world.isRemote && !(this.getControllingPassenger() instanceof PlayerEntity);
 
 			for (int j = 0; j < list.size(); ++j) {
 				Entity entity = list.get(j);
 				if (!entity.isPassenger(this)) {
-					if (flag && this.getPassengers().size() < 2 && !entity.isPassenger()
-							&& entity.getWidth() < this.getWidth() && entity instanceof LivingEntity
-							&& !(entity instanceof WaterMobEntity) && !(entity instanceof PlayerEntity)) {
+					if (flag && this.getPassengers().size() < 2 && !entity.isPassenger() && entity.getWidth() < this.getWidth() && entity instanceof LivingEntity && !(entity instanceof WaterMobEntity) && !(entity instanceof PlayerEntity)) {
 						entity.startRiding(this);
 					} else {
 						this.applyEntityCollision(entity);
@@ -967,13 +962,14 @@ public class VanillaBoatEntity extends Entity {
 		return list.isEmpty() ? null : list.get(0);
 	}
 
-	@OnlyIn(Dist.CLIENT)
-	public void updateInputs(boolean leftInputDown, boolean rightInputDown, boolean forwardInputDown,
-			boolean backInputDown) {
+	
+	public void updateInputs(boolean leftInputDown, boolean rightInputDown, boolean forwardInputDown, boolean backInputDown) {
+		if (world.isRemote) {
 		this.leftInputDown = leftInputDown;
 		this.rightInputDown = rightInputDown;
 		this.forwardInputDown = forwardInputDown;
 		this.backInputDown = backInputDown;
+		}
 	}
 
 	public IPacket<?> createSpawnPacket() {
