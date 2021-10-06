@@ -97,6 +97,6 @@ public class VanillaBoatRenderer extends EntityRenderer<VanillaBoatEntity> {
 	 * Returns the location of an entity's texture.
 	 */
 	public ResourceLocation getEntityTexture(VanillaBoatEntity entity) {
-		return BOAT_TEXTURES[entity.getBoatType().ordinal()];
+		return BOAT_TEXTURES[entity.getVanillaBoatType().ordinal()];
 	}
 }

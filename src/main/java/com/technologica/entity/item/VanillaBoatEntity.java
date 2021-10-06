@@ -17,6 +17,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.Pose;
+import net.minecraft.entity.item.BoatEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.WaterMobEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -53,7 +54,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-public class VanillaBoatEntity extends Entity {
+public class VanillaBoatEntity extends BoatEntity {
 	private static final DataParameter<Integer> TIME_SINCE_HIT = EntityDataManager.createKey(VanillaBoatEntity.class, DataSerializers.VARINT);
 	private static final DataParameter<Integer> FORWARD_DIRECTION = EntityDataManager.createKey(VanillaBoatEntity.class, DataSerializers.VARINT);
 	private static final DataParameter<Float> DAMAGE_TAKEN = EntityDataManager.createKey(VanillaBoatEntity.class, DataSerializers.FLOAT);
@@ -210,7 +211,7 @@ public class VanillaBoatEntity extends Entity {
 	}
 
 	public Item getItemBoat() {
-		switch (this.getBoatType()) {
+		switch (this.getVanillaBoatType()) {
 		case ALCHEMICAL:
 			return TechnologicaItems.ALCHEMICAL_BOAT.get();
 		case APRICOT:
@@ -341,7 +342,7 @@ public class VanillaBoatEntity extends Entity {
 			this.setDamageTaken(this.getDamageTaken() - 1.0F);
 		}
 
-		super.tick();
+		
 		this.tickLerp();
 		if (this.canPassengerSteer()) {
 			if (this.getPassengers().isEmpty() || !(this.getPassengers().get(0) instanceof PlayerEntity)) {
@@ -819,7 +820,7 @@ public class VanillaBoatEntity extends Entity {
 	}
 
 	protected void writeAdditional(CompoundNBT compound) {
-		compound.putString("Type", this.getBoatType().getName());
+		compound.putString("Type", this.getVanillaBoatType().getName());
 	}
 
 	/**
@@ -943,7 +944,7 @@ public class VanillaBoatEntity extends Entity {
 		this.dataManager.set(BOAT_TYPE, boatType.ordinal());
 	}
 
-	public VanillaBoatEntity.Type getBoatType() {
+	public VanillaBoatEntity.Type getVanillaBoatType() {
 		return VanillaBoatEntity.Type.byId(this.dataManager.get(BOAT_TYPE));
 	}
 
