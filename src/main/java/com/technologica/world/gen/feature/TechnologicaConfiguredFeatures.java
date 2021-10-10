@@ -22,6 +22,7 @@ import net.minecraft.world.gen.feature.Features;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.MultipleRandomFeatureConfig;
 import net.minecraft.world.gen.feature.TwoLayerFeature;
+import net.minecraft.world.gen.foliageplacer.AcaciaFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.MegaPineFoliagePlacer;
 import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
@@ -50,7 +51,7 @@ public class TechnologicaConfiguredFeatures {
 					new TwoLayerFeature(1, 0, 1))).setIgnoreVines().build()));
 	
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> AVOCADO_TREE_FEATURE = register(
-			"avacado_tree_feature",
+			"avocado_tree_feature",
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(TechnologicaBlocks.AVOCADO_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(TechnologicaBlocks.AVOCADO_LEAVES.get().getDefaultState()),
@@ -108,8 +109,8 @@ public class TechnologicaConfiguredFeatures {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(TechnologicaBlocks.KIWI_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(TechnologicaBlocks.KIWI_LEAVES.get().getDefaultState()),
-					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
-					new StraightTrunkPlacer(2, 2, 0), 
+					new AcaciaFoliagePlacer(FeatureSpread.create(3), FeatureSpread.create(0)),
+					new StraightTrunkPlacer(3, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
 	
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> LEMON_TREE_FEATURE = register(
