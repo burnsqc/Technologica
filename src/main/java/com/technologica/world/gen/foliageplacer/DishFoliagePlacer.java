@@ -33,7 +33,7 @@ public class DishFoliagePlacer extends FoliagePlacer {
 	}
 
 	protected FoliagePlacerType<?> getPlacerType() {
-		return ModFoliagePlacers.DISH.get();
+		return TechnologicaFoliagePlacers.DISH.get();
 	}
 
 	//Generate foliage

@@ -4,8 +4,8 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 import com.technologica.Technologica;
-import com.technologica.items.ModItems;
-import com.technologica.setup.ModItemGroup;
+import com.technologica.item.TechnologicaItemGroup;
+import com.technologica.item.TechnologicaItems;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Item;
@@ -21,33 +21,53 @@ public class ModLanguageProvider extends LanguageProvider {
 
 	@Override
 	protected void addTranslations() {
-		addItem(ModItems.ITEMS.getEntries());
+		addItems(TechnologicaItems.ITEMS.getEntries());
 		
-		addItemGroup(
-			ModItemGroup.TECHNOLOGICA_FLORA,
-			ModItemGroup.TECHNOLOGICA_FAUNA,
-			ModItemGroup.TECHNOLOGICA_MINERAL,
-			ModItemGroup.TECHNOLOGICA_FOOD,
-			ModItemGroup.TECHNOLOGICA_MACHINERY,
-			ModItemGroup.TECHNOLOGICA_DECORATIVE,
-			ModItemGroup.TECHNOLOGICA_CRYPTICA
+		addItemGroups(
+			TechnologicaItemGroup.FLORA,
+			TechnologicaItemGroup.FAUNA,
+			TechnologicaItemGroup.MINERAL,
+			TechnologicaItemGroup.FOOD,
+			TechnologicaItemGroup.CONSTRUCTION,
+			TechnologicaItemGroup.MACHINERY,
+			TechnologicaItemGroup.DECORATIVE,
+			TechnologicaItemGroup.CRYPTICA
 		);
 	}
 	
-	private final void addItem(Collection<RegistryObject<Item>> collection) {
-		for(Supplier<? extends Item> key:collection) {
-			add(key.get().getTranslationKey(), pathToName(key.get().getTranslationKey()));
+	/**
+	 * Iterates through a deferred register, adding each entry to the en_us.json file.
+	 * @param collection a collection of deferred register entries
+	 */
+	
+	private final void addItems(Collection<RegistryObject<Item>> collection) {
+		for(Supplier<? extends Item> item:collection) {
+			String key = item.get().getTranslationKey();
+			add(key, keyToValue(key));
 		}
 	}
 	
-	private final void addItemGroup(ItemGroup... keys) {
-		for(ItemGroup key:keys) {
-			add("itemGroup." + key.getPath(), pathToName(key.getPath()));
+	/**
+	 * Iterates through vararg item groups, adding each entry to the en_us.json file.
+	 * @param itemGroups varargs list of item groups
+	 */
+	
+	private final void addItemGroups(ItemGroup... itemGroups) {
+		for(ItemGroup itemGroup:itemGroups) {
+			String key = itemGroup.getPath();
+			add("itemGroup." + key, keyToValue(key));
 		}
     }
 	
-	private String pathToName(String path) {
-		String words[] = path.replaceAll("item." + Technologica.MODID + ".", "").replaceAll("block." + Technologica.MODID + ".", "").split("_");
+	/**
+	 * Converts the input string "key" into an output string to be used as the value for the en_us.json file entry.
+	 * This only works as intended if the registry entry name is an exact snake case version of the name to be displayed in-game.   
+	 * @param key the string
+	 * @return the string to be used as the value for the en_us.json file entry.
+	 */
+	
+	private String keyToValue(String key) {
+		String words[] = key.replaceAll("item." + Technologica.MODID + ".", "").replaceAll("block." + Technologica.MODID + ".", "").split("_");
 		String name = "";
 		for(String word:words ) {
 			String first = word.substring(0,1);

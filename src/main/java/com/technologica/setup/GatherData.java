@@ -28,6 +28,7 @@ public class GatherData {
 			generator.addProvider(new ModBlockStateProvider(generator, helper));
 			generator.addProvider(new ModItemModelProvider(generator, helper));
 		}
+		
 		if(event.includeServer()) {
 			ModBlockTagsProvider modBlockTagsProvider = new ModBlockTagsProvider(generator, helper);
 			generator.addProvider(modBlockTagsProvider);

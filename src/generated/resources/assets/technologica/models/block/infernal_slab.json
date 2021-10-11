@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "side": "technologica:block/infernal_planks",
+    "bottom": "technologica:block/infernal_planks",
+    "top": "technologica:block/infernal_planks"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_bottom",
+  "textures": {
+    "bottom": "technologica:block/conductive_door_bottom",
+    "top": "technologica:block/conductive_door_top"
+  }
+}

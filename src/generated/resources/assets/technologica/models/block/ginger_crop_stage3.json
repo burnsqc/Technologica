@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "technologica:block/ginger_crop_stage3"
+  }
+}

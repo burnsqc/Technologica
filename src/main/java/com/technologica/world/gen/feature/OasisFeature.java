@@ -95,9 +95,9 @@ public class OasisFeature extends Feature<BlockStateFeatureConfig> {
 						if (reader.getBlockState(pos.add(relativeX, 4, relativeZ)).matchesBlock(Blocks.GRASS_BLOCK)) {
 							if (rand.nextInt(30) == 0) {
 								if (rand.nextBoolean()) {
-									ModConfiguredFeatures.LEMON_TREE_FEATURE.generate(reader, generator, rand, pos.add(relativeX, 5, relativeZ)); 
+									TechnologicaConfiguredFeatures.LEMON_TREE_FEATURE.generate(reader, generator, rand, pos.add(relativeX, 5, relativeZ)); 
 								} else {
-									ModConfiguredFeatures.LIME_TREE_FEATURE.generate(reader, generator, rand, pos.add(relativeX, 5, relativeZ));
+									TechnologicaConfiguredFeatures.LIME_TREE_FEATURE.generate(reader, generator, rand, pos.add(relativeX, 5, relativeZ));
 								}
 							} else if (reader.getBlockState(pos.add(relativeX + 1, 4, relativeZ)).matchesBlock(Blocks.WATER) 
 									|| reader.getBlockState(pos.add(relativeX - 1, 4, relativeZ)).matchesBlock(Blocks.WATER) 

@@ -6,6 +6,15 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "technologica:cherry_door",
+              "properties": {
+                "half": "lower"
+              }
+            }
+          ],
           "name": "technologica:cherry_door"
         }
       ],

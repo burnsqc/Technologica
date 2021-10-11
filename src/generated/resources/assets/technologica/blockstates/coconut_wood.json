@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "technologica:block/coconut_wood",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "technologica:block/coconut_wood"
+    },
+    "axis=z": {
+      "model": "technologica:block/coconut_wood",
+      "x": 90
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "side": "technologica:block/mahogany_log",
+    "end": "technologica:block/mahogany_log_top"
+  }
+}

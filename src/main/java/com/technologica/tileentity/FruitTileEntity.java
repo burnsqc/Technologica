@@ -15,7 +15,7 @@ public class FruitTileEntity extends TileEntity {
 	private ItemStack stack = ItemStack.EMPTY;
 	
 	public FruitTileEntity() {
-		super(ModTileEntities.FRUIT_CROP.get());
+		super(TechnologicaTileEntities.FRUIT_CROP.get());
 	}
 
 	@Override

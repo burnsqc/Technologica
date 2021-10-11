@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "side": "technologica:block/frostbitten_planks",
+    "bottom": "technologica:block/frostbitten_planks",
+    "top": "technologica:block/frostbitten_planks"
+  }
+}

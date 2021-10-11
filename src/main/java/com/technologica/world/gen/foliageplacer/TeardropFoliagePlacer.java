@@ -36,7 +36,7 @@ public class TeardropFoliagePlacer extends FoliagePlacer {
 
 	@Override
 	protected FoliagePlacerType<?> getPlacerType() {
-		return ModFoliagePlacers.TEARDROP.get();
+		return TechnologicaFoliagePlacers.TEARDROP.get();
 	}
 
 	//Generate foliage

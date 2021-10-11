@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "side": "technologica:block/zebrawood_log",
+    "end": "technologica:block/zebrawood_log_top"
+  }
+}
