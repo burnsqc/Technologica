@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "technologica:block/rubber_wood",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "technologica:block/rubber_wood"
+    },
+    "axis=z": {
+      "model": "technologica:block/rubber_wood",
+      "x": 90
+    }
+  }
+}

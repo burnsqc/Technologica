@@ -21,7 +21,7 @@ public class PotionTileEntity extends TileEntity implements ITickableTileEntity 
 	public static final IntegerProperty AGE = BlockStateProperties.AGE_0_7;
 	
 	public PotionTileEntity() {
-		super(ModTileEntities.POTION_CROP.get());
+		super(TechnologicaTileEntities.POTION_CROP.get());
 	}
 
 	@Override

@@ -1,7 +1,8 @@
 package com.technologica.fluid;
 
-import com.technologica.block.ModBlocks;
-import com.technologica.items.ModItems;
+import com.technologica.block.TechnologicaBlocks;
+import com.technologica.item.TechnologicaItems;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FlowingFluidBlock;
@@ -34,20 +35,20 @@ import static com.technologica.Technologica.MODID;
 
 public abstract class BrineFluid extends FlowingFluid {
    public Fluid getFlowingFluid() {
-      return ModFluids.BRINE_FLOWING.get();
+      return TechnologicaFluids.BRINE_FLOWING.get();
    }
 
    public Fluid getStillFluid() {
-      return ModFluids.BRINE_SOURCE.get();
+      return TechnologicaFluids.BRINE_SOURCE.get();
    }
 
    public Item getFilledBucket() {
-      return ModItems.BRINE_BUCKET.get();
+      return TechnologicaItems.BRINE_BUCKET.get();
    }
 
    @Override
    public FluidAttributes createAttributes() {
-      return FluidAttributes.builder(new ResourceLocation(MODID, "block/brine_still"), new ResourceLocation(MODID, "block/brine_flow")).build(ModFluids.BRINE_SOURCE.get());
+      return FluidAttributes.builder(new ResourceLocation(MODID, "block/brine_still"), new ResourceLocation(MODID, "block/brine_flow")).build(TechnologicaFluids.BRINE_SOURCE.get());
    }
 
    @Override
@@ -83,12 +84,12 @@ public abstract class BrineFluid extends FlowingFluid {
    }
 
    public BlockState getBlockState(FluidState state) {
-      return ModBlocks.BRINE.get().getDefaultState().with(FlowingFluidBlock.LEVEL, Integer.valueOf(getLevelFromState(state)));
+      return TechnologicaBlocks.BRINE.get().getDefaultState().with(FlowingFluidBlock.LEVEL, Integer.valueOf(getLevelFromState(state)));
    }
 
    @Override
    public boolean isEquivalentTo(Fluid fluidIn) {
-      return fluidIn == ModFluids.BRINE_SOURCE.get() || fluidIn == ModFluids.BRINE_FLOWING.get();
+      return fluidIn == TechnologicaFluids.BRINE_SOURCE.get() || fluidIn == TechnologicaFluids.BRINE_FLOWING.get();
    }
 
    public int getLevelDecreasePerBlock(IWorldReader worldIn) {

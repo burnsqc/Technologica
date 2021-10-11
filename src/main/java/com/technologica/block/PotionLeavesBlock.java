@@ -3,12 +3,8 @@ import java.util.Random;
 
 import com.technologica.tileentity.PotionTileEntity;
 
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.LeavesBlock;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.potion.PotionUtils;
@@ -17,53 +13,48 @@ import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
-public class PotionLeavesBlock extends LeavesBlock {
-	private int potionType;
+/**
+ * Special one-off class for potion leaves.
+ * Created to spawn splash potions when player is nearby.
+ */
+public class PotionLeavesBlock extends VanillaLeavesBlock {
 	public static final IntegerProperty AGE = BlockStateProperties.AGE_0_7;
+	private int potionType;
 
 	public PotionLeavesBlock(int potionIn) {
-		super(AbstractBlock.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid());
-		this.setDefaultState(this.stateContainer.getBaseState().with(AGE, Integer.valueOf(0)).with(DISTANCE, Integer.valueOf(7)).with(PERSISTENT, Boolean.valueOf(false)));
+		super();
+		this.setDefaultState(this.stateContainer.getBaseState().with(AGE, 0).with(DISTANCE, 7).with(PERSISTENT, false));
 		potionType = potionIn;
 	}
 
-	@Override
-	public boolean hasTileEntity(BlockState state) {
-		return true;
-	}
-
-	@Override
-	public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-		return new PotionTileEntity();
-	}
+	/*
+	 * Technologica Methods
+	 */
 	
-	public PotionTileEntity getTileEntity(World world, BlockPos pos) {
-		return (PotionTileEntity) world.getTileEntity(pos);
+	public PotionTileEntity getTileEntity(World worldIn, BlockPos posIn) {
+		return (PotionTileEntity) worldIn.getTileEntity(posIn);
     }
-
-	@Override
-	public boolean ticksRandomly(BlockState state) {
-		return !state.get(PERSISTENT);
-	}
+	
+	/*
+	 * Minecraft Methods
+	 */
 	
 	@Override
-	@Deprecated
-	public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-		PotionTileEntity tile = getTileEntity(worldIn, pos);
-		if (state.get(DISTANCE) == 7) {
-			spawnDrops(state, worldIn, pos);
-			worldIn.removeBlock(pos, false);
-		} else if (worldIn.isAirBlock(pos.down()) && state.get(AGE) <= 6) {
-			worldIn.setBlockState(pos, state.with(AGE, Integer.valueOf(state.get(AGE) + 1)), 4);	
-			if (state.get(AGE) == 6) {
+	public void randomTick(BlockState stateIn, ServerWorld worldIn, BlockPos posIn, Random randomIn) {
+		PotionTileEntity tile = getTileEntity(worldIn, posIn);
+		if (stateIn.get(DISTANCE) == 7) {
+			spawnDrops(stateIn, worldIn, posIn);
+			worldIn.removeBlock(posIn, false);
+		} else if (worldIn.isAirBlock(posIn.down()) && stateIn.get(AGE) <= 6) {
+			worldIn.setBlockState(posIn, stateIn.with(AGE, Integer.valueOf(stateIn.get(AGE) + 1)), 7);	
+			if (stateIn.get(AGE) == 6) {
 				if (potionType == 1) {
-					int potionSubType = random.nextInt(11);
+					int potionSubType = randomIn.nextInt(11);
 					if (potionSubType == 0) {
 						tile.setPotionStack(PotionUtils.addPotionToItemStack(new ItemStack(Items.LINGERING_POTION), Potions.LONG_NIGHT_VISION));
 					} else if (potionSubType == 1) {
@@ -88,7 +79,7 @@ public class PotionLeavesBlock extends LeavesBlock {
 						tile.setPotionStack(PotionUtils.addPotionToItemStack(new ItemStack(Items.LINGERING_POTION), Potions.LONG_SLOW_FALLING));
 					}
 				} else if (potionType == 2) {
-					int potionSubType = random.nextInt(4) + 11;
+					int potionSubType = randomIn.nextInt(4) + 11;
 					if (potionSubType == 11) {
 						tile.setPotionStack(PotionUtils.addPotionToItemStack(new ItemStack(Items.LINGERING_POTION), Potions.LONG_SLOWNESS));
 					} else if (potionSubType == 12) {
@@ -101,21 +92,30 @@ public class PotionLeavesBlock extends LeavesBlock {
 				}
 			}
 		}	
-	}		
+	}
 	
 	@Override
-	public int getFlammability(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
-		return 30;
+	public boolean ticksRandomly(BlockState stateIn) {
+		return !stateIn.get(PERSISTENT);
 	}
 
 	@Override
-	public int getFireSpreadSpeed(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
-		return 60;
+	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builderIn) {
+		builderIn.add(AGE);
+		super.fillStateContainer(builderIn);
+	}
+	
+	/*
+	 * Forge Methods
+	 */
+	
+	@Override
+	public boolean hasTileEntity(BlockState stateIn) {
+		return true;
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-		builder.add(AGE);
-		super.fillStateContainer(builder);
+	public TileEntity createTileEntity(BlockState stateIn, IBlockReader worldIn) {
+		return new PotionTileEntity();
 	}
 }

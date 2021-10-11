@@ -14,7 +14,7 @@ public class DisplayCaseTileEntity extends TileEntity {
 	private ItemStack stack = ItemStack.EMPTY;
 	
 	public DisplayCaseTileEntity() {
-		super(ModTileEntities.DISPLAY_TILE.get());
+		super(TechnologicaTileEntities.DISPLAY_TILE.get());
 	}
 	
 	public ItemStack getDisplayStack() {
