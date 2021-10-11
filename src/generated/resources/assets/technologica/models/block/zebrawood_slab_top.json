@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "side": "technologica:block/zebrawood_planks",
+    "bottom": "technologica:block/zebrawood_planks",
+    "top": "technologica:block/zebrawood_planks"
+  }
+}

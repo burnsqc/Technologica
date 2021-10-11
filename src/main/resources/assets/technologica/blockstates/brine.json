@@ -1,8 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "technologica:block/brine",
-      "x": 180
+      "model": "technologica:block/brine"
     }
   }
 }

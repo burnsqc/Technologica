@@ -33,7 +33,7 @@ public class ConicalFoliagePlacer extends FoliagePlacer {
 	}
 
 	protected FoliagePlacerType<?> getPlacerType() {
-		return ModFoliagePlacers.CONICAL.get();
+		return TechnologicaFoliagePlacers.CONICAL.get();
 	}
 
 	//Generate foliage

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "technologica:block/celery_crop_stage4"
+  }
+}

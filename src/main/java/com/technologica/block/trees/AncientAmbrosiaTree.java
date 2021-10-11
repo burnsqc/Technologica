@@ -4,7 +4,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import com.technologica.world.gen.feature.ModConfiguredFeatures;
+import com.technologica.world.gen.feature.TechnologicaConfiguredFeatures;
 
 import net.minecraft.block.trees.Tree;
 import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
@@ -12,7 +12,7 @@ import net.minecraft.world.gen.feature.ConfiguredFeature;
 
 public class AncientAmbrosiaTree extends Tree {
 	@Nullable
-	protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean largeHive) {
-		return ModConfiguredFeatures.ANCIENT_AMBROSIA_TREE_FEATURE;
+	protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean largeHiveInInIn) {
+		return TechnologicaConfiguredFeatures.ANCIENT_AMBROSIA_TREE_FEATURE;
 	}
 }

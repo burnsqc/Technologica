@@ -1,44 +1,69 @@
 package com.technologica.setup;
 
-import com.technologica.block.ModBlocks;
-import com.technologica.capabilities.ModCapabilities;
-import com.technologica.entity.ModEntities;
+import static net.minecraft.entity.passive.horse.AbstractHorseEntity.func_234237_fg_;
+
+import java.util.Collection;
+import java.util.function.Supplier;
+
+import com.technologica.Technologica;
+import com.technologica.block.TechnologicaBlocks;
+import com.technologica.capabilities.TechnologicaCapabilities;
+import com.technologica.entity.TechnologicaEntities;
+import com.technologica.entity.monster.ScorpionEntity;
 import com.technologica.entity.monster.SharkEntity;
 import com.technologica.entity.passive.DuckEntity;
 import com.technologica.entity.passive.GrizzlyBearEntity;
+import com.technologica.network.play.server.Packets;
+
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FlowerPotBlock;
+import net.minecraft.block.SaplingBlock;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
+import net.minecraft.util.RegistryKey;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeManager;
+import net.minecraftforge.common.BiomeManager.BiomeEntry;
+import net.minecraftforge.common.BiomeManager.BiomeType;
+import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
-import static net.minecraft.entity.passive.horse.AbstractHorseEntity.func_234237_fg_;
-
 public class CommonSetup {
+	public static final RegistryKey<Biome> saltFlatsBiomeKey = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, new ResourceLocation(Technologica.MODID, "salt_flats"));
+	public static final RegistryKey<Biome> redwoodForestBiomeKey = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, new ResourceLocation(Technologica.MODID, "redwood_forest"));
+	public static final RegistryKey<Biome> rainforestBiomeKey = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, new ResourceLocation(Technologica.MODID, "rainforest"));
+	
+	public static void init(final FMLCommonSetupEvent event) {
+		TechnologicaCapabilities.register();
+		Packets.onCommonSetupEvent();
+		GlobalEntityTypeAttributes.put(TechnologicaEntities.DUCK.get(), DuckEntity.registerAttributes().create());
+		GlobalEntityTypeAttributes.put(TechnologicaEntities.GRIZZLY_BEAR.get(), GrizzlyBearEntity.registerAttributes().create());
+		GlobalEntityTypeAttributes.put(TechnologicaEntities.OSTRICH.get(), func_234237_fg_().create());
+		GlobalEntityTypeAttributes.put(TechnologicaEntities.SCORPION.get(), ScorpionEntity.registerAttributes().create());
+		GlobalEntityTypeAttributes.put(TechnologicaEntities.SHARK.get(), SharkEntity.registerAttributes().create());
+		GlobalEntityTypeAttributes.put(TechnologicaEntities.ZEBRA.get(), func_234237_fg_().create());
 
-   private CommonSetup() {
-      // hide constructor for class with only static members
-   }
+		event.enqueueWork(() -> {
+			automaticFlowerPots(TechnologicaBlocks.BLOCKS.getEntries());
+			BiomeManager.addBiome(BiomeType.DESERT, new BiomeEntry(saltFlatsBiomeKey, 1000));
+			BiomeManager.addBiome(BiomeType.COOL, new BiomeEntry(redwoodForestBiomeKey, 1000));
+			BiomeManager.addBiome(BiomeType.WARM, new BiomeEntry(rainforestBiomeKey, 1000));
+		});
+	}
 
-
-   public static void init(final FMLCommonSetupEvent event) {
-      ModCapabilities.register();
-      GlobalEntityTypeAttributes.put(ModEntities.DUCK.get(), DuckEntity.registerAttributes().create());
-      GlobalEntityTypeAttributes.put(ModEntities.GRIZZLY_BEAR.get(), GrizzlyBearEntity.registerAttributes().create());
-      GlobalEntityTypeAttributes.put(ModEntities.OSTRICH.get(), func_234237_fg_().create());
-      GlobalEntityTypeAttributes.put(ModEntities.SHARK.get(), SharkEntity.registerAttributes().create());
-      GlobalEntityTypeAttributes.put(ModEntities.ZEBRA.get(), func_234237_fg_().create());
-
-      event.enqueueWork(() -> {
-         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.BANANA_SAPLING.getId(), ModBlocks.POTTED_BANANA_SAPLING::get);
-         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.CHERRY_SAPLING.getId(), ModBlocks.POTTED_CHERRY_SAPLING::get);
-         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.COCONUT_SAPLING.getId(), ModBlocks.POTTED_COCONUT_SAPLING::get);
-         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.KIWI_SAPLING.getId(), ModBlocks.POTTED_KIWI_SAPLING::get);
-         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.LEMON_SAPLING.getId(), ModBlocks.POTTED_LEMON_SAPLING::get);
-         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.LIME_SAPLING.getId(), ModBlocks.POTTED_LIME_SAPLING::get);
-         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.ORANGE_SAPLING.getId(), ModBlocks.POTTED_ORANGE_SAPLING::get);
-         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.PEACH_SAPLING.getId(), ModBlocks.POTTED_PEACH_SAPLING::get);
-         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.PEAR_SAPLING.getId(), ModBlocks.POTTED_PEAR_SAPLING::get);
-      });
-   }
-
+	private final static void automaticFlowerPots(Collection<RegistryObject<Block>> collection) {
+		for (Supplier<? extends Block> blockSupplier : collection) {
+			Block block = blockSupplier.get();
+			
+			for (Supplier<? extends Block> blockSupplier2 : collection) {
+				Block block2 = blockSupplier2.get();
+				
+				if (block.getClass().equals(SaplingBlock.class) && block2.getClass().equals(FlowerPotBlock.class) && block2.getRegistryName().getPath().contains(block.getRegistryName().getPath())) {
+					((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(block.getRegistryName(), blockSupplier2);
+				}	
+			}
+		}
+	}
 }

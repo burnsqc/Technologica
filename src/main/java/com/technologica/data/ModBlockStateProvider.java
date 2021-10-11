@@ -4,26 +4,27 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 import com.technologica.Technologica;
-import com.technologica.block.CrystalBlock;
-import com.technologica.block.MagicLeavesBlock;
-import com.technologica.block.ModBlocks;
-import com.technologica.block.ModLeavesBlock;
-import com.technologica.block.ModLogBlock;
-import com.technologica.block.PotionLeavesBlock;
+import com.technologica.block.TallCropsBlock;
+import com.technologica.block.TechnologicaBlocks;
+import com.technologica.block.VanillaCropsBlock;
+import com.technologica.block.WaterCropsBlock;
+import com.technologica.state.properties.TechnologicaBlockStateProperties;
+import com.technologica.util.text.StringHelper;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.CropsBlock;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.block.FenceBlock;
 import net.minecraft.block.FenceGateBlock;
-import net.minecraft.block.FlowerPotBlock;
-import net.minecraft.block.OreBlock;
+import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.block.RotatedPillarBlock;
-import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.StairsBlock;
 import net.minecraft.block.TrapDoorBlock;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.state.properties.AttachFace;
+import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -34,208 +35,328 @@ import net.minecraftforge.fml.RegistryObject;
 
 public class ModBlockStateProvider extends BlockStateProvider {
 
-	public static final String CRYSTAL_TEXTURE_KEY = "crystal";
-	public static final String BLOCK = "block";
-
 	public ModBlockStateProvider(DataGenerator generatorIn, ExistingFileHelper helperIn) {
 		super(generatorIn, Technologica.MODID, helperIn);
 	}
 
 	@Override
 	protected void registerStatesAndModels() {
-		automaticBlock(ModBlocks.BLOCKS.getEntries());
-		cubicCrystalBlock(ModBlocks.DOLOMITE_CRYSTAL.get());
-		displayBlock(ModBlocks.DISPLAY_CASE.get());
+		automaticBlockState(TechnologicaBlocks.BLOCKS.getEntries());
 	}	
 	
-	private final void automaticBlock(Collection<RegistryObject<Block>> collection) {
+	/**
+	 * Iterates through a deferred register of blocks, generating blockstates, block models, and item models for each entry.
+	 * This only works if the translation keys are consistent.  This is really only intended to work for mod blocks which are similar to vanilla.
+	 * This saves a lot of time when adding one new tree which leads to logs, leaves, planks, stairs, doors, etc. 
+	 * @param collection a collection of deferred register block entries
+	 */
+	
+	private final void automaticBlockState(Collection<RegistryObject<Block>> collection) {
 		for(Supplier<? extends Block> blockSupplier:collection) {
 			Block block = blockSupplier.get();
-			if (block instanceof ModLeavesBlock || block instanceof PotionLeavesBlock || block instanceof MagicLeavesBlock || block.getClass() == Block.class || block instanceof OreBlock) {
-				if (!block.getRegistryName().getPath().contains("pulley") && !block.getRegistryName().getPath().contains("bookshelf")) {
-					simpleBlock(block);
-					this.simpleBlockItem(block, cubeAll(block));
-				} else if (block.getRegistryName().getPath().contains("bookshelf")) {
-					bookshelfBlock(block);
+			String path = StringHelper.getPath(block);
+			ResourceLocation texture = blockTexture(block);
+				
+			if (path.contains("leaves")) {
+				simpleBlock(block);
+				simpleBlockItem(block, cubeAll(block));
+			} else if (path.contains("_planks")) {
+				simpleBlock(block);
+				simpleBlockItem(block, cubeAll(block));
+			} else if (path.contains("salt")) {
+				simpleBlock(block);
+				simpleBlockItem(block, cubeAll(block));
+			} else if (path.contains("_clay")) {
+				simpleBlock(block);
+				simpleBlockItem(block, cubeAll(block));
+			} else if (path.contains("_ore")) {
+				simpleBlock(block);
+				simpleBlockItem(block, cubeAll(block));
+			} else if (path.contains("_bookshelf"))  {
+				ResourceLocation end = blockTexture(block);
+				if (StringHelper.getPath(block).contains("spruce") || block.getTranslationKey().contains("birch") || block.getTranslationKey().contains("jungle") || block.getTranslationKey().contains("acacia") || block.getTranslationKey().contains("dark_oak") || block.getTranslationKey().contains("crimson") || block.getTranslationKey().contains("warped")) {
+					end = mcLoc(blockTexture(block).getPath());	
 				}
-			} else if (block instanceof ModLogBlock) logBlock(block);	
-			else if (block instanceof SlabBlock) slabBlock(block);
-			else if (block instanceof StairsBlock) stairsBlock(block);
-			else if (block instanceof FenceBlock) fenceBlock(block);
-			else if (block instanceof FenceGateBlock) fenceGateBlock(block);
-			else if (block instanceof SaplingBlock) crossBlock(block);
-			else if (block instanceof FlowerPotBlock) flowerPotCrossBlock(block);
-			else if (block instanceof CropsBlock) cropBlock(block);
-			else if (block instanceof DoorBlock) doorBlock(block);
-			else if (block instanceof TrapDoorBlock) trapdoorBlock(block);
-			else if (block instanceof CrystalBlock) {
-				if (!block.getRegistryName().getPath().contains("dolomite")) {
-					hexagonalCrystalBlock(block);
-				}
+				simpleBlock(block, models().cubeColumn(path, blockTexture(block), StringHelper.replace(end, "bookshelf", "planks")));
+				simpleBlockItem(block, models().cubeColumn(path, blockTexture(block), StringHelper.replace(end, "bookshelf", "planks")));
+			} else if (path.contains("_log")) {
+				logBlock((RotatedPillarBlock) block);
+				simpleBlockItem(block, models().cubeColumn(path, blockTexture(block), new ResourceLocation(blockTexture(block) + "_top")));
+			} else if (path.contains("_wood")) {
+				texture = StringHelper.replace(blockTexture(block), "_wood", "_log");
+				axisBlock((RotatedPillarBlock) block, models().cubeColumn(path, texture, texture), models().cubeColumn(path, texture, texture));
+				simpleBlockItem(block, models().cubeColumn(path, texture, texture));
+			} else if (path.contains("_slab")) {
+				texture = StringHelper.replace(blockTexture(block), "_slab", "_planks");
+				slabBlock((SlabBlock) block, texture, texture);
+				simpleBlockItem(block, models().slab(path, texture, texture, texture));
+			} else if (path.contains("_stairs")) {
+				texture = StringHelper.replace(blockTexture(block), "_stairs", "_planks");
+				stairsBlock((StairsBlock) block, texture);
+				simpleBlockItem(block, models().stairs(path, texture, texture, texture));
+			} else if (path.contains("_fence") && !path.contains("_gate")) {
+				texture = StringHelper.replace(blockTexture(block), "_fence", "_planks");
+				fenceBlock((FenceBlock) block, texture);
+				simpleBlockItem(block, models().fenceInventory(path + "_inventory", texture));
+			} else if (path.contains("_fence_gate")) {
+				texture = StringHelper.replace(blockTexture(block), "_fence_gate", "_planks");
+				fenceGateBlock((FenceGateBlock) block, texture);
+				simpleBlockItem(block, models().fenceGate(path, texture));
 			}
+			else if (path.contains("_door") && !path.contains("trap")) doorBlock((DoorBlock) block, StringHelper.extend(blockTexture(block), "_bottom"), StringHelper.extend(blockTexture(block), "_top"));
+			else if (path.contains("_trapdoor")) trapdoorBlock((TrapDoorBlock) block, blockTexture(block), true);
+			else if (path.contains("_sign")) signBlock(block);
+			else if (path.contains("small_pulley")) simpleBlock(block, smallPulleyModel(block));
+			else if (path.contains("medium_pulley")) simpleBlock(block, mediumPulleyModel(block));
+			else if (path.contains("large_pulley")) simpleBlock(block, largePulleyModel(block));
+			else if (path.contains("display_case")) {
+				simpleBlock(block, displayModel(block));
+				simpleBlockItem(block, displayModel(block));
+			}
+			else if (path.contains("_sapling") && !path.contains("potted")) simpleBlock(block, models().cross(path, texture));
+			else if (path.contains("potted")) simpleBlock(block, models().singleTexture(path, mcLoc("flower_pot_cross"), "plant", modLoc("block/" + path.replaceAll("potted_", ""))));
+			
+			
+			
+			else if (block.getClass().equals(VanillaCropsBlock.class)) cropBlock(block);
+			else if (block.getClass().equals(TallCropsBlock.class) || block.getClass().equals(WaterCropsBlock.class)) tallCropBlock(block);
+			else if (path.contains("_pressure_plate")) {
+				pressurePlateBlockState(block, pressurePlateModel(block), pressurePlateDownModel(block));
+			}
+			
+			else if (path.contains("_button")) buttonBlockState(block, buttonModel(block), buttonPressedModel(block), buttonInventoryModel(block));
+			else if (path.contains("tree_tap")) fourDirectionBlockState(block, treeTapModel(block));
+			else if (path.contains("_chair")) {
+				ResourceLocation planks = StringHelper.replace(blockTexture(block), "chair", "planks");
+				if (path.contains("oak") || path.contains("spruce") || path.contains("birch") || path.contains("jungle") || path.contains("acacia") || path.contains("dark_oak") || path.contains("crimson") || path.contains("warped")) {
+					planks = mcLoc(StringHelper.replace(blockTexture(block).getPath(), "chair", "planks"));	
+				}
+				fourDirectionBlockState(block, chairModel(block, planks));
+			}
+			else if (path.contains("_crystal") && !path.contains("dolomite")) twentyFourDirectionBlockState(block, hexagonalCrystalModel(block), hexagonalCrystalModel(block));
+			else if (path.contains("_crystal") && path.contains("dolomite")) twentyFourDirectionBlockState(block, cubicCrystalModel(block), cubicCrystalModel(block));
+			else if (path.contains("motor")) twentyFourDirectionBlockState(block, motorModel(block), motor2Model(block));
+			
 		}
 	}
-	
-	private String name(Block block) {
-        return block.getRegistryName().getPath();
-    }
-	
-	private ResourceLocation extend(ResourceLocation rl, String suffix) {
-        return new ResourceLocation(rl.getNamespace(), rl.getPath() + suffix);
-    }
-	
-	private ResourceLocation replace(ResourceLocation rl, String regex, String replacement) {
-        return new ResourceLocation(rl.getNamespace(), rl.getPath().replaceAll(regex, replacement));
-    }
 	
 	/*
 	 * ModelFiles
 	 */
-	public ModelFile cubeColumn(Block block) {
-		if (block.getRegistryName().getPath().contains("bookshelf")) {
-			return models().cubeColumn(name(block), blockTexture(block), replace(blockTexture(block), "bookshelf", "planks"));
-		} else {
-			return models().cubeColumn(name(block), blockTexture(block), extend(blockTexture(block), "_top"));
-		}
-	}
 	
-	public ModelFile slab(Block block) {
-		return models().slab(name(block), replace(blockTexture(block), "slab", "planks"), replace(blockTexture(block), "slab", "planks"), replace(blockTexture(block), "slab", "planks"));
-	}
-	
-	public ModelFile stairs(Block block) {
-		return models().stairs(name(block), replace(blockTexture(block), "stairs", "planks"), replace(blockTexture(block), "stairs", "planks"), replace(blockTexture(block), "stairs", "planks"));
-	}
-	
-	public ModelFile fence(Block block) {
-		return models().fenceInventory(name(block) + "_inventory", replace(blockTexture(block), "fence", "planks"));
-	}
-	
-	public ModelFile fenceGate(Block block) {
-		return models().fenceGate(name(block), replace(blockTexture(block), "fence_gate", "planks"));
-	}
-	
-	public ModelFile trapdoor(Block block) {
-		return models().trapdoorBottom(name(block), blockTexture(block));
-	}
-	
-	public ModelFile hexagonalCrystal(Block block) {
+	public ModelFile smallPulleyModel(Block block) {
 		ResourceLocation location = block.getRegistryName();
-		return models().singleTexture(name(block), modLoc("hexagonal_crystal"), CRYSTAL_TEXTURE_KEY, blockTexture(block)).texture(CRYSTAL_TEXTURE_KEY, new ResourceLocation(location.getNamespace(), BLOCK + "/" + location.getPath()));
+		return models().withExistingParent(StringHelper.getPath(block), modLoc("small_pulley")).texture("pulley", new ResourceLocation(location.getNamespace(), "block/pulley"));
     }
 	
-	public ModelFile cubicCrystal(Block block) {
+	public ModelFile mediumPulleyModel(Block block) {
 		ResourceLocation location = block.getRegistryName();
-		return models().singleTexture(name(block), modLoc("cubic_crystal"), CRYSTAL_TEXTURE_KEY, blockTexture(block)).texture(CRYSTAL_TEXTURE_KEY, new ResourceLocation(location.getNamespace(), BLOCK + "/" + location.getPath()));
+		return models().withExistingParent(StringHelper.getPath(block), modLoc("medium_pulley")).texture("pulley", new ResourceLocation(location.getNamespace(), "block/pulley"));
     }
 	
-	public ModelFile display(Block block) {
-		return models().withExistingParent(name(block), modLoc("display")).texture("case", blockTexture(block)).texture("base", new ResourceLocation("block/black_wool"));
+	public ModelFile largePulleyModel(Block block) {
+		ResourceLocation location = block.getRegistryName();
+		return models().withExistingParent(StringHelper.getPath(block), modLoc("large_pulley")).texture("pulley", new ResourceLocation(location.getNamespace(), "block/pulley"));
+    }
+	
+	public ModelFile chairModel(Block block, ResourceLocation texture) {
+		return models().singleTexture(StringHelper.getPath(block), modLoc("chair"), "planks", texture);
+	}
+	
+	public ModelFile hexagonalCrystalModel(Block block) {
+		ResourceLocation location = block.getRegistryName();
+		return models().singleTexture(StringHelper.getPath(block), modLoc("hexagonal_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath()));
+    }
+	
+	public ModelFile cubicCrystalModel(Block block) {
+		ResourceLocation location = block.getRegistryName();
+		return models().singleTexture(StringHelper.getPath(block), modLoc("cubic_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath()));
+    }
+	
+	public ModelFile motorModel(Block block) {
+		return models().withExistingParent(StringHelper.getPath(block), modLoc("motor")).texture("motor", blockTexture(block));
+    }
+	
+	public ModelFile motor2Model(Block block) {
+		return models().withExistingParent(StringHelper.getPath(block) + "2", modLoc("motor2")).texture("motor", blockTexture(block));
+    }
+	
+	public ModelFile treeTapModel(Block block) {
+		return models().withExistingParent(StringHelper.getPath(block), modLoc("tap")).texture("tree_tap", blockTexture(block));
+	}
+	
+	public ModelFile displayModel(Block block) {
+		return models().withExistingParent(StringHelper.getPath(block), modLoc("display")).texture("case", blockTexture(block)).texture("base", new ResourceLocation("block/black_wool"));
+    }
+	
+	public ModelFile pressurePlateModel(Block block) {
+        return models().withExistingParent(StringHelper.getPath(block), "block/pressure_plate_up").texture("texture", StringHelper.replace(blockTexture(block), "_pressure_plate", "_planks"));
+    }
+	
+	public ModelFile pressurePlateDownModel(Block block) {
+        return models().withExistingParent(StringHelper.getPath(block) + "_down", "block/pressure_plate_down").texture("texture", StringHelper.replace(blockTexture(block), "_pressure_plate", "_planks"));
+    }
+	
+	public ModelFile buttonModel(Block block) {
+        return models().withExistingParent(StringHelper.getPath(block), "block/button").texture("texture", StringHelper.replace(blockTexture(block), "_button", "_planks"));
+    }
+	
+	public ModelFile buttonPressedModel(Block block) {
+        return models().withExistingParent(StringHelper.getPath(block) + "_pressed", "block/button_pressed").texture("texture", StringHelper.replace(blockTexture(block), "_button", "_planks"));
+    }
+	
+	public ModelFile buttonInventoryModel(Block block) {
+        return models().withExistingParent(StringHelper.getPath(block) + "_inventory", "block/button_inventory").texture("texture", StringHelper.replace(blockTexture(block), "_button", "_planks"));
+    }
+	
+	public ModelFile sign(Block block) {
+        ResourceLocation location = block.getRegistryName();
+        return models().getBuilder(location.getPath()).texture("particle", StringHelper.replace(StringHelper.replace(blockTexture(block), "_wall", ""), "_sign", "_planks"));
+    }
+
+	public ModelFile tallCrop(String name, ResourceLocation crop) {
+		return models().withExistingParent(name, modLoc("tall_crop")).texture("crop", crop);
     }
 	
 	/*
 	 * Blockstate, block model, and item model providers
 	 */
-	public void bookshelfBlock(Block block) {
-		getVariantBuilder(block).partialState().setModels(new ConfiguredModel(models().cubeColumn(name(block), blockTexture(block), replace(blockTexture(block), "bookshelf", "planks"))));
-		this.simpleBlockItem(block, cubeColumn(block));		
+	
+	public void pressurePlateBlockState(Block block, ModelFile blockModel1, ModelFile blockModel2) {
+    	getVariantBuilder(block)
+    		.partialState().with(PressurePlateBlock.POWERED, false).modelForState().modelFile(blockModel1).addModel()
+        	.partialState().with(PressurePlateBlock.POWERED, true).modelForState().modelFile(blockModel2).addModel();
+    	this.simpleBlockItem(block, blockModel1);
     }
 	
-	public void logBlock(Block block) {
-		logBlock((RotatedPillarBlock) block);
-	    this.simpleBlockItem(block, cubeColumn(block));			
+	public void fourDirectionBlockState(Block block, ModelFile blockModel) {
+		getVariantBuilder(block)
+			.partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).modelForState().modelFile(blockModel).addModel()
+			.partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).modelForState().modelFile(blockModel).rotationY(90).addModel()
+			.partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).modelForState().modelFile(blockModel).rotationY(180).addModel()
+			.partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).modelForState().modelFile(blockModel).rotationY(270).addModel();
+	    this.simpleBlockItem(block, blockModel);
+    }
+	
+	public void twentyFourDirectionBlockState(Block block, ModelFile blockModel1, ModelFile blockModel2) {
+    	getVariantBuilder(block)
+    		.partialState().with(BlockStateProperties.FACING, Direction.NORTH).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.NORTH).modelForState().modelFile(blockModel1).rotationX(90).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.NORTH).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.EAST).modelForState().modelFile(blockModel2).rotationX(270).rotationY(180).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.NORTH).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.SOUTH).modelForState().modelFile(blockModel1).rotationX(90).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.NORTH).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.WEST).modelForState().modelFile(blockModel2).rotationX(90).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.NORTH).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.UP).modelForState().modelFile(blockModel1).rotationX(270).rotationY(180).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.NORTH).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.DOWN).modelForState().modelFile(blockModel1).rotationX(90).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.EAST).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.NORTH).modelForState().modelFile(blockModel2).rotationY(90).rotationX(90).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.EAST).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.EAST).modelForState().modelFile(blockModel1).rotationY(90).rotationX(90).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.EAST).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.SOUTH).modelForState().modelFile(blockModel2).rotationY(270).rotationX(270).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.EAST).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.WEST).modelForState().modelFile(blockModel1).rotationY(90).rotationX(90).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.EAST).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.UP).modelForState().modelFile(blockModel1).rotationY(270).rotationX(270).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.EAST).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.DOWN).modelForState().modelFile(blockModel1).rotationY(90).rotationX(90).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.SOUTH).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.NORTH).modelForState().modelFile(blockModel1).rotationY(180).rotationX(90).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.SOUTH).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.EAST).modelForState().modelFile(blockModel2).rotationY(180).rotationX(90).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.SOUTH).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.SOUTH).modelForState().modelFile(blockModel1).rotationY(180).rotationX(90).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.SOUTH).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.WEST).modelForState().modelFile(blockModel2).rotationX(270).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.SOUTH).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.UP).modelForState().modelFile(blockModel1).rotationX(270).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.SOUTH).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.DOWN).modelForState().modelFile(blockModel1).rotationY(180).rotationX(90).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.WEST).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.NORTH).modelForState().modelFile(blockModel2).rotationY(90).rotationX(270).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.WEST).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.EAST).modelForState().modelFile(blockModel1).rotationY(270).rotationX(90).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.WEST).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.SOUTH).modelForState().modelFile(blockModel2).rotationY(270).rotationX(90).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.WEST).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.WEST).modelForState().modelFile(blockModel1).rotationY(270).rotationX(90).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.WEST).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.UP).modelForState().modelFile(blockModel1).rotationY(90).rotationX(270).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.WEST).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.DOWN).modelForState().modelFile(blockModel1).rotationY(270).rotationX(90).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.UP).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.NORTH).modelForState().modelFile(blockModel1).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.UP).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.EAST).modelForState().modelFile(blockModel1).rotationY(90).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.UP).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.SOUTH).modelForState().modelFile(blockModel1).rotationY(180).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.UP).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.WEST).modelForState().modelFile(blockModel1).rotationY(270).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.UP).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.UP).modelForState().modelFile(blockModel1).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.UP).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.DOWN).modelForState().modelFile(blockModel1).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.DOWN).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.NORTH).modelForState().modelFile(blockModel1).rotationX(180).rotationY(180).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.DOWN).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.EAST).modelForState().modelFile(blockModel1).rotationX(180).rotationY(270).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.DOWN).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.SOUTH).modelForState().modelFile(blockModel1).rotationX(180).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.DOWN).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.WEST).modelForState().modelFile(blockModel1).rotationX(180).rotationY(90).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.DOWN).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.UP).modelForState().modelFile(blockModel1).rotationX(180).rotationY(180).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.DOWN).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.DOWN).modelForState().modelFile(blockModel1).rotationX(180).rotationY(180).addModel();
+    	this.simpleBlockItem(block, blockModel1);
+    }
+	
+	public void buttonBlockState(Block block, ModelFile blockModel1, ModelFile blockModel2, ModelFile itemModel) {
+    	getVariantBuilder(block)
+    		.partialState().with(BlockStateProperties.FACE, AttachFace.CEILING).with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).with(BlockStateProperties.POWERED, false).modelForState().modelFile(blockModel1).rotationY(270).rotationX(180).addModel()
+    		.partialState().with(BlockStateProperties.FACE, AttachFace.CEILING).with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).with(BlockStateProperties.POWERED, true).modelForState().modelFile(blockModel2).rotationY(270).rotationX(180).addModel()
+    		.partialState().with(BlockStateProperties.FACE, AttachFace.CEILING).with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).with(BlockStateProperties.POWERED, false).modelForState().modelFile(blockModel1).rotationY(180).rotationX(180).addModel()
+    		.partialState().with(BlockStateProperties.FACE, AttachFace.CEILING).with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).with(BlockStateProperties.POWERED, true).modelForState().modelFile(blockModel2).rotationY(180).rotationX(180).addModel()
+    		.partialState().with(BlockStateProperties.FACE, AttachFace.CEILING).with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).with(BlockStateProperties.POWERED, false).modelForState().modelFile(blockModel1).rotationX(180).addModel()
+    		.partialState().with(BlockStateProperties.FACE, AttachFace.CEILING).with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).with(BlockStateProperties.POWERED, true).modelForState().modelFile(blockModel2).rotationX(180).addModel()
+    		.partialState().with(BlockStateProperties.FACE, AttachFace.CEILING).with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).with(BlockStateProperties.POWERED, false).modelForState().modelFile(blockModel1).rotationY(90).rotationX(180).addModel()
+    		.partialState().with(BlockStateProperties.FACE, AttachFace.CEILING).with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).with(BlockStateProperties.POWERED, true).modelForState().modelFile(blockModel2).rotationY(90).rotationX(180).addModel()
+    		.partialState().with(BlockStateProperties.FACE, AttachFace.FLOOR).with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).with(BlockStateProperties.POWERED, false).modelForState().modelFile(blockModel1).rotationY(90).addModel()
+    		.partialState().with(BlockStateProperties.FACE, AttachFace.FLOOR).with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).with(BlockStateProperties.POWERED, true).modelForState().modelFile(blockModel2).rotationY(90).addModel()
+    		.partialState().with(BlockStateProperties.FACE, AttachFace.FLOOR).with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).with(BlockStateProperties.POWERED, false).modelForState().modelFile(blockModel1).addModel()
+    		.partialState().with(BlockStateProperties.FACE, AttachFace.FLOOR).with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).with(BlockStateProperties.POWERED, true).modelForState().modelFile(blockModel2).addModel()
+    		.partialState().with(BlockStateProperties.FACE, AttachFace.FLOOR).with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).with(BlockStateProperties.POWERED, false).modelForState().modelFile(blockModel1).rotationY(180).addModel()
+    		.partialState().with(BlockStateProperties.FACE, AttachFace.FLOOR).with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).with(BlockStateProperties.POWERED, true).modelForState().modelFile(blockModel2).rotationY(180).addModel()
+    		.partialState().with(BlockStateProperties.FACE, AttachFace.FLOOR).with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).with(BlockStateProperties.POWERED, false).modelForState().modelFile(blockModel1).rotationY(270).addModel()
+    		.partialState().with(BlockStateProperties.FACE, AttachFace.FLOOR).with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).with(BlockStateProperties.POWERED, true).modelForState().modelFile(blockModel2).rotationY(270).addModel()
+    		.partialState().with(BlockStateProperties.FACE, AttachFace.WALL).with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).with(BlockStateProperties.POWERED, false).modelForState().modelFile(blockModel1).rotationY(90).rotationX(90).uvLock(true).addModel()
+    		.partialState().with(BlockStateProperties.FACE, AttachFace.WALL).with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).with(BlockStateProperties.POWERED, true).modelForState().modelFile(blockModel2).rotationY(90).rotationX(90).uvLock(true).addModel()
+    		.partialState().with(BlockStateProperties.FACE, AttachFace.WALL).with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).with(BlockStateProperties.POWERED, false).modelForState().modelFile(blockModel1).rotationX(90).uvLock(true).addModel()
+    		.partialState().with(BlockStateProperties.FACE, AttachFace.WALL).with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).with(BlockStateProperties.POWERED, true).modelForState().modelFile(blockModel2).rotationX(90).uvLock(true).addModel()
+    		.partialState().with(BlockStateProperties.FACE, AttachFace.WALL).with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).with(BlockStateProperties.POWERED, false).modelForState().modelFile(blockModel1).rotationY(180).rotationX(90).uvLock(true).addModel()
+    		.partialState().with(BlockStateProperties.FACE, AttachFace.WALL).with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).with(BlockStateProperties.POWERED, true).modelForState().modelFile(blockModel2).rotationY(180).rotationX(90).uvLock(true).addModel()
+    		.partialState().with(BlockStateProperties.FACE, AttachFace.WALL).with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).with(BlockStateProperties.POWERED, false).modelForState().modelFile(blockModel1).rotationY(270).rotationX(90).uvLock(true).addModel()
+    		.partialState().with(BlockStateProperties.FACE, AttachFace.WALL).with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).with(BlockStateProperties.POWERED, true).modelForState().modelFile(blockModel2).rotationY(270).rotationX(90).uvLock(true).addModel();
+    	this.simpleBlockItem(block, itemModel);
+    }
+	
+    public void signBlock(Block block) {
+		getVariantBuilder(block)
+			.partialState().setModels(new ConfiguredModel(sign(block)));
+	    this.signItem(block, new ModelFile.UncheckedModelFile("item/generated"));	
 	}
-	
-	public void slabBlock(Block block) {
-		slabBlock((SlabBlock) block, replace(blockTexture(block), "slab", "planks"), replace(blockTexture(block), "slab", "planks"));
-	    this.simpleBlockItem(block, slab(block));
-    }
     
-	public void stairsBlock(Block block) {
-		stairsBlock((StairsBlock) block, replace(blockTexture(block), "stairs", "planks"));
-	    this.simpleBlockItem(block, stairs(block));
-    }
-	
-	public void fenceBlock(Block block) {
-		fenceBlock((FenceBlock) block, replace(blockTexture(block), "fence", "planks"));
-	    this.simpleBlockItem(block, fence(block));
-    }
-	
-	public void fenceGateBlock(Block block) {
-		fenceGateBlock((FenceGateBlock) block, replace(blockTexture(block), "fence_gate", "planks"));
-	    this.simpleBlockItem(block, fenceGate(block));
-    }
-	
-    public void doorBlock(Block block) {
-    	doorBlock((DoorBlock) block, extend(blockTexture(block), "_bottom"), extend(blockTexture(block), "_top"));
-        this.doorBlockItem(block, new ModelFile.UncheckedModelFile("item/generated"));
-    }
-    	
-    public void trapdoorBlock(Block block) {
-    	trapdoorBlock((TrapDoorBlock) block, blockTexture(block), true);
-    	this.simpleBlockItem(block, trapdoor(block));
-    }
-	
-	public void crossBlock(Block block) {
-		getVariantBuilder(block).partialState().setModels(new ConfiguredModel(models().cross(name(block), blockTexture(block))));
-	    this.crossBlockItem(block, new ModelFile.UncheckedModelFile("item/generated"));	
-	}
-	
-	public void flowerPotCrossBlock(Block block) {
-		getVariantBuilder(block).partialState().setModels(new ConfiguredModel(models().singleTexture(name(block), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + block.getRegistryName().getPath().replaceAll("potted_", "")))));
-	}
-	
 	public void cropBlock(Block block) {
 		getVariantBuilder(block)
-			.partialState().with(CropsBlock.AGE, 0).modelForState().modelFile(models().crop(name(block) + "_stage0", extend(blockTexture(block), "_stage0"))).addModel()
-			.partialState().with(CropsBlock.AGE, 1).modelForState().modelFile(models().crop(name(block) + "_stage1", extend(blockTexture(block), "_stage1"))).addModel()
-			.partialState().with(CropsBlock.AGE, 2).modelForState().modelFile(models().crop(name(block) + "_stage2", extend(blockTexture(block), "_stage2"))).addModel()
-			.partialState().with(CropsBlock.AGE, 3).modelForState().modelFile(models().crop(name(block) + "_stage3", extend(blockTexture(block), "_stage3"))).addModel()
-			.partialState().with(CropsBlock.AGE, 4).modelForState().modelFile(models().crop(name(block) + "_stage4", extend(blockTexture(block), "_stage4"))).addModel()
-			.partialState().with(CropsBlock.AGE, 5).modelForState().modelFile(models().crop(name(block) + "_stage5", extend(blockTexture(block), "_stage5"))).addModel()
-			.partialState().with(CropsBlock.AGE, 6).modelForState().modelFile(models().crop(name(block) + "_stage6", extend(blockTexture(block), "_stage6"))).addModel()
-			.partialState().with(CropsBlock.AGE, 7).modelForState().modelFile(models().crop(name(block) + "_stage7", extend(blockTexture(block), "_stage7"))).addModel();
+			.partialState().with(CropsBlock.AGE, 0).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_stage0", StringHelper.extend(blockTexture(block), "_stage0"))).addModel()
+			.partialState().with(CropsBlock.AGE, 1).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_stage1", StringHelper.extend(blockTexture(block), "_stage1"))).addModel()
+			.partialState().with(CropsBlock.AGE, 2).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_stage2", StringHelper.extend(blockTexture(block), "_stage2"))).addModel()
+			.partialState().with(CropsBlock.AGE, 3).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_stage3", StringHelper.extend(blockTexture(block), "_stage3"))).addModel()
+			.partialState().with(CropsBlock.AGE, 4).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_stage4", StringHelper.extend(blockTexture(block), "_stage4"))).addModel()
+			.partialState().with(CropsBlock.AGE, 5).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_stage5", StringHelper.extend(blockTexture(block), "_stage5"))).addModel()
+			.partialState().with(CropsBlock.AGE, 6).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_stage6", StringHelper.extend(blockTexture(block), "_stage6"))).addModel()
+			.partialState().with(CropsBlock.AGE, 7).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_stage7", StringHelper.extend(blockTexture(block), "_stage7"))).addModel();
 	}
 	
-	public void hexagonalCrystalBlock(Block block) {
+	public void tallCropBlock(Block block) {
 		getVariantBuilder(block)
-			.partialState().with(CrystalBlock.FACING, Direction.NORTH).modelForState().modelFile(hexagonalCrystal(block)).rotationX(90).addModel()
-			.partialState().with(CrystalBlock.FACING, Direction.EAST).modelForState().modelFile(hexagonalCrystal(block)).rotationX(90).rotationY(90).addModel()
-			.partialState().with(CrystalBlock.FACING, Direction.SOUTH).modelForState().modelFile(hexagonalCrystal(block)).rotationX(270).addModel()
-			.partialState().with(CrystalBlock.FACING, Direction.WEST).modelForState().modelFile(hexagonalCrystal(block)).rotationX(90).rotationY(270).addModel()
-			.partialState().with(CrystalBlock.FACING, Direction.UP).modelForState().modelFile(hexagonalCrystal(block)).addModel()
-			.partialState().with(CrystalBlock.FACING, Direction.DOWN).modelForState().modelFile(hexagonalCrystal(block)).rotationX(180).addModel();
-		this.simpleBlockItem(block, hexagonalCrystal(block));
-    }
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropsBlock.AGE, 0).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_lower_stage0", StringHelper.extend(blockTexture(block), "_lower_stage0"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropsBlock.AGE, 1).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_lower_stage1", StringHelper.extend(blockTexture(block), "_lower_stage1"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropsBlock.AGE, 2).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_lower_stage2", StringHelper.extend(blockTexture(block), "_lower_stage2"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropsBlock.AGE, 3).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_lower_stage3", StringHelper.extend(blockTexture(block), "_lower_stage3"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropsBlock.AGE, 4).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_lower_stage4", StringHelper.extend(blockTexture(block), "_lower_stage4"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropsBlock.AGE, 5).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_lower_stage5", StringHelper.extend(blockTexture(block), "_lower_stage5"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropsBlock.AGE, 6).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_lower_stage6", StringHelper.extend(blockTexture(block), "_lower_stage6"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropsBlock.AGE, 7).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_lower_stage7", StringHelper.extend(blockTexture(block), "_lower_stage7"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropsBlock.AGE, 0).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_upper_stage0", StringHelper.extend(blockTexture(block), "_upper_stage0"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropsBlock.AGE, 1).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_upper_stage1", StringHelper.extend(blockTexture(block), "_upper_stage1"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropsBlock.AGE, 2).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_upper_stage2", StringHelper.extend(blockTexture(block), "_upper_stage2"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropsBlock.AGE, 3).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_upper_stage3", StringHelper.extend(blockTexture(block), "_upper_stage3"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropsBlock.AGE, 4).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_upper_stage4", StringHelper.extend(blockTexture(block), "_upper_stage4"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropsBlock.AGE, 5).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_upper_stage5", StringHelper.extend(blockTexture(block), "_upper_stage5"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropsBlock.AGE, 6).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_upper_stage6", StringHelper.extend(blockTexture(block), "_upper_stage6"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropsBlock.AGE, 7).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_upper_stage7", StringHelper.extend(blockTexture(block), "_upper_stage7"))).addModel();
+	}
 	
-	public void cubicCrystalBlock(Block block) {
-		getVariantBuilder(block)
-			.partialState().with(CrystalBlock.FACING, Direction.NORTH).modelForState().modelFile(cubicCrystal(block)).rotationX(90).addModel()
-			.partialState().with(CrystalBlock.FACING, Direction.EAST).modelForState().modelFile(cubicCrystal(block)).rotationX(90).rotationY(90).addModel()
-			.partialState().with(CrystalBlock.FACING, Direction.SOUTH).modelForState().modelFile(cubicCrystal(block)).rotationX(270).addModel()
-			.partialState().with(CrystalBlock.FACING, Direction.WEST).modelForState().modelFile(cubicCrystal(block)).rotationX(90).rotationY(270).addModel()
-			.partialState().with(CrystalBlock.FACING, Direction.UP).modelForState().modelFile(cubicCrystal(block)).addModel()
-			.partialState().with(CrystalBlock.FACING, Direction.DOWN).modelForState().modelFile(cubicCrystal(block)).rotationX(180).addModel();
-		this.simpleBlockItem(block, cubicCrystal(block));
-    }
-	
-	public void displayBlock(Block block) {
-		getVariantBuilder(block).partialState().setModels(new ConfiguredModel(display(block)));
-		this.simpleBlockItem(block, display(block));
-    }
+	/*
+	 * Item model providers
+	 */
 	
 	public void doorBlockItem(Block block, ModelFile model) {
 		ResourceLocation location = block.getRegistryName();
         itemModels().getBuilder(location.getPath()).parent(model).texture("layer0", new ResourceLocation(location.getNamespace(), "item/" + location.getPath()));
 	}
 	
-	public void crossBlockItem(Block block, ModelFile model) {
+	public void signItem(Block block, ModelFile model) {
 		ResourceLocation location = block.getRegistryName();
-        itemModels().getBuilder(location.getPath()).parent(model).texture("layer0", new ResourceLocation(location.getNamespace(), BLOCK + "/" + location.getPath()));
-    }
-	
-	public void crystalBlockItem(Block block, ModelFile model) {
-		ResourceLocation location = block.getRegistryName();
-        itemModels().getBuilder(location.getPath()).parent(model).texture("layer0", new ResourceLocation(location.getNamespace(), BLOCK + "/" + location.getPath()));
-    }
+        itemModels().getBuilder(location.getPath()).parent(model).texture("layer0", StringHelper.replace(StringHelper.replace(blockTexture(block), "_wall", ""), "block", "item"));
+	}
 }

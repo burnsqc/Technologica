@@ -4,8 +4,9 @@ import static com.technologica.Technologica.MODID;
 
 import java.util.Random;
 import javax.annotation.Nullable;
-import com.technologica.block.ModBlocks;
-import com.technologica.items.ModItems;
+import com.technologica.block.TechnologicaBlocks;
+import com.technologica.item.TechnologicaItems;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -36,17 +37,17 @@ public abstract class HydrogenFluid extends FlowingFluid {
 
 	@Override
 	public Fluid getFlowingFluid() {
-		return ModFluids.HYDROGEN_FLOWING.get();
+		return TechnologicaFluids.HYDROGEN_FLOWING.get();
 	}
 
 	@Override
 	public Fluid getStillFluid() {
-		return ModFluids.HYDROGEN_SOURCE.get();
+		return TechnologicaFluids.HYDROGEN_SOURCE.get();
 	}
 
 	@Override
 	public Item getFilledBucket() {
-		return ModItems.HYDROGEN_BUCKET.get();
+		return TechnologicaItems.HYDROGEN_BUCKET.get();
 	}
 
 	@Override
@@ -78,7 +79,7 @@ public abstract class HydrogenFluid extends FlowingFluid {
 
 	@Override
 	public FluidAttributes createAttributes() {
-		return FluidAttributes.builder(new ResourceLocation(MODID, "block/brine_still"), new ResourceLocation(MODID, "block/brine_flow")).build(ModFluids.HYDROGEN_SOURCE.get());
+		return FluidAttributes.builder(new ResourceLocation(MODID, "block/brine_still"), new ResourceLocation(MODID, "block/brine_flow")).build(TechnologicaFluids.HYDROGEN_SOURCE.get());
 	}
 
 	@Override
@@ -118,12 +119,12 @@ public abstract class HydrogenFluid extends FlowingFluid {
 
 	@Override
 	public BlockState getBlockState(FluidState state) {
-		return ModBlocks.HYDROGEN.get().getDefaultState().with(FlowingFluidBlock.LEVEL, Integer.valueOf(getLevelFromState(state)));
+		return TechnologicaBlocks.HYDROGEN.get().getDefaultState().with(FlowingFluidBlock.LEVEL, Integer.valueOf(getLevelFromState(state)));
 	}
 
 	@Override
 	public boolean isEquivalentTo(Fluid fluidIn) {
-		return fluidIn == ModFluids.HYDROGEN_SOURCE.get() || fluidIn == ModFluids.HYDROGEN_FLOWING.get();
+		return fluidIn == TechnologicaFluids.HYDROGEN_SOURCE.get() || fluidIn == TechnologicaFluids.HYDROGEN_FLOWING.get();
 	}
 
 	@Override

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "technologica:block/apricot_bookshelf",
+    "end": "technologica:block/apricot_planks"
+  }
+}

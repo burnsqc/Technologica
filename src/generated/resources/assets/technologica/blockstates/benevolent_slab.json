@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "technologica:block/benevolent_slab_top"
+    },
+    "type=bottom": {
+      "model": "technologica:block/benevolent_slab"
+    },
+    "type=double": {
+      "model": "technologica:block/benevolent_planks"
+    }
+  }
+}
