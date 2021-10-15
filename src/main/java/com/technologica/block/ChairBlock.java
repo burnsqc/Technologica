@@ -23,7 +23,7 @@ import net.minecraft.world.World;
  * Created to inherit FourDirectionBlock orientation and handle matching voxel shape and flammability.
  */
 public class ChairBlock extends FourDirectionBlock {
-	protected static final VoxelShape CHAIR_HITBOX = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 24.0D, 16.0D);
+	protected static final VoxelShape CHAIR_HITBOX = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 10.0D, 16.0D);
 
 	public ChairBlock() {
 		super(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD).notSolid());
@@ -40,7 +40,7 @@ public class ChairBlock extends FourDirectionBlock {
 
 	@Override
 	public ActionResultType onBlockActivated(BlockState stateIn, World worldIn, BlockPos posIn, PlayerEntity playerIn, Hand handIn, BlockRayTraceResult hitIn) {
-		playerIn.moveForced(posIn.getX(), posIn.getY(), posIn.getZ());;
+		playerIn.moveForced(posIn.getX() + 0.5D, posIn.getY(), posIn.getZ() + 0.5D);;
 		playerIn.setPose(Pose.STANDING);
 		return ActionResultType.func_233537_a_(worldIn.isRemote);
 	}
