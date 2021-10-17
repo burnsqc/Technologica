@@ -86,6 +86,15 @@ public class TechnologicaConfiguredFeatures {
 					new StraightTrunkPlacer(4, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
 	
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> CINNAMON_TREE_FEATURE = register(
+			"cinnamon_tree_feature",
+			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(TechnologicaBlocks.CINNAMON_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(TechnologicaBlocks.CINNAMON_LEAVES.get().getDefaultState()),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new StraightTrunkPlacer(4, 1, 0), 
+					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
+	
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> COCONUT_TREE_FEATURE = register(
 			"coconut_tree_feature",
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
@@ -145,6 +154,15 @@ public class TechnologicaConfiguredFeatures {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(TechnologicaBlocks.MAPLE_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(TechnologicaBlocks.MAPLE_LEAVES.get().getDefaultState()),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new StraightTrunkPlacer(4, 1, 0), 
+					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
+	
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> OLIVE_TREE_FEATURE = register(
+			"olive_tree_feature",
+			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(TechnologicaBlocks.OLIVE_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(TechnologicaBlocks.OLIVE_LEAVES.get().getDefaultState()),
 					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
 					new StraightTrunkPlacer(4, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
