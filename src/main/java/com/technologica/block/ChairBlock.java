@@ -1,12 +1,13 @@
 package com.technologica.block;
 
+import com.technologica.entity.item.InvisibleSeatEntity;
+
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
-import net.minecraft.entity.Pose;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
@@ -40,8 +41,15 @@ public class ChairBlock extends FourDirectionBlock {
 
 	@Override
 	public ActionResultType onBlockActivated(BlockState stateIn, World worldIn, BlockPos posIn, PlayerEntity playerIn, Hand handIn, BlockRayTraceResult hitIn) {
-		playerIn.moveForced(posIn.getX() + 0.5D, posIn.getY(), posIn.getZ() + 0.5D);;
-		playerIn.setPose(Pose.STANDING);
+		
+		if (worldIn.isRemote) {
+			InvisibleSeatEntity seat = new InvisibleSeatEntity(worldIn, hitIn.getHitVec().x, hitIn.getHitVec().y, hitIn.getHitVec().z);
+			
+			worldIn.addEntity(seat);
+			playerIn.moveToBlockPosAndAngles(posIn, 90.0F, 0.0F);
+			playerIn.startRiding(seat);
+			
+		}	
 		return ActionResultType.func_233537_a_(worldIn.isRemote);
 	}
 	
