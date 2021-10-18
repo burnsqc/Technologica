@@ -4,6 +4,7 @@ import static com.technologica.Technologica.MODID;
 
 import com.technologica.entity.item.InvisibleSeatEntity;
 import com.technologica.entity.item.VanillaBoatEntity;
+import com.technologica.entity.monster.PeeperEntity;
 import com.technologica.entity.monster.ScorpionEntity;
 import com.technologica.entity.monster.SharkEntity;
 import com.technologica.entity.passive.DuckEntity;
@@ -30,6 +31,8 @@ public class TechnologicaEntities {
     public static final RegistryObject<EntityType<SharkEntity>> SHARK = ENTITIES.register("shark", () -> EntityType.Builder.<SharkEntity>create(SharkEntity::new, EntityClassification.CREATURE).size(0.9F, 0.6F).trackingRange(10).build("shark"));
     public static final RegistryObject<EntityType<ZebraEntity>> ZEBRA = ENTITIES.register("zebra", () -> EntityType.Builder.<ZebraEntity>create(ZebraEntity::new, EntityClassification.CREATURE).size(1.3964844F, 1.6F).trackingRange(10).build("zebra"));
 	
+    public static final RegistryObject<EntityType<PeeperEntity>> PEEPER = ENTITIES.register("peeper", () -> EntityType.Builder.<PeeperEntity>create(PeeperEntity::new, EntityClassification.MONSTER).size(0.6F, 1.7F).trackingRange(8).build("peeper"));
+    
     public static final RegistryObject<EntityType<?>> INVISIBLE_SEAT = ENTITIES.register("invisible_seat", () -> EntityType.Builder.<InvisibleSeatEntity>create(InvisibleSeatEntity::new, EntityClassification.MISC).size(0.1F, 0.1F).setCustomClientFactory((spawnEntity, world) -> new InvisibleSeatEntity(world, 0, 0, 0)).trackingRange(10).build("invisible_seat_entity"));
     
 	public static void register() 

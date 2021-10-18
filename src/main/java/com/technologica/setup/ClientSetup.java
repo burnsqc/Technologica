@@ -4,24 +4,25 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 import com.technologica.Technologica;
+import com.technologica.block.TallCropsBlock;
 import com.technologica.block.TechnologicaBlocks;
 import com.technologica.block.VanillaCropsBlock;
-import com.technologica.block.TallCropsBlock;
 import com.technologica.block.WaterCropsBlock;
 import com.technologica.client.renderer.entity.DuckRenderer;
 import com.technologica.client.renderer.entity.GrizzlyBearRenderer;
-import com.technologica.client.renderer.entity.VanillaBoatRenderer;
 import com.technologica.client.renderer.entity.OstrichRenderer;
+import com.technologica.client.renderer.entity.PeeperRenderer;
 import com.technologica.client.renderer.entity.ScorpionRenderer;
 import com.technologica.client.renderer.entity.SharkRenderer;
+import com.technologica.client.renderer.entity.VanillaBoatRenderer;
 import com.technologica.client.renderer.entity.ZebraRenderer;
 import com.technologica.client.renderer.tileentity.DisplayCaseTileEntityRenderer;
 import com.technologica.client.renderer.tileentity.FruitTileEntityRenderer;
 import com.technologica.client.renderer.tileentity.LineShaftHangerTileEntityRenderer;
 import com.technologica.client.renderer.tileentity.LineShaftTileEntityRenderer;
-import com.technologica.client.renderer.tileentity.VanillaSignTileEntityRenderer;
 import com.technologica.client.renderer.tileentity.PotionTileEntityRenderer;
 import com.technologica.client.renderer.tileentity.SawmillTileEntityRenderer;
+import com.technologica.client.renderer.tileentity.VanillaSignTileEntityRenderer;
 import com.technologica.entity.TechnologicaEntities;
 import com.technologica.fluid.TechnologicaFluids;
 import com.technologica.tileentity.TechnologicaTileEntities;
@@ -53,6 +54,8 @@ public class ClientSetup {
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntities.SCORPION.get(), ScorpionRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntities.SHARK.get(), SharkRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntities.ZEBRA.get(), ZebraRenderer::new);
+		
+		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntities.PEEPER.get(), PeeperRenderer::new);
 
 		event.enqueueWork(() -> {
 			automaticCutoutMipped(TechnologicaBlocks.BLOCKS.getEntries());

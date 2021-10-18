@@ -43,6 +43,8 @@ public class ModSpawnEggItem extends Item {
     		entityType = TechnologicaEntities.ZEBRA.get();
     	} else if (entityTypeInt == 6) {
     		entityType = TechnologicaEntities.SCORPION.get();
+    	} else if (entityTypeInt == 7) {
+    		entityType = TechnologicaEntities.PEEPER.get();
     	}
     	
     	World world = context.getWorld();
