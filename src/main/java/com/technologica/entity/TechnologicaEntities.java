@@ -33,7 +33,7 @@ public class TechnologicaEntities {
 	
     public static final RegistryObject<EntityType<PeeperEntity>> PEEPER = ENTITIES.register("peeper", () -> EntityType.Builder.<PeeperEntity>create(PeeperEntity::new, EntityClassification.MONSTER).size(0.6F, 1.7F).trackingRange(8).build("peeper"));
     
-    public static final RegistryObject<EntityType<?>> INVISIBLE_SEAT = ENTITIES.register("invisible_seat", () -> EntityType.Builder.<InvisibleSeatEntity>create(InvisibleSeatEntity::new, EntityClassification.MISC).size(0.1F, 0.1F).setCustomClientFactory((spawnEntity, world) -> new InvisibleSeatEntity(world, 0, 0, 0)).trackingRange(10).build("invisible_seat_entity"));
+    public static final RegistryObject<EntityType<InvisibleSeatEntity>> INVISIBLE_SEAT = ENTITIES.register("invisible_seat", () -> EntityType.Builder.<InvisibleSeatEntity>create(InvisibleSeatEntity::new, EntityClassification.MISC).size(0.1F, 0.1F).setCustomClientFactory((spawnEntity, world) -> new InvisibleSeatEntity(world, 0, 0, 0)).trackingRange(10).build("invisible_seat_entity"));
     
 	public static void register() 
     {
