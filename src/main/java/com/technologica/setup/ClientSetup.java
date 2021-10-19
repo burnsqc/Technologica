@@ -10,6 +10,7 @@ import com.technologica.block.VanillaCropsBlock;
 import com.technologica.block.WaterCropsBlock;
 import com.technologica.client.renderer.entity.DuckRenderer;
 import com.technologica.client.renderer.entity.GrizzlyBearRenderer;
+import com.technologica.client.renderer.entity.InvisibleRenderer;
 import com.technologica.client.renderer.entity.OstrichRenderer;
 import com.technologica.client.renderer.entity.PeeperRenderer;
 import com.technologica.client.renderer.entity.ScorpionRenderer;
@@ -47,6 +48,8 @@ public class ClientSetup {
 
 	public static void init(final FMLClientSetupEvent event) {
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntities.MOD_BOAT.get(), VanillaBoatRenderer::new);
+		
+		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntities.INVISIBLE_SEAT.get(), InvisibleRenderer::new);
 		
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntities.DUCK.get(), DuckRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntities.GRIZZLY_BEAR.get(), GrizzlyBearRenderer::new);
