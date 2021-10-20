@@ -271,6 +271,9 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> IODINE_CHUNK = ITEMS.register("iodine_chunk", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
     public static final RegistryObject<Item> ASTATINE_CHUNK = ITEMS.register("astatine_chunk", () -> new Item(new Properties().group(TechnologicaItemGroup.MINERAL)));
     
+    public static final RegistryObject<Item> MULCH = ITEMS.register("mulch", () -> new Item(new Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> SAWDUST = ITEMS.register("sawdust", () -> new Item(new Properties().group(TechnologicaItemGroup.MINERAL)));
+    
     public static final RegistryObject<Item> BRINE_BUCKET = ITEMS.register("brine_bucket", () -> new BucketItem(TechnologicaFluids.BRINE_SOURCE, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
     public static final RegistryObject<Item> MERCURY_BUCKET = ITEMS.register("mercury_bucket", () -> new BucketItem(TechnologicaFluids.MERCURY_SOURCE, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
     public static final RegistryObject<Item> HYDROGEN_BUCKET = ITEMS.register("hydrogen_bucket", () -> new BucketItem(TechnologicaFluids.HYDROGEN_SOURCE, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
