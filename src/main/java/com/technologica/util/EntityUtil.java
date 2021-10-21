@@ -13,22 +13,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class EntityUtil {
-
 	private static final Map<ResourceLocation, Map<BlockPos, Pair<InvisibleSeatEntity, BlockPos>>> OCCUPIED = new HashMap<>();
-
-	public static boolean addSitEntity(World world, BlockPos blockPos, InvisibleSeatEntity entity, BlockPos playerPos) {
-		if (!world.isRemote) {
-			ResourceLocation id = getDimensionTypeId(world);
-
-			if (!OCCUPIED.containsKey(id))
-				OCCUPIED.put(id, new HashMap<>());
-
-			OCCUPIED.get(id).put(blockPos, Pair.of(entity, playerPos));
-			return true;
-		}
-
-		return false;
-	}
 
 	public static boolean removeSitEntity(World world, BlockPos pos) {
 		if (!world.isRemote) {
@@ -43,17 +28,6 @@ public class EntityUtil {
 		return false;
 	}
 
-	public static InvisibleSeatEntity getSitEntity(World world, BlockPos pos) {
-		if (!world.isRemote) {
-			ResourceLocation id = getDimensionTypeId(world);
-
-			if (OCCUPIED.containsKey(id) && OCCUPIED.get(id).containsKey(pos))
-				return OCCUPIED.get(id).get(pos).getLeft();
-		}
-
-		return null;
-	}
-	
 	public static BlockPos getPreviousPlayerPosition(PlayerEntity player, InvisibleSeatEntity sitEntity) {
 		if (!player.world.isRemote) {
 			ResourceLocation id = getDimensionTypeId(player.world);
