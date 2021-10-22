@@ -35,12 +35,10 @@ public class InvisibleSeatEntity extends Entity {
 
 			if(pos != null)
 			{
-				remove();
 				return new Vector3d(pos.getX(), pos.getY(), pos.getZ());
 			}
 		}
 
-		remove();
 		return super.getDismountPosition(passenger);
 	}
 	
