@@ -9,9 +9,11 @@ import net.minecraft.util.SoundEvents;
 
 public class PickupItemGoal extends Goal {
 	protected final MobEntity entity;
+	private int pickupCooldown;
 
 	public PickupItemGoal(MobEntity entityIn) {
 		entity = entityIn;
+		pickupCooldown = 0;
 	}
 
 	public boolean shouldExecute() {
@@ -29,15 +31,19 @@ public class PickupItemGoal extends Goal {
 	public void tick() {
 		List<ItemEntity> list = entity.world.getEntitiesWithinAABB(ItemEntity.class, entity.getBoundingBox().grow(8.0D, 8.0D, 8.0D));
 		if (!list.isEmpty()) {
-			entity.playSound(SoundEvents.ENTITY_PLAYER_BREATH, 0.25F, 2.0F);
+			entity.playSound(SoundEvents.ENTITY_PLAYER_BREATH, 0.2F, 2.0F);
 			entity.getNavigator().tryMoveToEntityLiving(list.get(0), (double) 1.2F);
-			List<ItemEntity> list2 = entity.world.getEntitiesWithinAABB(ItemEntity.class, entity.getBoundingBox().grow(1.5D, 1.5D, 1.5D));
+			List<ItemEntity> list2 = entity.world.getEntitiesWithinAABB(ItemEntity.class, entity.getBoundingBox().grow(1.5D, 0.0D, 1.5D));
 			if (!list2.isEmpty()) {
-				ItemEntity item = list2.get(0);
-				item.remove();
+				if (pickupCooldown > 0) {
+					pickupCooldown--;
+				} else {
+					ItemEntity item = list2.get(0);
+					item.remove();
+					entity.playSound(SoundEvents.ENTITY_ITEM_PICKUP, 0.2F, 1.0F);
+					pickupCooldown = 20;
+				}
 			}
 		}
-
 	}
-
 }

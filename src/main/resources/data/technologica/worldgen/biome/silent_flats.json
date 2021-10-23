@@ -37,7 +37,7 @@
     "monster": [
       {
         "type": "technologica:sweeper",
-        "weight": 5,
+        "weight": 1,
         "minCount": 1,
         "maxCount": 1
       }
