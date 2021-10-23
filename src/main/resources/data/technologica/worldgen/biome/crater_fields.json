@@ -21,7 +21,9 @@
   },
   "features": [
     [],
-    [],
+    [
+      "technologica:crater"
+    ],
     [],
     [],
     [],
