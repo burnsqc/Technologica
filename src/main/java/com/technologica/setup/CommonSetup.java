@@ -45,6 +45,7 @@ public class CommonSetup {
 		GlobalEntityTypeAttributes.put(TechnologicaEntities.SHARK.get(), SharkEntity.registerAttributes().create());
 		GlobalEntityTypeAttributes.put(TechnologicaEntities.ZEBRA.get(), func_234237_fg_().create());
 		GlobalEntityTypeAttributes.put(TechnologicaEntities.PEEPER.get(), func_234237_fg_().create());
+		GlobalEntityTypeAttributes.put(TechnologicaEntities.SWEEPER.get(), func_234237_fg_().create());
 
 		event.enqueueWork(() -> {
 			automaticFlowerPots(TechnologicaBlocks.BLOCKS.getEntries());

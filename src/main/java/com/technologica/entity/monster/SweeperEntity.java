@@ -1,14 +1,13 @@
 package com.technologica.entity.monster;
 
+import com.technologica.entity.ai.PickupItemGoal;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.IChargeableMob;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.HurtByTargetGoal;
-import net.minecraft.entity.ai.goal.LookAtGoal;
-import net.minecraft.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.RandomWalkingGoal;
 import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.monster.MonsterEntity;
@@ -31,12 +30,12 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(value = Dist.CLIENT, _interface = IChargeableMob.class)
-public class PeeperEntity extends MonsterEntity implements IChargeableMob {
-	private static final DataParameter<Integer> STATE = EntityDataManager.createKey(PeeperEntity.class,
+public class SweeperEntity extends MonsterEntity implements IChargeableMob {
+	private static final DataParameter<Integer> STATE = EntityDataManager.createKey(SweeperEntity.class,
 			DataSerializers.VARINT);
-	private static final DataParameter<Boolean> POWERED = EntityDataManager.createKey(PeeperEntity.class,
+	private static final DataParameter<Boolean> POWERED = EntityDataManager.createKey(SweeperEntity.class,
 			DataSerializers.BOOLEAN);
-	private static final DataParameter<Boolean> IGNITED = EntityDataManager.createKey(PeeperEntity.class,
+	private static final DataParameter<Boolean> IGNITED = EntityDataManager.createKey(SweeperEntity.class,
 			DataSerializers.BOOLEAN);
 	private int lastActiveTime;
 	private int timeSinceIgnited;
@@ -44,16 +43,14 @@ public class PeeperEntity extends MonsterEntity implements IChargeableMob {
 	private int explosionRadius = 3;
 	private int droppedSkulls;
 
-	public PeeperEntity(EntityType<? extends PeeperEntity> type, World worldIn) {
+	public SweeperEntity(EntityType<? extends SweeperEntity> type, World worldIn) {
 		super(type, worldIn);
 	}
 
 	protected void registerGoals() {
-		this.goalSelector.addGoal(1, new LookAtGoal(this, PlayerEntity.class, 32.0F));
-		this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, false));
+		this.goalSelector.addGoal(1, new PickupItemGoal(this));
+		this.goalSelector.addGoal(2, new LookRandomlyGoal(this));
 		this.goalSelector.addGoal(3, new RandomWalkingGoal(this, 1.0D));
-		this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
-		this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
 	}
 
 	public static AttributeModifierMap.MutableAttribute registerAttributes() {
@@ -155,8 +152,8 @@ public class PeeperEntity extends MonsterEntity implements IChargeableMob {
 	protected void dropSpecialItems(DamageSource source, int looting, boolean recentlyHitIn) {
 		super.dropSpecialItems(source, looting, recentlyHitIn);
 		Entity entity = source.getTrueSource();
-		if (entity != this && entity instanceof PeeperEntity) {
-			PeeperEntity creeperentity = (PeeperEntity) entity;
+		if (entity != this && entity instanceof SweeperEntity) {
+			SweeperEntity creeperentity = (SweeperEntity) entity;
 			if (creeperentity.ableToCauseSkullDrop()) {
 				creeperentity.incrementDroppedSkulls();
 				this.entityDropItem(Items.CREEPER_HEAD);

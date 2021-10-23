@@ -1,5 +1,6 @@
 package com.technologica.setup;
 
+import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.function.Supplier;
 
@@ -8,6 +9,7 @@ import com.technologica.block.TallCropsBlock;
 import com.technologica.block.TechnologicaBlocks;
 import com.technologica.block.VanillaCropsBlock;
 import com.technologica.block.WaterCropsBlock;
+import com.technologica.client.renderer.MoonRenderer;
 import com.technologica.client.renderer.entity.DuckRenderer;
 import com.technologica.client.renderer.entity.GrizzlyBearRenderer;
 import com.technologica.client.renderer.entity.InvisibleRenderer;
@@ -15,6 +17,7 @@ import com.technologica.client.renderer.entity.OstrichRenderer;
 import com.technologica.client.renderer.entity.PeeperRenderer;
 import com.technologica.client.renderer.entity.ScorpionRenderer;
 import com.technologica.client.renderer.entity.SharkRenderer;
+import com.technologica.client.renderer.entity.SweeperRenderer;
 import com.technologica.client.renderer.entity.VanillaBoatRenderer;
 import com.technologica.client.renderer.entity.ZebraRenderer;
 import com.technologica.client.renderer.tileentity.DisplayCaseTileEntityRenderer;
@@ -28,6 +31,7 @@ import com.technologica.entity.TechnologicaEntities;
 import com.technologica.fluid.TechnologicaFluids;
 import com.technologica.tileentity.TechnologicaTileEntities;
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import net.minecraft.block.Block;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.block.FlowerPotBlock;
@@ -36,16 +40,19 @@ import net.minecraft.block.TrapDoorBlock;
 import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.client.world.DimensionRenderInfo;
 import net.minecraft.inventory.container.PlayerContainer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 public class ClientSetup {
 
+	@SuppressWarnings("unchecked")
 	public static void init(final FMLClientSetupEvent event) {
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntities.MOD_BOAT.get(), VanillaBoatRenderer::new);
 		
@@ -59,6 +66,7 @@ public class ClientSetup {
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntities.ZEBRA.get(), ZebraRenderer::new);
 		
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntities.PEEPER.get(), PeeperRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntities.SWEEPER.get(), SweeperRenderer::new);
 
 		event.enqueueWork(() -> {
 			automaticCutoutMipped(TechnologicaBlocks.BLOCKS.getEntries());
@@ -81,6 +89,18 @@ public class ClientSetup {
     	  	ClientRegistry.bindTileEntityRenderer(TechnologicaTileEntities.LINE_SHAFT_HANGER_TILE.get(), LineShaftHangerTileEntityRenderer::new);
     	  	ClientRegistry.bindTileEntityRenderer(TechnologicaTileEntities.SAWMILL_TILE.get(), SawmillTileEntityRenderer::new);
 		});
+		
+		Field effects = ObfuscationReflectionHelper.findField(DimensionRenderInfo.class, "field_239208_a_");
+		DimensionRenderInfo dimensionRenderInfo = new DimensionRenderInfo.Overworld();
+		dimensionRenderInfo.setSkyRenderHandler(new MoonRenderer());
+		dimensionRenderInfo.setCloudRenderHandler((ticks, partialTicks, matrixStack, world, mc, viewEntityX, viewEntityY, viewEntityZ) -> {});
+        try {
+			((Object2ObjectMap<ResourceLocation, DimensionRenderInfo>) effects.get(null)).put(new ResourceLocation(Technologica.MODID, "moon"), dimensionRenderInfo);
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
 	}
    
 	public static void stitch(final TextureStitchEvent.Pre event) {

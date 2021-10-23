@@ -141,6 +141,6 @@
     }
   },
   "default_block": {
-    "Name": "minecraft:stone"
+    "Name": "technologica:moon_rock"
   }
 }

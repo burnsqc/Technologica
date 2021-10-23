@@ -69,6 +69,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			} else if (path.contains("_clay")) {
 				simpleBlock(block);
 				simpleBlockItem(block, cubeAll(block));
+			} else if (path.contains("moon")) {
+				simpleBlock(block);
+				simpleBlockItem(block, cubeAll(block));
 			} else if (path.contains("_ore")) {
 				simpleBlock(block);
 				simpleBlockItem(block, cubeAll(block));

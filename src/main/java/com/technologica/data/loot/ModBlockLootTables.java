@@ -25,6 +25,7 @@ import com.technologica.item.TechnologicaItems;
 import com.technologica.util.text.StringHelper;
 
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CropsBlock;
@@ -77,6 +78,7 @@ public class ModBlockLootTables extends BlockLootTables {
 	private final void automaticLootTable(Collection<RegistryObject<Block>> blockCollection) {
 		for(Supplier<? extends Block> blockSupplier:blockCollection) {
 			Block block = blockSupplier.get();
+			String path = StringHelper.getPath(block);
 			
 			if (block.getClass().equals(VanillaLogBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(SapLogBlock.class)) registerDropSelfLootTable(block);
@@ -121,6 +123,8 @@ public class ModBlockLootTables extends BlockLootTables {
 				}	
 				registerLootTable(block, droppingWithChancesAndSticks(block, sapling, DEFAULT_SAPLING_DROP_RATES));
 			} else if (!block.getClass().equals(FruitingLeavesBlock.class) && !block.getClass().equals(LeavesBlock.class) && block instanceof LeavesBlock) {
+				registerDropSelfLootTable(block);
+			} else if (path.contains("moon")) {
 				registerDropSelfLootTable(block);
 			}
 		}

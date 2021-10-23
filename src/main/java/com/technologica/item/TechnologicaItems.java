@@ -142,6 +142,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> ZEBRA_SPAWN_EGG = ITEMS.register("zebra_spawn_egg", () -> new ModSpawnEggItem(5));
     public static final RegistryObject<Item> SCORPION_SPAWN_EGG = ITEMS.register("scorpion_spawn_egg", () -> new ModSpawnEggItem(6));
     public static final RegistryObject<Item> PEEPER_SPAWN_EGG = ITEMS.register("peeper_spawn_egg", () -> new ModSpawnEggItem(7));
+    public static final RegistryObject<Item> SWEEPER_SPAWN_EGG = ITEMS.register("sweeper_spawn_egg", () -> new ModSpawnEggItem(8));
     
     /**
      * MINERAL
@@ -149,6 +150,9 @@ public class TechnologicaItems {
     
     public static final RegistryObject<Item> SALT_ITEM = ITEMS.register("salt", () -> new BlockItem(TechnologicaBlocks.SALT.get(), new Item.Properties().group(TechnologicaItemGroup.MINERAL)));   
     public static final RegistryObject<Item> LITHIUM_CLAY_ITEM = ITEMS.register("lithium_clay", () -> new BlockItem(TechnologicaBlocks.LITHIUM_CLAY.get(), new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    
+    public static final RegistryObject<Item> MOON_ROCK_ITEM = ITEMS.register("moon_rock", () -> new BlockItem(TechnologicaBlocks.MOON_ROCK.get(), new Item.Properties().group(TechnologicaItemGroup.MINERAL)));   
+    public static final RegistryObject<Item> MOON_DUST_ITEM = ITEMS.register("moon_dust", () -> new BlockItem(TechnologicaBlocks.MOON_DUST.get(), new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
     
     public static final RegistryObject<Item> BAUXITE_ORE_ITEM = ITEMS.register("bauxite_ore", () -> new BlockItem(TechnologicaBlocks.BAUXITE_ORE.get(), new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
     public static final RegistryObject<Item> CHROMITE_ORE_ITEM = ITEMS.register("chromite_ore", () -> new BlockItem(TechnologicaBlocks.CHROMITE_ORE.get(), new Item.Properties().group(TechnologicaItemGroup.MINERAL)));

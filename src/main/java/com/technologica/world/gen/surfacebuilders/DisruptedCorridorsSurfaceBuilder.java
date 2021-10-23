@@ -11,14 +11,14 @@ import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
-public class SilentFlatsSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
-   public SilentFlatsSurfaceBuilder(Codec<SurfaceBuilderConfig> codec) {
+public class DisruptedCorridorsSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
+   public DisruptedCorridorsSurfaceBuilder(Codec<SurfaceBuilderConfig> codec) {
       super(codec);
    }
 
    public void buildSurface(Random random, IChunk chunkIn, Biome biomeIn, int x, int z, int startHeight, double noise, BlockState defaultBlock, BlockState defaultFluid, int seaLevel, long seed, SurfaceBuilderConfig config) {
 	   
-	   SurfaceBuilderConfig config1 = new SurfaceBuilderConfig(TechnologicaBlocks.MOON_DUST.get().getDefaultState(), TechnologicaBlocks.MOON_DUST.get().getDefaultState(), TechnologicaBlocks.MOON_DUST.get().getDefaultState());
+	   SurfaceBuilderConfig config1 = new SurfaceBuilderConfig(TechnologicaBlocks.MOON_ROCK.get().getDefaultState(), TechnologicaBlocks.MOON_ROCK.get().getDefaultState(), TechnologicaBlocks.MOON_ROCK.get().getDefaultState());
 	   
 	   SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock, defaultFluid, seaLevel, seed, config1);
    }
