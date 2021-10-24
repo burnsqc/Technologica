@@ -40,8 +40,8 @@
     "monster": [
       {
         "type": "minecraft:creeper",
-        "weight": 5,
-        "minCount": 1,
+        "weight": 1,
+        "minCount": 0,
         "maxCount": 1
       }
     ],

@@ -84,8 +84,6 @@ public class MoonRenderer implements ISkyRenderHandler {
 			Matrix4f matrix4f = matrixStackIn.getLast().getMatrix();
 			bufferbuilder.begin(6, DefaultVertexFormats.POSITION_COLOR);
 			bufferbuilder.pos(matrix4f, 0.0F, 100.0F, 0.0F).color(f4, f5, f6, afloat[3]).endVertex();
-			int i = 16;
-
 			for (int j = 0; j <= 16; ++j) {
 				float f7 = (float) j * ((float) Math.PI * 2F) / 16.0F;
 				float f8 = MathHelper.sin(f7);
@@ -105,18 +103,20 @@ public class MoonRenderer implements ISkyRenderHandler {
 		float f11 = 1.0F - world.getRainStrength(partialTicks);
 		RenderSystem.color4f(1.0F, 1.0F, 1.0F, f11);
 		matrixStackIn.rotate(Vector3f.YP.rotationDegrees(-90.0F));
-
+		matrixStackIn.rotate(Vector3f.XP.rotationDegrees(45.0F));
 		float f12 = 30.0F;
 		Matrix4f matrix4f1 = matrixStackIn.getLast().getMatrix();
 		this.textureManager.bindTexture(EARTH_TEXTURES);
 		bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-		bufferbuilder.pos(matrix4f1, -f12, 90.0F, -f12).tex(0.0F, 0.0F).endVertex();
-		bufferbuilder.pos(matrix4f1, f12, 90.0F, -f12).tex(1.0F, 0.0F).endVertex();
-		bufferbuilder.pos(matrix4f1, f12, 90.0F, f12).tex(1.0F, 1.0F).endVertex();
-		bufferbuilder.pos(matrix4f1, -f12, 90.0F, f12).tex(0.0F, 1.0F).endVertex();
+		bufferbuilder.pos(matrix4f1, -f12, 70.0F, -f12).tex(0.0F, 0.0F).endVertex();
+		bufferbuilder.pos(matrix4f1, f12, 70.0F, -f12).tex(1.0F, 0.0F).endVertex();
+		bufferbuilder.pos(matrix4f1, f12, 70.0F, f12).tex(1.0F, 1.0F).endVertex();
+		bufferbuilder.pos(matrix4f1, -f12, 70.0F, f12).tex(0.0F, 1.0F).endVertex();
 		bufferbuilder.finishDrawing();
 		WorldVertexBufferUploader.draw(bufferbuilder);
 
+		matrixStackIn.rotate(Vector3f.XP.rotationDegrees(-45.0F));
+		
 		matrixStackIn.rotate(Vector3f.XP.rotationDegrees(world.func_242415_f(partialTicks) * 360.0F));
 		matrix4f1 = matrixStackIn.getLast().getMatrix();
 

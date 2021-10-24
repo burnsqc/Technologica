@@ -38,8 +38,8 @@
     "monster": [
       {
         "type": "technologica:peeper",
-        "weight": 5,
-        "minCount": 1,
+        "weight": 1,
+        "minCount": 0,
         "maxCount": 1
       }
     ],

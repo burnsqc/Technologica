@@ -6,6 +6,8 @@ import com.technologica.block.TechnologicaBlocks;
 import com.technologica.entity.item.VanillaBoatEntity;
 import com.technologica.fluid.TechnologicaFluids;
 
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.BucketItem;
@@ -907,6 +909,11 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> MOTOR_20HP_ITEM = ITEMS.register("motor_20hp", () -> new BlockItem(TechnologicaBlocks.MOTOR_20HP.get(), new Item.Properties().group(TechnologicaItemGroup.MACHINERY)));
     public static final RegistryObject<Item> SAWBLADE = ITEMS.register("sawblade", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MACHINERY)));
     public static final RegistryObject<Item> SAWMILL_ITEM = ITEMS.register("sawmill", () -> new BlockItem(TechnologicaBlocks.SAWMILL.get(), new Item.Properties().group(TechnologicaItemGroup.MACHINERY)));
+    
+    public static final RegistryObject<Item> SPACE_HELMET = ITEMS.register("space_helmet", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, EquipmentSlotType.HEAD, (new Item.Properties()).group(TechnologicaItemGroup.MACHINERY)));
+    public static final RegistryObject<Item> SPACE_SUIT = ITEMS.register("space_suit", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, EquipmentSlotType.CHEST, (new Item.Properties()).group(TechnologicaItemGroup.MACHINERY)));
+    public static final RegistryObject<Item> SPACE_PANTS = ITEMS.register("space_pants", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, EquipmentSlotType.LEGS, (new Item.Properties()).group(TechnologicaItemGroup.MACHINERY)));
+    public static final RegistryObject<Item> SPACE_BOOTS = ITEMS.register("space_boots", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, EquipmentSlotType.FEET, (new Item.Properties()).group(TechnologicaItemGroup.MACHINERY)));
     
     /**
      * DECORATIVE

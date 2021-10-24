@@ -5,14 +5,12 @@ import java.util.Random;
 import com.mojang.serialization.Codec;
 
 import net.minecraft.block.Blocks;
-import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.SectionPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.BlockStateFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.Features;
 import net.minecraft.world.gen.feature.structure.Structure;
 
 public class CraterFeature extends Feature<BlockStateFeatureConfig> {
@@ -46,29 +44,6 @@ public class CraterFeature extends Feature<BlockStateFeatureConfig> {
 								double d9 = d6 * d6 + d7 * d7 + d8 * d8;
 								if (d9 < 1.0D) {
 									aboolean[(relativeX * 16 + relativeZ) * 8 + relativeY] = true;
-								}
-							}
-						}
-					}
-				}
-
-				for (int k1 = 0; k1 < 16; ++k1) {
-					for (int l2 = 0; l2 < 16; ++l2) {
-						for (int k = 0; k < 8; ++k) {
-							boolean flag = !aboolean[(k1 * 16 + l2) * 8 + k]
-									&& (k1 < 15 && aboolean[((k1 + 1) * 16 + l2) * 8 + k]
-											|| k1 > 0 && aboolean[((k1 - 1) * 16 + l2) * 8 + k]
-											|| l2 < 15 && aboolean[(k1 * 16 + l2 + 1) * 8 + k]
-											|| l2 > 0 && aboolean[(k1 * 16 + (l2 - 1)) * 8 + k]
-											|| k < 7 && aboolean[(k1 * 16 + l2) * 8 + k + 1]
-											|| k > 0 && aboolean[(k1 * 16 + l2) * 8 + (k - 1)]);
-							if (flag) {
-								Material material = reader.getBlockState(pos.add(k1, k, l2)).getMaterial();
-								if (k >= 4 && material.isLiquid()) {
-									return false;
-								}
-								if (k < 4 && !material.isSolid() && reader.getBlockState(pos.add(k1, k, l2)) != config.state) {
-									return false;
 								}
 							}
 						}
