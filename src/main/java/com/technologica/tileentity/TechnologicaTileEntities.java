@@ -82,7 +82,6 @@ public class TechnologicaTileEntities {
 					TechnologicaBlocks.BANANA_LEAVES.get(),
 					TechnologicaBlocks.CHERRY_LEAVES.get(), 
 					TechnologicaBlocks.CHESTNUT_LEAVES.get(),
-					TechnologicaBlocks.CINNAMON_LEAVES.get(),
 					TechnologicaBlocks.COCONUT_LEAVES.get(), 
 					TechnologicaBlocks.KIWI_LEAVES.get(),
 					TechnologicaBlocks.LEMON_LEAVES.get(), 
