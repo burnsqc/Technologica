@@ -24,10 +24,7 @@ import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3f;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
 public class VanillaSignTileEntityRenderer extends TileEntityRenderer<VanillaSignTileEntity> {
 	private final SignTileEntityRenderer.SignModel model = new SignTileEntityRenderer.SignModel();
 

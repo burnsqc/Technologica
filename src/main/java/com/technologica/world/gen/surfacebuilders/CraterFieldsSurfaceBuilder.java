@@ -42,6 +42,7 @@ public class CraterFieldsSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderCon
 		super(codec);
 	}
 
+	@SuppressWarnings("deprecation")
 	public void buildSurface(Random randomIn, IChunk chunkIn, Biome biomeIn, int posXIn, int posZIn, int startHeightIn, double noise, BlockState defaultBlock, BlockState defaultFluid, int seaLevel, long seed, SurfaceBuilderConfig config) {
 		int posX = posXIn & 15;
 		int posZ = posZIn & 15;

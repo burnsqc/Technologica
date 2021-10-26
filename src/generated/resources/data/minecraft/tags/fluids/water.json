@@ -1,11 +1,8 @@
 {
   "replace": false,
   "values": [
-    "technologica:brine_source",
-    "technologica:brine_flowing",
-    "technologica:mercury_source",
-    "technologica:mercury_flowing",
-    "technologica:hydrogen_source",
-    "technologica:hydrogen_flowing"
+    "technologica:flowing_brine",
+    "technologica:flowing_mercury",
+    "technologica:flowing_hydrogen"
   ]
 }

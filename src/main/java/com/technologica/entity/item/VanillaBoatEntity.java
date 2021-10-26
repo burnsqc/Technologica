@@ -50,8 +50,6 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class VanillaBoatEntity extends BoatEntity {
@@ -84,8 +82,6 @@ public class VanillaBoatEntity extends BoatEntity {
 	private boolean rocking;
 	private boolean downwards;
 	private float rockingIntensity;
-	private float rockingAngle;
-	private float prevRockingAngle;
 
 	public VanillaBoatEntity(EntityType<? extends VanillaBoatEntity> type, World world) {
 		super(type, world);
@@ -278,36 +274,11 @@ public class VanillaBoatEntity extends BoatEntity {
 	}
 
 	/**
-	 * Setups the entity to do the hurt animation. Only used by packets in
-	 * multiplayer.
-	 */
-	@OnlyIn(Dist.CLIENT)
-	public void performHurtAnimation() {
-		this.setForwardDirection(-this.getForwardDirection());
-		this.setTimeSinceHit(10);
-		this.setDamageTaken(this.getDamageTaken() * 11.0F);
-	}
-
-	/**
 	 * Returns true if other Entities should be prevented from moving through this
 	 * Entity.
 	 */
 	public boolean canBeCollidedWith() {
 		return isAlive();
-	}
-
-	/**
-	 * Sets a target for the client to interpolate towards over the next few ticks
-	 */
-	@OnlyIn(Dist.CLIENT)
-	public void setPositionAndRotationDirect(double x, double y, double z, float yaw, float pitch,
-			int posRotationIncrements, boolean teleport) {
-		this.lerpX = x;
-		this.lerpY = y;
-		this.lerpZ = z;
-		this.lerpYaw = (double) yaw;
-		this.lerpPitch = (double) pitch;
-		this.lerpSteps = 10;
 	}
 
 	/**
@@ -415,9 +386,6 @@ public class VanillaBoatEntity extends BoatEntity {
 			}
 
 			this.rockingIntensity = MathHelper.clamp(this.rockingIntensity, 0.0F, 1.0F);
-			this.prevRockingAngle = this.rockingAngle;
-			this.rockingAngle = 10.0F * (float) Math.sin((double) (0.5F * (float) this.world.getGameTime()))
-					* this.rockingIntensity;
 		} else {
 			if (!this.rocking) {
 				this.setRockingTicks(0);
@@ -483,14 +451,6 @@ public class VanillaBoatEntity extends BoatEntity {
 	public void setPaddleState(boolean left, boolean right) {
 		this.dataManager.set(LEFT_PADDLE, left);
 		this.dataManager.set(RIGHT_PADDLE, right);
-	}
-
-	@OnlyIn(Dist.CLIENT)
-	public float getRowingTime(int side, float limbSwing) {
-		return this.getPaddleState(side)
-				? (float) MathHelper.clampedLerp((double) this.paddlePositions[side] - (double) ((float) Math.PI / 8F),
-						(double) this.paddlePositions[side], (double) limbSwing)
-				: 0.0F;
 	}
 
 	/**
@@ -810,15 +770,6 @@ public class VanillaBoatEntity extends BoatEntity {
 		entityToUpdate.setRotationYawHead(entityToUpdate.rotationYaw);
 	}
 
-	/**
-	 * Applies this entity's orientation (pitch/yaw) to another entity. Used to
-	 * update passenger orientation.
-	 */
-	@OnlyIn(Dist.CLIENT)
-	public void applyOrientationToEntity(Entity entityToUpdate) {
-		this.applyYawToEntity(entityToUpdate);
-	}
-
 	protected void writeAdditional(CompoundNBT compound) {
 		compound.putString("Type", this.getVanillaBoatType().getName());
 	}
@@ -919,11 +870,6 @@ public class VanillaBoatEntity extends BoatEntity {
 
 	private int getRockingTicks() {
 		return this.dataManager.get(ROCKING_TICKS);
-	}
-
-	@OnlyIn(Dist.CLIENT)
-	public float getRockingAngle(float partialTicks) {
-		return MathHelper.lerp(partialTicks, this.prevRockingAngle, this.rockingAngle);
 	}
 
 	/**

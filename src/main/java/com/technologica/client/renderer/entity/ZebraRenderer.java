@@ -7,10 +7,7 @@ import net.minecraft.client.renderer.entity.AbstractHorseRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.model.HorseModel;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
 public final class ZebraRenderer extends AbstractHorseRenderer<ZebraEntity, HorseModel<ZebraEntity>> {
 	private static final ResourceLocation ZEBRA_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/zebra.png");
 

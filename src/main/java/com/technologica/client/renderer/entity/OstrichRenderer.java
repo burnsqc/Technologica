@@ -7,10 +7,7 @@ import com.technologica.entity.passive.OstrichEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
 public final class OstrichRenderer extends MobRenderer<OstrichEntity, OstrichModel<OstrichEntity>> {
 	private static final ResourceLocation OSTRICH_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/ostrich.png");
 

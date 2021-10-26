@@ -6,10 +6,7 @@ import net.minecraft.client.renderer.entity.model.AgeableModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.passive.horse.AbstractHorseEntity;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
 public class OstrichModel<T extends AbstractHorseEntity> extends AgeableModel<T> {
 	protected final ModelRenderer body;
 	protected final ModelRenderer leftWing;

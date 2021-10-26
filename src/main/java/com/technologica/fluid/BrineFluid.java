@@ -1,5 +1,11 @@
 package com.technologica.fluid;
 
+import static com.technologica.Technologica.MODID;
+
+import java.util.Random;
+
+import javax.annotation.Nullable;
+
 import com.technologica.block.TechnologicaBlocks;
 import com.technologica.item.TechnologicaItems;
 
@@ -24,114 +30,107 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fluids.FluidAttributes;
 
-import javax.annotation.Nullable;
-import java.util.Random;
-
-import static com.technologica.Technologica.MODID;
-
 public abstract class BrineFluid extends FlowingFluid {
-   public Fluid getFlowingFluid() {
-      return TechnologicaFluids.BRINE_FLOWING.get();
-   }
+	public Fluid getFlowingFluid() {
+		return TechnologicaFluids.FLOWING_BRINE.get();
+	}
 
-   public Fluid getStillFluid() {
-      return TechnologicaFluids.BRINE_SOURCE.get();
-   }
+	public Fluid getStillFluid() {
+		return TechnologicaFluids.BRINE.get();
+	}
 
-   public Item getFilledBucket() {
-      return TechnologicaItems.BRINE_BUCKET.get();
-   }
+	public Item getFilledBucket() {
+		return TechnologicaItems.BRINE_BUCKET.get();
+	}
 
-   @Override
-   public FluidAttributes createAttributes() {
-      return FluidAttributes.builder(new ResourceLocation(MODID, "block/brine_still"), new ResourceLocation(MODID, "block/brine_flow")).build(TechnologicaFluids.BRINE_SOURCE.get());
-   }
+	@Override
+	public FluidAttributes createAttributes() {
+		return FluidAttributes.builder(new ResourceLocation(MODID, "block/brine_still"),
+				new ResourceLocation(MODID, "block/brine_flow")).build(TechnologicaFluids.BRINE.get());
+	}
 
-   @Override
-   @OnlyIn(Dist.CLIENT)
-   public void animateTick(World worldIn, BlockPos pos, FluidState state, Random random) {
-      if (!state.isSource() && Boolean.FALSE.equals(state.get(FALLING))) {
-         if (random.nextInt(64) == 0) {
-            worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_WATER_AMBIENT, SoundCategory.BLOCKS, random.nextFloat() * 0.25F + 0.75F, random.nextFloat() + 0.5F, false);
-         }
-      } else if (random.nextInt(10) == 0) {
-         worldIn.addParticle(ParticleTypes.UNDERWATER, (double) pos.getX() + random.nextDouble(), (double) pos.getY() + random.nextDouble(), (double) pos.getZ() + random.nextDouble(), 0.0D, 0.0D, 0.0D);
-      }
-   }
+	@Override
+	public void animateTick(World worldIn, BlockPos pos, FluidState state, Random random) {
+		if (worldIn.isRemote) {
+			if (!state.isSource() && Boolean.FALSE.equals(state.get(FALLING))) {
+				if (random.nextInt(64) == 0) {
+					worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_WATER_AMBIENT, SoundCategory.BLOCKS, random.nextFloat() * 0.25F + 0.75F, random.nextFloat() + 0.5F, false);
+				}
+			} else if (random.nextInt(10) == 0) {
+				worldIn.addParticle(ParticleTypes.UNDERWATER, (double) pos.getX() + random.nextDouble(), (double) pos.getY() + random.nextDouble(), (double) pos.getZ() + random.nextDouble(), 0.0D, 0.0D, 0.0D);
+			}
+		}
+	}
 
-   @Override
-   @Nullable
-   @OnlyIn(Dist.CLIENT)
-   public IParticleData getDripParticleData() {
-      return ParticleTypes.DRIPPING_WATER;
-   }
+	@Override
+	@Nullable
+	public IParticleData getDripParticleData() {
+		return ParticleTypes.DRIPPING_WATER;
+	}
 
-   protected boolean canSourcesMultiply() {
-      return false;
-   }
+	protected boolean canSourcesMultiply() {
+		return false;
+	}
 
-   protected void beforeReplacingBlock(IWorld worldIn, BlockPos pos, BlockState state) {
-      TileEntity tileentity = state.hasTileEntity() ? worldIn.getTileEntity(pos) : null;
-      Block.spawnDrops(state, worldIn, pos, tileentity);
-   }
+	protected void beforeReplacingBlock(IWorld worldIn, BlockPos pos, BlockState state) {
+		TileEntity tileentity = state.hasTileEntity() ? worldIn.getTileEntity(pos) : null;
+		Block.spawnDrops(state, worldIn, pos, tileentity);
+	}
 
-   public int getSlopeFindDistance(IWorldReader worldIn) {
-      return 4;
-   }
+	public int getSlopeFindDistance(IWorldReader worldIn) {
+		return 4;
+	}
 
-   public BlockState getBlockState(FluidState state) {
-      return TechnologicaBlocks.BRINE.get().getDefaultState().with(FlowingFluidBlock.LEVEL, Integer.valueOf(getLevelFromState(state)));
-   }
+	public BlockState getBlockState(FluidState state) {
+		return TechnologicaBlocks.BRINE.get().getDefaultState().with(FlowingFluidBlock.LEVEL, Integer.valueOf(getLevelFromState(state)));
+	}
 
-   @Override
-   public boolean isEquivalentTo(Fluid fluidIn) {
-      return fluidIn == TechnologicaFluids.BRINE_SOURCE.get() || fluidIn == TechnologicaFluids.BRINE_FLOWING.get();
-   }
+	@Override
+	public boolean isEquivalentTo(Fluid fluidIn) {
+		return fluidIn == TechnologicaFluids.BRINE.get() || fluidIn == TechnologicaFluids.FLOWING_BRINE.get();
+	}
 
-   public int getLevelDecreasePerBlock(IWorldReader worldIn) {
-      return 1;
-   }
+	public int getLevelDecreasePerBlock(IWorldReader worldIn) {
+		return 1;
+	}
 
-   public int getTickRate(IWorldReader p_205569_1_) {
-      return 5;
-   }
+	public int getTickRate(IWorldReader p_205569_1_) {
+		return 5;
+	}
 
-   public boolean canDisplace(FluidState fluidState, IBlockReader blockReader, BlockPos pos, Fluid fluid,
-                              Direction direction) {
-      return direction == Direction.DOWN && !fluid.isIn(FluidTags.WATER);
-   }
+	public boolean canDisplace(FluidState fluidState, IBlockReader blockReader, BlockPos pos, Fluid fluid, Direction direction) {
+		return direction == Direction.DOWN && !fluid.isIn(FluidTags.WATER);
+	}
 
-   protected float getExplosionResistance() {
-      return 100.0F;
-   }
+	protected float getExplosionResistance() {
+		return 100.0F;
+	}
 
-   public static class Flowing extends BrineFluid {
-      @Override
-      protected void fillStateContainer(StateContainer.Builder<Fluid, FluidState> builder) {
-         super.fillStateContainer(builder);
-         builder.add(LEVEL_1_8);
-      }
+	public static class Flowing extends BrineFluid {
+		@Override
+		protected void fillStateContainer(StateContainer.Builder<Fluid, FluidState> builder) {
+			super.fillStateContainer(builder);
+			builder.add(LEVEL_1_8);
+		}
 
-      public int getLevel(FluidState state) {
-         return state.get(LEVEL_1_8);
-      }
+		public int getLevel(FluidState state) {
+			return state.get(LEVEL_1_8);
+		}
 
-      public boolean isSource(FluidState state) {
-         return false;
-      }
-   }
+		public boolean isSource(FluidState state) {
+			return false;
+		}
+	}
 
-   public static class Source extends BrineFluid {
-      public int getLevel(FluidState state) {
-         return 8;
-      }
+	public static class Source extends BrineFluid {
+		public int getLevel(FluidState state) {
+			return 8;
+		}
 
-      public boolean isSource(FluidState state) {
-         return true;
-      }
-   }
+		public boolean isSource(FluidState state) {
+			return true;
+		}
+	}
 }

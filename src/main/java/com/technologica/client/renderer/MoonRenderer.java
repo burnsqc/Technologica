@@ -43,6 +43,7 @@ public class MoonRenderer implements ISkyRenderHandler {
 		super();
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void render(int ticks, float partialTicks, MatrixStack matrixStackIn, ClientWorld world, Minecraft mc) {
 		textureManager = mc.getTextureManager();

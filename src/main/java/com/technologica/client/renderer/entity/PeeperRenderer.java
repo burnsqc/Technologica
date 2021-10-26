@@ -10,10 +10,7 @@ import net.minecraft.client.renderer.entity.model.CreeperModel;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
 public class PeeperRenderer extends MobRenderer<PeeperEntity, CreeperModel<PeeperEntity>> {
    private static final ResourceLocation PEEPER_TEXTURES = new ResourceLocation(Technologica.MODID, "textures/entity/peeper.png");
 

@@ -24,24 +24,12 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(value = Dist.CLIENT, _interface = IChargeableMob.class)
 public class PeeperEntity extends MonsterEntity implements IChargeableMob {
-	private static final DataParameter<Integer> STATE = EntityDataManager.createKey(PeeperEntity.class,
-			DataSerializers.VARINT);
-	private static final DataParameter<Boolean> POWERED = EntityDataManager.createKey(PeeperEntity.class,
-			DataSerializers.BOOLEAN);
-	private static final DataParameter<Boolean> IGNITED = EntityDataManager.createKey(PeeperEntity.class,
-			DataSerializers.BOOLEAN);
-	private int lastActiveTime;
-	private int timeSinceIgnited;
-	private int fuseTime = 30;
-	private int explosionRadius = 3;
+	private static final DataParameter<Integer> STATE = EntityDataManager.createKey(PeeperEntity.class, DataSerializers.VARINT);
+	private static final DataParameter<Boolean> POWERED = EntityDataManager.createKey(PeeperEntity.class, DataSerializers.BOOLEAN);
 	private int droppedSkulls;
 
 	public PeeperEntity(EntityType<? extends PeeperEntity> type, World worldIn) {
@@ -70,11 +58,6 @@ public class PeeperEntity extends MonsterEntity implements IChargeableMob {
 
 	public boolean onLivingFall(float distance, float damageMultiplier) {
 		boolean flag = super.onLivingFall(distance, damageMultiplier);
-		this.timeSinceIgnited = (int) ((float) this.timeSinceIgnited + distance * 1.5F);
-		if (this.timeSinceIgnited > this.fuseTime - 5) {
-			this.timeSinceIgnited = this.fuseTime - 5;
-		}
-
 		return flag;
 	}
 
@@ -82,7 +65,6 @@ public class PeeperEntity extends MonsterEntity implements IChargeableMob {
 		super.registerData();
 		this.dataManager.register(STATE, -1);
 		this.dataManager.register(POWERED, false);
-		this.dataManager.register(IGNITED, false);
 	}
 
 	public void writeAdditional(CompoundNBT compound) {
@@ -90,10 +72,6 @@ public class PeeperEntity extends MonsterEntity implements IChargeableMob {
 		if (this.dataManager.get(POWERED)) {
 			compound.putBoolean("powered", true);
 		}
-
-		compound.putShort("Fuse", (short) this.fuseTime);
-		compound.putByte("ExplosionRadius", (byte) this.explosionRadius);
-		compound.putBoolean("ignited", this.hasIgnited());
 	}
 
 	/**
@@ -102,45 +80,12 @@ public class PeeperEntity extends MonsterEntity implements IChargeableMob {
 	public void readAdditional(CompoundNBT compound) {
 		super.readAdditional(compound);
 		this.dataManager.set(POWERED, compound.getBoolean("powered"));
-		if (compound.contains("Fuse", 99)) {
-			this.fuseTime = compound.getShort("Fuse");
-		}
-
-		if (compound.contains("ExplosionRadius", 99)) {
-			this.explosionRadius = compound.getByte("ExplosionRadius");
-		}
-
-		if (compound.getBoolean("ignited")) {
-			this.ignite();
-		}
-
 	}
 
 	/**
 	 * Called to update the entity's position/logic.
 	 */
 	public void tick() {
-		if (this.isAlive()) {
-			this.lastActiveTime = this.timeSinceIgnited;
-			if (this.hasIgnited()) {
-				this.setCreeperState(1);
-			}
-
-			int i = this.getCreeperState();
-			if (i > 0 && this.timeSinceIgnited == 0) {
-				this.playSound(SoundEvents.ENTITY_CREEPER_PRIMED, 1.0F, 0.5F);
-			}
-
-			this.timeSinceIgnited += i;
-			if (this.timeSinceIgnited < 0) {
-				this.timeSinceIgnited = 0;
-			}
-
-			if (this.timeSinceIgnited >= this.fuseTime) {
-				this.timeSinceIgnited = this.fuseTime;
-			}
-		}
-
 		super.tick();
 	}
 
@@ -173,15 +118,6 @@ public class PeeperEntity extends MonsterEntity implements IChargeableMob {
 		return this.dataManager.get(POWERED);
 	}
 
-	/**
-	 * Params: (Float)Render tick. Returns the intensity of the creeper's flash when
-	 * it is ignited.
-	 */
-	@OnlyIn(Dist.CLIENT)
-	public float getCreeperFlashIntensity(float partialTicks) {
-		return MathHelper.lerp(partialTicks, (float) this.lastActiveTime, (float) this.timeSinceIgnited)
-				/ (float) (this.fuseTime - 2);
-	}
 
 	/**
 	 * Returns the current state of creeper, -1 is idle, 1 is 'in fuse'
@@ -209,7 +145,6 @@ public class PeeperEntity extends MonsterEntity implements IChargeableMob {
 					SoundEvents.ITEM_FLINTANDSTEEL_USE, this.getSoundCategory(), 1.0F,
 					this.rand.nextFloat() * 0.4F + 0.8F);
 			if (!this.world.isRemote) {
-				this.ignite();
 				itemstack.damageItem(1, playerIn, (player) -> {
 					player.sendBreakAnimation(hand);
 				});
@@ -219,14 +154,6 @@ public class PeeperEntity extends MonsterEntity implements IChargeableMob {
 		} else {
 			return super.getEntityInteractionResult(playerIn, hand);
 		}
-	}
-
-	public boolean hasIgnited() {
-		return this.dataManager.get(IGNITED);
-	}
-
-	public void ignite() {
-		this.dataManager.set(IGNITED, true);
 	}
 
 	/**

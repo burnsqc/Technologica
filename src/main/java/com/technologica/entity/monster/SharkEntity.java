@@ -1,11 +1,34 @@
 package com.technologica.entity.monster;
 
-import net.minecraft.entity.*;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Random;
+import java.util.UUID;
+import java.util.function.Predicate;
+
+import javax.annotation.Nullable;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntitySize;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.IAngerable;
+import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.MoverType;
+import net.minecraft.entity.Pose;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.controller.DolphinLookController;
 import net.minecraft.entity.ai.controller.MovementController;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.goal.FindWaterGoal;
+import net.minecraft.entity.ai.goal.FollowBoatGoal;
+import net.minecraft.entity.ai.goal.HurtByTargetGoal;
+import net.minecraft.entity.ai.goal.LookAtGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
+import net.minecraft.entity.ai.goal.RandomSwimmingGoal;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.monster.GuardianEntity;
 import net.minecraft.entity.passive.WaterMobEntity;
@@ -17,13 +40,19 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.pathfinding.SwimmerPathNavigator;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.Hand;
+import net.minecraft.util.RangedInteger;
+import net.minecraft.util.RegistryKey;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.util.TickRangeConverter;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
@@ -32,15 +61,6 @@ import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-
-import javax.annotation.Nullable;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Random;
-import java.util.UUID;
-import java.util.function.Predicate;
 
 public class SharkEntity extends WaterMobEntity implements IAngerable {
    private static final DataParameter<Integer> MOISTNESS = EntityDataManager.createKey(SharkEntity.class, DataSerializers.VARINT);
@@ -177,31 +197,6 @@ public class SharkEntity extends WaterMobEntity implements IAngerable {
          }
 
       }
-   }
-
-   /**
-    * Handler for {@link World#setEntityState}
-    */
-   @Override
-   @OnlyIn(Dist.CLIENT)
-   public void handleStatusUpdate(byte id) {
-      if (id == 38) {
-         this.func_208401_a(ParticleTypes.HAPPY_VILLAGER);
-      } else {
-         super.handleStatusUpdate(id);
-      }
-
-   }
-
-   @OnlyIn(Dist.CLIENT)
-   private void func_208401_a(IParticleData p_208401_1_) {
-      for (int i = 0; i < 7; ++i) {
-         double d0 = this.rand.nextGaussian() * 0.01D;
-         double d1 = this.rand.nextGaussian() * 0.01D;
-         double d2 = this.rand.nextGaussian() * 0.01D;
-         this.world.addParticle(p_208401_1_, this.getPosXRandom(1.0D), this.getPosYRandom() + 0.2D, this.getPosZRandom(1.0D), d0, d1, d2);
-      }
-
    }
 
    @Override

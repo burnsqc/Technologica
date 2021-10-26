@@ -109,9 +109,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			else if (path.contains("_door") && !path.contains("trap")) doorBlock((DoorBlock) block, StringHelper.extend(blockTexture(block), "_bottom"), StringHelper.extend(blockTexture(block), "_top"));
 			else if (path.contains("_trapdoor")) trapdoorBlock((TrapDoorBlock) block, blockTexture(block), true);
 			else if (path.contains("_sign")) signBlock(block);
-			else if (path.contains("small_pulley")) simpleBlock(block, smallPulleyModel(block));
-			else if (path.contains("medium_pulley")) simpleBlock(block, mediumPulleyModel(block));
-			else if (path.contains("large_pulley")) simpleBlock(block, largePulleyModel(block));
 			else if (path.contains("display_case")) {
 				simpleBlock(block, displayModel(block));
 				simpleBlockItem(block, displayModel(block));
@@ -146,21 +143,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	/*
 	 * ModelFiles
 	 */
-	
-	public ModelFile smallPulleyModel(Block block) {
-		ResourceLocation location = block.getRegistryName();
-		return models().withExistingParent(StringHelper.getPath(block), modLoc("small_pulley")).texture("pulley", new ResourceLocation(location.getNamespace(), "block/pulley"));
-    }
-	
-	public ModelFile mediumPulleyModel(Block block) {
-		ResourceLocation location = block.getRegistryName();
-		return models().withExistingParent(StringHelper.getPath(block), modLoc("medium_pulley")).texture("pulley", new ResourceLocation(location.getNamespace(), "block/pulley"));
-    }
-	
-	public ModelFile largePulleyModel(Block block) {
-		ResourceLocation location = block.getRegistryName();
-		return models().withExistingParent(StringHelper.getPath(block), modLoc("large_pulley")).texture("pulley", new ResourceLocation(location.getNamespace(), "block/pulley"));
-    }
 	
 	public ModelFile chairModel(Block block, ResourceLocation texture) {
 		return models().singleTexture(StringHelper.getPath(block), modLoc("chair"), "planks", texture);

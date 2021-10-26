@@ -224,9 +224,9 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> FLUORITE_CRYSTAL = BLOCKS.register("fluorite_crystal", () -> new TwentyFourDirectionBlock(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(6.0F).sound(SoundType.GLASS).notSolid()));
     public static final RegistryObject<Block> ULEXITE_CRYSTAL = BLOCKS.register("ulexite_crystal", () -> new TwentyFourDirectionBlock(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(6.0F).sound(SoundType.GLASS).notSolid()));
     
-    public static final RegistryObject<FlowingFluidBlock> BRINE = BLOCKS.register("brine", () -> new FlowingFluidBlock(TechnologicaFluids.BRINE_SOURCE, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
-    public static final RegistryObject<FlowingFluidBlock> MERCURY = BLOCKS.register("mercury", () -> new FlowingFluidBlock(TechnologicaFluids.MERCURY_SOURCE, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
-    public static final RegistryObject<FlowingFluidBlock> HYDROGEN = BLOCKS.register("hydrogen", () -> new FlowingFluidBlock(TechnologicaFluids.HYDROGEN_SOURCE, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> BRINE = BLOCKS.register("brine", () -> new FlowingFluidBlock(TechnologicaFluids.BRINE, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> MERCURY = BLOCKS.register("mercury", () -> new FlowingFluidBlock(TechnologicaFluids.MERCURY, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> HYDROGEN = BLOCKS.register("hydrogen", () -> new FlowingFluidBlock(TechnologicaFluids.HYDROGEN, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
     
     /*
      * CONSTRUCTION

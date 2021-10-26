@@ -34,6 +34,22 @@ public class ChairBlock extends FourDirectionBlock {
 	}
 
 	/*
+	 * Technologica Methods
+	 */
+	
+	public boolean hasEntity(BlockState stateIn) {
+		return true;
+	}
+
+	public TileEntity createEntity(BlockState stateIn, IBlockReader worldIn) {
+		return new FruitTileEntity();
+	}
+	
+	public InvisibleSeatEntity getEntity(World world, BlockPos pos) {
+		return (InvisibleSeatEntity) world.getEntitiesWithinAABB(InvisibleSeatEntity.class, new AxisAlignedBB(pos)).get(0);
+	}
+	
+	/*
 	 * Minecraft Methods
 	 */
 	
@@ -76,21 +92,5 @@ public class ChairBlock extends FourDirectionBlock {
 	@Override
 	public int getFireSpreadSpeed(BlockState stateIn, IBlockReader worldIn, BlockPos posIn, Direction faceIn) {
 		return 20;
-	}
-
-	/*
-	 * Technologica Methods
-	 */
-	
-	public boolean hasEntity(BlockState stateIn) {
-		return true;
-	}
-
-	public TileEntity createEntity(BlockState stateIn, IBlockReader worldIn) {
-		return new FruitTileEntity();
-	}
-	
-	public InvisibleSeatEntity getEntity(World world, BlockPos pos) {
-		return (InvisibleSeatEntity) world.getEntitiesWithinAABB(InvisibleSeatEntity.class, new AxisAlignedBB(pos)).get(0);
 	}
 }

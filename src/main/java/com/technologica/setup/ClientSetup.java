@@ -78,8 +78,8 @@ public class ClientSetup {
 			RenderTypeLookup.setRenderLayer(TechnologicaBlocks.ULEXITE_CRYSTAL.get(), RenderType.getTranslucent());
 			RenderTypeLookup.setRenderLayer(TechnologicaBlocks.DOLOMITE_CRYSTAL.get(), RenderType.getTranslucent());
     	  	
-			RenderTypeLookup.setRenderLayer(TechnologicaFluids.BRINE_SOURCE.get(), RenderType.getTranslucent());
-    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.BRINE_FLOWING.get(), RenderType.getTranslucent());
+			RenderTypeLookup.setRenderLayer(TechnologicaFluids.BRINE.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.FLOWING_BRINE.get(), RenderType.getTranslucent());
 
     	  	ClientRegistry.bindTileEntityRenderer(TechnologicaTileEntities.MOD_SIGN.get(), VanillaSignTileEntityRenderer::new);
     	  	ClientRegistry.bindTileEntityRenderer(TechnologicaTileEntities.FRUIT_CROP.get(), FruitTileEntityRenderer::new);

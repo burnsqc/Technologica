@@ -10,10 +10,7 @@ import net.minecraft.client.renderer.entity.model.CreeperModel;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
 public class SweeperRenderer extends MobRenderer<SweeperEntity, CreeperModel<SweeperEntity>> {
    private static final ResourceLocation SWEEPER_TEXTURES = new ResourceLocation(Technologica.MODID, "textures/entity/sweeper.png");
 

@@ -51,8 +51,6 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class GrizzlyBearEntity extends PolarBearEntity implements IAngerable {
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(Items.SALMON);
@@ -222,12 +220,6 @@ public class GrizzlyBearEntity extends PolarBearEntity implements IAngerable {
    @Override
    public void setStanding(boolean standing) {
       this.dataManager.set(IS_STANDING, standing);
-   }
-
-   @Override
-   @OnlyIn(Dist.CLIENT)
-   public float getStandingAnimationScale(float p_189795_1_) {
-      return MathHelper.lerp(p_189795_1_, this.clientSideStandAnimation0, this.clientSideStandAnimation) / 6.0F;
    }
 
    @Override

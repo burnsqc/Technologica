@@ -4,7 +4,6 @@ import com.technologica.entity.ai.PickupItemGoal;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.IChargeableMob;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
@@ -23,24 +22,14 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(value = Dist.CLIENT, _interface = IChargeableMob.class)
-public class SweeperEntity extends MonsterEntity implements IChargeableMob {
-	private static final DataParameter<Integer> STATE = EntityDataManager.createKey(SweeperEntity.class,
-			DataSerializers.VARINT);
-	private static final DataParameter<Boolean> POWERED = EntityDataManager.createKey(SweeperEntity.class,
-			DataSerializers.BOOLEAN);
-	private static final DataParameter<Boolean> IGNITED = EntityDataManager.createKey(SweeperEntity.class,
-			DataSerializers.BOOLEAN);
-	private int lastActiveTime;
-	private int timeSinceIgnited;
-	private int fuseTime = 30;
-	private int explosionRadius = 3;
+public class SweeperEntity extends MonsterEntity {
+	private static final DataParameter<Integer> STATE = EntityDataManager.createKey(SweeperEntity.class, DataSerializers.VARINT);
+	private static final DataParameter<Boolean> POWERED = EntityDataManager.createKey(SweeperEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> IGNITED = EntityDataManager.createKey(SweeperEntity.class, DataSerializers.BOOLEAN);
+
 	private int droppedSkulls;
 
 	public SweeperEntity(EntityType<? extends SweeperEntity> type, World worldIn) {
@@ -67,11 +56,6 @@ public class SweeperEntity extends MonsterEntity implements IChargeableMob {
 
 	public boolean onLivingFall(float distance, float damageMultiplier) {
 		boolean flag = super.onLivingFall(distance, damageMultiplier);
-		this.timeSinceIgnited = (int) ((float) this.timeSinceIgnited + distance * 1.5F);
-		if (this.timeSinceIgnited > this.fuseTime - 5) {
-			this.timeSinceIgnited = this.fuseTime - 5;
-		}
-
 		return flag;
 	}
 
@@ -87,10 +71,6 @@ public class SweeperEntity extends MonsterEntity implements IChargeableMob {
 		if (this.dataManager.get(POWERED)) {
 			compound.putBoolean("powered", true);
 		}
-
-		compound.putShort("Fuse", (short) this.fuseTime);
-		compound.putByte("ExplosionRadius", (byte) this.explosionRadius);
-		compound.putBoolean("ignited", this.hasIgnited());
 	}
 
 	/**
@@ -99,45 +79,12 @@ public class SweeperEntity extends MonsterEntity implements IChargeableMob {
 	public void readAdditional(CompoundNBT compound) {
 		super.readAdditional(compound);
 		this.dataManager.set(POWERED, compound.getBoolean("powered"));
-		if (compound.contains("Fuse", 99)) {
-			this.fuseTime = compound.getShort("Fuse");
-		}
-
-		if (compound.contains("ExplosionRadius", 99)) {
-			this.explosionRadius = compound.getByte("ExplosionRadius");
-		}
-
-		if (compound.getBoolean("ignited")) {
-			this.ignite();
-		}
-
 	}
 
 	/**
 	 * Called to update the entity's position/logic.
 	 */
 	public void tick() {
-		if (this.isAlive()) {
-			this.lastActiveTime = this.timeSinceIgnited;
-			if (this.hasIgnited()) {
-				this.setCreeperState(1);
-			}
-
-			int i = this.getCreeperState();
-			if (i > 0 && this.timeSinceIgnited == 0) {
-				this.playSound(SoundEvents.ENTITY_CREEPER_PRIMED, 1.0F, 0.5F);
-			}
-
-			this.timeSinceIgnited += i;
-			if (this.timeSinceIgnited < 0) {
-				this.timeSinceIgnited = 0;
-			}
-
-			if (this.timeSinceIgnited >= this.fuseTime) {
-				this.timeSinceIgnited = this.fuseTime;
-			}
-		}
-
 		super.tick();
 	}
 
@@ -168,16 +115,6 @@ public class SweeperEntity extends MonsterEntity implements IChargeableMob {
 
 	public boolean isCharged() {
 		return this.dataManager.get(POWERED);
-	}
-
-	/**
-	 * Params: (Float)Render tick. Returns the intensity of the creeper's flash when
-	 * it is ignited.
-	 */
-	@OnlyIn(Dist.CLIENT)
-	public float getCreeperFlashIntensity(float partialTicks) {
-		return MathHelper.lerp(partialTicks, (float) this.lastActiveTime, (float) this.timeSinceIgnited)
-				/ (float) (this.fuseTime - 2);
 	}
 
 	/**
