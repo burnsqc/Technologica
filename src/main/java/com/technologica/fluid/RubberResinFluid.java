@@ -31,22 +31,22 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidAttributes;
 
-public abstract class BrineFluid extends FlowingFluid {
+public abstract class RubberResinFluid extends FlowingFluid {
 	public Fluid getFlowingFluid() {
-		return TechnologicaFluids.FLOWING_BRINE.get();
+		return TechnologicaFluids.FLOWING_RUBBER_RESIN.get();
 	}
 
 	public Fluid getStillFluid() {
-		return TechnologicaFluids.BRINE.get();
+		return TechnologicaFluids.RUBBER_RESIN.get();
 	}
 
 	public Item getFilledBucket() {
-		return TechnologicaItems.BRINE_BUCKET.get();
+		return TechnologicaItems.RUBBER_RESIN_BUCKET.get();
 	}
 
 	@Override
 	public FluidAttributes createAttributes() {
-		return FluidAttributes.builder(new ResourceLocation(Technologica.MODID, "block/opaque_fluid_still"), new ResourceLocation(Technologica.MODID, "block/opaque_fluid_flow")).color(-5579521).build(TechnologicaFluids.BRINE.get());
+		return FluidAttributes.builder(new ResourceLocation(Technologica.MODID, "block/opaque_fluid_still"), new ResourceLocation(Technologica.MODID, "block/opaque_fluid_flow")).color(-986928).build(TechnologicaFluids.RUBBER_RESIN.get());
 	}
 
 	@Override
@@ -82,12 +82,12 @@ public abstract class BrineFluid extends FlowingFluid {
 	}
 
 	public BlockState getBlockState(FluidState state) {
-		return TechnologicaBlocks.BRINE.get().getDefaultState().with(FlowingFluidBlock.LEVEL, Integer.valueOf(getLevelFromState(state)));
+		return TechnologicaBlocks.RUBBER_RESIN.get().getDefaultState().with(FlowingFluidBlock.LEVEL, Integer.valueOf(getLevelFromState(state)));
 	}
 
 	@Override
 	public boolean isEquivalentTo(Fluid fluidIn) {
-		return fluidIn == TechnologicaFluids.BRINE.get() || fluidIn == TechnologicaFluids.FLOWING_BRINE.get();
+		return fluidIn == TechnologicaFluids.RUBBER_RESIN.get() || fluidIn == TechnologicaFluids.FLOWING_RUBBER_RESIN.get();
 	}
 
 	public int getLevelDecreasePerBlock(IWorldReader worldIn) {
@@ -95,7 +95,7 @@ public abstract class BrineFluid extends FlowingFluid {
 	}
 
 	public int getTickRate(IWorldReader p_205569_1_) {
-		return 10;
+		return 30;
 	}
 
 	public boolean canDisplace(FluidState fluidState, IBlockReader blockReader, BlockPos pos, Fluid fluid, Direction direction) {
@@ -106,7 +106,7 @@ public abstract class BrineFluid extends FlowingFluid {
 		return 100.0F;
 	}
 
-	public static class Flowing extends BrineFluid {
+	public static class Flowing extends RubberResinFluid {
 		@Override
 		protected void fillStateContainer(StateContainer.Builder<Fluid, FluidState> builder) {
 			super.fillStateContainer(builder);
@@ -122,7 +122,7 @@ public abstract class BrineFluid extends FlowingFluid {
 		}
 	}
 
-	public static class Source extends BrineFluid {
+	public static class Source extends RubberResinFluid {
 		public int getLevel(FluidState state) {
 			return 8;
 		}

@@ -74,7 +74,7 @@ public abstract class MercuryFluid extends FlowingFluid {
 	
 	@Override
 	public FluidAttributes createAttributes() {
-		return FluidAttributes.builder(new ResourceLocation(MODID, "block/mercury_still"), new ResourceLocation(MODID, "block/mercury_flow")).build(TechnologicaFluids.MERCURY.get());
+		return FluidAttributes.builder(new ResourceLocation(MODID, "block/metal_still"), new ResourceLocation(MODID, "block/metal_flow")).color(-1973791).build(TechnologicaFluids.MERCURY.get());
 	}
 
 	@Override

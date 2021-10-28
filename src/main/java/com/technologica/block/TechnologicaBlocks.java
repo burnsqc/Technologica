@@ -224,9 +224,31 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> FLUORITE_CRYSTAL = BLOCKS.register("fluorite_crystal", () -> new TwentyFourDirectionBlock(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(6.0F).sound(SoundType.GLASS).notSolid()));
     public static final RegistryObject<Block> ULEXITE_CRYSTAL = BLOCKS.register("ulexite_crystal", () -> new TwentyFourDirectionBlock(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(6.0F).sound(SoundType.GLASS).notSolid()));
     
-    public static final RegistryObject<FlowingFluidBlock> BRINE = BLOCKS.register("brine", () -> new FlowingFluidBlock(TechnologicaFluids.BRINE, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
-    public static final RegistryObject<FlowingFluidBlock> MERCURY = BLOCKS.register("mercury", () -> new FlowingFluidBlock(TechnologicaFluids.MERCURY, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
     public static final RegistryObject<FlowingFluidBlock> HYDROGEN = BLOCKS.register("hydrogen", () -> new FlowingFluidBlock(TechnologicaFluids.HYDROGEN, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> HELIUM = BLOCKS.register("helium", () -> new FlowingFluidBlock(TechnologicaFluids.HELIUM, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> NITROGEN = BLOCKS.register("nitrogen", () -> new FlowingFluidBlock(TechnologicaFluids.NITROGEN, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> OXYGEN = BLOCKS.register("oxygen", () -> new FlowingFluidBlock(TechnologicaFluids.OXYGEN, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> FLUORINE = BLOCKS.register("fluorine", () -> new FlowingFluidBlock(TechnologicaFluids.FLUORINE, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> NEON = BLOCKS.register("neon", () -> new FlowingFluidBlock(TechnologicaFluids.NEON, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> CHLORINE = BLOCKS.register("chlorine", () -> new FlowingFluidBlock(TechnologicaFluids.CHLORINE, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> ARGON = BLOCKS.register("argon", () -> new FlowingFluidBlock(TechnologicaFluids.ARGON, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> KRYPTON = BLOCKS.register("krypton", () -> new FlowingFluidBlock(TechnologicaFluids.KRYPTON, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> XENON = BLOCKS.register("xenon", () -> new FlowingFluidBlock(TechnologicaFluids.XENON, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> RADON = BLOCKS.register("radon", () -> new FlowingFluidBlock(TechnologicaFluids.RADON, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    
+    public static final RegistryObject<FlowingFluidBlock> BROMINE = BLOCKS.register("bromine", () -> new FlowingFluidBlock(TechnologicaFluids.BROMINE, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> MERCURY = BLOCKS.register("mercury", () -> new FlowingFluidBlock(TechnologicaFluids.MERCURY, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    
+    public static final RegistryObject<FlowingFluidBlock> BRINE = BLOCKS.register("brine", () -> new FlowingFluidBlock(TechnologicaFluids.BRINE, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> OIL = BLOCKS.register("oil", () -> new FlowingFluidBlock(TechnologicaFluids.OIL, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> NATURAL_GAS = BLOCKS.register("natural_gas", () -> new FlowingFluidBlock(TechnologicaFluids.NATURAL_GAS, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+       
+    public static final RegistryObject<FlowingFluidBlock> MAPLE_SYRUP = BLOCKS.register("maple_syrup", () -> new FlowingFluidBlock(TechnologicaFluids.MAPLE_SYRUP, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> RUBBER_RESIN = BLOCKS.register("rubber_resin", () -> new FlowingFluidBlock(TechnologicaFluids.RUBBER_RESIN, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    
+    public static final RegistryObject<FlowingFluidBlock> GASOLINE = BLOCKS.register("gasoline", () -> new FlowingFluidBlock(TechnologicaFluids.GASOLINE, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> MACHINE_OIL = BLOCKS.register("machine_oil", () -> new FlowingFluidBlock(TechnologicaFluids.MACHINE_OIL, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> COOLANT = BLOCKS.register("coolant", () -> new FlowingFluidBlock(TechnologicaFluids.COOLANT, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
     
     /*
      * CONSTRUCTION

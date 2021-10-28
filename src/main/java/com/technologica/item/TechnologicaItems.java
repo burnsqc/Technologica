@@ -280,9 +280,31 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> MULCH = ITEMS.register("mulch", () -> new Item(new Properties().group(TechnologicaItemGroup.MINERAL)));
     public static final RegistryObject<Item> SAWDUST = ITEMS.register("sawdust", () -> new Item(new Properties().group(TechnologicaItemGroup.MINERAL)));
     
-    public static final RegistryObject<Item> BRINE_BUCKET = ITEMS.register("brine_bucket", () -> new BucketItem(TechnologicaFluids.BRINE, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
-    public static final RegistryObject<Item> MERCURY_BUCKET = ITEMS.register("mercury_bucket", () -> new BucketItem(TechnologicaFluids.MERCURY, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
     public static final RegistryObject<Item> HYDROGEN_BUCKET = ITEMS.register("hydrogen_bucket", () -> new BucketItem(TechnologicaFluids.HYDROGEN, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> HELIUM_BUCKET = ITEMS.register("helium_bucket", () -> new BucketItem(TechnologicaFluids.HELIUM, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> NITROGEN_BUCKET = ITEMS.register("nitrogen_bucket", () -> new BucketItem(TechnologicaFluids.NITROGEN, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> OXYGEN_BUCKET = ITEMS.register("oxygen_bucket", () -> new BucketItem(TechnologicaFluids.OXYGEN, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> FLUORINE_BUCKET = ITEMS.register("fluorine_bucket", () -> new BucketItem(TechnologicaFluids.FLUORINE, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> NEON_BUCKET = ITEMS.register("neon_bucket", () -> new BucketItem(TechnologicaFluids.NEON, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> CHLORINE_BUCKET = ITEMS.register("chlorine_bucket", () -> new BucketItem(TechnologicaFluids.CHLORINE, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> ARGON_BUCKET = ITEMS.register("argon_bucket", () -> new BucketItem(TechnologicaFluids.ARGON, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> KRYPTON_BUCKET = ITEMS.register("krypton_bucket", () -> new BucketItem(TechnologicaFluids.KRYPTON, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> XENON_BUCKET = ITEMS.register("xenon_bucket", () -> new BucketItem(TechnologicaFluids.XENON, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> RADON_BUCKET = ITEMS.register("radon_bucket", () -> new BucketItem(TechnologicaFluids.RADON, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    
+    public static final RegistryObject<Item> BROMINE_BUCKET = ITEMS.register("bromine_bucket", () -> new BucketItem(TechnologicaFluids.BROMINE, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> MERCURY_BUCKET = ITEMS.register("mercury_bucket", () -> new BucketItem(TechnologicaFluids.MERCURY, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    
+    public static final RegistryObject<Item> BRINE_BUCKET = ITEMS.register("brine_bucket", () -> new BucketItem(TechnologicaFluids.BRINE, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> OIL_BUCKET = ITEMS.register("oil_bucket", () -> new BucketItem(TechnologicaFluids.OIL, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> NATURAL_GAS_BUCKET = ITEMS.register("natural_gas_bucket", () -> new BucketItem(TechnologicaFluids.NATURAL_GAS, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    
+    public static final RegistryObject<Item> MAPLE_SYRUP_BUCKET = ITEMS.register("maple_syrup_bucket", () -> new BucketItem(TechnologicaFluids.MAPLE_SYRUP, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> RUBBER_RESIN_BUCKET = ITEMS.register("rubber_resin_bucket", () -> new BucketItem(TechnologicaFluids.RUBBER_RESIN, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    
+    public static final RegistryObject<Item> GASOLINE_BUCKET = ITEMS.register("gasoline_bucket", () -> new BucketItem(TechnologicaFluids.GASOLINE, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> MACHINE_OIL_BUCKET = ITEMS.register("machine_oil_bucket", () -> new BucketItem(TechnologicaFluids.MACHINE_OIL, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> COOLANT_BUCKET = ITEMS.register("coolant_bucket", () -> new BucketItem(TechnologicaFluids.COOLANT, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
     
     /**
      * FOOD

@@ -78,9 +78,49 @@ public class ClientSetup {
 			RenderTypeLookup.setRenderLayer(TechnologicaBlocks.ULEXITE_CRYSTAL.get(), RenderType.getTranslucent());
 			RenderTypeLookup.setRenderLayer(TechnologicaBlocks.DOLOMITE_CRYSTAL.get(), RenderType.getTranslucent());
     	  	
+			RenderTypeLookup.setRenderLayer(TechnologicaFluids.HYDROGEN.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.FLOWING_HYDROGEN.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.HELIUM.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.FLOWING_HELIUM.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.NITROGEN.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.FLOWING_NITROGEN.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.OXYGEN.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.FLOWING_OXYGEN.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.FLUORINE.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.FLOWING_FLUORINE.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.NEON.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.FLOWING_NEON.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.CHLORINE.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.FLOWING_CHLORINE.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.ARGON.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.FLOWING_ARGON.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.KRYPTON.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.FLOWING_KRYPTON.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.XENON.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.FLOWING_XENON.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.RADON.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.FLOWING_RADON.get(), RenderType.getTranslucent());
+    	  	
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.BROMINE.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.FLOWING_BROMINE.get(), RenderType.getTranslucent());
+			
 			RenderTypeLookup.setRenderLayer(TechnologicaFluids.BRINE.get(), RenderType.getTranslucent());
     	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.FLOWING_BRINE.get(), RenderType.getTranslucent());
-
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.NATURAL_GAS.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.FLOWING_NATURAL_GAS.get(), RenderType.getTranslucent());
+    	  	
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.MAPLE_SYRUP.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.FLOWING_MAPLE_SYRUP.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.RUBBER_RESIN.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.FLOWING_RUBBER_RESIN.get(), RenderType.getTranslucent());
+    	  	
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.GASOLINE.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.FLOWING_GASOLINE.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.MACHINE_OIL.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.FLOWING_MACHINE_OIL.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.COOLANT.get(), RenderType.getTranslucent());
+    	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.FLOWING_COOLANT.get(), RenderType.getTranslucent());
+    	  	
     	  	ClientRegistry.bindTileEntityRenderer(TechnologicaTileEntities.MOD_SIGN.get(), VanillaSignTileEntityRenderer::new);
     	  	ClientRegistry.bindTileEntityRenderer(TechnologicaTileEntities.FRUIT_CROP.get(), FruitTileEntityRenderer::new);
     	  	ClientRegistry.bindTileEntityRenderer(TechnologicaTileEntities.POTION_CROP.get(), PotionTileEntityRenderer::new);

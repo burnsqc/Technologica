@@ -1,7 +1,5 @@
 package com.technologica.fluid;
 
-import static com.technologica.Technologica.MODID;
-
 import java.util.Random;
 
 import javax.annotation.Nullable;
@@ -76,10 +74,10 @@ public abstract class HydrogenFluid extends FlowingFluid {
 
 	      this.flowAround(worldIn, pos, state);
 	   }
-
+	
 	@Override
 	public FluidAttributes createAttributes() {
-		return FluidAttributes.builder(new ResourceLocation(MODID, "block/brine_still"), new ResourceLocation(MODID, "block/brine_flow")).build(TechnologicaFluids.HYDROGEN.get());
+		return FluidAttributes.builder(new ResourceLocation("block/water_still"), new ResourceLocation("block/water_flow")).color(1680343295).build(TechnologicaFluids.HYDROGEN.get());
 	}
 
 	@Override

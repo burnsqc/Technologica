@@ -1,8 +1,26 @@
 {
   "replace": false,
   "values": [
-    "technologica:flowing_brine",
+    "technologica:flowing_hydrogen",
+    "technologica:flowing_helium",
+    "technologica:flowing_nitrogen",
+    "technologica:flowing_oxygen",
+    "technologica:flowing_fluorine",
+    "technologica:flowing_neon",
+    "technologica:flowing_chlroine",
+    "technologica:flowing_argon",
+    "technologica:flowing_krypton",
+    "technologica:flowing_xenon",
+    "technologica:flowing_radon",
+    "technologica:flowing_bromine",
     "technologica:flowing_mercury",
-    "technologica:flowing_hydrogen"
+    "technologica:flowing_brine",
+    "technologica:flowing_oil",
+    "technologica:flowing_natural_gas",
+    "technologica:flowing_maple_syrup",
+    "technologica:flowing_rubber_resin",
+    "technologica:flowing_gasoline",
+    "technologica:flowing_machine_oil",
+    "technologica:flowing_coolant"
   ]
 }
