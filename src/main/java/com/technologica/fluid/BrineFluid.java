@@ -47,8 +47,7 @@ public abstract class BrineFluid extends FlowingFluid {
 
 	@Override
 	public FluidAttributes createAttributes() {
-		return FluidAttributes.builder(new ResourceLocation(MODID, "block/brine_still"),
-				new ResourceLocation(MODID, "block/brine_flow")).build(TechnologicaFluids.BRINE.get());
+		return FluidAttributes.builder(new ResourceLocation("block/water_still"), new ResourceLocation("block/water_flow")).color(-12618012).build(TechnologicaFluids.BRINE.get());
 	}
 
 	@Override
