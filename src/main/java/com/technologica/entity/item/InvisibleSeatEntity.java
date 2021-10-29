@@ -17,9 +17,9 @@ import net.minecraftforge.fml.network.NetworkHooks;
 public class InvisibleSeatEntity extends Entity {
 
 	public InvisibleSeatEntity(EntityType<?> entityTypeIn, World worldIn) {
-		super(entityTypeIn, worldIn);	
+		super(entityTypeIn, worldIn);
 	}
-	
+
 	public InvisibleSeatEntity(World worldIn, double x, double y, double z) {
 		super(TechnologicaEntities.INVISIBLE_SEAT.get(), worldIn);
 		setPosition(x, y, z);
@@ -27,37 +27,34 @@ public class InvisibleSeatEntity extends Entity {
 	}
 
 	@Override
-	public Vector3d getDismountPosition(LivingEntity passenger)
-	{
-		if(passenger instanceof PlayerEntity)
-		{
-			BlockPos pos = EntityUtil.getPreviousPlayerPosition((PlayerEntity)passenger, this);
+	public Vector3d getDismountPosition(LivingEntity passenger) {
+		if (passenger instanceof PlayerEntity) {
+			BlockPos pos = EntityUtil.getPreviousPlayerPosition((PlayerEntity) passenger, this);
 
-			if(pos != null)
-			{
+			if (pos != null) {
 				return new Vector3d(pos.getX(), pos.getY(), pos.getZ());
 			}
 		}
-
+		remove();
 		return super.getDismountPosition(passenger);
 	}
-	
+
 	@Override
 	public void remove() {
 		super.remove();
 		EntityUtil.removeSitEntity(world, getPosition());
 	}
-	
+
 	@Override
-	protected void registerData() {		
+	protected void registerData() {
 	}
 
 	@Override
-	protected void readAdditional(CompoundNBT compound) {		
+	protected void readAdditional(CompoundNBT compound) {
 	}
 
 	@Override
-	protected void writeAdditional(CompoundNBT compound) {		
+	protected void writeAdditional(CompoundNBT compound) {
 	}
 
 	@Override

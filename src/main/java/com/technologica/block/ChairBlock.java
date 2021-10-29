@@ -1,7 +1,6 @@
 package com.technologica.block;
 
 import com.technologica.entity.item.InvisibleSeatEntity;
-import com.technologica.tileentity.FruitTileEntity;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -10,7 +9,6 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
@@ -32,22 +30,6 @@ public class ChairBlock extends FourDirectionBlock {
 	public ChairBlock() {
 		super(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD).notSolid());
 	}
-
-	/*
-	 * Technologica Methods
-	 */
-	
-	public boolean hasEntity(BlockState stateIn) {
-		return true;
-	}
-
-	public TileEntity createEntity(BlockState stateIn, IBlockReader worldIn) {
-		return new FruitTileEntity();
-	}
-	
-	public InvisibleSeatEntity getEntity(World world, BlockPos pos) {
-		return (InvisibleSeatEntity) world.getEntitiesWithinAABB(InvisibleSeatEntity.class, new AxisAlignedBB(pos)).get(0);
-	}
 	
 	/*
 	 * Minecraft Methods
@@ -59,15 +41,10 @@ public class ChairBlock extends FourDirectionBlock {
 	}
 
 	@Override
-	public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
-		InvisibleSeatEntity seat = new InvisibleSeatEntity(worldIn, pos.getX() + 0.5F, pos.getY() + 0.35F, pos.getZ() + 0.5F);
-		worldIn.addEntity(seat);
-     }
-	
-	@Override
 	public ActionResultType onBlockActivated(BlockState stateIn, World worldIn, BlockPos posIn, PlayerEntity playerIn, Hand handIn, BlockRayTraceResult hitIn) {
 		if (!worldIn.isRemote) {
-			InvisibleSeatEntity seat = getEntity(worldIn, posIn);
+			InvisibleSeatEntity seat = new InvisibleSeatEntity(worldIn, posIn.getX() + 0.5F, posIn.getY() + 0.35F, posIn.getZ() + 0.5F);
+			worldIn.addEntity(seat);
 			playerIn.startRiding(seat);
 		}	
 		return ActionResultType.func_233537_a_(worldIn.isRemote);
@@ -75,9 +52,11 @@ public class ChairBlock extends FourDirectionBlock {
 	
 	@Override
 	public void onReplaced(BlockState stateIn, World worldIn, BlockPos posIn, BlockState newStateIn, boolean isMovingIn) {
-		InvisibleSeatEntity seat = getEntity(worldIn, posIn);
-		seat.removePassengers();
-		seat.remove();
+		if (!worldIn.getEntitiesWithinAABB(InvisibleSeatEntity.class, new AxisAlignedBB(posIn)).isEmpty()) {
+			InvisibleSeatEntity seat = worldIn.getEntitiesWithinAABB(InvisibleSeatEntity.class, new AxisAlignedBB(posIn)).get(0);
+			seat.removePassengers();
+			seat.remove();
+		}
 	}
 	
 	/*
