@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 public class EntityUtil {
 	private static final Map<ResourceLocation, Map<BlockPos, Pair<InvisibleSeatEntity, BlockPos>>> OCCUPIED = new HashMap<>();
 
-	public static boolean removeSitEntity(World world, BlockPos pos) {
+	public static boolean removeInvisibleSeatEntity(World world, BlockPos pos) {
 		if (!world.isRemote) {
 			ResourceLocation id = getDimensionTypeId(world);
 
@@ -41,23 +41,6 @@ public class EntityUtil {
 		}
 
 		return null;
-	}
-
-	public static boolean isOccupied(World world, BlockPos pos) {
-		ResourceLocation id = getDimensionTypeId(world);
-
-		return EntityUtil.OCCUPIED.containsKey(id) && EntityUtil.OCCUPIED.get(id).containsKey(pos);
-	}
-
-	public static boolean isPlayerSitting(PlayerEntity player) {
-		for (ResourceLocation i : OCCUPIED.keySet()) {
-			for (Pair<InvisibleSeatEntity, BlockPos> pair : OCCUPIED.get(i).values()) {
-				if (pair.getLeft().isPassenger(player))
-					return true;
-			}
-		}
-
-		return false;
 	}
 
 	private static ResourceLocation getDimensionTypeId(World world) {

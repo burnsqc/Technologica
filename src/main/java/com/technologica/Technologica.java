@@ -8,10 +8,12 @@ import com.technologica.block.TechnologicaBlocks;
 import com.technologica.entity.TechnologicaEntities;
 import com.technologica.fluid.TechnologicaFluids;
 import com.technologica.item.TechnologicaItems;
+import com.technologica.particles.TechnologicaParticleTypes;
 import com.technologica.setup.ClientSetup;
 import com.technologica.setup.CommonSetup;
 import com.technologica.setup.Config;
 import com.technologica.setup.GatherData;
+import com.technologica.setup.ParticleSetup;
 import com.technologica.setup.VanillaBiomeModifier;
 import com.technologica.setup.VanillaEntityModifier;
 import com.technologica.tileentity.TechnologicaTileEntities;
@@ -47,6 +49,9 @@ public class Technologica {
 		LOGGER.info("REGISTERING GAME OBJECTS - TILE ENTITIES");
 		TechnologicaTileEntities.register();
 		
+		LOGGER.info("REGISTERING EFFECTS - PARTICLES");
+		TechnologicaParticleTypes.register();
+		
 		LOGGER.info("REGISTERING WORLDGEN - FEATURES");
 		TechnologicaFeatures.register();
 		LOGGER.info("REGISTERING WORLDGEN - FOLIAGE PLACER TYPES");
@@ -60,6 +65,7 @@ public class Technologica {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientSetup::init);	//2nd event during mod lifecycle startup
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(GatherData::init);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientSetup::stitch);
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(ParticleSetup::init);
 		
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, VanillaBiomeModifier::init);	
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, VanillaEntityModifier::init);	

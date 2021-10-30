@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import com.technologica.Technologica;
 import com.technologica.block.TechnologicaBlocks;
 import com.technologica.item.TechnologicaItems;
+import com.technologica.particles.DrippingLiquidParticleData;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -65,7 +66,7 @@ public abstract class CoolantFluid extends FlowingFluid {
 	@Override
 	@Nullable
 	public IParticleData getDripParticleData() {
-		return ParticleTypes.DRIPPING_WATER;
+		return DrippingLiquidParticleData.COOLANT;
 	}
 
 	protected boolean canSourcesMultiply() {
