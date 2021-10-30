@@ -41,6 +41,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
 			else if (block.getRegistryName().getPath().contains("potted")) getOrCreateBuilder(BlockTags.FLOWER_POTS).add(block);
 			else if (block.getRegistryName().getPath().contains("leaves")) getOrCreateBuilder(BlockTags.LEAVES).add(block);
 			else if (block.getRegistryName().getPath().contains("log")) getOrCreateBuilder(BlockTags.LOGS_THAT_BURN).add(block);
+			else if (block.getRegistryName().getPath().contains("_wood")) getOrCreateBuilder(BlockTags.LOGS_THAT_BURN).add(block);
 //			else if (block.getRegistryName().getPath().contains("clay")) getOrCreateBuilder(BlockTags.LUSH_GROUND_REPLACEABLE).add(block);
 			else if (block.getRegistryName().getPath().contains("planks")) getOrCreateBuilder(BlockTags.PLANKS).add(block);
 			else if (block.getRegistryName().getPath().contains("sapling") && !block.getRegistryName().getPath().contains("potted")) getOrCreateBuilder(BlockTags.SAPLINGS).add(block);
