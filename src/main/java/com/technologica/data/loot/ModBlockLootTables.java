@@ -14,6 +14,7 @@ import com.technologica.block.TwentyFourDirectionBlock;
 import com.technologica.block.VanillaCropsBlock;
 import com.technologica.block.VanillaFenceBlock;
 import com.technologica.block.VanillaFenceGateBlock;
+import com.technologica.block.VanillaLeavesBlock;
 import com.technologica.block.VanillaLogBlock;
 import com.technologica.block.VanillaPlanksBlock;
 import com.technologica.block.VanillaSlabBlock;
@@ -114,7 +115,7 @@ public class ModBlockLootTables extends BlockLootTables {
 				registerLootTable(block, droppingAndBonusWhen(block, yield, block.asItem(), BlockStateProperty.builder(block).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(CropsBlock.AGE, 7))));
 			}
 			
-			else if (block.getClass().equals(FruitingLeavesBlock.class) || block.getClass().equals(LeavesBlock.class)) {
+			else if (block.getClass().equals(FruitingLeavesBlock.class) || block.getClass().equals(VanillaLeavesBlock.class)) {
 				Block sapling = Blocks.OAK_SAPLING;
 				for(Supplier<? extends Block> blockSupplier2:blockCollection) {
 					Block block2 = blockSupplier2.get();

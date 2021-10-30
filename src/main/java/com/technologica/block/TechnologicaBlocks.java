@@ -173,7 +173,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> BANANA_LEAVES = BLOCKS.register("banana_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.BANANA));
     public static final RegistryObject<Block> CHERRY_LEAVES = BLOCKS.register("cherry_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.CHERRY));
     public static final RegistryObject<Block> CHESTNUT_LEAVES = BLOCKS.register("chestnut_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.CHESTNUT));
-    public static final RegistryObject<Block> CINNAMON_LEAVES = BLOCKS.register("cinnamon_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.CINNAMON));
+    public static final RegistryObject<Block> CINNAMON_LEAVES = BLOCKS.register("cinnamon_leaves", VanillaLeavesBlock::new);
     public static final RegistryObject<Block> COCONUT_LEAVES = BLOCKS.register("coconut_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.COCONUT));   
     public static final RegistryObject<Block> EBONY_LEAVES = BLOCKS.register("ebony_leaves", VanillaLeavesBlock::new);
     public static final RegistryObject<Block> KIWI_LEAVES = BLOCKS.register("kiwi_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.KIWI));
