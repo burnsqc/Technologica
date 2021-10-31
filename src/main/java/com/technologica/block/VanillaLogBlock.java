@@ -24,6 +24,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ToolType;
 
 /**
  * Identical in behavior to vanilla Minecraft logs.  
@@ -83,7 +84,7 @@ public class VanillaLogBlock extends RotatedPillarBlock {
 			.put("zebrawood_wood", TechnologicaBlocks.STRIPPED_ZEBRAWOOD_WOOD).build();
 	
 	public VanillaLogBlock() {
-		super(Properties.create(Material.WOOD, state -> state.get(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? MaterialColor.WOOD : MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).harvestLevel(1).sound(SoundType.WOOD));
+		super(Properties.create(Material.WOOD, state -> state.get(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? MaterialColor.WOOD : MaterialColor.OBSIDIAN).harvestLevel(0).harvestTool(ToolType.AXE).setRequiresTool().hardnessAndResistance(2.0F).sound(SoundType.WOOD));
 	}
 
 	/*

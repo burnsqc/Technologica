@@ -1,4 +1,4 @@
-package com.technologica.util;
+package com.technologica.listeners;
 
 import com.technologica.item.TechnologicaItems;
 

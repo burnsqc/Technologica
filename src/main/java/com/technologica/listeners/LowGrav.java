@@ -1,4 +1,4 @@
-package com.technologica.util;
+package com.technologica.listeners;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;

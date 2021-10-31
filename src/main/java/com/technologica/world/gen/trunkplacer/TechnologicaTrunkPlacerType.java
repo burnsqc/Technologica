@@ -1,26 +1,42 @@
 package com.technologica.world.gen.trunkplacer;
 
-import static com.technologica.Technologica.MODID;
+import com.mojang.serialization.Codec;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.trunkplacer.AbstractTrunkPlacer;
+import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
+import net.minecraft.world.gen.trunkplacer.TrunkPlacerType;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
-import com.technologica.world.gen.foliageplacer.TeardropFoliagePlacer;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
 
-import net.minecraft.world.gen.foliageplacer.FoliagePlacerType;
-import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
+import com.technologica.Technologica;
 
-public class TechnologicaTrunkPlacerType {
+public final class TechnologicaTrunkPlacerType<P extends AbstractTrunkPlacer> {
 
-	private TechnologicaTrunkPlacerType() {
-		// use private constructor to hide default constructor
+	/*
+	public static final TechnologicaTrunkPlacerType<StraightTrunkPlacer> TRUNK_WIDE = registerTrunk("wide_trunk_placer", StraightTrunkPlacer.CODEC);
+
+	private static <P extends AbstractTrunkPlacer> TechnologicaTrunkPlacerType<P> registerTrunk(String name, Codec<P> codec) {
+		Constructor<TrunkPlacerType> constructor = ObfuscationReflectionHelper.findConstructor(TrunkPlacerType.class);
+		try {
+			return Registry.register(Registry.TRUNK_REPLACER, name, constructor.newInstance(codec));
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
 	}
-
-	private static final DeferredRegister<TrunkPlacerType<?>> TRUNKS = DeferredRegister.create(ForgeRegistries.TRUNK_PLACER_TYPES, MODID);
-
-    public static final RegistryObject<TrunkPlacerType<?>> THREE_WIDE = TRUNKS.register("three_wide_trunk_placer", () -> new FoliagePlacerType<>(TeardropFoliagePlacer.teardropCodec));    
-
-	public static void register() {
-		TRUNKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-	}
+	*/
 }
