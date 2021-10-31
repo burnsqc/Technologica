@@ -21,9 +21,9 @@ import com.technologica.Technologica;
 
 public final class TechnologicaTrunkPlacerType<P extends AbstractTrunkPlacer> {
 
-	public static final TechnologicaTrunkPlacerType<StraightTrunkPlacer> TRUNK_WIDE = registerTrunk("wide_trunk_placer", StraightTrunkPlacer.CODEC);
+	public static final TrunkPlacerType<StraightTrunkPlacer> TRUNK_WIDE = registerTrunk("wide_trunk_placer", StraightTrunkPlacer.CODEC);
 
-	private static <P extends AbstractTrunkPlacer> TechnologicaTrunkPlacerType<P> registerTrunk(String name, Codec<P> codec) {
+	private static <P extends AbstractTrunkPlacer> TrunkPlacerType<P> registerTrunk(String name, Codec<P> codec) {
 		Constructor<TrunkPlacerType> constructor = ObfuscationReflectionHelper.findConstructor(TrunkPlacerType.class, Codec.class);
 		try {
 			return Registry.register(Registry.TRUNK_REPLACER, name, constructor.newInstance(codec));
