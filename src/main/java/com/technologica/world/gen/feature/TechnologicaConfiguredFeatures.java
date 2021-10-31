@@ -7,6 +7,7 @@ import com.technologica.world.gen.foliageplacer.CylindricalFoliagePlacer;
 import com.technologica.world.gen.foliageplacer.DishFoliagePlacer;
 import com.technologica.world.gen.foliageplacer.PalmFoliagePlacer;
 import com.technologica.world.gen.foliageplacer.TeardropFoliagePlacer;
+import com.technologica.world.gen.trunkplacer.ThreeWideTrunkPlacer;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -25,6 +26,7 @@ import net.minecraft.world.gen.feature.TwoLayerFeature;
 import net.minecraft.world.gen.foliageplacer.AcaciaFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.MegaPineFoliagePlacer;
+import net.minecraft.world.gen.foliageplacer.SpruceFoliagePlacer;
 import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
 import net.minecraft.world.gen.placement.ChanceConfig;
 import net.minecraft.world.gen.placement.Placement;
@@ -207,9 +209,9 @@ public class TechnologicaConfiguredFeatures {
 			"redwood_tree_feature",
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(TechnologicaBlocks.REDWOOD_LOG.get().getDefaultState()),
-					new SimpleBlockStateProvider(TechnologicaBlocks.REDWOOD_LEAVES.get().getDefaultState()),
-					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
-					new StraightTrunkPlacer(4, 1, 0), 
+					new SimpleBlockStateProvider(Blocks.AIR.getDefaultState()),
+					new SpruceFoliagePlacer(FeatureSpread.create(2, 1), FeatureSpread.create(0, 2), FeatureSpread.create(1, 1)),
+					new ThreeWideTrunkPlacer(10, 5, 19), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
 	
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> ROSEWOOD_TREE_FEATURE = register(
