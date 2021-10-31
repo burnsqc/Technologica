@@ -9,6 +9,7 @@ import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
 
@@ -22,7 +23,7 @@ public class SapLogBlock extends VanillaLogBlock {
 
 	public SapLogBlock() {
 		super();
-		this.setDefaultState(this.stateContainer.getBaseState().with(AGE, 0).with(PERSISTENT, false));
+		this.setDefaultState(this.stateContainer.getBaseState().with(AGE, 0).with(PERSISTENT, false).with(AXIS, Direction.Axis.Y));
 	}
 	
 	/*
