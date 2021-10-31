@@ -30,7 +30,6 @@ import net.minecraft.world.gen.foliageplacer.SpruceFoliagePlacer;
 import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
 import net.minecraft.world.gen.placement.ChanceConfig;
 import net.minecraft.world.gen.placement.Placement;
-import net.minecraft.world.gen.trunkplacer.GiantTrunkPlacer;
 import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
 
 public class TechnologicaConfiguredFeatures {
@@ -212,7 +211,7 @@ public class TechnologicaConfiguredFeatures {
 					new SimpleBlockStateProvider(TechnologicaBlocks.REDWOOD_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(Blocks.AIR.getDefaultState()),
 					new SpruceFoliagePlacer(FeatureSpread.create(2, 1), FeatureSpread.create(0, 2), FeatureSpread.create(1, 1)),
-					new GiantTrunkPlacer(10, 5, 19), 
+					new ThreeWideTrunkPlacer(10, 5, 19), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
 	
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> ROSEWOOD_TREE_FEATURE = register(

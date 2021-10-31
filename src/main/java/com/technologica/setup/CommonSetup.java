@@ -13,7 +13,7 @@ import com.technologica.entity.monster.ScorpionEntity;
 import com.technologica.entity.monster.SharkEntity;
 import com.technologica.entity.passive.DuckEntity;
 import com.technologica.entity.passive.GrizzlyBearEntity;
-import com.technologica.network.play.server.Packets;
+import com.technologica.network.play.server.Packets;	
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;

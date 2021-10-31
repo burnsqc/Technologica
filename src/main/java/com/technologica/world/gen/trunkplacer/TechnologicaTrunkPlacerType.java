@@ -19,21 +19,18 @@ import java.util.List;
 
 import com.technologica.Technologica;
 
+@Mod.EventBusSubscriber(modid = Technologica.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public final class TechnologicaTrunkPlacerType<P extends AbstractTrunkPlacer> {
 
-	public static final TrunkPlacerType<StraightTrunkPlacer> TRUNK_WIDE = registerTrunk("wide_trunk_placer", StraightTrunkPlacer.CODEC);
-
-	private static <P extends AbstractTrunkPlacer> TrunkPlacerType<P> registerTrunk(String name, Codec<P> codec) {
+	public final static TrunkPlacerType<AbstractTrunkPlacer> THREE_WIDE_TRUNK_PLACER = registerTrunk("wide_trunk_placer", ThreeWideTrunkPlacer.CODEC);
+	
+	public static <P extends AbstractTrunkPlacer> TrunkPlacerType<P> registerTrunk(String name, Codec<P> codec) {
+		@SuppressWarnings("rawtypes")
 		Constructor<TrunkPlacerType> constructor = ObfuscationReflectionHelper.findConstructor(TrunkPlacerType.class, Codec.class);
 		try {
 			return Registry.register(Registry.TRUNK_REPLACER, name, constructor.newInstance(codec));
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
+		} catch (ReflectiveOperationException e) {
+			throw new Exception("Failure to access TrunkPlacerType constructor");
 			e.printStackTrace();
 		}
 	}
