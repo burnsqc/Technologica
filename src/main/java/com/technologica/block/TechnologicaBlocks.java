@@ -86,7 +86,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> ONION_CROP = BLOCKS.register("onion_crop", () -> new VanillaCropsBlock(TechnologicaItems.ONION_SEEDS));
     public static final RegistryObject<Block> PEA_CROP = BLOCKS.register("pea_crop", () -> new VanillaCropsBlock(TechnologicaItems.PEA_SEEDS));
     public static final RegistryObject<Block> PEANUT_CROP = BLOCKS.register("peanut_crop", () -> new VanillaCropsBlock(TechnologicaItems.PEANUT));
-    public static final RegistryObject<Block> PEPPERCORN_CROP = BLOCKS.register("peppercorn_crop", () -> new TallCropsBlock(TechnologicaItems.PEPPERCORNS));
+    public static final RegistryObject<Block> PEPPERCORN_CROP = BLOCKS.register("peppercorn_crop", () -> new TallCropsBlock(TechnologicaItems.PEPPERCORN_SEEDS));
     public static final RegistryObject<Block> PINEAPPLE_CROP = BLOCKS.register("pineapple_crop", () -> new VanillaCropsBlock(TechnologicaItems.PINEAPPLE_SEEDS));
     public static final RegistryObject<Block> PURPLE_CABBAGE_CROP = BLOCKS.register("purple_cabbage_crop", () -> new VanillaCropsBlock(TechnologicaItems.PURPLE_CABBAGE_SEEDS));
     public static final RegistryObject<Block> RADISH_CROP = BLOCKS.register("radish_crop", () -> new VanillaCropsBlock(TechnologicaItems.RADISH_SEEDS));
