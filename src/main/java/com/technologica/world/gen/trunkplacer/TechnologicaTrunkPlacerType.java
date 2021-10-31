@@ -19,7 +19,7 @@ import java.util.List;
 
 import com.technologica.Technologica;
 
-@Mod.EventBusSubscriber(modid = Technologica.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+//@Mod.EventBusSubscriber(modid = Technologica.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public final class TechnologicaTrunkPlacerType<P extends AbstractTrunkPlacer> {
 
 	public final static TrunkPlacerType<AbstractTrunkPlacer> THREE_WIDE_TRUNK_PLACER = registerTrunk("wide_trunk_placer", ThreeWideTrunkPlacer.CODEC);
