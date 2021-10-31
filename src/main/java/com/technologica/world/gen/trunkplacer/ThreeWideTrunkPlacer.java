@@ -27,7 +27,8 @@ public class ThreeWideTrunkPlacer extends GiantTrunkPlacer {
 	}
 
 	protected TrunkPlacerType<?> getPlacerType() {
-		return TechnologicaTrunkPlacerType.THREE_WIDE_TRUNK_PLACER;
+		return TrunkPlacerType.GIANT_TRUNK_PLACER;
+//		return TechnologicaTrunkPlacerType.THREE_WIDE_TRUNK_PLACER;
 	}
 
 	public List<FoliagePlacer.Foliage> getFoliages(IWorldGenerationReader reader, Random rand, int treeHeight, BlockPos p_230382_4_, Set<BlockPos> p_230382_5_, MutableBoundingBox p_230382_6_, BaseTreeFeatureConfig p_230382_7_) {
