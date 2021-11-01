@@ -13,7 +13,7 @@ import com.technologica.entity.monster.ScorpionEntity;
 import com.technologica.entity.monster.SharkEntity;
 import com.technologica.entity.passive.DuckEntity;
 import com.technologica.entity.passive.GrizzlyBearEntity;
-import com.technologica.network.play.server.Packets;	
+import com.technologica.network.play.server.Packets;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -35,6 +35,7 @@ public class CommonSetup {
 	public static final RegistryKey<Biome> redwoodForestBiomeKey = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, new ResourceLocation(Technologica.MODID, "redwood_forest"));
 	public static final RegistryKey<Biome> rainforestBiomeKey = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, new ResourceLocation(Technologica.MODID, "rainforest"));
 	
+	@SuppressWarnings("deprecation")
 	public static void init(final FMLCommonSetupEvent event) {
 		TechnologicaCapabilities.register();
 		Packets.onCommonSetupEvent();
@@ -49,6 +50,7 @@ public class CommonSetup {
 
 		event.enqueueWork(() -> {
 			automaticFlowerPots(TechnologicaBlocks.BLOCKS.getEntries());
+			
 			BiomeManager.addBiome(BiomeType.DESERT, new BiomeEntry(saltFlatsBiomeKey, 1000));
 			BiomeManager.addBiome(BiomeType.COOL, new BiomeEntry(redwoodForestBiomeKey, 1000));
 			BiomeManager.addBiome(BiomeType.WARM, new BiomeEntry(rainforestBiomeKey, 1000));

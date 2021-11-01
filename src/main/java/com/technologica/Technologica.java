@@ -7,8 +7,9 @@ import com.technologica.block.TechnologicaBlocks;
 import com.technologica.entity.TechnologicaEntities;
 import com.technologica.fluid.TechnologicaFluids;
 import com.technologica.item.TechnologicaItems;
+import com.technologica.listeners.DisableLogDrops;
 import com.technologica.listeners.DropBarkOnLogStrip;
-import com.technologica.listeners.LowGrav;
+import com.technologica.listeners.LunarLowGrav;
 import com.technologica.particles.TechnologicaParticleTypes;
 import com.technologica.setup.ClientSetup;
 import com.technologica.setup.CommonSetup;
@@ -70,7 +71,8 @@ public class Technologica {
 		
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, VanillaBiomeModifier::init);	
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, VanillaEntityModifier::init);	
-		MinecraftForge.EVENT_BUS.register(new LowGrav());
+		MinecraftForge.EVENT_BUS.register(new LunarLowGrav());
 		MinecraftForge.EVENT_BUS.register(new DropBarkOnLogStrip());
+		MinecraftForge.EVENT_BUS.register(new DisableLogDrops());
 	}
 }

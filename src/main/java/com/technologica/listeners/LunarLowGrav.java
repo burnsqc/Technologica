@@ -6,7 +6,7 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-public class LowGrav {
+public class LunarLowGrav {
 	
 	@SubscribeEvent
 	public void onLivingJumpEvent(LivingJumpEvent event) {
