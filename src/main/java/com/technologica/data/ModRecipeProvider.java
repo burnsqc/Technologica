@@ -2,13 +2,19 @@ package com.technologica.data;
 
 import java.util.function.Consumer;
 
+import com.technologica.Technologica;
 import com.technologica.item.TechnologicaItems;
+import com.technologica.util.ConditionFactory;
 
+import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.RecipeProvider;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Items;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.crafting.ConditionalRecipe;
 
 public class ModRecipeProvider extends RecipeProvider {
 
@@ -30,5 +36,14 @@ public class ModRecipeProvider extends RecipeProvider {
 		ShapelessRecipeBuilder.shapelessRecipe(TechnologicaItems.PEACH_COBBLER.get(), 1).addIngredient(TechnologicaItems.PEACH.get()).addIngredient(Items.WHEAT).addIngredient(Items.SUGAR).addCriterion("has_peach", hasItem(TechnologicaItems.PEACH.get())).build(consumer, "peach_cobbler_from_peach");
 		ShapelessRecipeBuilder.shapelessRecipe(TechnologicaItems.PEAR_TART.get(), 1).addIngredient(TechnologicaItems.PEAR.get()).addIngredient(Items.WHEAT).addIngredient(Items.SUGAR).addCriterion("has_pear", hasItem(TechnologicaItems.PEAR.get())).build(consumer, "pear_tart_from_pear");
 		ShapelessRecipeBuilder.shapelessRecipe(TechnologicaItems.STRAWBERRY_SHORTCAKE.get(), 1).addIngredient(TechnologicaItems.STRAWBERRY.get()).addIngredient(Items.EGG).addIngredient(Items.MILK_BUCKET).addIngredient(Items.SUGAR).addIngredient(Items.WHEAT).addCriterion("has_strawberry", hasItem(TechnologicaItems.STRAWBERRY.get())).build(consumer, "strawberry_shortcake_from_strawberry");
-	}
+		
+		ConditionalRecipe.builder()
+        	.addCondition(new ConditionFactory())
+        	.addRecipe((consumer2) -> ShapelessRecipeBuilder.shapelessRecipe(Blocks.OAK_PLANKS, 1).addIngredient(ItemTags.OAK_LOGS).addIngredient(TechnologicaItems.SAW.get()).setGroup("planks").addCriterion("has_log", hasItem(ItemTags.OAK_LOGS)).build(consumer2))
+        	.build(consumer, new ResourceLocation(Technologica.MODID, "oak_planks"));
+		ConditionalRecipe.builder()
+	    	.addCondition(new ConditionFactory())
+	    	.addRecipe((consumer2) -> ShapelessRecipeBuilder.shapelessRecipe(Blocks.OAK_SLAB, 2).addIngredient(Blocks.OAK_PLANKS).addIngredient(TechnologicaItems.SAW.get()).setGroup("wooden_slab").addCriterion("has_planks", hasItem(Blocks.OAK_PLANKS)).build(consumer2))
+	    	.build(consumer, new ResourceLocation(Technologica.MODID, "oak_slab"));
+	}		
 }
