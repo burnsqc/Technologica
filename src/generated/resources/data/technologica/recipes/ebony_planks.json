@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "technologica:ebony_logs"
+    }
+  ],
+  "result": {
+    "item": "technologica:ebony_planks",
+    "count": 4
+  }
+}

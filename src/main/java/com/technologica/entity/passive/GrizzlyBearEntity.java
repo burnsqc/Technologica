@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
 
-import com.technologica.entity.TechnologicaEntities;
+import com.technologica.entity.TechnologicaEntityType;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.AgeableEntity;
@@ -69,7 +69,7 @@ public class GrizzlyBearEntity extends PolarBearEntity implements IAngerable {
 	//Spawning
 	@Override
    public AgeableEntity createChild(ServerWorld serverWorldIn, AgeableEntity mate) {
-		return TechnologicaEntities.GRIZZLY_BEAR.get().create(serverWorldIn);
+		return TechnologicaEntityType.GRIZZLY_BEAR.get().create(serverWorldIn);
 	}
 
 	//Breeding

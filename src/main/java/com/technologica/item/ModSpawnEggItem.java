@@ -2,7 +2,7 @@ package com.technologica.item;
 
 import java.util.Objects;
 
-import com.technologica.entity.TechnologicaEntities;
+import com.technologica.entity.TechnologicaEntityType;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -32,21 +32,25 @@ public class ModSpawnEggItem extends Item {
     public ActionResultType onItemUse(ItemUseContext context) {
     	EntityType<?> entityType = null;
     	if (entityTypeInt == 1) {
-    		entityType = TechnologicaEntities.DUCK.get();
+    		entityType = TechnologicaEntityType.DUCK.get();
     	} else if (entityTypeInt == 2) {
-    		entityType = TechnologicaEntities.GRIZZLY_BEAR.get();
+    		entityType = TechnologicaEntityType.GRIZZLY_BEAR.get();
     	} else if (entityTypeInt == 3) {
-    		entityType = TechnologicaEntities.OSTRICH.get();
+    		entityType = TechnologicaEntityType.OSTRICH.get();
     	} else if (entityTypeInt == 4) {
-    		entityType = TechnologicaEntities.SHARK.get();
+    		entityType = TechnologicaEntityType.SHARK.get();
     	} else if (entityTypeInt == 5) {
-    		entityType = TechnologicaEntities.ZEBRA.get();
+    		entityType = TechnologicaEntityType.ZEBRA.get();
     	} else if (entityTypeInt == 6) {
-    		entityType = TechnologicaEntities.SCORPION.get();
+    		entityType = TechnologicaEntityType.SCORPION.get();
     	} else if (entityTypeInt == 7) {
-    		entityType = TechnologicaEntities.PEEPER.get();
+    		entityType = TechnologicaEntityType.PEEPER.get();
     	} else if (entityTypeInt == 8) {
-    		entityType = TechnologicaEntities.SWEEPER.get();
+    		entityType = TechnologicaEntityType.SWEEPER.get();
+    	} else if (entityTypeInt == 9) {
+    		entityType = TechnologicaEntityType.COYOTE.get();
+    	} else if (entityTypeInt == 10) {
+    		entityType = TechnologicaEntityType.GIRAFFE.get();
     	}
     	
     	World world = context.getWorld();

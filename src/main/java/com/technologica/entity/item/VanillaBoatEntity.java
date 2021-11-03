@@ -5,7 +5,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.technologica.block.TechnologicaBlocks;
-import com.technologica.entity.TechnologicaEntities;
+import com.technologica.entity.TechnologicaEntityType;
 import com.technologica.item.TechnologicaItems;
 
 import net.minecraft.block.Block;
@@ -89,7 +89,7 @@ public class VanillaBoatEntity extends BoatEntity {
 	}
 
 	public VanillaBoatEntity(World worldIn, double x, double y, double z) {
-		this(TechnologicaEntities.MOD_BOAT.get(), worldIn);
+		this(TechnologicaEntityType.MOD_BOAT.get(), worldIn);
 		this.setPosition(x, y, z);
 		this.setMotion(Vector3d.ZERO);
 		this.prevPosX = x;

@@ -8,9 +8,10 @@ import java.util.function.Supplier;
 import com.technologica.Technologica;
 import com.technologica.block.TechnologicaBlocks;
 import com.technologica.capabilities.TechnologicaCapabilities;
-import com.technologica.entity.TechnologicaEntities;
+import com.technologica.entity.TechnologicaEntityType;
 import com.technologica.entity.monster.ScorpionEntity;
 import com.technologica.entity.monster.SharkEntity;
+import com.technologica.entity.passive.CoyoteEntity;
 import com.technologica.entity.passive.DuckEntity;
 import com.technologica.entity.passive.GrizzlyBearEntity;
 import com.technologica.network.play.server.Packets;
@@ -39,14 +40,16 @@ public class CommonSetup {
 	public static void init(final FMLCommonSetupEvent event) {
 		TechnologicaCapabilities.register();
 		Packets.onCommonSetupEvent();
-		GlobalEntityTypeAttributes.put(TechnologicaEntities.DUCK.get(), DuckEntity.registerAttributes().create());
-		GlobalEntityTypeAttributes.put(TechnologicaEntities.GRIZZLY_BEAR.get(), GrizzlyBearEntity.registerAttributes().create());
-		GlobalEntityTypeAttributes.put(TechnologicaEntities.OSTRICH.get(), func_234237_fg_().create());
-		GlobalEntityTypeAttributes.put(TechnologicaEntities.SCORPION.get(), ScorpionEntity.registerAttributes().create());
-		GlobalEntityTypeAttributes.put(TechnologicaEntities.SHARK.get(), SharkEntity.registerAttributes().create());
-		GlobalEntityTypeAttributes.put(TechnologicaEntities.ZEBRA.get(), func_234237_fg_().create());
-		GlobalEntityTypeAttributes.put(TechnologicaEntities.PEEPER.get(), func_234237_fg_().create());
-		GlobalEntityTypeAttributes.put(TechnologicaEntities.SWEEPER.get(), func_234237_fg_().create());
+		GlobalEntityTypeAttributes.put(TechnologicaEntityType.COYOTE.get(), CoyoteEntity.registerAttributes().create());
+		GlobalEntityTypeAttributes.put(TechnologicaEntityType.DUCK.get(), DuckEntity.registerAttributes().create());
+		GlobalEntityTypeAttributes.put(TechnologicaEntityType.GIRAFFE.get(), func_234237_fg_().create());
+		GlobalEntityTypeAttributes.put(TechnologicaEntityType.GRIZZLY_BEAR.get(), GrizzlyBearEntity.registerAttributes().create());
+		GlobalEntityTypeAttributes.put(TechnologicaEntityType.OSTRICH.get(), func_234237_fg_().create());
+		GlobalEntityTypeAttributes.put(TechnologicaEntityType.SCORPION.get(), ScorpionEntity.registerAttributes().create());
+		GlobalEntityTypeAttributes.put(TechnologicaEntityType.SHARK.get(), SharkEntity.registerAttributes().create());
+		GlobalEntityTypeAttributes.put(TechnologicaEntityType.ZEBRA.get(), func_234237_fg_().create());
+		GlobalEntityTypeAttributes.put(TechnologicaEntityType.PEEPER.get(), func_234237_fg_().create());
+		GlobalEntityTypeAttributes.put(TechnologicaEntityType.SWEEPER.get(), func_234237_fg_().create());
 
 		event.enqueueWork(() -> {
 			automaticFlowerPots(TechnologicaBlocks.BLOCKS.getEntries());

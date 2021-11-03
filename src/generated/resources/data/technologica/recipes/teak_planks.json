@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "technologica:teak_logs"
+    }
+  ],
+  "result": {
+    "item": "technologica:teak_planks",
+    "count": 4
+  }
+}

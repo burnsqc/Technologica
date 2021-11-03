@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "technologica:benevolent_logs"
+    }
+  ],
+  "result": {
+    "item": "technologica:benevolent_planks",
+    "count": 4
+  }
+}

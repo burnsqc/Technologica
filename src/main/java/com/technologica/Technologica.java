@@ -4,7 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.technologica.block.TechnologicaBlocks;
-import com.technologica.entity.TechnologicaEntities;
+import com.technologica.entity.TechnologicaEntityType;
 import com.technologica.fluid.TechnologicaFluids;
 import com.technologica.item.TechnologicaItems;
 import com.technologica.listeners.DisableLogDrops;
@@ -19,14 +19,12 @@ import com.technologica.setup.ParticleSetup;
 import com.technologica.setup.VanillaBiomeModifier;
 import com.technologica.setup.VanillaEntityModifier;
 import com.technologica.tileentity.TechnologicaTileEntities;
-import com.technologica.util.ConditionFactory;
 import com.technologica.world.biome.TechnologicaBiomes;
 import com.technologica.world.gen.feature.TechnologicaFeatures;
 import com.technologica.world.gen.foliageplacer.TechnologicaFoliagePlacers;
 import com.technologica.world.gen.surfacebuilders.TechnologicaSurfaceBuilders;
 
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -49,7 +47,7 @@ public class Technologica {
 		LOGGER.info("REGISTERING GAME OBJECTS - ITEMS");
 		TechnologicaItems.register();
 		LOGGER.info("REGISTERING GAME OBJECTS - ENTITIES");
-		TechnologicaEntities.register();
+		TechnologicaEntityType.register();
 		LOGGER.info("REGISTERING GAME OBJECTS - TILE ENTITIES");
 		TechnologicaTileEntities.register();
 		
@@ -64,8 +62,6 @@ public class Technologica {
 		TechnologicaSurfaceBuilders.register();
 		LOGGER.info("REGISTERING WORLDGEN - BIOMES");
 		TechnologicaBiomes.register();
-		
-		CraftingHelper.register(ConditionFactory.Serializer.INSTANCE);
 		
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(CommonSetup::init);	//1st event during mod lifecycle startup
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientSetup::init);	//2nd event during mod lifecycle startup

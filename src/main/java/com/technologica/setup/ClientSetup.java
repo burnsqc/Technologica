@@ -10,7 +10,9 @@ import com.technologica.block.TechnologicaBlocks;
 import com.technologica.block.VanillaCropsBlock;
 import com.technologica.block.WaterCropsBlock;
 import com.technologica.client.renderer.MoonRenderer;
+import com.technologica.client.renderer.entity.CoyoteRenderer;
 import com.technologica.client.renderer.entity.DuckRenderer;
+import com.technologica.client.renderer.entity.GiraffeRenderer;
 import com.technologica.client.renderer.entity.GrizzlyBearRenderer;
 import com.technologica.client.renderer.entity.InvisibleRenderer;
 import com.technologica.client.renderer.entity.OstrichRenderer;
@@ -27,7 +29,7 @@ import com.technologica.client.renderer.tileentity.LineShaftTileEntityRenderer;
 import com.technologica.client.renderer.tileentity.PotionTileEntityRenderer;
 import com.technologica.client.renderer.tileentity.SawmillTileEntityRenderer;
 import com.technologica.client.renderer.tileentity.VanillaSignTileEntityRenderer;
-import com.technologica.entity.TechnologicaEntities;
+import com.technologica.entity.TechnologicaEntityType;
 import com.technologica.fluid.TechnologicaFluids;
 import com.technologica.tileentity.TechnologicaTileEntities;
 
@@ -54,19 +56,21 @@ public class ClientSetup {
 
 	@SuppressWarnings("unchecked")
 	public static void init(final FMLClientSetupEvent event) {
-		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntities.MOD_BOAT.get(), VanillaBoatRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.MOD_BOAT.get(), VanillaBoatRenderer::new);
 		
-		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntities.INVISIBLE_SEAT.get(), InvisibleRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.INVISIBLE_SEAT.get(), InvisibleRenderer::new);
 		
-		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntities.DUCK.get(), DuckRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntities.GRIZZLY_BEAR.get(), GrizzlyBearRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntities.OSTRICH.get(), OstrichRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntities.SCORPION.get(), ScorpionRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntities.SHARK.get(), SharkRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntities.ZEBRA.get(), ZebraRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.COYOTE.get(), CoyoteRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.DUCK.get(), DuckRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.GIRAFFE.get(), GiraffeRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.GRIZZLY_BEAR.get(), GrizzlyBearRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.OSTRICH.get(), OstrichRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.SCORPION.get(), ScorpionRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.SHARK.get(), SharkRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.ZEBRA.get(), ZebraRenderer::new);
 		
-		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntities.PEEPER.get(), PeeperRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntities.SWEEPER.get(), SweeperRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.PEEPER.get(), PeeperRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.SWEEPER.get(), SweeperRenderer::new);
 
 		event.enqueueWork(() -> {
 			automaticCutoutMipped(TechnologicaBlocks.BLOCKS.getEntries());

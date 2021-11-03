@@ -1,6 +1,6 @@
 package com.technologica.entity.item;
 
-import com.technologica.entity.TechnologicaEntities;
+import com.technologica.entity.TechnologicaEntityType;
 import com.technologica.util.EntityUtil;
 
 import net.minecraft.entity.Entity;
@@ -21,7 +21,7 @@ public class InvisibleSeatEntity extends Entity {
 	}
 
 	public InvisibleSeatEntity(World worldIn, double x, double y, double z) {
-		super(TechnologicaEntities.INVISIBLE_SEAT.get(), worldIn);
+		super(TechnologicaEntityType.INVISIBLE_SEAT.get(), worldIn);
 		setPosition(x, y, z);
 		noClip = true;
 	}

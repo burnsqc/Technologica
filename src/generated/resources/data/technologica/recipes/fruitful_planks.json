@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "technologica:fruitful_logs"
+    }
+  ],
+  "result": {
+    "item": "technologica:fruitful_planks",
+    "count": 4
+  }
+}
