@@ -7,6 +7,7 @@ import com.technologica.block.ChairBlock;
 import com.technologica.block.FruitingLeavesBlock;
 import com.technologica.block.SapLogBlock;
 import com.technologica.block.SawmillBlock;
+import com.technologica.block.TableBlock;
 import com.technologica.block.TechnologicaBlocks;
 import com.technologica.block.TreeTapBlock;
 import com.technologica.block.TwentyFourDirectionBlock;
@@ -102,6 +103,7 @@ public class ModBlockLootTables extends BlockLootTables {
 			else if (block.getClass().equals(TwentyFourDirectionBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(SapLogBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(ChairBlock.class)) registerDropSelfLootTable(block);
+			else if (block.getClass().equals(TableBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(TreeTapBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(TreeTapBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(SawmillBlock.class)) registerDropSelfLootTable(block);

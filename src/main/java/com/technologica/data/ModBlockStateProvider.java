@@ -133,10 +133,17 @@ public class ModBlockStateProvider extends BlockStateProvider {
 				}
 				fourDirectionBlockState(block, chairModel(block, planks));
 			}
+			else if (path.contains("_table")) {
+				ResourceLocation planks = StringHelper.replace(blockTexture(block), "table", "planks");
+				if (path.contains("oak") || path.contains("spruce") || path.contains("birch") || path.contains("jungle") || path.contains("acacia") || path.contains("dark_oak") || path.contains("crimson") || path.contains("warped")) {
+					planks = mcLoc(StringHelper.replace(blockTexture(block).getPath(), "table", "planks"));	
+				}
+				simpleBlock(block, tableModel(block, planks));
+				simpleBlockItem(block, tableModel(block, planks));
+			}
 			else if (path.contains("_crystal") && !path.contains("dolomite")) twentyFourDirectionBlockState(block, hexagonalCrystalModel(block), hexagonalCrystalModel(block));
 			else if (path.contains("_crystal") && path.contains("dolomite")) twentyFourDirectionBlockState(block, cubicCrystalModel(block), cubicCrystalModel(block));
 			else if (path.contains("motor")) twentyFourDirectionBlockState(block, motorModel(block), motor2Model(block));
-			
 		}
 	}
 	
@@ -146,6 +153,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	
 	public ModelFile chairModel(Block block, ResourceLocation texture) {
 		return models().singleTexture(StringHelper.getPath(block), modLoc("chair"), "planks", texture);
+	}
+	
+	public ModelFile tableModel(Block block, ResourceLocation texture) {
+		return models().singleTexture(StringHelper.getPath(block), modLoc("table"), "planks", texture);
 	}
 	
 	public ModelFile hexagonalCrystalModel(Block block) {

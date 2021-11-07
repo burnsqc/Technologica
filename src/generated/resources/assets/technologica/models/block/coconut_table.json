@@ -1,0 +1,6 @@
+{
+  "parent": "technologica:block/table",
+  "textures": {
+    "planks": "technologica:block/coconut_planks"
+  }
+}

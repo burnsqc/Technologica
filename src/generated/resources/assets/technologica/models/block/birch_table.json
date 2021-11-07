@@ -1,0 +1,6 @@
+{
+  "parent": "technologica:block/table",
+  "textures": {
+    "planks": "minecraft:block/birch_planks"
+  }
+}
