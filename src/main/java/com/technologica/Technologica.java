@@ -7,6 +7,7 @@ import com.technologica.block.TechnologicaBlocks;
 import com.technologica.entity.TechnologicaEntityType;
 import com.technologica.fluid.TechnologicaFluids;
 import com.technologica.item.TechnologicaItems;
+import com.technologica.item.crafting.TechnologicaRecipeSerializer;
 import com.technologica.listeners.DisableLogDrops;
 import com.technologica.listeners.DropBarkOnLogStrip;
 import com.technologica.listeners.LunarLowGrav;
@@ -50,6 +51,9 @@ public class Technologica {
 		TechnologicaEntityType.register();
 		LOGGER.info("REGISTERING GAME OBJECTS - TILE ENTITIES");
 		TechnologicaTileEntities.register();
+		
+		LOGGER.info("REGISTERING OTHER - RECIPE SERIALIZERS");
+		TechnologicaRecipeSerializer.register();
 		
 		LOGGER.info("REGISTERING EFFECTS - PARTICLES");
 		TechnologicaParticleTypes.register();
