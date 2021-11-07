@@ -729,7 +729,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> BANANA_SIGN = BLOCKS.register("banana_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.BANANA));
     public static final RegistryObject<Block> CHERRY_SIGN = BLOCKS.register("cherry_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.CHERRY));
     public static final RegistryObject<Block> CHESTNUT_SIGN = BLOCKS.register("chestnut_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.CHESTNUT));
-    public static final RegistryObject<Block> CINNAMON_SIGN = BLOCKS.register("cinnamon_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.APRICOT));
+    public static final RegistryObject<Block> CINNAMON_SIGN = BLOCKS.register("cinnamon_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.CINNAMON));
     public static final RegistryObject<Block> COCONUT_SIGN = BLOCKS.register("coconut_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.COCONUT));
     public static final RegistryObject<Block> EBONY_SIGN = BLOCKS.register("ebony_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.EBONY));
     public static final RegistryObject<Block> KIWI_SIGN = BLOCKS.register("kiwi_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.KIWI));
@@ -737,7 +737,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> LIME_SIGN = BLOCKS.register("lime_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.LIME));
     public static final RegistryObject<Block> MAHOGANY_SIGN = BLOCKS.register("mahogany_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.MAHOGANY));
     public static final RegistryObject<Block> MAPLE_SIGN = BLOCKS.register("maple_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.MAPLE));
-    public static final RegistryObject<Block> OLIVE_SIGN = BLOCKS.register("olive_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.APRICOT));
+    public static final RegistryObject<Block> OLIVE_SIGN = BLOCKS.register("olive_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.OLIVE));
     public static final RegistryObject<Block> ORANGE_SIGN = BLOCKS.register("orange_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.ORANGE));
     public static final RegistryObject<Block> PEACH_SIGN = BLOCKS.register("peach_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.PEACH));
     public static final RegistryObject<Block> PEAR_SIGN = BLOCKS.register("pear_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.PEAR));
