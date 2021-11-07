@@ -24,6 +24,7 @@ public class VanillaBoatRenderer extends EntityRenderer<VanillaBoatEntity> {
 			new ResourceLocation(Technologica.MODID, "textures/entity/boat/banana.png"),
 			new ResourceLocation(Technologica.MODID, "textures/entity/boat/cherry.png"),
 			new ResourceLocation(Technologica.MODID, "textures/entity/boat/chestnut.png"),
+			new ResourceLocation(Technologica.MODID, "textures/entity/boat/cinnamon.png"),
 			new ResourceLocation(Technologica.MODID, "textures/entity/boat/coconut.png"),
 			new ResourceLocation(Technologica.MODID, "textures/entity/boat/ebony.png"),
 			new ResourceLocation(Technologica.MODID, "textures/entity/boat/kiwi.png"),
@@ -31,6 +32,7 @@ public class VanillaBoatRenderer extends EntityRenderer<VanillaBoatEntity> {
 			new ResourceLocation(Technologica.MODID, "textures/entity/boat/lime.png"),
 			new ResourceLocation(Technologica.MODID, "textures/entity/boat/mahogany.png"),
 			new ResourceLocation(Technologica.MODID, "textures/entity/boat/maple.png"),
+			new ResourceLocation(Technologica.MODID, "textures/entity/boat/olive.png"),
 			new ResourceLocation(Technologica.MODID, "textures/entity/boat/orange.png"),
 			new ResourceLocation(Technologica.MODID, "textures/entity/boat/peach.png"),
 			new ResourceLocation(Technologica.MODID, "textures/entity/boat/pear.png"),
@@ -66,23 +68,19 @@ public class VanillaBoatRenderer extends EntityRenderer<VanillaBoatEntity> {
 		}
 
 		if (f > 0.0F) {
-			matrixStackIn.rotate(Vector3f.XP
-					.rotationDegrees(MathHelper.sin(f) * f * f1 / 10.0F * (float) entityIn.getForwardDirection()));
+			matrixStackIn.rotate(Vector3f.XP.rotationDegrees(MathHelper.sin(f) * f * f1 / 10.0F * (float) entityIn.getForwardDirection()));
 		}
 
 		float f2 = entityIn.getRockingAngle(partialTicks);
 		if (!MathHelper.epsilonEquals(f2, 0.0F)) {
-			matrixStackIn.rotate(
-					new Quaternion(new Vector3f(1.0F, 0.0F, 1.0F), entityIn.getRockingAngle(partialTicks), true));
+			matrixStackIn.rotate(new Quaternion(new Vector3f(1.0F, 0.0F, 1.0F), entityIn.getRockingAngle(partialTicks), true));
 		}
 
 		matrixStackIn.scale(-1.0F, -1.0F, 1.0F);
 		matrixStackIn.rotate(Vector3f.YP.rotationDegrees(90.0F));
 		this.modelBoat.setRotationAngles(entityIn, partialTicks, 0.0F, -0.1F, 0.0F, 0.0F);
-		IVertexBuilder ivertexbuilder = bufferIn
-				.getBuffer(this.modelBoat.getRenderType(this.getEntityTexture(entityIn)));
-		this.modelBoat.render(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F,
-				1.0F);
+		IVertexBuilder ivertexbuilder = bufferIn.getBuffer(this.modelBoat.getRenderType(this.getEntityTexture(entityIn)));
+		this.modelBoat.render(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
 		if (!entityIn.canSwim()) {
 			IVertexBuilder ivertexbuilder1 = bufferIn.getBuffer(RenderType.getWaterMask());
 			this.modelBoat.func_228245_c_().render(matrixStackIn, ivertexbuilder1, packedLightIn,

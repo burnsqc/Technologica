@@ -84,13 +84,19 @@ public class FruitingLeavesBlock extends VanillaLeavesBlock {
 		if (stateIn.get(DISTANCE) == 7) {
 			spawnDrops(stateIn, worldIn, posIn);
 			worldIn.removeBlock(posIn, false);
-
 		} else if (worldIn.isAirBlock(posIn.down()) && stateIn.get(AGE) <= 14) {
-			worldIn.setBlockState(posIn, stateIn.with(AGE, stateIn.get(AGE) + 1), 7);
-			
+			if (fruit[0].get().equals(TechnologicaItems.BANANA.get()) || fruit[0].get().equals(TechnologicaItems.COCONUT.get())) {
+				if (stateIn.get(DISTANCE) == 1) {
+					worldIn.setBlockState(posIn, stateIn.with(AGE, stateIn.get(AGE) + 1), 7);
+				}
+			} else {
+				worldIn.setBlockState(posIn, stateIn.with(AGE, stateIn.get(AGE) + 1), 7);
+			}
+				
 			if (stateIn.get(AGE) == 14) {
 				if (fruit[0].get().equals(Items.POTION)) {
 					int potionType = randomIn.nextInt(15);
+					
 					if (potionType == 0) {
 						tile.setFruitStack(PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.LONG_NIGHT_VISION));
 					} else if (potionType == 1) {
@@ -126,17 +132,12 @@ public class FruitingLeavesBlock extends VanillaLeavesBlock {
 					tile.setFruitStack(new ItemStack(fruit[randomIn.nextInt(fruit.length)].get()));
 				}
 			}
-
 		}
 	}
 	
 	@Override
 	public boolean ticksRandomly(BlockState stateIn) {
-		if (fruit[0].get().equals(TechnologicaItems.BANANA.get()) || fruit[0].get().equals(TechnologicaItems.COCONUT.get())) {
-			return !stateIn.get(PERSISTENT) && stateIn.get(AGE) <= 14 && stateIn.get(DISTANCE) == 1;
-		} else {
-			return !stateIn.get(PERSISTENT) && stateIn.get(AGE) <= 14;
-		}
+		return !stateIn.get(PERSISTENT);
 	}
 	
 	@Override

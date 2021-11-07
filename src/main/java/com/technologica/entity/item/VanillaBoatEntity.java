@@ -50,16 +50,25 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class VanillaBoatEntity extends BoatEntity {
-	private static final DataParameter<Integer> TIME_SINCE_HIT = EntityDataManager.createKey(VanillaBoatEntity.class, DataSerializers.VARINT);
-	private static final DataParameter<Integer> FORWARD_DIRECTION = EntityDataManager.createKey(VanillaBoatEntity.class, DataSerializers.VARINT);
-	private static final DataParameter<Float> DAMAGE_TAKEN = EntityDataManager.createKey(VanillaBoatEntity.class, DataSerializers.FLOAT);
-	private static final DataParameter<Integer> BOAT_TYPE = EntityDataManager.createKey(VanillaBoatEntity.class, DataSerializers.VARINT);
-	private static final DataParameter<Boolean> LEFT_PADDLE = EntityDataManager.createKey(VanillaBoatEntity.class, DataSerializers.BOOLEAN);
-	private static final DataParameter<Boolean> RIGHT_PADDLE = EntityDataManager.createKey(VanillaBoatEntity.class, DataSerializers.BOOLEAN);
-	private static final DataParameter<Integer> ROCKING_TICKS = EntityDataManager.createKey(VanillaBoatEntity.class, DataSerializers.VARINT);
+	private static final DataParameter<Integer> TIME_SINCE_HIT = EntityDataManager.createKey(VanillaBoatEntity.class,
+			DataSerializers.VARINT);
+	private static final DataParameter<Integer> FORWARD_DIRECTION = EntityDataManager.createKey(VanillaBoatEntity.class,
+			DataSerializers.VARINT);
+	private static final DataParameter<Float> DAMAGE_TAKEN = EntityDataManager.createKey(VanillaBoatEntity.class,
+			DataSerializers.FLOAT);
+	private static final DataParameter<Integer> BOAT_TYPE = EntityDataManager.createKey(VanillaBoatEntity.class,
+			DataSerializers.VARINT);
+	private static final DataParameter<Boolean> LEFT_PADDLE = EntityDataManager.createKey(VanillaBoatEntity.class,
+			DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> RIGHT_PADDLE = EntityDataManager.createKey(VanillaBoatEntity.class,
+			DataSerializers.BOOLEAN);
+	private static final DataParameter<Integer> ROCKING_TICKS = EntityDataManager.createKey(VanillaBoatEntity.class,
+			DataSerializers.VARINT);
 	private final float[] paddlePositions = new float[2];
 	private float momentum;
 	private float outOfControlTicks;
@@ -97,15 +106,12 @@ public class VanillaBoatEntity extends BoatEntity {
 		this.prevPosZ = z;
 	}
 
-	protected float getEyeHeight(Pose poseIn, EntitySize sizeIn) {
-		return sizeIn.height;
-	}
-
 	protected boolean canTriggerWalking() {
 		return false;
 	}
 
 	protected void registerData() {
+		super.registerData();
 		this.dataManager.register(TIME_SINCE_HIT, 0);
 		this.dataManager.register(FORWARD_DIRECTION, 1);
 		this.dataManager.register(DAMAGE_TAKEN, 0.0F);
@@ -206,6 +212,7 @@ public class VanillaBoatEntity extends BoatEntity {
 
 	}
 
+	@Override
 	public Item getItemBoat() {
 		switch (this.getVanillaBoatType()) {
 		case ALCHEMICAL:
@@ -224,6 +231,8 @@ public class VanillaBoatEntity extends BoatEntity {
 			return TechnologicaItems.CHERRY_BOAT.get();
 		case CHESTNUT:
 			return TechnologicaItems.CHESTNUT_BOAT.get();
+		case CINNAMON:
+			return TechnologicaItems.CINNAMON_BOAT.get();
 		case COCONUT:
 			return TechnologicaItems.COCONUT_BOAT.get();
 		case CONDUCTIVE:
@@ -248,6 +257,8 @@ public class VanillaBoatEntity extends BoatEntity {
 			return TechnologicaItems.MALEVOLENT_BOAT.get();
 		case MAPLE:
 			return TechnologicaItems.MAPLE_BOAT.get();
+		case OLIVE:
+			return TechnologicaItems.OLIVE_BOAT.get();
 		case ORANGE:
 			return TechnologicaItems.ORANGE_BOAT.get();
 		case PEACH:
@@ -295,7 +306,8 @@ public class VanillaBoatEntity extends BoatEntity {
 	public void tick() {
 		this.previousStatus = this.status;
 		this.status = this.getBoatStatus();
-		if (this.status != VanillaBoatEntity.Status.UNDER_WATER && this.status != VanillaBoatEntity.Status.UNDER_FLOWING_WATER) {
+		if (this.status != VanillaBoatEntity.Status.UNDER_WATER
+				&& this.status != VanillaBoatEntity.Status.UNDER_FLOWING_WATER) {
 			this.outOfControlTicks = 0.0F;
 		} else {
 			++this.outOfControlTicks;
@@ -313,7 +325,6 @@ public class VanillaBoatEntity extends BoatEntity {
 			this.setDamageTaken(this.getDamageTaken() - 1.0F);
 		}
 
-		
 		this.tickLerp();
 		if (this.canPassengerSteer()) {
 			if (this.getPassengers().isEmpty() || !(this.getPassengers().get(0) instanceof PlayerEntity)) {
@@ -358,14 +369,18 @@ public class VanillaBoatEntity extends BoatEntity {
 		}
 
 		this.doBlockCollisions();
-		List<Entity> list = this.world.getEntitiesInAABBexcluding(this, this.getBoundingBox().grow((double) 0.2F, (double) -0.01F, (double) 0.2F), EntityPredicates.pushableBy(this));
+		List<Entity> list = this.world.getEntitiesInAABBexcluding(this,
+				this.getBoundingBox().grow((double) 0.2F, (double) -0.01F, (double) 0.2F),
+				EntityPredicates.pushableBy(this));
 		if (!list.isEmpty()) {
 			boolean flag = !this.world.isRemote && !(this.getControllingPassenger() instanceof PlayerEntity);
 
 			for (int j = 0; j < list.size(); ++j) {
 				Entity entity = list.get(j);
 				if (!entity.isPassenger(this)) {
-					if (flag && this.getPassengers().size() < 2 && !entity.isPassenger() && entity.getWidth() < this.getWidth() && entity instanceof LivingEntity && !(entity instanceof WaterMobEntity) && !(entity instanceof PlayerEntity)) {
+					if (flag && this.getPassengers().size() < 2 && !entity.isPassenger()
+							&& entity.getWidth() < this.getWidth() && entity instanceof LivingEntity
+							&& !(entity instanceof WaterMobEntity) && !(entity instanceof PlayerEntity)) {
 						entity.startRiding(this);
 					} else {
 						this.applyEntityCollision(entity);
@@ -451,6 +466,11 @@ public class VanillaBoatEntity extends BoatEntity {
 	public void setPaddleState(boolean left, boolean right) {
 		this.dataManager.set(LEFT_PADDLE, left);
 		this.dataManager.set(RIGHT_PADDLE, right);
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	public float getRowingTime(int side, float limbSwing) {
+		return this.getPaddleState(side) ? (float) MathHelper.clampedLerp((double) this.paddlePositions[side] - (double) ((float) Math.PI / 8F), (double) this.paddlePositions[side], (double) limbSwing) : 0.0F;
 	}
 
 	/**
@@ -909,13 +929,13 @@ public class VanillaBoatEntity extends BoatEntity {
 		return list.isEmpty() ? null : list.get(0);
 	}
 
-	
-	public void updateInputs(boolean leftInputDown, boolean rightInputDown, boolean forwardInputDown, boolean backInputDown) {
+	public void updateInputs(boolean leftInputDown, boolean rightInputDown, boolean forwardInputDown,
+			boolean backInputDown) {
 		if (world.isRemote) {
-		this.leftInputDown = leftInputDown;
-		this.rightInputDown = rightInputDown;
-		this.forwardInputDown = forwardInputDown;
-		this.backInputDown = backInputDown;
+			this.leftInputDown = leftInputDown;
+			this.rightInputDown = rightInputDown;
+			this.forwardInputDown = forwardInputDown;
+			this.backInputDown = backInputDown;
 		}
 	}
 
@@ -944,29 +964,23 @@ public class VanillaBoatEntity extends BoatEntity {
 	}
 
 	public static enum Type {
-		APRICOT(TechnologicaBlocks.APRICOT_PLANKS.get(), "apricot"), 
+		APRICOT(TechnologicaBlocks.APRICOT_PLANKS.get(), "apricot"),
 		ASPEN(TechnologicaBlocks.ASPEN_PLANKS.get(), "aspen"),
-		AVOCADO(TechnologicaBlocks.AVOCADO_PLANKS.get(), "avocado"), 
+		AVOCADO(TechnologicaBlocks.AVOCADO_PLANKS.get(), "avocado"),
 		BANANA(TechnologicaBlocks.BANANA_PLANKS.get(), "banana"),
 		CHERRY(TechnologicaBlocks.CHERRY_PLANKS.get(), "cherry"),
 		CHESTNUT(TechnologicaBlocks.CHESTNUT_PLANKS.get(), "chestnut"),
 		CINNAMON(TechnologicaBlocks.CINNAMON_PLANKS.get(), "cinnamon"),
 		COCONUT(TechnologicaBlocks.COCONUT_PLANKS.get(), "coconut"),
-		EBONY(TechnologicaBlocks.EBONY_PLANKS.get(), "ebony"),
-		KIWI(TechnologicaBlocks.KIWI_PLANKS.get(), "kiwi"),
-		LEMON(TechnologicaBlocks.LEMON_PLANKS.get(), "lemon"),
-		LIME(TechnologicaBlocks.LIME_PLANKS.get(), "lime"),
+		EBONY(TechnologicaBlocks.EBONY_PLANKS.get(), "ebony"), KIWI(TechnologicaBlocks.KIWI_PLANKS.get(), "kiwi"),
+		LEMON(TechnologicaBlocks.LEMON_PLANKS.get(), "lemon"), LIME(TechnologicaBlocks.LIME_PLANKS.get(), "lime"),
 		MAHOGANY(TechnologicaBlocks.MAHOGANY_PLANKS.get(), "mahogany"),
-		MAPLE(TechnologicaBlocks.MAPLE_PLANKS.get(), "maple"),
-		OLIVE(TechnologicaBlocks.OLIVE_PLANKS.get(), "olive"),
-		ORANGE(TechnologicaBlocks.ORANGE_PLANKS.get(), "orange"),
-		PEACH(TechnologicaBlocks.PEACH_PLANKS.get(), "peach"),
-		PEAR(TechnologicaBlocks.PEAR_PLANKS.get(), "pear"),
-		PLUM(TechnologicaBlocks.PLUM_PLANKS.get(), "plum"),
+		MAPLE(TechnologicaBlocks.MAPLE_PLANKS.get(), "maple"), OLIVE(TechnologicaBlocks.OLIVE_PLANKS.get(), "olive"),
+		ORANGE(TechnologicaBlocks.ORANGE_PLANKS.get(), "orange"), PEACH(TechnologicaBlocks.PEACH_PLANKS.get(), "peach"),
+		PEAR(TechnologicaBlocks.PEAR_PLANKS.get(), "pear"), PLUM(TechnologicaBlocks.PLUM_PLANKS.get(), "plum"),
 		REDWOOD(TechnologicaBlocks.REDWOOD_PLANKS.get(), "redwood"),
 		ROSEWOOD(TechnologicaBlocks.ROSEWOOD_PLANKS.get(), "rosewood"),
-		RUBBER(TechnologicaBlocks.RUBBER_PLANKS.get(), "rubber"),
-		TEAK(TechnologicaBlocks.TEAK_PLANKS.get(), "teak"),
+		RUBBER(TechnologicaBlocks.RUBBER_PLANKS.get(), "rubber"), TEAK(TechnologicaBlocks.TEAK_PLANKS.get(), "teak"),
 		WALNUT(TechnologicaBlocks.WALNUT_PLANKS.get(), "walnut"),
 		ZEBRAWOOD(TechnologicaBlocks.ZEBRAWOOD_PLANKS.get(), "zebrawood"),
 		ALCHEMICAL(TechnologicaBlocks.ALCHEMICAL_PLANKS.get(), "alchemical"),

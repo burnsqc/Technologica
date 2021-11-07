@@ -16,6 +16,7 @@ import net.minecraft.block.CropsBlock;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.block.FenceBlock;
 import net.minecraft.block.FenceGateBlock;
+import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.block.SlabBlock;
@@ -144,6 +145,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			else if (path.contains("_crystal") && !path.contains("dolomite")) twentyFourDirectionBlockState(block, hexagonalCrystalModel(block), hexagonalCrystalModel(block));
 			else if (path.contains("_crystal") && path.contains("dolomite")) twentyFourDirectionBlockState(block, cubicCrystalModel(block), cubicCrystalModel(block));
 			else if (path.contains("motor")) twentyFourDirectionBlockState(block, motorModel(block), motor2Model(block));
+			//else if (block instanceof FlowingFluidBlock)
 		}
 	}
 	
