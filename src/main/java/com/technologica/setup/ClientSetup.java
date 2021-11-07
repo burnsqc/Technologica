@@ -157,6 +157,7 @@ public class ClientSetup {
 			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/banana"));
 			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/cherry"));
 			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/chestnut"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/cinnamon"));
 			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/coconut"));
 			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/ebony"));
 			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/kiwi"));
@@ -164,6 +165,7 @@ public class ClientSetup {
 			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/lime"));
 			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/mahogany"));
 			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/maple"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/olive"));
 			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/orange"));
 			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/peach"));
 			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/pear"));
