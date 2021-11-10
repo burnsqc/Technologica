@@ -16,7 +16,6 @@ import net.minecraft.block.CropsBlock;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.block.FenceBlock;
 import net.minecraft.block.FenceGateBlock;
-import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.block.SlabBlock;

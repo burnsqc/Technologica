@@ -12,7 +12,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LilyPadBlock;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MoverType;
@@ -50,8 +49,6 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class VanillaBoatEntity extends BoatEntity {
@@ -467,8 +464,7 @@ public class VanillaBoatEntity extends BoatEntity {
 		this.dataManager.set(LEFT_PADDLE, left);
 		this.dataManager.set(RIGHT_PADDLE, right);
 	}
-
-	@OnlyIn(Dist.CLIENT)
+	
 	public float getRowingTime(int side, float limbSwing) {
 		return this.getPaddleState(side) ? (float) MathHelper.clampedLerp((double) this.paddlePositions[side] - (double) ((float) Math.PI / 8F), (double) this.paddlePositions[side], (double) limbSwing) : 0.0F;
 	}
