@@ -45,7 +45,7 @@ public class CommonSetup {
 		GlobalEntityTypeAttributes.put(TechnologicaEntityType.GIRAFFE.get(), func_234237_fg_().create());
 		GlobalEntityTypeAttributes.put(TechnologicaEntityType.GRIZZLY_BEAR.get(), GrizzlyBearEntity.registerAttributes().create());
 		GlobalEntityTypeAttributes.put(TechnologicaEntityType.OSTRICH.get(), func_234237_fg_().create());
-		GlobalEntityTypeAttributes.put(TechnologicaEntityType.SCORPION.get(), ScorpionEntity.registerAttributes().create());
+		GlobalEntityTypeAttributes.put(TechnologicaEntityType.SCORPION.get(), ScorpionEntity.func_234305_eI_().create());
 		GlobalEntityTypeAttributes.put(TechnologicaEntityType.SHARK.get(), SharkEntity.registerAttributes().create());
 		GlobalEntityTypeAttributes.put(TechnologicaEntityType.ZEBRA.get(), func_234237_fg_().create());
 		GlobalEntityTypeAttributes.put(TechnologicaEntityType.PEEPER.get(), func_234237_fg_().create());

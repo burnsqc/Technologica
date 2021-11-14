@@ -12,7 +12,6 @@ public class ScorpionRenderer<T extends ScorpionEntity> extends MobRenderer<T, S
 
 	   public ScorpionRenderer(EntityRendererManager renderManagerIn) {
 	      super(renderManagerIn, new ScorpionModel<>(), 0.8F);
-//	      this.addLayer(new SpiderEyesLayer<>(this));
 	   }
 
 	   protected float getDeathMaxRotation(T entityLivingBaseIn) {
