@@ -4,11 +4,14 @@ import com.technologica.Technologica;
 import com.technologica.client.renderer.entity.model.GiraffeModel;
 import com.technologica.entity.passive.GiraffeEntity;
 
-import net.minecraft.client.renderer.entity.AbstractHorseRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
-public final class GiraffeRenderer extends AbstractHorseRenderer<GiraffeEntity, GiraffeModel<GiraffeEntity>> {
+@OnlyIn(Dist.CLIENT)
+public final class GiraffeRenderer extends MobRenderer<GiraffeEntity, GiraffeModel<GiraffeEntity>> {
 	private static final ResourceLocation GIRAFFE_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/giraffe.png");
 
 	public GiraffeRenderer(EntityRendererManager renderManagerIn) {
@@ -19,3 +22,4 @@ public final class GiraffeRenderer extends AbstractHorseRenderer<GiraffeEntity, 
 		return GIRAFFE_TEXTURE;
 	}
 }
+
