@@ -375,6 +375,8 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> PEACH_COBBLER = ITEMS.register("peach_cobbler", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
     public static final RegistryObject<Item> PEAR_TART = ITEMS.register("pear_tart", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
     public static final RegistryObject<Item> STRAWBERRY_SHORTCAKE = ITEMS.register("strawberry_shortcake", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
+    public static final RegistryObject<Item> TAPENADE = ITEMS.register("tapenade", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
+    public static final RegistryObject<Item> CINNAMON_ROLL = ITEMS.register("cinnamon_roll", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
     
 
     /**
