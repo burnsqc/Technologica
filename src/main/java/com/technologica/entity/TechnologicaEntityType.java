@@ -8,6 +8,7 @@ import com.technologica.entity.monster.PeeperEntity;
 import com.technologica.entity.monster.ScorpionEntity;
 import com.technologica.entity.monster.SharkEntity;
 import com.technologica.entity.monster.SweeperEntity;
+import com.technologica.entity.passive.BeaverEntity;
 import com.technologica.entity.passive.CoyoteEntity;
 import com.technologica.entity.passive.DuckEntity;
 import com.technologica.entity.passive.GiraffeEntity;
@@ -27,9 +28,10 @@ public class TechnologicaEntityType {
 	
 	public static final RegistryObject<EntityType<VanillaBoatEntity>> MOD_BOAT = ENTITIES.register("mod_boat", () -> EntityType.Builder.<VanillaBoatEntity>create(VanillaBoatEntity::new, EntityClassification.MISC).size(1.375F, 0.5625F).setCustomClientFactory((spawnEntity, world) -> new VanillaBoatEntity(world, 0, 0, 0)).trackingRange(10).build("mod_boat"));
 	
+	public static final RegistryObject<EntityType<BeaverEntity>> BEAVER = ENTITIES.register("beaver", () -> EntityType.Builder.<BeaverEntity>create(BeaverEntity::new, EntityClassification.CREATURE).size(0.4F, 0.7F).trackingRange(10).build("beaver"));
 	public static final RegistryObject<EntityType<CoyoteEntity>> COYOTE = ENTITIES.register("coyote", () -> EntityType.Builder.<CoyoteEntity>create(CoyoteEntity::new, EntityClassification.CREATURE).size(0.4F, 0.7F).trackingRange(10).build("coyote"));
 	public static final RegistryObject<EntityType<DuckEntity>> DUCK = ENTITIES.register("duck", () -> EntityType.Builder.<DuckEntity>create(DuckEntity::new, EntityClassification.CREATURE).size(0.4F, 0.7F).trackingRange(10).build("duck"));
-	public static final RegistryObject<EntityType<GiraffeEntity>> GIRAFFE = ENTITIES.register("giraffe", () -> EntityType.Builder.<GiraffeEntity>create(GiraffeEntity::new, EntityClassification.CREATURE).size(1.3964844F, 3.0F).trackingRange(10).build("giraffe"));
+	public static final RegistryObject<EntityType<GiraffeEntity>> GIRAFFE = ENTITIES.register("giraffe", () -> EntityType.Builder.<GiraffeEntity>create(GiraffeEntity::new, EntityClassification.CREATURE).size(1.3964844F, 2.9F).trackingRange(10).build("giraffe"));
 	public static final RegistryObject<EntityType<GrizzlyBearEntity>> GRIZZLY_BEAR = ENTITIES.register("grizzly_bear", () -> EntityType.Builder.<GrizzlyBearEntity>create(GrizzlyBearEntity::new, EntityClassification.CREATURE).size(1.4F, 1.4F).trackingRange(10).build("grizzly_bear"));
     public static final RegistryObject<EntityType<OstrichEntity>> OSTRICH = ENTITIES.register("ostrich", () -> EntityType.Builder.<OstrichEntity>create(OstrichEntity::new, EntityClassification.CREATURE).size(1.3964844F, 1.6F).trackingRange(10).build("ostrich"));
     public static final RegistryObject<EntityType<ScorpionEntity>> SCORPION = ENTITIES.register("scorpion", () -> EntityType.Builder.<ScorpionEntity>create(ScorpionEntity::new, EntityClassification.CREATURE).size(0.9F, 1.0F).trackingRange(10).build("scorpion"));

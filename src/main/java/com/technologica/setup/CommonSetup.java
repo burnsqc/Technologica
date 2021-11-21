@@ -11,6 +11,7 @@ import com.technologica.capabilities.TechnologicaCapabilities;
 import com.technologica.entity.TechnologicaEntityType;
 import com.technologica.entity.monster.ScorpionEntity;
 import com.technologica.entity.monster.SharkEntity;
+import com.technologica.entity.passive.BeaverEntity;
 import com.technologica.entity.passive.CoyoteEntity;
 import com.technologica.entity.passive.DuckEntity;
 import com.technologica.entity.passive.GrizzlyBearEntity;
@@ -40,6 +41,7 @@ public class CommonSetup {
 	public static void init(final FMLCommonSetupEvent event) {
 		TechnologicaCapabilities.register();
 		Packets.onCommonSetupEvent();
+		GlobalEntityTypeAttributes.put(TechnologicaEntityType.BEAVER.get(), BeaverEntity.registerAttributes().create());
 		GlobalEntityTypeAttributes.put(TechnologicaEntityType.COYOTE.get(), CoyoteEntity.registerAttributes().create());
 		GlobalEntityTypeAttributes.put(TechnologicaEntityType.DUCK.get(), DuckEntity.registerAttributes().create());
 		GlobalEntityTypeAttributes.put(TechnologicaEntityType.GIRAFFE.get(), func_234237_fg_().create());

@@ -10,6 +10,7 @@ import com.technologica.block.TechnologicaBlocks;
 import com.technologica.block.VanillaCropsBlock;
 import com.technologica.block.WaterCropsBlock;
 import com.technologica.client.renderer.MoonRenderer;
+import com.technologica.client.renderer.entity.BeaverRenderer;
 import com.technologica.client.renderer.entity.CoyoteRenderer;
 import com.technologica.client.renderer.entity.DuckRenderer;
 import com.technologica.client.renderer.entity.GiraffeRenderer;
@@ -60,6 +61,7 @@ public class ClientSetup {
 		
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.INVISIBLE_SEAT.get(), InvisibleRenderer::new);
 		
+		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.BEAVER.get(), BeaverRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.COYOTE.get(), CoyoteRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.DUCK.get(), DuckRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.GIRAFFE.get(), GiraffeRenderer::new);

@@ -51,6 +51,8 @@ public class ModSpawnEggItem extends Item {
     		entityType = TechnologicaEntityType.COYOTE.get();
     	} else if (entityTypeInt == 10) {
     		entityType = TechnologicaEntityType.GIRAFFE.get();
+    	} else if (entityTypeInt == 11) {
+    		entityType = TechnologicaEntityType.BEAVER.get();
     	}
     	
     	World world = context.getWorld();

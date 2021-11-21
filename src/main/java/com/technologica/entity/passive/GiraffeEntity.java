@@ -11,6 +11,7 @@ import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.TemptGoal;
 import net.minecraft.entity.passive.horse.AbstractHorseEntity;
 import net.minecraft.entity.passive.horse.CoatColors;
 import net.minecraft.entity.passive.horse.CoatTypes;
@@ -21,6 +22,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.HorseArmorItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -37,9 +39,10 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 public class GiraffeEntity extends AbstractHorseEntity {
+	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(Items.ACACIA_LEAVES);
 	private static final UUID ARMOR_MODIFIER_UUID = UUID.fromString("556E1665-8B10-40C8-8F9D-CF9B1667F295");
-	private static final DataParameter<Integer> HORSE_VARIANT = EntityDataManager.createKey(GiraffeEntity.class,
-			DataSerializers.VARINT);
+	private static final DataParameter<Integer> HORSE_VARIANT = EntityDataManager.createKey(GiraffeEntity.class,DataSerializers.VARINT);
+	public int earCounter;
 
 	public GiraffeEntity(EntityType<? extends GiraffeEntity> type, World worldIn) {
 		super(type, worldIn);
@@ -52,8 +55,9 @@ public class GiraffeEntity extends AbstractHorseEntity {
 		this.getAttribute(Attributes.HORSE_JUMP_STRENGTH).setBaseValue(this.getModifiedJumpStrength());
 	}
 
-	//Register Attributes, Goals, and Data
-	//Attributes are registered inside AbstractHourseEntity with method func_234237_fg_
+	// Register Attributes, Goals, and Data
+	// Attributes are registered inside AbstractHourseEntity with method
+	// func_234237_fg_
 	@Override
 	protected void registerData() {
 		super.registerData();
@@ -61,10 +65,38 @@ public class GiraffeEntity extends AbstractHorseEntity {
 	}
 
 	@Override
+	protected void registerGoals() {
+		super.registerGoals();
+		this.goalSelector.addGoal(3, new TemptGoal(this, 0.75D, false, TEMPTATION_ITEMS));
+	}
+	
+	@Override
 	public boolean canEatGrass() {
 		return false;
 	}
-	
+
+	private void moveEars() {
+		this.earCounter = 1;
+	}
+
+	@Override
+	public void livingTick() {
+		if (this.rand.nextInt(200) == 1) {
+			this.moveEars();
+		}
+
+		super.livingTick();
+	}
+
+	@Override
+	public void tick() {
+		if (this.earCounter > 0 && ++this.earCounter > 8) {
+			this.earCounter = 0;
+		}
+		
+		super.tick();
+	}
+
 	public ItemStack func_213803_dV() {
 		return this.getItemStackFromSlot(EquipmentSlotType.CHEST);
 	}
