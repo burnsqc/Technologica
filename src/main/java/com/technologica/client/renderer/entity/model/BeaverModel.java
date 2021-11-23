@@ -8,39 +8,42 @@ import net.minecraft.util.math.MathHelper;
 
 public class BeaverModel<T extends BeaverEntity> extends QuadrupedModel<T> {
 
+	
 	private ModelRenderer tail;
 
 	public BeaverModel() {
 		super(2, 0.0F, true, 10.0F, 4.0F, 2.0F, 2.0F, 24);
-
-		this.body = new ModelRenderer(this, 28, 8);
+		this.textureWidth = 32;
+		this.textureHeight = 32;
+		
+		this.body = new ModelRenderer(this, 0, 0);
 		this.body.addBox(-3.0F, 10.0F, -6.0F, 6.0F, 6.0F, 8.0F);
 		this.body.setRotationPoint(0.0F, 6.0F, 2.0F);
 
-		this.tail = new ModelRenderer(this, 28, 8);
+		this.tail = new ModelRenderer(this, 0, 22);
 		this.tail.addBox(-2.0F, 0.0F, 0.0F, 4.0F, 1.0F, 6.0F);
 		this.tail.setRotationPoint(0.0F, 14.0F, 2.0F);
 		this.body.addChild(this.tail);
 
-		this.legBackRight = new ModelRenderer(this, 0, 16);
+		this.legBackRight = new ModelRenderer(this, 0, 0);
 		this.legBackRight.addBox(-1.0F, 1.0F, -1.0F, 2.0F, 2.0F, 2.0F);
 		this.legBackRight.addBox(-1.5F, 3.0F, -2.0F, 3.0F, 0.01F, 3.0F);
 		this.legBackRight.setRotationPoint(-2.0F, 21.0F, 3.0F);
 
-		this.legBackLeft = new ModelRenderer(this, 0, 16);
+		this.legBackLeft = new ModelRenderer(this, 0, 0);
 		this.legBackLeft.addBox(-1.0F, 1.0F, -1.0F, 2.0F, 2.0F, 2.0F);
 		this.legBackLeft.addBox(-1.5F, 3.0F, -2.0F, 3.0F, 0.01F, 3.0F);
 		this.legBackLeft.setRotationPoint(2.0F, 21.0F, 3.0F);
 
-		this.legFrontRight = new ModelRenderer(this, 0, 16);
+		this.legFrontRight = new ModelRenderer(this, 0, 0);
 		this.legFrontRight.addBox(-1.0F, 1.0F, -1.0F, 2.0F, 2.0F, 2.0F);
 		this.legFrontRight.setRotationPoint(-2.0F, 21.0F, -3.0F);
 
-		this.legFrontLeft = new ModelRenderer(this, 0, 16);
+		this.legFrontLeft = new ModelRenderer(this, 0, 0);
 		this.legFrontLeft.addBox(-1.0F, 1.0F, -1.0F, 2.0F, 2.0F, 2.0F);
 		this.legFrontLeft.setRotationPoint(2.0F, 21.0F, -3.0F);
 
-		this.headModel = new ModelRenderer(this, 0, 32);
+		this.headModel = new ModelRenderer(this, 0, 14);
 		this.headModel.addBox(-2.0F, -4.0F, -4.0F, 4.0F, 4.0F, 4.0F);
 		this.headModel.setRotationPoint(0.0F, 21.0F, -4.0F);
 
