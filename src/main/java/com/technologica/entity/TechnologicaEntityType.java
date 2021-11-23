@@ -45,6 +45,6 @@ public class TechnologicaEntityType {
     
 	public static void register() 
     {
-        ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());  
+        ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 }
