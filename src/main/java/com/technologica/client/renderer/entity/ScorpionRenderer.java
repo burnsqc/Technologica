@@ -1,7 +1,7 @@
 package com.technologica.client.renderer.entity;
 
 import com.technologica.client.renderer.entity.model.ScorpionModel;
-import com.technologica.entity.monster.ScorpionEntity;
+import com.technologica.entity.passive.ScorpionEntity;
 
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;

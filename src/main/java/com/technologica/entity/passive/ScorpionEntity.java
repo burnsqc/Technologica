@@ -1,4 +1,4 @@
-package com.technologica.entity.monster;
+package com.technologica.entity.passive;
 
 import java.util.Random;
 

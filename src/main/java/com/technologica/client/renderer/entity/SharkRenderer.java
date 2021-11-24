@@ -2,7 +2,7 @@ package com.technologica.client.renderer.entity;
 
 import com.technologica.Technologica;
 import com.technologica.client.renderer.entity.model.SharkModel;
-import com.technologica.entity.monster.SharkEntity;
+import com.technologica.entity.passive.SharkEntity;
 
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;

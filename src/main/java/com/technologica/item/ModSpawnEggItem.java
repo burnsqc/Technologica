@@ -1,8 +1,7 @@
 package com.technologica.item;
 
 import java.util.Objects;
-
-import com.technologica.entity.TechnologicaEntityType;
+import java.util.function.Supplier;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -19,42 +18,18 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.spawner.AbstractSpawner;
+import net.minecraftforge.fml.RegistryObject;
 
 public class ModSpawnEggItem extends Item {
-	private int entityTypeInt;
+	private Supplier<? extends EntityType<?>> entityType;
 	
-    public ModSpawnEggItem(int entityTypeIntIn) {
-        super(new Item.Properties().maxStackSize(1).group(TechnologicaItemGroup.FAUNA));
-        entityTypeInt = entityTypeIntIn;
-    }
+	public ModSpawnEggItem(RegistryObject<? extends EntityType<?>> entityTypeIn) {
+		super(new Item.Properties().maxStackSize(1).group(TechnologicaItemGroup.FAUNA));
+		entityType = entityTypeIn;
+	}
 
-    @Override
+	@Override
     public ActionResultType onItemUse(ItemUseContext context) {
-    	EntityType<?> entityType = null;
-    	if (entityTypeInt == 1) {
-    		entityType = TechnologicaEntityType.DUCK.get();
-    	} else if (entityTypeInt == 2) {
-    		entityType = TechnologicaEntityType.GRIZZLY_BEAR.get();
-    	} else if (entityTypeInt == 3) {
-    		entityType = TechnologicaEntityType.OSTRICH.get();
-    	} else if (entityTypeInt == 4) {
-    		entityType = TechnologicaEntityType.SHARK.get();
-    	} else if (entityTypeInt == 5) {
-    		entityType = TechnologicaEntityType.ZEBRA.get();
-    	} else if (entityTypeInt == 6) {
-    		entityType = TechnologicaEntityType.SCORPION.get();
-    	} else if (entityTypeInt == 7) {
-    		entityType = TechnologicaEntityType.PEEPER.get();
-    	} else if (entityTypeInt == 8) {
-    		entityType = TechnologicaEntityType.SWEEPER.get();
-    	} else if (entityTypeInt == 9) {
-    		entityType = TechnologicaEntityType.COYOTE.get();
-    	} else if (entityTypeInt == 10) {
-    		entityType = TechnologicaEntityType.GIRAFFE.get();
-    	} else if (entityTypeInt == 11) {
-    		entityType = TechnologicaEntityType.BEAVER.get();
-    	}
-    	
     	World world = context.getWorld();
         if (!(world instanceof ServerWorld)) {
            return ActionResultType.SUCCESS;
@@ -69,7 +44,7 @@ public class ModSpawnEggItem extends Item {
               if (tileentity instanceof MobSpawnerTileEntity) {
                  AbstractSpawner abstractspawner = ((MobSpawnerTileEntity)tileentity).getSpawnerBaseLogic();
                  if (entityType != null) {
-                    abstractspawner.setEntityType(entityType);
+                    abstractspawner.setEntityType(entityType.get());
                  }
                  tileentity.markDirty();
                  world.notifyBlockUpdate(blockpos, blockstate, blockstate, 3);
@@ -86,7 +61,7 @@ public class ModSpawnEggItem extends Item {
            }
 
            
-           if (entityType != null && entityType.spawn((ServerWorld)world, itemstack, context.getPlayer(), blockpos1, SpawnReason.SPAWN_EGG, true, !Objects.equals(blockpos, blockpos1) && direction == Direction.UP) != null) {
+           if (entityType != null && entityType.get().spawn((ServerWorld)world, itemstack, context.getPlayer(), blockpos1, SpawnReason.SPAWN_EGG, true, !Objects.equals(blockpos, blockpos1) && direction == Direction.UP) != null) {
               itemstack.shrink(1);
            }
 

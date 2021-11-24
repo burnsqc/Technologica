@@ -380,7 +380,7 @@ public class BeaverEntity extends AnimalEntity {
 
 	static class MoveHelperController extends MovementController {
 		private final BeaverEntity rabbit;
-		private double nextJumpSpeed;
+		
 
 		public MoveHelperController(BeaverEntity rabbit) {
 			super(rabbit);
@@ -401,7 +401,7 @@ public class BeaverEntity extends AnimalEntity {
 
 			super.setMoveTo(x, y, z, speedIn);
 			if (speedIn > 0.0D) {
-				this.nextJumpSpeed = speedIn;
+				
 			}
 
 		}
@@ -522,7 +522,6 @@ public class BeaverEntity extends AnimalEntity {
 
 	@Override
 	public AgeableEntity createChild(ServerWorld world, AgeableEntity mate) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

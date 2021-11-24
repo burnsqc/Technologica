@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.Mod;
 public class TechnologicaItemGroup extends ItemGroup {
 	private Supplier<ItemStack> icon;
 	public static final TechnologicaItemGroup FLORA = new TechnologicaItemGroup("flora", () -> new ItemStack(TechnologicaBlocks.BANANA_SAPLING.get()));
-	public static final TechnologicaItemGroup FAUNA = new TechnologicaItemGroup("fauna", () -> new ItemStack(TechnologicaItems.DUCK_SPAWN_EGG.get()));
+	public static final TechnologicaItemGroup FAUNA = new TechnologicaItemGroup("fauna", () -> new ItemStack(TechnologicaItems.BEAVER_SPAWN_EGG.get()));
 	public static final TechnologicaItemGroup MINERAL = new TechnologicaItemGroup("mineral", () -> new ItemStack(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get()));
 	public static final TechnologicaItemGroup FOOD = new TechnologicaItemGroup("food", () -> new ItemStack(TechnologicaItems.BANANA.get()));
 	public static final TechnologicaItemGroup CONSTRUCTION = new TechnologicaItemGroup("construction", () -> new ItemStack(TechnologicaBlocks.CHERRY_PLANKS.get()));

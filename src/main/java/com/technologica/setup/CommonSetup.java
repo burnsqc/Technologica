@@ -9,12 +9,12 @@ import com.technologica.Technologica;
 import com.technologica.block.TechnologicaBlocks;
 import com.technologica.capabilities.TechnologicaCapabilities;
 import com.technologica.entity.TechnologicaEntityType;
-import com.technologica.entity.monster.ScorpionEntity;
-import com.technologica.entity.monster.SharkEntity;
 import com.technologica.entity.passive.BeaverEntity;
 import com.technologica.entity.passive.CoyoteEntity;
 import com.technologica.entity.passive.DuckEntity;
 import com.technologica.entity.passive.GrizzlyBearEntity;
+import com.technologica.entity.passive.ScorpionEntity;
+import com.technologica.entity.passive.SharkEntity;
 import com.technologica.network.play.server.Packets;
 
 import net.minecraft.block.Block;

@@ -2,8 +2,8 @@ package com.technologica.setup;
 
 import java.util.function.Predicate;
 
-import com.technologica.entity.monster.SharkEntity;
 import com.technologica.entity.passive.GrizzlyBearEntity;
+import com.technologica.entity.passive.SharkEntity;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
