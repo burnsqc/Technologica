@@ -8,7 +8,6 @@ import net.minecraft.util.math.MathHelper;
 
 public class BeaverModel<T extends BeaverEntity> extends QuadrupedModel<T> {
 
-	
 	private ModelRenderer tail;
 
 	public BeaverModel() {
