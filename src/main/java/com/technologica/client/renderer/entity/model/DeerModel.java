@@ -1,7 +1,6 @@
 package com.technologica.client.renderer.entity.model;
 
 import com.google.common.collect.ImmutableList;
-import com.technologica.entity.passive.GiraffeEntity;
 
 import net.minecraft.client.renderer.entity.model.AgeableModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
