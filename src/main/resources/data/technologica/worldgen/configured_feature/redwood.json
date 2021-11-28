@@ -29,7 +29,7 @@
       "base_height": 5,
       "height_rand_a": 2,
       "height_rand_b": 2,
-      "type": "minecraft:forking_trunk_placer"
+      "type": "technologica:three_wide_trunk_placer"
     },
     "leaves_provider": {
       "state": {
@@ -44,7 +44,7 @@
     "foliage_placer": {
       "radius": 2,
       "offset": 0,
-      "type": "minecraft:acacia_foliage_placer"
+      "type": "technologica:redwood_foliage_placer"
     }
   },
   "type": "minecraft:tree"
