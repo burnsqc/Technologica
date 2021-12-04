@@ -186,7 +186,6 @@ public class CamelModel<T extends CamelEntity> extends AgeableModel<T> {
 		float f5 = entityIn.getGrassEatingAmount(partialTick);
 		float f6 = entityIn.getRearingAmount(partialTick);
 		float f7 = 1.0F - f6;
-		float f8 = entityIn.getMouthOpennessAngle(partialTick);
 		boolean flag = entityIn.tailCounter != 0;
 		float f9 = (float) entityIn.ticksExisted + partialTick;
 		this.neckLower.rotationPointZ = -12.0F;
@@ -195,7 +194,6 @@ public class CamelModel<T extends CamelEntity> extends AgeableModel<T> {
 		float f10 = entityIn.isInWater() ? 0.2F : 1.0F;
 		float f11 = MathHelper.cos(f10 * limbSwing * 0.6662F + (float) Math.PI);
 		float f12 = f11 * 0.8F * limbSwingAmount;
-		float f13 = (1.0F - Math.max(f6, f5)) * (((float) Math.PI / 6F) + f4 + f8 * MathHelper.sin(f9) * 0.05F);
 		this.neck.rotateAngleX = f6 * (0.2617994F + f4) + f5 * (2.1816616F + MathHelper.sin(f9) * 0.05F);
 		this.body.rotateAngleX = f6 * (-(float) Math.PI / 4F) + f7 * this.body.rotateAngleX;
 		float f14 = 0.2617994F * f6;

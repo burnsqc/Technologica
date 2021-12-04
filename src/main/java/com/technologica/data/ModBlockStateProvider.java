@@ -4,11 +4,13 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 import com.technologica.Technologica;
+import com.technologica.block.LineShaftBlock;
 import com.technologica.block.TallCropsBlock;
 import com.technologica.block.TechnologicaBlocks;
 import com.technologica.block.VanillaCropsBlock;
 import com.technologica.block.WaterCropsBlock;
 import com.technologica.state.properties.TechnologicaBlockStateProperties;
+import com.technologica.util.Radius;
 import com.technologica.util.text.StringHelper;
 
 import net.minecraft.block.Block;
@@ -16,6 +18,7 @@ import net.minecraft.block.CropsBlock;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.block.FenceBlock;
 import net.minecraft.block.FenceGateBlock;
+import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.block.SlabBlock;
@@ -106,8 +109,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
 				fenceGateBlock((FenceGateBlock) block, texture);
 				simpleBlockItem(block, models().fenceGate(path, texture));
 			}
-			else if (path.contains("_door") && !path.contains("trap")) doorBlock((DoorBlock) block, StringHelper.extend(blockTexture(block), "_bottom"), StringHelper.extend(blockTexture(block), "_top"));
-			else if (path.contains("_trapdoor")) trapdoorBlock((TrapDoorBlock) block, blockTexture(block), true);
+			else if (path.contains("_door") && !path.contains("trap")) {
+				doorBlock((DoorBlock) block, StringHelper.extend(blockTexture(block), "_bottom"), StringHelper.extend(blockTexture(block), "_top"));
+				signItem(block, new ModelFile.UncheckedModelFile("item/generated"));	
+			}
+			else if (path.contains("_trapdoor")) {
+				trapdoorBlock((TrapDoorBlock) block, blockTexture(block), true);
+				simpleBlockItem(block, models().trapdoorBottom(path + "_bottom", texture));
+			}
 			else if (path.contains("_sign")) signBlock(block);
 			else if (path.contains("display_case")) {
 				simpleBlock(block, displayModel(block));
@@ -115,15 +124,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			}
 			else if (path.contains("_sapling") && !path.contains("potted")) simpleBlock(block, models().cross(path, texture));
 			else if (path.contains("potted")) simpleBlock(block, models().singleTexture(path, mcLoc("flower_pot_cross"), "plant", modLoc("block/" + path.replaceAll("potted_", ""))));
-			
-			
-			
 			else if (block.getClass().equals(VanillaCropsBlock.class)) cropBlock(block);
 			else if (block.getClass().equals(TallCropsBlock.class) || block.getClass().equals(WaterCropsBlock.class)) tallCropBlock(block);
 			else if (path.contains("_pressure_plate")) {
 				pressurePlateBlockState(block, pressurePlateModel(block), pressurePlateDownModel(block));
 			}
-			
 			else if (path.contains("_button")) buttonBlockState(block, buttonModel(block), buttonPressedModel(block), buttonInventoryModel(block));
 			else if (path.contains("tree_tap")) fourDirectionBlockState(block, treeTapModel(block));
 			else if (path.contains("_chair")) {
@@ -144,7 +149,17 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			else if (path.contains("_crystal") && !path.contains("dolomite")) twentyFourDirectionBlockState(block, hexagonalCrystalModel(block), hexagonalCrystalModel(block));
 			else if (path.contains("_crystal") && path.contains("dolomite")) twentyFourDirectionBlockState(block, cubicCrystalModel(block), cubicCrystalModel(block));
 			else if (path.contains("motor")) twentyFourDirectionBlockState(block, motorModel(block), motor2Model(block));
-			//else if (block instanceof FlowingFluidBlock)
+			else if (block instanceof LineShaftBlock) {
+				lineShaftBlockState(block, lineShaftNoPulleyModel(block), lineShaftSmallPulleyModel(block), lineShaftMediumPulleyModel(block), lineShaftLargePulleyModel(block));
+			}
+			else if (path.contains("line_shaft_hanger")) twelveDirectionBlockState(block, lineShaftHangerModel(block), lineShaftHangerModel2(block));
+			else if (block instanceof FlowingFluidBlock) {
+				getVariantBuilder(block).partialState().setModels(new ConfiguredModel(fluid(block)));
+			}
+			else if (path.contains("_pulley")) {
+				getVariantBuilder(block).partialState().setModels(new ConfiguredModel(fluid(block)));
+			}
+			else if (path.contains("sawmill")) fourDirectionBlockState(block, cubeAll(block));
 		}
 	}
 	
@@ -168,6 +183,35 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	public ModelFile cubicCrystalModel(Block block) {
 		ResourceLocation location = block.getRegistryName();
 		return models().singleTexture(StringHelper.getPath(block), modLoc("cubic_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath()));
+    }
+	
+	public ModelFile smallPulleyModel(Block block) {
+		return models().withExistingParent(StringHelper.getPath(block), modLoc(StringHelper.getPath(block))).texture("0", new ResourceLocation(Technologica.MODID, "block/" + StringHelper.getPath(block)));
+    }
+	
+	
+	public ModelFile lineShaftNoPulleyModel(Block block) {
+		return models().withExistingParent(StringHelper.getPath(block) + "_no_pulley", modLoc("line_shaft_no_pulley")).texture("0", new ResourceLocation(Technologica.MODID, "block/pulley"));
+    }
+	
+	public ModelFile lineShaftSmallPulleyModel(Block block) {
+		return models().withExistingParent(StringHelper.getPath(block) + "_small_pulley", modLoc("line_shaft_small_pulley")).texture("0", new ResourceLocation(Technologica.MODID, "block/pulley"));
+    }
+	
+	public ModelFile lineShaftMediumPulleyModel(Block block) {
+		return models().withExistingParent(StringHelper.getPath(block) + "_medium_pulley", modLoc("line_shaft_medium_pulley")).texture("0", new ResourceLocation(Technologica.MODID, "block/pulley"));
+    }
+	
+	public ModelFile lineShaftLargePulleyModel(Block block) {
+		return models().withExistingParent(StringHelper.getPath(block) + "_large_pulley", modLoc("line_shaft_large_pulley")).texture("0", new ResourceLocation(Technologica.MODID, "block/pulley"));
+    }
+	
+	public ModelFile lineShaftHangerModel(Block block) {
+		return models().withExistingParent(StringHelper.getPath(block), modLoc("line_shaft_hanger")).texture("0", blockTexture(block));
+    }
+	
+	public ModelFile lineShaftHangerModel2(Block block) {
+		return models().withExistingParent(StringHelper.getPath(block) + "2", modLoc("line_shaft_hanger")).texture("0", blockTexture(block));
     }
 	
 	public ModelFile motorModel(Block block) {
@@ -215,6 +259,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		return models().withExistingParent(name, modLoc("tall_crop")).texture("crop", crop);
     }
 	
+	public ModelFile fluid(Block block) {
+		ResourceLocation location = block.getRegistryName();
+        return models().getBuilder(location.getPath()).texture("particle", "minecraft:block/water_still");
+    }
+	
 	/*
 	 * Blockstate, block model, and item model providers
 	 */
@@ -233,6 +282,29 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			.partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).modelForState().modelFile(blockModel).rotationY(180).addModel()
 			.partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).modelForState().modelFile(blockModel).rotationY(270).addModel();
 	    this.simpleBlockItem(block, blockModel);
+    }
+	
+	public void twelveDirectionBlockState(Block block, ModelFile blockModel1, ModelFile blockModel2) {
+    	getVariantBuilder(block)
+    		.partialState().with(BlockStateProperties.FACING, Direction.DOWN).with(BlockStateProperties.AXIS, Direction.Axis.X).modelForState().modelFile(blockModel2).rotationX(180).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.DOWN).with(BlockStateProperties.AXIS, Direction.Axis.Z).modelForState().modelFile(blockModel1).rotationX(180).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.DOWN).with(BlockStateProperties.AXIS, Direction.Axis.Y).modelForState().modelFile(blockModel1).rotationX(180).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.UP).with(BlockStateProperties.AXIS, Direction.Axis.X).modelForState().modelFile(blockModel2).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.UP).with(BlockStateProperties.AXIS, Direction.Axis.Z).modelForState().modelFile(blockModel1).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.UP).with(BlockStateProperties.AXIS, Direction.Axis.Y).modelForState().modelFile(blockModel1).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.NORTH).with(BlockStateProperties.AXIS, Direction.Axis.X).modelForState().modelFile(blockModel2).rotationX(90).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.NORTH).with(BlockStateProperties.AXIS, Direction.Axis.Y).modelForState().modelFile(blockModel1).rotationX(90).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.NORTH).with(BlockStateProperties.AXIS, Direction.Axis.Z).modelForState().modelFile(blockModel1).rotationX(90).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.SOUTH).with(BlockStateProperties.AXIS, Direction.Axis.X).modelForState().modelFile(blockModel2).rotationX(270).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.SOUTH).with(BlockStateProperties.AXIS, Direction.Axis.Y).modelForState().modelFile(blockModel1).rotationX(270).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.SOUTH).with(BlockStateProperties.AXIS, Direction.Axis.Z).modelForState().modelFile(blockModel1).rotationX(270).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.WEST).with(BlockStateProperties.AXIS, Direction.Axis.Y).modelForState().modelFile(blockModel1).rotationX(90).rotationY(270).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.WEST).with(BlockStateProperties.AXIS, Direction.Axis.Z).modelForState().modelFile(blockModel2).rotationX(90).rotationY(270).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.WEST).with(BlockStateProperties.AXIS, Direction.Axis.X).modelForState().modelFile(blockModel2).rotationX(90).rotationY(270).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.EAST).with(BlockStateProperties.AXIS, Direction.Axis.Y).modelForState().modelFile(blockModel1).rotationX(90).rotationY(90).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.EAST).with(BlockStateProperties.AXIS, Direction.Axis.Z).modelForState().modelFile(blockModel2).rotationX(90).rotationY(90).addModel()
+    		.partialState().with(BlockStateProperties.FACING, Direction.EAST).with(BlockStateProperties.AXIS, Direction.Axis.X).modelForState().modelFile(blockModel2).rotationX(90).rotationY(90).addModel();
+    	this.simpleBlockItem(block, blockModel1);
     }
 	
 	public void twentyFourDirectionBlockState(Block block, ModelFile blockModel1, ModelFile blockModel2) {
@@ -273,6 +345,23 @@ public class ModBlockStateProvider extends BlockStateProvider {
     		.partialState().with(BlockStateProperties.FACING, Direction.DOWN).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.WEST).modelForState().modelFile(blockModel1).rotationX(180).rotationY(90).addModel()
     		.partialState().with(BlockStateProperties.FACING, Direction.DOWN).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.UP).modelForState().modelFile(blockModel1).rotationX(180).rotationY(180).addModel()
     		.partialState().with(BlockStateProperties.FACING, Direction.DOWN).with(TechnologicaBlockStateProperties.SUB_FACING, Direction.DOWN).modelForState().modelFile(blockModel1).rotationX(180).rotationY(180).addModel();
+    	this.simpleBlockItem(block, blockModel1);
+    }
+	
+	public void lineShaftBlockState(Block block, ModelFile blockModel1, ModelFile blockModel2, ModelFile blockModel3, ModelFile blockModel4) {
+    	getVariantBuilder(block)
+    		.partialState().with(BlockStateProperties.AXIS, Direction.Axis.X).with(TechnologicaBlockStateProperties.RADIUS, Radius.NONE).modelForState().modelFile(blockModel1).rotationX(90).rotationY(90).addModel()
+    		.partialState().with(BlockStateProperties.AXIS, Direction.Axis.Y).with(TechnologicaBlockStateProperties.RADIUS, Radius.NONE).modelForState().modelFile(blockModel1).addModel()
+    		.partialState().with(BlockStateProperties.AXIS, Direction.Axis.Z).with(TechnologicaBlockStateProperties.RADIUS, Radius.NONE).modelForState().modelFile(blockModel1).rotationX(90).addModel()
+    		.partialState().with(BlockStateProperties.AXIS, Direction.Axis.X).with(TechnologicaBlockStateProperties.RADIUS, Radius.SMALL).modelForState().modelFile(blockModel2).rotationX(90).rotationY(90).addModel()
+    		.partialState().with(BlockStateProperties.AXIS, Direction.Axis.Y).with(TechnologicaBlockStateProperties.RADIUS, Radius.SMALL).modelForState().modelFile(blockModel2).addModel()
+    		.partialState().with(BlockStateProperties.AXIS, Direction.Axis.Z).with(TechnologicaBlockStateProperties.RADIUS, Radius.SMALL).modelForState().modelFile(blockModel2).rotationX(90).addModel()
+    		.partialState().with(BlockStateProperties.AXIS, Direction.Axis.X).with(TechnologicaBlockStateProperties.RADIUS, Radius.MEDIUM).modelForState().modelFile(blockModel3).rotationX(90).rotationY(90).addModel()
+    		.partialState().with(BlockStateProperties.AXIS, Direction.Axis.Y).with(TechnologicaBlockStateProperties.RADIUS, Radius.MEDIUM).modelForState().modelFile(blockModel3).addModel()
+    		.partialState().with(BlockStateProperties.AXIS, Direction.Axis.Z).with(TechnologicaBlockStateProperties.RADIUS, Radius.MEDIUM).modelForState().modelFile(blockModel3).rotationX(90).addModel()
+    		.partialState().with(BlockStateProperties.AXIS, Direction.Axis.X).with(TechnologicaBlockStateProperties.RADIUS, Radius.LARGE).modelForState().modelFile(blockModel4).rotationX(90).rotationY(90).addModel()
+    		.partialState().with(BlockStateProperties.AXIS, Direction.Axis.Y).with(TechnologicaBlockStateProperties.RADIUS, Radius.LARGE).modelForState().modelFile(blockModel4).addModel()
+    		.partialState().with(BlockStateProperties.AXIS, Direction.Axis.Z).with(TechnologicaBlockStateProperties.RADIUS, Radius.LARGE).modelForState().modelFile(blockModel4).rotationX(90).addModel();
     	this.simpleBlockItem(block, blockModel1);
     }
 	

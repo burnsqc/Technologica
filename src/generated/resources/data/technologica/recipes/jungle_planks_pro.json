@@ -1,0 +1,26 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "technologica:disable_vanilla_plank_crafting"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "ingredients": [
+          {
+            "tag": "minecraft:jungle_logs"
+          },
+          {
+            "item": "technologica:saw"
+          }
+        ],
+        "result": {
+          "item": "minecraft:jungle_planks"
+        }
+      }
+    }
+  ]
+}

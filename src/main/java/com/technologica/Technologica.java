@@ -11,6 +11,7 @@ import com.technologica.item.crafting.TechnologicaRecipeSerializer;
 import com.technologica.listeners.DisableLogDrops;
 import com.technologica.listeners.DropBarkOnLogStrip;
 import com.technologica.listeners.LunarLowGrav;
+import com.technologica.listeners.RegisterEntityAttributes;
 import com.technologica.particles.TechnologicaParticleTypes;
 import com.technologica.setup.ClientSetup;
 import com.technologica.setup.CommonSetup;
@@ -20,12 +21,15 @@ import com.technologica.setup.ParticleSetup;
 import com.technologica.setup.VanillaBiomeModifier;
 import com.technologica.setup.VanillaEntityModifier;
 import com.technologica.tileentity.TechnologicaTileEntities;
+import com.technologica.util.DisablePlankConditionFactory;
+import com.technologica.util.EnablePlankConditionFactory;
 import com.technologica.world.biome.TechnologicaBiomes;
 import com.technologica.world.gen.feature.TechnologicaFeatures;
 import com.technologica.world.gen.foliageplacer.TechnologicaFoliagePlacers;
 import com.technologica.world.gen.surfacebuilders.TechnologicaSurfaceBuilders;
 
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -67,14 +71,19 @@ public class Technologica {
 		LOGGER.info("REGISTERING WORLDGEN - BIOMES");
 		TechnologicaBiomes.register();
 		
+		CraftingHelper.register(DisablePlankConditionFactory.Serializer.INSTANCE);
+		CraftingHelper.register(EnablePlankConditionFactory.Serializer.INSTANCE);
+		
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(CommonSetup::init);	//1st event during mod lifecycle startup
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientSetup::init);	//2nd event during mod lifecycle startup
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(GatherData::init);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientSetup::stitch);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(ParticleSetup::init);
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(RegisterEntityAttributes::onEntityAttributeCreationEvent);
 		
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, VanillaBiomeModifier::init);	
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, VanillaEntityModifier::init);	
+		
 		MinecraftForge.EVENT_BUS.register(new LunarLowGrav());
 		MinecraftForge.EVENT_BUS.register(new DropBarkOnLogStrip());
 		MinecraftForge.EVENT_BUS.register(new DisableLogDrops());

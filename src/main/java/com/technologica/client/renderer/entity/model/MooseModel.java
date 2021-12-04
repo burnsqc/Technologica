@@ -123,9 +123,7 @@ public class MooseModel<T extends AbstractHorseEntity> extends AgeableModel<T> {
 	}
 
 	public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		boolean flag = entityIn.isHorseSaddled();
-		boolean flag1 = entityIn.isBeingRidden();
-
+		
 		this.neck.rotateAngleX = ((float) Math.PI / 10F);
 		this.head.rotateAngleX = -((float) Math.PI / 10F);
 		this.earLeft.rotateAngleZ = -0.5F;

@@ -22,7 +22,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
 	
 	@Override
 	protected void registerTags() {
-		getOrCreateBuilder(TechnologicaBlockTags.APRICOT_LOGS).add(TechnologicaBlocks.APRICOT_LOG.get(), TechnologicaBlocks.PLUM_WOOD.get(), TechnologicaBlocks.STRIPPED_PLUM_LOG.get(), TechnologicaBlocks.STRIPPED_PLUM_WOOD.get());
+		getOrCreateBuilder(TechnologicaBlockTags.APRICOT_LOGS).add(TechnologicaBlocks.APRICOT_LOG.get(), TechnologicaBlocks.APRICOT_WOOD.get(), TechnologicaBlocks.STRIPPED_APRICOT_LOG.get(), TechnologicaBlocks.STRIPPED_APRICOT_WOOD.get());
 		getOrCreateBuilder(TechnologicaBlockTags.ASPEN_LOGS).add(TechnologicaBlocks.ASPEN_LOG.get(), TechnologicaBlocks.ASPEN_WOOD.get(), TechnologicaBlocks.STRIPPED_ASPEN_LOG.get(), TechnologicaBlocks.STRIPPED_ASPEN_WOOD.get());
 		getOrCreateBuilder(TechnologicaBlockTags.AVOCADO_LOGS).add(TechnologicaBlocks.AVOCADO_LOG.get(), TechnologicaBlocks.AVOCADO_WOOD.get(), TechnologicaBlocks.STRIPPED_AVOCADO_LOG.get(), TechnologicaBlocks.STRIPPED_AVOCADO_WOOD.get());
 		getOrCreateBuilder(TechnologicaBlockTags.BANANA_LOGS).add(TechnologicaBlocks.BANANA_LOG.get(), TechnologicaBlocks.BANANA_WOOD.get(), TechnologicaBlocks.STRIPPED_BANANA_LOG.get(), TechnologicaBlocks.STRIPPED_BANANA_WOOD.get());
