@@ -9,6 +9,7 @@
       ],
       "recipe": {
         "type": "minecraft:crafting_shapeless",
+        "group": "planks",
         "ingredients": [
           {
             "tag": "minecraft:jungle_logs"

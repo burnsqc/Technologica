@@ -1,0 +1,28 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "technologica:enable_vanilla_plank_crafting"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "group": "wooden_slab",
+        "pattern": [
+          "###"
+        ],
+        "key": {
+          "#": {
+            "item": "technologica:plum_planks"
+          }
+        },
+        "result": {
+          "item": "technologica:plum_slab",
+          "count": 6
+        }
+      }
+    }
+  ]
+}

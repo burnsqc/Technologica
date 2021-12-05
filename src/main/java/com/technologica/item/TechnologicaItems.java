@@ -959,7 +959,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> MEDIUM_PULLEY_ITEM = ITEMS.register("medium_pulley", () -> new BlockNamedItem(TechnologicaBlocks.MEDIUM_PULLEY.get(), new Item.Properties().group(TechnologicaItemGroup.MACHINERY)));
     public static final RegistryObject<Item> LARGE_PULLEY_ITEM = ITEMS.register("large_pulley", () -> new BlockNamedItem(TechnologicaBlocks.LARGE_PULLEY.get(), new Item.Properties().group(TechnologicaItemGroup.MACHINERY)));
     public static final RegistryObject<Item> PULLEY_BELT = ITEMS.register("pulley_belt", PulleyBeltItem::new);
-    public static final RegistryObject<Item> CHISEL = ITEMS.register("chisel", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MACHINERY)));
+    public static final RegistryObject<Item> CHISEL = ITEMS.register("chisel", () -> new SawItem(new Item.Properties().group(TechnologicaItemGroup.MACHINERY)));
     public static final RegistryObject<Item> HAMMER = ITEMS.register("hammer", () -> new HammerItem(new Item.Properties().maxStackSize(1).group(TechnologicaItemGroup.MACHINERY)));
     public static final RegistryObject<Item> SAW = ITEMS.register("saw", () -> new SawItem(new Item.Properties().group(TechnologicaItemGroup.MACHINERY)));
     public static final RegistryObject<Item> PIPE_WRENCH = ITEMS.register("pipe_wrench", () -> new PipeWrenchItem(ItemTier.IRON, 1, -2.8F, (new Item.Properties()).group(TechnologicaItemGroup.MACHINERY)));
