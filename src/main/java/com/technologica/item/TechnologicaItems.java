@@ -313,6 +313,7 @@ public class TechnologicaItems {
     
     public static final RegistryObject<Item> MULCH = ITEMS.register("mulch", () -> new Item(new Properties().group(TechnologicaItemGroup.MINERAL)));
     public static final RegistryObject<Item> SAWDUST = ITEMS.register("sawdust", () -> new Item(new Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> RUBBER = ITEMS.register("rubber", () -> new Item(new Properties().group(TechnologicaItemGroup.MINERAL)));
     
     public static final RegistryObject<Item> HYDROGEN_BUCKET = ITEMS.register("hydrogen_bucket", () -> new BucketItem(TechnologicaFluids.HYDROGEN, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
     public static final RegistryObject<Item> HELIUM_BUCKET = ITEMS.register("helium_bucket", () -> new BucketItem(TechnologicaFluids.HELIUM, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
