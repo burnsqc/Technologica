@@ -23,6 +23,7 @@ import com.technologica.setup.VanillaEntityModifier;
 import com.technologica.tileentity.TechnologicaTileEntities;
 import com.technologica.util.DisablePlankConditionFactory;
 import com.technologica.util.EnablePlankConditionFactory;
+import com.technologica.util.TechnologicaSoundEvents;
 import com.technologica.world.biome.TechnologicaBiomes;
 import com.technologica.world.gen.feature.TechnologicaFeatures;
 import com.technologica.world.gen.foliageplacer.TechnologicaFoliagePlacers;
@@ -58,6 +59,9 @@ public class Technologica {
 		
 		LOGGER.info("REGISTERING OTHER - RECIPE SERIALIZERS");
 		TechnologicaRecipeSerializer.register();
+		
+		LOGGER.info("REGISTERING OTHER - SOUND EVENTS");
+		TechnologicaSoundEvents.register();
 		
 		LOGGER.info("REGISTERING EFFECTS - PARTICLES");
 		TechnologicaParticleTypes.register();

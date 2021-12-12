@@ -2,11 +2,13 @@ package com.technologica.entity.projectile;
 
 import com.technologica.entity.TechnologicaEntityType;
 import com.technologica.item.TechnologicaItems;
+import com.technologica.util.TechnologicaSoundEvents;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.ProjectileItemEntity;
 import net.minecraft.item.Item;
@@ -16,6 +18,7 @@ import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ItemParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
@@ -85,6 +88,7 @@ public class DodgeballEntity extends ProjectileItemEntity {
 			this.world.addEntity(new ItemEntity(this.world, this.getPosX(), this.getPosY(), this.getPosZ(), this.getItem()));
 		}
 
+		this.world.playSound((PlayerEntity) null, this.getPosX(), this.getPosY(), this.getPosZ(), TechnologicaSoundEvents.DODGEBALL.get(), SoundCategory.NEUTRAL, 1.0F, 1.0F);
 	}
 	
 	@Override
