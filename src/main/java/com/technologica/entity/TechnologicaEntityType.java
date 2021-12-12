@@ -44,6 +44,7 @@ import com.technologica.entity.passive.VultureEntity;
 import com.technologica.entity.passive.WalrusEntity;
 import com.technologica.entity.passive.ZebraEntity;
 import com.technologica.entity.passive.fish.PiranhaEntity;
+import com.technologica.entity.projectile.DodgeballEntity;
 
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -110,6 +111,12 @@ public class TechnologicaEntityType {
 	 */
     
     public static final RegistryObject<EntityType<VanillaBoatEntity>> MOD_BOAT = ENTITIES.register("mod_boat", () -> EntityType.Builder.<VanillaBoatEntity>create(VanillaBoatEntity::new, EntityClassification.MISC).size(1.375F, 0.5625F).setCustomClientFactory((spawnEntity, world) -> new VanillaBoatEntity(world, 0, 0, 0)).trackingRange(10).build("mod_boat"));
+    
+    /*
+     * PROJECTILES
+     */
+    
+    public static final RegistryObject<EntityType<DodgeballEntity>> DODGEBALL = ENTITIES.register("dodgeball", () -> EntityType.Builder.<DodgeballEntity>create(DodgeballEntity::new, EntityClassification.MISC).size(0.25F, 0.25F).setCustomClientFactory((spawnEntity, world) -> new DodgeballEntity(world, 0, 0, 0)).trackingRange(4).updateInterval(10).build("dodgeball"));
     
     /*
 	 * OTHER

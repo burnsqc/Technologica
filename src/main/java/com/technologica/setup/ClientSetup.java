@@ -68,9 +68,11 @@ import net.minecraft.block.DoorBlock;
 import net.minecraft.block.FlowerPotBlock;
 import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.TrapDoorBlock;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.client.renderer.entity.SpriteRenderer;
 import net.minecraft.client.world.DimensionRenderInfo;
 import net.minecraft.inventory.container.PlayerContainer;
 import net.minecraft.util.ResourceLocation;
@@ -88,6 +90,8 @@ public class ClientSetup {
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.MOD_BOAT.get(), VanillaBoatRenderer::new);
 		
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.INVISIBLE_SEAT.get(), InvisibleRenderer::new);
+		
+		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.DODGEBALL.get(), renderManager -> new SpriteRenderer<>(renderManager, Minecraft.getInstance().getItemRenderer()));
 		
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.ALLIGATOR.get(), AlligatorRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.BEAVER.get(), BeaverRenderer::new);

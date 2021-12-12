@@ -1047,6 +1047,8 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> WARPED_TABLE_ITEM = ITEMS.register("warped_table", () -> new BlockItem(TechnologicaBlocks.WARPED_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> ZEBRAWOOD_TABLE_ITEM = ITEMS.register("zebrawood_table", () -> new BlockItem(TechnologicaBlocks.ZEBRAWOOD_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     
+    public static final RegistryObject<Item> DODGEBALL_ITEM = ITEMS.register("dodgeball", () -> new DodgeballItem((new Item.Properties()).maxStackSize(1).group(TechnologicaItemGroup.DECORATIVE)));
+    
     public static void register() {
         ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
