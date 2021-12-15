@@ -875,6 +875,7 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> WARPED_TABLE = BLOCKS.register("warped_table", TableBlock::new);
 	public static final RegistryObject<Block> ZEBRAWOOD_TABLE = BLOCKS.register("zebrawood_table", TableBlock::new);
     public static final RegistryObject<Block> DISPLAY_CASE = BLOCKS.register("display_case", DisplayCaseBlock::new);
+    public static final RegistryObject<Block> ANNUNCIATOR = BLOCKS.register("annunciator", AnnunciatorBlock::new);
     
 	public static void register() 
     {

@@ -981,6 +981,7 @@ public class TechnologicaItems {
      */
     
     public static final RegistryObject<Item> DISPLAY_CASE_ITEM = ITEMS.register("display_case", () -> new BlockItem(TechnologicaBlocks.DISPLAY_CASE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> ANNUNCIATOR_ITEM = ITEMS.register("annunciator", () -> new AnnunciatorItem(TechnologicaBlocks.ANNUNCIATOR.get()));
     public static final RegistryObject<Item> ACACIA_CHAIR_ITEM = ITEMS.register("acacia_chair", () -> new BlockItem(TechnologicaBlocks.ACACIA_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> APRICOT_CHAIR_ITEM = ITEMS.register("apricot_chair", () -> new BlockItem(TechnologicaBlocks.APRICOT_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> ASPEN_CHAIR_ITEM = ITEMS.register("aspen_chair", () -> new BlockItem(TechnologicaBlocks.ASPEN_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));

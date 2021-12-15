@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import com.technologica.block.TechnologicaBlocks;
 import com.technologica.entity.TechnologicaEntityType;
 import com.technologica.fluid.TechnologicaFluids;
+import com.technologica.inventory.container.TechnologicaContainerType;
 import com.technologica.item.TechnologicaItems;
 import com.technologica.item.crafting.TechnologicaRecipeSerializer;
 import com.technologica.listeners.DisableLogDrops;
@@ -59,9 +60,10 @@ public class Technologica {
 		
 		LOGGER.info("REGISTERING OTHER - RECIPE SERIALIZERS");
 		TechnologicaRecipeSerializer.register();
-		
 		LOGGER.info("REGISTERING OTHER - SOUND EVENTS");
 		TechnologicaSoundEvents.register();
+		LOGGER.info("REGISTERING OTHER - CONTAINERS");
+		TechnologicaContainerType.register();
 		
 		LOGGER.info("REGISTERING EFFECTS - PARTICLES");
 		TechnologicaParticleTypes.register();

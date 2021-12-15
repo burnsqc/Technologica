@@ -9,6 +9,7 @@ import com.technologica.block.TallCropsBlock;
 import com.technologica.block.TechnologicaBlocks;
 import com.technologica.block.VanillaCropsBlock;
 import com.technologica.block.WaterCropsBlock;
+import com.technologica.client.gui.screen.AnnunciatorScreen;
 import com.technologica.client.renderer.MoonRenderer;
 import com.technologica.client.renderer.entity.AlligatorRenderer;
 import com.technologica.client.renderer.entity.BeaverRenderer;
@@ -60,6 +61,7 @@ import com.technologica.client.renderer.tileentity.SawmillTileEntityRenderer;
 import com.technologica.client.renderer.tileentity.VanillaSignTileEntityRenderer;
 import com.technologica.entity.TechnologicaEntityType;
 import com.technologica.fluid.TechnologicaFluids;
+import com.technologica.inventory.container.TechnologicaContainerType;
 import com.technologica.tileentity.TechnologicaTileEntities;
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
@@ -69,6 +71,7 @@ import net.minecraft.block.FlowerPotBlock;
 import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.TrapDoorBlock;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -134,6 +137,8 @@ public class ClientSetup {
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.PEEPER.get(), PeeperRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.SWEEPER.get(), SweeperRenderer::new);
 
+		ScreenManager.registerFactory(TechnologicaContainerType.ANNUNCIATOR.get(), AnnunciatorScreen::new);
+		
 		event.enqueueWork(() -> {
 			automaticCutoutMipped(TechnologicaBlocks.BLOCKS.getEntries());
       			

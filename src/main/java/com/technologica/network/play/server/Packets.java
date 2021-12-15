@@ -27,5 +27,6 @@ public class Packets {
 
 	public static void register() {
 		INSTANCE.registerMessage(nextID(), SOpenModSignMenuPacket.class, SOpenModSignMenuPacket::encode, SOpenModSignMenuPacket::decode, SOpenModSignMenuPacket::handle);
+		INSTANCE.registerMessage(nextID(), SOpenAnnunciatorMenuPacket.class, SOpenAnnunciatorMenuPacket::encode, SOpenAnnunciatorMenuPacket::decode, SOpenAnnunciatorMenuPacket::handle);
 	}
 }

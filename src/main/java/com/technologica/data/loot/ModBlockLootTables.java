@@ -66,6 +66,7 @@ public class ModBlockLootTables extends BlockLootTables {
 		registerDropSelfLootTable(TechnologicaBlocks.MOTOR_20HP.get());
 		
 		registerDropSelfLootTable(TechnologicaBlocks.DISPLAY_CASE.get());
+		registerDropSelfLootTable(TechnologicaBlocks.ANNUNCIATOR.get());
 	}
 	
 	/**
