@@ -1,5 +1,9 @@
 package com.technologica.inventory.container;
 
+import com.technologica.state.properties.TechnologicaBlockStateProperties;
+import com.technologica.util.AnnunciatorOverlay;
+
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -9,20 +13,53 @@ import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 public class AnnunciatorContainer extends Container {
-	private final IInventory annunciatorOverlay = new Inventory(1);
-	final Slot inputInventorySlot;
+	private final IInventory annunciatorOverlay = new Inventory(1) {
+		@Override
+		public boolean isItemValidForSlot(int index, ItemStack stack) {
+			return stack.getItem().getRegistryName().getPath().contains("overlay");
+		}
+
+		@Override
+		public int getInventoryStackLimit() {
+			return 1;
+		}
+	};
 
 	public AnnunciatorContainer(int windowIdIn, PlayerInventory playerInventoryIn, PacketBuffer bufferIn) {
-		this(windowIdIn, playerInventoryIn);
+		this(windowIdIn, playerInventoryIn, null, null, null);
 	}
-
-	public AnnunciatorContainer(int windowIdIn, PlayerInventory playerInventoryIn) {
+	
+	public AnnunciatorContainer(int windowIdIn, PlayerInventory playerInventoryIn, World worldIn, BlockPos pos, BlockState stateIn) {
 		super(TechnologicaContainerType.ANNUNCIATOR.get(), windowIdIn);
 		assertInventorySize(annunciatorOverlay, 1);
-		
-		this.inputInventorySlot = this.addSlot(new Slot(annunciatorOverlay, 0, 8 + 8 * 18, 18));
+
+		this.addSlot(new Slot(annunciatorOverlay, 0, 8 + 8 * 18, 90) {
+			
+			@Override
+			public boolean isItemValid(ItemStack stack) {
+				return stack.getItem().getRegistryName().getPath().contains("overlay");
+			}
+			
+			/*
+			@Override
+			public void onSlotChanged() {
+				this.inventory.markDirty();
+				if (this.getStack().getItem().getRegistryName().getPath().contains("info")) {
+					worldIn.setBlockState(pos, stateIn.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.INFO), 2);
+				} else if (this.getStack().getItem().getRegistryName().getPath().contains("fail")) {
+					worldIn.setBlockState(pos, stateIn.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.FAIL), 2);
+				} else if (this.getStack().getItem().getRegistryName().getPath().contains("pass")) {
+					worldIn.setBlockState(pos, stateIn.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.PASS), 2);
+				} else if (this.getStack().getItem().getRegistryName().getPath().contains("warn")) {
+					worldIn.setBlockState(pos, stateIn.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.WARN), 2);
+				}
+			}
+			*/
+		});
 
 		for (int l = 0; l < 3; ++l) {
 			for (int j1 = 0; j1 < 9; ++j1) {
@@ -35,17 +72,18 @@ public class AnnunciatorContainer extends Container {
 		}
 	}
 
+	@Override
 	public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
 		ItemStack itemstack = ItemStack.EMPTY;
 		Slot slot = this.inventorySlots.get(index);
 		if (slot != null && slot.getHasStack()) {
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
-			if (index < 6 * 9) {
-				if (!this.mergeItemStack(itemstack1, 9, this.inventorySlots.size(), true)) {
+			if (index == 0) {
+				if (!this.mergeItemStack(itemstack1, 1, this.inventorySlots.size(), false)) {
 					return ItemStack.EMPTY;
 				}
-			} else if (!this.mergeItemStack(itemstack1, 0, 9, false)) {
+			} else if (!this.mergeItemStack(itemstack1, 0, 1, false)) {
 				return ItemStack.EMPTY;
 			}
 
@@ -64,8 +102,8 @@ public class AnnunciatorContainer extends Container {
 		return true;
 	}
 
+	@Override
 	public ContainerType<?> getType() {
 		return TechnologicaContainerType.ANNUNCIATOR.get();
 	}
-
 }

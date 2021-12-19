@@ -971,6 +971,12 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> SAWBLADE = ITEMS.register("sawblade", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MACHINERY)));
     public static final RegistryObject<Item> SAWMILL_ITEM = ITEMS.register("sawmill", () -> new BlockItem(TechnologicaBlocks.SAWMILL.get(), new Item.Properties().group(TechnologicaItemGroup.MACHINERY)));
     
+    public static final RegistryObject<Item> ANNUNCIATOR_ITEM = ITEMS.register("annunciator", () -> new AnnunciatorItem(TechnologicaBlocks.ANNUNCIATOR.get()));
+    public static final RegistryObject<Item> OVERLAY_INFO_ITEM = ITEMS.register("overlay_info", () -> new Item(new Properties().group(TechnologicaItemGroup.MACHINERY)));
+    public static final RegistryObject<Item> OVERLAY_PASS_ITEM = ITEMS.register("overlay_pass", () -> new Item(new Properties().group(TechnologicaItemGroup.MACHINERY)));
+    public static final RegistryObject<Item> OVERLAY_WARN_ITEM = ITEMS.register("overlay_warn", () -> new Item(new Properties().group(TechnologicaItemGroup.MACHINERY)));
+    public static final RegistryObject<Item> OVERLAY_FAIL_ITEM = ITEMS.register("overlay_fail", () -> new Item(new Properties().group(TechnologicaItemGroup.MACHINERY)));
+    
     public static final RegistryObject<Item> SPACE_HELMET = ITEMS.register("space_helmet", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, EquipmentSlotType.HEAD, (new Item.Properties()).group(TechnologicaItemGroup.MACHINERY)));
     public static final RegistryObject<Item> SPACE_SUIT = ITEMS.register("space_suit", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, EquipmentSlotType.CHEST, (new Item.Properties()).group(TechnologicaItemGroup.MACHINERY)));
     public static final RegistryObject<Item> SPACE_PANTS = ITEMS.register("space_pants", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, EquipmentSlotType.LEGS, (new Item.Properties()).group(TechnologicaItemGroup.MACHINERY)));
@@ -981,7 +987,7 @@ public class TechnologicaItems {
      */
     
     public static final RegistryObject<Item> DISPLAY_CASE_ITEM = ITEMS.register("display_case", () -> new BlockItem(TechnologicaBlocks.DISPLAY_CASE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
-    public static final RegistryObject<Item> ANNUNCIATOR_ITEM = ITEMS.register("annunciator", () -> new AnnunciatorItem(TechnologicaBlocks.ANNUNCIATOR.get()));
+    
     public static final RegistryObject<Item> ACACIA_CHAIR_ITEM = ITEMS.register("acacia_chair", () -> new BlockItem(TechnologicaBlocks.ACACIA_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> APRICOT_CHAIR_ITEM = ITEMS.register("apricot_chair", () -> new BlockItem(TechnologicaBlocks.APRICOT_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> ASPEN_CHAIR_ITEM = ITEMS.register("aspen_chair", () -> new BlockItem(TechnologicaBlocks.ASPEN_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
