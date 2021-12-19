@@ -2,7 +2,9 @@ package com.technologica.block;
 
 import java.util.Random;
 
+import com.technologica.state.properties.TechnologicaBlockStateProperties;
 import com.technologica.tileentity.AnnunciatorTileEntity;
+import com.technologica.util.AnnunciatorOverlay;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -16,6 +18,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
+import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
@@ -31,10 +34,11 @@ import net.minecraft.world.server.ServerWorld;
 public class AnnunciatorBlock extends ContainerBlock {
 	public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
+	public static final EnumProperty<AnnunciatorOverlay> OVERLAY = TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY;
 
 	public AnnunciatorBlock() {
 		super(AbstractBlock.Properties.create(Material.IRON).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.METAL));
-		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(LIT, Boolean.valueOf(false)));
+		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(LIT, false).with(OVERLAY, AnnunciatorOverlay.INFO));
 	}
 
 	@Override
@@ -92,7 +96,7 @@ public class AnnunciatorBlock extends ContainerBlock {
 
 	@Override
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-		builder.add(FACING, LIT);
+		builder.add(FACING, LIT, OVERLAY);
 	}
 
 	@Override

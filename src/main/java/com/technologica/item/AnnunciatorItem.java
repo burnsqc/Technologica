@@ -20,7 +20,7 @@ import net.minecraftforge.fml.network.PacketDistributor;
 public class AnnunciatorItem extends BlockItem {
 		
 	public AnnunciatorItem(Block floorBlockIn) {
-		super(floorBlockIn, new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION));
+		super(floorBlockIn, new Item.Properties().group(TechnologicaItemGroup.MACHINERY));
 	}
 
 	@Override
