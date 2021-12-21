@@ -27,81 +27,81 @@ public class CrabModel<T extends Entity> extends SegmentedModel<T> {
 	private final ModelRenderer scorpionPincherLeftInner;
 
 	public CrabModel() {
-		textureWidth = 64;
-		textureHeight = 32;
+		textureWidth = 32;
+		textureHeight = 16;
 
 		scorpionBody = new ModelRenderer(this);
 		scorpionBody.setRotationPoint(0.0F, 4.0F, -3.0F);
-		scorpionBody.setTextureOffset(0, 12).addBox(-3.0F, 16.0F, 0.0F, 6.0F, 2.0F, 5.0F, 0.0F, false);
+		scorpionBody.setTextureOffset(0, 0).addBox(-3.0F, 16.0F, 0.0F, 6.0F, 2.0F, 5.0F, 0.0F, false);
 		
 		eyeRight = new ModelRenderer(this);
-		eyeRight.setTextureOffset(0, 12).addBox(-2.0F, 15.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+		eyeRight.setTextureOffset(0, 0).addBox(-2.0F, 15.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
 		scorpionBody.addChild(eyeRight);
 		
 		eyeLeft = new ModelRenderer(this);
-		eyeLeft.setTextureOffset(0, 12).addBox(1.0F, 15.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+		eyeLeft.setTextureOffset(0, 0).addBox(1.0F, 15.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
 		scorpionBody.addChild(eyeLeft);
 		
 		scorpionLeg1 = new ModelRenderer(this);
 		scorpionLeg1.setRotationPoint(-3.0F, 22.0F, 2.0F);
-		scorpionLeg1.setTextureOffset(18, 0).addBox(-3.0F, -1.0F, -1.0F, 4.0F, 1.0F, 1.0F, 0.0F, false);
+		scorpionLeg1.setTextureOffset(0, 7).addBox(-3.0F, -1.0F, -1.0F, 4.0F, 1.0F, 1.0F, 0.0F, false);
 		
 		scorpionLeg2 = new ModelRenderer(this);
 		scorpionLeg2.setRotationPoint(3.0F, 22.0F, 2.0F);
-		scorpionLeg2.setTextureOffset(18, 0).addBox(-1.0F, -1.0F, -1.0F, 4.0F, 1.0F, 1.0F, 0.0F, false);
+		scorpionLeg2.setTextureOffset(0, 7).addBox(-1.0F, -1.0F, -1.0F, 4.0F, 1.0F, 1.0F, 0.0F, false);
 
 		scorpionLeg3 = new ModelRenderer(this);
 		scorpionLeg3.setRotationPoint(-3.0F, 22.0F, 1.0F);
-		scorpionLeg3.setTextureOffset(18, 0).addBox(-3.0F, -1.0F, -1.0F, 4.0F, 1.0F, 1.0F, 0.0F, false);
+		scorpionLeg3.setTextureOffset(0, 7).addBox(-3.0F, -1.0F, -1.0F, 4.0F, 1.0F, 1.0F, 0.0F, false);
 
 		scorpionLeg4 = new ModelRenderer(this);
 		scorpionLeg4.setRotationPoint(3.0F, 22.0F, 1.0F);
-		scorpionLeg4.setTextureOffset(18, 0).addBox(-1.0F, -1.0F, -1.0F, 4.0F, 1.0F, 1.0F, 0.0F, false);
+		scorpionLeg4.setTextureOffset(0, 7).addBox(-1.0F, -1.0F, -1.0F, 4.0F, 1.0F, 1.0F, 0.0F, false);
 
 		scorpionLeg5 = new ModelRenderer(this);
 		scorpionLeg5.setRotationPoint(-3.0F, 22.0F, 0.0F);
-		scorpionLeg5.setTextureOffset(18, 0).addBox(-3.0F, -1.0F, -1.0F, 4.0F, 1.0F, 1.0F, 0.0F, false);
+		scorpionLeg5.setTextureOffset(0, 7).addBox(-3.0F, -1.0F, -1.0F, 4.0F, 1.0F, 1.0F, 0.0F, false);
 
 		scorpionLeg6 = new ModelRenderer(this);
 		scorpionLeg6.setRotationPoint(3.0F, 22.0F, 0.0F);
-		scorpionLeg6.setTextureOffset(18, 0).addBox(-1.0F, -1.0F, -1.0F, 4.0F, 1.0F, 1.0F, 0.0F, false);
+		scorpionLeg6.setTextureOffset(0, 7).addBox(-1.0F, -1.0F, -1.0F, 4.0F, 1.0F, 1.0F, 0.0F, false);
 
 		scorpionLeg7 = new ModelRenderer(this);
 		scorpionLeg7.setRotationPoint(-3.0F, 22.0F, -1.0F);
-		scorpionLeg7.setTextureOffset(18, 0).addBox(-3.0F, -1.0F, -1.0F, 4.0F, 1.0F, 1.0F, 0.0F, false);
+		scorpionLeg7.setTextureOffset(0, 7).addBox(-3.0F, -1.0F, -1.0F, 4.0F, 1.0F, 1.0F, 0.0F, false);
 
-		scorpionLeg8 = new ModelRenderer(this);
+		scorpionLeg8 = new ModelRenderer(this, 0, 7);
 		scorpionLeg8.setRotationPoint(3.0F, 22.0F, -1.0F);
-		scorpionLeg8.setTextureOffset(18, 0).addBox(-1.0F, -1.0F, -1.0F, 4.0F, 1.0F, 1.0F, 0.0F, false);
+		scorpionLeg8.setTextureOffset(0, 7).addBox(-1.0F, -1.0F, -1.0F, 4.0F, 1.0F, 1.0F, 0.0F, false);
 
 		scorpionArmRight = new ModelRenderer(this);
 		scorpionArmRight.setRotationPoint(-2.0F, 1.0F, 0.0F);
-		scorpionArmRight.setTextureOffset(18, 0).addBox(-3.0F, 16.0F, 0.0F, 3.0F, 1.0F, 1.0F, 0.0F, false);
+		scorpionArmRight.setTextureOffset(0, 9).addBox(-3.0F, 16.0F, 0.0F, 3.0F, 1.0F, 1.0F, 0.0F, false);
 		scorpionBody.addChild(scorpionArmRight);
 
 		scorpionClawRight = new ModelRenderer(this);
 		scorpionClawRight.setRotationPoint(-3.0F, 0.0F, 1.0F);
-		scorpionClawRight.setTextureOffset(18, 0).addBox(-2.0F, 16.0F, -1.0F, 2.0F, 1.0F, 1.0F, 0.0F, false);
+		scorpionClawRight.setTextureOffset(0, 11).addBox(-2.0F, 16.0F, -1.0F, 2.0F, 1.0F, 1.0F, 0.0F, false);
 		scorpionArmRight.addChild(scorpionClawRight);
 		
 		scorpionPincherRightInner = new ModelRenderer(this);
 		scorpionPincherRightInner.setRotationPoint(-3.0F, 0.0F, 1.0F);
-		scorpionPincherRightInner.setTextureOffset(18, 0).addBox(-2.0F, 16.0F, -1.0F, 2.0F, 1.0F, 1.0F, 0.0F, false);
+		scorpionPincherRightInner.setTextureOffset(0, 11).addBox(-2.0F, 16.0F, -1.0F, 2.0F, 1.0F, 1.0F, 0.0F, false);
 		scorpionArmRight.addChild(scorpionPincherRightInner);
 
 		scorpionArmLeft = new ModelRenderer(this);
 		scorpionArmLeft.setRotationPoint(2.0F, 1.0F, 0.0F);
-		scorpionArmLeft.setTextureOffset(18, 0).addBox(0.0F, 16.0F, 0.0F, 3.0F, 1.0F, 1.0F, 0.0F, false);
+		scorpionArmLeft.setTextureOffset(0, 9).addBox(0.0F, 16.0F, 0.0F, 3.0F, 1.0F, 1.0F, 0.0F, false);
 		scorpionBody.addChild(scorpionArmLeft);
 
 		scorpionClawLeft = new ModelRenderer(this);
 		scorpionClawLeft.setRotationPoint(3.0F, 0.0F, 1.0F);
-		scorpionClawLeft.setTextureOffset(18, 0).addBox(-2.0F, 16.0F, 0.0F, 2.0F, 1.0F, 1.0F, 0.0F, false);
+		scorpionClawLeft.setTextureOffset(0, 11).addBox(-2.0F, 16.0F, 0.0F, 2.0F, 1.0F, 1.0F, 0.0F, false);
 		scorpionArmLeft.addChild(scorpionClawLeft);
 		
 		scorpionPincherLeftInner = new ModelRenderer(this);
 		scorpionPincherLeftInner.setRotationPoint(3.0F, 0.0F, 1.0F);
-		scorpionPincherLeftInner.setTextureOffset(18, 0).addBox(-2.0F, 16.0F, 0.0F, 2.0F, 1.0F, 1.0F, 0.0F, false);
+		scorpionPincherLeftInner.setTextureOffset(0, 11).addBox(-2.0F, 16.0F, 0.0F, 2.0F, 1.0F, 1.0F, 0.0F, false);
 		scorpionArmLeft.addChild(scorpionPincherLeftInner);
 	}
 
