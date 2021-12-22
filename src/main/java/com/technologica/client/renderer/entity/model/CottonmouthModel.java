@@ -10,6 +10,8 @@ import net.minecraft.util.math.MathHelper;
 public class CottonmouthModel<T extends Entity> extends SegmentedModel<T> {
 	private final ModelRenderer headUpper;
 	private final ModelRenderer headLower;
+	private final ModelRenderer fangLeft;
+	private final ModelRenderer fangRight;
 	private final ModelRenderer body1;
 	private final ModelRenderer body2;
 	private final ModelRenderer body3;
@@ -29,8 +31,6 @@ public class CottonmouthModel<T extends Entity> extends SegmentedModel<T> {
 		textureWidth = 32;
 		textureHeight = 32;
 
-		
-		
 		this.headLower = new ModelRenderer(this, 0, 0);
 		this.headLower.setRotationPoint(0.0F, 23.0F, 0.0F);
 		this.headLower.addBox(-1.5F, 0.0F, -3.0F, 3.0F, 1.0F, 3.0F);
@@ -39,6 +39,14 @@ public class CottonmouthModel<T extends Entity> extends SegmentedModel<T> {
 		this.headUpper.setRotationPoint(0.0F, 0.0F, 0.0F);
 		this.headUpper.addBox(-1.5F, -1.0F, -3.0F, 3.0F, 1.0F, 3.0F);
 		this.headLower.addChild(this.headUpper);
+		
+		this.fangLeft = new ModelRenderer(this, 0, 0);
+		this.fangLeft.addBox(1.0F, 0.0F, -3.0F, 0.0F, 1.0F, 1.0F);
+		this.headUpper.addChild(this.fangLeft);
+		
+		this.fangRight = new ModelRenderer(this, 0, 0);
+		this.fangRight.addBox(-1.0F, 0.0F, -3.0F, 0.0F, 1.0F, 1.0F);
+		this.headUpper.addChild(this.fangRight);
 		
 		body1 = new ModelRenderer(this, 0, 0);
 		body1.setRotationPoint(0.0F, 0.0F, 0.0F);
