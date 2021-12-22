@@ -28,23 +28,23 @@ public class CottonmouthModel<T extends Entity> extends SegmentedModel<T> {
 	private final ModelRenderer body14;
 
 	public CottonmouthModel() {
-		textureWidth = 32;
-		textureHeight = 32;
+		textureWidth = 16;
+		textureHeight = 16;
 
-		this.headLower = new ModelRenderer(this, 0, 0);
+		this.headLower = new ModelRenderer(this, 0, 8);
 		this.headLower.setRotationPoint(0.0F, 23.0F, 0.0F);
 		this.headLower.addBox(-1.5F, 0.0F, -3.0F, 3.0F, 1.0F, 3.0F);
 		
-		this.headUpper = new ModelRenderer(this, 0, 0);
+		this.headUpper = new ModelRenderer(this, 0, 4);
 		this.headUpper.setRotationPoint(0.0F, 0.0F, 0.0F);
 		this.headUpper.addBox(-1.5F, -1.0F, -3.0F, 3.0F, 1.0F, 3.0F);
 		this.headLower.addChild(this.headUpper);
 		
-		this.fangLeft = new ModelRenderer(this, 0, 0);
+		this.fangLeft = new ModelRenderer(this, 0, 4);
 		this.fangLeft.addBox(1.0F, 0.0F, -3.0F, 0.0F, 1.0F, 1.0F);
 		this.headUpper.addChild(this.fangLeft);
 		
-		this.fangRight = new ModelRenderer(this, 0, 0);
+		this.fangRight = new ModelRenderer(this, 0, 4);
 		this.fangRight.addBox(-1.0F, 0.0F, -3.0F, 0.0F, 1.0F, 1.0F);
 		this.headUpper.addChild(this.fangRight);
 		
