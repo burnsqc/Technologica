@@ -40,6 +40,5 @@ public class BuffaloModel<T extends BuffaloEntity> extends QuadrupedModel<T> {
 	
 	@Override
 	public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.headModel.rotateAngleY = 0;
 	}
 }
