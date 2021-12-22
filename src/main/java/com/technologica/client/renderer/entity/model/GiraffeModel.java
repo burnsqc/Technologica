@@ -42,11 +42,11 @@ public class GiraffeModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 		this.neck.addBox(-2.0F, -38.0F, -6.0F, 4.0F, 37.0F, 6.0F);
 		this.neck.setRotationPoint(0.0F, -16.0F, -8.0F);
 
-		this.mane = new ModelRenderer(this, 56, 36);
+		this.mane = new ModelRenderer(this, 20, 34);
 		this.mane.addBox(-1.0F, -40.0F, 0.0F, 2.0F, 37.0F, 2.0F);
 		this.neck.addChild(mane);
 
-		this.head = new ModelRenderer(this, 43, 0);
+		this.head = new ModelRenderer(this, 42, 0);
 		this.head.addBox(-3.0F, -5.0F, -9.0F, 6.0F, 5.0F, 9.0F);
 		this.head.setRotationPoint(0.0F, -35.0F, 0.0F);
 		this.neck.addChild(head);
@@ -55,12 +55,12 @@ public class GiraffeModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 		this.nose.addBox(-1.5F, -4.0F, -15.0F, 3.0F, 4.0F, 6.0F);
 		this.head.addChild(nose);
 
-		this.earLeft = new ModelRenderer(this, 13, 10);
+		this.earLeft = new ModelRenderer(this, 12, 10);
 		this.earLeft.addBox(0F, -3.0F, -1.0F, 4.0F, 3.0F, 1.0F, 0.0F);
 		this.earLeft.setRotationPoint(3.0F, -1.0F, -2.0F);
 		this.head.addChild(earLeft);
 
-		this.earRight = new ModelRenderer(this, 13, 0);
+		this.earRight = new ModelRenderer(this, 12, 0);
 		this.earRight.addBox(-4.0F, -3.0F, -1.0F, 4.0F, 3.0F, 1.0F, 0.0F);
 		this.earRight.setRotationPoint(-3.0F, -1.0F, -2.0F);
 		this.head.addChild(earRight);
@@ -73,51 +73,51 @@ public class GiraffeModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 		this.hornRight.addBox(-2.0F, -7.0F, -3.0F, 1.0F, 2.0F, 1.0F, 0.0F);
 		this.head.addChild(hornRight);
 
-		this.legUpperBackLeft = new ModelRenderer(this, 48, 21);
+		this.legUpperBackLeft = new ModelRenderer(this, 28, 34);
 		this.legUpperBackLeft.mirror = true;
 		this.legUpperBackLeft.addBox(-1.99F, -4.0F, -3.99F, 3.98F, 12.0F, 3.98F, 0.0F);
 		this.legUpperBackLeft.setRotationPoint(3.0F, -19.0F, 5.0F);
 		this.body.addChild(this.legUpperBackLeft);
 
-		this.legUpperBackRight = new ModelRenderer(this, 48, 21);
+		this.legUpperBackRight = new ModelRenderer(this, 28, 34);
 		this.legUpperBackRight.addBox(-1.99F, -4.0F, -3.99F, 3.98F, 12.0F, 3.98F, 0.0F);
 		this.legUpperBackRight.setRotationPoint(-3.0F, -19.0F, 5.0F);
 		this.body.addChild(this.legUpperBackRight);
 
-		this.legUpperFrontLeft = new ModelRenderer(this, 48, 21);
+		this.legUpperFrontLeft = new ModelRenderer(this, 44, 56);
 		this.legUpperFrontLeft.mirror = true;
 		this.legUpperFrontLeft.addBox(-1.99F, -4.0F, 0.01F, 3.98F, 18.0F, 3.98F, 0.0F);
 		this.legUpperFrontLeft.setRotationPoint(3.0F, -19.0F, -17.0F);
 		this.body.addChild(this.legUpperFrontLeft);
 
-		this.legUpperFrontRight = new ModelRenderer(this, 48, 21);
+		this.legUpperFrontRight = new ModelRenderer(this, 44, 56);
 		this.legUpperFrontRight.addBox(-1.99F, -4.0F, 0.01F, 3.98F, 18.0F, 3.98F, 0.0F);
 		this.legUpperFrontRight.setRotationPoint(-3.0F, -19.0F, -17.0F);
 		this.body.addChild(this.legUpperFrontRight);
 
-		this.legLowerBackLeft = new ModelRenderer(this, 48, 21);
+		this.legLowerBackLeft = new ModelRenderer(this, 60, 34);
 		this.legLowerBackLeft.mirror = true;
 		this.legLowerBackLeft.addBox(-2.0F, 0.0F, -4.0F, 4.0F, 24.0F, 4.0F, 0.0F);
 		this.legLowerBackLeft.setRotationPoint(0.0F, 8.0F, 0.0F);
 		this.legUpperBackLeft.addChild(this.legLowerBackLeft);
 
-		this.legLowerBackRight = new ModelRenderer(this, 48, 21);
+		this.legLowerBackRight = new ModelRenderer(this, 60, 34);
 		this.legLowerBackRight.addBox(-2.0F, 0.0F, -4.0F, 4.0F, 24.0F, 4.0F, 0.0F);
 		this.legLowerBackRight.setRotationPoint(0.0F, 8.0F, 0.0F);
 		this.legUpperBackRight.addChild(this.legLowerBackRight);
 
-		this.legLowerFrontLeft = new ModelRenderer(this, 48, 21);
+		this.legLowerFrontLeft = new ModelRenderer(this, 44, 34);
 		this.legLowerFrontLeft.mirror = true;
 		this.legLowerFrontLeft.addBox(-2.0F, 0.0F, 0.0F, 4.0F, 18.0F, 4.0F, 0.0F);
 		this.legLowerFrontLeft.setRotationPoint(0.0F, 14.0F, 0.0F);
 		this.legUpperFrontLeft.addChild(this.legLowerFrontLeft);
 
-		this.legLowerFrontRight = new ModelRenderer(this, 48, 21);
+		this.legLowerFrontRight = new ModelRenderer(this, 44, 34);
 		this.legLowerFrontRight.addBox(-2.0F, 0.0F, 0.0F, 4.0F, 18.0F, 4.0F, 0.0F);
 		this.legLowerFrontRight.setRotationPoint(0.0F, 14.0F, 0.0F);
 		this.legUpperFrontRight.addChild(this.legLowerFrontRight);
 
-		this.tail = new ModelRenderer(this, 42, 36);
+		this.tail = new ModelRenderer(this, 28, 50);
 		this.tail.addBox(-1.0F, 0.0F, -2.0F, 2.0F, 16.0F, 2.0F);
 		this.tail.setRotationPoint(0.0F, -30.0F, 5.0F);
 		this.body.addChild(this.tail);
