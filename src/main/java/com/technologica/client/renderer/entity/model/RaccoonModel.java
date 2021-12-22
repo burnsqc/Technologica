@@ -44,7 +44,7 @@ public class RaccoonModel<T extends RaccoonEntity> extends QuadrupedModel<T> {
 		this.legFrontLeft.setRotationPoint(2.0F, 21.0F, -3.0F);
 
 		this.headModel = new ModelRenderer(this, 14, 16);
-		this.headModel.addBox(-2.0F, -5.0F, -3.0F, 4.0F, 4.0F, 3.0F);
+		this.headModel.addBox(-2.5F, -5.0F, -3.0F, 5.0F, 4.0F, 3.0F);
 		this.headModel.setRotationPoint(0.0F, 21.0F, -4.0F);
 		
 		this.earRight = new ModelRenderer(this, 0, 16);
@@ -52,7 +52,7 @@ public class RaccoonModel<T extends RaccoonEntity> extends QuadrupedModel<T> {
 		this.earRight.setRotationPoint(2.0F, -5.0F, -2.0F);
 		this.headModel.addChild(this.earRight);
 		
-		this.earLeft = new ModelRenderer(this, 0, 19);
+		this.earLeft = new ModelRenderer(this, 0, 16);
 		this.earLeft.addBox(-0.5F, -1.0F, 0.0F, 1.0F, 2.0F, 1.0F);
 		this.earLeft.setRotationPoint(-2.0F, -5.0F, -2.0F);
 		this.headModel.addChild(this.earLeft);
