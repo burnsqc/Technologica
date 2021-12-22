@@ -31,10 +31,10 @@ public class GiraffeModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 	private final ModelRenderer[] field_217135_l;
 
 	public GiraffeModel(float p_i51065_1_) {
-		this.textureWidth = 64;
-		this.textureHeight = 64;
+		this.textureWidth = 96;
+		this.textureHeight = 96;
 
-		this.body = new ModelRenderer(this, 0, 32);
+		this.body = new ModelRenderer(this, 0, 0);
 		this.body.addBox(-5.0F, -31.0F, -17.0F, 10.0F, 12.0F, 22.0F);
 		this.body.setRotationPoint(0.0F, 28.0F, 3.0F);
 
@@ -46,30 +46,30 @@ public class GiraffeModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 		this.mane.addBox(-1.0F, -40.0F, 0.0F, 2.0F, 37.0F, 2.0F);
 		this.neck.addChild(mane);
 
-		this.head = new ModelRenderer(this, 0, 13);
+		this.head = new ModelRenderer(this, 43, 0);
 		this.head.addBox(-3.0F, -5.0F, -9.0F, 6.0F, 5.0F, 9.0F);
 		this.head.setRotationPoint(0.0F, -35.0F, 0.0F);
 		this.neck.addChild(head);
 
-		this.nose = new ModelRenderer(this, 0, 25);
+		this.nose = new ModelRenderer(this, 0, 0);
 		this.nose.addBox(-1.5F, -4.0F, -15.0F, 3.0F, 4.0F, 6.0F);
 		this.head.addChild(nose);
 
-		this.earLeft = new ModelRenderer(this, 19, 16);
+		this.earLeft = new ModelRenderer(this, 13, 10);
 		this.earLeft.addBox(0F, -3.0F, -1.0F, 4.0F, 3.0F, 1.0F, 0.0F);
 		this.earLeft.setRotationPoint(3.0F, -1.0F, -2.0F);
 		this.head.addChild(earLeft);
 
-		this.earRight = new ModelRenderer(this, 19, 16);
+		this.earRight = new ModelRenderer(this, 13, 0);
 		this.earRight.addBox(-4.0F, -3.0F, -1.0F, 4.0F, 3.0F, 1.0F, 0.0F);
 		this.earRight.setRotationPoint(-3.0F, -1.0F, -2.0F);
 		this.head.addChild(earRight);
 
-		this.hornLeft = new ModelRenderer(this, 19, 16);
+		this.hornLeft = new ModelRenderer(this, 0, 0);
 		this.hornLeft.addBox(1.0F, -7.0F, -3.0F, 1.0F, 2.0F, 1.0F, 0.0F);
 		this.head.addChild(hornLeft);
 
-		this.hornRight = new ModelRenderer(this, 19, 16);
+		this.hornRight = new ModelRenderer(this, 0, 0);
 		this.hornRight.addBox(-2.0F, -7.0F, -3.0F, 1.0F, 2.0F, 1.0F, 0.0F);
 		this.head.addChild(hornRight);
 
