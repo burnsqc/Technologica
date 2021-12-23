@@ -41,11 +41,11 @@ public class CottonmouthModel<T extends Entity> extends SegmentedModel<T> {
 		this.headLower.addChild(this.headUpper);
 		
 		this.fangLeft = new ModelRenderer(this, 0, 4);
-		this.fangLeft.addBox(1.0F, 0.0F, -3.0F, 0.0F, 1.0F, 1.0F);
+		this.fangLeft.addBox(1.0F, 0.0F, -2.5F, 0.0F, 1.0F, 1.0F);
 		this.headUpper.addChild(this.fangLeft);
 		
 		this.fangRight = new ModelRenderer(this, 0, 4);
-		this.fangRight.addBox(-1.0F, 0.0F, -3.0F, 0.0F, 1.0F, 1.0F);
+		this.fangRight.addBox(-1.0F, 0.0F, -2.5F, 0.0F, 1.0F, 1.0F);
 		this.headUpper.addChild(this.fangRight);
 		
 		body1 = new ModelRenderer(this, 0, 0);
