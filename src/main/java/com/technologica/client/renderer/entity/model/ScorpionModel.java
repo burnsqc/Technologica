@@ -114,12 +114,12 @@ public class ScorpionModel<T extends Entity> extends SegmentedModel<T> {
 		
 		scorpionPincherRightInner = new ModelRenderer(this);
 		scorpionPincherRightInner.setRotationPoint(0.0F, 0.0F, 0.0F);
-		scorpionPincherRightInner.setTextureOffset(19, 20).addBox(3.0F, -0.5F, 0.0F, 4.0F, 1.0F, 2.0F, 0.0F, false);
+		scorpionPincherRightInner.setTextureOffset(13, 0).addBox(3.0F, -0.5F, 0.0F, 4.0F, 1.0F, 2.0F, 0.0F, false);
 		scorpionClawRight.addChild(scorpionPincherRightInner);
 		
 		scorpionPincherRightOuter = new ModelRenderer(this);
 		scorpionPincherRightOuter.setRotationPoint(0.0F, 0.0F, 0.0F);
-		scorpionPincherRightOuter.setTextureOffset(0, 13).addBox(3.0F, -0.5F, -2.0F, 4.0F, 1.0F, 1.0F, 0.0F, false);
+		scorpionPincherRightOuter.setTextureOffset(19, 20).addBox(3.0F, -0.5F, -2.0F, 4.0F, 1.0F, 1.0F, 0.0F, false);
 		scorpionClawRight.addChild(scorpionPincherRightOuter);
 
 		scorpionArmLeft = new ModelRenderer(this);
@@ -134,12 +134,12 @@ public class ScorpionModel<T extends Entity> extends SegmentedModel<T> {
 		
 		scorpionPincherLeftInner = new ModelRenderer(this);
 		scorpionPincherLeftInner.setRotationPoint(0.0F, 0.0F, 0.0F);
-		scorpionPincherLeftInner.setTextureOffset(19, 20).addBox(3.0F, -0.5F, -2.0F, 4.0F, 1.0F, 2.0F, 0.0F, false);
+		scorpionPincherLeftInner.setTextureOffset(13, 0).addBox(3.0F, -0.5F, -2.0F, 4.0F, 1.0F, 2.0F, 0.0F, false);
 		scorpionClawLeft.addChild(scorpionPincherLeftInner);
 		
 		scorpionPincherLeftOuter = new ModelRenderer(this);
 		scorpionPincherLeftOuter.setRotationPoint(0.0F, 0.0F, 0.0F);
-		scorpionPincherLeftOuter.setTextureOffset(0, 13).addBox(3.0F, -0.5F, 1.0F, 4.0F, 1.0F, 1.0F, 0.0F, false);
+		scorpionPincherLeftOuter.setTextureOffset(19, 20).addBox(3.0F, -0.5F, 1.0F, 4.0F, 1.0F, 1.0F, 0.0F, false);
 		scorpionClawLeft.addChild(scorpionPincherLeftOuter);
 	}
 
