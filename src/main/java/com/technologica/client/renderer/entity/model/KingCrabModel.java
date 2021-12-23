@@ -8,172 +8,174 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 
 public class KingCrabModel<T extends Entity> extends SegmentedModel<T> {
-	private final ModelRenderer scorpionBody;
-	private final ModelRenderer scorpionTail1;
-	private final ModelRenderer scorpionTail2;
-	private final ModelRenderer scorpionTail3;
-	private final ModelRenderer scorpionTail4;
-	private final ModelRenderer scorpionTail5;
-	private final ModelRenderer scorpionTail6;
-	private final ModelRenderer scorpionLeg1;
-	private final ModelRenderer scorpionLeg2;
-	private final ModelRenderer scorpionLeg3;
-	private final ModelRenderer scorpionLeg4;
-	private final ModelRenderer scorpionLeg5;
-	private final ModelRenderer scorpionLeg6;
-	private final ModelRenderer scorpionLeg7;
-	private final ModelRenderer scorpionLeg8;
-	private final ModelRenderer scorpionArmRight;
-	private final ModelRenderer scorpionClawRight;
-	private final ModelRenderer scorpionPincherRightInner;
-	private final ModelRenderer scorpionPincherRightOuter;
-	private final ModelRenderer scorpionArmLeft;
-	private final ModelRenderer scorpionClawLeft;
-	private final ModelRenderer scorpionPincherLeftInner;
-	private final ModelRenderer scorpionPincherLeftOuter;
-
+	private final ModelRenderer body;
+	private final ModelRenderer head;
+	
+	private final ModelRenderer legBackBackLeftUpper;
+	private final ModelRenderer legBackBackLeftLower;
+	private final ModelRenderer legBackBackRightUpper;
+	private final ModelRenderer legBackBackRightLower;
+	private final ModelRenderer legBackRightUpper;
+	private final ModelRenderer legBackRightLower;
+	private final ModelRenderer legBackLeftUpper;
+	private final ModelRenderer legBackLeftLower;
+	private final ModelRenderer legFrontRightUpper;
+	private final ModelRenderer legFrontRightLower;
+	private final ModelRenderer legFrontLeftUpper;
+	private final ModelRenderer legFrontLeftLower;
+	private final ModelRenderer legFrontFrontRightUpper;
+	private final ModelRenderer legFrontFrontRightLower;
+	private final ModelRenderer legFrontFrontLeftUpper;
+	private final ModelRenderer legFrontFrontLeftLower;
+	
+	private final ModelRenderer armLeft;
+	private final ModelRenderer armRight;
+	private final ModelRenderer clawLeft;
+	private final ModelRenderer clawRight;
+	private final ModelRenderer pincherLeft;
+	private final ModelRenderer pincherRight;
+	
 	public KingCrabModel() {
-		textureWidth = 64;
-		textureHeight = 32;
+		this.textureWidth = 64;
+		this.textureHeight = 32;
 
-		scorpionBody = new ModelRenderer(this);
-		scorpionBody.setRotationPoint(0.0F, 15.0F, -3.0F);
-		scorpionBody.setTextureOffset(0, 12).addBox(-4.0F, -2.0F, -2.0F, 8.0F, 4.0F, 16.0F, 0.0F, false);
-
-		scorpionTail1 = new ModelRenderer(this);
-		scorpionTail1.setRotationPoint(0.0F, 0.0F, 12.0F);
-		scorpionTail1.setTextureOffset(11, 16).addBox(-2.0F, -2.0F, 0.0F, 4.0F, 4.0F, 8.0F, 0.0F, false);
-		scorpionBody.addChild(scorpionTail1);
-
-		scorpionTail2 = new ModelRenderer(this);
-		scorpionTail2.setRotationPoint(0.0F, 2.0F, 8.0F);
-		scorpionTail2.setTextureOffset(10, 16).addBox(-1.5F, -3.0F, 0.0F, 3.0F, 3.0F, 8.0F, 0.0F, false);
-		scorpionTail1.addChild(scorpionTail2);
-
-		scorpionTail3 = new ModelRenderer(this);
-		scorpionTail3.setRotationPoint(0.0F, 0.0F, 8.0F);
-		scorpionTail3.setTextureOffset(13, 16).addBox(-1.49F, -3.0F, 0.0F, 2.98F, 2.98F, 8.0F, 0.0F, false);
-		scorpionTail2.addChild(scorpionTail3);
-
-		scorpionTail4 = new ModelRenderer(this);
-		scorpionTail4.setRotationPoint(0.0F, 0.0F, 8.0F);
-		scorpionTail4.setTextureOffset(12, 16).addBox(-1.0F, -2.0F, 0.0F, 2.0F, 2.0F, 8.0F, 0.0F, false);
-		scorpionTail3.addChild(scorpionTail4);
+		this.body = new ModelRenderer(this, 0, 12);
+		this.body.setRotationPoint(0.0F, 6.0F, 0.0F);
+		this.body.addBox(-4.0F, -2.0F, -3.0F, 8.0F, 4.0F, 7.0F);
 		
-		scorpionTail5 = new ModelRenderer(this);
-		scorpionTail5.setRotationPoint(0.0F, 0.0F, 8.0F);
-		scorpionTail5.setTextureOffset(12, 16).addBox(-1.5F, -3.0F, 0.0F, 3.0F, 3.0F, 3.0F, 0.0F, false);
-		scorpionTail4.addChild(scorpionTail5);
+		this.head = new ModelRenderer(this, 0, 12);
+		this.head.setRotationPoint(0.0F, -1.0F, -3.0F);
+		this.head.addBox(-2.0F, -1.0F, -2.0F, 4.0F, 2.0F, 4.0F);
+		this.body.addChild(this.head);
 		
-		scorpionTail6 = new ModelRenderer(this);
-		scorpionTail6.setRotationPoint(0.0F, 0.0F, 8.0F);
-		scorpionTail6.setTextureOffset(12, 16).addBox(-0.5F, -3.0F, 3.0F, 1.0F, 1.0F, 2.0F, 0.0F, false);
-		scorpionTail4.addChild(scorpionTail6);
-
-		scorpionLeg1 = new ModelRenderer(this);
-		scorpionLeg1.setRotationPoint(-4.0F, 15.0F, 2.0F);
-		scorpionLeg1.setTextureOffset(18, 0).addBox(-15.0F, -1.0F, -1.0F, 16.0F, 2.0F, 2.0F, 0.0F, false);
-
-		scorpionLeg2 = new ModelRenderer(this);
-		scorpionLeg2.setRotationPoint(4.0F, 15.0F, 2.0F);
-		scorpionLeg2.setTextureOffset(18, 0).addBox(-1.0F, -1.0F, -1.0F, 16.0F, 2.0F, 2.0F, 0.0F, false);
-
-		scorpionLeg3 = new ModelRenderer(this);
-		scorpionLeg3.setRotationPoint(-4.0F, 15.0F, 1.0F);
-		scorpionLeg3.setTextureOffset(18, 0).addBox(-15.0F, -1.0F, -1.0F, 16.0F, 2.0F, 2.0F, 0.0F, false);
-
-		scorpionLeg4 = new ModelRenderer(this);
-		scorpionLeg4.setRotationPoint(4.0F, 15.0F, 1.0F);
-		scorpionLeg4.setTextureOffset(18, 0).addBox(-1.0F, -1.0F, -1.0F, 16.0F, 2.0F, 2.0F, 0.0F, false);
-
-		scorpionLeg5 = new ModelRenderer(this);
-		scorpionLeg5.setRotationPoint(-4.0F, 15.0F, 0.0F);
-		scorpionLeg5.setTextureOffset(18, 0).addBox(-15.0F, -1.0F, -1.0F, 16.0F, 2.0F, 2.0F, 0.0F, false);
-
-		scorpionLeg6 = new ModelRenderer(this);
-		scorpionLeg6.setRotationPoint(4.0F, 15.0F, 0.0F);
-		scorpionLeg6.setTextureOffset(18, 0).addBox(-1.0F, -1.0F, -1.0F, 16.0F, 2.0F, 2.0F, 0.0F, false);
-
-		scorpionLeg7 = new ModelRenderer(this);
-		scorpionLeg7.setRotationPoint(-4.0F, 15.0F, -1.0F);
-		scorpionLeg7.setTextureOffset(18, 0).addBox(-15.0F, -1.0F, -1.0F, 16.0F, 2.0F, 2.0F, 0.0F, false);
-
-		scorpionLeg8 = new ModelRenderer(this);
-		scorpionLeg8.setRotationPoint(4.0F, 15.0F, -1.0F);
-		scorpionLeg8.setTextureOffset(18, 0).addBox(-1.0F, -1.0F, -1.0F, 16.0F, 2.0F, 2.0F, 0.0F, false);
-
-		scorpionArmRight = new ModelRenderer(this);
-		scorpionArmRight.setRotationPoint(-2.0F, 0.0F, 0.0F);
-		scorpionArmRight.setTextureOffset(18, 0).addBox(-8.0F, -1.0F, -1.0F, 8.0F, 2.0F, 2.0F, 0.0F, false);
-		scorpionBody.addChild(scorpionArmRight);
-
-		scorpionClawRight = new ModelRenderer(this);
-		scorpionClawRight.setRotationPoint(-7.0F, 0.0F, 0.0F);
-		scorpionClawRight.setTextureOffset(18, 0).addBox(-1.0F, -1.5F, -2.0F, 4.0F, 3.0F, 4.0F, 0.0F, false);
-		scorpionArmRight.addChild(scorpionClawRight);
+		this.legBackBackLeftUpper = new ModelRenderer(this, 18, 0);
+		this.legBackBackLeftUpper.setRotationPoint(4.0F, 7.0F, 2.0F);
+		this.legBackBackLeftUpper.addBox(-1.0F, -1.0F, -1.0F, 16.0F, 2.0F, 2.0F);
 		
-		scorpionPincherRightInner = new ModelRenderer(this);
-		scorpionPincherRightInner.setRotationPoint(0.0F, 0.0F, 0.0F);
-		scorpionPincherRightInner.setTextureOffset(18, 0).addBox(3.0F, -0.5F, 0.0F, 4.0F, 1.0F, 2.0F, 0.0F, false);
-		scorpionClawRight.addChild(scorpionPincherRightInner);
+		this.legBackBackLeftLower = new ModelRenderer(this, 0, 0);
+		this.legBackBackLeftLower.setRotationPoint(15.0F, 1.0F, 0.0F);
+		this.legBackBackLeftLower.addBox(0.0F, 0.0F, -1.0F, 16.0F, 2.0F, 2.0F);
+		this.legBackBackLeftUpper.addChild(this.legBackBackLeftLower);
 		
-		scorpionPincherRightOuter = new ModelRenderer(this);
-		scorpionPincherRightOuter.setRotationPoint(0.0F, 0.0F, 0.0F);
-		scorpionPincherRightOuter.setTextureOffset(18, 0).addBox(3.0F, -0.5F, -2.0F, 4.0F, 1.0F, 1.0F, 0.0F, false);
-		scorpionClawRight.addChild(scorpionPincherRightOuter);
+		this.legBackBackRightUpper = new ModelRenderer(this, 18, 0);
+		this.legBackBackRightUpper.setRotationPoint(-4.0F, 7.0F, 2.0F);
+		this.legBackBackRightUpper.addBox(-15.0F, -1.0F, -1.0F, 16.0F, 2.0F, 2.0F);
+		
+		this.legBackBackRightLower = new ModelRenderer(this, 0, 0);
+		this.legBackBackRightLower.setRotationPoint(-15.0F, 1.0F, 0.0F);
+		this.legBackBackRightLower.addBox(-16.0F, 0.0F, -1.0F, 16.0F, 2.0F, 2.0F);
+		this.legBackBackRightUpper.addChild(this.legBackBackRightLower);
+		
+		this.legBackLeftUpper = new ModelRenderer(this, 0, 0);
+		this.legBackLeftUpper.setRotationPoint(4.0F, 7.0F, 1.0F);
+		this.legBackLeftUpper.addBox(-1.0F, -1.0F, -1.0F, 16.0F, 2.0F, 2.0F);
+		
+		this.legBackLeftLower = new ModelRenderer(this, 0, 0);
+		this.legBackLeftLower.setRotationPoint(15.0F, 1.0F, 0.0F);
+		this.legBackLeftLower.addBox(0.0F, 0.0F, -1.0F, 16.0F, 2.0F, 2.0F);
+		this.legBackLeftUpper.addChild(this.legBackLeftLower);
+		
+		this.legBackRightUpper = new ModelRenderer(this, 0, 0);
+		this.legBackRightUpper.setRotationPoint(-4.0F, 7.0F, 1.0F);
+		this.legBackRightUpper.addBox(-15.0F, -1.0F, -1.0F, 16.0F, 2.0F, 2.0F);
 
-		scorpionArmLeft = new ModelRenderer(this);
-		scorpionArmLeft.setRotationPoint(2.0F, 0.0F, 0.0F);
-		scorpionArmLeft.setTextureOffset(18, 0).addBox(0.0F, -1.0F, -1.0F, 8.0F, 2.0F, 2.0F, 0.0F, false);
-		scorpionBody.addChild(scorpionArmLeft);
+		this.legBackRightLower = new ModelRenderer(this, 0, 0);
+		this.legBackRightLower.setRotationPoint(-15.0F, 1.0F, 0.0F);
+		this.legBackRightLower.addBox(-16.0F, 0.0F, -1.0F, 16.0F, 2.0F, 2.0F);
+		this.legBackRightUpper.addChild(this.legBackRightLower);
 
-		scorpionClawLeft = new ModelRenderer(this);
-		scorpionClawLeft.setRotationPoint(7.0F, 0.0F, 0.0F);
-		scorpionClawLeft.setTextureOffset(18, 0).addBox(-1.0F, -1.5F, -2.0F, 4.0F, 3.0F, 4.0F, 0.0F, false);
-		scorpionArmLeft.addChild(scorpionClawLeft);
+		this.legFrontLeftUpper = new ModelRenderer(this, 0, 0);
+		this.legFrontLeftUpper.setRotationPoint(4.0F, 7.0F, 0.0F);
+		this.legFrontLeftUpper.addBox(-1.0F, -1.0F, -1.0F, 16.0F, 2.0F, 2.0F);
 		
-		scorpionPincherLeftInner = new ModelRenderer(this);
-		scorpionPincherLeftInner.setRotationPoint(0.0F, 0.0F, 0.0F);
-		scorpionPincherLeftInner.setTextureOffset(18, 0).addBox(3.0F, -0.5F, -2.0F, 4.0F, 1.0F, 2.0F, 0.0F, false);
-		scorpionClawLeft.addChild(scorpionPincherLeftInner);
+		this.legFrontLeftLower = new ModelRenderer(this, 0, 0);
+		this.legFrontLeftLower.setRotationPoint(15.0F, 1.0F, 0.0F);
+		this.legFrontLeftLower.addBox(0.0F, 0.0F, -1.0F, 16.0F, 2.0F, 2.0F);
+		this.legFrontLeftUpper.addChild(this.legFrontLeftLower);
 		
-		scorpionPincherLeftOuter = new ModelRenderer(this);
-		scorpionPincherLeftOuter.setRotationPoint(0.0F, 0.0F, 0.0F);
-		scorpionPincherLeftOuter.setTextureOffset(18, 0).addBox(3.0F, -0.5F, 1.0F, 4.0F, 1.0F, 1.0F, 0.0F, false);
-		scorpionClawLeft.addChild(scorpionPincherLeftOuter);
+		this.legFrontRightUpper = new ModelRenderer(this, 0, 0);
+		this.legFrontRightUpper.setRotationPoint(-4.0F, 7.0F, 0.0F);
+		this.legFrontRightUpper.addBox(-15.0F, -1.0F, -1.0F, 16.0F, 2.0F, 2.0F);
+
+		this.legFrontRightLower = new ModelRenderer(this, 0, 0);
+		this.legFrontRightLower.setRotationPoint(-15.0F, 1.0F, 0.0F);
+		this.legFrontRightLower.addBox(-16.0F, 0.0F, -1.0F, 16.0F, 2.0F, 2.0F);
+		this.legFrontRightUpper.addChild(this.legFrontRightLower);
+
+		this.legFrontFrontLeftUpper = new ModelRenderer(this, 0, 0);
+		this.legFrontFrontLeftUpper.setRotationPoint(4.0F, 7.0F, -1.0F);
+		this.legFrontFrontLeftUpper.addBox(-1.0F, -1.0F, -1.0F, 16.0F, 2.0F, 2.0F);
+		
+		this.legFrontFrontLeftLower = new ModelRenderer(this, 0, 0);
+		this.legFrontFrontLeftLower.setRotationPoint(15.0F, 1.0F, 0.0F);
+		this.legFrontFrontLeftLower.addBox(0.0F, 0.0F, -1.0F, 16.0F, 2.0F, 2.0F);
+		this.legFrontFrontLeftUpper.addChild(this.legFrontFrontLeftLower);
+		
+		this.legFrontFrontRightUpper = new ModelRenderer(this, 0, 0);
+		this.legFrontFrontRightUpper.setRotationPoint(-4.0F, 7.0F, -1.0F);
+		this.legFrontFrontRightUpper.addBox(-15.0F, -1.0F, -1.0F, 16.0F, 2.0F, 2.0F);
+
+		this.legFrontFrontRightLower = new ModelRenderer(this, 0, 0);
+		this.legFrontFrontRightLower.setRotationPoint(-15.0F, 1.0F, 0.0F);
+		this.legFrontFrontRightLower.addBox(-16.0F, 0.0F, -1.0F, 16.0F, 2.0F, 2.0F);
+		this.legFrontFrontRightUpper.addChild(this.legFrontFrontRightLower);
+		
+		this.armLeft = new ModelRenderer(this);
+		this.armLeft.setRotationPoint(4.0F, 1.0F, -3.0F);
+		this.armLeft.setTextureOffset(18, 0).addBox(-2.0F, -1.0F, -1.0F, 10.0F, 2.0F, 2.0F);
+		this.body.addChild(this.armLeft);
+		
+		this.armRight = new ModelRenderer(this);
+		this.armRight.setRotationPoint(-4.0F, 1.0F, -3.0F);
+		this.armRight.setTextureOffset(18, 0).addBox(-8.0F, -1.0F, -1.0F, 10.0F, 2.0F, 2.0F);
+		this.body.addChild(this.armRight);
+
+		this.clawLeft = new ModelRenderer(this);
+		this.clawLeft.setRotationPoint(8.0F, 0.0F, 1.0F);
+		this.clawLeft.setTextureOffset(18, 0).addBox(0.0F, -1.0F, -2.0F, 10.0F, 2.0F, 2.0F);
+		this.armLeft.addChild(this.clawLeft);
+		
+		this.clawRight = new ModelRenderer(this);
+		this.clawRight.setRotationPoint(-8.0F, 0.0F, 1.0F);
+		this.clawRight.setTextureOffset(18, 0).addBox(0.0F, -1.0F, 0.0F, 10.0F, 2.0F, 2.0F);
+		this.armRight.addChild(this.clawRight);
+		
+		this.pincherLeft = new ModelRenderer(this, 0, 0);
+		this.pincherLeft.setRotationPoint(5.0F, 0.0F, 0.0F);
+		this.pincherLeft.addBox(0.0F, -1.0F, -2.0F, 5.0F, 2.0F, 2.0F);
+		this.clawLeft.addChild(this.pincherLeft);
+
+		this.pincherRight = new ModelRenderer(this, 0, 0);
+		this.pincherRight.setRotationPoint(5.0F, 0.0F, 0.0F);
+		this.pincherRight.addBox(0.0F, -1.0F, 0.0F, 5.0F, 2.0F, 2.0F);
+		this.clawRight.addChild(this.pincherRight);
 	}
 
 	public Iterable<ModelRenderer> getParts() {
-		return ImmutableList.of(this.scorpionBody, this.scorpionLeg1, this.scorpionLeg2, this.scorpionLeg3, this.scorpionLeg4, this.scorpionLeg5, this.scorpionLeg6, this.scorpionLeg7, this.scorpionLeg8);
+		return ImmutableList.of(this.body, this.legBackBackRightUpper, this.legBackBackLeftUpper, this.legBackRightUpper, this.legBackLeftUpper, this.legFrontRightUpper, this.legFrontLeftUpper, this.legFrontFrontRightUpper, this.legFrontFrontLeftUpper);
 	}
 
 	public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		scorpionTail1.rotateAngleX = (float) Math.PI / 4F;
-		scorpionTail2.rotateAngleX = (float) Math.PI / 4F;
-		scorpionTail3.rotateAngleX = (float) Math.PI / 4F;
-		scorpionTail4.rotateAngleX = (float) Math.PI / 4F;
-		scorpionTail5.rotateAngleX = (float) Math.PI / 4F;
-		scorpionTail6.rotateAngleX = (float) Math.PI / 4F;
-		scorpionArmRight.rotateAngleY = - (float) Math.PI / 4F;
-		scorpionClawRight.rotateAngleY = 3 *(float) Math.PI / 4F;
-		scorpionArmLeft.rotateAngleY = (float) Math.PI / 4F;
-		scorpionClawLeft.rotateAngleY = (float) Math.PI / 4F;
-		this.scorpionLeg1.rotateAngleZ = (-(float) Math.PI / 4F);
-		this.scorpionLeg2.rotateAngleZ = ((float) Math.PI / 4F);
-		this.scorpionLeg3.rotateAngleZ = -0.58119464F;
-		this.scorpionLeg4.rotateAngleZ = 0.58119464F;
-		this.scorpionLeg5.rotateAngleZ = -0.58119464F;
-		this.scorpionLeg6.rotateAngleZ = 0.58119464F;
-		this.scorpionLeg7.rotateAngleZ = (-(float) Math.PI / 4F);
-		this.scorpionLeg8.rotateAngleZ = ((float) Math.PI / 4F);
-		this.scorpionLeg1.rotateAngleY = ((float) Math.PI / 4F);
-		this.scorpionLeg2.rotateAngleY = (-(float) Math.PI / 4F);
-		this.scorpionLeg3.rotateAngleY = ((float) Math.PI / 8F);
-		this.scorpionLeg4.rotateAngleY = (-(float) Math.PI / 8F);
-		this.scorpionLeg5.rotateAngleY = (-(float) Math.PI / 8F);
-		this.scorpionLeg6.rotateAngleY = ((float) Math.PI / 8F);
-		this.scorpionLeg7.rotateAngleY = (-(float) Math.PI / 4F);
-		this.scorpionLeg8.rotateAngleY = ((float) Math.PI / 4F);
+		this.head.rotateAngleY = ((float) Math.PI / 4F);
+		
+		this.legBackBackRightUpper.rotateAngleY = ((float) Math.PI / 4F);
+		this.legBackBackLeftUpper.rotateAngleY = -((float) Math.PI / 4F);
+		this.legBackRightUpper.rotateAngleY = ((float) Math.PI / 8F);
+		this.legBackLeftUpper.rotateAngleY = -((float) Math.PI / 8F);
+		this.legFrontRightUpper.rotateAngleY = 0;
+		this.legFrontLeftUpper.rotateAngleY = 0;
+		this.legFrontFrontRightUpper.rotateAngleY = -((float) Math.PI / 8F);
+		this.legFrontFrontLeftUpper.rotateAngleY = ((float) Math.PI / 8F);
+		
+		this.legBackBackLeftLower.rotateAngleZ = (float) Math.PI / 2;
+		this.legBackBackRightLower.rotateAngleZ = -(float) Math.PI / 2;
+		this.legBackLeftLower.rotateAngleZ = (float) Math.PI / 2;
+		this.legBackRightLower.rotateAngleZ = -(float) Math.PI / 2;
+		this.legFrontLeftLower.rotateAngleZ = (float) Math.PI / 2;
+		this.legFrontRightLower.rotateAngleZ = -(float) Math.PI / 2;
+		this.legFrontFrontLeftLower.rotateAngleZ = (float) Math.PI / 2;
+		this.legFrontFrontRightLower.rotateAngleZ = -(float) Math.PI / 2;
+
 		float f3 = -(MathHelper.cos(limbSwing * 0.6662F * 2.0F + 0.0F) * 0.4F) * limbSwingAmount;
 		float f4 = -(MathHelper.cos(limbSwing * 0.6662F * 2.0F + (float) Math.PI) * 0.4F) * limbSwingAmount;
 		float f5 = -(MathHelper.cos(limbSwing * 0.6662F * 2.0F + ((float) Math.PI / 2F)) * 0.4F) * limbSwingAmount;
@@ -182,22 +184,33 @@ public class KingCrabModel<T extends Entity> extends SegmentedModel<T> {
 		float f8 = Math.abs(MathHelper.sin(limbSwing * 0.6662F + (float) Math.PI) * 0.4F) * limbSwingAmount;
 		float f9 = Math.abs(MathHelper.sin(limbSwing * 0.6662F + ((float) Math.PI / 2F)) * 0.4F) * limbSwingAmount;
 		float f10 = Math.abs(MathHelper.sin(limbSwing * 0.6662F + ((float) Math.PI * 1.5F)) * 0.4F) * limbSwingAmount;
-		this.scorpionLeg1.rotateAngleY += f3;
-		this.scorpionLeg2.rotateAngleY += -f3;
-		this.scorpionLeg3.rotateAngleY += f4;
-		this.scorpionLeg4.rotateAngleY += -f4;
-		this.scorpionLeg5.rotateAngleY += f5;
-		this.scorpionLeg6.rotateAngleY += -f5;
-		this.scorpionLeg7.rotateAngleY += f6;
-		this.scorpionLeg8.rotateAngleY += -f6;
-		this.scorpionLeg1.rotateAngleZ += f7;
-		this.scorpionLeg2.rotateAngleZ += -f7;
-		this.scorpionLeg3.rotateAngleZ += f8;
-		this.scorpionLeg4.rotateAngleZ += -f8;
-		this.scorpionLeg5.rotateAngleZ += f9;
-		this.scorpionLeg6.rotateAngleZ += -f9;
-		this.scorpionLeg7.rotateAngleZ += f10;
-		this.scorpionLeg8.rotateAngleZ += -f10;
+		
+		this.legBackBackRightUpper.rotateAngleY += f3;
+		this.legBackBackLeftUpper.rotateAngleY += -f3;
+		this.legBackRightUpper.rotateAngleY += f4;
+		this.legBackLeftUpper.rotateAngleY += -f4;
+		this.legFrontRightUpper.rotateAngleY += f5;
+		this.legFrontLeftUpper.rotateAngleY += -f5;
+		this.legFrontFrontRightUpper.rotateAngleY += f6;
+		this.legFrontFrontLeftUpper.rotateAngleY += -f6;
+		
+		this.legBackBackRightUpper.rotateAngleZ += f7;
+		this.legBackBackLeftUpper.rotateAngleZ += -f7;
+		this.legBackRightUpper.rotateAngleZ += f8;
+		this.legBackLeftUpper.rotateAngleZ += -f8;
+		this.legFrontRightUpper.rotateAngleZ += f9;
+		this.legFrontLeftUpper.rotateAngleZ += -f9;
+		this.legFrontFrontRightUpper.rotateAngleZ += f10;
+		this.legFrontFrontLeftUpper.rotateAngleZ += -f10;
+		
+		this.armLeft.rotateAngleY = (float) Math.PI / 4F;
+		this.armRight.rotateAngleY = - (float) Math.PI / 4F;
+		
+		this.clawLeft.rotateAngleY = (float) Math.PI / 4F;
+		this.clawRight.rotateAngleY = 3 *(float) Math.PI / 4F;
+		
+		this.pincherLeft.rotateAngleY = (float) Math.PI / 4F;
+		this.pincherRight.rotateAngleY = -(float) Math.PI / 4F;
 	}
 
 	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
