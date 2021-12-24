@@ -158,6 +158,15 @@ public class KingCrabModel<T extends Entity> extends SegmentedModel<T> {
 	public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.head.rotateAngleY = ((float) Math.PI / 4F);
 		
+		this.legBackBackRightUpper.rotateAngleZ = 0;
+		this.legBackBackLeftUpper.rotateAngleZ = 0;
+		this.legBackRightUpper.rotateAngleZ = 0;
+		this.legBackLeftUpper.rotateAngleZ = 0;
+		this.legFrontRightUpper.rotateAngleZ = 0;
+		this.legFrontLeftUpper.rotateAngleZ = 0;
+		this.legFrontFrontRightUpper.rotateAngleZ = 0;
+		this.legFrontFrontLeftUpper.rotateAngleZ = 0;
+		
 		this.legBackBackRightUpper.rotateAngleY = ((float) Math.PI / 4F);
 		this.legBackBackLeftUpper.rotateAngleY = -((float) Math.PI / 4F);
 		this.legBackRightUpper.rotateAngleY = ((float) Math.PI / 8F);
@@ -193,7 +202,6 @@ public class KingCrabModel<T extends Entity> extends SegmentedModel<T> {
 		this.legFrontLeftUpper.rotateAngleY += -f5;
 		this.legFrontFrontRightUpper.rotateAngleY += f6;
 		this.legFrontFrontLeftUpper.rotateAngleY += -f6;
-		
 		this.legBackBackRightUpper.rotateAngleZ += f7;
 		this.legBackBackLeftUpper.rotateAngleZ += -f7;
 		this.legBackRightUpper.rotateAngleZ += f8;
@@ -205,10 +213,8 @@ public class KingCrabModel<T extends Entity> extends SegmentedModel<T> {
 		
 		this.armLeft.rotateAngleY = (float) Math.PI / 4F;
 		this.armRight.rotateAngleY = - (float) Math.PI / 4F;
-		
 		this.clawLeft.rotateAngleY = (float) Math.PI / 4F;
 		this.clawRight.rotateAngleY = 3 *(float) Math.PI / 4F;
-		
 		this.pincherLeft.rotateAngleY = (float) Math.PI / 4F;
 		this.pincherRight.rotateAngleY = -(float) Math.PI / 4F;
 	}
