@@ -24,8 +24,8 @@ import net.minecraft.util.math.MutableBoundingBox;
 
 public class LineShaftTileEntity extends TileEntity {
 	private BlockPos beltPos = null;
-	private int rpm = 0;
-	private int torque = 0;
+	private float rpm = 0;
+	private float torque = 0;
 
 	public LineShaftTileEntity() {
 		super(TechnologicaTileEntities.LINE_SHAFT_TILE.get());
@@ -47,31 +47,31 @@ public class LineShaftTileEntity extends TileEntity {
 		return beltPos;
 	}
 	
-	public void setTorque(int torqueIn) {
+	public void setTorque(float torqueIn) {
 		torque = torqueIn;
 	}
 	
-	public void subtractTorque(int torqueIn) {
-		torque = torque - torqueIn;
+	public void subtractTorque(float maxTorque) {
+		torque = torque - maxTorque;
 		if (torque == 0) {
 			rpm = 0;
 		}
 		setShaftTorqueRPM(torque, rpm);
 	}
 	
-	public int getTorque() {
+	public float getTorque() {
 		return torque;
 	}
 	
-	public void setRPM(int rpmIn) {
+	public void setRPM(float rpmIn) {
 		rpm = rpmIn;
 	}
 	
-	public int getRPM() {
+	public float getRPM() {
 		return rpm;
 	}
 	
-	public boolean checkSetShaftTorqueRPM(int torqueIn, int rpmIn) {
+	public boolean checkSetShaftTorqueRPM(float torqueIn, float rpmIn) {
 		if (rpmIn == rpm) {
 			setShaftTorqueRPM(torque + torqueIn, rpm);
 			return true;
@@ -82,12 +82,25 @@ public class LineShaftTileEntity extends TileEntity {
 		return false;
 	}
 	
-	public void setShaftTorqueRPM(int torqueIn, int rpmIn) {
+	public void setShaftTorqueRPM(float torqueIn, float rpmIn) {
 		List<TileEntity> shafts = getShafts();
 		for(TileEntity shaft:shafts) {
 			if (shaft instanceof LineShaftTileEntity) {
 				((LineShaftTileEntity) shaft).setTorque(torqueIn);
 				((LineShaftTileEntity) shaft).setRPM(rpmIn);
+				
+				if (((LineShaftTileEntity) shaft).getBeltPos() != null) {
+					LineShaftTileEntity beltedPulley = (LineShaftTileEntity) world.getTileEntity(((LineShaftTileEntity) shaft).getBeltPos());
+					Radius pulley1 = shaft.getBlockState().get(LineShaftBlock.RADIUS);
+					Radius pulley2 = beltedPulley.getBlockState().get(LineShaftBlock.RADIUS);
+					
+					float torqueMultiplier = pulley2.getRadius()/pulley1.getRadius();
+					float rpmMultiplier = pulley1.getRadius()/pulley2.getRadius();
+					
+					if (((LineShaftTileEntity) beltedPulley).getRPM() != this.rpm*rpmMultiplier) {
+						((LineShaftTileEntity) beltedPulley).setShaftTorqueRPM(this.torque*torqueMultiplier, this.rpm*rpmMultiplier);
+					}
+				}
 			} else if (shaft instanceof LineShaftHangerTileEntity) {
 				((LineShaftHangerTileEntity) shaft).setTorque(torqueIn);
 				((LineShaftHangerTileEntity) shaft).setRPM(rpmIn);
@@ -139,23 +152,6 @@ public class LineShaftTileEntity extends TileEntity {
 		return shafts;
 	}
 	
-	public void setSpin(float torqueIn, float rpmIn) {
-		if (getBeltPos() != null) {
-			TileEntity beltedPulley = world.getTileEntity(this.beltPos);
-			Radius pulley1 = getBlockState().get(LineShaftBlock.RADIUS);
-			Radius pulley2 = beltedPulley.getBlockState().get(LineShaftBlock.RADIUS);
-			
-			float torqueMultiplier = pulley2.getRadius()/pulley1.getRadius();
-			float rpmMultiplier = pulley1.getRadius()/pulley2.getRadius();
-			
-			if (((LineShaftTileEntity) beltedPulley).getRPM() != this.rpm*rpmMultiplier) {
-				((LineShaftTileEntity) beltedPulley).setSpin(this.torque*torqueMultiplier, this.rpm*rpmMultiplier);
-			}
-		}
-		
-		this.getWorld().notifyBlockUpdate(pos, getBlockState(), getBlockState(), 3);
-	}
-	
 	@Override
 	@Nullable
 	public SUpdateTileEntityPacket getUpdatePacket() {
@@ -186,10 +182,10 @@ public class LineShaftTileEntity extends TileEntity {
 			beltPos = NBTUtil.readBlockPos(nbt.getCompound("beltPos"));
 		}
 		if (nbt.contains("torque")) {
-			torque = nbt.getInt("torque");
+			torque = nbt.getFloat("torque");
 		}
 		if (nbt.contains("rpm")) {
-			rpm = nbt.getInt("rpm");
+			rpm = nbt.getFloat("rpm");
 		}
 	}
 
@@ -199,8 +195,8 @@ public class LineShaftTileEntity extends TileEntity {
 		if (beltPos != null) {
 			compound.put("beltPos", NBTUtil.writeBlockPos(beltPos));
 		}	
-		compound.putInt("torque", torque);
-		compound.putInt("rpm", rpm);
+		compound.putFloat("torque", torque);
+		compound.putFloat("rpm", rpm);
 	    return compound;	    
 	}
 }

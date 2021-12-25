@@ -7,11 +7,13 @@ import com.technologica.entity.TechnologicaEntityType;
 import com.technologica.entity.item.VanillaBoatEntity;
 import com.technologica.fluid.TechnologicaFluids;
 
+import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.BucketItem;
+import net.minecraft.item.FishBucketItem;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.Properties;
@@ -179,6 +181,8 @@ public class TechnologicaItems {
     
     public static final RegistryObject<Item> PEEPER_SPAWN_EGG = ITEMS.register("peeper_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.PEEPER));
     public static final RegistryObject<Item> SWEEPER_SPAWN_EGG = ITEMS.register("sweeper_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.SWEEPER));
+    
+    public static final RegistryObject<Item> PIRANHA_BUCKET = ITEMS.register("salmon_bucket", () -> new FishBucketItem(TechnologicaEntityType.PIRANHA, () -> Fluids.WATER, (new Item.Properties()).maxStackSize(1).group(TechnologicaItemGroup.FAUNA)));
     
     /**
      * MINERAL

@@ -139,7 +139,7 @@ public class LineShaftTileEntityRenderer extends TileEntityRenderer<LineShaftTil
     }
 
     private Quaternion angle(TileEntity tileEntityIn) {
-    	long time = System.currentTimeMillis() * 6 * ((LineShaftTileEntity) tileEntityIn).getRPM() / 1000;
+    	long time = System.currentTimeMillis() * 6 * (int)((LineShaftTileEntity) tileEntityIn).getRPM() / 1000;
     	float angle = time % 360;
     	Vector3f vector = Vector3f.XP;
 

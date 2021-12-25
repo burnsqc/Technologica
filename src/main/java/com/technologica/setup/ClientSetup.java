@@ -40,6 +40,7 @@ import com.technologica.client.renderer.entity.OstrichRenderer;
 import com.technologica.client.renderer.entity.OwlRenderer;
 import com.technologica.client.renderer.entity.PeeperRenderer;
 import com.technologica.client.renderer.entity.PenguinRenderer;
+import com.technologica.client.renderer.entity.PiranhaRenderer;
 import com.technologica.client.renderer.entity.PoisonDartFrogRenderer;
 import com.technologica.client.renderer.entity.RaccoonRenderer;
 import com.technologica.client.renderer.entity.ScorpionRenderer;
@@ -123,6 +124,7 @@ public class ClientSetup {
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.OSTRICH.get(), OstrichRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.OWL.get(), OwlRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.PENGUIN.get(), PenguinRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.PIRANHA.get(), PiranhaRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.POISON_DART_FROG.get(), PoisonDartFrogRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.RACCOON.get(), RaccoonRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.SCORPION.get(), ScorpionRenderer::new);
