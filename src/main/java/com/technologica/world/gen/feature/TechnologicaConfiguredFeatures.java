@@ -48,8 +48,8 @@ public class TechnologicaConfiguredFeatures {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(TechnologicaBlocks.ASPEN_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(TechnologicaBlocks.ASPEN_LEAVES.get().getDefaultState()),
-					new BlobFoliagePlacer(FeatureSpread.create(2), FeatureSpread.create(0), 3),
-					new StraightTrunkPlacer(5, 2, 0), 
+					new TeardropFoliagePlacer(FeatureSpread.create(2), FeatureSpread.create(0), 6),
+					new StraightTrunkPlacer(6, 2, 0), 
 					new TwoLayerFeature(1, 0, 1))).setIgnoreVines().build()));
 	
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> AVOCADO_TREE_FEATURE = register(

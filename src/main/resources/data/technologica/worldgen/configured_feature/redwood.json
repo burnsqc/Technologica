@@ -1,6 +1,6 @@
 {
   "config": {
-  	"heightmap": "OCEAN_FLOOR",
+    "heightmap": "OCEAN_FLOOR",
     "decorators": [],
     "ignore_vines": true,
     "force_dirt": false,
@@ -26,12 +26,12 @@
       "type": "minecraft:simple_state_provider"
     },
     "trunk_placer": {
-      "base_height": 5,
-      "height_rand_a": 2,
-      "height_rand_b": 2,
+      "base_height": 18,
+      "height_rand_a": 5,
+      "height_rand_b": 9,
       "type": "technologica:three_wide_trunk_placer"
     },
-    "leaves_provider": {
+    "foliage_provider": {
       "state": {
         "Properties": {
           "persistent": "false",

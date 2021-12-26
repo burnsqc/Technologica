@@ -6,8 +6,8 @@
           "config": {
             "features": [
               {
-                "feature": "minecraft:pine",
-                "chance": 0.33333334
+                "feature": "technologica:redwood",
+                "chance": 0.66666666
               }
             ],
             "default": "minecraft:spruce"
@@ -21,21 +21,8 @@
               "type": "minecraft:square"
             },
             "inner": {
-              "config": {
-                "outer": {
-                  "config": {
-                    "max_water_depth": 0
-                  },
-                  "type": "minecraft:water_depth_threshold"
-                },
-                "inner": {
-                  "config": {
-                    "heightmap": "OCEAN_FLOOR"
-                  },
-                  "type": "minecraft:heightmap"
-                }
-              },
-              "type": "minecraft:decorated"
+              "config": {},
+              "type": "minecraft:heightmap"
             }
           },
           "type": "minecraft:decorated"
