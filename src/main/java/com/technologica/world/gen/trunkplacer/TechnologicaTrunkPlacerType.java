@@ -5,7 +5,6 @@ import com.technologica.Technologica;
 
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.trunkplacer.AbstractTrunkPlacer;
-import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
 import net.minecraft.world.gen.trunkplacer.TrunkPlacerType;
 import net.minecraftforge.fml.common.Mod;
 
@@ -13,7 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 @SuppressWarnings("rawtypes")
 public final class TechnologicaTrunkPlacerType extends TrunkPlacerType {
 
-	public static final TrunkPlacerType<StraightTrunkPlacer> THREE_WIDE_TRUNK_PLACER = register("three_wide_trunk_placer",StraightTrunkPlacer.CODEC);
+	public static final TrunkPlacerType<ThreeWideTrunkPlacer> THREE_WIDE_TRUNK_PLACER = register("three_wide_trunk_placer", ThreeWideTrunkPlacer.field_236901_b_);
 
 	private static <P extends AbstractTrunkPlacer> TrunkPlacerType<P> register(String key, Codec<P> codec) {
 		return Registry.register(Registry.TRUNK_REPLACER, key, new TrunkPlacerType<>(codec));

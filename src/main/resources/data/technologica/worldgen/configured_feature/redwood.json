@@ -1,21 +1,15 @@
 {
   "config": {
-    "heightmap": "OCEAN_FLOOR",
-    "decorators": [],
+    "max_water_depth": 0,
     "ignore_vines": true,
-    "force_dirt": false,
-    "dirt_provider": {
-      "state": {
-        "Name": "minecraft:dirt"
-      },
-      "type": "minecraft:simple_state_provider"
-    },
+    "heightmap": "OCEAN_FLOOR",
     "minimum_size": {
       "limit": 1,
       "lower_size": 0,
       "upper_size": 2,
       "type": "minecraft:two_layers_feature_size"
     },
+    "decorators": [],
     "trunk_provider": {
       "state": {
         "Properties": {
@@ -25,13 +19,7 @@
       },
       "type": "minecraft:simple_state_provider"
     },
-    "trunk_placer": {
-      "base_height": 18,
-      "height_rand_a": 5,
-      "height_rand_b": 9,
-      "type": "technologica:three_wide_trunk_placer"
-    },
-    "foliage_provider": {
+    "leaves_provider": {
       "state": {
         "Properties": {
           "persistent": "false",
@@ -42,9 +30,15 @@
       "type": "minecraft:simple_state_provider"
     },
     "foliage_placer": {
-      "radius": 2,
-      "offset": 0,
+      "radius": 4,
+      "offset": 7,
       "type": "technologica:redwood_foliage_placer"
+    },
+    "trunk_placer": {
+      "base_height": 18,
+      "height_rand_a": 5,
+      "height_rand_b": 19,
+      "type": "minecraft:three_wide_trunk_placer"
     }
   },
   "type": "minecraft:tree"

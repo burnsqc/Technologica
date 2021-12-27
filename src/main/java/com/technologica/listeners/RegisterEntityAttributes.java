@@ -73,7 +73,7 @@ public class RegisterEntityAttributes {
 		event.put(TechnologicaEntityType.OSTRICH.get(), func_234237_fg_().create());
 		event.put(TechnologicaEntityType.OWL.get(), OwlEntity.registerAttributes().create());
 		event.put(TechnologicaEntityType.PENGUIN.get(), PenguinEntity.registerAttributes().create());
-		event.put(TechnologicaEntityType.PIRANHA.get(), PiranhaEntity.func_234176_m_().create());
+		event.put(TechnologicaEntityType.PIRANHA.get(), PiranhaEntity.registerAttributes().create());
 		event.put(TechnologicaEntityType.POISON_DART_FROG.get(), PoisonDartFrogEntity.registerAttributes().create());
 		event.put(TechnologicaEntityType.RACCOON.get(), RaccoonEntity.registerAttributes().create());
 		event.put(TechnologicaEntityType.SCORPION.get(), ScorpionEntity.func_234305_eI_().create());

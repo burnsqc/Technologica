@@ -44,18 +44,13 @@
     ],
     [],
     [
-      "minecraft:patch_large_fern",
-      "technologica:rainforest_vegetation",
-      "minecraft:flower_default",
-      "minecraft:brown_mushroom_taiga",
-      "minecraft:red_mushroom_taiga",
-      "minecraft:brown_mushroom_normal",
-      "minecraft:red_mushroom_normal",
+      "technologica:coast_vegetation",
+      "minecraft:patch_tall_grass",
+      "minecraft:flower_warm",
+      "minecraft:patch_grass_savanna",
       "minecraft:patch_sugar_cane",
-      "minecraft:patch_pumpkin",
       "minecraft:spring_water",
-      "minecraft:spring_lava",
-      "minecraft:patch_berry_sparse"
+      "minecraft:spring_lava"
     ],
     [
       "minecraft:freeze_top_layer"
