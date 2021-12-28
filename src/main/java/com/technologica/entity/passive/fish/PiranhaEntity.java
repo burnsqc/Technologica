@@ -32,7 +32,7 @@ public class PiranhaEntity extends AbstractGroupFishEntity {
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new FindWaterGoal(this));
 		this.goalSelector.addGoal(1, new AttackIfSwimmingGoal(this));
-		this.goalSelector.addGoal(2, new SwimGoal(this));
+		this.goalSelector.addGoal(4, new SwimGoal(this));
 		this.goalSelector.addGoal(3, new FollowSchoolLeaderGoal(this));
 		this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, true, (Predicate<LivingEntity>) null));
 	}
