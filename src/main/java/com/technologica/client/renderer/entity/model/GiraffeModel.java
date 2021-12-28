@@ -31,6 +31,7 @@ public class GiraffeModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 	private final ModelRenderer[] field_217135_l;
 
 	public GiraffeModel(float p_i51065_1_) {
+		super(true, 24.0F, 1.36F, 2.7272F, 2.0F, 24.0F);
 		this.textureWidth = 96;
 		this.textureHeight = 96;
 
@@ -40,7 +41,7 @@ public class GiraffeModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 
 		this.neck = new ModelRenderer(this, 0, 35);
 		this.neck.addBox(-2.0F, -38.0F, -6.0F, 4.0F, 37.0F, 6.0F);
-		this.neck.setRotationPoint(0.0F, -16.0F, -8.0F);
+		//this.neck.setRotationPoint(0.0F, -16.0F, -8.0F);
 
 		this.mane = new ModelRenderer(this, 20, 34);
 		this.mane.addBox(-1.0F, -40.0F, 0.0F, 2.0F, 37.0F, 2.0F);
@@ -179,9 +180,8 @@ public class GiraffeModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 	}
 
 	public void setLivingAnimations(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
-		super.setLivingAnimations(entityIn, limbSwing, limbSwingAmount, partialTick);
-		float f = MathHelper.rotLerp(entityIn.prevRenderYawOffset, entityIn.renderYawOffset, partialTick);
-		float f1 = MathHelper.rotLerp(entityIn.prevRotationYawHead, entityIn.rotationYawHead, partialTick);
+		float f = MathHelper.lerp(partialTick, entityIn.prevRenderYawOffset, entityIn.renderYawOffset);
+		float f1 = MathHelper.lerp(partialTick, entityIn.prevRotationYawHead, entityIn.rotationYawHead);
 		float f2 = MathHelper.lerp(partialTick, entityIn.prevRotationPitch, entityIn.rotationPitch);
 		float f3 = f1 - f;
 		float f4 = f2 * ((float) Math.PI / 180F);
@@ -197,8 +197,13 @@ public class GiraffeModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 			f4 += MathHelper.cos(limbSwing * 0.4F) * 0.15F * limbSwingAmount;
 		}
 
-		boolean flag = entityIn.tailCounter != 0;
+	    float f6 = entityIn.getRearingAmount(partialTick);
+		
+		boolean tailWagging = entityIn.tailCounter != 0;
 		boolean earsFlapping = ((GiraffeEntity) entityIn).earCounter != 0;
+		
+		this.neck.rotationPointY = -16.0F;
+		this.neck.rotationPointZ = -8.0F;
 
 		this.body.rotateAngleX = 0.0F;
 		this.neck.rotateAngleX = ((float) Math.PI / 6F) + f4;
@@ -207,8 +212,11 @@ public class GiraffeModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 		float f10 = entityIn.isInWater() ? 0.2F : 1.0F;
 
 		this.neck.rotateAngleY = f3 * 0.005F + this.neck.rotateAngleY;
-
-		this.body.rotateAngleX = entityIn.getRearingAmount(partialTick) * (-(float) Math.PI / 4F) + this.body.rotateAngleX;
+		
+		this.neck.rotationPointY = (1.0F - f6) * this.neck.rotationPointY - f6*15;
+	    this.neck.rotationPointZ = (1.0F - f6) * this.neck.rotationPointZ + f6*15;
+		
+	    this.body.rotateAngleX = entityIn.getRearingAmount(partialTick) * (-(float) Math.PI / 4F) + this.body.rotateAngleX;
 
 		this.legUpperFrontRight.rotateAngleX = -((MathHelper.sin(f10 * limbSwing * 0.25F) * MathHelper.sin(f10 * limbSwing * 0.25F)) * limbSwingAmount * 1.5F);
 		this.legLowerFrontRight.rotateAngleX = (MathHelper.cos(f10 * limbSwing * 0.25F + (float) Math.PI / 4F) * MathHelper.cos(f10 * limbSwing * 0.25F + (float) Math.PI / 4F)) * limbSwingAmount * 1.5F;
@@ -223,7 +231,7 @@ public class GiraffeModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 		this.legLowerBackRight.rotateAngleX = -((MathHelper.sin(f10 * limbSwing * 0.25F) * MathHelper.sin(f10 * limbSwing * 0.25F)) * limbSwingAmount * 1.5F);
 		
 
-		if (flag) {
+		if (tailWagging) {
 			this.tail.rotateAngleY = MathHelper.cos((float) entityIn.ticksExisted + partialTick);
 		} else {
 			this.tail.rotateAngleY = 0.0F;

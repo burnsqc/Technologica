@@ -4,6 +4,8 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
+import com.technologica.entity.TechnologicaEntityType;
+
 import net.minecraft.block.SoundType;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
@@ -14,8 +16,6 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.TemptGoal;
 import net.minecraft.entity.passive.horse.AbstractHorseEntity;
 import net.minecraft.entity.passive.horse.CoatColors;
-import net.minecraft.entity.passive.horse.CoatTypes;
-import net.minecraft.entity.passive.horse.DonkeyEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.IInventory;
@@ -106,26 +106,6 @@ public class GiraffeEntity extends AbstractHorseEntity {
 		this.setDropChance(EquipmentSlotType.CHEST, 0.0F);
 	}
 
-	private void func_234242_w_(int p_234242_1_) {
-		this.dataManager.set(HORSE_VARIANT, p_234242_1_);
-	}
-
-	private int func_234241_eS_() {
-		return this.dataManager.get(HORSE_VARIANT);
-	}
-
-	private void func_234238_a_(CoatColors p_234238_1_, CoatTypes p_234238_2_) {
-		this.func_234242_w_(p_234238_1_.getId() & 255 | p_234238_2_.getId() << 8 & '\uff00');
-	}
-
-	public CoatColors func_234239_eK_() {
-		return CoatColors.func_234254_a_(this.func_234241_eS_() & 255);
-	}
-
-	public CoatTypes func_234240_eM_() {
-		return CoatTypes.func_234248_a_((this.func_234241_eS_() & '\uff00') >> 8);
-	}
-
 	@Override
 	protected void func_230275_fc_() {
 		if (!this.world.isRemote) {
@@ -150,6 +130,8 @@ public class GiraffeEntity extends AbstractHorseEntity {
 		}
 
 	}
+	
+	
 
 	/**
 	 * Called by InventoryBasic.onInventoryChanged() on a array that is never
@@ -253,38 +235,13 @@ public class GiraffeEntity extends AbstractHorseEntity {
 	}
 
 	@Override
+	public boolean isBreedingItem(ItemStack stack) {
+		return TEMPTATION_ITEMS.test(stack);
+	}
+	
+	@Override
 	public AgeableEntity createChild(ServerWorld world, AgeableEntity mate) {
-		AbstractHorseEntity abstracthorseentity;
-		if (mate instanceof DonkeyEntity) {
-			abstracthorseentity = EntityType.MULE.create(world);
-		} else {
-			GiraffeEntity horseentity = (GiraffeEntity) mate;
-			abstracthorseentity = EntityType.HORSE.create(world);
-			int i = this.rand.nextInt(9);
-			CoatColors coatcolors;
-			if (i < 4) {
-				coatcolors = this.func_234239_eK_();
-			} else if (i < 8) {
-				coatcolors = horseentity.func_234239_eK_();
-			} else {
-				coatcolors = Util.getRandomObject(CoatColors.values(), this.rand);
-			}
-
-			int j = this.rand.nextInt(5);
-			CoatTypes coattypes;
-			if (j < 2) {
-				coattypes = this.func_234240_eM_();
-			} else if (j < 4) {
-				coattypes = horseentity.func_234240_eM_();
-			} else {
-				coattypes = Util.getRandomObject(CoatTypes.values(), this.rand);
-			}
-
-			((GiraffeEntity) abstracthorseentity).func_234238_a_(coatcolors, coattypes);
-		}
-
-		this.setOffspringAttributes(mate, abstracthorseentity);
-		return abstracthorseentity;
+		return TechnologicaEntityType.GIRAFFE.get().create(world);
 	}
 
 	@Override
@@ -309,7 +266,7 @@ public class GiraffeEntity extends AbstractHorseEntity {
 			spawnDataIn = new GiraffeEntity.HorseData(coatcolors);
 		}
 
-		this.func_234238_a_(coatcolors, Util.getRandomObject(CoatTypes.values(), this.rand));
+		
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
@@ -325,7 +282,7 @@ public class GiraffeEntity extends AbstractHorseEntity {
 	@Override
 	public void writeAdditional(CompoundNBT compound) {
 		super.writeAdditional(compound);
-		compound.putInt("Variant", this.func_234241_eS_());
+		
 		if (!this.horseChest.getStackInSlot(1).isEmpty()) {
 			compound.put("ArmorItem", this.horseChest.getStackInSlot(1).write(new CompoundNBT()));
 		}
@@ -335,7 +292,7 @@ public class GiraffeEntity extends AbstractHorseEntity {
 	@Override
 	public void readAdditional(CompoundNBT compound) {
 		super.readAdditional(compound);
-		this.func_234242_w_(compound.getInt("Variant"));
+		
 		if (compound.contains("ArmorItem", 10)) {
 			ItemStack itemstack = ItemStack.read(compound.getCompound("ArmorItem"));
 			if (!itemstack.isEmpty() && this.isArmor(itemstack)) {
