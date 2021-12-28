@@ -1,6 +1,7 @@
 package com.technologica.client.renderer.entity;
 
 import com.technologica.Technologica;
+import com.technologica.client.renderer.entity.layers.RaccoonHeldItemLayer;
 import com.technologica.client.renderer.entity.model.RaccoonModel;
 import com.technologica.entity.passive.RaccoonEntity;
 
@@ -12,7 +13,8 @@ public final class RaccoonRenderer extends MobRenderer<RaccoonEntity, RaccoonMod
 	private static final ResourceLocation RACCOON_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/raccoon.png");
 
 	public RaccoonRenderer(EntityRendererManager renderManagerIn) {
-		super(renderManagerIn, new RaccoonModel<>(), 1.1F);
+		super(renderManagerIn, new RaccoonModel<>(), 0.8F);
+		this.addLayer(new RaccoonHeldItemLayer(this));
 	}
 
 	@Override
