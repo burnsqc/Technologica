@@ -204,8 +204,6 @@ public class GiraffeModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 			f3 = -20.0F;
 		}
 
-		
-
 	    float f6 = entityIn.getRearingAmount(partialTick);
 	    float f7 = 1.0F - f6;
 	    float f9 = (float)entityIn.ticksExisted + partialTick;
@@ -221,7 +219,6 @@ public class GiraffeModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 		this.neck.rotateAngleX = ((float) Math.PI / 10F) + MathHelper.sin(f10 * limbSwing * 0.5F) / 10;
 		this.head.rotateAngleX = -((float) Math.PI / 10F) + MathHelper.cos(f10 * limbSwing * 0.5F) / 10;
 		this.neck.rotateAngleY = f3 * ((float) Math.PI / 180F);
-		
 		
 		this.neck.rotationPointY = f7 * this.neck.rotationPointY - f6*15;
 	    this.neck.rotationPointZ = f7 * this.neck.rotationPointZ + f6*15;

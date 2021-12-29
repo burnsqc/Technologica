@@ -1,22 +1,22 @@
 package com.technologica.client.renderer.entity.model;
 
 import com.google.common.collect.ImmutableList;
+import com.technologica.entity.passive.OstrichEntity;
 
 import net.minecraft.client.renderer.entity.model.AgeableModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.passive.horse.AbstractHorseEntity;
+import net.minecraft.util.math.MathHelper;
 
 public class OstrichModel<T extends AbstractHorseEntity> extends AgeableModel<T> {
 	protected final ModelRenderer body;
 	private final ModelRenderer tail;
 	protected final ModelRenderer wingLeft;
 	protected final ModelRenderer wingRight;
-	
 	protected final ModelRenderer neckLower;
 	protected final ModelRenderer neck;
 	protected final ModelRenderer head;
 	protected final ModelRenderer beak;
-
 	private final ModelRenderer legUpperLeft;
 	private final ModelRenderer legUpperRight;
 	private final ModelRenderer legLowerLeft;
@@ -25,21 +25,10 @@ public class OstrichModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 	private final ModelRenderer talonInnerRight;
 	private final ModelRenderer talonOuterLeft;
 	private final ModelRenderer talonOuterRight;
-
-	
 	private final ModelRenderer saddle;
-	private final ModelRenderer leftBit;
-	private final ModelRenderer rightBit;
-	private final ModelRenderer headBridle;
-	private final ModelRenderer noseBridle;
-	private final ModelRenderer leftReign;
-	private final ModelRenderer rightReign;
-	private final ModelRenderer[] saddles;
-	private final ModelRenderer[] reigns;
-
+	
 	public OstrichModel() {
-		super(false, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F);
-		
+		super(true, 24.0F, 1.36F, 2.7272F, 2.0F, 24.0F);
 		this.textureWidth = 64;
 		this.textureHeight = 64;
 
@@ -123,37 +112,8 @@ public class OstrichModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 		this.head.addChild(this.beak);
 		
 		this.saddle = new ModelRenderer(this, 26, 0);
-		this.saddle.addBox(-5.0F, -8.0F, -9.0F, 10.0F, 9.0F, 9.0F, 0.5F);
-		this.body.addChild(this.saddle);
-		
-		this.headBridle = new ModelRenderer(this, 1, 1);
-		this.headBridle.addBox(-3.0F, -11.0F, -1.9F, 6.0F, 5.0F, 6.0F, 0.2F);
-		this.neck.addChild(this.headBridle);
-		
-		this.noseBridle = new ModelRenderer(this, 19, 0);
-		this.noseBridle.addBox(-2.0F, -11.0F, -4.0F, 4.0F, 5.0F, 2.0F, 0.2F);
-		this.neck.addChild(this.noseBridle);
-		
-		this.leftBit = new ModelRenderer(this, 29, 5);
-		this.leftBit.addBox(2.0F, -9.0F, -6.0F, 1.0F, 2.0F, 2.0F);
-		this.neck.addChild(this.leftBit);
-		
-		this.rightBit = new ModelRenderer(this, 29, 5);
-		this.rightBit.addBox(-3.0F, -9.0F, -6.0F, 1.0F, 2.0F, 2.0F);
-		this.neck.addChild(this.rightBit);
-		
-		this.leftReign = new ModelRenderer(this, 32, 2);
-		this.leftReign.addBox(3.1F, -6.0F, -8.0F, 0.0F, 3.0F, 16.0F);
-		this.leftReign.rotateAngleX = (-(float) Math.PI / 6F);
-		this.neck.addChild(this.leftReign);
-		
-		this.rightReign = new ModelRenderer(this, 32, 2);
-		this.rightReign.addBox(-3.1F, -6.0F, -8.0F, 0.0F, 3.0F, 16.0F);
-		this.rightReign.rotateAngleX = (-(float) Math.PI / 6F);
-		this.neck.addChild(this.rightReign);
-		
-		this.saddles = new ModelRenderer[] { this.saddle, this.headBridle, this.noseBridle, this.leftBit, this.rightBit };
-		this.reigns = new ModelRenderer[] { this.leftReign, this.rightReign };
+		this.saddle.addBox(-5.0F, -5.0F, -5.0F, 10.0F, 10.0F, 9.0F, 0.5F);
+		this.body.addChild(this.saddle);	
 	}
 
 	public Iterable<ModelRenderer> getHeadParts() {
@@ -165,25 +125,66 @@ public class OstrichModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 	}
 
 	public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netneckYaw, float neckPitch) {
-		
-		this.neckLower.rotateAngleX = -((float) Math.PI / 4F);
-		this.neck.rotateAngleX = ((float) Math.PI / 4F);
-		
-		boolean flag = entityIn.isHorseSaddled();
-		boolean flag1 = entityIn.isBeingRidden();
-		
-		for (ModelRenderer modelrenderer : this.saddles) {
-			modelrenderer.showModel = flag;
-		}
-		for (ModelRenderer modelrenderer1 : this.reigns) {
-			modelrenderer1.showModel = flag1 && flag;
-		}
-
-		//this.neck.rotateAngleX = ((float) Math.PI / 6F);
-		
 		this.talonOuterLeft.rotateAngleY = -((float) Math.PI / 6F);
 		this.talonOuterRight.rotateAngleY = ((float) Math.PI / 6F);
+		boolean flag = entityIn.isHorseSaddled();
+		saddle.showModel = flag;
 	}
 
-	
+	public void setLivingAnimations(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
+		float f = MathHelper.lerp(partialTick, entityIn.prevRenderYawOffset, entityIn.renderYawOffset);
+		float f1 = MathHelper.lerp(partialTick, entityIn.prevRotationYawHead, entityIn.rotationYawHead);
+		
+		float f3 = f1 - f;
+		
+		if (f3 > 20.0F) {
+			f3 = 20.0F;
+		}
+
+		if (f3 < -20.0F) {
+			f3 = -20.0F;
+		}
+
+	    float f6 = entityIn.getRearingAmount(partialTick);
+	    float f7 = 1.0F - f6;
+	    float f9 = (float)entityIn.ticksExisted + partialTick;
+		float f10 = entityIn.isInWater() ? 0.2F : 1.0F;
+		
+		boolean tailWagging = entityIn.tailCounter != 0;
+		boolean wingsFlapping = ((OstrichEntity) entityIn).wingCounter != 0;
+		
+		this.neckLower.rotationPointY = 2.0F;
+		this.neckLower.rotationPointZ = -8.0F;
+		
+		this.neckLower.rotationPointY = f7 * this.neckLower.rotationPointY - f6;
+	    this.neckLower.rotationPointZ = f7 * this.neckLower.rotationPointZ - 3*f6;
+		this.neckLower.rotateAngleX = -((float) Math.PI / 4F) + MathHelper.sin(f10 * limbSwing) / 5;
+		this.neck.rotateAngleX = ((float) Math.PI / 4F) - MathHelper.sin(f10 * limbSwing) / 10;
+
+		this.body.rotateAngleX = 0.0F;
+		
+		this.neckLower.rotateAngleY = f3 * ((float) Math.PI / 180F);
+		
+	    this.body.rotateAngleX = f6 * (-(float) Math.PI / 4F) + this.body.rotateAngleX;
+
+		this.legUpperRight.rotateAngleX = ((MathHelper.sin(f10 * limbSwing * 0.25F) * MathHelper.sin(f10 * limbSwing * 0.25F)) * limbSwingAmount * 1.5F) + f6 / 2 * MathHelper.sin(f9 * 0.25F) * f6 * MathHelper.sin(f9 * 0.25F);
+		this.legLowerRight.rotateAngleX = -(MathHelper.cos(f10 * limbSwing * 0.25F + (float) Math.PI / 4F) * MathHelper.cos(f10 * limbSwing * 0.25F + (float) Math.PI / 4F)) * limbSwingAmount * 1.5F - f6 * MathHelper.cos(f9 * 0.5F - (float) Math.PI / 4) * f6 * MathHelper.cos(f9 * 0.5F - (float) Math.PI / 4);
+
+		this.legUpperLeft.rotateAngleX = ((MathHelper.cos(f10 * limbSwing * 0.25F) * MathHelper.cos(f10 * limbSwing * 0.25F)) * limbSwingAmount * 1.5F) + f6 / 2 * MathHelper.cos(f9 * 0.25F) * f6 * MathHelper.cos(f9 * 0.25F);
+		this.legLowerLeft.rotateAngleX = -(MathHelper.sin(f10 * limbSwing * 0.25F + (float) Math.PI / 4F) * MathHelper.sin(f10 * limbSwing * 0.25F + (float) Math.PI / 4F)) * limbSwingAmount * 1.5F - f6 * MathHelper.sin(f9 * 0.5F - (float) Math.PI / 4) * f6 * MathHelper.sin(f9 * 0.5F - (float) Math.PI / 4);
+
+		if (tailWagging) {
+			this.tail.rotateAngleY = MathHelper.cos(f9/2)/2;
+		} else {
+			this.tail.rotateAngleY = 0.0F;
+		}
+		
+		if (wingsFlapping) {
+			this.wingLeft.rotateAngleY = MathHelper.cos((float) entityIn.ticksExisted/2 + partialTick)*MathHelper.cos((float) entityIn.ticksExisted/2 + partialTick);
+			this.wingRight.rotateAngleY = -(MathHelper.cos((float) entityIn.ticksExisted/2 + partialTick)*MathHelper.cos((float) entityIn.ticksExisted/2 + partialTick));
+		} else {
+			this.wingLeft.rotateAngleY = 0.0F;
+			this.wingRight.rotateAngleY = 0.0F;
+		}
+	}
 }
