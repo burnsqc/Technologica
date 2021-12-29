@@ -9,39 +9,32 @@ import com.technologica.entity.TechnologicaEntityType;
 import net.minecraft.block.SoundType;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ILivingEntityData;
-import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.TemptGoal;
 import net.minecraft.entity.passive.horse.AbstractHorseEntity;
-import net.minecraft.entity.passive.horse.CoatColors;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.HorseArmorItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.Util;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 public class GiraffeEntity extends AbstractHorseEntity {
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(Items.ACACIA_LEAVES);
 	private static final UUID ARMOR_MODIFIER_UUID = UUID.fromString("556E1665-8B10-40C8-8F9D-CF9B1667F295");
-	private static final DataParameter<Integer> HORSE_VARIANT = EntityDataManager.createKey(GiraffeEntity.class,DataSerializers.VARINT);
+
 	public int earCounter;
 
 	public GiraffeEntity(EntityType<? extends GiraffeEntity> type, World worldIn) {
@@ -61,7 +54,6 @@ public class GiraffeEntity extends AbstractHorseEntity {
 	@Override
 	protected void registerData() {
 		super.registerData();
-		this.dataManager.register(HORSE_VARIANT, 0);
 	}
 
 	@Override
@@ -69,7 +61,7 @@ public class GiraffeEntity extends AbstractHorseEntity {
 		super.registerGoals();
 		this.goalSelector.addGoal(3, new TemptGoal(this, 0.75D, false, TEMPTATION_ITEMS));
 	}
-	
+
 	@Override
 	public boolean canEatGrass() {
 		return false;
@@ -93,7 +85,7 @@ public class GiraffeEntity extends AbstractHorseEntity {
 		if (this.earCounter > 0 && ++this.earCounter > 8) {
 			this.earCounter = 0;
 		}
-		
+
 		super.tick();
 	}
 
@@ -130,13 +122,7 @@ public class GiraffeEntity extends AbstractHorseEntity {
 		}
 
 	}
-	
-	
 
-	/**
-	 * Called by InventoryBasic.onInventoryChanged() on a array that is never
-	 * filled.
-	 */
 	@Override
 	public void onInventoryChanged(IInventory invBasic) {
 		ItemStack itemstack = this.func_213803_dV();
@@ -149,15 +135,18 @@ public class GiraffeEntity extends AbstractHorseEntity {
 	}
 
 	@Override
-	protected void playGallopSound(SoundType p_190680_1_) {
-		super.playGallopSound(p_190680_1_);
+	protected void playGallopSound(SoundType soundTypeIn) {
+		super.playGallopSound(soundTypeIn);
+
 		if (this.rand.nextInt(10) == 0) {
-			this.playSound(SoundEvents.ENTITY_HORSE_BREATHE, p_190680_1_.getVolume() * 0.6F, p_190680_1_.getPitch());
+			this.playSound(SoundEvents.ENTITY_HORSE_BREATHE, soundTypeIn.getVolume() * 0.6F, soundTypeIn.getPitch());
 		}
 
 		ItemStack stack = this.horseChest.getStackInSlot(1);
-		if (isArmor(stack))
+
+		if (isArmor(stack)) {
 			stack.onHorseArmorTick(world, this);
+		}
 	}
 
 	@Override
@@ -210,6 +199,7 @@ public class GiraffeEntity extends AbstractHorseEntity {
 			}
 
 			ActionResultType actionresulttype = itemstack.interactWithEntity(playerIn, this, hand);
+
 			if (actionresulttype.isSuccessOrConsume()) {
 				return actionresulttype;
 			}
@@ -220,6 +210,7 @@ public class GiraffeEntity extends AbstractHorseEntity {
 			}
 
 			boolean flag = !this.isChild() && !this.isHorseSaddled() && itemstack.getItem() == Items.SADDLE;
+
 			if (this.isArmor(itemstack) || flag) {
 				this.openGUI(playerIn);
 				return ActionResultType.func_233537_a_(this.world.isRemote);
@@ -238,7 +229,69 @@ public class GiraffeEntity extends AbstractHorseEntity {
 	public boolean isBreedingItem(ItemStack stack) {
 		return TEMPTATION_ITEMS.test(stack);
 	}
-	
+
+	@Override
+	protected boolean handleEating(PlayerEntity player, ItemStack stack) {
+		boolean flag = false;
+		float f = 0.0F;
+		int i = 0;
+		int j = 0;
+		Item item = stack.getItem();
+		if (item == Items.ACACIA_LEAVES) {
+			f = 2.0F;
+			i = 20;
+			j = 3;
+			if (!this.world.isRemote && this.isTame() && this.getGrowingAge() == 0 && !this.isInLove()) {
+				flag = true;
+				this.setInLove(player);
+			}
+		}
+
+		if (this.getHealth() < this.getMaxHealth() && f > 0.0F) {
+			this.heal(f);
+			flag = true;
+		}
+
+		if (this.isChild() && i > 0) {
+			this.world.addParticle(ParticleTypes.HAPPY_VILLAGER, this.getPosXRandom(1.0D), this.getPosYRandom() + 0.5D,
+					this.getPosZRandom(1.0D), 0.0D, 0.0D, 0.0D);
+			if (!this.world.isRemote) {
+				this.addGrowth(i);
+			}
+
+			flag = true;
+		}
+
+		if (j > 0 && (flag || !this.isTame()) && this.getTemper() < this.getMaxTemper()) {
+			flag = true;
+			if (!this.world.isRemote) {
+				this.increaseTemper(j);
+			}
+		}
+
+		if (flag) {
+			this.eatingHorse();
+		}
+
+		return flag;
+	}
+
+	private void eatingHorse() {
+		if (!this.isSilent()) {
+			SoundEvent soundevent = this.func_230274_fe_();
+			if (soundevent != null) {
+				this.world.playSound((PlayerEntity) null, this.getPosX(), this.getPosY(), this.getPosZ(), soundevent,
+						this.getSoundCategory(), 1.0F, 1.0F + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F);
+			}
+		}
+
+	}
+
+	@Override
+	public double getMountedYOffset() {
+		return (double) 2.5D;
+	}
+
 	@Override
 	public AgeableEntity createChild(ServerWorld world, AgeableEntity mate) {
 		return TechnologicaEntityType.GIRAFFE.get().create(world);
@@ -255,34 +308,9 @@ public class GiraffeEntity extends AbstractHorseEntity {
 	}
 
 	@Override
-	@Nullable
-	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason,
-			@Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-		CoatColors coatcolors;
-		if (spawnDataIn instanceof GiraffeEntity.HorseData) {
-			coatcolors = ((GiraffeEntity.HorseData) spawnDataIn).variant;
-		} else {
-			coatcolors = Util.getRandomObject(CoatColors.values(), this.rand);
-			spawnDataIn = new GiraffeEntity.HorseData(coatcolors);
-		}
-
-		
-		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
-	}
-
-	public static class HorseData extends AgeableEntity.AgeableData {
-		public final CoatColors variant;
-
-		public HorseData(CoatColors p_i231557_1_) {
-			super(true);
-			this.variant = p_i231557_1_;
-		}
-	}
-
-	@Override
 	public void writeAdditional(CompoundNBT compound) {
 		super.writeAdditional(compound);
-		
+
 		if (!this.horseChest.getStackInSlot(1).isEmpty()) {
 			compound.put("ArmorItem", this.horseChest.getStackInSlot(1).write(new CompoundNBT()));
 		}
@@ -292,7 +320,7 @@ public class GiraffeEntity extends AbstractHorseEntity {
 	@Override
 	public void readAdditional(CompoundNBT compound) {
 		super.readAdditional(compound);
-		
+
 		if (compound.contains("ArmorItem", 10)) {
 			ItemStack itemstack = ItemStack.read(compound.getCompound("ArmorItem"));
 			if (!itemstack.isEmpty() && this.isArmor(itemstack)) {

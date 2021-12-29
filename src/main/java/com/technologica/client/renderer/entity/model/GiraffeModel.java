@@ -27,10 +27,17 @@ public class GiraffeModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 	private final ModelRenderer legLowerFrontLeft;
 	private final ModelRenderer legLowerFrontRight;
 	private final ModelRenderer tail;
-	private final ModelRenderer[] field_217134_k;
-	private final ModelRenderer[] field_217135_l;
+	private final ModelRenderer saddle;
+	private final ModelRenderer leftBit;
+	private final ModelRenderer rightBit;
+	private final ModelRenderer headBridle;
+	private final ModelRenderer noseBridle;
+	private final ModelRenderer leftReign;
+	private final ModelRenderer rightReign;
+	private final ModelRenderer[] saddles;
+	private final ModelRenderer[] reigns;
 
-	public GiraffeModel(float p_i51065_1_) {
+	public GiraffeModel() {
 		super(true, 24.0F, 1.36F, 2.7272F, 2.0F, 24.0F);
 		this.textureWidth = 96;
 		this.textureHeight = 96;
@@ -41,7 +48,6 @@ public class GiraffeModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 
 		this.neck = new ModelRenderer(this, 0, 35);
 		this.neck.addBox(-2.0F, -38.0F, -6.0F, 4.0F, 37.0F, 6.0F);
-		//this.neck.setRotationPoint(0.0F, -16.0F, -8.0F);
 
 		this.mane = new ModelRenderer(this, 20, 34);
 		this.mane.addBox(-1.0F, -40.0F, 0.0F, 2.0F, 37.0F, 2.0F);
@@ -123,48 +129,53 @@ public class GiraffeModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 		this.tail.setRotationPoint(0.0F, -30.0F, 5.0F);
 		this.body.addChild(this.tail);
 
-		ModelRenderer modelrenderer3 = new ModelRenderer(this, 26, 0);
-		modelrenderer3.addBox(-5.0F, -8.0F, -9.0F, 10.0F, 9.0F, 9.0F, 0.5F);
-		this.body.addChild(modelrenderer3);
-		ModelRenderer modelrenderer4 = new ModelRenderer(this, 29, 5);
-		modelrenderer4.addBox(2.0F, -9.0F, -6.0F, 1.0F, 2.0F, 2.0F, p_i51065_1_);
-		this.neck.addChild(modelrenderer4);
-		ModelRenderer modelrenderer5 = new ModelRenderer(this, 29, 5);
-		modelrenderer5.addBox(-3.0F, -9.0F, -6.0F, 1.0F, 2.0F, 2.0F, p_i51065_1_);
-		this.neck.addChild(modelrenderer5);
-		ModelRenderer modelrenderer6 = new ModelRenderer(this, 32, 2);
-		modelrenderer6.addBox(3.1F, -6.0F, -8.0F, 0.0F, 3.0F, 16.0F, p_i51065_1_);
-		modelrenderer6.rotateAngleX = (-(float) Math.PI / 6F);
-		this.neck.addChild(modelrenderer6);
-		ModelRenderer modelrenderer7 = new ModelRenderer(this, 32, 2);
-		modelrenderer7.addBox(-3.1F, -6.0F, -8.0F, 0.0F, 3.0F, 16.0F, p_i51065_1_);
-		modelrenderer7.rotateAngleX = (-(float) Math.PI / 6F);
-		this.neck.addChild(modelrenderer7);
-		ModelRenderer modelrenderer8 = new ModelRenderer(this, 1, 1);
-		modelrenderer8.addBox(-3.0F, -11.0F, -1.9F, 6.0F, 5.0F, 6.0F, 0.2F);
-		this.neck.addChild(modelrenderer8);
-		ModelRenderer modelrenderer9 = new ModelRenderer(this, 19, 0);
-		modelrenderer9.addBox(-2.0F, -11.0F, -4.0F, 4.0F, 5.0F, 2.0F, 0.2F);
-		this.neck.addChild(modelrenderer9);
-		this.field_217134_k = new ModelRenderer[] { modelrenderer3, modelrenderer4, modelrenderer5, modelrenderer8, modelrenderer9 };
-		this.field_217135_l = new ModelRenderer[] { modelrenderer6, modelrenderer7 };
+		this.saddle = new ModelRenderer(this, 26, 0);
+		this.saddle.addBox(-5.0F, -31.0F, -9.0F, 10.0F, 9.0F, 9.0F, 0.5F);
+		this.body.addChild(saddle);
+		
+		this.headBridle = new ModelRenderer(this, 1, 1);
+		this.headBridle.addBox(-3.0F, -5.0F, -8.9F, 6.0F, 5.0F, 8.0F, 0.2F);
+		this.head.addChild(this.headBridle);
+		
+		this.noseBridle = new ModelRenderer(this, 19, 0);
+		this.noseBridle.addBox(-1.5F, -4.0F, -11.0F, 3.0F, 4.0F, 2.0F, 0.2F);
+		this.head.addChild(this.noseBridle);
+		
+		this.leftBit = new ModelRenderer(this, 29, 5);
+		this.leftBit.addBox(1.5F, -3.0F, -13.0F, 1.0F, 2.0F, 2.0F);
+		this.head.addChild(this.leftBit);
+		
+		this.rightBit = new ModelRenderer(this, 29, 5);
+		this.rightBit.addBox(-2.5F, -3.0F, -13.0F, 1.0F, 2.0F, 2.0F);
+		this.head.addChild(this.rightBit);
+		
+		this.leftReign = new ModelRenderer(this, 32, 2);
+		this.leftReign.addBox(3.1F, -6.0F, -8.0F, 0.0F, 3.0F, 16.0F);
+		this.leftReign.rotateAngleX = (-(float) Math.PI / 6F);
+		this.neck.addChild(this.leftReign);
+		
+		this.rightReign = new ModelRenderer(this, 32, 2);
+		this.rightReign.addBox(-3.1F, -6.0F, -8.0F, 0.0F, 3.0F, 16.0F);
+		this.rightReign.rotateAngleX = (-(float) Math.PI / 6F);
+		this.neck.addChild(this.rightReign);
+		
+		this.saddles = new ModelRenderer[] { this.saddle, this.headBridle, this.noseBridle, this.leftBit, this.rightBit };
+		this.reigns = new ModelRenderer[] { leftReign, rightReign };
 	}
 
 	public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		boolean flag = entityIn.isHorseSaddled();
 		boolean flag1 = entityIn.isBeingRidden();
 
-		this.neck.rotateAngleX = ((float) Math.PI / 10F);
-		this.head.rotateAngleX = -((float) Math.PI / 10F);
 		this.earLeft.rotateAngleZ = -0.5F;
 		this.earRight.rotateAngleZ = 0.5F;
 		this.tail.rotateAngleX = ((float) Math.PI / 8F);
 
-		for (ModelRenderer modelrenderer : this.field_217134_k) {
+		for (ModelRenderer modelrenderer : this.saddles) {
 			modelrenderer.showModel = flag;
 		}
 
-		for (ModelRenderer modelrenderer1 : this.field_217135_l) {
+		for (ModelRenderer modelrenderer1 : this.reigns) {
 			modelrenderer1.showModel = flag1 && flag;
 		}
 
@@ -182,9 +193,9 @@ public class GiraffeModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 	public void setLivingAnimations(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
 		float f = MathHelper.lerp(partialTick, entityIn.prevRenderYawOffset, entityIn.renderYawOffset);
 		float f1 = MathHelper.lerp(partialTick, entityIn.prevRotationYawHead, entityIn.rotationYawHead);
-		float f2 = MathHelper.lerp(partialTick, entityIn.prevRotationPitch, entityIn.rotationPitch);
+		
 		float f3 = f1 - f;
-		float f4 = f2 * ((float) Math.PI / 180F);
+		
 		if (f3 > 20.0F) {
 			f3 = 20.0F;
 		}
@@ -193,11 +204,12 @@ public class GiraffeModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 			f3 = -20.0F;
 		}
 
-		if (limbSwingAmount > 0.2F) {
-			f4 += MathHelper.cos(limbSwing * 0.4F) * 0.15F * limbSwingAmount;
-		}
+		
 
 	    float f6 = entityIn.getRearingAmount(partialTick);
+	    float f7 = 1.0F - f6;
+	    float f9 = (float)entityIn.ticksExisted + partialTick;
+		float f10 = entityIn.isInWater() ? 0.2F : 1.0F;
 		
 		boolean tailWagging = entityIn.tailCounter != 0;
 		boolean earsFlapping = ((GiraffeEntity) entityIn).earCounter != 0;
@@ -206,33 +218,30 @@ public class GiraffeModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 		this.neck.rotationPointZ = -8.0F;
 
 		this.body.rotateAngleX = 0.0F;
-		this.neck.rotateAngleX = ((float) Math.PI / 6F) + f4;
+		this.neck.rotateAngleX = ((float) Math.PI / 10F) + MathHelper.sin(f10 * limbSwing * 0.5F) / 10;
+		this.head.rotateAngleX = -((float) Math.PI / 10F) + MathHelper.cos(f10 * limbSwing * 0.5F) / 10;
 		this.neck.rotateAngleY = f3 * ((float) Math.PI / 180F);
-
-		float f10 = entityIn.isInWater() ? 0.2F : 1.0F;
-
-		this.neck.rotateAngleY = f3 * 0.005F + this.neck.rotateAngleY;
 		
-		this.neck.rotationPointY = (1.0F - f6) * this.neck.rotationPointY - f6*15;
-	    this.neck.rotationPointZ = (1.0F - f6) * this.neck.rotationPointZ + f6*15;
 		
-	    this.body.rotateAngleX = entityIn.getRearingAmount(partialTick) * (-(float) Math.PI / 4F) + this.body.rotateAngleX;
-
-		this.legUpperFrontRight.rotateAngleX = -((MathHelper.sin(f10 * limbSwing * 0.25F) * MathHelper.sin(f10 * limbSwing * 0.25F)) * limbSwingAmount * 1.5F);
-		this.legLowerFrontRight.rotateAngleX = (MathHelper.cos(f10 * limbSwing * 0.25F + (float) Math.PI / 4F) * MathHelper.cos(f10 * limbSwing * 0.25F + (float) Math.PI / 4F)) * limbSwingAmount * 1.5F;
-
-		this.legUpperBackLeft.rotateAngleX = (MathHelper.cos(f10 * limbSwing * 0.25F + (float) Math.PI / 4F) * MathHelper.cos(f10 * limbSwing * 0.25F + (float) Math.PI / 4F)) * limbSwingAmount * 1.5F;
-		this.legLowerBackLeft.rotateAngleX = -((MathHelper.cos(f10 * limbSwing * 0.25F) * MathHelper.cos(f10 * limbSwing * 0.25F)) * limbSwingAmount * 1.5F);
-
-		this.legUpperFrontLeft.rotateAngleX = -((MathHelper.cos(f10 * limbSwing * 0.25F) * MathHelper.cos(f10 * limbSwing * 0.25F)) * limbSwingAmount * 1.5F);
-		this.legLowerFrontLeft.rotateAngleX = (MathHelper.sin(f10 * limbSwing * 0.25F + (float) Math.PI / 4F) * MathHelper.sin(f10 * limbSwing * 0.25F + (float) Math.PI / 4F)) * limbSwingAmount * 1.5F;
-
-		this.legUpperBackRight.rotateAngleX = (MathHelper.sin(f10 * limbSwing * 0.25F + (float) Math.PI / 4F) * MathHelper.sin(f10 * limbSwing * 0.25F + (float) Math.PI / 4F)) * limbSwingAmount * 1.5F;
-		this.legLowerBackRight.rotateAngleX = -((MathHelper.sin(f10 * limbSwing * 0.25F) * MathHelper.sin(f10 * limbSwing * 0.25F)) * limbSwingAmount * 1.5F);
+		this.neck.rotationPointY = f7 * this.neck.rotationPointY - f6*15;
+	    this.neck.rotationPointZ = f7 * this.neck.rotationPointZ + f6*15;
 		
+	    this.body.rotateAngleX = f6 * (-(float) Math.PI / 4F) + this.body.rotateAngleX;
 
+		this.legUpperFrontRight.rotateAngleX = -((MathHelper.sin(f10 * limbSwing * 0.25F) * MathHelper.sin(f10 * limbSwing * 0.25F)) * limbSwingAmount * 1.5F) - f6 / 2 * MathHelper.sin(f9 * 0.25F) * f6 * MathHelper.sin(f9 * 0.25F);
+		this.legLowerFrontRight.rotateAngleX = (MathHelper.cos(f10 * limbSwing * 0.25F + (float) Math.PI / 4F) * MathHelper.cos(f10 * limbSwing * 0.25F + (float) Math.PI / 4F)) * limbSwingAmount * 1.5F + f6 * MathHelper.cos(f9 * 0.25F - (float) Math.PI / 4) * f6 * MathHelper.cos(f9 * 0.25F - (float) Math.PI / 4);
+
+		this.legUpperBackLeft.rotateAngleX = (MathHelper.cos(f10 * limbSwing * 0.25F + (float) Math.PI / 4F) * MathHelper.cos(f10 * limbSwing * 0.25F + (float) Math.PI / 4F)) * limbSwingAmount * 1.5F + f6 / 2;
+		this.legLowerBackLeft.rotateAngleX = -((MathHelper.cos(f10 * limbSwing * 0.25F) * MathHelper.cos(f10 * limbSwing * 0.25F)) * limbSwingAmount * 1.5F) - f6 / 2;
+
+		this.legUpperFrontLeft.rotateAngleX = -((MathHelper.cos(f10 * limbSwing * 0.25F) * MathHelper.cos(f10 * limbSwing * 0.25F)) * limbSwingAmount * 1.5F) - f6 / 2 * MathHelper.cos(f9 * 0.25F) * f6 * MathHelper.cos(f9 * 0.25F);
+		this.legLowerFrontLeft.rotateAngleX = (MathHelper.sin(f10 * limbSwing * 0.25F + (float) Math.PI / 4F) * MathHelper.sin(f10 * limbSwing * 0.25F + (float) Math.PI / 4F)) * limbSwingAmount * 1.5F + f6 * MathHelper.sin(f9 * 0.25F - (float) Math.PI / 4) * f6 * MathHelper.sin(f9 * 0.25F - (float) Math.PI / 4);
+
+		this.legUpperBackRight.rotateAngleX = (MathHelper.sin(f10 * limbSwing * 0.25F + (float) Math.PI / 4F) * MathHelper.sin(f10 * limbSwing * 0.25F + (float) Math.PI / 4F)) * limbSwingAmount * 1.5F + f6 / 2;
+		this.legLowerBackRight.rotateAngleX = -((MathHelper.sin(f10 * limbSwing * 0.25F) * MathHelper.sin(f10 * limbSwing * 0.25F)) * limbSwingAmount * 1.5F) - f6 / 2;
+		
 		if (tailWagging) {
-			this.tail.rotateAngleY = MathHelper.cos((float) entityIn.ticksExisted + partialTick);
+			this.tail.rotateAngleY = MathHelper.cos(f9);
 		} else {
 			this.tail.rotateAngleY = 0.0F;
 		}

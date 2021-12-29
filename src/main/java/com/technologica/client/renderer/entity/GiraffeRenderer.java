@@ -12,7 +12,7 @@ public final class GiraffeRenderer extends MobRenderer<GiraffeEntity, GiraffeMod
 	private static final ResourceLocation GIRAFFE_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/giraffe.png");
 
 	public GiraffeRenderer(EntityRendererManager renderManagerIn) {
-		super(renderManagerIn, new GiraffeModel<>(0.0F), 1.1F);
+		super(renderManagerIn, new GiraffeModel<>(), 1.4F);
 	}
 
 	public ResourceLocation getEntityTexture(GiraffeEntity entity) {

@@ -105,8 +105,6 @@ public class OstrichModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 		this.talonOuterRight.setRotationPoint(0.0F, 0.0F, -2.0F);
 		this.legLowerRight.addChild(talonOuterRight);
 		
-		
-		
 		this.neckLower = new ModelRenderer(this, 0, 35);
 		this.neckLower.addBox(-1.0F, -2.0F, -5.0F, 2.0F, 2.0F, 5.0F);
 		this.neckLower.setRotationPoint(0.0F, 2.0F, -8.0F);
@@ -123,8 +121,6 @@ public class OstrichModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 		this.beak = new ModelRenderer(this, 0, 25);
 		this.beak.addBox(-1.0F, -11.0F, -4.0F, 2.0F, 1.0F, 2.0F);
 		this.head.addChild(this.beak);
-		
-		
 		
 		this.saddle = new ModelRenderer(this, 26, 0);
 		this.saddle.addBox(-5.0F, -8.0F, -9.0F, 10.0F, 9.0F, 9.0F, 0.5F);
