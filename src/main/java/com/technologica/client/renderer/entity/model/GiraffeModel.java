@@ -39,8 +39,8 @@ public class GiraffeModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 
 	public GiraffeModel() {
 		super(true, 24.0F, 1.36F, 2.7272F, 2.0F, 24.0F);
-		this.textureWidth = 96;
-		this.textureHeight = 96;
+		this.textureWidth = 128;
+		this.textureHeight = 128;
 
 		this.body = new ModelRenderer(this, 0, 0);
 		this.body.addBox(-5.0F, -31.0F, -17.0F, 10.0F, 12.0F, 22.0F);
@@ -129,32 +129,32 @@ public class GiraffeModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 		this.tail.setRotationPoint(0.0F, -30.0F, 5.0F);
 		this.body.addChild(this.tail);
 
-		this.saddle = new ModelRenderer(this, 26, 0);
+		this.saddle = new ModelRenderer(this, 72, 0);
 		this.saddle.addBox(-5.0F, -31.0F, -9.0F, 10.0F, 9.0F, 9.0F, 0.5F);
 		this.body.addChild(saddle);
 		
-		this.headBridle = new ModelRenderer(this, 1, 1);
+		this.headBridle = new ModelRenderer(this, 72, 18);
 		this.headBridle.addBox(-3.0F, -5.0F, -8.9F, 6.0F, 5.0F, 8.0F, 0.2F);
 		this.head.addChild(this.headBridle);
 		
-		this.noseBridle = new ModelRenderer(this, 19, 0);
+		this.noseBridle = new ModelRenderer(this, 69, 0);
 		this.noseBridle.addBox(-1.5F, -4.0F, -11.0F, 3.0F, 4.0F, 2.0F, 0.2F);
 		this.head.addChild(this.noseBridle);
 		
-		this.leftBit = new ModelRenderer(this, 29, 5);
+		this.leftBit = new ModelRenderer(this, 101, 0);
 		this.leftBit.addBox(1.5F, -3.0F, -13.0F, 1.0F, 2.0F, 2.0F);
 		this.head.addChild(this.leftBit);
 		
-		this.rightBit = new ModelRenderer(this, 29, 5);
+		this.rightBit = new ModelRenderer(this, 101, 0);
 		this.rightBit.addBox(-2.5F, -3.0F, -13.0F, 1.0F, 2.0F, 2.0F);
 		this.head.addChild(this.rightBit);
 		
-		this.leftReign = new ModelRenderer(this, 32, 2);
+		this.leftReign = new ModelRenderer(this, 42, 19);
 		this.leftReign.addBox(3.1F, -6.0F, -8.0F, 0.0F, 3.0F, 16.0F);
 		this.leftReign.rotateAngleX = (-(float) Math.PI / 6F);
 		this.neck.addChild(this.leftReign);
 		
-		this.rightReign = new ModelRenderer(this, 32, 2);
+		this.rightReign = new ModelRenderer(this, 42, 19);
 		this.rightReign.addBox(-3.1F, -6.0F, -8.0F, 0.0F, 3.0F, 16.0F);
 		this.rightReign.rotateAngleX = (-(float) Math.PI / 6F);
 		this.neck.addChild(this.rightReign);
