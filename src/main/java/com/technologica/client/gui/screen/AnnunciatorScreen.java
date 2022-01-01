@@ -9,8 +9,6 @@ import com.technologica.Technologica;
 import com.technologica.inventory.container.AnnunciatorContainer;
 import com.technologica.tileentity.AnnunciatorTileEntity;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.StandingSignBlock;
 import net.minecraft.client.gui.fonts.TextInputUtil;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
@@ -37,7 +35,7 @@ public class AnnunciatorScreen extends ContainerScreen<AnnunciatorContainer> {
 
 	public AnnunciatorScreen(AnnunciatorContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
 		super(screenContainer, inv, new StringTextComponent("Annunciator"));
-		this.passEvents = true;
+		this.passEvents = false;
 		this.ySize = 222;
 		this.playerInventoryTitleY = 128;
 		this.tile = (AnnunciatorTileEntity) screenContainer.getTileEntity();
