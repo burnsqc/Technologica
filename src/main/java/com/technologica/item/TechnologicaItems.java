@@ -975,8 +975,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> SAWBLADE = ITEMS.register("sawblade", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MACHINERY)));
     public static final RegistryObject<Item> SAWMILL_ITEM = ITEMS.register("sawmill", () -> new BlockItem(TechnologicaBlocks.SAWMILL.get(), new Item.Properties().group(TechnologicaItemGroup.MACHINERY)));
     
-    public static final RegistryObject<Item> ANNUNCIATOR_ITEM = ITEMS.register("annunciator", () -> new AnnunciatorItem(TechnologicaBlocks.ANNUNCIATOR.get()));
-    public static final RegistryObject<Item> OVERLAY_INFO_ITEM = ITEMS.register("overlay_info", () -> new Item(new Properties().group(TechnologicaItemGroup.MACHINERY)));
+    public static final RegistryObject<Item> ANNUNCIATOR_ITEM = ITEMS.register("annunciator", () -> new BlockItem(TechnologicaBlocks.ANNUNCIATOR.get(), new Item.Properties().group(TechnologicaItemGroup.MACHINERY)));
     public static final RegistryObject<Item> OVERLAY_PASS_ITEM = ITEMS.register("overlay_pass", () -> new Item(new Properties().group(TechnologicaItemGroup.MACHINERY)));
     public static final RegistryObject<Item> OVERLAY_WARN_ITEM = ITEMS.register("overlay_warn", () -> new Item(new Properties().group(TechnologicaItemGroup.MACHINERY)));
     public static final RegistryObject<Item> OVERLAY_FAIL_ITEM = ITEMS.register("overlay_fail", () -> new Item(new Properties().group(TechnologicaItemGroup.MACHINERY)));

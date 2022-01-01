@@ -1,5 +1,6 @@
 package com.technologica.entity.passive;
 
+import com.technologica.entity.TechnologicaEntityType;
 import com.technologica.entity.ai.BegGoal;
 
 import net.minecraft.entity.AgeableEntity;
@@ -33,7 +34,7 @@ public class RaccoonEntity extends AnimalEntity {
 
 	@Override
 	public AgeableEntity createChild(ServerWorld world, AgeableEntity mate) {
-		return null;
+		return TechnologicaEntityType.RACCOON.get().create(world);
 	}
 
 	@Override
