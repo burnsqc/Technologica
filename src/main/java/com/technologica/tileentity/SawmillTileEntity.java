@@ -25,7 +25,7 @@ public class SawmillTileEntity extends TileEntity implements ISidedInventory, IR
 	private boolean blade = false;
 	private ItemStack log = ItemStack.EMPTY;
 	private int sawTime;
-	private int sawTimeTotal;
+	//private int sawTimeTotal;
 	private double logPos;
 	protected NonNullList<ItemStack> items = NonNullList.withSize(3, ItemStack.EMPTY);
 	private final Object2IntOpenHashMap<ResourceLocation> recipes = new Object2IntOpenHashMap<>();
@@ -114,9 +114,11 @@ public class SawmillTileEntity extends TileEntity implements ISidedInventory, IR
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private void saw(@Nullable IRecipe<?> recipe) {
 		if (recipe != null && this.canSaw(recipe)) {
 			ItemStack itemstack = this.items.get(0);
+			@SuppressWarnings("unchecked")
 			ItemStack itemstack1 = ((IRecipe<ISidedInventory>) recipe).getCraftingResult(this);
 			ItemStack itemstack2 = this.items.get(2);
 			if (itemstack2.isEmpty()) {
@@ -135,6 +137,7 @@ public class SawmillTileEntity extends TileEntity implements ISidedInventory, IR
 
 	protected boolean canSaw(@Nullable IRecipe<?> recipeIn) {
 		if (!this.items.get(0).isEmpty() && recipeIn != null) {
+			@SuppressWarnings("unchecked")
 			ItemStack itemstack = ((IRecipe<ISidedInventory>) recipeIn).getCraftingResult(this);
 			if (itemstack.isEmpty()) {
 				return false;
@@ -220,7 +223,7 @@ public class SawmillTileEntity extends TileEntity implements ISidedInventory, IR
 		}
 		
 		if (index == 0 && !flag) {
-			this.sawTimeTotal = this.getSawTime();
+			//this.sawTimeTotal = this.getSawTime();
 			this.sawTime = 0;
 			this.markDirty();
 		}
