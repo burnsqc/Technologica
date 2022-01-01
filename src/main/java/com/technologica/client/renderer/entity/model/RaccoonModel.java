@@ -14,7 +14,7 @@ public class RaccoonModel<T extends RaccoonEntity> extends QuadrupedModel<T> {
 	private ModelRenderer snout;
 
 	public RaccoonModel() {
-		super(2, 0.0F, true, 10.0F, 4.0F, 2.0F, 2.0F, 24);
+		super(3, 0.0F, true, 20.0F, 0.5F, 2.7272F, 2.0F, 24);
 		this.textureWidth = 64;
 		this.textureHeight = 32;
 		
@@ -66,49 +66,33 @@ public class RaccoonModel<T extends RaccoonEntity> extends QuadrupedModel<T> {
 
 	@Override
 	public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		
 		this.headModel.rotateAngleX = headPitch * ((float) Math.PI / 180F) * 0.5F;
 		this.headModel.rotateAngleY = netHeadYaw * ((float) Math.PI / 180F) * 0.5F;
-		
 		this.earLeft.rotateAngleZ = -(float) Math.PI / 4F;
 		this.earRight.rotateAngleZ = 3 * -(float) Math.PI / 4F;
-		
-		
 	}
 	
 	@Override
 	public void setLivingAnimations(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
-		
-		
 		if (entityIn.isBegging()) {
 			this.body.rotateAngleX = -(float) Math.PI / 3;
 			this.headModel.setRotationPoint(0.0F, 15.0F, 1.0F);
-			
 			this.legFrontLeft.setRotationPoint(2.0F, 17.0F, 0.0F);
 			this.legFrontRight.setRotationPoint(-2.0F, 17.0F, 0.0F);
-			
 			this.legFrontLeft.rotateAngleX = MathHelper.sin(0.75F * ((float) entityIn.ticksExisted + partialTick)) - (float) Math.PI / 3;
 			this.legFrontRight.rotateAngleX = MathHelper.sin(0.75F * ((float) entityIn.ticksExisted + partialTick)) - (float) Math.PI / 3;
-			
 			this.legFrontLeft.rotateAngleZ = -(float) Math.PI / 10;
 			this.legFrontRight.rotateAngleZ = (float) Math.PI / 10;
-			
 			this.tail.rotateAngleX = (float) Math.PI / 3;
-			
 		} else {
 			this.body.rotateAngleX = 0;
 			this.headModel.setRotationPoint(0.0F, 21.0F, -5.0F);
-			
 			this.legFrontLeft.setRotationPoint(2.0F, 21.0F, -3.0F);
 			this.legFrontRight.setRotationPoint(-2.0F, 21.0F, -3.0F);
-			
-			
 			this.legFrontRight.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
 			this.legFrontLeft.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-			
 			this.legFrontLeft.rotateAngleZ = 0;
 			this.legFrontRight.rotateAngleZ = 0;
-			
 			this.tail.rotateAngleX = -((float) Math.PI / 10F);
 		}
 		

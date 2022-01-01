@@ -103,7 +103,7 @@ public class VanillaBiomeModifier {
 			biomeIn.getSpawns().getSpawner(EntityClassification.CREATURE).add(new MobSpawnInfo.Spawners(TechnologicaEntityType.COYOTE.get(), 100, 3, 10));
 			biomeIn.getSpawns().getSpawner(EntityClassification.CREATURE).add(new MobSpawnInfo.Spawners(TechnologicaEntityType.LIZARD.get(), 100, 1, 3));
 			biomeIn.getSpawns().getSpawner(EntityClassification.MONSTER).add(new MobSpawnInfo.Spawners(TechnologicaEntityType.SCORPION.get(), 100, 1, 1));
-			biomeIn.getSpawns().getSpawner(EntityClassification.CREATURE).add(new MobSpawnInfo.Spawners(TechnologicaEntityType.VULTURE.get(), 100, 1, 3));
+			biomeIn.getSpawns().getSpawner(EntityClassification.AMBIENT).add(new MobSpawnInfo.Spawners(TechnologicaEntityType.VULTURE.get(), 1, 1, 3));
 		} 
 	    
 		else if (biomeIn.getCategory().equals(Biome.Category.RIVER)) {
