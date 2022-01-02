@@ -16,6 +16,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
@@ -33,7 +34,9 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 public class AnnunciatorTileEntity extends TileEntity {
-	private final ITextComponent[] signText = new ITextComponent[] { StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY };
+	private final ITextComponent[] signText = new ITextComponent[] { StringTextComponent.EMPTY,
+			StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY,
+			StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY };
 	private final ItemStackHandler itemHandler = createHandler();
 	private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
 	private final IReorderingProcessor[] renderText = new IReorderingProcessor[8];
@@ -134,6 +137,20 @@ public class AnnunciatorTileEntity extends TileEntity {
 		}
 
 		return this.renderText[row];
+	}
+
+	@Nullable
+	public SUpdateTileEntityPacket getUpdatePacket() {
+		return new SUpdateTileEntityPacket(this.pos, 9, this.getUpdateTag());
+	}
+
+	/**
+	 * Get an NBT compound to sync to the client with SPacketChunkData, used for
+	 * initial loading of the chunk or when many blocks change at once. This
+	 * compound comes back to you clientside in {@link handleUpdateTag}
+	 */
+	public CompoundNBT getUpdateTag() {
+		return this.write(new CompoundNBT());
 	}
 
 	@Override

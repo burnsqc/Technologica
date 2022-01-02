@@ -28,16 +28,18 @@ public class CUpdateAnnunciatorPacket {
 	}
 
 	public static CUpdateAnnunciatorPacket decode(PacketBuffer buf) {
+		BlockPos pos2 = buf.readBlockPos();
+		
 		String[] lines2 = new String[8];
 		for (int i = 0; i < 7; ++i) {
 			lines2[i] = buf.readString(384);
 		}
 		
-		return new CUpdateAnnunciatorPacket(buf.readBlockPos(), lines2[0], lines2[1], lines2[2], lines2[3], lines2[4], lines2[5], lines2[6], lines2[7]);
+		return new CUpdateAnnunciatorPacket(pos2, lines2[0], lines2[1], lines2[2], lines2[3], lines2[4], lines2[5], lines2[6], lines2[7]);
 	}
 
 	public static void handle(CUpdateAnnunciatorPacket msg, final Supplier<NetworkEvent.Context> ctx) {
-		ctx.get().enqueueWork(() -> DistExecutor.safeRunWhenOn(Dist.DEDICATED_SERVER, () -> ServerHandlers.handleAnnunciatorPacket(msg.pos, msg.lines)));
+		ctx.get().enqueueWork(() -> DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ServerHandlers.handleAnnunciatorPacket(msg.pos, msg.lines)));
 		ctx.get().setPacketHandled(true);
 	}
 

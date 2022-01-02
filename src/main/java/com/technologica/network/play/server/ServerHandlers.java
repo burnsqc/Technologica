@@ -12,7 +12,7 @@ public class ServerHandlers {
 
 	public static DistExecutor.SafeRunnable handleAnnunciatorPacket(BlockPos pos, String[] lines) {
 		return new DistExecutor.SafeRunnable() {
-			private static final long serialVersionUID = 1L;
+			private static final long serialVersionUID = 2L;
 
 			@Override
 			public void run() {
