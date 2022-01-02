@@ -7,11 +7,14 @@ import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.technologica.Technologica;
 import com.technologica.inventory.container.AnnunciatorContainer;
+import com.technologica.network.play.client.CUpdateAnnunciatorPacket;
+import com.technologica.network.play.server.Packets;
 import com.technologica.tileentity.AnnunciatorTileEntity;
 
 import net.minecraft.client.gui.fonts.TextInputUtil;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
+import net.minecraft.client.network.play.ClientPlayNetHandler;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderHelper;
@@ -25,8 +28,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
 public class AnnunciatorScreen extends ContainerScreen<AnnunciatorContainer> {
-	private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(Technologica.MODID,
-			"textures/gui/container/annunciator_screen.png");
+	private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/gui/container/annunciator_screen.png");
 	private AnnunciatorTileEntity tile;
 	private TextInputUtil textInputUtil;
 	private String[] field_238846_r_;
@@ -35,19 +37,19 @@ public class AnnunciatorScreen extends ContainerScreen<AnnunciatorContainer> {
 
 	public AnnunciatorScreen(AnnunciatorContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
 		super(screenContainer, inv, new StringTextComponent("Annunciator"));
-		this.passEvents = false;
+		this.passEvents = true;
 		this.ySize = 222;
 		this.playerInventoryTitleY = 128;
 		this.tile = (AnnunciatorTileEntity) screenContainer.getTileEntity();
-		this.field_238846_r_ = IntStream.range(0, 4).mapToObj(tile::getText).map(ITextComponent::getString)
-				.toArray((p_243354_0_) -> {
-					return new String[p_243354_0_];
-				});
+		this.field_238846_r_ = IntStream.range(0, 8).mapToObj(tile::getText).map(ITextComponent::getString).toArray((p_243354_0_) -> {
+			return new String[p_243354_0_];
+		});
 	}
 
 	@Override
 	protected void init() {
 		super.init();
+		this.tile.setEditable(false);
 		this.minecraft.keyboardListener.enableRepeatEvents(true);
 		this.textInputUtil = new TextInputUtil(() -> {
 			return this.field_238846_r_[this.editLine];
@@ -60,16 +62,40 @@ public class AnnunciatorScreen extends ContainerScreen<AnnunciatorContainer> {
 				});
 	}
 
+	public void onClose() {
+		this.minecraft.keyboardListener.enableRepeatEvents(false);
+		ClientPlayNetHandler clientplaynethandler = this.minecraft.getConnection();
+		if (clientplaynethandler != null) {
+			Packets.INSTANCE.sendToServer(new CUpdateAnnunciatorPacket(this.tile.getPos(), this.field_238846_r_[0], this.field_238846_r_[1], this.field_238846_r_[2], this.field_238846_r_[3], this.field_238846_r_[4], this.field_238846_r_[5], this.field_238846_r_[6], this.field_238846_r_[7]));
+		}
+
+		this.tile.setEditable(true);
+	}
+
 	public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
 		if (keyCode == 265) {
-			this.editLine = this.editLine - 1 & 3;
+			this.editLine = this.editLine - 1 & 7;
 			this.textInputUtil.moveCursorToEnd();
 			return true;
 		} else if (keyCode != 264 && keyCode != 257 && keyCode != 335) {
-			return this.textInputUtil.specialKeyPressed(keyCode) ? true
-					: super.keyPressed(keyCode, scanCode, modifiers);
+			if (this.textInputUtil.specialKeyPressed(keyCode)) {
+				return true;
+			} else {
+				if (keyCode == 256 && this.shouldCloseOnEsc()) {
+					this.closeScreen();
+					return true;
+				} else if (keyCode == 258) {
+					boolean flag = !hasShiftDown();
+					if (!this.changeFocus(flag)) {
+						this.changeFocus(flag);
+					}
+					return false;
+				} else {
+					return this.getListener() != null && this.getListener().keyPressed(keyCode, scanCode, modifiers);
+				}
+			}
 		} else {
-			this.editLine = this.editLine + 1 & 3;
+			this.editLine = this.editLine + 1 & 7;
 			this.textInputUtil.moveCursorToEnd();
 			return true;
 		}
@@ -108,7 +134,7 @@ public class AnnunciatorScreen extends ContainerScreen<AnnunciatorContainer> {
 		matrixStack.pop();
 
 		matrixStack.translate(256.0D, 70.0D, 0.0D);
-		
+
 		int i = 16383998;
 		int j = this.textInputUtil.getSelectionEnd();
 		int k = this.textInputUtil.getSelectionStart();
@@ -123,12 +149,15 @@ public class AnnunciatorScreen extends ContainerScreen<AnnunciatorContainer> {
 				}
 
 				float f3 = (float) (-this.minecraft.fontRenderer.getStringWidth(s) / 2);
-				this.minecraft.fontRenderer.drawBidiString(s, f3, (float) (i1 * 10 - this.field_238846_r_.length * 5), i, false, matrix4f, irendertypebuffer$impl, false, 0, 15728880, false);
+				this.minecraft.fontRenderer.drawBidiString(s, f3, (float) (i1 * 10 - this.field_238846_r_.length * 5),
+						i, false, matrix4f, irendertypebuffer$impl, false, 0, 15728880, false);
 				if (i1 == this.editLine && j >= 0 && flag1) {
-					int j1 = this.minecraft.fontRenderer.getStringWidth(s.substring(0, Math.max(Math.min(j, s.length()), 0)));
+					int j1 = this.minecraft.fontRenderer
+							.getStringWidth(s.substring(0, Math.max(Math.min(j, s.length()), 0)));
 					int k1 = j1 - this.minecraft.fontRenderer.getStringWidth(s) / 2;
 					if (j >= s.length()) {
-						this.minecraft.fontRenderer.drawBidiString("_", (float) k1, (float) l, i, false, matrix4f, irendertypebuffer$impl, false, 0, 15728880, false);
+						this.minecraft.fontRenderer.drawBidiString("_", (float) k1, (float) l, i, false, matrix4f,
+								irendertypebuffer$impl, false, 0, 15728880, false);
 					}
 				}
 			}
@@ -176,8 +205,7 @@ public class AnnunciatorScreen extends ContainerScreen<AnnunciatorContainer> {
 		matrixStack.pop();
 		RenderHelper.setupGui3DDiffuseLighting();
 
-		
-		// this.renderHoveredTooltip(matrixStack, mouseX, mouseY);
+		this.renderHoveredTooltip(matrixStack, mouseX, mouseY);
 	}
 
 	@SuppressWarnings("deprecation")

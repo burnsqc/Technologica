@@ -17,11 +17,11 @@
       "y": 180
     },
     "annunciator_overlay=fail,facing=south,lit=false": {
-      "model": "technologica:block/annunciator_pass",
+      "model": "technologica:block/annunciator_fail",
       "y": 180
     },
     "annunciator_overlay=pass,facing=south,lit=false": {
-      "model": "technologica:block/annunciator_fail",
+      "model": "technologica:block/annunciator_pass",
       "y": 180
     },
     "annunciator_overlay=warn,facing=south,lit=false": {
@@ -61,63 +61,63 @@
       "y": 90
     },
     "annunciator_overlay=info,facing=north,lit=true": {
-      "model": "technologica:block/annunciator"
+      "model": "technologica:block/annunciator_lit_info"
     },
     "annunciator_overlay=fail,facing=north,lit=true": {
-      "model": "technologica:block/annunciator"
+      "model": "technologica:block/annunciator_lit_fail"
     },
     "annunciator_overlay=pass,facing=north,lit=true": {
-      "model": "technologica:block/annunciator"
+      "model": "technologica:block/annunciator_lit_pass"
     },
     "annunciator_overlay=warn,facing=north,lit=true": {
-      "model": "technologica:block/annunciator"
+      "model": "technologica:block/annunciator_lit_warn"
     },
     "annunciator_overlay=info,facing=south,lit=true": {
-      "model": "technologica:block/annunciator",
+      "model": "technologica:block/annunciator_lit_info",
       "y": 180
     },
     "annunciator_overlay=fail,facing=south,lit=true": {
-      "model": "technologica:block/annunciator",
+      "model": "technologica:block/annunciator_lit_fail",
       "y": 180
     },
     "annunciator_overlay=pass,facing=south,lit=true": {
-      "model": "technologica:block/annunciator",
+      "model": "technologica:block/annunciator_lit_pass",
       "y": 180
     },
     "annunciator_overlay=warn,facing=south,lit=true": {
-      "model": "technologica:block/annunciator",
+      "model": "technologica:block/annunciator_lit_warn",
       "y": 180
     },
     "annunciator_overlay=info,facing=west,lit=true": {
-      "model": "technologica:block/annunciator",
+      "model": "technologica:block/annunciator_lit_info",
       "y": 270
     },
     "annunciator_overlay=fail,facing=west,lit=true": {
-      "model": "technologica:block/annunciator",
+      "model": "technologica:block/annunciator_lit_fail",
       "y": 270
     },
     "annunciator_overlay=pass,facing=west,lit=true": {
-      "model": "technologica:block/annunciator",
+      "model": "technologica:block/annunciator_lit_pass",
       "y": 270
     },
     "annunciator_overlay=warn,facing=west,lit=true": {
-      "model": "technologica:block/annunciator",
+      "model": "technologica:block/annunciator_lit_warn",
       "y": 270
     },
     "annunciator_overlay=info,facing=east,lit=true": {
-      "model": "technologica:block/annunciator",
+      "model": "technologica:block/annunciator_lit_info",
       "y": 90
     },
     "annunciator_overlay=fail,facing=east,lit=true": {
-      "model": "technologica:block/annunciator",
+      "model": "technologica:block/annunciator_lit_fail",
       "y": 90
     },
     "annunciator_overlay=pass,facing=east,lit=true": {
-      "model": "technologica:block/annunciator",
+      "model": "technologica:block/annunciator_lit_pass",
       "y": 90
     },
     "annunciator_overlay=warn,facing=east,lit=true": {
-      "model": "technologica:block/annunciator",
+      "model": "technologica:block/annunciator_lit_warn",
       "y": 90
     }
   }

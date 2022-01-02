@@ -1,6 +1,7 @@
 package com.technologica.block;
 
 import java.util.Random;
+import java.util.function.ToIntFunction;
 
 import javax.annotation.Nullable;
 
@@ -47,8 +48,7 @@ public class AnnunciatorBlock extends ContainerBlock {
 	public static final EnumProperty<AnnunciatorOverlay> OVERLAY = TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY;
 
 	public AnnunciatorBlock() {
-		super(AbstractBlock.Properties.create(Material.IRON).doesNotBlockMovement().hardnessAndResistance(1.0F)
-				.sound(SoundType.METAL));
+		super(AbstractBlock.Properties.create(Material.IRON).setLightLevel(getLightValueLit(15)).hardnessAndResistance(1.0F).sound(SoundType.METAL));
 		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(LIT, false)
 				.with(OVERLAY, AnnunciatorOverlay.INFO));
 	}
@@ -137,5 +137,11 @@ public class AnnunciatorBlock extends ContainerBlock {
 	@Override
 	public BlockRenderType getRenderType(BlockState iBlockState) {
 		return BlockRenderType.MODEL;
+	}
+	
+	private static ToIntFunction<BlockState> getLightValueLit(int lightValue) {
+		return (state) -> {
+			return state.get(BlockStateProperties.LIT) ? lightValue : 0;
+		};
 	}
 }

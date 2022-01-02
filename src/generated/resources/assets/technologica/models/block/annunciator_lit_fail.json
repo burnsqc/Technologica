@@ -2,7 +2,7 @@
   "parent": "minecraft:block/orientable",
   "textures": {
     "side": "technologica:block/annunciator_side",
-    "front": "technologica:block/annunciator_warn",
+    "front": "technologica:block/annunciator_lit_fail",
     "top": "technologica:block/annunciator_side"
   }
 }

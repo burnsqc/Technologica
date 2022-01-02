@@ -53,6 +53,7 @@ import com.technologica.client.renderer.entity.VanillaBoatRenderer;
 import com.technologica.client.renderer.entity.VultureRenderer;
 import com.technologica.client.renderer.entity.WalrusRenderer;
 import com.technologica.client.renderer.entity.ZebraRenderer;
+import com.technologica.client.renderer.tileentity.AnnunciatorTileEntityRenderer;
 import com.technologica.client.renderer.tileentity.DisplayCaseTileEntityRenderer;
 import com.technologica.client.renderer.tileentity.FruitTileEntityRenderer;
 import com.technologica.client.renderer.tileentity.LineShaftHangerTileEntityRenderer;
@@ -194,6 +195,7 @@ public class ClientSetup {
     	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.COOLANT.get(), RenderType.getTranslucent());
     	  	RenderTypeLookup.setRenderLayer(TechnologicaFluids.FLOWING_COOLANT.get(), RenderType.getTranslucent());
     	  	
+    	  	ClientRegistry.bindTileEntityRenderer(TechnologicaTileEntities.ANNUNCIATOR_TILE.get(), AnnunciatorTileEntityRenderer::new);
     	  	ClientRegistry.bindTileEntityRenderer(TechnologicaTileEntities.MOD_SIGN.get(), VanillaSignTileEntityRenderer::new);
     	  	ClientRegistry.bindTileEntityRenderer(TechnologicaTileEntities.FRUIT_CROP.get(), FruitTileEntityRenderer::new);
     	  	ClientRegistry.bindTileEntityRenderer(TechnologicaTileEntities.POTION_CROP.get(), PotionTileEntityRenderer::new);

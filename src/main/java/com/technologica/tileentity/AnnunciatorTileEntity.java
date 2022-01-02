@@ -1,5 +1,7 @@
 package com.technologica.tileentity;
 
+import java.util.function.Function;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
@@ -31,11 +33,11 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 public class AnnunciatorTileEntity extends TileEntity {
-	private final ITextComponent[] signText = new ITextComponent[]{StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY};
+	private final ITextComponent[] signText = new ITextComponent[] { StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY };
 	private final ItemStackHandler itemHandler = createHandler();
 	private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
-	private final IReorderingProcessor[] renderText = new IReorderingProcessor[4];
-	
+	private final IReorderingProcessor[] renderText = new IReorderingProcessor[8];
+
 	public AnnunciatorTileEntity() {
 		super(TechnologicaTileEntities.ANNUNCIATOR_TILE.get());
 	}
@@ -46,15 +48,23 @@ public class AnnunciatorTileEntity extends TileEntity {
 			protected void onContentsChanged(int slot) {
 				markDirty();
 				BlockState state = world.getBlockState(pos);
-				
+
 				if (this.getStackInSlot(0).isEmpty()) {
-					world.setBlockState(pos, state.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.INFO), 7);
+					world.setBlockState(pos,
+							state.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.INFO),
+							7);
 				} else if (this.getStackInSlot(0).getItem().getRegistryName().getPath().contains("fail")) {
-					world.setBlockState(pos, state.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.FAIL), 7);
+					world.setBlockState(pos,
+							state.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.FAIL),
+							7);
 				} else if (this.getStackInSlot(0).getItem().getRegistryName().getPath().contains("pass")) {
-					world.setBlockState(pos, state.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.PASS), 7);
+					world.setBlockState(pos,
+							state.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.PASS),
+							7);
 				} else if (this.getStackInSlot(0).getItem().getRegistryName().getPath().contains("warn")) {
-					world.setBlockState(pos, state.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.WARN), 7);
+					world.setBlockState(pos,
+							state.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.WARN),
+							7);
 				}
 			}
 
@@ -94,53 +104,71 @@ public class AnnunciatorTileEntity extends TileEntity {
 		return TechnologicaTileEntities.ANNUNCIATOR_TILE.get();
 	}
 
+	public void setEditable(boolean isEditableIn) {
+		if (!isEditableIn) {
+		}
+
+	}
+
 	public void setText(int line, ITextComponent signText) {
-	      this.signText[line] = signText;
-	      this.renderText[line] = null;
-	   }
-	
+		this.signText[line] = signText;
+		this.renderText[line] = null;
+	}
+
 	public ITextComponent getText(int line) {
-	      return this.signText[line];
-	   }
-	
+		return this.signText[line];
+	}
+
 	public CommandSource getCommandSource(@Nullable ServerPlayerEntity playerIn) {
-	      String s = playerIn == null ? "Sign" : playerIn.getName().getString();
-	      ITextComponent itextcomponent = (ITextComponent)(playerIn == null ? new StringTextComponent("Sign") : playerIn.getDisplayName());
-	      return new CommandSource(ICommandSource.DUMMY, Vector3d.copyCentered(this.pos), Vector2f.ZERO, (ServerWorld)this.world, 2, s, itextcomponent, this.world.getServer(), playerIn);
-	   }
-	
+		String s = playerIn == null ? "Sign" : playerIn.getName().getString();
+		ITextComponent itextcomponent = (ITextComponent) (playerIn == null ? new StringTextComponent("Sign")
+				: playerIn.getDisplayName());
+		return new CommandSource(ICommandSource.DUMMY, Vector3d.copyCentered(this.pos), Vector2f.ZERO,
+				(ServerWorld) this.world, 2, s, itextcomponent, this.world.getServer(), playerIn);
+	}
+
+	public IReorderingProcessor reorderText(int row,
+			Function<ITextComponent, IReorderingProcessor> textProcessorFunction) {
+		if (this.renderText[row] == null && this.signText[row] != null) {
+			this.renderText[row] = textProcessorFunction.apply(this.signText[row]);
+		}
+
+		return this.renderText[row];
+	}
+
 	@Override
 	public void read(BlockState state, CompoundNBT nbt) {
 		itemHandler.deserializeNBT(nbt.getCompound("overlay"));
-		
-		for(int i = 0; i < 4; ++i) {
-	         String s = nbt.getString("Text" + (i + 1));
-	         ITextComponent itextcomponent = ITextComponent.Serializer.getComponentFromJson(s.isEmpty() ? "\"\"" : s);
-	         if (this.world instanceof ServerWorld) {
-	            try {
-	               this.signText[i] = TextComponentUtils.func_240645_a_(this.getCommandSource((ServerPlayerEntity)null), itextcomponent, (Entity)null, 0);
-	            } catch (CommandSyntaxException commandsyntaxexception) {
-	               this.signText[i] = itextcomponent;
-	            }
-	         } else {
-	            this.signText[i] = itextcomponent;
-	         }
 
-	         this.renderText[i] = null;
-	      }
-		
+		for (int i = 0; i < 8; ++i) {
+			String s = nbt.getString("Text" + (i + 1));
+			ITextComponent itextcomponent = ITextComponent.Serializer.getComponentFromJson(s.isEmpty() ? "\"\"" : s);
+			if (this.world instanceof ServerWorld) {
+				try {
+					this.signText[i] = TextComponentUtils.func_240645_a_(
+							this.getCommandSource((ServerPlayerEntity) null), itextcomponent, (Entity) null, 0);
+				} catch (CommandSyntaxException commandsyntaxexception) {
+					this.signText[i] = itextcomponent;
+				}
+			} else {
+				this.signText[i] = itextcomponent;
+			}
+
+			this.renderText[i] = null;
+		}
+
 		super.read(state, nbt);
 	}
 
 	@Override
 	public CompoundNBT write(CompoundNBT compound) {
 		compound.put("overlay", itemHandler.serializeNBT());
-		
-		for(int i = 0; i < 4; ++i) {
-	         String s = ITextComponent.Serializer.toJson(this.signText[i]);
-	         compound.putString("Text" + (i + 1), s);
-	      }
-		
+
+		for (int i = 0; i < 8; ++i) {
+			String s = ITextComponent.Serializer.toJson(this.signText[i]);
+			compound.putString("Text" + (i + 1), s);
+		}
+
 		return super.write(compound);
 	}
 }
