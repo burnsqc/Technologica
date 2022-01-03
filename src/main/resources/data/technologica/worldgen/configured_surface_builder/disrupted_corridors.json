@@ -1,16 +1,13 @@
 {
   "config": {
     "top_material": {
-      "Properties": {
-        "snowy": "false"
-      },
-      "Name": "minecraft:stone"
+      "Name": "technologica:moon_stone"
     },
     "under_material": {
-      "Name": "minecraft:stone"
+      "Name": "technologica:moon_stone"
     },
     "underwater_material": {
-      "Name": "minecraft:stone"
+      "Name": "technologica:moon_stone"
     }
   },
   "type": "technologica:disrupted_corridors"

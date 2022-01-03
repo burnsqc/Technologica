@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "technologica:cinnamon_roll"
+    ]
+  },
+  "criteria": {
+    "has_cinnamon": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "technologica:cinnamon"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "technologica:cinnamon_roll"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cinnamon",
+      "has_the_recipe"
+    ]
+  ]
+}

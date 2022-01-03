@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "technologica:coconut_cream_pie"
+    ]
+  },
+  "criteria": {
+    "has_coconut": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "technologica:coconut"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "technologica:coconut_cream_pie"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_coconut",
+      "has_the_recipe"
+    ]
+  ]
+}

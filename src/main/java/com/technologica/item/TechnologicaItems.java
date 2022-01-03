@@ -3,12 +3,17 @@ package com.technologica.item;
 import static com.technologica.Technologica.MODID;
 
 import com.technologica.block.TechnologicaBlocks;
+import com.technologica.entity.TechnologicaEntityType;
 import com.technologica.entity.item.VanillaBoatEntity;
 import com.technologica.fluid.TechnologicaFluids;
 
+import net.minecraft.fluid.Fluids;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.BucketItem;
+import net.minecraft.item.FishBucketItem;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.Properties;
@@ -70,6 +75,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> BANANA_SAPLING_ITEM = ITEMS.register("banana_sapling", () -> new BlockItem(TechnologicaBlocks.BANANA_SAPLING.get(), new Item.Properties().group(TechnologicaItemGroup.FLORA)));  
     public static final RegistryObject<Item> CHERRY_SAPLING_ITEM = ITEMS.register("cherry_sapling", () -> new BlockItem(TechnologicaBlocks.CHERRY_SAPLING.get(), new Item.Properties().group(TechnologicaItemGroup.FLORA)));
     public static final RegistryObject<Item> CHESTNUT_SAPLING_ITEM = ITEMS.register("chestnut_sapling", () -> new BlockItem(TechnologicaBlocks.CHESTNUT_SAPLING.get(), new Item.Properties().group(TechnologicaItemGroup.FLORA)));   
+    public static final RegistryObject<Item> CINNAMON_SAPLING_ITEM = ITEMS.register("cinnamon_sapling", () -> new BlockItem(TechnologicaBlocks.CINNAMON_SAPLING.get(), new Item.Properties().group(TechnologicaItemGroup.FLORA)));  
     public static final RegistryObject<Item> COCONUT_SAPLING_ITEM = ITEMS.register("coconut_sapling", () -> new BlockItem(TechnologicaBlocks.COCONUT_SAPLING.get(), new Item.Properties().group(TechnologicaItemGroup.FLORA))); 
     public static final RegistryObject<Item> EBONY_SAPLING_ITEM = ITEMS.register("ebony_sapling", () -> new BlockItem(TechnologicaBlocks.EBONY_SAPLING.get(), new Item.Properties().group(TechnologicaItemGroup.FLORA)));  
     public static final RegistryObject<Item> KIWI_SAPLING_ITEM = ITEMS.register("kiwi_sapling", () -> new BlockItem(TechnologicaBlocks.KIWI_SAPLING.get(), new Item.Properties().group(TechnologicaItemGroup.FLORA)));
@@ -77,6 +83,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> LIME_SAPLING_ITEM = ITEMS.register("lime_sapling", () -> new BlockItem(TechnologicaBlocks.LIME_SAPLING.get(), new Item.Properties().group(TechnologicaItemGroup.FLORA)));   
     public static final RegistryObject<Item> MAHOGANY_SAPLING_ITEM = ITEMS.register("mahogany_sapling", () -> new BlockItem(TechnologicaBlocks.MAHOGANY_SAPLING.get(), new Item.Properties().group(TechnologicaItemGroup.FLORA)));  
     public static final RegistryObject<Item> MAPLE_SAPLING_ITEM = ITEMS.register("maple_sapling", () -> new BlockItem(TechnologicaBlocks.MAPLE_SAPLING.get(), new Item.Properties().group(TechnologicaItemGroup.FLORA)));  
+    public static final RegistryObject<Item> OLIVE_SAPLING_ITEM = ITEMS.register("olive_sapling", () -> new BlockItem(TechnologicaBlocks.OLIVE_SAPLING.get(), new Item.Properties().group(TechnologicaItemGroup.FLORA)));  
     public static final RegistryObject<Item> ORANGE_SAPLING_ITEM = ITEMS.register("orange_sapling", () -> new BlockItem(TechnologicaBlocks.ORANGE_SAPLING.get(), new Item.Properties().group(TechnologicaItemGroup.FLORA)));      
     public static final RegistryObject<Item> PEACH_SAPLING_ITEM = ITEMS.register("peach_sapling", () -> new BlockItem(TechnologicaBlocks.PEACH_SAPLING.get(), new Item.Properties().group(TechnologicaItemGroup.FLORA)));    
     public static final RegistryObject<Item> PEAR_SAPLING_ITEM = ITEMS.register("pear_sapling", () -> new BlockItem(TechnologicaBlocks.PEAR_SAPLING.get(), new Item.Properties().group(TechnologicaItemGroup.FLORA)));
@@ -101,6 +108,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> BANANA_LEAVES_ITEM = ITEMS.register("banana_leaves", () -> new BlockItem(TechnologicaBlocks.BANANA_LEAVES.get(), new Item.Properties().group(TechnologicaItemGroup.FLORA)));
     public static final RegistryObject<Item> CHERRY_LEAVES_ITEM = ITEMS.register("cherry_leaves", () -> new BlockItem(TechnologicaBlocks.CHERRY_LEAVES.get(), new Item.Properties().group(TechnologicaItemGroup.FLORA)));
     public static final RegistryObject<Item> CHESTNUT_LEAVES_ITEM = ITEMS.register("chestnut_leaves", () -> new BlockItem(TechnologicaBlocks.CHESTNUT_LEAVES.get(), new Item.Properties().group(TechnologicaItemGroup.FLORA)));    
+    public static final RegistryObject<Item> CINNAMON_LEAVES_ITEM = ITEMS.register("cinnamon_leaves", () -> new BlockItem(TechnologicaBlocks.CINNAMON_LEAVES.get(), new Item.Properties().group(TechnologicaItemGroup.FLORA)));
     public static final RegistryObject<Item> COCONUT_LEAVES_ITEM = ITEMS.register("coconut_leaves", () -> new BlockItem(TechnologicaBlocks.COCONUT_LEAVES.get(), new Item.Properties().group(TechnologicaItemGroup.FLORA)));
     public static final RegistryObject<Item> EBONY_LEAVES_ITEM = ITEMS.register("ebony_leaves", () -> new BlockItem(TechnologicaBlocks.EBONY_LEAVES.get(), new Item.Properties().group(TechnologicaItemGroup.FLORA)));
     public static final RegistryObject<Item> KIWI_LEAVES_ITEM = ITEMS.register("kiwi_leaves", () -> new BlockItem(TechnologicaBlocks.KIWI_LEAVES.get(), new Item.Properties().group(TechnologicaItemGroup.FLORA)));
@@ -108,6 +116,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> LIME_LEAVES_ITEM = ITEMS.register("lime_leaves", () -> new BlockItem(TechnologicaBlocks.LIME_LEAVES.get(), new Item.Properties().group(TechnologicaItemGroup.FLORA)));
     public static final RegistryObject<Item> MAHOGANY_LEAVES_ITEM = ITEMS.register("mahogany_leaves", () -> new BlockItem(TechnologicaBlocks.MAHOGANY_LEAVES.get(), new Item.Properties().group(TechnologicaItemGroup.FLORA)));
     public static final RegistryObject<Item> MAPLE_LEAVES_ITEM = ITEMS.register("maple_leaves", () -> new BlockItem(TechnologicaBlocks.MAPLE_LEAVES.get(), new Item.Properties().group(TechnologicaItemGroup.FLORA)));
+    public static final RegistryObject<Item> OLIVE_LEAVES_ITEM = ITEMS.register("olive_leaves", () -> new BlockItem(TechnologicaBlocks.OLIVE_LEAVES.get(), new Item.Properties().group(TechnologicaItemGroup.FLORA)));
     public static final RegistryObject<Item> ORANGE_LEAVES_ITEM = ITEMS.register("orange_leaves", () -> new BlockItem(TechnologicaBlocks.ORANGE_LEAVES.get(), new Item.Properties().group(TechnologicaItemGroup.FLORA)));
     public static final RegistryObject<Item> PEACH_LEAVES_ITEM = ITEMS.register("peach_leaves", () -> new BlockItem(TechnologicaBlocks.PEACH_LEAVES.get(), new Item.Properties().group(TechnologicaItemGroup.FLORA)));
     public static final RegistryObject<Item> PEAR_LEAVES_ITEM = ITEMS.register("pear_leaves", () -> new BlockItem(TechnologicaBlocks.PEAR_LEAVES.get(), new Item.Properties().group(TechnologicaItemGroup.FLORA)));
@@ -131,12 +140,49 @@ public class TechnologicaItems {
 	 * FAUNA
 	 */
     
-    public static final RegistryObject<Item> DUCK_SPAWN_EGG = ITEMS.register("duck_spawn_egg", () -> new ModSpawnEggItem(1)); 
-    public static final RegistryObject<Item> GRIZZLY_BEAR_SPAWN_EGG = ITEMS.register("grizzly_bear_spawn_egg", () -> new ModSpawnEggItem(2));
-    public static final RegistryObject<Item> OSTRICH_SPAWN_EGG = ITEMS.register("ostrich_spawn_egg", () -> new ModSpawnEggItem(3));
-    public static final RegistryObject<Item> SHARK_SPAWN_EGG = ITEMS.register("shark_spawn_egg", () -> new ModSpawnEggItem(4));
-    public static final RegistryObject<Item> ZEBRA_SPAWN_EGG = ITEMS.register("zebra_spawn_egg", () -> new ModSpawnEggItem(5));
-    public static final RegistryObject<Item> SCORPION_SPAWN_EGG = ITEMS.register("scorpion_spawn_egg", () -> new ModSpawnEggItem(6));
+    public static final RegistryObject<Item> ALLIGATOR_SPAWN_EGG = ITEMS.register("alligator_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.ALLIGATOR));
+    public static final RegistryObject<Item> BEAVER_SPAWN_EGG = ITEMS.register("beaver_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.BEAVER));
+    public static final RegistryObject<Item> BUFFALO_SPAWN_EGG = ITEMS.register("buffalo_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.BUFFALO));
+    public static final RegistryObject<Item> CAMEL_SPAWN_EGG = ITEMS.register("camel_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.CAMEL));
+    public static final RegistryObject<Item> COBRA_SPAWN_EGG = ITEMS.register("cobra_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.COBRA));
+    public static final RegistryObject<Item> COTTONMOUTH_SPAWN_EGG = ITEMS.register("cottonmouth_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.COTTONMOUTH));
+    public static final RegistryObject<Item> COYOTE_SPAWN_EGG = ITEMS.register("coyote_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.COYOTE));
+    public static final RegistryObject<Item> CRAB_SPAWN_EGG = ITEMS.register("crab_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.CRAB));
+    public static final RegistryObject<Item> DEER_SPAWN_EGG = ITEMS.register("deer_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.DEER));
+    public static final RegistryObject<Item> DUCK_SPAWN_EGG = ITEMS.register("duck_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.DUCK));
+    public static final RegistryObject<Item> ELEPHANT_SPAWN_EGG = ITEMS.register("elephant_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.ELEPHANT));
+    public static final RegistryObject<Item> FLAMINGO_SPAWN_EGG = ITEMS.register("flamingo_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.FLAMINGO));
+    public static final RegistryObject<Item> FROG_SPAWN_EGG = ITEMS.register("frog_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.FROG));
+    public static final RegistryObject<Item> GIRAFFE_SPAWN_EGG = ITEMS.register("giraffe_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.GIRAFFE));
+    public static final RegistryObject<Item> GORILLA_SPAWN_EGG = ITEMS.register("gorilla_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.GORILLA));
+    public static final RegistryObject<Item> GRIZZLY_BEAR_SPAWN_EGG = ITEMS.register("grizzly_bear_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.GRIZZLY_BEAR));
+    public static final RegistryObject<Item> JAGUAR_SPAWN_EGG = ITEMS.register("jaguar_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.JAGUAR));
+    public static final RegistryObject<Item> KING_CRAB_SPAWN_EGG = ITEMS.register("king_crab_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.KING_CRAB));
+    public static final RegistryObject<Item> LEOPARD_SEAL_SPAWN_EGG = ITEMS.register("leopard_seal_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.LEOPARD_SEAL));
+    public static final RegistryObject<Item> LION_SPAWN_EGG = ITEMS.register("lion_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.LION));
+    public static final RegistryObject<Item> LIZARD_SPAWN_EGG = ITEMS.register("lizard_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.LIZARD));
+    public static final RegistryObject<Item> MOOSE_SPAWN_EGG = ITEMS.register("moose_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.MOOSE));
+    public static final RegistryObject<Item> NARWHAL_SPAWN_EGG = ITEMS.register("narwhal_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.NARWHAL));
+    public static final RegistryObject<Item> OCTOPUS_SPAWN_EGG = ITEMS.register("octopus_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.OCTOPUS));
+    public static final RegistryObject<Item> OSTRICH_SPAWN_EGG = ITEMS.register("ostrich_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.OSTRICH));
+    public static final RegistryObject<Item> OWL_SPAWN_EGG = ITEMS.register("owl_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.OWL));
+    public static final RegistryObject<Item> PENGUIN_SPAWN_EGG = ITEMS.register("penguin_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.PENGUIN));
+    public static final RegistryObject<Item> PIRANHA_SPAWN_EGG = ITEMS.register("piranha_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.PIRANHA));
+    public static final RegistryObject<Item> POISON_DART_FROG_SPAWN_EGG = ITEMS.register("poison_dart_frog_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.POISON_DART_FROG));
+    public static final RegistryObject<Item> RACCOON_SPAWN_EGG = ITEMS.register("raccoon_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.RACCOON));
+    public static final RegistryObject<Item> SCORPION_SPAWN_EGG = ITEMS.register("scorpion_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.SCORPION));
+    public static final RegistryObject<Item> SHARK_SPAWN_EGG = ITEMS.register("shark_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.SHARK));
+    public static final RegistryObject<Item> SLOTH_SPAWN_EGG = ITEMS.register("sloth_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.SLOTH));
+    public static final RegistryObject<Item> STINGRAY_SPAWN_EGG = ITEMS.register("stingray_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.STINGRAY));
+    public static final RegistryObject<Item> TURKEY_SPAWN_EGG = ITEMS.register("turkey_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.TURKEY));
+    public static final RegistryObject<Item> VULTURE_SPAWN_EGG = ITEMS.register("vulture_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.VULTURE));
+    public static final RegistryObject<Item> WALRUS_SPAWN_EGG = ITEMS.register("walrus_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.WALRUS));
+    public static final RegistryObject<Item> ZEBRA_SPAWN_EGG = ITEMS.register("zebra_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.ZEBRA));
+    
+    public static final RegistryObject<Item> PEEPER_SPAWN_EGG = ITEMS.register("peeper_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.PEEPER));
+    public static final RegistryObject<Item> SWEEPER_SPAWN_EGG = ITEMS.register("sweeper_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.SWEEPER));
+    
+    public static final RegistryObject<Item> PIRANHA_BUCKET = ITEMS.register("salmon_bucket", () -> new FishBucketItem(TechnologicaEntityType.PIRANHA, () -> Fluids.WATER, (new Item.Properties()).maxStackSize(1).group(TechnologicaItemGroup.FAUNA)));
     
     /**
      * MINERAL
@@ -144,6 +190,9 @@ public class TechnologicaItems {
     
     public static final RegistryObject<Item> SALT_ITEM = ITEMS.register("salt", () -> new BlockItem(TechnologicaBlocks.SALT.get(), new Item.Properties().group(TechnologicaItemGroup.MINERAL)));   
     public static final RegistryObject<Item> LITHIUM_CLAY_ITEM = ITEMS.register("lithium_clay", () -> new BlockItem(TechnologicaBlocks.LITHIUM_CLAY.get(), new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    
+    public static final RegistryObject<Item> MOON_ROCK_ITEM = ITEMS.register("moon_rock", () -> new BlockItem(TechnologicaBlocks.MOON_ROCK.get(), new Item.Properties().group(TechnologicaItemGroup.MINERAL)));   
+    public static final RegistryObject<Item> MOON_DUST_ITEM = ITEMS.register("moon_dust", () -> new BlockItem(TechnologicaBlocks.MOON_DUST.get(), new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
     
     public static final RegistryObject<Item> BAUXITE_ORE_ITEM = ITEMS.register("bauxite_ore", () -> new BlockItem(TechnologicaBlocks.BAUXITE_ORE.get(), new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
     public static final RegistryObject<Item> CHROMITE_ORE_ITEM = ITEMS.register("chromite_ore", () -> new BlockItem(TechnologicaBlocks.CHROMITE_ORE.get(), new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
@@ -180,77 +229,77 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> RUBIDIUM_INGOT = ITEMS.register("rubidium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
     public static final RegistryObject<Item> STRONTIUM_INGOT = ITEMS.register("strontium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
     public static final RegistryObject<Item> YTTRIUM_INGOT = ITEMS.register("yttrium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> ZIRCONIUM_INGOT = ITEMS.register("zirconium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> NIOBIUM_INGOT = ITEMS.register("niobium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> MOLYBDENUM_INGOT = ITEMS.register("molybdenum_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-    public static final RegistryObject<Item> TECHNETIUM_INGOT = ITEMS.register("technetium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> ZIRCONIUM_INGOT = ITEMS.register("zirconium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> NIOBIUM_INGOT = ITEMS.register("niobium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> MOLYBDENUM_INGOT = ITEMS.register("molybdenum_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> TECHNETIUM_INGOT = ITEMS.register("technetium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
     public static final RegistryObject<Item> RUTHENIUM_INGOT = ITEMS.register("ruthenium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
     public static final RegistryObject<Item> RHODIUM_INGOT = ITEMS.register("rhodium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
     public static final RegistryObject<Item> PALLADIUM_INGOT = ITEMS.register("palladium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
     public static final RegistryObject<Item> SILVER_INGOT = ITEMS.register("silver_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> CADMIUM_INGOT = ITEMS.register("cadmium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> INDIUM_INGOT = ITEMS.register("indium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> TIN_INGOT = ITEMS.register("tin_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
+    public static final RegistryObject<Item> CADMIUM_INGOT = ITEMS.register("cadmium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> INDIUM_INGOT = ITEMS.register("indium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> TIN_INGOT = ITEMS.register("tin_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
     public static final RegistryObject<Item> CAESIUM_INGOT = ITEMS.register("caesium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
     public static final RegistryObject<Item> BARIUM_INGOT = ITEMS.register("barium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> LANTHANUM_INGOT = ITEMS.register("lanthanum_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> CERIUM_INGOT = ITEMS.register("cerium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> PRAESODYMIUM_INGOT = ITEMS.register("praesodymium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> NEODYMIUM_INGOT = ITEMS.register("neodymium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> PROMETHIUM_INGOT = ITEMS.register("promethium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> SAMARIUM_INGOT = ITEMS.register("samarium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> EUROPIUM_INGOT = ITEMS.register("europium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> GADOLINIUM_INGOT = ITEMS.register("gadolinium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> TERBIUM_INGOT = ITEMS.register("terbium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> DYSPROSIUM_INGOT = ITEMS.register("dysprosium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> HOLMIUM_INGOT = ITEMS.register("holmium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> ERBIUM_INGOT = ITEMS.register("erbium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> THULIUM_INGOT = ITEMS.register("thulium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> YTTERBIUM_INGOT = ITEMS.register("ytterbium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
+    public static final RegistryObject<Item> LANTHANUM_INGOT = ITEMS.register("lanthanum_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> CERIUM_INGOT = ITEMS.register("cerium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> PRASEODYMIUM_INGOT = ITEMS.register("praseodymium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> NEODYMIUM_INGOT = ITEMS.register("neodymium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> PROMETHIUM_INGOT = ITEMS.register("promethium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> SAMARIUM_INGOT = ITEMS.register("samarium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> EUROPIUM_INGOT = ITEMS.register("europium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> GADOLINIUM_INGOT = ITEMS.register("gadolinium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> TERBIUM_INGOT = ITEMS.register("terbium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> DYSPROSIUM_INGOT = ITEMS.register("dysprosium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> HOLMIUM_INGOT = ITEMS.register("holmium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> ERBIUM_INGOT = ITEMS.register("erbium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> THULIUM_INGOT = ITEMS.register("thulium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> YTTERBIUM_INGOT = ITEMS.register("ytterbium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
     public static final RegistryObject<Item> LUTETIUM_INGOT = ITEMS.register("lutetium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> HAFNIUM_INGOT = ITEMS.register("hafnium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> TANTALUM_INGOT = ITEMS.register("tantalum_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> TUNGSTEN_INGOT = ITEMS.register("tungsten_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
+    public static final RegistryObject<Item> HAFNIUM_INGOT = ITEMS.register("hafnium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> TANTALUM_INGOT = ITEMS.register("tantalum_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> TUNGSTEN_INGOT = ITEMS.register("tungsten_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
     public static final RegistryObject<Item> RHENIUM_INGOT = ITEMS.register("rhenium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
     public static final RegistryObject<Item> OSMIUM_INGOT = ITEMS.register("osmium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
     public static final RegistryObject<Item> IRIDIUM_INGOT = ITEMS.register("iridium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
     public static final RegistryObject<Item> PLATINUM_INGOT = ITEMS.register("platinum_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> THALLIUM_INGOT = ITEMS.register("thallium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> LEAD_INGOT = ITEMS.register("lead_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> BISMUTH_INGOT = ITEMS.register("bismuth_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> POLONIUM_INGOT = ITEMS.register("polonium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-    public static final RegistryObject<Item> FRANCIUM_INGOT = ITEMS.register("francium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
-    public static final RegistryObject<Item> RADIUM_INGOT = ITEMS.register("radium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> ACTINIUM_INGOT = ITEMS.register("actinium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> THORIUM_INGOT = ITEMS.register("thorium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> PROTACTINIUM_INGOT = ITEMS.register("protactinium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> URANIUM_INGOT = ITEMS.register("uranium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> NEPTUNIUM_INGOT = ITEMS.register("neptunium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> PLUTONIUM_INGOT = ITEMS.register("plutonium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> AMERICIUM_INGOT = ITEMS.register("americium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> CURIUM_INGOT = ITEMS.register("curium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> BERKELIUM_INGOT = ITEMS.register("berkelium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> CALIFORNIUM_INGOT = ITEMS.register("californium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> EINSTEINIUM_INGOT = ITEMS.register("einsteinium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> FERMIUM_INGOT = ITEMS.register("fermium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> MENDELEVIUM_INGOT = ITEMS.register("mendelevium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> NOBELIUM_INGOT = ITEMS.register("nobelium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> LAWRENCIUM_INGOT = ITEMS.register("lawrencium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> RUTHERFORDIUM_INGOT = ITEMS.register("rutherfordium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> DUBNIUM_INGOT = ITEMS.register("dubnium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> SEABORGIUM_INGOT = ITEMS.register("seaborgium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> BOHRIUM_INGOT = ITEMS.register("bohrium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> HASSIUM_INGOT = ITEMS.register("hassium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> MEITNERIUM_INGOT = ITEMS.register("meitnerium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> DARMSTADTIUM_INGOT = ITEMS.register("darmstadtium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> ROENTGENIUM_INGOT = ITEMS.register("roentgenuim_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> COPERNICIUM_INGOT = ITEMS.register("copernicium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> NIHONIUM_INGOT = ITEMS.register("nihonium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> FLEVORIUM_INGOT = ITEMS.register("flevorium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> MOSCOVIUM_INGOT = ITEMS.register("moscovium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> LIVERMORIUM_INGOT = ITEMS.register("livermorium_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> TENNESINE_INGOT = ITEMS.register("tennessine_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
-//    public static final RegistryObject<Item> OGANESSON_INGOT = ITEMS.register("oganesson_ingot", () -> new Item(new Item.Properties().group(ModItemGroup.MINERAL)));
+    public static final RegistryObject<Item> THALLIUM_INGOT = ITEMS.register("thallium_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> LEAD_INGOT = ITEMS.register("lead_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> BISMUTH_INGOT = ITEMS.register("bismuth_ingot", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> POLONIUM_INGOT = ITEMS.register("polonium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> FRANCIUM_INGOT = ITEMS.register("francium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> RADIUM_INGOT = ITEMS.register("radium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> ACTINIUM_INGOT = ITEMS.register("actinium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> THORIUM_INGOT = ITEMS.register("thorium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> PROTACTINIUM_INGOT = ITEMS.register("protactinium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> URANIUM_INGOT = ITEMS.register("uranium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> NEPTUNIUM_INGOT = ITEMS.register("neptunium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> PLUTONIUM_INGOT = ITEMS.register("plutonium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> AMERICIUM_INGOT = ITEMS.register("americium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> CURIUM_INGOT = ITEMS.register("curium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> BERKELIUM_INGOT = ITEMS.register("berkelium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> CALIFORNIUM_INGOT = ITEMS.register("californium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> EINSTEINIUM_INGOT = ITEMS.register("einsteinium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> FERMIUM_INGOT = ITEMS.register("fermium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> MENDELEVIUM_INGOT = ITEMS.register("mendelevium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> NOBELIUM_INGOT = ITEMS.register("nobelium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> LAWRENCIUM_INGOT = ITEMS.register("lawrencium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> RUTHERFORDIUM_INGOT = ITEMS.register("rutherfordium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> DUBNIUM_INGOT = ITEMS.register("dubnium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> SEABORGIUM_INGOT = ITEMS.register("seaborgium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> BOHRIUM_INGOT = ITEMS.register("bohrium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> HASSIUM_INGOT = ITEMS.register("hassium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> MEITNERIUM_INGOT = ITEMS.register("meitnerium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> DARMSTADTIUM_INGOT = ITEMS.register("darmstadtium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> ROENTGENIUM_INGOT = ITEMS.register("roentgenium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> COPERNICIUM_INGOT = ITEMS.register("copernicium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> NIHONIUM_INGOT = ITEMS.register("nihonium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> FLEVORIUM_INGOT = ITEMS.register("flevorium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> MOSCOVIUM_INGOT = ITEMS.register("moscovium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> LIVERMORIUM_INGOT = ITEMS.register("livermorium_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> TENNESSINE_INGOT = ITEMS.register("tennessine_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> OGANESSON_INGOT = ITEMS.register("oganesson_ingot", () -> new RadioactiveItem(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
     
     public static final RegistryObject<Item> LITHIUM_CLAY_BALL = ITEMS.register("lithium_clay_ball", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
     public static final RegistryObject<Item> BORON_CHUNK = ITEMS.register("boron_chunk", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
@@ -264,11 +313,37 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> ANTIMONY_CHUNK = ITEMS.register("antimony_chunk", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
     public static final RegistryObject<Item> TELLURIUM_CHUNK = ITEMS.register("tellurium_chunk", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
     public static final RegistryObject<Item> IODINE_CHUNK = ITEMS.register("iodine_chunk", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
-    public static final RegistryObject<Item> ASTATINE_CHUNK = ITEMS.register("astatine_chunk", () -> new Item(new Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> ASTATINE_CHUNK = ITEMS.register("astatine_chunk", () -> new RadioactiveItem(new Properties().group(TechnologicaItemGroup.MINERAL)));
     
-    public static final RegistryObject<Item> BRINE_BUCKET = ITEMS.register("brine_bucket", () -> new BucketItem(TechnologicaFluids.BRINE_SOURCE, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
-    public static final RegistryObject<Item> MERCURY_BUCKET = ITEMS.register("mercury_bucket", () -> new BucketItem(TechnologicaFluids.MERCURY_SOURCE, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
-    public static final RegistryObject<Item> HYDROGEN_BUCKET = ITEMS.register("hydrogen_bucket", () -> new BucketItem(TechnologicaFluids.HYDROGEN_SOURCE, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> MULCH = ITEMS.register("mulch", () -> new Item(new Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> SAWDUST = ITEMS.register("sawdust", () -> new Item(new Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> RUBBER = ITEMS.register("rubber", () -> new Item(new Properties().group(TechnologicaItemGroup.MINERAL)));
+    
+    public static final RegistryObject<Item> HYDROGEN_BUCKET = ITEMS.register("hydrogen_bucket", () -> new BucketItem(TechnologicaFluids.HYDROGEN, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> HELIUM_BUCKET = ITEMS.register("helium_bucket", () -> new BucketItem(TechnologicaFluids.HELIUM, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> NITROGEN_BUCKET = ITEMS.register("nitrogen_bucket", () -> new BucketItem(TechnologicaFluids.NITROGEN, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> OXYGEN_BUCKET = ITEMS.register("oxygen_bucket", () -> new BucketItem(TechnologicaFluids.OXYGEN, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> FLUORINE_BUCKET = ITEMS.register("fluorine_bucket", () -> new BucketItem(TechnologicaFluids.FLUORINE, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> NEON_BUCKET = ITEMS.register("neon_bucket", () -> new BucketItem(TechnologicaFluids.NEON, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> CHLORINE_BUCKET = ITEMS.register("chlorine_bucket", () -> new BucketItem(TechnologicaFluids.CHLORINE, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> ARGON_BUCKET = ITEMS.register("argon_bucket", () -> new BucketItem(TechnologicaFluids.ARGON, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> KRYPTON_BUCKET = ITEMS.register("krypton_bucket", () -> new BucketItem(TechnologicaFluids.KRYPTON, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> XENON_BUCKET = ITEMS.register("xenon_bucket", () -> new BucketItem(TechnologicaFluids.XENON, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> RADON_BUCKET = ITEMS.register("radon_bucket", () -> new BucketItem(TechnologicaFluids.RADON, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    
+    public static final RegistryObject<Item> BROMINE_BUCKET = ITEMS.register("bromine_bucket", () -> new BucketItem(TechnologicaFluids.BROMINE, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> MERCURY_BUCKET = ITEMS.register("mercury_bucket", () -> new BucketItem(TechnologicaFluids.MERCURY, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    
+    public static final RegistryObject<Item> BRINE_BUCKET = ITEMS.register("brine_bucket", () -> new BucketItem(TechnologicaFluids.BRINE, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> OIL_BUCKET = ITEMS.register("oil_bucket", () -> new BucketItem(TechnologicaFluids.OIL, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> NATURAL_GAS_BUCKET = ITEMS.register("natural_gas_bucket", () -> new BucketItem(TechnologicaFluids.NATURAL_GAS, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    
+    public static final RegistryObject<Item> MAPLE_SYRUP_BUCKET = ITEMS.register("maple_syrup_bucket", () -> new BucketItem(TechnologicaFluids.MAPLE_SYRUP, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> RUBBER_RESIN_BUCKET = ITEMS.register("rubber_resin_bucket", () -> new BucketItem(TechnologicaFluids.RUBBER_RESIN, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    
+    public static final RegistryObject<Item> GASOLINE_BUCKET = ITEMS.register("gasoline_bucket", () -> new BucketItem(TechnologicaFluids.GASOLINE, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> MACHINE_OIL_BUCKET = ITEMS.register("machine_oil_bucket", () -> new BucketItem(TechnologicaFluids.MACHINE_OIL, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
+    public static final RegistryObject<Item> COOLANT_BUCKET = ITEMS.register("coolant_bucket", () -> new BucketItem(TechnologicaFluids.COOLANT, new Properties().group(TechnologicaItemGroup.MINERAL).maxStackSize(1)));
     
     /**
      * FOOD
@@ -286,6 +361,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> CHERRY = ITEMS.register("cherry", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.FOOD).food(new Food.Builder().hunger(1).saturation(0.1F).setAlwaysEdible().fastToEat().build())));
     public static final RegistryObject<Item> CHESTNUT = ITEMS.register("chestnut", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
     public static final RegistryObject<Item> CHILI_PEPPER = ITEMS.register("chili_pepper", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
+    public static final RegistryObject<Item> CINNAMON = ITEMS.register("cinnamon", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.FOOD)));
     public static final RegistryObject<Item> COCONUT = ITEMS.register("coconut", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
     public static final RegistryObject<Item> CORN = ITEMS.register("corn", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.FOOD).food(new Food.Builder().hunger(1).saturation(0.1F).setAlwaysEdible().fastToEat().build())));
     public static final RegistryObject<Item> CRANBERRY = ITEMS.register("cranberry", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
@@ -299,6 +375,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> LIME = ITEMS.register("lime", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.FOOD).food(new Food.Builder().hunger(1).saturation(0.1F).setAlwaysEdible().build())));
     public static final RegistryObject<Item> MUSTARD_GREENS = ITEMS.register("mustard_greens", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
     public static final RegistryObject<Item> OATS = ITEMS.register("oats", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.FOOD)));
+    public static final RegistryObject<Item> OLIVE = ITEMS.register("olive", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.FOOD).food(new Food.Builder().hunger(3).saturation(0.1F).setAlwaysEdible().build())));
     public static final RegistryObject<Item> ONION = ITEMS.register("onion", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
     public static final RegistryObject<Item> ORANGE = ITEMS.register("orange", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.FOOD).food(new Food.Builder().hunger(3).saturation(0.1F).setAlwaysEdible().build())));
     public static final RegistryObject<Item> PEAS = ITEMS.register("peas", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
@@ -334,6 +411,8 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> PEACH_COBBLER = ITEMS.register("peach_cobbler", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
     public static final RegistryObject<Item> PEAR_TART = ITEMS.register("pear_tart", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
     public static final RegistryObject<Item> STRAWBERRY_SHORTCAKE = ITEMS.register("strawberry_shortcake", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
+    public static final RegistryObject<Item> TAPENADE = ITEMS.register("tapenade", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
+    public static final RegistryObject<Item> CINNAMON_ROLL = ITEMS.register("cinnamon_roll", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
     
 
     /**
@@ -346,6 +425,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> BANANA_LOG_ITEM = ITEMS.register("banana_log", () -> new BlockItem(TechnologicaBlocks.BANANA_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> CHERRY_LOG_ITEM = ITEMS.register("cherry_log", () -> new BlockItem(TechnologicaBlocks.CHERRY_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> CHESTNUT_LOG_ITEM = ITEMS.register("chestnut_log", () -> new BlockItem(TechnologicaBlocks.CHESTNUT_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));    
+    public static final RegistryObject<Item> CINNAMON_LOG_ITEM = ITEMS.register("cinnamon_log", () -> new BlockItem(TechnologicaBlocks.CINNAMON_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> COCONUT_LOG_ITEM = ITEMS.register("coconut_log", () -> new BlockItem(TechnologicaBlocks.COCONUT_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> EBONY_LOG_ITEM = ITEMS.register("ebony_log", () -> new BlockItem(TechnologicaBlocks.EBONY_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));    
     public static final RegistryObject<Item> KIWI_LOG_ITEM = ITEMS.register("kiwi_log", () -> new BlockItem(TechnologicaBlocks.KIWI_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
@@ -353,6 +433,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> LIME_LOG_ITEM = ITEMS.register("lime_log", () -> new BlockItem(TechnologicaBlocks.LIME_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> MAHOGANY_LOG_ITEM = ITEMS.register("mahogany_log", () -> new BlockItem(TechnologicaBlocks.MAHOGANY_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));    
     public static final RegistryObject<Item> MAPLE_LOG_ITEM = ITEMS.register("maple_log", () -> new BlockItem(TechnologicaBlocks.MAPLE_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> OLIVE_LOG_ITEM = ITEMS.register("olive_log", () -> new BlockItem(TechnologicaBlocks.OLIVE_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> ORANGE_LOG_ITEM = ITEMS.register("orange_log", () -> new BlockItem(TechnologicaBlocks.ORANGE_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEACH_LOG_ITEM = ITEMS.register("peach_log",	() -> new BlockItem(TechnologicaBlocks.PEACH_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEAR_LOG_ITEM = ITEMS.register("pear_log", () -> new BlockItem(TechnologicaBlocks.PEAR_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION))); 
@@ -377,6 +458,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> STRIPPED_BANANA_LOG_ITEM = ITEMS.register("stripped_banana_log", () -> new BlockItem(TechnologicaBlocks.STRIPPED_BANANA_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> STRIPPED_CHERRY_LOG_ITEM = ITEMS.register("stripped_cherry_log", () -> new BlockItem(TechnologicaBlocks.STRIPPED_CHERRY_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> STRIPPED_CHESTNUT_LOG_ITEM = ITEMS.register("stripped_chestnut_log", () -> new BlockItem(TechnologicaBlocks.STRIPPED_CHESTNUT_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));    
+    public static final RegistryObject<Item> STRIPPED_CINNAMON_LOG_ITEM = ITEMS.register("stripped_cinnamon_log", () -> new BlockItem(TechnologicaBlocks.STRIPPED_CINNAMON_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));    
     public static final RegistryObject<Item> STRIPPED_COCONUT_LOG_ITEM = ITEMS.register("stripped_coconut_log", () -> new BlockItem(TechnologicaBlocks.STRIPPED_COCONUT_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> STRIPPED_EBONY_LOG_ITEM = ITEMS.register("stripped_ebony_log", () -> new BlockItem(TechnologicaBlocks.STRIPPED_EBONY_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));    
     public static final RegistryObject<Item> STRIPPED_KIWI_LOG_ITEM = ITEMS.register("stripped_kiwi_log", () -> new BlockItem(TechnologicaBlocks.STRIPPED_KIWI_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
@@ -384,6 +466,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> STRIPPED_LIME_LOG_ITEM = ITEMS.register("stripped_lime_log", () -> new BlockItem(TechnologicaBlocks.STRIPPED_LIME_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> STRIPPED_MAHOGANY_LOG_ITEM = ITEMS.register("stripped_mahogany_log", () -> new BlockItem(TechnologicaBlocks.STRIPPED_MAHOGANY_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));    
     public static final RegistryObject<Item> STRIPPED_MAPLE_LOG_ITEM = ITEMS.register("stripped_maple_log", () -> new BlockItem(TechnologicaBlocks.STRIPPED_MAPLE_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> STRIPPED_OLIVE_LOG_ITEM = ITEMS.register("stripped_olive_log", () -> new BlockItem(TechnologicaBlocks.STRIPPED_OLIVE_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));    
     public static final RegistryObject<Item> STRIPPED_ORANGE_LOG_ITEM = ITEMS.register("stripped_orange_log", () -> new BlockItem(TechnologicaBlocks.STRIPPED_ORANGE_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> STRIPPED_PEACH_LOG_ITEM = ITEMS.register("stripped_peach_log",	() -> new BlockItem(TechnologicaBlocks.STRIPPED_PEACH_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> STRIPPED_PEAR_LOG_ITEM = ITEMS.register("stripped_pear_log", () -> new BlockItem(TechnologicaBlocks.STRIPPED_PEAR_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION))); 
@@ -408,6 +491,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> BANANA_WOOD_ITEM = ITEMS.register("banana_wood", () -> new BlockItem(TechnologicaBlocks.BANANA_WOOD.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> CHERRY_WOOD_ITEM = ITEMS.register("cherry_wood", () -> new BlockItem(TechnologicaBlocks.CHERRY_WOOD.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> CHESTNUT_WOOD_ITEM = ITEMS.register("chestnut_wood", () -> new BlockItem(TechnologicaBlocks.CHESTNUT_WOOD.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));    
+	public static final RegistryObject<Item> CINNAMON_WOOD_ITEM = ITEMS.register("cinnamon_wood", () -> new BlockItem(TechnologicaBlocks.CINNAMON_WOOD.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> COCONUT_WOOD_ITEM = ITEMS.register("coconut_wood", () -> new BlockItem(TechnologicaBlocks.COCONUT_WOOD.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> EBONY_WOOD_ITEM = ITEMS.register("ebony_wood", () -> new BlockItem(TechnologicaBlocks.EBONY_WOOD.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));    
     public static final RegistryObject<Item> KIWI_WOOD_ITEM = ITEMS.register("kiwi_wood", () -> new BlockItem(TechnologicaBlocks.KIWI_WOOD.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
@@ -415,6 +499,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> LIME_WOOD_ITEM = ITEMS.register("lime_wood", () -> new BlockItem(TechnologicaBlocks.LIME_WOOD.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> MAHOGANY_WOOD_ITEM = ITEMS.register("mahogany_wood", () -> new BlockItem(TechnologicaBlocks.MAHOGANY_WOOD.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));    
     public static final RegistryObject<Item> MAPLE_WOOD_ITEM = ITEMS.register("maple_wood", () -> new BlockItem(TechnologicaBlocks.MAPLE_WOOD.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
+	public static final RegistryObject<Item> OLIVE_WOOD_ITEM = ITEMS.register("olive_wood", () -> new BlockItem(TechnologicaBlocks.OLIVE_WOOD.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> ORANGE_WOOD_ITEM = ITEMS.register("orange_wood", () -> new BlockItem(TechnologicaBlocks.ORANGE_WOOD.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEACH_WOOD_ITEM = ITEMS.register("peach_wood",	() -> new BlockItem(TechnologicaBlocks.PEACH_WOOD.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEAR_WOOD_ITEM = ITEMS.register("pear_wood", () -> new BlockItem(TechnologicaBlocks.PEAR_WOOD.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION))); 
@@ -438,7 +523,8 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> STRIPPED_AVOCADO_WOOD_ITEM = ITEMS.register("stripped_avocado_wood", () -> new BlockItem(TechnologicaBlocks.STRIPPED_AVOCADO_WOOD.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> STRIPPED_BANANA_WOOD_ITEM = ITEMS.register("stripped_banana_wood", () -> new BlockItem(TechnologicaBlocks.STRIPPED_BANANA_WOOD.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> STRIPPED_CHERRY_WOOD_ITEM = ITEMS.register("stripped_cherry_wood", () -> new BlockItem(TechnologicaBlocks.STRIPPED_CHERRY_WOOD.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
-    public static final RegistryObject<Item> STRIPPED_CHESTNUT_WOOD_ITEM = ITEMS.register("stripped_chestnut_wood", () -> new BlockItem(TechnologicaBlocks.STRIPPED_CHESTNUT_WOOD.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));    
+    public static final RegistryObject<Item> STRIPPED_CHESTNUT_WOOD_ITEM = ITEMS.register("stripped_chestnut_wood", () -> new BlockItem(TechnologicaBlocks.STRIPPED_CHESTNUT_WOOD.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
+	public static final RegistryObject<Item> STRIPPED_CINNAMON_WOOD_ITEM = ITEMS.register("stripped_cinnamon_wood", () -> new BlockItem(TechnologicaBlocks.STRIPPED_CINNAMON_WOOD.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> STRIPPED_COCONUT_WOOD_ITEM = ITEMS.register("stripped_coconut_wood", () -> new BlockItem(TechnologicaBlocks.STRIPPED_COCONUT_WOOD.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> STRIPPED_EBONY_WOOD_ITEM = ITEMS.register("stripped_ebony_wood", () -> new BlockItem(TechnologicaBlocks.STRIPPED_EBONY_WOOD.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));    
     public static final RegistryObject<Item> STRIPPED_KIWI_WOOD_ITEM = ITEMS.register("stripped_kiwi_wood", () -> new BlockItem(TechnologicaBlocks.STRIPPED_KIWI_WOOD.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
@@ -446,6 +532,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> STRIPPED_LIME_WOOD_ITEM = ITEMS.register("stripped_lime_wood", () -> new BlockItem(TechnologicaBlocks.STRIPPED_LIME_WOOD.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> STRIPPED_MAHOGANY_WOOD_ITEM = ITEMS.register("stripped_mahogany_wood", () -> new BlockItem(TechnologicaBlocks.STRIPPED_MAHOGANY_WOOD.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));    
     public static final RegistryObject<Item> STRIPPED_MAPLE_WOOD_ITEM = ITEMS.register("stripped_maple_wood", () -> new BlockItem(TechnologicaBlocks.STRIPPED_MAPLE_WOOD.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
+	public static final RegistryObject<Item> STRIPPED_OLIVE_WOOD_ITEM = ITEMS.register("stripped_olive_wood", () -> new BlockItem(TechnologicaBlocks.STRIPPED_OLIVE_WOOD.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> STRIPPED_ORANGE_WOOD_ITEM = ITEMS.register("stripped_orange_wood", () -> new BlockItem(TechnologicaBlocks.STRIPPED_ORANGE_WOOD.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> STRIPPED_PEACH_WOOD_ITEM = ITEMS.register("stripped_peach_wood",	() -> new BlockItem(TechnologicaBlocks.STRIPPED_PEACH_WOOD.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> STRIPPED_PEAR_WOOD_ITEM = ITEMS.register("stripped_pear_wood", () -> new BlockItem(TechnologicaBlocks.STRIPPED_PEAR_WOOD.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION))); 
@@ -470,6 +557,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> BANANA_PLANKS_ITEM = ITEMS.register("banana_planks", () -> new BlockItem(TechnologicaBlocks.BANANA_PLANKS.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> CHESTNUT_PLANKS_ITEM = ITEMS.register("chestnut_planks", () -> new BlockItem(TechnologicaBlocks.CHESTNUT_PLANKS.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> CHERRY_PLANKS_ITEM = ITEMS.register("cherry_planks", () -> new BlockItem(TechnologicaBlocks.CHERRY_PLANKS.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> CINNAMON_PLANKS_ITEM = ITEMS.register("cinnamon_planks", () -> new BlockItem(TechnologicaBlocks.CINNAMON_PLANKS.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> COCONUT_PLANKS_ITEM = ITEMS.register("coconut_planks", () -> new BlockItem(TechnologicaBlocks.COCONUT_PLANKS.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> EBONY_PLANKS_ITEM = ITEMS.register("ebony_planks", () -> new BlockItem(TechnologicaBlocks.EBONY_PLANKS.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> KIWI_PLANKS_ITEM = ITEMS.register("kiwi_planks", () -> new BlockItem(TechnologicaBlocks.KIWI_PLANKS.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
@@ -477,6 +565,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> LIME_PLANKS_ITEM = ITEMS.register("lime_planks", () -> new BlockItem(TechnologicaBlocks.LIME_PLANKS.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> MAHOGANY_PLANKS_ITEM = ITEMS.register("mahogany_planks", () -> new BlockItem(TechnologicaBlocks.MAHOGANY_PLANKS.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> MAPLE_PLANKS_ITEM = ITEMS.register("maple_planks", () -> new BlockItem(TechnologicaBlocks.MAPLE_PLANKS.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> OLIVE_PLANKS_ITEM = ITEMS.register("olive_planks", () -> new BlockItem(TechnologicaBlocks.OLIVE_PLANKS.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> ORANGE_PLANKS_ITEM = ITEMS.register("orange_planks", () -> new BlockItem(TechnologicaBlocks.ORANGE_PLANKS.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEACH_PLANKS_ITEM = ITEMS.register("peach_planks", () -> new BlockItem(TechnologicaBlocks.PEACH_PLANKS.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEAR_PLANKS_ITEM = ITEMS.register("pear_planks", () -> new BlockItem(TechnologicaBlocks.PEAR_PLANKS.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
@@ -501,6 +590,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> BANANA_SLAB_ITEM = ITEMS.register("banana_slab", () -> new BlockItem(TechnologicaBlocks.BANANA_SLAB.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> CHERRY_SLAB_ITEM = ITEMS.register("cherry_slab", () -> new BlockItem(TechnologicaBlocks.CHERRY_SLAB.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> CHESTNUT_SLAB_ITEM = ITEMS.register("chestnut_slab", () -> new BlockItem(TechnologicaBlocks.CHESTNUT_SLAB.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> CINNAMON_SLAB_ITEM = ITEMS.register("cinnamon_slab", () -> new BlockItem(TechnologicaBlocks.CINNAMON_SLAB.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> COCONUT_SLAB_ITEM = ITEMS.register("coconut_slab", () -> new BlockItem(TechnologicaBlocks.COCONUT_SLAB.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> EBONY_SLAB_ITEM = ITEMS.register("ebony_slab", () -> new BlockItem(TechnologicaBlocks.EBONY_SLAB.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> KIWI_SLAB_ITEM = ITEMS.register("kiwi_slab", () -> new BlockItem(TechnologicaBlocks.KIWI_SLAB.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
@@ -508,6 +598,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> LIME_SLAB_ITEM = ITEMS.register("lime_slab", () -> new BlockItem(TechnologicaBlocks.LIME_SLAB.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> MAHOGANY_SLAB_ITEM = ITEMS.register("mahogany_slab", () -> new BlockItem(TechnologicaBlocks.MAHOGANY_SLAB.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> MAPLE_SLAB_ITEM = ITEMS.register("maple_slab", () -> new BlockItem(TechnologicaBlocks.MAPLE_SLAB.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> OLIVE_SLAB_ITEM = ITEMS.register("olive_slab", () -> new BlockItem(TechnologicaBlocks.OLIVE_SLAB.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> ORANGE_SLAB_ITEM = ITEMS.register("orange_slab", () -> new BlockItem(TechnologicaBlocks.ORANGE_SLAB.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEACH_SLAB_ITEM = ITEMS.register("peach_slab", () -> new BlockItem(TechnologicaBlocks.PEACH_SLAB.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEAR_SLAB_ITEM = ITEMS.register("pear_slab", () -> new BlockItem(TechnologicaBlocks.PEAR_SLAB.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
@@ -532,6 +623,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> BANANA_STAIRS_ITEM = ITEMS.register("banana_stairs", () -> new BlockItem(TechnologicaBlocks.BANANA_STAIRS.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> CHERRY_STAIRS_ITEM = ITEMS.register("cherry_stairs", () -> new BlockItem(TechnologicaBlocks.CHERRY_STAIRS.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> CHESTNUT_STAIRS_ITEM = ITEMS.register("chestnut_stairs", () -> new BlockItem(TechnologicaBlocks.CHESTNUT_STAIRS.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> CINNAMON_STAIRS_ITEM = ITEMS.register("cinnamon_stairs", () -> new BlockItem(TechnologicaBlocks.CINNAMON_STAIRS.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> COCONUT_STAIRS_ITEM = ITEMS.register("coconut_stairs", () -> new BlockItem(TechnologicaBlocks.COCONUT_STAIRS.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> EBONY_STAIRS_ITEM = ITEMS.register("ebony_stairs", () -> new BlockItem(TechnologicaBlocks.EBONY_STAIRS.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> KIWI_STAIRS_ITEM = ITEMS.register("kiwi_stairs", () -> new BlockItem(TechnologicaBlocks.KIWI_STAIRS.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
@@ -539,6 +631,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> LIME_STAIRS_ITEM = ITEMS.register("lime_stairs", () -> new BlockItem(TechnologicaBlocks.LIME_STAIRS.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> MAHOGANY_STAIRS_ITEM = ITEMS.register("mahogany_stairs", () -> new BlockItem(TechnologicaBlocks.MAHOGANY_STAIRS.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> MAPLE_STAIRS_ITEM = ITEMS.register("maple_stairs", () -> new BlockItem(TechnologicaBlocks.MAPLE_STAIRS.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> OLIVE_STAIRS_ITEM = ITEMS.register("olive_stairs", () -> new BlockItem(TechnologicaBlocks.OLIVE_STAIRS.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> ORANGE_STAIRS_ITEM = ITEMS.register("orange_stairs", () -> new BlockItem(TechnologicaBlocks.ORANGE_STAIRS.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEACH_STAIRS_ITEM = ITEMS.register("peach_stairs", () -> new BlockItem(TechnologicaBlocks.PEACH_STAIRS.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEAR_STAIRS_ITEM = ITEMS.register("pear_stairs", () -> new BlockItem(TechnologicaBlocks.PEAR_STAIRS.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
@@ -570,6 +663,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> BANANA_BOOKSHELF_ITEM = ITEMS.register("banana_bookshelf", () -> new BlockItem(TechnologicaBlocks.BANANA_BOOKSHELF.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> CHERRY_BOOKSHELF_ITEM = ITEMS.register("cherry_bookshelf", () -> new BlockItem(TechnologicaBlocks.CHERRY_BOOKSHELF.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> CHESTNUT_BOOKSHELF_ITEM = ITEMS.register("chestnut_bookshelf", () -> new BlockItem(TechnologicaBlocks.CHESTNUT_BOOKSHELF.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> CINNAMON_BOOKSHELF_ITEM = ITEMS.register("cinnamon_bookshelf", () -> new BlockItem(TechnologicaBlocks.CINNAMON_BOOKSHELF.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> COCONUT_BOOKSHELF_ITEM = ITEMS.register("coconut_bookshelf", () -> new BlockItem(TechnologicaBlocks.COCONUT_BOOKSHELF.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> EBONY_BOOKSHELF_ITEM = ITEMS.register("ebony_bookshelf", () -> new BlockItem(TechnologicaBlocks.EBONY_BOOKSHELF.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> KIWI_BOOKSHELF_ITEM = ITEMS.register("kiwi_bookshelf", () -> new BlockItem(TechnologicaBlocks.KIWI_BOOKSHELF.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
@@ -577,6 +671,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> LIME_BOOKSHELF_ITEM = ITEMS.register("lime_bookshelf", () -> new BlockItem(TechnologicaBlocks.LIME_BOOKSHELF.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> MAHOGANY_BOOKSHELF_ITEM = ITEMS.register("mahogany_bookshelf", () -> new BlockItem(TechnologicaBlocks.MAHOGANY_BOOKSHELF.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> MAPLE_BOOKSHELF_ITEM = ITEMS.register("maple_bookshelf", () -> new BlockItem(TechnologicaBlocks.MAPLE_BOOKSHELF.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> OLIVE_BOOKSHELF_ITEM = ITEMS.register("olive_bookshelf", () -> new BlockItem(TechnologicaBlocks.OLIVE_BOOKSHELF.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> ORANGE_BOOKSHELF_ITEM = ITEMS.register("orange_bookshelf", () -> new BlockItem(TechnologicaBlocks.ORANGE_BOOKSHELF.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEACH_BOOKSHELF_ITEM = ITEMS.register("peach_bookshelf",	() -> new BlockItem(TechnologicaBlocks.PEACH_BOOKSHELF.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEAR_BOOKSHELF_ITEM = ITEMS.register("pear_bookshelf", () -> new BlockItem(TechnologicaBlocks.PEAR_BOOKSHELF.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION))); 
@@ -601,6 +696,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> BANANA_FENCE_ITEM = ITEMS.register("banana_fence", () -> new BlockItem(TechnologicaBlocks.BANANA_FENCE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> CHERRY_FENCE_ITEM = ITEMS.register("cherry_fence", () -> new BlockItem(TechnologicaBlocks.CHERRY_FENCE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> CHESTNUT_FENCE_ITEM = ITEMS.register("chestnut_fence", () -> new BlockItem(TechnologicaBlocks.CHESTNUT_FENCE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> CINNAMON_FENCE_ITEM = ITEMS.register("cinnamon_fence", () -> new BlockItem(TechnologicaBlocks.CINNAMON_FENCE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> COCONUT_FENCE_ITEM = ITEMS.register("coconut_fence", () -> new BlockItem(TechnologicaBlocks.COCONUT_FENCE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> EBONY_FENCE_ITEM = ITEMS.register("ebony_fence", () -> new BlockItem(TechnologicaBlocks.EBONY_FENCE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> KIWI_FENCE_ITEM = ITEMS.register("kiwi_fence", () -> new BlockItem(TechnologicaBlocks.KIWI_FENCE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
@@ -608,6 +704,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> LIME_FENCE_ITEM = ITEMS.register("lime_fence", () -> new BlockItem(TechnologicaBlocks.LIME_FENCE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> MAHONGANY_FENCE_ITEM = ITEMS.register("mahogany_fence", () -> new BlockItem(TechnologicaBlocks.MAHOGANY_FENCE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> MAPLE_FENCE_ITEM = ITEMS.register("maple_fence", () -> new BlockItem(TechnologicaBlocks.MAPLE_FENCE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> OLIVE_FENCE_ITEM = ITEMS.register("olive_fence", () -> new BlockItem(TechnologicaBlocks.OLIVE_FENCE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> ORANGE_FENCE_ITEM = ITEMS.register("orange_fence", () -> new BlockItem(TechnologicaBlocks.ORANGE_FENCE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEACH_FENCE_ITEM = ITEMS.register("peach_fence", () -> new BlockItem(TechnologicaBlocks.PEACH_FENCE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEAR_FENCE_ITEM = ITEMS.register("pear_fence", () -> new BlockItem(TechnologicaBlocks.PEAR_FENCE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
@@ -632,6 +729,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> BANANA_FENCE_GATE_ITEM = ITEMS.register("banana_fence_gate", () -> new BlockItem(TechnologicaBlocks.BANANA_FENCE_GATE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> CHERRY_FENCE_GATE_ITEM = ITEMS.register("cherry_fence_gate", () -> new BlockItem(TechnologicaBlocks.CHERRY_FENCE_GATE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> CHESTNUT_FENCE_GATE_ITEM = ITEMS.register("chestnut_fence_gate", () -> new BlockItem(TechnologicaBlocks.CHESTNUT_FENCE_GATE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> CINNAMON_FENCE_GATE_ITEM = ITEMS.register("cinnamon_fence_gate", () -> new BlockItem(TechnologicaBlocks.CINNAMON_FENCE_GATE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> COCONUT_FENCE_GATE_ITEM = ITEMS.register("coconut_fence_gate", () -> new BlockItem(TechnologicaBlocks.COCONUT_FENCE_GATE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> EBONY_FENCE_GATE_ITEM = ITEMS.register("ebony_fence_gate", () -> new BlockItem(TechnologicaBlocks.EBONY_FENCE_GATE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> KIWI_FENCE_GATE_ITEM = ITEMS.register("kiwi_fence_gate", () -> new BlockItem(TechnologicaBlocks.KIWI_FENCE_GATE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
@@ -639,6 +737,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> LIME_FENCE_GATE_ITEM = ITEMS.register("lime_fence_gate", () -> new BlockItem(TechnologicaBlocks.LIME_FENCE_GATE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> MAHOGANY_FENCE_GATE_ITEM = ITEMS.register("mahogany_fence_gate", () -> new BlockItem(TechnologicaBlocks.MAHOGANY_FENCE_GATE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> MAPLE_FENCE_GATE_ITEM = ITEMS.register("maple_fence_gate", () -> new BlockItem(TechnologicaBlocks.MAPLE_FENCE_GATE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> OLIVE_FENCE_GATE_ITEM = ITEMS.register("olive_fence_gate", () -> new BlockItem(TechnologicaBlocks.OLIVE_FENCE_GATE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> ORANGE_FENCE_GATE_ITEM = ITEMS.register("orange_fence_gate", () -> new BlockItem(TechnologicaBlocks.ORANGE_FENCE_GATE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEACH_FENCE_GATE_ITEM = ITEMS.register("peach_fence_gate", () -> new BlockItem(TechnologicaBlocks.PEACH_FENCE_GATE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEAR_FENCE_GATE_ITEM = ITEMS.register("pear_fence_gate", () -> new BlockItem(TechnologicaBlocks.PEAR_FENCE_GATE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
@@ -663,6 +762,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> BANANA_DOOR_ITEM = ITEMS.register("banana_door", () -> new BlockItem(TechnologicaBlocks.BANANA_DOOR.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> CHERRY_DOOR_ITEM = ITEMS.register("cherry_door", () -> new BlockItem(TechnologicaBlocks.CHERRY_DOOR.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> CHESTNUT_DOOR_ITEM = ITEMS.register("chestnut_door", () -> new BlockItem(TechnologicaBlocks.CHESTNUT_DOOR.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> CINNAMON_DOOR_ITEM = ITEMS.register("cinnamon_door", () -> new BlockItem(TechnologicaBlocks.CINNAMON_DOOR.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> COCONUT_DOOR_ITEM = ITEMS.register("coconut_door", () -> new BlockItem(TechnologicaBlocks.COCONUT_DOOR.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> EBONY_DOOR_ITEM = ITEMS.register("ebony_door", () -> new BlockItem(TechnologicaBlocks.EBONY_DOOR.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> KIWI_DOOR_ITEM = ITEMS.register("kiwi_door", () -> new BlockItem(TechnologicaBlocks.KIWI_DOOR.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
@@ -670,6 +770,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> LIME_DOOR_ITEM = ITEMS.register("lime_door", () -> new BlockItem(TechnologicaBlocks.LIME_DOOR.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> MAHOGANY_DOOR_ITEM = ITEMS.register("mahogany_door", () -> new BlockItem(TechnologicaBlocks.MAHOGANY_DOOR.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> MAPLE_DOOR_ITEM = ITEMS.register("maple_door", () -> new BlockItem(TechnologicaBlocks.MAPLE_DOOR.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> OLIVE_DOOR_ITEM = ITEMS.register("olive_door", () -> new BlockItem(TechnologicaBlocks.OLIVE_DOOR.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> ORANGE_DOOR_ITEM = ITEMS.register("orange_door", () -> new BlockItem(TechnologicaBlocks.ORANGE_DOOR.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEACH_DOOR_ITEM = ITEMS.register("peach_door", () -> new BlockItem(TechnologicaBlocks.PEACH_DOOR.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEAR_DOOR_ITEM = ITEMS.register("pear_door", () -> new BlockItem(TechnologicaBlocks.PEAR_DOOR.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
@@ -694,6 +795,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> BANANA_TRAPDOOR_ITEM = ITEMS.register("banana_trapdoor", () -> new BlockItem(TechnologicaBlocks.BANANA_TRAPDOOR.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> CHERRY_TRAPDOOR_ITEM = ITEMS.register("cherry_trapdoor", () -> new BlockItem(TechnologicaBlocks.CHERRY_TRAPDOOR.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> CHESTNUT_TRAPDOOR_ITEM = ITEMS.register("chestnut_trapdoor", () -> new BlockItem(TechnologicaBlocks.CHESTNUT_TRAPDOOR.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> CINNAMON_TRAPDOOR_ITEM = ITEMS.register("cinnamon_trapdoor", () -> new BlockItem(TechnologicaBlocks.CINNAMON_TRAPDOOR.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> COCONUT_TRAPDOOR_ITEM = ITEMS.register("coconut_trapdoor", () -> new BlockItem(TechnologicaBlocks.COCONUT_TRAPDOOR.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> EBONY_TRAPDOOR_ITEM = ITEMS.register("ebony_trapdoor", () -> new BlockItem(TechnologicaBlocks.EBONY_TRAPDOOR.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> KIWI_TRAPDOOR_ITEM = ITEMS.register("kiwi_trapdoor", () -> new BlockItem(TechnologicaBlocks.KIWI_TRAPDOOR.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
@@ -701,6 +803,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> LIME_TRAPDOOR_ITEM = ITEMS.register("lime_trapdoor", () -> new BlockItem(TechnologicaBlocks.LIME_TRAPDOOR.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> MAHOGANY_TRAPDOOR_ITEM = ITEMS.register("mahogany_trapdoor", () -> new BlockItem(TechnologicaBlocks.MAHOGANY_TRAPDOOR.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> MAPLE_TRAPDOOR_ITEM = ITEMS.register("maple_trapdoor", () -> new BlockItem(TechnologicaBlocks.MAPLE_TRAPDOOR.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> OLIVE_TRAPDOOR_ITEM = ITEMS.register("olive_trapdoor", () -> new BlockItem(TechnologicaBlocks.OLIVE_TRAPDOOR.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> ORANGE_TRAPDOOR_ITEM = ITEMS.register("orange_trapdoor", () -> new BlockItem(TechnologicaBlocks.ORANGE_TRAPDOOR.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEACH_TRAPDOOR_ITEM = ITEMS.register("peach_trapdoor", () -> new BlockItem(TechnologicaBlocks.PEACH_TRAPDOOR.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEAR_TRAPDOOR_ITEM = ITEMS.register("pear_trapdoor", () -> new BlockItem(TechnologicaBlocks.PEAR_TRAPDOOR.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
@@ -725,6 +828,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> BANANA_PRESSURE_PLATE_ITEM = ITEMS.register("banana_pressure_plate", () -> new BlockItem(TechnologicaBlocks.BANANA_PRESSURE_PLATE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> CHERRY_PRESSURE_PLATE_ITEM = ITEMS.register("cherry_pressure_plate", () -> new BlockItem(TechnologicaBlocks.CHERRY_PRESSURE_PLATE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> CHESTNUT_PRESSURE_PLATE_ITEM = ITEMS.register("chestnut_pressure_plate", () -> new BlockItem(TechnologicaBlocks.CHESTNUT_PRESSURE_PLATE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> CINNAMON_PRESSURE_PLATE_ITEM = ITEMS.register("cinnamon_pressure_plate", () -> new BlockItem(TechnologicaBlocks.CINNAMON_PRESSURE_PLATE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> COCONUT_PRESSURE_PLATE_ITEM = ITEMS.register("coconut_pressure_plate", () -> new BlockItem(TechnologicaBlocks.COCONUT_PRESSURE_PLATE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> EBONY_PRESSURE_PLATE_ITEM = ITEMS.register("ebony_pressure_plate", () -> new BlockItem(TechnologicaBlocks.EBONY_PRESSURE_PLATE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> KIWI_PRESSURE_PLATE_ITEM = ITEMS.register("kiwi_pressure_plate", () -> new BlockItem(TechnologicaBlocks.KIWI_PRESSURE_PLATE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
@@ -732,6 +836,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> LIME_PRESSURE_PLATE_ITEM = ITEMS.register("lime_pressure_plate", () -> new BlockItem(TechnologicaBlocks.LIME_PRESSURE_PLATE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> MAHOGANY_PRESSURE_PLATE_ITEM = ITEMS.register("mahogany_pressure_plate", () -> new BlockItem(TechnologicaBlocks.MAHOGANY_PRESSURE_PLATE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> MAPLE_PRESSURE_PLATE_ITEM = ITEMS.register("maple_pressure_plate", () -> new BlockItem(TechnologicaBlocks.MAPLE_PRESSURE_PLATE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> OLIVE_PRESSURE_PLATE_ITEM = ITEMS.register("olive_pressure_plate", () -> new BlockItem(TechnologicaBlocks.OLIVE_PRESSURE_PLATE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> ORANGE_PRESSURE_PLATE_ITEM = ITEMS.register("orange_pressure_plate", () -> new BlockItem(TechnologicaBlocks.ORANGE_PRESSURE_PLATE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEACH_PRESSURE_PLATE_ITEM = ITEMS.register("peach_pressure_plate", () -> new BlockItem(TechnologicaBlocks.PEACH_PRESSURE_PLATE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEAR_PRESSURE_PLATE_ITEM = ITEMS.register("pear_pressure_plate", () -> new BlockItem(TechnologicaBlocks.PEAR_PRESSURE_PLATE.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
@@ -756,6 +861,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> BANANA_BUTTON_ITEM = ITEMS.register("banana_button", () -> new BlockItem(TechnologicaBlocks.BANANA_BUTTON.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> CHERRY_BUTTON_ITEM = ITEMS.register("cherry_button", () -> new BlockItem(TechnologicaBlocks.CHERRY_BUTTON.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> CHESTNUT_BUTTON_ITEM = ITEMS.register("chestnut_button", () -> new BlockItem(TechnologicaBlocks.CHESTNUT_BUTTON.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> CINNAMON_BUTTON_ITEM = ITEMS.register("cinnamon_button", () -> new BlockItem(TechnologicaBlocks.CINNAMON_BUTTON.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> COCONUT_BUTTON_ITEM = ITEMS.register("coconut_button", () -> new BlockItem(TechnologicaBlocks.COCONUT_BUTTON.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> EBONY_BUTTON_ITEM = ITEMS.register("ebony_button", () -> new BlockItem(TechnologicaBlocks.EBONY_BUTTON.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> KIWI_BUTTON_ITEM = ITEMS.register("kiwi_button", () -> new BlockItem(TechnologicaBlocks.KIWI_BUTTON.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
@@ -763,6 +869,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> LIME_BUTTON_ITEM = ITEMS.register("lime_button", () -> new BlockItem(TechnologicaBlocks.LIME_BUTTON.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> MAHOGANY_BUTTON_ITEM = ITEMS.register("mahogany_button", () -> new BlockItem(TechnologicaBlocks.MAHOGANY_BUTTON.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> MAPLE_BUTTON_ITEM = ITEMS.register("maple_button", () -> new BlockItem(TechnologicaBlocks.MAPLE_BUTTON.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> OLIVE_BUTTON_ITEM = ITEMS.register("olive_button", () -> new BlockItem(TechnologicaBlocks.OLIVE_BUTTON.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> ORANGE_BUTTON_ITEM = ITEMS.register("orange_button", () -> new BlockItem(TechnologicaBlocks.ORANGE_BUTTON.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEACH_BUTTON_ITEM = ITEMS.register("peach_button", () -> new BlockItem(TechnologicaBlocks.PEACH_BUTTON.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEAR_BUTTON_ITEM = ITEMS.register("pear_button", () -> new BlockItem(TechnologicaBlocks.PEAR_BUTTON.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
@@ -787,6 +894,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> BANANA_SIGN_ITEM = ITEMS.register("banana_sign", () -> new VanillaSignItem(TechnologicaBlocks.BANANA_SIGN.get(), TechnologicaBlocks.BANANA_WALL_SIGN.get()));
     public static final RegistryObject<Item> CHERRY_SIGN_ITEM = ITEMS.register("cherry_sign", () -> new VanillaSignItem(TechnologicaBlocks.CHERRY_SIGN.get(), TechnologicaBlocks.CHERRY_WALL_SIGN.get()));
     public static final RegistryObject<Item> CHESTNUT_SIGN_ITEM = ITEMS.register("chestnut_sign", () -> new VanillaSignItem(TechnologicaBlocks.CHESTNUT_SIGN.get(), TechnologicaBlocks.CHESTNUT_WALL_SIGN.get()));
+    public static final RegistryObject<Item> CINNAMON_SIGN_ITEM = ITEMS.register("cinnamon_sign", () -> new VanillaSignItem(TechnologicaBlocks.CINNAMON_SIGN.get(), TechnologicaBlocks.CINNAMON_WALL_SIGN.get()));
     public static final RegistryObject<Item> COCONUT_SIGN_ITEM = ITEMS.register("coconut_sign", () -> new VanillaSignItem(TechnologicaBlocks.COCONUT_SIGN.get(), TechnologicaBlocks.COCONUT_WALL_SIGN.get()));
     public static final RegistryObject<Item> EBONY_SIGN_ITEM = ITEMS.register("ebony_sign", () -> new VanillaSignItem(TechnologicaBlocks.EBONY_SIGN.get(), TechnologicaBlocks.EBONY_WALL_SIGN.get()));
     public static final RegistryObject<Item> KIWI_SIGN_ITEM = ITEMS.register("kiwi_sign", () -> new VanillaSignItem(TechnologicaBlocks.KIWI_SIGN.get(), TechnologicaBlocks.KIWI_WALL_SIGN.get()));
@@ -794,6 +902,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> LIME_SIGN_ITEM = ITEMS.register("lime_sign", () -> new VanillaSignItem(TechnologicaBlocks.LIME_SIGN.get(), TechnologicaBlocks.LIME_WALL_SIGN.get()));
     public static final RegistryObject<Item> MAHOGANY_SIGN_ITEM = ITEMS.register("mahogany_sign", () -> new VanillaSignItem(TechnologicaBlocks.MAHOGANY_SIGN.get(), TechnologicaBlocks.MAHOGANY_WALL_SIGN.get()));
     public static final RegistryObject<Item> MAPLE_SIGN_ITEM = ITEMS.register("maple_sign", () -> new VanillaSignItem(TechnologicaBlocks.MAPLE_SIGN.get(), TechnologicaBlocks.MAPLE_WALL_SIGN.get()));
+    public static final RegistryObject<Item> OLIVE_SIGN_ITEM = ITEMS.register("olive_sign", () -> new VanillaSignItem(TechnologicaBlocks.OLIVE_SIGN.get(), TechnologicaBlocks.OLIVE_WALL_SIGN.get()));
     public static final RegistryObject<Item> ORANGE_SIGN_ITEM = ITEMS.register("orange_sign", () -> new VanillaSignItem(TechnologicaBlocks.ORANGE_SIGN.get(), TechnologicaBlocks.ORANGE_WALL_SIGN.get()));
     public static final RegistryObject<Item> PEACH_SIGN_ITEM = ITEMS.register("peach_sign", () -> new VanillaSignItem(TechnologicaBlocks.PEACH_SIGN.get(), TechnologicaBlocks.PEACH_WALL_SIGN.get()));
     public static final RegistryObject<Item> PEAR_SIGN_ITEM = ITEMS.register("pear_sign", () -> new VanillaSignItem(TechnologicaBlocks.PEAR_SIGN.get(), TechnologicaBlocks.PEAR_WALL_SIGN.get()));
@@ -818,6 +927,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> BANANA_BOAT = ITEMS.register("banana_boat", () -> new VanillaBoatItem(VanillaBoatEntity.Type.BANANA, (new Item.Properties()).maxStackSize(1).group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> CHERRY_BOAT = ITEMS.register("cherry_boat", () -> new VanillaBoatItem(VanillaBoatEntity.Type.CHERRY, (new Item.Properties()).maxStackSize(1).group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> CHESTNUT_BOAT = ITEMS.register("chestnut_boat", () -> new VanillaBoatItem(VanillaBoatEntity.Type.CHESTNUT, (new Item.Properties()).maxStackSize(1).group(TechnologicaItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> CINNAMON_BOAT = ITEMS.register("cinnamon_boat", () -> new VanillaBoatItem(VanillaBoatEntity.Type.CINNAMON, (new Item.Properties()).maxStackSize(1).group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> COCONUT_BOAT = ITEMS.register("coconut_boat", () -> new VanillaBoatItem(VanillaBoatEntity.Type.COCONUT, (new Item.Properties()).maxStackSize(1).group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> EBONY_BOAT = ITEMS.register("ebony_boat", () -> new VanillaBoatItem(VanillaBoatEntity.Type.EBONY, (new Item.Properties()).maxStackSize(1).group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> KIWI_BOAT = ITEMS.register("kiwi_boat", () -> new VanillaBoatItem(VanillaBoatEntity.Type.KIWI, (new Item.Properties()).maxStackSize(1).group(TechnologicaItemGroup.CONSTRUCTION)));
@@ -825,6 +935,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> LIME_BOAT = ITEMS.register("lime_boat", () -> new VanillaBoatItem(VanillaBoatEntity.Type.LIME, (new Item.Properties()).maxStackSize(1).group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> MAHOGANY_BOAT = ITEMS.register("mahogany_boat", () -> new VanillaBoatItem(VanillaBoatEntity.Type.MAHOGANY, (new Item.Properties()).maxStackSize(1).group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> MAPLE_BOAT = ITEMS.register("maple_boat", () -> new VanillaBoatItem(VanillaBoatEntity.Type.MAPLE, (new Item.Properties()).maxStackSize(1).group(TechnologicaItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> OLIVE_BOAT = ITEMS.register("olive_boat", () -> new VanillaBoatItem(VanillaBoatEntity.Type.OLIVE, (new Item.Properties()).maxStackSize(1).group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> ORANGE_BOAT = ITEMS.register("orange_boat", () -> new VanillaBoatItem(VanillaBoatEntity.Type.ORANGE, (new Item.Properties()).maxStackSize(1).group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEACH_BOAT = ITEMS.register("peach_boat", () -> new VanillaBoatItem(VanillaBoatEntity.Type.PEACH, (new Item.Properties()).maxStackSize(1).group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> PEAR_BOAT = ITEMS.register("pear_boat", () -> new VanillaBoatItem(VanillaBoatEntity.Type.PEAR, (new Item.Properties()).maxStackSize(1).group(TechnologicaItemGroup.CONSTRUCTION)));
@@ -853,7 +964,9 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> MEDIUM_PULLEY_ITEM = ITEMS.register("medium_pulley", () -> new BlockNamedItem(TechnologicaBlocks.MEDIUM_PULLEY.get(), new Item.Properties().group(TechnologicaItemGroup.MACHINERY)));
     public static final RegistryObject<Item> LARGE_PULLEY_ITEM = ITEMS.register("large_pulley", () -> new BlockNamedItem(TechnologicaBlocks.LARGE_PULLEY.get(), new Item.Properties().group(TechnologicaItemGroup.MACHINERY)));
     public static final RegistryObject<Item> PULLEY_BELT = ITEMS.register("pulley_belt", PulleyBeltItem::new);
+    public static final RegistryObject<Item> CHISEL = ITEMS.register("chisel", () -> new SawItem(new Item.Properties().group(TechnologicaItemGroup.MACHINERY)));
     public static final RegistryObject<Item> HAMMER = ITEMS.register("hammer", () -> new HammerItem(new Item.Properties().maxStackSize(1).group(TechnologicaItemGroup.MACHINERY)));
+    public static final RegistryObject<Item> SAW = ITEMS.register("saw", () -> new SawItem(new Item.Properties().group(TechnologicaItemGroup.MACHINERY)));
     public static final RegistryObject<Item> PIPE_WRENCH = ITEMS.register("pipe_wrench", () -> new PipeWrenchItem(ItemTier.IRON, 1, -2.8F, (new Item.Properties()).group(TechnologicaItemGroup.MACHINERY)));
     public static final RegistryObject<Item> WRENCH = ITEMS.register("wrench", () -> new PickaxeItem(ItemTier.IRON, 1, -2.8F, (new Item.Properties()).group(TechnologicaItemGroup.MACHINERY)));
     public static final RegistryObject<Item> MOTOR_1HP_ITEM = ITEMS.register("motor_1hp", () -> new BlockItem(TechnologicaBlocks.MOTOR_1HP.get(), new Item.Properties().group(TechnologicaItemGroup.MACHINERY)));
@@ -862,11 +975,22 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> SAWBLADE = ITEMS.register("sawblade", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MACHINERY)));
     public static final RegistryObject<Item> SAWMILL_ITEM = ITEMS.register("sawmill", () -> new BlockItem(TechnologicaBlocks.SAWMILL.get(), new Item.Properties().group(TechnologicaItemGroup.MACHINERY)));
     
+    public static final RegistryObject<Item> ANNUNCIATOR_ITEM = ITEMS.register("annunciator", () -> new BlockItem(TechnologicaBlocks.ANNUNCIATOR.get(), new Item.Properties().group(TechnologicaItemGroup.MACHINERY)));
+    public static final RegistryObject<Item> OVERLAY_PASS_ITEM = ITEMS.register("overlay_pass", () -> new Item(new Properties().group(TechnologicaItemGroup.MACHINERY)));
+    public static final RegistryObject<Item> OVERLAY_WARN_ITEM = ITEMS.register("overlay_warn", () -> new Item(new Properties().group(TechnologicaItemGroup.MACHINERY)));
+    public static final RegistryObject<Item> OVERLAY_FAIL_ITEM = ITEMS.register("overlay_fail", () -> new Item(new Properties().group(TechnologicaItemGroup.MACHINERY)));
+    
+    public static final RegistryObject<Item> SPACE_HELMET = ITEMS.register("space_helmet", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, EquipmentSlotType.HEAD, (new Item.Properties()).group(TechnologicaItemGroup.MACHINERY)));
+    public static final RegistryObject<Item> SPACE_SUIT = ITEMS.register("space_suit", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, EquipmentSlotType.CHEST, (new Item.Properties()).group(TechnologicaItemGroup.MACHINERY)));
+    public static final RegistryObject<Item> SPACE_PANTS = ITEMS.register("space_pants", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, EquipmentSlotType.LEGS, (new Item.Properties()).group(TechnologicaItemGroup.MACHINERY)));
+    public static final RegistryObject<Item> SPACE_BOOTS = ITEMS.register("space_boots", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, EquipmentSlotType.FEET, (new Item.Properties()).group(TechnologicaItemGroup.MACHINERY)));
+    
     /**
      * DECORATIVE
      */
     
     public static final RegistryObject<Item> DISPLAY_CASE_ITEM = ITEMS.register("display_case", () -> new BlockItem(TechnologicaBlocks.DISPLAY_CASE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    
     public static final RegistryObject<Item> ACACIA_CHAIR_ITEM = ITEMS.register("acacia_chair", () -> new BlockItem(TechnologicaBlocks.ACACIA_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> APRICOT_CHAIR_ITEM = ITEMS.register("apricot_chair", () -> new BlockItem(TechnologicaBlocks.APRICOT_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> ASPEN_CHAIR_ITEM = ITEMS.register("aspen_chair", () -> new BlockItem(TechnologicaBlocks.ASPEN_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
@@ -875,6 +999,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> BIRCH_CHAIR_ITEM = ITEMS.register("birch_chair", () -> new BlockItem(TechnologicaBlocks.BIRCH_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> CHERRY_CHAIR_ITEM = ITEMS.register("cherry_chair", () -> new BlockItem(TechnologicaBlocks.CHERRY_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> CHESTNUT_CHAIR_ITEM = ITEMS.register("chestnut_chair", () -> new BlockItem(TechnologicaBlocks.CHESTNUT_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> CINNAMON_CHAIR_ITEM = ITEMS.register("cinnamon_chair", () -> new BlockItem(TechnologicaBlocks.CINNAMON_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> COCONUT_CHAIR_ITEM = ITEMS.register("coconut_chair", () -> new BlockItem(TechnologicaBlocks.COCONUT_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> CRIMSON_CHAIR_ITEM = ITEMS.register("crimson_chair", () -> new BlockItem(TechnologicaBlocks.CRIMSON_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> DARK_OAK_CHAIR_ITEM = ITEMS.register("dark_oak_chair", () -> new BlockItem(TechnologicaBlocks.DARK_OAK_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
@@ -886,6 +1011,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> MAHOGANY_CHAIR_ITEM = ITEMS.register("mahogany_chair", () -> new BlockItem(TechnologicaBlocks.MAHOGANY_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> MAPLE_CHAIR_ITEM = ITEMS.register("maple_chair", () -> new BlockItem(TechnologicaBlocks.MAPLE_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> OAK_CHAIR_ITEM = ITEMS.register("oak_chair", () -> new BlockItem(TechnologicaBlocks.OAK_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> OLIVE_CHAIR_ITEM = ITEMS.register("olive_chair", () -> new BlockItem(TechnologicaBlocks.OLIVE_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> ORANGE_CHAIR_ITEM = ITEMS.register("orange_chair", () -> new BlockItem(TechnologicaBlocks.ORANGE_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> PEACH_CHAIR_ITEM = ITEMS.register("peach_chair", () -> new BlockItem(TechnologicaBlocks.PEACH_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> PEAR_CHAIR_ITEM = ITEMS.register("pear_chair", () -> new BlockItem(TechnologicaBlocks.PEAR_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
@@ -898,6 +1024,41 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> WALNUT_CHAIR_ITEM = ITEMS.register("walnut_chair", () -> new BlockItem(TechnologicaBlocks.WALNUT_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> WARPED_CHAIR_ITEM = ITEMS.register("warped_chair", () -> new BlockItem(TechnologicaBlocks.WARPED_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> ZEBRAWOOD_CHAIR_ITEM = ITEMS.register("zebrawood_chair", () -> new BlockItem(TechnologicaBlocks.ZEBRAWOOD_CHAIR.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> ACACIA_TABLE_ITEM = ITEMS.register("acacia_table", () -> new BlockItem(TechnologicaBlocks.ACACIA_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> APRICOT_TABLE_ITEM = ITEMS.register("apricot_table", () -> new BlockItem(TechnologicaBlocks.APRICOT_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> ASPEN_TABLE_ITEM = ITEMS.register("aspen_table", () -> new BlockItem(TechnologicaBlocks.ASPEN_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> AVOCADO_TABLE_ITEM = ITEMS.register("avocado_table", () -> new BlockItem(TechnologicaBlocks.AVOCADO_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> BANANA_TABLE_ITEM = ITEMS.register("banana_table", () -> new BlockItem(TechnologicaBlocks.BANANA_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> BIRCH_TABLE_ITEM = ITEMS.register("birch_table", () -> new BlockItem(TechnologicaBlocks.BIRCH_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> CHERRY_TABLE_ITEM = ITEMS.register("cherry_table", () -> new BlockItem(TechnologicaBlocks.CHERRY_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> CHESTNUT_TABLE_ITEM = ITEMS.register("chestnut_table", () -> new BlockItem(TechnologicaBlocks.CHESTNUT_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> CINNAMON_TABLE_ITEM = ITEMS.register("cinnamon_table", () -> new BlockItem(TechnologicaBlocks.CINNAMON_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> COCONUT_TABLE_ITEM = ITEMS.register("coconut_table", () -> new BlockItem(TechnologicaBlocks.COCONUT_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> CRIMSON_TABLE_ITEM = ITEMS.register("crimson_table", () -> new BlockItem(TechnologicaBlocks.CRIMSON_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> DARK_OAK_TABLE_ITEM = ITEMS.register("dark_oak_table", () -> new BlockItem(TechnologicaBlocks.DARK_OAK_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> EBONY_TABLE_ITEM = ITEMS.register("ebony_table", () -> new BlockItem(TechnologicaBlocks.EBONY_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> JUNGLE_TABLE_ITEM = ITEMS.register("jungle_table", () -> new BlockItem(TechnologicaBlocks.JUNGLE_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> KIWI_TABLE_ITEM = ITEMS.register("kiwi_table", () -> new BlockItem(TechnologicaBlocks.KIWI_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> LEMON_TABLE_ITEM = ITEMS.register("lemon_table", () -> new BlockItem(TechnologicaBlocks.LEMON_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> LIME_TABLE_ITEM = ITEMS.register("lime_table", () -> new BlockItem(TechnologicaBlocks.LIME_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> MAHOGANY_TABLE_ITEM = ITEMS.register("mahogany_table", () -> new BlockItem(TechnologicaBlocks.MAHOGANY_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> MAPLE_TABLE_ITEM = ITEMS.register("maple_table", () -> new BlockItem(TechnologicaBlocks.MAPLE_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> OAK_TABLE_ITEM = ITEMS.register("oak_table", () -> new BlockItem(TechnologicaBlocks.OAK_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> OLIVE_TABLE_ITEM = ITEMS.register("olive_table", () -> new BlockItem(TechnologicaBlocks.OLIVE_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> ORANGE_TABLE_ITEM = ITEMS.register("orange_table", () -> new BlockItem(TechnologicaBlocks.ORANGE_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> PEACH_TABLE_ITEM = ITEMS.register("peach_table", () -> new BlockItem(TechnologicaBlocks.PEACH_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> PEAR_TABLE_ITEM = ITEMS.register("pear_table", () -> new BlockItem(TechnologicaBlocks.PEAR_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> PLUM_TABLE_ITEM = ITEMS.register("plum_table", () -> new BlockItem(TechnologicaBlocks.PLUM_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> REDWOOD_TABLE_ITEM = ITEMS.register("redwood_table", () -> new BlockItem(TechnologicaBlocks.REDWOOD_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> ROSEWOOD_TABLE_ITEM = ITEMS.register("rosewood_table", () -> new BlockItem(TechnologicaBlocks.ROSEWOOD_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> RUBBER_TABLE_ITEM = ITEMS.register("rubber_table", () -> new BlockItem(TechnologicaBlocks.RUBBER_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> SPRUCE_TABLE_ITEM = ITEMS.register("spruce_table", () -> new BlockItem(TechnologicaBlocks.SPRUCE_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> TEAK_TABLE_ITEM = ITEMS.register("teak_table", () -> new BlockItem(TechnologicaBlocks.TEAK_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> WALNUT_TABLE_ITEM = ITEMS.register("walnut_table", () -> new BlockItem(TechnologicaBlocks.WALNUT_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> WARPED_TABLE_ITEM = ITEMS.register("warped_table", () -> new BlockItem(TechnologicaBlocks.WARPED_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    public static final RegistryObject<Item> ZEBRAWOOD_TABLE_ITEM = ITEMS.register("zebrawood_table", () -> new BlockItem(TechnologicaBlocks.ZEBRAWOOD_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
+    
+    public static final RegistryObject<Item> DODGEBALL_ITEM = ITEMS.register("dodgeball", () -> new DodgeballItem((new Item.Properties()).maxStackSize(1).group(TechnologicaItemGroup.DECORATIVE)));
     
     public static void register() {
         ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());

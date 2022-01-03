@@ -1,0 +1,25 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "technologica:enable_vanilla_plank_crafting"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "group": "planks",
+        "ingredients": [
+          {
+            "tag": "technologica:alchemical_logs"
+          }
+        ],
+        "result": {
+          "item": "technologica:alchemical_planks",
+          "count": 4
+        }
+      }
+    }
+  ]
+}

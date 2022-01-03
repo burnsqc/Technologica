@@ -28,7 +28,7 @@ public class LineShaftHangerTileEntityRenderer extends TileEntityRenderer<LineSh
     @Override
     public void render(LineShaftHangerTileEntity tileEntity, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay) {  
     	if (tileEntity.getShaft()) {
-    		long time = System.currentTimeMillis() * 6 * tileEntity.getRPM() / 1000;
+    		long time = System.currentTimeMillis() * 6 * (int) tileEntity.getRPM() / 1000;
     		float angle = time % 360;
     		BlockRendererDispatcher blockrendererdispatcher = Minecraft.getInstance().getBlockRendererDispatcher();
     		BlockModelRenderer blockModelRenderer = blockrendererdispatcher.getBlockModelRenderer();

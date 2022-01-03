@@ -29,10 +29,10 @@ import net.minecraft.world.World;
  */
 public class MotorBlock extends TwentyFourDirectionBlock {
 	public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
-	public int maxRPM = 0;
-	public int maxTorque = 0;
+	public float maxRPM = 0;
+	public float maxTorque = 0;
 	
-	public MotorBlock(int maxTorqueIn, int maxRPMIn) {
+	public MotorBlock(float maxTorqueIn, float maxRPMIn) {
 		super(AbstractBlock.Properties.create(Material.IRON).hardnessAndResistance(0.3F).sound(SoundType.ANVIL).notSolid());
 		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.DOWN).with(SUB_FACING, Direction.NORTH).with(POWERED, false));
 		maxTorque = maxTorqueIn;

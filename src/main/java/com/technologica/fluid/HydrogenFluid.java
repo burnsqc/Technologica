@@ -1,9 +1,9 @@
 package com.technologica.fluid;
 
-import static com.technologica.Technologica.MODID;
-
 import java.util.Random;
+
 import javax.annotation.Nullable;
+
 import com.technologica.block.TechnologicaBlocks;
 import com.technologica.item.TechnologicaItems;
 
@@ -29,20 +29,18 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fluids.FluidAttributes;
 
 public abstract class HydrogenFluid extends FlowingFluid {
 
 	@Override
 	public Fluid getFlowingFluid() {
-		return TechnologicaFluids.HYDROGEN_FLOWING.get();
+		return TechnologicaFluids.FLOWING_HYDROGEN.get();
 	}
 
 	@Override
 	public Fluid getStillFluid() {
-		return TechnologicaFluids.HYDROGEN_SOURCE.get();
+		return TechnologicaFluids.HYDROGEN.get();
 	}
 
 	@Override
@@ -76,27 +74,27 @@ public abstract class HydrogenFluid extends FlowingFluid {
 
 	      this.flowAround(worldIn, pos, state);
 	   }
-
+	
 	@Override
 	public FluidAttributes createAttributes() {
-		return FluidAttributes.builder(new ResourceLocation(MODID, "block/brine_still"), new ResourceLocation(MODID, "block/brine_flow")).build(TechnologicaFluids.HYDROGEN_SOURCE.get());
+		return FluidAttributes.builder(new ResourceLocation("block/water_still"), new ResourceLocation("block/water_flow")).color(1680343295).build(TechnologicaFluids.HYDROGEN.get());
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
 	public void animateTick(World worldIn, BlockPos pos, FluidState state, Random random) {
-		if (!state.isSource() && Boolean.FALSE.equals(state.get(FALLING))) {
-			if (random.nextInt(64) == 0) {
-				worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_WATER_AMBIENT, SoundCategory.BLOCKS, random.nextFloat() * 0.25F + 0.75F, random.nextFloat() + 0.5F, false);
+		if (worldIn.isRemote) {
+			if (!state.isSource() && Boolean.FALSE.equals(state.get(FALLING))) {
+				if (random.nextInt(64) == 0) {
+					worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_WATER_AMBIENT, SoundCategory.BLOCKS, random.nextFloat() * 0.25F + 0.75F, random.nextFloat() + 0.5F, false);
+				}
+			} else if (random.nextInt(10) == 0) {
+				worldIn.addParticle(ParticleTypes.UNDERWATER, (double) pos.getX() + random.nextDouble(), (double) pos.getY() + random.nextDouble(), (double) pos.getZ() + random.nextDouble(), 0.0D, 0.0D, 0.0D);
 			}
-		} else if (random.nextInt(10) == 0) {
-			worldIn.addParticle(ParticleTypes.UNDERWATER, (double) pos.getX() + random.nextDouble(), (double) pos.getY() + random.nextDouble(), (double) pos.getZ() + random.nextDouble(), 0.0D, 0.0D, 0.0D);
 		}
 	}
 
 	@Override
 	@Nullable
-	@OnlyIn(Dist.CLIENT)
 	public IParticleData getDripParticleData() {
 		return ParticleTypes.DRIPPING_WATER;
 	}
@@ -124,7 +122,7 @@ public abstract class HydrogenFluid extends FlowingFluid {
 
 	@Override
 	public boolean isEquivalentTo(Fluid fluidIn) {
-		return fluidIn == TechnologicaFluids.HYDROGEN_SOURCE.get() || fluidIn == TechnologicaFluids.HYDROGEN_FLOWING.get();
+		return fluidIn == TechnologicaFluids.HYDROGEN.get() || fluidIn == TechnologicaFluids.FLOWING_HYDROGEN.get();
 	}
 
 	@Override

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "technologica:grape_shaved_ice"
+    ]
+  },
+  "criteria": {
+    "has_grape": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "technologica:grape"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "technologica:grape_shaved_ice"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_grape",
+      "has_the_recipe"
+    ]
+  ]
+}

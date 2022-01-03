@@ -10,6 +10,7 @@ import com.technologica.block.trees.BananaTree;
 import com.technologica.block.trees.BenevolentApothecaryTree;
 import com.technologica.block.trees.CherryTree;
 import com.technologica.block.trees.ChestnutTree;
+import com.technologica.block.trees.CinnamonTree;
 import com.technologica.block.trees.CoconutTree;
 import com.technologica.block.trees.CryogenicSpireTree;
 import com.technologica.block.trees.EbonyTree;
@@ -19,6 +20,7 @@ import com.technologica.block.trees.LimeTree;
 import com.technologica.block.trees.MahoganyTree;
 import com.technologica.block.trees.MalevolentApothecaryTree;
 import com.technologica.block.trees.MapleTree;
+import com.technologica.block.trees.OliveTree;
 import com.technologica.block.trees.OrangeTree;
 import com.technologica.block.trees.PeachTree;
 import com.technologica.block.trees.PearTree;
@@ -43,6 +45,7 @@ import net.minecraft.block.FlowerPotBlock;
 import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.block.OreBlock;
 import net.minecraft.block.PressurePlateBlock;
+import net.minecraft.block.SandBlock;
 import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.TrapDoorBlock;
@@ -83,7 +86,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> ONION_CROP = BLOCKS.register("onion_crop", () -> new VanillaCropsBlock(TechnologicaItems.ONION_SEEDS));
     public static final RegistryObject<Block> PEA_CROP = BLOCKS.register("pea_crop", () -> new VanillaCropsBlock(TechnologicaItems.PEA_SEEDS));
     public static final RegistryObject<Block> PEANUT_CROP = BLOCKS.register("peanut_crop", () -> new VanillaCropsBlock(TechnologicaItems.PEANUT));
-    public static final RegistryObject<Block> PEPPERCORN_CROP = BLOCKS.register("peppercorn_crop", () -> new TallCropsBlock(TechnologicaItems.PEPPERCORNS));
+    public static final RegistryObject<Block> PEPPERCORN_CROP = BLOCKS.register("peppercorn_crop", () -> new TallCropsBlock(TechnologicaItems.PEPPERCORN_SEEDS));
     public static final RegistryObject<Block> PINEAPPLE_CROP = BLOCKS.register("pineapple_crop", () -> new VanillaCropsBlock(TechnologicaItems.PINEAPPLE_SEEDS));
     public static final RegistryObject<Block> PURPLE_CABBAGE_CROP = BLOCKS.register("purple_cabbage_crop", () -> new VanillaCropsBlock(TechnologicaItems.PURPLE_CABBAGE_SEEDS));
     public static final RegistryObject<Block> RADISH_CROP = BLOCKS.register("radish_crop", () -> new VanillaCropsBlock(TechnologicaItems.RADISH_SEEDS));
@@ -106,14 +109,16 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> BANANA_SAPLING = BLOCKS.register("banana_sapling", () -> new SaplingBlock(new BananaTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
 	public static final RegistryObject<Block> CHERRY_SAPLING = BLOCKS.register("cherry_sapling", () -> new SaplingBlock(new CherryTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
     public static final RegistryObject<Block> CHESTNUT_SAPLING = BLOCKS.register("chestnut_sapling", () -> new SaplingBlock(new ChestnutTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));  
-	public static final RegistryObject<Block> COCONUT_SAPLING = BLOCKS.register("coconut_sapling", () -> new SaplingBlock(new CoconutTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+    public static final RegistryObject<Block> CINNAMON_SAPLING = BLOCKS.register("cinnamon_sapling", () -> new SaplingBlock(new CinnamonTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));  
+    public static final RegistryObject<Block> COCONUT_SAPLING = BLOCKS.register("coconut_sapling", () -> new SaplingBlock(new CoconutTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
     public static final RegistryObject<Block> EBONY_SAPLING = BLOCKS.register("ebony_sapling", () -> new SaplingBlock(new EbonyTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));  	
 	public static final RegistryObject<Block> KIWI_SAPLING = BLOCKS.register("kiwi_sapling", () -> new SaplingBlock(new KiwiTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
 	public static final RegistryObject<Block> LEMON_SAPLING = BLOCKS.register("lemon_sapling", () -> new SaplingBlock(new LemonTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
 	public static final RegistryObject<Block> LIME_SAPLING = BLOCKS.register("lime_sapling", () -> new SaplingBlock(new LimeTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
     public static final RegistryObject<Block> MAHOGANY_SAPLING = BLOCKS.register("mahogany_sapling", () -> new SaplingBlock(new MahoganyTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));  	
     public static final RegistryObject<Block> MAPLE_SAPLING = BLOCKS.register("maple_sapling", () -> new SaplingBlock(new MapleTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));  
-	public static final RegistryObject<Block> ORANGE_SAPLING = BLOCKS.register("orange_sapling", () -> new SaplingBlock(new OrangeTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));	
+    public static final RegistryObject<Block> OLIVE_SAPLING = BLOCKS.register("olive_sapling", () -> new SaplingBlock(new OliveTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));  
+    public static final RegistryObject<Block> ORANGE_SAPLING = BLOCKS.register("orange_sapling", () -> new SaplingBlock(new OrangeTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));	
 	public static final RegistryObject<Block> PEACH_SAPLING = BLOCKS.register("peach_sapling", () -> new SaplingBlock(new PeachTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
 	public static final RegistryObject<Block> PEAR_SAPLING = BLOCKS.register("pear_sapling", () -> new SaplingBlock(new PearTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
     public static final RegistryObject<Block> PLUM_SAPLING = BLOCKS.register("plum_sapling", () -> new SaplingBlock(new PlumTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));  	
@@ -168,6 +173,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> BANANA_LEAVES = BLOCKS.register("banana_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.BANANA));
     public static final RegistryObject<Block> CHERRY_LEAVES = BLOCKS.register("cherry_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.CHERRY));
     public static final RegistryObject<Block> CHESTNUT_LEAVES = BLOCKS.register("chestnut_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.CHESTNUT));
+    public static final RegistryObject<Block> CINNAMON_LEAVES = BLOCKS.register("cinnamon_leaves", VanillaLeavesBlock::new);
     public static final RegistryObject<Block> COCONUT_LEAVES = BLOCKS.register("coconut_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.COCONUT));   
     public static final RegistryObject<Block> EBONY_LEAVES = BLOCKS.register("ebony_leaves", VanillaLeavesBlock::new);
     public static final RegistryObject<Block> KIWI_LEAVES = BLOCKS.register("kiwi_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.KIWI));
@@ -175,6 +181,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> LIME_LEAVES = BLOCKS.register("lime_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.LIME));
     public static final RegistryObject<Block> MAHOGANY_LEAVES = BLOCKS.register("mahogany_leaves", VanillaLeavesBlock::new);
     public static final RegistryObject<Block> MAPLE_LEAVES = BLOCKS.register("maple_leaves", VanillaLeavesBlock::new);
+    public static final RegistryObject<Block> OLIVE_LEAVES = BLOCKS.register("olive_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.OLIVE));
     public static final RegistryObject<Block> ORANGE_LEAVES = BLOCKS.register("orange_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.ORANGE));
     public static final RegistryObject<Block> PEACH_LEAVES = BLOCKS.register("peach_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.PEACH));
     public static final RegistryObject<Block> PEAR_LEAVES = BLOCKS.register("pear_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.PEAR));
@@ -199,6 +206,9 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> SALT = BLOCKS.register("salt", () -> new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.STONE).setRequiresTool().hardnessAndResistance(1.5F, 6.0F)));
     public static final RegistryObject<Block> LITHIUM_CLAY = BLOCKS.register("lithium_clay", () -> new Block(AbstractBlock.Properties.create(Material.CLAY).hardnessAndResistance(0.6F).sound(SoundType.GROUND)));
     
+    public static final RegistryObject<Block> MOON_ROCK = BLOCKS.register("moon_rock", () -> new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.STONE).setRequiresTool().hardnessAndResistance(1.5F, 6.0F)));
+    public static final RegistryObject<Block> MOON_DUST = BLOCKS.register("moon_dust", () -> new SandBlock(14406560, AbstractBlock.Properties.create(Material.SAND, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)));
+    
     public static final RegistryObject<Block> BAUXITE_ORE = BLOCKS.register("bauxite_ore", () -> new OreBlock(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(6.0F).sound(SoundType.STONE)));
     public static final RegistryObject<Block> CHROMITE_ORE = BLOCKS.register("chromite_ore", () -> new OreBlock(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(6.0F).sound(SoundType.STONE)));
     public static final RegistryObject<Block> ILMENITE_ORE = BLOCKS.register("ilmenite_ore", () -> new OreBlock(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(6.0F).sound(SoundType.STONE)));
@@ -214,9 +224,31 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> FLUORITE_CRYSTAL = BLOCKS.register("fluorite_crystal", () -> new TwentyFourDirectionBlock(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(6.0F).sound(SoundType.GLASS).notSolid()));
     public static final RegistryObject<Block> ULEXITE_CRYSTAL = BLOCKS.register("ulexite_crystal", () -> new TwentyFourDirectionBlock(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(6.0F).sound(SoundType.GLASS).notSolid()));
     
-    public static final RegistryObject<FlowingFluidBlock> BRINE = BLOCKS.register("brine", () -> new FlowingFluidBlock(TechnologicaFluids.BRINE_SOURCE, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
-    public static final RegistryObject<FlowingFluidBlock> MERCURY = BLOCKS.register("mercury", () -> new FlowingFluidBlock(TechnologicaFluids.MERCURY_SOURCE, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
-    public static final RegistryObject<FlowingFluidBlock> HYDROGEN = BLOCKS.register("hydrogen", () -> new FlowingFluidBlock(TechnologicaFluids.HYDROGEN_SOURCE, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> HYDROGEN = BLOCKS.register("hydrogen", () -> new FlowingFluidBlock(TechnologicaFluids.HYDROGEN, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> HELIUM = BLOCKS.register("helium", () -> new FlowingFluidBlock(TechnologicaFluids.HELIUM, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> NITROGEN = BLOCKS.register("nitrogen", () -> new FlowingFluidBlock(TechnologicaFluids.NITROGEN, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> OXYGEN = BLOCKS.register("oxygen", () -> new FlowingFluidBlock(TechnologicaFluids.OXYGEN, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> FLUORINE = BLOCKS.register("fluorine", () -> new FlowingFluidBlock(TechnologicaFluids.FLUORINE, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> NEON = BLOCKS.register("neon", () -> new FlowingFluidBlock(TechnologicaFluids.NEON, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> CHLORINE = BLOCKS.register("chlorine", () -> new FlowingFluidBlock(TechnologicaFluids.CHLORINE, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> ARGON = BLOCKS.register("argon", () -> new FlowingFluidBlock(TechnologicaFluids.ARGON, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> KRYPTON = BLOCKS.register("krypton", () -> new FlowingFluidBlock(TechnologicaFluids.KRYPTON, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> XENON = BLOCKS.register("xenon", () -> new FlowingFluidBlock(TechnologicaFluids.XENON, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> RADON = BLOCKS.register("radon", () -> new FlowingFluidBlock(TechnologicaFluids.RADON, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    
+    public static final RegistryObject<FlowingFluidBlock> BROMINE = BLOCKS.register("bromine", () -> new FlowingFluidBlock(TechnologicaFluids.BROMINE, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> MERCURY = BLOCKS.register("mercury", () -> new FlowingFluidBlock(TechnologicaFluids.MERCURY, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    
+    public static final RegistryObject<FlowingFluidBlock> BRINE = BLOCKS.register("brine", () -> new FlowingFluidBlock(TechnologicaFluids.BRINE, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> OIL = BLOCKS.register("oil", () -> new FlowingFluidBlock(TechnologicaFluids.OIL, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> NATURAL_GAS = BLOCKS.register("natural_gas", () -> new FlowingFluidBlock(TechnologicaFluids.NATURAL_GAS, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+       
+    public static final RegistryObject<FlowingFluidBlock> MAPLE_SYRUP = BLOCKS.register("maple_syrup", () -> new FlowingFluidBlock(TechnologicaFluids.MAPLE_SYRUP, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> RUBBER_RESIN = BLOCKS.register("rubber_resin", () -> new FlowingFluidBlock(TechnologicaFluids.RUBBER_RESIN, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    
+    public static final RegistryObject<FlowingFluidBlock> GASOLINE = BLOCKS.register("gasoline", () -> new FlowingFluidBlock(TechnologicaFluids.GASOLINE, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> MACHINE_OIL = BLOCKS.register("machine_oil", () -> new FlowingFluidBlock(TechnologicaFluids.MACHINE_OIL, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> COOLANT = BLOCKS.register("coolant", () -> new FlowingFluidBlock(TechnologicaFluids.COOLANT, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
     
     /*
      * CONSTRUCTION
@@ -228,6 +260,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> BANANA_LOG = BLOCKS.register("banana_log", VanillaLogBlock::new);
     public static final RegistryObject<Block> CHERRY_LOG = BLOCKS.register("cherry_log", VanillaLogBlock::new);
     public static final RegistryObject<Block> CHESTNUT_LOG = BLOCKS.register("chestnut_log", VanillaLogBlock::new);  
+    public static final RegistryObject<Block> CINNAMON_LOG = BLOCKS.register("cinnamon_log", VanillaLogBlock::new);  
     public static final RegistryObject<Block> COCONUT_LOG = BLOCKS.register("coconut_log", VanillaLogBlock::new);
     public static final RegistryObject<Block> EBONY_LOG = BLOCKS.register("ebony_log", VanillaLogBlock::new);  
     public static final RegistryObject<Block> KIWI_LOG = BLOCKS.register("kiwi_log", VanillaLogBlock::new);
@@ -235,6 +268,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> LIME_LOG = BLOCKS.register("lime_log", VanillaLogBlock::new);
     public static final RegistryObject<Block> MAHOGANY_LOG = BLOCKS.register("mahogany_log", VanillaLogBlock::new); 
     public static final RegistryObject<Block> MAPLE_LOG = BLOCKS.register("maple_log", SapLogBlock::new);  
+    public static final RegistryObject<Block> OLIVE_LOG = BLOCKS.register("olive_log", VanillaLogBlock::new);  
     public static final RegistryObject<Block> ORANGE_LOG = BLOCKS.register("orange_log", VanillaLogBlock::new);
     public static final RegistryObject<Block> PEACH_LOG = BLOCKS.register("peach_log", VanillaLogBlock::new);
     public static final RegistryObject<Block> PEAR_LOG = BLOCKS.register("pear_log", VanillaLogBlock::new);
@@ -258,7 +292,8 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> STRIPPED_AVOCADO_LOG = BLOCKS.register("stripped_avocado_log", VanillaLogBlock::new);  
     public static final RegistryObject<Block> STRIPPED_BANANA_LOG = BLOCKS.register("stripped_banana_log", VanillaLogBlock::new);
     public static final RegistryObject<Block> STRIPPED_CHERRY_LOG = BLOCKS.register("stripped_cherry_log", VanillaLogBlock::new);
-    public static final RegistryObject<Block> STRIPPED_CHESTNUT_LOG = BLOCKS.register("stripped_chestnut_log", VanillaLogBlock::new);  
+    public static final RegistryObject<Block> STRIPPED_CHESTNUT_LOG = BLOCKS.register("stripped_chestnut_log", VanillaLogBlock::new);
+    public static final RegistryObject<Block> STRIPPED_CINNAMON_LOG = BLOCKS.register("stripped_cinnamon_log", VanillaLogBlock::new);  
     public static final RegistryObject<Block> STRIPPED_COCONUT_LOG = BLOCKS.register("stripped_coconut_log", VanillaLogBlock::new);
     public static final RegistryObject<Block> STRIPPED_EBONY_LOG = BLOCKS.register("stripped_ebony_log", VanillaLogBlock::new);  
     public static final RegistryObject<Block> STRIPPED_KIWI_LOG = BLOCKS.register("stripped_kiwi_log", VanillaLogBlock::new);
@@ -266,6 +301,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> STRIPPED_LIME_LOG = BLOCKS.register("stripped_lime_log", VanillaLogBlock::new);
     public static final RegistryObject<Block> STRIPPED_MAHOGANY_LOG = BLOCKS.register("stripped_mahogany_log", VanillaLogBlock::new); 
     public static final RegistryObject<Block> STRIPPED_MAPLE_LOG = BLOCKS.register("stripped_maple_log", VanillaLogBlock::new);  
+    public static final RegistryObject<Block> STRIPPED_OLIVE_LOG = BLOCKS.register("stripped_olive_log", VanillaLogBlock::new);  
     public static final RegistryObject<Block> STRIPPED_ORANGE_LOG = BLOCKS.register("stripped_orange_log", VanillaLogBlock::new);
     public static final RegistryObject<Block> STRIPPED_PEACH_LOG = BLOCKS.register("stripped_peach_log", VanillaLogBlock::new);
     public static final RegistryObject<Block> STRIPPED_PEAR_LOG = BLOCKS.register("stripped_pear_log", VanillaLogBlock::new);
@@ -290,6 +326,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> BANANA_WOOD = BLOCKS.register("banana_wood", VanillaLogBlock::new);
     public static final RegistryObject<Block> CHERRY_WOOD = BLOCKS.register("cherry_wood", VanillaLogBlock::new);
     public static final RegistryObject<Block> CHESTNUT_WOOD = BLOCKS.register("chestnut_wood", VanillaLogBlock::new);  
+    public static final RegistryObject<Block> CINNAMON_WOOD = BLOCKS.register("cinnamon_wood", VanillaLogBlock::new);
     public static final RegistryObject<Block> COCONUT_WOOD = BLOCKS.register("coconut_wood", VanillaLogBlock::new);
     public static final RegistryObject<Block> EBONY_WOOD = BLOCKS.register("ebony_wood", VanillaLogBlock::new);  
     public static final RegistryObject<Block> KIWI_WOOD = BLOCKS.register("kiwi_wood", VanillaLogBlock::new);
@@ -297,6 +334,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> LIME_WOOD = BLOCKS.register("lime_wood", VanillaLogBlock::new);
 	public static final RegistryObject<Block> MAHOGANY_WOOD = BLOCKS.register("mahogany_wood", VanillaLogBlock::new); 
 	public static final RegistryObject<Block> MAPLE_WOOD = BLOCKS.register("maple_wood", VanillaLogBlock::new);  
+    public static final RegistryObject<Block> OLIVE_WOOD = BLOCKS.register("olive_wood", VanillaLogBlock::new);
     public static final RegistryObject<Block> ORANGE_WOOD = BLOCKS.register("orange_wood", VanillaLogBlock::new);
     public static final RegistryObject<Block> PEACH_WOOD = BLOCKS.register("peach_wood", VanillaLogBlock::new);
     public static final RegistryObject<Block> PEAR_WOOD = BLOCKS.register("pear_wood", VanillaLogBlock::new);
@@ -321,6 +359,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> STRIPPED_BANANA_WOOD = BLOCKS.register("stripped_banana_wood", VanillaLogBlock::new);
     public static final RegistryObject<Block> STRIPPED_CHERRY_WOOD = BLOCKS.register("stripped_cherry_wood", VanillaLogBlock::new);
     public static final RegistryObject<Block> STRIPPED_CHESTNUT_WOOD = BLOCKS.register("stripped_chestnut_wood", VanillaLogBlock::new);  
+	public static final RegistryObject<Block> STRIPPED_CINNAMON_WOOD = BLOCKS.register("stripped_cinnamon_wood", VanillaLogBlock::new); 
     public static final RegistryObject<Block> STRIPPED_COCONUT_WOOD = BLOCKS.register("stripped_coconut_wood", VanillaLogBlock::new);
     public static final RegistryObject<Block> STRIPPED_EBONY_WOOD = BLOCKS.register("stripped_ebony_wood", VanillaLogBlock::new);  
     public static final RegistryObject<Block> STRIPPED_KIWI_WOOD = BLOCKS.register("stripped_kiwi_wood", VanillaLogBlock::new);
@@ -328,6 +367,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> STRIPPED_LIME_WOOD = BLOCKS.register("stripped_lime_wood", VanillaLogBlock::new);
 	public static final RegistryObject<Block> STRIPPED_MAHOGANY_WOOD = BLOCKS.register("stripped_mahogany_wood", VanillaLogBlock::new); 
 	public static final RegistryObject<Block> STRIPPED_MAPLE_WOOD = BLOCKS.register("stripped_maple_wood", VanillaLogBlock::new);  
+	public static final RegistryObject<Block> STRIPPED_OLIVE_WOOD = BLOCKS.register("stripped_olive_wood", VanillaLogBlock::new); 
     public static final RegistryObject<Block> STRIPPED_ORANGE_WOOD = BLOCKS.register("stripped_orange_wood", VanillaLogBlock::new);
     public static final RegistryObject<Block> STRIPPED_PEACH_WOOD = BLOCKS.register("stripped_peach_wood", VanillaLogBlock::new);
     public static final RegistryObject<Block> STRIPPED_PEAR_WOOD = BLOCKS.register("stripped_pear_wood", VanillaLogBlock::new);
@@ -352,6 +392,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> BANANA_PLANKS = BLOCKS.register("banana_planks", VanillaPlanksBlock::new);
     public static final RegistryObject<Block> CHERRY_PLANKS = BLOCKS.register("cherry_planks", VanillaPlanksBlock::new);
     public static final RegistryObject<Block> CHESTNUT_PLANKS = BLOCKS.register("chestnut_planks", VanillaPlanksBlock::new);
+    public static final RegistryObject<Block> CINNAMON_PLANKS = BLOCKS.register("cinnamon_planks", VanillaPlanksBlock::new);
     public static final RegistryObject<Block> COCONUT_PLANKS = BLOCKS.register("coconut_planks", VanillaPlanksBlock::new);
     public static final RegistryObject<Block> EBONY_PLANKS = BLOCKS.register("ebony_planks", VanillaPlanksBlock::new);
     public static final RegistryObject<Block> KIWI_PLANKS = BLOCKS.register("kiwi_planks", VanillaPlanksBlock::new);
@@ -359,6 +400,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> LIME_PLANKS = BLOCKS.register("lime_planks", VanillaPlanksBlock::new);
     public static final RegistryObject<Block> MAHOGANY_PLANKS = BLOCKS.register("mahogany_planks", VanillaPlanksBlock::new);    
     public static final RegistryObject<Block> MAPLE_PLANKS = BLOCKS.register("maple_planks", VanillaPlanksBlock::new);
+    public static final RegistryObject<Block> OLIVE_PLANKS = BLOCKS.register("olive_planks", VanillaPlanksBlock::new);
     public static final RegistryObject<Block> ORANGE_PLANKS = BLOCKS.register("orange_planks", VanillaPlanksBlock::new);
     public static final RegistryObject<Block> PEACH_PLANKS = BLOCKS.register("peach_planks", VanillaPlanksBlock::new);
     public static final RegistryObject<Block> PEAR_PLANKS = BLOCKS.register("pear_planks", VanillaPlanksBlock::new);
@@ -383,6 +425,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> BANANA_SLAB = BLOCKS.register("banana_slab", VanillaSlabBlock::new);
     public static final RegistryObject<Block> CHERRY_SLAB = BLOCKS.register("cherry_slab", VanillaSlabBlock::new);
     public static final RegistryObject<Block> CHESTNUT_SLAB = BLOCKS.register("chestnut_slab", VanillaSlabBlock::new);
+    public static final RegistryObject<Block> CINNAMON_SLAB = BLOCKS.register("cinnamon_slab", VanillaSlabBlock::new);
     public static final RegistryObject<Block> COCONUT_SLAB = BLOCKS.register("coconut_slab", VanillaSlabBlock::new);
     public static final RegistryObject<Block> EBONY_SLAB = BLOCKS.register("ebony_slab", VanillaSlabBlock::new);
     public static final RegistryObject<Block> KIWI_SLAB = BLOCKS.register("kiwi_slab", VanillaSlabBlock::new);
@@ -390,6 +433,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> LIME_SLAB = BLOCKS.register("lime_slab", VanillaSlabBlock::new);
     public static final RegistryObject<Block> MAHOGANY_SLAB = BLOCKS.register("mahogany_slab", VanillaSlabBlock::new);
     public static final RegistryObject<Block> MAPLE_SLAB = BLOCKS.register("maple_slab", VanillaSlabBlock::new);
+    public static final RegistryObject<Block> OLIVE_SLAB = BLOCKS.register("olive_slab", VanillaSlabBlock::new);
     public static final RegistryObject<Block> ORANGE_SLAB = BLOCKS.register("orange_slab", VanillaSlabBlock::new);
     public static final RegistryObject<Block> PEACH_SLAB = BLOCKS.register("peach_slab", VanillaSlabBlock::new);
     public static final RegistryObject<Block> PEAR_SLAB = BLOCKS.register("pear_slab", VanillaSlabBlock::new);
@@ -414,6 +458,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> BANANA_STAIRS = BLOCKS.register("banana_stairs", () -> new VanillaStairsBlock(() -> BANANA_PLANKS.get().getDefaultState()));
     public static final RegistryObject<Block> CHERRY_STAIRS = BLOCKS.register("cherry_stairs", () -> new VanillaStairsBlock(() -> CHERRY_PLANKS.get().getDefaultState()));
     public static final RegistryObject<Block> CHESTNUT_STAIRS = BLOCKS.register("chestnut_stairs", () -> new VanillaStairsBlock(() -> CHESTNUT_PLANKS.get().getDefaultState()));
+    public static final RegistryObject<Block> CINNAMON_STAIRS = BLOCKS.register("cinnamon_stairs", () -> new VanillaStairsBlock(() -> CINNAMON_PLANKS.get().getDefaultState()));
     public static final RegistryObject<Block> COCONUT_STAIRS = BLOCKS.register("coconut_stairs", () -> new VanillaStairsBlock(() -> COCONUT_PLANKS.get().getDefaultState()));
     public static final RegistryObject<Block> EBONY_STAIRS = BLOCKS.register("ebony_stairs", () -> new VanillaStairsBlock(() -> EBONY_PLANKS.get().getDefaultState()));
     public static final RegistryObject<Block> KIWI_STAIRS = BLOCKS.register("kiwi_stairs", () -> new VanillaStairsBlock(() -> KIWI_PLANKS.get().getDefaultState()));
@@ -421,6 +466,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> LIME_STAIRS = BLOCKS.register("lime_stairs", () -> new VanillaStairsBlock(() -> LIME_PLANKS.get().getDefaultState()));
     public static final RegistryObject<Block> MAHOGANY_STAIRS = BLOCKS.register("mahogany_stairs", () -> new VanillaStairsBlock(() -> MAHOGANY_PLANKS.get().getDefaultState()));
     public static final RegistryObject<Block> MAPLE_STAIRS = BLOCKS.register("maple_stairs", () -> new VanillaStairsBlock(() -> MAPLE_PLANKS.get().getDefaultState()));
+    public static final RegistryObject<Block> OLIVE_STAIRS = BLOCKS.register("olive_stairs", () -> new VanillaStairsBlock(() -> OLIVE_PLANKS.get().getDefaultState()));
     public static final RegistryObject<Block> ORANGE_STAIRS = BLOCKS.register("orange_stairs", () -> new VanillaStairsBlock(() -> ORANGE_PLANKS.get().getDefaultState()));
     public static final RegistryObject<Block> PEACH_STAIRS = BLOCKS.register("peach_stairs", () -> new VanillaStairsBlock(() -> PEACH_PLANKS.get().getDefaultState()));
     public static final RegistryObject<Block> PEAR_STAIRS = BLOCKS.register("pear_stairs", () -> new VanillaStairsBlock(() -> PEAR_PLANKS.get().getDefaultState()));
@@ -452,6 +498,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> BANANA_BOOKSHELF = BLOCKS.register("banana_bookshelf", VanillaBookshelfBlock::new);
     public static final RegistryObject<Block> CHERRY_BOOKSHELF = BLOCKS.register("cherry_bookshelf", VanillaBookshelfBlock::new);
     public static final RegistryObject<Block> CHESTNUT_BOOKSHELF = BLOCKS.register("chestnut_bookshelf", VanillaBookshelfBlock::new);
+    public static final RegistryObject<Block> CINNAMON_BOOKSHELF = BLOCKS.register("cinnamon_bookshelf", VanillaBookshelfBlock::new);
     public static final RegistryObject<Block> COCONUT_BOOKSHELF = BLOCKS.register("coconut_bookshelf", VanillaBookshelfBlock::new);
     public static final RegistryObject<Block> EBONY_BOOKSHELF = BLOCKS.register("ebony_bookshelf", VanillaBookshelfBlock::new);
     public static final RegistryObject<Block> KIWI_BOOKSHELF = BLOCKS.register("kiwi_bookshelf", VanillaBookshelfBlock::new);
@@ -459,6 +506,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> LIME_BOOKSHELF = BLOCKS.register("lime_bookshelf", VanillaBookshelfBlock::new);
     public static final RegistryObject<Block> MAHOGANY_BOOKSHELF = BLOCKS.register("mahogany_bookshelf", VanillaBookshelfBlock::new);
     public static final RegistryObject<Block> MAPLE_BOOKSHELF = BLOCKS.register("maple_bookshelf", VanillaBookshelfBlock::new);
+    public static final RegistryObject<Block> OLIVE_BOOKSHELF = BLOCKS.register("olive_bookshelf", VanillaBookshelfBlock::new);
     public static final RegistryObject<Block> ORANGE_BOOKSHELF = BLOCKS.register("orange_bookshelf", VanillaBookshelfBlock::new);
     public static final RegistryObject<Block> PEACH_BOOKSHELF = BLOCKS.register("peach_bookshelf", VanillaBookshelfBlock::new);
     public static final RegistryObject<Block> PEAR_BOOKSHELF = BLOCKS.register("pear_bookshelf", VanillaBookshelfBlock::new);
@@ -483,6 +531,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> BANANA_FENCE = BLOCKS.register("banana_fence", VanillaFenceBlock::new);
     public static final RegistryObject<Block> CHERRY_FENCE = BLOCKS.register("cherry_fence", VanillaFenceBlock::new);
     public static final RegistryObject<Block> CHESTNUT_FENCE = BLOCKS.register("chestnut_fence", VanillaFenceBlock::new);
+    public static final RegistryObject<Block> CINNAMON_FENCE = BLOCKS.register("cinnamon_fence", VanillaFenceBlock::new);
     public static final RegistryObject<Block> COCONUT_FENCE = BLOCKS.register("coconut_fence", VanillaFenceBlock::new);
     public static final RegistryObject<Block> EBONY_FENCE = BLOCKS.register("ebony_fence", VanillaFenceBlock::new);
     public static final RegistryObject<Block> KIWI_FENCE = BLOCKS.register("kiwi_fence", VanillaFenceBlock::new);
@@ -490,6 +539,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> LIME_FENCE = BLOCKS.register("lime_fence", VanillaFenceBlock::new);
     public static final RegistryObject<Block> MAHOGANY_FENCE = BLOCKS.register("mahogany_fence", VanillaFenceBlock::new);
     public static final RegistryObject<Block> MAPLE_FENCE = BLOCKS.register("maple_fence", VanillaFenceBlock::new);
+    public static final RegistryObject<Block> OLIVE_FENCE = BLOCKS.register("olive_fence", VanillaFenceBlock::new);
     public static final RegistryObject<Block> ORANGE_FENCE = BLOCKS.register("orange_fence", VanillaFenceBlock::new);;
     public static final RegistryObject<Block> PEACH_FENCE = BLOCKS.register("peach_fence", VanillaFenceBlock::new);
     public static final RegistryObject<Block> PEAR_FENCE = BLOCKS.register("pear_fence", VanillaFenceBlock::new);
@@ -514,6 +564,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> BANANA_FENCE_GATE = BLOCKS.register("banana_fence_gate", VanillaFenceGateBlock::new);
     public static final RegistryObject<Block> CHERRY_FENCE_GATE = BLOCKS.register("cherry_fence_gate", VanillaFenceGateBlock::new);
     public static final RegistryObject<Block> CHESTNUT_FENCE_GATE = BLOCKS.register("chestnut_fence_gate", VanillaFenceGateBlock::new);
+    public static final RegistryObject<Block> CINNAMON_FENCE_GATE = BLOCKS.register("cinnamon_fence_gate", VanillaFenceGateBlock::new);
     public static final RegistryObject<Block> COCONUT_FENCE_GATE = BLOCKS.register("coconut_fence_gate", VanillaFenceGateBlock::new);
     public static final RegistryObject<Block> EBONY_FENCE_GATE = BLOCKS.register("ebony_fence_gate", VanillaFenceGateBlock::new);
     public static final RegistryObject<Block> KIWI_FENCE_GATE = BLOCKS.register("kiwi_fence_gate", VanillaFenceGateBlock::new);
@@ -521,6 +572,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> LIME_FENCE_GATE = BLOCKS.register("lime_fence_gate", VanillaFenceGateBlock::new);
     public static final RegistryObject<Block> MAHOGANY_FENCE_GATE = BLOCKS.register("mahogany_fence_gate", VanillaFenceGateBlock::new);
     public static final RegistryObject<Block> MAPLE_FENCE_GATE = BLOCKS.register("maple_fence_gate", VanillaFenceGateBlock::new);
+    public static final RegistryObject<Block> OLIVE_FENCE_GATE = BLOCKS.register("olive_fence_gate", VanillaFenceGateBlock::new);
     public static final RegistryObject<Block> ORANGE_FENCE_GATE = BLOCKS.register("orange_fence_gate", VanillaFenceGateBlock::new);
     public static final RegistryObject<Block> PEACH_FENCE_GATE = BLOCKS.register("peach_fence_gate", VanillaFenceGateBlock::new);
     public static final RegistryObject<Block> PEAR_FENCE_GATE = BLOCKS.register("pear_fence_gate", VanillaFenceGateBlock::new);
@@ -545,6 +597,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> BANANA_DOOR = BLOCKS.register("banana_door", () -> new DoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> CHERRY_DOOR = BLOCKS.register("cherry_door", () -> new DoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> CHESTNUT_DOOR = BLOCKS.register("chestnut_door", () -> new DoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
+    public static final RegistryObject<Block> CINNAMON_DOOR = BLOCKS.register("cinnamon_door", () -> new DoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> COCONUT_DOOR = BLOCKS.register("coconut_door", () -> new DoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> EBONY_DOOR = BLOCKS.register("ebony_door", () -> new DoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> KIWI_DOOR = BLOCKS.register("kiwi_door", () -> new DoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
@@ -552,6 +605,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> LIME_DOOR = BLOCKS.register("lime_door", () -> new DoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> MAHOGANY_DOOR = BLOCKS.register("mahogany_door", () -> new DoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> MAPLE_DOOR = BLOCKS.register("maple_door", () -> new DoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
+    public static final RegistryObject<Block> OLIVE_DOOR = BLOCKS.register("olive_door", () -> new DoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> ORANGE_DOOR = BLOCKS.register("orange_door", () -> new DoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> PEACH_DOOR = BLOCKS.register("peach_door", () -> new DoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> PEAR_DOOR = BLOCKS.register("pear_door", () -> new DoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
@@ -576,6 +630,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> BANANA_TRAPDOOR = BLOCKS.register("banana_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> CHERRY_TRAPDOOR = BLOCKS.register("cherry_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> CHESTNUT_TRAPDOOR = BLOCKS.register("chestnut_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
+    public static final RegistryObject<Block> CINNAMON_TRAPDOOR = BLOCKS.register("cinnamon_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> COCONUT_TRAPDOOR = BLOCKS.register("coconut_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> EBONY_TRAPDOOR = BLOCKS.register("ebony_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> KIWI_TRAPDOOR = BLOCKS.register("kiwi_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
@@ -583,6 +638,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> LIME_TRAPDOOR = BLOCKS.register("lime_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> MAHOGANY_TRAPDOOR = BLOCKS.register("mahogany_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> MAPLE_TRAPDOOR = BLOCKS.register("maple_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
+    public static final RegistryObject<Block> OLIVE_TRAPDOOR = BLOCKS.register("olive_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> ORANGE_TRAPDOOR = BLOCKS.register("orange_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> PEACH_TRAPDOOR = BLOCKS.register("peach_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> PEAR_TRAPDOOR = BLOCKS.register("pear_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
@@ -607,6 +663,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> BANANA_PRESSURE_PLATE = BLOCKS.register("banana_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> CHERRY_PRESSURE_PLATE = BLOCKS.register("cherry_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> CHESTNUT_PRESSURE_PLATE = BLOCKS.register("chestnut_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
+    public static final RegistryObject<Block> CINNAMON_PRESSURE_PLATE = BLOCKS.register("cinnamon_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> COCONUT_PRESSURE_PLATE = BLOCKS.register("coconut_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> EBONY_PRESSURE_PLATE = BLOCKS.register("ebony_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> KIWI_PRESSURE_PLATE = BLOCKS.register("kiwi_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
@@ -614,6 +671,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> LIME_PRESSURE_PLATE = BLOCKS.register("lime_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> MAHOGANY_PRESSURE_PLATE = BLOCKS.register("mahogany_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> MAPLE_PRESSURE_PLATE = BLOCKS.register("maple_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
+    public static final RegistryObject<Block> OLIVE_PRESSURE_PLATE = BLOCKS.register("olive_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> ORANGE_PRESSURE_PLATE = BLOCKS.register("orange_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> PEACH_PRESSURE_PLATE = BLOCKS.register("peach_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> PEAR_PRESSURE_PLATE = BLOCKS.register("pear_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
@@ -638,6 +696,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> BANANA_BUTTON = BLOCKS.register("banana_button", () -> new WoodButtonBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> CHERRY_BUTTON = BLOCKS.register("cherry_button", () -> new WoodButtonBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> CHESTNUT_BUTTON = BLOCKS.register("chestnut_button", () -> new WoodButtonBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> CINNAMON_BUTTON = BLOCKS.register("cinnamon_button", () -> new WoodButtonBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> COCONUT_BUTTON = BLOCKS.register("coconut_button", () -> new WoodButtonBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> EBONY_BUTTON = BLOCKS.register("ebony_button", () -> new WoodButtonBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> KIWI_BUTTON = BLOCKS.register("kiwi_button", () -> new WoodButtonBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
@@ -645,6 +704,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> LIME_BUTTON = BLOCKS.register("lime_button", () -> new WoodButtonBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> MAHOGANY_BUTTON = BLOCKS.register("mahogany_button", () -> new WoodButtonBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> MAPLE_BUTTON = BLOCKS.register("maple_button", () -> new WoodButtonBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> OLIVE_BUTTON = BLOCKS.register("olive_button", () -> new WoodButtonBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> ORANGE_BUTTON = BLOCKS.register("orange_button", () -> new WoodButtonBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> PEACH_BUTTON = BLOCKS.register("peach_button", () -> new WoodButtonBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> PEAR_BUTTON = BLOCKS.register("pear_button", () -> new WoodButtonBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
@@ -669,6 +729,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> BANANA_SIGN = BLOCKS.register("banana_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.BANANA));
     public static final RegistryObject<Block> CHERRY_SIGN = BLOCKS.register("cherry_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.CHERRY));
     public static final RegistryObject<Block> CHESTNUT_SIGN = BLOCKS.register("chestnut_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.CHESTNUT));
+    public static final RegistryObject<Block> CINNAMON_SIGN = BLOCKS.register("cinnamon_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.CINNAMON));
     public static final RegistryObject<Block> COCONUT_SIGN = BLOCKS.register("coconut_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.COCONUT));
     public static final RegistryObject<Block> EBONY_SIGN = BLOCKS.register("ebony_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.EBONY));
     public static final RegistryObject<Block> KIWI_SIGN = BLOCKS.register("kiwi_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.KIWI));
@@ -676,6 +737,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> LIME_SIGN = BLOCKS.register("lime_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.LIME));
     public static final RegistryObject<Block> MAHOGANY_SIGN = BLOCKS.register("mahogany_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.MAHOGANY));
     public static final RegistryObject<Block> MAPLE_SIGN = BLOCKS.register("maple_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.MAPLE));
+    public static final RegistryObject<Block> OLIVE_SIGN = BLOCKS.register("olive_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.OLIVE));
     public static final RegistryObject<Block> ORANGE_SIGN = BLOCKS.register("orange_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.ORANGE));
     public static final RegistryObject<Block> PEACH_SIGN = BLOCKS.register("peach_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.PEACH));
     public static final RegistryObject<Block> PEAR_SIGN = BLOCKS.register("pear_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.PEAR));
@@ -700,6 +762,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> BANANA_WALL_SIGN = BLOCKS.register("banana_wall_sign", () -> new VanillaWallSignBlock(TechnologicaWoodType.BANANA));
     public static final RegistryObject<Block> CHERRY_WALL_SIGN = BLOCKS.register("cherry_wall_sign", () -> new VanillaWallSignBlock(TechnologicaWoodType.CHERRY));
     public static final RegistryObject<Block> CHESTNUT_WALL_SIGN = BLOCKS.register("chestnut_wall_sign", () -> new VanillaWallSignBlock(TechnologicaWoodType.CHESTNUT));
+    public static final RegistryObject<Block> CINNAMON_WALL_SIGN = BLOCKS.register("cinnamon_wall_sign", () -> new VanillaWallSignBlock(TechnologicaWoodType.CINNAMON));
     public static final RegistryObject<Block> COCONUT_WALL_SIGN = BLOCKS.register("coconut_wall_sign", () -> new VanillaWallSignBlock(TechnologicaWoodType.COCONUT));
     public static final RegistryObject<Block> EBONY_WALL_SIGN = BLOCKS.register("ebony_wall_sign", () -> new VanillaWallSignBlock(TechnologicaWoodType.EBONY));
     public static final RegistryObject<Block> KIWI_WALL_SIGN = BLOCKS.register("kiwi_wall_sign", () -> new VanillaWallSignBlock(TechnologicaWoodType.KIWI));
@@ -707,6 +770,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> LIME_WALL_SIGN = BLOCKS.register("lime_wall_sign", () -> new VanillaWallSignBlock(TechnologicaWoodType.LIME));
     public static final RegistryObject<Block> MAHOGANY_WALL_SIGN = BLOCKS.register("mahogany_wall_sign", () -> new VanillaWallSignBlock(TechnologicaWoodType.MAHOGANY));
     public static final RegistryObject<Block> MAPLE_WALL_SIGN = BLOCKS.register("maple_wall_sign", () -> new VanillaWallSignBlock(TechnologicaWoodType.MAPLE));
+    public static final RegistryObject<Block> OLIVE_WALL_SIGN = BLOCKS.register("olive_wall_sign", () -> new VanillaWallSignBlock(TechnologicaWoodType.OLIVE));
     public static final RegistryObject<Block> ORANGE_WALL_SIGN = BLOCKS.register("orange_wall_sign", () -> new VanillaWallSignBlock(TechnologicaWoodType.ORANGE));
     public static final RegistryObject<Block> PEACH_WALL_SIGN = BLOCKS.register("peach_wall_sign", () -> new VanillaWallSignBlock(TechnologicaWoodType.PEACH));
     public static final RegistryObject<Block> PEAR_WALL_SIGN = BLOCKS.register("pear_wall_sign", () -> new VanillaWallSignBlock(TechnologicaWoodType.PEAR));
@@ -734,9 +798,9 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> SMALL_PULLEY = BLOCKS.register("small_pulley", () -> new Block(AbstractBlock.Properties.create(Material.IRON).hardnessAndResistance(1.0F).sound(SoundType.ANVIL).notSolid())); 
     public static final RegistryObject<Block> MEDIUM_PULLEY = BLOCKS.register("medium_pulley", () -> new Block(AbstractBlock.Properties.create(Material.IRON).hardnessAndResistance(1.0F).sound(SoundType.ANVIL).notSolid())); 
     public static final RegistryObject<Block> LARGE_PULLEY = BLOCKS.register("large_pulley", () -> new Block(AbstractBlock.Properties.create(Material.IRON).hardnessAndResistance(1.0F).sound(SoundType.ANVIL).notSolid())); 
-    public static final RegistryObject<Block> MOTOR_1HP = BLOCKS.register("motor_1hp", () -> new MotorBlock(100, 60)); 
-    public static final RegistryObject<Block> MOTOR_5HP = BLOCKS.register("motor_5hp", () -> new MotorBlock(200, 120));
-    public static final RegistryObject<Block> MOTOR_20HP = BLOCKS.register("motor_20hp", () -> new MotorBlock(400, 240));
+    public static final RegistryObject<Block> MOTOR_1HP = BLOCKS.register("motor_1hp", () -> new MotorBlock(100.0F, 60.0F)); 
+    public static final RegistryObject<Block> MOTOR_5HP = BLOCKS.register("motor_5hp", () -> new MotorBlock(200.0F, 120.0F));
+    public static final RegistryObject<Block> MOTOR_20HP = BLOCKS.register("motor_20hp", () -> new MotorBlock(400.0F, 240.0F));
     public static final RegistryObject<Block> TREE_TAP = BLOCKS.register("tree_tap", TreeTapBlock::new);
     public static final RegistryObject<Block> SAWMILL = BLOCKS.register("sawmill", SawmillBlock::new);
     
@@ -752,6 +816,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> BIRCH_CHAIR = BLOCKS.register("birch_chair", ChairBlock::new);
     public static final RegistryObject<Block> CHERRY_CHAIR = BLOCKS.register("cherry_chair", ChairBlock::new);
     public static final RegistryObject<Block> CHESTNUT_CHAIR = BLOCKS.register("chestnut_chair", ChairBlock::new);
+    public static final RegistryObject<Block> CINNAMON_CHAIR = BLOCKS.register("cinnamon_chair", ChairBlock::new);
     public static final RegistryObject<Block> COCONUT_CHAIR = BLOCKS.register("coconut_chair", ChairBlock::new);
     public static final RegistryObject<Block> CRIMSON_CHAIR = BLOCKS.register("crimson_chair", ChairBlock::new);
     public static final RegistryObject<Block> DARK_OAK_CHAIR = BLOCKS.register("dark_oak_chair", ChairBlock::new);
@@ -763,6 +828,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> MAHOGANY_CHAIR = BLOCKS.register("mahogany_chair", ChairBlock::new);
     public static final RegistryObject<Block> MAPLE_CHAIR = BLOCKS.register("maple_chair", ChairBlock::new);
     public static final RegistryObject<Block> OAK_CHAIR = BLOCKS.register("oak_chair", ChairBlock::new);
+    public static final RegistryObject<Block> OLIVE_CHAIR = BLOCKS.register("olive_chair", ChairBlock::new);
     public static final RegistryObject<Block> ORANGE_CHAIR = BLOCKS.register("orange_chair", ChairBlock::new);
     public static final RegistryObject<Block> PEACH_CHAIR = BLOCKS.register("peach_chair", ChairBlock::new);
     public static final RegistryObject<Block> PEAR_CHAIR = BLOCKS.register("pear_chair", ChairBlock::new);
@@ -775,7 +841,41 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> WALNUT_CHAIR = BLOCKS.register("walnut_chair", ChairBlock::new);
     public static final RegistryObject<Block> WARPED_CHAIR = BLOCKS.register("warped_chair", ChairBlock::new);
     public static final RegistryObject<Block> ZEBRAWOOD_CHAIR = BLOCKS.register("zebrawood_chair", ChairBlock::new);
+	public static final RegistryObject<Block> ACACIA_TABLE = BLOCKS.register("acacia_table", TableBlock::new);
+	public static final RegistryObject<Block> APRICOT_TABLE = BLOCKS.register("apricot_table", TableBlock::new);
+	public static final RegistryObject<Block> ASPEN_TABLE = BLOCKS.register("aspen_table", TableBlock::new);
+	public static final RegistryObject<Block> AVOCADO_TABLE = BLOCKS.register("avocado_table", TableBlock::new);
+	public static final RegistryObject<Block> BANANA_TABLE = BLOCKS.register("banana_table", TableBlock::new);
+	public static final RegistryObject<Block> BIRCH_TABLE = BLOCKS.register("birch_table", TableBlock::new);
+	public static final RegistryObject<Block> CHERRY_TABLE = BLOCKS.register("cherry_table", TableBlock::new);
+	public static final RegistryObject<Block> CHESTNUT_TABLE = BLOCKS.register("chestnut_table", TableBlock::new);
+	public static final RegistryObject<Block> CINNAMON_TABLE = BLOCKS.register("cinnamon_table", TableBlock::new);
+	public static final RegistryObject<Block> COCONUT_TABLE = BLOCKS.register("coconut_table", TableBlock::new);
+	public static final RegistryObject<Block> CRIMSON_TABLE = BLOCKS.register("crimson_table", TableBlock::new);
+	public static final RegistryObject<Block> DARK_OAK_TABLE = BLOCKS.register("dark_oak_table", TableBlock::new);
+	public static final RegistryObject<Block> EBONY_TABLE = BLOCKS.register("ebony_table", TableBlock::new);
+	public static final RegistryObject<Block> JUNGLE_TABLE = BLOCKS.register("jungle_table", TableBlock::new);
+	public static final RegistryObject<Block> KIWI_TABLE = BLOCKS.register("kiwi_table", TableBlock::new);
+	public static final RegistryObject<Block> LEMON_TABLE = BLOCKS.register("lemon_table", TableBlock::new);
+	public static final RegistryObject<Block> LIME_TABLE = BLOCKS.register("lime_table", TableBlock::new);
+	public static final RegistryObject<Block> MAHOGANY_TABLE = BLOCKS.register("mahogany_table", TableBlock::new);
+	public static final RegistryObject<Block> MAPLE_TABLE = BLOCKS.register("maple_table", TableBlock::new);
+	public static final RegistryObject<Block> OAK_TABLE = BLOCKS.register("oak_table", TableBlock::new);
+	public static final RegistryObject<Block> OLIVE_TABLE = BLOCKS.register("olive_table", TableBlock::new);
+	public static final RegistryObject<Block> ORANGE_TABLE = BLOCKS.register("orange_table", TableBlock::new);
+	public static final RegistryObject<Block> PEACH_TABLE = BLOCKS.register("peach_table", TableBlock::new);
+	public static final RegistryObject<Block> PEAR_TABLE = BLOCKS.register("pear_table", TableBlock::new);
+	public static final RegistryObject<Block> PLUM_TABLE = BLOCKS.register("plum_table", TableBlock::new);
+	public static final RegistryObject<Block> REDWOOD_TABLE = BLOCKS.register("redwood_table", TableBlock::new);
+	public static final RegistryObject<Block> ROSEWOOD_TABLE = BLOCKS.register("rosewood_table", TableBlock::new);
+	public static final RegistryObject<Block> RUBBER_TABLE = BLOCKS.register("rubber_table", TableBlock::new);
+	public static final RegistryObject<Block> SPRUCE_TABLE = BLOCKS.register("spruce_table", TableBlock::new);
+	public static final RegistryObject<Block> TEAK_TABLE = BLOCKS.register("teak_table", TableBlock::new);
+	public static final RegistryObject<Block> WALNUT_TABLE = BLOCKS.register("walnut_table", TableBlock::new);
+	public static final RegistryObject<Block> WARPED_TABLE = BLOCKS.register("warped_table", TableBlock::new);
+	public static final RegistryObject<Block> ZEBRAWOOD_TABLE = BLOCKS.register("zebrawood_table", TableBlock::new);
     public static final RegistryObject<Block> DISPLAY_CASE = BLOCKS.register("display_case", DisplayCaseBlock::new);
+    public static final RegistryObject<Block> ANNUNCIATOR = BLOCKS.register("annunciator", AnnunciatorBlock::new);
     
 	public static void register() 
     {

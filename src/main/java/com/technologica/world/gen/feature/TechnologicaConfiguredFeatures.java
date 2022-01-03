@@ -6,7 +6,9 @@ import com.technologica.world.gen.foliageplacer.ConicalFoliagePlacer;
 import com.technologica.world.gen.foliageplacer.CylindricalFoliagePlacer;
 import com.technologica.world.gen.foliageplacer.DishFoliagePlacer;
 import com.technologica.world.gen.foliageplacer.PalmFoliagePlacer;
+import com.technologica.world.gen.foliageplacer.RedwoodFoliagePlacer;
 import com.technologica.world.gen.foliageplacer.TeardropFoliagePlacer;
+import com.technologica.world.gen.trunkplacer.ThreeWideTrunkPlacer;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -37,7 +39,7 @@ public class TechnologicaConfiguredFeatures {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(TechnologicaBlocks.APRICOT_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(TechnologicaBlocks.APRICOT_LEAVES.get().getDefaultState()),
-					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0)),
 					new StraightTrunkPlacer(4, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
 	
@@ -46,8 +48,8 @@ public class TechnologicaConfiguredFeatures {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(TechnologicaBlocks.ASPEN_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(TechnologicaBlocks.ASPEN_LEAVES.get().getDefaultState()),
-					new BlobFoliagePlacer(FeatureSpread.create(2), FeatureSpread.create(0), 3),
-					new StraightTrunkPlacer(5, 2, 0), 
+					new TeardropFoliagePlacer(FeatureSpread.create(2), FeatureSpread.create(0), 6),
+					new StraightTrunkPlacer(6, 2, 0), 
 					new TwoLayerFeature(1, 0, 1))).setIgnoreVines().build()));
 	
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> AVOCADO_TREE_FEATURE = register(
@@ -55,7 +57,7 @@ public class TechnologicaConfiguredFeatures {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(TechnologicaBlocks.AVOCADO_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(TechnologicaBlocks.AVOCADO_LEAVES.get().getDefaultState()),
-					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0)),
 					new StraightTrunkPlacer(4, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
 	
@@ -64,7 +66,7 @@ public class TechnologicaConfiguredFeatures {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(TechnologicaBlocks.BANANA_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(TechnologicaBlocks.BANANA_LEAVES.get().getDefaultState()),
-					new PalmFoliagePlacer(FeatureSpread.create(4), FeatureSpread.create(1), 4),
+					new PalmFoliagePlacer(FeatureSpread.create(4), FeatureSpread.create(1)),
 					new StraightTrunkPlacer(5, 2, 0), 
 					new TwoLayerFeature(1, 0, 1))).setIgnoreVines().build()));
 	
@@ -82,7 +84,16 @@ public class TechnologicaConfiguredFeatures {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(TechnologicaBlocks.CHESTNUT_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(TechnologicaBlocks.CHESTNUT_LEAVES.get().getDefaultState()),
-					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0)),
+					new StraightTrunkPlacer(4, 1, 0), 
+					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
+	
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> CINNAMON_TREE_FEATURE = register(
+			"cinnamon_tree_feature",
+			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(TechnologicaBlocks.CINNAMON_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(TechnologicaBlocks.CINNAMON_LEAVES.get().getDefaultState()),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0)),
 					new StraightTrunkPlacer(4, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
 	
@@ -91,7 +102,7 @@ public class TechnologicaConfiguredFeatures {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(TechnologicaBlocks.COCONUT_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(TechnologicaBlocks.COCONUT_LEAVES.get().getDefaultState()),
-					new PalmFoliagePlacer(FeatureSpread.create(5), FeatureSpread.create(1), 5),
+					new PalmFoliagePlacer(FeatureSpread.create(5), FeatureSpread.create(1)),
 					new StraightTrunkPlacer(7, 5, 0), 
 					new TwoLayerFeature(0, 0, 0))).setIgnoreVines().build()));
 	
@@ -100,7 +111,7 @@ public class TechnologicaConfiguredFeatures {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(TechnologicaBlocks.EBONY_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(TechnologicaBlocks.EBONY_LEAVES.get().getDefaultState()),
-					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0)),
 					new StraightTrunkPlacer(4, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
 	
@@ -118,7 +129,7 @@ public class TechnologicaConfiguredFeatures {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(TechnologicaBlocks.LEMON_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(TechnologicaBlocks.LEMON_LEAVES.get().getDefaultState()),
-					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0)),
 					new StraightTrunkPlacer(2, 2, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
 	
@@ -127,7 +138,7 @@ public class TechnologicaConfiguredFeatures {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(TechnologicaBlocks.LIME_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(TechnologicaBlocks.LIME_LEAVES.get().getDefaultState()),
-					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0)),
 					new StraightTrunkPlacer(2, 2, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
 	
@@ -136,7 +147,7 @@ public class TechnologicaConfiguredFeatures {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(TechnologicaBlocks.MAHOGANY_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(TechnologicaBlocks.MAHOGANY_LEAVES.get().getDefaultState()),
-					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0)),
 					new StraightTrunkPlacer(4, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
 	
@@ -145,7 +156,16 @@ public class TechnologicaConfiguredFeatures {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(TechnologicaBlocks.MAPLE_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(TechnologicaBlocks.MAPLE_LEAVES.get().getDefaultState()),
-					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0)),
+					new StraightTrunkPlacer(4, 1, 0), 
+					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
+	
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> OLIVE_TREE_FEATURE = register(
+			"olive_tree_feature",
+			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(TechnologicaBlocks.OLIVE_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(TechnologicaBlocks.OLIVE_LEAVES.get().getDefaultState()),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0)),
 					new StraightTrunkPlacer(4, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
 	
@@ -154,7 +174,7 @@ public class TechnologicaConfiguredFeatures {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(TechnologicaBlocks.ORANGE_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(TechnologicaBlocks.ORANGE_LEAVES.get().getDefaultState()),
-					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0)),
 					new StraightTrunkPlacer(4, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
 	
@@ -181,7 +201,7 @@ public class TechnologicaConfiguredFeatures {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(TechnologicaBlocks.PLUM_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(TechnologicaBlocks.PLUM_LEAVES.get().getDefaultState()),
-					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0)),
 					new StraightTrunkPlacer(4, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
 	
@@ -190,8 +210,8 @@ public class TechnologicaConfiguredFeatures {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(TechnologicaBlocks.REDWOOD_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(TechnologicaBlocks.REDWOOD_LEAVES.get().getDefaultState()),
-					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
-					new StraightTrunkPlacer(4, 1, 0), 
+					new RedwoodFoliagePlacer(FeatureSpread.create(4), FeatureSpread.create(7)),
+					new ThreeWideTrunkPlacer(18, 5, 19), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
 	
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> ROSEWOOD_TREE_FEATURE = register(
@@ -199,7 +219,7 @@ public class TechnologicaConfiguredFeatures {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(TechnologicaBlocks.ROSEWOOD_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(TechnologicaBlocks.ROSEWOOD_LEAVES.get().getDefaultState()),
-					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0)),
 					new StraightTrunkPlacer(4, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
 	
@@ -208,7 +228,7 @@ public class TechnologicaConfiguredFeatures {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(TechnologicaBlocks.RUBBER_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(TechnologicaBlocks.RUBBER_LEAVES.get().getDefaultState()),
-					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0)),
 					new StraightTrunkPlacer(4, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
 	
@@ -217,7 +237,7 @@ public class TechnologicaConfiguredFeatures {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(TechnologicaBlocks.TEAK_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(TechnologicaBlocks.TEAK_LEAVES.get().getDefaultState()),
-					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0)),
 					new StraightTrunkPlacer(4, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
 	
@@ -226,7 +246,7 @@ public class TechnologicaConfiguredFeatures {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(TechnologicaBlocks.WALNUT_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(TechnologicaBlocks.WALNUT_LEAVES.get().getDefaultState()),
-					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0)),
 					new StraightTrunkPlacer(4, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
 	
@@ -235,7 +255,7 @@ public class TechnologicaConfiguredFeatures {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(TechnologicaBlocks.ZEBRAWOOD_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(TechnologicaBlocks.ZEBRAWOOD_LEAVES.get().getDefaultState()),
-					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0)),
 					new StraightTrunkPlacer(4, 1, 0), 
 					new TwoLayerFeature(1, 0, 2))).setIgnoreVines().build()));
 	
@@ -271,7 +291,7 @@ public class TechnologicaConfiguredFeatures {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(TechnologicaBlocks.FRUITFUL_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(TechnologicaBlocks.FRUITFUL_LEAVES.get().getDefaultState()),
-					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0)),
 					new StraightTrunkPlacer(4, 1, 0),
 					new TwoLayerFeature(0, 0, 0))).setIgnoreVines().build()));
 	
@@ -280,7 +300,7 @@ public class TechnologicaConfiguredFeatures {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(TechnologicaBlocks.ALCHEMICAL_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(TechnologicaBlocks.ALCHEMICAL_LEAVES.get().getDefaultState()),
-					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0)),
 					new StraightTrunkPlacer(4, 1, 0),
 					new TwoLayerFeature(0, 0, 0))).setIgnoreVines().build()));
 	
@@ -289,7 +309,7 @@ public class TechnologicaConfiguredFeatures {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(TechnologicaBlocks.BENEVOLENT_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(TechnologicaBlocks.BENEVOLENT_LEAVES.get().getDefaultState()),
-					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0)),
 					new StraightTrunkPlacer(4, 1, 0),
 					new TwoLayerFeature(0, 0, 0))).setIgnoreVines().build()));
 	
@@ -298,12 +318,13 @@ public class TechnologicaConfiguredFeatures {
 			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
 					new SimpleBlockStateProvider(TechnologicaBlocks.MALEVOLENT_LOG.get().getDefaultState()),
 					new SimpleBlockStateProvider(TechnologicaBlocks.MALEVOLENT_LEAVES.get().getDefaultState()),
-					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0), 2),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0)),
 					new StraightTrunkPlacer(4, 1, 0),
 					new TwoLayerFeature(0, 0, 0))).setIgnoreVines().build()));
 	
 	public static final ConfiguredFeature<?, ?> LAKE_BRINE_FEATURE = register("lake_brine_feature", TechnologicaFeatures.LAKE_BRINE.get().withConfiguration(new BlockStateFeatureConfig(States.BRINE_BLOCK)).withPlacement(Placement.WATER_LAKE.configure(new ChanceConfig(4))));
 	public static final ConfiguredFeature<?, ?> OASIS_FEATURE = register("oasis_feature", TechnologicaFeatures.OASIS.get().withConfiguration(new BlockStateFeatureConfig(Blocks.WATER.getDefaultState())).withPlacement(Placement.WATER_LAKE.configure(new ChanceConfig(100))));
+	public static final ConfiguredFeature<?, ?> CRATER_FEATURE = register("crater_feature", TechnologicaFeatures.CRATER.get().withConfiguration(new BlockStateFeatureConfig(Blocks.AIR.getDefaultState())).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(10, 0.1F, 1))));
 	
 	public static final ConfiguredFeature<?, ?> REDWOOD_FOREST_VEGETATION = register("redwood_forest_vegetation", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(TechnologicaConfiguredFeatures.REDWOOD_TREE_FEATURE.withChance(1.0F)), TechnologicaConfiguredFeatures.REDWOOD_TREE_FEATURE)).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(10, 0.1F, 1))));
 	public static final ConfiguredFeature<?, ?> RAINFOREST_VEGETATION = register("rainforest_vegetation", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(TechnologicaConfiguredFeatures.ROSEWOOD_TREE_FEATURE.withChance(0.5F)), TechnologicaConfiguredFeatures.ROSEWOOD_TREE_FEATURE)).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(10, 0.1F, 1))));

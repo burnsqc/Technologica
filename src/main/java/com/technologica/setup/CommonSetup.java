@@ -1,25 +1,17 @@
 package com.technologica.setup;
 
-import static net.minecraft.entity.passive.horse.AbstractHorseEntity.func_234237_fg_;
-
 import java.util.Collection;
 import java.util.function.Supplier;
 
 import com.technologica.Technologica;
 import com.technologica.block.TechnologicaBlocks;
 import com.technologica.capabilities.TechnologicaCapabilities;
-import com.technologica.entity.TechnologicaEntities;
-import com.technologica.entity.monster.ScorpionEntity;
-import com.technologica.entity.monster.SharkEntity;
-import com.technologica.entity.passive.DuckEntity;
-import com.technologica.entity.passive.GrizzlyBearEntity;
 import com.technologica.network.play.server.Packets;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FlowerPotBlock;
 import net.minecraft.block.SaplingBlock;
-import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
@@ -34,22 +26,20 @@ public class CommonSetup {
 	public static final RegistryKey<Biome> saltFlatsBiomeKey = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, new ResourceLocation(Technologica.MODID, "salt_flats"));
 	public static final RegistryKey<Biome> redwoodForestBiomeKey = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, new ResourceLocation(Technologica.MODID, "redwood_forest"));
 	public static final RegistryKey<Biome> rainforestBiomeKey = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, new ResourceLocation(Technologica.MODID, "rainforest"));
+	public static final RegistryKey<Biome> coastBiomeKey = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, new ResourceLocation(Technologica.MODID, "coast"));
 	
 	public static void init(final FMLCommonSetupEvent event) {
 		TechnologicaCapabilities.register();
 		Packets.onCommonSetupEvent();
-		GlobalEntityTypeAttributes.put(TechnologicaEntities.DUCK.get(), DuckEntity.registerAttributes().create());
-		GlobalEntityTypeAttributes.put(TechnologicaEntities.GRIZZLY_BEAR.get(), GrizzlyBearEntity.registerAttributes().create());
-		GlobalEntityTypeAttributes.put(TechnologicaEntities.OSTRICH.get(), func_234237_fg_().create());
-		GlobalEntityTypeAttributes.put(TechnologicaEntities.SCORPION.get(), ScorpionEntity.registerAttributes().create());
-		GlobalEntityTypeAttributes.put(TechnologicaEntities.SHARK.get(), SharkEntity.registerAttributes().create());
-		GlobalEntityTypeAttributes.put(TechnologicaEntities.ZEBRA.get(), func_234237_fg_().create());
 
 		event.enqueueWork(() -> {
 			automaticFlowerPots(TechnologicaBlocks.BLOCKS.getEntries());
+			
 			BiomeManager.addBiome(BiomeType.DESERT, new BiomeEntry(saltFlatsBiomeKey, 1000));
 			BiomeManager.addBiome(BiomeType.COOL, new BiomeEntry(redwoodForestBiomeKey, 1000));
 			BiomeManager.addBiome(BiomeType.WARM, new BiomeEntry(rainforestBiomeKey, 1000));
+			BiomeManager.addBiome(BiomeType.WARM, new BiomeEntry(coastBiomeKey, 1000));
+			
 		});
 	}
 

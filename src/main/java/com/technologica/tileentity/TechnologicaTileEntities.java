@@ -21,6 +21,7 @@ public class TechnologicaTileEntities {
 					TechnologicaBlocks.BANANA_SIGN.get(),
 					TechnologicaBlocks.CHERRY_SIGN.get(),
 					TechnologicaBlocks.CHESTNUT_SIGN.get(),
+					TechnologicaBlocks.CINNAMON_SIGN.get(),
 					TechnologicaBlocks.COCONUT_SIGN.get(),
 					TechnologicaBlocks.EBONY_SIGN.get(),
 					TechnologicaBlocks.KIWI_SIGN.get(),
@@ -28,6 +29,7 @@ public class TechnologicaTileEntities {
 					TechnologicaBlocks.LIME_SIGN.get(),
 					TechnologicaBlocks.MAHOGANY_SIGN.get(),
 					TechnologicaBlocks.MAPLE_SIGN.get(),
+					TechnologicaBlocks.OLIVE_SIGN.get(),
 					TechnologicaBlocks.ORANGE_SIGN.get(),
 					TechnologicaBlocks.PEACH_SIGN.get(), 
 					TechnologicaBlocks.PEAR_SIGN.get(),
@@ -51,6 +53,7 @@ public class TechnologicaTileEntities {
 					TechnologicaBlocks.BANANA_WALL_SIGN.get(),
 					TechnologicaBlocks.CHERRY_WALL_SIGN.get(),
 					TechnologicaBlocks.CHESTNUT_WALL_SIGN.get(),
+					TechnologicaBlocks.CINNAMON_WALL_SIGN.get(),
 					TechnologicaBlocks.COCONUT_WALL_SIGN.get(),
 					TechnologicaBlocks.EBONY_WALL_SIGN.get(),
 					TechnologicaBlocks.KIWI_WALL_SIGN.get(),
@@ -58,6 +61,7 @@ public class TechnologicaTileEntities {
 					TechnologicaBlocks.LIME_WALL_SIGN.get(),
 					TechnologicaBlocks.MAHOGANY_WALL_SIGN.get(),
 					TechnologicaBlocks.MAPLE_WALL_SIGN.get(),
+					TechnologicaBlocks.OLIVE_WALL_SIGN.get(),
 					TechnologicaBlocks.ORANGE_WALL_SIGN.get(),
 					TechnologicaBlocks.PEACH_WALL_SIGN.get(), 
 					TechnologicaBlocks.PEAR_WALL_SIGN.get(),
@@ -86,6 +90,7 @@ public class TechnologicaTileEntities {
 					TechnologicaBlocks.KIWI_LEAVES.get(),
 					TechnologicaBlocks.LEMON_LEAVES.get(), 
 					TechnologicaBlocks.LIME_LEAVES.get(), 
+					TechnologicaBlocks.OLIVE_LEAVES.get(),
 					TechnologicaBlocks.ORANGE_LEAVES.get(),
 					TechnologicaBlocks.PEACH_LEAVES.get(), 
 					TechnologicaBlocks.PEAR_LEAVES.get(),
@@ -109,6 +114,9 @@ public class TechnologicaTileEntities {
 	public static final RegistryObject<TileEntityType<SawmillTileEntity>> SAWMILL_TILE = TILEENTITIES.register("sawmill_tile", 
 			() -> TileEntityType.Builder.create(SawmillTileEntity::new, 
 					TechnologicaBlocks.SAWMILL.get()).build(null));
+	public static final RegistryObject<TileEntityType<AnnunciatorTileEntity>> ANNUNCIATOR_TILE = TILEENTITIES.register("annunciator_tile", 
+			() -> TileEntityType.Builder.create(AnnunciatorTileEntity::new, 
+					TechnologicaBlocks.ANNUNCIATOR.get()).build(null));
 
 	public static void register() {
 		TILEENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());

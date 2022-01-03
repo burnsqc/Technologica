@@ -1,0 +1,27 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "technologica:disable_vanilla_plank_crafting"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "group": "planks",
+        "ingredients": [
+          {
+            "tag": "technologica:banana_logs"
+          },
+          {
+            "item": "technologica:saw"
+          }
+        ],
+        "result": {
+          "item": "technologica:banana_planks"
+        }
+      }
+    }
+  ]
+}
