@@ -14,6 +14,7 @@ public class TechnologicaFeatures {
 
 	public static final RegistryObject<Feature<BlockStateFeatureConfig>> LAKE_BRINE = FEATURES.register("lake_brine", () -> new BrinePoolFeature(BlockStateFeatureConfig.CODEC));
 	public static final RegistryObject<Feature<BlockStateFeatureConfig>> OASIS = FEATURES.register("oasis", () -> new OasisFeature(BlockStateFeatureConfig.CODEC));
+	public static final RegistryObject<Feature<BlockStateFeatureConfig>> CRATER = FEATURES.register("crater", () -> new CraterFeature(BlockStateFeatureConfig.CODEC));
 	
 	public static void register() 
     {

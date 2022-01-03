@@ -1,0 +1,11 @@
+{
+  "type": "technologica:crater",
+  "config": {
+    "state": {
+      "Name": "minecraft:air",
+      "Properties": {
+        "level": "0"
+      }
+    }
+  }
+}

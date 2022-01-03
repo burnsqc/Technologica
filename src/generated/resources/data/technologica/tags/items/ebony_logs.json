@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "technologica:ebony_log",
+    "technologica:ebony_wood",
+    "technologica:stripped_ebony_log",
+    "technologica:stripped_ebony_wood"
+  ]
+}

@@ -10,7 +10,7 @@
                 "chance": 0.66666666
               }
             ],
-            "default": "minecraft:spruce"
+            "default": "minecraft:mega_spruce"
           },
           "type": "minecraft:random_selector"
         },

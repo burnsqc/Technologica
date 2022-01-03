@@ -1,6 +1,6 @@
 package com.technologica.entity.passive;
 
-import com.technologica.entity.TechnologicaEntities;
+import com.technologica.entity.TechnologicaEntityType;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -61,7 +61,7 @@ public class DuckEntity extends AnimalEntity {
 
    //Spawning
    public DuckEntity createChild(ServerWorld serverWorldIn, AgeableEntity ageableEntityIn) {
-      return TechnologicaEntities.DUCK.get().create(serverWorldIn);
+      return TechnologicaEntityType.DUCK.get().create(serverWorldIn);
    }
 
    //Animation

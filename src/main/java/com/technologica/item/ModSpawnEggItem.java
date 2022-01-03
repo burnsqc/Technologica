@@ -1,87 +1,57 @@
 package com.technologica.item;
 
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
-import com.technologica.entity.TechnologicaEntities;
-
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.minecraft.block.DispenserBlock;
+import net.minecraft.dispenser.DefaultDispenseItemBehavior;
+import net.minecraft.dispenser.IBlockSource;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.tileentity.MobSpawnerTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
+import net.minecraft.item.SpawnEggItem;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraft.world.spawner.AbstractSpawner;
+import net.minecraftforge.common.util.Lazy;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
-public class ModSpawnEggItem extends Item {
-	private int entityTypeInt;
-	
-    public ModSpawnEggItem(int entityTypeIntIn) {
-        super(new Item.Properties().maxStackSize(1).group(TechnologicaItemGroup.FAUNA));
-        entityTypeInt = entityTypeIntIn;
+public class ModSpawnEggItem extends SpawnEggItem {
+
+    protected static final List<ModSpawnEggItem> UNADDED_EGGS = new ArrayList<>();
+    private final Lazy<? extends EntityType<?>> entityTypeSupplier;
+
+    public ModSpawnEggItem(final RegistryObject<? extends EntityType<?>> entityTypeSupplier) {
+        super(null, 0, 0, new Item.Properties().maxStackSize(1).group(TechnologicaItemGroup.FAUNA));
+        this.entityTypeSupplier = Lazy.of(entityTypeSupplier::get);
+        UNADDED_EGGS.add(this);
+    }
+
+    public static void initSpawnEggs() {
+        final Map<EntityType<?>, SpawnEggItem> EGGS = ObfuscationReflectionHelper.getPrivateValue(SpawnEggItem.class, null, "field_195987_b");
+        DefaultDispenseItemBehavior dispenseBehaviour = new DefaultDispenseItemBehavior() {
+            @Override
+            protected ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
+                Direction direction = source.getBlockState().get(DispenserBlock.FACING);
+                EntityType<?> type = ((SpawnEggItem) stack.getItem()).getType(stack.getTag());
+                type.spawn(source.getWorld(), stack, null, source.getBlockPos().offset(direction),
+                        SpawnReason.DISPENSER, direction != Direction.UP, false);
+                stack.shrink(1);
+                return stack;
+            }
+        };
+
+        for (final SpawnEggItem spawnEgg : UNADDED_EGGS) {
+            EGGS.put(spawnEgg.getType(null), spawnEgg);
+            DispenserBlock.registerDispenseBehavior(spawnEgg, dispenseBehaviour);
+        }
+        UNADDED_EGGS.clear();
     }
 
     @Override
-    public ActionResultType onItemUse(ItemUseContext context) {
-    	EntityType<?> entityType = null;
-    	if (entityTypeInt == 1) {
-    		entityType = TechnologicaEntities.DUCK.get();
-    	} else if (entityTypeInt == 2) {
-    		entityType = TechnologicaEntities.GRIZZLY_BEAR.get();
-    	} else if (entityTypeInt == 3) {
-    		entityType = TechnologicaEntities.OSTRICH.get();
-    	} else if (entityTypeInt == 4) {
-    		entityType = TechnologicaEntities.SHARK.get();
-    	} else if (entityTypeInt == 5) {
-    		entityType = TechnologicaEntities.ZEBRA.get();
-    	} else if (entityTypeInt == 6) {
-    		entityType = TechnologicaEntities.SCORPION.get();
-    	}
-    	
-    	World world = context.getWorld();
-        if (!(world instanceof ServerWorld)) {
-           return ActionResultType.SUCCESS;
-        } else {
-           ItemStack itemstack = context.getItem();
-           BlockPos blockpos = context.getPos();
-           Direction direction = context.getFace();
-           BlockState blockstate = world.getBlockState(blockpos);
-           
-		if (blockstate.matchesBlock(Blocks.SPAWNER)) {
-              TileEntity tileentity = world.getTileEntity(blockpos);
-              if (tileentity instanceof MobSpawnerTileEntity) {
-                 AbstractSpawner abstractspawner = ((MobSpawnerTileEntity)tileentity).getSpawnerBaseLogic();
-                 if (entityType != null) {
-                    abstractspawner.setEntityType(entityType);
-                 }
-                 tileentity.markDirty();
-                 world.notifyBlockUpdate(blockpos, blockstate, blockstate, 3);
-                 itemstack.shrink(1);
-                 return ActionResultType.CONSUME;
-              }
-           }
-
-           BlockPos blockpos1;
-           if (blockstate.getCollisionShapeUncached(world, blockpos).isEmpty()) {
-              blockpos1 = blockpos;
-           } else {
-              blockpos1 = blockpos.offset(direction);
-           }
-
-           
-           if (entityType != null && entityType.spawn((ServerWorld)world, itemstack, context.getPlayer(), blockpos1, SpawnReason.SPAWN_EGG, true, !Objects.equals(blockpos, blockpos1) && direction == Direction.UP) != null) {
-              itemstack.shrink(1);
-           }
-
-           return ActionResultType.CONSUME;
-        }
-     }
-
+    public EntityType<?> getType(CompoundNBT nbt) {
+        return this.entityTypeSupplier.get();
+    }
 }

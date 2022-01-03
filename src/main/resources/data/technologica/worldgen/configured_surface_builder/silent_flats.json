@@ -1,14 +1,14 @@
 {
   "config": {
     "top_material": {
-      "Name": "minecraft:stone"
+      "Name": "technologica:moon_dust"
     },
     "under_material": {
-      "Name": "minecraft:stone"
+      "Name": "technologica:moon_dust"
     },
     "underwater_material": {
-      "Name": "minecraft:stone"
+      "Name": "technologica:moon_dust"
     }
   },
-  "type": "technologica:salt_flats"
+  "type": "technologica:silent_flats"
 }

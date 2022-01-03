@@ -1,0 +1,11 @@
+{
+  "dodgeball": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "technologica:dodgeball",
+        "attenuation_distance": 32
+      } 
+    ]
+  }
+}

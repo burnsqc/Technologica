@@ -55,17 +55,17 @@ public class SawmillBlock extends FourDirectionBlock {
 		Item item = playerIn.getHeldItem(handIn).getItem();
 		
 		if (tile.getLog().isEmpty()) {
-			if (ItemTags.LOGS.contains(itemstack.getItem())) {
+			if (item == TechnologicaItems.SAWBLADE.get()) {
+				tile.setBlade(true);
+				worldIn.playSound((PlayerEntity)null, posIn, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.rand.nextFloat() * 0.4F);
+				itemstack.shrink(1);
+			} else if (ItemTags.LOGS.contains(itemstack.getItem())) {
 				tile.setLog(new ItemStack(itemstack.getItem(), 1));
 				worldIn.playSound((PlayerEntity)null, posIn, SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.rand.nextFloat() * 0.4F);
 				itemstack.shrink(1);
 				playerIn.inventory.setInventorySlotContents(playerIn.inventory.currentItem, itemstack);
 				playerIn.openContainer.detectAndSendChanges();
 			}
-		} else if (item == TechnologicaItems.SAWBLADE.get()) {
-			tile.setBlade(true);
-			worldIn.playSound((PlayerEntity)null, posIn, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.rand.nextFloat() * 0.4F);
-			itemstack.shrink(1);
 		}
 		return ActionResultType.func_233537_a_(worldIn.isRemote);
 	}

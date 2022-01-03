@@ -7,6 +7,9 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.technologica.block.LineShaftBlock;
+import com.technologica.util.Radius;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
@@ -17,8 +20,8 @@ import net.minecraft.util.Direction.Axis;
 
 public class LineShaftHangerTileEntity extends TileEntity {
 	private boolean shaft = false;
-	private int torque = 0;
-	private int rpm = 0;
+	private float torque = 0;
+	private float rpm = 0;
 	
 	public void setShaft(boolean shaftIn) {
 		shaft = shaftIn;
@@ -32,47 +35,60 @@ public class LineShaftHangerTileEntity extends TileEntity {
 		super(TechnologicaTileEntities.LINE_SHAFT_HANGER_TILE.get());
 	}
 	
-	public void setTorque(int torqueIn) {
+	public void setTorque(float torqueIn) {
 		torque = torqueIn;
 	}
 	
-	public void subtractTorque(int torqueIn) {
-		torque = torque - torqueIn;
+	public void subtractTorque(float maxTorque) {
+		torque = torque - maxTorque;
 		if (torque == 0) {
 			rpm = 0;
 		}
 		setShaftTorqueRPM(torque, rpm);
 	}
 	
-	public int getTorque() {
+	public float getTorque() {
 		return torque;
 	}
 	
-	public void setRPM(int rpmIn) {
+	public void setRPM(float rpmIn) {
 		rpm = rpmIn;
 	}
 	
-	public int getRPM() {
+	public float getRPM() {
 		return rpm;
 	}
 	
-	public boolean checkSetShaftTorqueRPM(int torqueIn, int rpmIn) {
-		if (rpmIn == rpm) {
-			setShaftTorqueRPM(torque + torqueIn, rpm);
+	public boolean checkSetShaftTorqueRPM(float maxTorque, float maxRPM) {
+		if (maxRPM == rpm) {
+			setShaftTorqueRPM(torque + maxTorque, rpm);
 			return true;
-		} else if (torqueIn > torque) {
-			setShaftTorqueRPM(torqueIn, rpmIn);
+		} else if (maxTorque > torque) {
+			setShaftTorqueRPM(maxTorque, maxRPM);
 			return true;
 		}
 		return false;
 	}
 	
-	public void setShaftTorqueRPM(int torqueIn, int rpmIn) {
+	public void setShaftTorqueRPM(float torqueIn, float rpmIn) {
 		List<TileEntity> shafts = getShafts();
 		for(TileEntity shaft:shafts) {
 			if (shaft instanceof LineShaftTileEntity) {
 				((LineShaftTileEntity) shaft).setTorque(torqueIn);
 				((LineShaftTileEntity) shaft).setRPM(rpmIn);
+				
+				if (((LineShaftTileEntity) shaft).getBeltPos() != null) {
+					LineShaftTileEntity beltedPulley = (LineShaftTileEntity) world.getTileEntity(((LineShaftTileEntity) shaft).getBeltPos());
+					Radius pulley1 = shaft.getBlockState().get(LineShaftBlock.RADIUS);
+					Radius pulley2 = beltedPulley.getBlockState().get(LineShaftBlock.RADIUS);
+					
+					float torqueMultiplier = pulley2.getRadius()/pulley1.getRadius();
+					float rpmMultiplier = pulley1.getRadius()/pulley2.getRadius();
+					
+					if (((LineShaftTileEntity) beltedPulley).getRPM() != this.rpm*rpmMultiplier) {
+						((LineShaftTileEntity) beltedPulley).setShaftTorqueRPM(this.torque*torqueMultiplier, this.rpm*rpmMultiplier);
+					}
+				}
 			} else if (shaft instanceof LineShaftHangerTileEntity) {
 				((LineShaftHangerTileEntity) shaft).setTorque(torqueIn);
 				((LineShaftHangerTileEntity) shaft).setRPM(rpmIn);
@@ -154,10 +170,10 @@ public class LineShaftHangerTileEntity extends TileEntity {
 	    	shaft = nbt.getBoolean("shaft");
 	    }
 	    if (nbt.contains("torque")) {
-			torque = nbt.getInt("torque");
+			torque = nbt.getFloat("torque");
 		}
 	    if (nbt.contains("rpm")) {
-			rpm = nbt.getInt("rpm");
+			rpm = nbt.getFloat("rpm");
 		}
 	}
 
@@ -165,8 +181,8 @@ public class LineShaftHangerTileEntity extends TileEntity {
 	public CompoundNBT write(CompoundNBT compound) {
 		super.write(compound);
 		compound.putBoolean("shaft", shaft);
-		compound.putInt("torque", torque);
-		compound.putInt("rpm", rpm);
+		compound.putFloat("torque", torque);
+		compound.putFloat("rpm", rpm);
 	    return compound;	    
 	}
 }

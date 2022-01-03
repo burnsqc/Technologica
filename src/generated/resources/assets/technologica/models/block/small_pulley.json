@@ -1,6 +1,5 @@
 {
-  "parent": "technologica:block/small_pulley",
   "textures": {
-    "pulley": "technologica:block/pulley"
+    "particle": "minecraft:block/water_still"
   }
 }

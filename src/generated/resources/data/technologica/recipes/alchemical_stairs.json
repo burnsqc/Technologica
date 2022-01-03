@@ -1,0 +1,30 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "technologica:enable_vanilla_plank_crafting"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "group": "wooden_stairs",
+        "pattern": [
+          "#  ",
+          "## ",
+          "###"
+        ],
+        "key": {
+          "#": {
+            "item": "technologica:alchemical_planks"
+          }
+        },
+        "result": {
+          "item": "technologica:alchemical_stairs",
+          "count": 4
+        }
+      }
+    }
+  ]
+}

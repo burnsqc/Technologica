@@ -1,6 +1,7 @@
 package com.technologica.network.play.server;
 
 import com.technologica.Technologica;
+import com.technologica.network.play.client.CUpdateAnnunciatorPacket;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.network.NetworkRegistry;
@@ -12,12 +13,7 @@ public class Packets {
 	private static int ID = 0;
 	
     public static void onCommonSetupEvent() {
-	
-		INSTANCE = NetworkRegistry.newSimpleChannel(
-			new ResourceLocation(Technologica.MODID, "main"), 
-			() -> PROTOCOL_VERSION, 
-			PROTOCOL_VERSION::equals,
-			PROTOCOL_VERSION::equals);
+		INSTANCE = NetworkRegistry.newSimpleChannel(new ResourceLocation(Technologica.MODID, "main"), () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
 		register();
 	}
 	
@@ -27,5 +23,6 @@ public class Packets {
 
 	public static void register() {
 		INSTANCE.registerMessage(nextID(), SOpenModSignMenuPacket.class, SOpenModSignMenuPacket::encode, SOpenModSignMenuPacket::decode, SOpenModSignMenuPacket::handle);
+		INSTANCE.registerMessage(nextID(), CUpdateAnnunciatorPacket.class, CUpdateAnnunciatorPacket::encode, CUpdateAnnunciatorPacket::decode, CUpdateAnnunciatorPacket::handle);
 	}
 }

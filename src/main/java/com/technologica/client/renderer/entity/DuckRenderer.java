@@ -8,10 +8,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.ChickenModel;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
 public class DuckRenderer extends MobRenderer<DuckEntity, ChickenModel<DuckEntity>> {
 	private static final ResourceLocation DUCK_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/duck.png");
 

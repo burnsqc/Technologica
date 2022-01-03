@@ -17,6 +17,7 @@ public class TechnologicaWoodType extends WoodType {
    	public static final WoodType BANANA = register(new TechnologicaWoodType("banana"));
    	public static final WoodType CHERRY = register(new TechnologicaWoodType("cherry"));
    	public static final WoodType CHESTNUT = register(new TechnologicaWoodType("chestnut"));
+   	public static final WoodType CINNAMON = register(new TechnologicaWoodType("cinnamon"));
    	public static final WoodType COCONUT = register(new TechnologicaWoodType("coconut"));
    	public static final WoodType EBONY = register(new TechnologicaWoodType("ebony"));
    	public static final WoodType KIWI = register(new TechnologicaWoodType("kiwi"));
@@ -24,6 +25,7 @@ public class TechnologicaWoodType extends WoodType {
    	public static final WoodType LIME = register(new TechnologicaWoodType("lime"));
    	public static final WoodType MAHOGANY = register(new TechnologicaWoodType("mahogany"));
    	public static final WoodType MAPLE = register(new TechnologicaWoodType("maple"));
+   	public static final WoodType OLIVE = register(new TechnologicaWoodType("olive"));
    	public static final WoodType ORANGE = register(new TechnologicaWoodType("orange"));
    	public static final WoodType PEACH = register(new TechnologicaWoodType("peach"));
    	public static final WoodType PEAR = register(new TechnologicaWoodType("pear"));

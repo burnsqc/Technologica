@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "technologica:infernal_log",
+    "technologica:infernal_wood",
+    "technologica:stripped_infernal_log",
+    "technologica:stripped_infernal_wood"
+  ]
+}
