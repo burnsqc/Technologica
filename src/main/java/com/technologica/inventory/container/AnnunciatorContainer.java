@@ -21,17 +21,17 @@ public class AnnunciatorContainer extends Container {
 		
 		for (int l = 0; l < 3; ++l) {
 			for (int j1 = 0; j1 < 9; ++j1) {
-				this.addSlot(new Slot(playerInventoryIn, j1 + l * 9 + 9, 8 + j1 * 18, 103 + l * 18 + 36));
+				this.addSlot(new Slot(playerInventoryIn, j1 + l * 9 + 9, 8 + j1 * 18, 112 + l * 18 + 36));
 			}
 		}
 
 		for (int i1 = 0; i1 < 9; ++i1) {
-			this.addSlot(new Slot(playerInventoryIn, i1, 8 + i1 * 18, 161 + 36));
+			this.addSlot(new Slot(playerInventoryIn, i1, 8 + i1 * 18, 206));
 		}
 		
 		if (tileEntity != null) {
 			tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-				this.addSlot(new SlotItemHandler(h, 0, 8 + 8 * 18, 90)); 	
+				this.addSlot(new SlotItemHandler(h, 0, 80, 8)); 	
 			});
 		}
 		

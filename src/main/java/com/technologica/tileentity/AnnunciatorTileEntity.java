@@ -16,6 +16,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -34,7 +35,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 public class AnnunciatorTileEntity extends TileEntity {
-	private final ITextComponent[] signText = new ITextComponent[] { StringTextComponent.EMPTY,
+	private ITextComponent[] signText = new ITextComponent[] { StringTextComponent.EMPTY,
 			StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY,
 			StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY };
 	private final ItemStackHandler itemHandler = createHandler();
@@ -116,6 +117,8 @@ public class AnnunciatorTileEntity extends TileEntity {
 	public void setText(int line, ITextComponent signText) {
 		this.signText[line] = signText;
 		this.renderText[line] = null;
+		this.markDirty();
+		world.notifyBlockUpdate(pos, getBlockState(), getBlockState(), 7); 
 	}
 
 	public ITextComponent getText(int line) {
@@ -144,48 +147,54 @@ public class AnnunciatorTileEntity extends TileEntity {
 		return new SUpdateTileEntityPacket(this.pos, 9, this.getUpdateTag());
 	}
 
-	/**
-	 * Get an NBT compound to sync to the client with SPacketChunkData, used for
-	 * initial loading of the chunk or when many blocks change at once. This
-	 * compound comes back to you clientside in {@link handleUpdateTag}
-	 */
+	@Override
+	public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
+		BlockState blockState = world.getBlockState(pos);
+		read(blockState, pkt.getNbtCompound());
+	}
+	
+	@Override
 	public CompoundNBT getUpdateTag() {
 		return this.write(new CompoundNBT());
 	}
 
 	@Override
+	public void handleUpdateTag(BlockState blockState, CompoundNBT parentNBTTagCompound)
+	{
+		this.read(blockState, parentNBTTagCompound);
+	}
+	
+	@Override
 	public void read(BlockState state, CompoundNBT nbt) {
+		super.read(state, nbt);
 		itemHandler.deserializeNBT(nbt.getCompound("overlay"));
-
+		
 		for (int i = 0; i < 8; ++i) {
 			String s = nbt.getString("Text" + (i + 1));
 			ITextComponent itextcomponent = ITextComponent.Serializer.getComponentFromJson(s.isEmpty() ? "\"\"" : s);
 			if (this.world instanceof ServerWorld) {
 				try {
-					this.signText[i] = TextComponentUtils.func_240645_a_(
-							this.getCommandSource((ServerPlayerEntity) null), itextcomponent, (Entity) null, 0);
+					this.signText[i] = TextComponentUtils.func_240645_a_(this.getCommandSource((ServerPlayerEntity) null), itextcomponent, (Entity) null, 0);
 				} catch (CommandSyntaxException commandsyntaxexception) {
 					this.signText[i] = itextcomponent;
 				}
 			} else {
 				this.signText[i] = itextcomponent;
 			}
-
 			this.renderText[i] = null;
 		}
-
-		super.read(state, nbt);
 	}
 
 	@Override
 	public CompoundNBT write(CompoundNBT compound) {
+		super.write(compound);
 		compound.put("overlay", itemHandler.serializeNBT());
 
 		for (int i = 0; i < 8; ++i) {
 			String s = ITextComponent.Serializer.toJson(this.signText[i]);
 			compound.putString("Text" + (i + 1), s);
 		}
-
-		return super.write(compound);
+		
+		return compound;
 	}
 }

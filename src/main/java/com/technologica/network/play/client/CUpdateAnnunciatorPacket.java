@@ -2,12 +2,14 @@ package com.technologica.network.play.client;
 
 import java.util.function.Supplier;
 
-import com.technologica.network.play.server.ServerHandlers;
+import com.technologica.tileentity.AnnunciatorTileEntity;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.fml.DistExecutor;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 public class CUpdateAnnunciatorPacket {
@@ -22,7 +24,7 @@ public class CUpdateAnnunciatorPacket {
 	public static void encode(CUpdateAnnunciatorPacket msg, PacketBuffer buf) {
 		buf.writeBlockPos(msg.pos);
 
-		for (int i = 0; i < 7; ++i) {
+		for (int i = 0; i < 8; ++i) {
 			buf.writeString(msg.lines[i]);
 		}
 	}
@@ -31,7 +33,7 @@ public class CUpdateAnnunciatorPacket {
 		BlockPos pos2 = buf.readBlockPos();
 		
 		String[] lines2 = new String[8];
-		for (int i = 0; i < 7; ++i) {
+		for (int i = 0; i < 8; ++i) {
 			lines2[i] = buf.readString(384);
 		}
 		
@@ -39,7 +41,19 @@ public class CUpdateAnnunciatorPacket {
 	}
 
 	public static void handle(CUpdateAnnunciatorPacket msg, final Supplier<NetworkEvent.Context> ctx) {
-		ctx.get().enqueueWork(() -> DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ServerHandlers.handleAnnunciatorPacket(msg.pos, msg.lines)));
+		ctx.get().enqueueWork(() -> {
+			ServerWorld world = ctx.get().getSender().getServerWorld();
+			TileEntity tileentity = world.getTileEntity(msg.pos);
+			BlockState blockstate = world.getBlockState(msg.pos);
+			
+			if (tileentity instanceof AnnunciatorTileEntity) {
+				for (int i = 0; i < 8; ++i) {
+					((AnnunciatorTileEntity) tileentity).setText(i, ITextComponent.getTextComponentOrEmpty(msg.lines[i]));
+				}
+				tileentity.markDirty();
+		        world.notifyBlockUpdate(msg.pos, blockstate, blockstate, 3);
+			}
+		});
 		ctx.get().setPacketHandled(true);
 	}
 

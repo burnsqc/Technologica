@@ -29,19 +29,19 @@ import net.minecraft.util.text.StringTextComponent;
 
 public class AnnunciatorScreen extends ContainerScreen<AnnunciatorContainer> {
 	private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/gui/container/annunciator_screen.png");
-	private AnnunciatorTileEntity tile;
+	private AnnunciatorTileEntity tileEntity;
 	private TextInputUtil textInputUtil;
-	private String[] field_238846_r_;
+	private String[] multiLineText;
 	private int editLine;
 	private int updateCounter;
 
-	public AnnunciatorScreen(AnnunciatorContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
-		super(screenContainer, inv, new StringTextComponent("Annunciator"));
-		this.passEvents = true;
-		this.ySize = 222;
-		this.playerInventoryTitleY = 128;
-		this.tile = (AnnunciatorTileEntity) screenContainer.getTileEntity();
-		this.field_238846_r_ = IntStream.range(0, 8).mapToObj(tile::getText).map(ITextComponent::getString).toArray((p_243354_0_) -> {
+	public AnnunciatorScreen(AnnunciatorContainer screenContainerIn, PlayerInventory playerInventoryIn, ITextComponent titleIn) {
+		super(screenContainerIn, playerInventoryIn, new StringTextComponent("Annunciator"));
+		this.passEvents = false;
+		this.ySize = 231;
+		this.playerInventoryTitleY = 137;
+		this.tileEntity = (AnnunciatorTileEntity) screenContainerIn.getTileEntity();
+		this.multiLineText = IntStream.range(0, 8).mapToObj(tileEntity::getText).map(ITextComponent::getString).toArray((p_243354_0_) -> {
 			return new String[p_243354_0_];
 		});
 	}
@@ -49,49 +49,75 @@ public class AnnunciatorScreen extends ContainerScreen<AnnunciatorContainer> {
 	@Override
 	protected void init() {
 		super.init();
-		this.tile.setEditable(false);
 		this.minecraft.keyboardListener.enableRepeatEvents(true);
+		this.tileEntity.setEditable(false);
 		this.textInputUtil = new TextInputUtil(() -> {
-			return this.field_238846_r_[this.editLine];
+			return this.multiLineText[this.editLine];
 		}, (p_238850_1_) -> {
-			this.field_238846_r_[this.editLine] = p_238850_1_;
-			this.tile.setText(this.editLine, new StringTextComponent(p_238850_1_));
-		}, TextInputUtil.getClipboardTextSupplier(this.minecraft), TextInputUtil.getClipboardTextSetter(this.minecraft),
-				(p_238848_1_) -> {
-					return this.minecraft.fontRenderer.getStringWidth(p_238848_1_) <= 90;
-				});
+			this.multiLineText[this.editLine] = p_238850_1_;
+			this.tileEntity.setText(this.editLine, new StringTextComponent(p_238850_1_));
+		}, TextInputUtil.getClipboardTextSupplier(this.minecraft), TextInputUtil.getClipboardTextSetter(this.minecraft), (p_238848_1_) -> {
+			return this.minecraft.fontRenderer.getStringWidth(p_238848_1_) <= 90;
+		});
 	}
 
+	@Override
 	public void onClose() {
 		this.minecraft.keyboardListener.enableRepeatEvents(false);
 		ClientPlayNetHandler clientplaynethandler = this.minecraft.getConnection();
+		
 		if (clientplaynethandler != null) {
-			Packets.INSTANCE.sendToServer(new CUpdateAnnunciatorPacket(this.tile.getPos(), this.field_238846_r_[0], this.field_238846_r_[1], this.field_238846_r_[2], this.field_238846_r_[3], this.field_238846_r_[4], this.field_238846_r_[5], this.field_238846_r_[6], this.field_238846_r_[7]));
+			Packets.INSTANCE.sendToServer(new CUpdateAnnunciatorPacket(this.tileEntity.getPos(), this.multiLineText[0], this.multiLineText[1], this.multiLineText[2], this.multiLineText[3], this.multiLineText[4], this.multiLineText[5], this.multiLineText[6], this.multiLineText[7]));
 		}
 
-		this.tile.setEditable(true);
+		this.tileEntity.setEditable(true);
 	}
 
-	public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-		if (keyCode == 265) {
+	@Override
+	public void tick() {
+		++this.updateCounter;
+		if (!this.tileEntity.getType().isValidBlock(this.tileEntity.getBlockState().getBlock())) {
+			this.close();
+		}
+	}
+	
+	private void close() {
+		this.tileEntity.markDirty();
+		this.minecraft.displayGuiScreen((Screen) null);
+	}
+	
+	@Override
+	public boolean charTyped(char charIn, int modifiersIn) {
+		this.textInputUtil.putChar(charIn);
+		return true;
+	}
+	
+	@Override
+	public void closeScreen() {
+		this.close();
+	}
+	
+	@Override
+	public boolean keyPressed(int keyCodeIn, int scanCodeIn, int modifiersIn) {
+		if (keyCodeIn == 265) {
 			this.editLine = this.editLine - 1 & 7;
 			this.textInputUtil.moveCursorToEnd();
 			return true;
-		} else if (keyCode != 264 && keyCode != 257 && keyCode != 335) {
-			if (this.textInputUtil.specialKeyPressed(keyCode)) {
+		} else if (keyCodeIn != 264 && keyCodeIn != 257 && keyCodeIn != 335) {
+			if (this.textInputUtil.specialKeyPressed(keyCodeIn)) {
 				return true;
 			} else {
-				if (keyCode == 256 && this.shouldCloseOnEsc()) {
+				if (keyCodeIn == 256 && this.shouldCloseOnEsc()) {
 					this.closeScreen();
 					return true;
-				} else if (keyCode == 258) {
+				} else if (keyCodeIn == 258) {
 					boolean flag = !hasShiftDown();
 					if (!this.changeFocus(flag)) {
 						this.changeFocus(flag);
 					}
 					return false;
 				} else {
-					return this.getListener() != null && this.getListener().keyPressed(keyCode, scanCode, modifiers);
+					return this.getListener() != null && this.getListener().keyPressed(keyCodeIn, scanCodeIn, modifiersIn);
 				}
 			}
 		} else {
@@ -101,29 +127,10 @@ public class AnnunciatorScreen extends ContainerScreen<AnnunciatorContainer> {
 		}
 	}
 
-	public boolean charTyped(char codePoint, int modifiers) {
-		this.textInputUtil.putChar(codePoint);
-		return true;
-	}
-
-	public void tick() {
-		++this.updateCounter;
-		if (!this.tile.getType().isValidBlock(this.tile.getBlockState().getBlock())) {
-			this.close();
-		}
-
-	}
-
-	private void close() {
-		this.tile.markDirty();
-		this.minecraft.displayGuiScreen((Screen) null);
-	}
-
 	@Override
 	public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
 		this.renderBackground(matrixStack);
 		super.render(matrixStack, mouseX, mouseY, partialTicks);
-
 		RenderHelper.setupGuiFlatDiffuseLighting();
 
 		matrixStack.push();
@@ -133,31 +140,31 @@ public class AnnunciatorScreen extends ContainerScreen<AnnunciatorContainer> {
 		IRenderTypeBuffer.Impl irendertypebuffer$impl = this.minecraft.getRenderTypeBuffers().getBufferSource();
 		matrixStack.pop();
 
-		matrixStack.translate(256.0D, 70.0D, 0.0D);
+		matrixStack.translate(256.0D, 96.0D, 0.0D);
 
 		int i = 16383998;
 		int j = this.textInputUtil.getSelectionEnd();
 		int k = this.textInputUtil.getSelectionStart();
-		int l = this.editLine * 10 - this.field_238846_r_.length * 5;
+		int l = this.editLine * 10 - this.multiLineText.length * 5;
 		Matrix4f matrix4f = matrixStack.getLast().getMatrix();
 
-		for (int i1 = 0; i1 < this.field_238846_r_.length; ++i1) {
-			String s = this.field_238846_r_[i1];
+		for (int i1 = 0; i1 < this.multiLineText.length; ++i1) {
+			String s = this.multiLineText[i1];
+			
 			if (s != null) {
 				if (this.font.getBidiFlag()) {
 					s = this.font.bidiReorder(s);
 				}
 
 				float f3 = (float) (-this.minecraft.fontRenderer.getStringWidth(s) / 2);
-				this.minecraft.fontRenderer.drawBidiString(s, f3, (float) (i1 * 10 - this.field_238846_r_.length * 5),
-						i, false, matrix4f, irendertypebuffer$impl, false, 0, 15728880, false);
+				this.minecraft.fontRenderer.drawBidiString(s, f3, (float) (i1 * 10 - this.multiLineText.length * 5), i, false, matrix4f, irendertypebuffer$impl, false, 0, 15728880, false);
+				
 				if (i1 == this.editLine && j >= 0 && flag1) {
-					int j1 = this.minecraft.fontRenderer
-							.getStringWidth(s.substring(0, Math.max(Math.min(j, s.length()), 0)));
+					int j1 = this.minecraft.fontRenderer.getStringWidth(s.substring(0, Math.max(Math.min(j, s.length()), 0)));
 					int k1 = j1 - this.minecraft.fontRenderer.getStringWidth(s) / 2;
+					
 					if (j >= s.length()) {
-						this.minecraft.fontRenderer.drawBidiString("_", (float) k1, (float) l, i, false, matrix4f,
-								irendertypebuffer$impl, false, 0, 15728880, false);
+						this.minecraft.fontRenderer.drawBidiString("_", (float) k1, (float) l, i, false, matrix4f, irendertypebuffer$impl, false, 0, 15728880, false);
 					}
 				}
 			}
@@ -165,12 +172,13 @@ public class AnnunciatorScreen extends ContainerScreen<AnnunciatorContainer> {
 
 		irendertypebuffer$impl.finish();
 
-		for (int i3 = 0; i3 < this.field_238846_r_.length; ++i3) {
-			String s1 = this.field_238846_r_[i3];
+		for (int i3 = 0; i3 < this.multiLineText.length; ++i3) {
+			String s1 = this.multiLineText[i3];
+			
 			if (s1 != null && i3 == this.editLine && j >= 0) {
-				int j3 = this.minecraft.fontRenderer
-						.getStringWidth(s1.substring(0, Math.max(Math.min(j, s1.length()), 0)));
+				int j3 = this.minecraft.fontRenderer.getStringWidth(s1.substring(0, Math.max(Math.min(j, s1.length()), 0)));
 				int k3 = j3 - this.minecraft.fontRenderer.getStringWidth(s1) / 2;
+				
 				if (flag1 && j < s1.length()) {
 					fill(matrixStack, k3, l - 1, k3 + 1, l + 9, -16777216 | i);
 				}
@@ -178,10 +186,8 @@ public class AnnunciatorScreen extends ContainerScreen<AnnunciatorContainer> {
 				if (k != j) {
 					int l3 = Math.min(j, k);
 					int l1 = Math.max(j, k);
-					int i2 = this.minecraft.fontRenderer.getStringWidth(s1.substring(0, l3))
-							- this.minecraft.fontRenderer.getStringWidth(s1) / 2;
-					int j2 = this.minecraft.fontRenderer.getStringWidth(s1.substring(0, l1))
-							- this.minecraft.fontRenderer.getStringWidth(s1) / 2;
+					int i2 = this.minecraft.fontRenderer.getStringWidth(s1.substring(0, l3)) - this.minecraft.fontRenderer.getStringWidth(s1) / 2;
+					int j2 = this.minecraft.fontRenderer.getStringWidth(s1.substring(0, l1)) - this.minecraft.fontRenderer.getStringWidth(s1) / 2;
 					int k2 = Math.min(i2, j2);
 					int l2 = Math.max(i2, j2);
 					Tessellator tessellator = Tessellator.getInstance();
@@ -204,7 +210,6 @@ public class AnnunciatorScreen extends ContainerScreen<AnnunciatorContainer> {
 
 		matrixStack.pop();
 		RenderHelper.setupGui3DDiffuseLighting();
-
 		this.renderHoveredTooltip(matrixStack, mouseX, mouseY);
 	}
 
@@ -216,6 +221,6 @@ public class AnnunciatorScreen extends ContainerScreen<AnnunciatorContainer> {
 		int i = (this.width - this.xSize) / 2;
 		int j = (this.height - this.ySize) / 2;
 		this.blit(matrixStack, i, j, 0, 0, this.xSize, 125);
-		this.blit(matrixStack, i, j + 125, 0, 126, this.xSize, 96);
+		this.blit(matrixStack, i, j + 125, 0, 126, this.xSize, 105);
 	}
 }
