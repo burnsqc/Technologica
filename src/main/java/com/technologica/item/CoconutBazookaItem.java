@@ -28,8 +28,6 @@ public class CoconutBazookaItem extends ShootableItem implements IVanishable {
 		super(builder.setISTER(() -> CoconutBazookaItemStackTileEntityRenderer::new));
 	}
 
-	
-	
 	@Override
 	public void onPlayerStoppedUsing(ItemStack itemStackIn, World worldIn, LivingEntity livingEntityIn, int timeLeftIn) {
 		if (livingEntityIn instanceof PlayerEntity) {
