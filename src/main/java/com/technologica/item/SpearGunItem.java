@@ -12,18 +12,13 @@ import com.technologica.entity.projectile.HarpoonEntity;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.enchantment.IVanishable;
 import net.minecraft.entity.ICrossbowUser;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.item.ArrowItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.item.ShootableItem;
 import net.minecraft.item.UseAction;
 import net.minecraft.nbt.CompoundNBT;
@@ -217,23 +212,6 @@ public class SpearGunItem extends ShootableItem implements IVanishable {
 			worldIn.playSound((PlayerEntity) null, livingEntityIn.getPosX(), livingEntityIn.getPosY(), livingEntityIn.getPosZ(),
 					SoundEvents.ITEM_CROSSBOW_SHOOT, SoundCategory.PLAYERS, 1.0F, soundPitch);
 		}
-	}
-
-	private static AbstractArrowEntity createArrow(World worldIn, LivingEntity shooter, ItemStack crossbow, ItemStack ammo) {
-		ArrowItem arrowitem = (ArrowItem) (ammo.getItem() instanceof ArrowItem ? ammo.getItem() : Items.ARROW);
-		AbstractArrowEntity abstractarrowentity = arrowitem.createArrow(worldIn, ammo, shooter);
-		if (shooter instanceof PlayerEntity) {
-			abstractarrowentity.setIsCritical(true);
-		}
-
-		abstractarrowentity.setHitSound(SoundEvents.ITEM_CROSSBOW_HIT);
-		abstractarrowentity.setShotFromCrossbow(true);
-		int i = EnchantmentHelper.getEnchantmentLevel(Enchantments.PIERCING, crossbow);
-		if (i > 0) {
-			abstractarrowentity.setPierceLevel((byte) i);
-		}
-
-		return abstractarrowentity;
 	}
 
 	public static void fireProjectiles(World worldIn, LivingEntity shooter, Hand handIn, ItemStack stack, float velocityIn, float inaccuracyIn) {
