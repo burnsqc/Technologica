@@ -96,6 +96,7 @@ public class ClientSetup {
 		
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.INVISIBLE_SEAT.get(), InvisibleRenderer::new);
 		
+		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.COCONUT.get(), renderManager -> new SpriteRenderer<>(renderManager, Minecraft.getInstance().getItemRenderer()));
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.DODGEBALL.get(), renderManager -> new SpriteRenderer<>(renderManager, Minecraft.getInstance().getItemRenderer()));
 		
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.ALLIGATOR.get(), AlligatorRenderer::new);
@@ -249,7 +250,7 @@ public class ClientSetup {
 			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/zebrawood"));
 		}
 	}
-   
+	
 	private final static void automaticCutoutMipped(Collection<RegistryObject<Block>> blockCollection) {
 		for(Supplier<? extends Block> blockSupplier:blockCollection) {
 			Block block = blockSupplier.get();

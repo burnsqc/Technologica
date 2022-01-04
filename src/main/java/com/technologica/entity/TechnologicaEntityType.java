@@ -44,6 +44,7 @@ import com.technologica.entity.passive.VultureEntity;
 import com.technologica.entity.passive.WalrusEntity;
 import com.technologica.entity.passive.ZebraEntity;
 import com.technologica.entity.passive.fish.PiranhaEntity;
+import com.technologica.entity.projectile.CoconutEntity;
 import com.technologica.entity.projectile.DodgeballEntity;
 
 import net.minecraft.entity.EntityClassification;
@@ -116,6 +117,7 @@ public class TechnologicaEntityType {
      * PROJECTILES
      */
     
+    public static final RegistryObject<EntityType<CoconutEntity>> COCONUT = ENTITIES.register("coconut", () -> EntityType.Builder.<CoconutEntity>create(CoconutEntity::new, EntityClassification.MISC).size(0.25F, 0.25F).setCustomClientFactory((spawnEntity, world) -> new CoconutEntity(world, 0, 0, 0)).trackingRange(4).updateInterval(10).build("coconut"));
     public static final RegistryObject<EntityType<DodgeballEntity>> DODGEBALL = ENTITIES.register("dodgeball", () -> EntityType.Builder.<DodgeballEntity>create(DodgeballEntity::new, EntityClassification.MISC).size(0.25F, 0.25F).setCustomClientFactory((spawnEntity, world) -> new DodgeballEntity(world, 0, 0, 0)).trackingRange(4).updateInterval(10).build("dodgeball"));
     
     /*

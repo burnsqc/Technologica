@@ -34,7 +34,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 				
 			if (item instanceof BlockNamedItem) simpleItem(item);
 			else if (item instanceof BlockItem && StringHelper.getPath(item).contains("_sapling")) simpleBlockItem(item);
-			else if (!(item instanceof BlockItem)) simpleItem(item);
+			else if (!(item instanceof BlockItem) && !item.getRegistryName().getPath().contains("bazooka")) simpleItem(item);
 		}
 	}
 	
