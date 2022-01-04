@@ -161,8 +161,7 @@ public class VanillaBoatEntity extends BoatEntity {
 			this.setTimeSinceHit(10);
 			this.setDamageTaken(this.getDamageTaken() + amount * 10.0F);
 			this.markVelocityChanged();
-			boolean flag = source.getTrueSource() instanceof PlayerEntity
-					&& ((PlayerEntity) source.getTrueSource()).abilities.isCreativeMode;
+			boolean flag = source.getTrueSource() instanceof PlayerEntity && ((PlayerEntity) source.getTrueSource()).abilities.isCreativeMode;
 			if (flag || this.getDamageTaken() > 40.0F) {
 				if (!flag && this.world.getGameRules().getBoolean(GameRules.DO_ENTITY_DROPS)) {
 					this.entityDropItem(this.getItemBoat());
@@ -303,8 +302,7 @@ public class VanillaBoatEntity extends BoatEntity {
 	public void tick() {
 		this.previousStatus = this.status;
 		this.status = this.getBoatStatus();
-		if (this.status != VanillaBoatEntity.Status.UNDER_WATER
-				&& this.status != VanillaBoatEntity.Status.UNDER_FLOWING_WATER) {
+		if (this.status != VanillaBoatEntity.Status.UNDER_WATER && this.status != VanillaBoatEntity.Status.UNDER_FLOWING_WATER) {
 			this.outOfControlTicks = 0.0F;
 		} else {
 			++this.outOfControlTicks;
@@ -366,18 +364,15 @@ public class VanillaBoatEntity extends BoatEntity {
 		}
 
 		this.doBlockCollisions();
-		List<Entity> list = this.world.getEntitiesInAABBexcluding(this,
-				this.getBoundingBox().grow((double) 0.2F, (double) -0.01F, (double) 0.2F),
-				EntityPredicates.pushableBy(this));
+		List<Entity> list = this.world.getEntitiesInAABBexcluding(this, this.getBoundingBox().grow((double) 0.2F, (double) -0.01F, (double) 0.2F), EntityPredicates.pushableBy(this));
+		
 		if (!list.isEmpty()) {
 			boolean flag = !this.world.isRemote && !(this.getControllingPassenger() instanceof PlayerEntity);
 
 			for (int j = 0; j < list.size(); ++j) {
 				Entity entity = list.get(j);
 				if (!entity.isPassenger(this)) {
-					if (flag && this.getPassengers().size() < 2 && !entity.isPassenger()
-							&& entity.getWidth() < this.getWidth() && entity instanceof LivingEntity
-							&& !(entity instanceof WaterMobEntity) && !(entity instanceof PlayerEntity)) {
+					if (flag && this.getPassengers().size() < 2 && !entity.isPassenger() && entity.getWidth() < this.getWidth() && entity instanceof LivingEntity && !(entity instanceof WaterMobEntity) && !(entity instanceof PlayerEntity)) {
 						entity.startRiding(this);
 					} else {
 						this.applyEntityCollision(entity);
@@ -940,18 +935,16 @@ public class VanillaBoatEntity extends BoatEntity {
 	}
 
 	public boolean canSwim() {
-		return this.status == VanillaBoatEntity.Status.UNDER_WATER
-				|| this.status == VanillaBoatEntity.Status.UNDER_FLOWING_WATER;
+		return this.status == VanillaBoatEntity.Status.UNDER_WATER || this.status == VanillaBoatEntity.Status.UNDER_FLOWING_WATER;
 	}
 
-	// Forge: Fix MC-119811 by instantly completing lerp on board
+	
 	@Override
 	protected void addPassenger(Entity passenger) {
 		super.addPassenger(passenger);
 		if (this.canPassengerSteer() && this.lerpSteps > 0) {
 			this.lerpSteps = 0;
-			this.setPositionAndRotation(this.lerpX, this.lerpY, this.lerpZ, (float) this.lerpYaw,
-					(float) this.lerpPitch);
+			this.setPositionAndRotation(this.lerpX, this.lerpY, this.lerpZ, (float) this.lerpYaw, (float) this.lerpPitch);
 		}
 	}
 
