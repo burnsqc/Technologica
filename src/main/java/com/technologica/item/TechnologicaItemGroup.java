@@ -60,6 +60,13 @@ public class TechnologicaItemGroup {
 		}
 	}.setBackgroundImage(new ResourceLocation(Technologica.MODID, "textures/gui/container/creative_inventory/tab_decorative.png"));
 	
+	public static final ItemGroup ARMORY = new ItemGroup("armory") {
+		@Override
+		public ItemStack createIcon() {
+			return new ItemStack(TechnologicaItems.COCONUT_BAZOOKA_ITEM.get());
+		}
+	}.setBackgroundImage(new ResourceLocation(Technologica.MODID, "textures/gui/container/creative_inventory/tab_armory.png"));
+	
 	public static final ItemGroup CRYPTICA = new ItemGroup("cryptica") {
 		@Override
 		public ItemStack createIcon() {

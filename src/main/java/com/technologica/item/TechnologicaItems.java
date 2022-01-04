@@ -414,7 +414,6 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> TAPENADE = ITEMS.register("tapenade", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
     public static final RegistryObject<Item> CINNAMON_ROLL = ITEMS.register("cinnamon_roll", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(0.1F).setAlwaysEdible().build())));
     
-
     /**
      * CONSTRUCTION
      */
@@ -980,11 +979,6 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> OVERLAY_WARN_ITEM = ITEMS.register("overlay_warn", () -> new Item(new Properties().group(TechnologicaItemGroup.MACHINERY)));
     public static final RegistryObject<Item> OVERLAY_FAIL_ITEM = ITEMS.register("overlay_fail", () -> new Item(new Properties().group(TechnologicaItemGroup.MACHINERY)));
     
-    public static final RegistryObject<Item> SPACE_HELMET = ITEMS.register("space_helmet", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, EquipmentSlotType.HEAD, (new Item.Properties()).group(TechnologicaItemGroup.MACHINERY)));
-    public static final RegistryObject<Item> SPACE_SUIT = ITEMS.register("space_suit", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, EquipmentSlotType.CHEST, (new Item.Properties()).group(TechnologicaItemGroup.MACHINERY)));
-    public static final RegistryObject<Item> SPACE_PANTS = ITEMS.register("space_pants", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, EquipmentSlotType.LEGS, (new Item.Properties()).group(TechnologicaItemGroup.MACHINERY)));
-    public static final RegistryObject<Item> SPACE_BOOTS = ITEMS.register("space_boots", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, EquipmentSlotType.FEET, (new Item.Properties()).group(TechnologicaItemGroup.MACHINERY)));
-    
     /**
      * DECORATIVE
      */
@@ -1058,8 +1052,18 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> WARPED_TABLE_ITEM = ITEMS.register("warped_table", () -> new BlockItem(TechnologicaBlocks.WARPED_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     public static final RegistryObject<Item> ZEBRAWOOD_TABLE_ITEM = ITEMS.register("zebrawood_table", () -> new BlockItem(TechnologicaBlocks.ZEBRAWOOD_TABLE.get(), new Item.Properties().group(TechnologicaItemGroup.DECORATIVE)));
     
-    public static final RegistryObject<Item> DODGEBALL_ITEM = ITEMS.register("dodgeball", () -> new DodgeballItem((new Item.Properties()).maxStackSize(1).group(TechnologicaItemGroup.DECORATIVE)));
-    public static final RegistryObject<Item> COCONUT_BAZOOKA_ITEM = ITEMS.register("coconut_bazooka", () -> new CoconutBazookaItem((new Item.Properties()).maxDamage(384).group(TechnologicaItemGroup.DECORATIVE)));
+    /**
+     * ARMORY
+     */
+    
+    public static final RegistryObject<Item> COCONUT_BAZOOKA_ITEM = ITEMS.register("coconut_bazooka", () -> new CoconutBazookaItem((new Item.Properties()).maxDamage(384).group(TechnologicaItemGroup.ARMORY)));
+    public static final RegistryObject<Item> DODGEBALL_ITEM = ITEMS.register("dodgeball", () -> new DodgeballItem((new Item.Properties()).maxStackSize(1).group(TechnologicaItemGroup.ARMORY)));
+    
+    public static final RegistryObject<Item> SPACE_HELMET = ITEMS.register("space_helmet", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, EquipmentSlotType.HEAD, (new Item.Properties()).group(TechnologicaItemGroup.ARMORY)));
+    public static final RegistryObject<Item> SPACE_SUIT = ITEMS.register("space_suit", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, EquipmentSlotType.CHEST, (new Item.Properties()).group(TechnologicaItemGroup.ARMORY)));
+    public static final RegistryObject<Item> SPACE_PANTS = ITEMS.register("space_pants", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, EquipmentSlotType.LEGS, (new Item.Properties()).group(TechnologicaItemGroup.ARMORY)));
+    public static final RegistryObject<Item> SPACE_BOOTS = ITEMS.register("space_boots", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, EquipmentSlotType.FEET, (new Item.Properties()).group(TechnologicaItemGroup.ARMORY)));
+    
     
     public static void register() {
         ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());

@@ -31,6 +31,7 @@ public class ModLanguageProvider extends LanguageProvider {
 			TechnologicaItemGroup.CONSTRUCTION,
 			TechnologicaItemGroup.MACHINERY,
 			TechnologicaItemGroup.DECORATIVE,
+			TechnologicaItemGroup.ARMORY,
 			TechnologicaItemGroup.CRYPTICA
 		);
 	}
