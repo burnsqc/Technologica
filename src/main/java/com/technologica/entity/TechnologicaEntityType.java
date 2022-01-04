@@ -46,6 +46,7 @@ import com.technologica.entity.passive.ZebraEntity;
 import com.technologica.entity.passive.fish.PiranhaEntity;
 import com.technologica.entity.projectile.CoconutEntity;
 import com.technologica.entity.projectile.DodgeballEntity;
+import com.technologica.entity.projectile.HarpoonEntity;
 
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -119,6 +120,7 @@ public class TechnologicaEntityType {
     
     public static final RegistryObject<EntityType<CoconutEntity>> COCONUT = ENTITIES.register("coconut", () -> EntityType.Builder.<CoconutEntity>create(CoconutEntity::new, EntityClassification.MISC).size(0.25F, 0.25F).setCustomClientFactory((spawnEntity, world) -> new CoconutEntity(world, 0, 0, 0)).trackingRange(4).updateInterval(10).build("coconut"));
     public static final RegistryObject<EntityType<DodgeballEntity>> DODGEBALL = ENTITIES.register("dodgeball", () -> EntityType.Builder.<DodgeballEntity>create(DodgeballEntity::new, EntityClassification.MISC).size(0.25F, 0.25F).setCustomClientFactory((spawnEntity, world) -> new DodgeballEntity(world, 0, 0, 0)).trackingRange(4).updateInterval(10).build("dodgeball"));
+    public static final RegistryObject<EntityType<HarpoonEntity>> HARPOON = ENTITIES.register("harpoon", () -> EntityType.Builder.<HarpoonEntity>create(HarpoonEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).setCustomClientFactory((spawnEntity, world) -> new HarpoonEntity(world, 0, 0, 0)).trackingRange(4).updateInterval(20).build("dodgeball"));
     
     /*
 	 * OTHER

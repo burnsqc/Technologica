@@ -27,6 +27,7 @@ import com.technologica.client.renderer.entity.FrogRenderer;
 import com.technologica.client.renderer.entity.GiraffeRenderer;
 import com.technologica.client.renderer.entity.GorillaRenderer;
 import com.technologica.client.renderer.entity.GrizzlyBearRenderer;
+import com.technologica.client.renderer.entity.HarpoonRenderer;
 import com.technologica.client.renderer.entity.InvisibleRenderer;
 import com.technologica.client.renderer.entity.JaguarRenderer;
 import com.technologica.client.renderer.entity.KingCrabRenderer;
@@ -98,6 +99,7 @@ public class ClientSetup {
 		
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.COCONUT.get(), renderManager -> new SpriteRenderer<>(renderManager, Minecraft.getInstance().getItemRenderer()));
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.DODGEBALL.get(), renderManager -> new SpriteRenderer<>(renderManager, Minecraft.getInstance().getItemRenderer()));
+		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.HARPOON.get(), HarpoonRenderer::new);
 		
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.ALLIGATOR.get(), AlligatorRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.BEAVER.get(), BeaverRenderer::new);

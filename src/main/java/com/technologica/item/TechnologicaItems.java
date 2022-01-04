@@ -1058,6 +1058,8 @@ public class TechnologicaItems {
     
     public static final RegistryObject<Item> COCONUT_BAZOOKA_ITEM = ITEMS.register("coconut_bazooka", () -> new CoconutBazookaItem((new Item.Properties()).maxDamage(384).group(TechnologicaItemGroup.ARMORY)));
     public static final RegistryObject<Item> DODGEBALL_ITEM = ITEMS.register("dodgeball", () -> new DodgeballItem((new Item.Properties()).maxStackSize(1).group(TechnologicaItemGroup.ARMORY)));
+    public static final RegistryObject<Item> SPEAR_GUN_ITEM = ITEMS.register("spear_gun", () -> new SpearGunItem((new Item.Properties()).maxDamage(384).group(TechnologicaItemGroup.ARMORY)));
+    public static final RegistryObject<Item> HARPOON = ITEMS.register("harpoon", () -> new Item(new Properties().group(TechnologicaItemGroup.ARMORY)));
     
     public static final RegistryObject<Item> SPACE_HELMET = ITEMS.register("space_helmet", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, EquipmentSlotType.HEAD, (new Item.Properties()).group(TechnologicaItemGroup.ARMORY)));
     public static final RegistryObject<Item> SPACE_SUIT = ITEMS.register("space_suit", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, EquipmentSlotType.CHEST, (new Item.Properties()).group(TechnologicaItemGroup.ARMORY)));
