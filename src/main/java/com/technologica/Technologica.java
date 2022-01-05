@@ -12,6 +12,7 @@ import com.technologica.item.crafting.TechnologicaRecipeSerializer;
 import com.technologica.listeners.BadLuckBananaWhenFishing;
 import com.technologica.listeners.DisableLogDrops;
 import com.technologica.listeners.DropBarkOnLogStrip;
+import com.technologica.listeners.ExtraAirMeter;
 import com.technologica.listeners.LunarLowGrav;
 import com.technologica.listeners.RegisterEntityAttributes;
 import com.technologica.particles.TechnologicaParticleTypes;
@@ -95,5 +96,6 @@ public class Technologica {
 		MinecraftForge.EVENT_BUS.register(new LunarLowGrav());
 		MinecraftForge.EVENT_BUS.register(new DropBarkOnLogStrip());
 		MinecraftForge.EVENT_BUS.register(new DisableLogDrops());
+		MinecraftForge.EVENT_BUS.register(new ExtraAirMeter());
 	}
 }

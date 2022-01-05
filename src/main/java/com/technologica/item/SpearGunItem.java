@@ -24,6 +24,7 @@ import net.minecraft.item.UseAction;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.stats.Stats;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
@@ -317,7 +318,7 @@ public class SpearGunItem extends ShootableItem implements IVanishable {
 	}
 
 	private static float setVelocity(ItemStack itemStackIn, PlayerEntity playerIn) {
-		return hasChargedProjectile(itemStackIn, TechnologicaItems.HARPOON.get()) && playerIn.isInWater() ? 3.0F : 0.5F;
+		return hasChargedProjectile(itemStackIn, TechnologicaItems.HARPOON.get()) && playerIn.areEyesInFluid(FluidTags.WATER) ? 3.0F : 0.5F;
 	}
 
 	public int func_230305_d_() {
