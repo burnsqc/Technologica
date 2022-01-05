@@ -15,6 +15,10 @@ import net.minecraft.util.SoundEvents;
 public enum TechnologicaArmorMaterial implements IArmorMaterial {
 	SPACE("space", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
 	      return Ingredient.fromItems(Items.IRON_INGOT);
+	   }),
+	
+	SNORKEL("snorkel", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+	      return Ingredient.fromItems(TechnologicaItems.RUBBER.get());
 	   });
 	
 	private static final int[] MAX_DAMAGE_ARRAY = new int[] { 13, 15, 16, 11 };

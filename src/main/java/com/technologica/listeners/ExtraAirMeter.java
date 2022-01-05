@@ -12,6 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
+import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -24,14 +25,14 @@ public class ExtraAirMeter {
 		Iterable<ItemStack> armor = player.getArmorInventoryList();
 
 		for (ItemStack piece : armor) {
-			if (!piece.getItem().getRegistryName().getPath().contains("scuba")) {
+			if (!piece.getItem().getRegistryName().getPath().contains("snorkel")) {
 				fullSet = false;
 			}
 		}
 		
 		if (fullSet) {
 			if (!player.areEyesInFluid(FluidTags.WATER) || player.world.getBlockState(new BlockPos(player.getPosX(), player.getPosYEye(), player.getPosZ())).matchesBlock(Blocks.BUBBLE_COLUMN)) {
-				if (player.getAir() >= 300 && player.getAir() < 600) {
+				if (player.getAir() >= 300 && player.getAir() < 600 && event.phase == Phase.END) {
   					player.setAir(Math.min(player.getAir() + 4, 600));
 				}
 			}
@@ -52,7 +53,7 @@ public class ExtraAirMeter {
 			boolean fullSet = true;
 
 			for (ItemStack piece : armor) {
-				if (!piece.getItem().getRegistryName().getPath().contains("scuba")) {
+				if (!piece.getItem().getRegistryName().getPath().contains("snorkel")) {
 					fullSet = false;
 				}
 			}
