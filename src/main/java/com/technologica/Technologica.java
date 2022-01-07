@@ -15,6 +15,7 @@ import com.technologica.listeners.DropBarkOnLogStrip;
 import com.technologica.listeners.ExtraAirMeter;
 import com.technologica.listeners.LunarLowGrav;
 import com.technologica.listeners.RegisterEntityAttributes;
+import com.technologica.listeners.WaterWalk;
 import com.technologica.particles.TechnologicaParticleTypes;
 import com.technologica.setup.ClientSetup;
 import com.technologica.setup.CommonSetup;
@@ -97,5 +98,6 @@ public class Technologica {
 		MinecraftForge.EVENT_BUS.register(new DropBarkOnLogStrip());
 		MinecraftForge.EVENT_BUS.register(new DisableLogDrops());
 		MinecraftForge.EVENT_BUS.register(new ExtraAirMeter());
+		MinecraftForge.EVENT_BUS.register(new WaterWalk());
 	}
 }
