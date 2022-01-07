@@ -1071,6 +1071,11 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> SNORKEL_PANTS = ITEMS.register("snorkel_pants", () -> new ArmorItem(TechnologicaArmorMaterial.SNORKEL, EquipmentSlotType.LEGS, (new Item.Properties()).group(TechnologicaItemGroup.ARMORY)));
     public static final RegistryObject<Item> SNORKEL_BOOTS = ITEMS.register("snorkel_boots", () -> new ArmorItem(TechnologicaArmorMaterial.SNORKEL, EquipmentSlotType.FEET, (new Item.Properties()).group(TechnologicaItemGroup.ARMORY)));
     
+    public static final RegistryObject<Item> DIVE_HELMET = ITEMS.register("dive_helmet", () -> new ArmorItem(TechnologicaArmorMaterial.SNORKEL, EquipmentSlotType.HEAD, (new Item.Properties()).group(TechnologicaItemGroup.ARMORY)));
+    public static final RegistryObject<Item> DIVE_SUIT = ITEMS.register("dive_suit", () -> new ArmorItem(TechnologicaArmorMaterial.SNORKEL, EquipmentSlotType.CHEST, (new Item.Properties()).group(TechnologicaItemGroup.ARMORY)));
+    public static final RegistryObject<Item> DIVE_PANTS = ITEMS.register("dive_pants", () -> new ArmorItem(TechnologicaArmorMaterial.SNORKEL, EquipmentSlotType.LEGS, (new Item.Properties()).group(TechnologicaItemGroup.ARMORY)));
+    public static final RegistryObject<Item> DIVE_BOOTS = ITEMS.register("dive_boots", () -> new ArmorItem(TechnologicaArmorMaterial.SNORKEL, EquipmentSlotType.FEET, (new Item.Properties()).group(TechnologicaItemGroup.ARMORY)));
+    
     
     public static void register() {
         ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());

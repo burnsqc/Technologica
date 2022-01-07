@@ -1,5 +1,7 @@
 package com.technologica.listeners;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemStack;
@@ -29,21 +31,42 @@ public class WaterWalk {
 				}
 			}
 
-			player.getAttribute(ForgeMod.SWIM_SPEED.get()).setBaseValue(1.0F);
+			if (fullSet) {
+				player.getAttribute(ForgeMod.SWIM_SPEED.get()).setBaseValue(2.0F);
+			} else {
+				player.getAttribute(ForgeMod.SWIM_SPEED.get()).setBaseValue(1.0F);
+			}
 		}
 	}
 
 	@SubscribeEvent
 	public void onPlayerTickEvent(PlayerTickEvent event) {
 		PlayerEntity player = (PlayerEntity) event.player;
-		
-		if (event.phase == TickEvent.Phase.START) {
-			
+		Minecraft mc = Minecraft.getInstance();
+		boolean fullSet = true;
+		Iterable<ItemStack> armor = player.getArmorInventoryList();
+
+		for (ItemStack piece : armor) {
+			if (!piece.getItem().getRegistryName().getPath().contains("dive")) {
+				fullSet = false;
+			}
 		}
 		
-		if (event.phase == TickEvent.Phase.END) {
-			//unHandleWaterAcceleration(player);
-			player.setMotion(0.0D, 0.0D, 0.0D);	
+		
+		if (player instanceof ClientPlayerEntity && fullSet && !player.abilities.isFlying) {
+			if (event.phase == TickEvent.Phase.START) {
+				unHandleWaterAcceleration(player);
+				if (player.isInWater()) {
+					if (!player.isOnGround()) {
+						player.setMotion(player.getMotion().x, player.getMotion().y - 0.12, player.getMotion().z);
+						player.velocityChanged = true;
+					} else {
+ 						if (mc.gameSettings.keyBindJump.isKeyDown()) {
+ 							player.jump();
+						}
+					}  
+				}
+			}
 		}
 	}
 
@@ -102,7 +125,7 @@ public class WaterWalk {
 
 				Vector3d vector3d2 = player.getMotion();
 				vector3d = vector3d.scale(0.014D * 1.0D);
-				double d2 = 0.003D;
+				
 				if (Math.abs(vector3d2.x) < 0.003D && Math.abs(vector3d2.z) < 0.003D
 						&& vector3d.length() < 0.0045000000000000005D) {
 					vector3d = vector3d.normalize().scale(0.0045000000000000005D);
