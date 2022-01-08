@@ -19,6 +19,14 @@ public enum TechnologicaArmorMaterial implements IArmorMaterial {
 	
 	SNORKEL("snorkel", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
 	      return Ingredient.fromItems(TechnologicaItems.RUBBER.get());
+	   }),
+	
+	DIVE("dive", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+	      return Ingredient.fromItems(TechnologicaItems.COPPER_INGOT.get());
+	   }),
+	
+	SCUBA("scuba", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+	      return Ingredient.fromItems(TechnologicaItems.RUBBER.get());
 	   });
 	
 	private static final int[] MAX_DAMAGE_ARRAY = new int[] { 13, 15, 16, 11 };

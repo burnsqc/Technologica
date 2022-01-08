@@ -17,22 +17,28 @@ import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class WaterWalk {
-
+	
 	@SubscribeEvent
 	public void onLivingEquipmentChangeEvent(LivingEquipmentChangeEvent event) {
 		if (event.getEntity() instanceof PlayerEntity) {
 			PlayerEntity player = (PlayerEntity) event.getEntity();
-			boolean fullSet = true;
+			boolean fullDiveSet = true;
+			boolean fullScubaSet = true;
 			Iterable<ItemStack> armor = player.getArmorInventoryList();
 
 			for (ItemStack piece : armor) {
 				if (!piece.getItem().getRegistryName().getPath().contains("dive")) {
-					fullSet = false;
+					fullDiveSet = false;
+				}
+				if (!piece.getItem().getRegistryName().getPath().contains("scuba")) {
+					fullScubaSet = false;
 				}
 			}
 
-			if (fullSet) {
+			if (fullDiveSet) {
 				player.getAttribute(ForgeMod.SWIM_SPEED.get()).setBaseValue(2.0F);
+			} else if (fullScubaSet) {
+				player.getAttribute(ForgeMod.SWIM_SPEED.get()).setBaseValue(3.0F);
 			} else {
 				player.getAttribute(ForgeMod.SWIM_SPEED.get()).setBaseValue(1.0F);
 			}
@@ -43,17 +49,20 @@ public class WaterWalk {
 	public void onPlayerTickEvent(PlayerTickEvent event) {
 		PlayerEntity player = (PlayerEntity) event.player;
 		Minecraft mc = Minecraft.getInstance();
-		boolean fullSet = true;
+		boolean fullDiveSet = true;
+		boolean fullScubaSet = true;
 		Iterable<ItemStack> armor = player.getArmorInventoryList();
 
 		for (ItemStack piece : armor) {
 			if (!piece.getItem().getRegistryName().getPath().contains("dive")) {
-				fullSet = false;
+				fullDiveSet = false;
+			}
+			if (!piece.getItem().getRegistryName().getPath().contains("scuba")) {
+				fullScubaSet = false;
 			}
 		}
-		
-		
-		if (player instanceof ClientPlayerEntity && fullSet && !player.abilities.isFlying) {
+
+		if (player instanceof ClientPlayerEntity && fullDiveSet && !player.abilities.isFlying) {
 			if (event.phase == TickEvent.Phase.START) {
 				unHandleWaterAcceleration(player);
 				if (player.isInWater()) {
@@ -61,10 +70,17 @@ public class WaterWalk {
 						player.setMotion(player.getMotion().x, player.getMotion().y - 0.12, player.getMotion().z);
 						player.velocityChanged = true;
 					} else {
- 						if (mc.gameSettings.keyBindJump.isKeyDown()) {
- 							player.jump();
+						if (mc.gameSettings.keyBindJump.isKeyDown()) {
+							player.jump();
 						}
-					}  
+					}
+				}
+			}
+		} else if (player instanceof ClientPlayerEntity && fullScubaSet && !player.abilities.isFlying) {
+			if (event.phase == TickEvent.Phase.START) {
+				if (player.isInWater()) {
+					player.setMotion(player.getMotion().x, 0.0F, player.getMotion().z);
+					player.velocityChanged = true;
 				}
 			}
 		}
@@ -95,7 +111,8 @@ public class WaterWalk {
 						blockpos$mutable.setPos(l1, i2, j2);
 						FluidState fluidstate = player.world.getFluidState(blockpos$mutable);
 						if (fluidstate.isTagged(FluidTags.WATER)) {
-							double d1 = (double) ((float) i2 + fluidstate.getActualHeight(player.world, blockpos$mutable));
+							double d1 = (double) ((float) i2
+									+ fluidstate.getActualHeight(player.world, blockpos$mutable));
 							if (d1 >= axisalignedbb.minY) {
 								flag1 = true;
 								d0 = Math.max(d1 - axisalignedbb.minY, d0);
@@ -125,7 +142,7 @@ public class WaterWalk {
 
 				Vector3d vector3d2 = player.getMotion();
 				vector3d = vector3d.scale(0.014D * 1.0D);
-				
+
 				if (Math.abs(vector3d2.x) < 0.003D && Math.abs(vector3d2.z) < 0.003D
 						&& vector3d.length() < 0.0045000000000000005D) {
 					vector3d = vector3d.normalize().scale(0.0045000000000000005D);
@@ -137,7 +154,4 @@ public class WaterWalk {
 			return flag1;
 		}
 	}
-
-	
-	
 }
