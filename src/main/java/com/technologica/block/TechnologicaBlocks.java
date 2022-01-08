@@ -199,6 +199,8 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> CONDUCTIVE_LEAVES = BLOCKS.register("conductive_leaves", () -> new MagicLeavesBlock(1));
     public static final RegistryObject<Block> FROSTBITTEN_LEAVES = BLOCKS.register("frostbitten_leaves", () -> new MagicLeavesBlock(2)); 
     
+    public static final RegistryObject<Block> MULCH = BLOCKS.register("mulch", MulchBlock::new);
+    
     /*
      * MINERAL
      */
@@ -254,30 +256,30 @@ public class TechnologicaBlocks {
      * CONSTRUCTION
      */
     
-    public static final RegistryObject<Block> APRICOT_LOG = BLOCKS.register("apricot_log", VanillaLogBlock::new);  
+    public static final RegistryObject<Block> APRICOT_LOG = BLOCKS.register("apricot_log", FruitingLogBlock::new);  
     public static final RegistryObject<Block> ASPEN_LOG = BLOCKS.register("aspen_log", VanillaLogBlock::new);  
-    public static final RegistryObject<Block> AVOCADO_LOG = BLOCKS.register("avocado_log", VanillaLogBlock::new);  
-    public static final RegistryObject<Block> BANANA_LOG = BLOCKS.register("banana_log", VanillaLogBlock::new);
-    public static final RegistryObject<Block> CHERRY_LOG = BLOCKS.register("cherry_log", VanillaLogBlock::new);
-    public static final RegistryObject<Block> CHESTNUT_LOG = BLOCKS.register("chestnut_log", VanillaLogBlock::new);  
+    public static final RegistryObject<Block> AVOCADO_LOG = BLOCKS.register("avocado_log", FruitingLogBlock::new);  
+    public static final RegistryObject<Block> BANANA_LOG = BLOCKS.register("banana_log", FruitingLogBlock::new);
+    public static final RegistryObject<Block> CHERRY_LOG = BLOCKS.register("cherry_log", FruitingLogBlock::new);
+    public static final RegistryObject<Block> CHESTNUT_LOG = BLOCKS.register("chestnut_log", FruitingLogBlock::new);  
     public static final RegistryObject<Block> CINNAMON_LOG = BLOCKS.register("cinnamon_log", VanillaLogBlock::new);  
-    public static final RegistryObject<Block> COCONUT_LOG = BLOCKS.register("coconut_log", VanillaLogBlock::new);
+    public static final RegistryObject<Block> COCONUT_LOG = BLOCKS.register("coconut_log",FruitingLogBlock::new);
     public static final RegistryObject<Block> EBONY_LOG = BLOCKS.register("ebony_log", VanillaLogBlock::new);  
-    public static final RegistryObject<Block> KIWI_LOG = BLOCKS.register("kiwi_log", VanillaLogBlock::new);
-    public static final RegistryObject<Block> LEMON_LOG = BLOCKS.register("lemon_log", VanillaLogBlock::new);
-    public static final RegistryObject<Block> LIME_LOG = BLOCKS.register("lime_log", VanillaLogBlock::new);
+    public static final RegistryObject<Block> KIWI_LOG = BLOCKS.register("kiwi_log", FruitingLogBlock::new);
+    public static final RegistryObject<Block> LEMON_LOG = BLOCKS.register("lemon_log", FruitingLogBlock::new);
+    public static final RegistryObject<Block> LIME_LOG = BLOCKS.register("lime_log", FruitingLogBlock::new);
     public static final RegistryObject<Block> MAHOGANY_LOG = BLOCKS.register("mahogany_log", VanillaLogBlock::new); 
     public static final RegistryObject<Block> MAPLE_LOG = BLOCKS.register("maple_log", SapLogBlock::new);  
-    public static final RegistryObject<Block> OLIVE_LOG = BLOCKS.register("olive_log", VanillaLogBlock::new);  
-    public static final RegistryObject<Block> ORANGE_LOG = BLOCKS.register("orange_log", VanillaLogBlock::new);
-    public static final RegistryObject<Block> PEACH_LOG = BLOCKS.register("peach_log", VanillaLogBlock::new);
-    public static final RegistryObject<Block> PEAR_LOG = BLOCKS.register("pear_log", VanillaLogBlock::new);
-    public static final RegistryObject<Block> PLUM_LOG = BLOCKS.register("plum_log", VanillaLogBlock::new); 
+    public static final RegistryObject<Block> OLIVE_LOG = BLOCKS.register("olive_log", FruitingLogBlock::new);  
+    public static final RegistryObject<Block> ORANGE_LOG = BLOCKS.register("orange_log", FruitingLogBlock::new);
+    public static final RegistryObject<Block> PEACH_LOG = BLOCKS.register("peach_log", FruitingLogBlock::new);
+    public static final RegistryObject<Block> PEAR_LOG = BLOCKS.register("pear_log", FruitingLogBlock::new);
+    public static final RegistryObject<Block> PLUM_LOG = BLOCKS.register("plum_log", FruitingLogBlock::new); 
     public static final RegistryObject<Block> REDWOOD_LOG = BLOCKS.register("redwood_log", VanillaLogBlock::new);
     public static final RegistryObject<Block> ROSEWOOD_LOG = BLOCKS.register("rosewood_log", VanillaLogBlock::new);
     public static final RegistryObject<Block> RUBBER_LOG = BLOCKS.register("rubber_log", SapLogBlock::new); 
     public static final RegistryObject<Block> TEAK_LOG = BLOCKS.register("teak_log", VanillaLogBlock::new);  
-    public static final RegistryObject<Block> WALNUT_LOG = BLOCKS.register("walnut_log", VanillaLogBlock::new);  
+    public static final RegistryObject<Block> WALNUT_LOG = BLOCKS.register("walnut_log", FruitingLogBlock::new);  
     public static final RegistryObject<Block> ZEBRAWOOD_LOG = BLOCKS.register("zebrawood_log", VanillaLogBlock::new);  
     public static final RegistryObject<Block> ALCHEMICAL_LOG = BLOCKS.register("alchemical_log", VanillaLogBlock::new); 
     public static final RegistryObject<Block> BENEVOLENT_LOG = BLOCKS.register("benevolent_log", VanillaLogBlock::new);

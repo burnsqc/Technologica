@@ -315,7 +315,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> IODINE_CHUNK = ITEMS.register("iodine_chunk", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.MINERAL)));
     public static final RegistryObject<Item> ASTATINE_CHUNK = ITEMS.register("astatine_chunk", () -> new RadioactiveItem(new Properties().group(TechnologicaItemGroup.MINERAL)));
     
-    public static final RegistryObject<Item> MULCH = ITEMS.register("mulch", () -> new Item(new Properties().group(TechnologicaItemGroup.MINERAL)));
+    public static final RegistryObject<Item> MULCH = ITEMS.register("mulch", () -> new MulchItem(new Properties().group(TechnologicaItemGroup.FLORA)));
     public static final RegistryObject<Item> SAWDUST = ITEMS.register("sawdust", () -> new Item(new Properties().group(TechnologicaItemGroup.MINERAL)));
     public static final RegistryObject<Item> RUBBER = ITEMS.register("rubber", () -> new Item(new Properties().group(TechnologicaItemGroup.MINERAL)));
     

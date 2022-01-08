@@ -117,6 +117,9 @@ public class TechnologicaTileEntities {
 	public static final RegistryObject<TileEntityType<AnnunciatorTileEntity>> ANNUNCIATOR_TILE = TILEENTITIES.register("annunciator_tile", 
 			() -> TileEntityType.Builder.create(AnnunciatorTileEntity::new, 
 					TechnologicaBlocks.ANNUNCIATOR.get()).build(null));
+	public static final RegistryObject<TileEntityType<MulchTileEntity>> MULCH_TILE = TILEENTITIES.register("mulch_tile", 
+			() -> TileEntityType.Builder.create(MulchTileEntity::new, 
+					TechnologicaBlocks.MULCH.get()).build(null));
 
 	public static void register() {
 		TILEENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());

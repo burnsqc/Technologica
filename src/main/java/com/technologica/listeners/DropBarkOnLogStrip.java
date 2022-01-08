@@ -14,7 +14,7 @@ public class DropBarkOnLogStrip {
 
 	@SubscribeEvent
 	public void onRightClickBlock(RightClickBlock event) {
-		if (event.getItemStack().getItem() instanceof AxeItem & event.getWorld().getBlockState(event.getPos()).getBlock().isIn(BlockTags.LOGS) & !event.getWorld().getBlockState(event.getPos()).getBlock().getRegistryName().getPath().contains("stripped")) {
+		if (event.getItemStack().getItem() instanceof AxeItem && event.getWorld().getBlockState(event.getPos()).getBlock().isIn(BlockTags.LOGS) && !event.getWorld().getBlockState(event.getPos()).getBlock().getRegistryName().getPath().contains("stripped")) {
 			ItemStack bark;
 			
 			if (!event.getWorld().getBlockState(event.getPos()).getBlock().getRegistryName().getPath().contains("cinnamon")) {

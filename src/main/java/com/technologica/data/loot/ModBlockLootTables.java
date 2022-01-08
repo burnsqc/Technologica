@@ -55,6 +55,7 @@ public class ModBlockLootTables extends BlockLootTables {
 		
 		registerLootTable(TechnologicaBlocks.LITHIUM_CLAY.get(), (clay) -> droppingWithSilkTouchOrRandomly(clay, TechnologicaItems.LITHIUM_CLAY_BALL.get(), ConstantRange.of(4)));
 		registerDropSelfLootTable(TechnologicaBlocks.SALT.get());
+		registerDropping(TechnologicaBlocks.MULCH.get(), Blocks.DIRT);
 		
 		registerDropSelfLootTable(TechnologicaBlocks.LINE_SHAFT_HANGER.get());
 		registerDropping(TechnologicaBlocks.LINE_SHAFT.get(), TechnologicaItems.STEEL_SHAFT.get());
@@ -84,8 +85,7 @@ public class ModBlockLootTables extends BlockLootTables {
 			Block block = blockSupplier.get();
 			String path = StringHelper.getPath(block);
 			
-			if (block.getClass().equals(VanillaLogBlock.class)) registerDropSelfLootTable(block);
-			else if (block.getClass().equals(SapLogBlock.class)) registerDropSelfLootTable(block);
+			if (block instanceof VanillaLogBlock) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(SaplingBlock.class)) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(FlowerPotBlock.class)) registerFlowerPot(block);
 			else if (block.getClass().equals(VanillaPlanksBlock.class)) registerDropSelfLootTable(block);

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "side": "technologica:block/mulch_side",
+    "bottom": "minecraft:block/dirt",
+    "top": "technologica:block/mulch_top"
+  }
+}

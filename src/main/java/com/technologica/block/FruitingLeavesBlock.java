@@ -70,7 +70,7 @@ public class FruitingLeavesBlock extends VanillaLeavesBlock {
 			spawnAsEntity(worldIn, posIn.down(), tile.getFruitStack());
 			tile.clear();
 			worldIn.playSound((PlayerEntity) null, posIn, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1.0F, 0.8F + worldIn.rand.nextFloat() * 0.4F);
-			worldIn.setBlockState(posIn, stateIn.with(AGE, Integer.valueOf(0)), 4);
+			worldIn.setBlockState(posIn, stateIn.with(AGE, 0), 4);
 			return ActionResultType.func_233537_a_(worldIn.isRemote);
 		} else {
 			return ActionResultType.FAIL;

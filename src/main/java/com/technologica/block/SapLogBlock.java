@@ -42,7 +42,7 @@ public class SapLogBlock extends VanillaLogBlock {
 	
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		return this.getDefaultState().with(AXIS, context.getFace().getAxis()).with(PERSISTENT, Boolean.valueOf(true));
+		return this.getDefaultState().with(AXIS, context.getFace().getAxis()).with(PERSISTENT, true);
 	}
 
 	@Override

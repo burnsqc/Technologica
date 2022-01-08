@@ -9,8 +9,8 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 
 /**
- * Special one-off class for sap logs.
- * Created to add age and persistent properties similar to leaves.
+ * Special one-off class for logs which belong to fruiting trees.
+ * Created to handle mulch growth acceleration.
  */
 public class FruitingLogBlock extends VanillaLogBlock {
 	public static final BooleanProperty PERSISTENT = BlockStateProperties.PERSISTENT;
@@ -26,7 +26,7 @@ public class FruitingLogBlock extends VanillaLogBlock {
 	
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		return this.getDefaultState().with(AXIS, context.getFace().getAxis()).with(PERSISTENT, Boolean.valueOf(true));
+		return this.getDefaultState().with(AXIS, context.getFace().getAxis()).with(PERSISTENT, true);
 	}
 
 	@Override
