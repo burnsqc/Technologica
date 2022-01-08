@@ -47,8 +47,8 @@ public class FertilizerItem extends BoneMealItem {
 		BlockState blockstate = worldIn.getBlockState(pos);
 
 		if (blockstate.getBlock() instanceof IGrowable) {
-			for (int i = -9; i < 10; ++i) {
-				for (int j = -9; j < 10; ++j) {
+			for (int i = -4; i < 5; ++i) {
+				for (int j = -4; j < 5; ++j) {
 					BlockState toGrow = worldIn.getBlockState(pos.add(i, 0, j));
 
 					if (toGrow.getBlock() instanceof IGrowable) {
