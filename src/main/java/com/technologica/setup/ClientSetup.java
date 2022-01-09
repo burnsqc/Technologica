@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 import com.technologica.Technologica;
+import com.technologica.block.NavalMineChainBlock;
 import com.technologica.block.TallCropsBlock;
 import com.technologica.block.TechnologicaBlocks;
 import com.technologica.block.VanillaCropsBlock;
@@ -36,6 +37,7 @@ import com.technologica.client.renderer.entity.LionRenderer;
 import com.technologica.client.renderer.entity.LizardRenderer;
 import com.technologica.client.renderer.entity.MooseRenderer;
 import com.technologica.client.renderer.entity.NarwhalRenderer;
+import com.technologica.client.renderer.entity.NavalMineRenderer;
 import com.technologica.client.renderer.entity.OctopusRenderer;
 import com.technologica.client.renderer.entity.OstrichRenderer;
 import com.technologica.client.renderer.entity.OwlRenderer;
@@ -144,6 +146,7 @@ public class ClientSetup {
 		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.SWEEPER.get(), SweeperRenderer::new);
 
 		ScreenManager.registerFactory(TechnologicaContainerType.ANNUNCIATOR.get(), AnnunciatorScreen::new);
+		RenderingRegistry.registerEntityRenderingHandler(TechnologicaEntityType.NAVAL_MINE.get(), NavalMineRenderer::new);
 		
 		event.enqueueWork(() -> {
 			automaticCutoutMipped(TechnologicaBlocks.BLOCKS.getEntries());
@@ -263,8 +266,9 @@ public class ClientSetup {
 				block.getClass().equals(WaterCropsBlock.class) ||
 				block.getClass().equals(SaplingBlock.class) ||
 				block.getClass().equals(FlowerPotBlock.class) ||
-				block.getClass().equals(DoorBlock.class)||
-				block.getClass().equals(TrapDoorBlock.class)) {
+				block.getClass().equals(DoorBlock.class) ||
+				block.getClass().equals(TrapDoorBlock.class) ||
+				block.getClass().equals(NavalMineChainBlock.class)) {
 					RenderTypeLookup.setRenderLayer(block, RenderType.getCutoutMipped());
 				}
 

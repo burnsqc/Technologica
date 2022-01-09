@@ -163,6 +163,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			else if (path.contains("sawmill")) fourDirectionBlockState(block, cubeAll(block));
 			else if (path.contains("annunciator")) annunciatorBlockState(block);
 			else if (path.contains("mulch")) simpleBlock(block, models().cubeBottomTop(path, modLoc("block/" + path + "_side"), mcLoc("block/dirt"), modLoc("block/" + path + "_top")));
+			else if (path.contains("chain")) axisBlock((RotatedPillarBlock) block, models().withExistingParent(path, "block/chain"), models().withExistingParent(path, "block/chain"));
 		}
 	}
 	

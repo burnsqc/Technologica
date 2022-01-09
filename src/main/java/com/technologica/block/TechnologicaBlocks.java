@@ -879,6 +879,12 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> DISPLAY_CASE = BLOCKS.register("display_case", DisplayCaseBlock::new);
     public static final RegistryObject<Block> ANNUNCIATOR = BLOCKS.register("annunciator", AnnunciatorBlock::new);
     
+    /*
+     * ARMORY
+     */
+    
+    public static final RegistryObject<Block> NAVAL_MINE_CHAIN = BLOCKS.register("naval_mine_chain", NavalMineChainBlock::new);
+    
 	public static void register() 
     {
         BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());

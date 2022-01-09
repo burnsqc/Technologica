@@ -59,6 +59,7 @@ public class ModBlockLootTables extends BlockLootTables {
 		
 		registerDropSelfLootTable(TechnologicaBlocks.LINE_SHAFT_HANGER.get());
 		registerDropping(TechnologicaBlocks.LINE_SHAFT.get(), TechnologicaItems.STEEL_SHAFT.get());
+		registerDropping(TechnologicaBlocks.NAVAL_MINE_CHAIN.get(), Items.CHAIN);
 		registerDropSelfLootTable(TechnologicaBlocks.SMALL_PULLEY.get());
 		registerDropSelfLootTable(TechnologicaBlocks.MEDIUM_PULLEY.get());
 		registerDropSelfLootTable(TechnologicaBlocks.LARGE_PULLEY.get());

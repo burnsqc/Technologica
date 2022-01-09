@@ -40,8 +40,13 @@ public class HarpoonEntity extends AbstractArrowEntity {
 	protected void onEntityHit(EntityRayTraceResult result) {
 		super.onEntityHit(result);
 		
-		if (this.getShooter() instanceof PlayerEntity) {
+		if (this.getShooter() instanceof PlayerEntity && result.getEntity() instanceof MobEntity) {
 			((MobEntity) result.getEntity()).setLeashHolder((PlayerEntity) this.getShooter(), true);	
 		}	
+	}
+	
+	@Override
+	protected float getWaterDrag() {
+		return 1.0F;
 	}
 }

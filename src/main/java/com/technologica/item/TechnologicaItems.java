@@ -1082,6 +1082,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> SCUBA_PANTS = ITEMS.register("scuba_pants", () -> new ArmorItem(TechnologicaArmorMaterial.SCUBA, EquipmentSlotType.LEGS, (new Item.Properties()).group(TechnologicaItemGroup.ARMORY)));
     public static final RegistryObject<Item> SCUBA_BOOTS = ITEMS.register("scuba_boots", () -> new ArmorItem(TechnologicaArmorMaterial.SCUBA, EquipmentSlotType.FEET, (new Item.Properties()).group(TechnologicaItemGroup.ARMORY)));
     
+    public static final RegistryObject<Item> NAVAL_MINE = ITEMS.register("naval_mine", () -> new ModSpawnEggItem(TechnologicaEntityType.NAVAL_MINE));
     
     public static void register() {
         ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
