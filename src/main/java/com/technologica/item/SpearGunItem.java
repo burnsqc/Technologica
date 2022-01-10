@@ -318,7 +318,7 @@ public class SpearGunItem extends ShootableItem implements IVanishable {
 	}
 
 	private static float setVelocity(ItemStack itemStackIn, PlayerEntity playerIn) {
-		return hasChargedProjectile(itemStackIn, TechnologicaItems.HARPOON.get()) && playerIn.areEyesInFluid(FluidTags.WATER) ? 3.0F : 0.5F;
+		return (hasChargedProjectile(itemStackIn, TechnologicaItems.HARPOON.get()) || playerIn.abilities.isCreativeMode) && playerIn.areEyesInFluid(FluidTags.WATER) ? 3.0F : 0.5F;
 	}
 
 	public int func_230305_d_() {
