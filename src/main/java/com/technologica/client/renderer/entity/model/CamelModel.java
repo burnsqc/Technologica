@@ -23,10 +23,6 @@ public class CamelModel<T extends CamelEntity> extends AgeableModel<T> {
 	private final ModelRenderer field_228263_g_;
 	private final ModelRenderer field_228264_h_;
 	private final ModelRenderer field_228265_i_;
-	private final ModelRenderer field_228266_j_;
-	private final ModelRenderer field_228267_k_;
-	private final ModelRenderer field_228268_l_;
-	private final ModelRenderer field_228269_m_;
 	
 	private final ModelRenderer[] field_217134_k;
 	private final ModelRenderer[] field_217135_l;
@@ -36,79 +32,64 @@ public class CamelModel<T extends CamelEntity> extends AgeableModel<T> {
 		this.textureWidth = 64;
 		this.textureHeight = 64;
 		
-		this.body = new ModelRenderer(this, 0, 32);
+		this.body = new ModelRenderer(this, 0, 0);
 		this.body.addBox(-5.0F, -10.0F, -13.0F, 10.0F, 12.0F, 18.0F);
 		this.body.setRotationPoint(0.0F, 11.0F, 5.0F);
 		
-		this.humpLower = new ModelRenderer(this, 0, 32);
+		this.humpLower = new ModelRenderer(this, 0, 30);
 		this.humpLower.addBox(-4.0F, -12.0F, -10.0F, 8.0F, 2.0F, 12.0F);
 		this.body.addChild(this.humpLower);
 		
-		this.humpUpper = new ModelRenderer(this, 0, 32);
+		this.humpUpper = new ModelRenderer(this, 28, 30);
 		this.humpUpper.addBox(-3.0F, -15.0F, -8.0F, 6.0F, 3.0F, 8.0F);
 		this.body.addChild(this.humpUpper);
 		
-		this.tail = new ModelRenderer(this, 42, 36);
+		this.tail = new ModelRenderer(this, 56, 0);
 		this.tail.addBox(-1.0F, -2.0F, 0.0F, 2.0F, 12.0F, 2.0F);
 		this.tail.setRotationPoint(0.0F, -5.0F, 2.0F);
 		this.body.addChild(this.tail);
 		
-		this.neckLower = new ModelRenderer(this, 0, 35);
+		this.neckLower = new ModelRenderer(this, 0, 44);
 		this.neckLower.addBox(-2.0F, 5.0F, -6.0F, 4.0F, 5.0F, 10.0F);
 		
-		this.neck = new ModelRenderer(this, 0, 35);
+		this.neck = new ModelRenderer(this, 38, 0);
 		this.neck.addBox(-2.0F, -12.0F, 0.0F, 4.0F, 12.0F, 5.0F);
 		this.neck.setRotationPoint(0.0F, 10.0F, -6.0F);
 		this.neckLower.addChild(this.neck);
 		
-		this.head = new ModelRenderer(this, 0, 13);
+		this.head = new ModelRenderer(this, 21, 52);
 		this.head.addBox(-3.0F, -17.0F, -2.0F, 6.0F, 5.0F, 7.0F);
 		this.neck.addChild(head);
 		
-		this.nose = new ModelRenderer(this, 0, 25);
+		this.nose = new ModelRenderer(this, 0, 0);
 		this.nose.addBox(-2.0F, -16.0F, -7.0F, 4.0F, 4.0F, 5.0F);
 		this.neck.addChild(nose);
 		
-		this.earLeft = new ModelRenderer(this, 19, 16);
+		this.earLeft = new ModelRenderer(this, 0, 9);
 		this.earLeft.addBox(2.0F, -17.0F, 3.0F, 2.0F, 2.0F, 1.0F);
 		this.neck.addChild(earLeft);
 		
-		this.earRight = new ModelRenderer(this, 19, 16);
+		this.earRight = new ModelRenderer(this, 0, 9);
 		this.earRight.addBox(-4.0F, -17.0F, 3.0F, 2.0F, 2.0F, 1.0F);
 		this.neck.addChild(earRight);
 		
-		this.field_228262_f_ = new ModelRenderer(this, 48, 21);
+		this.field_228262_f_ = new ModelRenderer(this, 40, 41);
 		this.field_228262_f_.mirror = true;
 		this.field_228262_f_.addBox(-3.0F, -1.0F, -1.5F, 3.0F, 11.0F, 3.0F);
 		this.field_228262_f_.setRotationPoint(5.0F, 14.0F, 8.5F);
 		
-		this.field_228263_g_ = new ModelRenderer(this, 48, 21);
+		this.field_228263_g_ = new ModelRenderer(this, 40, 41);
 		this.field_228263_g_.addBox(-1.0F, -1.0F, -1.5F, 3.0F, 11.0F, 3.0F);
 		this.field_228263_g_.setRotationPoint(-4.0F, 14.0F, 8.5F);
 		
-		this.field_228264_h_ = new ModelRenderer(this, 48, 21);
+		this.field_228264_h_ = new ModelRenderer(this, 40, 41);
 		this.field_228264_h_.mirror = true;
 		this.field_228264_h_.addBox(-3.0F, -1.0F, -1.5F, 3.0F, 11.0F, 3.0F);
 		this.field_228264_h_.setRotationPoint(5.0F, 14.0F, -6.5F);
 		
-		this.field_228265_i_ = new ModelRenderer(this, 48, 21);
+		this.field_228265_i_ = new ModelRenderer(this, 40, 41);
 		this.field_228265_i_.addBox(-1.0F, -1.0F, -1.5F, 3.0F, 11.0F, 3.0F);
 		this.field_228265_i_.setRotationPoint(-4.0F, 14.0F, -6.5F);
-		
-		this.field_228266_j_ = new ModelRenderer(this, 48, 21);
-		this.field_228266_j_.mirror = true;
-		this.field_228266_j_.addBox(-3.0F, -1.0F, -1.5F, 3.0F, 11.0F, 3.0F + 5.5F);
-		this.field_228266_j_.setRotationPoint(4.0F, 14.0F, 8.5F);
-		this.field_228267_k_ = new ModelRenderer(this, 48, 21);
-		this.field_228267_k_.addBox(-1.0F, -1.0F, -1.5F, 3.0F, 11.0F, 3.0F + 5.5F);
-		this.field_228267_k_.setRotationPoint(-4.0F, 14.0F, 8.5F);
-		this.field_228268_l_ = new ModelRenderer(this, 48, 21);
-		this.field_228268_l_.mirror = true;
-		this.field_228268_l_.addBox(-3.0F, -1.0F, -1.5F, 3.0F, 11.0F, 3.0F + 5.5F);
-		this.field_228268_l_.setRotationPoint(4.0F, 6.0F, -11.5F);
-		this.field_228269_m_ = new ModelRenderer(this, 48, 21);
-		this.field_228269_m_.addBox(-1.0F, -1.0F, -1.5F, 3.0F, 11.0F, 3.0F + 5.5F);
-		this.field_228269_m_.setRotationPoint(-4.0F, 6.0F, -11.5F);
 		
 		ModelRenderer modelrenderer3 = new ModelRenderer(this, 26, 0);
 		modelrenderer3.addBox(-5.0F, -8.0F, -9.0F, 10.0F, 9.0F, 9.0F, 0.5F);
@@ -161,7 +142,7 @@ public class CamelModel<T extends CamelEntity> extends AgeableModel<T> {
 	}
 
 	protected Iterable<ModelRenderer> getBodyParts() {
-		return ImmutableList.of(this.body, this.field_228262_f_, this.field_228263_g_, this.field_228264_h_, this.field_228265_i_, this.field_228266_j_, this.field_228267_k_, this.field_228268_l_, this.field_228269_m_);
+		return ImmutableList.of(this.body, this.field_228262_f_, this.field_228263_g_, this.field_228264_h_, this.field_228265_i_);
 	}
 
 	public void setLivingAnimations(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
@@ -213,27 +194,13 @@ public class CamelModel<T extends CamelEntity> extends AgeableModel<T> {
 			this.tail.rotateAngleY = 0.0F;
 		}
 
-		this.field_228266_j_.rotationPointY = this.field_228262_f_.rotationPointY;
-		this.field_228266_j_.rotationPointZ = this.field_228262_f_.rotationPointZ;
-		this.field_228266_j_.rotateAngleX = this.field_228262_f_.rotateAngleX;
-		this.field_228267_k_.rotationPointY = this.field_228263_g_.rotationPointY;
-		this.field_228267_k_.rotationPointZ = this.field_228263_g_.rotationPointZ;
-		this.field_228267_k_.rotateAngleX = this.field_228263_g_.rotateAngleX;
-		this.field_228268_l_.rotationPointY = this.field_228264_h_.rotationPointY;
-		this.field_228268_l_.rotationPointZ = this.field_228264_h_.rotationPointZ;
-		this.field_228268_l_.rotateAngleX = this.field_228264_h_.rotateAngleX;
-		this.field_228269_m_.rotationPointY = this.field_228265_i_.rotationPointY;
-		this.field_228269_m_.rotationPointZ = this.field_228265_i_.rotationPointZ;
-		this.field_228269_m_.rotateAngleX = this.field_228265_i_.rotateAngleX;
+		
 		boolean flag1 = entityIn.isChild();
 		this.field_228262_f_.showModel = !flag1;
 		this.field_228263_g_.showModel = !flag1;
 		this.field_228264_h_.showModel = !flag1;
 		this.field_228265_i_.showModel = !flag1;
-		this.field_228266_j_.showModel = flag1;
-		this.field_228267_k_.showModel = flag1;
-		this.field_228268_l_.showModel = flag1;
-		this.field_228269_m_.showModel = flag1;
+		
 		this.body.rotationPointY = flag1 ? 10.8F : 0.0F;
 	}
 }
