@@ -46,7 +46,7 @@ public class GiraffeModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 		this.body.addBox(-5.0F, -31.0F, -17.0F, 10.0F, 12.0F, 22.0F);
 		this.body.setRotationPoint(0.0F, 28.0F, 3.0F);
 
-		this.neck = new ModelRenderer(this, 0, 35);
+		this.neck = new ModelRenderer(this, 0, 34);
 		this.neck.addBox(-2.0F, -38.0F, -6.0F, 4.0F, 37.0F, 6.0F);
 
 		this.mane = new ModelRenderer(this, 20, 34);
