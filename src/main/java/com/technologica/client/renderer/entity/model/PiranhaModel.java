@@ -29,11 +29,11 @@ public class PiranhaModel<T extends Entity> extends AbstractTropicalFishModel<T>
 		
 		this.finLeft = new ModelRenderer(this, 0, 0);
 		this.finLeft.addBox(0.0F, 0.0F, 0.0F, 2.0F, 1.0F, 0.0F);
-		this.finLeft.setRotationPoint(1.0F, 22.0F, 4.0F);
+		this.finLeft.setRotationPoint(1.0F, 22.0F, 5.0F);
 		
 		this.finRight = new ModelRenderer(this, 0, 0);
 		this.finRight.addBox(-2.0F, 0.0F, 0.0F, 2.0F, 1.0F, 0.0F);
-		this.finRight.setRotationPoint(-1.0F, 22.0F, 4.0F);
+		this.finRight.setRotationPoint(-1.0F, 22.0F, 5.0F);
 		
 		this.finTop = new ModelRenderer(this, 0, -1);
 		this.finTop.addBox(0.0F, -4.0F, -2.0F, 0.0F, 1.0F, 2.0F);
