@@ -25,41 +25,60 @@ public class VultureModel<T extends Entity> extends SegmentedModel<T> {
 		this.textureWidth = 64;
 		this.textureHeight = 64;
 
-		this.body = new ModelRenderer(this, 0, 8);
+		this.body = new ModelRenderer(this, 0, 0);
 		this.body.addBox(-2.5F, -2.0F, -8.0F, 5.0F, 3.0F, 9.0F);
 
-		this.tail = new ModelRenderer(this, 3, 20);
+		this.neckLower = new ModelRenderer(this, 19, 0);
+		this.neckLower.addBox(-1.0F, 0.0F, -5.0F, 2.0F, 2.0F, 5.0F);
+		this.neckLower.setRotationPoint(0.0F, -2.0F, -8.0F);
+		this.body.addChild(this.neckLower);
+		
+		this.neck = new ModelRenderer(this, 33, 0);
+		this.neck.addBox(-1.0F, -2.0F, -5.0F, 2.0F, 2.0F, 5.0F);
+		this.neck.setRotationPoint(0.0F, 2.0F, -5.0F);
+		this.neckLower.addChild(this.neck);
+		
+		this.head = new ModelRenderer(this, 47, 0);
+		this.head.addBox(-1.5F, 0.0F, -3.0F, 3.0F, 3.0F, 3.0F);
+		this.head.setRotationPoint(0.0F, -2.0F, -5.0F);
+		this.neck.addChild(this.head);
+		
+		this.beak = new ModelRenderer(this, 0, 0);
+		this.beak.addBox(-0.5F, 1.0F, -5.0F, 1.0F, 2.0F, 2.0F);
+		this.head.addChild(this.beak);
+		
+		this.tail = new ModelRenderer(this, 0, 12);
 		this.tail.addBox(-8.0F, -1.0F, -8.0F, 16.0F, 2.0F, 16.0F);
 		this.tail.setRotationPoint(0.0F, -1.0F, 9.0F);
 		this.body.addChild(this.tail);
 		
-		this.legLeft = new ModelRenderer(this, 3, 20);
+		this.legLeft = new ModelRenderer(this, 0, 12);
 		this.legLeft.addBox(-1.5F, 0.0F, -1.5F, 3.0F, 4.0F, 3.0F);
 		this.legLeft.setRotationPoint(-2.0F, 0.0F, -1.0F);
 		this.body.addChild(this.legLeft);
 		
-		this.legRight = new ModelRenderer(this, 3, 20);
+		this.legRight = new ModelRenderer(this, 0, 12);
 		this.legRight.addBox(-1.5F, 0.0F, -1.5F, 3.0F, 4.0F, 3.0F);
 		this.legRight.setRotationPoint(2.0F, 0.0F, -1.0F);
 		this.body.addChild(this.legRight);
 
-		this.leftWingBody = new ModelRenderer(this, 23, 12);
+		this.leftWingBody = new ModelRenderer(this, 0, 30);
 		this.leftWingBody.addBox(0.0F, 0.0F, 0.0F, 6.0F, 2.0F, 9.0F);
 		this.leftWingBody.setRotationPoint(2.5F, -2.0F, -8.0F);
 		this.body.addChild(this.leftWingBody);
 
-		this.leftWing = new ModelRenderer(this, 16, 24);
+		this.leftWing = new ModelRenderer(this, 0, 41);
 		this.leftWing.addBox(0.0F, 0.0F, 0.0F, 13.0F, 1.0F, 9.0F);
 		this.leftWing.setRotationPoint(6.0F, 0.0F, 0.0F);
 		this.leftWingBody.addChild(this.leftWing);
 
-		this.rightWingBody = new ModelRenderer(this, 23, 12);
+		this.rightWingBody = new ModelRenderer(this, 0, 30);
 		this.rightWingBody.mirror = true;
 		this.rightWingBody.addBox(-6.0F, 0.0F, 0.0F, 6.0F, 2.0F, 9.0F);
 		this.rightWingBody.setRotationPoint(-2.5F, -2.0F, -8.0F);
 		this.body.addChild(this.rightWingBody);
 
-		this.rightWing = new ModelRenderer(this, 16, 24);
+		this.rightWing = new ModelRenderer(this, 0, 41);
 		this.rightWing.mirror = true;
 		this.rightWing.addBox(-13.0F, 0.0F, 0.0F, 13.0F, 1.0F, 9.0F);
 		this.rightWing.setRotationPoint(-6.0F, 0.0F, 0.0F);
@@ -68,26 +87,7 @@ public class VultureModel<T extends Entity> extends SegmentedModel<T> {
 		this.leftWingBody.rotateAngleZ = 0.1F;
 		this.leftWing.rotateAngleZ = 0.1F;
 		this.rightWingBody.rotateAngleZ = -0.1F;
-		this.rightWing.rotateAngleZ = -0.1F;
-
-		this.neckLower = new ModelRenderer(this, 0, 35);
-		this.neckLower.addBox(-1.0F, 0.0F, -5.0F, 2.0F, 2.0F, 5.0F);
-		this.neckLower.setRotationPoint(0.0F, -2.0F, -8.0F);
-		this.body.addChild(this.neckLower);
-		
-		this.neck = new ModelRenderer(this, 0, 35);
-		this.neck.addBox(-1.0F, -2.0F, -5.0F, 2.0F, 2.0F, 5.0F);
-		this.neck.setRotationPoint(0.0F, 2.0F, -5.0F);
-		this.neckLower.addChild(this.neck);
-		
-		this.head = new ModelRenderer(this, 0, 13);
-		this.head.addBox(-1.5F, 0.0F, -3.0F, 3.0F, 3.0F, 3.0F);
-		this.head.setRotationPoint(0.0F, -2.0F, -5.0F);
-		this.neck.addChild(this.head);
-		
-		this.beak = new ModelRenderer(this, 0, 25);
-		this.beak.addBox(-0.5F, 1.0F, -5.0F, 1.0F, 2.0F, 2.0F);
-		this.head.addChild(this.beak);
+		this.rightWing.rotateAngleZ = -0.1F;	
 	}
 
 	public Iterable<ModelRenderer> getParts() {
