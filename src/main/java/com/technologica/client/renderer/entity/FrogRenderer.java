@@ -12,7 +12,7 @@ public final class FrogRenderer extends MobRenderer<FrogEntity, FrogModel<FrogEn
 	private static final ResourceLocation FROG_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/frog.png");
 
 	public FrogRenderer(EntityRendererManager renderManagerIn) {
-		super(renderManagerIn, new FrogModel<>(), 1.1F);
+		super(renderManagerIn, new FrogModel<>(), 0.2F);
 	}
 
 	@Override

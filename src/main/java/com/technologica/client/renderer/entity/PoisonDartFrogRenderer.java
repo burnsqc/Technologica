@@ -12,7 +12,7 @@ public final class PoisonDartFrogRenderer extends MobRenderer<PoisonDartFrogEnti
 	private static final ResourceLocation POISON_DART_FROG_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/poison_dart_frog.png");
 
 	public PoisonDartFrogRenderer(EntityRendererManager renderManagerIn) {
-		super(renderManagerIn, new PoisonDartFrogModel<>(), 1.1F);
+		super(renderManagerIn, new PoisonDartFrogModel<>(), 0.2F);
 	}
 
 	@Override

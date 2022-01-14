@@ -39,115 +39,116 @@ public class KingCrabModel<T extends Entity> extends SegmentedModel<T> {
 		this.textureWidth = 64;
 		this.textureHeight = 32;
 
-		this.body = new ModelRenderer(this, 0, 12);
+		this.body = new ModelRenderer(this, 0, 0);
 		this.body.setRotationPoint(0.0F, 6.0F, 0.0F);
 		this.body.addBox(-4.0F, -2.0F, -3.0F, 8.0F, 4.0F, 7.0F);
 		
-		this.head = new ModelRenderer(this, 0, 12);
+		this.head = new ModelRenderer(this, 0, 11);
 		this.head.setRotationPoint(0.0F, -1.0F, -3.0F);
 		this.head.addBox(-2.0F, -1.0F, -2.0F, 4.0F, 2.0F, 4.0F);
 		this.body.addChild(this.head);
 		
-		this.legBackBackLeftUpper = new ModelRenderer(this, 18, 0);
+		this.legBackBackLeftUpper = new ModelRenderer(this, 0, 17);
 		this.legBackBackLeftUpper.setRotationPoint(4.0F, 7.0F, 2.0F);
 		this.legBackBackLeftUpper.addBox(-1.0F, -1.0F, -1.0F, 16.0F, 2.0F, 2.0F);
 		
-		this.legBackBackLeftLower = new ModelRenderer(this, 0, 0);
+		this.legBackBackLeftLower = new ModelRenderer(this, 0, 17);
 		this.legBackBackLeftLower.setRotationPoint(15.0F, 1.0F, 0.0F);
 		this.legBackBackLeftLower.addBox(0.0F, 0.0F, -1.0F, 16.0F, 2.0F, 2.0F);
 		this.legBackBackLeftUpper.addChild(this.legBackBackLeftLower);
 		
-		this.legBackBackRightUpper = new ModelRenderer(this, 18, 0);
+		this.legBackBackRightUpper = new ModelRenderer(this, 0, 17);
 		this.legBackBackRightUpper.setRotationPoint(-4.0F, 7.0F, 2.0F);
 		this.legBackBackRightUpper.addBox(-15.0F, -1.0F, -1.0F, 16.0F, 2.0F, 2.0F);
 		
-		this.legBackBackRightLower = new ModelRenderer(this, 0, 0);
+		this.legBackBackRightLower = new ModelRenderer(this, 0, 17);
 		this.legBackBackRightLower.setRotationPoint(-15.0F, 1.0F, 0.0F);
 		this.legBackBackRightLower.addBox(-16.0F, 0.0F, -1.0F, 16.0F, 2.0F, 2.0F);
 		this.legBackBackRightUpper.addChild(this.legBackBackRightLower);
 		
-		this.legBackLeftUpper = new ModelRenderer(this, 0, 0);
+		this.legBackLeftUpper = new ModelRenderer(this, 0, 17);
 		this.legBackLeftUpper.setRotationPoint(4.0F, 7.0F, 1.0F);
 		this.legBackLeftUpper.addBox(-1.0F, -1.0F, -1.0F, 16.0F, 2.0F, 2.0F);
 		
-		this.legBackLeftLower = new ModelRenderer(this, 0, 0);
+		this.legBackLeftLower = new ModelRenderer(this, 0, 17);
 		this.legBackLeftLower.setRotationPoint(15.0F, 1.0F, 0.0F);
 		this.legBackLeftLower.addBox(0.0F, 0.0F, -1.0F, 16.0F, 2.0F, 2.0F);
 		this.legBackLeftUpper.addChild(this.legBackLeftLower);
 		
-		this.legBackRightUpper = new ModelRenderer(this, 0, 0);
+		this.legBackRightUpper = new ModelRenderer(this, 0, 17);
 		this.legBackRightUpper.setRotationPoint(-4.0F, 7.0F, 1.0F);
 		this.legBackRightUpper.addBox(-15.0F, -1.0F, -1.0F, 16.0F, 2.0F, 2.0F);
 
-		this.legBackRightLower = new ModelRenderer(this, 0, 0);
+		this.legBackRightLower = new ModelRenderer(this, 0, 17);
 		this.legBackRightLower.setRotationPoint(-15.0F, 1.0F, 0.0F);
 		this.legBackRightLower.addBox(-16.0F, 0.0F, -1.0F, 16.0F, 2.0F, 2.0F);
 		this.legBackRightUpper.addChild(this.legBackRightLower);
 
-		this.legFrontLeftUpper = new ModelRenderer(this, 0, 0);
+		this.legFrontLeftUpper = new ModelRenderer(this, 0, 17);
 		this.legFrontLeftUpper.setRotationPoint(4.0F, 7.0F, 0.0F);
 		this.legFrontLeftUpper.addBox(-1.0F, -1.0F, -1.0F, 16.0F, 2.0F, 2.0F);
 		
-		this.legFrontLeftLower = new ModelRenderer(this, 0, 0);
+		this.legFrontLeftLower = new ModelRenderer(this, 0, 17);
 		this.legFrontLeftLower.setRotationPoint(15.0F, 1.0F, 0.0F);
 		this.legFrontLeftLower.addBox(0.0F, 0.0F, -1.0F, 16.0F, 2.0F, 2.0F);
 		this.legFrontLeftUpper.addChild(this.legFrontLeftLower);
 		
-		this.legFrontRightUpper = new ModelRenderer(this, 0, 0);
+		this.legFrontRightUpper = new ModelRenderer(this, 0, 17);
 		this.legFrontRightUpper.setRotationPoint(-4.0F, 7.0F, 0.0F);
 		this.legFrontRightUpper.addBox(-15.0F, -1.0F, -1.0F, 16.0F, 2.0F, 2.0F);
 
-		this.legFrontRightLower = new ModelRenderer(this, 0, 0);
+		this.legFrontRightLower = new ModelRenderer(this, 0, 17);
 		this.legFrontRightLower.setRotationPoint(-15.0F, 1.0F, 0.0F);
 		this.legFrontRightLower.addBox(-16.0F, 0.0F, -1.0F, 16.0F, 2.0F, 2.0F);
 		this.legFrontRightUpper.addChild(this.legFrontRightLower);
 
-		this.legFrontFrontLeftUpper = new ModelRenderer(this, 0, 0);
+		this.legFrontFrontLeftUpper = new ModelRenderer(this, 0, 17);
 		this.legFrontFrontLeftUpper.setRotationPoint(4.0F, 7.0F, -1.0F);
 		this.legFrontFrontLeftUpper.addBox(-1.0F, -1.0F, -1.0F, 16.0F, 2.0F, 2.0F);
 		
-		this.legFrontFrontLeftLower = new ModelRenderer(this, 0, 0);
+		this.legFrontFrontLeftLower = new ModelRenderer(this, 0, 17);
 		this.legFrontFrontLeftLower.setRotationPoint(15.0F, 1.0F, 0.0F);
 		this.legFrontFrontLeftLower.addBox(0.0F, 0.0F, -1.0F, 16.0F, 2.0F, 2.0F);
 		this.legFrontFrontLeftUpper.addChild(this.legFrontFrontLeftLower);
 		
-		this.legFrontFrontRightUpper = new ModelRenderer(this, 0, 0);
+		this.legFrontFrontRightUpper = new ModelRenderer(this, 0, 17);
 		this.legFrontFrontRightUpper.setRotationPoint(-4.0F, 7.0F, -1.0F);
 		this.legFrontFrontRightUpper.addBox(-15.0F, -1.0F, -1.0F, 16.0F, 2.0F, 2.0F);
 
-		this.legFrontFrontRightLower = new ModelRenderer(this, 0, 0);
+		this.legFrontFrontRightLower = new ModelRenderer(this, 0, 17);
 		this.legFrontFrontRightLower.setRotationPoint(-15.0F, 1.0F, 0.0F);
 		this.legFrontFrontRightLower.addBox(-16.0F, 0.0F, -1.0F, 16.0F, 2.0F, 2.0F);
 		this.legFrontFrontRightUpper.addChild(this.legFrontFrontRightLower);
 		
-		this.armLeft = new ModelRenderer(this);
+		this.armLeft = new ModelRenderer(this, 0, 21);
 		this.armLeft.setRotationPoint(4.0F, 1.0F, -3.0F);
-		this.armLeft.setTextureOffset(18, 0).addBox(-2.0F, -1.0F, -1.0F, 10.0F, 2.0F, 2.0F);
+		this.armLeft.addBox(-2.0F, -1.0F, -1.0F, 10.0F, 2.0F, 2.0F);
 		this.body.addChild(this.armLeft);
 		
-		this.armRight = new ModelRenderer(this);
+		this.armRight = new ModelRenderer(this, 0, 21);
 		this.armRight.setRotationPoint(-4.0F, 1.0F, -3.0F);
-		this.armRight.setTextureOffset(18, 0).addBox(-8.0F, -1.0F, -1.0F, 10.0F, 2.0F, 2.0F);
+		this.armRight.addBox(-8.0F, -1.0F, -1.0F, 10.0F, 2.0F, 2.0F);
 		this.body.addChild(this.armRight);
 
-		this.clawLeft = new ModelRenderer(this);
+		this.clawLeft = new ModelRenderer(this, 0, 21);
 		this.clawLeft.setRotationPoint(8.0F, 0.0F, 1.0F);
-		this.clawLeft.setTextureOffset(18, 0).addBox(0.0F, -1.0F, -2.0F, 10.0F, 2.0F, 2.0F);
+		this.clawLeft.addBox(0.0F, -1.0F, -2.0F, 10.0F, 2.0F, 2.0F);
 		this.armLeft.addChild(this.clawLeft);
 		
-		this.clawRight = new ModelRenderer(this);
+		this.clawRight = new ModelRenderer(this, 0, 21);
 		this.clawRight.setRotationPoint(-8.0F, 0.0F, 1.0F);
-		this.clawRight.setTextureOffset(18, 0).addBox(0.0F, -1.0F, 0.0F, 10.0F, 2.0F, 2.0F);
+		this.clawRight.addBox(0.0F, -1.0F, 0.0F, 10.0F, 2.0F, 2.0F);
 		this.armRight.addChild(this.clawRight);
 		
-		this.pincherLeft = new ModelRenderer(this, 0, 0);
+		this.pincherLeft = new ModelRenderer(this, 0, 25);
 		this.pincherLeft.setRotationPoint(5.0F, 0.0F, 0.0F);
 		this.pincherLeft.addBox(0.0F, -1.0F, -2.0F, 5.0F, 2.0F, 2.0F);
 		this.clawLeft.addChild(this.pincherLeft);
 
-		this.pincherRight = new ModelRenderer(this, 0, 0);
+		this.pincherRight = new ModelRenderer(this, 0, 25);
 		this.pincherRight.setRotationPoint(5.0F, 0.0F, 0.0F);
 		this.pincherRight.addBox(0.0F, -1.0F, 0.0F, 5.0F, 2.0F, 2.0F);
+		this.pincherRight.mirror = true;
 		this.clawRight.addChild(this.pincherRight);
 	}
 
