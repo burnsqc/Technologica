@@ -20,37 +20,37 @@ public class NarwhalModel<T extends Entity> extends SegmentedModel<T> {
 		this.textureWidth = 64;
 		this.textureHeight = 64;
 
-		this.body = new ModelRenderer(this, 22, 0);
+		this.body = new ModelRenderer(this, 0, 0);
 		this.body.setRotationPoint(0.0F, 20.0F, 0.0F);
 		this.body.addBox(-4.0F, -4.0F, -7.0F, 8.0F, 8.0F, 14.0F);
 		
-		this.head = new ModelRenderer(this, 0, 0);
+		this.head = new ModelRenderer(this, 30, 0);
 		this.head.setRotationPoint(0.0F, 0.0F, -7.0F);
 		this.head.addBox(-3.0F, -3.0F, -6.0F, 6.0F, 6.0F, 6.0F);
 		this.body.addChild(this.head);
 		
-		this.spear = new ModelRenderer(this, 0, 0);
+		this.spear = new ModelRenderer(this, 28, 12);
 		this.spear.setRotationPoint(0.0F, -1.0F, -6.0F);
 		this.spear.addBox(-0.5F, 0.0F, -16.0F, 1.0F, 1.0F, 16.0F);
 		this.head.addChild(this.spear);
 
-		this.flipperLeft = new ModelRenderer(this, 48, 20);
+		this.flipperLeft = new ModelRenderer(this, 0, 22);
 		this.flipperLeft.setRotationPoint(4.0F, 2.0F, -4.0F);
 		this.flipperLeft.addBox(0.0F, 0.0F, 0.0F, 8.0F, 1.0F, 4.0F);
 		this.flipperLeft.mirror = true;
 		this.body.addChild(this.flipperLeft);
 
-		this.flipperRight = new ModelRenderer(this, 48, 20);
+		this.flipperRight = new ModelRenderer(this, 0, 22);
 		this.flipperRight.setRotationPoint(-4.0F, 2.0F, -4.0F);
 		this.flipperRight.addBox(-8.0F, 0.0F, 0.0F, 8.0F, 1.0F, 4.0F);
 		this.body.addChild(this.flipperRight);
 
-		this.tail = new ModelRenderer(this, 0, 35);
+		this.tail = new ModelRenderer(this, 0, 27);
 		this.tail.setRotationPoint(0.0F, 0.0F, 7.0F);
 		this.tail.addBox(-3.0F, -3.0F, 0.0F, 6.0F, 6.0F, 10.0F);
 		this.body.addChild(this.tail);
 
-		this.tailFin = new ModelRenderer(this, 30, 20);
+		this.tailFin = new ModelRenderer(this, 0, 43);
 		this.tailFin.setRotationPoint(0.0F, 0.0F, 8.0F);
 		this.tailFin.addBox(-8.0F, 0.0F, 0.0F, 	16.0F, 1.0F, 6.0F);
 		this.flipperLeft.mirror = true;

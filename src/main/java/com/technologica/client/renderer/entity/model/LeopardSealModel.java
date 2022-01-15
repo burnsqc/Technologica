@@ -22,48 +22,48 @@ public class LeopardSealModel<T extends Entity> extends SegmentedModel<T> {
 		this.textureWidth = 64;
 		this.textureHeight = 64;
 
-		this.body = new ModelRenderer(this, 22, 0);
+		this.body = new ModelRenderer(this, 20, 2);
 		this.body.setRotationPoint(0.0F, 20.0F, 0.0F);
 		this.body.addBox(-4.0F, -4.0F, -7.0F, 8.0F, 8.0F, 14.0F);
 		
-		this.head = new ModelRenderer(this, 0, 0);
+		this.head = new ModelRenderer(this, 0, 16);
 		this.head.setRotationPoint(0.0F, 0.0F, -7.0F);
 		this.head.addBox(-3.0F, -3.0F, -4.0F, 6.0F, 6.0F, 4.0F);
 		this.body.addChild(this.head);
 
-		this.nose = new ModelRenderer(this, 0, 13);
+		this.nose = new ModelRenderer(this, 16, 24);
 		this.nose.setRotationPoint(0.0F, -1.0F, -4.0F);
 		this.nose.addBox(-2.0F, -1.0F, -4.0F, 4.0F, 3.0F, 4.0F);
 		this.head.addChild(this.nose);
 		
-		this.jaw = new ModelRenderer(this, 0, 13);
+		this.jaw = new ModelRenderer(this, 0, 26);
 		this.jaw.setRotationPoint(0.0F, 1.0F, -4.0F);
 		this.jaw.addBox(-2.0F, 0.0F, -4.0F, 4.0F, 1.0F, 4.0F);
 		this.head.addChild(this.jaw);
 
-		this.flipperLeft = new ModelRenderer(this, 48, 20);
+		this.flipperLeft = new ModelRenderer(this, 32, 24);
 		this.flipperLeft.setRotationPoint(4.0F, 1.0F, -4.0F);
 		this.flipperLeft.addBox(0.0F, 0.0F, 0.0F, 8.0F, 1.0F, 4.0F);
 		this.flipperLeft.mirror = true;
 		this.body.addChild(this.flipperLeft);
 
-		this.flipperRight = new ModelRenderer(this, 48, 20);
+		this.flipperRight = new ModelRenderer(this, 32, 24);
 		this.flipperRight.setRotationPoint(-4.0F, 1.0F, -4.0F);
 		this.flipperRight.addBox(-8.0F, 0.0F, 0.0F, 8.0F, 1.0F, 4.0F);
 		this.body.addChild(this.flipperRight);
 
-		this.tail = new ModelRenderer(this, 0, 35);
+		this.tail = new ModelRenderer(this, 0, 0);
 		this.tail.setRotationPoint(0.0F, 0.0F, 7.0F);
 		this.tail.addBox(-3.0F, -3.0F, 0.0F, 6.0F, 6.0F, 10.0F);
 		this.body.addChild(this.tail);
 
-		this.tailFlipperLeft = new ModelRenderer(this, 30, 20);
+		this.tailFlipperLeft = new ModelRenderer(this, 0, 31);
 		this.tailFlipperLeft.setRotationPoint(2.0F, 0.0F, 10.0F);
 		this.tailFlipperLeft.addBox(0.0F, -3.0F, 0.0F, 1.0F, 6.0F, 8.0F);
 		this.flipperLeft.mirror = true;
 		this.tail.addChild(this.tailFlipperLeft);
 
-		this.tailFlipperRight = new ModelRenderer(this, 13, 17);
+		this.tailFlipperRight = new ModelRenderer(this, 0, 31);
 		this.tailFlipperRight.setRotationPoint(-2.0F, 0.0F, 10.0F);
 		this.tailFlipperRight.addBox(-1.0F, -3.0F, 0.0F, 1.0F, 6.0F, 8.0F);
 		this.tail.addChild(this.tailFlipperRight);
