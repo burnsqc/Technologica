@@ -5,7 +5,7 @@ import java.util.function.Supplier;
 
 import com.technologica.Technologica;
 import com.technologica.item.TechnologicaItems;
-import com.technologica.util.text.StringHelper;
+import com.technologica.util.text.ResourceLocationHelper;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.BlockItem;
@@ -33,8 +33,8 @@ public class ModItemModelProvider extends ItemModelProvider {
 			Item item = itemSupplier.get();
 				
 			if (item instanceof BlockNamedItem) simpleItem(item);
-			else if (item instanceof BlockItem && StringHelper.getPath(item).contains("_sapling")) simpleBlockItem(item);
-			else if (!(item instanceof BlockItem) && !item.getRegistryName().getPath().contains("bazooka")) simpleItem(item);
+			else if (item instanceof BlockItem && ResourceLocationHelper.getPath(item).contains("_sapling")) simpleBlockItem(item);
+			else if (!(item instanceof BlockItem) && !item.getRegistryName().getPath().contains("bazooka") && !item.getRegistryName().getPath().contains("spear_gun")) simpleItem(item);
 		}
 	}
 	

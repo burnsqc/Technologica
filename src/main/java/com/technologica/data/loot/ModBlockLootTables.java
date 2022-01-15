@@ -23,7 +23,7 @@ import com.technologica.block.VanillaStandingSignBlock;
 import com.technologica.block.VanillaWallSignBlock;
 import com.technologica.block.WaterCropsBlock;
 import com.technologica.item.TechnologicaItems;
-import com.technologica.util.text.StringHelper;
+import com.technologica.util.text.ResourceLocationHelper;
 
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.Block;
@@ -84,7 +84,7 @@ public class ModBlockLootTables extends BlockLootTables {
 	private final void automaticLootTable(Collection<RegistryObject<Block>> blockCollection) {
 		for(Supplier<? extends Block> blockSupplier:blockCollection) {
 			Block block = blockSupplier.get();
-			String path = StringHelper.getPath(block);
+			String path = ResourceLocationHelper.getPath(block);
 			
 			if (block instanceof VanillaLogBlock) registerDropSelfLootTable(block);
 			else if (block.getClass().equals(SaplingBlock.class)) registerDropSelfLootTable(block);
@@ -125,7 +125,7 @@ public class ModBlockLootTables extends BlockLootTables {
 				Block sapling = Blocks.OAK_SAPLING;
 				for(Supplier<? extends Block> blockSupplier2:blockCollection) {
 					Block block2 = blockSupplier2.get();
-					if (StringHelper.replace(block.getRegistryName().getPath(), "leaves", "sapling").equals(block2.getRegistryName().getPath())) sapling = block2;
+					if (ResourceLocationHelper.replace(block.getRegistryName().getPath(), "leaves", "sapling").equals(block2.getRegistryName().getPath())) sapling = block2;
 				}	
 				registerLootTable(block, droppingWithChancesAndSticks(block, sapling, DEFAULT_SAPLING_DROP_RATES));
 			} else if (!block.getClass().equals(FruitingLeavesBlock.class) && !block.getClass().equals(LeavesBlock.class) && block instanceof LeavesBlock) {

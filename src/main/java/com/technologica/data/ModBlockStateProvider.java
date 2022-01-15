@@ -12,7 +12,7 @@ import com.technologica.block.WaterCropsBlock;
 import com.technologica.state.properties.TechnologicaBlockStateProperties;
 import com.technologica.util.AnnunciatorOverlay;
 import com.technologica.util.Radius;
-import com.technologica.util.text.StringHelper;
+import com.technologica.util.text.ResourceLocationHelper;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.CropsBlock;
@@ -58,7 +58,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	private final void automaticBlockState(Collection<RegistryObject<Block>> collection) {
 		for(Supplier<? extends Block> blockSupplier:collection) {
 			Block block = blockSupplier.get();
-			String path = StringHelper.getPath(block);
+			String path = ResourceLocationHelper.getPath(block);
 			ResourceLocation texture = blockTexture(block);
 				
 			if (path.contains("leaves")) {
@@ -81,37 +81,37 @@ public class ModBlockStateProvider extends BlockStateProvider {
 				simpleBlockItem(block, cubeAll(block));
 			} else if (path.contains("_bookshelf"))  {
 				ResourceLocation end = blockTexture(block);
-				if (StringHelper.getPath(block).contains("spruce") || block.getTranslationKey().contains("birch") || block.getTranslationKey().contains("jungle") || block.getTranslationKey().contains("acacia") || block.getTranslationKey().contains("dark_oak") || block.getTranslationKey().contains("crimson") || block.getTranslationKey().contains("warped")) {
+				if (ResourceLocationHelper.getPath(block).contains("spruce") || block.getTranslationKey().contains("birch") || block.getTranslationKey().contains("jungle") || block.getTranslationKey().contains("acacia") || block.getTranslationKey().contains("dark_oak") || block.getTranslationKey().contains("crimson") || block.getTranslationKey().contains("warped")) {
 					end = mcLoc(blockTexture(block).getPath());	
 				}
-				simpleBlock(block, models().cubeColumn(path, blockTexture(block), StringHelper.replace(end, "bookshelf", "planks")));
-				simpleBlockItem(block, models().cubeColumn(path, blockTexture(block), StringHelper.replace(end, "bookshelf", "planks")));
+				simpleBlock(block, models().cubeColumn(path, blockTexture(block), ResourceLocationHelper.replace(end, "bookshelf", "planks")));
+				simpleBlockItem(block, models().cubeColumn(path, blockTexture(block), ResourceLocationHelper.replace(end, "bookshelf", "planks")));
 			} else if (path.contains("_log")) {
 				logBlock((RotatedPillarBlock) block);
 				simpleBlockItem(block, models().cubeColumn(path, blockTexture(block), new ResourceLocation(blockTexture(block) + "_top")));
 			} else if (path.contains("_wood")) {
-				texture = StringHelper.replace(blockTexture(block), "_wood", "_log");
+				texture = ResourceLocationHelper.replace(blockTexture(block), "_wood", "_log");
 				axisBlock((RotatedPillarBlock) block, models().cubeColumn(path, texture, texture), models().cubeColumn(path, texture, texture));
 				simpleBlockItem(block, models().cubeColumn(path, texture, texture));
 			} else if (path.contains("_slab")) {
-				texture = StringHelper.replace(blockTexture(block), "_slab", "_planks");
+				texture = ResourceLocationHelper.replace(blockTexture(block), "_slab", "_planks");
 				slabBlock((SlabBlock) block, texture, texture);
 				simpleBlockItem(block, models().slab(path, texture, texture, texture));
 			} else if (path.contains("_stairs")) {
-				texture = StringHelper.replace(blockTexture(block), "_stairs", "_planks");
+				texture = ResourceLocationHelper.replace(blockTexture(block), "_stairs", "_planks");
 				stairsBlock((StairsBlock) block, texture);
 				simpleBlockItem(block, models().stairs(path, texture, texture, texture));
 			} else if (path.contains("_fence") && !path.contains("_gate")) {
-				texture = StringHelper.replace(blockTexture(block), "_fence", "_planks");
+				texture = ResourceLocationHelper.replace(blockTexture(block), "_fence", "_planks");
 				fenceBlock((FenceBlock) block, texture);
 				simpleBlockItem(block, models().fenceInventory(path + "_inventory", texture));
 			} else if (path.contains("_fence_gate")) {
-				texture = StringHelper.replace(blockTexture(block), "_fence_gate", "_planks");
+				texture = ResourceLocationHelper.replace(blockTexture(block), "_fence_gate", "_planks");
 				fenceGateBlock((FenceGateBlock) block, texture);
 				simpleBlockItem(block, models().fenceGate(path, texture));
 			}
 			else if (path.contains("_door") && !path.contains("trap")) {
-				doorBlock((DoorBlock) block, StringHelper.extend(blockTexture(block), "_bottom"), StringHelper.extend(blockTexture(block), "_top"));
+				doorBlock((DoorBlock) block, ResourceLocationHelper.extend(blockTexture(block), "_bottom"), ResourceLocationHelper.extend(blockTexture(block), "_top"));
 				signItem(block, new ModelFile.UncheckedModelFile("item/generated"));	
 			}
 			else if (path.contains("_trapdoor")) {
@@ -133,16 +133,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			else if (path.contains("_button")) buttonBlockState(block, buttonModel(block), buttonPressedModel(block), buttonInventoryModel(block));
 			else if (path.contains("tree_tap")) fourDirectionBlockState(block, treeTapModel(block));
 			else if (path.contains("_chair")) {
-				ResourceLocation planks = StringHelper.replace(blockTexture(block), "chair", "planks");
+				ResourceLocation planks = ResourceLocationHelper.replace(blockTexture(block), "chair", "planks");
 				if (path.contains("oak") || path.contains("spruce") || path.contains("birch") || path.contains("jungle") || path.contains("acacia") || path.contains("dark_oak") || path.contains("crimson") || path.contains("warped")) {
-					planks = mcLoc(StringHelper.replace(blockTexture(block).getPath(), "chair", "planks"));	
+					planks = mcLoc(ResourceLocationHelper.replace(blockTexture(block).getPath(), "chair", "planks"));	
 				}
 				fourDirectionBlockState(block, chairModel(block, planks));
 			}
 			else if (path.contains("_table")) {
-				ResourceLocation planks = StringHelper.replace(blockTexture(block), "table", "planks");
+				ResourceLocation planks = ResourceLocationHelper.replace(blockTexture(block), "table", "planks");
 				if (path.contains("oak") || path.contains("spruce") || path.contains("birch") || path.contains("jungle") || path.contains("acacia") || path.contains("dark_oak") || path.contains("crimson") || path.contains("warped")) {
-					planks = mcLoc(StringHelper.replace(blockTexture(block).getPath(), "table", "planks"));	
+					planks = mcLoc(ResourceLocationHelper.replace(blockTexture(block).getPath(), "table", "planks"));	
 				}
 				simpleBlock(block, tableModel(block, planks));
 				simpleBlockItem(block, tableModel(block, planks));
@@ -158,7 +158,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 				getVariantBuilder(block).partialState().setModels(new ConfiguredModel(fluid(block)));
 			}
 			else if (path.contains("_pulley")) {
-				getVariantBuilder(block).partialState().setModels(new ConfiguredModel(fluid(block)));
+				getVariantBuilder(block).partialState().setModels(new ConfiguredModel(models().withExistingParent(path, ResourceLocationHelper.technologicaLocation(path + "_model")).texture("pulley", ResourceLocationHelper.technologicaLocation("block/pulley"))));
 			}
 			else if (path.contains("sawmill")) fourDirectionBlockState(block, cubeAll(block));
 			else if (path.contains("annunciator")) annunciatorBlockState(block);
@@ -172,90 +172,90 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	 */
 	
 	public ModelFile chairModel(Block block, ResourceLocation texture) {
-		return models().singleTexture(StringHelper.getPath(block), modLoc("chair"), "planks", texture);
+		return models().singleTexture(ResourceLocationHelper.getPath(block), modLoc("chair"), "planks", texture);
 	}
 	
 	public ModelFile tableModel(Block block, ResourceLocation texture) {
-		return models().singleTexture(StringHelper.getPath(block), modLoc("table"), "planks", texture);
+		return models().singleTexture(ResourceLocationHelper.getPath(block), modLoc("table"), "planks", texture);
 	}
 	
 	public ModelFile hexagonalCrystalModel(Block block) {
 		ResourceLocation location = block.getRegistryName();
-		return models().singleTexture(StringHelper.getPath(block), modLoc("hexagonal_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath()));
+		return models().singleTexture(ResourceLocationHelper.getPath(block), modLoc("hexagonal_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath()));
     }
 	
 	public ModelFile cubicCrystalModel(Block block) {
 		ResourceLocation location = block.getRegistryName();
-		return models().singleTexture(StringHelper.getPath(block), modLoc("cubic_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath()));
+		return models().singleTexture(ResourceLocationHelper.getPath(block), modLoc("cubic_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath()));
     }
 	
 	public ModelFile smallPulleyModel(Block block) {
-		return models().withExistingParent(StringHelper.getPath(block), modLoc(StringHelper.getPath(block))).texture("0", new ResourceLocation(Technologica.MODID, "block/" + StringHelper.getPath(block)));
+		return models().withExistingParent(ResourceLocationHelper.getPath(block), modLoc(ResourceLocationHelper.getPath(block))).texture("0", ResourceLocationHelper.technologicaLocation("block/" + ResourceLocationHelper.getPath(block)));
     }
 	
 	public ModelFile lineShaftNoPulleyModel(Block block) {
-		return models().withExistingParent(StringHelper.getPath(block) + "_no_pulley", modLoc("line_shaft_no_pulley")).texture("0", new ResourceLocation(Technologica.MODID, "block/pulley"));
+		return models().withExistingParent(ResourceLocationHelper.getPath(block) + "_no_pulley", modLoc("line_shaft_no_pulley_model")).texture("0", new ResourceLocation(Technologica.MODID, "block/pulley"));
     }
 	
 	public ModelFile lineShaftSmallPulleyModel(Block block) {
-		return models().withExistingParent(StringHelper.getPath(block) + "_small_pulley", modLoc("line_shaft_small_pulley")).texture("0", new ResourceLocation(Technologica.MODID, "block/pulley"));
+		return models().withExistingParent(ResourceLocationHelper.getPath(block) + "_small_pulley", modLoc("line_shaft_small_pulley_model")).texture("0", new ResourceLocation(Technologica.MODID, "block/pulley"));
     }
 	
 	public ModelFile lineShaftMediumPulleyModel(Block block) {
-		return models().withExistingParent(StringHelper.getPath(block) + "_medium_pulley", modLoc("line_shaft_medium_pulley")).texture("0", new ResourceLocation(Technologica.MODID, "block/pulley"));
+		return models().withExistingParent(ResourceLocationHelper.getPath(block) + "_medium_pulley", modLoc("line_shaft_medium_pulley_model")).texture("0", new ResourceLocation(Technologica.MODID, "block/pulley"));
     }
 	
 	public ModelFile lineShaftLargePulleyModel(Block block) {
-		return models().withExistingParent(StringHelper.getPath(block) + "_large_pulley", modLoc("line_shaft_large_pulley")).texture("0", new ResourceLocation(Technologica.MODID, "block/pulley"));
+		return models().withExistingParent(ResourceLocationHelper.getPath(block) + "_large_pulley", modLoc("line_shaft_large_pulley_model")).texture("0", new ResourceLocation(Technologica.MODID, "block/pulley"));
     }
 	
 	public ModelFile lineShaftHangerModel(Block block) {
-		return models().withExistingParent(StringHelper.getPath(block), modLoc("line_shaft_hanger")).texture("0", blockTexture(block));
+		return models().withExistingParent(ResourceLocationHelper.getPath(block), modLoc("line_shaft_hanger_model")).texture("0", blockTexture(block));
     }
 	
 	public ModelFile lineShaftHangerModel2(Block block) {
-		return models().withExistingParent(StringHelper.getPath(block) + "2", modLoc("line_shaft_hanger")).texture("0", blockTexture(block));
+		return models().withExistingParent(ResourceLocationHelper.getPath(block) + "2", modLoc("line_shaft_hanger2_model")).texture("0", blockTexture(block));
     }
 	
 	public ModelFile motorModel(Block block) {
-		return models().withExistingParent(StringHelper.getPath(block), modLoc("motor")).texture("motor", blockTexture(block));
+		return models().withExistingParent(ResourceLocationHelper.getPath(block), modLoc("motor")).texture("motor", blockTexture(block));
     }
 	
 	public ModelFile motor2Model(Block block) {
-		return models().withExistingParent(StringHelper.getPath(block) + "2", modLoc("motor2")).texture("motor", blockTexture(block));
+		return models().withExistingParent(ResourceLocationHelper.getPath(block) + "2", modLoc("motor2")).texture("motor", blockTexture(block));
     }
 	
 	public ModelFile treeTapModel(Block block) {
-		return models().withExistingParent(StringHelper.getPath(block), modLoc("tap")).texture("tree_tap", blockTexture(block));
+		return models().withExistingParent(ResourceLocationHelper.getPath(block), modLoc("tap")).texture("tree_tap", blockTexture(block));
 	}
 	
 	public ModelFile displayModel(Block block) {
-		return models().withExistingParent(StringHelper.getPath(block), modLoc("display")).texture("case", blockTexture(block)).texture("base", new ResourceLocation("block/black_wool"));
+		return models().withExistingParent(ResourceLocationHelper.getPath(block), modLoc("display")).texture("case", blockTexture(block)).texture("base", new ResourceLocation("block/black_wool"));
     }
 	
 	public ModelFile pressurePlateModel(Block block) {
-        return models().withExistingParent(StringHelper.getPath(block), "block/pressure_plate_up").texture("texture", StringHelper.replace(blockTexture(block), "_pressure_plate", "_planks"));
+        return models().withExistingParent(ResourceLocationHelper.getPath(block), "block/pressure_plate_up").texture("texture", ResourceLocationHelper.replace(blockTexture(block), "_pressure_plate", "_planks"));
     }
 	
 	public ModelFile pressurePlateDownModel(Block block) {
-        return models().withExistingParent(StringHelper.getPath(block) + "_down", "block/pressure_plate_down").texture("texture", StringHelper.replace(blockTexture(block), "_pressure_plate", "_planks"));
+        return models().withExistingParent(ResourceLocationHelper.getPath(block) + "_down", "block/pressure_plate_down").texture("texture", ResourceLocationHelper.replace(blockTexture(block), "_pressure_plate", "_planks"));
     }
 	
 	public ModelFile buttonModel(Block block) {
-        return models().withExistingParent(StringHelper.getPath(block), "block/button").texture("texture", StringHelper.replace(blockTexture(block), "_button", "_planks"));
+        return models().withExistingParent(ResourceLocationHelper.getPath(block), "block/button").texture("texture", ResourceLocationHelper.replace(blockTexture(block), "_button", "_planks"));
     }
 	
 	public ModelFile buttonPressedModel(Block block) {
-        return models().withExistingParent(StringHelper.getPath(block) + "_pressed", "block/button_pressed").texture("texture", StringHelper.replace(blockTexture(block), "_button", "_planks"));
+        return models().withExistingParent(ResourceLocationHelper.getPath(block) + "_pressed", "block/button_pressed").texture("texture", ResourceLocationHelper.replace(blockTexture(block), "_button", "_planks"));
     }
 	
 	public ModelFile buttonInventoryModel(Block block) {
-        return models().withExistingParent(StringHelper.getPath(block) + "_inventory", "block/button_inventory").texture("texture", StringHelper.replace(blockTexture(block), "_button", "_planks"));
+        return models().withExistingParent(ResourceLocationHelper.getPath(block) + "_inventory", "block/button_inventory").texture("texture", ResourceLocationHelper.replace(blockTexture(block), "_button", "_planks"));
     }
 	
 	public ModelFile sign(Block block) {
         ResourceLocation location = block.getRegistryName();
-        return models().getBuilder(location.getPath()).texture("particle", StringHelper.replace(StringHelper.replace(blockTexture(block), "_wall", ""), "_sign", "_planks"));
+        return models().getBuilder(location.getPath()).texture("particle", ResourceLocationHelper.replace(ResourceLocationHelper.replace(blockTexture(block), "_wall", ""), "_sign", "_planks"));
     }
 
 	public ModelFile tallCrop(String name, ResourceLocation crop) {
@@ -405,34 +405,34 @@ public class ModBlockStateProvider extends BlockStateProvider {
     
 	public void cropBlock(Block block) {
 		getVariantBuilder(block)
-			.partialState().with(CropsBlock.AGE, 0).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_stage0", StringHelper.extend(blockTexture(block), "_stage0"))).addModel()
-			.partialState().with(CropsBlock.AGE, 1).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_stage1", StringHelper.extend(blockTexture(block), "_stage1"))).addModel()
-			.partialState().with(CropsBlock.AGE, 2).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_stage2", StringHelper.extend(blockTexture(block), "_stage2"))).addModel()
-			.partialState().with(CropsBlock.AGE, 3).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_stage3", StringHelper.extend(blockTexture(block), "_stage3"))).addModel()
-			.partialState().with(CropsBlock.AGE, 4).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_stage4", StringHelper.extend(blockTexture(block), "_stage4"))).addModel()
-			.partialState().with(CropsBlock.AGE, 5).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_stage5", StringHelper.extend(blockTexture(block), "_stage5"))).addModel()
-			.partialState().with(CropsBlock.AGE, 6).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_stage6", StringHelper.extend(blockTexture(block), "_stage6"))).addModel()
-			.partialState().with(CropsBlock.AGE, 7).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_stage7", StringHelper.extend(blockTexture(block), "_stage7"))).addModel();
+			.partialState().with(CropsBlock.AGE, 0).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage0", ResourceLocationHelper.extend(blockTexture(block), "_stage0"))).addModel()
+			.partialState().with(CropsBlock.AGE, 1).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage1", ResourceLocationHelper.extend(blockTexture(block), "_stage1"))).addModel()
+			.partialState().with(CropsBlock.AGE, 2).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage2", ResourceLocationHelper.extend(blockTexture(block), "_stage2"))).addModel()
+			.partialState().with(CropsBlock.AGE, 3).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage3", ResourceLocationHelper.extend(blockTexture(block), "_stage3"))).addModel()
+			.partialState().with(CropsBlock.AGE, 4).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage4", ResourceLocationHelper.extend(blockTexture(block), "_stage4"))).addModel()
+			.partialState().with(CropsBlock.AGE, 5).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage5", ResourceLocationHelper.extend(blockTexture(block), "_stage5"))).addModel()
+			.partialState().with(CropsBlock.AGE, 6).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage6", ResourceLocationHelper.extend(blockTexture(block), "_stage6"))).addModel()
+			.partialState().with(CropsBlock.AGE, 7).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage7", ResourceLocationHelper.extend(blockTexture(block), "_stage7"))).addModel();
 	}
 	
 	public void tallCropBlock(Block block) {
 		getVariantBuilder(block)
-			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropsBlock.AGE, 0).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_lower_stage0", StringHelper.extend(blockTexture(block), "_lower_stage0"))).addModel()
-			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropsBlock.AGE, 1).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_lower_stage1", StringHelper.extend(blockTexture(block), "_lower_stage1"))).addModel()
-			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropsBlock.AGE, 2).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_lower_stage2", StringHelper.extend(blockTexture(block), "_lower_stage2"))).addModel()
-			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropsBlock.AGE, 3).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_lower_stage3", StringHelper.extend(blockTexture(block), "_lower_stage3"))).addModel()
-			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropsBlock.AGE, 4).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_lower_stage4", StringHelper.extend(blockTexture(block), "_lower_stage4"))).addModel()
-			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropsBlock.AGE, 5).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_lower_stage5", StringHelper.extend(blockTexture(block), "_lower_stage5"))).addModel()
-			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropsBlock.AGE, 6).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_lower_stage6", StringHelper.extend(blockTexture(block), "_lower_stage6"))).addModel()
-			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropsBlock.AGE, 7).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_lower_stage7", StringHelper.extend(blockTexture(block), "_lower_stage7"))).addModel()
-			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropsBlock.AGE, 0).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_upper_stage0", StringHelper.extend(blockTexture(block), "_upper_stage0"))).addModel()
-			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropsBlock.AGE, 1).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_upper_stage1", StringHelper.extend(blockTexture(block), "_upper_stage1"))).addModel()
-			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropsBlock.AGE, 2).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_upper_stage2", StringHelper.extend(blockTexture(block), "_upper_stage2"))).addModel()
-			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropsBlock.AGE, 3).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_upper_stage3", StringHelper.extend(blockTexture(block), "_upper_stage3"))).addModel()
-			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropsBlock.AGE, 4).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_upper_stage4", StringHelper.extend(blockTexture(block), "_upper_stage4"))).addModel()
-			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropsBlock.AGE, 5).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_upper_stage5", StringHelper.extend(blockTexture(block), "_upper_stage5"))).addModel()
-			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropsBlock.AGE, 6).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_upper_stage6", StringHelper.extend(blockTexture(block), "_upper_stage6"))).addModel()
-			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropsBlock.AGE, 7).modelForState().modelFile(models().crop(StringHelper.getPath(block) + "_upper_stage7", StringHelper.extend(blockTexture(block), "_upper_stage7"))).addModel();
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropsBlock.AGE, 0).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_lower_stage0", ResourceLocationHelper.extend(blockTexture(block), "_lower_stage0"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropsBlock.AGE, 1).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_lower_stage1", ResourceLocationHelper.extend(blockTexture(block), "_lower_stage1"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropsBlock.AGE, 2).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_lower_stage2", ResourceLocationHelper.extend(blockTexture(block), "_lower_stage2"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropsBlock.AGE, 3).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_lower_stage3", ResourceLocationHelper.extend(blockTexture(block), "_lower_stage3"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropsBlock.AGE, 4).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_lower_stage4", ResourceLocationHelper.extend(blockTexture(block), "_lower_stage4"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropsBlock.AGE, 5).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_lower_stage5", ResourceLocationHelper.extend(blockTexture(block), "_lower_stage5"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropsBlock.AGE, 6).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_lower_stage6", ResourceLocationHelper.extend(blockTexture(block), "_lower_stage6"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropsBlock.AGE, 7).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_lower_stage7", ResourceLocationHelper.extend(blockTexture(block), "_lower_stage7"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropsBlock.AGE, 0).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_upper_stage0", ResourceLocationHelper.extend(blockTexture(block), "_upper_stage0"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropsBlock.AGE, 1).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_upper_stage1", ResourceLocationHelper.extend(blockTexture(block), "_upper_stage1"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropsBlock.AGE, 2).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_upper_stage2", ResourceLocationHelper.extend(blockTexture(block), "_upper_stage2"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropsBlock.AGE, 3).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_upper_stage3", ResourceLocationHelper.extend(blockTexture(block), "_upper_stage3"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropsBlock.AGE, 4).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_upper_stage4", ResourceLocationHelper.extend(blockTexture(block), "_upper_stage4"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropsBlock.AGE, 5).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_upper_stage5", ResourceLocationHelper.extend(blockTexture(block), "_upper_stage5"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropsBlock.AGE, 6).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_upper_stage6", ResourceLocationHelper.extend(blockTexture(block), "_upper_stage6"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropsBlock.AGE, 7).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_upper_stage7", ResourceLocationHelper.extend(blockTexture(block), "_upper_stage7"))).addModel();
 	}
 	
 	public void annunciatorBlockState(Block block) {
@@ -488,6 +488,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	
 	public void signItem(Block block, ModelFile model) {
 		ResourceLocation location = block.getRegistryName();
-        itemModels().getBuilder(location.getPath()).parent(model).texture("layer0", StringHelper.replace(StringHelper.replace(blockTexture(block), "_wall", ""), "block", "item"));
+        itemModels().getBuilder(location.getPath()).parent(model).texture("layer0", ResourceLocationHelper.replace(ResourceLocationHelper.replace(blockTexture(block), "_wall", ""), "block", "item"));
 	}
 }

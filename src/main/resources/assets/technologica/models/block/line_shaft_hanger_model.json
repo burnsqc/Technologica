@@ -1,7 +1,6 @@
 {
 	"parent": "block/block",
 	"textures": {
-		"0": "technologica:block/line_shaft_hanger",
 		"particle": "technologica:block/line_shaft_hanger"
 	},
 	"elements": [
