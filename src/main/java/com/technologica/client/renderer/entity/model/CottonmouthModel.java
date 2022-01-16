@@ -10,8 +10,7 @@ import net.minecraft.util.math.MathHelper;
 public class CottonmouthModel<T extends Entity> extends SegmentedModel<T> {
 	private final ModelRenderer headUpper;
 	private final ModelRenderer headLower;
-	private final ModelRenderer fangLeft;
-	private final ModelRenderer fangRight;
+	private final ModelRenderer fangs;
 	private final ModelRenderer body1;
 	private final ModelRenderer body2;
 	private final ModelRenderer body3;
@@ -40,13 +39,10 @@ public class CottonmouthModel<T extends Entity> extends SegmentedModel<T> {
 		this.headUpper.addBox(-1.5F, -1.0F, -3.0F, 3.0F, 1.0F, 3.0F);
 		this.headLower.addChild(this.headUpper);
 		
-		this.fangLeft = new ModelRenderer(this, 0, 4);
-		this.fangLeft.addBox(1.0F, 0.0F, -2.5F, 0.0F, 1.0F, 1.0F);
-		this.headUpper.addChild(this.fangLeft);
-		
-		this.fangRight = new ModelRenderer(this, 0, 4);
-		this.fangRight.addBox(-1.0F, 0.0F, -2.5F, 0.0F, 1.0F, 1.0F);
-		this.headUpper.addChild(this.fangRight);
+		this.fangs = new ModelRenderer(this, 0, 12);
+		this.fangs.addBox(-1.0F, -0.5F, -0.5F, 2.0F, 1.0F, 1.0F);
+		this.fangs.setRotationPoint(0.0F, 0.0F, -2.0F);
+		this.headUpper.addChild(this.fangs);
 		
 		body1 = new ModelRenderer(this, 0, 0);
 		body1.setRotationPoint(0.0F, 0.0F, 0.0F);
@@ -139,6 +135,7 @@ public class CottonmouthModel<T extends Entity> extends SegmentedModel<T> {
 		this.body12.rotateAngleY = -MathHelper.sin(ageInTicks / 10)/3;
 		this.body13.rotateAngleY = MathHelper.sin(ageInTicks / 10)/3;
 		this.body14.rotateAngleY = MathHelper.sin(ageInTicks / 10)/3;
+		this.fangs.rotateAngleX = (float) Math.PI/4;
 	}
 
 	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {

@@ -10,8 +10,7 @@ import net.minecraft.util.math.MathHelper;
 public class CobraModel<T extends Entity> extends SegmentedModel<T> {
 	private final ModelRenderer headUpper;
 	private final ModelRenderer headLower;
-	private final ModelRenderer fangLeft;
-	private final ModelRenderer fangRight;
+	private final ModelRenderer fangs;
 	private final ModelRenderer body1;
 	private final ModelRenderer body2;
 	private final ModelRenderer body3;
@@ -26,9 +25,14 @@ public class CobraModel<T extends Entity> extends SegmentedModel<T> {
 	private final ModelRenderer body12;
 	private final ModelRenderer body13;
 	private final ModelRenderer body14;
+	private final ModelRenderer hood1;
+	private final ModelRenderer hood2;
+	private final ModelRenderer hood3;
+	private final ModelRenderer hood4;
+	private final ModelRenderer hood5;
 
 	public CobraModel() {
-		textureWidth = 16;
+		textureWidth = 32;
 		textureHeight = 16;
 
 		this.headLower = new ModelRenderer(this, 0, 8);
@@ -40,38 +44,60 @@ public class CobraModel<T extends Entity> extends SegmentedModel<T> {
 		this.headUpper.addBox(-1.5F, -1.0F, -3.0F, 3.0F, 1.0F, 3.0F);
 		this.headLower.addChild(this.headUpper);
 		
-		this.fangLeft = new ModelRenderer(this, 0, 4);
-		this.fangLeft.addBox(1.0F, 0.0F, -2.5F, 0.0F, 1.0F, 1.0F);
-		this.headUpper.addChild(this.fangLeft);
-		
-		this.fangRight = new ModelRenderer(this, 0, 4);
-		this.fangRight.addBox(-1.0F, 0.0F, -2.5F, 0.0F, 1.0F, 1.0F);
-		this.headUpper.addChild(this.fangRight);
+		this.fangs = new ModelRenderer(this, 0, 12);
+		this.fangs.addBox(-1.0F, -0.5F, -0.5F, 2.0F, 1.0F, 1.0F);
+		this.fangs.setRotationPoint(0.0F, 0.0F, -2.0F);
+		this.headUpper.addChild(this.fangs);
 		
 		body1 = new ModelRenderer(this, 0, 0);
 		body1.setRotationPoint(0.0F, 0.0F, 0.0F);
 		body1.addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F);
 		this.headLower.addChild(this.body1);
 		
+		hood1 = new ModelRenderer(this, 8, 0);
+		hood1.setRotationPoint(0.0F, 0.0F, 0.0F);
+		hood1.addBox(-2.0F, -1.0F, 0.0F, 4.0F, 1.0F, 2.0F);
+		this.body1.addChild(this.hood1);
+		
 		body2 = new ModelRenderer(this, 0, 0);
 		body2.setRotationPoint(0.0F, 0.0F, 2.0F);
 		body2.addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F);	
 		this.body1.addChild(this.body2);
+		
+		hood2 = new ModelRenderer(this, 4, 12);
+		hood2.setRotationPoint(0.0F, 0.0F, 0.0F);
+		hood2.addBox(-3.0F, -1.0F, 0.0F, 6.0F, 1.0F, 2.0F);
+		this.body2.addChild(this.hood2);
 		
 		body3 = new ModelRenderer(this, 0, 0);
 		body3.setRotationPoint(0.0F, 0.0F, 2.0F);
 		body3.addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F);	
 		this.body2.addChild(this.body3);
 		
+		hood3 = new ModelRenderer(this, 4, 12);
+		hood3.setRotationPoint(0.0F, 0.0F, 0.0F);
+		hood3.addBox(-3.0F, -1.0F, 0.0F, 6.0F, 1.0F, 2.0F);
+		this.body3.addChild(this.hood3);
+		
 		body4 = new ModelRenderer(this, 0, 0);
 		body4.setRotationPoint(0.0F, 0.0F, 2.0F);
 		body4.addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F);	
 		this.body3.addChild(this.body4);
 		
+		hood4 = new ModelRenderer(this, 8, 0);
+		hood4.setRotationPoint(0.0F, 0.0F, 0.0F);
+		hood4.addBox(-2.0F, -1.0F, 0.0F, 4.0F, 1.0F, 2.0F);
+		this.body4.addChild(this.hood4);
+		
 		body5 = new ModelRenderer(this, 0, 0);
 		body5.setRotationPoint(0.0F, 0.0F, 2.0F);
 		body5.addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F);	
 		this.body4.addChild(this.body5);
+		
+		hood5 = new ModelRenderer(this, 8, 0);
+		hood5.setRotationPoint(0.0F, 0.0F, 0.0F);
+		hood5.addBox(-2.0F, -1.0F, 0.0F, 4.0F, 1.0F, 2.0F);
+		this.body5.addChild(this.hood5);
 		
 		body6 = new ModelRenderer(this, 0, 0);
 		body6.setRotationPoint(0.0F, 0.0F, 2.0F);
@@ -139,6 +165,7 @@ public class CobraModel<T extends Entity> extends SegmentedModel<T> {
 		this.body12.rotateAngleY = -MathHelper.sin(ageInTicks / 10)/3;
 		this.body13.rotateAngleY = MathHelper.sin(ageInTicks / 10)/3;
 		this.body14.rotateAngleY = MathHelper.sin(ageInTicks / 10)/3;
+		this.fangs.rotateAngleX = (float) Math.PI/4;
 	}
 
 	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
