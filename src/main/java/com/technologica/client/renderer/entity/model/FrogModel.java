@@ -51,6 +51,5 @@ public class FrogModel<T extends FrogEntity> extends QuadrupedModel<T> {
 	@Override
 	public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.body.rotateAngleX = -((float) Math.PI / 8F);
-		this.headModel.rotateAngleX = 0;
 	}
 }
