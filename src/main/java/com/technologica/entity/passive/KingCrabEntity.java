@@ -75,6 +75,10 @@ public class KingCrabEntity extends AnimalEntity {
 		this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
 	}
 	
+	@Override
+	public boolean canBreatheUnderwater() {
+		return true;
+	}
 	
 	public double getMountedYOffset() {
 		return (double) (this.getHeight() * 0.5F);

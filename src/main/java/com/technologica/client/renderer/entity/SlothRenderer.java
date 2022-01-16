@@ -12,7 +12,7 @@ public final class SlothRenderer extends MobRenderer<SlothEntity, SlothModel<Slo
 	private static final ResourceLocation SLOTH_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/sloth.png");
 
 	public SlothRenderer(EntityRendererManager renderManagerIn) {
-		super(renderManagerIn, new SlothModel<>(), 1.1F);
+		super(renderManagerIn, new SlothModel<>(), 0.5F);
 	}
 
 	@Override
