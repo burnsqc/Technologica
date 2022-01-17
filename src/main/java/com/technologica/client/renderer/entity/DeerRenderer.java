@@ -12,11 +12,10 @@ public final class DeerRenderer extends MobRenderer<DeerEntity, DeerModel<DeerEn
 	private static final ResourceLocation DEER_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/deer.png");
 
 	public DeerRenderer(EntityRendererManager renderManagerIn) {
-		super(renderManagerIn, new DeerModel<>(0.0F), 1.1F);
+		super(renderManagerIn, new DeerModel<>(), 1.1F);
 	}
 
 	public ResourceLocation getEntityTexture(DeerEntity entity) {
 		return DEER_TEXTURE;
 	}
 }
-
