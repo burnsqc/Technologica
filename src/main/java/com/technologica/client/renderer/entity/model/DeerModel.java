@@ -235,6 +235,7 @@ public class DeerModel<T extends AbstractHorseEntity> extends AgeableModel<T> {
 		for (ModelRenderer modelrenderer1 : this.reigns) {
 			modelrenderer1.showModel = flag1 && flag;
 		}
+		
 		this.antlerLeft1.rotateAngleZ = (float) Math.PI/3;
 		this.antlerRight1.rotateAngleZ = -(float) Math.PI/3;
 		this.antlerLeft2.rotateAngleX = (float) Math.PI/3;
@@ -245,7 +246,6 @@ public class DeerModel<T extends AbstractHorseEntity> extends AgeableModel<T> {
 		this.antlerRight4.rotateAngleZ = (float) Math.PI/3;
 		this.antlerLeft5.rotateAngleZ = -(float) Math.PI/2;
 		this.antlerRight5.rotateAngleZ = (float) Math.PI/2;
-		
 		this.antlerLeft6.rotateAngleZ = -(float) Math.PI/2;
 		this.antlerRight6.rotateAngleZ = (float) Math.PI/2;
 		this.antlerLeft6.rotateAngleX = -(float) Math.PI/6;
