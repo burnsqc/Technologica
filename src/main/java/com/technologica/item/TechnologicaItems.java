@@ -10,6 +10,7 @@ import com.technologica.fluid.TechnologicaFluids;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
+import net.minecraft.item.AxeItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.BucketItem;
@@ -1057,6 +1058,7 @@ public class TechnologicaItems {
      * ARMORY
      */
     
+    public static final RegistryObject<Item> PRIMITIVE_HATCHET = ITEMS.register("primitive_hatchet", () -> new AxeItem(ItemTier.WOOD, 6.0F, -3.2F, (new Item.Properties()).group(TechnologicaItemGroup.ARMORY)));
     public static final RegistryObject<Item> COCONUT_BAZOOKA_ITEM = ITEMS.register("coconut_bazooka", () -> new CoconutBazookaItem((new Item.Properties()).maxDamage(384).group(TechnologicaItemGroup.ARMORY)));
     public static final RegistryObject<Item> DODGEBALL_ITEM = ITEMS.register("dodgeball", () -> new DodgeballItem((new Item.Properties()).maxStackSize(1).group(TechnologicaItemGroup.ARMORY)));
     public static final RegistryObject<Item> SPEAR_GUN_ITEM = ITEMS.register("spear_gun", () -> new SpearGunItem((new Item.Properties()).maxDamage(384).group(TechnologicaItemGroup.ARMORY)));

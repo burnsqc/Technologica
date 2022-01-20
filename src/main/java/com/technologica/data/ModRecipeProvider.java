@@ -295,6 +295,8 @@ public class ModRecipeProvider extends RecipeProvider {
 		ShapelessRecipeBuilder.shapelessRecipe(TechnologicaItems.TAPENADE.get(), 1).addIngredient(TechnologicaItems.OLIVE.get()).addIngredient(TechnologicaItems.GARLIC.get()).addCriterion("has_olive", hasItem(TechnologicaItems.OLIVE.get())).build(consumer, new ResourceLocation(Technologica.MODID, "tapenade"));
 		ShapelessRecipeBuilder.shapelessRecipe(TechnologicaItems.CINNAMON_ROLL.get(), 1).addIngredient(TechnologicaItems.CINNAMON.get()).addIngredient(Items.EGG).addIngredient(Items.SUGAR).addIngredient(Items.MILK_BUCKET).addCriterion("has_cinnamon", hasItem(TechnologicaItems.CINNAMON.get())).build(consumer, new ResourceLocation(Technologica.MODID, "cinnamon_roll"));
 		
+		ShapelessRecipeBuilder.shapelessRecipe(TechnologicaItems.PRIMITIVE_HATCHET.get(), 1).addIngredient(Items.STICK).addIngredient(Items.STRING).addIngredient(Items.FLINT).addCriterion("has_flint", hasItem(Items.FLINT)).build(consumer, new ResourceLocation(Technologica.MODID, "primitive_hatchet"));
+		
 //		sawmillRecipe(Ingredient.fromTag(TechnologicaItemTags.APRICOT_LOGS), TechnologicaItems.APRICOT_PLANKS_ITEM.get(), 1).build(consumer, new ResourceLocation(Technologica.MODID, "apricot_planks_from_apricot_logs_sawmill"));
 //		sawmillRecipe(Ingredient.fromTag(TechnologicaItemTags.ASPEN_LOGS), TechnologicaItems.ASPEN_PLANKS_ITEM.get(), 1).build(consumer, new ResourceLocation(Technologica.MODID, "aspen_planks_from_aspen_logs_sawmill"));
 	}	
