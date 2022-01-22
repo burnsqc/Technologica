@@ -5,6 +5,7 @@ import com.google.common.collect.ImmutableList;
 import net.minecraft.client.renderer.entity.model.AgeableModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.util.math.MathHelper;
 
 public class TurkeyModel<T extends AnimalEntity> extends AgeableModel<T> {
 
@@ -27,8 +28,8 @@ public class TurkeyModel<T extends AnimalEntity> extends AgeableModel<T> {
 		this.head.setRotationPoint(0.0F, 11.0F, -1.0F);
 		
 		this.bill = new ModelRenderer(this, 12, 16);
-		this.bill.addBox(-2.0F, -4.0F, -3.0F, 4.0F, 2.0F, 2.0F);
-		this.bill.setRotationPoint(0.0F, 15.0F, -4.0F);
+		this.bill.addBox(-2.0F, 0.0F, -6.0F, 4.0F, 2.0F, 2.0F);
+		this.head.addChild(this.bill);
 		
 		this.chin = new ModelRenderer(this, 0, 0);
 		this.chin.addBox(-1.0F, 2.0F, -4.0F, 2.0F, 3.0F, 1.0F);
@@ -62,7 +63,7 @@ public class TurkeyModel<T extends AnimalEntity> extends AgeableModel<T> {
 
 	@Override
 	protected Iterable<ModelRenderer> getHeadParts() {
-		return ImmutableList.of(this.head, this.bill);
+		return ImmutableList.of(this.head);
 	}
 
 	@Override
@@ -72,9 +73,17 @@ public class TurkeyModel<T extends AnimalEntity> extends AgeableModel<T> {
 
 	@Override
 	public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		
 		this.rightWing.rotateAngleX = -(float) Math.PI / 4;
 		this.leftWing.rotateAngleX = -(float) Math.PI / 4;
 		this.tail.rotateAngleZ = -3 * (float) Math.PI / 4;
+		this.head.rotateAngleX = headPitch * ((float)Math.PI / 180F);
+	    this.head.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
+	    
+	    this.rightLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+	    this.leftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+	    this.rightWing.rotateAngleZ = ageInTicks;
+	    this.leftWing.rotateAngleZ = -ageInTicks;
 	}
 
 }
