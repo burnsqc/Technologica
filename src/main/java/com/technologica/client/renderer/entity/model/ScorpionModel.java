@@ -1,16 +1,11 @@
 package com.technologica.client.renderer.entity.model;
 
-import java.util.function.Predicate;
-
 import com.google.common.collect.ImmutableList;
 import com.technologica.entity.passive.ScorpionEntity;
 
 import net.minecraft.client.renderer.entity.model.SegmentedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.goal.LeapAtTargetGoal;
-import net.minecraft.entity.ai.goal.PrioritizedGoal;
 import net.minecraft.util.math.MathHelper;
 
 public class ScorpionModel<T extends Entity> extends SegmentedModel<T> {
@@ -243,9 +238,9 @@ public class ScorpionModel<T extends Entity> extends SegmentedModel<T> {
 		
 		if (((ScorpionEntity) entityIn).isAggressive()) {
 			this.armLeft.rotateAngleY += 0.25F * MathHelper.cos((float) (entityIn.ticksExisted + partialTick) / 2);
-			this.clawLeft.rotateAngleY += 0.25F * MathHelper.cos((float) (entityIn.ticksExisted + partialTick) / 2);
+			this.clawLeft.rotateAngleY += 0.25F * MathHelper.cos((float) (entityIn.ticksExisted + partialTick - Math.PI) / 2);
 			this.armRight.rotateAngleY -= 0.25F * MathHelper.cos((float) (entityIn.ticksExisted + partialTick + Math.PI) / 2);
-			this.clawRight.rotateAngleY -= 0.25F * MathHelper.cos((float) (entityIn.ticksExisted + partialTick + Math.PI) / 2);
+			this.clawRight.rotateAngleY -= 0.25F * MathHelper.cos((float) (entityIn.ticksExisted + partialTick) / 2);
 		}
 	}
 }

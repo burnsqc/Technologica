@@ -15,6 +15,7 @@ import net.minecraft.entity.Pose;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.entity.ai.goal.HurtByTargetGoal;
 import net.minecraft.entity.ai.goal.LeapAtTargetGoal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
@@ -67,6 +68,7 @@ public class ScorpionEntity extends MonsterEntity {
 
 	protected void registerGoals() {
 		this.goalSelector.addGoal(1, new SwimGoal(this));
+		this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, CoyoteEntity.class, 8.0F, 1.0D, 1.0D));
 		this.goalSelector.addGoal(3, new LeapAtTargetGoal(this, 0.4F));
 		this.goalSelector.addGoal(4, new ScorpionEntity.AttackGoal(this));
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 0.8D));
@@ -219,7 +221,7 @@ public class ScorpionEntity extends MonsterEntity {
 		 */
 		public boolean shouldExecute() {
 			float f = this.goalOwner.getBrightness();
-			return f >= 0.5F ? false : super.shouldExecute();
+			return f <= 0.5F ? false : super.shouldExecute();
 		}
 	}
 }
