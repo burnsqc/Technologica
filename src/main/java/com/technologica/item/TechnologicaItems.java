@@ -16,10 +16,13 @@ import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.BucketItem;
 import net.minecraft.item.FishBucketItem;
 import net.minecraft.item.Food;
+import net.minecraft.item.HoeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.Properties;
 import net.minecraft.item.ItemTier;
 import net.minecraft.item.PickaxeItem;
+import net.minecraft.item.ShovelItem;
+import net.minecraft.item.SwordItem;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
@@ -1058,6 +1061,11 @@ public class TechnologicaItems {
      * ARMORY
      */
     
+    
+    public static final RegistryObject<Item> PRIMITIVE_DAGGER = ITEMS.register("primitive_dagger", () -> new SwordItem(TechnologicaItemTier.FLINT, 6, -3.2F, (new Item.Properties()).group(TechnologicaItemGroup.ARMORY)));
+    public static final RegistryObject<Item> PRIMITIVE_PICKAXE = ITEMS.register("primitive_pickaxe", () -> new PickaxeItem(TechnologicaItemTier.FLINT, 6, -3.2F, (new Item.Properties()).group(TechnologicaItemGroup.ARMORY)));
+    public static final RegistryObject<Item> PRIMITIVE_HOE = ITEMS.register("primitive_hoe", () -> new HoeItem(TechnologicaItemTier.FLINT, 6, -3.2F, (new Item.Properties()).group(TechnologicaItemGroup.ARMORY)));
+    public static final RegistryObject<Item> PRIMITIVE_SHOVEL = ITEMS.register("primitive_shovel", () -> new ShovelItem(TechnologicaItemTier.FLINT, 6.0F, -3.2F, (new Item.Properties()).group(TechnologicaItemGroup.ARMORY)));
     public static final RegistryObject<Item> PRIMITIVE_HATCHET = ITEMS.register("primitive_hatchet", () -> new AxeItem(TechnologicaItemTier.FLINT, 6.0F, -3.2F, (new Item.Properties()).group(TechnologicaItemGroup.ARMORY)));
     public static final RegistryObject<Item> COCONUT_BAZOOKA_ITEM = ITEMS.register("coconut_bazooka", () -> new CoconutBazookaItem((new Item.Properties()).maxDamage(384).group(TechnologicaItemGroup.ARMORY)));
     public static final RegistryObject<Item> DODGEBALL_ITEM = ITEMS.register("dodgeball", () -> new DodgeballItem((new Item.Properties()).maxStackSize(1).group(TechnologicaItemGroup.ARMORY)));

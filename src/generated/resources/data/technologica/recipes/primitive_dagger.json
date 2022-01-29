@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "FF ",
-    "FTS",
-    " T "
+    "F ",
+    "FS",
+    "T "
   ],
   "key": {
     "T": {
@@ -17,6 +17,6 @@
     }
   },
   "result": {
-    "item": "technologica:primitive_hatchet"
+    "item": "technologica:primitive_dagger"
   }
 }

@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "FF ",
-    "FTS",
+    " TS",
     " T "
   ],
   "key": {
@@ -17,6 +17,6 @@
     }
   },
   "result": {
-    "item": "technologica:primitive_hatchet"
+    "item": "technologica:primitive_hoe"
   }
 }
