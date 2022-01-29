@@ -5,8 +5,8 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.CreatureAttribute;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
@@ -15,6 +15,7 @@ import net.minecraft.entity.Pose;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.entity.ai.goal.HurtByTargetGoal;
 import net.minecraft.entity.ai.goal.LeapAtTargetGoal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
@@ -24,7 +25,6 @@ import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.Effect;
@@ -34,20 +34,41 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
 public class ScorpionEntity extends MonsterEntity {
+	public int clawCounter;
 
 	public ScorpionEntity(EntityType<? extends ScorpionEntity> type, World worldIn) {
 		super(type, worldIn);
 	}
 
+	@Override
+	public boolean attackEntityAsMob(Entity entityIn) {
+		if (super.attackEntityAsMob(entityIn)) {
+			if (entityIn instanceof LivingEntity) {
+				int i = 0;
+				if (this.world.getDifficulty() == Difficulty.NORMAL) {
+					i = 7;
+				} else if (this.world.getDifficulty() == Difficulty.HARD) {
+					i = 15;
+				}
+				if (i > 0) {
+					((LivingEntity) entityIn).addPotionEffect(new EffectInstance(Effects.POISON, i * 20, 0));
+				}
+			}
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	protected void registerGoals() {
 		this.goalSelector.addGoal(1, new SwimGoal(this));
+		this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, CoyoteEntity.class, 8.0F, 1.0D, 1.0D));
 		this.goalSelector.addGoal(3, new LeapAtTargetGoal(this, 0.4F));
 		this.goalSelector.addGoal(4, new ScorpionEntity.AttackGoal(this));
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 0.8D));
@@ -55,13 +76,8 @@ public class ScorpionEntity extends MonsterEntity {
 		this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
 		this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
 		this.targetSelector.addGoal(2, new ScorpionEntity.TargetGoal<>(this, PlayerEntity.class));
-		this.targetSelector.addGoal(3, new ScorpionEntity.TargetGoal<>(this, IronGolemEntity.class));
 	}
 
-	/**
-	 * Returns the Y offset from the entity's position for any entity riding this
-	 * one.
-	 */
 	public double getMountedYOffset() {
 		return (double) (this.getHeight() * 0.5F);
 	}
@@ -70,15 +86,29 @@ public class ScorpionEntity extends MonsterEntity {
 		super.registerData();
 	}
 
-	/**
-	 * Called to update the entity's position/logic.
-	 */
+	private void moveClaws() {
+		this.clawCounter = 1;
+	}
+
 	public void tick() {
+		if (this.clawCounter > 0 && ++this.clawCounter > 20) {
+			this.clawCounter = 0;
+		}
 		super.tick();
 	}
 
+	@Override
+	public void livingTick() {
+		if (this.rand.nextInt(100) == 0) {
+			this.moveClaws();
+		}
+
+		super.livingTick();
+	}
+
 	public static AttributeModifierMap.MutableAttribute func_234305_eI_() {
-		return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.MAX_HEALTH, 16.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double) 0.3F);
+		return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.MAX_HEALTH, 16.0D)
+				.createMutableAttribute(Attributes.MOVEMENT_SPEED, (double) 0.3F);
 	}
 
 	protected SoundEvent getAmbientSound() {
@@ -95,13 +125,6 @@ public class ScorpionEntity extends MonsterEntity {
 
 	protected void playStepSound(BlockPos pos, BlockState blockIn) {
 		this.playSound(SoundEvents.ENTITY_SPIDER_STEP, 0.15F, 1.0F);
-	}
-
-	public void setMotionMultiplier(BlockState state, Vector3d motionMultiplierIn) {
-		if (!state.matchesBlock(Blocks.COBWEB)) {
-			super.setMotionMultiplier(state, motionMultiplierIn);
-		}
-
 	}
 
 	public CreatureAttribute getCreatureAttribute() {
@@ -150,17 +173,10 @@ public class ScorpionEntity extends MonsterEntity {
 			super(spider, 1.0D, true);
 		}
 
-		/**
-		 * Returns whether execution should begin. You can also read and cache any state
-		 * necessary for execution in this method as well.
-		 */
 		public boolean shouldExecute() {
 			return super.shouldExecute() && !this.attacker.isBeingRidden();
 		}
 
-		/**
-		 * Returns whether an in-progress EntityAIBase should continue executing
-		 */
 		public boolean shouldContinueExecuting() {
 			float f = this.attacker.getBrightness();
 			if (f >= 0.5F && this.attacker.getRNG().nextInt(100) == 0) {
@@ -205,7 +221,7 @@ public class ScorpionEntity extends MonsterEntity {
 		 */
 		public boolean shouldExecute() {
 			float f = this.goalOwner.getBrightness();
-			return f >= 0.5F ? false : super.shouldExecute();
+			return f <= 0.5F ? false : super.shouldExecute();
 		}
 	}
 }
