@@ -116,7 +116,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			}
 			else if (path.contains("_trapdoor")) {
 				trapdoorBlock((TrapDoorBlock) block, blockTexture(block), true);
-				simpleBlockItem(block, models().trapdoorBottom(path + "_bottom", texture));
+				simpleBlockItem(block, models().trapdoorOrientableBottom(path + "_bottom", texture));
 			}
 			else if (path.contains("_sign")) signBlock(block);
 			else if (path.contains("display_case")) {
