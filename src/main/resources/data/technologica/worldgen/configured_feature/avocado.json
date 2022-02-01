@@ -13,6 +13,7 @@
     "trunk_provider": {
       "state": {
         "Properties": {
+          "persistent": "false",
           "axis": "y"
         },
         "Name": "technologica:avocado_log"
