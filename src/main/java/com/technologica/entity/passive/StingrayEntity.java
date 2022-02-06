@@ -32,5 +32,10 @@ public class StingrayEntity extends AnimalEntity {
 				.createMutableAttribute(net.minecraftforge.common.ForgeMod.NAMETAG_DISTANCE.get())
 				.createMutableAttribute(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get());
 	}
+	
+	@Override
+	public boolean canBreatheUnderwater() {
+		return true;
+	}
 
 }

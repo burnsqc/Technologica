@@ -12,7 +12,7 @@ public final class StingrayRenderer extends MobRenderer<StingrayEntity, Stingray
 	private static final ResourceLocation STINGRAY_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/stingray.png");
 
 	public StingrayRenderer(EntityRendererManager renderManagerIn) {
-		super(renderManagerIn, new StingrayModel<>(), 1.1F);
+		super(renderManagerIn, new StingrayModel<>(), 0.5F);
 	}
 
 	@Override
