@@ -322,6 +322,15 @@ public class TechnologicaConfiguredFeatures {
 					new StraightTrunkPlacer(4, 1, 0),
 					new TwoLayerFeature(0, 0, 0))).setIgnoreVines().build()));
 	
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> NECROTIC_TREE_FEATURE = register(
+			"necrotic_tree_feature",
+			Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(
+					new SimpleBlockStateProvider(TechnologicaBlocks.NECROTIC_LOG.get().getDefaultState()),
+					new SimpleBlockStateProvider(TechnologicaBlocks.CURSED_LEAVES.get().getDefaultState()),
+					new ConicalFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0)),
+					new StraightTrunkPlacer(4, 1, 0),
+					new TwoLayerFeature(0, 0, 0))).setIgnoreVines().build()));
+	
 	public static final ConfiguredFeature<?, ?> LAKE_BRINE_FEATURE = register("lake_brine_feature", TechnologicaFeatures.LAKE_BRINE.get().withConfiguration(new BlockStateFeatureConfig(States.BRINE_BLOCK)).withPlacement(Placement.WATER_LAKE.configure(new ChanceConfig(4))));
 	public static final ConfiguredFeature<?, ?> OASIS_FEATURE = register("oasis_feature", TechnologicaFeatures.OASIS.get().withConfiguration(new BlockStateFeatureConfig(Blocks.WATER.getDefaultState())).withPlacement(Placement.WATER_LAKE.configure(new ChanceConfig(100))));
 	public static final ConfiguredFeature<?, ?> CRATER_FEATURE = register("crater_feature", TechnologicaFeatures.CRATER.get().withConfiguration(new BlockStateFeatureConfig(Blocks.AIR.getDefaultState())).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(10, 0.1F, 1))));

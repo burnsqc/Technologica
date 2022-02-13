@@ -20,6 +20,7 @@ import com.technologica.block.trees.LimeTree;
 import com.technologica.block.trees.MahoganyTree;
 import com.technologica.block.trees.MalevolentApothecaryTree;
 import com.technologica.block.trees.MapleTree;
+import com.technologica.block.trees.NecroticTree;
 import com.technologica.block.trees.OliveTree;
 import com.technologica.block.trees.OrangeTree;
 import com.technologica.block.trees.PeachTree;
@@ -132,7 +133,7 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> SERENDIPITOUS_APOTHECARY_SAPLING = BLOCKS.register("serendipitous_apothecary_sapling", () -> new SaplingBlock(new SerendipitousApothecaryTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
 	public static final RegistryObject<Block> BENEVOLENT_APOTHECARY_SAPLING = BLOCKS.register("benevolent_apothecary_sapling", () -> new SaplingBlock(new BenevolentApothecaryTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
 	public static final RegistryObject<Block> MALEVOLENT_APOTHECARY_SAPLING = BLOCKS.register("malevolent_apothecary_sapling", () -> new SaplingBlock(new MalevolentApothecaryTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
-	public static final RegistryObject<Block> NECRTOTIC_SAPLING = BLOCKS.register("necrotic_sapling", () -> new SaplingBlock(new NecroticTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+	public static final RegistryObject<Block> NECROTIC_SAPLING = BLOCKS.register("necrotic_sapling", () -> new SaplingBlock(new NecroticTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
 	public static final RegistryObject<Block> TOWERING_INFERNO_SAPLING = BLOCKS.register("towering_inferno_sapling", () -> new SaplingBlock(new ToweringInfernoTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
 	public static final RegistryObject<Block> THUNDEROUS_CONDUCTOR_SAPLING = BLOCKS.register("thunderous_conductor_sapling", () -> new SaplingBlock(new ThunderousConductorTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
 	public static final RegistryObject<Block> CRYOGENIC_SPIRE_SAPLING = BLOCKS.register("cryogenic_spire_sapling", () -> new SaplingBlock(new CryogenicSpireTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
@@ -903,6 +904,13 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> WALNUT_TABLE = BLOCKS.register("walnut_table", TableBlock::new);
 	public static final RegistryObject<Block> WARPED_TABLE = BLOCKS.register("warped_table", TableBlock::new);
 	public static final RegistryObject<Block> ZEBRAWOOD_TABLE = BLOCKS.register("zebrawood_table", TableBlock::new);
+	public static final RegistryObject<Block> ALCHEMICAL_TABLE = BLOCKS.register("alchemical_table", TableBlock::new);
+	public static final RegistryObject<Block> BENEVOLENT_TABLE = BLOCKS.register("benevolent_table", TableBlock::new);
+	public static final RegistryObject<Block> CONDUCTIVE_TABLE = BLOCKS.register("conductive_table", TableBlock::new);
+	public static final RegistryObject<Block> FROSTBITTEN_TABLE = BLOCKS.register("frostbitten_table", TableBlock::new);
+	public static final RegistryObject<Block> FRUITFUL_TABLE = BLOCKS.register("fruitful_table", TableBlock::new);
+	public static final RegistryObject<Block> INFERNAL_TABLE = BLOCKS.register("infernal_table", TableBlock::new);
+	public static final RegistryObject<Block> MALEVOLENT_TABLE = BLOCKS.register("malevolent_table", TableBlock::new);
 	public static final RegistryObject<Block> NECROTIC_TABLE = BLOCKS.register("necrotic_table", TableBlock::new);
 	
     public static final RegistryObject<Block> DISPLAY_CASE = BLOCKS.register("display_case", DisplayCaseBlock::new);

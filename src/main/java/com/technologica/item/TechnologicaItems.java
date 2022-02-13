@@ -104,7 +104,8 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> TOWERING_INFERNO_SAPLING_ITEM = ITEMS.register("towering_inferno_sapling", () -> new BlockItem(TechnologicaBlocks.TOWERING_INFERNO_SAPLING.get(), new Item.Properties().group(TechnologicaItemGroup.CRYPTICA)));
     public static final RegistryObject<Item> SERENDIPITOUS_APOTHECARY_SAPLING_ITEM = ITEMS.register("serendipitous_apothecary_sapling", () -> new BlockItem(TechnologicaBlocks.SERENDIPITOUS_APOTHECARY_SAPLING.get(), new Item.Properties().group(TechnologicaItemGroup.CRYPTICA)));
     public static final RegistryObject<Item> BENEVOLENT_APOTHECARY_SAPLING_ITEM = ITEMS.register("benevolent_apothecary_sapling", () -> new BlockItem(TechnologicaBlocks.BENEVOLENT_APOTHECARY_SAPLING.get(), new Item.Properties().group(TechnologicaItemGroup.CRYPTICA)));
-    public static final RegistryObject<Item> MALEVOLENT_APOTHECARY_SAPLING_ITEM = ITEMS.register("malevolent_apothecary_sapling", () -> new BlockItem(TechnologicaBlocks.MALEVOLENT_APOTHECARY_SAPLING.get(), new Item.Properties().group(TechnologicaItemGroup.CRYPTICA)));	
+    public static final RegistryObject<Item> MALEVOLENT_APOTHECARY_SAPLING_ITEM = ITEMS.register("malevolent_apothecary_sapling", () -> new BlockItem(TechnologicaBlocks.MALEVOLENT_APOTHECARY_SAPLING.get(), new Item.Properties().group(TechnologicaItemGroup.CRYPTICA)));
+    public static final RegistryObject<Item> NECROTIC_SAPLING_ITEM = ITEMS.register("necrotic_sapling", () -> new BlockItem(TechnologicaBlocks.NECROTIC_SAPLING.get(), new Item.Properties().group(TechnologicaItemGroup.CRYPTICA)));
 	
     public static final RegistryObject<Item> APRICOT_LEAVES_ITEM = ITEMS.register("apricot_leaves", () -> new BlockItem(TechnologicaBlocks.APRICOT_LEAVES.get(), new Item.Properties().group(TechnologicaItemGroup.FLORA)));
     public static final RegistryObject<Item> ASPEN_LEAVES_ITEM = ITEMS.register("aspen_leaves", () -> new BlockItem(TechnologicaBlocks.ASPEN_LEAVES.get(), new Item.Properties().group(TechnologicaItemGroup.FLORA)));	
@@ -137,6 +138,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> MALEVOLENT_LEAVES_ITEM = ITEMS.register("malevolent_leaves", () -> new BlockItem(TechnologicaBlocks.MALEVOLENT_LEAVES.get(), new Item.Properties().group(TechnologicaItemGroup.CRYPTICA)));
     public static final RegistryObject<Item> CONDUCTIVE_LEAVES_ITEM = ITEMS.register("conductive_leaves", () -> new BlockItem(TechnologicaBlocks.CONDUCTIVE_LEAVES.get(), new Item.Properties().group(TechnologicaItemGroup.CRYPTICA)));
     public static final RegistryObject<Item> FROSTBITTEN_LEAVES_ITEM = ITEMS.register("frostbitten_leaves", () -> new BlockItem(TechnologicaBlocks.FROSTBITTEN_LEAVES.get(), new Item.Properties().group(TechnologicaItemGroup.CRYPTICA)));
+    public static final RegistryObject<Item> CURSED_LEAVES_ITEM = ITEMS.register("cursed_leaves", () -> new BlockItem(TechnologicaBlocks.CURSED_LEAVES.get(), new Item.Properties().group(TechnologicaItemGroup.CRYPTICA)));
     
     public static final RegistryObject<Item> COTTON = ITEMS.register("cotton", () -> new Item(new Item.Properties().group(TechnologicaItemGroup.FLORA)));
     
@@ -455,6 +457,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> CONDUCTIVE_LOG_ITEM = ITEMS.register("conductive_log", () -> new BlockItem(TechnologicaBlocks.CONDUCTIVE_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CRYPTICA)));
     public static final RegistryObject<Item> FROSTBITTEN_LOG_ITEM = ITEMS.register("frostbitten_log", () -> new BlockItem(TechnologicaBlocks.FROSTBITTEN_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CRYPTICA)));
     public static final RegistryObject<Item> INFERNAL_LOG_ITEM = ITEMS.register("infernal_log", () -> new BlockItem(TechnologicaBlocks.INFERNAL_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CRYPTICA)));
+    public static final RegistryObject<Item> NECROTIC_LOG_ITEM = ITEMS.register("necrotic_log", () -> new BlockItem(TechnologicaBlocks.NECROTIC_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CRYPTICA)));
     
     public static final RegistryObject<Item> STRIPPED_APRICOT_LOG_ITEM = ITEMS.register("stripped_apricot_log", () -> new BlockItem(TechnologicaBlocks.STRIPPED_APRICOT_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> STRIPPED_ASPEN_LOG_ITEM = ITEMS.register("stripped_aspen_log", () -> new BlockItem(TechnologicaBlocks.STRIPPED_ASPEN_LOG.get(), new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION)));
