@@ -68,7 +68,7 @@ public class DeerModel<T extends AbstractHorseEntity> extends AgeableModel<T> {
 		this.head.addChild(nose);
 
 		this.earLeft = new ModelRenderer(this, 0, 7);
-		this.earLeft.addBox(0F, -2.0F, -1.0F, 3.0F, 2.0F, 1.0F);
+		this.earLeft.addBox(0.0F, -2.0F, -1.0F, 3.0F, 2.0F, 1.0F);
 		this.earLeft.setRotationPoint(2.5F, 2.0F, 0.0F);
 		this.head.addChild(earLeft);
 

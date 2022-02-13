@@ -4,10 +4,12 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 import com.technologica.Technologica;
+import com.technologica.entity.TechnologicaEntityType;
 import com.technologica.item.TechnologicaItemGroup;
 import com.technologica.item.TechnologicaItems;
 
 import net.minecraft.data.DataGenerator;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.common.data.LanguageProvider;
@@ -22,6 +24,7 @@ public class ModLanguageProvider extends LanguageProvider {
 	@Override
 	protected void addTranslations() {
 		addItems(TechnologicaItems.ITEMS.getEntries());
+		addEntities(TechnologicaEntityType.ENTITIES.getEntries());
 		
 		addItemGroups(
 			TechnologicaItemGroup.FLORA,
@@ -48,6 +51,13 @@ public class ModLanguageProvider extends LanguageProvider {
 		}
 	}
 	
+	private final void addEntities(Collection<RegistryObject<EntityType<?>>> collection) {
+		for(Supplier<? extends EntityType<?>> item:collection) {
+			String key = item.get().getTranslationKey();
+			add(key, keyToValue(key));
+		}
+	}
+	
 	/**
 	 * Iterates through vararg item groups, adding each entry to the en_us.json file.
 	 * @param itemGroups varargs list of item groups
@@ -68,7 +78,7 @@ public class ModLanguageProvider extends LanguageProvider {
 	 */
 	
 	private String keyToValue(String key) {
-		String words[] = key.replaceAll("item." + Technologica.MODID + ".", "").replaceAll("block." + Technologica.MODID + ".", "").split("_");
+		String words[] = key.replaceAll("item." + Technologica.MODID + ".", "").replaceAll("block." + Technologica.MODID + ".", "").replaceAll("entity." + Technologica.MODID + ".", "").split("_");
 		String name = "";
 		for(String word:words ) {
 			String first = word.substring(0,1);
