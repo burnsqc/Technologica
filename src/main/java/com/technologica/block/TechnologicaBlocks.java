@@ -132,6 +132,7 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> SERENDIPITOUS_APOTHECARY_SAPLING = BLOCKS.register("serendipitous_apothecary_sapling", () -> new SaplingBlock(new SerendipitousApothecaryTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
 	public static final RegistryObject<Block> BENEVOLENT_APOTHECARY_SAPLING = BLOCKS.register("benevolent_apothecary_sapling", () -> new SaplingBlock(new BenevolentApothecaryTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
 	public static final RegistryObject<Block> MALEVOLENT_APOTHECARY_SAPLING = BLOCKS.register("malevolent_apothecary_sapling", () -> new SaplingBlock(new MalevolentApothecaryTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+	public static final RegistryObject<Block> NECRTOTIC_SAPLING = BLOCKS.register("necrotic_sapling", () -> new SaplingBlock(new NecroticTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
 	public static final RegistryObject<Block> TOWERING_INFERNO_SAPLING = BLOCKS.register("towering_inferno_sapling", () -> new SaplingBlock(new ToweringInfernoTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
 	public static final RegistryObject<Block> THUNDEROUS_CONDUCTOR_SAPLING = BLOCKS.register("thunderous_conductor_sapling", () -> new SaplingBlock(new ThunderousConductorTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
 	public static final RegistryObject<Block> CRYOGENIC_SPIRE_SAPLING = BLOCKS.register("cryogenic_spire_sapling", () -> new SaplingBlock(new CryogenicSpireTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
@@ -195,6 +196,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> FRUITFUL_LEAVES = BLOCKS.register("fruitful_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.BANANA, TechnologicaItems.CHERRY, TechnologicaItems.COCONUT, TechnologicaItems.KIWI, TechnologicaItems.LEMON, TechnologicaItems.LIME, TechnologicaItems.ORANGE, TechnologicaItems.PEACH, TechnologicaItems.PEAR));
     public static final RegistryObject<Block> ALCHEMICAL_LEAVES = BLOCKS.register("alchemical_leaves", () -> new FruitingLeavesBlock(() -> Items.POTION));
     public static final RegistryObject<Block> BENEVOLENT_LEAVES = BLOCKS.register("benevolent_leaves", () -> new PotionLeavesBlock(1));
+    public static final RegistryObject<Block> CURSED_LEAVES = BLOCKS.register("cursed_leaves", VanillaLeavesBlock::new);
     public static final RegistryObject<Block> MALEVOLENT_LEAVES = BLOCKS.register("malevolent_leaves", () -> new PotionLeavesBlock(2));
     public static final RegistryObject<Block> CONDUCTIVE_LEAVES = BLOCKS.register("conductive_leaves", () -> new MagicLeavesBlock(1));
     public static final RegistryObject<Block> FROSTBITTEN_LEAVES = BLOCKS.register("frostbitten_leaves", () -> new MagicLeavesBlock(2)); 
@@ -288,6 +290,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> FRUITFUL_LOG = BLOCKS.register("fruitful_log", VanillaLogBlock::new);
     public static final RegistryObject<Block> INFERNAL_LOG = BLOCKS.register("infernal_log", VanillaLogBlock::new);
     public static final RegistryObject<Block> MALEVOLENT_LOG = BLOCKS.register("malevolent_log", VanillaLogBlock::new);
+    public static final RegistryObject<Block> NECROTIC_LOG = BLOCKS.register("necrotic_log", VanillaLogBlock::new);
     
     public static final RegistryObject<Block> STRIPPED_APRICOT_LOG = BLOCKS.register("stripped_apricot_log", VanillaLogBlock::new);  
     public static final RegistryObject<Block> STRIPPED_ASPEN_LOG = BLOCKS.register("stripped_aspen_log", VanillaLogBlock::new);  
@@ -321,6 +324,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> STRIPPED_FRUITFUL_LOG = BLOCKS.register("stripped_fruitful_log", VanillaLogBlock::new);
     public static final RegistryObject<Block> STRIPPED_INFERNAL_LOG = BLOCKS.register("stripped_infernal_log", VanillaLogBlock::new);
     public static final RegistryObject<Block> STRIPPED_MALEVOLENT_LOG = BLOCKS.register("stripped_malevolent_log", VanillaLogBlock::new);
+    public static final RegistryObject<Block> STRIPPED_NECROTIC_LOG = BLOCKS.register("stripped_necrotic_log", VanillaLogBlock::new);
     
     public static final RegistryObject<Block> APRICOT_WOOD = BLOCKS.register("apricot_wood", VanillaLogBlock::new);  
 	public static final RegistryObject<Block> ASPEN_WOOD = BLOCKS.register("aspen_wood", VanillaLogBlock::new);  
@@ -351,6 +355,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> ALCHEMICAL_WOOD = BLOCKS.register("alchemical_wood", VanillaLogBlock::new); 
     public static final RegistryObject<Block> BENEVOLENT_WOOD = BLOCKS.register("benevolent_wood", VanillaLogBlock::new);
     public static final RegistryObject<Block> MALEVOLENT_WOOD = BLOCKS.register("malevolent_wood", VanillaLogBlock::new);
+    public static final RegistryObject<Block> NECROTIC_WOOD = BLOCKS.register("necrotic_wood", VanillaLogBlock::new);
     public static final RegistryObject<Block> CONDUCTIVE_WOOD = BLOCKS.register("conductive_wood", VanillaLogBlock::new);
     public static final RegistryObject<Block> FROSTBITTEN_WOOD = BLOCKS.register("frostbitten_wood", VanillaLogBlock::new);
     public static final RegistryObject<Block> INFERNAL_WOOD = BLOCKS.register("infernal_wood", VanillaLogBlock::new);
@@ -384,6 +389,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> STRIPPED_ALCHEMICAL_WOOD = BLOCKS.register("stripped_alchemical_wood", VanillaLogBlock::new); 
     public static final RegistryObject<Block> STRIPPED_BENEVOLENT_WOOD = BLOCKS.register("stripped_benevolent_wood", VanillaLogBlock::new);
     public static final RegistryObject<Block> STRIPPED_MALEVOLENT_WOOD = BLOCKS.register("stripped_malevolent_wood", VanillaLogBlock::new);
+    public static final RegistryObject<Block> STRIPPED_NECROTIC_WOOD = BLOCKS.register("stripped_necrotic_wood", VanillaLogBlock::new);
     public static final RegistryObject<Block> STRIPPED_CONDUCTIVE_WOOD = BLOCKS.register("stripped_conductive_wood", VanillaLogBlock::new);
     public static final RegistryObject<Block> STRIPPED_FROSTBITTEN_WOOD = BLOCKS.register("stripped_frostbitten_wood", VanillaLogBlock::new);
     public static final RegistryObject<Block> STRIPPED_INFERNAL_WOOD = BLOCKS.register("stripped_infernal_wood", VanillaLogBlock::new);
@@ -420,6 +426,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> FRUITFUL_PLANKS = BLOCKS.register("fruitful_planks", VanillaPlanksBlock::new);
     public static final RegistryObject<Block> INFERNAL_PLANKS = BLOCKS.register("infernal_planks", VanillaPlanksBlock::new);
     public static final RegistryObject<Block> MALEVOLENT_PLANKS = BLOCKS.register("malevolent_planks", VanillaPlanksBlock::new);
+    public static final RegistryObject<Block> NECROTIC_PLANKS = BLOCKS.register("necrotic_planks", VanillaPlanksBlock::new);
     
     public static final RegistryObject<Block> APRICOT_SLAB = BLOCKS.register("apricot_slab", VanillaSlabBlock::new);
     public static final RegistryObject<Block> ASPEN_SLAB = BLOCKS.register("aspen_slab", VanillaSlabBlock::new);
@@ -453,6 +460,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> FRUITFUL_SLAB = BLOCKS.register("fruitful_slab", VanillaSlabBlock::new);
     public static final RegistryObject<Block> INFERNAL_SLAB = BLOCKS.register("infernal_slab", VanillaSlabBlock::new);
     public static final RegistryObject<Block> MALEVOLENT_SLAB = BLOCKS.register("malevolent_slab", VanillaSlabBlock::new);
+    public static final RegistryObject<Block> NECROTIC_SLAB = BLOCKS.register("necrotic_slab", VanillaSlabBlock::new);
     
     public static final RegistryObject<Block> APRICOT_STAIRS = BLOCKS.register("apricot_stairs", () -> new VanillaStairsBlock(() -> APRICOT_PLANKS.get().getDefaultState()));
     public static final RegistryObject<Block> ASPEN_STAIRS = BLOCKS.register("aspen_stairs", () -> new VanillaStairsBlock(() -> ASPEN_PLANKS.get().getDefaultState()));
@@ -486,6 +494,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> FRUITFUL_STAIRS = BLOCKS.register("fruitful_stairs", () -> new VanillaStairsBlock(() -> FRUITFUL_PLANKS.get().getDefaultState()));
     public static final RegistryObject<Block> INFERNAL_STAIRS = BLOCKS.register("infernal_stairs", () -> new VanillaStairsBlock(() -> INFERNAL_PLANKS.get().getDefaultState()));
     public static final RegistryObject<Block> MALEVOLENT_STAIRS = BLOCKS.register("malevolent_stairs", () -> new VanillaStairsBlock(() -> MALEVOLENT_PLANKS.get().getDefaultState()));
+    public static final RegistryObject<Block> NECROTIC_STAIRS = BLOCKS.register("necrotic_stairs", () -> new VanillaStairsBlock(() -> NECROTIC_PLANKS.get().getDefaultState()));
     
     public static final RegistryObject<Block> SPRUCE_BOOKSHELF = BLOCKS.register("spruce_bookshelf", VanillaBookshelfBlock::new);
     public static final RegistryObject<Block> BIRCH_BOOKSHELF = BLOCKS.register("birch_bookshelf", VanillaBookshelfBlock::new);
@@ -526,6 +535,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> FRUITFUL_BOOKSHELF = BLOCKS.register("fruitful_bookshelf", VanillaBookshelfBlock::new);
     public static final RegistryObject<Block> INFERNAL_BOOKSHELF = BLOCKS.register("infernal_bookshelf", VanillaBookshelfBlock::new);
     public static final RegistryObject<Block> MALEVOLENT_BOOKSHELF = BLOCKS.register("malevolent_bookshelf", VanillaBookshelfBlock::new);
+    public static final RegistryObject<Block> NECROTIC_BOOKSHELF = BLOCKS.register("necrotic_bookshelf", VanillaBookshelfBlock::new);
     
     public static final RegistryObject<Block> APRICOT_FENCE = BLOCKS.register("apricot_fence", VanillaFenceBlock::new);
     public static final RegistryObject<Block> ASPEN_FENCE = BLOCKS.register("aspen_fence", VanillaFenceBlock::new);
@@ -559,6 +569,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> FRUITFUL_FENCE = BLOCKS.register("fruitful_fence", VanillaFenceBlock::new);
     public static final RegistryObject<Block> INFERNAL_FENCE = BLOCKS.register("infernal_fence", VanillaFenceBlock::new);
     public static final RegistryObject<Block> MALEVOLENT_FENCE = BLOCKS.register("malevolent_fence", VanillaFenceBlock::new);
+    public static final RegistryObject<Block> NECROTIC_FENCE = BLOCKS.register("necrotic_fence", VanillaFenceBlock::new);
     
     public static final RegistryObject<Block> APRICOT_FENCE_GATE = BLOCKS.register("apricot_fence_gate", VanillaFenceGateBlock::new);
     public static final RegistryObject<Block> ASPEN_FENCE_GATE = BLOCKS.register("aspen_fence_gate", VanillaFenceGateBlock::new);
@@ -592,6 +603,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> FRUITFUL_FENCE_GATE = BLOCKS.register("fruitful_fence_gate", VanillaFenceGateBlock::new);
     public static final RegistryObject<Block> INFERNAL_FENCE_GATE = BLOCKS.register("infernal_fence_gate", VanillaFenceGateBlock::new);
     public static final RegistryObject<Block> MALEVOLENT_FENCE_GATE = BLOCKS.register("malevolent_fence_gate", VanillaFenceGateBlock::new);
+    public static final RegistryObject<Block> NECROTIC_FENCE_GATE = BLOCKS.register("necrotic_fence_gate", VanillaFenceGateBlock::new);
     
     public static final RegistryObject<Block> APRICOT_DOOR = BLOCKS.register("apricot_door", () -> new DoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> ASPEN_DOOR = BLOCKS.register("aspen_door", () -> new DoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
@@ -625,6 +637,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> FRUITFUL_DOOR = BLOCKS.register("fruitful_door", () -> new DoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> INFERNAL_DOOR = BLOCKS.register("infernal_door", () -> new DoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> MALEVOLENT_DOOR = BLOCKS.register("malevolent_door", () -> new DoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
+    public static final RegistryObject<Block> NECROTIC_DOOR = BLOCKS.register("necrotic_door", () -> new DoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     
     public static final RegistryObject<Block> APRICOT_TRAPDOOR = BLOCKS.register("apricot_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> ASPEN_TRAPDOOR = BLOCKS.register("aspen_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
@@ -658,6 +671,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> FRUITFUL_TRAPDOOR = BLOCKS.register("fruitful_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> INFERNAL_TRAPDOOR = BLOCKS.register("infernal_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> MALEVOLENT_TRAPDOOR = BLOCKS.register("malevolent_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
+    public static final RegistryObject<Block> NECROTIC_TRAPDOOR = BLOCKS.register("necrotic_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD,  MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     
     public static final RegistryObject<Block> APRICOT_PRESSURE_PLATE = BLOCKS.register("apricot_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> ASPEN_PRESSURE_PLATE = BLOCKS.register("aspen_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
@@ -691,6 +705,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> FRUITFUL_PRESSURE_PLATE = BLOCKS.register("fruitful_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> INFERNAL_PRESSURE_PLATE = BLOCKS.register("infernal_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> MALEVOLENT_PRESSURE_PLATE = BLOCKS.register("malevolent_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
+    public static final RegistryObject<Block> NECROTIC_PRESSURE_PLATE = BLOCKS.register("necrotic_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
     
     public static final RegistryObject<Block> APRICOT_BUTTON = BLOCKS.register("apricot_button", () -> new WoodButtonBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> ASPEN_BUTTON = BLOCKS.register("aspen_button", () -> new WoodButtonBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
@@ -724,6 +739,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> FRUITFUL_BUTTON = BLOCKS.register("fruitful_button", () -> new WoodButtonBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> INFERNAL_BUTTON = BLOCKS.register("infernal_button", () -> new WoodButtonBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> MALEVOLENT_BUTTON = BLOCKS.register("malevolent_button", () -> new WoodButtonBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> NECROTIC_BUTTON = BLOCKS.register("necrotic_button", () -> new WoodButtonBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     
     public static final RegistryObject<Block> APRICOT_SIGN = BLOCKS.register("apricot_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.APRICOT));
     public static final RegistryObject<Block> ASPEN_SIGN = BLOCKS.register("aspen_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.ASPEN));
@@ -757,6 +773,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> FRUITFUL_SIGN = BLOCKS.register("fruitful_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.FRUITFUL));
     public static final RegistryObject<Block> INFERNAL_SIGN = BLOCKS.register("infernal_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.INFERNAL));
     public static final RegistryObject<Block> MALEVOLENT_SIGN = BLOCKS.register("malevolent_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.MALEVOLENT));
+    public static final RegistryObject<Block> NECROTIC_SIGN = BLOCKS.register("necrotic_sign", () -> new VanillaStandingSignBlock(TechnologicaWoodType.MALEVOLENT));
     
     public static final RegistryObject<Block> APRICOT_WALL_SIGN = BLOCKS.register("apricot_wall_sign", () -> new VanillaWallSignBlock(TechnologicaWoodType.APRICOT));
     public static final RegistryObject<Block> ASPEN_WALL_SIGN = BLOCKS.register("aspen_wall_sign", () -> new VanillaWallSignBlock(TechnologicaWoodType.ASPEN));
@@ -790,6 +807,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> FRUITFUL_WALL_SIGN = BLOCKS.register("fruitful_wall_sign", () -> new VanillaWallSignBlock(TechnologicaWoodType.FRUITFUL));
     public static final RegistryObject<Block> INFERNAL_WALL_SIGN = BLOCKS.register("infernal_wall_sign", () -> new VanillaWallSignBlock(TechnologicaWoodType.INFERNAL));
     public static final RegistryObject<Block> MALEVOLENT_WALL_SIGN = BLOCKS.register("malevolent_wall_sign", () -> new VanillaWallSignBlock(TechnologicaWoodType.MALEVOLENT));
+    public static final RegistryObject<Block> NECROTIC_WALL_SIGN = BLOCKS.register("necrotic_wall_sign", () -> new VanillaWallSignBlock(TechnologicaWoodType.MALEVOLENT));
     
     /*
      * MACHINERY
@@ -843,6 +861,15 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> WALNUT_CHAIR = BLOCKS.register("walnut_chair", ChairBlock::new);
     public static final RegistryObject<Block> WARPED_CHAIR = BLOCKS.register("warped_chair", ChairBlock::new);
     public static final RegistryObject<Block> ZEBRAWOOD_CHAIR = BLOCKS.register("zebrawood_chair", ChairBlock::new);
+    public static final RegistryObject<Block> ALCHEMICAL_CHAIR = BLOCKS.register("alchemical_chair", ChairBlock::new);
+    public static final RegistryObject<Block> BENEVOLENT_CHAIR = BLOCKS.register("benevolent_chair", ChairBlock::new);
+    public static final RegistryObject<Block> CONDUCTIVE_CHAIR = BLOCKS.register("conductive_chair", ChairBlock::new);
+    public static final RegistryObject<Block> FROSTBITTEN_CHAIR = BLOCKS.register("frostbitten_chair", ChairBlock::new);
+    public static final RegistryObject<Block> FRUITFUL_CHAIR = BLOCKS.register("fruitful_chair", ChairBlock::new);
+    public static final RegistryObject<Block> INFERNAL_CHAIR = BLOCKS.register("infernal_chair", ChairBlock::new);
+    public static final RegistryObject<Block> MALEVOLENT_CHAIR = BLOCKS.register("malevolent_chair", ChairBlock::new);
+    public static final RegistryObject<Block> NECROTIC_CHAIR = BLOCKS.register("necrotic_chair", ChairBlock::new);
+    
 	public static final RegistryObject<Block> ACACIA_TABLE = BLOCKS.register("acacia_table", TableBlock::new);
 	public static final RegistryObject<Block> APRICOT_TABLE = BLOCKS.register("apricot_table", TableBlock::new);
 	public static final RegistryObject<Block> ASPEN_TABLE = BLOCKS.register("aspen_table", TableBlock::new);
@@ -876,6 +903,8 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> WALNUT_TABLE = BLOCKS.register("walnut_table", TableBlock::new);
 	public static final RegistryObject<Block> WARPED_TABLE = BLOCKS.register("warped_table", TableBlock::new);
 	public static final RegistryObject<Block> ZEBRAWOOD_TABLE = BLOCKS.register("zebrawood_table", TableBlock::new);
+	public static final RegistryObject<Block> NECROTIC_TABLE = BLOCKS.register("necrotic_table", TableBlock::new);
+	
     public static final RegistryObject<Block> DISPLAY_CASE = BLOCKS.register("display_case", DisplayCaseBlock::new);
     public static final RegistryObject<Block> ANNUNCIATOR = BLOCKS.register("annunciator", AnnunciatorBlock::new);
     
