@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 import com.technologica.Technologica;
+import com.technologica.item.ModSpawnEggItem;
 import com.technologica.item.TechnologicaItems;
 import com.technologica.util.text.ResourceLocationHelper;
 
@@ -32,15 +33,25 @@ public class ModItemModelProvider extends ItemModelProvider {
 		for(Supplier<? extends Item> itemSupplier:collection) {
 			Item item = itemSupplier.get();
 				
-			if (item instanceof BlockNamedItem) simpleItem(item);
+			if (item instanceof ModSpawnEggItem) simpleSpawnEggItem(item);
+			else if (item instanceof BlockNamedItem) simpleItem(item);
 			else if (item instanceof BlockItem && ResourceLocationHelper.getPath(item).contains("_sapling")) simpleBlockItem(item);
-			else if (!(item instanceof BlockItem) && !item.getRegistryName().getPath().contains("bazooka") && !item.getRegistryName().getPath().contains("spear_gun")) simpleItem(item);
+			else if (!(item instanceof BlockItem)) { 
+				if (!item.getRegistryName().getPath().contains("bazooka") && !item.getRegistryName().getPath().contains("spear_gun") && !item.getRegistryName().getPath().contains("_spawn_egg")) {
+					simpleItem(item);
+				}
+			}
 		}
 	}
 	
 	public void simpleItem(Item item) {
 		ResourceLocation location = item.getRegistryName();
 		this.getBuilder(location.getPath()).parent(new ModelFile.UncheckedModelFile("item/generated")).texture("layer0", new ResourceLocation(location.getNamespace(), ITEM_FOLDER + "/" + location.getPath()));
+	}
+	
+	public void simpleSpawnEggItem(Item item) {
+		ResourceLocation location = item.getRegistryName();
+		this.getBuilder(location.getPath()).parent(new ModelFile.UncheckedModelFile("item/template_spawn_egg"));
 	}
 	
 	public void simpleBlockItem(Item item) {

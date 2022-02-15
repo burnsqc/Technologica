@@ -13,6 +13,7 @@ import com.technologica.listeners.BadLuckBananaWhenFishing;
 import com.technologica.listeners.DisableLogDrops;
 import com.technologica.listeners.DropBarkOnLogStrip;
 import com.technologica.listeners.ExtraAirMeter;
+import com.technologica.listeners.InitSpawnEggs;
 import com.technologica.listeners.LunarLowGrav;
 import com.technologica.listeners.RegisterEntityAttributes;
 import com.technologica.listeners.WaterWalk;
@@ -33,6 +34,7 @@ import com.technologica.world.gen.feature.TechnologicaFeatures;
 import com.technologica.world.gen.foliageplacer.TechnologicaFoliagePlacers;
 import com.technologica.world.gen.surfacebuilders.TechnologicaSurfaceBuilders;
 
+import net.minecraft.entity.EntityType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -46,10 +48,9 @@ public class Technologica {
 	public static final String MODID = "technologica";
 	public static final Logger LOGGER = LogManager.getLogger();
 	
-	public Technologica() 
-	{
+	public Technologica() {
 		ModLoadingContext.get().registerConfig(Type.COMMON, Config.SPEC, "technologica-common.toml");
-			
+		
 		LOGGER.info("REGISTERING GAME OBJECTS - BLOCKS");
 		TechnologicaBlocks.register();
 		LOGGER.info("REGISTERING GAME OBJECTS - FLUIDS");
@@ -89,6 +90,7 @@ public class Technologica {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientSetup::stitch);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(ParticleSetup::init);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(RegisterEntityAttributes::onEntityAttributeCreationEvent);
+		FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(EntityType.class, InitSpawnEggs::onRegisterEntities);
 		
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, VanillaBiomeModifier::init);	
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, VanillaEntityModifier::init);	

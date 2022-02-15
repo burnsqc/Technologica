@@ -146,8 +146,6 @@ public class ScorpionModel<T extends Entity> extends SegmentedModel<T> {
 	}
 
 	public void setRotationAngles(T entityIn, float limbSwingIn, float limbSwingAmountIn, float ageInTicksIn, float netHeadYawIn, float headPitchIn) {
-		
-		
 		this.leg1.rotateAngleY = ((float) Math.PI / 4F);
 		this.leg2.rotateAngleY = (-(float) Math.PI / 4F);
 		this.leg3.rotateAngleY = ((float) Math.PI / 8F);

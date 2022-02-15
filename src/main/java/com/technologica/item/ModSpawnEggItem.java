@@ -19,12 +19,12 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
 public class ModSpawnEggItem extends SpawnEggItem {
-
+	
     protected static final List<ModSpawnEggItem> UNADDED_EGGS = new ArrayList<>();
     private final Lazy<? extends EntityType<?>> entityTypeSupplier;
 
-    public ModSpawnEggItem(final RegistryObject<? extends EntityType<?>> entityTypeSupplier) {
-        super(null, 0, 0, new Item.Properties().maxStackSize(1).group(TechnologicaItemGroup.FAUNA));
+    public ModSpawnEggItem(final RegistryObject<? extends EntityType<?>> entityTypeSupplier, final int primaryColorIn, final int secondaryColorIn) {
+        super(null, primaryColorIn, secondaryColorIn, new Item.Properties().maxStackSize(1).group(TechnologicaItemGroup.FAUNA));
         this.entityTypeSupplier = Lazy.of(entityTypeSupplier::get);
         UNADDED_EGGS.add(this);
     }
