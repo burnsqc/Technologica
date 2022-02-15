@@ -9,7 +9,6 @@ public class FrogModel<T extends FrogEntity> extends QuadrupedModel<T> {
 	private final ModelRenderer eyeLeft;
 	private final ModelRenderer eyeRight;
 	
-	
 	public FrogModel() {
 		super(2, 0.0F, true, 10.0F, 4.0F, 2.0F, 2.0F, 24);
 		this.textureWidth = 32;
