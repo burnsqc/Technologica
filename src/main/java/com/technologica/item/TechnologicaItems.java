@@ -166,7 +166,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> KING_CRAB_SPAWN_EGG = ITEMS.register("king_crab_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.KING_CRAB, 0xf95345, 0xf1eedf));
     public static final RegistryObject<Item> LEOPARD_SEAL_SPAWN_EGG = ITEMS.register("leopard_seal_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.LEOPARD_SEAL, 0x616161, 0xe3e3e3));
     public static final RegistryObject<Item> LION_SPAWN_EGG = ITEMS.register("lion_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.LION, 0xa17b63, 0xd08e54));
-    public static final RegistryObject<Item> LIZARD_SPAWN_EGG = ITEMS.register("lizard_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.LIZARD, 0, 0));
+    public static final RegistryObject<Item> LIZARD_SPAWN_EGG = ITEMS.register("lizard_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.LIZARD, 0x99b68e, 0x67865b));
     public static final RegistryObject<Item> MOOSE_SPAWN_EGG = ITEMS.register("moose_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.MOOSE, 0x3d2a14, 0x8c7b61));
     public static final RegistryObject<Item> NARWHAL_SPAWN_EGG = ITEMS.register("narwhal_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.NARWHAL, 0x4a4a4a, 0x8d7a43));
     public static final RegistryObject<Item> OCTOPUS_SPAWN_EGG = ITEMS.register("octopus_spawn_egg", () -> new ModSpawnEggItem(TechnologicaEntityType.OCTOPUS, 0xf1203f, 0xffffff));
