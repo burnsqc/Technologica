@@ -1,5 +1,6 @@
 package com.technologica.world.biome;
 
+import static com.technologica.Technologica.LOGGER;
 import static com.technologica.Technologica.MODID;
 
 import net.minecraft.world.biome.Biome;
@@ -16,6 +17,12 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class TechnologicaBiomes {
 	public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES, MODID);
+	
+	public static void init() {
+		LOGGER.info("INITIALIZING BIOMES");
+        BIOMES.register(FMLJavaModLoadingContext.get().getModEventBus());
+        LOGGER.info(BIOMES.getEntries().size() + " BIOMES INITIALIZED");
+    }
 	
 	public static final RegistryObject<Biome> SALT_FLATS = BIOMES.register("salt_flats", () -> new Biome.Builder()
 			.precipitation(RainType.NONE)
@@ -77,9 +84,4 @@ public class TechnologicaBiomes {
 					.withSkyColor(0).build())
 			.withMobSpawnSettings(MobSpawnInfo.EMPTY)
 			.withGenerationSettings(BiomeGenerationSettings.DEFAULT_SETTINGS).build());
-	
-	public static void register() 
-    {
-        BIOMES.register(FMLJavaModLoadingContext.get().getModEventBus()); 
-    }
 }

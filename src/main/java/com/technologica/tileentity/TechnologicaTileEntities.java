@@ -1,5 +1,6 @@
 package com.technologica.tileentity;
 
+import static com.technologica.Technologica.LOGGER;
 import static com.technologica.Technologica.MODID;
 
 import com.technologica.block.TechnologicaBlocks;
@@ -13,6 +14,12 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class TechnologicaTileEntities {
 	private static final DeferredRegister<TileEntityType<?>> TILEENTITIES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, MODID);
 
+	public static void init() {
+		LOGGER.info("INITIALIZING TILE ENTITIES");
+		TILEENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
+		LOGGER.info(TILEENTITIES.getEntries().size() + " TILE ENTITIES INITIALIZED");
+	}
+	
 	public static final RegistryObject<TileEntityType<VanillaSignTileEntity>> MOD_SIGN = TILEENTITIES.register("mod_sign",
 			() -> TileEntityType.Builder.create(VanillaSignTileEntity::new,
 					TechnologicaBlocks.APRICOT_SIGN.get(),
@@ -120,8 +127,4 @@ public class TechnologicaTileEntities {
 	public static final RegistryObject<TileEntityType<MulchTileEntity>> MULCH_TILE = TILEENTITIES.register("mulch_tile", 
 			() -> TileEntityType.Builder.create(MulchTileEntity::new, 
 					TechnologicaBlocks.MULCH.get()).build(null));
-
-	public static void register() {
-		TILEENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
-	}
 }

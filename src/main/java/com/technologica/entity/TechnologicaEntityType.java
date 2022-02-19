@@ -1,5 +1,6 @@
 package com.technologica.entity;
 
+import static com.technologica.Technologica.LOGGER;
 import static com.technologica.Technologica.MODID;
 
 import com.technologica.entity.item.InvisibleSeatEntity;
@@ -58,6 +59,12 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class TechnologicaEntityType {
 	public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, MODID);
+	
+	public static void init() {
+		LOGGER.info("INITIALIZING ENTITIES");
+		ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
+		LOGGER.info(ENTITIES.getEntries().size() + " ENTITIES INITIALIZED");
+    }
 	
 	/*
 	 * ANIMALS
@@ -129,9 +136,4 @@ public class TechnologicaEntityType {
     
     public static final RegistryObject<EntityType<InvisibleSeatEntity>> INVISIBLE_SEAT = ENTITIES.register("invisible_seat", () -> EntityType.Builder.<InvisibleSeatEntity>create(InvisibleSeatEntity::new, EntityClassification.MISC).size(0.1F, 0.1F).setCustomClientFactory((spawnEntity, world) -> new InvisibleSeatEntity(world, 0, 0, 0)).trackingRange(10).build("invisible_seat_entity"));
     public static final RegistryObject<EntityType<NavalMineEntity>> NAVAL_MINE = ENTITIES.register("naval_mine", () -> EntityType.Builder.<NavalMineEntity>create(NavalMineEntity::new, EntityClassification.MISC).size(2.0F, 2.0F).setCustomClientFactory((spawnEntity, world) -> new NavalMineEntity(world, 0, 0, 0)).trackingRange(10).build("naval_mine_entity"));
-    
-	public static void register() 
-    {
-        ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
-    }
 }

@@ -1,5 +1,6 @@
 package com.technologica.listeners;
 
+import static com.technologica.Technologica.LOGGER;
 import static net.minecraft.entity.passive.horse.AbstractHorseEntity.func_234237_fg_;
 
 import com.technologica.entity.TechnologicaEntityType;
@@ -46,6 +47,7 @@ public class RegisterEntityAttributes {
 
 	@SubscribeEvent
 	public static void onEntityAttributeCreationEvent(final EntityAttributeCreationEvent event) {
+		LOGGER.info("REGISTERING ENTITY ATTRIBUTES");
 		event.put(TechnologicaEntityType.ALLIGATOR.get(), AlligatorEntity.registerAttributes().create());
 		event.put(TechnologicaEntityType.BEAVER.get(), BeaverEntity.registerAttributes().create());
 		event.put(TechnologicaEntityType.BUFFALO.get(), BuffaloEntity.registerAttributes().create());
@@ -88,5 +90,4 @@ public class RegisterEntityAttributes {
 		event.put(TechnologicaEntityType.PEEPER.get(), func_234237_fg_().create());
 		event.put(TechnologicaEntityType.SWEEPER.get(), func_234237_fg_().create());
 	}
-	
 }

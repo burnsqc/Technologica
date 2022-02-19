@@ -1,5 +1,6 @@
 package com.technologica.item;
 
+import static com.technologica.Technologica.LOGGER;
 import static com.technologica.Technologica.MODID;
 
 import com.technologica.block.TechnologicaBlocks;
@@ -31,6 +32,12 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class TechnologicaItems {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
 
+	 public static void init() {
+	    LOGGER.info("INITIALIZING ITEMS");
+	    ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
+	    LOGGER.info(ITEMS.getEntries().size() + " ITEMS INITIALIZED");
+	 }
+	
 	/**
 	 * FLORA
 	 */
@@ -1064,7 +1071,6 @@ public class TechnologicaItems {
      * ARMORY
      */
     
-    
     public static final RegistryObject<Item> PRIMITIVE_DAGGER = ITEMS.register("primitive_dagger", () -> new SwordItem(TechnologicaItemTier.FLINT, 6, -3.2F, (new Item.Properties()).group(TechnologicaItemGroup.ARMORY)));
     public static final RegistryObject<Item> PRIMITIVE_PICKAXE = ITEMS.register("primitive_pickaxe", () -> new PickaxeItem(TechnologicaItemTier.FLINT, 6, -3.2F, (new Item.Properties()).group(TechnologicaItemGroup.ARMORY)));
     public static final RegistryObject<Item> PRIMITIVE_HOE = ITEMS.register("primitive_hoe", () -> new HoeItem(TechnologicaItemTier.FLINT, 6, -3.2F, (new Item.Properties()).group(TechnologicaItemGroup.ARMORY)));
@@ -1097,9 +1103,5 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> SCUBA_BOOTS = ITEMS.register("scuba_boots", () -> new ArmorItem(TechnologicaArmorMaterial.SCUBA, EquipmentSlotType.FEET, (new Item.Properties()).group(TechnologicaItemGroup.ARMORY)));
     
     public static final RegistryObject<Item> NAVAL_MINE = ITEMS.register("naval_mine", () -> new ModSpawnEggItem(TechnologicaEntityType.NAVAL_MINE, 0, 0));
-    
-    public static void register() {
-        ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
-    }
 }
 	

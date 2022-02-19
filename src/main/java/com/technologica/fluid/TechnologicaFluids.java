@@ -1,5 +1,6 @@
 package com.technologica.fluid;
 
+import static com.technologica.Technologica.LOGGER;
 import static com.technologica.Technologica.MODID;
 
 import net.minecraft.fluid.FlowingFluid;
@@ -11,6 +12,12 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public final class TechnologicaFluids {
 	public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, MODID);
+	
+	public static void init() {
+    	LOGGER.info("INITIALIZING FLUIDS");
+    	FLUIDS.register(FMLJavaModLoadingContext.get().getModEventBus());
+    	LOGGER.info(FLUIDS.getEntries().size() + " FLUIDS INITIALIZED");
+    }
 	
 	public static final RegistryObject<FlowingFluid> FLOWING_HYDROGEN = FLUIDS.register("flowing_hydrogen", HydrogenFluid.Flowing::new);
 	public static final RegistryObject<FlowingFluid> HYDROGEN = FLUIDS.register("hydrogen", HydrogenFluid.Source::new);
@@ -58,8 +65,4 @@ public final class TechnologicaFluids {
 	public static final RegistryObject<FlowingFluid> MACHINE_OIL = FLUIDS.register("machine_oil", MachineOilFluid.Source::new);
 	public static final RegistryObject<FlowingFluid> FLOWING_COOLANT = FLUIDS.register("flowing_coolant", CoolantFluid.Flowing::new);
 	public static final RegistryObject<FlowingFluid> COOLANT = FLUIDS.register("coolant", CoolantFluid.Source::new);
-	
-    public static void register() {   
-    	FLUIDS.register(FMLJavaModLoadingContext.get().getModEventBus());
-    }
 }

@@ -6,7 +6,8 @@ import net.minecraft.client.renderer.entity.model.QuadrupedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 
 public class LizardModel<T extends LizardEntity> extends QuadrupedModel<T> {
-	private final ModelRenderer frill;
+	private final ModelRenderer frillLeft;
+	private final ModelRenderer frillRight;
 	private final ModelRenderer tail1;
 	private final ModelRenderer tail2;
 	
@@ -23,9 +24,15 @@ public class LizardModel<T extends LizardEntity> extends QuadrupedModel<T> {
 		this.headModel.addBox(-1.5F, -1.0F, -1.5F, 3.0F, 2.0F, 3.0F);
 		this.headModel.setRotationPoint(0.0F, 20.0F, -3.0F);
 		
-		this.frill = new ModelRenderer(this, 0, 9);
-		this.frill.addBox(-3.0F, -4.0F, -3.0F, 6.0F, 4.0F, 1.0F);
-		this.body.addChild(this.frill);
+		this.frillLeft = new ModelRenderer(this, 0, 9);
+		this.frillLeft.setRotationPoint(0.0F, -1.0F, -3.5F);
+		this.frillLeft.addBox(0.0F, -4.0F, 0.0F, 4.0F, 4.0F, 1.0F,true);
+		this.body.addChild(this.frillLeft);
+		
+		this.frillRight = new ModelRenderer(this, 0, 9);
+		this.frillRight.setRotationPoint(0.0F, -1.0F, -3.5F);
+		this.frillRight.addBox(-4.0F, -4.0F, 0.0F, 4.0F, 4.0F, 1.0F);
+		this.body.addChild(this.frillRight);
 		
 		this.legBackLeft = new ModelRenderer(this, 20, 5);
 	    this.legBackLeft.addBox(0.0F, 0.0F, 0.0F, 2.0F, 3.0F, 2.0F);
@@ -56,7 +63,9 @@ public class LizardModel<T extends LizardEntity> extends QuadrupedModel<T> {
 
 	@Override
 	public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.headModel.rotateAngleY = (float) (Math.PI / 4);
-		this.frill.showModel = false;
+		this.headModel.rotateAngleY = (float) Math.PI / 4;
+		
+		this.frillLeft.rotateAngleZ = (float) Math.PI / 4;
+		this.frillRight.rotateAngleZ = -(float) Math.PI / 4;
 	}
 }
