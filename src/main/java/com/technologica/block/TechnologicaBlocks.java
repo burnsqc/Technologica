@@ -64,9 +64,8 @@ public class TechnologicaBlocks {
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
 	
 	public static void init() {
-		LOGGER.info("INITIALIZING BLOCKS");
         BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        LOGGER.info(BLOCKS.getEntries().size() + " BLOCKS INITIALIZED");
+        LOGGER.info("BLOCKS INITIALIZED: " + BLOCKS.getEntries().size() + " OUT OF 804");
     }
 	
 	/*

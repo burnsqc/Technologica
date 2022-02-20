@@ -15,7 +15,6 @@ public class TechnologicaTileEntities {
 	private static final DeferredRegister<TileEntityType<?>> TILEENTITIES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, MODID);
 
 	public static void init() {
-		LOGGER.info("INITIALIZING TILE ENTITIES");
 		TILEENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
 		LOGGER.info(TILEENTITIES.getEntries().size() + " TILE ENTITIES INITIALIZED");
 	}

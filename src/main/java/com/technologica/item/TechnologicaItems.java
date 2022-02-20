@@ -32,11 +32,10 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class TechnologicaItems {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
 
-	 public static void init() {
-	    LOGGER.info("INITIALIZING ITEMS");
-	    ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
-	    LOGGER.info(ITEMS.getEntries().size() + " ITEMS INITIALIZED");
-	 }
+	public static void init() {
+		ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
+		LOGGER.info("ITEMS INITIALIZED: " + ITEMS.getEntries().size() + " OUT OF 986");
+	}
 	
 	/**
 	 * FLORA
