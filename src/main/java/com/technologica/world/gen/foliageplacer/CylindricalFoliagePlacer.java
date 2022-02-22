@@ -18,13 +18,13 @@ import net.minecraft.world.gen.foliageplacer.FoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.FoliagePlacerType;
 
 public class CylindricalFoliagePlacer extends FoliagePlacer {
-	public static final Codec<CylindricalFoliagePlacer> cylindricalCodec = RecordCodecBuilder.create(p_236742_0_ -> func_236740_a_(p_236742_0_).apply(p_236742_0_, CylindricalFoliagePlacer::new));
+	public static final Codec<CylindricalFoliagePlacer> cylindricalCodec = RecordCodecBuilder.create(p_236742_0_ -> blobParts(p_236742_0_).apply(p_236742_0_, CylindricalFoliagePlacer::new));
 	
 	protected final int layers;
 
-	protected static <P extends CylindricalFoliagePlacer> P3<Mu<P>, FeatureSpread, FeatureSpread, Integer> func_236740_a_(Instance<P> p_236740_0_) 
+	protected static <P extends CylindricalFoliagePlacer> P3<Mu<P>, FeatureSpread, FeatureSpread, Integer> blobParts(Instance<P> p_236740_0_) 
 	{
-		return func_242830_b(p_236740_0_).and(Codec.intRange(0, 16).fieldOf("height").forGetter(p_236741_0_ -> p_236741_0_.layers));
+		return foliagePlacerParts(p_236740_0_).and(Codec.intRange(0, 16).fieldOf("height").forGetter(p_236741_0_ -> p_236741_0_.layers));
 	}
 
 	public CylindricalFoliagePlacer(FeatureSpread width, FeatureSpread verticalOffset, int layersIn) {
@@ -32,27 +32,27 @@ public class CylindricalFoliagePlacer extends FoliagePlacer {
 		this.layers = layersIn - 1;
 	}
 
-	protected FoliagePlacerType<?> getPlacerType() {
+	protected FoliagePlacerType<?> type() {
 		return TechnologicaFoliagePlacers.CYLINDRICAL.get();
 	}
 
 	//Generate foliage
-	protected void func_230372_a_(IWorldGenerationReader worldIn, Random randomIn, BaseTreeFeatureConfig configIn, int p_230372_4_, FoliagePlacer.Foliage p_230372_5_, int layers, int diameter, Set<BlockPos> p_230372_8_, int topLayer, MutableBoundingBox boundingBoxIn) 
+	protected void createFoliage(IWorldGenerationReader worldIn, Random randomIn, BaseTreeFeatureConfig configIn, int p_230372_4_, FoliagePlacer.Foliage p_230372_5_, int layers, int diameter, Set<BlockPos> p_230372_8_, int topLayer, MutableBoundingBox boundingBoxIn) 
 	{
 		for (int layer = topLayer; layer >= topLayer - layers; --layer) 
 		{
 			int j = diameter;
-			this.func_236753_a_(worldIn, randomIn, configIn, p_230372_5_.func_236763_a_(), j, p_230372_8_, layer, p_230372_5_.func_236765_c_(), boundingBoxIn);
+			this.placeLeavesRow(worldIn, randomIn, configIn, p_230372_5_.foliagePos(), j, p_230372_8_, layer, p_230372_5_.doubleTrunk(), boundingBoxIn);
 		}
 	}
 
 	//Adjust number of layers based upon trunk height
-	public int func_230374_a_(Random randomIn, int i, BaseTreeFeatureConfig configIn) {
+	public int foliageHeight(Random randomIn, int i, BaseTreeFeatureConfig configIn) {
 		return i;
 	}
 
 	//Prune foliage
-	protected boolean func_230373_a_(Random randomIn, int relativeZ, int relativeY, int relativeX, int p_230373_5_, boolean p_230373_6_) {	
+	protected boolean shouldSkipLocation(Random randomIn, int relativeZ, int relativeY, int relativeX, int p_230373_5_, boolean p_230373_6_) {	
 		return (relativeX*relativeX + relativeZ*relativeZ >= 100);		
 	}
 }

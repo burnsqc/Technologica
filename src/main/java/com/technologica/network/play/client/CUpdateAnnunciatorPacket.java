@@ -25,7 +25,7 @@ public class CUpdateAnnunciatorPacket {
 		buf.writeBlockPos(msg.pos);
 
 		for (int i = 0; i < 8; ++i) {
-			buf.writeString(msg.lines[i]);
+			buf.writeUtf(msg.lines[i]);
 		}
 	}
 
@@ -34,7 +34,7 @@ public class CUpdateAnnunciatorPacket {
 		
 		String[] lines2 = new String[8];
 		for (int i = 0; i < 8; ++i) {
-			lines2[i] = buf.readString(384);
+			lines2[i] = buf.readUtf(384);
 		}
 		
 		return new CUpdateAnnunciatorPacket(pos2, lines2[0], lines2[1], lines2[2], lines2[3], lines2[4], lines2[5], lines2[6], lines2[7]);
@@ -42,16 +42,16 @@ public class CUpdateAnnunciatorPacket {
 
 	public static void handle(CUpdateAnnunciatorPacket msg, final Supplier<NetworkEvent.Context> ctx) {
 		ctx.get().enqueueWork(() -> {
-			ServerWorld world = ctx.get().getSender().getServerWorld();
-			TileEntity tileentity = world.getTileEntity(msg.pos);
+			ServerWorld world = ctx.get().getSender().getLevel();
+			TileEntity tileentity = world.getBlockEntity(msg.pos);
 			BlockState blockstate = world.getBlockState(msg.pos);
 			
 			if (tileentity instanceof AnnunciatorTileEntity) {
 				for (int i = 0; i < 8; ++i) {
-					((AnnunciatorTileEntity) tileentity).setText(i, ITextComponent.getTextComponentOrEmpty(msg.lines[i]));
+					((AnnunciatorTileEntity) tileentity).setText(i, ITextComponent.nullToEmpty(msg.lines[i]));
 				}
-				tileentity.markDirty();
-		        world.notifyBlockUpdate(msg.pos, blockstate, blockstate, 3);
+				tileentity.setChanged();
+		        world.sendBlockUpdated(msg.pos, blockstate, blockstate, 3);
 			}
 		});
 		ctx.get().setPacketHandled(true);

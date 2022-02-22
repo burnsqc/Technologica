@@ -22,35 +22,35 @@ public class BegGoal extends Goal {
 
 	public BegGoal(AnimalEntity animalIn, float minDistance) {
 		this.animal = animalIn;
-		this.world = animalIn.world;
+		this.world = animalIn.level;
 		this.minPlayerDistance = minDistance;
-		this.playerPredicate = (new EntityPredicate()).setDistance((double) minDistance).allowInvulnerable().allowFriendlyFire().setSkipAttackChecks();
-		this.setMutexFlags(EnumSet.of(Goal.Flag.LOOK));
+		this.playerPredicate = (new EntityPredicate()).range((double) minDistance).allowInvulnerable().allowSameTeam().allowNonAttackable();
+		this.setFlags(EnumSet.of(Goal.Flag.LOOK));
 	}
 
-	public boolean shouldExecute() {
-		this.player = this.world.getClosestPlayer(this.playerPredicate, this.animal);
+	public boolean canUse() {
+		this.player = this.world.getNearestPlayer(this.playerPredicate, this.animal);
 		return this.player == null ? false : this.hasTemptationItemInHand(this.player);
 	}
 
-	public boolean shouldContinueExecuting() {
+	public boolean canContinueToUse() {
 		if (!this.player.isAlive()) {
 			return false;
-		} else if (this.animal.getDistanceSq(this.player) > (double) (this.minPlayerDistance * this.minPlayerDistance)) {
+		} else if (this.animal.distanceToSqr(this.player) > (double) (this.minPlayerDistance * this.minPlayerDistance)) {
 			return false;
 		} else {
-			ItemStack itemstack = this.animal.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
+			ItemStack itemstack = this.animal.getItemBySlot(EquipmentSlotType.MAINHAND);
 			return this.hasTemptationItemInHand(this.player) && !itemstack.isEmpty();
 		}
 	}
 
-	public void startExecuting() {
+	public void start() {
 		if (animal instanceof RaccoonEntity) {
 			((RaccoonEntity) animal).setBegging(true);
 		}
 	}
 
-	public void resetTask() {
+	public void stop() {
 		if (animal instanceof RaccoonEntity) {
 			((RaccoonEntity) animal).setBegging(false);
 			this.player = null;
@@ -58,12 +58,12 @@ public class BegGoal extends Goal {
 	}
 
 	public void tick() {
-		this.animal.getLookController().setLookPosition(this.player.getPosX(), this.player.getPosYEye(), this.player.getPosZ(), 10.0F, (float) this.animal.getVerticalFaceSpeed());	
+		this.animal.getLookControl().setLookAt(this.player.getX(), this.player.getEyeY(), this.player.getZ(), 10.0F, (float) this.animal.getMaxHeadXRot());	
 	}
 
 	public boolean hasTemptationItemInHand(PlayerEntity player) {
 		for (Hand hand : Hand.values()) {
-			ItemStack itemstack = player.getHeldItem(hand);
+			ItemStack itemstack = player.getItemInHand(hand);
 			if (itemstack != ItemStack.EMPTY) {
 				return true;
 			}	

@@ -20,7 +20,7 @@ public class FruitTileEntity extends TileEntity {
 
 	@Override
 	public AxisAlignedBB getRenderBoundingBox() {
-		return new AxisAlignedBB(getPos(), getPos().add(1, -1, 1));
+		return new AxisAlignedBB(getBlockPos(), getBlockPos().offset(1, -1, 1));
 	}
 	
 	public ItemStack getFruitStack() {
@@ -29,9 +29,9 @@ public class FruitTileEntity extends TileEntity {
 	
 	public void setFruitStack(ItemStack stackIn) {
         this.stack = stackIn;
-        markDirty();
-        if (world != null) {
-        	world.notifyBlockUpdate(pos, getBlockState(), getBlockState(), 2); 
+        setChanged();
+        if (level != null) {
+        	level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 2); 
         }
     }
 	
@@ -42,39 +42,39 @@ public class FruitTileEntity extends TileEntity {
 	@Override
 	@Nullable
 	public SUpdateTileEntityPacket getUpdatePacket() {
-		return new SUpdateTileEntityPacket(this.pos, 10, this.getUpdateTag());
+		return new SUpdateTileEntityPacket(this.worldPosition, 10, this.getUpdateTag());
 	}   
 	
 	@Override
 	public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
-		BlockState blockState = world.getBlockState(pos);
-		read(blockState, pkt.getNbtCompound());
+		BlockState blockState = level.getBlockState(worldPosition);
+		load(blockState, pkt.getTag());
 	}
 	
 	@Override
 	public CompoundNBT getUpdateTag() {
-		return this.write(new CompoundNBT());
+		return this.save(new CompoundNBT());
 	}
 	
 	@Override
 	public void handleUpdateTag(BlockState blockState, CompoundNBT parentNBTTagCompound)
 	{
-		this.read(blockState, parentNBTTagCompound);
+		this.load(blockState, parentNBTTagCompound);
 	}
 	
 	@Override
-	public void read(BlockState state, CompoundNBT nbt) {
-		super.read(state, nbt);
+	public void load(BlockState state, CompoundNBT nbt) {
+		super.load(state, nbt);
 	    if (nbt.contains(ITEM_NAME)) {
-	    	this.setFruitStack(ItemStack.read(nbt.getCompound(ITEM_NAME)));
+	    	this.setFruitStack(ItemStack.of(nbt.getCompound(ITEM_NAME)));
 	    }
 	}
 
 	@Override
-	public CompoundNBT write(CompoundNBT compound) {
-		super.write(compound);
+	public CompoundNBT save(CompoundNBT compound) {
+		super.save(compound);
 	    if (!this.getFruitStack().isEmpty()) {
-	    	compound.put(ITEM_NAME, this.getFruitStack().write(new CompoundNBT()));
+	    	compound.put(ITEM_NAME, this.getFruitStack().save(new CompoundNBT()));
 	    }	   
 	    return compound;	    
 	}

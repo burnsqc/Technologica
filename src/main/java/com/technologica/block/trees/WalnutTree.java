@@ -12,7 +12,7 @@ import net.minecraft.world.gen.feature.ConfiguredFeature;
 
 public class WalnutTree extends Tree {
 	@Nullable
-	protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean largeHiveIn) {
+	protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredFeature(Random randomIn, boolean largeHiveIn) {
 		return TechnologicaConfiguredFeatures.WALNUT_TREE_FEATURE;
 	}
 }

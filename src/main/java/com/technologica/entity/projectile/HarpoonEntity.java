@@ -28,25 +28,25 @@ public class HarpoonEntity extends AbstractArrowEntity {
 		super(TechnologicaEntityType.HARPOON.get(), shooter, worldIn);
 	}
 
-	protected ItemStack getArrowStack() {
+	protected ItemStack getPickupItem() {
 		return new ItemStack(TechnologicaItems.HARPOON.get());
 	}
 
-	public IPacket<?> createSpawnPacket() {
+	public IPacket<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 
 	@Override
-	protected void onEntityHit(EntityRayTraceResult result) {
-		super.onEntityHit(result);
+	protected void onHitEntity(EntityRayTraceResult result) {
+		super.onHitEntity(result);
 		
-		if (this.getShooter() instanceof PlayerEntity && result.getEntity() instanceof MobEntity) {
-			((MobEntity) result.getEntity()).setLeashHolder((PlayerEntity) this.getShooter(), true);	
+		if (this.getOwner() instanceof PlayerEntity && result.getEntity() instanceof MobEntity) {
+			((MobEntity) result.getEntity()).setLeashedTo((PlayerEntity) this.getOwner(), true);	
 		}	
 	}
 	
 	@Override
-	protected float getWaterDrag() {
+	protected float getWaterInertia() {
 		return 1.0F;
 	}
 }

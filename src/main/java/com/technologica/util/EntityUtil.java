@@ -16,7 +16,7 @@ public class EntityUtil {
 	private static final Map<ResourceLocation, Map<BlockPos, Pair<InvisibleSeatEntity, BlockPos>>> OCCUPIED = new HashMap<>();
 
 	public static boolean removeInvisibleSeatEntity(World world, BlockPos pos) {
-		if (!world.isRemote) {
+		if (!world.isClientSide) {
 			ResourceLocation id = getDimensionTypeId(world);
 
 			if (OCCUPIED.containsKey(id)) {
@@ -29,8 +29,8 @@ public class EntityUtil {
 	}
 
 	public static BlockPos getPreviousPlayerPosition(PlayerEntity player, InvisibleSeatEntity sitEntity) {
-		if (!player.world.isRemote) {
-			ResourceLocation id = getDimensionTypeId(player.world);
+		if (!player.level.isClientSide) {
+			ResourceLocation id = getDimensionTypeId(player.level);
 
 			if (OCCUPIED.containsKey(id)) {
 				for (Pair<InvisibleSeatEntity, BlockPos> pair : OCCUPIED.get(id).values()) {
@@ -44,6 +44,6 @@ public class EntityUtil {
 	}
 
 	private static ResourceLocation getDimensionTypeId(World world) {
-		return world.getDimensionKey().getLocation();
+		return world.dimension().location();
 	}
 }

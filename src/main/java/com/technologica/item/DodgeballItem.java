@@ -18,23 +18,23 @@ public class DodgeballItem extends Item {
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-		ItemStack itemstack = playerIn.getHeldItem(handIn);
-		worldIn.playSound((PlayerEntity) null, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
+	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+		ItemStack itemstack = playerIn.getItemInHand(handIn);
+		worldIn.playSound((PlayerEntity) null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
 		
-		if (!worldIn.isRemote) {
+		if (!worldIn.isClientSide) {
 			DodgeballEntity dodgeballEntity = new DodgeballEntity(worldIn, playerIn);
 			dodgeballEntity.setItem(itemstack);
-			dodgeballEntity.setDirectionAndMovement(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 2.5F, 0.0F);
-			worldIn.addEntity(dodgeballEntity);
+			dodgeballEntity.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0F, 2.5F, 0.0F);
+			worldIn.addFreshEntity(dodgeballEntity);
 		}
 
-		playerIn.addStat(Stats.ITEM_USED.get(this));
+		playerIn.awardStat(Stats.ITEM_USED.get(this));
 		
-		if (!playerIn.abilities.isCreativeMode) {
+		if (!playerIn.abilities.instabuild) {
 			itemstack.shrink(1);
 		}
 
-		return ActionResult.func_233538_a_(itemstack, worldIn.isRemote());
+		return ActionResult.sidedSuccess(itemstack, worldIn.isClientSide());
 	}
 }

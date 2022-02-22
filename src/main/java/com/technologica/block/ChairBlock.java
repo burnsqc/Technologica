@@ -25,10 +25,10 @@ import net.minecraft.world.World;
  * Created to inherit FourDirectionBlock orientation and handle matching voxel shape and flammability.
  */
 public class ChairBlock extends FourDirectionBlock {
-	protected static final VoxelShape CHAIR_HITBOX = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 10.0D, 16.0D);
+	protected static final VoxelShape CHAIR_HITBOX = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 10.0D, 16.0D);
 
 	public ChairBlock() {
-		super(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD).notSolid());
+		super(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion());
 	}
 	
 	/*
@@ -41,20 +41,20 @@ public class ChairBlock extends FourDirectionBlock {
 	}
 
 	@Override
-	public ActionResultType onBlockActivated(BlockState stateIn, World worldIn, BlockPos posIn, PlayerEntity playerIn, Hand handIn, BlockRayTraceResult hitIn) {
-		if (!worldIn.isRemote) {
+	public ActionResultType use(BlockState stateIn, World worldIn, BlockPos posIn, PlayerEntity playerIn, Hand handIn, BlockRayTraceResult hitIn) {
+		if (!worldIn.isClientSide) {
 			InvisibleSeatEntity seat = new InvisibleSeatEntity(worldIn, posIn.getX() + 0.5F, posIn.getY() + 0.35F, posIn.getZ() + 0.5F);
-			worldIn.addEntity(seat);
+			worldIn.addFreshEntity(seat);
 			playerIn.startRiding(seat);
 		}	
-		return ActionResultType.func_233537_a_(worldIn.isRemote);
+		return ActionResultType.sidedSuccess(worldIn.isClientSide);
 	}
 	
 	@Override
-	public void onReplaced(BlockState stateIn, World worldIn, BlockPos posIn, BlockState newStateIn, boolean isMovingIn) {
-		if (!worldIn.getEntitiesWithinAABB(InvisibleSeatEntity.class, new AxisAlignedBB(posIn)).isEmpty()) {
-			InvisibleSeatEntity seat = worldIn.getEntitiesWithinAABB(InvisibleSeatEntity.class, new AxisAlignedBB(posIn)).get(0);
-			seat.removePassengers();
+	public void onRemove(BlockState stateIn, World worldIn, BlockPos posIn, BlockState newStateIn, boolean isMovingIn) {
+		if (!worldIn.getEntitiesOfClass(InvisibleSeatEntity.class, new AxisAlignedBB(posIn)).isEmpty()) {
+			InvisibleSeatEntity seat = worldIn.getEntitiesOfClass(InvisibleSeatEntity.class, new AxisAlignedBB(posIn)).get(0);
+			seat.ejectPassengers();
 			seat.remove();
 		}
 	}

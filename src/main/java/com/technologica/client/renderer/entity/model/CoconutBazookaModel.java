@@ -20,12 +20,12 @@ public class CoconutBazookaModel extends Model {
 	private final ModelRenderer gripFront; 
 
 	public CoconutBazookaModel() {
-		super(RenderType::getEntitySolid);
-		this.textureWidth = 64;
-		this.textureHeight = 64;
+		super(RenderType::entitySolid);
+		this.texWidth = 64;
+		this.texHeight = 64;
 		
 		this.tubeBottom = new ModelRenderer(this, 0, 19);
-		this.tubeBottom.setRotationPoint(0.0F, 0.0F, 0.0F);
+		this.tubeBottom.setPos(0.0F, 0.0F, 0.0F);
 		this.tubeBottom.addBox(-3.0F, 0.0F, -9.0F, 6.0F, 1.0F, 18.0F);
 		
 		this.tubeLeft = new ModelRenderer(this, 20, 42);
@@ -53,7 +53,7 @@ public class CoconutBazookaModel extends Model {
 		this.tubeBottom.addChild(this.gripFront);
 	}
 
-	public void render(MatrixStack matrixStackIn, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
+	public void renderToBuffer(MatrixStack matrixStackIn, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
 		this.tubeBottom.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
 	}
 }

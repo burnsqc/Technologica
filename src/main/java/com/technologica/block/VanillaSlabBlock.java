@@ -17,7 +17,7 @@ import net.minecraft.world.IBlockReader;
 public class VanillaSlabBlock extends SlabBlock {
 
 	public VanillaSlabBlock() {
-		super(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD));
+		super(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD));
 	}
 
 	/*

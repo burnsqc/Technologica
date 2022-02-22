@@ -16,7 +16,7 @@ public final class LeopardSealRenderer extends MobRenderer<LeopardSealEntity, Le
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(LeopardSealEntity entity) {
+	public ResourceLocation getTextureLocation(LeopardSealEntity entity) {
 		return LEOPARD_SEAL_TEXTURE;
 	}
 }

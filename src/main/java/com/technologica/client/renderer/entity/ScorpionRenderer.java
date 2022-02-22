@@ -15,11 +15,11 @@ public class ScorpionRenderer<T extends ScorpionEntity> extends MobRenderer<T, S
 		super(renderManagerIn, new ScorpionModel<>(), 0.8F);
 	}
 
-	protected float getDeathMaxRotation(T entityLivingBaseIn) {
+	protected float getFlipDegrees(T entityLivingBaseIn) {
 		return 180.0F;
 	}
 
-	public ResourceLocation getEntityTexture(T entity) {
+	public ResourceLocation getTextureLocation(T entity) {
 		return SCORPION_TEXTURE;
 	}
 }

@@ -16,7 +16,7 @@ public final class CobraRenderer extends MobRenderer<CobraEntity, CobraModel<Cob
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(CobraEntity entity) {
+	public ResourceLocation getTextureLocation(CobraEntity entity) {
 		return COBRA_TEXTURE;
 	}
 }

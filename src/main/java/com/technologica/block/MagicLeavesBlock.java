@@ -22,7 +22,7 @@ public class MagicLeavesBlock extends LeavesBlock {
 	private int leavesType;
 
 	public MagicLeavesBlock(int leavesTypeIn) {
-		super(AbstractBlock.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid());
+		super(AbstractBlock.Properties.of(Material.LEAVES).strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion());
 		leavesType = leavesTypeIn;
 	}
 
@@ -34,19 +34,19 @@ public class MagicLeavesBlock extends LeavesBlock {
 	public void randomTick(BlockState stateIn, ServerWorld worldIn, BlockPos posIn, Random randomIn) {
 		if (leavesType == 1) {
 			LightningBoltEntity lightningboltentity = EntityType.LIGHTNING_BOLT.create(worldIn);
-			lightningboltentity.moveForced(Vector3d.copyCenteredHorizontally(posIn));
-			worldIn.addEntity(lightningboltentity);
+			lightningboltentity.moveTo(Vector3d.atBottomCenterOf(posIn));
+			worldIn.addFreshEntity(lightningboltentity);
 			worldIn.removeBlock(posIn, false);
 		} else if (leavesType == 2) {
 			SnowGolemEntity snowgolementity = EntityType.SNOW_GOLEM.create(worldIn);
-			snowgolementity.moveForced(Vector3d.copyCenteredHorizontally(posIn));
-			worldIn.addEntity(snowgolementity);
+			snowgolementity.moveTo(Vector3d.atBottomCenterOf(posIn));
+			worldIn.addFreshEntity(snowgolementity);
 			worldIn.removeBlock(posIn, false);
 		}
 	}
 	
 	@Override
-	public boolean ticksRandomly(BlockState stateIn) {
-		return !stateIn.get(PERSISTENT);
+	public boolean isRandomlyTicking(BlockState stateIn) {
+		return !stateIn.getValue(PERSISTENT);
 	}
 }

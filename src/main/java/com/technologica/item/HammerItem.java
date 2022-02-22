@@ -20,14 +20,14 @@ public class HammerItem extends Item {
 	}
 	
 	@Override
-	public ActionResultType onItemUse(ItemUseContext context) {
-   		World world = context.getWorld();
-   		if (!world.isRemote) {
-   			BlockPos pos = context.getPos();
+	public ActionResultType useOn(ItemUseContext context) {
+   		World world = context.getLevel();
+   		if (!world.isClientSide) {
+   			BlockPos pos = context.getClickedPos();
    			BlockState state = world.getBlockState(pos);
-   			if (state.matchesBlock(TechnologicaBlocks.MAPLE_LOG.get()) || state.matchesBlock(TechnologicaBlocks.RUBBER_LOG.get())) {
-   				world.setBlockState(pos.offset(context.getFace()), TechnologicaBlocks.TREE_TAP.get().getDefaultState().with(HorizontalBlock.HORIZONTAL_FACING, context.getFace()), 3);
-   				world.playSound((PlayerEntity)null, pos, SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 1.0F, 0.8F + world.rand.nextFloat() * 0.4F);
+   			if (state.is(TechnologicaBlocks.MAPLE_LOG.get()) || state.is(TechnologicaBlocks.RUBBER_LOG.get())) {
+   				world.setBlock(pos.relative(context.getClickedFace()), TechnologicaBlocks.TREE_TAP.get().defaultBlockState().setValue(HorizontalBlock.FACING, context.getClickedFace()), 3);
+   				world.playSound((PlayerEntity)null, pos, SoundEvents.WOOD_PLACE, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
    				return ActionResultType.SUCCESS;
    			}
    		}

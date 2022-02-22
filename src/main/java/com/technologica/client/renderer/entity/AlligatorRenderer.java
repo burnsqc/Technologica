@@ -16,7 +16,7 @@ public final class AlligatorRenderer extends MobRenderer<AlligatorEntity, Alliga
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(AlligatorEntity alligatorEntityIn) {
+	public ResourceLocation getTextureLocation(AlligatorEntity alligatorEntityIn) {
 		return ALLIGATOR_TEXTURE;
 	}
 }

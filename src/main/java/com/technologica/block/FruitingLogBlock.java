@@ -17,7 +17,7 @@ public class FruitingLogBlock extends VanillaLogBlock {
 
 	public FruitingLogBlock() {
 		super();
-		this.setDefaultState(this.stateContainer.getBaseState().with(PERSISTENT, false).with(AXIS, Direction.Axis.Y));
+		this.registerDefaultState(this.stateDefinition.any().setValue(PERSISTENT, false).setValue(AXIS, Direction.Axis.Y));
 	}
 	
 	/*
@@ -26,12 +26,12 @@ public class FruitingLogBlock extends VanillaLogBlock {
 	
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		return this.getDefaultState().with(AXIS, context.getFace().getAxis()).with(PERSISTENT, true);
+		return this.defaultBlockState().setValue(AXIS, context.getClickedFace().getAxis()).setValue(PERSISTENT, true);
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
 		builder.add(PERSISTENT);
-		super.fillStateContainer(builder);
+		super.createBlockStateDefinition(builder);
 	}
 }

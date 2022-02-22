@@ -17,7 +17,7 @@ public class VanillaCropsBlock extends CropsBlock {
 	private Supplier<Item> seeds;
 	
 	public VanillaCropsBlock(Supplier<Item> seedsIn) {
-		super(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP));
+		super(AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP));
 		seeds = seedsIn;
 	}
 
@@ -26,7 +26,7 @@ public class VanillaCropsBlock extends CropsBlock {
 	 */
 	
 	@Override
-	protected IItemProvider getSeedsItem() {
+	protected IItemProvider getBaseSeedId() {
 		return seeds.get();
 	}
 	

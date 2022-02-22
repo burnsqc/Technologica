@@ -17,7 +17,7 @@ public final class ZebraRenderer extends AbstractHorseRenderer<ZebraEntity, Hors
 //      this.addLayer(new LeatherZebraArmorLayer(this));
 	}
 
-	public ResourceLocation getEntityTexture(ZebraEntity entity) {
+	public ResourceLocation getTextureLocation(ZebraEntity entity) {
 		return ZEBRA_TEXTURE;
 	}
 }

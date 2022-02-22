@@ -50,25 +50,25 @@ public class ModBlockLootTables extends BlockLootTables {
 	protected void addTables() {
 		automaticLootTable(TechnologicaBlocks.BLOCKS.getEntries());
 		
-		registerLootTable(TechnologicaBlocks.CORN_CROP.get(), droppingAndBonusWhen(TechnologicaBlocks.CORN_CROP.get(), TechnologicaItems.CORN.get(), TechnologicaBlocks.CORN_CROP.get().asItem(), BlockStateProperty.builder(TechnologicaBlocks.CORN_CROP.get()).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(CropsBlock.AGE, 7))));
-		registerLootTable(TechnologicaBlocks.PEPPERCORN_CROP.get(), droppingAndBonusWhen(TechnologicaBlocks.PEPPERCORN_CROP.get(), TechnologicaItems.PEPPERCORNS.get(), TechnologicaBlocks.PEPPERCORN_CROP.get().asItem(), BlockStateProperty.builder(TechnologicaBlocks.PEPPERCORN_CROP.get()).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(CropsBlock.AGE, 7))));
+		add(TechnologicaBlocks.CORN_CROP.get(), createCropDrops(TechnologicaBlocks.CORN_CROP.get(), TechnologicaItems.CORN.get(), TechnologicaBlocks.CORN_CROP.get().asItem(), BlockStateProperty.hasBlockStateProperties(TechnologicaBlocks.CORN_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropsBlock.AGE, 7))));
+		add(TechnologicaBlocks.PEPPERCORN_CROP.get(), createCropDrops(TechnologicaBlocks.PEPPERCORN_CROP.get(), TechnologicaItems.PEPPERCORNS.get(), TechnologicaBlocks.PEPPERCORN_CROP.get().asItem(), BlockStateProperty.hasBlockStateProperties(TechnologicaBlocks.PEPPERCORN_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropsBlock.AGE, 7))));
 		
-		registerLootTable(TechnologicaBlocks.LITHIUM_CLAY.get(), (clay) -> droppingWithSilkTouchOrRandomly(clay, TechnologicaItems.LITHIUM_CLAY_BALL.get(), ConstantRange.of(4)));
-		registerDropSelfLootTable(TechnologicaBlocks.SALT.get());
-		registerDropping(TechnologicaBlocks.MULCH.get(), Blocks.DIRT);
+		add(TechnologicaBlocks.LITHIUM_CLAY.get(), (clay) -> createSingleItemTableWithSilkTouch(clay, TechnologicaItems.LITHIUM_CLAY_BALL.get(), ConstantRange.exactly(4)));
+		dropSelf(TechnologicaBlocks.SALT.get());
+		dropOther(TechnologicaBlocks.MULCH.get(), Blocks.DIRT);
 		
-		registerDropSelfLootTable(TechnologicaBlocks.LINE_SHAFT_HANGER.get());
-		registerDropping(TechnologicaBlocks.LINE_SHAFT.get(), TechnologicaItems.STEEL_SHAFT.get());
-		registerDropping(TechnologicaBlocks.NAVAL_MINE_CHAIN.get(), Items.CHAIN);
-		registerDropSelfLootTable(TechnologicaBlocks.SMALL_PULLEY.get());
-		registerDropSelfLootTable(TechnologicaBlocks.MEDIUM_PULLEY.get());
-		registerDropSelfLootTable(TechnologicaBlocks.LARGE_PULLEY.get());
-		registerDropSelfLootTable(TechnologicaBlocks.MOTOR_1HP.get());
-		registerDropSelfLootTable(TechnologicaBlocks.MOTOR_5HP.get());
-		registerDropSelfLootTable(TechnologicaBlocks.MOTOR_20HP.get());
+		dropSelf(TechnologicaBlocks.LINE_SHAFT_HANGER.get());
+		dropOther(TechnologicaBlocks.LINE_SHAFT.get(), TechnologicaItems.STEEL_SHAFT.get());
+		dropOther(TechnologicaBlocks.NAVAL_MINE_CHAIN.get(), Items.CHAIN);
+		dropSelf(TechnologicaBlocks.SMALL_PULLEY.get());
+		dropSelf(TechnologicaBlocks.MEDIUM_PULLEY.get());
+		dropSelf(TechnologicaBlocks.LARGE_PULLEY.get());
+		dropSelf(TechnologicaBlocks.MOTOR_1HP.get());
+		dropSelf(TechnologicaBlocks.MOTOR_5HP.get());
+		dropSelf(TechnologicaBlocks.MOTOR_20HP.get());
 		
-		registerDropSelfLootTable(TechnologicaBlocks.DISPLAY_CASE.get());
-		registerDropSelfLootTable(TechnologicaBlocks.ANNUNCIATOR.get());
+		dropSelf(TechnologicaBlocks.DISPLAY_CASE.get());
+		dropSelf(TechnologicaBlocks.ANNUNCIATOR.get());
 	}
 	
 	/**
@@ -86,29 +86,29 @@ public class ModBlockLootTables extends BlockLootTables {
 			Block block = blockSupplier.get();
 			String path = ResourceLocationHelper.getPath(block);
 			
-			if (block instanceof VanillaLogBlock) registerDropSelfLootTable(block);
-			else if (block.getClass().equals(SaplingBlock.class)) registerDropSelfLootTable(block);
-			else if (block.getClass().equals(FlowerPotBlock.class)) registerFlowerPot(block);
-			else if (block.getClass().equals(VanillaPlanksBlock.class)) registerDropSelfLootTable(block);
-			else if (block.getTranslationKey().contains("bookshelf")) registerLootTable(block, (bookshelf) -> droppingWithSilkTouchOrRandomly(bookshelf, Items.BOOK, ConstantRange.of(3)));
-			else if (block.getClass().equals(VanillaSlabBlock.class)) registerLootTable(block, BlockLootTables::droppingSlab);
-			else if (block.getClass().equals(VanillaStairsBlock.class)) registerDropSelfLootTable(block);
-			else if (block.getClass().equals(VanillaFenceBlock.class)) registerDropSelfLootTable(block);
-			else if (block.getClass().equals(VanillaFenceGateBlock.class)) registerDropSelfLootTable(block);
-			else if (block.getClass().equals(DoorBlock.class)) registerLootTable(block, BlockLootTables::registerDoor);
-			else if (block.getClass().equals(TrapDoorBlock.class)) registerDropSelfLootTable(block);
-			else if (block.getClass().equals(PressurePlateBlock.class)) registerDropSelfLootTable(block);
-			else if (block.getClass().equals(WoodButtonBlock.class)) registerDropSelfLootTable(block);
-			else if (block.getClass().equals(VanillaStandingSignBlock.class)) registerDropSelfLootTable(block);
-			else if (block.getClass().equals(VanillaWallSignBlock.class)) registerDropSelfLootTable(block);
-			else if (block.getRegistryName().getPath().contains("ore")) registerDropSelfLootTable(block);
-			else if (block.getClass().equals(TwentyFourDirectionBlock.class)) registerDropSelfLootTable(block);
-			else if (block.getClass().equals(SapLogBlock.class)) registerDropSelfLootTable(block);
-			else if (block.getClass().equals(ChairBlock.class)) registerDropSelfLootTable(block);
-			else if (block.getClass().equals(TableBlock.class)) registerDropSelfLootTable(block);
-			else if (block.getClass().equals(TreeTapBlock.class)) registerDropSelfLootTable(block);
-			else if (block.getClass().equals(TreeTapBlock.class)) registerDropSelfLootTable(block);
-			else if (block.getClass().equals(SawmillBlock.class)) registerDropSelfLootTable(block);
+			if (block instanceof VanillaLogBlock) dropSelf(block);
+			else if (block.getClass().equals(SaplingBlock.class)) dropSelf(block);
+			else if (block.getClass().equals(FlowerPotBlock.class)) dropPottedContents(block);
+			else if (block.getClass().equals(VanillaPlanksBlock.class)) dropSelf(block);
+			else if (block.getDescriptionId().contains("bookshelf")) add(block, (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantRange.exactly(3)));
+			else if (block.getClass().equals(VanillaSlabBlock.class)) add(block, BlockLootTables::createSlabItemTable);
+			else if (block.getClass().equals(VanillaStairsBlock.class)) dropSelf(block);
+			else if (block.getClass().equals(VanillaFenceBlock.class)) dropSelf(block);
+			else if (block.getClass().equals(VanillaFenceGateBlock.class)) dropSelf(block);
+			else if (block.getClass().equals(DoorBlock.class)) add(block, BlockLootTables::createDoorTable);
+			else if (block.getClass().equals(TrapDoorBlock.class)) dropSelf(block);
+			else if (block.getClass().equals(PressurePlateBlock.class)) dropSelf(block);
+			else if (block.getClass().equals(WoodButtonBlock.class)) dropSelf(block);
+			else if (block.getClass().equals(VanillaStandingSignBlock.class)) dropSelf(block);
+			else if (block.getClass().equals(VanillaWallSignBlock.class)) dropSelf(block);
+			else if (block.getRegistryName().getPath().contains("ore")) dropSelf(block);
+			else if (block.getClass().equals(TwentyFourDirectionBlock.class)) dropSelf(block);
+			else if (block.getClass().equals(SapLogBlock.class)) dropSelf(block);
+			else if (block.getClass().equals(ChairBlock.class)) dropSelf(block);
+			else if (block.getClass().equals(TableBlock.class)) dropSelf(block);
+			else if (block.getClass().equals(TreeTapBlock.class)) dropSelf(block);
+			else if (block.getClass().equals(TreeTapBlock.class)) dropSelf(block);
+			else if (block.getClass().equals(SawmillBlock.class)) dropSelf(block);
 			
 			else if (block.getClass().equals(VanillaCropsBlock.class) || block.getClass().equals(WaterCropsBlock.class)) {
 				Collection<RegistryObject<Item>> itemCollection = TechnologicaItems.ITEMS.getEntries();
@@ -118,7 +118,7 @@ public class ModBlockLootTables extends BlockLootTables {
 					if (block.getRegistryName().getPath().contains(itemSupplier.get().getRegistryName().getPath())) yield = itemSupplier.get();
 				}
 				
-				registerLootTable(block, droppingAndBonusWhen(block, yield, block.asItem(), BlockStateProperty.builder(block).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(CropsBlock.AGE, 7))));
+				add(block, createCropDrops(block, yield, block.asItem(), BlockStateProperty.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropsBlock.AGE, 7))));
 			}
 			
 			else if (block.getClass().equals(FruitingLeavesBlock.class) || block.getClass().equals(VanillaLeavesBlock.class)) {
@@ -127,11 +127,11 @@ public class ModBlockLootTables extends BlockLootTables {
 					Block block2 = blockSupplier2.get();
 					if (ResourceLocationHelper.replace(block.getRegistryName().getPath(), "leaves", "sapling").equals(block2.getRegistryName().getPath())) sapling = block2;
 				}	
-				registerLootTable(block, droppingWithChancesAndSticks(block, sapling, DEFAULT_SAPLING_DROP_RATES));
+				add(block, createLeavesDrops(block, sapling, DEFAULT_SAPLING_DROP_RATES));
 			} else if (!block.getClass().equals(FruitingLeavesBlock.class) && !block.getClass().equals(LeavesBlock.class) && block instanceof LeavesBlock) {
-				registerDropSelfLootTable(block);
+				dropSelf(block);
 			} else if (path.contains("moon")) {
-				registerDropSelfLootTable(block);
+				dropSelf(block);
 			}
 		}
 	}

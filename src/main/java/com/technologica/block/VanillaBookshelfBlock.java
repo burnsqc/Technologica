@@ -16,7 +16,7 @@ import net.minecraft.world.IBlockReader;
 public class VanillaBookshelfBlock extends Block {
 
 	public VanillaBookshelfBlock() {
-		super(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD));
+		super(AbstractBlock.Properties.of(Material.WOOD).strength(1.5F).sound(SoundType.WOOD));
 	}
 
 	/*

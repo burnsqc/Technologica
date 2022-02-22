@@ -16,7 +16,7 @@ public final class CamelRenderer extends MobRenderer<CamelEntity, CamelModel<Cam
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(CamelEntity entity) {
+	public ResourceLocation getTextureLocation(CamelEntity entity) {
 		return CAMEL_TEXTURE;
 	}
 }

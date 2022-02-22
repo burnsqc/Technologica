@@ -21,16 +21,16 @@ public class OasisFeature extends Feature<BlockStateFeatureConfig> {
 		super(codec);
 	}
 
-	public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BlockStateFeatureConfig config) {
-		while (pos.getY() > 5 && reader.isAirBlock(pos)) {
-			pos = pos.down();
+	public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BlockStateFeatureConfig config) {
+		while (pos.getY() > 5 && reader.isEmptyBlock(pos)) {
+			pos = pos.below();
 		}
 
 		if (pos.getY() <= 4) {
 			return false;
 		} else {
-			pos = pos.down(4);
-			if (reader.func_241827_a(SectionPos.from(pos), Structure.VILLAGE).findAny().isPresent()) {
+			pos = pos.below(4);
+			if (reader.startsForFeature(SectionPos.of(pos), Structure.VILLAGE).findAny().isPresent()) {
 				return false;
 			} else {
 				boolean[] aboolean = new boolean[2048];
@@ -62,11 +62,11 @@ public class OasisFeature extends Feature<BlockStateFeatureConfig> {
 											|| k < 7 && aboolean[(k1 * 16 + l2) * 8 + k + 1]
 											|| k > 0 && aboolean[(k1 * 16 + l2) * 8 + (k - 1)]);
 							if (flag) {
-								Material material = reader.getBlockState(pos.add(k1, k, l2)).getMaterial();
+								Material material = reader.getBlockState(pos.offset(k1, k, l2)).getMaterial();
 								if (k >= 4 && material.isLiquid()) {
 									return false;
 								}
-								if (k < 4 && !material.isSolid() && reader.getBlockState(pos.add(k1, k, l2)) != config.state) {
+								if (k < 4 && !material.isSolid() && reader.getBlockState(pos.offset(k1, k, l2)) != config.state) {
 									return false;
 								}
 							}
@@ -78,11 +78,11 @@ public class OasisFeature extends Feature<BlockStateFeatureConfig> {
 					for (int relativeZ = 0; relativeZ < 16; ++relativeZ) {
 						for (int relativeY = 3; relativeY < 16; ++relativeY) {
 							if (relativeY == 3 && (relativeX-8) * (relativeX-8) + (relativeZ-8) * (relativeZ-8) <= 36) {
-								reader.setBlockState(pos.add(relativeX, relativeY, relativeZ), Blocks.DIRT.getDefaultState(), 2);
+								reader.setBlock(pos.offset(relativeX, relativeY, relativeZ), Blocks.DIRT.defaultBlockState(), 2);
 							} else if (relativeY >= 4 && (relativeX-8) * (relativeX-8) + (relativeZ-8) * (relativeZ-8) <= 50) {
-								reader.setBlockState(pos.add(relativeX, relativeY, relativeZ), relativeY >= 5 ? Blocks.AIR.getDefaultState() : Blocks.GRASS_BLOCK.getDefaultState(), 2);
+								reader.setBlock(pos.offset(relativeX, relativeY, relativeZ), relativeY >= 5 ? Blocks.AIR.defaultBlockState() : Blocks.GRASS_BLOCK.defaultBlockState(), 2);
 								if ((relativeX-8) * (relativeX-8) + (relativeZ-8) * (relativeZ-8) <= 18) {
-									reader.setBlockState(pos.add(relativeX, relativeY, relativeZ), relativeY >= 5 ? Blocks.AIR.getDefaultState() : Blocks.WATER.getDefaultState(), 2);
+									reader.setBlock(pos.offset(relativeX, relativeY, relativeZ), relativeY >= 5 ? Blocks.AIR.defaultBlockState() : Blocks.WATER.defaultBlockState(), 2);
 								}
 							} 
 							
@@ -92,27 +92,27 @@ public class OasisFeature extends Feature<BlockStateFeatureConfig> {
 				
 				for (int relativeX = 0; relativeX < 16; ++relativeX) {
 					for (int relativeZ = 0; relativeZ < 16; ++relativeZ) {
-						if (reader.getBlockState(pos.add(relativeX, 4, relativeZ)).matchesBlock(Blocks.GRASS_BLOCK)) {
+						if (reader.getBlockState(pos.offset(relativeX, 4, relativeZ)).is(Blocks.GRASS_BLOCK)) {
 							if (rand.nextInt(30) == 0) {
 								if (rand.nextBoolean()) {
-									TechnologicaConfiguredFeatures.LEMON_TREE_FEATURE.generate(reader, generator, rand, pos.add(relativeX, 5, relativeZ)); 
+									TechnologicaConfiguredFeatures.LEMON_TREE_FEATURE.place(reader, generator, rand, pos.offset(relativeX, 5, relativeZ)); 
 								} else {
-									TechnologicaConfiguredFeatures.LIME_TREE_FEATURE.generate(reader, generator, rand, pos.add(relativeX, 5, relativeZ));
+									TechnologicaConfiguredFeatures.LIME_TREE_FEATURE.place(reader, generator, rand, pos.offset(relativeX, 5, relativeZ));
 								}
-							} else if (reader.getBlockState(pos.add(relativeX + 1, 4, relativeZ)).matchesBlock(Blocks.WATER) 
-									|| reader.getBlockState(pos.add(relativeX - 1, 4, relativeZ)).matchesBlock(Blocks.WATER) 
-									|| reader.getBlockState(pos.add(relativeX, 4, relativeZ + 1)).matchesBlock(Blocks.WATER)
-									|| reader.getBlockState(pos.add(relativeX, 4, relativeZ - 1)).matchesBlock(Blocks.WATER)) {
-								Features.PATCH_SUGAR_CANE_DESERT.generate(reader, generator, rand, pos.add(relativeX, 5, relativeZ));
-							} else if (reader.getBlockState(pos.add(relativeX + 1, 5, relativeZ)).matchesBlock(Blocks.AIR)) {						
+							} else if (reader.getBlockState(pos.offset(relativeX + 1, 4, relativeZ)).is(Blocks.WATER) 
+									|| reader.getBlockState(pos.offset(relativeX - 1, 4, relativeZ)).is(Blocks.WATER) 
+									|| reader.getBlockState(pos.offset(relativeX, 4, relativeZ + 1)).is(Blocks.WATER)
+									|| reader.getBlockState(pos.offset(relativeX, 4, relativeZ - 1)).is(Blocks.WATER)) {
+								Features.PATCH_SUGAR_CANE_DESERT.place(reader, generator, rand, pos.offset(relativeX, 5, relativeZ));
+							} else if (reader.getBlockState(pos.offset(relativeX + 1, 5, relativeZ)).is(Blocks.AIR)) {						
 								if (rand.nextInt(4) == 0) {
-									reader.setBlockState(pos.add(relativeX, 5, relativeZ), Blocks.GRASS.getDefaultState(), 2);
+									reader.setBlock(pos.offset(relativeX, 5, relativeZ), Blocks.GRASS.defaultBlockState(), 2);
 								} else if (rand.nextInt(4) == 1) {
-									reader.setBlockState(pos.add(relativeX, 5, relativeZ), Blocks.POPPY.getDefaultState(), 2);
+									reader.setBlock(pos.offset(relativeX, 5, relativeZ), Blocks.POPPY.defaultBlockState(), 2);
 								} else if (rand.nextInt(4) == 2) {
-									reader.setBlockState(pos.add(relativeX, 5, relativeZ), Blocks.BLUE_ORCHID.getDefaultState(), 2);
+									reader.setBlock(pos.offset(relativeX, 5, relativeZ), Blocks.BLUE_ORCHID.defaultBlockState(), 2);
 								} else {
-									reader.setBlockState(pos.add(relativeX, 5, relativeZ), Blocks.POPPY.getDefaultState(), 2);
+									reader.setBlock(pos.offset(relativeX, 5, relativeZ), Blocks.POPPY.defaultBlockState(), 2);
 								}
 							}
 						}

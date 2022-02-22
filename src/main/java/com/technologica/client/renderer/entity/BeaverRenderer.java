@@ -16,7 +16,7 @@ public final class BeaverRenderer extends MobRenderer<BeaverEntity, BeaverModel<
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(BeaverEntity entity) {
+	public ResourceLocation getTextureLocation(BeaverEntity entity) {
 		return BEAVER_TEXTURE;
 	}
 }

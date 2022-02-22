@@ -28,13 +28,13 @@ public class TreeTapBlock extends FourDirectionBlock {
 	private int cooldown;
 	private static final Map<Direction, VoxelShape> SHAPES = Maps
 			.newEnumMap(ImmutableMap.of(
-					Direction.NORTH, Block.makeCuboidShape(6.0D, 6.0D, 11.0D, 10.0D, 11.0D, 16.0D),
-					Direction.SOUTH, Block.makeCuboidShape(6.0D, 6.0D, 0.0D, 10.0D, 11.0D, 5.0D), 
-					Direction.WEST,	Block.makeCuboidShape(11.0D, 6.0D, 6.0D, 16.0D, 11.0D, 10.0D), 
-					Direction.EAST, Block.makeCuboidShape(0.0D, 6.0D, 6.0D, 5.0D, 11.0D, 10.0D)));
+					Direction.NORTH, Block.box(6.0D, 6.0D, 11.0D, 10.0D, 11.0D, 16.0D),
+					Direction.SOUTH, Block.box(6.0D, 6.0D, 0.0D, 10.0D, 11.0D, 5.0D), 
+					Direction.WEST,	Block.box(11.0D, 6.0D, 6.0D, 16.0D, 11.0D, 10.0D), 
+					Direction.EAST, Block.box(0.0D, 6.0D, 6.0D, 5.0D, 11.0D, 10.0D)));
 
 	public TreeTapBlock() {
-		super(AbstractBlock.Properties.create(Material.IRON, MaterialColor.IRON).setRequiresTool().hardnessAndResistance(5.0F).sound(SoundType.WOOD).notSolid());
+		super(AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.WOOD).noOcclusion());
 		cooldown = 0;
 	}
 
@@ -44,20 +44,20 @@ public class TreeTapBlock extends FourDirectionBlock {
 	
 	@Override
 	public VoxelShape getShape(BlockState stateIn, IBlockReader worldIn, BlockPos posIn, ISelectionContext contextIn) {
-		return SHAPES.get(stateIn.get(FourDirectionBlock.NESW_FACING));
+		return SHAPES.get(stateIn.getValue(FourDirectionBlock.NESW_FACING));
 	}
 
 	@Override
 	public void animateTick(BlockState stateIn, World worldIn, BlockPos posIn, Random randomIn) {
-		if (worldIn.isRemote) {
-			if (worldIn.getBlockState(posIn.offset(stateIn.get(FourDirectionBlock.NESW_FACING).getOpposite())).getBlock() instanceof SapLogBlock) {
+		if (worldIn.isClientSide) {
+			if (worldIn.getBlockState(posIn.relative(stateIn.getValue(FourDirectionBlock.NESW_FACING).getOpposite())).getBlock() instanceof SapLogBlock) {
 				 
 				double d0 = 0;
 				double d1 = 0;
 				double d2 = 0;
 				
-				Direction facing = stateIn.get(FourDirectionBlock.NESW_FACING);
-				BlockState logState = worldIn.getBlockState(posIn.offset(facing.getOpposite()));
+				Direction facing = stateIn.getValue(FourDirectionBlock.NESW_FACING);
+				BlockState logState = worldIn.getBlockState(posIn.relative(facing.getOpposite()));
 				
 				switch (facing) {
 					case EAST:
@@ -84,13 +84,13 @@ public class TreeTapBlock extends FourDirectionBlock {
 						break;
 				}
 				
-				if (logState.get(SapLogBlock.AGE) > 0 & cooldown == 0) {
+				if (logState.getValue(SapLogBlock.AGE) > 0 & cooldown == 0) {
 					if (logState.getBlock().getRegistryName().getPath().contains("maple")) {
 						worldIn.addParticle(DrippingLiquidParticleData.MAPLE_SYRUP, d0, d1, d2, 0.0D, 0.0D, 0.0D);
 					} else {
 						worldIn.addParticle(DrippingLiquidParticleData.RUBBER_RESIN, d0, d1, d2, 0.0D, 0.0D, 0.0D);
 					}
-					worldIn.setBlockState(posIn.offset(stateIn.get(FourDirectionBlock.NESW_FACING).getOpposite()), logState.with(SapLogBlock.AGE, logState.get(SapLogBlock.AGE) - 1), 7);
+					worldIn.setBlock(posIn.relative(stateIn.getValue(FourDirectionBlock.NESW_FACING).getOpposite()), logState.setValue(SapLogBlock.AGE, logState.getValue(SapLogBlock.AGE) - 1), 7);
 					cooldown = 100;
 				} else if (cooldown > 0) {
 					cooldown--;

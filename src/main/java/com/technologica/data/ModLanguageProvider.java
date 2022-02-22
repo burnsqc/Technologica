@@ -46,14 +46,14 @@ public class ModLanguageProvider extends LanguageProvider {
 	
 	private final void addItems(Collection<RegistryObject<Item>> collection) {
 		for(Supplier<? extends Item> item:collection) {
-			String key = item.get().getTranslationKey();
+			String key = item.get().getDescriptionId();
 			add(key, keyToValue(key));
 		}
 	}
 	
 	private final void addEntities(Collection<RegistryObject<EntityType<?>>> collection) {
 		for(Supplier<? extends EntityType<?>> item:collection) {
-			String key = item.get().getTranslationKey();
+			String key = item.get().getDescriptionId();
 			add(key, keyToValue(key));
 		}
 	}
@@ -65,7 +65,7 @@ public class ModLanguageProvider extends LanguageProvider {
 	
 	private final void addItemGroups(ItemGroup... itemGroups) {
 		for(ItemGroup itemGroup:itemGroups) {
-			String key = itemGroup.getPath();
+			String key = itemGroup.getRecipeFolderName();
 			add("itemGroup." + key, keyToValue(key));
 		}
     }

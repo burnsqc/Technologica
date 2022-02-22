@@ -12,10 +12,10 @@ import net.minecraftforge.fml.common.Mod;
 @SuppressWarnings("rawtypes")
 public final class TechnologicaTrunkPlacerType extends TrunkPlacerType {
 
-	public static final TrunkPlacerType<ThreeWideTrunkPlacer> THREE_WIDE_TRUNK_PLACER = register("three_wide_trunk_placer", ThreeWideTrunkPlacer.field_236901_b_);
+	public static final TrunkPlacerType<ThreeWideTrunkPlacer> THREE_WIDE_TRUNK_PLACER = register("three_wide_trunk_placer", ThreeWideTrunkPlacer.CODEC);
 
 	private static <P extends AbstractTrunkPlacer> TrunkPlacerType<P> register(String key, Codec<P> codec) {
-		return Registry.register(Registry.TRUNK_REPLACER, key, new TrunkPlacerType<>(codec));
+		return Registry.register(Registry.TRUNK_PLACER_TYPES, key, new TrunkPlacerType<>(codec));
 	}
 
 	@SuppressWarnings("unchecked")

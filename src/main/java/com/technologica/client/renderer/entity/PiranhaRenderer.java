@@ -19,13 +19,13 @@ public final class PiranhaRenderer extends MobRenderer<PiranhaEntity, PiranhaMod
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(PiranhaEntity entity) {
+	public ResourceLocation getTextureLocation(PiranhaEntity entity) {
 		return PIRANHA_TEXTURE;
 	}
 
 	@Override
-	protected void applyRotations(PiranhaEntity entityLiving, MatrixStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
-		super.applyRotations(entityLiving, matrixStackIn, ageInTicks, rotationYaw, partialTicks);
+	protected void setupRotations(PiranhaEntity entityLiving, MatrixStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
+		super.setupRotations(entityLiving, matrixStackIn, ageInTicks, rotationYaw, partialTicks);
 		float f = 1.0F;
 		float f1 = 1.0F;
 		if (!entityLiving.isInWater()) {
@@ -34,11 +34,11 @@ public final class PiranhaRenderer extends MobRenderer<PiranhaEntity, PiranhaMod
 		}
 
 		float f2 = f * 4.3F * MathHelper.sin(f1 * 0.6F * ageInTicks);
-		matrixStackIn.rotate(Vector3f.YP.rotationDegrees(f2));
+		matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(f2));
 		matrixStackIn.translate(0.0D, 0.0D, (double) -0.4F);
 		if (!entityLiving.isInWater()) {
 			matrixStackIn.translate((double) 0.2F, (double) 0.1F, 0.0D);
-			matrixStackIn.rotate(Vector3f.ZP.rotationDegrees(90.0F));
+			matrixStackIn.mulPose(Vector3f.ZP.rotationDegrees(90.0F));
 		}
 	}
 }

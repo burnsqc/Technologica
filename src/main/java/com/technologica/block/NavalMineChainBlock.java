@@ -17,27 +17,27 @@ import net.minecraft.world.server.ServerWorld;
 public class NavalMineChainBlock extends ChainBlock {
 
 	public NavalMineChainBlock() {
-		super(AbstractBlock.Properties.create(Material.IRON, MaterialColor.AIR).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).sound(SoundType.CHAIN).notSolid());
-		this.setDefaultState(this.stateContainer.getBaseState().with(WATERLOGGED, true).with(AXIS, Direction.Axis.Y));
+		super(AbstractBlock.Properties.of(Material.METAL, MaterialColor.NONE).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.CHAIN).noOcclusion());
+		this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, true).setValue(AXIS, Direction.Axis.Y));
 	}
 	
 	@Override
 	@Deprecated
-	public BlockState updatePostPlacement(BlockState stateIn, Direction directionIn, BlockState facingStateIn, IWorld worldIn, BlockPos currentPosIn, BlockPos facingPosIn) {
-		worldIn.getPendingBlockTicks().scheduleTick(currentPosIn, this, 0);
-	    return super.updatePostPlacement(stateIn, directionIn, facingStateIn, worldIn, currentPosIn, facingPosIn);
+	public BlockState updateShape(BlockState stateIn, Direction directionIn, BlockState facingStateIn, IWorld worldIn, BlockPos currentPosIn, BlockPos facingPosIn) {
+		worldIn.getBlockTicks().scheduleTick(currentPosIn, this, 0);
+	    return super.updateShape(stateIn, directionIn, facingStateIn, worldIn, currentPosIn, facingPosIn);
 	}
 	
 	@Override
 	public void tick(BlockState stateIn, ServerWorld worldIn, BlockPos posIn, Random randomIn) {
-	    if (!isValidPosition(stateIn, worldIn, posIn)) {
+	    if (!canSurvive(stateIn, worldIn, posIn)) {
 	    	worldIn.destroyBlock(posIn, true);
 	    }
 	}
 	
 	@Override
-	public boolean isValidPosition(BlockState stateIn, IWorldReader worldIn, BlockPos posIn) {
-		if ((worldIn.getBlockState(posIn.down()).getBlock() instanceof NavalMineChainBlock && worldIn.getBlockState(posIn.up()).getBlock() instanceof NavalMineChainBlock) || (worldIn.getBlockState(posIn.down()).isSolid() && worldIn.getBlockState(posIn.up()).getBlock() instanceof NavalMineChainBlock)) {
+	public boolean canSurvive(BlockState stateIn, IWorldReader worldIn, BlockPos posIn) {
+		if ((worldIn.getBlockState(posIn.below()).getBlock() instanceof NavalMineChainBlock && worldIn.getBlockState(posIn.above()).getBlock() instanceof NavalMineChainBlock) || (worldIn.getBlockState(posIn.below()).canOcclude() && worldIn.getBlockState(posIn.above()).getBlock() instanceof NavalMineChainBlock)) {
 			return true;
 		} else {
 			return false;

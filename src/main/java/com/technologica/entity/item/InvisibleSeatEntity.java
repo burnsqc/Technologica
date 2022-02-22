@@ -22,12 +22,12 @@ public class InvisibleSeatEntity extends Entity {
 
 	public InvisibleSeatEntity(World worldIn, double x, double y, double z) {
 		super(TechnologicaEntityType.INVISIBLE_SEAT.get(), worldIn);
-		setPosition(x, y, z);
-		noClip = true;
+		setPos(x, y, z);
+		noPhysics = true;
 	}
 
 	@Override
-	public Vector3d getDismountPosition(LivingEntity passenger) {
+	public Vector3d getDismountLocationForPassenger(LivingEntity passenger) {
 		if (passenger instanceof PlayerEntity) {
 			BlockPos pos = EntityUtil.getPreviousPlayerPosition((PlayerEntity) passenger, this);
 
@@ -36,29 +36,29 @@ public class InvisibleSeatEntity extends Entity {
 			}
 		}
 		remove();
-		return super.getDismountPosition(passenger);
+		return super.getDismountLocationForPassenger(passenger);
 	}
 
 	@Override
 	public void remove() {
 		super.remove();
-		EntityUtil.removeInvisibleSeatEntity(world, getPosition());
+		EntityUtil.removeInvisibleSeatEntity(level, blockPosition());
 	}
 
 	@Override
-	protected void registerData() {
+	protected void defineSynchedData() {
 	}
 
 	@Override
-	protected void readAdditional(CompoundNBT compound) {
+	protected void readAdditionalSaveData(CompoundNBT compound) {
 	}
 
 	@Override
-	protected void writeAdditional(CompoundNBT compound) {
+	protected void addAdditionalSaveData(CompoundNBT compound) {
 	}
 
 	@Override
-	public IPacket<?> createSpawnPacket() {
+	public IPacket<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 }

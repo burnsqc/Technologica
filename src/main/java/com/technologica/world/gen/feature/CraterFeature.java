@@ -19,17 +19,17 @@ public class CraterFeature extends Feature<BlockStateFeatureConfig> {
 		super(codec);
 	}
 
-	public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BlockStateFeatureConfig config) {
-		pos = pos.up(80);
-		while (pos.getY() > 5 && reader.isAirBlock(pos)) {
-			pos = pos.down();
+	public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BlockStateFeatureConfig config) {
+		pos = pos.above(80);
+		while (pos.getY() > 5 && reader.isEmptyBlock(pos)) {
+			pos = pos.below();
 		}
 
 		if (pos.getY() <= 4) {
 			return false;
 		} else {
-			pos = pos.down(4);
-			if (reader.func_241827_a(SectionPos.from(pos), Structure.VILLAGE).findAny().isPresent()) {
+			pos = pos.below(4);
+			if (reader.startsForFeature(SectionPos.of(pos), Structure.VILLAGE).findAny().isPresent()) {
 				return false;
 			} else {
 				boolean[] aboolean = new boolean[2048];
@@ -55,9 +55,9 @@ public class CraterFeature extends Feature<BlockStateFeatureConfig> {
 						for (int relativeY = 0; relativeY < 16; ++relativeY) {
 							
 							if ((relativeY-8) * (relativeY-8) + (relativeX-8) * (relativeX-8) + (relativeZ-8) * (relativeZ-8) <= 50) {
-								reader.setBlockState(pos.add(relativeX, relativeY, relativeZ), relativeY >= 5 ? Blocks.AIR.getDefaultState() : Blocks.AIR.getDefaultState(), 2);
+								reader.setBlock(pos.offset(relativeX, relativeY, relativeZ), relativeY >= 5 ? Blocks.AIR.defaultBlockState() : Blocks.AIR.defaultBlockState(), 2);
 								if ((relativeX-8) * (relativeX-8) + (relativeZ-8) * (relativeZ-8) <= 18) {
-									reader.setBlockState(pos.add(relativeX, relativeY, relativeZ), relativeY >= 5 ? Blocks.AIR.getDefaultState() : Blocks.AIR.getDefaultState(), 2);
+									reader.setBlock(pos.offset(relativeX, relativeY, relativeZ), relativeY >= 5 ? Blocks.AIR.defaultBlockState() : Blocks.AIR.defaultBlockState(), 2);
 								}
 							} 
 							

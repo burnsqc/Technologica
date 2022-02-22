@@ -19,7 +19,7 @@ public class SweeperRenderer extends MobRenderer<SweeperEntity, CreeperModel<Swe
    }
 
    protected void preRenderCallback(CreeperEntity entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
-      float f = entitylivingbaseIn.getCreeperFlashIntensity(partialTickTime);
+      float f = entitylivingbaseIn.getSwelling(partialTickTime);
       float f1 = 1.0F + MathHelper.sin(f * 100.0F) * f * 0.01F;
       f = MathHelper.clamp(f, 0.0F, 1.0F);
       f = f * f;
@@ -30,14 +30,14 @@ public class SweeperRenderer extends MobRenderer<SweeperEntity, CreeperModel<Swe
    }
 
    protected float getOverlayProgress(CreeperEntity livingEntityIn, float partialTicks) {
-      float f = livingEntityIn.getCreeperFlashIntensity(partialTicks);
+      float f = livingEntityIn.getSwelling(partialTicks);
       return (int)(f * 10.0F) % 2 == 0 ? 0.0F : MathHelper.clamp(f, 0.5F, 1.0F);
    }
 
    /**
     * Returns the location of an entity's texture.
     */
-   public ResourceLocation getEntityTexture(SweeperEntity entity) {
+   public ResourceLocation getTextureLocation(SweeperEntity entity) {
       return SWEEPER_TEXTURES;
    }
 }

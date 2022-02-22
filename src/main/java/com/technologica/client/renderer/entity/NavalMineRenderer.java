@@ -20,17 +20,17 @@ public final class NavalMineRenderer extends EntityRenderer<NavalMineEntity> {
 	}
 
 	public void render(NavalMineEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-		matrixStackIn.push();
+		matrixStackIn.pushPose();
 		
-		this.modelMine.setRotationAngles(entityIn, partialTicks, 0.0F, -0.1F, 0.0F, 0.0F);
-		IVertexBuilder ivertexbuilder = bufferIn.getBuffer(this.modelMine.getRenderType(this.getEntityTexture(entityIn)));
-		this.modelMine.render(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
-		matrixStackIn.pop();
+		this.modelMine.setupAnim(entityIn, partialTicks, 0.0F, -0.1F, 0.0F, 0.0F);
+		IVertexBuilder ivertexbuilder = bufferIn.getBuffer(this.modelMine.renderType(this.getTextureLocation(entityIn)));
+		this.modelMine.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+		matrixStackIn.popPose();
 		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(NavalMineEntity entity) {
+	public ResourceLocation getTextureLocation(NavalMineEntity entity) {
 		return NAVAL_MINE_TEXTURE;
 	}
 }

@@ -36,38 +36,38 @@ import net.minecraftforge.fluids.FluidAttributes;
 
 public abstract class MercuryFluid extends FlowingFluid {
 	@Override
-	public Fluid getFlowingFluid() {
+	public Fluid getFlowing() {
 		return TechnologicaFluids.FLOWING_MERCURY.get();
 	}
 
 	@Override
-	public Fluid getStillFluid() {
+	public Fluid getSource() {
 		return TechnologicaFluids.MERCURY.get();
 	}
 
 	@Override
-	public Item getFilledBucket() {
+	public Item getBucket() {
 		return TechnologicaItems.MERCURY_BUCKET.get();
 	}
 
 	@Override
 	public void tick(World worldIn, BlockPos pos, FluidState state) {
 	      if (!state.isSource()) {
-	         FluidState fluidstate = this.calculateCorrectFlowingState(worldIn, pos, worldIn.getBlockState(pos));
-	         int i = this.func_215667_a(worldIn, pos, state, fluidstate);
+	         FluidState fluidstate = this.getNewLiquid(worldIn, pos, worldIn.getBlockState(pos));
+	         int i = this.getSpreadDelay(worldIn, pos, state, fluidstate);
 	         if (fluidstate.isEmpty()) {
 	            state = fluidstate;
-	            worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
+	            worldIn.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
 	         } else if (!fluidstate.equals(state)) {
 	            state = fluidstate;
-	            BlockState blockstate = fluidstate.getBlockState();
-	            worldIn.setBlockState(pos, blockstate, 2);
-	            worldIn.getPendingFluidTicks().scheduleTick(pos, fluidstate.getFluid(), i);
-	            worldIn.notifyNeighborsOfStateChange(pos, blockstate.getBlock());
+	            BlockState blockstate = fluidstate.createLegacyBlock();
+	            worldIn.setBlock(pos, blockstate, 2);
+	            worldIn.getLiquidTicks().scheduleTick(pos, fluidstate.getType(), i);
+	            worldIn.updateNeighborsAt(pos, blockstate.getBlock());
 	         }
-	      } else if (state.isSource() && (worldIn.isAirBlock(pos.down()) || worldIn.hasWater(pos.down()))) {
-	    	  worldIn.setBlockState(pos.down(), state.getBlockState(), 3);
-	    	  worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
+	      } else if (state.isSource() && (worldIn.isEmptyBlock(pos.below()) || worldIn.isWaterAt(pos.below()))) {
+	    	  worldIn.setBlock(pos.below(), state.createLegacyBlock(), 3);
+	    	  worldIn.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
 	      }
 
 //	      this.flowAround(worldIn, pos, state);
@@ -80,10 +80,10 @@ public abstract class MercuryFluid extends FlowingFluid {
 
 	@Override
 	public void animateTick(World worldIn, BlockPos pos, FluidState state, Random random) {
-		if (worldIn.isRemote) {
-			if (!state.isSource() && Boolean.FALSE.equals(state.get(FALLING))) {
+		if (worldIn.isClientSide) {
+			if (!state.isSource() && Boolean.FALSE.equals(state.getValue(FALLING))) {
 				if (random.nextInt(64) == 0) {
-					worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_WATER_AMBIENT, SoundCategory.BLOCKS, random.nextFloat() * 0.25F + 0.75F, random.nextFloat() + 0.5F, false);
+					worldIn.playLocalSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.WATER_AMBIENT, SoundCategory.BLOCKS, random.nextFloat() * 0.25F + 0.75F, random.nextFloat() + 0.5F, false);
 				}
 			} else if (random.nextInt(10) == 0) {
 				worldIn.addParticle(ParticleTypes.UNDERWATER, (double) pos.getX() + random.nextDouble(), (double) pos.getY() + random.nextDouble(), (double) pos.getZ() + random.nextDouble(), 0.0D, 0.0D, 0.0D);
@@ -93,19 +93,19 @@ public abstract class MercuryFluid extends FlowingFluid {
 
 	@Override
 	@Nullable
-	public IParticleData getDripParticleData() {
+	public IParticleData getDripParticle() {
 		return DrippingLiquidParticleData.MERCURY;
 	}
 
 	@Override
-	protected boolean canSourcesMultiply() {
+	protected boolean canConvertToSource() {
 		return false;
 	}
 
 	@Override
-	protected void beforeReplacingBlock(IWorld worldIn, BlockPos pos, BlockState state) {
-		TileEntity tileentity = state.hasTileEntity() ? worldIn.getTileEntity(pos) : null;
-		Block.spawnDrops(state, worldIn, pos, tileentity);
+	protected void beforeDestroyingBlock(IWorld worldIn, BlockPos pos, BlockState state) {
+		TileEntity tileentity = state.hasTileEntity() ? worldIn.getBlockEntity(pos) : null;
+		Block.dropResources(state, worldIn, pos, tileentity);
 	}
 
 	@Override
@@ -114,29 +114,29 @@ public abstract class MercuryFluid extends FlowingFluid {
 	}
 
 	@Override
-	public BlockState getBlockState(FluidState state) {
-		return TechnologicaBlocks.MERCURY.get().getDefaultState().with(FlowingFluidBlock.LEVEL, Integer.valueOf(getLevelFromState(state)));
+	public BlockState createLegacyBlock(FluidState state) {
+		return TechnologicaBlocks.MERCURY.get().defaultBlockState().setValue(FlowingFluidBlock.LEVEL, Integer.valueOf(getLegacyLevel(state)));
 	}
 
 	@Override
-	public boolean isEquivalentTo(Fluid fluidIn) {
+	public boolean isSame(Fluid fluidIn) {
 		return fluidIn == TechnologicaFluids.MERCURY.get() || fluidIn == TechnologicaFluids.FLOWING_MERCURY.get();
 	}
 
 	@Override
-	public int getLevelDecreasePerBlock(IWorldReader worldIn) {
+	public int getDropOff(IWorldReader worldIn) {
 		return 1;
 	}
 
 	@Override
-	public int getTickRate(IWorldReader p_205569_1_) {
+	public int getTickDelay(IWorldReader p_205569_1_) {
 		return 5;
 	}
 
 	@Override
-	public boolean canDisplace(FluidState fluidState, IBlockReader blockReader, BlockPos pos, Fluid fluid,
+	public boolean canBeReplacedWith(FluidState fluidState, IBlockReader blockReader, BlockPos pos, Fluid fluid,
 	                           Direction direction) {
-		return direction == Direction.DOWN && !fluid.isIn(FluidTags.WATER);
+		return direction == Direction.DOWN && !fluid.is(FluidTags.WATER);
 	}
 
 	@Override
@@ -146,14 +146,14 @@ public abstract class MercuryFluid extends FlowingFluid {
 
 	public static class Flowing extends MercuryFluid {
 		@Override
-		protected void fillStateContainer(StateContainer.Builder<Fluid, FluidState> builder) {
-			super.fillStateContainer(builder);
-			builder.add(LEVEL_1_8);
+		protected void createFluidStateDefinition(StateContainer.Builder<Fluid, FluidState> builder) {
+			super.createFluidStateDefinition(builder);
+			builder.add(LEVEL);
 		}
 
 		@Override
-		public int getLevel(FluidState state) {
-			return state.get(LEVEL_1_8);
+		public int getAmount(FluidState state) {
+			return state.getValue(LEVEL);
 		}
 
 		@Override
@@ -164,7 +164,7 @@ public abstract class MercuryFluid extends FlowingFluid {
 
 	public static class Source extends MercuryFluid {
 		@Override
-		public int getLevel(FluidState state) {
+		public int getAmount(FluidState state) {
 			return 8;
 		}
 

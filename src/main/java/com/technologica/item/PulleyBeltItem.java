@@ -22,18 +22,18 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 public class PulleyBeltItem extends Item {
 
 	public PulleyBeltItem() {
-		super(new Item.Properties().maxStackSize(1).group(TechnologicaItemGroup.MACHINERY));
+		super(new Item.Properties().stacksTo(1).tab(TechnologicaItemGroup.MACHINERY));
 	}
 
 	@Override
-	public ActionResultType onItemUse(ItemUseContext context) {
-   		World world = context.getWorld();
-   		if (!world.isRemote) {
-   			BlockPos pos = context.getPos();
+	public ActionResultType useOn(ItemUseContext context) {
+   		World world = context.getLevel();
+   		if (!world.isClientSide) {
+   			BlockPos pos = context.getClickedPos();
    			BlockState state = world.getBlockState(pos);
-   			if (state.matchesBlock(TechnologicaBlocks.LINE_SHAFT.get()) && state.get(LineShaftBlock.RADIUS) != Radius.NONE) {
+   			if (state.is(TechnologicaBlocks.LINE_SHAFT.get()) && state.getValue(LineShaftBlock.RADIUS) != Radius.NONE) {
    				PlayerEntity player = context.getPlayer();
-   	   			ItemStack stack = player.getHeldItem(context.getHand());
+   	   			ItemStack stack = player.getItemInHand(context.getHand());
    	   			ILink linkCapability = stack.getCapability(LinkProvider.LINK_CAP).orElseThrow(NullPointerException::new);
    				if (!linkCapability.getLinking()) {
    					linkCapability.startLink(world, pos, state, player);

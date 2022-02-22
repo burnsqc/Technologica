@@ -15,7 +15,7 @@ public final class GiraffeRenderer extends MobRenderer<GiraffeEntity, GiraffeMod
 		super(renderManagerIn, new GiraffeModel<>(), 1.4F);
 	}
 
-	public ResourceLocation getEntityTexture(GiraffeEntity entity) {
+	public ResourceLocation getTextureLocation(GiraffeEntity entity) {
 		return GIRAFFE_TEXTURE;
 	}
 }

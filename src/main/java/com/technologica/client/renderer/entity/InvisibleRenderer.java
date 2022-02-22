@@ -19,7 +19,7 @@ public class InvisibleRenderer extends EntityRenderer<InvisibleSeatEntity> {
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(InvisibleSeatEntity entity) {
+	public ResourceLocation getTextureLocation(InvisibleSeatEntity entity) {
 		return null;
 	}
 

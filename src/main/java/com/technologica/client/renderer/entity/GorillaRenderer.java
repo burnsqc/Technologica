@@ -16,7 +16,7 @@ public final class GorillaRenderer extends MobRenderer<GorillaEntity, GorillaMod
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(GorillaEntity entity) {
+	public ResourceLocation getTextureLocation(GorillaEntity entity) {
 		return GORILLA_TEXTURE;
 	}
 }

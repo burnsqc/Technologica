@@ -16,7 +16,7 @@ public final class FrogRenderer extends MobRenderer<FrogEntity, FrogModel<FrogEn
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(FrogEntity entity) {
+	public ResourceLocation getTextureLocation(FrogEntity entity) {
 		return FROG_TEXTURE;
 	}
 }

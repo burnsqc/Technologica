@@ -15,7 +15,7 @@ public final class DeerRenderer extends MobRenderer<DeerEntity, DeerModel<DeerEn
 		super(renderManagerIn, new DeerModel<>(), 1.1F);
 	}
 
-	public ResourceLocation getEntityTexture(DeerEntity entity) {
+	public ResourceLocation getTextureLocation(DeerEntity entity) {
 		return DEER_TEXTURE;
 	}
 }

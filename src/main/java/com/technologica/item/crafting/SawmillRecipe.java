@@ -23,45 +23,45 @@ public class SawmillRecipe extends SingleItemRecipe {
 
 	@Override
 	public boolean matches(IInventory inv, World worldIn) {
-		return this.ingredient.test(inv.getStackInSlot(0));
+		return this.ingredient.test(inv.getItem(0));
 	}
 
-	public ItemStack getIcon() {
+	public ItemStack getToastSymbol() {
 		return new ItemStack(TechnologicaItems.SAWBLADE.get());
 	}
 
 	public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<SawmillRecipe> {
 
 		@Override
-		public SawmillRecipe read(ResourceLocation recipeId, JsonObject json) {
-			String s = JSONUtils.getString(json, "group", "");
+		public SawmillRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+			String s = JSONUtils.getAsString(json, "group", "");
 			Ingredient ingredient;
-			if (JSONUtils.isJsonArray(json, "ingredient")) {
-				ingredient = Ingredient.deserialize(JSONUtils.getJsonArray(json, "ingredient"));
+			if (JSONUtils.isArrayNode(json, "ingredient")) {
+				ingredient = Ingredient.fromJson(JSONUtils.getAsJsonArray(json, "ingredient"));
 			} else {
-				ingredient = Ingredient.deserialize(JSONUtils.getJsonObject(json, "ingredient"));
+				ingredient = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "ingredient"));
 			}
 
-			String s1 = JSONUtils.getString(json, "result");
-			int i = JSONUtils.getInt(json, "count");
+			String s1 = JSONUtils.getAsString(json, "result");
+			int i = JSONUtils.getAsInt(json, "count");
 
 			ItemStack itemstack = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(s1)), i);
 			return new SawmillRecipe(recipeId, s, ingredient, itemstack);
 		}
 
 		@Override
-		public SawmillRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
-			String s = buffer.readString(32767);
-			Ingredient ingredient = Ingredient.read(buffer);
-			ItemStack itemstack = buffer.readItemStack();
+		public SawmillRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+			String s = buffer.readUtf(32767);
+			Ingredient ingredient = Ingredient.fromNetwork(buffer);
+			ItemStack itemstack = buffer.readItem();
 			return new SawmillRecipe(recipeId, s, ingredient, itemstack);
 		}
 
 		@Override
-		public void write(PacketBuffer buffer, SawmillRecipe recipe) {
-			buffer.writeString(recipe.group);
-			recipe.ingredient.write(buffer);
-			buffer.writeItemStack(recipe.result);
+		public void toNetwork(PacketBuffer buffer, SawmillRecipe recipe) {
+			buffer.writeUtf(recipe.group);
+			recipe.ingredient.toNetwork(buffer);
+			buffer.writeItem(recipe.result);
 		}
 	}
 }

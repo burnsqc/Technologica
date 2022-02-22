@@ -14,7 +14,7 @@ import net.minecraft.util.registry.Registry;
 
 public class LandingLiquidParticleData implements IParticleData {
 
-	public static final Codec<LandingLiquidParticleData> field_239802_b_ = RecordCodecBuilder.create((p_239803_0_) -> {
+	public static final Codec<LandingLiquidParticleData> CODEC = RecordCodecBuilder.create((p_239803_0_) -> {
 		return p_239803_0_.group(Codec.FLOAT.fieldOf("r").forGetter((p_239807_0_) -> {
 			return p_239807_0_.red;
 		}), Codec.FLOAT.fieldOf("g").forGetter((p_239806_0_) -> {
@@ -34,9 +34,8 @@ public class LandingLiquidParticleData implements IParticleData {
 		this.blue = blue;
 	}
 
-	@SuppressWarnings("deprecation")
 	public static final IParticleData.IDeserializer<LandingLiquidParticleData> DESERIALIZER = new IParticleData.IDeserializer<LandingLiquidParticleData>() {
-		public LandingLiquidParticleData deserialize(ParticleType<LandingLiquidParticleData> particleTypeIn, StringReader reader) throws CommandSyntaxException {
+		public LandingLiquidParticleData fromCommand(ParticleType<LandingLiquidParticleData> particleTypeIn, StringReader reader) throws CommandSyntaxException {
 			reader.expect(' ');
 			float f = (float) reader.readDouble();
 			reader.expect(' ');
@@ -47,7 +46,7 @@ public class LandingLiquidParticleData implements IParticleData {
 			return new LandingLiquidParticleData(f, f1, f2);
 		}
 
-		public LandingLiquidParticleData read(ParticleType<LandingLiquidParticleData> particleTypeIn, PacketBuffer buffer) {
+		public LandingLiquidParticleData fromNetwork(ParticleType<LandingLiquidParticleData> particleTypeIn, PacketBuffer buffer) {
 			return new LandingLiquidParticleData(buffer.readFloat(), buffer.readFloat(), buffer.readFloat());
 		}
 	};
@@ -58,7 +57,7 @@ public class LandingLiquidParticleData implements IParticleData {
 	}
 
 	@Override
-	public void write(PacketBuffer buffer) {
+	public void writeToNetwork(PacketBuffer buffer) {
 		buffer.writeFloat(this.red);
 		buffer.writeFloat(this.green);
 		buffer.writeFloat(this.blue);
@@ -66,7 +65,7 @@ public class LandingLiquidParticleData implements IParticleData {
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public String getParameters() {
+	public String writeToString() {
 		return String.format(Locale.ROOT, "%s %.2f %.2f %.2f", Registry.PARTICLE_TYPE.getKey(this.getType()), this.red, this.green, this.blue);
 	}
 	

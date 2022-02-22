@@ -7,7 +7,7 @@ import net.minecraft.nbt.NBTUtil;
 import net.minecraft.tileentity.TileEntity;
 
 public class MulchTileEntity extends TileEntity {
-	private BlockState previousBlockState = Blocks.AIR.getDefaultState();
+	private BlockState previousBlockState = Blocks.AIR.defaultBlockState();
 	
 	public MulchTileEntity() {
 		super(TechnologicaTileEntities.MULCH_TILE.get());
@@ -19,23 +19,23 @@ public class MulchTileEntity extends TileEntity {
 	
 	public void setPreviousBlockState(BlockState previousBlockStateIn) {
         this.previousBlockState = previousBlockStateIn;
-        markDirty();
-        if (world != null) {
-        	world.notifyBlockUpdate(pos, getBlockState(), getBlockState(), 2); 
+        setChanged();
+        if (level != null) {
+        	level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 2); 
         }
     }
 	
 	@Override
-	public void read(BlockState state, CompoundNBT nbt) {
-		super.read(state, nbt);
+	public void load(BlockState state, CompoundNBT nbt) {
+		super.load(state, nbt);
 	    if (nbt.contains("previousState")) {
 	    	this.setPreviousBlockState(NBTUtil.readBlockState(nbt.getCompound("previousState")));
 	    }
 	}
 
 	@Override
-	public CompoundNBT write(CompoundNBT compound) {
-		super.write(compound);
+	public CompoundNBT save(CompoundNBT compound) {
+		super.save(compound);
 	    compound.put("previousState", NBTUtil.writeBlockState(getPreviousBlockState())); 		
 	    return compound;	    
 	}

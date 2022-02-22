@@ -24,12 +24,12 @@ public class ExtraAirMeter {
 	@SubscribeEvent
 	public void onPlayerTickEvent(PlayerTickEvent event) {
 		PlayerEntity player = event.player;
-		int air = player.getAir();
+		int air = player.getAirSupply();
 		int maxAir = 300;
 		boolean fullSnorkelSet = true;
 		boolean fullDiveSet = true;
 		boolean fullScubaSet = true;
-		Iterable<ItemStack> armor = player.getArmorInventoryList();
+		Iterable<ItemStack> armor = player.getArmorSlots();
 
 		for (ItemStack piece : armor) {
 			if (!piece.getItem().getRegistryName().getPath().contains("snorkel")) {
@@ -48,14 +48,14 @@ public class ExtraAirMeter {
 		maxAir = fullScubaSet ? 12000 : maxAir;
 		
 		
-		if (!player.areEyesInFluid(FluidTags.WATER) || player.world.getBlockState(new BlockPos(player.getPosX(), player.getPosYEye(), player.getPosZ())).matchesBlock(Blocks.BUBBLE_COLUMN)) {
+		if (!player.isEyeInFluid(FluidTags.WATER) || player.level.getBlockState(new BlockPos(player.getX(), player.getEyeY(), player.getZ())).is(Blocks.BUBBLE_COLUMN)) {
 			if (air >= 300 && air < maxAir && event.phase == Phase.END) {
-				player.setAir(Math.min(air + 4, maxAir));
+				player.setAirSupply(Math.min(air + 4, maxAir));
 			}
 		}
 	
 		if (air > maxAir) {
-			player.setAir(300);
+			player.setAirSupply(300);
 		}
 		
 	}
@@ -64,8 +64,8 @@ public class ExtraAirMeter {
 	public void onRenderGameOverlayEvent(RenderGameOverlayEvent.Pre event) {
 		if (event.getType() == ElementType.AIR) {
 			Minecraft mc = Minecraft.getInstance();
-			PlayerEntity player = (PlayerEntity) mc.getRenderViewEntity();
-			Iterable<ItemStack> armor = player.getArmorInventoryList();
+			PlayerEntity player = (PlayerEntity) mc.getCameraEntity();
+			Iterable<ItemStack> armor = player.getArmorSlots();
 			boolean fullSnorkelSet = true;
 			boolean fullDiveSet = true;
 			boolean fullScubaSet = true;
@@ -86,14 +86,14 @@ public class ExtraAirMeter {
 
 			
 			if (fullSnorkelSet) {
-				mc.getProfiler().startSection("air");
+				mc.getProfiler().push("air");
 				RenderSystem.enableBlend();
-				int left = mc.getMainWindow().getScaledWidth() / 2 + 91;
-				int top = mc.getMainWindow().getScaledHeight() - 49;
+				int left = mc.getWindow().getGuiScaledWidth() / 2 + 91;
+				int top = mc.getWindow().getGuiScaledHeight() - 49;
 
-				int air = player.getAir();
+				int air = player.getAirSupply();
 
-				if (player.areEyesInFluid(FluidTags.WATER) || air < 600) {
+				if (player.isEyeInFluid(FluidTags.WATER) || air < 600) {
 					int full = MathHelper.ceil((double) (air - 2) * 10.0D / 300.0D);
 					int partial = MathHelper.ceil((double) air * 10.0D / 300.0D) - full;
 
@@ -105,47 +105,47 @@ public class ExtraAirMeter {
 				}
 				
 				RenderSystem.disableBlend();
-				mc.getProfiler().endSection();
+				mc.getProfiler().pop();
 				
 			} else if (fullDiveSet) {
-				mc.getProfiler().startSection("air");
+				mc.getProfiler().push("air");
 				bind(mc, GUI_ICONS_LOCATION);
 				RenderSystem.enableBlend();
-				int left = mc.getMainWindow().getScaledWidth() / 2 + 91;
-				int top = mc.getMainWindow().getScaledHeight() - 49;
+				int left = mc.getWindow().getGuiScaledWidth() / 2 + 91;
+				int top = mc.getWindow().getGuiScaledHeight() - 49;
 
-				int air = player.getAir();
+				int air = player.getAirSupply();
 
-				if (player.areEyesInFluid(FluidTags.WATER) || air < 6000) {
+				if (player.isEyeInFluid(FluidTags.WATER) || air < 6000) {
 					float remaining = air/6000.0F*81;
 					AbstractGui.blit(event.getMatrixStack(), left - 81, top, -90, 0.0F, 9.0F, (int) (remaining), 9, 256, 256);
 					AbstractGui.blit(event.getMatrixStack(), left - 81, top, -90, 0.0F, 0.0F, 81, 9, 256, 256);
 				}
 
 				RenderSystem.disableBlend();
-				mc.getProfiler().endSection();
+				mc.getProfiler().pop();
 			} else if (fullScubaSet) {
-				mc.getProfiler().startSection("air");
+				mc.getProfiler().push("air");
 				bind(mc, GUI_ICONS_LOCATION);
 				RenderSystem.enableBlend();
-				int left = mc.getMainWindow().getScaledWidth() / 2 + 91;
-				int top = mc.getMainWindow().getScaledHeight() - 49;
+				int left = mc.getWindow().getGuiScaledWidth() / 2 + 91;
+				int top = mc.getWindow().getGuiScaledHeight() - 49;
 
-				int air = player.getAir();
+				int air = player.getAirSupply();
 
-				if (player.areEyesInFluid(FluidTags.WATER) || air < 12000) {
+				if (player.isEyeInFluid(FluidTags.WATER) || air < 12000) {
 					float remaining = air/12000.0F*81;
 					AbstractGui.blit(event.getMatrixStack(), left - 81, top, -90, 0.0F, 9.0F, (int) (remaining), 9, 256, 256);
 					AbstractGui.blit(event.getMatrixStack(), left - 81, top, -90, 0.0F, 0.0F, 81, 9, 256, 256);
 				}
 
 				RenderSystem.disableBlend();
-				mc.getProfiler().endSection();
+				mc.getProfiler().pop();
 			}
 		}
 	}
 	
 	private void bind(Minecraft mc, ResourceLocation res) {
-		mc.getTextureManager().bindTexture(res);
+		mc.getTextureManager().bind(res);
 	}
 }

@@ -19,7 +19,7 @@ public class TwentyFourDirectionBlock extends DirectionalBlock {
 	
 	public TwentyFourDirectionBlock(Properties propertiesIn) {
 		super(propertiesIn);
-		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.UP).with(SUB_FACING, Direction.NORTH));
+		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.UP).setValue(SUB_FACING, Direction.NORTH));
 	}
 
 	/*
@@ -30,16 +30,16 @@ public class TwentyFourDirectionBlock extends DirectionalBlock {
 	public BlockState getStateForPlacement(BlockItemUseContext contextIn) {
 		int i = 0;
 		Direction[] adirection = contextIn.getNearestLookingDirections();
-		if (adirection[i] == contextIn.getFace().getOpposite()) {
+		if (adirection[i] == contextIn.getClickedFace().getOpposite()) {
 			i++;
 		}
-		return this.getDefaultState().with(FACING, contextIn.getFace()).with(SUB_FACING, adirection[i]);
+		return this.defaultBlockState().setValue(FACING, contextIn.getClickedFace()).setValue(SUB_FACING, adirection[i]);
 	}	
 	
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builderIn) {
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builderIn) {
 		builderIn.add(FACING, SUB_FACING);
-		super.fillStateContainer(builderIn);
+		super.createBlockStateDefinition(builderIn);
 	}
 	
 }

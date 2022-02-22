@@ -15,7 +15,7 @@ public final class MooseRenderer extends MobRenderer<MooseEntity, MooseModel<Moo
 		super(renderManagerIn, new MooseModel<>(), 1.1F);
 	}
 
-	public ResourceLocation getEntityTexture(MooseEntity entity) {
+	public ResourceLocation getTextureLocation(MooseEntity entity) {
 		return MOOSE_TEXTURE;
 	}
 }

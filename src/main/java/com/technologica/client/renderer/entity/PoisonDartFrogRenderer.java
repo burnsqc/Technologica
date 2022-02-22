@@ -16,7 +16,7 @@ public final class PoisonDartFrogRenderer extends MobRenderer<PoisonDartFrogEnti
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(PoisonDartFrogEntity entity) {
+	public ResourceLocation getTextureLocation(PoisonDartFrogEntity entity) {
 		return POISON_DART_FROG_TEXTURE;
 	}
 }

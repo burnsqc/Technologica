@@ -19,79 +19,79 @@ public class LeopardSealModel<T extends Entity> extends SegmentedModel<T> {
 	private final ModelRenderer tailFlipperRight;
 
 	public LeopardSealModel() {
-		this.textureWidth = 64;
-		this.textureHeight = 64;
+		this.texWidth = 64;
+		this.texHeight = 64;
 
 		this.body = new ModelRenderer(this, 20, 2);
-		this.body.setRotationPoint(0.0F, 20.0F, 0.0F);
+		this.body.setPos(0.0F, 20.0F, 0.0F);
 		this.body.addBox(-4.0F, -4.0F, -7.0F, 8.0F, 8.0F, 14.0F);
 		
 		this.head = new ModelRenderer(this, 0, 16);
-		this.head.setRotationPoint(0.0F, 0.0F, -7.0F);
+		this.head.setPos(0.0F, 0.0F, -7.0F);
 		this.head.addBox(-3.0F, -3.0F, -4.0F, 6.0F, 6.0F, 4.0F);
 		this.body.addChild(this.head);
 
 		this.nose = new ModelRenderer(this, 16, 24);
-		this.nose.setRotationPoint(0.0F, -1.0F, -4.0F);
+		this.nose.setPos(0.0F, -1.0F, -4.0F);
 		this.nose.addBox(-2.0F, -1.0F, -4.0F, 4.0F, 3.0F, 4.0F);
 		this.head.addChild(this.nose);
 		
 		this.jaw = new ModelRenderer(this, 0, 26);
-		this.jaw.setRotationPoint(0.0F, 1.0F, -4.0F);
+		this.jaw.setPos(0.0F, 1.0F, -4.0F);
 		this.jaw.addBox(-2.0F, 0.0F, -4.0F, 4.0F, 1.0F, 4.0F);
 		this.head.addChild(this.jaw);
 
 		this.flipperLeft = new ModelRenderer(this, 32, 24);
-		this.flipperLeft.setRotationPoint(4.0F, 1.0F, -4.0F);
+		this.flipperLeft.setPos(4.0F, 1.0F, -4.0F);
 		this.flipperLeft.addBox(0.0F, 0.0F, 0.0F, 8.0F, 1.0F, 4.0F);
 		this.flipperLeft.mirror = true;
 		this.body.addChild(this.flipperLeft);
 
 		this.flipperRight = new ModelRenderer(this, 32, 24);
-		this.flipperRight.setRotationPoint(-4.0F, 1.0F, -4.0F);
+		this.flipperRight.setPos(-4.0F, 1.0F, -4.0F);
 		this.flipperRight.addBox(-8.0F, 0.0F, 0.0F, 8.0F, 1.0F, 4.0F);
 		this.body.addChild(this.flipperRight);
 
 		this.tail = new ModelRenderer(this, 0, 0);
-		this.tail.setRotationPoint(0.0F, 0.0F, 7.0F);
+		this.tail.setPos(0.0F, 0.0F, 7.0F);
 		this.tail.addBox(-3.0F, -3.0F, 0.0F, 6.0F, 6.0F, 10.0F);
 		this.body.addChild(this.tail);
 
 		this.tailFlipperLeft = new ModelRenderer(this, 0, 31);
-		this.tailFlipperLeft.setRotationPoint(2.0F, 0.0F, 10.0F);
+		this.tailFlipperLeft.setPos(2.0F, 0.0F, 10.0F);
 		this.tailFlipperLeft.addBox(0.0F, -3.0F, 0.0F, 1.0F, 6.0F, 8.0F);
 		this.flipperLeft.mirror = true;
 		this.tail.addChild(this.tailFlipperLeft);
 
 		this.tailFlipperRight = new ModelRenderer(this, 0, 31);
-		this.tailFlipperRight.setRotationPoint(-2.0F, 0.0F, 10.0F);
+		this.tailFlipperRight.setPos(-2.0F, 0.0F, 10.0F);
 		this.tailFlipperRight.addBox(-1.0F, -3.0F, 0.0F, 1.0F, 6.0F, 8.0F);
 		this.tail.addChild(this.tailFlipperRight);
 	}
 
-	public Iterable<ModelRenderer> getParts() {
+	public Iterable<ModelRenderer> parts() {
 		return ImmutableList.of(this.body);
 	}
 
-	public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.jaw.rotateAngleX = (MathHelper.sin(ageInTicks / 10) * MathHelper.sin(ageInTicks / 10))/2;
+	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		this.jaw.xRot = (MathHelper.sin(ageInTicks / 10) * MathHelper.sin(ageInTicks / 10))/2;
 		
-		this.tailFlipperLeft.rotateAngleY = (float) Math.PI / 8;
-		this.tailFlipperRight.rotateAngleY = -(float) Math.PI / 8;
+		this.tailFlipperLeft.yRot = (float) Math.PI / 8;
+		this.tailFlipperRight.yRot = -(float) Math.PI / 8;
 		
-		this.flipperLeft.rotateAngleY = -(float) Math.PI / 4;
-		this.flipperLeft.rotateAngleZ = (float) Math.PI / 8;
+		this.flipperLeft.yRot = -(float) Math.PI / 4;
+		this.flipperLeft.zRot = (float) Math.PI / 8;
 		
-		this.flipperRight.rotateAngleY = (float) Math.PI / 4;
-		this.flipperRight.rotateAngleZ = -(float) Math.PI / 8;
+		this.flipperRight.yRot = (float) Math.PI / 4;
+		this.flipperRight.zRot = -(float) Math.PI / 8;
 
-		this.body.rotateAngleX = headPitch * ((float) Math.PI / 180F);
-		this.body.rotateAngleY = netHeadYaw * ((float) Math.PI / 180F);
-		if (Entity.horizontalMag(entityIn.getMotion()) > 1.0E-7D) {
-			this.body.rotateAngleX += -0.05F + -0.05F * MathHelper.cos(ageInTicks * 0.3F);
-			this.tail.rotateAngleY = -0.1F * MathHelper.cos(ageInTicks * 0.3F);
-			this.tailFlipperLeft.rotateAngleY = -0.2F * MathHelper.cos(ageInTicks * 0.3F);
-			this.tailFlipperRight.rotateAngleY = -0.2F * MathHelper.cos(ageInTicks * 0.3F);
+		this.body.xRot = headPitch * ((float) Math.PI / 180F);
+		this.body.yRot = netHeadYaw * ((float) Math.PI / 180F);
+		if (Entity.getHorizontalDistanceSqr(entityIn.getDeltaMovement()) > 1.0E-7D) {
+			this.body.xRot += -0.05F + -0.05F * MathHelper.cos(ageInTicks * 0.3F);
+			this.tail.yRot = -0.1F * MathHelper.cos(ageInTicks * 0.3F);
+			this.tailFlipperLeft.yRot = -0.2F * MathHelper.cos(ageInTicks * 0.3F);
+			this.tailFlipperRight.yRot = -0.2F * MathHelper.cos(ageInTicks * 0.3F);
 		}
 	}
 }

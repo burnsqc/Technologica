@@ -17,7 +17,7 @@ import net.minecraft.world.IBlockReader;
 public class TableBlock extends Block {
 
 	public TableBlock() {
-		super(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD).notSolid());
+		super(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion());
 	}
 
 	/*

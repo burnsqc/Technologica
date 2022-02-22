@@ -16,7 +16,7 @@ public final class LizardRenderer extends MobRenderer<LizardEntity, LizardModel<
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(LizardEntity entity) {
+	public ResourceLocation getTextureLocation(LizardEntity entity) {
 		return LIZARD_TEXTURE;
 	}
 }

@@ -78,9 +78,9 @@ public class LineShaftHangerTileEntity extends TileEntity {
 				((LineShaftTileEntity) shaft).setRPM(rpmIn);
 				
 				if (((LineShaftTileEntity) shaft).getBeltPos() != null) {
-					LineShaftTileEntity beltedPulley = (LineShaftTileEntity) world.getTileEntity(((LineShaftTileEntity) shaft).getBeltPos());
-					Radius pulley1 = shaft.getBlockState().get(LineShaftBlock.RADIUS);
-					Radius pulley2 = beltedPulley.getBlockState().get(LineShaftBlock.RADIUS);
+					LineShaftTileEntity beltedPulley = (LineShaftTileEntity) level.getBlockEntity(((LineShaftTileEntity) shaft).getBeltPos());
+					Radius pulley1 = shaft.getBlockState().getValue(LineShaftBlock.RADIUS);
+					Radius pulley2 = beltedPulley.getBlockState().getValue(LineShaftBlock.RADIUS);
 					
 					float torqueMultiplier = pulley2.getRadius()/pulley1.getRadius();
 					float rpmMultiplier = pulley1.getRadius()/pulley2.getRadius();
@@ -93,14 +93,14 @@ public class LineShaftHangerTileEntity extends TileEntity {
 				((LineShaftHangerTileEntity) shaft).setTorque(torqueIn);
 				((LineShaftHangerTileEntity) shaft).setRPM(rpmIn);
 			}
-			world.notifyBlockUpdate(shaft.getPos(), shaft.getBlockState(), shaft.getBlockState(), 3);
+			level.sendBlockUpdated(shaft.getBlockPos(), shaft.getBlockState(), shaft.getBlockState(), 3);
 		}
 	}
 	
 	public List<TileEntity> getShafts() {
 		List<TileEntity> shafts = new ArrayList<>();
 		shafts.add(this);
-		Axis axis = getBlockState().get(AXIS);
+		Axis axis = getBlockState().getValue(AXIS);
 		Direction direction1 = Direction.UP;
 		Direction direction2 = Direction.DOWN;
 		
@@ -120,21 +120,21 @@ public class LineShaftHangerTileEntity extends TileEntity {
 		}
 		
 		int offset = 1;
-		TileEntity shaftCheck = world.getTileEntity(pos.offset(direction1, offset));
+		TileEntity shaftCheck = level.getBlockEntity(worldPosition.relative(direction1, offset));
 		
-		while((shaftCheck instanceof LineShaftTileEntity || shaftCheck instanceof LineShaftHangerTileEntity) && shaftCheck.getBlockState().get(AXIS) == getBlockState().get(AXIS)) {
+		while((shaftCheck instanceof LineShaftTileEntity || shaftCheck instanceof LineShaftHangerTileEntity) && shaftCheck.getBlockState().getValue(AXIS) == getBlockState().getValue(AXIS)) {
 			shafts.add(shaftCheck);
 			offset++;
-			shaftCheck = world.getTileEntity(pos.offset(direction1, offset));	
+			shaftCheck = level.getBlockEntity(worldPosition.relative(direction1, offset));	
 		}
 		
 		offset = 1;
-		shaftCheck = world.getTileEntity(pos.offset(direction2, offset));
+		shaftCheck = level.getBlockEntity(worldPosition.relative(direction2, offset));
 		
-		while((shaftCheck instanceof LineShaftTileEntity || shaftCheck instanceof LineShaftHangerTileEntity) && shaftCheck.getBlockState().get(AXIS) == getBlockState().get(AXIS)) {
+		while((shaftCheck instanceof LineShaftTileEntity || shaftCheck instanceof LineShaftHangerTileEntity) && shaftCheck.getBlockState().getValue(AXIS) == getBlockState().getValue(AXIS)) {
 			shafts.add(shaftCheck);
 			offset++;
-			shaftCheck = world.getTileEntity(pos.offset(direction2, offset));	
+			shaftCheck = level.getBlockEntity(worldPosition.relative(direction2, offset));	
 		}
 		
 		return shafts;
@@ -143,29 +143,29 @@ public class LineShaftHangerTileEntity extends TileEntity {
 	@Override
 	@Nullable
 	public SUpdateTileEntityPacket getUpdatePacket() {
-		return new SUpdateTileEntityPacket(this.pos, 10, this.getUpdateTag());
+		return new SUpdateTileEntityPacket(this.worldPosition, 10, this.getUpdateTag());
 	}   
 	
 	@Override
 	public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
-		BlockState blockState = world.getBlockState(pos);
-		read(blockState, pkt.getNbtCompound());
+		BlockState blockState = level.getBlockState(worldPosition);
+		load(blockState, pkt.getTag());
 	}
 	
 	@Override
 	public CompoundNBT getUpdateTag() {
-		return this.write(new CompoundNBT());
+		return this.save(new CompoundNBT());
 	}
 	
 	@Override
 	public void handleUpdateTag(BlockState blockState, CompoundNBT parentNBTTagCompound)
 	{
-		this.read(blockState, parentNBTTagCompound);
+		this.load(blockState, parentNBTTagCompound);
 	}
 	
 	@Override
-	public void read(BlockState state, CompoundNBT nbt) {
-		super.read(state, nbt);
+	public void load(BlockState state, CompoundNBT nbt) {
+		super.load(state, nbt);
 	    if (nbt.contains("shaft")) {
 	    	shaft = nbt.getBoolean("shaft");
 	    }
@@ -178,8 +178,8 @@ public class LineShaftHangerTileEntity extends TileEntity {
 	}
 
 	@Override
-	public CompoundNBT write(CompoundNBT compound) {
-		super.write(compound);
+	public CompoundNBT save(CompoundNBT compound) {
+		super.save(compound);
 		compound.putBoolean("shaft", shaft);
 		compound.putFloat("torque", torque);
 		compound.putFloat("rpm", rpm);

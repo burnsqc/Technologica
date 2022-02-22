@@ -16,7 +16,7 @@ public final class FlamingoRenderer extends MobRenderer<FlamingoEntity, Flamingo
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(FlamingoEntity entity) {
+	public ResourceLocation getTextureLocation(FlamingoEntity entity) {
 		return FLAMINGO_TEXTURE;
 	}
 }

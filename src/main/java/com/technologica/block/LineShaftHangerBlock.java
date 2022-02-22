@@ -26,7 +26,7 @@ import net.minecraft.world.World;
 public class LineShaftHangerBlock extends TwelveDirectionBlock {
 
 	public LineShaftHangerBlock() {
-		super(AbstractBlock.Properties.create(Material.IRON).hardnessAndResistance(2.0F).harvestLevel(1).sound(SoundType.ANVIL).notSolid());
+		super(AbstractBlock.Properties.of(Material.METAL).strength(2.0F).harvestLevel(1).sound(SoundType.ANVIL).noOcclusion());
 	}
 
 	/*
@@ -34,7 +34,7 @@ public class LineShaftHangerBlock extends TwelveDirectionBlock {
 	 */
 	
 	public static LineShaftHangerTileEntity getTileEntity(World worldIn, BlockPos posIn) {
-		return (LineShaftHangerTileEntity) worldIn.getTileEntity(posIn);
+		return (LineShaftHangerTileEntity) worldIn.getBlockEntity(posIn);
 	}
 
 	/*
@@ -42,35 +42,35 @@ public class LineShaftHangerBlock extends TwelveDirectionBlock {
 	 */
 	
 	@Override
-	public ActionResultType onBlockActivated(BlockState stateIn, World worldIn, BlockPos posIn, PlayerEntity playerIn, Hand handIn, BlockRayTraceResult hitIn) {
+	public ActionResultType use(BlockState stateIn, World worldIn, BlockPos posIn, PlayerEntity playerIn, Hand handIn, BlockRayTraceResult hitIn) {
 		LineShaftHangerTileEntity tile = getTileEntity(worldIn, posIn);
-		Item tool = playerIn.getHeldItem(handIn).getItem();
+		Item tool = playerIn.getItemInHand(handIn).getItem();
 
 		if (tool == TechnologicaItems.WRENCH.get() && !tile.getShaft()) {
 			Axis axis = null;
-			switch (stateIn.get(FACING).getAxis()) {
+			switch (stateIn.getValue(FACING).getAxis()) {
 			case X:
-				axis = stateIn.get(AXIS) == Axis.Y ? Axis.Z : Axis.Y;
+				axis = stateIn.getValue(AXIS) == Axis.Y ? Axis.Z : Axis.Y;
 				break;
 			case Y:
-				axis = stateIn.get(AXIS) == Axis.X ? Axis.Z : Axis.X;
+				axis = stateIn.getValue(AXIS) == Axis.X ? Axis.Z : Axis.X;
 				break;
 			case Z:
-				axis = stateIn.get(AXIS) == Axis.X ? Axis.Y : Axis.X;
+				axis = stateIn.getValue(AXIS) == Axis.X ? Axis.Y : Axis.X;
 				break;
 			}
-			worldIn.setBlockState(posIn, stateIn.with(AXIS, axis), 2);
+			worldIn.setBlock(posIn, stateIn.setValue(AXIS, axis), 2);
 
 		} else if (tool == TechnologicaItems.STEEL_SHAFT.get()) {
 			if (!playerIn.isCrouching() && !tile.getShaft()) {
 				tile.setShaft(true);
-			} else if (!playerIn.isCrouching() && tile.getShaft() && hitIn.getFace().getAxis() == stateIn.get(AXIS)) {
-				worldIn.setBlockState(hitIn.getPos().offset(hitIn.getFace()),
-						TechnologicaBlocks.LINE_SHAFT.get().getDefaultState().with(RotatedPillarBlock.AXIS, stateIn.get(AXIS)),
+			} else if (!playerIn.isCrouching() && tile.getShaft() && hitIn.getDirection().getAxis() == stateIn.getValue(AXIS)) {
+				worldIn.setBlock(hitIn.getBlockPos().relative(hitIn.getDirection()),
+						TechnologicaBlocks.LINE_SHAFT.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, stateIn.getValue(AXIS)),
 						3);
 			}
 		}
-		return ActionResultType.func_233537_a_(worldIn.isRemote);
+		return ActionResultType.sidedSuccess(worldIn.isClientSide);
 	}
 
 	/*

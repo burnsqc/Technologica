@@ -20,7 +20,7 @@ public class ModFluidTagsProvider extends FluidTagsProvider {
 	}
 
 	@Override
-	protected void registerTags() {
+	protected void addTags() {
 		automaticFluidTags(TechnologicaFluids.FLUIDS.getEntries());
 	}
 	
@@ -35,7 +35,7 @@ public class ModFluidTagsProvider extends FluidTagsProvider {
 		for(Supplier<? extends Fluid> fluidSupplier:collection) {
 			Fluid fluid = fluidSupplier.get();
 			
-			if (fluid.getRegistryName().getPath().contains("source") || fluid.getRegistryName().getPath().contains("flowing")) getOrCreateBuilder(FluidTags.WATER).add(fluid);
+			if (fluid.getRegistryName().getPath().contains("source") || fluid.getRegistryName().getPath().contains("flowing")) tag(FluidTags.WATER).add(fluid);
 		}
 	}
 }

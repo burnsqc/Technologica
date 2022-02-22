@@ -17,7 +17,7 @@ import net.minecraft.world.IBlockReader;
 public class VanillaStairsBlock extends StairsBlock {
 
 	public VanillaStairsBlock(java.util.function.Supplier<BlockState> state) {
-		super(state, AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD));
+		super(state, AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD));
 	}
 
 	/*

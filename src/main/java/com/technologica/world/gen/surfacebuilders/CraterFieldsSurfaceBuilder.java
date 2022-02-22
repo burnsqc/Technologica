@@ -21,37 +21,37 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 public class CraterFieldsSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
-	private static final BlockState TERRACOTTA = Blocks.TERRACOTTA.getDefaultState();
-	private static final BlockState RED_TERRACOTTA = Blocks.RED_TERRACOTTA.getDefaultState();
-	private static final BlockState ORANGE_TERRACOTTA = Blocks.ORANGE_TERRACOTTA.getDefaultState();
-	private static final BlockState YELLOW_TERRACOTTA = Blocks.YELLOW_TERRACOTTA.getDefaultState();
-	private static final BlockState BROWN_TERRACOTTA = Blocks.BROWN_TERRACOTTA.getDefaultState();
-	private static final BlockState WHITE_TERRACOTTA = Blocks.WHITE_TERRACOTTA.getDefaultState();
-	private static final BlockState LIGHT_GRAY_TERRACOTTA = Blocks.LIGHT_GRAY_TERRACOTTA.getDefaultState();
-	private static final BlockState SALT = TechnologicaBlocks.SALT.get().getDefaultState();
-	private static final BlockState BRINE = TechnologicaBlocks.BRINE.get().getDefaultState();
+	private static final BlockState TERRACOTTA = Blocks.TERRACOTTA.defaultBlockState();
+	private static final BlockState RED_TERRACOTTA = Blocks.RED_TERRACOTTA.defaultBlockState();
+	private static final BlockState ORANGE_TERRACOTTA = Blocks.ORANGE_TERRACOTTA.defaultBlockState();
+	private static final BlockState YELLOW_TERRACOTTA = Blocks.YELLOW_TERRACOTTA.defaultBlockState();
+	private static final BlockState BROWN_TERRACOTTA = Blocks.BROWN_TERRACOTTA.defaultBlockState();
+	private static final BlockState WHITE_TERRACOTTA = Blocks.WHITE_TERRACOTTA.defaultBlockState();
+	private static final BlockState LIGHT_GRAY_TERRACOTTA = Blocks.LIGHT_GRAY_TERRACOTTA.defaultBlockState();
+	private static final BlockState SALT = TechnologicaBlocks.SALT.get().defaultBlockState();
+	private static final BlockState BRINE = TechnologicaBlocks.BRINE.get().defaultBlockState();
 		
 	protected BlockState[] blockStateArray;
-	protected long field_215433_b;
+	protected long seed;
 	
-	protected PerlinNoiseGenerator field_215435_c;
-	protected PerlinNoiseGenerator field_215437_d;
-	protected PerlinNoiseGenerator field_215439_e;
+	protected PerlinNoiseGenerator pillarNoise;
+	protected PerlinNoiseGenerator pillarRoofNoise;
+	protected PerlinNoiseGenerator clayBandsOffsetNoise;
 
 	public CraterFieldsSurfaceBuilder(Codec<SurfaceBuilderConfig> codec) {
 		super(codec);
 	}
 
 	@SuppressWarnings("deprecation")
-	public void buildSurface(Random randomIn, IChunk chunkIn, Biome biomeIn, int posXIn, int posZIn, int startHeightIn, double noise, BlockState defaultBlock, BlockState defaultFluid, int seaLevel, long seed, SurfaceBuilderConfig config) {
+	public void apply(Random randomIn, IChunk chunkIn, Biome biomeIn, int posXIn, int posZIn, int startHeightIn, double noise, BlockState defaultBlock, BlockState defaultFluid, int seaLevel, long seed, SurfaceBuilderConfig config) {
 		int posX = posXIn & 15;
 		int posZ = posZIn & 15;
 		
 		ISurfaceBuilderConfig isurfacebuilderconfig = biomeIn.getGenerationSettings().getSurfaceBuilderConfig();
 		
 		BlockState blockstate = WHITE_TERRACOTTA;
-		BlockState blockstate1 = isurfacebuilderconfig.getUnder();
-		BlockState blockstate2 = isurfacebuilderconfig.getTop();
+		BlockState blockstate1 = isurfacebuilderconfig.getUnderMaterial();
+		BlockState blockstate2 = isurfacebuilderconfig.getTopMaterial();
 		BlockState blockstate3 = blockstate1;
 		
 		int k = (int) (noise / 3.0D + 3.0D + randomIn.nextDouble() * 0.25D);
@@ -65,17 +65,17 @@ public class CraterFieldsSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderCon
 
 		for(int posY = startHeightIn; posY >= 0; --posY) {
 			if (i1 < 15) {
-				blockpos$mutable.setPos(posX, posY, posZ);
+				blockpos$mutable.set(posX, posY, posZ);
 				BlockState blockstate4 = chunkIn.getBlockState(blockpos$mutable);
 	            
 	            if (blockstate4.isAir()) {
 	            	l = -1;
-	            } else if (blockstate4.matchesBlock(defaultBlock.getBlock())) {
+	            } else if (blockstate4.is(defaultBlock.getBlock())) {
 	            	if (l == -1) {
 	            		flag1 = false;
 	                  
 	            		if (k <= 0) {
-	            			blockstate = Blocks.AIR.getDefaultState();
+	            			blockstate = Blocks.AIR.defaultBlockState();
 	            			blockstate3 = defaultBlock;
 	            		} else if (posY >= seaLevel - 4 && posY <= seaLevel + 1) {
 	            			blockstate = WHITE_TERRACOTTA;
@@ -132,25 +132,25 @@ public class CraterFieldsSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderCon
 		}
 	}
 
-	public void setSeed(long seed) {
-		if (this.field_215433_b != seed || this.blockStateArray == null) {
-			this.func_215430_b(seed);
+	public void initNoise(long seed) {
+		if (this.seed != seed || this.blockStateArray == null) {
+			this.generateBands(seed);
 		}
 
-		if (this.field_215433_b != seed || this.field_215435_c == null || this.field_215437_d == null) {
+		if (this.seed != seed || this.pillarNoise == null || this.pillarRoofNoise == null) {
 			SharedSeedRandom sharedseedrandom = new SharedSeedRandom(seed);
-			this.field_215435_c = new PerlinNoiseGenerator(sharedseedrandom, IntStream.rangeClosed(-3, 0));
-			this.field_215437_d = new PerlinNoiseGenerator(sharedseedrandom, ImmutableList.of(0));
+			this.pillarNoise = new PerlinNoiseGenerator(sharedseedrandom, IntStream.rangeClosed(-3, 0));
+			this.pillarRoofNoise = new PerlinNoiseGenerator(sharedseedrandom, ImmutableList.of(0));
 		}
 
-		this.field_215433_b = seed;
+		this.seed = seed;
 	}
 
-	protected void func_215430_b(long p_215430_1_) {
+	protected void generateBands(long p_215430_1_) {
 		this.blockStateArray = new BlockState[64];
 		Arrays.fill(this.blockStateArray, TERRACOTTA);
 		SharedSeedRandom sharedseedrandom = new SharedSeedRandom(p_215430_1_);
-		this.field_215439_e = new PerlinNoiseGenerator(sharedseedrandom, ImmutableList.of(0));
+		this.clayBandsOffsetNoise = new PerlinNoiseGenerator(sharedseedrandom, ImmutableList.of(0));
 
 		for (int l1 = 0; l1 < 64; ++l1) {
 			l1 += sharedseedrandom.nextInt(5) + 1;
@@ -212,7 +212,7 @@ public class CraterFieldsSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderCon
 	}
 
 	protected BlockState getBlockState(int posXIn, int posYIn, int posZIn) {
-		int i = (int) Math.round(this.field_215439_e.noiseAt((double) posXIn / 512.0D, (double) posZIn / 512.0D, false) * 2.0D);
+		int i = (int) Math.round(this.clayBandsOffsetNoise.getValue((double) posXIn / 512.0D, (double) posZIn / 512.0D, false) * 2.0D);
 		return this.blockStateArray[(posYIn + i + 64) % 64];
 	}
 }

@@ -1,6 +1,7 @@
 package com.technologica.capabilities;
 
 import static com.technologica.Technologica.LOGGER;
+
 import net.minecraftforge.common.capabilities.CapabilityManager;
 
 public class TechnologicaCapabilities {

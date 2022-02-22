@@ -24,13 +24,13 @@ public class DisplayCaseTileEntityRenderer extends TileEntityRenderer<DisplayCas
     	long time = System.currentTimeMillis();
     	float angle = (time / 25) % 360;
     	if (!stack.isEmpty()) {
-        	matrixStack.push();       	
+        	matrixStack.pushPose();       	
         	matrixStack.translate(0.5, 0.3, 0.5);
-        	matrixStack.rotate(Vector3f.YN.rotationDegrees(angle));
+        	matrixStack.mulPose(Vector3f.YN.rotationDegrees(angle));
         	ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
-        	IBakedModel ibakedmodel = itemRenderer.getItemModelWithOverrides(stack, tileEntity.getWorld(), null);
-        	itemRenderer.renderItem(stack, ItemCameraTransforms.TransformType.GROUND, true, matrixStack, buffer, combinedLight, combinedOverlay, ibakedmodel);       	
-        	matrixStack.pop();
+        	IBakedModel ibakedmodel = itemRenderer.getModel(stack, tileEntity.getLevel(), null);
+        	itemRenderer.render(stack, ItemCameraTransforms.TransformType.GROUND, true, matrixStack, buffer, combinedLight, combinedOverlay, ibakedmodel);       	
+        	matrixStack.popPose();
         }
     }
 }

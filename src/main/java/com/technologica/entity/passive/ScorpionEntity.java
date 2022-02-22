@@ -47,17 +47,17 @@ public class ScorpionEntity extends MonsterEntity {
 	}
 
 	@Override
-	public boolean attackEntityAsMob(Entity entityIn) {
-		if (super.attackEntityAsMob(entityIn)) {
+	public boolean doHurtTarget(Entity entityIn) {
+		if (super.doHurtTarget(entityIn)) {
 			if (entityIn instanceof LivingEntity) {
 				int i = 0;
-				if (this.world.getDifficulty() == Difficulty.NORMAL) {
+				if (this.level.getDifficulty() == Difficulty.NORMAL) {
 					i = 7;
-				} else if (this.world.getDifficulty() == Difficulty.HARD) {
+				} else if (this.level.getDifficulty() == Difficulty.HARD) {
 					i = 15;
 				}
 				if (i > 0) {
-					((LivingEntity) entityIn).addPotionEffect(new EffectInstance(Effects.POISON, i * 20, 0));
+					((LivingEntity) entityIn).addEffect(new EffectInstance(Effects.POISON, i * 20, 0));
 				}
 			}
 			return true;
@@ -78,12 +78,12 @@ public class ScorpionEntity extends MonsterEntity {
 		this.targetSelector.addGoal(2, new ScorpionEntity.TargetGoal<>(this, PlayerEntity.class));
 	}
 
-	public double getMountedYOffset() {
-		return (double) (this.getHeight() * 0.5F);
+	public double getPassengersRidingOffset() {
+		return (double) (this.getBbHeight() * 0.5F);
 	}
 
-	protected void registerData() {
-		super.registerData();
+	protected void defineSynchedData() {
+		super.defineSynchedData();
 	}
 
 	private void moveClaws() {
@@ -98,58 +98,58 @@ public class ScorpionEntity extends MonsterEntity {
 	}
 
 	@Override
-	public void livingTick() {
-		if (this.rand.nextInt(100) == 0) {
+	public void aiStep() {
+		if (this.random.nextInt(100) == 0) {
 			this.moveClaws();
 		}
 
-		super.livingTick();
+		super.aiStep();
 	}
 
-	public static AttributeModifierMap.MutableAttribute func_234305_eI_() {
-		return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.MAX_HEALTH, 16.0D)
-				.createMutableAttribute(Attributes.MOVEMENT_SPEED, (double) 0.3F);
+	public static AttributeModifierMap.MutableAttribute createAttributes() {
+		return MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 16.0D)
+				.add(Attributes.MOVEMENT_SPEED, (double) 0.3F);
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return SoundEvents.ENTITY_SPIDER_AMBIENT;
+		return SoundEvents.SPIDER_AMBIENT;
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return SoundEvents.ENTITY_SPIDER_HURT;
+		return SoundEvents.SPIDER_HURT;
 	}
 
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.ENTITY_SPIDER_DEATH;
+		return SoundEvents.SPIDER_DEATH;
 	}
 
 	protected void playStepSound(BlockPos pos, BlockState blockIn) {
-		this.playSound(SoundEvents.ENTITY_SPIDER_STEP, 0.15F, 1.0F);
+		this.playSound(SoundEvents.SPIDER_STEP, 0.15F, 1.0F);
 	}
 
-	public CreatureAttribute getCreatureAttribute() {
+	public CreatureAttribute getMobType() {
 		return CreatureAttribute.ARTHROPOD;
 	}
 
-	public boolean isPotionApplicable(EffectInstance potioneffectIn) {
-		if (potioneffectIn.getPotion() == Effects.POISON) {
+	public boolean canBeAffected(EffectInstance potioneffectIn) {
+		if (potioneffectIn.getEffect() == Effects.POISON) {
 			net.minecraftforge.event.entity.living.PotionEvent.PotionApplicableEvent event = new net.minecraftforge.event.entity.living.PotionEvent.PotionApplicableEvent(
 					this, potioneffectIn);
 			net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event);
 			return event.getResult() == net.minecraftforge.eventbus.api.Event.Result.ALLOW;
 		}
-		return super.isPotionApplicable(potioneffectIn);
+		return super.canBeAffected(potioneffectIn);
 	}
 
 	@Nullable
-	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason,
+	public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason,
 			@Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-		spawnDataIn = super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+		spawnDataIn = super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 
 		if (spawnDataIn == null) {
 			spawnDataIn = new ScorpionEntity.GroupData();
 			if (worldIn.getDifficulty() == Difficulty.HARD
-					&& worldIn.getRandom().nextFloat() < 0.1F * difficultyIn.getClampedAdditionalDifficulty()) {
+					&& worldIn.getRandom().nextFloat() < 0.1F * difficultyIn.getSpecialMultiplier()) {
 				((ScorpionEntity.GroupData) spawnDataIn).setRandomEffect(worldIn.getRandom());
 			}
 		}
@@ -157,7 +157,7 @@ public class ScorpionEntity extends MonsterEntity {
 		if (spawnDataIn instanceof ScorpionEntity.GroupData) {
 			Effect effect = ((ScorpionEntity.GroupData) spawnDataIn).effect;
 			if (effect != null) {
-				this.addPotionEffect(new EffectInstance(effect, Integer.MAX_VALUE));
+				this.addEffect(new EffectInstance(effect, Integer.MAX_VALUE));
 			}
 		}
 
@@ -173,22 +173,22 @@ public class ScorpionEntity extends MonsterEntity {
 			super(spider, 1.0D, true);
 		}
 
-		public boolean shouldExecute() {
-			return super.shouldExecute() && !this.attacker.isBeingRidden();
+		public boolean canUse() {
+			return super.canUse() && !this.mob.isVehicle();
 		}
 
-		public boolean shouldContinueExecuting() {
-			float f = this.attacker.getBrightness();
-			if (f >= 0.5F && this.attacker.getRNG().nextInt(100) == 0) {
-				this.attacker.setAttackTarget((LivingEntity) null);
+		public boolean canContinueToUse() {
+			float f = this.mob.getBrightness();
+			if (f >= 0.5F && this.mob.getRandom().nextInt(100) == 0) {
+				this.mob.setTarget((LivingEntity) null);
 				return false;
 			} else {
-				return super.shouldContinueExecuting();
+				return super.canContinueToUse();
 			}
 		}
 
 		protected double getAttackReachSqr(LivingEntity attackTarget) {
-			return (double) (4.0F + attackTarget.getWidth());
+			return (double) (4.0F + attackTarget.getBbWidth());
 		}
 	}
 
@@ -198,9 +198,9 @@ public class ScorpionEntity extends MonsterEntity {
 		public void setRandomEffect(Random rand) {
 			int i = rand.nextInt(5);
 			if (i <= 1) {
-				this.effect = Effects.SPEED;
+				this.effect = Effects.MOVEMENT_SPEED;
 			} else if (i <= 2) {
-				this.effect = Effects.STRENGTH;
+				this.effect = Effects.DAMAGE_BOOST;
 			} else if (i <= 3) {
 				this.effect = Effects.REGENERATION;
 			} else if (i <= 4) {
@@ -219,9 +219,9 @@ public class ScorpionEntity extends MonsterEntity {
 		 * Returns whether execution should begin. You can also read and cache any state
 		 * necessary for execution in this method as well.
 		 */
-		public boolean shouldExecute() {
-			float f = this.goalOwner.getBrightness();
-			return f <= 0.5F ? false : super.shouldExecute();
+		public boolean canUse() {
+			float f = this.mob.getBrightness();
+			return f <= 0.5F ? false : super.canUse();
 		}
 	}
 }

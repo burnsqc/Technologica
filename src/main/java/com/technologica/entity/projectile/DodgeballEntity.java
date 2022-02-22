@@ -48,31 +48,31 @@ public class DodgeballEntity extends ProjectileItemEntity {
 	}
 
 	private IParticleData makeParticle() {
-		ItemStack itemstack = this.func_213882_k();
+		ItemStack itemstack = this.getItemRaw();
 		return (IParticleData) (itemstack.isEmpty() ? ParticleTypes.NOTE: new ItemParticleData(ParticleTypes.ITEM, itemstack));
 	}
 
 	@Override
-	public void handleStatusUpdate(byte id) {
+	public void handleEntityEvent(byte id) {
 		if (id == 3) {
 			IParticleData iparticledata = this.makeParticle();
 
 			for (int i = 0; i < 8; ++i) {
-				this.world.addParticle(iparticledata, this.getPosX(), this.getPosY(), this.getPosZ(), 0.0D, 0.0D, 0.0D);
+				this.level.addParticle(iparticledata, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
 			}
 		}
 
 	}
 
 	@Override
-	protected void onEntityHit(EntityRayTraceResult result) {
-		super.onEntityHit(result);
+	protected void onHitEntity(EntityRayTraceResult result) {
+		super.onHitEntity(result);
 		Entity entity = result.getEntity();
-		entity.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getShooter()), 0);
+		entity.hurt(DamageSource.thrown(this, this.getOwner()), 0);
 		
 		if (entity instanceof ServerPlayerEntity) {
 			message = entity.getDisplayName().getString() + " HAS BEEN ELIMINATED!"; 
-			this.getServer().getPlayerList().func_232641_a_(new StringTextComponent(this.message), ChatType.SYSTEM, Util.DUMMY_UUID);
+			this.getServer().getPlayerList().broadcastMessage(new StringTextComponent(this.message), ChatType.SYSTEM, Util.NIL_UUID);
 		}
 		
 		
@@ -80,19 +80,19 @@ public class DodgeballEntity extends ProjectileItemEntity {
 	}
 
 	@Override
-	protected void onImpact(RayTraceResult result) {
-		super.onImpact(result);
-		if (!this.world.isRemote) {
-			this.world.setEntityState(this, (byte) 3);
+	protected void onHit(RayTraceResult result) {
+		super.onHit(result);
+		if (!this.level.isClientSide) {
+			this.level.broadcastEntityEvent(this, (byte) 3);
 			this.remove();
-			this.world.addEntity(new ItemEntity(this.world, this.getPosX(), this.getPosY(), this.getPosZ(), this.getItem()));
+			this.level.addFreshEntity(new ItemEntity(this.level, this.getX(), this.getY(), this.getZ(), this.getItem()));
 		}
 
-		this.world.playSound((PlayerEntity) null, this.getPosX(), this.getPosY(), this.getPosZ(), TechnologicaSoundEvents.DODGEBALL.get(), SoundCategory.NEUTRAL, 1.0F, 1.0F);
+		this.level.playSound((PlayerEntity) null, this.getX(), this.getY(), this.getZ(), TechnologicaSoundEvents.DODGEBALL.get(), SoundCategory.NEUTRAL, 1.0F, 1.0F);
 	}
 	
 	@Override
-	public IPacket<?> createSpawnPacket() {
+	public IPacket<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 }

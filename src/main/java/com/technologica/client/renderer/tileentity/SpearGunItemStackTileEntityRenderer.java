@@ -14,10 +14,10 @@ public class SpearGunItemStackTileEntityRenderer extends ItemStackTileEntityRend
 	private final SpearGunModel spearGun = new SpearGunModel();
 
 	@Override
-	public void func_239207_a_(ItemStack stack, ItemCameraTransforms.TransformType p_239207_2_, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay) {
-		matrixStack.push();
-		IVertexBuilder ivertexbuilder1 = ItemRenderer.getEntityGlintVertexBuilder(buffer, this.spearGun.getRenderType(SpearGunModel.TEXTURE_LOCATION), false, false);
-		this.spearGun.render(matrixStack, ivertexbuilder1, combinedLight, combinedOverlay, 1.0F, 1.0F, 1.0F, 1.0F);
-		matrixStack.pop();
+	public void renderByItem(ItemStack stack, ItemCameraTransforms.TransformType p_239207_2_, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay) {
+		matrixStack.pushPose();
+		IVertexBuilder ivertexbuilder1 = ItemRenderer.getFoilBufferDirect(buffer, this.spearGun.renderType(SpearGunModel.TEXTURE_LOCATION), false, false);
+		this.spearGun.renderToBuffer(matrixStack, ivertexbuilder1, combinedLight, combinedOverlay, 1.0F, 1.0F, 1.0F, 1.0F);
+		matrixStack.popPose();
 	}
 }

@@ -17,7 +17,7 @@ import net.minecraft.world.IBlockReader;
 public class VanillaWallSignBlock extends WallSignBlock {
 
 	public VanillaWallSignBlock(WoodType typeIn) {
-		super(AbstractBlock.Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), typeIn);
+		super(AbstractBlock.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD), typeIn);
 	}
 	
 	/*
@@ -25,7 +25,7 @@ public class VanillaWallSignBlock extends WallSignBlock {
 	 */
 	
 	@Override
-	public TileEntity createNewTileEntity(IBlockReader worldIn) {
+	public TileEntity newBlockEntity(IBlockReader worldIn) {
 	      return new VanillaSignTileEntity();
 	   }
 }

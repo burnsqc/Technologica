@@ -17,12 +17,12 @@ public class DuckRenderer extends MobRenderer<DuckEntity, ChickenModel<DuckEntit
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(DuckEntity entity) {
+	public ResourceLocation getTextureLocation(DuckEntity entity) {
 		return DUCK_TEXTURE;
 	}
 
 	@Override
-	protected float handleRotationFloat(DuckEntity livingBase, float partialTicks) {
+	protected float getBob(DuckEntity livingBase, float partialTicks) {
 		float f = MathHelper.lerp(partialTicks, livingBase.getoFlap(), livingBase.getWingRotation());
 		float f1 = MathHelper.lerp(partialTicks, livingBase.getoFlapSpeed(), livingBase.getDestPos());
 		return (MathHelper.sin(f) + 1.0F) * f1;

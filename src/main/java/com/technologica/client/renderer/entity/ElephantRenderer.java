@@ -16,7 +16,7 @@ public final class ElephantRenderer extends MobRenderer<ElephantEntity, Elephant
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(ElephantEntity entity) {
+	public ResourceLocation getTextureLocation(ElephantEntity entity) {
 		return ELEPHANT_TEXTURE;
 	}
 }

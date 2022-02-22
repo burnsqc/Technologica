@@ -20,41 +20,41 @@ public class AlligatorModel<T extends AlligatorEntity> extends QuadrupedModel<T>
 	
 	public AlligatorModel() {
 		super(6, 0.0F, true, 10.0F, 4.0F, 2.0F, 2.0F, 24);
-		this.textureWidth = 64;
-		this.textureHeight = 64;
+		this.texWidth = 64;
+		this.texHeight = 64;
 
 		this.body = new ModelRenderer(this, 0, 0);
 		this.body.addBox(-5.0F, -3.0F, -8.0F, 10.0F, 6.0F, 16.0F);
-		this.body.setRotationPoint(0.0F, 19.0F, 0.0F);
+		this.body.setPos(0.0F, 19.0F, 0.0F);
 
 		this.tail = new ModelRenderer(this, 36, 0);
 		this.tail.addBox(-3.0F, -3.0F, 0.0F, 6.0F, 6.0F, 8.0F);
-		this.tail.setRotationPoint(0.0F, 0.0F, 8.0F);
+		this.tail.setPos(0.0F, 0.0F, 8.0F);
 		this.body.addChild(this.tail);
 		
 		this.tail2 = new ModelRenderer(this, 0, 22);
 		this.tail2.addBox(-2.0F, -2.0F, 0.0F, 4.0F, 5.0F, 8.0F);
-		this.tail2.setRotationPoint(0.0F, 0.0F, 8.0F);
+		this.tail2.setPos(0.0F, 0.0F, 8.0F);
 		this.tail.addChild(this.tail2);
 		
 		this.tail3 = new ModelRenderer(this, 44, 14);
 		this.tail3.addBox(-1.0F, -1.0F, 0.0F, 2.0F, 4.0F, 8.0F);
-		this.tail3.setRotationPoint(0.0F, 0.0F, 8.0F);
+		this.tail3.setPos(0.0F, 0.0F, 8.0F);
 		this.tail2.addChild(this.tail3);
 		
-		this.headModel = new ModelRenderer(this, 24, 22);
-		this.headModel.addBox(-4.0F, -3.0F, -4.0F, 8.0F, 6.0F, 4.0F);
-		this.headModel.setRotationPoint(0.0F, 19.0F, -8.0F);
+		this.head = new ModelRenderer(this, 24, 22);
+		this.head.addBox(-4.0F, -3.0F, -4.0F, 8.0F, 6.0F, 4.0F);
+		this.head.setPos(0.0F, 19.0F, -8.0F);
 		
 		this.nose = new ModelRenderer(this, 0, 35);
-		this.nose.setRotationPoint(0.0F, -1.0F, -4.0F);
+		this.nose.setPos(0.0F, -1.0F, -4.0F);
 		this.nose.addBox(-3.0F, -2.0F, -8.0F, 6.0F, 2.0F, 8.0F);
-		this.headModel.addChild(this.nose);
+		this.head.addChild(this.nose);
 		
 		this.jaw = new ModelRenderer(this, 20, 32);
-		this.jaw.setRotationPoint(0.0F, -1.0F, -4.0F);
+		this.jaw.setPos(0.0F, -1.0F, -4.0F);
 		this.jaw.addBox(-3.0F, 0.0F, -8.0F, 6.0F, 2.0F, 8.0F);
-		this.headModel.addChild(this.jaw);
+		this.head.addChild(this.jaw);
 		
 		this.teethUpper = new ModelRenderer(this, 0, 45);
 		this.teethUpper.addBox(-2.5F, 0.0F, -7.5F, 5.0F, 1.0F, 8.0F);
@@ -72,27 +72,27 @@ public class AlligatorModel<T extends AlligatorEntity> extends QuadrupedModel<T>
 		this.eyeRight.addBox(-2.0F, -3.0F, -3.0F, 1.0F, 1.0F, 2.0F);
 		this.nose.addChild(this.eyeRight);
 		
-		this.legBackRight = new ModelRenderer(this, 0, 0);
-		this.legBackRight.addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F);
-		this.legBackRight.setRotationPoint(-5.0F, 18.0F, 7.0F);
+		this.leg0 = new ModelRenderer(this, 0, 0);
+		this.leg0.addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F);
+		this.leg0.setPos(-5.0F, 18.0F, 7.0F);
 		
-		this.legBackLeft = new ModelRenderer(this, 0, 0);
-		this.legBackLeft.addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F);
-		this.legBackLeft.setRotationPoint(5.0F, 18.0F, 7.0F);
+		this.leg1 = new ModelRenderer(this, 0, 0);
+		this.leg1.addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F);
+		this.leg1.setPos(5.0F, 18.0F, 7.0F);
 		
-		this.legFrontRight = new ModelRenderer(this, 0, 0);
-		this.legFrontRight.addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F);
-		this.legFrontRight.setRotationPoint(-5.0F, 18.0F, -5.0F);
+		this.leg2 = new ModelRenderer(this, 0, 0);
+		this.leg2.addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F);
+		this.leg2.setPos(-5.0F, 18.0F, -5.0F);
 		
-		this.legFrontLeft = new ModelRenderer(this, 0, 0);
-		this.legFrontLeft.addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F);
-		this.legFrontLeft.setRotationPoint(5.0F, 18.0F, -5.0F);
+		this.leg3 = new ModelRenderer(this, 0, 0);
+		this.leg3.addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F);
+		this.leg3.setPos(5.0F, 18.0F, -5.0F);
 	}
 
 	@Override
-	public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.body.rotateAngleX = 0;
-		this.nose.rotateAngleX = -(MathHelper.sin(ageInTicks / 10) * MathHelper.sin(ageInTicks / 10))/2;
-		this.legBackLeft.rotateAngleX = 0;
+	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		this.body.xRot = 0;
+		this.nose.xRot = -(MathHelper.sin(ageInTicks / 10) * MathHelper.sin(ageInTicks / 10))/2;
+		this.leg1.xRot = 0;
 	}
 }

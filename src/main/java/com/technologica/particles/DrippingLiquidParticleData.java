@@ -23,7 +23,7 @@ public class DrippingLiquidParticleData implements IParticleData {
 	public static final DrippingLiquidParticleData MACHINE_OIL = new DrippingLiquidParticleData(1.00000F, 1.00000F, 0.58823F);
 	public static final DrippingLiquidParticleData COOLANT = new DrippingLiquidParticleData(0.74901F, 0.96862F, 0.32941F);
 
-	public static final Codec<DrippingLiquidParticleData> field_239802_b_ = RecordCodecBuilder.create((p_239803_0_) -> {
+	public static final Codec<DrippingLiquidParticleData> CODEC = RecordCodecBuilder.create((p_239803_0_) -> {
 		return p_239803_0_.group(Codec.FLOAT.fieldOf("r").forGetter((p_239807_0_) -> {
 			return p_239807_0_.red;
 		}), Codec.FLOAT.fieldOf("g").forGetter((p_239806_0_) -> {
@@ -43,9 +43,8 @@ public class DrippingLiquidParticleData implements IParticleData {
 		this.blue = blue;
 	}
 
-	@SuppressWarnings("deprecation")
 	public static final IParticleData.IDeserializer<DrippingLiquidParticleData> DESERIALIZER = new IParticleData.IDeserializer<DrippingLiquidParticleData>() {
-		public DrippingLiquidParticleData deserialize(ParticleType<DrippingLiquidParticleData> particleTypeIn, StringReader reader) throws CommandSyntaxException {
+		public DrippingLiquidParticleData fromCommand(ParticleType<DrippingLiquidParticleData> particleTypeIn, StringReader reader) throws CommandSyntaxException {
 			reader.expect(' ');
 			float f = (float) reader.readDouble();
 			reader.expect(' ');
@@ -56,7 +55,7 @@ public class DrippingLiquidParticleData implements IParticleData {
 			return new DrippingLiquidParticleData(f, f1, f2);
 		}
 
-		public DrippingLiquidParticleData read(ParticleType<DrippingLiquidParticleData> particleTypeIn, PacketBuffer buffer) {
+		public DrippingLiquidParticleData fromNetwork(ParticleType<DrippingLiquidParticleData> particleTypeIn, PacketBuffer buffer) {
 			return new DrippingLiquidParticleData(buffer.readFloat(), buffer.readFloat(), buffer.readFloat());
 		}
 	};
@@ -67,7 +66,7 @@ public class DrippingLiquidParticleData implements IParticleData {
 	}
 	
 	@Override
-	public void write(PacketBuffer buffer) {
+	public void writeToNetwork(PacketBuffer buffer) {
 		buffer.writeFloat(this.red);
 		buffer.writeFloat(this.green);
 		buffer.writeFloat(this.blue);
@@ -75,7 +74,7 @@ public class DrippingLiquidParticleData implements IParticleData {
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public String getParameters() {
+	public String writeToString() {
 		return String.format(Locale.ROOT, "%s %.2f %.2f %.2f", Registry.PARTICLE_TYPE.getKey(this.getType()), this.red, this.green, this.blue);
 	}
 	

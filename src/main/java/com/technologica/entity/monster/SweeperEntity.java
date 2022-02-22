@@ -26,9 +26,9 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 public class SweeperEntity extends MonsterEntity {
-	private static final DataParameter<Integer> STATE = EntityDataManager.createKey(SweeperEntity.class, DataSerializers.VARINT);
-	private static final DataParameter<Boolean> POWERED = EntityDataManager.createKey(SweeperEntity.class, DataSerializers.BOOLEAN);
-	private static final DataParameter<Boolean> IGNITED = EntityDataManager.createKey(SweeperEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Integer> STATE = EntityDataManager.defineId(SweeperEntity.class, DataSerializers.INT);
+	private static final DataParameter<Boolean> POWERED = EntityDataManager.defineId(SweeperEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> IGNITED = EntityDataManager.defineId(SweeperEntity.class, DataSerializers.BOOLEAN);
 
 	private int droppedSkulls;
 
@@ -43,32 +43,32 @@ public class SweeperEntity extends MonsterEntity {
 	}
 
 	public static AttributeModifierMap.MutableAttribute registerAttributes() {
-		return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D);
+		return MonsterEntity.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, 0.25D);
 	}
 
 	/**
 	 * The maximum height from where the entity is alowed to jump (used in
 	 * pathfinder)
 	 */
-	public int getMaxFallHeight() {
-		return this.getAttackTarget() == null ? 3 : 3 + (int) (this.getHealth() - 1.0F);
+	public int getMaxFallDistance() {
+		return this.getTarget() == null ? 3 : 3 + (int) (this.getHealth() - 1.0F);
 	}
 
-	public boolean onLivingFall(float distance, float damageMultiplier) {
-		boolean flag = super.onLivingFall(distance, damageMultiplier);
+	public boolean causeFallDamage(float distance, float damageMultiplier) {
+		boolean flag = super.causeFallDamage(distance, damageMultiplier);
 		return flag;
 	}
 
-	protected void registerData() {
-		super.registerData();
-		this.dataManager.register(STATE, -1);
-		this.dataManager.register(POWERED, false);
-		this.dataManager.register(IGNITED, false);
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(STATE, -1);
+		this.entityData.define(POWERED, false);
+		this.entityData.define(IGNITED, false);
 	}
 
-	public void writeAdditional(CompoundNBT compound) {
-		super.writeAdditional(compound);
-		if (this.dataManager.get(POWERED)) {
+	public void addAdditionalSaveData(CompoundNBT compound) {
+		super.addAdditionalSaveData(compound);
+		if (this.entityData.get(POWERED)) {
 			compound.putBoolean("powered", true);
 		}
 	}
@@ -76,9 +76,9 @@ public class SweeperEntity extends MonsterEntity {
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
-	public void readAdditional(CompoundNBT compound) {
-		super.readAdditional(compound);
-		this.dataManager.set(POWERED, compound.getBoolean("powered"));
+	public void readAdditionalSaveData(CompoundNBT compound) {
+		super.readAdditionalSaveData(compound);
+		this.entityData.set(POWERED, compound.getBoolean("powered"));
 	}
 
 	/**
@@ -89,78 +89,78 @@ public class SweeperEntity extends MonsterEntity {
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return SoundEvents.ENTITY_CREEPER_HURT;
+		return SoundEvents.CREEPER_HURT;
 	}
 
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.ENTITY_CREEPER_DEATH;
+		return SoundEvents.CREEPER_DEATH;
 	}
 
-	protected void dropSpecialItems(DamageSource source, int looting, boolean recentlyHitIn) {
-		super.dropSpecialItems(source, looting, recentlyHitIn);
-		Entity entity = source.getTrueSource();
+	protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
+		super.dropCustomDeathLoot(source, looting, recentlyHitIn);
+		Entity entity = source.getEntity();
 		if (entity != this && entity instanceof SweeperEntity) {
 			SweeperEntity creeperentity = (SweeperEntity) entity;
 			if (creeperentity.ableToCauseSkullDrop()) {
 				creeperentity.incrementDroppedSkulls();
-				this.entityDropItem(Items.CREEPER_HEAD);
+				this.spawnAtLocation(Items.CREEPER_HEAD);
 			}
 		}
 
 	}
 
-	public boolean attackEntityAsMob(Entity entityIn) {
+	public boolean doHurtTarget(Entity entityIn) {
 		return true;
 	}
 
 	public boolean isCharged() {
-		return this.dataManager.get(POWERED);
+		return this.entityData.get(POWERED);
 	}
 
 	/**
 	 * Returns the current state of creeper, -1 is idle, 1 is 'in fuse'
 	 */
 	public int getCreeperState() {
-		return this.dataManager.get(STATE);
+		return this.entityData.get(STATE);
 	}
 
 	/**
 	 * Sets the state of creeper, -1 to idle and 1 to be 'in fuse'
 	 */
 	public void setCreeperState(int state) {
-		this.dataManager.set(STATE, state);
+		this.entityData.set(STATE, state);
 	}
 
-	public void causeLightningStrike(ServerWorld world, LightningBoltEntity lightning) {
-		super.causeLightningStrike(world, lightning);
-		this.dataManager.set(POWERED, true);
+	public void thunderHit(ServerWorld world, LightningBoltEntity lightning) {
+		super.thunderHit(world, lightning);
+		this.entityData.set(POWERED, true);
 	}
 
-	protected ActionResultType getEntityInteractionResult(PlayerEntity playerIn, Hand hand) {
-		ItemStack itemstack = playerIn.getHeldItem(hand);
+	protected ActionResultType mobInteract(PlayerEntity playerIn, Hand hand) {
+		ItemStack itemstack = playerIn.getItemInHand(hand);
 		if (itemstack.getItem() == Items.FLINT_AND_STEEL) {
-			this.world.playSound(playerIn, this.getPosX(), this.getPosY(), this.getPosZ(),
-					SoundEvents.ITEM_FLINTANDSTEEL_USE, this.getSoundCategory(), 1.0F,
-					this.rand.nextFloat() * 0.4F + 0.8F);
-			if (!this.world.isRemote) {
+			this.level.playSound(playerIn, this.getX(), this.getY(), this.getZ(),
+					SoundEvents.FLINTANDSTEEL_USE, this.getSoundSource(), 1.0F,
+					this.random.nextFloat() * 0.4F + 0.8F);
+			if (!this.level.isClientSide) {
 				this.ignite();
-				itemstack.damageItem(1, playerIn, (player) -> {
-					player.sendBreakAnimation(hand);
+				itemstack.hurtAndBreak(1, playerIn, (player) -> {
+					player.broadcastBreakEvent(hand);
 				});
 			}
 
-			return ActionResultType.func_233537_a_(this.world.isRemote);
+			return ActionResultType.sidedSuccess(this.level.isClientSide);
 		} else {
-			return super.getEntityInteractionResult(playerIn, hand);
+			return super.mobInteract(playerIn, hand);
 		}
 	}
 
 	public boolean hasIgnited() {
-		return this.dataManager.get(IGNITED);
+		return this.entityData.get(IGNITED);
 	}
 
 	public void ignite() {
-		this.dataManager.set(IGNITED, true);
+		this.entityData.set(IGNITED, true);
 	}
 
 	/**

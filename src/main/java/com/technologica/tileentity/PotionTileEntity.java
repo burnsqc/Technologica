@@ -18,7 +18,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 public class PotionTileEntity extends TileEntity implements ITickableTileEntity {
 	public static final String POTION_ITEM = "PotionItem";
 	private ItemStack stack = ItemStack.EMPTY;
-	public static final IntegerProperty AGE = BlockStateProperties.AGE_0_7;
+	public static final IntegerProperty AGE = BlockStateProperties.AGE_7;
 	
 	public PotionTileEntity() {
 		super(TechnologicaTileEntities.POTION_CROP.get());
@@ -26,7 +26,7 @@ public class PotionTileEntity extends TileEntity implements ITickableTileEntity 
 
 	@Override
 	public AxisAlignedBB getRenderBoundingBox() {
-		return new AxisAlignedBB(getPos(), getPos().add(1, -1, 1));
+		return new AxisAlignedBB(getBlockPos(), getBlockPos().offset(1, -1, 1));
 	}
 	
 	public ItemStack getPotionStack() {
@@ -35,9 +35,9 @@ public class PotionTileEntity extends TileEntity implements ITickableTileEntity 
 	
 	public void setPotionStack(ItemStack stackIn) {
         this.stack = stackIn;
-        markDirty();
-        if (world != null) {
-        	world.notifyBlockUpdate(pos, getBlockState(), getBlockState(), 2); 
+        setChanged();
+        if (level != null) {
+        	level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 2); 
         }
     }
 	
@@ -48,11 +48,11 @@ public class PotionTileEntity extends TileEntity implements ITickableTileEntity 
 	@Override
 	public void tick() {
 		if (this.getPotionStack() != ItemStack.EMPTY) {
-			assert world != null;
-			if (world.isPlayerWithin((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, 5.0D)) {
-				this.world.addEntity(Util.make(new PotionEntity(world, pos.getX(), pos.getY(), pos.getZ()), potion -> potion.setItem(getPotionStack())));
+			assert level != null;
+			if (level.hasNearbyAlivePlayer((double)worldPosition.getX() + 0.5D, (double)worldPosition.getY() + 0.5D, (double)worldPosition.getZ() + 0.5D, 5.0D)) {
+				this.level.addFreshEntity(Util.make(new PotionEntity(level, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ()), potion -> potion.setItem(getPotionStack())));
 				clear();
-				world.setBlockState(pos, this.getBlockState().with(AGE, 0), 4);
+				level.setBlock(worldPosition, this.getBlockState().setValue(AGE, 0), 4);
 			}
 		}
 	}
@@ -60,39 +60,39 @@ public class PotionTileEntity extends TileEntity implements ITickableTileEntity 
 	@Override
 	@Nullable
 	public SUpdateTileEntityPacket getUpdatePacket() {
-		return new SUpdateTileEntityPacket(this.pos, 10, this.getUpdateTag());
+		return new SUpdateTileEntityPacket(this.worldPosition, 10, this.getUpdateTag());
 	}   
 	
 	@Override
 	public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
-		BlockState blockState = world.getBlockState(pos);
-		read(blockState, pkt.getNbtCompound());
+		BlockState blockState = level.getBlockState(worldPosition);
+		load(blockState, pkt.getTag());
 	}
 	
 	@Override
 	public CompoundNBT getUpdateTag() {
-		return this.write(new CompoundNBT());
+		return this.save(new CompoundNBT());
 	}
 	
 	@Override
 	public void handleUpdateTag(BlockState blockState, CompoundNBT parentNBTTagCompound)
 	{
-		this.read(blockState, parentNBTTagCompound);
+		this.load(blockState, parentNBTTagCompound);
 	}
 	
 	@Override
-	public void read(BlockState state, CompoundNBT nbt) {
-		super.read(state, nbt);
+	public void load(BlockState state, CompoundNBT nbt) {
+		super.load(state, nbt);
 	    if (nbt.contains(POTION_ITEM)) {
-	    	this.setPotionStack(ItemStack.read(nbt.getCompound(POTION_ITEM)));
+	    	this.setPotionStack(ItemStack.of(nbt.getCompound(POTION_ITEM)));
 	    }
 	}
 
 	@Override
-	public CompoundNBT write(CompoundNBT compound) {
-		super.write(compound);
+	public CompoundNBT save(CompoundNBT compound) {
+		super.save(compound);
 	    if (!this.getPotionStack().isEmpty()) {
-	    	compound.put(POTION_ITEM, this.getPotionStack().write(new CompoundNBT()));
+	    	compound.put(POTION_ITEM, this.getPotionStack().save(new CompoundNBT()));
 	    }	   
 	    return compound;	    
 	}

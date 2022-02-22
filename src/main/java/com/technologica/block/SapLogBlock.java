@@ -19,11 +19,11 @@ import net.minecraft.world.server.ServerWorld;
  */
 public class SapLogBlock extends VanillaLogBlock {
 	public static final BooleanProperty PERSISTENT = BlockStateProperties.PERSISTENT;
-	public static final IntegerProperty AGE = BlockStateProperties.AGE_0_15;
+	public static final IntegerProperty AGE = BlockStateProperties.AGE_15;
 
 	public SapLogBlock() {
 		super();
-		this.setDefaultState(this.stateContainer.getBaseState().with(AGE, 0).with(PERSISTENT, false).with(AXIS, Direction.Axis.Y));
+		this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0).setValue(PERSISTENT, false).setValue(AXIS, Direction.Axis.Y));
 	}
 	
 	/*
@@ -32,22 +32,22 @@ public class SapLogBlock extends VanillaLogBlock {
 	
 	@Override
 	public void randomTick(BlockState stateIn, ServerWorld worldIn, BlockPos posIn, Random randomIn) {
-		worldIn.setBlockState(posIn, stateIn.with(AGE, stateIn.get(AGE) + 1), 7);
+		worldIn.setBlock(posIn, stateIn.setValue(AGE, stateIn.getValue(AGE) + 1), 7);
 	}
 	
 	@Override
-	public boolean ticksRandomly(BlockState stateIn) {
-		return !stateIn.get(PERSISTENT) && stateIn.get(AGE) <= 14;
+	public boolean isRandomlyTicking(BlockState stateIn) {
+		return !stateIn.getValue(PERSISTENT) && stateIn.getValue(AGE) <= 14;
 	}
 	
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		return this.getDefaultState().with(AXIS, context.getFace().getAxis()).with(PERSISTENT, true);
+		return this.defaultBlockState().setValue(AXIS, context.getClickedFace().getAxis()).setValue(PERSISTENT, true);
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
 		builder.add(PERSISTENT).add(AGE);
-		super.fillStateContainer(builder);
+		super.createBlockStateDefinition(builder);
 	}
 }

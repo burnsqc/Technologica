@@ -37,18 +37,18 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 public class TurkeyEntity extends AnimalEntity {
-   private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
+   private static final Ingredient TEMPTATION_ITEMS = Ingredient.of(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
    public float wingRotation;
    public float destPos;
    public float oFlapSpeed;
    public float oFlap;
    public float wingRotDelta = 1.0F;
-   public int timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
+   public int timeUntilNextEgg = this.random.nextInt(6000) + 6000;
    public boolean chickenJockey;
 
    public TurkeyEntity(EntityType<? extends TurkeyEntity> type, World worldIn) {
       super(type, worldIn);
-      this.setPathPriority(PathNodeType.WATER, 0.0F);
+      this.setPathfindingMalus(PathNodeType.WATER, 0.0F);
    }
 
    protected void registerGoals() {
@@ -63,33 +63,33 @@ public class TurkeyEntity extends AnimalEntity {
    }
 
    public static AttributeModifierMap.MutableAttribute registerAttributes() {
-		return AttributeModifierMap.createMutableAttribute()
-				.createMutableAttribute(Attributes.MAX_HEALTH, 8.0D)
-				.createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D)
-				.createMutableAttribute(Attributes.FOLLOW_RANGE, 16.0D)
-				.createMutableAttribute(Attributes.ATTACK_KNOCKBACK)
-				.createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE)
-				.createMutableAttribute(Attributes.ARMOR)
-				.createMutableAttribute(Attributes.ARMOR_TOUGHNESS)
-				.createMutableAttribute(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get())
-				.createMutableAttribute(net.minecraftforge.common.ForgeMod.NAMETAG_DISTANCE.get())
-				.createMutableAttribute(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get());
+		return AttributeModifierMap.builder()
+				.add(Attributes.MAX_HEALTH, 8.0D)
+				.add(Attributes.MOVEMENT_SPEED, 0.25D)
+				.add(Attributes.FOLLOW_RANGE, 16.0D)
+				.add(Attributes.ATTACK_KNOCKBACK)
+				.add(Attributes.KNOCKBACK_RESISTANCE)
+				.add(Attributes.ARMOR)
+				.add(Attributes.ARMOR_TOUGHNESS)
+				.add(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get())
+				.add(net.minecraftforge.common.ForgeMod.NAMETAG_DISTANCE.get())
+				.add(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get());
 	}
    
    protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
-      return this.isChild() ? sizeIn.height * 0.85F : sizeIn.height * 0.92F;
+      return this.isBaby() ? sizeIn.height * 0.85F : sizeIn.height * 0.92F;
    }
 
-   public static AttributeModifierMap.MutableAttribute func_234187_eI_() {
-      return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 4.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D);
+   public static AttributeModifierMap.MutableAttribute createAttributes() {
+      return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 4.0D).add(Attributes.MOVEMENT_SPEED, 0.25D);
    }
 
    /**
     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
     * use this to react to sunlight and start to burn.
     */
-   public void livingTick() {
-      super.livingTick();
+   public void aiStep() {
+      super.aiStep();
       this.oFlap = this.wingRotation;
       this.oFlapSpeed = this.destPos;
       this.destPos = (float)((double)this.destPos + (double)(this.onGround ? -1 : 4) * 0.3D);
@@ -99,41 +99,41 @@ public class TurkeyEntity extends AnimalEntity {
       }
 
       this.wingRotDelta = (float)((double)this.wingRotDelta * 0.9D);
-      Vector3d vector3d = this.getMotion();
+      Vector3d vector3d = this.getDeltaMovement();
       if (!this.onGround && vector3d.y < 0.0D) {
-         this.setMotion(vector3d.mul(1.0D, 0.6D, 1.0D));
+         this.setDeltaMovement(vector3d.multiply(1.0D, 0.6D, 1.0D));
       }
 
       this.wingRotation += this.wingRotDelta * 2.0F;
-      if (!this.world.isRemote && this.isAlive() && !this.isChild() && !this.isChickenJockey() && --this.timeUntilNextEgg <= 0) {
-         this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
-         this.entityDropItem(Items.EGG);
-         this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
+      if (!this.level.isClientSide && this.isAlive() && !this.isBaby() && !this.isChickenJockey() && --this.timeUntilNextEgg <= 0) {
+         this.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+         this.spawnAtLocation(Items.EGG);
+         this.timeUntilNextEgg = this.random.nextInt(6000) + 6000;
       }
 
    }
 
-   public boolean onLivingFall(float distance, float damageMultiplier) {
+   public boolean causeFallDamage(float distance, float damageMultiplier) {
       return false;
    }
 
    protected SoundEvent getAmbientSound() {
-      return SoundEvents.ENTITY_CHICKEN_AMBIENT;
+      return SoundEvents.CHICKEN_AMBIENT;
    }
 
    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-      return SoundEvents.ENTITY_CHICKEN_HURT;
+      return SoundEvents.CHICKEN_HURT;
    }
 
    protected SoundEvent getDeathSound() {
-      return SoundEvents.ENTITY_CHICKEN_DEATH;
+      return SoundEvents.CHICKEN_DEATH;
    }
 
    protected void playStepSound(BlockPos pos, BlockState blockIn) {
-      this.playSound(SoundEvents.ENTITY_CHICKEN_STEP, 0.15F, 1.0F);
+      this.playSound(SoundEvents.CHICKEN_STEP, 0.15F, 1.0F);
    }
 
-   public TurkeyEntity createChild(ServerWorld world, AgeableEntity mate) {
+   public TurkeyEntity getBreedOffspring(ServerWorld world, AgeableEntity mate) {
       return TechnologicaEntityType.TURKEY.get().create(world);
    }
 
@@ -141,45 +141,45 @@ public class TurkeyEntity extends AnimalEntity {
     * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on
     * the animal type)
     */
-   public boolean isBreedingItem(ItemStack stack) {
+   public boolean isFood(ItemStack stack) {
       return TEMPTATION_ITEMS.test(stack);
    }
 
    /**
     * Get the experience points the entity currently has.
     */
-   protected int getExperiencePoints(PlayerEntity player) {
-      return this.isChickenJockey() ? 10 : super.getExperiencePoints(player);
+   protected int getExperienceReward(PlayerEntity player) {
+      return this.isChickenJockey() ? 10 : super.getExperienceReward(player);
    }
 
    /**
     * (abstract) Protected helper method to read subclass entity data from NBT.
     */
-   public void readAdditional(CompoundNBT compound) {
-      super.readAdditional(compound);
+   public void readAdditionalSaveData(CompoundNBT compound) {
+      super.readAdditionalSaveData(compound);
       this.chickenJockey = compound.getBoolean("IsChickenJockey");
       if (compound.contains("EggLayTime")) {
          this.timeUntilNextEgg = compound.getInt("EggLayTime");
       }
    }
 
-   public void writeAdditional(CompoundNBT compound) {
-      super.writeAdditional(compound);
+   public void addAdditionalSaveData(CompoundNBT compound) {
+      super.addAdditionalSaveData(compound);
       compound.putBoolean("IsChickenJockey", this.chickenJockey);
       compound.putInt("EggLayTime", this.timeUntilNextEgg);
    }
 
-   public boolean canDespawn(double distanceToClosestPlayer) {
+   public boolean removeWhenFarAway(double distanceToClosestPlayer) {
       return this.isChickenJockey();
    }
 
-   public void updatePassenger(Entity passenger) {
-      super.updatePassenger(passenger);
-      float f = MathHelper.sin(this.renderYawOffset * ((float)Math.PI / 180F));
-      float f1 = MathHelper.cos(this.renderYawOffset * ((float)Math.PI / 180F));
-      passenger.setPosition(this.getPosX() + (double)(0.1F * f), this.getPosYHeight(0.5D) + passenger.getYOffset() + 0.0D, this.getPosZ() - (double)(0.1F * f1));
+   public void positionRider(Entity passenger) {
+      super.positionRider(passenger);
+      float f = MathHelper.sin(this.yBodyRot * ((float)Math.PI / 180F));
+      float f1 = MathHelper.cos(this.yBodyRot * ((float)Math.PI / 180F));
+      passenger.setPos(this.getX() + (double)(0.1F * f), this.getY(0.5D) + passenger.getMyRidingOffset() + 0.0D, this.getZ() - (double)(0.1F * f1));
       if (passenger instanceof LivingEntity) {
-         ((LivingEntity)passenger).renderYawOffset = this.renderYawOffset;
+         ((LivingEntity)passenger).yBodyRot = this.yBodyRot;
       }
    }
 

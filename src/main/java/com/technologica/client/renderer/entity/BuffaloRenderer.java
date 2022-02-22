@@ -16,7 +16,7 @@ public final class BuffaloRenderer extends MobRenderer<BuffaloEntity, BuffaloMod
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(BuffaloEntity entity) {
+	public ResourceLocation getTextureLocation(BuffaloEntity entity) {
 		return BUFFALO_TEXTURE;
 	}
 }

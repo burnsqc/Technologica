@@ -21,20 +21,20 @@ public class MulchItem extends Item {
 	}
 
 	@Override
-	public ActionResultType onItemUse(ItemUseContext context) {
-		World world = context.getWorld();
-		if (!world.isRemote) {
-			BlockPos pos = context.getPos();
+	public ActionResultType useOn(ItemUseContext context) {
+		World world = context.getLevel();
+		if (!world.isClientSide) {
+			BlockPos pos = context.getClickedPos();
 			BlockState state = world.getBlockState(pos);
 			
-			if (state.matchesBlock(Blocks.GRASS_BLOCK) || state.matchesBlock(Blocks.DIRT) || state.matchesBlock(Blocks.COARSE_DIRT) || state.matchesBlock(Blocks.PODZOL)) {
+			if (state.is(Blocks.GRASS_BLOCK) || state.is(Blocks.DIRT) || state.is(Blocks.COARSE_DIRT) || state.is(Blocks.PODZOL)) {
 				
-				world.setBlockState(pos, TechnologicaBlocks.MULCH.get().getDefaultState(), 3);
-				MulchTileEntity mulchTileEntity = (MulchTileEntity) world.getTileEntity(pos);
+				world.setBlock(pos, TechnologicaBlocks.MULCH.get().defaultBlockState(), 3);
+				MulchTileEntity mulchTileEntity = (MulchTileEntity) world.getBlockEntity(pos);
 				mulchTileEntity.setPreviousBlockState(state);
-   				world.playSound((PlayerEntity)null, pos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 0.8F + world.rand.nextFloat() * 0.4F);
-   				if (!context.getPlayer().abilities.isCreativeMode) {
-   					context.getItem().shrink(1);
+   				world.playSound((PlayerEntity)null, pos, SoundEvents.HOE_TILL, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
+   				if (!context.getPlayer().abilities.instabuild) {
+   					context.getItemInHand().shrink(1);
    				}
    				return ActionResultType.SUCCESS;
 			}

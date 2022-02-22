@@ -26,27 +26,27 @@ import net.minecraft.world.server.ServerWorld;
 public class TallCropsBlock extends VanillaCropsBlock {
 	public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 	private static final VoxelShape[] SHAPE_BY_AGE_LOWER = new VoxelShape[] {
-			Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D),
-			Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
-			Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D),
-			Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
-			Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
-			Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
-			Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
-			Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D) };
+			Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D),
+			Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
+			Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D),
+			Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
+			Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
+			Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
+			Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
+			Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D) };
 	private static final VoxelShape[] SHAPE_BY_AGE_UPPER = new VoxelShape[] {
-			Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 0.0D, 16.0D),
-			Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 0.0D, 16.0D),
-			Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 0.0D, 16.0D),
-			Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 0.0D, 16.0D),
-			Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D),
-			Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
-			Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D),
-			Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D) };
+			Block.box(0.0D, 0.0D, 0.0D, 16.0D, 0.0D, 16.0D),
+			Block.box(0.0D, 0.0D, 0.0D, 16.0D, 0.0D, 16.0D),
+			Block.box(0.0D, 0.0D, 0.0D, 16.0D, 0.0D, 16.0D),
+			Block.box(0.0D, 0.0D, 0.0D, 16.0D, 0.0D, 16.0D),
+			Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D),
+			Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
+			Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D),
+			Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D) };
 
 	public TallCropsBlock(Supplier<Item> seedsIn) {
 		super(seedsIn);
-		this.setDefaultState(this.stateContainer.getBaseState().with(HALF, DoubleBlockHalf.LOWER).with(AGE, 0));
+		this.registerDefaultState(this.stateDefinition.any().setValue(HALF, DoubleBlockHalf.LOWER).setValue(AGE, 0));
 	}
 
 	/*
@@ -54,16 +54,16 @@ public class TallCropsBlock extends VanillaCropsBlock {
 	 */
 	
 	@Override
-	public boolean isValidPosition(BlockState stateIn, IWorldReader worldIn, BlockPos posIn) {
+	public boolean canSurvive(BlockState stateIn, IWorldReader worldIn, BlockPos posIn) {
 		Boolean unobstructed;
-		BlockPos ground = posIn.down();
+		BlockPos ground = posIn.below();
 		
-		if (stateIn.get(HALF) == DoubleBlockHalf.LOWER) {
-			if (stateIn.get(AGE) <= 3) {
-				unobstructed = isAir(worldIn.getBlockState(posIn.up()));
+		if (stateIn.getValue(HALF) == DoubleBlockHalf.LOWER) {
+			if (stateIn.getValue(AGE) <= 3) {
+				unobstructed = isAir(worldIn.getBlockState(posIn.above()));
 			} else {
-				if (worldIn.getBlockState(posIn.up()).getBlock() == this) {
-					unobstructed = worldIn.getBlockState(posIn.up()).get(HALF) == DoubleBlockHalf.UPPER;
+				if (worldIn.getBlockState(posIn.above()).getBlock() == this) {
+					unobstructed = worldIn.getBlockState(posIn.above()).getValue(HALF) == DoubleBlockHalf.UPPER;
 				} else {
 					unobstructed = false;
 				}
@@ -71,7 +71,7 @@ public class TallCropsBlock extends VanillaCropsBlock {
 			return worldIn.getBlockState(ground).canSustainPlant(worldIn, ground, Direction.UP, this) && unobstructed;
 		} else {
 			if (worldIn.getBlockState(ground).getBlock() == this) {
-				return worldIn.getBlockState(ground).get(HALF) == DoubleBlockHalf.LOWER && worldIn.getBlockState(ground).get(AGE) >= 4;
+				return worldIn.getBlockState(ground).getValue(HALF) == DoubleBlockHalf.LOWER && worldIn.getBlockState(ground).getValue(AGE) >= 4;
 			} else {
 				return false;
 			}
@@ -80,10 +80,10 @@ public class TallCropsBlock extends VanillaCropsBlock {
 	
 	@Override
 	public VoxelShape getShape(BlockState stateIn, IBlockReader worldIn, BlockPos posIn, ISelectionContext contextIn) {
-		if (stateIn.get(HALF) == DoubleBlockHalf.LOWER) {
-			return SHAPE_BY_AGE_LOWER[stateIn.get(this.getAgeProperty())];
+		if (stateIn.getValue(HALF) == DoubleBlockHalf.LOWER) {
+			return SHAPE_BY_AGE_LOWER[stateIn.getValue(this.getAgeProperty())];
 		} else {
-			return SHAPE_BY_AGE_UPPER[stateIn.get(this.getAgeProperty())];
+			return SHAPE_BY_AGE_UPPER[stateIn.getValue(this.getAgeProperty())];
 		}
 	}
 
@@ -91,20 +91,20 @@ public class TallCropsBlock extends VanillaCropsBlock {
 	public void randomTick(BlockState stateIn, ServerWorld worldIn, BlockPos posIn, Random randomIn) {
 		if (!worldIn.isAreaLoaded(posIn, 1))
 			return;
-		if (worldIn.getLightSubtracted(posIn, 0) >= 9) {
+		if (worldIn.getRawBrightness(posIn, 0) >= 9) {
 			int i = this.getAge(stateIn);
 			if (i < this.getMaxAge()) {
-				float f = getGrowthChance(this, worldIn, posIn);
+				float f = getGrowthSpeed(this, worldIn, posIn);
 				if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, posIn, stateIn,
 						randomIn.nextInt((int) (25.0F / f) + 1) == 0)) {
-					worldIn.setBlockState(posIn, this.withAge(i + 1).with(HALF, stateIn.get(HALF)), 2);
+					worldIn.setBlock(posIn, this.getStateForAge(i + 1).setValue(HALF, stateIn.getValue(HALF)), 2);
 
-					if (stateIn.get(HALF) == DoubleBlockHalf.LOWER && worldIn.isAirBlock(posIn.up()) && i + 1 >= 4) {
-						worldIn.setBlockState(posIn.up(), this.withAge(i + 1).with(HALF, DoubleBlockHalf.UPPER), 2);
+					if (stateIn.getValue(HALF) == DoubleBlockHalf.LOWER && worldIn.isEmptyBlock(posIn.above()) && i + 1 >= 4) {
+						worldIn.setBlock(posIn.above(), this.getStateForAge(i + 1).setValue(HALF, DoubleBlockHalf.UPPER), 2);
 					}
 
-					if (worldIn.getBlockState(posIn.up()).getBlock() instanceof TallCropsBlock) {
-						worldIn.setBlockState(posIn.up(), this.withAge(i + 1).with(HALF, DoubleBlockHalf.UPPER), 2);
+					if (worldIn.getBlockState(posIn.above()).getBlock() instanceof TallCropsBlock) {
+						worldIn.setBlock(posIn.above(), this.getStateForAge(i + 1).setValue(HALF, DoubleBlockHalf.UPPER), 2);
 					}
 
 					net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, posIn, stateIn);
@@ -114,36 +114,36 @@ public class TallCropsBlock extends VanillaCropsBlock {
 	}
 	
 	@Override
-	public boolean ticksRandomly(BlockState stateIn) {
-		return !this.isMaxAge(stateIn) && stateIn.get(HALF) == DoubleBlockHalf.LOWER;
+	public boolean isRandomlyTicking(BlockState stateIn) {
+		return !this.isMaxAge(stateIn) && stateIn.getValue(HALF) == DoubleBlockHalf.LOWER;
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builderIn) {
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builderIn) {
 		builderIn.add(HALF);
-		super.fillStateContainer(builderIn);
+		super.createBlockStateDefinition(builderIn);
 	}
 	
 	@Override
-	public void grow(World worldIn, BlockPos posIn, BlockState stateIn) {
+	public void growCrops(World worldIn, BlockPos posIn, BlockState stateIn) {
 		int i = this.getAge(stateIn) + this.getBonemealAgeIncrease(worldIn);
 		int j = this.getMaxAge();
 		if (i > j) {
 			i = j;
 		}
 
-		worldIn.setBlockState(posIn, this.withAge(i).with(HALF, stateIn.get(HALF)), 2);
+		worldIn.setBlock(posIn, this.getStateForAge(i).setValue(HALF, stateIn.getValue(HALF)), 2);
 
-		if (i >= 4 && worldIn.isAirBlock(posIn.up()) && stateIn.get(HALF) == DoubleBlockHalf.LOWER) {
-			worldIn.setBlockState(posIn.up(), this.withAge(i).with(HALF, DoubleBlockHalf.UPPER), 2);
+		if (i >= 4 && worldIn.isEmptyBlock(posIn.above()) && stateIn.getValue(HALF) == DoubleBlockHalf.LOWER) {
+			worldIn.setBlock(posIn.above(), this.getStateForAge(i).setValue(HALF, DoubleBlockHalf.UPPER), 2);
 		}
 
-		if (worldIn.getBlockState(posIn.up()).matchesBlock(this)) {
-			worldIn.setBlockState(posIn.up(), this.withAge(i).with(HALF, DoubleBlockHalf.UPPER), 2);
+		if (worldIn.getBlockState(posIn.above()).is(this)) {
+			worldIn.setBlock(posIn.above(), this.getStateForAge(i).setValue(HALF, DoubleBlockHalf.UPPER), 2);
 		}
 
-		if (stateIn.get(HALF) == DoubleBlockHalf.UPPER) {
-			worldIn.setBlockState(posIn.down(), this.withAge(i).with(HALF, DoubleBlockHalf.LOWER), 2);
+		if (stateIn.getValue(HALF) == DoubleBlockHalf.UPPER) {
+			worldIn.setBlock(posIn.below(), this.getStateForAge(i).setValue(HALF, DoubleBlockHalf.LOWER), 2);
 		}
 	}
 }

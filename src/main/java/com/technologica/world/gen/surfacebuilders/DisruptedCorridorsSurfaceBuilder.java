@@ -16,10 +16,10 @@ public class DisruptedCorridorsSurfaceBuilder extends SurfaceBuilder<SurfaceBuil
       super(codec);
    }
 
-   public void buildSurface(Random random, IChunk chunkIn, Biome biomeIn, int x, int z, int startHeight, double noise, BlockState defaultBlock, BlockState defaultFluid, int seaLevel, long seed, SurfaceBuilderConfig config) {
+   public void apply(Random random, IChunk chunkIn, Biome biomeIn, int x, int z, int startHeight, double noise, BlockState defaultBlock, BlockState defaultFluid, int seaLevel, long seed, SurfaceBuilderConfig config) {
 	   
-	   SurfaceBuilderConfig config1 = new SurfaceBuilderConfig(TechnologicaBlocks.MOON_ROCK.get().getDefaultState(), TechnologicaBlocks.MOON_ROCK.get().getDefaultState(), TechnologicaBlocks.MOON_ROCK.get().getDefaultState());
+	   SurfaceBuilderConfig config1 = new SurfaceBuilderConfig(TechnologicaBlocks.MOON_ROCK.get().defaultBlockState(), TechnologicaBlocks.MOON_ROCK.get().defaultBlockState(), TechnologicaBlocks.MOON_ROCK.get().defaultBlockState());
 	   
-	   SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock, defaultFluid, seaLevel, seed, config1);
+	   SurfaceBuilder.DEFAULT.apply(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock, defaultFluid, seaLevel, seed, config1);
    }
 }

@@ -16,7 +16,7 @@ public final class CrabRenderer extends MobRenderer<CrabEntity, CrabModel<CrabEn
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(CrabEntity entity) {
+	public ResourceLocation getTextureLocation(CrabEntity entity) {
 		return CRAB_TEXTURE;
 	}
 }

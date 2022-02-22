@@ -23,7 +23,7 @@ public class TechnologicaContainerType {
 	
 	public static final RegistryObject<ContainerType<AnnunciatorContainer>> ANNUNCIATOR = CONTAINERS.register("annunciator_container", () -> IForgeContainerType.create((windowId, inv, data) -> {
 		BlockPos pos = data.readBlockPos();
-		World world = inv.player.getEntityWorld();
+		World world = inv.player.getCommandSenderWorld();
 		return new AnnunciatorContainer(windowId, world, pos, inv);
 	}));
 }

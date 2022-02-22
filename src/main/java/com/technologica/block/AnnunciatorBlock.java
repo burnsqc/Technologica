@@ -43,32 +43,32 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class AnnunciatorBlock extends ContainerBlock {
-	public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
+	public static final DirectionProperty FACING = HorizontalBlock.FACING;
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
 	public static final EnumProperty<AnnunciatorOverlay> OVERLAY = TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY;
 
 	public AnnunciatorBlock() {
-		super(AbstractBlock.Properties.create(Material.IRON).setLightLevel(getLightValueLit(15)).hardnessAndResistance(1.0F).sound(SoundType.METAL));
-		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(LIT, false)
-				.with(OVERLAY, AnnunciatorOverlay.INFO));
+		super(AbstractBlock.Properties.of(Material.METAL).lightLevel(getLightValueLit(15)).strength(1.0F).sound(SoundType.METAL));
+		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, false)
+				.setValue(OVERLAY, AnnunciatorOverlay.INFO));
 	}
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		return this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing().getOpposite()).with(LIT,
-				Boolean.valueOf(context.getWorld().isBlockPowered(context.getPos())));
+		return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite()).setValue(LIT,
+				Boolean.valueOf(context.getLevel().hasNeighborSignal(context.getClickedPos())));
 	}
 
 	@Override
 	public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos,
 			boolean isMoving) {
-		if (!worldIn.isRemote) {
-			boolean flag = state.get(LIT);
-			if (flag != worldIn.isBlockPowered(pos)) {
+		if (!worldIn.isClientSide) {
+			boolean flag = state.getValue(LIT);
+			if (flag != worldIn.hasNeighborSignal(pos)) {
 				if (flag) {
-					worldIn.getPendingBlockTicks().scheduleTick(pos, this, 4);
+					worldIn.getBlockTicks().scheduleTick(pos, this, 4);
 				} else {
-					worldIn.setBlockState(pos, state.cycleValue(LIT), 2);
+					worldIn.setBlock(pos, state.cycle(LIT), 2);
 				}
 			}
 
@@ -76,13 +76,13 @@ public class AnnunciatorBlock extends ContainerBlock {
 	}
 
 	@Override
-	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		if (!worldIn.isRemote()) {
-			TileEntity tileEntity = worldIn.getTileEntity(pos);
+	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+		if (!worldIn.isClientSide()) {
+			TileEntity tileEntity = worldIn.getBlockEntity(pos);
 
 			if (tileEntity instanceof AnnunciatorTileEntity) {
 				INamedContainerProvider containerProvider = createContainerProvider(worldIn, pos);
-				NetworkHooks.openGui(((ServerPlayerEntity) player), containerProvider, tileEntity.getPos());
+				NetworkHooks.openGui(((ServerPlayerEntity) player), containerProvider, tileEntity.getBlockPos());
 			}
 		}
 		return ActionResultType.SUCCESS;
@@ -105,8 +105,8 @@ public class AnnunciatorBlock extends ContainerBlock {
 
 	@Override
 	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-		if (state.get(LIT) && !worldIn.isBlockPowered(pos)) {
-			worldIn.setBlockState(pos, state.cycleValue(LIT), 2);
+		if (state.getValue(LIT) && !worldIn.hasNeighborSignal(pos)) {
+			worldIn.setBlock(pos, state.cycle(LIT), 2);
 		}
 	}
 
@@ -125,23 +125,23 @@ public class AnnunciatorBlock extends ContainerBlock {
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
 		builder.add(FACING, LIT, OVERLAY);
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(IBlockReader worldIn) {
+	public TileEntity newBlockEntity(IBlockReader worldIn) {
 		return new AnnunciatorTileEntity();
 	}
 
 	@Override
-	public BlockRenderType getRenderType(BlockState iBlockState) {
+	public BlockRenderType getRenderShape(BlockState iBlockState) {
 		return BlockRenderType.MODEL;
 	}
 	
 	private static ToIntFunction<BlockState> getLightValueLit(int lightValue) {
 		return (state) -> {
-			return state.get(BlockStateProperties.LIT) ? lightValue : 0;
+			return state.getValue(BlockStateProperties.LIT) ? lightValue : 0;
 		};
 	}
 }

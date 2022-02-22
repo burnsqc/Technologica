@@ -55,7 +55,7 @@ public class TechnologicaWoodType extends WoodType {
 		return woodTypeIn;
 	}
 		
-	public String getName() {
+	public String name() {
 		return this.name;
 	}
 }

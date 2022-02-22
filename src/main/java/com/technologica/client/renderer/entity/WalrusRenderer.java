@@ -16,7 +16,7 @@ public final class WalrusRenderer extends MobRenderer<WalrusEntity, WalrusModel<
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(WalrusEntity entity) {
+	public ResourceLocation getTextureLocation(WalrusEntity entity) {
 		return WALRUS_TEXTURE;
 	}
 }

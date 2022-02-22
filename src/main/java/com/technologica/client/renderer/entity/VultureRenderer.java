@@ -16,7 +16,7 @@ public final class VultureRenderer extends MobRenderer<VultureEntity, VultureMod
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(VultureEntity entity) {
+	public ResourceLocation getTextureLocation(VultureEntity entity) {
 		return VULTURE_TEXTURE;
 	}
 }

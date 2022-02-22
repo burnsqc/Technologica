@@ -34,29 +34,29 @@ public class SawmillTileEntityRenderer extends TileEntityRenderer<SawmillTileEnt
     public void render(SawmillTileEntity tileEntity, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay) {       
     	ItemStack stack = tileEntity.getLog();
     	
-    	Block log = Block.getBlockFromItem(stack.getItem());
-    	BlockRendererDispatcher blockrendererdispatcher = Minecraft.getInstance().getBlockRendererDispatcher();
-		BlockModelRenderer blockModelRenderer = blockrendererdispatcher.getBlockModelRenderer();
+    	Block log = Block.byItem(stack.getItem());
+    	BlockRendererDispatcher blockrendererdispatcher = Minecraft.getInstance().getBlockRenderer();
+		BlockModelRenderer blockModelRenderer = blockrendererdispatcher.getModelRenderer();
     	
 		ItemStack blade = new ItemStack(TechnologicaItems.SAWBLADE.get().getItem(), 1);
 		ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
-    	IBakedModel ibakedmodel = itemRenderer.getItemModelWithOverrides(blade, tileEntity.getWorld(), null);
+    	IBakedModel ibakedmodel = itemRenderer.getModel(blade, tileEntity.getLevel(), null);
 		
     	if (tileEntity.getBlade()) {
-    		matrixStack.push();
+    		matrixStack.pushPose();
     		matrixStack.translate(0.5, 0.9, 0.5);
-    		matrixStack.rotate(angle());
+    		matrixStack.mulPose(angle());
     		matrixStack.scale(2.25F, 2.25F, 1.0F);
-    		itemRenderer.renderItem(blade, ItemCameraTransforms.TransformType.NONE, true, matrixStack, buffer, combinedLight, combinedOverlay, ibakedmodel); 
-    		matrixStack.pop();
+    		itemRenderer.render(blade, ItemCameraTransforms.TransformType.NONE, true, matrixStack, buffer, combinedLight, combinedOverlay, ibakedmodel); 
+    		matrixStack.popPose();
     	}
     		
     	if (!stack.isEmpty()) {
-    		matrixStack.push();
-    		BlockState state = log.getDefaultState().with(RotatedPillarBlock.AXIS, Direction.Axis.X);
+    		matrixStack.pushPose();
+    		BlockState state = log.defaultBlockState().setValue(RotatedPillarBlock.AXIS, Direction.Axis.X);
     		matrixStack.translate(tileEntity.getLogPos(), 1.0, 0.0);
-    		blockModelRenderer.renderModel(tileEntity.getWorld(), blockrendererdispatcher.getModelForState(state), state, tileEntity.getPos(), matrixStack, buffer.getBuffer(RenderType.getSolid()), false, new Random(), 42, combinedOverlay, EmptyModelData.INSTANCE);
-    		matrixStack.pop();
+    		blockModelRenderer.renderModel(tileEntity.getLevel(), blockrendererdispatcher.getBlockModel(state), state, tileEntity.getBlockPos(), matrixStack, buffer.getBuffer(RenderType.solid()), false, new Random(), 42, combinedOverlay, EmptyModelData.INSTANCE);
+    		matrixStack.popPose();
     	}
     }
     

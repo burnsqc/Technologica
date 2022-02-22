@@ -83,7 +83,7 @@ public class VanillaLogBlock extends RotatedPillarBlock {
 			.put("zebrawood_wood", TechnologicaBlocks.STRIPPED_ZEBRAWOOD_WOOD).build();
 	
 	public VanillaLogBlock() {
-		super(Properties.create(Material.WOOD, state -> state.get(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? MaterialColor.WOOD : MaterialColor.OBSIDIAN).hardnessAndResistance(2.0F).sound(SoundType.WOOD));
+		super(Properties.of(Material.WOOD, state -> state.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? MaterialColor.WOOD : MaterialColor.PODZOL).strength(2.0F).sound(SoundType.WOOD));
 	}
 
 	/*
@@ -91,22 +91,22 @@ public class VanillaLogBlock extends RotatedPillarBlock {
 	 */
 	
 	@Override
-	public ActionResultType onBlockActivated(BlockState stateIn, World worldIn, BlockPos posIn, PlayerEntity playerIn, Hand handIn, BlockRayTraceResult hitIn) {
-		Item item = playerIn.getHeldItem(handIn).getItem();
+	public ActionResultType use(BlockState stateIn, World worldIn, BlockPos posIn, PlayerEntity playerIn, Hand handIn, BlockRayTraceResult hitIn) {
+		Item item = playerIn.getItemInHand(handIn).getItem();
 		
 		if (item instanceof AxeItem & !stateIn.getBlock().getRegistryName().getPath().contains("stripped")) {
-			Axis axis = stateIn.get(AXIS);
-			worldIn.playSound(playerIn, posIn, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
-	        if (!worldIn.isRemote) {
+			Axis axis = stateIn.getValue(AXIS);
+			worldIn.playSound(playerIn, posIn, SoundEvents.AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
+	        if (!worldIn.isClientSide) {
 	        	Block strippedLog = BLOCK_STRIPPING_MAP.get(stateIn.getBlock().getRegistryName().getPath()).get();
-	        	worldIn.setBlockState(posIn, strippedLog.getDefaultState().with(AXIS, axis), 11);
+	        	worldIn.setBlock(posIn, strippedLog.defaultBlockState().setValue(AXIS, axis), 11);
 	            if (playerIn != null) {
-	            	playerIn.getHeldItem(handIn).damageItem(1, playerIn, (player) -> {
-	            		player.sendBreakAnimation(handIn);
+	            	playerIn.getItemInHand(handIn).hurtAndBreak(1, playerIn, (player) -> {
+	            		player.broadcastBreakEvent(handIn);
 	            	});
 	            }
 	        }
-	        return ActionResultType.func_233537_a_(worldIn.isRemote);
+	        return ActionResultType.sidedSuccess(worldIn.isClientSide);
 		} else {
 			return ActionResultType.FAIL;
 		}

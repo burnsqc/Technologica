@@ -24,7 +24,7 @@ public class TechnologicaDripParticle extends SpriteTexturedParticle {
 	private TechnologicaDripParticle(ClientWorld world, double x, double y, double z, Fluid fluid) {
 		super(world, x, y, z);
 		this.setSize(0.01F, 0.01F);
-		this.particleGravity = 0.06F;
+		this.gravity = 0.06F;
 		this.fluid = fluid;
 	}
 
@@ -32,27 +32,27 @@ public class TechnologicaDripParticle extends SpriteTexturedParticle {
 		return IParticleRenderType.PARTICLE_SHEET_OPAQUE;
 	}
 
-	public int getBrightnessForRender(float partialTick) {
-		return this.fullbright ? 240 : super.getBrightnessForRender(partialTick);
+	public int getLightColor(float partialTick) {
+		return this.fullbright ? 240 : super.getLightColor(partialTick);
 	}
 
 	public void tick() {
-		this.prevPosX = this.posX;
-		this.prevPosY = this.posY;
-		this.prevPosZ = this.posZ;
+		this.xo = this.x;
+		this.yo = this.y;
+		this.zo = this.z;
 		this.ageParticle();
-		if (!this.isExpired) {
-			this.motionY -= (double) this.particleGravity;
-			this.move(this.motionX, this.motionY, this.motionZ);
+		if (!this.removed) {
+			this.yd -= (double) this.gravity;
+			this.move(this.xd, this.yd, this.zd);
 			this.updateMotion();
-			if (!this.isExpired) {
-				this.motionX *= (double) 0.98F;
-				this.motionY *= (double) 0.98F;
-				this.motionZ *= (double) 0.98F;
-				BlockPos blockpos = new BlockPos(this.posX, this.posY, this.posZ);
-				FluidState fluidstate = this.world.getFluidState(blockpos);
-				if (fluidstate.getFluid() == fluid && this.posY < (double) ((float) blockpos.getY() + fluidstate.getActualHeight(this.world, blockpos))) {
-					this.setExpired();
+			if (!this.removed) {
+				this.xd *= (double) 0.98F;
+				this.yd *= (double) 0.98F;
+				this.zd *= (double) 0.98F;
+				BlockPos blockpos = new BlockPos(this.x, this.y, this.z);
+				FluidState fluidstate = this.level.getFluidState(blockpos);
+				if (fluidstate.getType() == fluid && this.y < (double) ((float) blockpos.getY() + fluidstate.getHeight(this.level, blockpos))) {
+					this.remove();
 				}
 
 			}
@@ -60,8 +60,8 @@ public class TechnologicaDripParticle extends SpriteTexturedParticle {
 	}
 
 	protected void ageParticle() {
-		if (this.maxAge-- <= 0) {
-			this.setExpired();
+		if (this.lifetime-- <= 0) {
+			this.remove();
 		}
 	}
 
@@ -74,21 +74,21 @@ public class TechnologicaDripParticle extends SpriteTexturedParticle {
 		private Dripping(ClientWorld world, double x, double y, double z, Fluid fluid, DrippingLiquidParticleData particleData) {
 			super(world, x, y, z, fluid);
 			this.particleData = particleData;
-			this.particleGravity *= 0.02F;
-			this.maxAge = 40;
+			this.gravity *= 0.02F;
+			this.lifetime = 40;
 		}
 
 		protected void ageParticle() {
-			if (this.maxAge-- <= 0) {
-				this.setExpired();
-				this.world.addParticle(new FallingLiquidParticleData(particleData.getRed(), particleData.getGreen(), particleData.getBlue()), this.posX, this.posY, this.posZ, this.motionX, this.motionY, this.motionZ);
+			if (this.lifetime-- <= 0) {
+				this.remove();
+				this.level.addParticle(new FallingLiquidParticleData(particleData.getRed(), particleData.getGreen(), particleData.getBlue()), this.x, this.y, this.z, this.xd, this.yd, this.zd);
 			}
 		}
 
 		protected void updateMotion() {
-			this.motionX *= 0.02D;
-			this.motionY *= 0.02D;
-			this.motionZ *= 0.02D;
+			this.xd *= 0.02D;
+			this.yd *= 0.02D;
+			this.zd *= 0.02D;
 		}
 	}
 
@@ -102,9 +102,9 @@ public class TechnologicaDripParticle extends SpriteTexturedParticle {
 
 		protected void updateMotion() {
 			if (this.onGround) {
-				this.setExpired();
-				this.world.addParticle(new LandingLiquidParticleData(particleData.getRed(), particleData.getGreen(), particleData.getBlue()), this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
-	            this.world.playSound(this.posX + 0.5D, this.posY, this.posZ + 0.5D, SoundEvents.BLOCK_BEEHIVE_DROP, SoundCategory.BLOCKS, 0.3F + this.world.rand.nextFloat() * 2.0F / 3.0F, 1.0F, false);
+				this.remove();
+				this.level.addParticle(new LandingLiquidParticleData(particleData.getRed(), particleData.getGreen(), particleData.getBlue()), this.x, this.y, this.z, 0.0D, 0.0D, 0.0D);
+	            this.level.playLocalSound(this.x + 0.5D, this.y, this.z + 0.5D, SoundEvents.BEEHIVE_DRIP, SoundCategory.BLOCKS, 0.3F + this.level.random.nextFloat() * 2.0F / 3.0F, 1.0F, false);
 			}
 
 		}
@@ -113,7 +113,7 @@ public class TechnologicaDripParticle extends SpriteTexturedParticle {
 	static class Landing extends TechnologicaDripParticle {
 		private Landing(ClientWorld world, double x, double y, double z, Fluid fluid) {
 			super(world, x, y, z, fluid);
-			this.maxAge = (int) (16.0D / (Math.random() * 0.8D + 0.2D));
+			this.lifetime = (int) (16.0D / (Math.random() * 0.8D + 0.2D));
 		}
 	}
 	
@@ -125,12 +125,12 @@ public class TechnologicaDripParticle extends SpriteTexturedParticle {
 		}
 		
 		@Override
-		public Particle makeParticle(DrippingLiquidParticleData typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+		public Particle createParticle(DrippingLiquidParticleData typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
 			TechnologicaDripParticle.Dripping dripparticle$dripping = new TechnologicaDripParticle.Dripping(worldIn, x, y, z, Fluids.EMPTY, typeIn);
-			dripparticle$dripping.particleGravity *= 0.01F;
-			dripparticle$dripping.maxAge = 100;
+			dripparticle$dripping.gravity *= 0.01F;
+			dripparticle$dripping.lifetime = 100;
 			dripparticle$dripping.setColor(typeIn.getRed(), typeIn.getGreen(), typeIn.getBlue());
-			dripparticle$dripping.selectSpriteRandomly(this.spriteWithAge);
+			dripparticle$dripping.pickSprite(this.spriteWithAge);
 			return dripparticle$dripping;
 		}
 	}
@@ -142,11 +142,11 @@ public class TechnologicaDripParticle extends SpriteTexturedParticle {
 			this.spriteSet = spriteSet;
 		}
 
-		public Particle makeParticle(FallingLiquidParticleData typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+		public Particle createParticle(FallingLiquidParticleData typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
 			TechnologicaDripParticle dripparticle = new TechnologicaDripParticle.Falling(worldIn, x, y, z, Fluids.EMPTY, typeIn);
-			dripparticle.particleGravity = 0.01F;
+			dripparticle.gravity = 0.01F;
 			dripparticle.setColor(typeIn.getRed(), typeIn.getGreen(), typeIn.getBlue());
-			dripparticle.selectSpriteRandomly(this.spriteSet);
+			dripparticle.pickSprite(this.spriteSet);
 			return dripparticle;
 		}
 	}
@@ -158,11 +158,11 @@ public class TechnologicaDripParticle extends SpriteTexturedParticle {
 			this.spriteSet = spriteSet;
 		}
 
-		public Particle makeParticle(LandingLiquidParticleData typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+		public Particle createParticle(LandingLiquidParticleData typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
 			TechnologicaDripParticle dripparticle = new TechnologicaDripParticle.Landing(worldIn, x, y, z, Fluids.EMPTY);
-			dripparticle.maxAge = (int) (128.0D / (Math.random() * 0.8D + 0.2D));
+			dripparticle.lifetime = (int) (128.0D / (Math.random() * 0.8D + 0.2D));
 			dripparticle.setColor(typeIn.getRed(), typeIn.getGreen(), typeIn.getBlue());
-			dripparticle.selectSpriteRandomly(this.spriteSet);
+			dripparticle.pickSprite(this.spriteSet);
 			return dripparticle;
 		}
 	}

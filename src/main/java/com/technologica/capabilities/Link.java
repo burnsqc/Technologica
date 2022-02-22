@@ -61,7 +61,7 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 		this.linkState1 = stateIn;
 		this.player = playerIn;
 		this.message = "LINK STARTED";
-		this.player.sendMessage(new StringTextComponent(this.message), Util.DUMMY_UUID);
+		this.player.sendMessage(new StringTextComponent(this.message), Util.NIL_UUID);
 	}
 	
 	@Override
@@ -73,12 +73,12 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 	
 	@Override
 	public boolean checkAxis() {
-		if (this.linkState1.get(TwelveDirectionBlock.AXIS).equals(this.linkState2.get(TwelveDirectionBlock.AXIS))) {
-			this.axis = this.linkState1.get(TwelveDirectionBlock.AXIS);
+		if (this.linkState1.getValue(TwelveDirectionBlock.AXIS).equals(this.linkState2.getValue(TwelveDirectionBlock.AXIS))) {
+			this.axis = this.linkState1.getValue(TwelveDirectionBlock.AXIS);
 			return true;
 		} else {
 			this.message = "LINK FAILED: AXIS MISALIGNMENT";
-			this.player.sendMessage(new StringTextComponent(message), Util.DUMMY_UUID);
+			this.player.sendMessage(new StringTextComponent(message), Util.NIL_UUID);
 			return false;
 		}
 	}
@@ -105,7 +105,7 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 		}
 		if (!bool) {
 			this.message = "LINK FAILED: POSITION MISALIGNMENT";
-			this.player.sendMessage(new StringTextComponent(message), Util.DUMMY_UUID);
+			this.player.sendMessage(new StringTextComponent(message), Util.NIL_UUID);
 		}
 		return bool; 
 	}
@@ -132,7 +132,7 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 		}
 		if (!bool) {
 			this.message = "LINK FAILED: POSITION MISALIGNMENT";
-			this.player.sendMessage(new StringTextComponent(message), Util.DUMMY_UUID);
+			this.player.sendMessage(new StringTextComponent(message), Util.NIL_UUID);
 		}
 		return bool; 
 	}
@@ -141,13 +141,13 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 	public boolean checkObstructed() {
 		boolean bool = true;
 		for (int k = 1; k < this.distance; k++) {
-			if (!this.world.isAirBlock(this.linkPos1.offset(this.direction, k))) {
+			if (!this.world.isEmptyBlock(this.linkPos1.relative(this.direction, k))) {
 				bool = false;
 			}	
 		}
 		if (!bool) {
 			this.message = "LINK FAILED: OBSTRUCTED";
-			this.player.sendMessage(new StringTextComponent(message), Util.DUMMY_UUID);	
+			this.player.sendMessage(new StringTextComponent(message), Util.NIL_UUID);	
 		}
 		return bool;
 	}
@@ -161,10 +161,10 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 		bool2 = this.distance > 1;
 		if (!bool1) {
 			this.message = "LINK FAILED: DISTANCE TOO FAR";
-			this.player.sendMessage(new StringTextComponent(message), Util.DUMMY_UUID);
+			this.player.sendMessage(new StringTextComponent(message), Util.NIL_UUID);
 		} else if (!bool2) {
 			this.message = "LINK FAILED: DISTANCE TOO SHORT";
-			this.player.sendMessage(new StringTextComponent(message), Util.DUMMY_UUID);
+			this.player.sendMessage(new StringTextComponent(message), Util.NIL_UUID);
 		}
 		return bool1 && bool2; 
 	}
@@ -172,8 +172,8 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 	@Override
 	public boolean checkMaterial() {
 		PlayerInventory inv = this.player.inventory;
-		this.linkTile1 = this.world.getTileEntity(this.linkPos1);
-		this.linkTile2 = this.world.getTileEntity(this.linkPos2);
+		this.linkTile1 = this.world.getBlockEntity(this.linkPos1);
+		this.linkTile2 = this.world.getBlockEntity(this.linkPos2);
 		int count = 0;
 		int shaft1;
 		int shaft2;
@@ -182,8 +182,8 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 		shaft1 = ((LineShaftHangerTileEntity) this.linkTile1).getShaft() ? 0 : 1;
 		shaft2 = ((LineShaftHangerTileEntity) this.linkTile2).getShaft() ? 0 : 1;
 		
-		for(int i = 0; i < inv.getSizeInventory(); i++) {
-		    ItemStack stack = inv.getStackInSlot(i);  
+		for(int i = 0; i < inv.getContainerSize(); i++) {
+		    ItemStack stack = inv.getItem(i);  
 		    if(stack.getItem() == TechnologicaItems.STEEL_SHAFT.get()) {
 		        count = count + stack.getCount();
 		    }    
@@ -191,7 +191,7 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 		bool = this.distance - 1 + shaft1 + shaft2 <= count;
 		if (!bool) {
 			this.message = "LINK FAILED: MATERIAL SHORTAGE";
-			this.player.sendMessage(new StringTextComponent(message), Util.DUMMY_UUID);
+			this.player.sendMessage(new StringTextComponent(message), Util.NIL_UUID);
 		}
 		return bool;
 	}
@@ -200,27 +200,27 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 	public void createLineShaft() {
 		((LineShaftHangerTileEntity) this.linkTile1).setShaft(true);
 		((LineShaftHangerTileEntity) this.linkTile2).setShaft(true);
-		this.world.notifyBlockUpdate(this.linkPos1, this.linkState1, this.linkState1, 3);
-		this.world.notifyBlockUpdate(this.linkPos2, this.linkState2, this.linkState2, 3);
+		this.world.sendBlockUpdated(this.linkPos1, this.linkState1, this.linkState1, 3);
+		this.world.sendBlockUpdated(this.linkPos2, this.linkState2, this.linkState2, 3);
 		
 		for (int k = 1; k < this.distance; k++) {
-			this.world.setBlockState(this.linkPos1.offset(this.direction, k), TechnologicaBlocks.LINE_SHAFT.get().getDefaultState().with(AXIS, this.axis), 3);
-			this.world.notifyBlockUpdate(this.linkPos1.offset(this.direction, k), Blocks.AIR.getDefaultState(), TechnologicaBlocks.LINE_SHAFT.get().getDefaultState().with(AXIS, this.axis), 3);
+			this.world.setBlock(this.linkPos1.relative(this.direction, k), TechnologicaBlocks.LINE_SHAFT.get().defaultBlockState().setValue(AXIS, this.axis), 3);
+			this.world.sendBlockUpdated(this.linkPos1.relative(this.direction, k), Blocks.AIR.defaultBlockState(), TechnologicaBlocks.LINE_SHAFT.get().defaultBlockState().setValue(AXIS, this.axis), 3);
 		}
 		this.message = "LINK SUCCESS";
-		this.player.sendMessage(new StringTextComponent(message), Util.DUMMY_UUID);	
+		this.player.sendMessage(new StringTextComponent(message), Util.NIL_UUID);	
 	}
 	
 	@Override
 	public void createBelt() {
-		this.linkTile1 = this.world.getTileEntity(this.linkPos1);
-		this.linkTile2 = this.world.getTileEntity(this.linkPos2);
+		this.linkTile1 = this.world.getBlockEntity(this.linkPos1);
+		this.linkTile2 = this.world.getBlockEntity(this.linkPos2);
 		((LineShaftTileEntity) this.linkTile1).setBeltPos(this.linkPos2);
 		((LineShaftTileEntity) this.linkTile2).setBeltPos(this.linkPos1);
-		this.world.notifyBlockUpdate(this.linkPos1, this.linkState1, this.linkState1, 3);
-		this.world.notifyBlockUpdate(this.linkPos2, this.linkState2, this.linkState2, 3);
+		this.world.sendBlockUpdated(this.linkPos1, this.linkState1, this.linkState1, 3);
+		this.world.sendBlockUpdated(this.linkPos2, this.linkState2, this.linkState2, 3);
 		this.message = "LINK SUCCESS";
-		this.player.sendMessage(new StringTextComponent(message), Util.DUMMY_UUID);	
+		this.player.sendMessage(new StringTextComponent(message), Util.NIL_UUID);	
 	}
 	
 	@Override

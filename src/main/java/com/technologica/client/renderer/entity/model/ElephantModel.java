@@ -20,87 +20,87 @@ public class ElephantModel<T extends ElephantEntity> extends QuadrupedModel<T> {
 	public ElephantModel() {
 		super(24, 0.0F, true, 10.0F, 4.0F, 2.0F, 2.0F, 24);
 		
-		this.textureWidth = 256;
-		this.textureHeight = 128;
+		this.texWidth = 256;
+		this.texHeight = 128;
 
-		this.headModel = new ModelRenderer(this, 135, 0);
-		this.headModel.addBox(-12.0F, -12.0F, -24.0F, 24.0F, 24.0F, 24.0F);
-		this.headModel.setRotationPoint(0.0F, -28.0F, -32.0F);
+		this.head = new ModelRenderer(this, 135, 0);
+		this.head.addBox(-12.0F, -12.0F, -24.0F, 24.0F, 24.0F, 24.0F);
+		this.head.setPos(0.0F, -28.0F, -32.0F);
 		
 		this.nose = new ModelRenderer(this, 0, 104);
 		this.nose.addBox(-6.0F, -6.0F, -30.0F, 12.0F, 18.0F, 6.0F);
-		this.headModel.addChild(this.nose);
+		this.head.addChild(this.nose);
 		
 		this.earLeft = new ModelRenderer(this, 0, 0);
 		this.earLeft.addBox(-1.0F, -10.0F, 0.0F, 1.0F, 24.0F, 24.0F);
-		this.earLeft.setRotationPoint(12.0F, -2.0F, -10.0F);
-		this.headModel.addChild(this.earLeft);
+		this.earLeft.setPos(12.0F, -2.0F, -10.0F);
+		this.head.addChild(this.earLeft);
 		
 		this.earRight = new ModelRenderer(this, 0, 0);
 		this.earRight.addBox(0.0F, -10.0F, 0.0F, 1.0F, 24.0F, 24.0F);
-		this.earRight.setRotationPoint(-12.0F, -2.0F, -10.0F);
-		this.headModel.addChild(this.earRight);
+		this.earRight.setPos(-12.0F, -2.0F, -10.0F);
+		this.head.addChild(this.earRight);
 		
 		this.tuskLeft = new ModelRenderer(this, 0, 0);
 		this.tuskLeft.addBox(-2.0F, 0.0F, -4.0F, 4.0F, 16.0F, 4.0F);
-		this.tuskLeft.setRotationPoint(9.0F, 12.0F, -19.0F);
-		this.headModel.addChild(this.tuskLeft);
+		this.tuskLeft.setPos(9.0F, 12.0F, -19.0F);
+		this.head.addChild(this.tuskLeft);
 		
 		this.tuskRight = new ModelRenderer(this, 0, 0);
 		this.tuskRight.addBox(-2.0F, 0.0F, -4.0F, 4.0F, 16.0F, 4.0F);
-		this.tuskRight.setRotationPoint(-9.0F, 12.0F, -19.0F);
-		this.headModel.addChild(this.tuskRight);
+		this.tuskRight.setPos(-9.0F, 12.0F, -19.0F);
+		this.head.addChild(this.tuskRight);
 		
 		this.trunk1 = new ModelRenderer(this, 200, 48);
 		this.trunk1.addBox(-4.0F, -8.0F, 0.0F, 8.0F, 20.0F, 8.0F);
-		this.trunk1.setRotationPoint(0.0F, 12.0F, -30.0F);
-		this.headModel.addChild(this.trunk1);
+		this.trunk1.setPos(0.0F, 12.0F, -30.0F);
+		this.head.addChild(this.trunk1);
 		
 		this.trunk2 = new ModelRenderer(this, 208, 0);
 		this.trunk2.addBox(-3.5F, 0.0F, 0.0F, 7.0F, 12.0F, 7.0F);
-		this.trunk2.setRotationPoint(0.0F, 12.0F, 0.0F);
+		this.trunk2.setPos(0.0F, 12.0F, 0.0F);
 		this.trunk1.addChild(this.trunk2);
 		
 		this.trunk3 = new ModelRenderer(this, 136, 0);
 		this.trunk3.addBox(-3.0F, 0.0F, 0.0F, 6.0F, 12.0F, 6.0F);
-		this.trunk3.setRotationPoint(0.0F, 12.0F, 0.0F);
+		this.trunk3.setPos(0.0F, 12.0F, 0.0F);
 		this.trunk2.addChild(this.trunk3);
 		
 		this.body = new ModelRenderer(this, 0, 0);
 		this.body.addBox(-18.0F, -20.0F, -32.0F, 36.0F, 40.0F, 64.0F);
-		this.body.setRotationPoint(0.0F, -20.0F, 0.0F);
+		this.body.setPos(0.0F, -20.0F, 0.0F);
 		
 		this.tail = new ModelRenderer(this, 236, 0);
 		this.tail.addBox(-1.5F, 0.0F, -3.0F, 3.0F, 32.0F, 3.0F);
-		this.tail.setRotationPoint(0.0F, -8.0F, 32.0F);
+		this.tail.setPos(0.0F, -8.0F, 32.0F);
 		this.body.addChild(this.tail);
 
-		this.legBackRight = new ModelRenderer(this, 188, 92);
-		this.legBackRight.addBox(-6.0F, 0.0F, -6.0F, 12.0F, 24.0F, 12.0F);
-		this.legBackRight.setRotationPoint(-12.0F, 0.0F, 26.0F);
+		this.leg0 = new ModelRenderer(this, 188, 92);
+		this.leg0.addBox(-6.0F, 0.0F, -6.0F, 12.0F, 24.0F, 12.0F);
+		this.leg0.setPos(-12.0F, 0.0F, 26.0F);
 
-		this.legBackLeft = new ModelRenderer(this, 188, 92);
-	    this.legBackLeft.addBox(-6.0F, 0.0F, -6.0F, 12.0F, 24.0F, 12.0F);
-	    this.legBackLeft.setRotationPoint(12.0F, 0.0F, 26.0F);
+		this.leg1 = new ModelRenderer(this, 188, 92);
+	    this.leg1.addBox(-6.0F, 0.0F, -6.0F, 12.0F, 24.0F, 12.0F);
+	    this.leg1.setPos(12.0F, 0.0F, 26.0F);
 	      
-	    this.legFrontRight = new ModelRenderer(this, 188, 92);
-	    this.legFrontRight.addBox(-6.0F, 0.0F, -6.0F, 12.0F, 24.0F, 12.0F);
-	    this.legFrontRight.setRotationPoint(-12.0F, 0.0F, -26.0F);
+	    this.leg2 = new ModelRenderer(this, 188, 92);
+	    this.leg2.addBox(-6.0F, 0.0F, -6.0F, 12.0F, 24.0F, 12.0F);
+	    this.leg2.setPos(-12.0F, 0.0F, -26.0F);
 		
-	    this.legFrontLeft = new ModelRenderer(this, 188, 92);
-	    this.legFrontLeft.addBox(-6.0F, 0.0F, -6.0F, 12.0F, 24.0F, 12.0F);
-	    this.legFrontLeft.setRotationPoint(12.0F, 0.0F, -26.0F);
+	    this.leg3 = new ModelRenderer(this, 188, 92);
+	    this.leg3.addBox(-6.0F, 0.0F, -6.0F, 12.0F, 24.0F, 12.0F);
+	    this.leg3.setPos(12.0F, 0.0F, -26.0F);
 	}
 
 	@Override
-	public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.tuskLeft.rotateAngleX = -(float) Math.PI / 10.0F;
-		this.tuskRight.rotateAngleX = -(float) Math.PI / 10.0F;
-		this.tail.rotateAngleX = (float) Math.PI / 10.0F;
-		this.trunk1.rotateAngleX = 0;
-		this.trunk2.rotateAngleX = 0;
-		this.trunk3.rotateAngleX = 0;
-		this.earLeft.rotateAngleY = (float) Math.PI / 5.0F;
-		this.earRight.rotateAngleY = -(float) Math.PI / 5.0F;
+	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		this.tuskLeft.xRot = -(float) Math.PI / 10.0F;
+		this.tuskRight.xRot = -(float) Math.PI / 10.0F;
+		this.tail.xRot = (float) Math.PI / 10.0F;
+		this.trunk1.xRot = 0;
+		this.trunk2.xRot = 0;
+		this.trunk3.xRot = 0;
+		this.earLeft.yRot = (float) Math.PI / 5.0F;
+		this.earRight.yRot = -(float) Math.PI / 5.0F;
 	}
 }

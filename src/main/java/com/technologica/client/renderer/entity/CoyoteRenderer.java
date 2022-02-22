@@ -20,7 +20,7 @@ public class CoyoteRenderer extends MobRenderer<CoyoteEntity, CoyoteModel<Coyote
 	/**
 	 * Defines what float the third param in setRotationAngles of ModelBase is
 	 */
-	protected float handleRotationFloat(CoyoteEntity livingBase, float partialTicks) {
+	protected float getBob(CoyoteEntity livingBase, float partialTicks) {
 		return livingBase.getTailRotation();
 	}
 
@@ -28,12 +28,12 @@ public class CoyoteRenderer extends MobRenderer<CoyoteEntity, CoyoteModel<Coyote
 			IRenderTypeBuffer bufferIn, int packedLightIn) {
 		if (entityIn.isCoyoteWet()) {
 			float f = entityIn.getShadingWhileWet(partialTicks);
-			this.entityModel.setTint(f, f, f);
+			this.model.setColor(f, f, f);
 		}
 
 		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 		if (entityIn.isCoyoteWet()) {
-			this.entityModel.setTint(1.0F, 1.0F, 1.0F);
+			this.model.setColor(1.0F, 1.0F, 1.0F);
 		}
 
 	}
@@ -41,7 +41,7 @@ public class CoyoteRenderer extends MobRenderer<CoyoteEntity, CoyoteModel<Coyote
 	/**
 	 * Returns the location of an entity's texture.
 	 */
-	public ResourceLocation getEntityTexture(CoyoteEntity entity) {
+	public ResourceLocation getTextureLocation(CoyoteEntity entity) {
 		return COYOTE_TEXTURES;
 
 	}

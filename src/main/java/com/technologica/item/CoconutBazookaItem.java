@@ -29,18 +29,18 @@ public class CoconutBazookaItem extends ShootableItem implements IVanishable {
 	}
 
 	@Override
-	public void onPlayerStoppedUsing(ItemStack itemStackIn, World worldIn, LivingEntity livingEntityIn, int timeLeftIn) {
+	public void releaseUsing(ItemStack itemStackIn, World worldIn, LivingEntity livingEntityIn, int timeLeftIn) {
 		if (livingEntityIn instanceof PlayerEntity) {
 			PlayerEntity playerentity = (PlayerEntity) livingEntityIn;
-			boolean creativeMode = playerentity.abilities.isCreativeMode;
+			boolean creativeMode = playerentity.abilities.instabuild;
 			ItemStack itemstack;
 			
 			if (creativeMode) {
 				itemstack = new ItemStack(TechnologicaItems.COCONUT.get()); 
 			} else {
 				itemstack = ItemStack.EMPTY;
-				for(int i = 0; i < playerentity.inventory.getSizeInventory(); ++i) {
-	            	ItemStack testStack = playerentity.inventory.getStackInSlot(i);
+				for(int i = 0; i < playerentity.inventory.getContainerSize(); ++i) {
+	            	ItemStack testStack = playerentity.inventory.getItem(i);
 	            	if (testStack.getItem() == TechnologicaItems.COCONUT.get()) {
 	            		itemstack = testStack;
 	            	}
@@ -64,13 +64,13 @@ public class CoconutBazookaItem extends ShootableItem implements IVanishable {
 					if (!creativeMode) {
 						itemstack.shrink(remainingProjectiles);
 						if (itemstack.isEmpty()) {
-							playerentity.inventory.deleteStack(itemstack);
+							playerentity.inventory.removeItem(itemstack);
 						}
-						itemStackIn.damageItem(1, playerentity, (player) -> {
-							player.sendBreakAnimation(playerentity.getActiveHand());
+						itemStackIn.hurtAndBreak(1, playerentity, (player) -> {
+							player.broadcastBreakEvent(playerentity.getUsedItemHand());
 						});
 					}
-					playerentity.addStat(Stats.ITEM_USED.get(this));
+					playerentity.awardStat(Stats.ITEM_USED.get(this));
 				}	
 			}
 		}
@@ -80,15 +80,15 @@ public class CoconutBazookaItem extends ShootableItem implements IVanishable {
 	@Override
 	public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
 		if (spacingTimer > 0) {
-			if (!worldIn.isRemote && entityIn instanceof PlayerEntity) {
+			if (!worldIn.isClientSide && entityIn instanceof PlayerEntity) {
 				PlayerEntity player = (PlayerEntity) entityIn;
 				
 				if (spacingTimer % 5 == 0 && remainingProjectiles > 0) {
 					CoconutEntity coconutEntity = new CoconutEntity(worldIn, player);
 					coconutEntity.setItem(new ItemStack(TechnologicaItems.COCONUT.get()));
-					coconutEntity.setDirectionAndMovement(player, player.rotationPitch, player.rotationYaw, 0.0F, 3.0F, 1.0F);
-					worldIn.addEntity(coconutEntity);
-					worldIn.playSound((PlayerEntity) null, player.getPosX(), player.getPosY(), player.getPosZ(), SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F) + 0.5F);
+					coconutEntity.shootFromRotation(player, player.xRot, player.yRot, 0.0F, 3.0F, 1.0F);
+					worldIn.addFreshEntity(coconutEntity);
+					worldIn.playSound((PlayerEntity) null, player.getX(), player.getY(), player.getZ(), SoundEvents.ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F) + 0.5F);
 					--remainingProjectiles;
 				}
 				--spacingTimer;	
@@ -101,21 +101,21 @@ public class CoconutBazookaItem extends ShootableItem implements IVanishable {
 		return 72000;
 	}
 
-	public UseAction getUseAction(ItemStack stack) {
+	public UseAction getUseAnimation(ItemStack stack) {
 		return UseAction.BOW;
 	}
 
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-		ItemStack itemstack = playerIn.getHeldItem(handIn);
-		boolean creativeMode = playerIn.abilities.isCreativeMode;
+	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+		ItemStack itemstack = playerIn.getItemInHand(handIn);
+		boolean creativeMode = playerIn.abilities.instabuild;
 		boolean flag;
 		
 		if (creativeMode) {
 			flag = true; 
 		} else {
 			ItemStack itemstack2 = ItemStack.EMPTY;
-			for(int i = 0; i < playerIn.inventory.getSizeInventory(); ++i) {
-            	ItemStack testStack = playerIn.inventory.getStackInSlot(i);
+			for(int i = 0; i < playerIn.inventory.getContainerSize(); ++i) {
+            	ItemStack testStack = playerIn.inventory.getItem(i);
             	if (testStack.getItem() == TechnologicaItems.COCONUT.get()) {
             		itemstack2 = testStack;
             	}
@@ -126,21 +126,21 @@ public class CoconutBazookaItem extends ShootableItem implements IVanishable {
 		ActionResult<ItemStack> ret = net.minecraftforge.event.ForgeEventFactory.onArrowNock(itemstack, worldIn, playerIn, handIn, flag);
 		if (ret != null) return ret;
 
-		if (!playerIn.abilities.isCreativeMode && !flag) {
-			return ActionResult.resultFail(itemstack);
+		if (!playerIn.abilities.instabuild && !flag) {
+			return ActionResult.fail(itemstack);
 		} else {
-			playerIn.setActiveHand(handIn);
-			return ActionResult.resultConsume(itemstack);
+			playerIn.startUsingItem(handIn);
+			return ActionResult.consume(itemstack);
 		}
 	}
 
 	@Override
-	public int func_230305_d_() {
+	public int getDefaultProjectileRange() {
 		return 15;
 	}
 
 	@Override
-	public Predicate<ItemStack> getInventoryAmmoPredicate() {
+	public Predicate<ItemStack> getAllSupportedProjectiles() {
 		return null;
 	}
 }

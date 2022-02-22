@@ -11,12 +11,12 @@ public class SwimGoal extends RandomSwimmingGoal {
 		this.fish = fish;
 	}
 
-	public boolean shouldExecute() {
-		return this.func_212800_dy() && super.shouldExecute();
+	public boolean canUse() {
+		return this.canRandomSwim() && super.canUse();
 	}
 
-	protected boolean func_212800_dy() {
-		return fish.hasGroupLeader();
+	protected boolean canRandomSwim() {
+		return fish.isFollower();
 	}
 
 	

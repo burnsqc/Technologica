@@ -16,7 +16,7 @@ public final class JaguarRenderer extends MobRenderer<JaguarEntity, JaguarModel<
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(JaguarEntity entity) {
+	public ResourceLocation getTextureLocation(JaguarEntity entity) {
 		return JAGUAR_TEXTURE;
 	}
 }

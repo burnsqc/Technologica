@@ -16,7 +16,7 @@ import net.minecraft.world.gen.foliageplacer.FoliagePlacerType;
 
 public class RedwoodFoliagePlacer extends FoliagePlacer {
 	public static final Codec<RedwoodFoliagePlacer> redwoodCodec = RecordCodecBuilder.create((p_236742_0_) -> {
-		return func_242830_b(p_236742_0_).apply(p_236742_0_, RedwoodFoliagePlacer::new);
+		return foliagePlacerParts(p_236742_0_).apply(p_236742_0_, RedwoodFoliagePlacer::new);
 	});
 
 	public RedwoodFoliagePlacer(FeatureSpread p_i241995_1_, FeatureSpread p_i241995_2_) {
@@ -24,26 +24,26 @@ public class RedwoodFoliagePlacer extends FoliagePlacer {
 
 	}
 
-	protected FoliagePlacerType<?> getPlacerType() {
+	protected FoliagePlacerType<?> type() {
 		return TechnologicaFoliagePlacers.REDWOOD.get();
 	}
 
 	// Generate foliage
-	protected void func_230372_a_(IWorldGenerationReader p_230372_1_, Random p_230372_2_,
+	protected void createFoliage(IWorldGenerationReader p_230372_1_, Random p_230372_2_,
 			BaseTreeFeatureConfig p_230372_3_, int p_230372_4_, FoliagePlacer.Foliage p_230372_5_, int p_230372_6_,
 			int p_230372_7_, Set<BlockPos> p_230372_8_, int p_230372_9_, MutableBoundingBox p_230372_10_) {
-		BlockPos blockpos = p_230372_5_.func_236763_a_();
+		BlockPos blockpos = p_230372_5_.foliagePos();
 		int i = p_230372_2_.nextInt(2);
 		int j = 0;
 		int k = 0;
 
 		for (int l = p_230372_9_; l >= -p_230372_6_; --l) {
-			this.func_236753_a_(p_230372_1_, p_230372_2_, p_230372_3_, blockpos, i, p_230372_8_, l,
-					p_230372_5_.func_236765_c_(), p_230372_10_);
+			this.placeLeavesRow(p_230372_1_, p_230372_2_, p_230372_3_, blockpos, i, p_230372_8_, l,
+					p_230372_5_.doubleTrunk(), p_230372_10_);
 			if (i >= j) {
 				i = k;
 				k = 5;
-				j = Math.min(j + 1, p_230372_7_ + p_230372_5_.func_236764_b_());
+				j = Math.min(j + 1, p_230372_7_ + p_230372_5_.radiusOffset());
 			} else {
 				++i;
 			}
@@ -52,7 +52,7 @@ public class RedwoodFoliagePlacer extends FoliagePlacer {
 	}
 
 	// Adjust number of layers based upon trunk height
-	public int func_230374_a_(Random randomIn, int i, BaseTreeFeatureConfig configIn) {
+	public int foliageHeight(Random randomIn, int i, BaseTreeFeatureConfig configIn) {
 		int trim;
 		if (i == 2) {
 			trim = i - 1;
@@ -65,7 +65,7 @@ public class RedwoodFoliagePlacer extends FoliagePlacer {
 	}
 
 	// Prune foliage
-	protected boolean func_230373_a_(Random randomIn, int relativeZ, int relativeY, int relativeX, int p_230373_5_,
+	protected boolean shouldSkipLocation(Random randomIn, int relativeZ, int relativeY, int relativeX, int p_230373_5_,
 			boolean p_230373_6_) {
 		if (relativeY >= 2) {
 			return (relativeX + relativeZ >= 0);

@@ -15,13 +15,12 @@ public class TechnologicaTileEntities {
 	private static final DeferredRegister<TileEntityType<?>> TILEENTITIES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, MODID);
 
 	public static void init() {
-		LOGGER.info("INITIALIZING TILE ENTITIES");
 		TILEENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
 		LOGGER.info(TILEENTITIES.getEntries().size() + " TILE ENTITIES INITIALIZED");
 	}
 	
 	public static final RegistryObject<TileEntityType<VanillaSignTileEntity>> MOD_SIGN = TILEENTITIES.register("mod_sign",
-			() -> TileEntityType.Builder.create(VanillaSignTileEntity::new,
+			() -> TileEntityType.Builder.of(VanillaSignTileEntity::new,
 					TechnologicaBlocks.APRICOT_SIGN.get(),
 					TechnologicaBlocks.ASPEN_SIGN.get(),
 					TechnologicaBlocks.AVOCADO_SIGN.get(),
@@ -87,7 +86,7 @@ public class TechnologicaTileEntities {
 					TechnologicaBlocks.INFERNAL_WALL_SIGN.get(),
 					TechnologicaBlocks.MALEVOLENT_WALL_SIGN.get()).build(null));
 	public static final RegistryObject<TileEntityType<FruitTileEntity>> FRUIT_CROP = TILEENTITIES.register("fruit_crop",
-			() -> TileEntityType.Builder.create(FruitTileEntity::new,
+			() -> TileEntityType.Builder.of(FruitTileEntity::new,
 					TechnologicaBlocks.APRICOT_LEAVES.get(),
 					TechnologicaBlocks.AVOCADO_LEAVES.get(),
 					TechnologicaBlocks.BANANA_LEAVES.get(),
@@ -106,25 +105,25 @@ public class TechnologicaTileEntities {
 					TechnologicaBlocks.FRUITFUL_LEAVES.get(),
 					TechnologicaBlocks.ALCHEMICAL_LEAVES.get()).build(null));
 	public static final RegistryObject<TileEntityType<PotionTileEntity>> POTION_CROP = TILEENTITIES.register("potion_crop",
-			() -> TileEntityType.Builder.create(PotionTileEntity::new, 
+			() -> TileEntityType.Builder.of(PotionTileEntity::new, 
 					TechnologicaBlocks.BENEVOLENT_LEAVES.get(), 
 					TechnologicaBlocks.MALEVOLENT_LEAVES.get()).build(null));
 	public static final RegistryObject<TileEntityType<DisplayCaseTileEntity>> DISPLAY_TILE = TILEENTITIES.register("display_tile",
-			() -> TileEntityType.Builder.create(DisplayCaseTileEntity::new, 
+			() -> TileEntityType.Builder.of(DisplayCaseTileEntity::new, 
 					TechnologicaBlocks.DISPLAY_CASE.get()).build(null));
 	public static final RegistryObject<TileEntityType<LineShaftTileEntity>> LINE_SHAFT_TILE = TILEENTITIES.register("line_shaft_tile",
-			() -> TileEntityType.Builder.create(LineShaftTileEntity::new, 
+			() -> TileEntityType.Builder.of(LineShaftTileEntity::new, 
 					TechnologicaBlocks.LINE_SHAFT.get()).build(null));
 	public static final RegistryObject<TileEntityType<LineShaftHangerTileEntity>> LINE_SHAFT_HANGER_TILE = TILEENTITIES.register("line_shaft_hanger_tile", 
-			() -> TileEntityType.Builder.create(LineShaftHangerTileEntity::new, 
+			() -> TileEntityType.Builder.of(LineShaftHangerTileEntity::new, 
 					TechnologicaBlocks.LINE_SHAFT_HANGER.get()).build(null));
 	public static final RegistryObject<TileEntityType<SawmillTileEntity>> SAWMILL_TILE = TILEENTITIES.register("sawmill_tile", 
-			() -> TileEntityType.Builder.create(SawmillTileEntity::new, 
+			() -> TileEntityType.Builder.of(SawmillTileEntity::new, 
 					TechnologicaBlocks.SAWMILL.get()).build(null));
 	public static final RegistryObject<TileEntityType<AnnunciatorTileEntity>> ANNUNCIATOR_TILE = TILEENTITIES.register("annunciator_tile", 
-			() -> TileEntityType.Builder.create(AnnunciatorTileEntity::new, 
+			() -> TileEntityType.Builder.of(AnnunciatorTileEntity::new, 
 					TechnologicaBlocks.ANNUNCIATOR.get()).build(null));
 	public static final RegistryObject<TileEntityType<MulchTileEntity>> MULCH_TILE = TILEENTITIES.register("mulch_tile", 
-			() -> TileEntityType.Builder.create(MulchTileEntity::new, 
+			() -> TileEntityType.Builder.of(MulchTileEntity::new, 
 					TechnologicaBlocks.MULCH.get()).build(null));
 }

@@ -16,7 +16,7 @@ public final class CottonmouthRenderer extends MobRenderer<CottonmouthEntity, Co
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(CottonmouthEntity entity) {
+	public ResourceLocation getTextureLocation(CottonmouthEntity entity) {
 		return COTTONMOUTH_TEXTURE;
 	}
 }

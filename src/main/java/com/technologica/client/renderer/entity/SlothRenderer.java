@@ -16,7 +16,7 @@ public final class SlothRenderer extends MobRenderer<SlothEntity, SlothModel<Slo
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(SlothEntity entity) {
+	public ResourceLocation getTextureLocation(SlothEntity entity) {
 		return SLOTH_TEXTURE;
 	}
 }

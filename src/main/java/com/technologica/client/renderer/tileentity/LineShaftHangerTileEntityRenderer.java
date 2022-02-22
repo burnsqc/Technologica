@@ -30,32 +30,32 @@ public class LineShaftHangerTileEntityRenderer extends TileEntityRenderer<LineSh
     	if (tileEntity.getShaft()) {
     		long time = System.currentTimeMillis() * 6 * (int) tileEntity.getRPM() / 1000;
     		float angle = time % 360;
-    		BlockRendererDispatcher blockrendererdispatcher = Minecraft.getInstance().getBlockRendererDispatcher();
-    		BlockModelRenderer blockModelRenderer = blockrendererdispatcher.getBlockModelRenderer();
+    		BlockRendererDispatcher blockrendererdispatcher = Minecraft.getInstance().getBlockRenderer();
+    		BlockModelRenderer blockModelRenderer = blockrendererdispatcher.getModelRenderer();
 	      BlockState state; // this state assignment will always be overwritten later in the method
     		LineShaftTileEntity tileEntity2 = new LineShaftTileEntity();
     		
-    		matrixStack.push();  
+    		matrixStack.pushPose();  
         
-    		if (tileEntity.getBlockState().get(TwelveDirectionBlock.AXIS) == Direction.Axis.X) {
-    			state = TechnologicaBlocks.LINE_SHAFT.get().getDefaultState().with(TwelveDirectionBlock.AXIS, Direction.Axis.X);
+    		if (tileEntity.getBlockState().getValue(TwelveDirectionBlock.AXIS) == Direction.Axis.X) {
+    			state = TechnologicaBlocks.LINE_SHAFT.get().defaultBlockState().setValue(TwelveDirectionBlock.AXIS, Direction.Axis.X);
     			matrixStack.translate(0.0, 0.5, 0.5);
-    			matrixStack.rotate(Vector3f.XP.rotationDegrees(angle));
+    			matrixStack.mulPose(Vector3f.XP.rotationDegrees(angle));
     			matrixStack.translate(0.0, -0.5, -0.5);        	
-    		} else if (tileEntity.getBlockState().get(TwelveDirectionBlock.AXIS) == Direction.Axis.Y) {
-    			state = TechnologicaBlocks.LINE_SHAFT.get().getDefaultState().with(TwelveDirectionBlock.AXIS, Direction.Axis.Y);
+    		} else if (tileEntity.getBlockState().getValue(TwelveDirectionBlock.AXIS) == Direction.Axis.Y) {
+    			state = TechnologicaBlocks.LINE_SHAFT.get().defaultBlockState().setValue(TwelveDirectionBlock.AXIS, Direction.Axis.Y);
     			matrixStack.translate(0.5, 0.0, 0.5);
-    			matrixStack.rotate(Vector3f.YP.rotationDegrees(angle));
+    			matrixStack.mulPose(Vector3f.YP.rotationDegrees(angle));
     			matrixStack.translate(-0.5, 0.0, -0.5);
     		} else {
-    			state = TechnologicaBlocks.LINE_SHAFT.get().getDefaultState().with(TwelveDirectionBlock.AXIS, Direction.Axis.Z);
+    			state = TechnologicaBlocks.LINE_SHAFT.get().defaultBlockState().setValue(TwelveDirectionBlock.AXIS, Direction.Axis.Z);
     			matrixStack.translate(0.5, 0.5, 0.0);
-    			matrixStack.rotate(Vector3f.ZP.rotationDegrees(angle));
+    			matrixStack.mulPose(Vector3f.ZP.rotationDegrees(angle));
     			matrixStack.translate(-0.5, -0.5, 0.0);
     		}
        
-    		blockModelRenderer.renderModel(tileEntity.getWorld(), blockrendererdispatcher.getModelForState(state), state, tileEntity.getPos(), matrixStack, buffer.getBuffer(RenderType.getSolid()), false, new Random(), 42, combinedOverlay, tileEntity2.getModelData());
-    		matrixStack.pop();
+    		blockModelRenderer.renderModel(tileEntity.getLevel(), blockrendererdispatcher.getBlockModel(state), state, tileEntity.getBlockPos(), matrixStack, buffer.getBuffer(RenderType.solid()), false, new Random(), 42, combinedOverlay, tileEntity2.getModelData());
+    		matrixStack.popPose();
     	}
     }
 }

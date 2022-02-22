@@ -16,7 +16,7 @@ import net.minecraft.world.IBlockReader;
 public class VanillaLeavesBlock extends LeavesBlock {
 
 	public VanillaLeavesBlock() {
-		super(AbstractBlock.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid());
+		super(AbstractBlock.Properties.of(Material.LEAVES).strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion());
 	}
 
 	/*

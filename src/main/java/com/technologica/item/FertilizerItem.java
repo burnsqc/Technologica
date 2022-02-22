@@ -18,25 +18,25 @@ public class FertilizerItem extends BoneMealItem {
 	}
 
 	@Override
-	public ActionResultType onItemUse(ItemUseContext context) {
-		World world = context.getWorld();
-		BlockPos blockpos = context.getPos();
-		BlockPos blockpos1 = blockpos.offset(context.getFace());
-		if (applyFertilizer(context.getItem(), world, blockpos, context.getPlayer())) {
-			if (!world.isRemote) {
-				world.playEvent(2005, blockpos, 0);
+	public ActionResultType useOn(ItemUseContext context) {
+		World world = context.getLevel();
+		BlockPos blockpos = context.getClickedPos();
+		BlockPos blockpos1 = blockpos.relative(context.getClickedFace());
+		if (applyFertilizer(context.getItemInHand(), world, blockpos, context.getPlayer())) {
+			if (!world.isClientSide) {
+				world.levelEvent(2005, blockpos, 0);
 			}
 
-			return ActionResultType.func_233537_a_(world.isRemote);
+			return ActionResultType.sidedSuccess(world.isClientSide);
 		} else {
 			BlockState blockstate = world.getBlockState(blockpos);
-			boolean flag = blockstate.isSolidSide(world, blockpos, context.getFace());
-			if (flag && growSeagrass(context.getItem(), world, blockpos1, context.getFace())) {
-				if (!world.isRemote) {
-					world.playEvent(2005, blockpos1, 0);
+			boolean flag = blockstate.isFaceSturdy(world, blockpos, context.getClickedFace());
+			if (flag && growWaterPlant(context.getItemInHand(), world, blockpos1, context.getClickedFace())) {
+				if (!world.isClientSide) {
+					world.levelEvent(2005, blockpos1, 0);
 				}
 
-				return ActionResultType.func_233537_a_(world.isRemote);
+				return ActionResultType.sidedSuccess(world.isClientSide);
 			} else {
 				return ActionResultType.PASS;
 			}
@@ -49,14 +49,14 @@ public class FertilizerItem extends BoneMealItem {
 		if (blockstate.getBlock() instanceof IGrowable) {
 			for (int i = -4; i < 5; ++i) {
 				for (int j = -4; j < 5; ++j) {
-					BlockState toGrow = worldIn.getBlockState(pos.add(i, 0, j));
+					BlockState toGrow = worldIn.getBlockState(pos.offset(i, 0, j));
 
 					if (toGrow.getBlock() instanceof IGrowable) {
 						IGrowable igrowable = (IGrowable) toGrow.getBlock();
-						if (igrowable.canGrow(worldIn, pos.add(i, 0, j), toGrow, worldIn.isRemote)) {
+						if (igrowable.isValidBonemealTarget(worldIn, pos.offset(i, 0, j), toGrow, worldIn.isClientSide)) {
 							if (worldIn instanceof ServerWorld) {
-								if (igrowable.canUseBonemeal(worldIn, worldIn.rand, pos.add(i, 0, j), toGrow)) {
-									igrowable.grow((ServerWorld) worldIn, worldIn.rand, pos.add(i, 0, j), toGrow);
+								if (igrowable.isBonemealSuccess(worldIn, worldIn.random, pos.offset(i, 0, j), toGrow)) {
+									igrowable.performBonemeal((ServerWorld) worldIn, worldIn.random, pos.offset(i, 0, j), toGrow);
 								}
 
 							}

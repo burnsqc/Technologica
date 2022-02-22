@@ -18,7 +18,7 @@ public class FourDirectionBlock extends Block {
 
 	public FourDirectionBlock(Properties propertiesIn) {
 		super(propertiesIn);
-		this.setDefaultState(this.stateContainer.getBaseState().with(NESW_FACING, Direction.NORTH));
+		this.registerDefaultState(this.stateDefinition.any().setValue(NESW_FACING, Direction.NORTH));
 	}
 
 	/*
@@ -27,13 +27,13 @@ public class FourDirectionBlock extends Block {
 	
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext contextIn) {
-		return this.getDefaultState().with(NESW_FACING, contextIn.getPlacementHorizontalFacing().getOpposite());
+		return this.defaultBlockState().setValue(NESW_FACING, contextIn.getHorizontalDirection().getOpposite());
 	}
 	
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builderIn) {
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builderIn) {
 		builderIn.add(NESW_FACING);
-		super.fillStateContainer(builderIn);
+		super.createBlockStateDefinition(builderIn);
 	}
 
 }

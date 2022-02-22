@@ -17,7 +17,7 @@ public class AnnunciatorContainer extends Container {
 	
 	public AnnunciatorContainer(int windowIdIn, World worldIn, BlockPos posIn, PlayerInventory playerInventoryIn) {
 		super(TechnologicaContainerType.ANNUNCIATOR.get(), windowIdIn);
-		this.tileEntity = worldIn.getTileEntity(posIn);
+		this.tileEntity = worldIn.getBlockEntity(posIn);
 		
 		for (int l = 0; l < 3; ++l) {
 			for (int j1 = 0; j1 < 9; ++j1) {
@@ -38,24 +38,24 @@ public class AnnunciatorContainer extends Container {
 	}
 
 	@Override
-	public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
+	public ItemStack quickMoveStack(PlayerEntity playerIn, int index) {
 		ItemStack itemstack = ItemStack.EMPTY;
-		Slot slot = this.inventorySlots.get(index);
-		if (slot != null && slot.getHasStack()) {
-			ItemStack itemstack1 = slot.getStack();
+		Slot slot = this.slots.get(index);
+		if (slot != null && slot.hasItem()) {
+			ItemStack itemstack1 = slot.getItem();
 			itemstack = itemstack1.copy();
 			if (index == 0) {
-				if (!this.mergeItemStack(itemstack1, 1, this.inventorySlots.size(), false)) {
+				if (!this.moveItemStackTo(itemstack1, 1, this.slots.size(), false)) {
 					return ItemStack.EMPTY;
 				}
-			} else if (!this.mergeItemStack(itemstack1, 0, 1, false)) {
+			} else if (!this.moveItemStackTo(itemstack1, 0, 1, false)) {
 				return ItemStack.EMPTY;
 			}
 
 			if (itemstack1.isEmpty()) {
-				slot.putStack(ItemStack.EMPTY);
+				slot.set(ItemStack.EMPTY);
 			} else {
-				slot.onSlotChanged();
+				slot.setChanged();
 			}
 		}
 
@@ -63,7 +63,7 @@ public class AnnunciatorContainer extends Container {
 	}
 
 	@Override
-	public boolean canInteractWith(PlayerEntity playerIn) {
+	public boolean stillValid(PlayerEntity playerIn) {
 		return true;
 	}
 

@@ -20,19 +20,19 @@ import net.minecraftforge.fml.network.PacketDistributor;
 public class VanillaSignItem extends SignItem {
 		
 	public VanillaSignItem(Block floorBlockIn, Block wallBlockIn) {
-		super(new Item.Properties().group(TechnologicaItemGroup.CONSTRUCTION), floorBlockIn, wallBlockIn);
+		super(new Item.Properties().tab(TechnologicaItemGroup.CONSTRUCTION), floorBlockIn, wallBlockIn);
 	}
 
 	@Override
-	protected boolean onBlockPlaced(BlockPos pos, World worldIn, @Nullable PlayerEntity playerIn, ItemStack stack, BlockState state) {
-		boolean flag = setTileEntityNBT(worldIn, playerIn, pos, stack);
+	protected boolean updateCustomBlockEntityTag(BlockPos pos, World worldIn, @Nullable PlayerEntity playerIn, ItemStack stack, BlockState state) {
+		boolean flag = updateCustomBlockEntityTag(worldIn, playerIn, pos, stack);
 		
 		
-		if (!worldIn.isRemote && !flag && playerIn != null) {
-			VanillaSignTileEntity signTile = (VanillaSignTileEntity) worldIn.getTileEntity(pos);
+		if (!worldIn.isClientSide && !flag && playerIn != null) {
+			VanillaSignTileEntity signTile = (VanillaSignTileEntity) worldIn.getBlockEntity(pos);
 			
 			ServerPlayerEntity player = (ServerPlayerEntity) playerIn;
-			signTile.setPlayer(player);
+			signTile.setAllowedPlayerEditor(player);
 			
 			Packets.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), new SOpenModSignMenuPacket(pos));
 		}

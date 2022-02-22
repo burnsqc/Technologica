@@ -16,29 +16,29 @@ import net.minecraft.world.gen.foliageplacer.FoliagePlacerType;
 
 public class ConicalFoliagePlacer extends FoliagePlacer {
 	public static final Codec<ConicalFoliagePlacer> conicalCodec = RecordCodecBuilder.create((p_236742_0_) -> {
-		return func_242830_b(p_236742_0_).apply(p_236742_0_, ConicalFoliagePlacer::new);
+		return foliagePlacerParts(p_236742_0_).apply(p_236742_0_, ConicalFoliagePlacer::new);
 	});
 	
 	public ConicalFoliagePlacer(FeatureSpread p_i241995_1_, FeatureSpread p_i241995_2_) {
 		super(p_i241995_1_, p_i241995_2_);
 	}
 
-	protected FoliagePlacerType<?> getPlacerType() {
+	protected FoliagePlacerType<?> type() {
 		return TechnologicaFoliagePlacers.CONICAL.get();
 	}
 
 	//Generate foliage
-	protected void func_230372_a_(IWorldGenerationReader worldIn, Random randomIn, BaseTreeFeatureConfig configIn, int p_230372_4_, FoliagePlacer.Foliage p_230372_5_, int layersBelowTop, int diameter, Set<BlockPos> p_230372_8_, int topLayer, MutableBoundingBox boundingBoxIn) 
+	protected void createFoliage(IWorldGenerationReader worldIn, Random randomIn, BaseTreeFeatureConfig configIn, int p_230372_4_, FoliagePlacer.Foliage p_230372_5_, int layersBelowTop, int diameter, Set<BlockPos> p_230372_8_, int topLayer, MutableBoundingBox boundingBoxIn) 
 	{
 		for (int layer = topLayer + 1; layer >= topLayer - layersBelowTop + 1; --layer) 
 		{
-			int j = Math.max(diameter + p_230372_5_.func_236764_b_() - layer + 1, 0);
-			this.func_236753_a_(worldIn, randomIn, configIn, p_230372_5_.func_236763_a_(), j, p_230372_8_, layer, p_230372_5_.func_236765_c_(), boundingBoxIn);
+			int j = Math.max(diameter + p_230372_5_.radiusOffset() - layer + 1, 0);
+			this.placeLeavesRow(worldIn, randomIn, configIn, p_230372_5_.foliagePos(), j, p_230372_8_, layer, p_230372_5_.doubleTrunk(), boundingBoxIn);
 		}
 	}
 
 	//Adjust number of layers based upon trunk height
-	public int func_230374_a_(Random randomIn, int i, BaseTreeFeatureConfig configIn) {
+	public int foliageHeight(Random randomIn, int i, BaseTreeFeatureConfig configIn) {
 		int trim;
 		if (i == 2) {
 			trim = i-1;
@@ -51,7 +51,7 @@ public class ConicalFoliagePlacer extends FoliagePlacer {
 	}
 
 	//Prune foliage
-	protected boolean func_230373_a_(Random randomIn, int relativeZ, int relativeY, int relativeX, int p_230373_5_, boolean p_230373_6_) {
+	protected boolean shouldSkipLocation(Random randomIn, int relativeZ, int relativeY, int relativeX, int p_230373_5_, boolean p_230373_6_) {
 		if (relativeY==1) {
 			return (relativeX + relativeZ >= 1);
 		} else if (relativeY==0) {

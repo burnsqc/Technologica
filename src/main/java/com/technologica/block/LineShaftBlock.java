@@ -40,8 +40,8 @@ public class LineShaftBlock extends RotatedPillarBlock {
 	public static final EnumProperty<Radius> RADIUS = TechnologicaBlockStateProperties.RADIUS;
 	
 	public LineShaftBlock() {
-		super(AbstractBlock.Properties.create(Material.IRON).hardnessAndResistance(0.3F).sound(SoundType.ANVIL).notSolid());
-		this.setDefaultState(this.stateContainer.getBaseState().with(RADIUS, Radius.NONE));
+		super(AbstractBlock.Properties.of(Material.METAL).strength(0.3F).sound(SoundType.ANVIL).noOcclusion());
+		this.registerDefaultState(this.stateDefinition.any().setValue(RADIUS, Radius.NONE));
 	}
 
 	/*
@@ -49,7 +49,7 @@ public class LineShaftBlock extends RotatedPillarBlock {
 	 */
 	
 	public LineShaftTileEntity getTileEntity(World worldIn, BlockPos posIn) {
-        return (LineShaftTileEntity) worldIn.getTileEntity(posIn);
+        return (LineShaftTileEntity) worldIn.getBlockEntity(posIn);
     }
 	
 	/*
@@ -58,49 +58,49 @@ public class LineShaftBlock extends RotatedPillarBlock {
 	
 	@Override
 	@Deprecated
-	public BlockState updatePostPlacement(BlockState stateIn, Direction directionIn, BlockState facingStateIn, IWorld worldIn, BlockPos currentPosIn, BlockPos facingPosIn) {
-		worldIn.getPendingBlockTicks().scheduleTick(currentPosIn, this, 0);
-	    return super.updatePostPlacement(stateIn, directionIn, facingStateIn, worldIn, currentPosIn, facingPosIn);
+	public BlockState updateShape(BlockState stateIn, Direction directionIn, BlockState facingStateIn, IWorld worldIn, BlockPos currentPosIn, BlockPos facingPosIn) {
+		worldIn.getBlockTicks().scheduleTick(currentPosIn, this, 0);
+	    return super.updateShape(stateIn, directionIn, facingStateIn, worldIn, currentPosIn, facingPosIn);
 	}
 	
 	@Override
-	public ActionResultType onBlockActivated(BlockState stateIn, World worldIn, BlockPos posIn, PlayerEntity playerIn, Hand handIn, BlockRayTraceResult hitIn) {
+	public ActionResultType use(BlockState stateIn, World worldIn, BlockPos posIn, PlayerEntity playerIn, Hand handIn, BlockRayTraceResult hitIn) {
 		LineShaftTileEntity tile = getTileEntity(worldIn, posIn);
-		Item tool = playerIn.getHeldItem(handIn).getItem();
+		Item tool = playerIn.getItemInHand(handIn).getItem();
 		
 		if (tool == TechnologicaItems.PIPE_WRENCH.get()) {
-			worldIn.setBlockState(posIn, stateIn.with(RADIUS, Radius.NONE), 1);
-			worldIn.playSound((PlayerEntity)null, posIn, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.rand.nextFloat() * 0.4F);
+			worldIn.setBlock(posIn, stateIn.setValue(RADIUS, Radius.NONE), 1);
+			worldIn.playSound((PlayerEntity)null, posIn, SoundEvents.ANVIL_PLACE, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.random.nextFloat() * 0.4F);
 			
-		} else if (tile.getBlockState().get(RADIUS).getRadius() == 0) {
+		} else if (tile.getBlockState().getValue(RADIUS).getRadius() == 0) {
 			if (tool == TechnologicaItems.SMALL_PULLEY_ITEM.get()) {
-				worldIn.setBlockState(posIn, stateIn.with(RADIUS, Radius.SMALL), 1);
-				worldIn.playSound((PlayerEntity)null, posIn, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.rand.nextFloat() * 0.4F);
+				worldIn.setBlock(posIn, stateIn.setValue(RADIUS, Radius.SMALL), 1);
+				worldIn.playSound((PlayerEntity)null, posIn, SoundEvents.ANVIL_PLACE, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.random.nextFloat() * 0.4F);
 			} else if (tool == TechnologicaItems.MEDIUM_PULLEY_ITEM.get()) {
-				worldIn.setBlockState(posIn, stateIn.with(RADIUS, Radius.MEDIUM), 1);
-				worldIn.playSound((PlayerEntity)null, posIn, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.rand.nextFloat() * 0.4F);
+				worldIn.setBlock(posIn, stateIn.setValue(RADIUS, Radius.MEDIUM), 1);
+				worldIn.playSound((PlayerEntity)null, posIn, SoundEvents.ANVIL_PLACE, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.random.nextFloat() * 0.4F);
 			} else if (tool == TechnologicaItems.LARGE_PULLEY_ITEM.get()) {
-				worldIn.setBlockState(posIn, stateIn.with(RADIUS, Radius.LARGE), 1);
-				worldIn.playSound((PlayerEntity)null, posIn, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.rand.nextFloat() * 0.4F);
+				worldIn.setBlock(posIn, stateIn.setValue(RADIUS, Radius.LARGE), 1);
+				worldIn.playSound((PlayerEntity)null, posIn, SoundEvents.ANVIL_PLACE, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.random.nextFloat() * 0.4F);
 			}
 		}
-		return ActionResultType.func_233537_a_(worldIn.isRemote);
+		return ActionResultType.sidedSuccess(worldIn.isClientSide);
 	}
 
 	@Override
-	public BlockRenderType getRenderType(BlockState stateIn) {
+	public BlockRenderType getRenderShape(BlockState stateIn) {
 		return BlockRenderType.ENTITYBLOCK_ANIMATED;
 	}	
 	
 	@Override
-	public boolean isValidPosition(BlockState stateIn, IWorldReader worldIn, BlockPos posIn) {
+	public boolean canSurvive(BlockState stateIn, IWorldReader worldIn, BlockPos posIn) {
 		boolean bool = false;
-		switch (stateIn.get(AXIS)) {
+		switch (stateIn.getValue(AXIS)) {
 		case X:
 			bool = worldIn.getBlockState(posIn.east()).getBlock() == TechnologicaBlocks.LINE_SHAFT_HANGER.get() || worldIn.getBlockState(posIn.west()).getBlock() == TechnologicaBlocks.LINE_SHAFT_HANGER.get() || (worldIn.getBlockState(posIn.east()).getBlock() == TechnologicaBlocks.LINE_SHAFT.get() && worldIn.getBlockState(posIn.west()).getBlock() == TechnologicaBlocks.LINE_SHAFT.get() || worldIn.getBlockState(posIn.east()).getBlock() instanceof MotorBlock || worldIn.getBlockState(posIn.west()).getBlock() instanceof MotorBlock);
 			break;
 		case Y:
-			bool = worldIn.getBlockState(posIn.up()).getBlock() == TechnologicaBlocks.LINE_SHAFT_HANGER.get() || worldIn.getBlockState(posIn.down()).getBlock() == TechnologicaBlocks.LINE_SHAFT_HANGER.get() || (worldIn.getBlockState(posIn.up()).getBlock() == TechnologicaBlocks.LINE_SHAFT.get() && worldIn.getBlockState(posIn.down()).getBlock() == TechnologicaBlocks.LINE_SHAFT.get() || worldIn.getBlockState(posIn.up()).getBlock() instanceof MotorBlock || worldIn.getBlockState(posIn.down()).getBlock() instanceof MotorBlock);
+			bool = worldIn.getBlockState(posIn.above()).getBlock() == TechnologicaBlocks.LINE_SHAFT_HANGER.get() || worldIn.getBlockState(posIn.below()).getBlock() == TechnologicaBlocks.LINE_SHAFT_HANGER.get() || (worldIn.getBlockState(posIn.above()).getBlock() == TechnologicaBlocks.LINE_SHAFT.get() && worldIn.getBlockState(posIn.below()).getBlock() == TechnologicaBlocks.LINE_SHAFT.get() || worldIn.getBlockState(posIn.above()).getBlock() instanceof MotorBlock || worldIn.getBlockState(posIn.below()).getBlock() instanceof MotorBlock);
 			break;
 		case Z:
 			bool = worldIn.getBlockState(posIn.north()).getBlock() == TechnologicaBlocks.LINE_SHAFT_HANGER.get() || worldIn.getBlockState(posIn.south()).getBlock() == TechnologicaBlocks.LINE_SHAFT_HANGER.get() || (worldIn.getBlockState(posIn.north()).getBlock() == TechnologicaBlocks.LINE_SHAFT.get() && worldIn.getBlockState(posIn.south()).getBlock() == TechnologicaBlocks.LINE_SHAFT.get() || worldIn.getBlockState(posIn.north()).getBlock() instanceof MotorBlock || worldIn.getBlockState(posIn.south()).getBlock() instanceof MotorBlock);
@@ -111,13 +111,13 @@ public class LineShaftBlock extends RotatedPillarBlock {
 	
 	@Override
 	public void tick(BlockState stateIn, ServerWorld worldIn, BlockPos posIn, Random randomIn) {
-	    if (!isValidPosition(stateIn, worldIn, posIn)) {
+	    if (!canSurvive(stateIn, worldIn, posIn)) {
 	    	worldIn.destroyBlock(posIn, true);
 	    }
 	}
 	
 	@Override
-	public void onBlockHarvested(World worldIn, BlockPos posIn, BlockState stateIn, PlayerEntity playerIn) {
+	public void playerWillDestroy(World worldIn, BlockPos posIn, BlockState stateIn, PlayerEntity playerIn) {
 		LineShaftTileEntity tile = getTileEntity(worldIn, posIn);
 		if (tile.getBeltPos() != null) {
 			LineShaftTileEntity tile2 = getTileEntity(worldIn, tile.getBeltPos());
@@ -127,9 +127,9 @@ public class LineShaftBlock extends RotatedPillarBlock {
 	}
 	
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builderIn) {
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builderIn) {
 		builderIn.add(RADIUS);
-		super.fillStateContainer(builderIn);
+		super.createBlockStateDefinition(builderIn);
 	}
 	
 	/*

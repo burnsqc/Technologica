@@ -39,37 +39,37 @@ public class PiranhaEntity extends AbstractGroupFishEntity {
 
 	
 	public static AttributeModifierMap.MutableAttribute registerAttributes() {
-		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 3.0D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 1.0D);
+		return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 3.0D).add(Attributes.ATTACK_DAMAGE, 1.0D);
 	}
 	
 	@Override
-	public int getMaxGroupSize() {
+	public int getMaxSchoolSize() {
 		return 10;
 	}
 
 	@Override
-	protected ItemStack getFishBucket() {
+	protected ItemStack getBucketItemStack() {
 		return new ItemStack(TechnologicaItems.PIRANHA_BUCKET.get());
 	}
 
 	@Override
 	protected SoundEvent getAmbientSound() {
-		return SoundEvents.ENTITY_SALMON_AMBIENT;
+		return SoundEvents.SALMON_AMBIENT;
 	}
 
 	@Override
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.ENTITY_SALMON_DEATH;
+		return SoundEvents.SALMON_DEATH;
 	}
 
 	@Override
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return SoundEvents.ENTITY_SALMON_HURT;
+		return SoundEvents.SALMON_HURT;
 	}
 
 	@Override
 	protected SoundEvent getFlopSound() {
-		return SoundEvents.ENTITY_SALMON_FLOP;
+		return SoundEvents.SALMON_FLOP;
 	}
 
 }

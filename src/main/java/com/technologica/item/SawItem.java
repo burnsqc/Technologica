@@ -26,7 +26,7 @@ public class SawItem extends ToolItem {
 	@Override
 	public ItemStack getContainerItem(ItemStack stack) {
 		stack = stack.copy();
-		stack = stack.attemptDamageItem(1, random, null) ? ItemStack.EMPTY: stack;
+		stack = stack.hurt(1, random, null) ? ItemStack.EMPTY: stack;
 		return stack;
 	}
 

@@ -17,13 +17,12 @@ public class UniversalLiquidParticleType extends ParticleType<UniversalLiquidPar
 	private final float green;
 	private final float blue;
 	
-	@SuppressWarnings("deprecation")
 	private static final IDeserializer<UniversalLiquidParticleType> DESERIALIZER = new IParticleData.IDeserializer<UniversalLiquidParticleType>() {
-		public UniversalLiquidParticleType deserialize(ParticleType<UniversalLiquidParticleType> particleTypeIn, StringReader reader) throws CommandSyntaxException {
+		public UniversalLiquidParticleType fromCommand(ParticleType<UniversalLiquidParticleType> particleTypeIn, StringReader reader) throws CommandSyntaxException {
 			return (UniversalLiquidParticleType) particleTypeIn;
 		}
 
-		public UniversalLiquidParticleType read(ParticleType<UniversalLiquidParticleType> particleTypeIn, PacketBuffer buffer) {
+		public UniversalLiquidParticleType fromNetwork(ParticleType<UniversalLiquidParticleType> particleTypeIn, PacketBuffer buffer) {
 			return (UniversalLiquidParticleType) particleTypeIn;
 		}
 	};
@@ -53,7 +52,7 @@ public class UniversalLiquidParticleType extends ParticleType<UniversalLiquidPar
 	}
 	
 	@Override
-	public void write(PacketBuffer buffer) {
+	public void writeToNetwork(PacketBuffer buffer) {
 		buffer.writeFloat(this.red);
 		buffer.writeFloat(this.green);
 		buffer.writeFloat(this.blue);
@@ -61,12 +60,12 @@ public class UniversalLiquidParticleType extends ParticleType<UniversalLiquidPar
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public String getParameters() {
+	public String writeToString() {
 		return String.format(Locale.ROOT, "%s %.2f %.2f %.2f", Registry.PARTICLE_TYPE.getKey(this.getType()), this.red, this.green, this.blue);
 	}
 
 	@Override
-	public Codec<UniversalLiquidParticleType> func_230522_e_() {
+	public Codec<UniversalLiquidParticleType> codec() {
 		return null;
 	}
 

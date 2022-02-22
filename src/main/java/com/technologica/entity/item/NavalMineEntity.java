@@ -23,43 +23,43 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class NavalMineEntity extends Entity {
-	private static final DataParameter<Integer> FUSE = EntityDataManager.createKey(NavalMineEntity.class, DataSerializers.VARINT);
-	private static final DataParameter<Boolean> DETONATE = EntityDataManager.createKey(NavalMineEntity.class, DataSerializers.BOOLEAN);
-	private static final DataParameter<Integer> CHAINS = EntityDataManager.createKey(NavalMineEntity.class, DataSerializers.VARINT);
+	private static final DataParameter<Integer> FUSE = EntityDataManager.defineId(NavalMineEntity.class, DataSerializers.INT);
+	private static final DataParameter<Boolean> DETONATE = EntityDataManager.defineId(NavalMineEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Integer> CHAINS = EntityDataManager.defineId(NavalMineEntity.class, DataSerializers.INT);
 	private int armingFuse = 100;
 	private boolean detonate = false;
 	private int chains = 10;
 
 	public NavalMineEntity(EntityType<? extends NavalMineEntity> type, World worldIn) {
 		super(type, worldIn);
-		this.preventEntitySpawning = true;
+		this.blocksBuilding = true;
 	}
 
 	public NavalMineEntity(World worldIn, double x, double y, double z) {
 		this(TechnologicaEntityType.NAVAL_MINE.get(), worldIn);
-		this.setPosition(x, y, z);
+		this.setPos(x, y, z);
 		this.setFuse(100);
 		this.setChains(10);
-		this.prevPosX = x;
-		this.prevPosY = y;
-		this.prevPosZ = z;
+		this.xo = x;
+		this.yo = y;
+		this.zo = z;
 	}
 
-	protected void registerData() {
-		this.dataManager.register(FUSE, 100);
-		this.dataManager.register(DETONATE, false);
-		this.dataManager.register(CHAINS, 10);
+	protected void defineSynchedData() {
+		this.entityData.define(FUSE, 100);
+		this.entityData.define(DETONATE, false);
+		this.entityData.define(CHAINS, 10);
 	}
 
-	protected boolean canTriggerWalking() {
+	protected boolean isMovementNoisy() {
 		return false;
 	}
 
-	public boolean canCollide(Entity entity) {
+	public boolean canCollideWith(Entity entity) {
 		return true;
 	}
 
-	public boolean canBeCollidedWith() {
+	public boolean isPickable() {
 		return true;
 	}
 	
@@ -67,14 +67,14 @@ public class NavalMineEntity extends Entity {
 	public void tick() {
 		if (this.getDetonate()) {
 			this.remove();
-			if (!this.world.isRemote) {
+			if (!this.level.isClientSide) {
 				this.explode();
 			}
 		} else {
 			if (this.getFuse() > 0) {
 				--this.armingFuse;
 			} else {
-				List<Entity> list = this.world.getEntitiesInAABBexcluding(this, this.getBoundingBox().grow((double) 0.2F, (double) -0.01F, (double) 0.2F), null);
+				List<Entity> list = this.level.getEntities(this, this.getBoundingBox().inflate((double) 0.2F, (double) -0.01F, (double) 0.2F), null);
 				for (Entity entry : list) {
 					if (!(entry instanceof ItemEntity)) {
 						this.setDetonate(true);
@@ -83,64 +83,64 @@ public class NavalMineEntity extends Entity {
 			}
 		}
 		
-		if (this.getChains() == 0 && !(this.world.getBlockState(this.getPosition()).getBlock() instanceof NavalMineChainBlock) && this.world.getBlockState(this.getPosition().up()).getFluidState().isTagged(FluidTags.WATER)) {
-			Vector3d vector3d = this.getMotion().add(0.0D, 0.1D, 0.0D);
+		if (this.getChains() == 0 && !(this.level.getBlockState(this.blockPosition()).getBlock() instanceof NavalMineChainBlock) && this.level.getBlockState(this.blockPosition().above()).getFluidState().is(FluidTags.WATER)) {
+			Vector3d vector3d = this.getDeltaMovement().add(0.0D, 0.1D, 0.0D);
 			this.move(MoverType.SELF, vector3d);
 		}
 			
 			
-		if (this.getChains() > 0 && this.world.getBlockState(this.getPosition().up()).getFluidState().isTagged(FluidTags.WATER)) {
-			Vector3d vector3d = this.getMotion().add(0.0D, 0.1D, 0.0D);
+		if (this.getChains() > 0 && this.level.getBlockState(this.blockPosition().above()).getFluidState().is(FluidTags.WATER)) {
+			Vector3d vector3d = this.getDeltaMovement().add(0.0D, 0.1D, 0.0D);
 			this.move(MoverType.SELF, vector3d);
 			
 			
-			if (!(this.world.getBlockState(this.getPosition()).getBlock() instanceof NavalMineChainBlock)) {
-				this.world.setBlockState(this.getPosition(), TechnologicaBlocks.NAVAL_MINE_CHAIN.get().getDefaultState());
-				this.world.notifyBlockUpdate(this.getPosition(), this.world.getBlockState(this.getPosition()), TechnologicaBlocks.NAVAL_MINE_CHAIN.get().getDefaultState(), 3);
+			if (!(this.level.getBlockState(this.blockPosition()).getBlock() instanceof NavalMineChainBlock)) {
+				this.level.setBlockAndUpdate(this.blockPosition(), TechnologicaBlocks.NAVAL_MINE_CHAIN.get().defaultBlockState());
+				this.level.sendBlockUpdated(this.blockPosition(), this.level.getBlockState(this.blockPosition()), TechnologicaBlocks.NAVAL_MINE_CHAIN.get().defaultBlockState(), 3);
 				this.setChains(this.getChains() - 1);
 			}	
 		}
 	
 	}
 	
-	public boolean attackEntityFrom(DamageSource source, float amount) {
+	public boolean hurt(DamageSource source, float amount) {
 		this.setDetonate(true);
 		return true;
 	}
 
 	protected void explode() {
-		this.world.createExplosion(this, this.getPosX(), this.getPosY(), this.getPosZ(), 8.0F, Explosion.Mode.BREAK);
+		this.level.explode(this, this.getX(), this.getY(), this.getZ(), 8.0F, Explosion.Mode.BREAK);
 	}
 
-	protected void writeAdditional(CompoundNBT compound) {
+	protected void addAdditionalSaveData(CompoundNBT compound) {
 		compound.putShort("Fuse", (short) this.getFuse());
 		compound.putBoolean("Detonate", this.getDetonate());
 		compound.putShort("Chains", (short) this.getChains());
 	}
 
-	protected void readAdditional(CompoundNBT compound) {
+	protected void readAdditionalSaveData(CompoundNBT compound) {
 		this.setFuse(compound.getShort("Fuse"));
 		this.setDetonate(compound.getBoolean("Detonate"));
 		this.setChains(compound.getShort("Chains"));
 	}
 
 	public void setFuse(int fuseIn) {
-		this.dataManager.set(FUSE, fuseIn);
+		this.entityData.set(FUSE, fuseIn);
 		this.armingFuse = fuseIn;
 	}
 	
 	public void setDetonate(boolean detonateIn) {
-		this.dataManager.set(DETONATE, detonateIn);
+		this.entityData.set(DETONATE, detonateIn);
 		this.detonate = detonateIn;
 	}
 	
 	public void setChains(int chainsIn) {
-		this.dataManager.set(CHAINS, chainsIn);
+		this.entityData.set(CHAINS, chainsIn);
 		this.chains = chainsIn;
 	}
 
 	@Override
-	public void notifyDataManagerChange(DataParameter<?> key) {
+	public void onSyncedDataUpdated(DataParameter<?> key) {
 		if (FUSE.equals(key)) {
 			this.armingFuse = this.getFuseDataManager();
 		}
@@ -153,15 +153,15 @@ public class NavalMineEntity extends Entity {
 	}
 
 	public int getFuseDataManager() {
-		return this.dataManager.get(FUSE);
+		return this.entityData.get(FUSE);
 	}
 	
 	public boolean getDetonateDataManager() {
-		return this.dataManager.get(DETONATE);
+		return this.entityData.get(DETONATE);
 	}
 	
 	public int getChainsDataManager() {
-		return this.dataManager.get(CHAINS);
+		return this.entityData.get(CHAINS);
 	}
 	
 
@@ -177,7 +177,7 @@ public class NavalMineEntity extends Entity {
 		return this.chains;
 	}
 	
-	public IPacket<?> createSpawnPacket() {
+	public IPacket<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 }

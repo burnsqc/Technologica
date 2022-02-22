@@ -13,7 +13,7 @@ public enum Radius implements IStringSerializable {
 		this.radius = radius;
 	}
 
-	public String getString() {
+	public String getSerializedName() {
 		return this.name;
 	}
 

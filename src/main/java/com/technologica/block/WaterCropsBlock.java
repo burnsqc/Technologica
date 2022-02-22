@@ -31,32 +31,32 @@ public class WaterCropsBlock extends TallCropsBlock implements ILiquidContainer 
 	
 	@Override
 	public FluidState getFluidState(BlockState stateIn) {
-		if (stateIn.get(HALF) == DoubleBlockHalf.LOWER) {
-			return Fluids.WATER.getStillFluidState(false);
+		if (stateIn.getValue(HALF) == DoubleBlockHalf.LOWER) {
+			return Fluids.WATER.getSource(false);
 		} else {
-			return Fluids.EMPTY.getDefaultState();
+			return Fluids.EMPTY.defaultFluidState();
 		}
 	}
 	
 	@Override
-	public boolean isValidPosition(BlockState stateIn, IWorldReader worldIn, BlockPos posIn) {
+	public boolean canSurvive(BlockState stateIn, IWorldReader worldIn, BlockPos posIn) {
 		Boolean unobstructed;
-		BlockPos ground = posIn.down();
+		BlockPos ground = posIn.below();
 		
-		if (stateIn.get(HALF) == DoubleBlockHalf.LOWER) {
-			if (stateIn.get(AGE) <= 3) {
-				unobstructed = isAir(worldIn.getBlockState(posIn.up()));
+		if (stateIn.getValue(HALF) == DoubleBlockHalf.LOWER) {
+			if (stateIn.getValue(AGE) <= 3) {
+				unobstructed = isAir(worldIn.getBlockState(posIn.above()));
 			} else {
-				if (worldIn.getBlockState(posIn.up()).getBlock() == this) {
-					unobstructed = worldIn.getBlockState(posIn.up()).get(HALF) == DoubleBlockHalf.UPPER;
+				if (worldIn.getBlockState(posIn.above()).getBlock() == this) {
+					unobstructed = worldIn.getBlockState(posIn.above()).getValue(HALF) == DoubleBlockHalf.UPPER;
 				} else {
 					unobstructed = false;
 				}
 			}
-			return isValidGround(worldIn.getBlockState(ground), worldIn, ground) && unobstructed;
+			return mayPlaceOn(worldIn.getBlockState(ground), worldIn, ground) && unobstructed;
 		} else {
 			if (worldIn.getBlockState(ground).getBlock() == this) {
-				return worldIn.getBlockState(ground).get(HALF) == DoubleBlockHalf.LOWER && worldIn.getBlockState(ground).get(AGE) >= 4;
+				return worldIn.getBlockState(ground).getValue(HALF) == DoubleBlockHalf.LOWER && worldIn.getBlockState(ground).getValue(AGE) >= 4;
 			} else {
 				return false;
 			}
@@ -64,25 +64,25 @@ public class WaterCropsBlock extends TallCropsBlock implements ILiquidContainer 
 	}
 	
 	@Override
-	protected boolean isValidGround(BlockState stateIn, IBlockReader worldIn, BlockPos posIn) {
-		FluidState fluidstate = worldIn.getFluidState(posIn.up());
-		if (fluidstate.getFluid() == Fluids.WATER) {
-			return ((stateIn.matchesBlock(Blocks.GRASS_BLOCK) || stateIn.matchesBlock(Blocks.DIRT)
-					|| stateIn.matchesBlock(Blocks.COARSE_DIRT) || stateIn.matchesBlock(Blocks.PODZOL)));
-		} else if (stateIn.matchesBlock(this)) {
-			return stateIn.get(HALF) == DoubleBlockHalf.LOWER && stateIn.get(AGE) >= 4;
+	protected boolean mayPlaceOn(BlockState stateIn, IBlockReader worldIn, BlockPos posIn) {
+		FluidState fluidstate = worldIn.getFluidState(posIn.above());
+		if (fluidstate.getType() == Fluids.WATER) {
+			return ((stateIn.is(Blocks.GRASS_BLOCK) || stateIn.is(Blocks.DIRT)
+					|| stateIn.is(Blocks.COARSE_DIRT) || stateIn.is(Blocks.PODZOL)));
+		} else if (stateIn.is(this)) {
+			return stateIn.getValue(HALF) == DoubleBlockHalf.LOWER && stateIn.getValue(AGE) >= 4;
 		} else {
 			return false;
 		}
 	}
 	
 	@Override
-	public boolean canContainFluid(IBlockReader worldIn, BlockPos posIn, BlockState stateIn, Fluid fluidIn) {
+	public boolean canPlaceLiquid(IBlockReader worldIn, BlockPos posIn, BlockState stateIn, Fluid fluidIn) {
 		return false;
 	}
 
 	@Override
-	public boolean receiveFluid(IWorld worldIn, BlockPos posIn, BlockState stateIn, FluidState fluidStateIn) {
+	public boolean placeLiquid(IWorld worldIn, BlockPos posIn, BlockState stateIn, FluidState fluidStateIn) {
 		return false;
 	}
 }

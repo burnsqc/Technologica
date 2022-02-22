@@ -12,7 +12,7 @@ import net.minecraft.world.gen.feature.ConfiguredFeature;
 
 public class ToweringInfernoTree extends Tree {
 	@Nullable
-	protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean largeHiveIn) {
+	protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredFeature(Random randomIn, boolean largeHiveIn) {
 		return TechnologicaConfiguredFeatures.TOWERING_INFERNO_TREE_FEATURE;
 	}
 }

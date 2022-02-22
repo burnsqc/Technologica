@@ -16,7 +16,7 @@ public final class LionRenderer extends MobRenderer<LionEntity, LionModel<LionEn
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(LionEntity entity) {
+	public ResourceLocation getTextureLocation(LionEntity entity) {
 		return LION_TEXTURE;
 	}
 }

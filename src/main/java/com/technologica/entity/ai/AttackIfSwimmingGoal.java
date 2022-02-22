@@ -11,20 +11,20 @@ public class AttackIfSwimmingGoal extends MeleeAttackGoal {
 	}
 
 	@Override
-	public boolean shouldExecute() {
-		LivingEntity target = this.attacker.getAttackTarget();
+	public boolean canUse() {
+		LivingEntity target = this.mob.getTarget();
 		if (target != null && target.isInWater()) {
-			return super.shouldExecute();
+			return super.canUse();
 		} else {
 			return false;
 		}
 	}
 
 	@Override
-	public boolean shouldContinueExecuting() {
-		LivingEntity target = this.attacker.getAttackTarget();
+	public boolean canContinueToUse() {
+		LivingEntity target = this.mob.getTarget();
 		if (target != null && target.isInWater()) {
-			return super.shouldContinueExecuting();
+			return super.canContinueToUse();
 		} else {
 			return false;
 		}

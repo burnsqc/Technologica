@@ -68,9 +68,9 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class CoyoteEntity extends TameableEntity implements IAngerable {
-   private static final DataParameter<Boolean> BEGGING = EntityDataManager.createKey(CoyoteEntity.class, DataSerializers.BOOLEAN);
-   private static final DataParameter<Integer> COLLAR_COLOR = EntityDataManager.createKey(CoyoteEntity.class, DataSerializers.VARINT);
-   private static final DataParameter<Integer> ANGER_TIME = EntityDataManager.createKey(CoyoteEntity.class, DataSerializers.VARINT);
+   private static final DataParameter<Boolean> BEGGING = EntityDataManager.defineId(CoyoteEntity.class, DataSerializers.BOOLEAN);
+   private static final DataParameter<Integer> COLLAR_COLOR = EntityDataManager.defineId(CoyoteEntity.class, DataSerializers.INT);
+   private static final DataParameter<Integer> ANGER_TIME = EntityDataManager.defineId(CoyoteEntity.class, DataSerializers.INT);
    public static final Predicate<LivingEntity> TARGET_ENTITIES = (p_213440_0_) -> {
       EntityType<?> entitytype = p_213440_0_.getType();
       return entitytype == EntityType.SHEEP || entitytype == EntityType.RABBIT || entitytype == EntityType.FOX;
@@ -81,12 +81,12 @@ public class CoyoteEntity extends TameableEntity implements IAngerable {
    private boolean isShaking;
    private float timeCoyoteIsShaking;
    private float prevTimeCoyoteIsShaking;
-   private static final RangedInteger ANGER_TIME_RANGE = TickRangeConverter.convertRange(20, 39);
-   private UUID field_234231_bH_;
+   private static final RangedInteger ANGER_TIME_RANGE = TickRangeConverter.rangeOfSeconds(20, 39);
+   private UUID persistentAngerTarget;
 
    public CoyoteEntity(EntityType<? extends CoyoteEntity> type, World worldIn) {
       super(type, worldIn);
-      this.setTamed(false);
+      this.setTame(false);
    }
 
    protected void registerGoals() {
@@ -101,63 +101,63 @@ public class CoyoteEntity extends TameableEntity implements IAngerable {
       this.goalSelector.addGoal(10, new LookRandomlyGoal(this));
       this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
       this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
-      this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setCallsForHelp());
-      this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, this::func_233680_b_));
+      this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
+      this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, this::isAngryAt));
       this.targetSelector.addGoal(5, new NonTamedTargetGoal<>(this, AnimalEntity.class, false, TARGET_ENTITIES));
       this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, AbstractSkeletonEntity.class, false));
       this.targetSelector.addGoal(8, new ResetAngerGoal<>(this, true));
    }
 
    public static AttributeModifierMap.MutableAttribute registerAttributes() {
-      return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.3F).createMutableAttribute(Attributes.MAX_HEALTH, 8.0D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 2.0D);
+      return MobEntity.createMobAttributes().add(Attributes.MOVEMENT_SPEED, (double)0.3F).add(Attributes.MAX_HEALTH, 8.0D).add(Attributes.ATTACK_DAMAGE, 2.0D);
    }
 
-   protected void registerData() {
-      super.registerData();
-      this.dataManager.register(BEGGING, false);
-      this.dataManager.register(COLLAR_COLOR, DyeColor.RED.getId());
-      this.dataManager.register(ANGER_TIME, 0);
+   protected void defineSynchedData() {
+      super.defineSynchedData();
+      this.entityData.define(BEGGING, false);
+      this.entityData.define(COLLAR_COLOR, DyeColor.RED.getId());
+      this.entityData.define(ANGER_TIME, 0);
    }
 
    protected void playStepSound(BlockPos pos, BlockState blockIn) {
-      this.playSound(SoundEvents.ENTITY_WOLF_STEP, 0.15F, 1.0F);
+      this.playSound(SoundEvents.WOLF_STEP, 0.15F, 1.0F);
    }
 
-   public void writeAdditional(CompoundNBT compound) {
-      super.writeAdditional(compound);
+   public void addAdditionalSaveData(CompoundNBT compound) {
+      super.addAdditionalSaveData(compound);
       compound.putByte("CollarColor", (byte)this.getCollarColor().getId());
-      this.writeAngerNBT(compound);
+      this.addPersistentAngerSaveData(compound);
    }
 
    /**
     * (abstract) Protected helper method to read subclass entity data from NBT.
     */
-   public void readAdditional(CompoundNBT compound) {
-      super.readAdditional(compound);
+   public void readAdditionalSaveData(CompoundNBT compound) {
+      super.readAdditionalSaveData(compound);
       if (compound.contains("CollarColor", 99)) {
          this.setCollarColor(DyeColor.byId(compound.getInt("CollarColor")));
       }
 
-      if(!world.isRemote) //FORGE: allow this entity to be read from nbt on client. (Fixes MC-189565)
-      this.readAngerNBT((ServerWorld)this.world, compound);
+      if(!level.isClientSide) //FORGE: allow this entity to be read from nbt on client. (Fixes MC-189565)
+      this.readPersistentAngerSaveData((ServerWorld)this.level, compound);
    }
 
    protected SoundEvent getAmbientSound() {
       if (this.isAngry()) {
-         return SoundEvents.ENTITY_WOLF_GROWL;
-      } else if (this.rand.nextInt(3) == 0) {
-         return this.isTamed() && this.getHealth() < 10.0F ? SoundEvents.ENTITY_WOLF_WHINE : SoundEvents.ENTITY_WOLF_PANT;
+         return SoundEvents.WOLF_GROWL;
+      } else if (this.random.nextInt(3) == 0) {
+         return this.isTame() && this.getHealth() < 10.0F ? SoundEvents.WOLF_WHINE : SoundEvents.WOLF_PANT;
       } else {
-         return SoundEvents.ENTITY_WOLF_AMBIENT;
+         return SoundEvents.WOLF_AMBIENT;
       }
    }
 
    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-      return SoundEvents.ENTITY_WOLF_HURT;
+      return SoundEvents.WOLF_HURT;
    }
 
    protected SoundEvent getDeathSound() {
-      return SoundEvents.ENTITY_WOLF_DEATH;
+      return SoundEvents.WOLF_DEATH;
    }
 
    /**
@@ -171,17 +171,17 @@ public class CoyoteEntity extends TameableEntity implements IAngerable {
     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
     * use this to react to sunlight and start to burn.
     */
-   public void livingTick() {
-      super.livingTick();
-      if (!this.world.isRemote && this.isWet && !this.isShaking && !this.hasPath() && this.onGround) {
+   public void aiStep() {
+      super.aiStep();
+      if (!this.level.isClientSide && this.isWet && !this.isShaking && !this.isPathFinding() && this.onGround) {
          this.isShaking = true;
          this.timeCoyoteIsShaking = 0.0F;
          this.prevTimeCoyoteIsShaking = 0.0F;
-         this.world.setEntityState(this, (byte)8);
+         this.level.broadcastEntityEvent(this, (byte)8);
       }
 
-      if (!this.world.isRemote) {
-         this.func_241359_a_((ServerWorld)this.world, true);
+      if (!this.level.isClientSide) {
+         this.updatePersistentAnger((ServerWorld)this.level, true);
       }
 
    }
@@ -199,15 +199,15 @@ public class CoyoteEntity extends TameableEntity implements IAngerable {
             this.headRotationCourse += (0.0F - this.headRotationCourse) * 0.4F;
          }
 
-         if (this.isInWaterRainOrBubbleColumn()) {
+         if (this.isInWaterRainOrBubble()) {
             this.isWet = true;
-            if (this.isShaking && !this.world.isRemote) {
-               this.world.setEntityState(this, (byte)56);
-               this.func_242326_eZ();
+            if (this.isShaking && !this.level.isClientSide) {
+               this.level.broadcastEntityEvent(this, (byte)56);
+               this.cancelShake();
             }
          } else if ((this.isWet || this.isShaking) && this.isShaking) {
             if (this.timeCoyoteIsShaking == 0.0F) {
-               this.playSound(SoundEvents.ENTITY_WOLF_SHAKE, this.getSoundVolume(), (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+               this.playSound(SoundEvents.WOLF_SHAKE, this.getSoundVolume(), (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
             }
 
             this.prevTimeCoyoteIsShaking = this.timeCoyoteIsShaking;
@@ -220,14 +220,14 @@ public class CoyoteEntity extends TameableEntity implements IAngerable {
             }
 
             if (this.timeCoyoteIsShaking > 0.4F) {
-               float f = (float)this.getPosY();
+               float f = (float)this.getY();
                int i = (int)(MathHelper.sin((this.timeCoyoteIsShaking - 0.4F) * (float)Math.PI) * 7.0F);
-               Vector3d vector3d = this.getMotion();
+               Vector3d vector3d = this.getDeltaMovement();
 
                for(int j = 0; j < i; ++j) {
-                  float f1 = (this.rand.nextFloat() * 2.0F - 1.0F) * this.getWidth() * 0.5F;
-                  float f2 = (this.rand.nextFloat() * 2.0F - 1.0F) * this.getWidth() * 0.5F;
-                  this.world.addParticle(ParticleTypes.SPLASH, this.getPosX() + (double)f1, (double)(f + 0.8F), this.getPosZ() + (double)f2, vector3d.x, vector3d.y, vector3d.z);
+                  float f1 = (this.random.nextFloat() * 2.0F - 1.0F) * this.getBbWidth() * 0.5F;
+                  float f2 = (this.random.nextFloat() * 2.0F - 1.0F) * this.getBbWidth() * 0.5F;
+                  this.level.addParticle(ParticleTypes.SPLASH, this.getX() + (double)f1, (double)(f + 0.8F), this.getZ() + (double)f2, vector3d.x, vector3d.y, vector3d.z);
                }
             }
          }
@@ -235,7 +235,7 @@ public class CoyoteEntity extends TameableEntity implements IAngerable {
       }
    }
 
-   private void func_242326_eZ() {
+   private void cancelShake() {
       this.isShaking = false;
       this.timeCoyoteIsShaking = 0.0F;
       this.prevTimeCoyoteIsShaking = 0.0F;
@@ -244,12 +244,12 @@ public class CoyoteEntity extends TameableEntity implements IAngerable {
    /**
     * Called when the mob's health reaches 0.
     */
-   public void onDeath(DamageSource cause) {
+   public void die(DamageSource cause) {
       this.isWet = false;
       this.isShaking = false;
       this.prevTimeCoyoteIsShaking = 0.0F;
       this.timeCoyoteIsShaking = 0.0F;
-      super.onDeath(cause);
+      super.die(cause);
    }
 
    /**
@@ -293,38 +293,38 @@ public class CoyoteEntity extends TameableEntity implements IAngerable {
     * The speed it takes to move the entityliving's rotationPitch through the faceEntity method. This is only currently
     * use in wolves.
     */
-   public int getVerticalFaceSpeed() {
-      return this.isEntitySleeping() ? 20 : super.getVerticalFaceSpeed();
+   public int getMaxHeadXRot() {
+      return this.isInSittingPose() ? 20 : super.getMaxHeadXRot();
    }
 
    /**
     * Called when the entity is attacked.
     */
-   public boolean attackEntityFrom(DamageSource source, float amount) {
+   public boolean hurt(DamageSource source, float amount) {
       if (this.isInvulnerableTo(source)) {
          return false;
       } else {
-         Entity entity = source.getTrueSource();
-         this.setSitting(false);
+         Entity entity = source.getEntity();
+         this.setOrderedToSit(false);
          if (entity != null && !(entity instanceof PlayerEntity) && !(entity instanceof AbstractArrowEntity)) {
             amount = (amount + 1.0F) / 2.0F;
          }
 
-         return super.attackEntityFrom(source, amount);
+         return super.hurt(source, amount);
       }
    }
 
-   public boolean attackEntityAsMob(Entity entityIn) {
-      boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)((int)this.getAttributeValue(Attributes.ATTACK_DAMAGE)));
+   public boolean doHurtTarget(Entity entityIn) {
+      boolean flag = entityIn.hurt(DamageSource.mobAttack(this), (float)((int)this.getAttributeValue(Attributes.ATTACK_DAMAGE)));
       if (flag) {
-         this.applyEnchantments(this, entityIn);
+         this.doEnchantDamageEffects(this, entityIn);
       }
 
       return flag;
    }
 
-   public void setTamed(boolean tamed) {
-      super.setTamed(tamed);
+   public void setTame(boolean tamed) {
+      super.setTame(tamed);
       if (tamed) {
          this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20.0D);
          this.setHealth(20.0F);
@@ -335,30 +335,30 @@ public class CoyoteEntity extends TameableEntity implements IAngerable {
       this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(4.0D);
    }
 
-   public ActionResultType getEntityInteractionResult(PlayerEntity playerIn, Hand hand) {
-      ItemStack itemstack = playerIn.getHeldItem(hand);
+   public ActionResultType mobInteract(PlayerEntity playerIn, Hand hand) {
+      ItemStack itemstack = playerIn.getItemInHand(hand);
       Item item = itemstack.getItem();
-      if (this.world.isRemote) {
-         boolean flag = this.isOwner(playerIn) || this.isTamed() || item == Items.BONE && !this.isTamed() && !this.isAngry();
+      if (this.level.isClientSide) {
+         boolean flag = this.isOwnedBy(playerIn) || this.isTame() || item == Items.BONE && !this.isTame() && !this.isAngry();
          return flag ? ActionResultType.CONSUME : ActionResultType.PASS;
       } else {
-         if (this.isTamed()) {
-            if (this.isBreedingItem(itemstack) && this.getHealth() < this.getMaxHealth()) {
-               if (!playerIn.abilities.isCreativeMode) {
+         if (this.isTame()) {
+            if (this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
+               if (!playerIn.abilities.instabuild) {
                   itemstack.shrink(1);
                }
 
-               this.heal((float)item.getFood().getHealing());
+               this.heal((float)item.getFoodProperties().getNutrition());
                return ActionResultType.SUCCESS;
             }
 
             if (!(item instanceof DyeItem)) {
-               ActionResultType actionresulttype = super.getEntityInteractionResult(playerIn, hand);
-               if ((!actionresulttype.isSuccessOrConsume() || this.isChild()) && this.isOwner(playerIn)) {
-                  this.setSitting(!this.isQueuedToSit());
-                  this.isJumping = false;
-                  this.navigator.clearPath();
-                  this.setAttackTarget((LivingEntity)null);
+               ActionResultType actionresulttype = super.mobInteract(playerIn, hand);
+               if ((!actionresulttype.consumesAction() || this.isBaby()) && this.isOwnedBy(playerIn)) {
+                  this.setOrderedToSit(!this.isOrderedToSit());
+                  this.jumping = false;
+                  this.navigation.stop();
+                  this.setTarget((LivingEntity)null);
                   return ActionResultType.SUCCESS;
                }
 
@@ -368,31 +368,31 @@ public class CoyoteEntity extends TameableEntity implements IAngerable {
             DyeColor dyecolor = ((DyeItem)item).getDyeColor();
             if (dyecolor != this.getCollarColor()) {
                this.setCollarColor(dyecolor);
-               if (!playerIn.abilities.isCreativeMode) {
+               if (!playerIn.abilities.instabuild) {
                   itemstack.shrink(1);
                }
 
                return ActionResultType.SUCCESS;
             }
          } else if (item == Items.BONE && !this.isAngry()) {
-            if (!playerIn.abilities.isCreativeMode) {
+            if (!playerIn.abilities.instabuild) {
                itemstack.shrink(1);
             }
 
-            if (this.rand.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, playerIn)) {
-               this.setTamedBy(playerIn);
-               this.navigator.clearPath();
-               this.setAttackTarget((LivingEntity)null);
-               this.setSitting(true);
-               this.world.setEntityState(this, (byte)7);
+            if (this.random.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, playerIn)) {
+               this.tame(playerIn);
+               this.navigation.stop();
+               this.setTarget((LivingEntity)null);
+               this.setOrderedToSit(true);
+               this.level.broadcastEntityEvent(this, (byte)7);
             } else {
-               this.world.setEntityState(this, (byte)6);
+               this.level.broadcastEntityEvent(this, (byte)6);
             }
 
             return ActionResultType.SUCCESS;
          }
 
-         return super.getEntityInteractionResult(playerIn, hand);
+         return super.mobInteract(playerIn, hand);
       }
    }
 
@@ -400,15 +400,15 @@ public class CoyoteEntity extends TameableEntity implements IAngerable {
     * Handler for {@link World#setEntityState}
     */
    @OnlyIn(Dist.CLIENT)
-   public void handleStatusUpdate(byte id) {
+   public void handleEntityEvent(byte id) {
       if (id == 8) {
          this.isShaking = true;
          this.timeCoyoteIsShaking = 0.0F;
          this.prevTimeCoyoteIsShaking = 0.0F;
       } else if (id == 56) {
-         this.func_242326_eZ();
+         this.cancelShake();
       } else {
-         super.handleStatusUpdate(id);
+         super.handleEntityEvent(id);
       }
 
    }
@@ -418,7 +418,7 @@ public class CoyoteEntity extends TameableEntity implements IAngerable {
       if (this.isAngry()) {
          return 1.5393804F;
       } else {
-         return this.isTamed() ? (0.55F - (this.getMaxHealth() - this.getHealth()) * 0.02F) * (float)Math.PI : ((float)Math.PI / 5F);
+         return this.isTame() ? (0.55F - (this.getMaxHealth() - this.getHealth()) * 0.02F) * (float)Math.PI : ((float)Math.PI / 5F);
       }
    }
 
@@ -426,77 +426,77 @@ public class CoyoteEntity extends TameableEntity implements IAngerable {
     * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on
     * the animal type)
     */
-   public boolean isBreedingItem(ItemStack stack) {
+   public boolean isFood(ItemStack stack) {
       Item item = stack.getItem();
-      return item.isFood() && item.getFood().isMeat();
+      return item.isEdible() && item.getFoodProperties().isMeat();
    }
 
    /**
     * Will return how many at most can spawn in a chunk at once.
     */
-   public int getMaxSpawnedInChunk() {
+   public int getMaxSpawnClusterSize() {
       return 8;
    }
 
-   public int getAngerTime() {
-      return this.dataManager.get(ANGER_TIME);
+   public int getRemainingPersistentAngerTime() {
+      return this.entityData.get(ANGER_TIME);
    }
 
-   public void setAngerTime(int time) {
-      this.dataManager.set(ANGER_TIME, time);
+   public void setRemainingPersistentAngerTime(int time) {
+      this.entityData.set(ANGER_TIME, time);
    }
 
-   public void func_230258_H__() {
-      this.setAngerTime(ANGER_TIME_RANGE.getRandomWithinRange(this.rand));
+   public void startPersistentAngerTimer() {
+      this.setRemainingPersistentAngerTime(ANGER_TIME_RANGE.randomValue(this.random));
    }
 
    @Nullable
-   public UUID getAngerTarget() {
-      return this.field_234231_bH_;
+   public UUID getPersistentAngerTarget() {
+      return this.persistentAngerTarget;
    }
 
-   public void setAngerTarget(@Nullable UUID target) {
-      this.field_234231_bH_ = target;
+   public void setPersistentAngerTarget(@Nullable UUID target) {
+      this.persistentAngerTarget = target;
    }
 
    public DyeColor getCollarColor() {
-      return DyeColor.byId(this.dataManager.get(COLLAR_COLOR));
+      return DyeColor.byId(this.entityData.get(COLLAR_COLOR));
    }
 
    public void setCollarColor(DyeColor collarcolor) {
-      this.dataManager.set(COLLAR_COLOR, collarcolor.getId());
+      this.entityData.set(COLLAR_COLOR, collarcolor.getId());
    }
 
-   public CoyoteEntity createChild(ServerWorld world, AgeableEntity mate) {
+   public CoyoteEntity getBreedOffspring(ServerWorld world, AgeableEntity mate) {
       CoyoteEntity wolfentity = TechnologicaEntityType.COYOTE.get().create(world);
-      UUID uuid = this.getOwnerId();
+      UUID uuid = this.getOwnerUUID();
       if (uuid != null) {
-         wolfentity.setOwnerId(uuid);
-         wolfentity.setTamed(true);
+         wolfentity.setOwnerUUID(uuid);
+         wolfentity.setTame(true);
       }
 
       return wolfentity;
    }
 
    public void setBegging(boolean beg) {
-      this.dataManager.set(BEGGING, beg);
+      this.entityData.set(BEGGING, beg);
    }
 
    /**
     * Returns true if the mob is currently able to mate with the specified mob.
     */
-   public boolean canMateWith(AnimalEntity otherAnimal) {
+   public boolean canMate(AnimalEntity otherAnimal) {
       if (otherAnimal == this) {
          return false;
-      } else if (!this.isTamed()) {
+      } else if (!this.isTame()) {
          return false;
       } else if (!(otherAnimal instanceof CoyoteEntity)) {
          return false;
       } else {
          CoyoteEntity wolfentity = (CoyoteEntity)otherAnimal;
-         if (!wolfentity.isTamed()) {
+         if (!wolfentity.isTame()) {
             return false;
-         } else if (wolfentity.isEntitySleeping()) {
+         } else if (wolfentity.isInSittingPose()) {
             return false;
          } else {
             return this.isInLove() && wolfentity.isInLove();
@@ -505,33 +505,33 @@ public class CoyoteEntity extends TameableEntity implements IAngerable {
    }
 
    public boolean isBegging() {
-      return this.dataManager.get(BEGGING);
+      return this.entityData.get(BEGGING);
    }
 
-   public boolean shouldAttackEntity(LivingEntity target, LivingEntity owner) {
+   public boolean wantsToAttack(LivingEntity target, LivingEntity owner) {
       if (!(target instanceof CreeperEntity) && !(target instanceof GhastEntity)) {
          if (target instanceof CoyoteEntity) {
             CoyoteEntity wolfentity = (CoyoteEntity)target;
-            return !wolfentity.isTamed() || wolfentity.getOwner() != owner;
-         } else if (target instanceof PlayerEntity && owner instanceof PlayerEntity && !((PlayerEntity)owner).canAttackPlayer((PlayerEntity)target)) {
+            return !wolfentity.isTame() || wolfentity.getOwner() != owner;
+         } else if (target instanceof PlayerEntity && owner instanceof PlayerEntity && !((PlayerEntity)owner).canHarmPlayer((PlayerEntity)target)) {
             return false;
-         } else if (target instanceof AbstractHorseEntity && ((AbstractHorseEntity)target).isTame()) {
+         } else if (target instanceof AbstractHorseEntity && ((AbstractHorseEntity)target).isTamed()) {
             return false;
          } else {
-            return !(target instanceof TameableEntity) || !((TameableEntity)target).isTamed();
+            return !(target instanceof TameableEntity) || !((TameableEntity)target).isTame();
          }
       } else {
          return false;
       }
    }
 
-   public boolean canBeLeashedTo(PlayerEntity player) {
-      return !this.isAngry() && super.canBeLeashedTo(player);
+   public boolean canBeLeashed(PlayerEntity player) {
+      return !this.isAngry() && super.canBeLeashed(player);
    }
 
    @OnlyIn(Dist.CLIENT)
-   public Vector3d getLeashStartPosition() {
-      return new Vector3d(0.0D, (double)(0.6F * this.getEyeHeight()), (double)(this.getWidth() * 0.4F));
+   public Vector3d getLeashOffset() {
+      return new Vector3d(0.0D, (double)(0.6F * this.getEyeHeight()), (double)(this.getBbWidth() * 0.4F));
    }
 
    class AvoidEntityGoal<T extends LivingEntity> extends net.minecraft.entity.ai.goal.AvoidEntityGoal<T> {
@@ -546,31 +546,31 @@ public class CoyoteEntity extends TameableEntity implements IAngerable {
        * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
        * method as well.
        */
-      public boolean shouldExecute() {
-         if (super.shouldExecute() && this.avoidTarget instanceof LlamaEntity) {
-            return !this.wolf.isTamed() && this.avoidLlama((LlamaEntity)this.avoidTarget);
+      public boolean canUse() {
+         if (super.canUse() && this.toAvoid instanceof LlamaEntity) {
+            return !this.wolf.isTame() && this.avoidLlama((LlamaEntity)this.toAvoid);
          } else {
             return false;
          }
       }
 
       private boolean avoidLlama(LlamaEntity llamaIn) {
-         return llamaIn.getStrength() >= CoyoteEntity.this.rand.nextInt(5);
+         return llamaIn.getStrength() >= CoyoteEntity.this.random.nextInt(5);
       }
 
       /**
        * Execute a one shot task or start executing a continuous task
        */
-      public void startExecuting() {
-         CoyoteEntity.this.setAttackTarget((LivingEntity)null);
-         super.startExecuting();
+      public void start() {
+         CoyoteEntity.this.setTarget((LivingEntity)null);
+         super.start();
       }
 
       /**
        * Keep ticking a continuous task that has already been started
        */
       public void tick() {
-         CoyoteEntity.this.setAttackTarget((LivingEntity)null);
+         CoyoteEntity.this.setTarget((LivingEntity)null);
          super.tick();
       }
    }

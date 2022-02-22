@@ -16,7 +16,7 @@ public final class OctopusRenderer extends MobRenderer<OctopusEntity, OctopusMod
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(OctopusEntity entity) {
+	public ResourceLocation getTextureLocation(OctopusEntity entity) {
 		return OCTOPUS_TEXTURE;
 	}
 }

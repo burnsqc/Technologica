@@ -17,13 +17,13 @@ public class GrizzlyBearRenderer extends MobRenderer<GrizzlyBearEntity, PolarBea
    }
 
    @Override
-   public ResourceLocation getEntityTexture(GrizzlyBearEntity entity) {
+   public ResourceLocation getTextureLocation(GrizzlyBearEntity entity) {
       return GRIZZLY_BEAR_TEXTURE;
    }
 
    @Override
-   protected void preRenderCallback(GrizzlyBearEntity entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
+   protected void scale(GrizzlyBearEntity entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
       matrixStackIn.scale(1.2F, 1.2F, 1.2F);
-      super.preRenderCallback(entitylivingbaseIn, matrixStackIn, partialTickTime);
+      super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
    }
 }

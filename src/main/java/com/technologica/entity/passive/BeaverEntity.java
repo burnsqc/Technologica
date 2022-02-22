@@ -56,14 +56,14 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class BeaverEntity extends AnimalEntity {
-	private static final DataParameter<Integer> RABBIT_TYPE = EntityDataManager.createKey(BeaverEntity.class, DataSerializers.VARINT);
+	private static final DataParameter<Integer> RABBIT_TYPE = EntityDataManager.defineId(BeaverEntity.class, DataSerializers.INT);
 	private boolean wasOnGround;
 	private int currentMoveTypeDuration;
 	private int carrotTicks;
 
 	public BeaverEntity(EntityType<? extends BeaverEntity> p_i50247_1_, World p_i50247_2_) {
 		super(p_i50247_1_, p_i50247_2_);
-		this.moveController = new BeaverEntity.MoveHelperController(this);
+		this.moveControl = new BeaverEntity.MoveHelperController(this);
 		this.setMovementSpeed(0.0D);
 	}
 
@@ -71,7 +71,7 @@ public class BeaverEntity extends AnimalEntity {
 		this.goalSelector.addGoal(1, new SwimGoal(this));
 		this.goalSelector.addGoal(1, new BeaverEntity.PanicGoal(this, 2.2D));
 		this.goalSelector.addGoal(2, new BreedGoal(this, 0.8D));
-		this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, Ingredient.fromItems(Items.CARROT, Items.GOLDEN_CARROT, Blocks.DANDELION), false));
+		this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, Ingredient.of(Items.CARROT, Items.GOLDEN_CARROT, Blocks.DANDELION), false));
 		this.goalSelector.addGoal(4, new BeaverEntity.AvoidEntityGoal<>(this, PlayerEntity.class, 8.0F, 2.2D, 2.2D));
 		this.goalSelector.addGoal(4, new BeaverEntity.AvoidEntityGoal<>(this, MonsterEntity.class, 4.0F, 2.2D, 2.2D));
 		this.goalSelector.addGoal(5, new BeaverEntity.RaidFarmGoal(this));
@@ -80,31 +80,31 @@ public class BeaverEntity extends AnimalEntity {
 	}
 
 	public static AttributeModifierMap.MutableAttribute registerAttributes() {
-		return AttributeModifierMap.createMutableAttribute()
-				.createMutableAttribute(Attributes.MAX_HEALTH, 10.0D)
-				.createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D)
-				.createMutableAttribute(Attributes.FOLLOW_RANGE, 16.0D)
-				.createMutableAttribute(Attributes.ATTACK_KNOCKBACK)
-				.createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE)
-				.createMutableAttribute(Attributes.ARMOR)
-				.createMutableAttribute(Attributes.ARMOR_TOUGHNESS)
-				.createMutableAttribute(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get())
-				.createMutableAttribute(net.minecraftforge.common.ForgeMod.NAMETAG_DISTANCE.get())
-				.createMutableAttribute(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get());
+		return AttributeModifierMap.builder()
+				.add(Attributes.MAX_HEALTH, 10.0D)
+				.add(Attributes.MOVEMENT_SPEED, 0.25D)
+				.add(Attributes.FOLLOW_RANGE, 16.0D)
+				.add(Attributes.ATTACK_KNOCKBACK)
+				.add(Attributes.KNOCKBACK_RESISTANCE)
+				.add(Attributes.ARMOR)
+				.add(Attributes.ARMOR_TOUGHNESS)
+				.add(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get())
+				.add(net.minecraftforge.common.ForgeMod.NAMETAG_DISTANCE.get())
+				.add(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get());
 	}
 
-	protected float getJumpUpwardsMotion() {
-		if (!this.collidedHorizontally
-				&& (!this.moveController.isUpdating() || !(this.moveController.getY() > this.getPosY() + 0.5D))) {
-			Path path = this.navigator.getPath();
-			if (path != null && !path.isFinished()) {
-				Vector3d vector3d = path.getPosition(this);
-				if (vector3d.y > this.getPosY() + 0.5D) {
+	protected float getJumpPower() {
+		if (!this.horizontalCollision
+				&& (!this.moveControl.hasWanted() || !(this.moveControl.getWantedY() > this.getY() + 0.5D))) {
+			Path path = this.navigation.getPath();
+			if (path != null && !path.isDone()) {
+				Vector3d vector3d = path.getNextEntityPos(this);
+				if (vector3d.y > this.getY() + 0.5D) {
 					return 0.5F;
 				}
 			}
 
-			return this.moveController.getSpeed() <= 0.6D ? 0.2F : 0.3F;
+			return this.moveControl.getSpeedModifier() <= 0.6D ? 0.2F : 0.3F;
 		} else {
 			return 0.5F;
 		}
@@ -113,49 +113,49 @@ public class BeaverEntity extends AnimalEntity {
 	/**
 	 * Causes this entity to do an upwards motion (jumping).
 	 */
-	protected void jump() {
-		super.jump();
-		double d0 = this.moveController.getSpeed();
+	protected void jumpFromGround() {
+		super.jumpFromGround();
+		double d0 = this.moveControl.getSpeedModifier();
 		if (d0 > 0.0D) {
-			double d1 = horizontalMag(this.getMotion());
+			double d1 = getHorizontalDistanceSqr(this.getDeltaMovement());
 			if (d1 < 0.01D) {
 				this.moveRelative(0.1F, new Vector3d(0.0D, 0.0D, 1.0D));
 			}
 		}
 
-		if (!this.world.isRemote) {
-			this.world.setEntityState(this, (byte) 1);
+		if (!this.level.isClientSide) {
+			this.level.broadcastEntityEvent(this, (byte) 1);
 		}
 
 	}
 
 	public void setMovementSpeed(double newSpeed) {
-		this.getNavigator().setSpeed(newSpeed);
-		this.moveController.setMoveTo(this.moveController.getX(), this.moveController.getY(),
-				this.moveController.getZ(), newSpeed);
+		this.getNavigation().setSpeedModifier(newSpeed);
+		this.moveControl.setWantedPosition(this.moveControl.getWantedX(), this.moveControl.getWantedY(),
+				this.moveControl.getWantedZ(), newSpeed);
 	}
 
 	public void setJumping(boolean jumping) {
 		super.setJumping(jumping);
 		if (jumping) {
 			this.playSound(this.getJumpSound(), this.getSoundVolume(),
-					((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F) * 0.8F);
+					((this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F) * 0.8F);
 		}
 
 	}
 
-	protected void registerData() {
-		super.registerData();
-		this.dataManager.register(RABBIT_TYPE, 0);
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(RABBIT_TYPE, 0);
 	}
 
-	public void updateAITasks() {
+	public void customServerAiStep() {
 		if (this.currentMoveTypeDuration > 0) {
 			--this.currentMoveTypeDuration;
 		}
 
 		if (this.carrotTicks > 0) {
-			this.carrotTicks -= this.rand.nextInt(3);
+			this.carrotTicks -= this.random.nextInt(3);
 			if (this.carrotTicks < 0) {
 				this.carrotTicks = 0;
 			}
@@ -168,11 +168,11 @@ public class BeaverEntity extends AnimalEntity {
 			}
 
 			if (this.getRabbitType() == 99 && this.currentMoveTypeDuration == 0) {
-				LivingEntity livingentity = this.getAttackTarget();
-				if (livingentity != null && this.getDistanceSq(livingentity) < 16.0D) {
-					this.calculateRotationYaw(livingentity.getPosX(), livingentity.getPosZ());
-					this.moveController.setMoveTo(livingentity.getPosX(), livingentity.getPosY(),
-							livingentity.getPosZ(), this.moveController.getSpeed());
+				LivingEntity livingentity = this.getTarget();
+				if (livingentity != null && this.distanceToSqr(livingentity) < 16.0D) {
+					this.calculateRotationYaw(livingentity.getX(), livingentity.getZ());
+					this.moveControl.setWantedPosition(livingentity.getX(), livingentity.getY(),
+							livingentity.getZ(), this.moveControl.getSpeedModifier());
 					this.wasOnGround = true;
 				}
 			}
@@ -181,17 +181,17 @@ public class BeaverEntity extends AnimalEntity {
 		this.wasOnGround = this.onGround;
 	}
 
-	public boolean shouldSpawnRunningEffects() {
+	public boolean canSpawnSprintParticle() {
 		return false;
 	}
 
 	private void calculateRotationYaw(double x, double z) {
-		this.rotationYaw = (float) (MathHelper.atan2(z - this.getPosZ(), x - this.getPosX())
+		this.yRot = (float) (MathHelper.atan2(z - this.getZ(), x - this.getX())
 				* (double) (180F / (float) Math.PI)) - 90.0F;
 	}
 
 	private void updateMoveTypeDuration() {
-		if (this.moveController.getSpeed() < 2.2D) {
+		if (this.moveControl.getSpeedModifier() < 2.2D) {
 			this.currentMoveTypeDuration = 10;
 		} else {
 			this.currentMoveTypeDuration = 1;
@@ -208,12 +208,12 @@ public class BeaverEntity extends AnimalEntity {
 	 * For example, zombies and skeletons use this to react to sunlight and start to
 	 * burn.
 	 */
-	public void livingTick() {
-		super.livingTick();
+	public void aiStep() {
+		super.aiStep();
 	}
 
-	public void writeAdditional(CompoundNBT compound) {
-		super.writeAdditional(compound);
+	public void addAdditionalSaveData(CompoundNBT compound) {
+		super.addAdditionalSaveData(compound);
 		compound.putInt("RabbitType", this.getRabbitType());
 		compound.putInt("MoreCarrotTicks", this.carrotTicks);
 	}
@@ -221,47 +221,47 @@ public class BeaverEntity extends AnimalEntity {
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
-	public void readAdditional(CompoundNBT compound) {
-		super.readAdditional(compound);
+	public void readAdditionalSaveData(CompoundNBT compound) {
+		super.readAdditionalSaveData(compound);
 		this.setRabbitType(compound.getInt("RabbitType"));
 		this.carrotTicks = compound.getInt("MoreCarrotTicks");
 	}
 
 	protected SoundEvent getJumpSound() {
-		return SoundEvents.ENTITY_RABBIT_JUMP;
+		return SoundEvents.RABBIT_JUMP;
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return SoundEvents.ENTITY_RABBIT_AMBIENT;
+		return SoundEvents.RABBIT_AMBIENT;
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return SoundEvents.ENTITY_RABBIT_HURT;
+		return SoundEvents.RABBIT_HURT;
 	}
 
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.ENTITY_RABBIT_DEATH;
+		return SoundEvents.RABBIT_DEATH;
 	}
 
-	public boolean attackEntityAsMob(Entity entityIn) {
+	public boolean doHurtTarget(Entity entityIn) {
 		if (this.getRabbitType() == 99) {
-			this.playSound(SoundEvents.ENTITY_RABBIT_ATTACK, 1.0F,
-					(this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
-			return entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), 8.0F);
+			this.playSound(SoundEvents.RABBIT_ATTACK, 1.0F,
+					(this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+			return entityIn.hurt(DamageSource.mobAttack(this), 8.0F);
 		} else {
-			return entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), 3.0F);
+			return entityIn.hurt(DamageSource.mobAttack(this), 3.0F);
 		}
 	}
 
-	public SoundCategory getSoundCategory() {
+	public SoundCategory getSoundSource() {
 		return this.getRabbitType() == 99 ? SoundCategory.HOSTILE : SoundCategory.NEUTRAL;
 	}
 
 	/**
 	 * Called when the entity is attacked.
 	 */
-	public boolean attackEntityFrom(DamageSource source, float amount) {
-		return this.isInvulnerableTo(source) ? false : super.attackEntityFrom(source, amount);
+	public boolean hurt(DamageSource source, float amount) {
+		return this.isInvulnerableTo(source) ? false : super.hurt(source, amount);
 	}
 
 	private boolean isRabbitBreedingItem(Item itemIn) {
@@ -272,27 +272,27 @@ public class BeaverEntity extends AnimalEntity {
 	 * Checks if the parameter is an item which this animal can be fed to breed it
 	 * (wheat, carrots or seeds depending on the animal type)
 	 */
-	public boolean isBreedingItem(ItemStack stack) {
+	public boolean isFood(ItemStack stack) {
 		return this.isRabbitBreedingItem(stack.getItem());
 	}
 
 	public int getRabbitType() {
-		return this.dataManager.get(RABBIT_TYPE);
+		return this.entityData.get(RABBIT_TYPE);
 	}
 
 	public void setRabbitType(int rabbitTypeId) {
 		if (rabbitTypeId == 99) {
 			this.getAttribute(Attributes.ARMOR).setBaseValue(8.0D);
 			this.goalSelector.addGoal(4, new BeaverEntity.EvilAttackGoal(this));
-			this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp());
+			this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers());
 			this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
 		}
 
-		this.dataManager.set(RABBIT_TYPE, rabbitTypeId);
+		this.entityData.set(RABBIT_TYPE, rabbitTypeId);
 	}
 
 	@Nullable
-	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason,
+	public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason,
 			@Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		int i = this.getRandomRabbitType(worldIn);
 		if (spawnDataIn instanceof BeaverEntity.RabbitData) {
@@ -302,26 +302,26 @@ public class BeaverEntity extends AnimalEntity {
 		}
 
 		this.setRabbitType(i);
-		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
 	private int getRandomRabbitType(IWorld p_213610_1_) {
-		Biome biome = p_213610_1_.getBiome(this.getPosition());
-		int i = this.rand.nextInt(100);
+		Biome biome = p_213610_1_.getBiome(this.blockPosition());
+		int i = this.random.nextInt(100);
 		if (biome.getPrecipitation() == Biome.RainType.SNOW) {
 			return i < 80 ? 1 : 3;
-		} else if (biome.getCategory() == Biome.Category.DESERT) {
+		} else if (biome.getBiomeCategory() == Biome.Category.DESERT) {
 			return 4;
 		} else {
 			return i < 50 ? 0 : (i < 90 ? 5 : 2);
 		}
 	}
 
-	public static boolean func_223321_c(EntityType<BeaverEntity> p_223321_0_, IWorld p_223321_1_, SpawnReason reason,
+	public static boolean checkRabbitSpawnRules(EntityType<BeaverEntity> p_223321_0_, IWorld p_223321_1_, SpawnReason reason,
 			BlockPos p_223321_3_, Random p_223321_4_) {
-		BlockState blockstate = p_223321_1_.getBlockState(p_223321_3_.down());
-		return (blockstate.matchesBlock(Blocks.GRASS_BLOCK) || blockstate.matchesBlock(Blocks.SNOW)
-				|| blockstate.matchesBlock(Blocks.SAND)) && p_223321_1_.getLightSubtracted(p_223321_3_, 0) > 8;
+		BlockState blockstate = p_223321_1_.getBlockState(p_223321_3_.below());
+		return (blockstate.is(Blocks.GRASS_BLOCK) || blockstate.is(Blocks.SNOW)
+				|| blockstate.is(Blocks.SAND)) && p_223321_1_.getRawBrightness(p_223321_3_, 0) > 8;
 	}
 
 	/**
@@ -336,18 +336,18 @@ public class BeaverEntity extends AnimalEntity {
 	 * Handler for {@link World#setEntityState}
 	 */
 	@OnlyIn(Dist.CLIENT)
-	public void handleStatusUpdate(byte id) {
+	public void handleEntityEvent(byte id) {
 		if (id == 1) {
-			this.handleRunningEffect();
+			this.spawnSprintParticle();
 		} else {
-			super.handleStatusUpdate(id);
+			super.handleEntityEvent(id);
 		}
 
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public Vector3d getLeashStartPosition() {
-		return new Vector3d(0.0D, (double) (0.6F * this.getEyeHeight()), (double) (this.getWidth() * 0.4F));
+	public Vector3d getLeashOffset() {
+		return new Vector3d(0.0D, (double) (0.6F * this.getEyeHeight()), (double) (this.getBbWidth() * 0.4F));
 	}
 
 	static class AvoidEntityGoal<T extends LivingEntity> extends net.minecraft.entity.ai.goal.AvoidEntityGoal<T> {
@@ -363,8 +363,8 @@ public class BeaverEntity extends AnimalEntity {
 		 * Returns whether execution should begin. You can also read and cache any state
 		 * necessary for execution in this method as well.
 		 */
-		public boolean shouldExecute() {
-			return this.rabbit.getRabbitType() != 99 && super.shouldExecute();
+		public boolean canUse() {
+			return this.rabbit.getRabbitType() != 99 && super.canUse();
 		}
 	}
 
@@ -374,7 +374,7 @@ public class BeaverEntity extends AnimalEntity {
 		}
 
 		protected double getAttackReachSqr(LivingEntity attackTarget) {
-			return (double) (4.0F + attackTarget.getWidth());
+			return (double) (4.0F + attackTarget.getBbWidth());
 		}
 	}
 
@@ -394,12 +394,12 @@ public class BeaverEntity extends AnimalEntity {
 		/**
 		 * Sets the speed and location to move to
 		 */
-		public void setMoveTo(double x, double y, double z, double speedIn) {
+		public void setWantedPosition(double x, double y, double z, double speedIn) {
 			if (this.rabbit.isInWater()) {
 				speedIn = 1.5D;
 			}
 
-			super.setMoveTo(x, y, z, speedIn);
+			super.setWantedPosition(x, y, z, speedIn);
 			if (speedIn > 0.0D) {
 				
 			}
@@ -420,7 +420,7 @@ public class BeaverEntity extends AnimalEntity {
 		 */
 		public void tick() {
 			super.tick();
-			this.rabbit.setMovementSpeed(this.speed);
+			this.rabbit.setMovementSpeed(this.speedModifier);
 		}
 	}
 
@@ -447,9 +447,9 @@ public class BeaverEntity extends AnimalEntity {
 		 * Returns whether execution should begin. You can also read and cache any state
 		 * necessary for execution in this method as well.
 		 */
-		public boolean shouldExecute() {
-			if (this.runDelay <= 0) {
-				if (!net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.rabbit.world, this.rabbit)) {
+		public boolean canUse() {
+			if (this.nextStartTick <= 0) {
+				if (!net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.rabbit.level, this.rabbit)) {
 					return false;
 				}
 
@@ -458,14 +458,14 @@ public class BeaverEntity extends AnimalEntity {
 				this.wantsToRaid = true;
 			}
 
-			return super.shouldExecute();
+			return super.canUse();
 		}
 
 		/**
 		 * Returns whether an in-progress EntityAIBase should continue executing
 		 */
-		public boolean shouldContinueExecuting() {
-			return this.canRaid && super.shouldContinueExecuting();
+		public boolean canContinueToUse() {
+			return this.canRaid && super.canContinueToUse();
 		}
 
 		/**
@@ -473,30 +473,30 @@ public class BeaverEntity extends AnimalEntity {
 		 */
 		public void tick() {
 			super.tick();
-			this.rabbit.getLookController().setLookPosition((double) this.destinationBlock.getX() + 0.5D,
-					(double) (this.destinationBlock.getY() + 1), (double) this.destinationBlock.getZ() + 0.5D, 10.0F,
-					(float) this.rabbit.getVerticalFaceSpeed());
-			if (this.getIsAboveDestination()) {
-				World world = this.rabbit.world;
-				BlockPos blockpos = this.destinationBlock.up();
+			this.rabbit.getLookControl().setLookAt((double) this.blockPos.getX() + 0.5D,
+					(double) (this.blockPos.getY() + 1), (double) this.blockPos.getZ() + 0.5D, 10.0F,
+					(float) this.rabbit.getMaxHeadXRot());
+			if (this.isReachedTarget()) {
+				World world = this.rabbit.level;
+				BlockPos blockpos = this.blockPos.above();
 				BlockState blockstate = world.getBlockState(blockpos);
 				Block block = blockstate.getBlock();
 				if (this.canRaid && block instanceof CarrotBlock) {
-					Integer integer = blockstate.get(CarrotBlock.AGE);
+					Integer integer = blockstate.getValue(CarrotBlock.AGE);
 					if (integer == 0) {
-						world.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 2);
+						world.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 2);
 						world.destroyBlock(blockpos, true, this.rabbit);
 					} else {
-						world.setBlockState(blockpos, blockstate.with(CarrotBlock.AGE, Integer.valueOf(integer - 1)),
+						world.setBlock(blockpos, blockstate.setValue(CarrotBlock.AGE, Integer.valueOf(integer - 1)),
 								2);
-						world.playEvent(2001, blockpos, Block.getStateId(blockstate));
+						world.levelEvent(2001, blockpos, Block.getId(blockstate));
 					}
 
 					this.rabbit.carrotTicks = 40;
 				}
 
 				this.canRaid = false;
-				this.runDelay = 10;
+				this.nextStartTick = 10;
 			}
 
 		}
@@ -504,10 +504,10 @@ public class BeaverEntity extends AnimalEntity {
 		/**
 		 * Return true to set given position as destination
 		 */
-		protected boolean shouldMoveTo(IWorldReader worldIn, BlockPos pos) {
+		protected boolean isValidTarget(IWorldReader worldIn, BlockPos pos) {
 			Block block = worldIn.getBlockState(pos).getBlock();
 			if (block == Blocks.FARMLAND && this.wantsToRaid && !this.canRaid) {
-				pos = pos.up();
+				pos = pos.above();
 				BlockState blockstate = worldIn.getBlockState(pos);
 				block = blockstate.getBlock();
 				if (block instanceof CarrotBlock && ((CarrotBlock) block).isMaxAge(blockstate)) {
@@ -521,7 +521,7 @@ public class BeaverEntity extends AnimalEntity {
 	}
 
 	@Override
-	public AgeableEntity createChild(ServerWorld world, AgeableEntity mate) {
+	public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity mate) {
 		return null;
 	}
 }

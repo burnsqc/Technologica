@@ -26,7 +26,7 @@ import net.minecraft.world.World;
 public class DisplayCaseBlock extends GlassBlock {
 
 	public DisplayCaseBlock() {
-		super(AbstractBlock.Properties.create(Material.GLASS).hardnessAndResistance(0.3F).sound(SoundType.GLASS).notSolid());
+		super(AbstractBlock.Properties.of(Material.GLASS).strength(0.3F).sound(SoundType.GLASS).noOcclusion());
 	}
 
 	/*
@@ -34,7 +34,7 @@ public class DisplayCaseBlock extends GlassBlock {
 	 */
 	
 	public DisplayCaseTileEntity getTileEntity(World worldIn, BlockPos posIn) {
-		return (DisplayCaseTileEntity) worldIn.getTileEntity(posIn);
+		return (DisplayCaseTileEntity) worldIn.getBlockEntity(posIn);
 	}
 
 	/*
@@ -42,37 +42,37 @@ public class DisplayCaseBlock extends GlassBlock {
 	 */
 
 	@Override
-	public void onReplaced(BlockState stateIn, World worldIn, BlockPos posIn, BlockState newStateIn, boolean isMovingIn) {
-		if (!stateIn.matchesBlock(newStateIn.getBlock())) {
+	public void onRemove(BlockState stateIn, World worldIn, BlockPos posIn, BlockState newStateIn, boolean isMovingIn) {
+		if (!stateIn.is(newStateIn.getBlock())) {
 			DisplayCaseTileEntity tile = getTileEntity(worldIn, posIn);
-			spawnAsEntity(worldIn, posIn.up(), tile.getDisplayStack());
+			popResource(worldIn, posIn.above(), tile.getDisplayStack());
 			tile.setDisplayStack(ItemStack.EMPTY);
 		}
 	}
 	
 	@Override
-	public ActionResultType onBlockActivated(BlockState stateIn, World worldIn, BlockPos posIn, PlayerEntity playerIn, Hand handIn, BlockRayTraceResult hitIn) {
+	public ActionResultType use(BlockState stateIn, World worldIn, BlockPos posIn, PlayerEntity playerIn, Hand handIn, BlockRayTraceResult hitIn) {
 		DisplayCaseTileEntity tile = getTileEntity(worldIn, posIn);
-		ItemStack itemstack = playerIn.getHeldItem(handIn);
+		ItemStack itemstack = playerIn.getItemInHand(handIn);
 		if (tile.getDisplayStack().isEmpty()) {
 			if (!itemstack.isEmpty()) {
 				tile.setDisplayStack(new ItemStack(itemstack.getItem(), 1));
-				worldIn.playSound((PlayerEntity) null, posIn, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.rand.nextFloat() * 0.4F);
+				worldIn.playSound((PlayerEntity) null, posIn, SoundEvents.ITEM_PICKUP, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.random.nextFloat() * 0.4F);
 				itemstack.shrink(1);
-				playerIn.inventory.setInventorySlotContents(playerIn.inventory.currentItem, itemstack);
-				playerIn.openContainer.detectAndSendChanges();
+				playerIn.inventory.setItem(playerIn.inventory.selected, itemstack);
+				playerIn.containerMenu.broadcastChanges();
 			}
 		} else {
 			ItemStack stack = tile.getDisplayStack();
 			tile.setDisplayStack(ItemStack.EMPTY);
-			worldIn.playSound(null, posIn, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.rand.nextFloat() * 0.4F);
-			if (!playerIn.inventory.addItemStackToInventory(tile.getDisplayStack())) {
-				spawnAsEntity(worldIn, posIn.up(), stack);
+			worldIn.playSound(null, posIn, SoundEvents.ITEM_PICKUP, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.random.nextFloat() * 0.4F);
+			if (!playerIn.inventory.add(tile.getDisplayStack())) {
+				popResource(worldIn, posIn.above(), stack);
 			} else {
-				playerIn.openContainer.detectAndSendChanges();
+				playerIn.containerMenu.broadcastChanges();
 			}
 		}
-		return ActionResultType.func_233537_a_(worldIn.isRemote);
+		return ActionResultType.sidedSuccess(worldIn.isClientSide);
 	}
 
 	/*

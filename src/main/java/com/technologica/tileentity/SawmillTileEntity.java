@@ -62,28 +62,28 @@ public class SawmillTileEntity extends TileEntity implements ISidedInventory, IR
 	@Override
 	@Nullable
 	public SUpdateTileEntityPacket getUpdatePacket() {
-		return new SUpdateTileEntityPacket(this.pos, 10, this.getUpdateTag());
+		return new SUpdateTileEntityPacket(this.worldPosition, 10, this.getUpdateTag());
 	}
 
 	@Override
 	public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
-		BlockState blockState = world.getBlockState(pos);
-		read(blockState, pkt.getNbtCompound());
+		BlockState blockState = level.getBlockState(worldPosition);
+		load(blockState, pkt.getTag());
 	}
 
 	@Override
 	public CompoundNBT getUpdateTag() {
-		return this.write(new CompoundNBT());
+		return this.save(new CompoundNBT());
 	}
 
 	@Override
 	public void handleUpdateTag(BlockState blockState, CompoundNBT parentNBTTagCompound) {
-		this.read(blockState, parentNBTTagCompound);
+		this.load(blockState, parentNBTTagCompound);
 	}
 
 	@Override
-	public void read(BlockState state, CompoundNBT nbt) {
-		super.read(state, nbt);
+	public void load(BlockState state, CompoundNBT nbt) {
+		super.load(state, nbt);
 		if (nbt.contains("blade")) {
 			blade = nbt.getBoolean("blade");
 		}
@@ -91,22 +91,22 @@ public class SawmillTileEntity extends TileEntity implements ISidedInventory, IR
 			this.sawTime = nbt.getInt("sawTime");
 		}
 		if (nbt.contains("log")) {
-			this.setLog(ItemStack.read(nbt.getCompound("log")));
+			this.setLog(ItemStack.of(nbt.getCompound("log")));
 		}
 	}
 
 	@Override
-	public CompoundNBT write(CompoundNBT compound) {
-		super.write(compound);
+	public CompoundNBT save(CompoundNBT compound) {
+		super.save(compound);
 		compound.putBoolean("blade", blade);
 		compound.putInt("sawTime", this.sawTime);
-		compound.put("log", this.getLog().write(new CompoundNBT()));
+		compound.put("log", this.getLog().save(new CompoundNBT()));
 		return compound;
 	}
 
 	@Override
 	public void tick() {
-		if (world.isRemote() && this.sawTime > 0F) {
+		if (level.isClientSide() && this.sawTime > 0F) {
 			logPos = 1.0 - 4.0 * (sawTime / 200);
 			sawTime--;
 		} else if (!log.isEmpty()) {
@@ -119,7 +119,7 @@ public class SawmillTileEntity extends TileEntity implements ISidedInventory, IR
 		if (recipe != null && this.canSaw(recipe)) {
 			ItemStack itemstack = this.items.get(0);
 			@SuppressWarnings("unchecked")
-			ItemStack itemstack1 = ((IRecipe<ISidedInventory>) recipe).getCraftingResult(this);
+			ItemStack itemstack1 = ((IRecipe<ISidedInventory>) recipe).assemble(this);
 			ItemStack itemstack2 = this.items.get(2);
 			if (itemstack2.isEmpty()) {
 				this.items.set(2, itemstack1.copy());
@@ -127,7 +127,7 @@ public class SawmillTileEntity extends TileEntity implements ISidedInventory, IR
 				itemstack2.grow(itemstack1.getCount());
 			}
 
-			if (!this.world.isRemote) {
+			if (!this.level.isClientSide) {
 				this.setRecipeUsed(recipe);
 			}
 
@@ -138,16 +138,16 @@ public class SawmillTileEntity extends TileEntity implements ISidedInventory, IR
 	protected boolean canSaw(@Nullable IRecipe<?> recipeIn) {
 		if (!this.items.get(0).isEmpty() && recipeIn != null) {
 			@SuppressWarnings("unchecked")
-			ItemStack itemstack = ((IRecipe<ISidedInventory>) recipeIn).getCraftingResult(this);
+			ItemStack itemstack = ((IRecipe<ISidedInventory>) recipeIn).assemble(this);
 			if (itemstack.isEmpty()) {
 				return false;
 			} else {
 				ItemStack itemstack1 = this.items.get(2);
 				if (itemstack1.isEmpty()) {
 					return true;
-				} else if (!itemstack1.isItemEqual(itemstack)) {
+				} else if (!itemstack1.sameItem(itemstack)) {
 					return false;
-				} else if (itemstack1.getCount() + itemstack.getCount() <= this.getInventoryStackLimit() && itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxStackSize()) { 																																								
+				} else if (itemstack1.getCount() + itemstack.getCount() <= this.getMaxStackSize() && itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxStackSize()) { 																																								
 					return true;
 				} else {
 					return itemstack1.getCount() + itemstack.getCount() <= itemstack.getMaxStackSize(); 																										
@@ -183,7 +183,7 @@ public class SawmillTileEntity extends TileEntity implements ISidedInventory, IR
 	}
 
 	@Override
-	public int getSizeInventory() {
+	public int getContainerSize() {
 		return this.items.size();
 	}
 
@@ -199,48 +199,48 @@ public class SawmillTileEntity extends TileEntity implements ISidedInventory, IR
 	}
 
 	@Override
-	public ItemStack getStackInSlot(int index) {
+	public ItemStack getItem(int index) {
 		return this.items.get(index);
 	}
 
 	@Override
-	public ItemStack decrStackSize(int index, int count) {
-		return ItemStackHelper.getAndSplit(this.items, index, count);
+	public ItemStack removeItem(int index, int count) {
+		return ItemStackHelper.removeItem(this.items, index, count);
 	}
 
 	@Override
-	public ItemStack removeStackFromSlot(int index) {
-		return ItemStackHelper.getAndRemove(this.items, index);
+	public ItemStack removeItemNoUpdate(int index) {
+		return ItemStackHelper.takeItem(this.items, index);
 	}
 
 	@Override
-	public void setInventorySlotContents(int index, ItemStack stack) {
+	public void setItem(int index, ItemStack stack) {
 		ItemStack itemstack = this.items.get(index);
-		boolean flag = !stack.isEmpty() && stack.isItemEqual(itemstack) && ItemStack.areItemStackTagsEqual(stack, itemstack);
+		boolean flag = !stack.isEmpty() && stack.sameItem(itemstack) && ItemStack.tagMatches(stack, itemstack);
 		this.items.set(index, stack);
-		if (stack.getCount() > this.getInventoryStackLimit()) {
-			stack.setCount(this.getInventoryStackLimit());
+		if (stack.getCount() > this.getMaxStackSize()) {
+			stack.setCount(this.getMaxStackSize());
 		}
 		
 		if (index == 0 && !flag) {
 			//this.sawTimeTotal = this.getSawTime();
 			this.sawTime = 0;
-			this.markDirty();
+			this.setChanged();
 		}
 		
 	}
 
 	@Override
-	public boolean isUsableByPlayer(PlayerEntity player) {
-		if (this.world.getTileEntity(this.pos) != this) {
+	public boolean stillValid(PlayerEntity player) {
+		if (this.level.getBlockEntity(this.worldPosition) != this) {
 			return false;
 		} else {
-			return player.getDistanceSq((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) <= 64.0D;
+			return player.distanceToSqr((double)this.worldPosition.getX() + 0.5D, (double)this.worldPosition.getY() + 0.5D, (double)this.worldPosition.getZ() + 0.5D) <= 64.0D;
 		}
 	}
 
 	@Override
-	public void clear() {
+	public void clearContent() {
 		this.items.clear();
 	}
 
@@ -250,12 +250,12 @@ public class SawmillTileEntity extends TileEntity implements ISidedInventory, IR
 	}
 
 	@Override
-	public boolean canInsertItem(int index, ItemStack itemStackIn, Direction direction) {
+	public boolean canPlaceItemThroughFace(int index, ItemStack itemStackIn, Direction direction) {
 		return false;
 	}
 
 	@Override
-	public boolean canExtractItem(int index, ItemStack stack, Direction direction) {
+	public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
 		return false;
 	}
 }

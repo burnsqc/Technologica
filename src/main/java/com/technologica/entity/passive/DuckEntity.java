@@ -23,23 +23,23 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 public class DuckEntity extends AnimalEntity {
-   private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(Items.BREAD);
+   private static final Ingredient TEMPTATION_ITEMS = Ingredient.of(Items.BREAD);
    public static final String EGG_LAY_TIME = "EggLayTime";
    private float wingRotation;
    private float destPos;
    private float oFlapSpeed;
    private float oFlap;
    private float wingRotDelta = 1.0F;
-   private int timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
+   private int timeUntilNextEgg = this.random.nextInt(6000) + 6000;
 
    public DuckEntity(EntityType<DuckEntity> type, World worldIn) {
       super(type, worldIn);
-      this.setPathPriority(PathNodeType.WATER, 0.0F);
+      this.setPathfindingMalus(PathNodeType.WATER, 0.0F);
    }
 
    //Register Attributes and Goals
    public static AttributeModifierMap.MutableAttribute registerAttributes() {
-      return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 4.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D);
+      return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 4.0D).add(Attributes.MOVEMENT_SPEED, 0.25D);
    }
 
    @Override
@@ -55,25 +55,25 @@ public class DuckEntity extends AnimalEntity {
 
    //General properties
    @Override
-   public boolean onLivingFall(float distance, float damageMultiplier) {
+   public boolean causeFallDamage(float distance, float damageMultiplier) {
       return false;
    }
 
    //Spawning
-   public DuckEntity createChild(ServerWorld serverWorldIn, AgeableEntity ageableEntityIn) {
+   public DuckEntity getBreedOffspring(ServerWorld serverWorldIn, AgeableEntity ageableEntityIn) {
       return TechnologicaEntityType.DUCK.get().create(serverWorldIn);
    }
 
    //Animation
    @Override
    protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
-      return this.isChild() ? sizeIn.height * 0.85F : sizeIn.height * 0.92F;
+      return this.isBaby() ? sizeIn.height * 0.85F : sizeIn.height * 0.92F;
    }
 
    //Behavior
    @Override
-   public void livingTick() {
-      super.livingTick();
+   public void aiStep() {
+      super.aiStep();
       this.oFlap = this.wingRotation;
       this.oFlapSpeed = this.destPos;
       this.destPos = (float) ((double) this.destPos + (double) (this.onGround ? -1 : 4) * 0.3D);
@@ -82,57 +82,57 @@ public class DuckEntity extends AnimalEntity {
          this.wingRotDelta = 1.0F;
       }
       this.wingRotDelta = (float) ((double) this.wingRotDelta * 0.9D);
-      Vector3d vector3d = this.getMotion();
+      Vector3d vector3d = this.getDeltaMovement();
       if (!this.onGround && vector3d.y < 0.0D) {
-         this.setMotion(vector3d.mul(1.0D, 0.6D, 1.0D));
+         this.setDeltaMovement(vector3d.multiply(1.0D, 0.6D, 1.0D));
       }
       this.wingRotation += this.wingRotDelta * 2.0F;
-      if (!this.world.isRemote && this.isAlive() && !this.isChild() && --this.timeUntilNextEgg <= 0) {
-         this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
-         this.entityDropItem(Items.EGG);
-         this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
+      if (!this.level.isClientSide && this.isAlive() && !this.isBaby() && --this.timeUntilNextEgg <= 0) {
+         this.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+         this.spawnAtLocation(Items.EGG);
+         this.timeUntilNextEgg = this.random.nextInt(6000) + 6000;
       }
    }
 
    //Breeding
    @Override
-   public boolean isBreedingItem(ItemStack stack) {
+   public boolean isFood(ItemStack stack) {
       return TEMPTATION_ITEMS.test(stack);
    }
 
    //Audio
    @Override
    protected SoundEvent getAmbientSound() {
-      return SoundEvents.ENTITY_CHICKEN_AMBIENT;
+      return SoundEvents.CHICKEN_AMBIENT;
    }
 
    @Override
    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-      return SoundEvents.ENTITY_CHICKEN_HURT;
+      return SoundEvents.CHICKEN_HURT;
    }
 
    @Override
    protected SoundEvent getDeathSound() {
-      return SoundEvents.ENTITY_CHICKEN_DEATH;
+      return SoundEvents.CHICKEN_DEATH;
    }
 
    @Override
    protected void playStepSound(BlockPos pos, BlockState blockIn) {
-      this.playSound(SoundEvents.ENTITY_CHICKEN_STEP, 0.15F, 1.0F);
+      this.playSound(SoundEvents.CHICKEN_STEP, 0.15F, 1.0F);
    }
 
    //NBT
    @Override
-   public void readAdditional(CompoundNBT compound) {
-      super.readAdditional(compound);
+   public void readAdditionalSaveData(CompoundNBT compound) {
+      super.readAdditionalSaveData(compound);
       if (compound.contains(EGG_LAY_TIME)) {
          this.timeUntilNextEgg = compound.getInt(EGG_LAY_TIME);
       }
    }
 
    @Override
-   public void writeAdditional(CompoundNBT compound) {
-      super.writeAdditional(compound);
+   public void addAdditionalSaveData(CompoundNBT compound) {
+      super.addAdditionalSaveData(compound);
       compound.putInt(EGG_LAY_TIME, this.timeUntilNextEgg);
    }
 

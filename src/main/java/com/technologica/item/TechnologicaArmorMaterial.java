@@ -13,20 +13,20 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 
 public enum TechnologicaArmorMaterial implements IArmorMaterial {
-	SPACE("space", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
-	      return Ingredient.fromItems(Items.IRON_INGOT);
+	SPACE("space", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+	      return Ingredient.of(Items.IRON_INGOT);
 	   }),
 	
-	SNORKEL("snorkel", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
-	      return Ingredient.fromItems(TechnologicaItems.RUBBER.get());
+	SNORKEL("snorkel", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+	      return Ingredient.of(TechnologicaItems.RUBBER.get());
 	   }),
 	
-	DIVE("dive", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
-	      return Ingredient.fromItems(TechnologicaItems.COPPER_INGOT.get());
+	DIVE("dive", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+	      return Ingredient.of(TechnologicaItems.COPPER_INGOT.get());
 	   }),
 	
-	SCUBA("scuba", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
-	      return Ingredient.fromItems(TechnologicaItems.RUBBER.get());
+	SCUBA("scuba", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+	      return Ingredient.of(TechnologicaItems.RUBBER.get());
 	   });
 	
 	private static final int[] MAX_DAMAGE_ARRAY = new int[] { 13, 15, 16, 11 };
@@ -51,28 +51,28 @@ public enum TechnologicaArmorMaterial implements IArmorMaterial {
 	}
 
 	@Override
-	public int getDurability(EquipmentSlotType slotIn) {
+	public int getDurabilityForSlot(EquipmentSlotType slotIn) {
 		return MAX_DAMAGE_ARRAY[slotIn.getIndex()] * maxDamageFactor;
 	}
 
 	@Override
-	public int getDamageReductionAmount(EquipmentSlotType slotIn) {
+	public int getDefenseForSlot(EquipmentSlotType slotIn) {
 		return damageReductionAmountArray[slotIn.getIndex()];
 	}
 
 	@Override
-	public int getEnchantability() {
+	public int getEnchantmentValue() {
 		return enchantability;
 	}
 
 	@Override
-	public SoundEvent getSoundEvent() {
+	public SoundEvent getEquipSound() {
 		return soundEvent;
 	}
 
 	@Override
-	public Ingredient getRepairMaterial() {
-		return repairMaterial.getValue();
+	public Ingredient getRepairIngredient() {
+		return repairMaterial.get();
 	}
 
 	@Override

@@ -16,7 +16,7 @@ public final class PenguinRenderer extends MobRenderer<PenguinEntity, PenguinMod
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(PenguinEntity entity) {
+	public ResourceLocation getTextureLocation(PenguinEntity entity) {
 		return PENGUIN_TEXTURE;
 	}
 }

@@ -38,75 +38,75 @@ import net.minecraft.world.server.ServerWorld;
 
 public class ZebraEntity extends AbstractHorseEntity {
 	private static final UUID ARMOR_MODIFIER_UUID = UUID.fromString("556E1665-8B10-40C8-8F9D-CF9B1667F295");
-	private static final DataParameter<Integer> HORSE_VARIANT = EntityDataManager.createKey(ZebraEntity.class,
-			DataSerializers.VARINT);
+	private static final DataParameter<Integer> HORSE_VARIANT = EntityDataManager.defineId(ZebraEntity.class,
+			DataSerializers.INT);
 
 	public ZebraEntity(EntityType<? extends ZebraEntity> type, World worldIn) {
 		super(type, worldIn);
 	}
 
 	@Override
-	public void func_230273_eI_() {
-		this.getAttribute(Attributes.MAX_HEALTH).setBaseValue((double) this.getModifiedMaxHealth());
-		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(this.getModifiedMovementSpeed());
-		this.getAttribute(Attributes.HORSE_JUMP_STRENGTH).setBaseValue(this.getModifiedJumpStrength());
+	public void randomizeAttributes() {
+		this.getAttribute(Attributes.MAX_HEALTH).setBaseValue((double) this.generateRandomMaxHealth());
+		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(this.generateRandomSpeed());
+		this.getAttribute(Attributes.JUMP_STRENGTH).setBaseValue(this.generateRandomJumpStrength());
 	}
 
 	//Register Attributes, Goals, and Data
-	//Attributes are registered inside AbstractHourseEntity with method func_234237_fg_
+	//Attributes are registered inside AbstractHourseEntity with method createBaseHorseAttributes
 	@Override
-	protected void registerData() {
-		super.registerData();
-		this.dataManager.register(HORSE_VARIANT, 0);
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(HORSE_VARIANT, 0);
 	}
 
-	public ItemStack func_213803_dV() {
-		return this.getItemStackFromSlot(EquipmentSlotType.CHEST);
+	public ItemStack getArmor() {
+		return this.getItemBySlot(EquipmentSlotType.CHEST);
 	}
 
-	private void func_213805_k(ItemStack p_213805_1_) {
-		this.setItemStackToSlot(EquipmentSlotType.CHEST, p_213805_1_);
+	private void setArmor(ItemStack p_213805_1_) {
+		this.setItemSlot(EquipmentSlotType.CHEST, p_213805_1_);
 		this.setDropChance(EquipmentSlotType.CHEST, 0.0F);
 	}
 
-	private void func_234242_w_(int p_234242_1_) {
-		this.dataManager.set(HORSE_VARIANT, p_234242_1_);
+	private void setTypeVariant(int p_234242_1_) {
+		this.entityData.set(HORSE_VARIANT, p_234242_1_);
 	}
 
-	private int func_234241_eS_() {
-		return this.dataManager.get(HORSE_VARIANT);
+	private int getTypeVariant() {
+		return this.entityData.get(HORSE_VARIANT);
 	}
 
-	private void func_234238_a_(CoatColors p_234238_1_, CoatTypes p_234238_2_) {
-		this.func_234242_w_(p_234238_1_.getId() & 255 | p_234238_2_.getId() << 8 & '\uff00');
+	private void setVariantAndMarkings(CoatColors p_234238_1_, CoatTypes p_234238_2_) {
+		this.setTypeVariant(p_234238_1_.getId() & 255 | p_234238_2_.getId() << 8 & '\uff00');
 	}
 
-	public CoatColors func_234239_eK_() {
-		return CoatColors.func_234254_a_(this.func_234241_eS_() & 255);
+	public CoatColors getVariant() {
+		return CoatColors.byId(this.getTypeVariant() & 255);
 	}
 
-	public CoatTypes func_234240_eM_() {
-		return CoatTypes.func_234248_a_((this.func_234241_eS_() & '\uff00') >> 8);
+	public CoatTypes getMarkings() {
+		return CoatTypes.byId((this.getTypeVariant() & '\uff00') >> 8);
 	}
 
 	@Override
-	protected void func_230275_fc_() {
-		if (!this.world.isRemote) {
-			super.func_230275_fc_();
-			this.func_213804_l(this.horseChest.getStackInSlot(1));
+	protected void updateContainerEquipment() {
+		if (!this.level.isClientSide) {
+			super.updateContainerEquipment();
+			this.setArmorEquipment(this.inventory.getItem(1));
 			this.setDropChance(EquipmentSlotType.CHEST, 0.0F);
 		}
 	}
 
-	private void func_213804_l(ItemStack p_213804_1_) {
-		this.func_213805_k(p_213804_1_);
-		if (!this.world.isRemote) {
+	private void setArmorEquipment(ItemStack p_213804_1_) {
+		this.setArmor(p_213804_1_);
+		if (!this.level.isClientSide) {
 			this.getAttribute(Attributes.ARMOR).removeModifier(ARMOR_MODIFIER_UUID);
 			if (this.isArmor(p_213804_1_)) {
-				int i = ((HorseArmorItem) p_213804_1_.getItem()).getArmorValue();
+				int i = ((HorseArmorItem) p_213804_1_.getItem()).getProtection();
 				if (i != 0) {
 					this.getAttribute(Attributes.ARMOR)
-							.applyNonPersistentModifier(new AttributeModifier(ARMOR_MODIFIER_UUID, "Horse armor bonus",
+							.addTransientModifier(new AttributeModifier(ARMOR_MODIFIER_UUID, "Horse armor bonus",
 									(double) i, AttributeModifier.Operation.ADDITION));
 				}
 			}
@@ -119,12 +119,12 @@ public class ZebraEntity extends AbstractHorseEntity {
 	 * filled.
 	 */
 	@Override
-	public void onInventoryChanged(IInventory invBasic) {
-		ItemStack itemstack = this.func_213803_dV();
-		super.onInventoryChanged(invBasic);
-		ItemStack itemstack1 = this.func_213803_dV();
-		if (this.ticksExisted > 20 && this.isArmor(itemstack1) && itemstack != itemstack1) {
-			this.playSound(SoundEvents.ENTITY_HORSE_ARMOR, 0.5F, 1.0F);
+	public void containerChanged(IInventory invBasic) {
+		ItemStack itemstack = this.getArmor();
+		super.containerChanged(invBasic);
+		ItemStack itemstack1 = this.getArmor();
+		if (this.tickCount > 20 && this.isArmor(itemstack1) && itemstack != itemstack1) {
+			this.playSound(SoundEvents.HORSE_ARMOR, 0.5F, 1.0F);
 		}
 
 	}
@@ -132,86 +132,86 @@ public class ZebraEntity extends AbstractHorseEntity {
 	@Override
 	protected void playGallopSound(SoundType p_190680_1_) {
 		super.playGallopSound(p_190680_1_);
-		if (this.rand.nextInt(10) == 0) {
-			this.playSound(SoundEvents.ENTITY_HORSE_BREATHE, p_190680_1_.getVolume() * 0.6F, p_190680_1_.getPitch());
+		if (this.random.nextInt(10) == 0) {
+			this.playSound(SoundEvents.HORSE_BREATHE, p_190680_1_.getVolume() * 0.6F, p_190680_1_.getPitch());
 		}
 
-		ItemStack stack = this.horseChest.getStackInSlot(1);
+		ItemStack stack = this.inventory.getItem(1);
 		if (isArmor(stack))
-			stack.onHorseArmorTick(world, this);
+			stack.onHorseArmorTick(level, this);
 	}
 
 	@Override
 	protected SoundEvent getAmbientSound() {
 		super.getAmbientSound();
-		return SoundEvents.ENTITY_HORSE_AMBIENT;
+		return SoundEvents.HORSE_AMBIENT;
 	}
 
 	@Override
 	protected SoundEvent getDeathSound() {
 		super.getDeathSound();
-		return SoundEvents.ENTITY_HORSE_DEATH;
+		return SoundEvents.HORSE_DEATH;
 	}
 
 	@Override
 	@Nullable
-	protected SoundEvent func_230274_fe_() {
-		return SoundEvents.ENTITY_HORSE_EAT;
+	protected SoundEvent getEatingSound() {
+		return SoundEvents.HORSE_EAT;
 	}
 
 	@Override
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
 		super.getHurtSound(damageSourceIn);
-		return SoundEvents.ENTITY_HORSE_HURT;
+		return SoundEvents.HORSE_HURT;
 	}
 
 	@Override
 	protected SoundEvent getAngrySound() {
 		super.getAngrySound();
-		return SoundEvents.ENTITY_HORSE_ANGRY;
+		return SoundEvents.HORSE_ANGRY;
 	}
 
 	@Override
-	public ActionResultType getEntityInteractionResult(PlayerEntity playerIn, Hand hand) {
-		ItemStack itemstack = playerIn.getHeldItem(hand);
-		if (!this.isChild()) {
-			if (this.isTame() && playerIn.isSecondaryUseActive()) {
-				this.openGUI(playerIn);
-				return ActionResultType.func_233537_a_(this.world.isRemote);
+	public ActionResultType mobInteract(PlayerEntity playerIn, Hand hand) {
+		ItemStack itemstack = playerIn.getItemInHand(hand);
+		if (!this.isBaby()) {
+			if (this.isTamed() && playerIn.isSecondaryUseActive()) {
+				this.openInventory(playerIn);
+				return ActionResultType.sidedSuccess(this.level.isClientSide);
 			}
 
-			if (this.isBeingRidden()) {
-				return super.getEntityInteractionResult(playerIn, hand);
+			if (this.isVehicle()) {
+				return super.mobInteract(playerIn, hand);
 			}
 		}
 
 		if (!itemstack.isEmpty()) {
-			if (this.isBreedingItem(itemstack)) {
-				return this.func_241395_b_(playerIn, itemstack);
+			if (this.isFood(itemstack)) {
+				return this.fedFood(playerIn, itemstack);
 			}
 
-			ActionResultType actionresulttype = itemstack.interactWithEntity(playerIn, this, hand);
-			if (actionresulttype.isSuccessOrConsume()) {
+			ActionResultType actionresulttype = itemstack.interactLivingEntity(playerIn, this, hand);
+			if (actionresulttype.consumesAction()) {
 				return actionresulttype;
 			}
 
-			if (!this.isTame()) {
+			if (!this.isTamed()) {
 				this.makeMad();
-				return ActionResultType.func_233537_a_(this.world.isRemote);
+				return ActionResultType.sidedSuccess(this.level.isClientSide);
 			}
 
-			boolean flag = !this.isChild() && !this.isHorseSaddled() && itemstack.getItem() == Items.SADDLE;
+			boolean flag = !this.isBaby() && !this.isSaddled() && itemstack.getItem() == Items.SADDLE;
 			if (this.isArmor(itemstack) || flag) {
-				this.openGUI(playerIn);
-				return ActionResultType.func_233537_a_(this.world.isRemote);
+				this.openInventory(playerIn);
+				return ActionResultType.sidedSuccess(this.level.isClientSide);
 			}
 		}
 
-		if (this.isChild()) {
-			return super.getEntityInteractionResult(playerIn, hand);
+		if (this.isBaby()) {
+			return super.mobInteract(playerIn, hand);
 		} else {
-			this.mountTo(playerIn);
-			return ActionResultType.func_233537_a_(this.world.isRemote);
+			this.doPlayerRide(playerIn);
+			return ActionResultType.sidedSuccess(this.level.isClientSide);
 		}
 	}
 
@@ -225,34 +225,34 @@ public class ZebraEntity extends AbstractHorseEntity {
 //   }
 
 	@Override
-	public AgeableEntity createChild(ServerWorld world, AgeableEntity mate) {
+	public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity mate) {
 		AbstractHorseEntity abstracthorseentity;
 		if (mate instanceof DonkeyEntity) {
 			abstracthorseentity = EntityType.MULE.create(world);
 		} else {
 			ZebraEntity horseentity = (ZebraEntity) mate;
 			abstracthorseentity = EntityType.HORSE.create(world);
-			int i = this.rand.nextInt(9);
+			int i = this.random.nextInt(9);
 			CoatColors coatcolors;
 			if (i < 4) {
-				coatcolors = this.func_234239_eK_();
+				coatcolors = this.getVariant();
 			} else if (i < 8) {
-				coatcolors = horseentity.func_234239_eK_();
+				coatcolors = horseentity.getVariant();
 			} else {
-				coatcolors = Util.getRandomObject(CoatColors.values(), this.rand);
+				coatcolors = Util.getRandom(CoatColors.values(), this.random);
 			}
 
-			int j = this.rand.nextInt(5);
+			int j = this.random.nextInt(5);
 			CoatTypes coattypes;
 			if (j < 2) {
-				coattypes = this.func_234240_eM_();
+				coattypes = this.getMarkings();
 			} else if (j < 4) {
-				coattypes = horseentity.func_234240_eM_();
+				coattypes = horseentity.getMarkings();
 			} else {
-				coattypes = Util.getRandomObject(CoatTypes.values(), this.rand);
+				coattypes = Util.getRandom(CoatTypes.values(), this.random);
 			}
 
-			((ZebraEntity) abstracthorseentity).func_234238_a_(coatcolors, coattypes);
+			((ZebraEntity) abstracthorseentity).setVariantAndMarkings(coatcolors, coattypes);
 		}
 
 		this.setOffspringAttributes(mate, abstracthorseentity);
@@ -260,7 +260,7 @@ public class ZebraEntity extends AbstractHorseEntity {
 	}
 
 	@Override
-	public boolean func_230276_fq_() {
+	public boolean canWearArmor() {
 		return true;
 	}
 
@@ -271,18 +271,18 @@ public class ZebraEntity extends AbstractHorseEntity {
 
 	@Override
 	@Nullable
-	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason,
+	public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason,
 			@Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		CoatColors coatcolors;
 		if (spawnDataIn instanceof ZebraEntity.HorseData) {
 			coatcolors = ((ZebraEntity.HorseData) spawnDataIn).variant;
 		} else {
-			coatcolors = Util.getRandomObject(CoatColors.values(), this.rand);
+			coatcolors = Util.getRandom(CoatColors.values(), this.random);
 			spawnDataIn = new ZebraEntity.HorseData(coatcolors);
 		}
 
-		this.func_234238_a_(coatcolors, Util.getRandomObject(CoatTypes.values(), this.rand));
-		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+		this.setVariantAndMarkings(coatcolors, Util.getRandom(CoatTypes.values(), this.random));
+		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
 	public static class HorseData extends AgeableEntity.AgeableData {
@@ -295,26 +295,26 @@ public class ZebraEntity extends AbstractHorseEntity {
 	}
 
 	@Override
-	public void writeAdditional(CompoundNBT compound) {
-		super.writeAdditional(compound);
-		compound.putInt("Variant", this.func_234241_eS_());
-		if (!this.horseChest.getStackInSlot(1).isEmpty()) {
-			compound.put("ArmorItem", this.horseChest.getStackInSlot(1).write(new CompoundNBT()));
+	public void addAdditionalSaveData(CompoundNBT compound) {
+		super.addAdditionalSaveData(compound);
+		compound.putInt("Variant", this.getTypeVariant());
+		if (!this.inventory.getItem(1).isEmpty()) {
+			compound.put("ArmorItem", this.inventory.getItem(1).save(new CompoundNBT()));
 		}
 
 	}
 
 	@Override
-	public void readAdditional(CompoundNBT compound) {
-		super.readAdditional(compound);
-		this.func_234242_w_(compound.getInt("Variant"));
+	public void readAdditionalSaveData(CompoundNBT compound) {
+		super.readAdditionalSaveData(compound);
+		this.setTypeVariant(compound.getInt("Variant"));
 		if (compound.contains("ArmorItem", 10)) {
-			ItemStack itemstack = ItemStack.read(compound.getCompound("ArmorItem"));
+			ItemStack itemstack = ItemStack.of(compound.getCompound("ArmorItem"));
 			if (!itemstack.isEmpty() && this.isArmor(itemstack)) {
-				this.horseChest.setInventorySlotContents(1, itemstack);
+				this.inventory.setItem(1, itemstack);
 			}
 		}
 
-		this.func_230275_fc_();
+		this.updateContainerEquipment();
 	}
 }

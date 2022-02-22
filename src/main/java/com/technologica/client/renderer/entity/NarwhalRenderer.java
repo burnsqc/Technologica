@@ -16,7 +16,7 @@ public final class NarwhalRenderer extends MobRenderer<NarwhalEntity, NarwhalMod
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(NarwhalEntity entity) {
+	public ResourceLocation getTextureLocation(NarwhalEntity entity) {
 		return NARWHAL_TEXTURE;
 	}
 }

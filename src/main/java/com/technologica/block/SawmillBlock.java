@@ -33,7 +33,7 @@ import net.minecraft.world.World;
 public class SawmillBlock extends FourDirectionBlock {
 
 	protected SawmillBlock() {
-		super(AbstractBlock.Properties.create(Material.IRON, MaterialColor.IRON).setRequiresTool().hardnessAndResistance(5.0F).sound(SoundType.ANVIL).notSolid());
+		super(AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.ANVIL).noOcclusion());
 	}
 	
 	/*
@@ -41,7 +41,7 @@ public class SawmillBlock extends FourDirectionBlock {
 	 */
 	
 	public SawmillTileEntity getTileEntity(World worldIn, BlockPos posIn) {
-		return (SawmillTileEntity) worldIn.getTileEntity(posIn);
+		return (SawmillTileEntity) worldIn.getBlockEntity(posIn);
 	}
 	
 	/*
@@ -49,30 +49,30 @@ public class SawmillBlock extends FourDirectionBlock {
 	 */
 	
 	@Override
-	public ActionResultType onBlockActivated(BlockState stateIn, World worldIn, BlockPos posIn, PlayerEntity playerIn, Hand handIn, BlockRayTraceResult hitIn) {
+	public ActionResultType use(BlockState stateIn, World worldIn, BlockPos posIn, PlayerEntity playerIn, Hand handIn, BlockRayTraceResult hitIn) {
 		SawmillTileEntity tile = getTileEntity(worldIn, posIn);
-		ItemStack itemstack = playerIn.getHeldItem(handIn);
-		Item item = playerIn.getHeldItem(handIn).getItem();
+		ItemStack itemstack = playerIn.getItemInHand(handIn);
+		Item item = playerIn.getItemInHand(handIn).getItem();
 		
 		if (tile.getLog().isEmpty()) {
 			if (item == TechnologicaItems.SAWBLADE.get()) {
 				tile.setBlade(true);
-				worldIn.playSound((PlayerEntity)null, posIn, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.rand.nextFloat() * 0.4F);
+				worldIn.playSound((PlayerEntity)null, posIn, SoundEvents.ANVIL_PLACE, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.random.nextFloat() * 0.4F);
 				itemstack.shrink(1);
 			} else if (ItemTags.LOGS.contains(itemstack.getItem())) {
 				tile.setLog(new ItemStack(itemstack.getItem(), 1));
-				worldIn.playSound((PlayerEntity)null, posIn, SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.rand.nextFloat() * 0.4F);
+				worldIn.playSound((PlayerEntity)null, posIn, SoundEvents.WOOD_PLACE, SoundCategory.BLOCKS, 0.25F, 1.0F + worldIn.random.nextFloat() * 0.4F);
 				itemstack.shrink(1);
-				playerIn.inventory.setInventorySlotContents(playerIn.inventory.currentItem, itemstack);
-				playerIn.openContainer.detectAndSendChanges();
+				playerIn.inventory.setItem(playerIn.inventory.selected, itemstack);
+				playerIn.containerMenu.broadcastChanges();
 			}
 		}
-		return ActionResultType.func_233537_a_(worldIn.isRemote);
+		return ActionResultType.sidedSuccess(worldIn.isClientSide);
 	}
 	
 	@Override
 	public void animateTick(BlockState stateIn, World worldIn, BlockPos posIn, Random randomIn) {
-		if (worldIn.isRemote && getTileEntity(worldIn, posIn).isSawing()) {
+		if (worldIn.isClientSide && getTileEntity(worldIn, posIn).isSawing()) {
 			double d0 = (double) posIn.getX() + randomIn.nextDouble();
 	        double d1 = (double) posIn.getY() + 2.0D;
 	        double d2 = (double) posIn.getZ() + randomIn.nextDouble();

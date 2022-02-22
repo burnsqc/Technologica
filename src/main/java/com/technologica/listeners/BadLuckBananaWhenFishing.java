@@ -13,8 +13,8 @@ public class BadLuckBananaWhenFishing {
 	public void onItemFishedEvent(ItemFishedEvent event) {
 		PlayerEntity player = event.getPlayer();
 		boolean cancel = false;
-		for(int i = 0; i < player.inventory.getSizeInventory(); ++i) {
-        	ItemStack testStack = player.inventory.getStackInSlot(i);
+		for(int i = 0; i < player.inventory.getContainerSize(); ++i) {
+        	ItemStack testStack = player.inventory.getItem(i);
         	if (testStack.getItem() == TechnologicaItems.BANANA.get()) {
         		cancel = true;
         	}

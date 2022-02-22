@@ -49,22 +49,22 @@ public class KingCrabEntity extends AnimalEntity {
 	}
 
 	@Override
-	public AgeableEntity createChild(ServerWorld world, AgeableEntity mate) {
+	public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity mate) {
 		return null;
 	}
 	
 	public static AttributeModifierMap.MutableAttribute registerAttributes() {
-		return AttributeModifierMap.createMutableAttribute()
-				.createMutableAttribute(Attributes.MAX_HEALTH, 10.0D)
-				.createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D)
-				.createMutableAttribute(Attributes.FOLLOW_RANGE, 16.0D)
-				.createMutableAttribute(Attributes.ATTACK_KNOCKBACK)
-				.createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE)
-				.createMutableAttribute(Attributes.ARMOR)
-				.createMutableAttribute(Attributes.ARMOR_TOUGHNESS)
-				.createMutableAttribute(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get())
-				.createMutableAttribute(net.minecraftforge.common.ForgeMod.NAMETAG_DISTANCE.get())
-				.createMutableAttribute(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get());
+		return AttributeModifierMap.builder()
+				.add(Attributes.MAX_HEALTH, 10.0D)
+				.add(Attributes.MOVEMENT_SPEED, 0.25D)
+				.add(Attributes.FOLLOW_RANGE, 16.0D)
+				.add(Attributes.ATTACK_KNOCKBACK)
+				.add(Attributes.KNOCKBACK_RESISTANCE)
+				.add(Attributes.ARMOR)
+				.add(Attributes.ARMOR_TOUGHNESS)
+				.add(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get())
+				.add(net.minecraftforge.common.ForgeMod.NAMETAG_DISTANCE.get())
+				.add(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get());
 	}
 	
 	protected void registerGoals() {
@@ -80,68 +80,68 @@ public class KingCrabEntity extends AnimalEntity {
 		return true;
 	}
 	
-	public double getMountedYOffset() {
-		return (double) (this.getHeight() * 0.5F);
+	public double getPassengersRidingOffset() {
+		return (double) (this.getBbHeight() * 0.5F);
 	}
 
-	protected void registerData() {
-		super.registerData();
+	protected void defineSynchedData() {
+		super.defineSynchedData();
 	}
 
 	public void tick() {
 		super.tick();
 	}
 
-	public static AttributeModifierMap.MutableAttribute func_234305_eI_() {
-		return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.MAX_HEALTH, 16.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double) 0.3F);
+	public static AttributeModifierMap.MutableAttribute createAttributes() {
+		return MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 16.0D).add(Attributes.MOVEMENT_SPEED, (double) 0.3F);
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return SoundEvents.ENTITY_SPIDER_AMBIENT;
+		return SoundEvents.SPIDER_AMBIENT;
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return SoundEvents.ENTITY_SPIDER_HURT;
+		return SoundEvents.SPIDER_HURT;
 	}
 
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.ENTITY_SPIDER_DEATH;
+		return SoundEvents.SPIDER_DEATH;
 	}
 
 	protected void playStepSound(BlockPos pos, BlockState blockIn) {
-		this.playSound(SoundEvents.ENTITY_SPIDER_STEP, 0.15F, 1.0F);
+		this.playSound(SoundEvents.SPIDER_STEP, 0.15F, 1.0F);
 	}
 
-	public void setMotionMultiplier(BlockState state, Vector3d motionMultiplierIn) {
-		if (!state.matchesBlock(Blocks.COBWEB)) {
-			super.setMotionMultiplier(state, motionMultiplierIn);
+	public void makeStuckInBlock(BlockState state, Vector3d motionMultiplierIn) {
+		if (!state.is(Blocks.COBWEB)) {
+			super.makeStuckInBlock(state, motionMultiplierIn);
 		}
 
 	}
 
-	public CreatureAttribute getCreatureAttribute() {
+	public CreatureAttribute getMobType() {
 		return CreatureAttribute.ARTHROPOD;
 	}
 
-	public boolean isPotionApplicable(EffectInstance potioneffectIn) {
-		if (potioneffectIn.getPotion() == Effects.POISON) {
+	public boolean canBeAffected(EffectInstance potioneffectIn) {
+		if (potioneffectIn.getEffect() == Effects.POISON) {
 			net.minecraftforge.event.entity.living.PotionEvent.PotionApplicableEvent event = new net.minecraftforge.event.entity.living.PotionEvent.PotionApplicableEvent(
 					this, potioneffectIn);
 			net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event);
 			return event.getResult() == net.minecraftforge.eventbus.api.Event.Result.ALLOW;
 		}
-		return super.isPotionApplicable(potioneffectIn);
+		return super.canBeAffected(potioneffectIn);
 	}
 
 	@Nullable
-	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason,
+	public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason,
 			@Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-		spawnDataIn = super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+		spawnDataIn = super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 
 		if (spawnDataIn == null) {
 			spawnDataIn = new ScorpionEntity.GroupData();
 			if (worldIn.getDifficulty() == Difficulty.HARD
-					&& worldIn.getRandom().nextFloat() < 0.1F * difficultyIn.getClampedAdditionalDifficulty()) {
+					&& worldIn.getRandom().nextFloat() < 0.1F * difficultyIn.getSpecialMultiplier()) {
 				((ScorpionEntity.GroupData) spawnDataIn).setRandomEffect(worldIn.getRandom());
 			}
 		}
@@ -149,7 +149,7 @@ public class KingCrabEntity extends AnimalEntity {
 		if (spawnDataIn instanceof ScorpionEntity.GroupData) {
 			Effect effect = ((ScorpionEntity.GroupData) spawnDataIn).effect;
 			if (effect != null) {
-				this.addPotionEffect(new EffectInstance(effect, Integer.MAX_VALUE));
+				this.addEffect(new EffectInstance(effect, Integer.MAX_VALUE));
 			}
 		}
 
@@ -169,25 +169,25 @@ public class KingCrabEntity extends AnimalEntity {
 		 * Returns whether execution should begin. You can also read and cache any state
 		 * necessary for execution in this method as well.
 		 */
-		public boolean shouldExecute() {
-			return super.shouldExecute() && !this.attacker.isBeingRidden();
+		public boolean canUse() {
+			return super.canUse() && !this.mob.isVehicle();
 		}
 
 		/**
 		 * Returns whether an in-progress EntityAIBase should continue executing
 		 */
-		public boolean shouldContinueExecuting() {
-			float f = this.attacker.getBrightness();
-			if (f >= 0.5F && this.attacker.getRNG().nextInt(100) == 0) {
-				this.attacker.setAttackTarget((LivingEntity) null);
+		public boolean canContinueToUse() {
+			float f = this.mob.getBrightness();
+			if (f >= 0.5F && this.mob.getRandom().nextInt(100) == 0) {
+				this.mob.setTarget((LivingEntity) null);
 				return false;
 			} else {
-				return super.shouldContinueExecuting();
+				return super.canContinueToUse();
 			}
 		}
 
 		protected double getAttackReachSqr(LivingEntity attackTarget) {
-			return (double) (4.0F + attackTarget.getWidth());
+			return (double) (4.0F + attackTarget.getBbWidth());
 		}
 	}
 
@@ -197,9 +197,9 @@ public class KingCrabEntity extends AnimalEntity {
 		public void setRandomEffect(Random rand) {
 			int i = rand.nextInt(5);
 			if (i <= 1) {
-				this.effect = Effects.SPEED;
+				this.effect = Effects.MOVEMENT_SPEED;
 			} else if (i <= 2) {
-				this.effect = Effects.STRENGTH;
+				this.effect = Effects.DAMAGE_BOOST;
 			} else if (i <= 3) {
 				this.effect = Effects.REGENERATION;
 			} else if (i <= 4) {
@@ -218,9 +218,9 @@ public class KingCrabEntity extends AnimalEntity {
 		 * Returns whether execution should begin. You can also read and cache any state
 		 * necessary for execution in this method as well.
 		 */
-		public boolean shouldExecute() {
-			float f = this.goalOwner.getBrightness();
-			return f >= 0.5F ? false : super.shouldExecute();
+		public boolean canUse() {
+			float f = this.mob.getBrightness();
+			return f >= 0.5F ? false : super.canUse();
 		}
 	}
 }

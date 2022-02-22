@@ -46,54 +46,54 @@ public class SpearGunItem extends ShootableItem implements IVanishable {
 	}
 
 	@Override
-	public Predicate<ItemStack> getAmmoPredicate() {
+	public Predicate<ItemStack> getSupportedHeldProjectiles() {
 		return (stack) -> {
 			return stack.getItem() == TechnologicaItems.HARPOON.get();
 		};
 	}
 
 	@Override
-	public Predicate<ItemStack> getInventoryAmmoPredicate() {
+	public Predicate<ItemStack> getAllSupportedProjectiles() {
 		return (stack) -> {
 			return stack.getItem() == TechnologicaItems.HARPOON.get();
 		};
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-		ItemStack spearGunStack = playerIn.getHeldItem(handIn);
+	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+		ItemStack spearGunStack = playerIn.getItemInHand(handIn);
 		if (isCharged(spearGunStack)) {
 			fireProjectiles(worldIn, playerIn, handIn, spearGunStack, setVelocity(spearGunStack, playerIn), 1.0F);
 			setCharged(spearGunStack, false);
-			return ActionResult.resultConsume(spearGunStack);
-		} else if (!playerIn.findAmmo(spearGunStack).isEmpty()) {
+			return ActionResult.consume(spearGunStack);
+		} else if (!playerIn.getProjectile(spearGunStack).isEmpty()) {
 			if (!isCharged(spearGunStack)) {
 				this.isLoadingStart = false;
 				this.isLoadingMiddle = false;
-				playerIn.setActiveHand(handIn);
+				playerIn.startUsingItem(handIn);
 			}
-			return ActionResult.resultConsume(spearGunStack);
+			return ActionResult.consume(spearGunStack);
 		} else {
-			return ActionResult.resultFail(spearGunStack);
+			return ActionResult.fail(spearGunStack);
 		}
 	}
 
 	@Override
-	public void onPlayerStoppedUsing(ItemStack itemStackIn, World worldIn, LivingEntity entityLiving, int timeLeft) {
+	public void releaseUsing(ItemStack itemStackIn, World worldIn, LivingEntity entityLiving, int timeLeft) {
 		int i = this.getUseDuration(itemStackIn) - timeLeft;
 		float f = getCharge(i, itemStackIn);
 		if (f >= 1.0F && !isCharged(itemStackIn) && hasAmmo(entityLiving, itemStackIn)) {
 			setCharged(itemStackIn, true);
 			SoundCategory soundcategory = entityLiving instanceof PlayerEntity ? SoundCategory.PLAYERS : SoundCategory.HOSTILE;
-			worldIn.playSound((PlayerEntity) null, entityLiving.getPosX(), entityLiving.getPosY(), entityLiving.getPosZ(), SoundEvents.ITEM_CROSSBOW_LOADING_END, soundcategory, 1.0F, 1.0F / (random.nextFloat() * 0.5F + 1.0F) + 0.2F);
+			worldIn.playSound((PlayerEntity) null, entityLiving.getX(), entityLiving.getY(), entityLiving.getZ(), SoundEvents.CROSSBOW_LOADING_END, soundcategory, 1.0F, 1.0F / (random.nextFloat() * 0.5F + 1.0F) + 0.2F);
 		}
 	}
 
 	private static boolean hasAmmo(LivingEntity entityIn, ItemStack stack) {
 		int i = 0;
 		int j = i == 0 ? 1 : 3;
-		boolean flag = entityIn instanceof PlayerEntity && ((PlayerEntity) entityIn).abilities.isCreativeMode;
-		ItemStack itemstack = entityIn.findAmmo(stack);
+		boolean flag = entityIn instanceof PlayerEntity && ((PlayerEntity) entityIn).abilities.instabuild;
+		ItemStack itemstack = entityIn.getProjectile(stack);
 		ItemStack itemstack1 = itemstack.copy();
 
 		for (int k = 0; k < j; ++k) {
@@ -106,7 +106,7 @@ public class SpearGunItem extends ShootableItem implements IVanishable {
 				itemstack1 = itemstack.copy();
 			}
 
-			if (!func_220023_a(entityIn, stack, itemstack, k > 0, flag)) {
+			if (!loadProjectile(entityIn, stack, itemstack, k > 0, flag)) {
 				return false;
 			}
 		}
@@ -114,7 +114,7 @@ public class SpearGunItem extends ShootableItem implements IVanishable {
 		return true;
 	}
 
-	private static boolean func_220023_a(LivingEntity livingEntityIn, ItemStack spearGunStackIn, ItemStack harpoonStackIn, boolean p_220023_3_, boolean p_220023_4_) {
+	private static boolean loadProjectile(LivingEntity livingEntityIn, ItemStack spearGunStackIn, ItemStack harpoonStackIn, boolean p_220023_3_, boolean p_220023_4_) {
 		if (harpoonStackIn.isEmpty()) {
 			return false;
 		} else {
@@ -123,7 +123,7 @@ public class SpearGunItem extends ShootableItem implements IVanishable {
 			if (!flag && !p_220023_4_ && !p_220023_3_) {
 				itemstack = harpoonStackIn.split(1);
 				if (harpoonStackIn.isEmpty() && livingEntityIn instanceof PlayerEntity) {
-					((PlayerEntity) livingEntityIn).inventory.deleteStack(harpoonStackIn);
+					((PlayerEntity) livingEntityIn).inventory.removeItem(harpoonStackIn);
 				}
 			} else {
 				itemstack = harpoonStackIn.copy();
@@ -152,7 +152,7 @@ public class SpearGunItem extends ShootableItem implements IVanishable {
 			listnbt = new ListNBT();
 		}
 		CompoundNBT compoundnbt1 = new CompoundNBT();
-		harpoonStackIn.write(compoundnbt1);
+		harpoonStackIn.save(compoundnbt1);
 		listnbt.add(compoundnbt1);
 		compoundnbt.put("ChargedProjectiles", listnbt);
 	}
@@ -165,7 +165,7 @@ public class SpearGunItem extends ShootableItem implements IVanishable {
 			if (listnbt != null) {
 				for (int i = 0; i < listnbt.size(); ++i) {
 					CompoundNBT compoundnbt1 = listnbt.getCompound(i);
-					list.add(ItemStack.read(compoundnbt1));
+					list.add(ItemStack.of(compoundnbt1));
 				}
 			}
 		}
@@ -188,40 +188,40 @@ public class SpearGunItem extends ShootableItem implements IVanishable {
 	}
 
 	private static void fireProjectile(World worldIn, LivingEntity livingEntityIn, Hand handIn, ItemStack spearGunStackIn, ItemStack harpoonStackIn, float soundPitch, boolean isCreativeMode, float velocity, float inaccuracy, float projectileAngle) {
-		if (!worldIn.isRemote) {
+		if (!worldIn.isClientSide) {
 			
 			HarpoonEntity harpoonEntity = new HarpoonEntity(worldIn, livingEntityIn);
-			harpoonEntity.setDirectionAndMovement(livingEntityIn, livingEntityIn.rotationPitch, livingEntityIn.rotationYaw, 0.0F, velocity, 1.0F);
+			harpoonEntity.shootFromRotation(livingEntityIn, livingEntityIn.xRot, livingEntityIn.yRot, 0.0F, velocity, 1.0F);
 
 			if (livingEntityIn instanceof ICrossbowUser) {
 				ICrossbowUser icrossbowuser = (ICrossbowUser) livingEntityIn;
-				icrossbowuser.fireProjectile(icrossbowuser.getAttackTarget(), spearGunStackIn, harpoonEntity, projectileAngle);
+				icrossbowuser.shootCrossbowProjectile(icrossbowuser.getTarget(), spearGunStackIn, harpoonEntity, projectileAngle);
 			} else {
 				Vector3d vector3d1 = livingEntityIn.getUpVector(1.0F);
 				Quaternion quaternion = new Quaternion(new Vector3f(vector3d1), projectileAngle, true);
-				Vector3d vector3d = livingEntityIn.getLook(1.0F);
+				Vector3d vector3d = livingEntityIn.getViewVector(1.0F);
 				Vector3f vector3f = new Vector3f(vector3d);
 				vector3f.transform(quaternion);
-				harpoonEntity.shoot((double) vector3f.getX(), (double) vector3f.getY(), (double) vector3f.getZ(), velocity, inaccuracy);
+				harpoonEntity.shoot((double) vector3f.x(), (double) vector3f.y(), (double) vector3f.z(), velocity, inaccuracy);
 			}
 
-			spearGunStackIn.damageItem(1, livingEntityIn, (p_220017_1_) -> {
-				p_220017_1_.sendBreakAnimation(handIn);
+			spearGunStackIn.hurtAndBreak(1, livingEntityIn, (p_220017_1_) -> {
+				p_220017_1_.broadcastBreakEvent(handIn);
 			});
 			
-			worldIn.addEntity(harpoonEntity);
-			worldIn.playSound((PlayerEntity) null, livingEntityIn.getPosX(), livingEntityIn.getPosY(), livingEntityIn.getPosZ(),
-					SoundEvents.ITEM_CROSSBOW_SHOOT, SoundCategory.PLAYERS, 1.0F, soundPitch);
+			worldIn.addFreshEntity(harpoonEntity);
+			worldIn.playSound((PlayerEntity) null, livingEntityIn.getX(), livingEntityIn.getY(), livingEntityIn.getZ(),
+					SoundEvents.CROSSBOW_SHOOT, SoundCategory.PLAYERS, 1.0F, soundPitch);
 		}
 	}
 
 	public static void fireProjectiles(World worldIn, LivingEntity shooter, Hand handIn, ItemStack stack, float velocityIn, float inaccuracyIn) {
 		List<ItemStack> list = getChargedProjectiles(stack);
-		float[] afloat = getRandomSoundPitches(shooter.getRNG());
+		float[] afloat = getRandomSoundPitches(shooter.getRandom());
 
 		for (int i = 0; i < list.size(); ++i) {
 			ItemStack itemstack = list.get(i);
-			boolean flag = shooter instanceof PlayerEntity && ((PlayerEntity) shooter).abilities.isCreativeMode;
+			boolean flag = shooter instanceof PlayerEntity && ((PlayerEntity) shooter).abilities.instabuild;
 			if (!itemstack.isEmpty()) {
 				if (i == 0) {
 					fireProjectile(worldIn, shooter, handIn, stack, itemstack, afloat[i], flag, velocityIn, inaccuracyIn, 0.0F);
@@ -249,20 +249,20 @@ public class SpearGunItem extends ShootableItem implements IVanishable {
 	private static void fireProjectilesAfter(World worldIn, LivingEntity shooter, ItemStack stack) {
 		if (shooter instanceof ServerPlayerEntity) {
 			ServerPlayerEntity serverplayerentity = (ServerPlayerEntity) shooter;
-			if (!worldIn.isRemote) {
-				CriteriaTriggers.SHOT_CROSSBOW.test(serverplayerentity, stack);
+			if (!worldIn.isClientSide) {
+				CriteriaTriggers.SHOT_CROSSBOW.trigger(serverplayerentity, stack);
 			}
-			serverplayerentity.addStat(Stats.ITEM_USED.get(stack.getItem()));
+			serverplayerentity.awardStat(Stats.ITEM_USED.get(stack.getItem()));
 		}
 		clearProjectiles(stack);
 	}
 
 	@Override
-	public void onUse(World worldIn, LivingEntity livingEntityIn, ItemStack stack, int count) {
-		if (!worldIn.isRemote) {
+	public void onUseTick(World worldIn, LivingEntity livingEntityIn, ItemStack stack, int count) {
+		if (!worldIn.isClientSide) {
 			int i = 0;
 			SoundEvent soundevent = this.getSoundEvent();
-			SoundEvent soundevent1 = i == 0 ? SoundEvents.ITEM_CROSSBOW_LOADING_MIDDLE : null;
+			SoundEvent soundevent1 = i == 0 ? SoundEvents.CROSSBOW_LOADING_MIDDLE : null;
 			float f = (float) (stack.getUseDuration() - count) / (float) getChargeTime(stack);
 			if (f < 0.2F) {
 				this.isLoadingStart = false;
@@ -270,11 +270,11 @@ public class SpearGunItem extends ShootableItem implements IVanishable {
 			}
 			if (f >= 0.2F && !this.isLoadingStart) {
 				this.isLoadingStart = true;
-				worldIn.playSound((PlayerEntity) null, livingEntityIn.getPosX(), livingEntityIn.getPosY(), livingEntityIn.getPosZ(), soundevent, SoundCategory.PLAYERS, 0.5F, 1.0F);
+				worldIn.playSound((PlayerEntity) null, livingEntityIn.getX(), livingEntityIn.getY(), livingEntityIn.getZ(), soundevent, SoundCategory.PLAYERS, 0.5F, 1.0F);
 			}
 			if (f >= 0.5F && soundevent1 != null && !this.isLoadingMiddle) {
 				this.isLoadingMiddle = true;
-				worldIn.playSound((PlayerEntity) null, livingEntityIn.getPosX(), livingEntityIn.getPosY(), livingEntityIn.getPosZ(), soundevent1, SoundCategory.PLAYERS, 0.5F, 1.0F);
+				worldIn.playSound((PlayerEntity) null, livingEntityIn.getX(), livingEntityIn.getY(), livingEntityIn.getZ(), soundevent1, SoundCategory.PLAYERS, 0.5F, 1.0F);
 			}
 		}
 	}
@@ -292,12 +292,12 @@ public class SpearGunItem extends ShootableItem implements IVanishable {
 	
 
 	@Override
-	public UseAction getUseAction(ItemStack stack) {
+	public UseAction getUseAnimation(ItemStack stack) {
 		return UseAction.CROSSBOW;
 	}
 
 	private SoundEvent getSoundEvent() {
-		return SoundEvents.ITEM_CROSSBOW_LOADING_START;
+		return SoundEvents.CROSSBOW_LOADING_START;
 	}
 
 	private static float getCharge(int useTime, ItemStack stack) {
@@ -309,24 +309,24 @@ public class SpearGunItem extends ShootableItem implements IVanishable {
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+	public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 		List<ItemStack> list = getChargedProjectiles(stack);
 		if (isCharged(stack) && !list.isEmpty()) {
 			ItemStack itemstack = list.get(0);
-			tooltip.add((new TranslationTextComponent("item.minecraft.crossbow.projectile")).appendString(" ").appendSibling(itemstack.getTextComponent()));
+			tooltip.add((new TranslationTextComponent("item.minecraft.crossbow.projectile")).append(" ").append(itemstack.getDisplayName()));
 		}
 	}
 
 	private static float setVelocity(ItemStack itemStackIn, PlayerEntity playerIn) {
-		return (hasChargedProjectile(itemStackIn, TechnologicaItems.HARPOON.get()) || playerIn.abilities.isCreativeMode) && playerIn.areEyesInFluid(FluidTags.WATER) ? 3.0F : 0.5F;
+		return (hasChargedProjectile(itemStackIn, TechnologicaItems.HARPOON.get()) || playerIn.abilities.instabuild) && playerIn.isEyeInFluid(FluidTags.WATER) ? 3.0F : 0.5F;
 	}
 
-	public int func_230305_d_() {
+	public int getDefaultProjectileRange() {
 		return 8;
 	}
 	
 	@Override
-	public boolean isCrossbow(ItemStack stack) {
+	public boolean useOnRelease(ItemStack stack) {
 	      return true;
 	   }
 }

@@ -25,7 +25,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 public class RaccoonEntity extends AnimalEntity {
-	private static final DataParameter<Boolean> BEGGING = EntityDataManager.createKey(RaccoonEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> BEGGING = EntityDataManager.defineId(RaccoonEntity.class, DataSerializers.BOOLEAN);
 
 	public RaccoonEntity(EntityType<? extends RaccoonEntity> type, World worldIn) {
 		super(type, worldIn);
@@ -33,7 +33,7 @@ public class RaccoonEntity extends AnimalEntity {
 	}
 
 	@Override
-	public AgeableEntity createChild(ServerWorld world, AgeableEntity mate) {
+	public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity mate) {
 		return TechnologicaEntityType.RACCOON.get().create(world);
 	}
 
@@ -51,39 +51,39 @@ public class RaccoonEntity extends AnimalEntity {
 	}
 
 	public static AttributeModifierMap.MutableAttribute registerAttributes() {
-		return AttributeModifierMap.createMutableAttribute().createMutableAttribute(Attributes.MAX_HEALTH, 10.0D)
-				.createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D)
-				.createMutableAttribute(Attributes.FOLLOW_RANGE, 16.0D)
-				.createMutableAttribute(Attributes.ATTACK_KNOCKBACK)
-				.createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE).createMutableAttribute(Attributes.ARMOR)
-				.createMutableAttribute(Attributes.ARMOR_TOUGHNESS)
-				.createMutableAttribute(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get())
-				.createMutableAttribute(net.minecraftforge.common.ForgeMod.NAMETAG_DISTANCE.get())
-				.createMutableAttribute(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get());
+		return AttributeModifierMap.builder().add(Attributes.MAX_HEALTH, 10.0D)
+				.add(Attributes.MOVEMENT_SPEED, 0.25D)
+				.add(Attributes.FOLLOW_RANGE, 16.0D)
+				.add(Attributes.ATTACK_KNOCKBACK)
+				.add(Attributes.KNOCKBACK_RESISTANCE).add(Attributes.ARMOR)
+				.add(Attributes.ARMOR_TOUGHNESS)
+				.add(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get())
+				.add(net.minecraftforge.common.ForgeMod.NAMETAG_DISTANCE.get())
+				.add(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get());
 	}
 
-	protected void registerData() {
-		super.registerData();
-		this.dataManager.register(BEGGING, false);
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(BEGGING, false);
 	}
 
 	public void setBegging(boolean beg) {
-		ItemStack itemstack = this.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
+		ItemStack itemstack = this.getItemBySlot(EquipmentSlotType.MAINHAND);
 		if (itemstack.isEmpty() && beg) {
-			this.dataManager.set(BEGGING, true);
-			this.rotationPitch = -(float) Math.PI / 4;
+			this.entityData.set(BEGGING, true);
+			this.xRot = -(float) Math.PI / 4;
 		} else {
-			this.dataManager.set(BEGGING, false);
-			this.rotationPitch = 0;
+			this.entityData.set(BEGGING, false);
+			this.xRot = 0;
 		}
 	}
 
 	public boolean isBegging() {
-		return this.dataManager.get(BEGGING);
+		return this.entityData.get(BEGGING);
 	}
 
-	public boolean canEquipItem(ItemStack stack) {
-		ItemStack itemstack = this.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
+	public boolean canHoldItem(ItemStack stack) {
+		ItemStack itemstack = this.getItemBySlot(EquipmentSlotType.MAINHAND);
 		return itemstack.isEmpty();
 	}
 

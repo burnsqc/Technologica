@@ -16,7 +16,7 @@ public final class StingrayRenderer extends MobRenderer<StingrayEntity, Stingray
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(StingrayEntity entity) {
+	public ResourceLocation getTextureLocation(StingrayEntity entity) {
 		return STINGRAY_TEXTURE;
 	}
 }

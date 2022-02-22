@@ -43,46 +43,46 @@ public class CoconutEntity extends ProjectileItemEntity {
 	}
 
 	private IParticleData makeParticle() {
-		ItemStack itemstack = this.func_213882_k();
+		ItemStack itemstack = this.getItemRaw();
 		return (IParticleData) (itemstack.isEmpty() ? ParticleTypes.NOTE: new ItemParticleData(ParticleTypes.ITEM, itemstack));
 	}
 
 	@Override
-	public void handleStatusUpdate(byte id) {
+	public void handleEntityEvent(byte id) {
 		if (id == 3) {
 			IParticleData iparticledata = this.makeParticle();
 
 			for (int i = 0; i < 8; ++i) {
-				this.world.addParticle(iparticledata, this.getPosX(), this.getPosY(), this.getPosZ(), 0.0D, 0.0D, 0.0D);
+				this.level.addParticle(iparticledata, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
 			}
 		}
 	}
 
 	@Override
-	protected void onEntityHit(EntityRayTraceResult result) {
-		super.onEntityHit(result);
+	protected void onHitEntity(EntityRayTraceResult result) {
+		super.onHitEntity(result);
 		Entity entity = result.getEntity();
-		entity.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getShooter()), 4);
+		entity.hurt(DamageSource.thrown(this, this.getOwner()), 4);
 
-        Vector3d vector3d = this.getMotion().mul(1.0D, 0.0D, 1.0D).normalize().scale(1.0D);
-        if (vector3d.lengthSquared() > 0.0D) {
-        	entity.addVelocity(vector3d.x, 0.1D, vector3d.z);
+        Vector3d vector3d = this.getDeltaMovement().multiply(1.0D, 0.0D, 1.0D).normalize().scale(1.0D);
+        if (vector3d.lengthSqr() > 0.0D) {
+        	entity.push(vector3d.x, 0.1D, vector3d.z);
         }
 	}
 
 	@Override
-	protected void onImpact(RayTraceResult result) {
-		super.onImpact(result);
-		if (!this.world.isRemote) {
-			this.world.setEntityState(this, (byte) 3);
+	protected void onHit(RayTraceResult result) {
+		super.onHit(result);
+		if (!this.level.isClientSide) {
+			this.level.broadcastEntityEvent(this, (byte) 3);
 			this.remove();
 		}
 
-		this.world.playSound((PlayerEntity) null, this.getPosX(), this.getPosY(), this.getPosZ(), TechnologicaSoundEvents.DODGEBALL.get(), SoundCategory.NEUTRAL, 1.0F, 1.0F);
+		this.level.playSound((PlayerEntity) null, this.getX(), this.getY(), this.getZ(), TechnologicaSoundEvents.DODGEBALL.get(), SoundCategory.NEUTRAL, 1.0F, 1.0F);
 	}
 	
 	@Override
-	public IPacket<?> createSpawnPacket() {
+	public IPacket<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 }

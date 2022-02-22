@@ -50,24 +50,24 @@ public class AnnunciatorTileEntity extends TileEntity {
 		return new ItemStackHandler(1) {
 			@Override
 			protected void onContentsChanged(int slot) {
-				markDirty();
-				BlockState state = world.getBlockState(pos);
+				setChanged();
+				BlockState state = level.getBlockState(worldPosition);
 
 				if (this.getStackInSlot(0).isEmpty()) {
-					world.setBlockState(pos,
-							state.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.INFO),
+					level.setBlock(worldPosition,
+							state.setValue(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.INFO),
 							7);
 				} else if (this.getStackInSlot(0).getItem().getRegistryName().getPath().contains("fail")) {
-					world.setBlockState(pos,
-							state.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.FAIL),
+					level.setBlock(worldPosition,
+							state.setValue(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.FAIL),
 							7);
 				} else if (this.getStackInSlot(0).getItem().getRegistryName().getPath().contains("pass")) {
-					world.setBlockState(pos,
-							state.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.PASS),
+					level.setBlock(worldPosition,
+							state.setValue(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.PASS),
 							7);
 				} else if (this.getStackInSlot(0).getItem().getRegistryName().getPath().contains("warn")) {
-					world.setBlockState(pos,
-							state.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.WARN),
+					level.setBlock(worldPosition,
+							state.setValue(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.WARN),
 							7);
 				}
 			}
@@ -117,8 +117,8 @@ public class AnnunciatorTileEntity extends TileEntity {
 	public void setText(int line, ITextComponent signText) {
 		this.signText[line] = signText;
 		this.renderText[line] = null;
-		this.markDirty();
-		world.notifyBlockUpdate(pos, getBlockState(), getBlockState(), 7); 
+		this.setChanged();
+		level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 7); 
 	}
 
 	public ITextComponent getText(int line) {
@@ -129,8 +129,8 @@ public class AnnunciatorTileEntity extends TileEntity {
 		String s = playerIn == null ? "Sign" : playerIn.getName().getString();
 		ITextComponent itextcomponent = (ITextComponent) (playerIn == null ? new StringTextComponent("Sign")
 				: playerIn.getDisplayName());
-		return new CommandSource(ICommandSource.DUMMY, Vector3d.copyCentered(this.pos), Vector2f.ZERO,
-				(ServerWorld) this.world, 2, s, itextcomponent, this.world.getServer(), playerIn);
+		return new CommandSource(ICommandSource.NULL, Vector3d.atCenterOf(this.worldPosition), Vector2f.ZERO,
+				(ServerWorld) this.level, 2, s, itextcomponent, this.level.getServer(), playerIn);
 	}
 
 	public IReorderingProcessor reorderText(int row,
@@ -144,37 +144,37 @@ public class AnnunciatorTileEntity extends TileEntity {
 
 	@Nullable
 	public SUpdateTileEntityPacket getUpdatePacket() {
-		return new SUpdateTileEntityPacket(this.pos, 9, this.getUpdateTag());
+		return new SUpdateTileEntityPacket(this.worldPosition, 9, this.getUpdateTag());
 	}
 
 	@Override
 	public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
-		BlockState blockState = world.getBlockState(pos);
-		read(blockState, pkt.getNbtCompound());
+		BlockState blockState = level.getBlockState(worldPosition);
+		load(blockState, pkt.getTag());
 	}
 	
 	@Override
 	public CompoundNBT getUpdateTag() {
-		return this.write(new CompoundNBT());
+		return this.save(new CompoundNBT());
 	}
 
 	@Override
 	public void handleUpdateTag(BlockState blockState, CompoundNBT parentNBTTagCompound)
 	{
-		this.read(blockState, parentNBTTagCompound);
+		this.load(blockState, parentNBTTagCompound);
 	}
 	
 	@Override
-	public void read(BlockState state, CompoundNBT nbt) {
-		super.read(state, nbt);
+	public void load(BlockState state, CompoundNBT nbt) {
+		super.load(state, nbt);
 		itemHandler.deserializeNBT(nbt.getCompound("overlay"));
 		
 		for (int i = 0; i < 8; ++i) {
 			String s = nbt.getString("Text" + (i + 1));
-			ITextComponent itextcomponent = ITextComponent.Serializer.getComponentFromJson(s.isEmpty() ? "\"\"" : s);
-			if (this.world instanceof ServerWorld) {
+			ITextComponent itextcomponent = ITextComponent.Serializer.fromJson(s.isEmpty() ? "\"\"" : s);
+			if (this.level instanceof ServerWorld) {
 				try {
-					this.signText[i] = TextComponentUtils.func_240645_a_(this.getCommandSource((ServerPlayerEntity) null), itextcomponent, (Entity) null, 0);
+					this.signText[i] = TextComponentUtils.updateForEntity(this.getCommandSource((ServerPlayerEntity) null), itextcomponent, (Entity) null, 0);
 				} catch (CommandSyntaxException commandsyntaxexception) {
 					this.signText[i] = itextcomponent;
 				}
@@ -186,8 +186,8 @@ public class AnnunciatorTileEntity extends TileEntity {
 	}
 
 	@Override
-	public CompoundNBT write(CompoundNBT compound) {
-		super.write(compound);
+	public CompoundNBT save(CompoundNBT compound) {
+		super.save(compound);
 		compound.put("overlay", itemHandler.serializeNBT());
 
 		for (int i = 0; i < 8; ++i) {

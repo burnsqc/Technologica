@@ -17,14 +17,14 @@ public class ClientHandlers {
 			@Override
 			public void run() {
 				Minecraft mc = Minecraft.getInstance();
-				TileEntity tileentity = mc.world.getTileEntity(signPosition);
+				TileEntity tileentity = mc.level.getBlockEntity(signPosition);
 				
 				if (!(tileentity instanceof VanillaSignTileEntity)) {
 					tileentity = new VanillaSignTileEntity();
-					tileentity.setWorldAndPos(mc.world, signPosition);
+					tileentity.setLevelAndPosition(mc.level, signPosition);
 				}
 				
-				mc.displayGuiScreen(new EditModSignScreen((VanillaSignTileEntity) tileentity));
+				mc.setScreen(new EditModSignScreen((VanillaSignTileEntity) tileentity));
 			}
 		};
 	}

@@ -17,12 +17,12 @@ public final class OwlRenderer extends MobRenderer<OwlEntity, OwlModel<OwlEntity
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(OwlEntity entity) {
+	public ResourceLocation getTextureLocation(OwlEntity entity) {
 		return OWL_TEXTURE;
 	}
 	
 	@Override
-	public float handleRotationFloat(OwlEntity livingBase, float partialTicks) {
+	public float getBob(OwlEntity livingBase, float partialTicks) {
 		float f = MathHelper.lerp(partialTicks, livingBase.oFlap, livingBase.flap);
 		float f1 = MathHelper.lerp(partialTicks, livingBase.oFlapSpeed, livingBase.flapSpeed);
 		return (MathHelper.sin(f) + 1.0F) * f1;

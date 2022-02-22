@@ -15,7 +15,7 @@ public final class OstrichRenderer extends MobRenderer<OstrichEntity, OstrichMod
       super(renderManagerIn, new OstrichModel<>(), 1.0F);
    }
 
-   public ResourceLocation getEntityTexture(OstrichEntity entity) {
+   public ResourceLocation getTextureLocation(OstrichEntity entity) {
 	      return OSTRICH_TEXTURE;
 	   }
 }

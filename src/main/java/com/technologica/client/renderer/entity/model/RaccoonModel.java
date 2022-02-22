@@ -15,89 +15,89 @@ public class RaccoonModel<T extends RaccoonEntity> extends QuadrupedModel<T> {
 
 	public RaccoonModel() {
 		super(3, 0.0F, true, 20.0F, 0.5F, 2.7272F, 2.0F, 24);
-		this.textureWidth = 64;
-		this.textureHeight = 32;
+		this.texWidth = 64;
+		this.texHeight = 32;
 		
 		this.body = new ModelRenderer(this, 0, 0);
 		this.body.addBox(-4.0F, -6.0F, -7.0F, 8.0F, 6.0F, 10.0F);
-		this.body.setRotationPoint(0.0F, 21.0F, 2.0F);
+		this.body.setPos(0.0F, 21.0F, 2.0F);
 
 		this.tail = new ModelRenderer(this, 2, 16);
 		this.tail.addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 8.0F);
-		this.tail.setRotationPoint(0.0F, -3.0F, 3.0F);
+		this.tail.setPos(0.0F, -3.0F, 3.0F);
 		this.body.addChild(this.tail);
 
-		this.legBackRight = new ModelRenderer(this, 0, 0);
-		this.legBackRight.addBox(-1.0F, -1.0F, -1.0F, 2.0F, 4.0F, 2.0F);
-		this.legBackRight.setRotationPoint(-2.0F, 21.0F, 3.0F);
+		this.leg0 = new ModelRenderer(this, 0, 0);
+		this.leg0.addBox(-1.0F, -1.0F, -1.0F, 2.0F, 4.0F, 2.0F);
+		this.leg0.setPos(-2.0F, 21.0F, 3.0F);
 
-		this.legBackLeft = new ModelRenderer(this, 0, 0);
-		this.legBackLeft.addBox(-1.0F, -1.0F, -1.0F, 2.0F, 4.0F, 2.0F);
-		this.legBackLeft.setRotationPoint(2.0F, 21.0F, 3.0F);
+		this.leg1 = new ModelRenderer(this, 0, 0);
+		this.leg1.addBox(-1.0F, -1.0F, -1.0F, 2.0F, 4.0F, 2.0F);
+		this.leg1.setPos(2.0F, 21.0F, 3.0F);
 
-		this.legFrontRight = new ModelRenderer(this, 0, 0);
-		this.legFrontRight.addBox(-1.0F, -1.0F, -1.0F, 2.0F, 4.0F, 2.0F);
-		this.legFrontRight.setRotationPoint(-2.0F, 21.0F, -3.0F);
+		this.leg2 = new ModelRenderer(this, 0, 0);
+		this.leg2.addBox(-1.0F, -1.0F, -1.0F, 2.0F, 4.0F, 2.0F);
+		this.leg2.setPos(-2.0F, 21.0F, -3.0F);
 
-		this.legFrontLeft = new ModelRenderer(this, 0, 0);
-		this.legFrontLeft.addBox(-1.0F, -1.0F, -1.0F, 2.0F, 4.0F, 2.0F);
-		this.legFrontLeft.setRotationPoint(2.0F, 21.0F, -3.0F);
+		this.leg3 = new ModelRenderer(this, 0, 0);
+		this.leg3.addBox(-1.0F, -1.0F, -1.0F, 2.0F, 4.0F, 2.0F);
+		this.leg3.setPos(2.0F, 21.0F, -3.0F);
 
-		this.headModel = new ModelRenderer(this, 14, 16);
-		this.headModel.addBox(-2.5F, -5.0F, -3.0F, 5.0F, 4.0F, 3.0F);
-		this.headModel.setRotationPoint(0.0F, 21.0F, -5.0F);
+		this.head = new ModelRenderer(this, 14, 16);
+		this.head.addBox(-2.5F, -5.0F, -3.0F, 5.0F, 4.0F, 3.0F);
+		this.head.setPos(0.0F, 21.0F, -5.0F);
 		
 		this.earRight = new ModelRenderer(this, 0, 16);
 		this.earRight.addBox(-0.5F, -1.0F, 0.0F, 1.0F, 2.0F, 1.0F);
-		this.earRight.setRotationPoint(2.0F, -5.0F, -2.0F);
-		this.headModel.addChild(this.earRight);
+		this.earRight.setPos(2.0F, -5.0F, -2.0F);
+		this.head.addChild(this.earRight);
 		
 		this.earLeft = new ModelRenderer(this, 0, 16);
 		this.earLeft.addBox(-0.5F, -1.0F, 0.0F, 1.0F, 2.0F, 1.0F);
-		this.earLeft.setRotationPoint(-2.0F, -5.0F, -2.0F);
-		this.headModel.addChild(this.earLeft);
+		this.earLeft.setPos(-2.0F, -5.0F, -2.0F);
+		this.head.addChild(this.earLeft);
 		
 		this.snout = new ModelRenderer(this, 0, 6);
 		this.snout.addBox(-1.0F, -9.0F, -7.0F, 2.0F, 2.0F, 2.0F);
-		this.snout.setRotationPoint(0.0F, 6.0F, 2.0F);
-		this.headModel.addChild(this.snout);
+		this.snout.setPos(0.0F, 6.0F, 2.0F);
+		this.head.addChild(this.snout);
 
 	}
 
 	@Override
-	public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.headModel.rotateAngleX = headPitch * ((float) Math.PI / 180F) * 0.5F;
-		this.headModel.rotateAngleY = netHeadYaw * ((float) Math.PI / 180F) * 0.5F;
-		this.earLeft.rotateAngleZ = -(float) Math.PI / 4F;
-		this.earRight.rotateAngleZ = 3 * -(float) Math.PI / 4F;
+	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		this.head.xRot = headPitch * ((float) Math.PI / 180F) * 0.5F;
+		this.head.yRot = netHeadYaw * ((float) Math.PI / 180F) * 0.5F;
+		this.earLeft.zRot = -(float) Math.PI / 4F;
+		this.earRight.zRot = 3 * -(float) Math.PI / 4F;
 	}
 	
 	@Override
-	public void setLivingAnimations(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
+	public void prepareMobModel(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
 		if (entityIn.isBegging()) {
-			this.body.rotateAngleX = -(float) Math.PI / 3;
-			this.headModel.setRotationPoint(0.0F, 15.0F, 1.0F);
-			this.legFrontLeft.setRotationPoint(2.0F, 17.0F, 0.0F);
-			this.legFrontRight.setRotationPoint(-2.0F, 17.0F, 0.0F);
-			this.legFrontLeft.rotateAngleX = MathHelper.sin(0.75F * ((float) entityIn.ticksExisted + partialTick)) - (float) Math.PI / 3;
-			this.legFrontRight.rotateAngleX = MathHelper.sin(0.75F * ((float) entityIn.ticksExisted + partialTick)) - (float) Math.PI / 3;
-			this.legFrontLeft.rotateAngleZ = -(float) Math.PI / 10;
-			this.legFrontRight.rotateAngleZ = (float) Math.PI / 10;
-			this.tail.rotateAngleX = (float) Math.PI / 3;
+			this.body.xRot = -(float) Math.PI / 3;
+			this.head.setPos(0.0F, 15.0F, 1.0F);
+			this.leg3.setPos(2.0F, 17.0F, 0.0F);
+			this.leg2.setPos(-2.0F, 17.0F, 0.0F);
+			this.leg3.xRot = MathHelper.sin(0.75F * ((float) entityIn.tickCount + partialTick)) - (float) Math.PI / 3;
+			this.leg2.xRot = MathHelper.sin(0.75F * ((float) entityIn.tickCount + partialTick)) - (float) Math.PI / 3;
+			this.leg3.zRot = -(float) Math.PI / 10;
+			this.leg2.zRot = (float) Math.PI / 10;
+			this.tail.xRot = (float) Math.PI / 3;
 		} else {
-			this.body.rotateAngleX = 0;
-			this.headModel.setRotationPoint(0.0F, 21.0F, -5.0F);
-			this.legFrontLeft.setRotationPoint(2.0F, 21.0F, -3.0F);
-			this.legFrontRight.setRotationPoint(-2.0F, 21.0F, -3.0F);
-			this.legFrontRight.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
-			this.legFrontLeft.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-			this.legFrontLeft.rotateAngleZ = 0;
-			this.legFrontRight.rotateAngleZ = 0;
-			this.tail.rotateAngleX = -((float) Math.PI / 10F);
+			this.body.xRot = 0;
+			this.head.setPos(0.0F, 21.0F, -5.0F);
+			this.leg3.setPos(2.0F, 21.0F, -3.0F);
+			this.leg2.setPos(-2.0F, 21.0F, -3.0F);
+			this.leg2.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
+			this.leg3.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+			this.leg3.zRot = 0;
+			this.leg2.zRot = 0;
+			this.tail.xRot = -((float) Math.PI / 10F);
 		}
 		
-		this.legBackRight.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-		this.legBackLeft.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
+		this.leg0.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+		this.leg1.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
 		
 	}
 	

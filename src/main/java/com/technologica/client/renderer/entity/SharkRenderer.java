@@ -15,7 +15,7 @@ public class SharkRenderer extends MobRenderer<SharkEntity, SharkModel<SharkEnti
 		super(renderManagerIn, new SharkModel<>(), 0.7F);
 	}
 
-	public ResourceLocation getEntityTexture(SharkEntity entity) {
+	public ResourceLocation getTextureLocation(SharkEntity entity) {
 		return SHARK_TEXTURE;
 	}
 }

@@ -18,7 +18,7 @@ public final class RaccoonRenderer extends MobRenderer<RaccoonEntity, RaccoonMod
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(RaccoonEntity entity) {
+	public ResourceLocation getTextureLocation(RaccoonEntity entity) {
 		return RACCOON_TEXTURE;
 	}
 }
