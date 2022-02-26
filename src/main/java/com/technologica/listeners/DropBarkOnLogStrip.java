@@ -1,12 +1,13 @@
 package com.technologica.listeners;
 
-import com.technologica.item.TechnologicaItems;
-
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.item.AxeItem;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.math.BlockPos;
+
+import com.technologica.world.item.TechnologicaItems;
+
+import net.minecraft.core.BlockPos;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -14,7 +15,7 @@ public class DropBarkOnLogStrip {
 
 	@SubscribeEvent
 	public void onRightClickBlock(RightClickBlock event) {
-		if (event.getItemStack().getItem() instanceof AxeItem && event.getWorld().getBlockState(event.getPos()).getBlock().is(BlockTags.LOGS) && !event.getWorld().getBlockState(event.getPos()).getBlock().getRegistryName().getPath().contains("stripped")) {
+		if (event.getItemStack().getItem() instanceof AxeItem && event.getWorld().getBlockState(event.getPos()).is(BlockTags.LOGS) && !event.getWorld().getBlockState(event.getPos()).getBlock().getRegistryName().getPath().contains("stripped")) {
 			ItemStack bark;
 			
 			if (!event.getWorld().getBlockState(event.getPos()).getBlock().getRegistryName().getPath().contains("cinnamon")) {

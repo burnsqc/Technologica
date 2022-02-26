@@ -6,13 +6,14 @@ import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.technologica.core.particles.TechnologicaParticleTypes;
 
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.particles.IParticleData;
-import net.minecraft.particles.ParticleType;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleType;
+import net.minecraft.core.Registry;
 
-public class LandingLiquidParticleData implements IParticleData {
+public class LandingLiquidParticleData implements ParticleOptions {
 
 	public static final Codec<LandingLiquidParticleData> CODEC = RecordCodecBuilder.create((p_239803_0_) -> {
 		return p_239803_0_.group(Codec.FLOAT.fieldOf("r").forGetter((p_239807_0_) -> {
@@ -34,7 +35,8 @@ public class LandingLiquidParticleData implements IParticleData {
 		this.blue = blue;
 	}
 
-	public static final IParticleData.IDeserializer<LandingLiquidParticleData> DESERIALIZER = new IParticleData.IDeserializer<LandingLiquidParticleData>() {
+	@SuppressWarnings("deprecation")
+	public static final ParticleOptions.Deserializer<LandingLiquidParticleData> DESERIALIZER = new ParticleOptions.Deserializer<LandingLiquidParticleData>() {
 		public LandingLiquidParticleData fromCommand(ParticleType<LandingLiquidParticleData> particleTypeIn, StringReader reader) throws CommandSyntaxException {
 			reader.expect(' ');
 			float f = (float) reader.readDouble();
@@ -46,7 +48,7 @@ public class LandingLiquidParticleData implements IParticleData {
 			return new LandingLiquidParticleData(f, f1, f2);
 		}
 
-		public LandingLiquidParticleData fromNetwork(ParticleType<LandingLiquidParticleData> particleTypeIn, PacketBuffer buffer) {
+		public LandingLiquidParticleData fromNetwork(ParticleType<LandingLiquidParticleData> particleTypeIn, FriendlyByteBuf buffer) {
 			return new LandingLiquidParticleData(buffer.readFloat(), buffer.readFloat(), buffer.readFloat());
 		}
 	};
@@ -57,7 +59,7 @@ public class LandingLiquidParticleData implements IParticleData {
 	}
 
 	@Override
-	public void writeToNetwork(PacketBuffer buffer) {
+	public void writeToNetwork(FriendlyByteBuf buffer) {
 		buffer.writeFloat(this.red);
 		buffer.writeFloat(this.green);
 		buffer.writeFloat(this.blue);

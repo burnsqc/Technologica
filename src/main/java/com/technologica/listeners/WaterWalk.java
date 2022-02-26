@@ -1,15 +1,15 @@
 package com.technologica.listeners;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.player.ClientPlayerEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.item.ItemStack;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
@@ -20,8 +20,8 @@ public class WaterWalk {
 	
 	@SubscribeEvent
 	public void onLivingEquipmentChangeEvent(LivingEquipmentChangeEvent event) {
-		if (event.getEntity() instanceof PlayerEntity) {
-			PlayerEntity player = (PlayerEntity) event.getEntity();
+		if (event.getEntity() instanceof Player) {
+			Player player = (Player) event.getEntity();
 			boolean fullDiveSet = true;
 			boolean fullScubaSet = true;
 			Iterable<ItemStack> armor = player.getArmorSlots();
@@ -47,7 +47,7 @@ public class WaterWalk {
 
 	@SubscribeEvent
 	public void onPlayerTickEvent(PlayerTickEvent event) {
-		PlayerEntity player = (PlayerEntity) event.player;
+		Player player = (Player) event.player;
 		Minecraft mc = Minecraft.getInstance();
 		boolean fullDiveSet = true;
 		boolean fullScubaSet = true;
@@ -62,7 +62,7 @@ public class WaterWalk {
 			}
 		}
 
-		if (player instanceof ClientPlayerEntity && fullDiveSet && !player.abilities.flying) {
+		if (player instanceof LocalPlayer && fullDiveSet && !player.getAbilities().flying) {
 			if (event.phase == TickEvent.Phase.START) {
 				unHandleWaterAcceleration(player);
 				if (player.isInWater()) {
@@ -76,7 +76,7 @@ public class WaterWalk {
 					}
 				}
 			}
-		} else if (player instanceof ClientPlayerEntity && fullScubaSet && !player.abilities.flying) {
+		} else if (player instanceof LocalPlayer && fullScubaSet && !player.getAbilities().flying) {
 			if (event.phase == TickEvent.Phase.START) {
 				if (player.isInWater()) {
 					player.setDeltaMovement(player.getDeltaMovement().x, 0.0F, player.getDeltaMovement().z);
@@ -87,23 +87,23 @@ public class WaterWalk {
 	}
 
 	@SuppressWarnings("deprecation")
-	private boolean unHandleWaterAcceleration(PlayerEntity player) {
-		AxisAlignedBB axisalignedbb = player.getBoundingBox().deflate(0.001D);
-		int i = MathHelper.floor(axisalignedbb.minX);
-		int j = MathHelper.ceil(axisalignedbb.maxX);
-		int k = MathHelper.floor(axisalignedbb.minY);
-		int l = MathHelper.ceil(axisalignedbb.maxY);
-		int i1 = MathHelper.floor(axisalignedbb.minZ);
-		int j1 = MathHelper.ceil(axisalignedbb.maxZ);
+	private boolean unHandleWaterAcceleration(Player player) {
+		AABB axisalignedbb = player.getBoundingBox().deflate(0.001D);
+		int i = Mth.floor(axisalignedbb.minX);
+		int j = Mth.ceil(axisalignedbb.maxX);
+		int k = Mth.floor(axisalignedbb.minY);
+		int l = Mth.ceil(axisalignedbb.maxY);
+		int i1 = Mth.floor(axisalignedbb.minZ);
+		int j1 = Mth.ceil(axisalignedbb.maxZ);
 		if (!player.level.hasChunksAt(i, k, i1, j, l, j1)) {
 			return false;
 		} else {
 			double d0 = 0.0D;
 			boolean flag = player.isPushedByFluid();
 			boolean flag1 = false;
-			Vector3d vector3d = Vector3d.ZERO;
+			Vec3 vector3d = Vec3.ZERO;
 			int k1 = 0;
-			BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
+			BlockPos.MutableBlockPos blockpos$mutable = new BlockPos.MutableBlockPos();
 
 			for (int l1 = i; l1 < j; ++l1) {
 				for (int i2 = k; i2 < l; ++i2) {
@@ -117,7 +117,7 @@ public class WaterWalk {
 								flag1 = true;
 								d0 = Math.max(d1 - axisalignedbb.minY, d0);
 								if (flag) {
-									Vector3d vector3d1 = fluidstate.getFlow(player.level, blockpos$mutable);
+									Vec3 vector3d1 = fluidstate.getFlow(player.level, blockpos$mutable);
 									if (d0 < 0.4D) {
 										vector3d1 = vector3d1.scale(d0);
 									}
@@ -136,11 +136,11 @@ public class WaterWalk {
 					vector3d = vector3d.scale(1.0D / (double) k1);
 				}
 
-				if (!(player instanceof PlayerEntity)) {
+				if (!(player instanceof Player)) {
 					vector3d = vector3d.normalize();
 				}
 
-				Vector3d vector3d2 = player.getDeltaMovement();
+				Vec3 vector3d2 = player.getDeltaMovement();
 				vector3d = vector3d.scale(0.014D * 1.0D);
 
 				if (Math.abs(vector3d2.x) < 0.003D && Math.abs(vector3d2.z) < 0.003D

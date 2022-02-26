@@ -1,18 +1,18 @@
 package com.technologica.client.renderer.entity;
 
 import com.technologica.Technologica;
-import com.technologica.client.renderer.entity.model.TurkeyModel;
-import com.technologica.entity.passive.TurkeyEntity;
+import com.technologica.client.model.TurkeyModel;
+import com.technologica.world.entity.animal.TurkeyEntity;
 
-import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 
 public final class TurkeyRenderer extends MobRenderer<TurkeyEntity, TurkeyModel<TurkeyEntity>> {
 	private static final ResourceLocation TURKEY_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/turkey.png");
 
-	public TurkeyRenderer(EntityRendererManager renderManagerIn) {
+	public TurkeyRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new TurkeyModel<>(), 0.4F);
 	}
 
@@ -23,8 +23,8 @@ public final class TurkeyRenderer extends MobRenderer<TurkeyEntity, TurkeyModel<
 	
 	@Override
 	protected float getBob(TurkeyEntity livingBase, float partialTicks) {
-	      float f = MathHelper.lerp(partialTicks, livingBase.oFlap, livingBase.wingRotation);
-	      float f1 = MathHelper.lerp(partialTicks, livingBase.oFlapSpeed, livingBase.destPos);
-	      return (MathHelper.sin(f) + 1.0F) * f1;
+	      float f = Mth.lerp(partialTicks, livingBase.oFlap, livingBase.wingRotation);
+	      float f1 = Mth.lerp(partialTicks, livingBase.oFlapSpeed, livingBase.destPos);
+	      return (Mth.sin(f) + 1.0F) * f1;
 	   }
 }

@@ -1,11 +1,11 @@
 package com.technologica.network.play.server;
 
-import com.technologica.client.gui.screen.EditModSignScreen;
-import com.technologica.tileentity.VanillaSignTileEntity;
+import com.technologica.client.gui.screens.inventory.TechnologicaSignEditScreen;
+import com.technologica.world.level.block.entity.VanillaSignTileEntity;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.fml.DistExecutor;
 
 public class ClientHandlers {
@@ -17,14 +17,14 @@ public class ClientHandlers {
 			@Override
 			public void run() {
 				Minecraft mc = Minecraft.getInstance();
-				TileEntity tileentity = mc.level.getBlockEntity(signPosition);
+				BlockEntity tileentity = mc.level.getBlockEntity(signPosition);
 				
 				if (!(tileentity instanceof VanillaSignTileEntity)) {
-					tileentity = new VanillaSignTileEntity();
-					tileentity.setLevelAndPosition(mc.level, signPosition);
+					tileentity = new VanillaSignTileEntity(signPosition, null);
+					//tileentity.setLevelAndPosition(mc.level, signPosition);
 				}
 				
-				mc.setScreen(new EditModSignScreen((VanillaSignTileEntity) tileentity));
+				mc.setScreen(new TechnologicaSignEditScreen((VanillaSignTileEntity) tileentity, false));
 			}
 		};
 	}

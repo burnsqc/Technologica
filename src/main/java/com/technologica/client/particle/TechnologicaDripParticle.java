@@ -4,32 +4,32 @@ import com.technologica.particles.DrippingLiquidParticleData;
 import com.technologica.particles.FallingLiquidParticleData;
 import com.technologica.particles.LandingLiquidParticleData;
 
-import net.minecraft.client.particle.IAnimatedSprite;
-import net.minecraft.client.particle.IParticleFactory;
-import net.minecraft.client.particle.IParticleRenderType;
+import net.minecraft.client.particle.SpriteSet;
+import net.minecraft.client.particle.ParticleProvider;
+import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.Particle;
-import net.minecraft.client.particle.SpriteTexturedParticle;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.client.particle.TextureSheetParticle;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.core.BlockPos;
 
-public class TechnologicaDripParticle extends SpriteTexturedParticle {
+public class TechnologicaDripParticle extends TextureSheetParticle {
 	private final Fluid fluid;
 	protected boolean fullbright;
 	
-	private TechnologicaDripParticle(ClientWorld world, double x, double y, double z, Fluid fluid) {
+	private TechnologicaDripParticle(ClientLevel world, double x, double y, double z, Fluid fluid) {
 		super(world, x, y, z);
 		this.setSize(0.01F, 0.01F);
 		this.gravity = 0.06F;
 		this.fluid = fluid;
 	}
 
-	public IParticleRenderType getRenderType() {
-		return IParticleRenderType.PARTICLE_SHEET_OPAQUE;
+	public ParticleRenderType getRenderType() {
+		return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
 	}
 
 	public int getLightColor(float partialTick) {
@@ -71,7 +71,7 @@ public class TechnologicaDripParticle extends SpriteTexturedParticle {
 	static class Dripping extends TechnologicaDripParticle {
 		private final DrippingLiquidParticleData particleData;
 
-		private Dripping(ClientWorld world, double x, double y, double z, Fluid fluid, DrippingLiquidParticleData particleData) {
+		private Dripping(ClientLevel world, double x, double y, double z, Fluid fluid, DrippingLiquidParticleData particleData) {
 			super(world, x, y, z, fluid);
 			this.particleData = particleData;
 			this.gravity *= 0.02F;
@@ -95,7 +95,7 @@ public class TechnologicaDripParticle extends SpriteTexturedParticle {
 	static class Falling extends TechnologicaDripParticle {
 		protected final FallingLiquidParticleData particleData;
 		
-		private Falling(ClientWorld world, double x, double y, double z, Fluid fluid, FallingLiquidParticleData particleData) {
+		private Falling(ClientLevel world, double x, double y, double z, Fluid fluid, FallingLiquidParticleData particleData) {
 			super(world, x, y, z, fluid);
 			this.particleData = particleData;
 		}
@@ -104,28 +104,28 @@ public class TechnologicaDripParticle extends SpriteTexturedParticle {
 			if (this.onGround) {
 				this.remove();
 				this.level.addParticle(new LandingLiquidParticleData(particleData.getRed(), particleData.getGreen(), particleData.getBlue()), this.x, this.y, this.z, 0.0D, 0.0D, 0.0D);
-	            this.level.playLocalSound(this.x + 0.5D, this.y, this.z + 0.5D, SoundEvents.BEEHIVE_DRIP, SoundCategory.BLOCKS, 0.3F + this.level.random.nextFloat() * 2.0F / 3.0F, 1.0F, false);
+	            this.level.playLocalSound(this.x + 0.5D, this.y, this.z + 0.5D, SoundEvents.BEEHIVE_DRIP, SoundSource.BLOCKS, 0.3F + this.level.random.nextFloat() * 2.0F / 3.0F, 1.0F, false);
 			}
 
 		}
 	}
 
 	static class Landing extends TechnologicaDripParticle {
-		private Landing(ClientWorld world, double x, double y, double z, Fluid fluid) {
+		private Landing(ClientLevel world, double x, double y, double z, Fluid fluid) {
 			super(world, x, y, z, fluid);
 			this.lifetime = (int) (16.0D / (Math.random() * 0.8D + 0.2D));
 		}
 	}
 	
-	public static class DrippingFactory implements IParticleFactory<DrippingLiquidParticleData> {
-		protected final IAnimatedSprite spriteWithAge;
+	public static class DrippingFactory implements ParticleProvider<DrippingLiquidParticleData> {
+		protected final SpriteSet spriteWithAge;
 		
-		public DrippingFactory(IAnimatedSprite spriteWithAge) {
+		public DrippingFactory(SpriteSet spriteWithAge) {
 			this.spriteWithAge = spriteWithAge;
 		}
 		
 		@Override
-		public Particle createParticle(DrippingLiquidParticleData typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+		public Particle createParticle(DrippingLiquidParticleData typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
 			TechnologicaDripParticle.Dripping dripparticle$dripping = new TechnologicaDripParticle.Dripping(worldIn, x, y, z, Fluids.EMPTY, typeIn);
 			dripparticle$dripping.gravity *= 0.01F;
 			dripparticle$dripping.lifetime = 100;
@@ -135,14 +135,14 @@ public class TechnologicaDripParticle extends SpriteTexturedParticle {
 		}
 	}
 	
-	public static class FallingFactory implements IParticleFactory<FallingLiquidParticleData> {
-		protected final IAnimatedSprite spriteSet;
+	public static class FallingFactory implements ParticleProvider<FallingLiquidParticleData> {
+		protected final SpriteSet spriteSet;
 
-		public FallingFactory(IAnimatedSprite spriteSet) {
+		public FallingFactory(SpriteSet spriteSet) {
 			this.spriteSet = spriteSet;
 		}
 
-		public Particle createParticle(FallingLiquidParticleData typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+		public Particle createParticle(FallingLiquidParticleData typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
 			TechnologicaDripParticle dripparticle = new TechnologicaDripParticle.Falling(worldIn, x, y, z, Fluids.EMPTY, typeIn);
 			dripparticle.gravity = 0.01F;
 			dripparticle.setColor(typeIn.getRed(), typeIn.getGreen(), typeIn.getBlue());
@@ -151,14 +151,14 @@ public class TechnologicaDripParticle extends SpriteTexturedParticle {
 		}
 	}
 	
-	public static class LandingFactory implements IParticleFactory<LandingLiquidParticleData> {
-		protected final IAnimatedSprite spriteSet;
+	public static class LandingFactory implements ParticleProvider<LandingLiquidParticleData> {
+		protected final SpriteSet spriteSet;
 
-		public LandingFactory(IAnimatedSprite spriteSet) {
+		public LandingFactory(SpriteSet spriteSet) {
 			this.spriteSet = spriteSet;
 		}
 
-		public Particle createParticle(LandingLiquidParticleData typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+		public Particle createParticle(LandingLiquidParticleData typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
 			TechnologicaDripParticle dripparticle = new TechnologicaDripParticle.Landing(worldIn, x, y, z, Fluids.EMPTY);
 			dripparticle.lifetime = (int) (128.0D / (Math.random() * 0.8D + 0.2D));
 			dripparticle.setColor(typeIn.getRed(), typeIn.getGreen(), typeIn.getBlue());

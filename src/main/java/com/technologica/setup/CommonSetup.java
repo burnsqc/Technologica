@@ -1,26 +1,26 @@
 package com.technologica.setup;
 
 import com.technologica.Technologica;
-import com.technologica.block.TechnologicaBlocks;
 import com.technologica.capabilities.TechnologicaCapabilities;
 import com.technologica.network.play.server.Packets;
+import com.technologica.world.level.block.TechnologicaBlocks;
 
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FlowerPotBlock;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FlowerPotBlock;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.Registry;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.BiomeManager.BiomeEntry;
 import net.minecraftforge.common.BiomeManager.BiomeType;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 public class CommonSetup {
-	public static final RegistryKey<Biome> saltFlatsBiomeKey = RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(Technologica.MODID, "salt_flats"));
-	public static final RegistryKey<Biome> redwoodForestBiomeKey = RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(Technologica.MODID, "redwood_forest"));
-	public static final RegistryKey<Biome> rainforestBiomeKey = RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(Technologica.MODID, "rainforest"));
-	public static final RegistryKey<Biome> coastBiomeKey = RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(Technologica.MODID, "coast"));
+	public static final ResourceKey<Biome> saltFlatsBiomeKey = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(Technologica.MODID, "salt_flats"));
+	public static final ResourceKey<Biome> redwoodForestBiomeKey = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(Technologica.MODID, "redwood_forest"));
+	public static final ResourceKey<Biome> rainforestBiomeKey = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(Technologica.MODID, "rainforest"));
+	public static final ResourceKey<Biome> coastBiomeKey = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(Technologica.MODID, "coast"));
 	
 	public static void init(final FMLCommonSetupEvent event) {
 		FlowerPotBlock flowerPotBlock = (FlowerPotBlock) Blocks.FLOWER_POT;

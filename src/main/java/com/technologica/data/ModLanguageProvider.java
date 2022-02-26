@@ -4,16 +4,16 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 import com.technologica.Technologica;
-import com.technologica.entity.TechnologicaEntityType;
-import com.technologica.item.TechnologicaItemGroup;
-import com.technologica.item.TechnologicaItems;
+import com.technologica.world.entity.TechnologicaEntityType;
+import com.technologica.world.item.TechnologicaItemGroup;
+import com.technologica.world.item.TechnologicaItems;
 
 import net.minecraft.data.DataGenerator;
-import net.minecraft.entity.EntityType;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.common.data.LanguageProvider;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.RegistryObject;
 
 public class ModLanguageProvider extends LanguageProvider {
 	
@@ -63,8 +63,8 @@ public class ModLanguageProvider extends LanguageProvider {
 	 * @param itemGroups varargs list of item groups
 	 */
 	
-	private final void addItemGroups(ItemGroup... itemGroups) {
-		for(ItemGroup itemGroup:itemGroups) {
+	private final void addItemGroups(CreativeModeTab... itemGroups) {
+		for(CreativeModeTab itemGroup:itemGroups) {
 			String key = itemGroup.getRecipeFolderName();
 			add("itemGroup." + key, keyToValue(key));
 		}

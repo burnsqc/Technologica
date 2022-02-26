@@ -1,8 +1,8 @@
 package com.technologica.util;
 
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.StringRepresentable;
 
-public enum AnnunciatorOverlay implements IStringSerializable {
+public enum AnnunciatorOverlay implements StringRepresentable {
 	INFO("info"), FAIL("fail"), PASS("pass"), WARN("warn");
 
 	private final String name;

@@ -1,17 +1,18 @@
 package com.technologica.client.renderer.entity;
 
 import com.technologica.Technologica;
-import com.technologica.client.renderer.entity.model.ScorpionModel;
-import com.technologica.entity.passive.ScorpionEntity;
+import com.technologica.client.model.ScorpionModel;
+import com.technologica.world.entity.animal.ScorpionEntity;
 
-import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 
 public class ScorpionRenderer<T extends ScorpionEntity> extends MobRenderer<T, ScorpionModel<T>> {
-	private static final ResourceLocation SCORPION_TEXTURE = new ResourceLocation(Technologica.MODID,"textures/entity/scorpion.png");
+	private static final ResourceLocation SCORPION_TEXTURE = new ResourceLocation(Technologica.MODID,
+			"textures/entity/scorpion.png");
 
-	public ScorpionRenderer(EntityRendererManager renderManagerIn) {
+	public ScorpionRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new ScorpionModel<>(), 0.8F);
 	}
 

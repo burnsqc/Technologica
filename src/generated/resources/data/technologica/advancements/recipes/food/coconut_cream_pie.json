@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "technologica:coconut"
+            "items": [
+              "technologica:coconut"
+            ]
           }
         ]
       }

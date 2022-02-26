@@ -11,7 +11,7 @@ import com.technologica.data.ModRecipeProvider;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
+import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 
 public class GatherData {
 	public static void init(final GatherDataEvent event) {

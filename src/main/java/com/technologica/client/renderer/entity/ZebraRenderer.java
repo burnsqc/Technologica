@@ -1,20 +1,19 @@
 package com.technologica.client.renderer.entity;
 
 import com.technologica.Technologica;
-import com.technologica.entity.passive.ZebraEntity;
+import com.technologica.world.entity.animal.ZebraEntity;
 
+import net.minecraft.client.model.HorseModel;
+import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.AbstractHorseRenderer;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.entity.model.HorseModel;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.resources.ResourceLocation;
 
 public final class ZebraRenderer extends AbstractHorseRenderer<ZebraEntity, HorseModel<ZebraEntity>> {
 	private static final ResourceLocation ZEBRA_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/zebra.png");
 
-	public ZebraRenderer(EntityRendererManager renderManagerIn) {
-		super(renderManagerIn, new HorseModel<>(0.0F), 1.1F);
-//      this.addLayer(new ZebraMarkingsLayer(this));
-//      this.addLayer(new LeatherZebraArmorLayer(this));
+	public ZebraRenderer(EntityRendererProvider.Context p_174167_) {
+		super(p_174167_, new HorseModel<>(p_174167_.bakeLayer(ModelLayers.HORSE)), 1.1F);
 	}
 
 	public ResourceLocation getTextureLocation(ZebraEntity entity) {

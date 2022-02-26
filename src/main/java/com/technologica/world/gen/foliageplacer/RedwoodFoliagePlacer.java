@@ -1,58 +1,51 @@
 package com.technologica.world.gen.foliageplacer;
 
 import java.util.Random;
-import java.util.Set;
+import java.util.function.BiConsumer;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.world.gen.IWorldGenerationReader;
-import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
-import net.minecraft.world.gen.feature.FeatureSpread;
-import net.minecraft.world.gen.foliageplacer.FoliagePlacer;
-import net.minecraft.world.gen.foliageplacer.FoliagePlacerType;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.valueproviders.IntProvider;
+import net.minecraft.world.level.LevelSimulatedReader;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 
 public class RedwoodFoliagePlacer extends FoliagePlacer {
 	public static final Codec<RedwoodFoliagePlacer> redwoodCodec = RecordCodecBuilder.create((p_236742_0_) -> {
 		return foliagePlacerParts(p_236742_0_).apply(p_236742_0_, RedwoodFoliagePlacer::new);
 	});
 
-	public RedwoodFoliagePlacer(FeatureSpread p_i241995_1_, FeatureSpread p_i241995_2_) {
+	public RedwoodFoliagePlacer(IntProvider p_i241995_1_, IntProvider p_i241995_2_) {
 		super(p_i241995_1_, p_i241995_2_);
-
 	}
 
 	protected FoliagePlacerType<?> type() {
 		return TechnologicaFoliagePlacers.REDWOOD.get();
 	}
 
-	// Generate foliage
-	protected void createFoliage(IWorldGenerationReader p_230372_1_, Random p_230372_2_,
-			BaseTreeFeatureConfig p_230372_3_, int p_230372_4_, FoliagePlacer.Foliage p_230372_5_, int p_230372_6_,
-			int p_230372_7_, Set<BlockPos> p_230372_8_, int p_230372_9_, MutableBoundingBox p_230372_10_) {
-		BlockPos blockpos = p_230372_5_.foliagePos();
-		int i = p_230372_2_.nextInt(2);
+	@Override
+	protected void createFoliage(LevelSimulatedReader p_161422_, BiConsumer<BlockPos, BlockState> p_161423_, Random p_161424_, TreeConfiguration p_161425_, int p_161426_, FoliageAttachment p_161427_, int p_161428_, int diameter, int topLayer) {
+		int i = p_161424_.nextInt(2);
 		int j = 0;
 		int k = 0;
 
-		for (int l = p_230372_9_; l >= -p_230372_6_; --l) {
-			this.placeLeavesRow(p_230372_1_, p_230372_2_, p_230372_3_, blockpos, i, p_230372_8_, l,
-					p_230372_5_.doubleTrunk(), p_230372_10_);
+		for (int l = diameter; l >= -p_161428_; --l) {
+			this.placeLeavesRow(p_161422_, p_161423_, p_161424_, p_161425_, p_161427_.pos(), j, l, p_161427_.doubleTrunk());
 			if (i >= j) {
 				i = k;
 				k = 5;
-				j = Math.min(j + 1, p_230372_7_ + p_230372_5_.radiusOffset());
+				j = Math.min(j + 1, p_161428_ + p_161427_.radiusOffset());
 			} else {
 				++i;
 			}
 		}
-
 	}
 
-	// Adjust number of layers based upon trunk height
-	public int foliageHeight(Random randomIn, int i, BaseTreeFeatureConfig configIn) {
+	public int foliageHeight(Random randomIn, int i, TreeConfiguration configIn) {
 		int trim;
 		if (i == 2) {
 			trim = i - 1;
@@ -64,7 +57,6 @@ public class RedwoodFoliagePlacer extends FoliagePlacer {
 		return trim;
 	}
 
-	// Prune foliage
 	protected boolean shouldSkipLocation(Random randomIn, int relativeZ, int relativeY, int relativeX, int p_230373_5_,
 			boolean p_230373_6_) {
 		if (relativeY >= 2) {

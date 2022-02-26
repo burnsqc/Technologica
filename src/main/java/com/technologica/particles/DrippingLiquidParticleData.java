@@ -6,13 +6,14 @@ import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.technologica.core.particles.TechnologicaParticleTypes;
 
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.particles.IParticleData;
-import net.minecraft.particles.ParticleType;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleType;
+import net.minecraft.core.Registry;
 
-public class DrippingLiquidParticleData implements IParticleData {
+public class DrippingLiquidParticleData implements ParticleOptions {
 	public static final DrippingLiquidParticleData BROMINE = new DrippingLiquidParticleData(0.66667F, 0.21960F, 0.07450F);
 	public static final DrippingLiquidParticleData MERCURY = new DrippingLiquidParticleData(0.88235F, 0.88235F, 0.88235F);
 	public static final DrippingLiquidParticleData BRINE = new DrippingLiquidParticleData(0.66667F, 0.86275F, 1.00000F);
@@ -43,7 +44,8 @@ public class DrippingLiquidParticleData implements IParticleData {
 		this.blue = blue;
 	}
 
-	public static final IParticleData.IDeserializer<DrippingLiquidParticleData> DESERIALIZER = new IParticleData.IDeserializer<DrippingLiquidParticleData>() {
+	@SuppressWarnings("deprecation")
+	public static final ParticleOptions.Deserializer<DrippingLiquidParticleData> DESERIALIZER = new ParticleOptions.Deserializer<DrippingLiquidParticleData>() {
 		public DrippingLiquidParticleData fromCommand(ParticleType<DrippingLiquidParticleData> particleTypeIn, StringReader reader) throws CommandSyntaxException {
 			reader.expect(' ');
 			float f = (float) reader.readDouble();
@@ -55,7 +57,7 @@ public class DrippingLiquidParticleData implements IParticleData {
 			return new DrippingLiquidParticleData(f, f1, f2);
 		}
 
-		public DrippingLiquidParticleData fromNetwork(ParticleType<DrippingLiquidParticleData> particleTypeIn, PacketBuffer buffer) {
+		public DrippingLiquidParticleData fromNetwork(ParticleType<DrippingLiquidParticleData> particleTypeIn, FriendlyByteBuf buffer) {
 			return new DrippingLiquidParticleData(buffer.readFloat(), buffer.readFloat(), buffer.readFloat());
 		}
 	};
@@ -66,7 +68,7 @@ public class DrippingLiquidParticleData implements IParticleData {
 	}
 	
 	@Override
-	public void writeToNetwork(PacketBuffer buffer) {
+	public void writeToNetwork(FriendlyByteBuf buffer) {
 		buffer.writeFloat(this.red);
 		buffer.writeFloat(this.green);
 		buffer.writeFloat(this.blue);

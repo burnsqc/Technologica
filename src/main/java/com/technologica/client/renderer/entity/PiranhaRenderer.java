@@ -1,20 +1,20 @@
 package com.technologica.client.renderer.entity;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Vector3f;
 import com.technologica.Technologica;
-import com.technologica.client.renderer.entity.model.PiranhaModel;
-import com.technologica.entity.passive.fish.PiranhaEntity;
+import com.technologica.client.model.PiranhaModel;
+import com.technologica.world.entity.animal.PiranhaEntity;
 
-import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3f;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 
 public final class PiranhaRenderer extends MobRenderer<PiranhaEntity, PiranhaModel<PiranhaEntity>> {
 	private static final ResourceLocation PIRANHA_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/piranha.png");
 
-	public PiranhaRenderer(EntityRendererManager renderManagerIn) {
+	public PiranhaRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new PiranhaModel<>(), 0.15F);
 	}
 
@@ -24,7 +24,7 @@ public final class PiranhaRenderer extends MobRenderer<PiranhaEntity, PiranhaMod
 	}
 
 	@Override
-	protected void setupRotations(PiranhaEntity entityLiving, MatrixStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
+	protected void setupRotations(PiranhaEntity entityLiving, PoseStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
 		super.setupRotations(entityLiving, matrixStackIn, ageInTicks, rotationYaw, partialTicks);
 		float f = 1.0F;
 		float f1 = 1.0F;
@@ -33,7 +33,7 @@ public final class PiranhaRenderer extends MobRenderer<PiranhaEntity, PiranhaMod
 			f1 = 1.7F;
 		}
 
-		float f2 = f * 4.3F * MathHelper.sin(f1 * 0.6F * ageInTicks);
+		float f2 = f * 4.3F * Mth.sin(f1 * 0.6F * ageInTicks);
 		matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(f2));
 		matrixStackIn.translate(0.0D, 0.0D, (double) -0.4F);
 		if (!entityLiving.isInWater()) {

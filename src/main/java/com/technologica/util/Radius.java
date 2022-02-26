@@ -1,8 +1,8 @@
 package com.technologica.util;
 
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.StringRepresentable;
 
-public enum Radius implements IStringSerializable {
+public enum Radius implements StringRepresentable {
 	NONE("none", 0.00F), SMALL("small", 0.25F), MEDIUM("medium", 0.50F), LARGE("large", 1.00F);
 
 	private final String name;

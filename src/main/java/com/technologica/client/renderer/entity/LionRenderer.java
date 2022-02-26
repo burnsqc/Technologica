@@ -1,17 +1,17 @@
 package com.technologica.client.renderer.entity;
 
 import com.technologica.Technologica;
-import com.technologica.client.renderer.entity.model.LionModel;
-import com.technologica.entity.passive.LionEntity;
+import com.technologica.client.model.LionModel;
+import com.technologica.world.entity.animal.LionEntity;
 
-import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 
 public final class LionRenderer extends MobRenderer<LionEntity, LionModel<LionEntity>> {
 	private static final ResourceLocation LION_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/lion.png");
 
-	public LionRenderer(EntityRendererManager renderManagerIn) {
+	public LionRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new LionModel<>(), 1.1F);
 	}
 

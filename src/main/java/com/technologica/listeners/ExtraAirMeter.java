@@ -3,17 +3,17 @@ package com.technologica.listeners;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.technologica.Technologica;
 
-import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.AbstractGui;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
+import net.minecraft.client.gui.GuiComponent;
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
+import net.minecraftforge.client.gui.ForgeIngameGui;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -23,7 +23,7 @@ public class ExtraAirMeter {
 
 	@SubscribeEvent
 	public void onPlayerTickEvent(PlayerTickEvent event) {
-		PlayerEntity player = event.player;
+		Player player = event.player;
 		int air = player.getAirSupply();
 		int maxAir = 300;
 		boolean fullSnorkelSet = true;
@@ -61,10 +61,10 @@ public class ExtraAirMeter {
 	}
 
 	@SubscribeEvent
-	public void onRenderGameOverlayEvent(RenderGameOverlayEvent.Pre event) {
-		if (event.getType() == ElementType.AIR) {
+	public void onRenderGameOverlayEvent(RenderGameOverlayEvent.PreLayer event) {
+		if (event.getOverlay() == ForgeIngameGui.AIR_LEVEL_ELEMENT) {
 			Minecraft mc = Minecraft.getInstance();
-			PlayerEntity player = (PlayerEntity) mc.getCameraEntity();
+			Player player = (Player) mc.getCameraEntity();
 			Iterable<ItemStack> armor = player.getArmorSlots();
 			boolean fullSnorkelSet = true;
 			boolean fullDiveSet = true;
@@ -94,13 +94,13 @@ public class ExtraAirMeter {
 				int air = player.getAirSupply();
 
 				if (player.isEyeInFluid(FluidTags.WATER) || air < 600) {
-					int full = MathHelper.ceil((double) (air - 2) * 10.0D / 300.0D);
-					int partial = MathHelper.ceil((double) air * 10.0D / 300.0D) - full;
+					int full = Mth.ceil((double) (air - 2) * 10.0D / 300.0D);
+					int partial = Mth.ceil((double) air * 10.0D / 300.0D) - full;
 
 					for (int i = 0; i < full + partial; ++i) {
 						int horizontal = i > 9 ? 71 : -9;
 						int vertical = i > 9 ? -10 : 0;
-						AbstractGui.blit(event.getMatrixStack(), left - i * 8 + horizontal, top + vertical, -90, i < full ? 16.0F : 25.0F, 18.0F, 9, 9, 256, 256);
+						GuiComponent.blit(event.getMatrixStack(), left - i * 8 + horizontal, top + vertical, -90, i < full ? 16.0F : 25.0F, 18.0F, 9, 9, 256, 256);
 					}
 				}
 				
@@ -118,8 +118,8 @@ public class ExtraAirMeter {
 
 				if (player.isEyeInFluid(FluidTags.WATER) || air < 6000) {
 					float remaining = air/6000.0F*81;
-					AbstractGui.blit(event.getMatrixStack(), left - 81, top, -90, 0.0F, 9.0F, (int) (remaining), 9, 256, 256);
-					AbstractGui.blit(event.getMatrixStack(), left - 81, top, -90, 0.0F, 0.0F, 81, 9, 256, 256);
+					GuiComponent.blit(event.getMatrixStack(), left - 81, top, -90, 0.0F, 9.0F, (int) (remaining), 9, 256, 256);
+					GuiComponent.blit(event.getMatrixStack(), left - 81, top, -90, 0.0F, 0.0F, 81, 9, 256, 256);
 				}
 
 				RenderSystem.disableBlend();
@@ -135,8 +135,8 @@ public class ExtraAirMeter {
 
 				if (player.isEyeInFluid(FluidTags.WATER) || air < 12000) {
 					float remaining = air/12000.0F*81;
-					AbstractGui.blit(event.getMatrixStack(), left - 81, top, -90, 0.0F, 9.0F, (int) (remaining), 9, 256, 256);
-					AbstractGui.blit(event.getMatrixStack(), left - 81, top, -90, 0.0F, 0.0F, 81, 9, 256, 256);
+					GuiComponent.blit(event.getMatrixStack(), left - 81, top, -90, 0.0F, 9.0F, (int) (remaining), 9, 256, 256);
+					GuiComponent.blit(event.getMatrixStack(), left - 81, top, -90, 0.0F, 0.0F, 81, 9, 256, 256);
 				}
 
 				RenderSystem.disableBlend();
@@ -146,6 +146,6 @@ public class ExtraAirMeter {
 	}
 	
 	private void bind(Minecraft mc, ResourceLocation res) {
-		mc.getTextureManager().bind(res);
+		mc.getTextureManager().bindForSetup(res);
 	}
 }

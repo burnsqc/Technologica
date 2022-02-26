@@ -1,14 +1,14 @@
 package com.technologica.capabilities;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
 public interface ILink {
 	boolean getLinking();
 	BlockPos getLinkAnchorPos();
-	void startLink(World worldIn, BlockPos posIn, BlockState stateIn, PlayerEntity playerIn);
+	void startLink(Level worldIn, BlockPos posIn, BlockState stateIn, Player playerIn);
 	void stopLink(BlockPos posIn, BlockState stateIn);
 	boolean checkAxis();
 	boolean checkInlinePos();

@@ -7,22 +7,23 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.serialization.Codec;
 import com.technologica.util.color.ColorHelper;
 
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.particles.IParticleData;
-import net.minecraft.particles.ParticleType;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.core.Registry;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleType;
+import net.minecraft.network.FriendlyByteBuf;
 
-public class UniversalLiquidParticleType extends ParticleType<UniversalLiquidParticleType> implements IParticleData {
+public class UniversalLiquidParticleType extends ParticleType<UniversalLiquidParticleType> implements ParticleOptions {
 	private final float red;
 	private final float green;
 	private final float blue;
 	
-	private static final IDeserializer<UniversalLiquidParticleType> DESERIALIZER = new IParticleData.IDeserializer<UniversalLiquidParticleType>() {
+	@SuppressWarnings("deprecation")
+	private static final Deserializer<UniversalLiquidParticleType> DESERIALIZER = new ParticleOptions.Deserializer<UniversalLiquidParticleType>() {
 		public UniversalLiquidParticleType fromCommand(ParticleType<UniversalLiquidParticleType> particleTypeIn, StringReader reader) throws CommandSyntaxException {
 			return (UniversalLiquidParticleType) particleTypeIn;
 		}
 
-		public UniversalLiquidParticleType fromNetwork(ParticleType<UniversalLiquidParticleType> particleTypeIn, PacketBuffer buffer) {
+		public UniversalLiquidParticleType fromNetwork(ParticleType<UniversalLiquidParticleType> particleTypeIn, FriendlyByteBuf buffer) {
 			return (UniversalLiquidParticleType) particleTypeIn;
 		}
 	};
@@ -52,7 +53,7 @@ public class UniversalLiquidParticleType extends ParticleType<UniversalLiquidPar
 	}
 	
 	@Override
-	public void writeToNetwork(PacketBuffer buffer) {
+	public void writeToNetwork(FriendlyByteBuf buffer) {
 		buffer.writeFloat(this.red);
 		buffer.writeFloat(this.green);
 		buffer.writeFloat(this.blue);

@@ -4,19 +4,19 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 import com.technologica.Technologica;
-import com.technologica.item.ModSpawnEggItem;
-import com.technologica.item.TechnologicaItems;
 import com.technologica.util.text.ResourceLocationHelper;
+import com.technologica.world.item.ModSpawnEggItem;
+import com.technologica.world.item.TechnologicaItems;
 
 import net.minecraft.data.DataGenerator;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.BlockNamedItem;
-import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.RegistryObject;
 
 public class ModItemModelProvider extends ItemModelProvider {
 
@@ -34,7 +34,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 			Item item = itemSupplier.get();
 				
 			if (item instanceof ModSpawnEggItem) simpleSpawnEggItem(item);
-			else if (item instanceof BlockNamedItem) simpleItem(item);
+			else if (item instanceof ItemNameBlockItem) simpleItem(item);
 			else if (item instanceof BlockItem && ResourceLocationHelper.getPath(item).contains("_sapling")) simpleBlockItem(item);
 			else if (!(item instanceof BlockItem)) { 
 				if (!item.getRegistryName().getPath().contains("bazooka") && !item.getRegistryName().getPath().contains("spear_gun") && !item.getRegistryName().getPath().contains("_spawn_egg")) {

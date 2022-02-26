@@ -3,57 +3,57 @@ package com.technologica.data.loot;
 import java.util.Collection;
 import java.util.function.Supplier;
 
-import com.technologica.block.ChairBlock;
-import com.technologica.block.FruitingLeavesBlock;
-import com.technologica.block.SapLogBlock;
-import com.technologica.block.SawmillBlock;
-import com.technologica.block.TableBlock;
-import com.technologica.block.TechnologicaBlocks;
-import com.technologica.block.TreeTapBlock;
-import com.technologica.block.TwentyFourDirectionBlock;
-import com.technologica.block.VanillaCropsBlock;
-import com.technologica.block.VanillaFenceBlock;
-import com.technologica.block.VanillaFenceGateBlock;
-import com.technologica.block.VanillaLeavesBlock;
-import com.technologica.block.VanillaLogBlock;
-import com.technologica.block.VanillaPlanksBlock;
-import com.technologica.block.VanillaSlabBlock;
-import com.technologica.block.VanillaStairsBlock;
-import com.technologica.block.VanillaStandingSignBlock;
-import com.technologica.block.VanillaWallSignBlock;
-import com.technologica.block.WaterCropsBlock;
-import com.technologica.item.TechnologicaItems;
 import com.technologica.util.text.ResourceLocationHelper;
+import com.technologica.world.item.TechnologicaItems;
+import com.technologica.world.level.block.ChairBlock;
+import com.technologica.world.level.block.FruitingLeavesBlock;
+import com.technologica.world.level.block.SapLogBlock;
+import com.technologica.world.level.block.SawmillBlock;
+import com.technologica.world.level.block.TableBlock;
+import com.technologica.world.level.block.TechnologicaBlocks;
+import com.technologica.world.level.block.TreeTapBlock;
+import com.technologica.world.level.block.TwentyFourDirectionBlock;
+import com.technologica.world.level.block.VanillaCropsBlock;
+import com.technologica.world.level.block.VanillaFenceBlock;
+import com.technologica.world.level.block.VanillaFenceGateBlock;
+import com.technologica.world.level.block.VanillaLeavesBlock;
+import com.technologica.world.level.block.VanillaLogBlock;
+import com.technologica.world.level.block.VanillaPlanksBlock;
+import com.technologica.world.level.block.VanillaSlabBlock;
+import com.technologica.world.level.block.VanillaStairsBlock;
+import com.technologica.world.level.block.VanillaStandingSignBlock;
+import com.technologica.world.level.block.VanillaWallSignBlock;
+import com.technologica.world.level.block.WaterCropsBlock;
 
-import net.minecraft.advancements.criterion.StatePropertiesPredicate;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.CropsBlock;
-import net.minecraft.block.DoorBlock;
-import net.minecraft.block.FlowerPotBlock;
-import net.minecraft.block.LeavesBlock;
-import net.minecraft.block.PressurePlateBlock;
-import net.minecraft.block.SaplingBlock;
-import net.minecraft.block.TrapDoorBlock;
-import net.minecraft.block.WoodButtonBlock;
-import net.minecraft.data.loot.BlockLootTables;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.loot.ConstantRange;
-import net.minecraft.loot.conditions.BlockStateProperty;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.advancements.critereon.StatePropertiesPredicate;
+import net.minecraft.data.loot.BlockLoot;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.world.level.block.FlowerPotBlock;
+import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.PressurePlateBlock;
+import net.minecraft.world.level.block.SaplingBlock;
+import net.minecraft.world.level.block.TrapDoorBlock;
+import net.minecraft.world.level.block.WoodButtonBlock;
+import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraftforge.registries.RegistryObject;
 
-public class ModBlockLootTables extends BlockLootTables {
+public class ModBlockLootTables extends BlockLoot {
 	private static final float[] DEFAULT_SAPLING_DROP_RATES = new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F};
 	
 	@Override
 	protected void addTables() {
 		automaticLootTable(TechnologicaBlocks.BLOCKS.getEntries());
 		
-		add(TechnologicaBlocks.CORN_CROP.get(), createCropDrops(TechnologicaBlocks.CORN_CROP.get(), TechnologicaItems.CORN.get(), TechnologicaBlocks.CORN_CROP.get().asItem(), BlockStateProperty.hasBlockStateProperties(TechnologicaBlocks.CORN_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropsBlock.AGE, 7))));
-		add(TechnologicaBlocks.PEPPERCORN_CROP.get(), createCropDrops(TechnologicaBlocks.PEPPERCORN_CROP.get(), TechnologicaItems.PEPPERCORNS.get(), TechnologicaBlocks.PEPPERCORN_CROP.get().asItem(), BlockStateProperty.hasBlockStateProperties(TechnologicaBlocks.PEPPERCORN_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropsBlock.AGE, 7))));
+		add(TechnologicaBlocks.CORN_CROP.get(), createCropDrops(TechnologicaBlocks.CORN_CROP.get(), TechnologicaItems.CORN.get(), TechnologicaBlocks.CORN_CROP.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.CORN_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
+		add(TechnologicaBlocks.PEPPERCORN_CROP.get(), createCropDrops(TechnologicaBlocks.PEPPERCORN_CROP.get(), TechnologicaItems.PEPPERCORNS.get(), TechnologicaBlocks.PEPPERCORN_CROP.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.PEPPERCORN_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
 		
-		add(TechnologicaBlocks.LITHIUM_CLAY.get(), (clay) -> createSingleItemTableWithSilkTouch(clay, TechnologicaItems.LITHIUM_CLAY_BALL.get(), ConstantRange.exactly(4)));
+		add(TechnologicaBlocks.LITHIUM_CLAY.get(), (clay) -> createSingleItemTableWithSilkTouch(clay, TechnologicaItems.LITHIUM_CLAY_BALL.get(), ConstantValue.exactly(4)));
 		dropSelf(TechnologicaBlocks.SALT.get());
 		dropOther(TechnologicaBlocks.MULCH.get(), Blocks.DIRT);
 		
@@ -90,12 +90,12 @@ public class ModBlockLootTables extends BlockLootTables {
 			else if (block.getClass().equals(SaplingBlock.class)) dropSelf(block);
 			else if (block.getClass().equals(FlowerPotBlock.class)) dropPottedContents(block);
 			else if (block.getClass().equals(VanillaPlanksBlock.class)) dropSelf(block);
-			else if (block.getDescriptionId().contains("bookshelf")) add(block, (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantRange.exactly(3)));
-			else if (block.getClass().equals(VanillaSlabBlock.class)) add(block, BlockLootTables::createSlabItemTable);
+			else if (block.getDescriptionId().contains("bookshelf")) add(block, (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+			else if (block.getClass().equals(VanillaSlabBlock.class)) add(block, BlockLoot::createSlabItemTable);
 			else if (block.getClass().equals(VanillaStairsBlock.class)) dropSelf(block);
 			else if (block.getClass().equals(VanillaFenceBlock.class)) dropSelf(block);
 			else if (block.getClass().equals(VanillaFenceGateBlock.class)) dropSelf(block);
-			else if (block.getClass().equals(DoorBlock.class)) add(block, BlockLootTables::createDoorTable);
+			else if (block.getClass().equals(DoorBlock.class)) add(block, BlockLoot::createDoorTable);
 			else if (block.getClass().equals(TrapDoorBlock.class)) dropSelf(block);
 			else if (block.getClass().equals(PressurePlateBlock.class)) dropSelf(block);
 			else if (block.getClass().equals(WoodButtonBlock.class)) dropSelf(block);
@@ -118,7 +118,7 @@ public class ModBlockLootTables extends BlockLootTables {
 					if (block.getRegistryName().getPath().contains(itemSupplier.get().getRegistryName().getPath())) yield = itemSupplier.get();
 				}
 				
-				add(block, createCropDrops(block, yield, block.asItem(), BlockStateProperty.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropsBlock.AGE, 7))));
+				add(block, createCropDrops(block, yield, block.asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
 			}
 			
 			else if (block.getClass().equals(FruitingLeavesBlock.class) || block.getClass().equals(VanillaLeavesBlock.class)) {

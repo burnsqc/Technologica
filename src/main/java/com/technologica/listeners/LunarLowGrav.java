@@ -1,7 +1,7 @@
 package com.technologica.listeners;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.player.ClientPlayerEntity;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -11,7 +11,7 @@ public class LunarLowGrav {
 	@SubscribeEvent
 	public void onLivingJumpEvent(LivingJumpEvent event) {
 		if (event.getEntity().level.dimension().toString().contains("technologica:moon") && event.getEntity().level.isClientSide) {
-			if (event.getEntity() instanceof ClientPlayerEntity) {
+			if (event.getEntity() instanceof LocalPlayer) {
 				Minecraft mc = Minecraft.getInstance();
 				
 			    if (mc.options.keyJump.isDown()) {

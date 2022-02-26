@@ -1,46 +1,42 @@
 package com.technologica.capabilities;
 
-import static net.minecraft.block.RotatedPillarBlock.AXIS;
-
 import java.util.concurrent.Callable;
 
-import com.technologica.block.TechnologicaBlocks;
-import com.technologica.block.TwelveDirectionBlock;
-import com.technologica.item.TechnologicaItems;
-import com.technologica.tileentity.LineShaftHangerTileEntity;
-import com.technologica.tileentity.LineShaftTileEntity;
+import com.technologica.world.item.TechnologicaItems;
+import com.technologica.world.level.block.TechnologicaBlocks;
+import com.technologica.world.level.block.TwelveDirectionBlock;
+import com.technologica.world.level.block.entity.LineShaftHangerTileEntity;
+import com.technologica.world.level.block.entity.LineShaftTileEntity;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.INBT;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Util;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.World;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.Capability.IStorage;
+import net.minecraft.Util;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.common.util.INBTSerializable;
 
-public class Link implements ILink, INBTSerializable<CompoundNBT> {
+public class Link implements ILink, INBTSerializable<CompoundTag> {
 	public static final String BOOLEAN_LINKING_KEY = "linking";
 	private boolean linking = false;
-	private World world;
+	private Level world;
 	private BlockPos linkPos1 = BlockPos.ZERO;
 	private BlockPos linkPos2 = BlockPos.ZERO;
 	private BlockState linkState1;
 	private BlockState linkState2;
-	private TileEntity linkTile1;
-	private TileEntity linkTile2;
+	private BlockEntity linkTile1;
+	private BlockEntity linkTile2;
 	private Direction.Axis axis;
 	private Direction direction;
 	private int distance;
-	private PlayerEntity player;
+	private Player player;
 	private String message;
 	
 	@Override
@@ -54,14 +50,14 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 	}
 	
 	@Override
-	public void startLink(World worldIn ,BlockPos posIn, BlockState stateIn, PlayerEntity playerIn) {
+	public void startLink(Level worldIn ,BlockPos posIn, BlockState stateIn, Player playerIn) {
 		this.linking = true;
 		this.world = worldIn;
 		this.linkPos1 = posIn;
 		this.linkState1 = stateIn;
 		this.player = playerIn;
 		this.message = "LINK STARTED";
-		this.player.sendMessage(new StringTextComponent(this.message), Util.NIL_UUID);
+		this.player.sendMessage(new TextComponent(this.message), Util.NIL_UUID);
 	}
 	
 	@Override
@@ -78,7 +74,7 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 			return true;
 		} else {
 			this.message = "LINK FAILED: AXIS MISALIGNMENT";
-			this.player.sendMessage(new StringTextComponent(message), Util.NIL_UUID);
+			this.player.sendMessage(new TextComponent(message), Util.NIL_UUID);
 			return false;
 		}
 	}
@@ -105,7 +101,7 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 		}
 		if (!bool) {
 			this.message = "LINK FAILED: POSITION MISALIGNMENT";
-			this.player.sendMessage(new StringTextComponent(message), Util.NIL_UUID);
+			this.player.sendMessage(new TextComponent(message), Util.NIL_UUID);
 		}
 		return bool; 
 	}
@@ -132,7 +128,7 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 		}
 		if (!bool) {
 			this.message = "LINK FAILED: POSITION MISALIGNMENT";
-			this.player.sendMessage(new StringTextComponent(message), Util.NIL_UUID);
+			this.player.sendMessage(new TextComponent(message), Util.NIL_UUID);
 		}
 		return bool; 
 	}
@@ -147,7 +143,7 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 		}
 		if (!bool) {
 			this.message = "LINK FAILED: OBSTRUCTED";
-			this.player.sendMessage(new StringTextComponent(message), Util.NIL_UUID);	
+			this.player.sendMessage(new TextComponent(message), Util.NIL_UUID);	
 		}
 		return bool;
 	}
@@ -161,17 +157,17 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 		bool2 = this.distance > 1;
 		if (!bool1) {
 			this.message = "LINK FAILED: DISTANCE TOO FAR";
-			this.player.sendMessage(new StringTextComponent(message), Util.NIL_UUID);
+			this.player.sendMessage(new TextComponent(message), Util.NIL_UUID);
 		} else if (!bool2) {
 			this.message = "LINK FAILED: DISTANCE TOO SHORT";
-			this.player.sendMessage(new StringTextComponent(message), Util.NIL_UUID);
+			this.player.sendMessage(new TextComponent(message), Util.NIL_UUID);
 		}
 		return bool1 && bool2; 
 	}
 	
 	@Override
 	public boolean checkMaterial() {
-		PlayerInventory inv = this.player.inventory;
+		Inventory inv = this.player.getInventory();
 		this.linkTile1 = this.world.getBlockEntity(this.linkPos1);
 		this.linkTile2 = this.world.getBlockEntity(this.linkPos2);
 		int count = 0;
@@ -191,7 +187,7 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 		bool = this.distance - 1 + shaft1 + shaft2 <= count;
 		if (!bool) {
 			this.message = "LINK FAILED: MATERIAL SHORTAGE";
-			this.player.sendMessage(new StringTextComponent(message), Util.NIL_UUID);
+			this.player.sendMessage(new TextComponent(message), Util.NIL_UUID);
 		}
 		return bool;
 	}
@@ -204,11 +200,11 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 		this.world.sendBlockUpdated(this.linkPos2, this.linkState2, this.linkState2, 3);
 		
 		for (int k = 1; k < this.distance; k++) {
-			this.world.setBlock(this.linkPos1.relative(this.direction, k), TechnologicaBlocks.LINE_SHAFT.get().defaultBlockState().setValue(AXIS, this.axis), 3);
-			this.world.sendBlockUpdated(this.linkPos1.relative(this.direction, k), Blocks.AIR.defaultBlockState(), TechnologicaBlocks.LINE_SHAFT.get().defaultBlockState().setValue(AXIS, this.axis), 3);
+			this.world.setBlock(this.linkPos1.relative(this.direction, k), TechnologicaBlocks.LINE_SHAFT.get().defaultBlockState().setValue(BlockStateProperties.AXIS, this.axis), 3);
+			this.world.sendBlockUpdated(this.linkPos1.relative(this.direction, k), Blocks.AIR.defaultBlockState(), TechnologicaBlocks.LINE_SHAFT.get().defaultBlockState().setValue(BlockStateProperties.AXIS, this.axis), 3);
 		}
 		this.message = "LINK SUCCESS";
-		this.player.sendMessage(new StringTextComponent(message), Util.NIL_UUID);	
+		this.player.sendMessage(new TextComponent(message), Util.NIL_UUID);	
 	}
 	
 	@Override
@@ -220,35 +216,19 @@ public class Link implements ILink, INBTSerializable<CompoundNBT> {
 		this.world.sendBlockUpdated(this.linkPos1, this.linkState1, this.linkState1, 3);
 		this.world.sendBlockUpdated(this.linkPos2, this.linkState2, this.linkState2, 3);
 		this.message = "LINK SUCCESS";
-		this.player.sendMessage(new StringTextComponent(message), Util.NIL_UUID);	
+		this.player.sendMessage(new TextComponent(message), Util.NIL_UUID);	
 	}
 	
 	@Override
-	public CompoundNBT serializeNBT() {
-		CompoundNBT nbt = new CompoundNBT();
+	public CompoundTag serializeNBT() {
+		CompoundTag nbt = new CompoundTag();
 		nbt.putBoolean(BOOLEAN_LINKING_KEY, this.linking);
 		return nbt;
 	}
 
 	@Override
-	public void deserializeNBT(CompoundNBT nbt) {
+	public void deserializeNBT(CompoundTag nbt) {
 		this.linking = nbt.getBoolean(BOOLEAN_LINKING_KEY);
-	}
-	
-	public static class LinkStorage implements IStorage<ILink> {
-		@Override
-		public INBT writeNBT(Capability<ILink> capability, ILink instance, Direction side) {
-			CompoundNBT nbt = new CompoundNBT();
-			nbt.putBoolean(BOOLEAN_LINKING_KEY, instance.getLinking());
-			return nbt;
-		}
-
-		@Override
-		public void readNBT(Capability<ILink> capability, ILink instance, Direction side, INBT nbt) {
-			if (!(instance instanceof Link)) {
-				throw new IllegalArgumentException("Can not deserialize to an instance that isn't the default implementation");
-			}
-		}
 	}
 	
 	public static class Factory implements Callable<ILink> {

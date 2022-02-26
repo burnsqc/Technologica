@@ -3,11 +3,11 @@ package com.technologica.world.gen.foliageplacer;
 import static com.technologica.Technologica.LOGGER;
 import static com.technologica.Technologica.MODID;
 
-import net.minecraft.world.gen.foliageplacer.FoliagePlacerType;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class TechnologicaFoliagePlacers {
 	private static final DeferredRegister<FoliagePlacerType<?>> FOLIAGES = DeferredRegister.create(ForgeRegistries.FOLIAGE_PLACER_TYPES, MODID);

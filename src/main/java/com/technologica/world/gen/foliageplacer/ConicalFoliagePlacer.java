@@ -1,25 +1,25 @@
 package com.technologica.world.gen.foliageplacer;
 
 import java.util.Random;
-import java.util.Set;
+import java.util.function.BiConsumer;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.world.gen.IWorldGenerationReader;
-import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
-import net.minecraft.world.gen.feature.FeatureSpread;
-import net.minecraft.world.gen.foliageplacer.FoliagePlacer;
-import net.minecraft.world.gen.foliageplacer.FoliagePlacerType;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.valueproviders.IntProvider;
+import net.minecraft.world.level.LevelSimulatedReader;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 
 public class ConicalFoliagePlacer extends FoliagePlacer {
 	public static final Codec<ConicalFoliagePlacer> conicalCodec = RecordCodecBuilder.create((p_236742_0_) -> {
 		return foliagePlacerParts(p_236742_0_).apply(p_236742_0_, ConicalFoliagePlacer::new);
 	});
 	
-	public ConicalFoliagePlacer(FeatureSpread p_i241995_1_, FeatureSpread p_i241995_2_) {
+	public ConicalFoliagePlacer(IntProvider p_i241995_1_, IntProvider p_i241995_2_) {
 		super(p_i241995_1_, p_i241995_2_);
 	}
 
@@ -27,18 +27,16 @@ public class ConicalFoliagePlacer extends FoliagePlacer {
 		return TechnologicaFoliagePlacers.CONICAL.get();
 	}
 
-	//Generate foliage
-	protected void createFoliage(IWorldGenerationReader worldIn, Random randomIn, BaseTreeFeatureConfig configIn, int p_230372_4_, FoliagePlacer.Foliage p_230372_5_, int layersBelowTop, int diameter, Set<BlockPos> p_230372_8_, int topLayer, MutableBoundingBox boundingBoxIn) 
-	{
+	@Override
+	protected void createFoliage(LevelSimulatedReader p_161414_, BiConsumer<BlockPos, BlockState> p_161415_, Random p_161416_, TreeConfiguration p_161417_, int p_230372_4_, FoliagePlacer.FoliageAttachment p_161419_, int layersBelowTop, int diameter, int topLayer) {
 		for (int layer = topLayer + 1; layer >= topLayer - layersBelowTop + 1; --layer) 
 		{
-			int j = Math.max(diameter + p_230372_5_.radiusOffset() - layer + 1, 0);
-			this.placeLeavesRow(worldIn, randomIn, configIn, p_230372_5_.foliagePos(), j, p_230372_8_, layer, p_230372_5_.doubleTrunk(), boundingBoxIn);
+			int j = Math.max(diameter + p_161419_.radiusOffset() - layer + 1, 0);
+			this.placeLeavesRow(p_161414_, p_161415_, p_161416_, p_161417_, p_161419_.pos(), j, layer, p_161419_.doubleTrunk());
 		}
 	}
 
-	//Adjust number of layers based upon trunk height
-	public int foliageHeight(Random randomIn, int i, BaseTreeFeatureConfig configIn) {
+	public int foliageHeight(Random randomIn, int i, TreeConfiguration configIn) {
 		int trim;
 		if (i == 2) {
 			trim = i-1;
@@ -50,7 +48,6 @@ public class ConicalFoliagePlacer extends FoliagePlacer {
 		return trim;
 	}
 
-	//Prune foliage
 	protected boolean shouldSkipLocation(Random randomIn, int relativeZ, int relativeY, int relativeX, int p_230373_5_, boolean p_230373_6_) {
 		if (relativeY==1) {
 			return (relativeX + relativeZ >= 1);

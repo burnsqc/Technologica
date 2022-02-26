@@ -2,10 +2,11 @@ package com.technologica.network.play.server;
 
 import com.technologica.Technologica;
 import com.technologica.network.play.client.CUpdateAnnunciatorPacket;
+import com.technologica.network.protocol.game.ClientboundOpenTechnologicaSignEditorPacket;
 
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.network.NetworkRegistry;
-import net.minecraftforge.fml.network.simple.SimpleChannel;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.network.NetworkRegistry;
+import net.minecraftforge.network.simple.SimpleChannel;
 
 public class Packets {
 	private static final String PROTOCOL_VERSION = "1";
@@ -22,7 +23,7 @@ public class Packets {
 	}
 
 	public static void register() {
-		INSTANCE.registerMessage(nextID(), SOpenModSignMenuPacket.class, SOpenModSignMenuPacket::encode, SOpenModSignMenuPacket::decode, SOpenModSignMenuPacket::handle);
+		INSTANCE.registerMessage(nextID(), ClientboundOpenTechnologicaSignEditorPacket.class, ClientboundOpenTechnologicaSignEditorPacket::encode, ClientboundOpenTechnologicaSignEditorPacket::decode, ClientboundOpenTechnologicaSignEditorPacket::handle);
 		INSTANCE.registerMessage(nextID(), CUpdateAnnunciatorPacket.class, CUpdateAnnunciatorPacket::encode, CUpdateAnnunciatorPacket::decode, CUpdateAnnunciatorPacket::handle);
 	}
 }

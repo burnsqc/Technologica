@@ -2,15 +2,15 @@ package com.technologica.setup;
 
 import java.util.function.Predicate;
 
-import com.technologica.entity.passive.GrizzlyBearEntity;
-import com.technologica.entity.passive.SharkEntity;
+import com.technologica.world.entity.animal.GrizzlyBearEntity;
+import com.technologica.world.entity.animal.SharkEntity;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.goal.AvoidEntityGoal;
-import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
-import net.minecraft.entity.passive.BeeEntity;
-import net.minecraft.entity.passive.fish.TropicalFishEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.animal.Bee;
+import net.minecraft.world.entity.animal.TropicalFish;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 
 public class VanillaEntityModifier {
@@ -21,12 +21,12 @@ public class VanillaEntityModifier {
 
 	public static void init(final EntityJoinWorldEvent event) {
 		Entity entity = event.getEntity();
-		if (entity instanceof BeeEntity) {
-			BeeEntity beeEntity = (BeeEntity) entity;
+		if (entity instanceof Bee) {
+			Bee beeEntity = (Bee) entity;
 			beeEntity.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(beeEntity, GrizzlyBearEntity.class, 10, true, true, (Predicate<LivingEntity>)null));
 	    }
-		if (entity instanceof TropicalFishEntity) {
-			TropicalFishEntity tropicalFishEntity = (TropicalFishEntity) entity;
+		if (entity instanceof TropicalFish) {
+			TropicalFish tropicalFishEntity = (TropicalFish) entity;
 			tropicalFishEntity.goalSelector.addGoal(1, new AvoidEntityGoal<>(tropicalFishEntity, SharkEntity.class, 8.0F, 1.5D, 2.0D));
 	    }
 	}

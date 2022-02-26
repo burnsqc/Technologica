@@ -4,14 +4,14 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 import com.technologica.Technologica;
-import com.technologica.fluid.TechnologicaFluids;
+import com.technologica.world.level.material.TechnologicaFluids;
 
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.FluidTagsProvider;
-import net.minecraft.fluid.Fluid;
+import net.minecraft.data.tags.FluidTagsProvider;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.RegistryObject;
 
 public class ModFluidTagsProvider extends FluidTagsProvider {
 

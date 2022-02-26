@@ -1,7 +1,7 @@
 package com.technologica.setup;
 
 import com.technologica.client.particle.TechnologicaDripParticle;
-import com.technologica.particles.TechnologicaParticleTypes;
+import com.technologica.core.particles.TechnologicaParticleTypes;
 
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;

@@ -20,12 +20,12 @@ license="All rights reserved"
 [[dependencies.technologica]] 
     modId="forge" 
     mandatory=true
-    versionRange="[35.0.0,)"
+    versionRange="[39.0.0,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.technologica]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.4]"
+    versionRange="[1.18.1]"
     ordering="NONE"
     side="BOTH"

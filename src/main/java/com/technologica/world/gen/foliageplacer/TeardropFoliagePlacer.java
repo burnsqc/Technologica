@@ -1,7 +1,7 @@
 package com.technologica.world.gen.foliageplacer;
 
 import java.util.Random;
-import java.util.Set;
+import java.util.function.BiConsumer;
 
 import com.mojang.datafixers.Products.P3;
 import com.mojang.serialization.Codec;
@@ -9,13 +9,13 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.mojang.serialization.codecs.RecordCodecBuilder.Instance;
 import com.mojang.serialization.codecs.RecordCodecBuilder.Mu;
 
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.world.gen.IWorldGenerationReader;
-import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
-import net.minecraft.world.gen.feature.FeatureSpread;
-import net.minecraft.world.gen.foliageplacer.FoliagePlacer;
-import net.minecraft.world.gen.foliageplacer.FoliagePlacerType;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.valueproviders.IntProvider;
+import net.minecraft.world.level.LevelSimulatedReader;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 
 public class TeardropFoliagePlacer extends FoliagePlacer {
 	public static final Codec<TeardropFoliagePlacer> teardropCodec = RecordCodecBuilder.create(p_236742_0_ -> blobParts(p_236742_0_).apply(p_236742_0_, TeardropFoliagePlacer::new));
@@ -23,12 +23,11 @@ public class TeardropFoliagePlacer extends FoliagePlacer {
 	protected final int layersBelowTop;
 	protected boolean largeTree;
 
-	protected static <P extends TeardropFoliagePlacer> P3<Mu<P>, FeatureSpread, FeatureSpread, Integer> blobParts(Instance<P> p_236740_0_) 
-	{
+	protected static <P extends TeardropFoliagePlacer> P3<Mu<P>, IntProvider, IntProvider, Integer> blobParts(Instance<P> p_236740_0_) {
 		return foliagePlacerParts(p_236740_0_).and(Codec.intRange(0, 16).fieldOf("height").forGetter(p_236741_0_ -> p_236741_0_.layersBelowTop));
 	}
 
-	public TeardropFoliagePlacer(FeatureSpread p_i241995_1_, FeatureSpread p_i241995_2_, int layersBelowTopIn) {
+	public TeardropFoliagePlacer(IntProvider p_i241995_1_, IntProvider p_i241995_2_, int layersBelowTopIn) {
 		super(p_i241995_1_, p_i241995_2_);
 		this.layersBelowTop = layersBelowTopIn;
 		this.largeTree = false;
@@ -39,20 +38,16 @@ public class TeardropFoliagePlacer extends FoliagePlacer {
 		return TechnologicaFoliagePlacers.TEARDROP.get();
 	}
 
-	//Generate foliage
 	@Override
-	protected void createFoliage(IWorldGenerationReader worldIn, Random randomIn, BaseTreeFeatureConfig configIn, int p_230372_4_, FoliagePlacer.Foliage p_230372_5_, int layersBelowTop, int diameter, Set<BlockPos> p_230372_8_, int topLayer, MutableBoundingBox boundingBoxIn)
-	{
-		for (int layer = topLayer + 3; layer >= topLayer + 3 - layersBelowTop; --layer) 
-		{
-			int j = Math.max(diameter + 1 + p_230372_5_.radiusOffset(), 0);
-			this.placeLeavesRow(worldIn, randomIn, configIn, p_230372_5_.foliagePos(), j, p_230372_8_, layer, p_230372_5_.doubleTrunk(), boundingBoxIn);
+	protected void createFoliage(LevelSimulatedReader p_161422_, BiConsumer<BlockPos, BlockState> p_161423_, Random p_161424_, TreeConfiguration p_161425_, int p_161426_, FoliageAttachment p_161427_, int p_161428_, int diameter, int topLayer) {
+		for (int layer = topLayer + 3; layer >= topLayer + 3 - layersBelowTop; --layer) {
+			int j = Math.max(diameter + 1 + p_161427_.radiusOffset(), 0);
+			this.placeLeavesRow(p_161422_, p_161423_, p_161424_, p_161425_, p_161427_.pos(), j, layer, p_161427_.doubleTrunk());
 		}
 	}
 
-	//Adjust number of layers based upon trunk height
 	@Override
-	public int foliageHeight(Random randomIn, int i, BaseTreeFeatureConfig configIn) {
+	public int foliageHeight(Random randomIn, int i, TreeConfiguration configIn) {
 		int trim;
 		if (i == 7) {
 			trim = i+1;
@@ -64,7 +59,6 @@ public class TeardropFoliagePlacer extends FoliagePlacer {
 		return trim;
 	}
 
-	//Prune foliage
 	@Override
 	protected boolean shouldSkipLocation(Random randomIn, int relativeZ, int relativeY, int relativeX, int p_230373_5_, boolean p_230373_6_) {
 		if (relativeY>=2) {

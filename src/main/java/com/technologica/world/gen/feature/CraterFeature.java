@@ -4,22 +4,23 @@ import java.util.Random;
 
 import com.mojang.serialization.Codec;
 
-import net.minecraft.block.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.SectionPos;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.BlockStateFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.structure.Structure;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.SectionPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.StructureFeature;
 
-public class CraterFeature extends Feature<BlockStateFeatureConfig> {
+public class CraterFeature extends Feature<BlockStateConfiguration> {
 
-	public CraterFeature(Codec<BlockStateFeatureConfig> codec) {
+	public CraterFeature(Codec<BlockStateConfiguration> codec) {
 		super(codec);
 	}
 
-	public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BlockStateFeatureConfig config) {
+	public boolean place(WorldGenLevel reader, ChunkGenerator generator, Random rand, BlockPos pos, BlockStateConfiguration config) {
 		pos = pos.above(80);
 		while (pos.getY() > 5 && reader.isEmptyBlock(pos)) {
 			pos = pos.below();
@@ -29,7 +30,7 @@ public class CraterFeature extends Feature<BlockStateFeatureConfig> {
 			return false;
 		} else {
 			pos = pos.below(4);
-			if (reader.startsForFeature(SectionPos.of(pos), Structure.VILLAGE).findAny().isPresent()) {
+			if (!reader.startsForFeature(SectionPos.of(pos), StructureFeature.VILLAGE).isEmpty()) {
 				return false;
 			} else {
 				boolean[] aboolean = new boolean[2048];
@@ -68,5 +69,11 @@ public class CraterFeature extends Feature<BlockStateFeatureConfig> {
 				return true;
 			}
 		}
+	}
+
+	@Override
+	public boolean place(FeaturePlaceContext<BlockStateConfiguration> p_159749_) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

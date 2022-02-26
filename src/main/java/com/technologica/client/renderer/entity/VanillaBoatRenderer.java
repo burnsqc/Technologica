@@ -1,20 +1,28 @@
 package com.technologica.client.renderer.entity;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.technologica.Technologica;
-import com.technologica.client.renderer.entity.model.VanillaBoatModel;
-import com.technologica.entity.item.VanillaBoatEntity;
+import java.util.Map;
+import java.util.stream.Stream;
 
-import net.minecraft.client.renderer.IRenderTypeBuffer;
+import com.google.common.collect.ImmutableMap;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.datafixers.util.Pair;
+import com.mojang.math.Quaternion;
+import com.mojang.math.Vector3f;
+import com.technologica.Technologica;
+import com.technologica.client.model.VanillaBoatModel;
+import com.technologica.client.model.geom.TechnologicaModelLayers;
+import com.technologica.world.entity.vehicle.VanillaBoatEntity;
+
+import net.minecraft.client.model.BoatModel;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Quaternion;
-import net.minecraft.util.math.vector.Vector3f;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.vehicle.Boat;
 
 public class VanillaBoatRenderer extends EntityRenderer<VanillaBoatEntity> {
 	private static final ResourceLocation[] BOAT_TEXTURES = new ResourceLocation[] {
@@ -50,14 +58,18 @@ public class VanillaBoatRenderer extends EntityRenderer<VanillaBoatEntity> {
 			new ResourceLocation(Technologica.MODID, "textures/entity/boat/fruitful.png"),
 			new ResourceLocation(Technologica.MODID, "textures/entity/boat/infernal.png"),
 			new ResourceLocation(Technologica.MODID, "textures/entity/boat/malevolent.png")};
-	protected final VanillaBoatModel modelBoat = new VanillaBoatModel();
-
-	public VanillaBoatRenderer(EntityRendererManager renderManagerIn) {
+	private final Map<VanillaBoatEntity.Type, Pair<ResourceLocation, VanillaBoatModel>> boatResources;
+	public VanillaBoatRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn);
 		this.shadowRadius = 0.8F;
+		this.boatResources = Stream.of(VanillaBoatEntity.Type.values()).collect(ImmutableMap.toImmutableMap((p_173938_) -> {
+	         return p_173938_;
+	      }, (p_173941_) -> {
+	         return Pair.of(new ResourceLocation("textures/entity/boat/" + p_173941_.getName() + ".png"), new VanillaBoatModel(renderManagerIn.bakeLayer(TechnologicaModelLayers.createBoatModelName(p_173941_))));
+	      }));
 	}
 
-	public void render(VanillaBoatEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
+	public void render(VanillaBoatEntity entityIn, float entityYaw, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn) {
 		matrixStackIn.pushPose();
 		matrixStackIn.translate(0.0D, 0.375D, 0.0D);
 		matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(180.0F - entityYaw));
@@ -68,22 +80,25 @@ public class VanillaBoatRenderer extends EntityRenderer<VanillaBoatEntity> {
 		}
 
 		if (f > 0.0F) {
-			matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(MathHelper.sin(f) * f * f1 / 10.0F * (float) entityIn.getHurtDir()));
+			matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(Mth.sin(f) * f * f1 / 10.0F * (float) entityIn.getHurtDir()));
 		}
 
 		float f2 = entityIn.getBubbleAngle(partialTicks);
-		if (!MathHelper.equal(f2, 0.0F)) {
+		if (!Mth.equal(f2, 0.0F)) {
 			matrixStackIn.mulPose(new Quaternion(new Vector3f(1.0F, 0.0F, 1.0F), entityIn.getBubbleAngle(partialTicks), true));
 		}
+		Pair<ResourceLocation, VanillaBoatModel> pair = getModelWithLocation(entityIn);
+	    ResourceLocation resourcelocation = pair.getFirst();
+	    VanillaBoatModel boatmodel = pair.getSecond();
 
 		matrixStackIn.scale(-1.0F, -1.0F, 1.0F);
 		matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(90.0F));
-		this.modelBoat.setupAnim(entityIn, partialTicks, 0.0F, -0.1F, 0.0F, 0.0F);
-		IVertexBuilder ivertexbuilder = bufferIn.getBuffer(this.modelBoat.renderType(this.getTextureLocation(entityIn)));
-		this.modelBoat.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+		boatmodel.setupAnim(entityIn, partialTicks, 0.0F, -0.1F, 0.0F, 0.0F);
+		VertexConsumer ivertexbuilder = bufferIn.getBuffer(boatmodel.renderType(this.getTextureLocation(entityIn)));
+		boatmodel.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
 		if (!entityIn.isUnderWater()) {
-			IVertexBuilder ivertexbuilder1 = bufferIn.getBuffer(RenderType.waterMask());
-			this.modelBoat.waterPatch().render(matrixStackIn, ivertexbuilder1, packedLightIn,
+			VertexConsumer ivertexbuilder1 = bufferIn.getBuffer(RenderType.waterMask());
+			boatmodel.waterPatch().render(matrixStackIn, ivertexbuilder1, packedLightIn,
 					OverlayTexture.NO_OVERLAY);
 		}
 
@@ -91,6 +106,8 @@ public class VanillaBoatRenderer extends EntityRenderer<VanillaBoatEntity> {
 		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 	}
 
+	public Pair<ResourceLocation, VanillaBoatModel> getModelWithLocation(Boat boat) { return this.boatResources.get(boat.getBoatType()); }
+	
 	/**
 	 * Returns the location of an entity's texture.
 	 */

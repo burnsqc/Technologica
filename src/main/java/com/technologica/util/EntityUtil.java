@@ -5,17 +5,17 @@ import java.util.Map;
 
 import org.apache.commons.lang3.tuple.Pair;
 
-import com.technologica.entity.item.InvisibleSeatEntity;
+import com.technologica.world.entity.decoration.InvisibleSeatEntity;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
 public class EntityUtil {
 	private static final Map<ResourceLocation, Map<BlockPos, Pair<InvisibleSeatEntity, BlockPos>>> OCCUPIED = new HashMap<>();
 
-	public static boolean removeInvisibleSeatEntity(World world, BlockPos pos) {
+	public static boolean removeInvisibleSeatEntity(Level world, BlockPos pos) {
 		if (!world.isClientSide) {
 			ResourceLocation id = getDimensionTypeId(world);
 
@@ -28,7 +28,7 @@ public class EntityUtil {
 		return false;
 	}
 
-	public static BlockPos getPreviousPlayerPosition(PlayerEntity player, InvisibleSeatEntity sitEntity) {
+	public static BlockPos getPreviousPlayerPosition(Player player, InvisibleSeatEntity sitEntity) {
 		if (!player.level.isClientSide) {
 			ResourceLocation id = getDimensionTypeId(player.level);
 
@@ -43,7 +43,7 @@ public class EntityUtil {
 		return null;
 	}
 
-	private static ResourceLocation getDimensionTypeId(World world) {
+	private static ResourceLocation getDimensionTypeId(Level world) {
 		return world.dimension().location();
 	}
 }

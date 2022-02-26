@@ -2,15 +2,15 @@ package com.technologica.network.play.client;
 
 import java.util.function.Supplier;
 
-import com.technologica.tileentity.AnnunciatorTileEntity;
+import com.technologica.world.level.block.entity.AnnunciatorTileEntity;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.fml.network.NetworkEvent;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.network.NetworkEvent;
 
 public class CUpdateAnnunciatorPacket {
 	private BlockPos pos;
@@ -21,7 +21,7 @@ public class CUpdateAnnunciatorPacket {
 		this.lines = new String[] { line1, line2, line3, line4, line5, line6, line7, line8 };
 	}
 
-	public static void encode(CUpdateAnnunciatorPacket msg, PacketBuffer buf) {
+	public static void encode(CUpdateAnnunciatorPacket msg, FriendlyByteBuf buf) {
 		buf.writeBlockPos(msg.pos);
 
 		for (int i = 0; i < 8; ++i) {
@@ -29,7 +29,7 @@ public class CUpdateAnnunciatorPacket {
 		}
 	}
 
-	public static CUpdateAnnunciatorPacket decode(PacketBuffer buf) {
+	public static CUpdateAnnunciatorPacket decode(FriendlyByteBuf buf) {
 		BlockPos pos2 = buf.readBlockPos();
 		
 		String[] lines2 = new String[8];
@@ -42,13 +42,13 @@ public class CUpdateAnnunciatorPacket {
 
 	public static void handle(CUpdateAnnunciatorPacket msg, final Supplier<NetworkEvent.Context> ctx) {
 		ctx.get().enqueueWork(() -> {
-			ServerWorld world = ctx.get().getSender().getLevel();
-			TileEntity tileentity = world.getBlockEntity(msg.pos);
+			ServerLevel world = ctx.get().getSender().getLevel();
+			BlockEntity tileentity = world.getBlockEntity(msg.pos);
 			BlockState blockstate = world.getBlockState(msg.pos);
 			
 			if (tileentity instanceof AnnunciatorTileEntity) {
 				for (int i = 0; i < 8; ++i) {
-					((AnnunciatorTileEntity) tileentity).setText(i, ITextComponent.nullToEmpty(msg.lines[i]));
+					((AnnunciatorTileEntity) tileentity).setText(i, Component.nullToEmpty(msg.lines[i]));
 				}
 				tileentity.setChanged();
 		        world.sendBlockUpdated(msg.pos, blockstate, blockstate, 3);

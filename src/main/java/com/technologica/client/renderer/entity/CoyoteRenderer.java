@@ -1,19 +1,19 @@
 package com.technologica.client.renderer.entity;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.technologica.Technologica;
-import com.technologica.client.renderer.entity.model.CoyoteModel;
-import com.technologica.entity.passive.CoyoteEntity;
+import com.technologica.client.model.CoyoteModel;
+import com.technologica.world.entity.animal.CoyoteEntity;
 
-import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 
 public class CoyoteRenderer extends MobRenderer<CoyoteEntity, CoyoteModel<CoyoteEntity>> {
 	private static final ResourceLocation COYOTE_TEXTURES = new ResourceLocation(Technologica.MODID, "textures/entity/coyote.png");
 
-	public CoyoteRenderer(EntityRendererManager renderManagerIn) {
+	public CoyoteRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new CoyoteModel<>(), 0.5F);
 	}
 
@@ -24,8 +24,8 @@ public class CoyoteRenderer extends MobRenderer<CoyoteEntity, CoyoteModel<Coyote
 		return livingBase.getTailRotation();
 	}
 
-	public void render(CoyoteEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn,
-			IRenderTypeBuffer bufferIn, int packedLightIn) {
+	public void render(CoyoteEntity entityIn, float entityYaw, float partialTicks, PoseStack matrixStackIn,
+			MultiBufferSource bufferIn, int packedLightIn) {
 		if (entityIn.isCoyoteWet()) {
 			float f = entityIn.getShadingWhileWet(partialTicks);
 			this.model.setColor(f, f, f);
