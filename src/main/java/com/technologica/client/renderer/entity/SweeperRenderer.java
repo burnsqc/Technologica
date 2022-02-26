@@ -2,10 +2,10 @@ package com.technologica.client.renderer.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.technologica.Technologica;
+import com.technologica.client.model.geom.TechnologicaModelLayers;
 import com.technologica.world.entity.monster.SweeperEntity;
 
 import net.minecraft.client.model.CreeperModel;
-import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
@@ -17,7 +17,7 @@ public class SweeperRenderer extends MobRenderer<SweeperEntity, CreeperModel<Swe
 			"textures/entity/sweeper.png");
 
 	public SweeperRenderer(EntityRendererProvider.Context p_173958_) {
-		super(p_173958_, new CreeperModel<>(p_173958_.bakeLayer(ModelLayers.CREEPER)), 0.5F);
+		super(p_173958_, new CreeperModel<>(p_173958_.bakeLayer(TechnologicaModelLayers.SWEEPER)), 0.5F);
 	}
 
 	protected void scale(Creeper p_114046_, PoseStack p_114047_, float p_114048_) {

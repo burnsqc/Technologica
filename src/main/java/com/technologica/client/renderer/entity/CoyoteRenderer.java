@@ -3,14 +3,14 @@ package com.technologica.client.renderer.entity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.technologica.Technologica;
 import com.technologica.client.model.CoyoteModel;
-import com.technologica.world.entity.animal.CoyoteEntity;
+import com.technologica.world.entity.animal.Coyote;
 
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
-public class CoyoteRenderer extends MobRenderer<CoyoteEntity, CoyoteModel<CoyoteEntity>> {
+public class CoyoteRenderer extends MobRenderer<Coyote, CoyoteModel<Coyote>> {
 	private static final ResourceLocation COYOTE_TEXTURES = new ResourceLocation(Technologica.MODID, "textures/entity/coyote.png");
 
 	public CoyoteRenderer(EntityRendererProvider.Context renderManagerIn) {
@@ -20,11 +20,11 @@ public class CoyoteRenderer extends MobRenderer<CoyoteEntity, CoyoteModel<Coyote
 	/**
 	 * Defines what float the third param in setRotationAngles of ModelBase is
 	 */
-	protected float getBob(CoyoteEntity livingBase, float partialTicks) {
+	protected float getBob(Coyote livingBase, float partialTicks) {
 		return livingBase.getTailRotation();
 	}
 
-	public void render(CoyoteEntity entityIn, float entityYaw, float partialTicks, PoseStack matrixStackIn,
+	public void render(Coyote entityIn, float entityYaw, float partialTicks, PoseStack matrixStackIn,
 			MultiBufferSource bufferIn, int packedLightIn) {
 		if (entityIn.isCoyoteWet()) {
 			float f = entityIn.getShadingWhileWet(partialTicks);
@@ -41,7 +41,7 @@ public class CoyoteRenderer extends MobRenderer<CoyoteEntity, CoyoteModel<Coyote
 	/**
 	 * Returns the location of an entity's texture.
 	 */
-	public ResourceLocation getTextureLocation(CoyoteEntity entity) {
+	public ResourceLocation getTextureLocation(Coyote entity) {
 		return COYOTE_TEXTURES;
 
 	}

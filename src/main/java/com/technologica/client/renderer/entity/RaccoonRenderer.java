@@ -2,6 +2,7 @@ package com.technologica.client.renderer.entity;
 
 import com.technologica.Technologica;
 import com.technologica.client.model.RaccoonModel;
+import com.technologica.client.model.geom.TechnologicaModelLayers;
 import com.technologica.client.renderer.entity.layers.RaccoonHeldItemLayer;
 import com.technologica.world.entity.animal.RaccoonEntity;
 
@@ -13,7 +14,7 @@ public final class RaccoonRenderer extends MobRenderer<RaccoonEntity, RaccoonMod
 	private static final ResourceLocation RACCOON_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/raccoon.png");
 
 	public RaccoonRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new RaccoonModel<>(renderManagerIn.bakeLayer(null)), 0.8F);
+		super(renderManagerIn, new RaccoonModel<>(renderManagerIn.bakeLayer(TechnologicaModelLayers.RACCOON)), 0.8F);
 		this.addLayer(new RaccoonHeldItemLayer(this));
 	}
 

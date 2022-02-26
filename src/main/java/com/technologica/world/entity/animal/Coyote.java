@@ -67,10 +67,10 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class CoyoteEntity extends TamableAnimal implements NeutralMob {
-   private static final EntityDataAccessor<Boolean> BEGGING = SynchedEntityData.defineId(CoyoteEntity.class, EntityDataSerializers.BOOLEAN);
-   private static final EntityDataAccessor<Integer> COLLAR_COLOR = SynchedEntityData.defineId(CoyoteEntity.class, EntityDataSerializers.INT);
-   private static final EntityDataAccessor<Integer> ANGER_TIME = SynchedEntityData.defineId(CoyoteEntity.class, EntityDataSerializers.INT);
+public class Coyote extends TamableAnimal implements NeutralMob {
+   private static final EntityDataAccessor<Boolean> BEGGING = SynchedEntityData.defineId(Coyote.class, EntityDataSerializers.BOOLEAN);
+   private static final EntityDataAccessor<Integer> COLLAR_COLOR = SynchedEntityData.defineId(Coyote.class, EntityDataSerializers.INT);
+   private static final EntityDataAccessor<Integer> ANGER_TIME = SynchedEntityData.defineId(Coyote.class, EntityDataSerializers.INT);
    public static final Predicate<LivingEntity> TARGET_ENTITIES = (p_213440_0_) -> {
       EntityType<?> entitytype = p_213440_0_.getType();
       return entitytype == EntityType.SHEEP || entitytype == EntityType.RABBIT || entitytype == EntityType.FOX;
@@ -84,7 +84,7 @@ public class CoyoteEntity extends TamableAnimal implements NeutralMob {
    private static final UniformInt ANGER_TIME_RANGE = TimeUtil.rangeOfSeconds(20, 39);
    private UUID persistentAngerTarget;
 
-   public CoyoteEntity(EntityType<? extends CoyoteEntity> type, Level worldIn) {
+   public Coyote(EntityType<? extends Coyote> type, Level worldIn) {
       super(type, worldIn);
       this.setTame(false);
    }
@@ -467,8 +467,8 @@ public class CoyoteEntity extends TamableAnimal implements NeutralMob {
       this.entityData.set(COLLAR_COLOR, collarcolor.getId());
    }
 
-   public CoyoteEntity getBreedOffspring(ServerLevel world, AgeableMob mate) {
-      CoyoteEntity wolfentity = TechnologicaEntityType.COYOTE.get().create(world);
+   public Coyote getBreedOffspring(ServerLevel world, AgeableMob mate) {
+      Coyote wolfentity = TechnologicaEntityType.COYOTE.get().create(world);
       UUID uuid = this.getOwnerUUID();
       if (uuid != null) {
          wolfentity.setOwnerUUID(uuid);
@@ -490,10 +490,10 @@ public class CoyoteEntity extends TamableAnimal implements NeutralMob {
          return false;
       } else if (!this.isTame()) {
          return false;
-      } else if (!(otherAnimal instanceof CoyoteEntity)) {
+      } else if (!(otherAnimal instanceof Coyote)) {
          return false;
       } else {
-         CoyoteEntity wolfentity = (CoyoteEntity)otherAnimal;
+         Coyote wolfentity = (Coyote)otherAnimal;
          if (!wolfentity.isTame()) {
             return false;
          } else if (wolfentity.isInSittingPose()) {
@@ -510,8 +510,8 @@ public class CoyoteEntity extends TamableAnimal implements NeutralMob {
 
    public boolean wantsToAttack(LivingEntity target, LivingEntity owner) {
       if (!(target instanceof Creeper) && !(target instanceof Ghast)) {
-         if (target instanceof CoyoteEntity) {
-            CoyoteEntity wolfentity = (CoyoteEntity)target;
+         if (target instanceof Coyote) {
+            Coyote wolfentity = (Coyote)target;
             return !wolfentity.isTame() || wolfentity.getOwner() != owner;
          } else if (target instanceof Player && owner instanceof Player && !((Player)owner).canHarmPlayer((Player)target)) {
             return false;
@@ -535,9 +535,9 @@ public class CoyoteEntity extends TamableAnimal implements NeutralMob {
    }
 
    class AvoidEntityGoal<T extends LivingEntity> extends net.minecraft.world.entity.ai.goal.AvoidEntityGoal<T> {
-      private final CoyoteEntity wolf;
+      private final Coyote wolf;
 
-      public AvoidEntityGoal(CoyoteEntity wolfIn, Class<T> entityClassToAvoidIn, float avoidDistanceIn, double farSpeedIn, double nearSpeedIn) {
+      public AvoidEntityGoal(Coyote wolfIn, Class<T> entityClassToAvoidIn, float avoidDistanceIn, double farSpeedIn, double nearSpeedIn) {
          super(wolfIn, entityClassToAvoidIn, avoidDistanceIn, farSpeedIn, nearSpeedIn);
          this.wolf = wolfIn;
       }
@@ -555,14 +555,14 @@ public class CoyoteEntity extends TamableAnimal implements NeutralMob {
       }
 
       private boolean avoidLlama(Llama llamaIn) {
-         return llamaIn.getStrength() >= CoyoteEntity.this.random.nextInt(5);
+         return llamaIn.getStrength() >= Coyote.this.random.nextInt(5);
       }
 
       /**
        * Execute a one shot task or start executing a continuous task
        */
       public void start() {
-         CoyoteEntity.this.setTarget((LivingEntity)null);
+         Coyote.this.setTarget((LivingEntity)null);
          super.start();
       }
 
@@ -570,7 +570,7 @@ public class CoyoteEntity extends TamableAnimal implements NeutralMob {
        * Keep ticking a continuous task that has already been started
        */
       public void tick() {
-         CoyoteEntity.this.setTarget((LivingEntity)null);
+         Coyote.this.setTarget((LivingEntity)null);
          super.tick();
       }
    }

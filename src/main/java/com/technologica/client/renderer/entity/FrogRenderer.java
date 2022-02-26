@@ -2,6 +2,7 @@ package com.technologica.client.renderer.entity;
 
 import com.technologica.Technologica;
 import com.technologica.client.model.FrogModel;
+import com.technologica.client.model.geom.TechnologicaModelLayers;
 import com.technologica.world.entity.animal.FrogEntity;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -12,7 +13,7 @@ public final class FrogRenderer extends MobRenderer<FrogEntity, FrogModel<FrogEn
 	private static final ResourceLocation FROG_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/frog.png");
 
 	public FrogRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new FrogModel<>(renderManagerIn.bakeLayer(null)), 0.2F);
+		super(renderManagerIn, new FrogModel<>(renderManagerIn.bakeLayer(TechnologicaModelLayers.FROG)), 0.2F);
 	}
 
 	@Override

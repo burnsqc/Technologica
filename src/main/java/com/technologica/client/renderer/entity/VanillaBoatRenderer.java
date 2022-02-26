@@ -14,7 +14,6 @@ import com.technologica.client.model.VanillaBoatModel;
 import com.technologica.client.model.geom.TechnologicaModelLayers;
 import com.technologica.world.entity.vehicle.VanillaBoatEntity;
 
-import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -88,7 +87,7 @@ public class VanillaBoatRenderer extends EntityRenderer<VanillaBoatEntity> {
 			matrixStackIn.mulPose(new Quaternion(new Vector3f(1.0F, 0.0F, 1.0F), entityIn.getBubbleAngle(partialTicks), true));
 		}
 		Pair<ResourceLocation, VanillaBoatModel> pair = getModelWithLocation(entityIn);
-	    ResourceLocation resourcelocation = pair.getFirst();
+	    
 	    VanillaBoatModel boatmodel = pair.getSecond();
 
 		matrixStackIn.scale(-1.0F, -1.0F, 1.0F);

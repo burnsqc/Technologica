@@ -1,17 +1,18 @@
 package com.technologica.world.entity.animal;
 
+import net.minecraft.server.level.ServerLevel;
+
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.level.Level;
-import net.minecraft.server.level.ServerLevel;
 
-public class CobraEntity extends Animal {
+public class Alligator extends Animal {
 
-	public CobraEntity(EntityType<? extends CobraEntity> type, Level worldIn) {
-		super(type, worldIn);
+	public Alligator(EntityType<? extends Alligator> typeIn, Level worldIn) {
+		super(typeIn, worldIn);
 	}
 
 	@Override
@@ -32,5 +33,4 @@ public class CobraEntity extends Animal {
 				.add(net.minecraftforge.common.ForgeMod.NAMETAG_DISTANCE.get())
 				.add(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get());
 	}
-
 }

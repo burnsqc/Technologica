@@ -8,9 +8,9 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 
-public class CottonmouthEntity extends Animal {
+public class Cobra extends Animal {
 
-	public CottonmouthEntity(EntityType<? extends CottonmouthEntity> type, Level worldIn) {
+	public Cobra(EntityType<? extends Cobra> type, Level worldIn) {
 		super(type, worldIn);
 	}
 

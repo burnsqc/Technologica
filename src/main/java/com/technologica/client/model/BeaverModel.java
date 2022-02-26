@@ -12,8 +12,11 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 
 public class BeaverModel<T extends Entity> extends QuadrupedModel<T> {
+	private final ModelPart tail;
+	
 	public BeaverModel(ModelPart modelPartIn) {
 		super(modelPartIn, true, 10.0F, 4.0F, 2.0F, 2.0F, 24);
+		this.tail = modelPartIn.getChild("tail");
 	}
 	
 	public static LayerDefinition createBodyLayer() {

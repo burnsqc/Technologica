@@ -54,26 +54,26 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class BeaverEntity extends Animal {
-	private static final EntityDataAccessor<Integer> RABBIT_TYPE = SynchedEntityData.defineId(BeaverEntity.class, EntityDataSerializers.INT);
+public class Beaver extends Animal {
+	private static final EntityDataAccessor<Integer> RABBIT_TYPE = SynchedEntityData.defineId(Beaver.class, EntityDataSerializers.INT);
 	private boolean wasOnGround;
 	private int currentMoveTypeDuration;
 	private int carrotTicks;
 
-	public BeaverEntity(EntityType<? extends BeaverEntity> p_i50247_1_, Level p_i50247_2_) {
+	public Beaver(EntityType<? extends Beaver> p_i50247_1_, Level p_i50247_2_) {
 		super(p_i50247_1_, p_i50247_2_);
-		this.moveControl = new BeaverEntity.MoveHelperController(this);
+		this.moveControl = new Beaver.MoveHelperController(this);
 		this.setMovementSpeed(0.0D);
 	}
 
 	protected void registerGoals() {
 		this.goalSelector.addGoal(1, new FloatGoal(this));
-		this.goalSelector.addGoal(1, new BeaverEntity.PanicGoal(this, 2.2D));
+		this.goalSelector.addGoal(1, new Beaver.PanicGoal(this, 2.2D));
 		this.goalSelector.addGoal(2, new BreedGoal(this, 0.8D));
 		this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, Ingredient.of(Items.CARROT, Items.GOLDEN_CARROT, Blocks.DANDELION), false));
-		this.goalSelector.addGoal(4, new BeaverEntity.AvoidEntityGoal<>(this, Player.class, 8.0F, 2.2D, 2.2D));
-		this.goalSelector.addGoal(4, new BeaverEntity.AvoidEntityGoal<>(this, Monster.class, 4.0F, 2.2D, 2.2D));
-		this.goalSelector.addGoal(5, new BeaverEntity.RaidFarmGoal(this));
+		this.goalSelector.addGoal(4, new Beaver.AvoidEntityGoal<>(this, Player.class, 8.0F, 2.2D, 2.2D));
+		this.goalSelector.addGoal(4, new Beaver.AvoidEntityGoal<>(this, Monster.class, 4.0F, 2.2D, 2.2D));
+		this.goalSelector.addGoal(5, new Beaver.RaidFarmGoal(this));
 		this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 0.6D));
 		this.goalSelector.addGoal(11, new LookAtPlayerGoal(this, Player.class, 10.0F));
 	}
@@ -252,7 +252,7 @@ public class BeaverEntity extends Animal {
 	public void setRabbitType(int rabbitTypeId) {
 		if (rabbitTypeId == 99) {
 			this.getAttribute(Attributes.ARMOR).setBaseValue(8.0D);
-			this.goalSelector.addGoal(4, new BeaverEntity.EvilAttackGoal(this));
+			this.goalSelector.addGoal(4, new Beaver.EvilAttackGoal(this));
 			this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers());
 			this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
 		}
@@ -264,10 +264,10 @@ public class BeaverEntity extends Animal {
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason,
 			@Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
 		int i = this.getRandomRabbitType(worldIn);
-		if (spawnDataIn instanceof BeaverEntity.RabbitData) {
-			i = ((BeaverEntity.RabbitData) spawnDataIn).typeData;
+		if (spawnDataIn instanceof Beaver.RabbitData) {
+			i = ((Beaver.RabbitData) spawnDataIn).typeData;
 		} else {
-			spawnDataIn = new BeaverEntity.RabbitData(i);
+			spawnDataIn = new Beaver.RabbitData(i);
 		}
 
 		this.setRabbitType(i);
@@ -286,7 +286,7 @@ public class BeaverEntity extends Animal {
 		}
 	}
 
-	public static boolean checkRabbitSpawnRules(EntityType<BeaverEntity> p_223321_0_, LevelAccessor p_223321_1_, MobSpawnType reason,
+	public static boolean checkRabbitSpawnRules(EntityType<Beaver> p_223321_0_, LevelAccessor p_223321_1_, MobSpawnType reason,
 			BlockPos p_223321_3_, Random p_223321_4_) {
 		BlockState blockstate = p_223321_1_.getBlockState(p_223321_3_.below());
 		return (blockstate.is(Blocks.GRASS_BLOCK) || blockstate.is(Blocks.SNOW)
@@ -320,9 +320,9 @@ public class BeaverEntity extends Animal {
 	}
 
 	static class AvoidEntityGoal<T extends LivingEntity> extends net.minecraft.world.entity.ai.goal.AvoidEntityGoal<T> {
-		private final BeaverEntity rabbit;
+		private final Beaver rabbit;
 
-		public AvoidEntityGoal(BeaverEntity rabbit, Class<T> p_i46403_2_, float p_i46403_3_, double p_i46403_4_,
+		public AvoidEntityGoal(Beaver rabbit, Class<T> p_i46403_2_, float p_i46403_3_, double p_i46403_4_,
 				double p_i46403_6_) {
 			super(rabbit, p_i46403_2_, p_i46403_3_, p_i46403_4_, p_i46403_6_);
 			this.rabbit = rabbit;
@@ -338,7 +338,7 @@ public class BeaverEntity extends Animal {
 	}
 
 	static class EvilAttackGoal extends MeleeAttackGoal {
-		public EvilAttackGoal(BeaverEntity rabbit) {
+		public EvilAttackGoal(Beaver rabbit) {
 			super(rabbit, 1.4D, true);
 		}
 
@@ -348,10 +348,10 @@ public class BeaverEntity extends Animal {
 	}
 
 	static class MoveHelperController extends MoveControl {
-		private final BeaverEntity rabbit;
+		private final Beaver rabbit;
 		
 
-		public MoveHelperController(BeaverEntity rabbit) {
+		public MoveHelperController(Beaver rabbit) {
 			super(rabbit);
 			this.rabbit = rabbit;
 		}
@@ -377,9 +377,9 @@ public class BeaverEntity extends Animal {
 	}
 
 	static class PanicGoal extends net.minecraft.world.entity.ai.goal.PanicGoal {
-		private final BeaverEntity rabbit;
+		private final Beaver rabbit;
 
-		public PanicGoal(BeaverEntity rabbit, double speedIn) {
+		public PanicGoal(Beaver rabbit, double speedIn) {
 			super(rabbit, speedIn);
 			this.rabbit = rabbit;
 		}
@@ -403,11 +403,11 @@ public class BeaverEntity extends Animal {
 	}
 
 	static class RaidFarmGoal extends MoveToBlockGoal {
-		private final BeaverEntity rabbit;
+		private final Beaver rabbit;
 		private boolean wantsToRaid;
 		private boolean canRaid;
 
-		public RaidFarmGoal(BeaverEntity rabbitIn) {
+		public RaidFarmGoal(Beaver rabbitIn) {
 			super(rabbitIn, (double) 0.7F, 16);
 			this.rabbit = rabbitIn;
 		}

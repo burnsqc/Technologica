@@ -2,6 +2,7 @@ package com.technologica.client.renderer.entity;
 
 import com.technologica.Technologica;
 import com.technologica.client.model.ElephantModel;
+import com.technologica.client.model.geom.TechnologicaModelLayers;
 import com.technologica.world.entity.animal.ElephantEntity;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -12,7 +13,7 @@ public final class ElephantRenderer extends MobRenderer<ElephantEntity, Elephant
 	private static final ResourceLocation ELEPHANT_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/elephant.png");
 
 	public ElephantRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new ElephantModel<>(renderManagerIn.bakeLayer(null)), 1.1F);
+		super(renderManagerIn, new ElephantModel<>(renderManagerIn.bakeLayer(TechnologicaModelLayers.ELEPHANT)), 1.1F);
 	}
 
 	@Override

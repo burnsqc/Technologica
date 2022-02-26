@@ -2,13 +2,13 @@ package com.technologica.client.renderer.entity;
 
 import com.technologica.Technologica;
 import com.technologica.client.model.CobraModel;
-import com.technologica.world.entity.animal.CobraEntity;
+import com.technologica.world.entity.animal.Cobra;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
-public final class CobraRenderer extends MobRenderer<CobraEntity, CobraModel<CobraEntity>> {
+public final class CobraRenderer extends MobRenderer<Cobra, CobraModel<Cobra>> {
 	private static final ResourceLocation COBRA_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/cobra.png");
 
 	public CobraRenderer(EntityRendererProvider.Context renderManagerIn) {
@@ -16,7 +16,7 @@ public final class CobraRenderer extends MobRenderer<CobraEntity, CobraModel<Cob
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(CobraEntity entity) {
+	public ResourceLocation getTextureLocation(Cobra entity) {
 		return COBRA_TEXTURE;
 	}
 }

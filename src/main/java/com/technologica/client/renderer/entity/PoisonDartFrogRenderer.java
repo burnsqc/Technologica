@@ -2,6 +2,7 @@ package com.technologica.client.renderer.entity;
 
 import com.technologica.Technologica;
 import com.technologica.client.model.PoisonDartFrogModel;
+import com.technologica.client.model.geom.TechnologicaModelLayers;
 import com.technologica.world.entity.animal.PoisonDartFrogEntity;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -12,7 +13,7 @@ public final class PoisonDartFrogRenderer extends MobRenderer<PoisonDartFrogEnti
 	private static final ResourceLocation POISON_DART_FROG_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/poison_dart_frog.png");
 
 	public PoisonDartFrogRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new PoisonDartFrogModel<>(renderManagerIn.bakeLayer(null)), 0.2F);
+		super(renderManagerIn, new PoisonDartFrogModel<>(renderManagerIn.bakeLayer(TechnologicaModelLayers.POISON_DART_FROG)), 0.2F);
 	}
 
 	@Override

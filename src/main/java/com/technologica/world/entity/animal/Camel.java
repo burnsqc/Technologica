@@ -6,9 +6,9 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.horse.AbstractChestedHorse;
 import net.minecraft.world.level.Level;
 
-public class CamelEntity extends AbstractChestedHorse {
+public class Camel extends AbstractChestedHorse {
 
-	public CamelEntity(EntityType<? extends CamelEntity> type, Level worldIn) {
+	public Camel(EntityType<? extends Camel> type, Level worldIn) {
 		super(type, worldIn);
 	}
 	

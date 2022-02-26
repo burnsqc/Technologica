@@ -3,13 +3,13 @@ package com.technologica.world.entity;
 import static com.technologica.Technologica.LOGGER;
 import static com.technologica.Technologica.MODID;
 
-import com.technologica.world.entity.animal.AlligatorEntity;
-import com.technologica.world.entity.animal.BeaverEntity;
-import com.technologica.world.entity.animal.BuffaloEntity;
-import com.technologica.world.entity.animal.CamelEntity;
-import com.technologica.world.entity.animal.CobraEntity;
-import com.technologica.world.entity.animal.CottonmouthEntity;
-import com.technologica.world.entity.animal.CoyoteEntity;
+import com.technologica.world.entity.animal.Alligator;
+import com.technologica.world.entity.animal.Beaver;
+import com.technologica.world.entity.animal.Buffalo;
+import com.technologica.world.entity.animal.Camel;
+import com.technologica.world.entity.animal.Cobra;
+import com.technologica.world.entity.animal.Cottonmouth;
+import com.technologica.world.entity.animal.Coyote;
 import com.technologica.world.entity.animal.CrabEntity;
 import com.technologica.world.entity.animal.DeerEntity;
 import com.technologica.world.entity.animal.DuckEntity;
@@ -70,13 +70,13 @@ public class TechnologicaEntityType {
 	 * ANIMALS
 	 */
 	
-	public static final RegistryObject<EntityType<AlligatorEntity>> ALLIGATOR = ENTITIES.register("alligator", () -> EntityType.Builder.<AlligatorEntity>of(AlligatorEntity::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("alligator"));
-	public static final RegistryObject<EntityType<BeaverEntity>> BEAVER = ENTITIES.register("beaver", () -> EntityType.Builder.<BeaverEntity>of(BeaverEntity::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("beaver"));
-	public static final RegistryObject<EntityType<BuffaloEntity>> BUFFALO = ENTITIES.register("buffalo", () -> EntityType.Builder.<BuffaloEntity>of(BuffaloEntity::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("buffalo"));
-	public static final RegistryObject<EntityType<CamelEntity>> CAMEL = ENTITIES.register("camel", () -> EntityType.Builder.<CamelEntity>of(CamelEntity::new, MobCategory.CREATURE).sized(1.3964844F, 2.0F).clientTrackingRange(10).build("camel"));
-	public static final RegistryObject<EntityType<CobraEntity>> COBRA = ENTITIES.register("cobra", () -> EntityType.Builder.<CobraEntity>of(CobraEntity::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("cobra"));
-	public static final RegistryObject<EntityType<CottonmouthEntity>> COTTONMOUTH = ENTITIES.register("cottonmouth", () -> EntityType.Builder.<CottonmouthEntity>of(CottonmouthEntity::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("cottonmouth"));
-	public static final RegistryObject<EntityType<CoyoteEntity>> COYOTE = ENTITIES.register("coyote", () -> EntityType.Builder.<CoyoteEntity>of(CoyoteEntity::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("coyote"));
+	public static final RegistryObject<EntityType<Alligator>> ALLIGATOR = ENTITIES.register("alligator", () -> EntityType.Builder.<Alligator>of(Alligator::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("alligator"));
+	public static final RegistryObject<EntityType<Beaver>> BEAVER = ENTITIES.register("beaver", () -> EntityType.Builder.<Beaver>of(Beaver::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("beaver"));
+	public static final RegistryObject<EntityType<Buffalo>> BUFFALO = ENTITIES.register("buffalo", () -> EntityType.Builder.<Buffalo>of(Buffalo::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("buffalo"));
+	public static final RegistryObject<EntityType<Camel>> CAMEL = ENTITIES.register("camel", () -> EntityType.Builder.<Camel>of(Camel::new, MobCategory.CREATURE).sized(1.3964844F, 2.0F).clientTrackingRange(10).build("camel"));
+	public static final RegistryObject<EntityType<Cobra>> COBRA = ENTITIES.register("cobra", () -> EntityType.Builder.<Cobra>of(Cobra::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("cobra"));
+	public static final RegistryObject<EntityType<Cottonmouth>> COTTONMOUTH = ENTITIES.register("cottonmouth", () -> EntityType.Builder.<Cottonmouth>of(Cottonmouth::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("cottonmouth"));
+	public static final RegistryObject<EntityType<Coyote>> COYOTE = ENTITIES.register("coyote", () -> EntityType.Builder.<Coyote>of(Coyote::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("coyote"));
 	public static final RegistryObject<EntityType<CrabEntity>> CRAB = ENTITIES.register("crab", () -> EntityType.Builder.<CrabEntity>of(CrabEntity::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("crab"));
 	public static final RegistryObject<EntityType<DeerEntity>> DEER = ENTITIES.register("deer", () -> EntityType.Builder.<DeerEntity>of(DeerEntity::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("deer"));
 	public static final RegistryObject<EntityType<DuckEntity>> DUCK = ENTITIES.register("duck", () -> EntityType.Builder.<DuckEntity>of(DuckEntity::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("duck"));

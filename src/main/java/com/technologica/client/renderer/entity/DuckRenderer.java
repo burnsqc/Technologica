@@ -1,10 +1,10 @@
 package com.technologica.client.renderer.entity;
 
 import com.technologica.Technologica;
+import com.technologica.client.model.geom.TechnologicaModelLayers;
 import com.technologica.world.entity.animal.DuckEntity;
 
 import net.minecraft.client.model.ChickenModel;
-import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
@@ -14,7 +14,7 @@ public class DuckRenderer extends MobRenderer<DuckEntity, ChickenModel<DuckEntit
 	private static final ResourceLocation DUCK_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/duck.png");
 
 	public DuckRenderer(EntityRendererProvider.Context p_173952_) {
-		super(p_173952_, new ChickenModel<>(p_173952_.bakeLayer(ModelLayers.CHICKEN)), 0.3F);
+		super(p_173952_, new ChickenModel<>(p_173952_.bakeLayer(TechnologicaModelLayers.DUCK)), 0.3F);
 	}
 
 	@Override
