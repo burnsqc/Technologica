@@ -1,14 +1,15 @@
 package com.technologica.client.particle;
 
-import com.technologica.particles.DrippingLiquidParticleData;
-import com.technologica.particles.FallingLiquidParticleData;
-import com.technologica.particles.LandingLiquidParticleData;
-
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.TextureSheetParticle;
+
+import com.technologica.core.particles.DrippingLiquidParticleData;
+import com.technologica.core.particles.FallingLiquidParticleData;
+import com.technologica.core.particles.LandingLiquidParticleData;
+
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;

@@ -2,7 +2,7 @@ package com.technologica.setup;
 
 import com.technologica.data.worldgen.features.TechnologicaTreeFeatures;
 import com.technologica.world.entity.TechnologicaEntityType;
-import com.technologica.world.gen.feature.TechnologicaConfiguredFeatures;
+import com.technologica.world.level.levelgen.feature.TechnologicaConfiguredFeatures;
 
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.world.entity.MobCategory;

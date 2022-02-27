@@ -6,7 +6,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import com.technologica.particles.DrippingLiquidParticleData;
+import com.technologica.core.particles.DrippingLiquidParticleData;
 import com.technologica.world.item.TechnologicaItems;
 import com.technologica.world.level.block.TechnologicaBlocks;
 

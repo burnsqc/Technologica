@@ -1,4 +1,4 @@
-package com.technologica.world.gen.trunkplacer;
+package com.technologica.world.level.levelgen.feature.trunkplacers;
 
 import com.mojang.serialization.Codec;
 import com.technologica.Technologica;

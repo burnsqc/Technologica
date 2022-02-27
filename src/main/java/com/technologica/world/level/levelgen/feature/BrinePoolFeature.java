@@ -1,4 +1,4 @@
-package com.technologica.world.gen.feature;
+package com.technologica.world.level.levelgen.feature;
 
 import java.util.Random;
 

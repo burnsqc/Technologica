@@ -24,13 +24,13 @@ import com.technologica.util.DisablePlankConditionFactory;
 import com.technologica.util.EnablePlankConditionFactory;
 import com.technologica.util.TechnologicaSoundEvents;
 import com.technologica.world.entity.TechnologicaEntityType;
-import com.technologica.world.gen.foliageplacer.TechnologicaFoliagePlacers;
 import com.technologica.world.inventory.TechnologicaContainerType;
 import com.technologica.world.item.TechnologicaItems;
 import com.technologica.world.item.crafting.TechnologicaRecipeSerializer;
 import com.technologica.world.level.biome.TechnologicaBiomes;
 import com.technologica.world.level.block.TechnologicaBlocks;
 import com.technologica.world.level.block.entity.TechnologicaBlockEntityType;
+import com.technologica.world.level.levelgen.feature.foliageplacers.TechnologicaFoliagePlacers;
 import com.technologica.world.level.material.TechnologicaFluids;
 
 import net.minecraft.core.particles.ParticleType;
@@ -71,7 +71,7 @@ public class Technologica {
 		TechnologicaRecipeSerializer.init();
 		TechnologicaSoundEvents.init();
 		TechnologicaBiomes.init();
-//		TechnologicaFeatures.init();
+//		TechnologicaFeature.init();
 		TechnologicaFoliagePlacers.init();
 		
 		FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(Block.class, RegistrationListener::onRegisterBlocks);

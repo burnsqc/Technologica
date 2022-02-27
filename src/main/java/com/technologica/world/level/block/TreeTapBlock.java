@@ -5,7 +5,7 @@ import java.util.Random;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
-import com.technologica.particles.DrippingLiquidParticleData;
+import com.technologica.core.particles.DrippingLiquidParticleData;
 
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.Block;

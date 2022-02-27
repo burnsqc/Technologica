@@ -1,4 +1,4 @@
-package com.technologica.world.gen.foliageplacer;
+package com.technologica.world.level.levelgen.feature.foliageplacers;
 
 import java.util.Random;
 import java.util.function.BiConsumer;

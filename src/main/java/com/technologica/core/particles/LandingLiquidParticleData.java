@@ -1,4 +1,4 @@
-package com.technologica.particles;
+package com.technologica.core.particles;
 
 import java.util.Locale;
 
@@ -6,38 +6,37 @@ import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.technologica.core.particles.TechnologicaParticleTypes;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.Registry;
 
-public class FallingLiquidParticleData implements ParticleOptions {
+public class LandingLiquidParticleData implements ParticleOptions {
 
-	public static final Codec<FallingLiquidParticleData> CODEC = RecordCodecBuilder.create((p_239803_0_) -> {
+	public static final Codec<LandingLiquidParticleData> CODEC = RecordCodecBuilder.create((p_239803_0_) -> {
 		return p_239803_0_.group(Codec.FLOAT.fieldOf("r").forGetter((p_239807_0_) -> {
 			return p_239807_0_.red;
 		}), Codec.FLOAT.fieldOf("g").forGetter((p_239806_0_) -> {
 			return p_239806_0_.green;
 		}), Codec.FLOAT.fieldOf("b").forGetter((p_239805_0_) -> {
 			return p_239805_0_.blue;
-		})).apply(p_239803_0_, FallingLiquidParticleData::new);
+		})).apply(p_239803_0_, LandingLiquidParticleData::new);
 	});
 
 	private final float red;
 	private final float green;
 	private final float blue;
 
-	public FallingLiquidParticleData(float red, float green, float blue) {
+	public LandingLiquidParticleData(float red, float green, float blue) {
 		this.red = red;
 		this.green = green;
 		this.blue = blue;
 	}
 
 	@SuppressWarnings("deprecation")
-	public static final ParticleOptions.Deserializer<FallingLiquidParticleData> DESERIALIZER = new ParticleOptions.Deserializer<FallingLiquidParticleData>() {
-		public FallingLiquidParticleData fromCommand(ParticleType<FallingLiquidParticleData> particleTypeIn, StringReader reader) throws CommandSyntaxException {
+	public static final ParticleOptions.Deserializer<LandingLiquidParticleData> DESERIALIZER = new ParticleOptions.Deserializer<LandingLiquidParticleData>() {
+		public LandingLiquidParticleData fromCommand(ParticleType<LandingLiquidParticleData> particleTypeIn, StringReader reader) throws CommandSyntaxException {
 			reader.expect(' ');
 			float f = (float) reader.readDouble();
 			reader.expect(' ');
@@ -45,17 +44,17 @@ public class FallingLiquidParticleData implements ParticleOptions {
 			reader.expect(' ');
 			float f2 = (float) reader.readDouble();
 			reader.expect(' ');
-			return new FallingLiquidParticleData(f, f1, f2);
+			return new LandingLiquidParticleData(f, f1, f2);
 		}
 
-		public FallingLiquidParticleData fromNetwork(ParticleType<FallingLiquidParticleData> particleTypeIn, FriendlyByteBuf buffer) {
-			return new FallingLiquidParticleData(buffer.readFloat(), buffer.readFloat(), buffer.readFloat());
+		public LandingLiquidParticleData fromNetwork(ParticleType<LandingLiquidParticleData> particleTypeIn, FriendlyByteBuf buffer) {
+			return new LandingLiquidParticleData(buffer.readFloat(), buffer.readFloat(), buffer.readFloat());
 		}
 	};
 
 	@Override
 	public ParticleType<?> getType() {
-		return TechnologicaParticleTypes.FALLING_FLUID.get();
+		return TechnologicaParticleTypes.LANDING_FLUID.get();
 	}
 
 	@Override

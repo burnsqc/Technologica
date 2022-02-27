@@ -39,7 +39,6 @@ import com.technologica.world.level.block.grower.WalnutTreeGrower;
 import com.technologica.world.level.block.grower.ZebrawoodTreeGrower;
 import com.technologica.world.level.material.TechnologicaFluids;
 
-import net.minecraft.core.Direction;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -48,7 +47,6 @@ import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.OreBlock;
 import net.minecraft.world.level.block.PressurePlateBlock;
-import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SandBlock;
 import net.minecraft.world.level.block.SaplingBlock;
 import net.minecraft.world.level.block.SoundType;
@@ -271,7 +269,7 @@ public class TechnologicaBlocks {
      */
     
     public static final RegistryObject<Block> APRICOT_LOG = BLOCKS.register("apricot_log", FruitingLogBlock::new);  
-    public static final RegistryObject<Block> ASPEN_LOG = BLOCKS.register("aspen_log", () -> log(MaterialColor.WOOD, MaterialColor.PODZOL));  
+    public static final RegistryObject<Block> ASPEN_LOG = BLOCKS.register("aspen_log", VanillaLogBlock::new);  
     public static final RegistryObject<Block> AVOCADO_LOG = BLOCKS.register("avocado_log", FruitingLogBlock::new);  
     public static final RegistryObject<Block> BANANA_LOG = BLOCKS.register("banana_log", FruitingLogBlock::new);
     public static final RegistryObject<Block> CHERRY_LOG = BLOCKS.register("cherry_log", FruitingLogBlock::new);

@@ -49,7 +49,7 @@ public class VanillaBoatItem extends Item {
 
 	         if (raytraceresult.getType() == HitResult.Type.BLOCK) {
 	            VanillaBoat modBoatEntity = new VanillaBoat(worldIn, raytraceresult.getLocation().x, raytraceresult.getLocation().y, raytraceresult.getLocation().z);
-	            modBoatEntity.setBoatType(this.type);
+	            modBoatEntity.setType(this.type);
 	            modBoatEntity.setYRot(playerIn.getYRot());
 	            if (!worldIn.noCollision(modBoatEntity, modBoatEntity.getBoundingBox().inflate(-0.1D))) {
 	               return InteractionResultHolder.fail(itemstack);

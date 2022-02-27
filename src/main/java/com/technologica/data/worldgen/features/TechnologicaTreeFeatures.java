@@ -1,13 +1,13 @@
 package com.technologica.data.worldgen.features;
 
-import com.technologica.world.gen.foliageplacer.ConicalFoliagePlacer;
-import com.technologica.world.gen.foliageplacer.CylindricalFoliagePlacer;
-import com.technologica.world.gen.foliageplacer.DishFoliagePlacer;
-import com.technologica.world.gen.foliageplacer.PalmFoliagePlacer;
-import com.technologica.world.gen.foliageplacer.RedwoodFoliagePlacer;
-import com.technologica.world.gen.foliageplacer.TeardropFoliagePlacer;
-import com.technologica.world.gen.trunkplacer.ThreeWideTrunkPlacer;
 import com.technologica.world.level.block.TechnologicaBlocks;
+import com.technologica.world.level.levelgen.feature.foliageplacers.ConicalFoliagePlacer;
+import com.technologica.world.level.levelgen.feature.foliageplacers.CylindricalFoliagePlacer;
+import com.technologica.world.level.levelgen.feature.foliageplacers.DishFoliagePlacer;
+import com.technologica.world.level.levelgen.feature.foliageplacers.PalmFoliagePlacer;
+import com.technologica.world.level.levelgen.feature.foliageplacers.RedwoodFoliagePlacer;
+import com.technologica.world.level.levelgen.feature.foliageplacers.TeardropFoliagePlacer;
+import com.technologica.world.level.levelgen.feature.trunkplacers.ThreeWideTrunkPlacer;
 
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.util.valueproviders.ConstantInt;

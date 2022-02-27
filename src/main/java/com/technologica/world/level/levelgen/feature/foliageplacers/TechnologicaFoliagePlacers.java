@@ -1,4 +1,4 @@
-package com.technologica.world.gen.foliageplacer;
+package com.technologica.world.level.levelgen.feature.foliageplacers;
 
 import static com.technologica.Technologica.LOGGER;
 import static com.technologica.Technologica.MODID;

@@ -6,9 +6,6 @@ import static com.technologica.Technologica.MODID;
 import java.util.function.Function;
 
 import com.mojang.serialization.Codec;
-import com.technologica.particles.DrippingLiquidParticleData;
-import com.technologica.particles.FallingLiquidParticleData;
-import com.technologica.particles.LandingLiquidParticleData;
 
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;

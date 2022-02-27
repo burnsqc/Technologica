@@ -1,4 +1,4 @@
-package com.technologica.particles;
+package com.technologica.core.particles;
 
 import java.util.Locale;
 
@@ -6,7 +6,6 @@ import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.technologica.core.particles.TechnologicaParticleTypes;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.core.particles.ParticleOptions;
