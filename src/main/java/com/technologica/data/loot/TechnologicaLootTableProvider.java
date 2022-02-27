@@ -1,4 +1,4 @@
-package com.technologica.data;
+package com.technologica.data.loot;
 
 import java.util.List;
 import java.util.Map;
@@ -8,7 +8,6 @@ import java.util.function.Supplier;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
-import com.technologica.data.loot.ModBlockLootTables;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.LootTableProvider;
@@ -19,10 +18,10 @@ import net.minecraft.world.level.storage.loot.LootTable.Builder;
 import net.minecraft.world.level.storage.loot.ValidationContext;
 import net.minecraft.resources.ResourceLocation;
 
-public class ModLootTableProvider extends LootTableProvider {
-	private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> loot_tables = ImmutableList.of(Pair.of(ModBlockLootTables::new, LootContextParamSets.BLOCK));
+public class TechnologicaLootTableProvider extends LootTableProvider {
+	private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> loot_tables = ImmutableList.of(Pair.of(TechnologicaBlockLoot::new, LootContextParamSets.BLOCK));
 	
-	public ModLootTableProvider (DataGenerator generatorIn) {
+	public TechnologicaLootTableProvider (DataGenerator generatorIn) {
 		super(generatorIn);
 	}
 	

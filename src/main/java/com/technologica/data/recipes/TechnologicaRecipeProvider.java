@@ -1,4 +1,4 @@
-package com.technologica.data;
+package com.technologica.data.recipes;
 
 import java.util.function.Consumer;
 
@@ -23,9 +23,9 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.crafting.ConditionalRecipe;
 
-public class ModRecipeProvider extends RecipeProvider {
+public class TechnologicaRecipeProvider extends RecipeProvider {
 
-	public ModRecipeProvider(DataGenerator generatorIn) {
+	public TechnologicaRecipeProvider(DataGenerator generatorIn) {
 		super(generatorIn);
 	}
 	

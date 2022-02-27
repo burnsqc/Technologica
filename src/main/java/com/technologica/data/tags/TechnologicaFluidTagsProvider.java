@@ -1,4 +1,4 @@
-package com.technologica.data;
+package com.technologica.data.tags;
 
 import java.util.Collection;
 import java.util.function.Supplier;
@@ -13,9 +13,9 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 
-public class ModFluidTagsProvider extends FluidTagsProvider {
+public class TechnologicaFluidTagsProvider extends FluidTagsProvider {
 
-	public ModFluidTagsProvider(DataGenerator generatorIn, ExistingFileHelper helperIn) {
+	public TechnologicaFluidTagsProvider(DataGenerator generatorIn, ExistingFileHelper helperIn) {
 		super(generatorIn, Technologica.MODID, helperIn);
 	}
 

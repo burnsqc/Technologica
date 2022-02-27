@@ -1,13 +1,13 @@
 package com.technologica.setup;
 
-import com.technologica.data.ModBlockStateProvider;
-import com.technologica.data.ModBlockTagsProvider;
-import com.technologica.data.ModFluidTagsProvider;
-import com.technologica.data.ModItemModelProvider;
-import com.technologica.data.ModItemTagsProvider;
-import com.technologica.data.ModLanguageProvider;
-import com.technologica.data.ModLootTableProvider;
-import com.technologica.data.ModRecipeProvider;
+import com.technologica.data.TechnologicaBlockStateProvider;
+import com.technologica.data.TechnologicaItemModelProvider;
+import com.technologica.data.TechnologicaLanguageProvider;
+import com.technologica.data.loot.TechnologicaLootTableProvider;
+import com.technologica.data.recipes.TechnologicaRecipeProvider;
+import com.technologica.data.tags.TechnologicaFluidTagsProvider;
+import com.technologica.data.tags.TechnologicaItemTagsProvider;
+import com.technologica.data.tags.TechnologicaBlockTagsProvider;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -19,18 +19,18 @@ public class GatherData {
 		ExistingFileHelper helper = event.getExistingFileHelper();
 		
 		if(event.includeClient()) {
-			generator.addProvider(new ModLanguageProvider(generator));
-			generator.addProvider(new ModBlockStateProvider(generator, helper));
-			generator.addProvider(new ModItemModelProvider(generator, helper));
+			generator.addProvider(new TechnologicaLanguageProvider(generator));
+			generator.addProvider(new TechnologicaBlockStateProvider(generator, helper));
+			generator.addProvider(new TechnologicaItemModelProvider(generator, helper));
 		}
 		
 		if(event.includeServer()) {
-			ModBlockTagsProvider modBlockTagsProvider = new ModBlockTagsProvider(generator, helper);
+			TechnologicaBlockTagsProvider modBlockTagsProvider = new TechnologicaBlockTagsProvider(generator, helper);
 			generator.addProvider(modBlockTagsProvider);
-			generator.addProvider(new ModItemTagsProvider(generator, modBlockTagsProvider, helper));
-			generator.addProvider(new ModRecipeProvider(generator));
-			generator.addProvider(new ModLootTableProvider(generator));
-			generator.addProvider(new ModFluidTagsProvider(generator, helper));
+			generator.addProvider(new TechnologicaItemTagsProvider(generator, modBlockTagsProvider, helper));
+			generator.addProvider(new TechnologicaRecipeProvider(generator));
+			generator.addProvider(new TechnologicaLootTableProvider(generator));
+			generator.addProvider(new TechnologicaFluidTagsProvider(generator, helper));
 		}	
 	}
 }

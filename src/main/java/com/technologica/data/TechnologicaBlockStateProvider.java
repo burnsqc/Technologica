@@ -37,9 +37,9 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 
-public class ModBlockStateProvider extends BlockStateProvider {
+public class TechnologicaBlockStateProvider extends BlockStateProvider {
 
-	public ModBlockStateProvider(DataGenerator generatorIn, ExistingFileHelper helperIn) {
+	public TechnologicaBlockStateProvider(DataGenerator generatorIn, ExistingFileHelper helperIn) {
 		super(generatorIn, Technologica.MODID, helperIn);
 	}
 

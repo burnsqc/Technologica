@@ -1,4 +1,4 @@
-package com.technologica.data;
+package com.technologica.data.tags;
 
 import java.util.Collection;
 import java.util.function.Supplier;
@@ -14,9 +14,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 
-public class ModBlockTagsProvider extends BlockTagsProvider {
+public class TechnologicaBlockTagsProvider extends BlockTagsProvider {
 	
-	public ModBlockTagsProvider(DataGenerator generatorIn, ExistingFileHelper helperIn) {
+	public TechnologicaBlockTagsProvider(DataGenerator generatorIn, ExistingFileHelper helperIn) {
 		super(generatorIn, Technologica.MODID, helperIn);
 	}	
 	

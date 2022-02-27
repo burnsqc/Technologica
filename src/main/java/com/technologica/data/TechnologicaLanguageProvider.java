@@ -15,9 +15,9 @@ import net.minecraft.world.item.Item;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.minecraftforge.registries.RegistryObject;
 
-public class ModLanguageProvider extends LanguageProvider {
+public class TechnologicaLanguageProvider extends LanguageProvider {
 	
-	public ModLanguageProvider(DataGenerator generatorIn) {
+	public TechnologicaLanguageProvider(DataGenerator generatorIn) {
 		super(generatorIn, Technologica.MODID, "en_us");
 	}
 

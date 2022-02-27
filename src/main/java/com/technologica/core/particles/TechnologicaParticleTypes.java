@@ -27,16 +27,16 @@ public class TechnologicaParticleTypes {
 	}
 	
 	public static final RegistryObject<ParticleType<DrippingLiquidParticleData>> DRIPPING_FLUID = PARTICLE_TYPES.register("dripping_fluid", () -> create(DrippingLiquidParticleData.DESERIALIZER, (p_239822_0_) -> {
-	      return DrippingLiquidParticleData.CODEC;
-	   }));
+		return DrippingLiquidParticleData.CODEC;
+	}));
 					
 	public static final RegistryObject<ParticleType<FallingLiquidParticleData>> FALLING_FLUID = PARTICLE_TYPES.register("falling_fluid", () -> create(FallingLiquidParticleData.DESERIALIZER, (p_239822_0_) -> {
-	      return FallingLiquidParticleData.CODEC;
-	   }));
+		return FallingLiquidParticleData.CODEC;
+	}));
 	
 	public static final RegistryObject<ParticleType<LandingLiquidParticleData>> LANDING_FLUID = PARTICLE_TYPES.register("landing_fluid", () -> create(LandingLiquidParticleData.DESERIALIZER, (p_239822_0_) -> {
-	      return LandingLiquidParticleData.CODEC;
-	   }));
+		return LandingLiquidParticleData.CODEC;
+	}));
 	
 	private static <T extends ParticleOptions> ParticleType<T> create(@SuppressWarnings("deprecation") ParticleOptions.Deserializer<T> deserializer, final Function<ParticleType<T>, Codec<T>> p_218416_2_) {
 		return new ParticleType<T>(false, deserializer) {

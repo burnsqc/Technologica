@@ -18,9 +18,9 @@ import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 
-public class ModItemModelProvider extends ItemModelProvider {
+public class TechnologicaItemModelProvider extends ItemModelProvider {
 
-	public ModItemModelProvider(DataGenerator generatorIn, ExistingFileHelper helperIn) {
+	public TechnologicaItemModelProvider(DataGenerator generatorIn, ExistingFileHelper helperIn) {
 		super(generatorIn, Technologica.MODID, helperIn);
 	}
 	
