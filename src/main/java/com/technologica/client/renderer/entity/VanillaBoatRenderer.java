@@ -12,7 +12,7 @@ import com.mojang.math.Vector3f;
 import com.technologica.Technologica;
 import com.technologica.client.model.VanillaBoatModel;
 import com.technologica.client.model.geom.TechnologicaModelLayers;
-import com.technologica.world.entity.vehicle.VanillaBoatEntity;
+import com.technologica.world.entity.vehicle.VanillaBoat;
 
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -23,7 +23,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.vehicle.Boat;
 
-public class VanillaBoatRenderer extends EntityRenderer<VanillaBoatEntity> {
+public class VanillaBoatRenderer extends EntityRenderer<VanillaBoat> {
 	private static final ResourceLocation[] BOAT_TEXTURES = new ResourceLocation[] {
 			new ResourceLocation(Technologica.MODID, "textures/entity/boat/apricot.png"),
 			new ResourceLocation(Technologica.MODID, "textures/entity/boat/aspen.png"),
@@ -57,18 +57,18 @@ public class VanillaBoatRenderer extends EntityRenderer<VanillaBoatEntity> {
 			new ResourceLocation(Technologica.MODID, "textures/entity/boat/fruitful.png"),
 			new ResourceLocation(Technologica.MODID, "textures/entity/boat/infernal.png"),
 			new ResourceLocation(Technologica.MODID, "textures/entity/boat/malevolent.png")};
-	private final Map<VanillaBoatEntity.Type, Pair<ResourceLocation, VanillaBoatModel>> boatResources;
+	private final Map<VanillaBoat.Type, Pair<ResourceLocation, VanillaBoatModel>> boatResources;
 	public VanillaBoatRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn);
 		this.shadowRadius = 0.8F;
-		this.boatResources = Stream.of(VanillaBoatEntity.Type.values()).collect(ImmutableMap.toImmutableMap((p_173938_) -> {
+		this.boatResources = Stream.of(VanillaBoat.Type.values()).collect(ImmutableMap.toImmutableMap((p_173938_) -> {
 	         return p_173938_;
 	      }, (p_173941_) -> {
 	         return Pair.of(new ResourceLocation("textures/entity/boat/" + p_173941_.getName() + ".png"), new VanillaBoatModel(renderManagerIn.bakeLayer(TechnologicaModelLayers.createBoatModelName(p_173941_))));
 	      }));
 	}
 
-	public void render(VanillaBoatEntity entityIn, float entityYaw, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn) {
+	public void render(VanillaBoat entityIn, float entityYaw, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn) {
 		matrixStackIn.pushPose();
 		matrixStackIn.translate(0.0D, 0.375D, 0.0D);
 		matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(180.0F - entityYaw));
@@ -110,7 +110,7 @@ public class VanillaBoatRenderer extends EntityRenderer<VanillaBoatEntity> {
 	/**
 	 * Returns the location of an entity's texture.
 	 */
-	public ResourceLocation getTextureLocation(VanillaBoatEntity entity) {
+	public ResourceLocation getTextureLocation(VanillaBoat entity) {
 		return BOAT_TEXTURES[entity.getVanillaBoatType().ordinal()];
 	}
 }

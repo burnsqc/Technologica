@@ -2,7 +2,8 @@ package com.technologica.listeners;
 
 import static com.technologica.Technologica.LOGGER;
 
-import com.technologica.world.item.ModSpawnEggItem;
+import java.util.ArrayList;
+import java.util.List;
 
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.sounds.SoundEvent;
@@ -16,11 +17,12 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 import net.minecraft.world.level.material.Fluid;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class RegistrationListener {
-
+	protected static final List<ForgeSpawnEggItem> UNADDED_EGGS = new ArrayList<>();
 	@SubscribeEvent
 	public static void onRegisterBlocks(final Register<Block> event) {
 		LOGGER.info("REGISTERING BLOCKS");
@@ -42,7 +44,6 @@ public class RegistrationListener {
 	@SubscribeEvent
 	public static void onRegisterEntities(final Register<EntityType<?>> event) {
 		LOGGER.info("REGISTERING ENTITIES");
-		ModSpawnEggItem.initSpawnEggs();
 		LOGGER.info(event.getRegistry().getEntries().size());
 	}
 	

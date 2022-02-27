@@ -2,7 +2,7 @@ package com.technologica.world.item;
 
 import java.util.function.Predicate;
 
-import com.technologica.world.entity.projectile.CoconutEntity;
+import com.technologica.world.entity.projectile.Coconut;
 
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -83,7 +83,7 @@ public class CoconutBazookaItem extends ProjectileWeaponItem implements Vanishab
 				Player player = (Player) entityIn;
 				
 				if (spacingTimer % 5 == 0 && remainingProjectiles > 0) {
-					CoconutEntity coconutEntity = new CoconutEntity(worldIn, player);
+					Coconut coconutEntity = new Coconut(worldIn, player);
 					coconutEntity.setItem(new ItemStack(TechnologicaItems.COCONUT.get()));
 					coconutEntity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 3.0F, 1.0F);
 					worldIn.addFreshEntity(coconutEntity);

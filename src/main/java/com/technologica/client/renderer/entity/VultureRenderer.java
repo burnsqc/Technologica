@@ -2,13 +2,13 @@ package com.technologica.client.renderer.entity;
 
 import com.technologica.Technologica;
 import com.technologica.client.model.VultureModel;
-import com.technologica.world.entity.animal.VultureEntity;
+import com.technologica.world.entity.animal.Vulture;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
-public final class VultureRenderer extends MobRenderer<VultureEntity, VultureModel<VultureEntity>> {
+public final class VultureRenderer extends MobRenderer<Vulture, VultureModel<Vulture>> {
 	private static final ResourceLocation VULTURE_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/vulture.png");
 
 	public VultureRenderer(EntityRendererProvider.Context renderManagerIn) {
@@ -16,7 +16,7 @@ public final class VultureRenderer extends MobRenderer<VultureEntity, VultureMod
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(VultureEntity entity) {
+	public ResourceLocation getTextureLocation(Vulture entity) {
 		return VULTURE_TEXTURE;
 	}
 }

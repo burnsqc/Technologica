@@ -9,7 +9,7 @@ import javax.annotation.Nullable;
 import com.google.common.collect.Lists;
 import com.mojang.math.Quaternion;
 import com.mojang.math.Vector3f;
-import com.technologica.world.entity.projectile.HarpoonEntity;
+import com.technologica.world.entity.projectile.Harpoon;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.nbt.CompoundTag;
@@ -189,7 +189,7 @@ public class SpearGunItem extends ProjectileWeaponItem implements Vanishable {
 	private static void fireProjectile(Level worldIn, LivingEntity livingEntityIn, InteractionHand handIn, ItemStack spearGunStackIn, ItemStack harpoonStackIn, float soundPitch, boolean isCreativeMode, float velocity, float inaccuracy, float projectileAngle) {
 		if (!worldIn.isClientSide) {
 			
-			HarpoonEntity harpoonEntity = new HarpoonEntity(worldIn, livingEntityIn);
+			Harpoon harpoonEntity = new Harpoon(worldIn, livingEntityIn);
 			harpoonEntity.shootFromRotation(livingEntityIn, livingEntityIn.getXRot(), livingEntityIn.getYRot(), 0.0F, velocity, 1.0F);
 
 			if (livingEntityIn instanceof CrossbowAttackMob) {

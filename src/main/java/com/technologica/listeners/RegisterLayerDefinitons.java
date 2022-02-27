@@ -36,7 +36,7 @@ import com.technologica.client.model.TurkeyModel;
 import com.technologica.client.model.VultureModel;
 import com.technologica.client.model.WalrusModel;
 import com.technologica.client.model.geom.TechnologicaModelLayers;
-import com.technologica.world.entity.vehicle.VanillaBoatEntity;
+import com.technologica.world.entity.vehicle.VanillaBoat;
 
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChickenModel;
@@ -93,7 +93,7 @@ public class RegisterLayerDefinitons {
 		event.registerLayerDefinition(TechnologicaModelLayers.PEEPER, () -> CreeperModel.createBodyLayer(CubeDeformation.NONE));
 		event.registerLayerDefinition(TechnologicaModelLayers.SWEEPER, () -> CreeperModel.createBodyLayer(CubeDeformation.NONE));
 		
-		for(VanillaBoatEntity.Type boat$type : VanillaBoatEntity.Type.values()) {
+		for(VanillaBoat.Type boat$type : VanillaBoat.Type.values()) {
 			event.registerLayerDefinition(TechnologicaModelLayers.createBoatModelName(boat$type), () -> BoatModel.createBodyModel());
 		}
 		

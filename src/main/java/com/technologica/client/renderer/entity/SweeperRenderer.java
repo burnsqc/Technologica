@@ -3,7 +3,7 @@ package com.technologica.client.renderer.entity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.technologica.Technologica;
 import com.technologica.client.model.geom.TechnologicaModelLayers;
-import com.technologica.world.entity.monster.SweeperEntity;
+import com.technologica.world.entity.monster.Sweeper;
 
 import net.minecraft.client.model.CreeperModel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -12,7 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.monster.Creeper;
 
-public class SweeperRenderer extends MobRenderer<SweeperEntity, CreeperModel<SweeperEntity>> {
+public class SweeperRenderer extends MobRenderer<Sweeper, CreeperModel<Sweeper>> {
 	private static final ResourceLocation SWEEPER_TEXTURES = new ResourceLocation(Technologica.MODID,
 			"textures/entity/sweeper.png");
 
@@ -39,7 +39,7 @@ public class SweeperRenderer extends MobRenderer<SweeperEntity, CreeperModel<Swe
 	/**
 	 * Returns the location of an entity's texture.
 	 */
-	public ResourceLocation getTextureLocation(SweeperEntity entity) {
+	public ResourceLocation getTextureLocation(Sweeper entity) {
 		return SWEEPER_TEXTURES;
 	}
 }

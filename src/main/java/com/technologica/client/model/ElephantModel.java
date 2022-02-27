@@ -1,6 +1,6 @@
 package com.technologica.client.model;
 
-import com.technologica.world.entity.animal.ElephantEntity;
+import com.technologica.world.entity.animal.Elephant;
 
 import net.minecraft.client.model.QuadrupedModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -11,7 +11,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 
-public class ElephantModel<T extends ElephantEntity> extends QuadrupedModel<T> {
+public class ElephantModel<T extends Elephant> extends QuadrupedModel<T> {
 
 	/*
 	private final ModelPart nose;

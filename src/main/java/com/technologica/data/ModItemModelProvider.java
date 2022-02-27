@@ -5,7 +5,6 @@ import java.util.function.Supplier;
 
 import com.technologica.Technologica;
 import com.technologica.util.text.ResourceLocationHelper;
-import com.technologica.world.item.ModSpawnEggItem;
 import com.technologica.world.item.TechnologicaItems;
 
 import net.minecraft.data.DataGenerator;
@@ -15,6 +14,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -33,7 +33,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 		for(Supplier<? extends Item> itemSupplier:collection) {
 			Item item = itemSupplier.get();
 				
-			if (item instanceof ModSpawnEggItem) simpleSpawnEggItem(item);
+			if (item instanceof ForgeSpawnEggItem) simpleSpawnEggItem(item);
 			else if (item instanceof ItemNameBlockItem) simpleItem(item);
 			else if (item instanceof BlockItem && ResourceLocationHelper.getPath(item).contains("_sapling")) simpleBlockItem(item);
 			else if (!(item instanceof BlockItem)) { 

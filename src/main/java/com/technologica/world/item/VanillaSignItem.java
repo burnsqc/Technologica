@@ -22,10 +22,10 @@ public class VanillaSignItem extends SignItem {
 	}
 
 	@Override
-	protected boolean updateCustomBlockEntityTag(BlockPos pos, Level worldIn, @Nullable Player playerIn, ItemStack stack, BlockState state) {
-		boolean flag = updateCustomBlockEntityTag(worldIn, playerIn, pos, stack);
-		
-		if (!worldIn.isClientSide && !flag && playerIn != null) {
+	protected boolean updateCustomBlockEntityTag(BlockPos pos, Level levelIn, @Nullable Player playerIn, ItemStack stack, BlockState state) {
+		boolean flag = updateCustomBlockEntityTag(levelIn, playerIn, pos, stack);
+
+		if (!levelIn.isClientSide && !flag && playerIn != null) {
 			ServerPlayer player = (ServerPlayer) playerIn;
 			Packets.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), new ClientboundOpenTechnologicaSignEditorPacket(pos));
 		}

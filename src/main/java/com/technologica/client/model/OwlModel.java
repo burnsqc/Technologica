@@ -3,7 +3,7 @@ package com.technologica.client.model;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.technologica.world.entity.animal.OwlEntity;
+import com.technologica.world.entity.animal.Owl;
 
 import net.minecraft.client.model.ListModel;
 import net.minecraft.client.model.QuadrupedModel;
@@ -16,7 +16,7 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
 
-public class OwlModel<T extends OwlEntity> extends ListModel<T> {
+public class OwlModel<T extends Owl> extends ListModel<T> {
 	/*
 	private final ModelPart body;
 	private final ModelPart tail;

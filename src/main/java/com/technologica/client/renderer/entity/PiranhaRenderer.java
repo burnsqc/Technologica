@@ -4,14 +4,14 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import com.technologica.Technologica;
 import com.technologica.client.model.PiranhaModel;
-import com.technologica.world.entity.animal.PiranhaEntity;
+import com.technologica.world.entity.animal.Piranha;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
-public final class PiranhaRenderer extends MobRenderer<PiranhaEntity, PiranhaModel<PiranhaEntity>> {
+public final class PiranhaRenderer extends MobRenderer<Piranha, PiranhaModel<Piranha>> {
 	private static final ResourceLocation PIRANHA_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/piranha.png");
 
 	public PiranhaRenderer(EntityRendererProvider.Context renderManagerIn) {
@@ -19,12 +19,12 @@ public final class PiranhaRenderer extends MobRenderer<PiranhaEntity, PiranhaMod
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(PiranhaEntity entity) {
+	public ResourceLocation getTextureLocation(Piranha entity) {
 		return PIRANHA_TEXTURE;
 	}
 
 	@Override
-	protected void setupRotations(PiranhaEntity entityLiving, PoseStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
+	protected void setupRotations(Piranha entityLiving, PoseStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
 		super.setupRotations(entityLiving, matrixStackIn, ageInTicks, rotationYaw, partialTicks);
 		float f = 1.0F;
 		float f1 = 1.0F;

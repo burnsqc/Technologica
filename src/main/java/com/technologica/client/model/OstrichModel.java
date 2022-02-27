@@ -1,7 +1,7 @@
 package com.technologica.client.model;
 
 import com.google.common.collect.ImmutableList;
-import com.technologica.world.entity.animal.OstrichEntity;
+import com.technologica.world.entity.animal.Ostrich;
 
 import net.minecraft.client.model.AgeableListModel;
 import net.minecraft.client.model.QuadrupedModel;

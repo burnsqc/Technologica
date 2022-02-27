@@ -2,7 +2,7 @@ package com.technologica.client.renderer.entity.layers;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.technologica.client.model.RaccoonModel;
-import com.technologica.world.entity.animal.RaccoonEntity;
+import com.technologica.world.entity.animal.Raccoon;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -13,12 +13,12 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import com.mojang.math.Vector3f;
 
-public class RaccoonHeldItemLayer extends RenderLayer<RaccoonEntity, RaccoonModel<RaccoonEntity>> {
-   public RaccoonHeldItemLayer(RenderLayerParent<RaccoonEntity, RaccoonModel<RaccoonEntity>> p_i50938_1_) {
+public class RaccoonHeldItemLayer extends RenderLayer<Raccoon, RaccoonModel<Raccoon>> {
+   public RaccoonHeldItemLayer(RenderLayerParent<Raccoon, RaccoonModel<Raccoon>> p_i50938_1_) {
       super(p_i50938_1_);
    }
 
-   public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, RaccoonEntity entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+   public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, Raccoon entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
       
       boolean flag1 = entitylivingbaseIn.isBaby();
       matrixStackIn.pushPose();

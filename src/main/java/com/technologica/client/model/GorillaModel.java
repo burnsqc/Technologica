@@ -1,6 +1,6 @@
 package com.technologica.client.model;
 
-import com.technologica.world.entity.animal.GorillaEntity;
+import com.technologica.world.entity.animal.Gorilla;
 
 import net.minecraft.client.model.QuadrupedModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -11,7 +11,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 
-public class GorillaModel<T extends GorillaEntity> extends QuadrupedModel<T> {
+public class GorillaModel<T extends Gorilla> extends QuadrupedModel<T> {
 	//private final ModelPart neck;
 	//private final ModelPart nose;
 	

@@ -2,7 +2,7 @@ package com.technologica.world.entity.ai;
 
 import java.util.EnumSet;
 
-import com.technologica.world.entity.animal.RaccoonEntity;
+import com.technologica.world.entity.animal.Raccoon;
 
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.ai.goal.Goal;
@@ -45,14 +45,14 @@ public class BegGoal extends Goal {
 	}
 
 	public void start() {
-		if (animal instanceof RaccoonEntity) {
-			((RaccoonEntity) animal).setBegging(true);
+		if (animal instanceof Raccoon) {
+			((Raccoon) animal).setBegging(true);
 		}
 	}
 
 	public void stop() {
-		if (animal instanceof RaccoonEntity) {
-			((RaccoonEntity) animal).setBegging(false);
+		if (animal instanceof Raccoon) {
+			((Raccoon) animal).setBegging(false);
 			this.player = null;
 		}
 	}

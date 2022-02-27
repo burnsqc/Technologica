@@ -3,7 +3,7 @@ package com.technologica.client.model.geom;
 import java.util.Set;
 
 import com.google.common.collect.Sets;
-import com.technologica.world.entity.vehicle.VanillaBoatEntity;
+import com.technologica.world.entity.vehicle.VanillaBoat;
 
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.resources.ResourceLocation;
@@ -70,7 +70,7 @@ public class TechnologicaModelLayers {
 		return new ModelLayerLocation(new ResourceLocation("technologica", p_171301_), p_171302_);
 	}
 
-	public static ModelLayerLocation createBoatModelName(VanillaBoatEntity.Type p_171290_) {
+	public static ModelLayerLocation createBoatModelName(VanillaBoat.Type p_171290_) {
 		return createLocation("boat/" + p_171290_.getName(), "main");
 	}
 

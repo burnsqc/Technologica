@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.apache.commons.lang3.tuple.Pair;
 
-import com.technologica.world.entity.decoration.InvisibleSeatEntity;
+import com.technologica.world.entity.decoration.InvisibleSeat;
 
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.resources.ResourceLocation;
@@ -13,7 +13,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 
 public class EntityUtil {
-	private static final Map<ResourceLocation, Map<BlockPos, Pair<InvisibleSeatEntity, BlockPos>>> OCCUPIED = new HashMap<>();
+	private static final Map<ResourceLocation, Map<BlockPos, Pair<InvisibleSeat, BlockPos>>> OCCUPIED = new HashMap<>();
 
 	public static boolean removeInvisibleSeatEntity(Level world, BlockPos pos) {
 		if (!world.isClientSide) {
@@ -28,12 +28,12 @@ public class EntityUtil {
 		return false;
 	}
 
-	public static BlockPos getPreviousPlayerPosition(Player player, InvisibleSeatEntity sitEntity) {
+	public static BlockPos getPreviousPlayerPosition(Player player, InvisibleSeat sitEntity) {
 		if (!player.level.isClientSide) {
 			ResourceLocation id = getDimensionTypeId(player.level);
 
 			if (OCCUPIED.containsKey(id)) {
-				for (Pair<InvisibleSeatEntity, BlockPos> pair : OCCUPIED.get(id).values()) {
+				for (Pair<InvisibleSeat, BlockPos> pair : OCCUPIED.get(id).values()) {
 					if (pair.getLeft() == sitEntity)
 						return pair.getRight();
 				}

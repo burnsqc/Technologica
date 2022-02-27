@@ -3,7 +3,7 @@ package com.technologica.client.renderer.entity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.technologica.Technologica;
 import com.technologica.client.model.geom.TechnologicaModelLayers;
-import com.technologica.world.entity.monster.PeeperEntity;
+import com.technologica.world.entity.monster.Peeper;
 
 import net.minecraft.client.model.CreeperModel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -12,7 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.monster.Creeper;
 
-public class PeeperRenderer extends MobRenderer<PeeperEntity, CreeperModel<PeeperEntity>> {
+public class PeeperRenderer extends MobRenderer<Peeper, CreeperModel<Peeper>> {
 	private static final ResourceLocation PEEPER_TEXTURES = new ResourceLocation(Technologica.MODID,
 			"textures/entity/peeper.png");
 
@@ -39,7 +39,7 @@ public class PeeperRenderer extends MobRenderer<PeeperEntity, CreeperModel<Peepe
 	/**
 	 * Returns the location of an entity's texture.
 	 */
-	public ResourceLocation getTextureLocation(PeeperEntity entity) {
+	public ResourceLocation getTextureLocation(Peeper entity) {
 		return PEEPER_TEXTURES;
 	}
 }

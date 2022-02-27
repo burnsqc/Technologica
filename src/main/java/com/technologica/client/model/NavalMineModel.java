@@ -1,12 +1,12 @@
 package com.technologica.client.model;
 
 import com.google.common.collect.ImmutableList;
-import com.technologica.world.entity.item.NavalMineEntity;
+import com.technologica.world.entity.item.NavalMine;
 
 import net.minecraft.client.model.ListModel;
 import net.minecraft.client.model.geom.ModelPart;
 
-public class NavalMineModel extends ListModel<NavalMineEntity> {
+public class NavalMineModel extends ListModel<NavalMine> {
 	/*
 	private final ModelPart body1;
 	private final ModelPart body2;
@@ -112,7 +112,7 @@ public class NavalMineModel extends ListModel<NavalMineEntity> {
 	}
 
 	@Override
-	public void setupAnim(NavalMineEntity p_102618_, float p_102619_, float p_102620_, float p_102621_, float p_102622_,
+	public void setupAnim(NavalMine p_102618_, float p_102619_, float p_102620_, float p_102621_, float p_102622_,
 			float p_102623_) {
 		// TODO Auto-generated method stub
 		

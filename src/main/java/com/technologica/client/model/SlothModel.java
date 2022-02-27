@@ -1,6 +1,6 @@
 package com.technologica.client.model;
 
-import com.technologica.world.entity.animal.SlothEntity;
+import com.technologica.world.entity.animal.Sloth;
 
 import net.minecraft.client.model.QuadrupedModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -12,7 +12,7 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
 
-public class SlothModel<T extends SlothEntity> extends QuadrupedModel<T> {
+public class SlothModel<T extends Sloth> extends QuadrupedModel<T> {
 	/*
 	private final ModelPart legBackRightLower;
 	private final ModelPart legBackLeftLower;

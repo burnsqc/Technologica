@@ -10,45 +10,45 @@ import com.technologica.world.entity.animal.Camel;
 import com.technologica.world.entity.animal.Cobra;
 import com.technologica.world.entity.animal.Cottonmouth;
 import com.technologica.world.entity.animal.Coyote;
-import com.technologica.world.entity.animal.CrabEntity;
-import com.technologica.world.entity.animal.DeerEntity;
-import com.technologica.world.entity.animal.DuckEntity;
-import com.technologica.world.entity.animal.ElephantEntity;
-import com.technologica.world.entity.animal.FlamingoEntity;
-import com.technologica.world.entity.animal.FrogEntity;
-import com.technologica.world.entity.animal.GiraffeEntity;
-import com.technologica.world.entity.animal.GorillaEntity;
-import com.technologica.world.entity.animal.GrizzlyBearEntity;
-import com.technologica.world.entity.animal.JaguarEntity;
-import com.technologica.world.entity.animal.KingCrabEntity;
-import com.technologica.world.entity.animal.LeopardSealEntity;
-import com.technologica.world.entity.animal.LionEntity;
-import com.technologica.world.entity.animal.LizardEntity;
-import com.technologica.world.entity.animal.MooseEntity;
-import com.technologica.world.entity.animal.NarwhalEntity;
-import com.technologica.world.entity.animal.OctopusEntity;
-import com.technologica.world.entity.animal.OstrichEntity;
-import com.technologica.world.entity.animal.OwlEntity;
-import com.technologica.world.entity.animal.PenguinEntity;
-import com.technologica.world.entity.animal.PiranhaEntity;
-import com.technologica.world.entity.animal.PoisonDartFrogEntity;
-import com.technologica.world.entity.animal.RaccoonEntity;
-import com.technologica.world.entity.animal.ScorpionEntity;
-import com.technologica.world.entity.animal.SharkEntity;
-import com.technologica.world.entity.animal.SlothEntity;
-import com.technologica.world.entity.animal.StingrayEntity;
-import com.technologica.world.entity.animal.TurkeyEntity;
-import com.technologica.world.entity.animal.VultureEntity;
-import com.technologica.world.entity.animal.WalrusEntity;
-import com.technologica.world.entity.animal.ZebraEntity;
-import com.technologica.world.entity.decoration.InvisibleSeatEntity;
-import com.technologica.world.entity.item.NavalMineEntity;
-import com.technologica.world.entity.monster.PeeperEntity;
-import com.technologica.world.entity.monster.SweeperEntity;
-import com.technologica.world.entity.projectile.CoconutEntity;
-import com.technologica.world.entity.projectile.DodgeballEntity;
-import com.technologica.world.entity.projectile.HarpoonEntity;
-import com.technologica.world.entity.vehicle.VanillaBoatEntity;
+import com.technologica.world.entity.animal.Crab;
+import com.technologica.world.entity.animal.Deer;
+import com.technologica.world.entity.animal.Duck;
+import com.technologica.world.entity.animal.Elephant;
+import com.technologica.world.entity.animal.Flamingo;
+import com.technologica.world.entity.animal.Frog;
+import com.technologica.world.entity.animal.Giraffe;
+import com.technologica.world.entity.animal.Gorilla;
+import com.technologica.world.entity.animal.GrizzlyBear;
+import com.technologica.world.entity.animal.Jaguar;
+import com.technologica.world.entity.animal.KingCrab;
+import com.technologica.world.entity.animal.LeopardSeal;
+import com.technologica.world.entity.animal.Lion;
+import com.technologica.world.entity.animal.Lizard;
+import com.technologica.world.entity.animal.Moose;
+import com.technologica.world.entity.animal.Narwhal;
+import com.technologica.world.entity.animal.Octopus;
+import com.technologica.world.entity.animal.Ostrich;
+import com.technologica.world.entity.animal.Owl;
+import com.technologica.world.entity.animal.Penguin;
+import com.technologica.world.entity.animal.Piranha;
+import com.technologica.world.entity.animal.PoisonDartFrog;
+import com.technologica.world.entity.animal.Raccoon;
+import com.technologica.world.entity.animal.Scorpion;
+import com.technologica.world.entity.animal.Shark;
+import com.technologica.world.entity.animal.Sloth;
+import com.technologica.world.entity.animal.Stingray;
+import com.technologica.world.entity.animal.Turkey;
+import com.technologica.world.entity.animal.Vulture;
+import com.technologica.world.entity.animal.Walrus;
+import com.technologica.world.entity.animal.Zebra;
+import com.technologica.world.entity.decoration.InvisibleSeat;
+import com.technologica.world.entity.item.NavalMine;
+import com.technologica.world.entity.monster.Peeper;
+import com.technologica.world.entity.monster.Sweeper;
+import com.technologica.world.entity.projectile.Coconut;
+import com.technologica.world.entity.projectile.Dodgeball;
+import com.technologica.world.entity.projectile.Harpoon;
+import com.technologica.world.entity.vehicle.VanillaBoat;
 
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -77,63 +77,63 @@ public class TechnologicaEntityType {
 	public static final RegistryObject<EntityType<Cobra>> COBRA = ENTITIES.register("cobra", () -> EntityType.Builder.<Cobra>of(Cobra::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("cobra"));
 	public static final RegistryObject<EntityType<Cottonmouth>> COTTONMOUTH = ENTITIES.register("cottonmouth", () -> EntityType.Builder.<Cottonmouth>of(Cottonmouth::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("cottonmouth"));
 	public static final RegistryObject<EntityType<Coyote>> COYOTE = ENTITIES.register("coyote", () -> EntityType.Builder.<Coyote>of(Coyote::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("coyote"));
-	public static final RegistryObject<EntityType<CrabEntity>> CRAB = ENTITIES.register("crab", () -> EntityType.Builder.<CrabEntity>of(CrabEntity::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("crab"));
-	public static final RegistryObject<EntityType<DeerEntity>> DEER = ENTITIES.register("deer", () -> EntityType.Builder.<DeerEntity>of(DeerEntity::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("deer"));
-	public static final RegistryObject<EntityType<DuckEntity>> DUCK = ENTITIES.register("duck", () -> EntityType.Builder.<DuckEntity>of(DuckEntity::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("duck"));
-	public static final RegistryObject<EntityType<ElephantEntity>> ELEPHANT = ENTITIES.register("elephant", () -> EntityType.Builder.<ElephantEntity>of(ElephantEntity::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("elephant"));
-	public static final RegistryObject<EntityType<FlamingoEntity>> FLAMINGO = ENTITIES.register("flamingo", () -> EntityType.Builder.<FlamingoEntity>of(FlamingoEntity::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("flamingo"));
-	public static final RegistryObject<EntityType<FrogEntity>> FROG = ENTITIES.register("frog", () -> EntityType.Builder.<FrogEntity>of(FrogEntity::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("frog"));
-	public static final RegistryObject<EntityType<GiraffeEntity>> GIRAFFE = ENTITIES.register("giraffe", () -> EntityType.Builder.<GiraffeEntity>of(GiraffeEntity::new, MobCategory.CREATURE).sized(1.4F, 3.0F).clientTrackingRange(20).build("giraffe"));
-	public static final RegistryObject<EntityType<GorillaEntity>> GORILLA = ENTITIES.register("gorilla", () -> EntityType.Builder.<GorillaEntity>of(GorillaEntity::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("gorilla"));
-	public static final RegistryObject<EntityType<GrizzlyBearEntity>> GRIZZLY_BEAR = ENTITIES.register("grizzly_bear", () -> EntityType.Builder.<GrizzlyBearEntity>of(GrizzlyBearEntity::new, MobCategory.CREATURE).sized(1.4F, 1.4F).clientTrackingRange(10).build("grizzly_bear"));
-	public static final RegistryObject<EntityType<JaguarEntity>> JAGUAR = ENTITIES.register("jaguar", () -> EntityType.Builder.<JaguarEntity>of(JaguarEntity::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("jaguar"));
-	public static final RegistryObject<EntityType<KingCrabEntity>> KING_CRAB = ENTITIES.register("king_crab", () -> EntityType.Builder.<KingCrabEntity>of(KingCrabEntity::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("king_crab"));
-	public static final RegistryObject<EntityType<LeopardSealEntity>> LEOPARD_SEAL = ENTITIES.register("leopard_seal", () -> EntityType.Builder.<LeopardSealEntity>of(LeopardSealEntity::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("leopard_seal"));
-	public static final RegistryObject<EntityType<LionEntity>> LION = ENTITIES.register("lion", () -> EntityType.Builder.<LionEntity>of(LionEntity::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("lion"));
-	public static final RegistryObject<EntityType<LizardEntity>> LIZARD = ENTITIES.register("lizard", () -> EntityType.Builder.<LizardEntity>of(LizardEntity::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("lizard"));
-	public static final RegistryObject<EntityType<MooseEntity>> MOOSE = ENTITIES.register("moose", () -> EntityType.Builder.<MooseEntity>of(MooseEntity::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("moose"));
-	public static final RegistryObject<EntityType<NarwhalEntity>> NARWHAL = ENTITIES.register("narwhal", () -> EntityType.Builder.<NarwhalEntity>of(NarwhalEntity::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("narwhal"));
-	public static final RegistryObject<EntityType<OctopusEntity>> OCTOPUS = ENTITIES.register("octopus", () -> EntityType.Builder.<OctopusEntity>of(OctopusEntity::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("octopus"));
-	public static final RegistryObject<EntityType<OstrichEntity>> OSTRICH = ENTITIES.register("ostrich", () -> EntityType.Builder.<OstrichEntity>of(OstrichEntity::new, MobCategory.CREATURE).sized(1.0F, 1.8F).clientTrackingRange(10).build("ostrich"));
-	public static final RegistryObject<EntityType<OwlEntity>> OWL = ENTITIES.register("owl", () -> EntityType.Builder.<OwlEntity>of(OwlEntity::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("owl"));
-	public static final RegistryObject<EntityType<PenguinEntity>> PENGUIN = ENTITIES.register("penguin", () -> EntityType.Builder.<PenguinEntity>of(PenguinEntity::new, MobCategory.CREATURE).sized(1.0F, 1.625F).clientTrackingRange(10).build("penguin"));
-	public static final RegistryObject<EntityType<PiranhaEntity>> PIRANHA = ENTITIES.register("piranha", () -> EntityType.Builder.<PiranhaEntity>of(PiranhaEntity::new, MobCategory.WATER_AMBIENT).sized(0.5F, 0.4F).clientTrackingRange(10).build("piranha"));
-	public static final RegistryObject<EntityType<PoisonDartFrogEntity>> POISON_DART_FROG = ENTITIES.register("poison_dart_frog", () -> EntityType.Builder.<PoisonDartFrogEntity>of(PoisonDartFrogEntity::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("poison_dart_frog"));
-	public static final RegistryObject<EntityType<RaccoonEntity>> RACCOON = ENTITIES.register("raccoon", () -> EntityType.Builder.<RaccoonEntity>of(RaccoonEntity::new, MobCategory.CREATURE).sized(0.8F, 0.8F).clientTrackingRange(10).build("raccoon"));
-    public static final RegistryObject<EntityType<ScorpionEntity>> SCORPION = ENTITIES.register("scorpion", () -> EntityType.Builder.<ScorpionEntity>of(ScorpionEntity::new, MobCategory.CREATURE).sized(0.9F, 1.0F).clientTrackingRange(10).build("scorpion"));
-    public static final RegistryObject<EntityType<SharkEntity>> SHARK = ENTITIES.register("shark", () -> EntityType.Builder.<SharkEntity>of(SharkEntity::new, MobCategory.CREATURE).sized(0.9F, 0.6F).clientTrackingRange(10).build("shark"));
-    public static final RegistryObject<EntityType<SlothEntity>> SLOTH = ENTITIES.register("sloth", () -> EntityType.Builder.<SlothEntity>of(SlothEntity::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("sloth"));
-    public static final RegistryObject<EntityType<StingrayEntity>> STINGRAY = ENTITIES.register("stingray", () -> EntityType.Builder.<StingrayEntity>of(StingrayEntity::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("stingray"));
-    public static final RegistryObject<EntityType<TurkeyEntity>> TURKEY = ENTITIES.register("turkey", () -> EntityType.Builder.<TurkeyEntity>of(TurkeyEntity::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("turkey"));
-    public static final RegistryObject<EntityType<VultureEntity>> VULTURE = ENTITIES.register("vulture", () -> EntityType.Builder.<VultureEntity>of(VultureEntity::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("vulture"));
-    public static final RegistryObject<EntityType<WalrusEntity>> WALRUS = ENTITIES.register("walrus", () -> EntityType.Builder.<WalrusEntity>of(WalrusEntity::new, MobCategory.CREATURE).sized(1.4F, 1.4F).clientTrackingRange(10).build("walrus"));
-    public static final RegistryObject<EntityType<ZebraEntity>> ZEBRA = ENTITIES.register("zebra", () -> EntityType.Builder.<ZebraEntity>of(ZebraEntity::new, MobCategory.CREATURE).sized(1.3964844F, 1.6F).clientTrackingRange(10).build("zebra"));
+	public static final RegistryObject<EntityType<Crab>> CRAB = ENTITIES.register("crab", () -> EntityType.Builder.<Crab>of(Crab::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("crab"));
+	public static final RegistryObject<EntityType<Deer>> DEER = ENTITIES.register("deer", () -> EntityType.Builder.<Deer>of(Deer::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("deer"));
+	public static final RegistryObject<EntityType<Duck>> DUCK = ENTITIES.register("duck", () -> EntityType.Builder.<Duck>of(Duck::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("duck"));
+	public static final RegistryObject<EntityType<Elephant>> ELEPHANT = ENTITIES.register("elephant", () -> EntityType.Builder.<Elephant>of(Elephant::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("elephant"));
+	public static final RegistryObject<EntityType<Flamingo>> FLAMINGO = ENTITIES.register("flamingo", () -> EntityType.Builder.<Flamingo>of(Flamingo::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("flamingo"));
+	public static final RegistryObject<EntityType<Frog>> FROG = ENTITIES.register("frog", () -> EntityType.Builder.<Frog>of(Frog::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("frog"));
+	public static final RegistryObject<EntityType<Giraffe>> GIRAFFE = ENTITIES.register("giraffe", () -> EntityType.Builder.<Giraffe>of(Giraffe::new, MobCategory.CREATURE).sized(1.4F, 3.0F).clientTrackingRange(20).build("giraffe"));
+	public static final RegistryObject<EntityType<Gorilla>> GORILLA = ENTITIES.register("gorilla", () -> EntityType.Builder.<Gorilla>of(Gorilla::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("gorilla"));
+	public static final RegistryObject<EntityType<GrizzlyBear>> GRIZZLY_BEAR = ENTITIES.register("grizzly_bear", () -> EntityType.Builder.<GrizzlyBear>of(GrizzlyBear::new, MobCategory.CREATURE).sized(1.4F, 1.4F).clientTrackingRange(10).build("grizzly_bear"));
+	public static final RegistryObject<EntityType<Jaguar>> JAGUAR = ENTITIES.register("jaguar", () -> EntityType.Builder.<Jaguar>of(Jaguar::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("jaguar"));
+	public static final RegistryObject<EntityType<KingCrab>> KING_CRAB = ENTITIES.register("king_crab", () -> EntityType.Builder.<KingCrab>of(KingCrab::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("king_crab"));
+	public static final RegistryObject<EntityType<LeopardSeal>> LEOPARD_SEAL = ENTITIES.register("leopard_seal", () -> EntityType.Builder.<LeopardSeal>of(LeopardSeal::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("leopard_seal"));
+	public static final RegistryObject<EntityType<Lion>> LION = ENTITIES.register("lion", () -> EntityType.Builder.<Lion>of(Lion::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("lion"));
+	public static final RegistryObject<EntityType<Lizard>> LIZARD = ENTITIES.register("lizard", () -> EntityType.Builder.<Lizard>of(Lizard::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("lizard"));
+	public static final RegistryObject<EntityType<Moose>> MOOSE = ENTITIES.register("moose", () -> EntityType.Builder.<Moose>of(Moose::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("moose"));
+	public static final RegistryObject<EntityType<Narwhal>> NARWHAL = ENTITIES.register("narwhal", () -> EntityType.Builder.<Narwhal>of(Narwhal::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("narwhal"));
+	public static final RegistryObject<EntityType<Octopus>> OCTOPUS = ENTITIES.register("octopus", () -> EntityType.Builder.<Octopus>of(Octopus::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("octopus"));
+	public static final RegistryObject<EntityType<Ostrich>> OSTRICH = ENTITIES.register("ostrich", () -> EntityType.Builder.<Ostrich>of(Ostrich::new, MobCategory.CREATURE).sized(1.0F, 1.8F).clientTrackingRange(10).build("ostrich"));
+	public static final RegistryObject<EntityType<Owl>> OWL = ENTITIES.register("owl", () -> EntityType.Builder.<Owl>of(Owl::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("owl"));
+	public static final RegistryObject<EntityType<Penguin>> PENGUIN = ENTITIES.register("penguin", () -> EntityType.Builder.<Penguin>of(Penguin::new, MobCategory.CREATURE).sized(1.0F, 1.625F).clientTrackingRange(10).build("penguin"));
+	public static final RegistryObject<EntityType<Piranha>> PIRANHA = ENTITIES.register("piranha", () -> EntityType.Builder.<Piranha>of(Piranha::new, MobCategory.WATER_AMBIENT).sized(0.5F, 0.4F).clientTrackingRange(10).build("piranha"));
+	public static final RegistryObject<EntityType<PoisonDartFrog>> POISON_DART_FROG = ENTITIES.register("poison_dart_frog", () -> EntityType.Builder.<PoisonDartFrog>of(PoisonDartFrog::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("poison_dart_frog"));
+	public static final RegistryObject<EntityType<Raccoon>> RACCOON = ENTITIES.register("raccoon", () -> EntityType.Builder.<Raccoon>of(Raccoon::new, MobCategory.CREATURE).sized(0.8F, 0.8F).clientTrackingRange(10).build("raccoon"));
+    public static final RegistryObject<EntityType<Scorpion>> SCORPION = ENTITIES.register("scorpion", () -> EntityType.Builder.<Scorpion>of(Scorpion::new, MobCategory.CREATURE).sized(0.9F, 1.0F).clientTrackingRange(10).build("scorpion"));
+    public static final RegistryObject<EntityType<Shark>> SHARK = ENTITIES.register("shark", () -> EntityType.Builder.<Shark>of(Shark::new, MobCategory.CREATURE).sized(0.9F, 0.6F).clientTrackingRange(10).build("shark"));
+    public static final RegistryObject<EntityType<Sloth>> SLOTH = ENTITIES.register("sloth", () -> EntityType.Builder.<Sloth>of(Sloth::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("sloth"));
+    public static final RegistryObject<EntityType<Stingray>> STINGRAY = ENTITIES.register("stingray", () -> EntityType.Builder.<Stingray>of(Stingray::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("stingray"));
+    public static final RegistryObject<EntityType<Turkey>> TURKEY = ENTITIES.register("turkey", () -> EntityType.Builder.<Turkey>of(Turkey::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("turkey"));
+    public static final RegistryObject<EntityType<Vulture>> VULTURE = ENTITIES.register("vulture", () -> EntityType.Builder.<Vulture>of(Vulture::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("vulture"));
+    public static final RegistryObject<EntityType<Walrus>> WALRUS = ENTITIES.register("walrus", () -> EntityType.Builder.<Walrus>of(Walrus::new, MobCategory.CREATURE).sized(1.4F, 1.4F).clientTrackingRange(10).build("walrus"));
+    public static final RegistryObject<EntityType<Zebra>> ZEBRA = ENTITIES.register("zebra", () -> EntityType.Builder.<Zebra>of(Zebra::new, MobCategory.CREATURE).sized(1.3964844F, 1.6F).clientTrackingRange(10).build("zebra"));
 	
     /*
 	 * MONSTERS
 	 */
     
-    public static final RegistryObject<EntityType<PeeperEntity>> PEEPER = ENTITIES.register("peeper", () -> EntityType.Builder.<PeeperEntity>of(PeeperEntity::new, MobCategory.MONSTER).sized(0.6F, 1.7F).clientTrackingRange(16).build("peeper"));
-    public static final RegistryObject<EntityType<SweeperEntity>> SWEEPER = ENTITIES.register("sweeper", () -> EntityType.Builder.<SweeperEntity>of(SweeperEntity::new, MobCategory.MONSTER).sized(0.6F, 1.7F).clientTrackingRange(8).build("sweeper"));
+    public static final RegistryObject<EntityType<Peeper>> PEEPER = ENTITIES.register("peeper", () -> EntityType.Builder.<Peeper>of(Peeper::new, MobCategory.MONSTER).sized(0.6F, 1.7F).clientTrackingRange(16).build("peeper"));
+    public static final RegistryObject<EntityType<Sweeper>> SWEEPER = ENTITIES.register("sweeper", () -> EntityType.Builder.<Sweeper>of(Sweeper::new, MobCategory.MONSTER).sized(0.6F, 1.7F).clientTrackingRange(8).build("sweeper"));
     
     /*
 	 * VEHICLES
 	 */
     
-    public static final RegistryObject<EntityType<VanillaBoatEntity>> MOD_BOAT = ENTITIES.register("mod_boat", () -> EntityType.Builder.<VanillaBoatEntity>of(VanillaBoatEntity::new, MobCategory.MISC).sized(1.375F, 0.5625F).setCustomClientFactory((spawnEntity, world) -> new VanillaBoatEntity(world, 0, 0, 0)).clientTrackingRange(10).build("mod_boat"));
+    public static final RegistryObject<EntityType<VanillaBoat>> MOD_BOAT = ENTITIES.register("mod_boat", () -> EntityType.Builder.<VanillaBoat>of(VanillaBoat::new, MobCategory.MISC).sized(1.375F, 0.5625F).setCustomClientFactory((spawnEntity, world) -> new VanillaBoat(world, 0, 0, 0)).clientTrackingRange(10).build("mod_boat"));
     
     /*
      * PROJECTILES
      */
     
-    public static final RegistryObject<EntityType<CoconutEntity>> COCONUT = ENTITIES.register("coconut", () -> EntityType.Builder.<CoconutEntity>of(CoconutEntity::new, MobCategory.MISC).sized(0.25F, 0.25F).setCustomClientFactory((spawnEntity, world) -> new CoconutEntity(world, 0, 0, 0)).clientTrackingRange(4).updateInterval(10).build("coconut"));
-    public static final RegistryObject<EntityType<DodgeballEntity>> DODGEBALL = ENTITIES.register("dodgeball", () -> EntityType.Builder.<DodgeballEntity>of(DodgeballEntity::new, MobCategory.MISC).sized(0.25F, 0.25F).setCustomClientFactory((spawnEntity, world) -> new DodgeballEntity(world, 0, 0, 0)).clientTrackingRange(4).updateInterval(10).build("dodgeball"));
-    public static final RegistryObject<EntityType<HarpoonEntity>> HARPOON = ENTITIES.register("harpoon", () -> EntityType.Builder.<HarpoonEntity>of(HarpoonEntity::new, MobCategory.MISC).sized(0.5F, 0.5F).setCustomClientFactory((spawnEntity, world) -> new HarpoonEntity(world, 0, 0, 0)).clientTrackingRange(4).updateInterval(20).build("harpoon"));
+    public static final RegistryObject<EntityType<Coconut>> COCONUT = ENTITIES.register("coconut", () -> EntityType.Builder.<Coconut>of(Coconut::new, MobCategory.MISC).sized(0.25F, 0.25F).setCustomClientFactory((spawnEntity, world) -> new Coconut(world, 0, 0, 0)).clientTrackingRange(4).updateInterval(10).build("coconut"));
+    public static final RegistryObject<EntityType<Dodgeball>> DODGEBALL = ENTITIES.register("dodgeball", () -> EntityType.Builder.<Dodgeball>of(Dodgeball::new, MobCategory.MISC).sized(0.25F, 0.25F).setCustomClientFactory((spawnEntity, world) -> new Dodgeball(world, 0, 0, 0)).clientTrackingRange(4).updateInterval(10).build("dodgeball"));
+    public static final RegistryObject<EntityType<Harpoon>> HARPOON = ENTITIES.register("harpoon", () -> EntityType.Builder.<Harpoon>of(Harpoon::new, MobCategory.MISC).sized(0.5F, 0.5F).setCustomClientFactory((spawnEntity, world) -> new Harpoon(world, 0, 0, 0)).clientTrackingRange(4).updateInterval(20).build("harpoon"));
     
     /*
 	 * OTHER
 	 */
     
-    public static final RegistryObject<EntityType<InvisibleSeatEntity>> INVISIBLE_SEAT = ENTITIES.register("invisible_seat", () -> EntityType.Builder.<InvisibleSeatEntity>of(InvisibleSeatEntity::new, MobCategory.MISC).sized(0.1F, 0.1F).setCustomClientFactory((spawnEntity, world) -> new InvisibleSeatEntity(world, 0, 0, 0)).clientTrackingRange(10).build("invisible_seat_entity"));
-    public static final RegistryObject<EntityType<NavalMineEntity>> NAVAL_MINE = ENTITIES.register("naval_mine", () -> EntityType.Builder.<NavalMineEntity>of(NavalMineEntity::new, MobCategory.MISC).sized(2.0F, 2.0F).setCustomClientFactory((spawnEntity, world) -> new NavalMineEntity(world, 0, 0, 0)).clientTrackingRange(10).build("naval_mine_entity"));
+    public static final RegistryObject<EntityType<InvisibleSeat>> INVISIBLE_SEAT = ENTITIES.register("invisible_seat", () -> EntityType.Builder.<InvisibleSeat>of(InvisibleSeat::new, MobCategory.MISC).sized(0.1F, 0.1F).setCustomClientFactory((spawnEntity, world) -> new InvisibleSeat(world, 0, 0, 0)).clientTrackingRange(10).build("invisible_seat_entity"));
+    public static final RegistryObject<EntityType<NavalMine>> NAVAL_MINE = ENTITIES.register("naval_mine", () -> EntityType.Builder.<NavalMine>of(NavalMine::new, MobCategory.MISC).sized(2.0F, 2.0F).setCustomClientFactory((spawnEntity, world) -> new NavalMine(world, 0, 0, 0)).clientTrackingRange(10).build("naval_mine_entity"));
 }

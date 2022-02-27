@@ -1,6 +1,6 @@
 package com.technologica.client.model;
 
-import com.technologica.world.entity.animal.LizardEntity;
+import com.technologica.world.entity.animal.Lizard;
 
 import net.minecraft.client.model.QuadrupedModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -11,7 +11,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 
-public class LizardModel<T extends LizardEntity> extends QuadrupedModel<T> {
+public class LizardModel<T extends Lizard> extends QuadrupedModel<T> {
 	/*
 	private final ModelPart frillLeft;
 	private final ModelPart frillRight;

@@ -1,7 +1,7 @@
 package com.technologica.client.model;
 
 import com.google.common.collect.ImmutableList;
-import com.technologica.world.entity.animal.JaguarEntity;
+import com.technologica.world.entity.animal.Jaguar;
 
 import net.minecraft.client.model.AgeableListModel;
 import net.minecraft.client.model.QuadrupedModel;
@@ -14,7 +14,7 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
 
-public class JaguarModel<T extends JaguarEntity> extends AgeableListModel<T> {
+public class JaguarModel<T extends Jaguar> extends AgeableListModel<T> {
 	/*
 	protected final ModelPart legBackLeft;
 	protected final ModelPart legBackRight;

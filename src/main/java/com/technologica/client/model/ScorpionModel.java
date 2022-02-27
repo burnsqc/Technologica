@@ -1,7 +1,7 @@
 package com.technologica.client.model;
 
 import com.google.common.collect.ImmutableList;
-import com.technologica.world.entity.animal.ScorpionEntity;
+import com.technologica.world.entity.animal.Scorpion;
 
 import net.minecraft.client.model.ListModel;
 import net.minecraft.client.model.QuadrupedModel;

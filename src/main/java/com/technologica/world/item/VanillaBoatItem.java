@@ -3,7 +3,7 @@ package com.technologica.world.item;
 import java.util.List;
 import java.util.function.Predicate;
 
-import com.technologica.world.entity.vehicle.VanillaBoatEntity;
+import com.technologica.world.entity.vehicle.VanillaBoat;
 
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -21,9 +21,9 @@ import net.minecraft.world.level.Level;
 
 public class VanillaBoatItem extends Item {
 	   private static final Predicate<Entity> ENTITY_PREDICATE = EntitySelector.NO_SPECTATORS.and(Entity::isPickable);
-	   private final VanillaBoatEntity.Type type;
+	   private final VanillaBoat.Type type;
 
-	   public VanillaBoatItem(VanillaBoatEntity.Type typeIn, Item.Properties properties) {
+	   public VanillaBoatItem(VanillaBoat.Type typeIn, Item.Properties properties) {
 	      super(properties);
 	      this.type = typeIn;
 	   }
@@ -48,7 +48,7 @@ public class VanillaBoatItem extends Item {
 	         }
 
 	         if (raytraceresult.getType() == HitResult.Type.BLOCK) {
-	            VanillaBoatEntity modBoatEntity = new VanillaBoatEntity(worldIn, raytraceresult.getLocation().x, raytraceresult.getLocation().y, raytraceresult.getLocation().z);
+	            VanillaBoat modBoatEntity = new VanillaBoat(worldIn, raytraceresult.getLocation().x, raytraceresult.getLocation().y, raytraceresult.getLocation().z);
 	            modBoatEntity.setBoatType(this.type);
 	            modBoatEntity.setYRot(playerIn.getYRot());
 	            if (!worldIn.noCollision(modBoatEntity, modBoatEntity.getBoundingBox().inflate(-0.1D))) {

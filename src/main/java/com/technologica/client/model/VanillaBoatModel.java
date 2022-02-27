@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableList.Builder;
-import com.technologica.world.entity.vehicle.VanillaBoatEntity;
+import com.technologica.world.entity.vehicle.VanillaBoat;
 
 import net.minecraft.client.model.ListModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -16,7 +16,7 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.vehicle.Boat;
 
-public class VanillaBoatModel extends ListModel<VanillaBoatEntity> {
+public class VanillaBoatModel extends ListModel<VanillaBoat> {
   
 	   private static final String LEFT_PADDLE = "left_paddle";
 	   private static final String RIGHT_PADDLE = "right_paddle";
@@ -61,7 +61,7 @@ public class VanillaBoatModel extends ListModel<VanillaBoatEntity> {
 	      return LayerDefinition.create(meshdefinition, 128, 64);
 	   }
 
-	   public void setupAnim(VanillaBoatEntity p_102269_, float p_102270_, float p_102271_, float p_102272_, float p_102273_, float p_102274_) {
+	   public void setupAnim(VanillaBoat p_102269_, float p_102270_, float p_102271_, float p_102272_, float p_102273_, float p_102274_) {
 	      animatePaddle(p_102269_, 0, this.leftPaddle, p_102270_);
 	      animatePaddle(p_102269_, 1, this.rightPaddle, p_102270_);
 	   }

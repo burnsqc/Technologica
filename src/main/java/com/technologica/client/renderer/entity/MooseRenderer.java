@@ -2,20 +2,20 @@ package com.technologica.client.renderer.entity;
 
 import com.technologica.Technologica;
 import com.technologica.client.model.MooseModel;
-import com.technologica.world.entity.animal.MooseEntity;
+import com.technologica.world.entity.animal.Moose;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
-public final class MooseRenderer extends MobRenderer<MooseEntity, MooseModel<MooseEntity>> {
+public final class MooseRenderer extends MobRenderer<Moose, MooseModel<Moose>> {
 	private static final ResourceLocation MOOSE_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/moose.png");
 
 	public MooseRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new MooseModel<>(), 1.1F);
 	}
 
-	public ResourceLocation getTextureLocation(MooseEntity entity) {
+	public ResourceLocation getTextureLocation(Moose entity) {
 		return MOOSE_TEXTURE;
 	}
 }

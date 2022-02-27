@@ -2,13 +2,13 @@ package com.technologica.client.renderer.entity;
 
 import com.technologica.Technologica;
 import com.technologica.client.model.StingrayModel;
-import com.technologica.world.entity.animal.StingrayEntity;
+import com.technologica.world.entity.animal.Stingray;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
-public final class StingrayRenderer extends MobRenderer<StingrayEntity, StingrayModel<StingrayEntity>> {
+public final class StingrayRenderer extends MobRenderer<Stingray, StingrayModel<Stingray>> {
 	private static final ResourceLocation STINGRAY_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/stingray.png");
 
 	public StingrayRenderer(EntityRendererProvider.Context renderManagerIn) {
@@ -16,7 +16,7 @@ public final class StingrayRenderer extends MobRenderer<StingrayEntity, Stingray
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(StingrayEntity entity) {
+	public ResourceLocation getTextureLocation(Stingray entity) {
 		return STINGRAY_TEXTURE;
 	}
 }

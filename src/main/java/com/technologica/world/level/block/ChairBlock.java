@@ -12,7 +12,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.phys.AABB;
 
-import com.technologica.world.entity.decoration.InvisibleSeatEntity;
+import com.technologica.world.entity.decoration.InvisibleSeat;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.BlockHitResult;
@@ -44,7 +44,7 @@ public class ChairBlock extends FourDirectionBlock {
 	@Override
 	public InteractionResult use(BlockState stateIn, Level worldIn, BlockPos posIn, Player playerIn, InteractionHand handIn, BlockHitResult hitIn) {
 		if (!worldIn.isClientSide) {
-			InvisibleSeatEntity seat = new InvisibleSeatEntity(worldIn, posIn.getX() + 0.5F, posIn.getY() + 0.35F, posIn.getZ() + 0.5F);
+			InvisibleSeat seat = new InvisibleSeat(worldIn, posIn.getX() + 0.5F, posIn.getY() + 0.35F, posIn.getZ() + 0.5F);
 			worldIn.addFreshEntity(seat);
 			playerIn.startRiding(seat);
 		}	
@@ -53,8 +53,8 @@ public class ChairBlock extends FourDirectionBlock {
 	
 	@Override
 	public void onRemove(BlockState stateIn, Level worldIn, BlockPos posIn, BlockState newStateIn, boolean isMovingIn) {
-		if (!worldIn.getEntitiesOfClass(InvisibleSeatEntity.class, new AABB(posIn)).isEmpty()) {
-			InvisibleSeatEntity seat = worldIn.getEntitiesOfClass(InvisibleSeatEntity.class, new AABB(posIn)).get(0);
+		if (!worldIn.getEntitiesOfClass(InvisibleSeat.class, new AABB(posIn)).isEmpty()) {
+			InvisibleSeat seat = worldIn.getEntitiesOfClass(InvisibleSeat.class, new AABB(posIn)).get(0);
 			seat.ejectPassengers();
 			seat.remove();
 		}

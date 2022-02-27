@@ -8,7 +8,7 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.sounds.SoundSource;
 
-import com.technologica.world.entity.projectile.DodgeballEntity;
+import com.technologica.world.entity.projectile.Dodgeball;
 
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.Level;
@@ -24,7 +24,7 @@ public class DodgeballItem extends Item {
 		worldIn.playSound((Player) null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.SNOWBALL_THROW, SoundSource.NEUTRAL, 0.5F, 0.4F / (worldIn.random.nextFloat() * 0.4F + 0.8F));
 		
 		if (!worldIn.isClientSide) {
-			DodgeballEntity dodgeballEntity = new DodgeballEntity(worldIn, playerIn);
+			Dodgeball dodgeballEntity = new Dodgeball(worldIn, playerIn);
 			dodgeballEntity.setItem(itemstack);
 			dodgeballEntity.shootFromRotation(playerIn, playerIn.getXRot(), playerIn.getYRot(), 0.0F, 2.5F, 0.0F);
 			worldIn.addFreshEntity(dodgeballEntity);

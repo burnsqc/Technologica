@@ -2,13 +2,13 @@ package com.technologica.client.renderer.entity;
 
 import com.technologica.Technologica;
 import com.technologica.client.model.OstrichModel;
-import com.technologica.world.entity.animal.OstrichEntity;
+import com.technologica.world.entity.animal.Ostrich;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
-public final class OstrichRenderer extends MobRenderer<OstrichEntity, OstrichModel<OstrichEntity>> {
+public final class OstrichRenderer extends MobRenderer<Ostrich, OstrichModel<Ostrich>> {
 	private static final ResourceLocation OSTRICH_TEXTURE = new ResourceLocation(Technologica.MODID,
 			"textures/entity/ostrich.png");
 
@@ -16,7 +16,7 @@ public final class OstrichRenderer extends MobRenderer<OstrichEntity, OstrichMod
 		super(renderManagerIn, new OstrichModel<>(), 1.0F);
 	}
 
-	public ResourceLocation getTextureLocation(OstrichEntity entity) {
+	public ResourceLocation getTextureLocation(Ostrich entity) {
 		return OSTRICH_TEXTURE;
 	}
 }

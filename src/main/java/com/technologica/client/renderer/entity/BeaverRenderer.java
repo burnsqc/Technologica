@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
 public final class BeaverRenderer extends MobRenderer<Beaver, BeaverModel<Beaver>> {
-	private static final ResourceLocation BEAVER_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/beaver.png");
+	private static final ResourceLocation BEAVER_LOCATION = new ResourceLocation(Technologica.MODID, "textures/entity/beaver.png");
 
 	public BeaverRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new BeaverModel<>(renderManagerIn.bakeLayer(TechnologicaModelLayers.BEAVER)), 0.5F);
@@ -18,6 +18,6 @@ public final class BeaverRenderer extends MobRenderer<Beaver, BeaverModel<Beaver
 
 	@Override
 	public ResourceLocation getTextureLocation(Beaver entity) {
-		return BEAVER_TEXTURE;
+		return BEAVER_LOCATION;
 	}
 }

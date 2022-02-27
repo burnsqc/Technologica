@@ -3,13 +3,13 @@ package com.technologica.client.renderer.entity;
 import com.technologica.Technologica;
 import com.technologica.client.model.SlothModel;
 import com.technologica.client.model.geom.TechnologicaModelLayers;
-import com.technologica.world.entity.animal.SlothEntity;
+import com.technologica.world.entity.animal.Sloth;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
-public final class SlothRenderer extends MobRenderer<SlothEntity, SlothModel<SlothEntity>> {
+public final class SlothRenderer extends MobRenderer<Sloth, SlothModel<Sloth>> {
 	private static final ResourceLocation SLOTH_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/sloth.png");
 
 	public SlothRenderer(EntityRendererProvider.Context renderManagerIn) {
@@ -17,7 +17,7 @@ public final class SlothRenderer extends MobRenderer<SlothEntity, SlothModel<Slo
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(SlothEntity entity) {
+	public ResourceLocation getTextureLocation(Sloth entity) {
 		return SLOTH_TEXTURE;
 	}
 }

@@ -2,8 +2,8 @@ package com.technologica.setup;
 
 import java.util.function.Predicate;
 
-import com.technologica.world.entity.animal.GrizzlyBearEntity;
-import com.technologica.world.entity.animal.SharkEntity;
+import com.technologica.world.entity.animal.GrizzlyBear;
+import com.technologica.world.entity.animal.Shark;
 
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -23,11 +23,11 @@ public class VanillaEntityModifier {
 		Entity entity = event.getEntity();
 		if (entity instanceof Bee) {
 			Bee beeEntity = (Bee) entity;
-			beeEntity.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(beeEntity, GrizzlyBearEntity.class, 10, true, true, (Predicate<LivingEntity>)null));
+			beeEntity.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(beeEntity, GrizzlyBear.class, 10, true, true, (Predicate<LivingEntity>)null));
 	    }
 		if (entity instanceof TropicalFish) {
 			TropicalFish tropicalFishEntity = (TropicalFish) entity;
-			tropicalFishEntity.goalSelector.addGoal(1, new AvoidEntityGoal<>(tropicalFishEntity, SharkEntity.class, 8.0F, 1.5D, 2.0D));
+			tropicalFishEntity.goalSelector.addGoal(1, new AvoidEntityGoal<>(tropicalFishEntity, Shark.class, 8.0F, 1.5D, 2.0D));
 	    }
 	}
 }

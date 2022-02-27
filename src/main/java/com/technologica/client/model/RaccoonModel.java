@@ -1,6 +1,6 @@
 package com.technologica.client.model;
 
-import com.technologica.world.entity.animal.RaccoonEntity;
+import com.technologica.world.entity.animal.Raccoon;
 
 import net.minecraft.client.model.QuadrupedModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -12,7 +12,7 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
 
-public class RaccoonModel<T extends RaccoonEntity> extends QuadrupedModel<T> {
+public class RaccoonModel<T extends Raccoon> extends QuadrupedModel<T> {
 
 	/*
 	private ModelPart tail;

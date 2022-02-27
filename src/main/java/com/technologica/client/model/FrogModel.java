@@ -1,6 +1,6 @@
 package com.technologica.client.model;
 
-import com.technologica.world.entity.animal.FrogEntity;
+import com.technologica.world.entity.animal.Frog;
 
 import net.minecraft.client.model.QuadrupedModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -11,7 +11,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 
-public class FrogModel<T extends FrogEntity> extends QuadrupedModel<T> {
+public class FrogModel<T extends Frog> extends QuadrupedModel<T> {
 	/*
 	private final ModelPart eyeLeft;
 	private final ModelPart eyeRight;

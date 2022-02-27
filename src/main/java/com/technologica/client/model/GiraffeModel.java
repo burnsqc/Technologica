@@ -1,7 +1,7 @@
 package com.technologica.client.model;
 
 import com.google.common.collect.ImmutableList;
-import com.technologica.world.entity.animal.GiraffeEntity;
+import com.technologica.world.entity.animal.Giraffe;
 
 import net.minecraft.client.model.AgeableListModel;
 import net.minecraft.client.model.QuadrupedModel;
