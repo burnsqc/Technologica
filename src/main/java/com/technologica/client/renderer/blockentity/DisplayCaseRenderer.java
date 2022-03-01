@@ -2,7 +2,7 @@ package com.technologica.client.renderer.blockentity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
-import com.technologica.world.level.block.entity.DisplayCaseTileEntity;
+import com.technologica.world.level.block.entity.DisplayCaseBlockEntity;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -13,13 +13,13 @@ import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.world.item.ItemStack;
 
-public class DisplayCaseRenderer implements BlockEntityRenderer<DisplayCaseTileEntity> {
+public class DisplayCaseRenderer implements BlockEntityRenderer<DisplayCaseBlockEntity> {
     public DisplayCaseRenderer(BlockEntityRendererProvider.Context rendererDispatcherIn) {
         
     }
 
     @Override
-    public void render(DisplayCaseTileEntity tileEntity, float partialTicks, PoseStack matrixStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {       
+    public void render(DisplayCaseBlockEntity tileEntity, float partialTicks, PoseStack matrixStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {       
     	ItemStack stack = tileEntity.getDisplayStack();
     	long time = System.currentTimeMillis();
     	float angle = (time / 25) % 360;

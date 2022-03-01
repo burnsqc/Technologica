@@ -14,14 +14,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.vehicle.Boat;
 
 public class VanillaBoatModel extends ListModel<VanillaBoat> {
-	private static final String LEFT_PADDLE = "left_paddle";
-	private static final String RIGHT_PADDLE = "right_paddle";
-	private static final String WATER_PATCH = "water_patch";
-	private static final String BOTTOM = "bottom";
-	private static final String BACK = "back";
-	private static final String FRONT = "front";
-	private static final String RIGHT = "right";
-	private static final String LEFT = "left";
 	private final ModelPart leftPaddle;
 	private final ModelPart rightPaddle;
 	private final ModelPart waterPatch;

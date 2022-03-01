@@ -7,7 +7,6 @@ import com.technologica.client.renderer.blockentity.LineShaftHangerRenderer;
 import com.technologica.client.renderer.blockentity.LineShaftRenderer;
 import com.technologica.client.renderer.blockentity.PotionRenderer;
 import com.technologica.client.renderer.blockentity.SawmillRenderer;
-import com.technologica.client.renderer.blockentity.VanillaSignRenderer;
 import com.technologica.client.renderer.entity.AlligatorRenderer;
 import com.technologica.client.renderer.entity.BeaverRenderer;
 import com.technologica.client.renderer.entity.BuffaloRenderer;
@@ -55,6 +54,7 @@ import com.technologica.client.renderer.entity.ZebraRenderer;
 import com.technologica.world.entity.TechnologicaEntityType;
 import com.technologica.world.level.block.entity.TechnologicaBlockEntityType;
 
+import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraftforge.client.event.EntityRenderersEvent.RegisterRenderers;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -118,17 +118,13 @@ public class RegisterEntityRenderers {
 		
 		event.registerEntityRenderer(TechnologicaEntityType.NAVAL_MINE.get(), NavalMineRenderer::new);
 		
-		
-		
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.ANNUNCIATOR_TILE.get(), AnnunciatorRenderer::new);
-	  	event.registerBlockEntityRenderer(TechnologicaBlockEntityType.MOD_SIGN.get(), VanillaSignRenderer::new);
+	  	event.registerBlockEntityRenderer(TechnologicaBlockEntityType.VANILLA_SIGN.get(), SignRenderer::new);
 	  	event.registerBlockEntityRenderer(TechnologicaBlockEntityType.FRUIT_CROP.get(), FruitRenderer::new);
 	  	event.registerBlockEntityRenderer(TechnologicaBlockEntityType.POTION_CROP.get(), PotionRenderer::new);
 	  	event.registerBlockEntityRenderer(TechnologicaBlockEntityType.DISPLAY_TILE.get(), DisplayCaseRenderer::new);
 	  	event.registerBlockEntityRenderer(TechnologicaBlockEntityType.LINE_SHAFT_TILE.get(), LineShaftRenderer::new);
 	  	event.registerBlockEntityRenderer(TechnologicaBlockEntityType.LINE_SHAFT_HANGER_TILE.get(), LineShaftHangerRenderer::new);
-	  	event.registerBlockEntityRenderer(TechnologicaBlockEntityType.SAWMILL_TILE.get(), SawmillRenderer::new);
-
+	  	event.registerBlockEntityRenderer(TechnologicaBlockEntityType.SAWMILL_TILE.get(), SawmillRenderer::new); 
 	}
-
 }

@@ -2,7 +2,6 @@ package com.technologica.network.play.server;
 
 import com.technologica.Technologica;
 import com.technologica.network.play.client.CUpdateAnnunciatorPacket;
-import com.technologica.network.protocol.game.ClientboundOpenTechnologicaSignEditorPacket;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.network.NetworkRegistry;
@@ -23,7 +22,6 @@ public class Packets {
 	}
 
 	public static void register() {
-		INSTANCE.registerMessage(nextID(), ClientboundOpenTechnologicaSignEditorPacket.class, ClientboundOpenTechnologicaSignEditorPacket::encode, ClientboundOpenTechnologicaSignEditorPacket::decode, ClientboundOpenTechnologicaSignEditorPacket::handle);
 		INSTANCE.registerMessage(nextID(), CUpdateAnnunciatorPacket.class, CUpdateAnnunciatorPacket::encode, CUpdateAnnunciatorPacket::decode, CUpdateAnnunciatorPacket::handle);
 	}
 }

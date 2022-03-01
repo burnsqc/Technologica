@@ -3,6 +3,7 @@ package com.technologica.client.model.geom;
 import java.util.Set;
 
 import com.google.common.collect.Sets;
+import com.technologica.Technologica;
 import com.technologica.world.entity.vehicle.VanillaBoat;
 
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -67,11 +68,10 @@ public class TechnologicaModelLayers {
 	}
 
 	private static ModelLayerLocation createLocation(String p_171301_, String p_171302_) {
-		return new ModelLayerLocation(new ResourceLocation("technologica", p_171301_), p_171302_);
+		return new ModelLayerLocation(new ResourceLocation(Technologica.MODID, p_171301_), p_171302_);
 	}
 
 	public static ModelLayerLocation createBoatModelName(VanillaBoat.Type p_171290_) {
 		return createLocation("boat/" + p_171290_.getName(), "main");
 	}
-
 }

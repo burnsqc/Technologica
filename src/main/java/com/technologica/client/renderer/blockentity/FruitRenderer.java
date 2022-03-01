@@ -2,7 +2,7 @@ package com.technologica.client.renderer.blockentity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
-import com.technologica.world.level.block.entity.FruitTileEntity;
+import com.technologica.world.level.block.entity.FruitBlockEntity;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
@@ -14,13 +14,13 @@ import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.world.item.ItemStack;
 
-public class FruitRenderer implements BlockEntityRenderer<FruitTileEntity> {
+public class FruitRenderer implements BlockEntityRenderer<FruitBlockEntity> {
     public FruitRenderer(BlockEntityRendererProvider.Context rendererDispatcherIn) {
         
     }
 
     @Override
-    public void render(FruitTileEntity tileEntity, float partialTicks, PoseStack matrixStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {       
+    public void render(FruitBlockEntity tileEntity, float partialTicks, PoseStack matrixStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {       
     	ItemStack stack = tileEntity.getFruitStack();
     	Minecraft minecraft = Minecraft.getInstance();
     	LocalPlayer clientplayerentity = minecraft.player;

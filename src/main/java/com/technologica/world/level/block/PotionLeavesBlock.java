@@ -4,30 +4,36 @@ import java.util.Random;
 import com.technologica.world.level.block.entity.PotionTileEntity;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.material.Material;
 
 /**
  * Special one-off class for potion leaves.
  * Created to spawn splash potions when player is nearby.
  */
-public class PotionLeavesBlock extends VanillaLeavesBlock implements EntityBlock {
+public class PotionLeavesBlock extends LeavesBlock implements EntityBlock {
 	public static final IntegerProperty AGE = BlockStateProperties.AGE_7;
 	private int potionType;
 
 	public PotionLeavesBlock(int potionIn) {
-		super();
+		super(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion());
 		this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0).setValue(DISTANCE, 7).setValue(PERSISTENT, false));
 		potionType = potionIn;
 	}
@@ -112,5 +118,15 @@ public class PotionLeavesBlock extends VanillaLeavesBlock implements EntityBlock
 	@Override
 	public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
 		return new PotionTileEntity(p_153215_, p_153216_);
+	}
+	
+	@Override
+	public int getFlammability(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
+		return 30;
+	}
+
+	@Override
+	public int getFireSpreadSpeed(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
+		return 60;
 	}
 }

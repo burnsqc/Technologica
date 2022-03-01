@@ -2,7 +2,7 @@ package com.technologica.network.play.client;
 
 import java.util.function.Supplier;
 
-import com.technologica.world.level.block.entity.AnnunciatorTileEntity;
+import com.technologica.world.level.block.entity.AnnunciatorBlockEntity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
@@ -46,9 +46,9 @@ public class CUpdateAnnunciatorPacket {
 			BlockEntity tileentity = world.getBlockEntity(msg.pos);
 			BlockState blockstate = world.getBlockState(msg.pos);
 			
-			if (tileentity instanceof AnnunciatorTileEntity) {
+			if (tileentity instanceof AnnunciatorBlockEntity) {
 				for (int i = 0; i < 8; ++i) {
-					((AnnunciatorTileEntity) tileentity).setText(i, Component.nullToEmpty(msg.lines[i]));
+					((AnnunciatorBlockEntity) tileentity).setText(i, Component.nullToEmpty(msg.lines[i]));
 				}
 				tileentity.setChanged();
 		        world.sendBlockUpdated(msg.pos, blockstate, blockstate, 3);

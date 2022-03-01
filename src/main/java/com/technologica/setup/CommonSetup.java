@@ -4,9 +4,11 @@ import com.technologica.Technologica;
 import com.technologica.capabilities.TechnologicaCapabilities;
 import com.technologica.network.play.server.Packets;
 import com.technologica.world.level.block.TechnologicaBlocks;
+import com.technologica.world.level.block.state.properties.TechnologicaWoodType;
 
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.Registry;
@@ -28,6 +30,40 @@ public class CommonSetup {
 		Packets.onCommonSetupEvent();
 
 		event.enqueueWork(() -> {
+			WoodType.register(TechnologicaWoodType.ALCHEMICAL);
+			WoodType.register(TechnologicaWoodType.APRICOT);
+			WoodType.register(TechnologicaWoodType.ASPEN);
+			WoodType.register(TechnologicaWoodType.AVOCADO);
+			WoodType.register(TechnologicaWoodType.BANANA);
+			WoodType.register(TechnologicaWoodType.BENEVOLENT);
+			WoodType.register(TechnologicaWoodType.CHERRY);
+			WoodType.register(TechnologicaWoodType.CHESTNUT);
+			WoodType.register(TechnologicaWoodType.CINNAMON);
+			WoodType.register(TechnologicaWoodType.COCONUT);
+			WoodType.register(TechnologicaWoodType.CONDUCTIVE);
+			WoodType.register(TechnologicaWoodType.EBONY);
+			WoodType.register(TechnologicaWoodType.FROSTBITTEN);
+			WoodType.register(TechnologicaWoodType.FRUITFUL);
+			WoodType.register(TechnologicaWoodType.INFERNAL);
+			WoodType.register(TechnologicaWoodType.KIWI);
+			WoodType.register(TechnologicaWoodType.LEMON);
+			WoodType.register(TechnologicaWoodType.LIME);
+			WoodType.register(TechnologicaWoodType.MAHOGANY);
+			WoodType.register(TechnologicaWoodType.MALEVOLENT);
+			WoodType.register(TechnologicaWoodType.MAPLE);
+			WoodType.register(TechnologicaWoodType.NECROTIC);
+			WoodType.register(TechnologicaWoodType.OLIVE);
+			WoodType.register(TechnologicaWoodType.ORANGE);
+			WoodType.register(TechnologicaWoodType.PEACH);
+			WoodType.register(TechnologicaWoodType.PEAR);
+			WoodType.register(TechnologicaWoodType.PLUM);
+			WoodType.register(TechnologicaWoodType.REDWOOD);
+			WoodType.register(TechnologicaWoodType.ROSEWOOD);
+			WoodType.register(TechnologicaWoodType.RUBBER);
+			WoodType.register(TechnologicaWoodType.TEAK);
+			WoodType.register(TechnologicaWoodType.WALNUT);
+			WoodType.register(TechnologicaWoodType.ZEBRAWOOD);
+			
 			flowerPotBlock.addPlant(TechnologicaBlocks.APRICOT_SAPLING.get().getRegistryName(), TechnologicaBlocks.POTTED_APRICOT_SAPLING);
 			flowerPotBlock.addPlant(TechnologicaBlocks.ASPEN_SAPLING.get().getRegistryName(), TechnologicaBlocks.POTTED_ASPEN_SAPLING);
 			flowerPotBlock.addPlant(TechnologicaBlocks.AVOCADO_SAPLING.get().getRegistryName(), TechnologicaBlocks.POTTED_AVOCADO_SAPLING);

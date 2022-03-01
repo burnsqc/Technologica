@@ -8,14 +8,19 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
@@ -23,7 +28,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
  * Special one-off class for tall crops.
  * Created to handle crops which grow upwards beyond a single block.
  */
-public class TallCropsBlock extends VanillaCropsBlock {
+public class TallCropsBlock extends CropBlock {
+	private Supplier<Item> seeds;
 	public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 	private static final VoxelShape[] SHAPE_BY_AGE_LOWER = new VoxelShape[] {
 			Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D),
@@ -45,8 +51,9 @@ public class TallCropsBlock extends VanillaCropsBlock {
 			Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D) };
 
 	public TallCropsBlock(Supplier<Item> seedsIn) {
-		super(seedsIn);
+		super(BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP));
 		this.registerDefaultState(this.stateDefinition.any().setValue(HALF, DoubleBlockHalf.LOWER).setValue(AGE, 0));
+		seeds = seedsIn;
 	}
 
 	/*
@@ -146,5 +153,10 @@ public class TallCropsBlock extends VanillaCropsBlock {
 		if (stateIn.getValue(HALF) == DoubleBlockHalf.UPPER) {
 			worldIn.setBlock(posIn.below(), this.getStateForAge(i).setValue(HALF, DoubleBlockHalf.LOWER), 2);
 		}
+	}
+	
+	@Override
+	protected ItemLike getBaseSeedId() {
+		return seeds.get();
 	}
 }

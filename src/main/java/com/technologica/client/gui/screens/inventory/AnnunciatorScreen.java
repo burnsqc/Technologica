@@ -16,7 +16,7 @@ import com.technologica.Technologica;
 import com.technologica.network.play.client.CUpdateAnnunciatorPacket;
 import com.technologica.network.play.server.Packets;
 import com.technologica.world.inventory.AnnunciatorContainer;
-import com.technologica.world.level.block.entity.AnnunciatorTileEntity;
+import com.technologica.world.level.block.entity.AnnunciatorBlockEntity;
 
 import net.minecraft.client.gui.font.TextFieldHelper;
 import net.minecraft.client.gui.screens.Screen;
@@ -30,7 +30,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class AnnunciatorScreen extends AbstractContainerScreen<AnnunciatorContainer> {
 	private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/gui/container/annunciator_screen.png");
-	private AnnunciatorTileEntity tileEntity;
+	private AnnunciatorBlockEntity tileEntity;
 	private TextFieldHelper textInputUtil;
 	private String[] multiLineText;
 	private int editLine;
@@ -41,7 +41,7 @@ public class AnnunciatorScreen extends AbstractContainerScreen<AnnunciatorContai
 		this.passEvents = false;
 		this.imageHeight = 231;
 		this.inventoryLabelY = 137;
-		this.tileEntity = (AnnunciatorTileEntity) screenContainerIn.getTileEntity();
+		this.tileEntity = (AnnunciatorBlockEntity) screenContainerIn.getTileEntity();
 		this.multiLineText = IntStream.range(0, 8).mapToObj(tileEntity::getText).map(Component::getString).toArray((p_243354_0_) -> {
 			return new String[p_243354_0_];
 		});

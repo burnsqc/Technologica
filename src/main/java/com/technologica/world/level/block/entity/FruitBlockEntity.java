@@ -9,11 +9,11 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 
-public class FruitTileEntity extends BlockEntity {
+public class FruitBlockEntity extends BlockEntity {
 	public static final String ITEM_NAME = "FruitItem";
 	private ItemStack stack = ItemStack.EMPTY;
 	
-	public FruitTileEntity(BlockPos p_155700_, BlockState p_155701_) {
+	public FruitBlockEntity(BlockPos p_155700_, BlockState p_155701_) {
 		super(TechnologicaBlockEntityType.FRUIT_CROP.get(), p_155700_, p_155701_);
 	}
 

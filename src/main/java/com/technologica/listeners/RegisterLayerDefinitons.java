@@ -96,6 +96,5 @@ public class RegisterLayerDefinitons {
 		for(VanillaBoat.Type boat$type : VanillaBoat.Type.values()) {
 			event.registerLayerDefinition(TechnologicaModelLayers.createBoatModelName(boat$type), () -> BoatModel.createBodyModel());
 		}
-		
 	}
 }

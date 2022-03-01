@@ -10,7 +10,6 @@ import com.technologica.util.text.ResourceLocationHelper;
 import com.technologica.world.level.block.LineShaftBlock;
 import com.technologica.world.level.block.TallCropsBlock;
 import com.technologica.world.level.block.TechnologicaBlocks;
-import com.technologica.world.level.block.VanillaCropsBlock;
 import com.technologica.world.level.block.WaterCropsBlock;
 import com.technologica.world.level.block.state.properties.TechnologicaBlockStateProperties;
 
@@ -125,7 +124,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 			}
 			else if (path.contains("_sapling") && !path.contains("potted")) simpleBlock(block, models().cross(path, texture));
 			else if (path.contains("potted")) simpleBlock(block, models().singleTexture(path, mcLoc("flower_pot_cross"), "plant", modLoc("block/" + path.replaceAll("potted_", ""))));
-			else if (block.getClass().equals(VanillaCropsBlock.class)) cropBlock(block);
+			else if (block.getClass().equals(CropBlock.class)) cropBlock(block);
 			else if (block.getClass().equals(TallCropsBlock.class) || block.getClass().equals(WaterCropsBlock.class)) tallCropBlock(block);
 			else if (path.contains("_pressure_plate")) {
 				pressurePlateBlockState(block, pressurePlateModel(block), pressurePlateDownModel(block));

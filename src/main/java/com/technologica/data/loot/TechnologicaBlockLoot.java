@@ -13,16 +13,6 @@ import com.technologica.world.level.block.TableBlock;
 import com.technologica.world.level.block.TechnologicaBlocks;
 import com.technologica.world.level.block.TreeTapBlock;
 import com.technologica.world.level.block.TwentyFourDirectionBlock;
-import com.technologica.world.level.block.VanillaCropsBlock;
-import com.technologica.world.level.block.VanillaFenceBlock;
-import com.technologica.world.level.block.VanillaFenceGateBlock;
-import com.technologica.world.level.block.VanillaLeavesBlock;
-import com.technologica.world.level.block.VanillaLogBlock;
-import com.technologica.world.level.block.VanillaPlanksBlock;
-import com.technologica.world.level.block.VanillaSlabBlock;
-import com.technologica.world.level.block.VanillaStairsBlock;
-import com.technologica.world.level.block.VanillaStandingSignBlock;
-import com.technologica.world.level.block.VanillaWallSignBlock;
 import com.technologica.world.level.block.WaterCropsBlock;
 
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
@@ -33,11 +23,18 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.world.level.block.FenceBlock;
+import net.minecraft.world.level.block.FenceGateBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.PressurePlateBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SaplingBlock;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.StandingSignBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
+import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.WoodButtonBlock;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
@@ -86,21 +83,21 @@ public class TechnologicaBlockLoot extends BlockLoot {
 			Block block = blockSupplier.get();
 			String path = ResourceLocationHelper.getPath(block);
 			
-			if (block instanceof VanillaLogBlock) dropSelf(block);
+			if (block instanceof RotatedPillarBlock) dropSelf(block);
 			else if (block.getClass().equals(SaplingBlock.class)) dropSelf(block);
 			else if (block.getClass().equals(FlowerPotBlock.class)) dropPottedContents(block);
-			else if (block.getClass().equals(VanillaPlanksBlock.class)) dropSelf(block);
+			else if (block.getClass().equals(Block.class)) dropSelf(block);
 			else if (block.getDescriptionId().contains("bookshelf")) add(block, (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
-			else if (block.getClass().equals(VanillaSlabBlock.class)) add(block, BlockLoot::createSlabItemTable);
-			else if (block.getClass().equals(VanillaStairsBlock.class)) dropSelf(block);
-			else if (block.getClass().equals(VanillaFenceBlock.class)) dropSelf(block);
-			else if (block.getClass().equals(VanillaFenceGateBlock.class)) dropSelf(block);
+			else if (block.getClass().equals(SlabBlock.class)) add(block, BlockLoot::createSlabItemTable);
+			else if (block.getClass().equals(StairBlock.class)) dropSelf(block);
+			else if (block.getClass().equals(FenceBlock.class)) dropSelf(block);
+			else if (block.getClass().equals(FenceGateBlock.class)) dropSelf(block);
 			else if (block.getClass().equals(DoorBlock.class)) add(block, BlockLoot::createDoorTable);
 			else if (block.getClass().equals(TrapDoorBlock.class)) dropSelf(block);
 			else if (block.getClass().equals(PressurePlateBlock.class)) dropSelf(block);
 			else if (block.getClass().equals(WoodButtonBlock.class)) dropSelf(block);
-			else if (block.getClass().equals(VanillaStandingSignBlock.class)) dropSelf(block);
-			else if (block.getClass().equals(VanillaWallSignBlock.class)) dropSelf(block);
+			else if (block.getClass().equals(StandingSignBlock.class)) dropSelf(block);
+			else if (block.getClass().equals(WallSignBlock.class)) dropSelf(block);
 			else if (block.getRegistryName().getPath().contains("ore")) dropSelf(block);
 			else if (block.getClass().equals(TwentyFourDirectionBlock.class)) dropSelf(block);
 			else if (block.getClass().equals(SapLogBlock.class)) dropSelf(block);
@@ -110,7 +107,7 @@ public class TechnologicaBlockLoot extends BlockLoot {
 			else if (block.getClass().equals(TreeTapBlock.class)) dropSelf(block);
 			else if (block.getClass().equals(SawmillBlock.class)) dropSelf(block);
 			
-			else if (block.getClass().equals(VanillaCropsBlock.class) || block.getClass().equals(WaterCropsBlock.class)) {
+			else if (block.getClass().equals(CropBlock.class) || block.getClass().equals(WaterCropsBlock.class)) {
 				Collection<RegistryObject<Item>> itemCollection = TechnologicaItems.ITEMS.getEntries();
 				Item yield = Items.WHEAT;
 				
@@ -121,7 +118,7 @@ public class TechnologicaBlockLoot extends BlockLoot {
 				add(block, createCropDrops(block, yield, block.asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
 			}
 			
-			else if (block.getClass().equals(FruitingLeavesBlock.class) || block.getClass().equals(VanillaLeavesBlock.class)) {
+			else if (block.getClass().equals(FruitingLeavesBlock.class) || block.getClass().equals(LeavesBlock.class)) {
 				Block sapling = Blocks.OAK_SAPLING;
 				for(Supplier<? extends Block> blockSupplier2:blockCollection) {
 					Block block2 = blockSupplier2.get();

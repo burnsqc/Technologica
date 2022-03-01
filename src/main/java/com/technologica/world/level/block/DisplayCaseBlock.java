@@ -1,6 +1,6 @@
 package com.technologica.world.level.block;
 
-import com.technologica.world.level.block.entity.DisplayCaseTileEntity;
+import com.technologica.world.level.block.entity.DisplayCaseBlockEntity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
@@ -33,8 +33,8 @@ public class DisplayCaseBlock extends GlassBlock implements EntityBlock {
 	 * Technologica Methods
 	 */
 	
-	public DisplayCaseTileEntity getTileEntity(Level worldIn, BlockPos posIn) {
-		return (DisplayCaseTileEntity) worldIn.getBlockEntity(posIn);
+	public DisplayCaseBlockEntity getTileEntity(Level worldIn, BlockPos posIn) {
+		return (DisplayCaseBlockEntity) worldIn.getBlockEntity(posIn);
 	}
 
 	/*
@@ -44,7 +44,7 @@ public class DisplayCaseBlock extends GlassBlock implements EntityBlock {
 	@Override
 	public void onRemove(BlockState stateIn, Level worldIn, BlockPos posIn, BlockState newStateIn, boolean isMovingIn) {
 		if (!stateIn.is(newStateIn.getBlock())) {
-			DisplayCaseTileEntity tile = getTileEntity(worldIn, posIn);
+			DisplayCaseBlockEntity tile = getTileEntity(worldIn, posIn);
 			popResource(worldIn, posIn.above(), tile.getDisplayStack());
 			tile.setDisplayStack(ItemStack.EMPTY);
 		}
@@ -52,7 +52,7 @@ public class DisplayCaseBlock extends GlassBlock implements EntityBlock {
 	
 	@Override
 	public InteractionResult use(BlockState stateIn, Level worldIn, BlockPos posIn, Player playerIn, InteractionHand handIn, BlockHitResult hitIn) {
-		DisplayCaseTileEntity tile = getTileEntity(worldIn, posIn);
+		DisplayCaseBlockEntity tile = getTileEntity(worldIn, posIn);
 		ItemStack itemstack = playerIn.getItemInHand(handIn);
 		if (tile.getDisplayStack().isEmpty()) {
 			if (!itemstack.isEmpty()) {
@@ -81,6 +81,6 @@ public class DisplayCaseBlock extends GlassBlock implements EntityBlock {
 
 	@Override
 	public BlockEntity newBlockEntity(BlockPos p_153277_, BlockState p_153278_) {
-		return new DisplayCaseTileEntity(p_153277_, p_153278_);
+		return new DisplayCaseBlockEntity(p_153277_, p_153278_);
 	}
 }

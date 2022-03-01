@@ -11,8 +11,8 @@ import com.technologica.world.inventory.TechnologicaContainerType;
 import com.technologica.world.level.block.NavalMineChainBlock;
 import com.technologica.world.level.block.TallCropsBlock;
 import com.technologica.world.level.block.TechnologicaBlocks;
-import com.technologica.world.level.block.VanillaCropsBlock;
 import com.technologica.world.level.block.WaterCropsBlock;
+import com.technologica.world.level.block.state.properties.TechnologicaWoodType;
 import com.technologica.world.level.material.TechnologicaFluids;
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
@@ -24,6 +24,7 @@ import net.minecraft.client.renderer.Sheets;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.SaplingBlock;
@@ -91,6 +92,40 @@ public class ClientSetup {
     	  	ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_MACHINE_OIL.get(), RenderType.translucent());
     	  	ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.COOLANT.get(), RenderType.translucent());
     	  	ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_COOLANT.get(), RenderType.translucent());
+    	  	
+    	  	Sheets.addWoodType(TechnologicaWoodType.ALCHEMICAL);
+			Sheets.addWoodType(TechnologicaWoodType.APRICOT);
+			Sheets.addWoodType(TechnologicaWoodType.ASPEN);
+			Sheets.addWoodType(TechnologicaWoodType.AVOCADO);
+			Sheets.addWoodType(TechnologicaWoodType.BANANA);
+			Sheets.addWoodType(TechnologicaWoodType.BENEVOLENT);
+			Sheets.addWoodType(TechnologicaWoodType.CHERRY);
+			Sheets.addWoodType(TechnologicaWoodType.CHESTNUT);
+			Sheets.addWoodType(TechnologicaWoodType.CINNAMON);
+			Sheets.addWoodType(TechnologicaWoodType.COCONUT);
+			Sheets.addWoodType(TechnologicaWoodType.CONDUCTIVE);
+			Sheets.addWoodType(TechnologicaWoodType.EBONY);
+			Sheets.addWoodType(TechnologicaWoodType.FROSTBITTEN);
+			Sheets.addWoodType(TechnologicaWoodType.FRUITFUL);
+			Sheets.addWoodType(TechnologicaWoodType.INFERNAL);
+			Sheets.addWoodType(TechnologicaWoodType.KIWI);
+			Sheets.addWoodType(TechnologicaWoodType.LEMON);
+			Sheets.addWoodType(TechnologicaWoodType.LIME);
+			Sheets.addWoodType(TechnologicaWoodType.MAHOGANY);
+			Sheets.addWoodType(TechnologicaWoodType.MALEVOLENT);
+			Sheets.addWoodType(TechnologicaWoodType.MAPLE);
+			Sheets.addWoodType(TechnologicaWoodType.NECROTIC);
+			Sheets.addWoodType(TechnologicaWoodType.OLIVE);
+			Sheets.addWoodType(TechnologicaWoodType.ORANGE);
+			Sheets.addWoodType(TechnologicaWoodType.PEACH);
+			Sheets.addWoodType(TechnologicaWoodType.PEAR);
+			Sheets.addWoodType(TechnologicaWoodType.PLUM);
+			Sheets.addWoodType(TechnologicaWoodType.REDWOOD);
+			Sheets.addWoodType(TechnologicaWoodType.ROSEWOOD);
+			Sheets.addWoodType(TechnologicaWoodType.RUBBER);
+			Sheets.addWoodType(TechnologicaWoodType.TEAK);
+			Sheets.addWoodType(TechnologicaWoodType.WALNUT);
+			Sheets.addWoodType(TechnologicaWoodType.ZEBRAWOOD);
 		});
 		
 		Field effects = ObfuscationReflectionHelper.findField(DimensionSpecialEffects.class, "EFFECTS");
@@ -143,7 +178,7 @@ public class ClientSetup {
 			Block block = blockSupplier.get();
 			
 			if (
-				block.getClass().equals(VanillaCropsBlock.class) ||
+				block.getClass().equals(CropBlock.class) ||
 				block.getClass().equals(TallCropsBlock.class) ||
 				block.getClass().equals(WaterCropsBlock.class) ||
 				block.getClass().equals(SaplingBlock.class) ||

@@ -35,14 +35,14 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class AnnunciatorTileEntity extends BlockEntity {
+public class AnnunciatorBlockEntity extends BlockEntity {
 	private Component[] signText = new Component[] { TextComponent.EMPTY, TextComponent.EMPTY, TextComponent.EMPTY,
 			TextComponent.EMPTY, TextComponent.EMPTY, TextComponent.EMPTY, TextComponent.EMPTY, TextComponent.EMPTY };
 	private final ItemStackHandler itemHandler = createHandler();
 	private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
 	private final FormattedCharSequence[] renderText = new FormattedCharSequence[8];
 
-	public AnnunciatorTileEntity(BlockPos p_155700_, BlockState p_155701_) {
+	public AnnunciatorBlockEntity(BlockPos p_155700_, BlockState p_155701_) {
 		super(TechnologicaBlockEntityType.ANNUNCIATOR_TILE.get(), p_155700_, p_155701_);
 	}
 

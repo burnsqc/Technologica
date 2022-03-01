@@ -7,7 +7,7 @@ import javax.annotation.Nullable;
 
 import com.technologica.util.AnnunciatorOverlay;
 import com.technologica.world.inventory.AnnunciatorContainer;
-import com.technologica.world.level.block.entity.AnnunciatorTileEntity;
+import com.technologica.world.level.block.entity.AnnunciatorBlockEntity;
 import com.technologica.world.level.block.state.properties.TechnologicaBlockStateProperties;
 
 import net.minecraft.core.BlockPos;
@@ -79,7 +79,7 @@ public class AnnunciatorBlock extends BaseEntityBlock {
 		if (!worldIn.isClientSide()) {
 			BlockEntity tileEntity = worldIn.getBlockEntity(pos);
 
-			if (tileEntity instanceof AnnunciatorTileEntity) {
+			if (tileEntity instanceof AnnunciatorBlockEntity) {
 				MenuProvider containerProvider = createContainerProvider(worldIn, pos);
 				NetworkHooks.openGui(((ServerPlayer) player), containerProvider, tileEntity.getBlockPos());
 			}
@@ -131,6 +131,6 @@ public class AnnunciatorBlock extends BaseEntityBlock {
 
 	@Override
 	public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
-		return new AnnunciatorTileEntity(p_153215_, p_153216_);
+		return new AnnunciatorBlockEntity(p_153215_, p_153216_);
 	}
 }

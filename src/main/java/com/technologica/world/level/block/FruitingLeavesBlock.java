@@ -4,9 +4,10 @@ import java.util.Random;
 import java.util.function.Supplier;
 
 import com.technologica.world.item.TechnologicaItems;
-import com.technologica.world.level.block.entity.FruitTileEntity;
+import com.technologica.world.level.block.entity.FruitBlockEntity;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -18,27 +19,32 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 
 /**
  * Special one-off class for fruiting leaves.    
  * Created to add the age property as well as handle player interaction and associated tile entity.
  */
-public class FruitingLeavesBlock extends VanillaLeavesBlock implements EntityBlock {
+public class FruitingLeavesBlock extends LeavesBlock implements EntityBlock {
 	public static final IntegerProperty AGE = BlockStateProperties.AGE_15;
 	private Supplier<Item>[] fruit;
 	
 	@SafeVarargs
 	public FruitingLeavesBlock(Supplier<Item>... fruitIn) {
-		super();
+		super(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion());
 		this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0).setValue(DISTANCE, 7).setValue(PERSISTENT, false));
 		fruit = fruitIn;
 	}
@@ -47,8 +53,8 @@ public class FruitingLeavesBlock extends VanillaLeavesBlock implements EntityBlo
 	 * Technologica Methods
 	 */
 	
-	public FruitTileEntity getTileEntity(Level worldIn, BlockPos posIn) {
-		return (FruitTileEntity) worldIn.getBlockEntity(posIn);
+	public FruitBlockEntity getTileEntity(Level worldIn, BlockPos posIn) {
+		return (FruitBlockEntity) worldIn.getBlockEntity(posIn);
 	}
 
 	/*
@@ -58,14 +64,14 @@ public class FruitingLeavesBlock extends VanillaLeavesBlock implements EntityBlo
 	@Override
 	public void onRemove(BlockState stateIn, Level worldIn, BlockPos posIn, BlockState newStateIn, boolean isMovingIn) {
 		if (!stateIn.is(newStateIn.getBlock())) {
-			FruitTileEntity tile = getTileEntity(worldIn, posIn);
+			FruitBlockEntity tile = getTileEntity(worldIn, posIn);
 			popResource(worldIn, posIn.below(), tile.getFruitStack());
 		}
 	}
 	
 	@Override
 	public InteractionResult use(BlockState stateIn, Level worldIn, BlockPos posIn, Player playerIn, InteractionHand handIn, BlockHitResult hitIn) {
-		FruitTileEntity tile = getTileEntity(worldIn, posIn);
+		FruitBlockEntity tile = getTileEntity(worldIn, posIn);
 		if (stateIn.getValue(AGE) == 15) {
 			popResource(worldIn, posIn.below(), tile.getFruitStack());
 			tile.clear();
@@ -79,7 +85,7 @@ public class FruitingLeavesBlock extends VanillaLeavesBlock implements EntityBlo
 
 	@Override
 	public void randomTick(BlockState stateIn, ServerLevel worldIn, BlockPos posIn, Random randomIn) {
-		FruitTileEntity tile = getTileEntity(worldIn, posIn);
+		FruitBlockEntity tile = getTileEntity(worldIn, posIn);
 
 		if (stateIn.getValue(DISTANCE) == 7) {
 			dropResources(stateIn, worldIn, posIn);
@@ -152,6 +158,16 @@ public class FruitingLeavesBlock extends VanillaLeavesBlock implements EntityBlo
 
 	@Override
 	public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
-		return new FruitTileEntity(p_153215_, p_153216_);
+		return new FruitBlockEntity(p_153215_, p_153216_);
+	}
+	
+	@Override
+	public int getFlammability(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
+		return 30;
+	}
+
+	@Override
+	public int getFireSpreadSpeed(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
+		return 60;
 	}
 }

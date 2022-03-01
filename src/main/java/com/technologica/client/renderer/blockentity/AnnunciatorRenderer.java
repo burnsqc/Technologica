@@ -6,7 +6,7 @@ import com.mojang.blaze3d.platform.NativeImage;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import com.technologica.world.level.block.AnnunciatorBlock;
-import com.technologica.world.level.block.entity.AnnunciatorTileEntity;
+import com.technologica.world.level.block.entity.AnnunciatorBlockEntity;
 
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -15,14 +15,14 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class AnnunciatorRenderer implements BlockEntityRenderer<AnnunciatorTileEntity> {
+public class AnnunciatorRenderer implements BlockEntityRenderer<AnnunciatorBlockEntity> {
 	private final Font font;
 	
 	public AnnunciatorRenderer(BlockEntityRendererProvider.Context rendererDispatcherIn) {
 		this.font = rendererDispatcherIn.getFont();
 	}
 
-	public void render(AnnunciatorTileEntity tileEntityIn, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
+	public void render(AnnunciatorBlockEntity tileEntityIn, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
 		BlockState blockstate = tileEntityIn.getBlockState();
 		float f1 = -blockstate.getValue(AnnunciatorBlock.FACING).toYRot();
 		
