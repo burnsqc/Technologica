@@ -26,6 +26,8 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 	
 	@Override
 	protected void registerModels() {
+		simpleSpawnEggItem(TechnologicaItems.ALLIGATOR_SPAWN_EGG.get()); //Start here
+		
 		automaticItemModel(TechnologicaItems.ITEMS.getEntries());
 	}
 	
