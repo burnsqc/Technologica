@@ -1,17 +1,12 @@
 package com.technologica.setup;
 
 import java.lang.reflect.Field;
-import java.util.Collection;
-import java.util.function.Supplier;
 
 import com.technologica.Technologica;
 import com.technologica.client.gui.screens.inventory.AnnunciatorScreen;
 import com.technologica.client.renderer.MoonRenderer;
 import com.technologica.world.inventory.TechnologicaContainerType;
-import com.technologica.world.level.block.NavalMineChainBlock;
-import com.technologica.world.level.block.TallCropsBlock;
 import com.technologica.world.level.block.TechnologicaBlocks;
-import com.technologica.world.level.block.WaterCropsBlock;
 import com.technologica.world.level.block.state.properties.TechnologicaWoodType;
 import com.technologica.world.level.material.TechnologicaFluids;
 
@@ -23,16 +18,9 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.InventoryMenu;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.CropBlock;
-import net.minecraft.world.level.block.DoorBlock;
-import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraft.world.level.block.SaplingBlock;
-import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
-import net.minecraftforge.registries.RegistryObject;
 
 public class ClientSetup {
 
@@ -40,8 +28,22 @@ public class ClientSetup {
 	public static void init(final FMLClientSetupEvent event) {
 		MenuScreens.register(TechnologicaContainerType.ANNUNCIATOR.get(), AnnunciatorScreen::new);
 		
-		event.enqueueWork(() -> {
-			automaticCutoutMipped(TechnologicaBlocks.BLOCKS.getEntries());
+		event.enqueueWork(() -> {			
+			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ASPARAGUS_CROP.get(), RenderType.cutoutMipped()); //Finish regular crops
+			
+			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CORN_CROP.get(), RenderType.cutoutMipped()); //Finish tall crops
+			
+			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.RICE_CROP.get(), RenderType.cutoutMipped()); //Finish water crops
+			
+			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.APRICOT_SAPLING.get(), RenderType.cutoutMipped()); //Finish saplings
+			
+			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_APRICOT_SAPLING.get(), RenderType.cutoutMipped()); //Finish potted saplings
+			
+			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.APRICOT_DOOR.get(), RenderType.cutoutMipped()); //Finish doors
+			
+			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.APRICOT_TRAPDOOR.get(), RenderType.cutoutMipped()); //Finish trapdoors
+			
+			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.NAVAL_MINE_CHAIN.get(), RenderType.cutoutMipped());
       			
 			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.DISPLAY_CASE.get(), RenderType.translucent());
 
@@ -170,25 +172,6 @@ public class ClientSetup {
 			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/teak"));
 			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/walnut"));
 			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/zebrawood"));
-		}
-	}
-	
-	private final static void automaticCutoutMipped(Collection<RegistryObject<Block>> blockCollection) {
-		for(Supplier<? extends Block> blockSupplier:blockCollection) {
-			Block block = blockSupplier.get();
-			
-			if (
-				block.getClass().equals(CropBlock.class) ||
-				block.getClass().equals(TallCropsBlock.class) ||
-				block.getClass().equals(WaterCropsBlock.class) ||
-				block.getClass().equals(SaplingBlock.class) ||
-				block.getClass().equals(FlowerPotBlock.class) ||
-				block.getClass().equals(DoorBlock.class) ||
-				block.getClass().equals(TrapDoorBlock.class) ||
-				block.getClass().equals(NavalMineChainBlock.class)) {
-					ItemBlockRenderTypes.setRenderLayer(block, RenderType.cutoutMipped());
-				}
-
 		}
 	}
 }

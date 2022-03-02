@@ -76,10 +76,10 @@ public class TechnologicaBlockTagsProvider extends BlockTagsProvider {
 			else if (block.getRegistryName().getPath().contains("leaves")) tag(BlockTags.LEAVES).add(block);
 			else if (block.getRegistryName().getPath().contains("log")) tag(BlockTags.LOGS_THAT_BURN).add(block);
 			else if (block.getRegistryName().getPath().contains("_wood")) tag(BlockTags.LOGS_THAT_BURN).add(block);
-//			else if (block.getRegistryName().getPath().contains("clay")) getOrCreateBuilder(BlockTags.LUSH_GROUND_REPLACEABLE).add(block);
+			else if (block.getRegistryName().getPath().contains("clay")) tag(BlockTags.LUSH_GROUND_REPLACEABLE).add(block);
 			else if (block.getRegistryName().getPath().contains("planks")) tag(BlockTags.PLANKS).add(block);
 			else if (block.getRegistryName().getPath().contains("sapling") && !block.getRegistryName().getPath().contains("potted")) tag(BlockTags.SAPLINGS).add(block);
-//			else if (block.getRegistryName().getPath().contains("clay")) getOrCreateBuilder(BlockTags.SMALL_DRIPLEAF_PLACEABLE).add(block);
+			else if (block.getRegistryName().getPath().contains("clay")) tag(BlockTags.SMALL_DRIPLEAF_PLACEABLE).add(block);
 			else if (block.getRegistryName().getPath().contains("sign") && !block.getRegistryName().getPath().contains("wall")) tag(BlockTags.STANDING_SIGNS).add(block);
 			else if (block.getRegistryName().getPath().contains("wall_sign")) tag(BlockTags.WALL_SIGNS).add(block);
 			else if (block.getRegistryName().getPath().contains("button")) tag(BlockTags.WOODEN_BUTTONS).add(block);

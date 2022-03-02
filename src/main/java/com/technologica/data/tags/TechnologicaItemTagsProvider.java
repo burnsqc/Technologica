@@ -11,6 +11,7 @@ import com.technologica.world.item.TechnologicaItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -24,6 +25,7 @@ public class TechnologicaItemTagsProvider extends ItemTagsProvider {
 	
 	@Override
 	protected void addTags() {
+		this.copy(BlockTags.PLANKS, ItemTags.PLANKS);
 		copy(TechnologicaBlockTags.APRICOT_LOGS, TechnologicaItemTags.APRICOT_LOGS);
 		copy(TechnologicaBlockTags.ASPEN_LOGS, TechnologicaItemTags.ASPEN_LOGS);
 		copy(TechnologicaBlockTags.AVOCADO_LOGS, TechnologicaItemTags.AVOCADO_LOGS);
@@ -74,7 +76,7 @@ public class TechnologicaItemTagsProvider extends ItemTagsProvider {
 			if (item.getRegistryName().getPath().contains("boat")) tag(ItemTags.BOATS).add(item);
 			else if (item.getRegistryName().getPath().contains("leaves")) tag(ItemTags.LEAVES).add(item);
 			else if (item.getRegistryName().getPath().contains("log")) tag(ItemTags.LOGS_THAT_BURN).add(item);
-			else if (item.getRegistryName().getPath().contains("planks")) tag(ItemTags.PLANKS).add(item);
+			
 			else if (item.getRegistryName().getPath().contains("sapling")) tag(ItemTags.SAPLINGS).add(item);
 			else if (item.getRegistryName().getPath().contains("sign")) tag(ItemTags.SIGNS).add(item);
 			else if (item.getRegistryName().getPath().contains("button")) tag(ItemTags.WOODEN_BUTTONS).add(item);
