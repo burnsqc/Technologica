@@ -25,12 +25,12 @@ public class GatherData {
 		}
 		
 		if(event.includeServer()) {
-			TechnologicaBlockTagsProvider modBlockTagsProvider = new TechnologicaBlockTagsProvider(generator, helper);
-			generator.addProvider(modBlockTagsProvider);
-			generator.addProvider(new TechnologicaItemTagsProvider(generator, modBlockTagsProvider, helper));
+			generator.addProvider(new TechnologicaFluidTagsProvider(generator, helper));
+			TechnologicaBlockTagsProvider technologicaBlockTagsProvider = new TechnologicaBlockTagsProvider(generator, helper);
+			generator.addProvider(technologicaBlockTagsProvider);
+			generator.addProvider(new TechnologicaItemTagsProvider(generator, technologicaBlockTagsProvider, helper));
 			generator.addProvider(new TechnologicaRecipeProvider(generator));
 			generator.addProvider(new TechnologicaLootTableProvider(generator));
-			generator.addProvider(new TechnologicaFluidTagsProvider(generator, helper));
 		}	
 	}
 }

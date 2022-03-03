@@ -1,8 +1,5 @@
 package com.technologica.data.tags;
 
-import java.util.Collection;
-import java.util.function.Supplier;
-
 import com.technologica.Technologica;
 import com.technologica.tags.TechnologicaBlockTags;
 import com.technologica.world.level.block.TechnologicaBlocks;
@@ -10,9 +7,7 @@ import com.technologica.world.level.block.TechnologicaBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.RegistryObject;
 
 public class TechnologicaBlockTagsProvider extends BlockTagsProvider {
 	
@@ -22,6 +17,35 @@ public class TechnologicaBlockTagsProvider extends BlockTagsProvider {
 	
 	@Override
 	protected void addTags() {
+		
+		/*
+		 * Minecraft Tags
+		 */
+		
+		tag(BlockTags.CROPS).add(TechnologicaBlocks.ASPARAGUS_CROP.get()); //Add all crops to this tag
+		tag(BlockTags.ENDERMAN_HOLDABLE).add(TechnologicaBlocks.LITHIUM_CLAY.get()); //Leave this one alone
+		tag(BlockTags.FENCE_GATES).add(TechnologicaBlocks.APRICOT_FENCE_GATE.get()); //Add all fence gates to this tag
+		tag(BlockTags.FLOWER_POTS).add(TechnologicaBlocks.POTTED_ANCIENT_AMBROSIA_SAPLING.get()); //Add all potted saplings to this tag
+		tag(BlockTags.LEAVES).add(TechnologicaBlocks.ALCHEMICAL_LEAVES.get()); //Add all leaves to this tag
+		tag(BlockTags.LOGS_THAT_BURN).addTag(TechnologicaBlockTags.APRICOT_LOGS); //Add all new Technologica log block tags to this tag
+		tag(BlockTags.LUSH_GROUND_REPLACEABLE).add(TechnologicaBlocks.LITHIUM_CLAY.get()); //Leave this one alone
+		tag(BlockTags.PLANKS).add(TechnologicaBlocks.APRICOT_PLANKS.get()); //Add all planks to this tag
+		tag(BlockTags.SAPLINGS).add(TechnologicaBlocks.APRICOT_SAPLING.get()); //Add all non-potted saplings to this tag
+		tag(BlockTags.SMALL_DRIPLEAF_PLACEABLE).add(TechnologicaBlocks.LITHIUM_CLAY.get()); //Leave this one alone
+		tag(BlockTags.STANDING_SIGNS).add(TechnologicaBlocks.APRICOT_SIGN.get()); //Add all standing signs to this tag
+		tag(BlockTags.WALL_SIGNS).add(TechnologicaBlocks.APRICOT_WALL_SIGN.get()); //Add all wall signs to this tag
+		tag(BlockTags.WOODEN_BUTTONS).add(TechnologicaBlocks.APRICOT_BUTTON.get()); //Add all buttons to this tag
+		tag(BlockTags.WOODEN_DOORS).add(TechnologicaBlocks.APRICOT_DOOR.get()); //Add all doors to this tag
+		tag(BlockTags.WOODEN_FENCES).add(TechnologicaBlocks.APRICOT_FENCE_GATE.get()); //Add all fences to this tag
+		tag(BlockTags.WOODEN_PRESSURE_PLATES).add(TechnologicaBlocks.APRICOT_FENCE_GATE.get()); //Add all pressure plates to this tag
+		tag(BlockTags.WOODEN_SLABS).add(TechnologicaBlocks.APRICOT_SLAB.get()); //Add all slabs to this tag
+		tag(BlockTags.WOODEN_STAIRS).add(TechnologicaBlocks.APRICOT_STAIRS.get()); //Add all stairs to this tag
+		tag(BlockTags.WOODEN_TRAPDOORS).add(TechnologicaBlocks.APRICOT_TRAPDOOR.get()); //Add all trapdoors to this tag
+		
+		/*
+		 * Technologica Tags
+		 */
+		
 		tag(TechnologicaBlockTags.APRICOT_LOGS).add(TechnologicaBlocks.APRICOT_LOG.get(), TechnologicaBlocks.APRICOT_WOOD.get(), TechnologicaBlocks.STRIPPED_APRICOT_LOG.get(), TechnologicaBlocks.STRIPPED_APRICOT_WOOD.get());
 		tag(TechnologicaBlockTags.ASPEN_LOGS).add(TechnologicaBlocks.ASPEN_LOG.get(), TechnologicaBlocks.ASPEN_WOOD.get(), TechnologicaBlocks.STRIPPED_ASPEN_LOG.get(), TechnologicaBlocks.STRIPPED_ASPEN_WOOD.get());
 		tag(TechnologicaBlockTags.AVOCADO_LOGS).add(TechnologicaBlocks.AVOCADO_LOG.get(), TechnologicaBlocks.AVOCADO_WOOD.get(), TechnologicaBlocks.STRIPPED_AVOCADO_LOG.get(), TechnologicaBlocks.STRIPPED_AVOCADO_WOOD.get());
@@ -54,41 +78,5 @@ public class TechnologicaBlockTagsProvider extends BlockTagsProvider {
 		tag(TechnologicaBlockTags.FRUITFUL_LOGS).add(TechnologicaBlocks.FRUITFUL_LOG.get(), TechnologicaBlocks.FRUITFUL_WOOD.get(), TechnologicaBlocks.STRIPPED_FRUITFUL_LOG.get(), TechnologicaBlocks.STRIPPED_FRUITFUL_WOOD.get());
 		tag(TechnologicaBlockTags.INFERNAL_LOGS).add(TechnologicaBlocks.INFERNAL_LOG.get(), TechnologicaBlocks.INFERNAL_WOOD.get(), TechnologicaBlocks.STRIPPED_INFERNAL_LOG.get(), TechnologicaBlocks.STRIPPED_INFERNAL_WOOD.get());
 		tag(TechnologicaBlockTags.MALEVOLENT_LOGS).add(TechnologicaBlocks.MALEVOLENT_LOG.get(), TechnologicaBlocks.MALEVOLENT_WOOD.get(), TechnologicaBlocks.STRIPPED_MALEVOLENT_LOG.get(), TechnologicaBlocks.STRIPPED_MALEVOLENT_WOOD.get());
-		
-		automaticBlockTags(TechnologicaBlocks.BLOCKS.getEntries());
-	}
-	
-	/**
-	 * Iterates through a deferred register of blocks, adding entries to tag files based upon translation key content.
-	 * This only works if the translation keys are consistent.  This is really only intended to work for mod blocks which are similar to vanilla.
-	 * This saves a lot of time when adding one new tree which leads to logs, leaves, planks, stairs, doors, etc. 
-	 * @param collection a collection of deferred register block entries
-	 */
-	
-	private final void automaticBlockTags(Collection<RegistryObject<Block>> collection) {
-		for(Supplier<? extends Block> blockSupplier:collection) {
-			Block block = blockSupplier.get();
-			
-			if (block.getRegistryName().getPath().contains("crop")) tag(BlockTags.CROPS).add(block);
-			else if (block.getRegistryName().getPath().contains("clay")) tag(BlockTags.ENDERMAN_HOLDABLE).add(block);
-			else if (block.getRegistryName().getPath().contains("fence_gate")) tag(BlockTags.FENCE_GATES).add(block);
-			else if (block.getRegistryName().getPath().contains("potted")) tag(BlockTags.FLOWER_POTS).add(block);
-			else if (block.getRegistryName().getPath().contains("leaves")) tag(BlockTags.LEAVES).add(block);
-			else if (block.getRegistryName().getPath().contains("log")) tag(BlockTags.LOGS_THAT_BURN).add(block);
-			else if (block.getRegistryName().getPath().contains("_wood")) tag(BlockTags.LOGS_THAT_BURN).add(block);
-			else if (block.getRegistryName().getPath().contains("clay")) tag(BlockTags.LUSH_GROUND_REPLACEABLE).add(block);
-			else if (block.getRegistryName().getPath().contains("planks")) tag(BlockTags.PLANKS).add(block);
-			else if (block.getRegistryName().getPath().contains("sapling") && !block.getRegistryName().getPath().contains("potted")) tag(BlockTags.SAPLINGS).add(block);
-			else if (block.getRegistryName().getPath().contains("clay")) tag(BlockTags.SMALL_DRIPLEAF_PLACEABLE).add(block);
-			else if (block.getRegistryName().getPath().contains("sign") && !block.getRegistryName().getPath().contains("wall")) tag(BlockTags.STANDING_SIGNS).add(block);
-			else if (block.getRegistryName().getPath().contains("wall_sign")) tag(BlockTags.WALL_SIGNS).add(block);
-			else if (block.getRegistryName().getPath().contains("button")) tag(BlockTags.WOODEN_BUTTONS).add(block);
-			else if (block.getRegistryName().getPath().contains("door") && !block.getRegistryName().getPath().contains("trap")) tag(BlockTags.WOODEN_DOORS).add(block);
-			else if (block.getRegistryName().getPath().contains("fence") && !block.getRegistryName().getPath().contains("gate")) tag(BlockTags.WOODEN_FENCES).add(block);
-			else if (block.getRegistryName().getPath().contains("pressure_plate")) tag(BlockTags.WOODEN_PRESSURE_PLATES).add(block);
-			else if (block.getRegistryName().getPath().contains("slab")) tag(BlockTags.WOODEN_SLABS).add(block);
-			else if (block.getRegistryName().getPath().contains("stairs")) tag(BlockTags.WOODEN_STAIRS).add(block);
-			else if (block.getRegistryName().getPath().contains("trapdoor")) tag(BlockTags.WOODEN_TRAPDOORS).add(block);			
-		}
 	}
 }
