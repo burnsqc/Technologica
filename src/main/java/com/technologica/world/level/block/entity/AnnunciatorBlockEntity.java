@@ -36,8 +36,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 public class AnnunciatorBlockEntity extends BlockEntity {
-	private Component[] signText = new Component[] { TextComponent.EMPTY, TextComponent.EMPTY, TextComponent.EMPTY,
-			TextComponent.EMPTY, TextComponent.EMPTY, TextComponent.EMPTY, TextComponent.EMPTY, TextComponent.EMPTY };
+	private Component[] signText = new Component[] { TextComponent.EMPTY, TextComponent.EMPTY, TextComponent.EMPTY, TextComponent.EMPTY, TextComponent.EMPTY, TextComponent.EMPTY, TextComponent.EMPTY, TextComponent.EMPTY };
 	private final ItemStackHandler itemHandler = createHandler();
 	private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
 	private final FormattedCharSequence[] renderText = new FormattedCharSequence[8];

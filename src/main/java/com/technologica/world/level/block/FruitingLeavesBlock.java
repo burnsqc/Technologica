@@ -74,7 +74,7 @@ public class FruitingLeavesBlock extends LeavesBlock implements EntityBlock {
 		FruitBlockEntity tile = getTileEntity(worldIn, posIn);
 		if (stateIn.getValue(AGE) == 15) {
 			popResource(worldIn, posIn.below(), tile.getFruitStack());
-			tile.clear();
+			tile.setFruitStack(ItemStack.EMPTY);
 			worldIn.playSound((Player) null, posIn, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + worldIn.random.nextFloat() * 0.4F);
 			worldIn.setBlock(posIn, stateIn.setValue(AGE, 0), 4);
 			return InteractionResult.sidedSuccess(worldIn.isClientSide);
