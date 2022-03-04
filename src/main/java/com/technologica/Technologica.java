@@ -19,6 +19,7 @@ import com.technologica.setup.CommonSetup;
 import com.technologica.setup.Config;
 import com.technologica.setup.GatherData;
 import com.technologica.setup.ParticleSetup;
+import com.technologica.setup.VanillaBiomeModifier;
 import com.technologica.setup.VanillaEntityModifier;
 import com.technologica.util.DisablePlankConditionFactory;
 import com.technologica.util.EnablePlankConditionFactory;
@@ -99,7 +100,7 @@ public class Technologica {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(RegisterEntityRenderers::onRegisterEntityRenderers);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(RegisterLayerDefinitons::on);
 		
-//		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, VanillaBiomeModifier::init);	
+		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, VanillaBiomeModifier::init);	
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, VanillaEntityModifier::init);	
 		
 		MinecraftForge.EVENT_BUS.register(new BadLuckBananaWhenFishing());

@@ -46,11 +46,6 @@ public class FruitBlockEntity extends BlockEntity {
 	}   
 	
 	@Override
-	public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) {
-		load(pkt.getTag());
-	}
-	
-	@Override
 	public CompoundTag getUpdateTag() {
 		return this.saveWithoutMetadata();
 	}
