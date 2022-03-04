@@ -37,7 +37,7 @@ public class TechnologicaBlockTagsProvider extends BlockTagsProvider {
 		tag(BlockTags.WOODEN_BUTTONS).add(TechnologicaBlocks.APRICOT_BUTTON.get()); //Add all buttons to this tag
 		tag(BlockTags.WOODEN_DOORS).add(TechnologicaBlocks.APRICOT_DOOR.get()); //Add all doors to this tag
 		tag(BlockTags.WOODEN_FENCES).add(TechnologicaBlocks.APRICOT_FENCE_GATE.get()); //Add all fences to this tag
-		tag(BlockTags.WOODEN_PRESSURE_PLATES).add(TechnologicaBlocks.APRICOT_FENCE_GATE.get()); //Add all pressure plates to this tag
+		tag(BlockTags.WOODEN_PRESSURE_PLATES).add(TechnologicaBlocks.APRICOT_PRESSURE_PLATE.get()); //Add all pressure plates to this tag
 		tag(BlockTags.WOODEN_SLABS).add(TechnologicaBlocks.APRICOT_SLAB.get()); //Add all slabs to this tag
 		tag(BlockTags.WOODEN_STAIRS).add(TechnologicaBlocks.APRICOT_STAIRS.get()); //Add all stairs to this tag
 		tag(BlockTags.WOODEN_TRAPDOORS).add(TechnologicaBlocks.APRICOT_TRAPDOOR.get()); //Add all trapdoors to this tag
