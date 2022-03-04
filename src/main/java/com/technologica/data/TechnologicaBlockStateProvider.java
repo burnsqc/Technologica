@@ -1,16 +1,11 @@
 package com.technologica.data;
 
-import java.util.Collection;
-import java.util.function.Supplier;
-
 import com.technologica.Technologica;
 import com.technologica.util.AnnunciatorOverlay;
 import com.technologica.util.Radius;
 import com.technologica.util.text.ResourceLocationHelper;
-import com.technologica.world.level.block.LineShaftBlock;
 import com.technologica.world.level.block.TallCropsBlock;
 import com.technologica.world.level.block.TechnologicaBlocks;
-import com.technologica.world.level.block.WaterCropsBlock;
 import com.technologica.world.level.block.state.properties.TechnologicaBlockStateProperties;
 
 import net.minecraft.core.Direction;
@@ -21,7 +16,6 @@ import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.FenceGateBlock;
-import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.PressurePlateBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SlabBlock;
@@ -34,7 +28,6 @@ import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.RegistryObject;
 
 public class TechnologicaBlockStateProvider extends BlockStateProvider {
 
@@ -44,127 +37,132 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 
 	@Override
 	protected void registerStatesAndModels() {
-		automaticBlockState(TechnologicaBlocks.BLOCKS.getEntries());
+		cropBlock(TechnologicaBlocks.ASPARAGUS_CROP.get());
+		
+		tallCropBlock(TechnologicaBlocks.CORN_CROP.get());
+		tallCropBlock(TechnologicaBlocks.PEPPERCORN_CROP.get());
+		tallCropBlock(TechnologicaBlocks.CRANBERRY_CROP.get());
+		tallCropBlock(TechnologicaBlocks.RICE_CROP.get());
+		
+		simpleBlock(TechnologicaBlocks.APRICOT_SAPLING.get(), models().cross(ResourceLocationHelper.getPath(TechnologicaBlocks.APRICOT_SAPLING.get()), blockTexture(TechnologicaBlocks.APRICOT_SAPLING.get())));
+		
+		simpleBlock(TechnologicaBlocks.POTTED_APRICOT_SAPLING.get(), models().singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.APRICOT_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.APRICOT_SAPLING.get()).replaceAll("potted_", ""))));
+		
+		simpleBlock(TechnologicaBlocks.APRICOT_LEAVES.get());
+		
+		simpleBlock(TechnologicaBlocks.MULCH.get(), models().cubeBottomTop(ResourceLocationHelper.getPath(TechnologicaBlocks.MULCH.get()), modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.MULCH.get()) + "_side"), mcLoc("block/dirt"), modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.MULCH.get()) + "_top")));
+		
+		simpleBlock(TechnologicaBlocks.SALT.get());
+		simpleBlock(TechnologicaBlocks.LITHIUM_CLAY.get());
+		simpleBlock(TechnologicaBlocks.MOON_ROCK.get());
+		simpleBlock(TechnologicaBlocks.MOON_DUST.get());
+		
+		simpleBlock(TechnologicaBlocks.BAUXITE_ORE.get());
+		
+		twentyFourDirectionBlockState(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get(), hexagonalCrystalModel(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get()), hexagonalCrystalModel(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get()));
+		
+		twentyFourDirectionBlockState(TechnologicaBlocks.DOLOMITE_CRYSTAL.get(), cubicCrystalModel(TechnologicaBlocks.DOLOMITE_CRYSTAL.get()), cubicCrystalModel(TechnologicaBlocks.DOLOMITE_CRYSTAL.get()));
+		
+		getVariantBuilder(TechnologicaBlocks.HYDROGEN.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.HYDROGEN.get())));
+		
+		logBlock((RotatedPillarBlock) TechnologicaBlocks.APRICOT_LOG.get());
+		
+		logBlock((RotatedPillarBlock) TechnologicaBlocks.STRIPPED_APRICOT_LOG.get());
+		
+		axisBlock((RotatedPillarBlock) TechnologicaBlocks.APRICOT_WOOD.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.APRICOT_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_WOOD.get()), "_wood", "_log")), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.APRICOT_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_WOOD.get()), "_wood", "_log")));
+		
+		axisBlock((RotatedPillarBlock) TechnologicaBlocks.STRIPPED_APRICOT_WOOD.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.STRIPPED_APRICOT_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_APRICOT_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_APRICOT_WOOD.get()), "_wood", "_log")), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.STRIPPED_APRICOT_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_APRICOT_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_APRICOT_WOOD.get()), "_wood", "_log")));
+		
+		simpleBlock(TechnologicaBlocks.APRICOT_PLANKS.get());
+		
+		slabBlock((SlabBlock) TechnologicaBlocks.APRICOT_SLAB.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_SLAB.get()), "_slab", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_SLAB.get()), "_slab", "_planks"));
+		
+		stairsBlock((StairBlock) TechnologicaBlocks.APRICOT_STAIRS.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_STAIRS.get()), "_stairs", "_planks"));
+		
+		simpleBlock(TechnologicaBlocks.APRICOT_BOOKSHELF.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.APRICOT_BOOKSHELF.get()), blockTexture(TechnologicaBlocks.APRICOT_BOOKSHELF.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_BOOKSHELF.get()), "bookshelf", "planks")));
+		
+		fenceBlock((FenceBlock) TechnologicaBlocks.APRICOT_FENCE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_FENCE.get()), "_fence", "_planks"));
+		
+		fenceGateBlock((FenceGateBlock) TechnologicaBlocks.APRICOT_FENCE_GATE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_FENCE_GATE.get()), "_fence_gate", "_planks"));
+		
+		doorBlock((DoorBlock) TechnologicaBlocks.APRICOT_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.APRICOT_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.APRICOT_DOOR.get()), "_top"));
+		
+		trapdoorBlock((TrapDoorBlock) TechnologicaBlocks.APRICOT_TRAPDOOR.get(), blockTexture(TechnologicaBlocks.APRICOT_TRAPDOOR.get()), true);
+		
+		pressurePlateBlockState(TechnologicaBlocks.APRICOT_PRESSURE_PLATE.get(), pressurePlateModel(TechnologicaBlocks.APRICOT_PRESSURE_PLATE.get()), pressurePlateDownModel(TechnologicaBlocks.APRICOT_PRESSURE_PLATE.get()));
+		
+		buttonBlockState(TechnologicaBlocks.APRICOT_BUTTON.get(), buttonModel(TechnologicaBlocks.APRICOT_BUTTON.get()), buttonPressedModel(TechnologicaBlocks.APRICOT_BUTTON.get()), buttonInventoryModel(TechnologicaBlocks.APRICOT_BUTTON.get()));
+		
+		signBlock(TechnologicaBlocks.APRICOT_SIGN.get());
+		
+		signBlock(TechnologicaBlocks.APRICOT_WALL_SIGN.get());
+		
+		twelveDirectionBlockState(TechnologicaBlocks.LINE_SHAFT_HANGER.get(), lineShaftHangerModel(TechnologicaBlocks.LINE_SHAFT_HANGER.get()), lineShaftHangerModel2(TechnologicaBlocks.LINE_SHAFT_HANGER.get()));
+		
+		lineShaftBlockState(TechnologicaBlocks.LINE_SHAFT.get(), lineShaftNoPulleyModel(TechnologicaBlocks.LINE_SHAFT.get()), lineShaftSmallPulleyModel(TechnologicaBlocks.LINE_SHAFT.get()), lineShaftMediumPulleyModel(TechnologicaBlocks.LINE_SHAFT.get()), lineShaftLargePulleyModel(TechnologicaBlocks.LINE_SHAFT.get()));
+		
+		getVariantBuilder(TechnologicaBlocks.SMALL_PULLEY.get()).partialState().setModels(new ConfiguredModel(models().withExistingParent(ResourceLocationHelper.getPath(TechnologicaBlocks.SMALL_PULLEY.get()), ResourceLocationHelper.technologicaLocation(ResourceLocationHelper.getPath(TechnologicaBlocks.SMALL_PULLEY.get()) + "_model")).texture("pulley", ResourceLocationHelper.technologicaLocation("block/pulley"))));
+		
+		twentyFourDirectionBlockState(TechnologicaBlocks.MOTOR_1HP.get(), motorModel(TechnologicaBlocks.MOTOR_1HP.get()), motor2Model(TechnologicaBlocks.MOTOR_1HP.get()));
+		
+		fourDirectionBlockState(TechnologicaBlocks.TREE_TAP.get(), treeTapModel(TechnologicaBlocks.TREE_TAP.get()));
+		
+		fourDirectionBlockState(TechnologicaBlocks.SAWMILL.get(), cubeAll(TechnologicaBlocks.SAWMILL.get()));
+		
+		fourDirectionBlockState(TechnologicaBlocks.ACACIA_CHAIR.get(), chairModel(TechnologicaBlocks.ACACIA_CHAIR.get(), mcLoc(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ACACIA_CHAIR.get()).getPath(), "chair", "planks"))));
+		fourDirectionBlockState(TechnologicaBlocks.APRICOT_CHAIR.get(), chairModel(TechnologicaBlocks.APRICOT_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_CHAIR.get()), "chair", "planks")));
+		
+		simpleBlock(TechnologicaBlocks.ACACIA_CHAIR.get(), tableModel(TechnologicaBlocks.ACACIA_CHAIR.get(), mcLoc(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ACACIA_CHAIR.get()).getPath(), "table", "planks"))));
+		simpleBlock(TechnologicaBlocks.APRICOT_CHAIR.get(), tableModel(TechnologicaBlocks.APRICOT_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_CHAIR.get()), "table", "planks")));
+		
+		simpleBlock(TechnologicaBlocks.DISPLAY_CASE.get(), displayModel(TechnologicaBlocks.DISPLAY_CASE.get()));
+		
+		annunciatorBlockState(TechnologicaBlocks.ANNUNCIATOR.get());
+		
+		axisBlock((RotatedPillarBlock) TechnologicaBlocks.NAVAL_MINE_CHAIN.get(), models().withExistingParent(ResourceLocationHelper.getPath(TechnologicaBlocks.NAVAL_MINE_CHAIN.get()), "block/chain"), models().withExistingParent(ResourceLocationHelper.getPath(TechnologicaBlocks.NAVAL_MINE_CHAIN.get()), "block/chain"));
+		
+		/*
+		 * BLOCK ITEMS
+		 */
+		
+		simpleBlockItem(TechnologicaBlocks.APRICOT_LEAVES.get(), cubeAll(TechnologicaBlocks.APRICOT_LEAVES.get()));
+		
+		simpleBlockItem(TechnologicaBlocks.SALT.get(), cubeAll(TechnologicaBlocks.SALT.get()));
+		simpleBlockItem(TechnologicaBlocks.LITHIUM_CLAY.get(), cubeAll(TechnologicaBlocks.SALT.get()));
+		simpleBlockItem(TechnologicaBlocks.MOON_ROCK.get(), cubeAll(TechnologicaBlocks.MOON_ROCK.get()));
+		simpleBlockItem(TechnologicaBlocks.MOON_DUST.get(), cubeAll(TechnologicaBlocks.MOON_DUST.get()));
+		
+		simpleBlockItem(TechnologicaBlocks.BAUXITE_ORE.get(), cubeAll(TechnologicaBlocks.BAUXITE_ORE.get()));
+		
+		simpleBlockItem(TechnologicaBlocks.APRICOT_LOG.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.APRICOT_LOG.get()), blockTexture(TechnologicaBlocks.APRICOT_LOG.get()), new ResourceLocation(blockTexture(TechnologicaBlocks.APRICOT_LOG.get()) + "_top")));
+		
+		simpleBlockItem(TechnologicaBlocks.STRIPPED_APRICOT_LOG.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.STRIPPED_APRICOT_LOG.get()), blockTexture(TechnologicaBlocks.STRIPPED_APRICOT_LOG.get()), new ResourceLocation(blockTexture(TechnologicaBlocks.STRIPPED_APRICOT_LOG.get()) + "_top")));
+	
+		simpleBlockItem(TechnologicaBlocks.APRICOT_WOOD.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.APRICOT_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_WOOD.get()), "_wood", "_log")));
+		
+		simpleBlockItem(TechnologicaBlocks.STRIPPED_APRICOT_WOOD.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.STRIPPED_APRICOT_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_APRICOT_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_APRICOT_WOOD.get()), "_wood", "_log")));
+	
+		simpleBlockItem(TechnologicaBlocks.APRICOT_PLANKS.get(), cubeAll(TechnologicaBlocks.APRICOT_PLANKS.get()));
+		
+		simpleBlockItem(TechnologicaBlocks.APRICOT_SLAB.get(), models().slab(ResourceLocationHelper.getPath(TechnologicaBlocks.APRICOT_SLAB.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_SLAB.get()), "_slab", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_SLAB.get()), "_slab", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_SLAB.get()), "_slab", "_planks")));
+	
+		simpleBlockItem(TechnologicaBlocks.APRICOT_STAIRS.get(), models().stairs(ResourceLocationHelper.getPath(TechnologicaBlocks.APRICOT_STAIRS.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_STAIRS.get()), "_stairs", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_STAIRS.get()), "_stairs", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_STAIRS.get()), "_stairs", "_planks")));
+	
+		simpleBlockItem(TechnologicaBlocks.APRICOT_BOOKSHELF.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.APRICOT_BOOKSHELF.get()), blockTexture(TechnologicaBlocks.APRICOT_BOOKSHELF.get()), ResourceLocationHelper.replace(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_BOOKSHELF.get()), "bookshelf", "planks"), "bookshelf", "planks")));
+	
+		simpleBlockItem(TechnologicaBlocks.APRICOT_FENCE.get(), models().fenceInventory(blockTexture(TechnologicaBlocks.APRICOT_FENCE.get()) + "_inventory", ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_FENCE.get()), "_fence", "_planks")));
+	
+		simpleBlockItem(TechnologicaBlocks.APRICOT_FENCE_GATE.get(), models().fenceGate(ResourceLocationHelper.getPath(TechnologicaBlocks.APRICOT_FENCE_GATE.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_FENCE_GATE.get()), "_fence_gate", "_planks")));
+	
+		doorBlockItem(TechnologicaBlocks.APRICOT_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
+		
+		simpleBlockItem(TechnologicaBlocks.APRICOT_TRAPDOOR.get(), models().trapdoorOrientableBottom(ResourceLocationHelper.getPath(TechnologicaBlocks.APRICOT_TRAPDOOR.get()) + "_bottom", blockTexture(TechnologicaBlocks.APRICOT_TRAPDOOR.get())));
+		
+		simpleBlockItem(TechnologicaBlocks.ACACIA_CHAIR.get(), tableModel(TechnologicaBlocks.ACACIA_CHAIR.get(), mcLoc(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ACACIA_CHAIR.get()).getPath(), "table", "planks"))));
+		simpleBlockItem(TechnologicaBlocks.APRICOT_CHAIR.get(), tableModel(TechnologicaBlocks.APRICOT_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_CHAIR.get()), "table", "planks")));
+		
+		simpleBlockItem(TechnologicaBlocks.DISPLAY_CASE.get(), displayModel(TechnologicaBlocks.DISPLAY_CASE.get()));
 	}	
-	
-	/**
-	 * Iterates through a deferred register of blocks, generating blockstates, block models, and item models for each entry.
-	 * This only works if the translation keys are consistent.  This is really only intended to work for mod blocks which are similar to vanilla.
-	 * This saves a lot of time when adding one new tree which leads to logs, leaves, planks, stairs, doors, etc. 
-	 * @param collection a collection of deferred register block entries
-	 */
-	
-	private final void automaticBlockState(Collection<RegistryObject<Block>> collection) {
-		for(Supplier<? extends Block> blockSupplier:collection) {
-			Block block = blockSupplier.get();
-			String path = ResourceLocationHelper.getPath(block);
-			ResourceLocation texture = blockTexture(block);
-				
-			if (path.contains("leaves")) {
-				simpleBlock(block);
-				simpleBlockItem(block, cubeAll(block));
-			} else if (path.contains("_planks")) {
-				simpleBlock(block);
-				simpleBlockItem(block, cubeAll(block));
-			} else if (path.contains("salt")) {
-				simpleBlock(block);
-				simpleBlockItem(block, cubeAll(block));
-			} else if (path.contains("_clay")) {
-				simpleBlock(block);
-				simpleBlockItem(block, cubeAll(block));
-			} else if (path.contains("moon")) {
-				simpleBlock(block);
-				simpleBlockItem(block, cubeAll(block));
-			} else if (path.contains("_ore")) {
-				simpleBlock(block);
-				simpleBlockItem(block, cubeAll(block));
-			} else if (path.contains("_bookshelf"))  {
-				ResourceLocation end = blockTexture(block);
-				if (ResourceLocationHelper.getPath(block).contains("spruce") || block.getDescriptionId().contains("birch") || block.getDescriptionId().contains("jungle") || block.getDescriptionId().contains("acacia") || block.getDescriptionId().contains("dark_oak") || block.getDescriptionId().contains("crimson") || block.getDescriptionId().contains("warped")) {
-					end = mcLoc(blockTexture(block).getPath());	
-				}
-				simpleBlock(block, models().cubeColumn(path, blockTexture(block), ResourceLocationHelper.replace(end, "bookshelf", "planks")));
-				simpleBlockItem(block, models().cubeColumn(path, blockTexture(block), ResourceLocationHelper.replace(end, "bookshelf", "planks")));
-			} else if (path.contains("_log")) {
-				logBlock((RotatedPillarBlock) block);
-				simpleBlockItem(block, models().cubeColumn(path, blockTexture(block), new ResourceLocation(blockTexture(block) + "_top")));
-			} else if (path.contains("_wood")) {
-				texture = ResourceLocationHelper.replace(blockTexture(block), "_wood", "_log");
-				axisBlock((RotatedPillarBlock) block, models().cubeColumn(path, texture, texture), models().cubeColumn(path, texture, texture));
-				simpleBlockItem(block, models().cubeColumn(path, texture, texture));
-			} else if (path.contains("_slab")) {
-				texture = ResourceLocationHelper.replace(blockTexture(block), "_slab", "_planks");
-				slabBlock((SlabBlock) block, texture, texture);
-				simpleBlockItem(block, models().slab(path, texture, texture, texture));
-			} else if (path.contains("_stairs")) {
-				texture = ResourceLocationHelper.replace(blockTexture(block), "_stairs", "_planks");
-				stairsBlock((StairBlock) block, texture);
-				simpleBlockItem(block, models().stairs(path, texture, texture, texture));
-			} else if (path.contains("_fence") && !path.contains("_gate")) {
-				texture = ResourceLocationHelper.replace(blockTexture(block), "_fence", "_planks");
-				fenceBlock((FenceBlock) block, texture);
-				simpleBlockItem(block, models().fenceInventory(path + "_inventory", texture));
-			} else if (path.contains("_fence_gate")) {
-				texture = ResourceLocationHelper.replace(blockTexture(block), "_fence_gate", "_planks");
-				fenceGateBlock((FenceGateBlock) block, texture);
-				simpleBlockItem(block, models().fenceGate(path, texture));
-			}
-			else if (path.contains("_door") && !path.contains("trap")) {
-				doorBlock((DoorBlock) block, ResourceLocationHelper.extend(blockTexture(block), "_bottom"), ResourceLocationHelper.extend(blockTexture(block), "_top"));
-				signItem(block, new ModelFile.UncheckedModelFile("item/generated"));	
-			}
-			else if (path.contains("_trapdoor")) {
-				trapdoorBlock((TrapDoorBlock) block, blockTexture(block), true);
-				simpleBlockItem(block, models().trapdoorOrientableBottom(path + "_bottom", texture));
-			}
-			else if (path.contains("_sign")) signBlock(block);
-			else if (path.contains("display_case")) {
-				simpleBlock(block, displayModel(block));
-				simpleBlockItem(block, displayModel(block));
-			}
-			else if (path.contains("_sapling") && !path.contains("potted")) simpleBlock(block, models().cross(path, texture));
-			else if (path.contains("potted")) simpleBlock(block, models().singleTexture(path, mcLoc("flower_pot_cross"), "plant", modLoc("block/" + path.replaceAll("potted_", ""))));
-			else if (block.getClass().equals(CropBlock.class)) cropBlock(block);
-			else if (block.getClass().equals(TallCropsBlock.class) || block.getClass().equals(WaterCropsBlock.class)) tallCropBlock(block);
-			else if (path.contains("_pressure_plate")) {
-				pressurePlateBlockState(block, pressurePlateModel(block), pressurePlateDownModel(block));
-			}
-			else if (path.contains("_button")) buttonBlockState(block, buttonModel(block), buttonPressedModel(block), buttonInventoryModel(block));
-			else if (path.contains("tree_tap")) fourDirectionBlockState(block, treeTapModel(block));
-			else if (path.contains("_chair")) {
-				ResourceLocation planks = ResourceLocationHelper.replace(blockTexture(block), "chair", "planks");
-				if (path.contains("oak") || path.contains("spruce") || path.contains("birch") || path.contains("jungle") || path.contains("acacia") || path.contains("dark_oak") || path.contains("crimson") || path.contains("warped")) {
-					planks = mcLoc(ResourceLocationHelper.replace(blockTexture(block).getPath(), "chair", "planks"));	
-				}
-				fourDirectionBlockState(block, chairModel(block, planks));
-			}
-			else if (path.contains("_table")) {
-				ResourceLocation planks = ResourceLocationHelper.replace(blockTexture(block), "table", "planks");
-				if (path.contains("oak") || path.contains("spruce") || path.contains("birch") || path.contains("jungle") || path.contains("acacia") || path.contains("dark_oak") || path.contains("crimson") || path.contains("warped")) {
-					planks = mcLoc(ResourceLocationHelper.replace(blockTexture(block).getPath(), "table", "planks"));	
-				}
-				simpleBlock(block, tableModel(block, planks));
-				simpleBlockItem(block, tableModel(block, planks));
-			}
-			else if (path.contains("_crystal") && !path.contains("dolomite")) twentyFourDirectionBlockState(block, hexagonalCrystalModel(block), hexagonalCrystalModel(block));
-			else if (path.contains("_crystal") && path.contains("dolomite")) twentyFourDirectionBlockState(block, cubicCrystalModel(block), cubicCrystalModel(block));
-			else if (path.contains("motor")) twentyFourDirectionBlockState(block, motorModel(block), motor2Model(block));
-			else if (block instanceof LineShaftBlock) {
-				lineShaftBlockState(block, lineShaftNoPulleyModel(block), lineShaftSmallPulleyModel(block), lineShaftMediumPulleyModel(block), lineShaftLargePulleyModel(block));
-			}
-			else if (path.contains("line_shaft_hanger")) twelveDirectionBlockState(block, lineShaftHangerModel(block), lineShaftHangerModel2(block));
-			else if (block instanceof LiquidBlock) {
-				getVariantBuilder(block).partialState().setModels(new ConfiguredModel(fluid(block)));
-			}
-			else if (path.contains("_pulley")) {
-				getVariantBuilder(block).partialState().setModels(new ConfiguredModel(models().withExistingParent(path, ResourceLocationHelper.technologicaLocation(path + "_model")).texture("pulley", ResourceLocationHelper.technologicaLocation("block/pulley"))));
-			}
-			else if (path.contains("sawmill")) fourDirectionBlockState(block, cubeAll(block));
-			else if (path.contains("annunciator")) annunciatorBlockState(block);
-			else if (path.contains("mulch")) simpleBlock(block, models().cubeBottomTop(path, modLoc("block/" + path + "_side"), mcLoc("block/dirt"), modLoc("block/" + path + "_top")));
-			else if (path.contains("chain")) axisBlock((RotatedPillarBlock) block, models().withExistingParent(path, "block/chain"), models().withExistingParent(path, "block/chain"));
-		}
-	}
 	
 	/*
 	 * ModelFiles
