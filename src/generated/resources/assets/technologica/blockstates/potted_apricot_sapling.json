@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "technologica:block/potted_apricot_sapling"
+      "model": "technologica:block/apricot_sapling"
     }
   }
 }

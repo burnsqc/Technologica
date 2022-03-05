@@ -26,15 +26,120 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 	
 	@Override
 	protected void registerModels() {
-		simpleItem(TechnologicaItems.ASPARAGUS_SEEDS.get()); //Start here
-		simpleItem(TechnologicaItems.BARLEY_SEEDS.get()); //Continue for each seed
+		simpleItem(TechnologicaItems.ASPARAGUS_SEEDS.get()); 
+		simpleItem(TechnologicaItems.BARLEY_SEEDS.get()); 
+		simpleItem(TechnologicaItems.BLACKBERRY_SEEDS.get());
+		simpleItem(TechnologicaItems.BLUEBERRY_SEEDS.get());
+		simpleItem(TechnologicaItems.BROCCOLI_SEEDS.get());
+		simpleItem(TechnologicaItems.CELERY_SEEDS.get());
+		simpleItem(TechnologicaItems.CHILI_PEPPER_SEEDS.get());
+		simpleItem(TechnologicaItems.COFFEE_BEANS.get());
+		simpleItem(TechnologicaItems.CORN_SEEDS.get());
+		simpleItem(TechnologicaItems.COTTON_SEEDS.get());
+		simpleItem(TechnologicaItems.CRANBERRY_SEEDS.get());
+		simpleItem(TechnologicaItems.CUCUMBER_SEEDS.get());
+		simpleItem(TechnologicaItems.GARLIC_SEEDS.get());
+		simpleItem(TechnologicaItems.GINGER_SEEDS.get());
+		simpleItem(TechnologicaItems.GRAPE_SEEDS.get());
+		simpleItem(TechnologicaItems.LETTUCE_SEEDS.get());
+		simpleItem(TechnologicaItems.MUSTARD_SEEDS.get());
+		simpleItem(TechnologicaItems.OATS_SEEDS.get());
+		simpleItem(TechnologicaItems.ONION_SEEDS.get());
+		simpleItem(TechnologicaItems.PEA_SEEDS.get());
+		simpleItem(TechnologicaItems.PEANUT_SEEDS.get());
+		simpleItem(TechnologicaItems.PEPPERCORN_SEEDS.get());
+		simpleItem(TechnologicaItems.PINEAPPLE_SEEDS.get());
+		simpleItem(TechnologicaItems.PURPLE_CABBAGE_SEEDS.get());
+		simpleItem(TechnologicaItems.RADISH_SEEDS.get());
+		simpleItem(TechnologicaItems.RASPBERRY_SEEDS.get());
+		simpleItem(TechnologicaItems.RED_BEANS.get());
+		simpleItem(TechnologicaItems.RICE_SEEDS.get());
+		simpleItem(TechnologicaItems.RYE_SEEDS.get());
+		simpleItem(TechnologicaItems.SOYBEANS.get());
+		simpleItem(TechnologicaItems.STRAWBERRY_SEEDS.get());
+		simpleItem(TechnologicaItems.SQUASH_SEEDS.get());
+		simpleItem(TechnologicaItems.SWEET_POTATO_SEEDS.get());
+		simpleItem(TechnologicaItems.TEA_SEEDS.get());
+		simpleItem(TechnologicaItems.TOMATO_SEEDS.get());
+		simpleItem(TechnologicaItems.TURNIP_SEEDS.get());
+		simpleItem(TechnologicaItems.ZUCCHINI_SEEDS.get());
+
+		simpleBlockItem(TechnologicaItems.APRICOT_SAPLING_ITEM.get()); 
+		simpleBlockItem(TechnologicaItems.ASPEN_SAPLING_ITEM.get()); 
+		simpleBlockItem(TechnologicaItems.AVOCADO_SAPLING_ITEM.get()); 
+		simpleBlockItem(TechnologicaItems.BANANA_SAPLING_ITEM.get()); 
+		simpleBlockItem(TechnologicaItems.CHERRY_SAPLING_ITEM.get()); 
+		simpleBlockItem(TechnologicaItems.CHESTNUT_SAPLING_ITEM.get()); 
+		simpleBlockItem(TechnologicaItems.CINNAMON_SAPLING_ITEM.get()); 
+		simpleBlockItem(TechnologicaItems.COCONUT_SAPLING_ITEM.get()); 
+		simpleBlockItem(TechnologicaItems.EBONY_SAPLING_ITEM.get()); 
+		simpleBlockItem(TechnologicaItems.KIWI_SAPLING_ITEM.get()); 
+		simpleBlockItem(TechnologicaItems.LEMON_SAPLING_ITEM.get()); 
+		simpleBlockItem(TechnologicaItems.LIME_SAPLING_ITEM.get()); 
+		simpleBlockItem(TechnologicaItems.MAHOGANY_SAPLING_ITEM.get()); 
+		simpleBlockItem(TechnologicaItems.MAPLE_SAPLING_ITEM.get()); 
+		simpleBlockItem(TechnologicaItems.OLIVE_SAPLING_ITEM.get()); 
+		simpleBlockItem(TechnologicaItems.ORANGE_SAPLING_ITEM.get()); 
+		simpleBlockItem(TechnologicaItems.PEACH_SAPLING_ITEM.get()); 
+		simpleBlockItem(TechnologicaItems.PEAR_SAPLING_ITEM.get()); 
+		simpleBlockItem(TechnologicaItems.PLUM_SAPLING_ITEM.get()); 
+		simpleBlockItem(TechnologicaItems.REDWOOD_SAPLING_ITEM.get()); 
+		simpleBlockItem(TechnologicaItems.ROSEWOOD_SAPLING_ITEM.get()); 
+		simpleBlockItem(TechnologicaItems.RUBBER_SAPLING_ITEM.get()); 
+		simpleBlockItem(TechnologicaItems.TEAK_SAPLING_ITEM.get()); 
+		simpleBlockItem(TechnologicaItems.WALNUT_SAPLING_ITEM.get()); 
+		simpleBlockItem(TechnologicaItems.ZEBRAWOOD_SAPLING_ITEM.get()); 
+		simpleBlockItem(TechnologicaItems.ANCIENT_AMBROSIA_SAPLING_ITEM.get()); 
+		simpleBlockItem(TechnologicaItems.CRYOGENIC_SPIRE_SAPLING_ITEM.get()); 
+		simpleBlockItem(TechnologicaItems.THUNDEROUS_CONDUCTOR_SAPLING_ITEM.get()); 
+		simpleBlockItem(TechnologicaItems.TOWERING_INFERNO_SAPLING_ITEM.get()); 
+		simpleBlockItem(TechnologicaItems.SERENDIPITOUS_APOTHECARY_SAPLING_ITEM.get()); 
+		simpleBlockItem(TechnologicaItems.BENEVOLENT_APOTHECARY_SAPLING_ITEM.get()); 
+		simpleBlockItem(TechnologicaItems.MALEVOLENT_APOTHECARY_SAPLING_ITEM.get());
+		simpleBlockItem(TechnologicaItems.NECROTIC_SAPLING_ITEM.get());
 		
-		simpleBlockItem(TechnologicaItems.APRICOT_SAPLING_ITEM.get()); //Start here
-		simpleBlockItem(TechnologicaItems.ASPEN_SAPLING_ITEM.get()); //Continue for each sapling
+		simpleSpawnEggItem(TechnologicaItems.ALLIGATOR_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.BEAVER_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.BUFFALO_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.CAMEL_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.COBRA_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.COTTONMOUTH_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.COYOTE_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.CRAB_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.DEER_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.DUCK_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.ELEPHANT_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.FLAMINGO_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.FROG_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.GIRAFFE_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.GORILLA_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.GRIZZLY_BEAR_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.JAGUAR_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.KING_CRAB_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.LEOPARD_SEAL_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.LION_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.LIZARD_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.MOOSE_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.NARWHAL_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.OCTOPUS_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.OSTRICH_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.OWL_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.PENGUIN_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.PIRANHA_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.POISON_DART_FROG_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.RACCOON_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.SCORPION_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.SHARK_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.SLOTH_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.STINGRAY_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.TURKEY_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.VULTURE_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.WALRUS_SPAWN_EGG.get()); 
+		simpleSpawnEggItem(TechnologicaItems.ZEBRA_SPAWN_EGG.get()); 
 		
-		simpleSpawnEggItem(TechnologicaItems.ALLIGATOR_SPAWN_EGG.get()); //Start here
-		simpleSpawnEggItem(TechnologicaItems.BEAVER_SPAWN_EGG.get()); //Continue for each spawn egg
-		//And so on and so forth until all items are accounted for.  Check the generated data item models to see if you caught them all.
+		simpleSpawnEggItem(TechnologicaItems.PEEPER_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.SWEEPER_SPAWN_EGG.get());
+		
 		automaticItemModel(TechnologicaItems.ITEMS.getEntries());
 	}
 	

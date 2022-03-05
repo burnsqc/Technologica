@@ -1,6 +1,7 @@
 {
-  "parent": "minecraft:block/cross",
+  "parent": "minecraft:block/flower_pot_cross",
   "textures": {
-    "cross": "technologica:block/apricot_sapling"
+    "cross": "technologica:block/apricot_sapling",
+    "plant": "technologica:block/apricot_sapling"
   }
 }
