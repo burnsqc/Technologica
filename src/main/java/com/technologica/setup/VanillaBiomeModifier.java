@@ -2,6 +2,7 @@ package com.technologica.setup;
 
 import com.technologica.data.worldgen.features.TechnologicaTreeFeatures;
 
+import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.GenerationStep;
@@ -12,20 +13,20 @@ public class VanillaBiomeModifier {
 
 	public static void init(final BiomeLoadingEvent biomeIn) {
 		if (biomeIn.getName().getPath().equals("jungle") || biomeIn.getName().getPath().equals("jungle_hills") || biomeIn.getName().getPath().equals("modified_jungle")) {
-			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaTreeFeatures.EBONY.placed(VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(100))));
-			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaTreeFeatures.KIWI.placed(VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(100))));
-			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaTreeFeatures.RUBBER.placed(VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(100))));
+			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaTreeFeatures.EBONY.placed(VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(2))));
+			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaTreeFeatures.KIWI.placed(VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(2))));
+			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaTreeFeatures.RUBBER.placed(VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(2))));
 			//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.GORILLA.get(), 100, 1, 5));
 			//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.SLOTH.get(), 100, 1, 13));
 		} 
 		
 		else if (biomeIn.getName().getPath().equals("jungle_edge") || biomeIn.getName().getPath().equals("modified_jungle_edge")) {
-			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaTreeFeatures.TEAK.placed(VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(100))));
+			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaTreeFeatures.TEAK.placed(VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(2))));
 	    }
 		
 		else if (biomeIn.getName().getPath().equals("bamboo_jungle") || biomeIn.getName().getPath().equals("bamboo_jungle_hills")) {
-			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaTreeFeatures.CHERRY.placed(VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(100))));
-			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaTreeFeatures.PLUM.placed(VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(100))));
+			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaTreeFeatures.CHERRY.placed(VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(2))));
+			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaTreeFeatures.PLUM.placed(VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(2))));
 	    }
 		
 		else if (biomeIn.getName().getPath().equals("forest")) {
@@ -38,14 +39,14 @@ public class VanillaBiomeModifier {
 		}
 	    	
 		else if (biomeIn.getName().getPath().equals("birch_forest") || biomeIn.getName().getPath().equals("birch_forest_hills")) {
-	    	biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaTreeFeatures.PEACH.placed(VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(100))));
+	    	biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaTreeFeatures.PEACH.placed(VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(2))));
 	    	//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.DEER.get(), 100, 1, 5));
 	    	//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.RACCOON.get(), 100, 1, 3));
 	    	//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.TURKEY.get(), 100, 1, 3));
 		}
 		
 		else if (biomeIn.getName().getPath().equals("wooded_hills") || biomeIn.getName().getPath().equals("wooded_mountains")) {
-	    	biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaTreeFeatures.ASPEN.placed(VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(100))));
+	    	biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaTreeFeatures.ASPEN.placed(VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(2))));
 	    	//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.BEAVER.get(), 100, 1, 3));
 	    	//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.DEER.get(), 100, 1, 5));
 	    	//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.GRIZZLY_BEAR.get(), 100, 1, 3));
@@ -54,27 +55,27 @@ public class VanillaBiomeModifier {
 		}
 	    
 		else if (biomeIn.getName().getPath().equals("beach")) {
-			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaTreeFeatures.COCONUT.placed(VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(100))));
+			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaTreeFeatures.COCONUT.placed(VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(2))));
 			//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.CRAB.get(), 100, 1, 5));
 		} 
 	    
 		else if (biomeIn.getName().getPath().equals("taiga") || biomeIn.getName().getPath().equals("taiga hills")) {
-			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaTreeFeatures.APRICOT.placed(VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(100))));		
-			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaTreeFeatures.PEAR.placed(VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(100))));		
+			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaTreeFeatures.APRICOT.placed(VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(2))));		
+			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaTreeFeatures.PEAR.placed(VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(2))));		
 			//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.BEAVER.get(), 100, 1, 3));
 			//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.GRIZZLY_BEAR.get(), 100, 1, 3));
 			//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.OWL.get(), 100, 1, 3));
 		}
 		
 		else if (biomeIn.getName().getPath().equals("snowy_taiga") || biomeIn.getName().getPath().equals("snowy_taiga hills")) {
-			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaTreeFeatures.MAPLE.placed(VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(100))));
-			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaTreeFeatures.WALNUT.placed(VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(100))));		
+			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaTreeFeatures.MAPLE.placed(VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(2))));
+			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaTreeFeatures.WALNUT.placed(VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(2))));		
 			//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.MOOSE.get(), 100, 1, 3));
 			//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.OWL.get(), 100, 1, 3));
 		}
 		
 		else if (biomeIn.getName().getPath().equals("swamp") || biomeIn.getName().getPath().equals("swamp hills")) {
-			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaTreeFeatures.ORANGE.placed(VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(100))));		
+			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaTreeFeatures.ORANGE.placed(VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(2))));		
 			//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.ALLIGATOR.get(), 100, 1, 3));
 			//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.COTTONMOUTH.get(), 100, 1, 1));
 			//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.FLAMINGO.get(), 100, 1, 3));
@@ -83,7 +84,7 @@ public class VanillaBiomeModifier {
 		} 
 	    
 		else if (biomeIn.getCategory().equals(Biome.BiomeCategory.SAVANNA)) {
-			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaTreeFeatures.ZEBRAWOOD.placed(VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(100))));
+			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaTreeFeatures.ZEBRAWOOD.placed(VegetationPlacements.treePlacement(PlacementUtils.countExtra(10, 0.1F, 1))));
 			//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.ELEPHANT.get(), 100, 1, 3));
 			//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.GIRAFFE.get(), 100, 1, 3));
 			//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.LION.get(), 100, 1, 3));

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "side": "technologica:block/alchemical_planks",
-    "bottom": "technologica:block/alchemical_planks",
-    "top": "technologica:block/alchemical_planks"
-  }
-}
