@@ -367,7 +367,7 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		
 		
 		
-		automaticItemModel(TechnologicaItems.ITEMS.getEntries());
+		
 	}
 	
 	private final void automaticItemModel(Collection<RegistryObject<Item>> collection) {
