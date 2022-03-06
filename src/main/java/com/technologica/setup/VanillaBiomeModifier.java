@@ -1,5 +1,6 @@
 package com.technologica.setup;
 
+import com.technologica.data.worldgen.TechnologicaVegetationPlacements;
 import com.technologica.data.worldgen.features.TechnologicaTreeFeatures;
 
 import net.minecraft.data.worldgen.placement.PlacementUtils;
@@ -84,7 +85,7 @@ public class VanillaBiomeModifier {
 		} 
 	    
 		else if (biomeIn.getCategory().equals(Biome.BiomeCategory.SAVANNA)) {
-			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaTreeFeatures.ZEBRAWOOD.placed(VegetationPlacements.treePlacement(PlacementUtils.countExtra(10, 0.1F, 1))));
+			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaVegetationPlacements.TREES_ZEBRAWOOD);
 			//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.ELEPHANT.get(), 100, 1, 3));
 			//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.GIRAFFE.get(), 100, 1, 3));
 			//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.LION.get(), 100, 1, 3));

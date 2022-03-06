@@ -1,20 +1,14 @@
 package com.technologica.data;
 
-import java.util.Collection;
-import java.util.function.Supplier;
-
 import com.technologica.Technologica;
 import com.technologica.world.item.TechnologicaItems;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.RegistryObject;
 
 public class TechnologicaItemModelProvider extends ItemModelProvider {
 
@@ -24,7 +18,6 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 	
 	@Override
 	protected void registerModels() {
-		
 		simpleItem(TechnologicaItems.ASPARAGUS_SEEDS.get()); 
 		simpleItem(TechnologicaItems.BARLEY_SEEDS.get()); 
 		simpleItem(TechnologicaItems.BLACKBERRY_SEEDS.get());
@@ -380,7 +373,6 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.SCUBA_SUIT.get());
 		simpleItem(TechnologicaItems.SCUBA_PANTS.get());
 		simpleItem(TechnologicaItems.SCUBA_BOOTS.get());
-		
 	}
 	
 	public void simpleItem(Item item) {
@@ -388,13 +380,13 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		this.getBuilder(location.getPath()).parent(new ModelFile.UncheckedModelFile("item/generated")).texture("layer0", new ResourceLocation(location.getNamespace(), ITEM_FOLDER + "/" + location.getPath()));
 	}
 	
-	public void simpleSpawnEggItem(Item item) { //Once you've added all spawn eggs, you can delete this method
-		ResourceLocation location = item.getRegistryName();
-		this.getBuilder(location.getPath()).parent(new ModelFile.UncheckedModelFile("item/template_spawn_egg"));
-	}
-	
 	public void simpleBlockItem(Item item) {
 		ResourceLocation location = item.getRegistryName();
 		this.getBuilder(location.getPath()).parent(new ModelFile.UncheckedModelFile("item/generated")).texture("layer0", new ResourceLocation(location.getNamespace(), BLOCK_FOLDER + "/" + location.getPath()));
+	}
+	
+	public void simpleSpawnEggItem(Item item) {
+		ResourceLocation location = item.getRegistryName();
+		this.getBuilder(location.getPath()).parent(new ModelFile.UncheckedModelFile("item/template_spawn_egg"));
 	}
 }
