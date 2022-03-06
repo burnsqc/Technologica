@@ -26,6 +26,9 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 	
 	@Override
 	protected void registerModels() {
+		/**
+		 * SEEDS
+		 */
 		simpleItem(TechnologicaItems.ASPARAGUS_SEEDS.get()); 
 		simpleItem(TechnologicaItems.BARLEY_SEEDS.get()); 
 		simpleItem(TechnologicaItems.BLACKBERRY_SEEDS.get());
@@ -63,7 +66,11 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.TOMATO_SEEDS.get());
 		simpleItem(TechnologicaItems.TURNIP_SEEDS.get());
 		simpleItem(TechnologicaItems.ZUCCHINI_SEEDS.get());
-
+		
+		/**
+		 * SAPLINGS
+		 */
+		
 		simpleBlockItem(TechnologicaItems.APRICOT_SAPLING_ITEM.get()); 
 		simpleBlockItem(TechnologicaItems.ASPEN_SAPLING_ITEM.get()); 
 		simpleBlockItem(TechnologicaItems.AVOCADO_SAPLING_ITEM.get()); 
@@ -97,6 +104,10 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleBlockItem(TechnologicaItems.BENEVOLENT_APOTHECARY_SAPLING_ITEM.get()); 
 		simpleBlockItem(TechnologicaItems.MALEVOLENT_APOTHECARY_SAPLING_ITEM.get());
 		simpleBlockItem(TechnologicaItems.NECROTIC_SAPLING_ITEM.get());
+		
+		/**
+		 * SPAWN EGGS
+		 */
 		
 		simpleSpawnEggItem(TechnologicaItems.ALLIGATOR_SPAWN_EGG.get()); 
 		simpleSpawnEggItem(TechnologicaItems.BEAVER_SPAWN_EGG.get()); 
@@ -139,6 +150,222 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		
 		simpleSpawnEggItem(TechnologicaItems.PEEPER_SPAWN_EGG.get());
 		simpleSpawnEggItem(TechnologicaItems.SWEEPER_SPAWN_EGG.get());
+		/**
+		 * MINERAL
+		 */
+	
+		simpleItem(TechnologicaItems.LITHIUM_INGOT.get());
+		simpleItem(TechnologicaItems.BERYLLIUM_INGOT.get());
+		simpleItem(TechnologicaItems.SODIUM_INGOT.get());
+		simpleItem(TechnologicaItems.MAGNESIUM_INGOT.get());
+		simpleItem(TechnologicaItems.ALUMINUM_INGOT.get());
+		simpleItem(TechnologicaItems.POTASSIUM_INGOT.get());
+		simpleItem(TechnologicaItems.CALCIUM_INGOT.get());
+		simpleItem(TechnologicaItems.SCANDIUM_INGOT.get());
+		simpleItem(TechnologicaItems.TITANIUM_INGOT.get());
+		simpleItem(TechnologicaItems.VANADIUM_INGOT.get());
+		simpleItem(TechnologicaItems.CHROMIUM_INGOT.get());
+		simpleItem(TechnologicaItems.MANGANESE_INGOT.get());
+		simpleItem(TechnologicaItems.COBALT_INGOT.get());
+		simpleItem(TechnologicaItems.NICKEL_INGOT.get());
+		simpleItem(TechnologicaItems.COPPER_INGOT.get());
+		simpleItem(TechnologicaItems.ZINC_INGOT.get());
+		simpleItem(TechnologicaItems.GALLIUM_INGOT.get());
+		simpleItem(TechnologicaItems.RUBIDIUM_INGOT.get());
+		simpleItem(TechnologicaItems.STRONTIUM_INGOT.get());
+		simpleItem(TechnologicaItems.YTTRIUM_INGOT.get());
+		simpleItem(TechnologicaItems.ZIRCONIUM_INGOT.get());
+		simpleItem(TechnologicaItems.NIOBIUM_INGOT.get());
+		simpleItem(TechnologicaItems.MOLYBDENUM_INGOT.get());
+		simpleItem(TechnologicaItems.TECHNETIUM_INGOT.get());
+		simpleItem(TechnologicaItems.RUTHENIUM_INGOT.get());
+		simpleItem(TechnologicaItems.RHODIUM_INGOT.get());
+		simpleItem(TechnologicaItems.PALLADIUM_INGOT.get());
+		simpleItem(TechnologicaItems.SILVER_INGOT.get());
+		simpleItem(TechnologicaItems.CADMIUM_INGOT.get());
+		simpleItem(TechnologicaItems.INDIUM_INGOT.get());
+		simpleItem(TechnologicaItems.TIN_INGOT.get());
+		simpleItem(TechnologicaItems.CAESIUM_INGOT.get());
+		simpleItem(TechnologicaItems.BARIUM_INGOT.get());
+		simpleItem(TechnologicaItems.LANTHANUM_INGOT.get());
+		simpleItem(TechnologicaItems.CERIUM_INGOT.get());
+		simpleItem(TechnologicaItems.PRASEODYMIUM_INGOT.get());
+		simpleItem(TechnologicaItems.NEODYMIUM_INGOT.get());
+		simpleItem(TechnologicaItems.PROMETHIUM_INGOT.get());
+		simpleItem(TechnologicaItems.SAMARIUM_INGOT.get());
+		simpleItem(TechnologicaItems.EUROPIUM_INGOT.get());
+		simpleItem(TechnologicaItems.GADOLINIUM_INGOT.get());
+		simpleItem(TechnologicaItems.TERBIUM_INGOT.get());
+		simpleItem(TechnologicaItems.DYSPROSIUM_INGOT.get());
+		simpleItem(TechnologicaItems.HOLMIUM_INGOT.get());
+		simpleItem(TechnologicaItems.ERBIUM_INGOT.get());
+		simpleItem(TechnologicaItems.THULIUM_INGOT.get());
+		simpleItem(TechnologicaItems.YTTERBIUM_INGOT.get());
+		simpleItem(TechnologicaItems.LUTETIUM_INGOT.get());
+		simpleItem(TechnologicaItems.HAFNIUM_INGOT.get());
+		simpleItem(TechnologicaItems.TANTALUM_INGOT.get());
+		simpleItem(TechnologicaItems.TUNGSTEN_INGOT.get());
+		simpleItem(TechnologicaItems.RHENIUM_INGOT.get());
+		simpleItem(TechnologicaItems.OSMIUM_INGOT.get());
+		simpleItem(TechnologicaItems.IRIDIUM_INGOT.get());
+		simpleItem(TechnologicaItems.PLATINUM_INGOT.get());
+		simpleItem(TechnologicaItems.THALLIUM_INGOT.get());
+		simpleItem(TechnologicaItems.LEAD_INGOT.get());
+		simpleItem(TechnologicaItems.BISMUTH_INGOT.get());
+		simpleItem(TechnologicaItems.POLONIUM_INGOT.get());
+		simpleItem(TechnologicaItems.FRANCIUM_INGOT.get());
+		simpleItem(TechnologicaItems.RADIUM_INGOT.get());
+		simpleItem(TechnologicaItems.ACTINIUM_INGOT.get());
+		simpleItem(TechnologicaItems.THORIUM_INGOT.get());
+		simpleItem(TechnologicaItems.PROTACTINIUM_INGOT.get());
+		simpleItem(TechnologicaItems.URANIUM_INGOT.get());
+		simpleItem(TechnologicaItems.NEPTUNIUM_INGOT.get());
+		simpleItem(TechnologicaItems.PLUTONIUM_INGOT.get());
+		simpleItem(TechnologicaItems.AMERICIUM_INGOT.get());
+		simpleItem(TechnologicaItems.CURIUM_INGOT.get());
+		simpleItem(TechnologicaItems.BERKELIUM_INGOT.get());
+		simpleItem(TechnologicaItems.CALIFORNIUM_INGOT.get());
+		simpleItem(TechnologicaItems.EINSTEINIUM_INGOT.get());
+		simpleItem(TechnologicaItems.FERMIUM_INGOT.get());
+		simpleItem(TechnologicaItems.MENDELEVIUM_INGOT.get());
+		simpleItem(TechnologicaItems.NOBELIUM_INGOT.get());
+		simpleItem(TechnologicaItems.LAWRENCIUM_INGOT.get());
+		simpleItem(TechnologicaItems.RUTHERFORDIUM_INGOT.get());
+		simpleItem(TechnologicaItems.DUBNIUM_INGOT.get());
+		simpleItem(TechnologicaItems.SEABORGIUM_INGOT.get());
+		simpleItem(TechnologicaItems.BOHRIUM_INGOT.get());
+		simpleItem(TechnologicaItems.HASSIUM_INGOT.get());
+		simpleItem(TechnologicaItems.MEITNERIUM_INGOT.get());
+		simpleItem(TechnologicaItems.DARMSTADTIUM_INGOT.get());
+		simpleItem(TechnologicaItems.ROENTGENIUM_INGOT.get());
+		simpleItem(TechnologicaItems.COPERNICIUM_INGOT.get());
+		simpleItem(TechnologicaItems.NIHONIUM_INGOT.get());
+		simpleItem(TechnologicaItems.FLEVORIUM_INGOT.get());
+		simpleItem(TechnologicaItems.MOSCOVIUM_INGOT.get());
+		simpleItem(TechnologicaItems.LIVERMORIUM_INGOT.get());
+		simpleItem(TechnologicaItems.TENNESSINE_INGOT.get());
+		simpleItem(TechnologicaItems.OGANESSON_INGOT.get());
+		
+		simpleItem(TechnologicaItems.LITHIUM_CLAY_BALL.get());
+		simpleItem(TechnologicaItems.BORON_CHUNK.get());
+		simpleItem(TechnologicaItems.CARBON_CHUNK.get());
+		simpleItem(TechnologicaItems.SILICON_CHUNK.get());
+		simpleItem(TechnologicaItems.PHOSPHORUS_CHUNK.get());
+		simpleItem(TechnologicaItems.SULFUR_CHUNK.get());
+		simpleItem(TechnologicaItems.GERMANIUM_CHUNK.get());
+		simpleItem(TechnologicaItems.ARSENIC_CHUNK.get());
+		simpleItem(TechnologicaItems.SELENIUM_CHUNK.get());
+		simpleItem(TechnologicaItems.ANTIMONY_CHUNK.get());
+		simpleItem(TechnologicaItems.TELLURIUM_CHUNK.get());
+		simpleItem(TechnologicaItems.IODINE_CHUNK.get());
+		simpleItem(TechnologicaItems.ASTATINE_CHUNK.get());
+		
+		simpleItem(TechnologicaItems.MULCH.get());
+		simpleItem(TechnologicaItems.FERTILIZER.get());
+		simpleItem(TechnologicaItems.SAWDUST.get());
+		simpleItem(TechnologicaItems.RUBBER.get());
+		
+		/**
+		 * BUCKET ITEMS
+		 */
+		
+		simpleItem(TechnologicaItems.PIRANHA_BUCKET.get());
+		simpleItem(TechnologicaItems.HYDROGEN_BUCKET.get());
+		simpleItem(TechnologicaItems.HELIUM_BUCKET.get());
+		simpleItem(TechnologicaItems.NITROGEN_BUCKET.get());
+		simpleItem(TechnologicaItems.OXYGEN_BUCKET.get());
+		simpleItem(TechnologicaItems.FLUORINE_BUCKET.get());
+		simpleItem(TechnologicaItems.NEON_BUCKET.get());
+		simpleItem(TechnologicaItems.CHLORINE_BUCKET.get());
+		simpleItem(TechnologicaItems.ARGON_BUCKET.get());
+		simpleItem(TechnologicaItems.KRYPTON_BUCKET.get());
+		simpleItem(TechnologicaItems.XENON_BUCKET.get());
+		simpleItem(TechnologicaItems.RADON_BUCKET.get());
+		simpleItem(TechnologicaItems.BROMINE_BUCKET.get());
+		simpleItem(TechnologicaItems.MERCURY_BUCKET.get());
+		simpleItem(TechnologicaItems.BRINE_BUCKET.get());
+		simpleItem(TechnologicaItems.OIL_BUCKET.get());
+		simpleItem(TechnologicaItems.NATURAL_GAS_BUCKET.get());
+		simpleItem(TechnologicaItems.MAPLE_SYRUP_BUCKET.get());
+		simpleItem(TechnologicaItems.RUBBER_RESIN_BUCKET.get());
+		simpleItem(TechnologicaItems.GASOLINE_BUCKET.get());
+		simpleItem(TechnologicaItems.MACHINE_OIL_BUCKET.get());
+		simpleItem(TechnologicaItems.COOLANT_BUCKET.get());
+		
+		/**
+		 * FOOD
+		 */
+		
+		simpleItem(TechnologicaItems.APRICOT.get());
+		simpleItem(TechnologicaItems.ASPARAGUS.get());
+		simpleItem(TechnologicaItems.AVOCADO.get());
+		simpleItem(TechnologicaItems.BANANA.get());
+		simpleItem(TechnologicaItems.BARLEY.get());
+		simpleItem(TechnologicaItems.BROCCOLI.get());
+		simpleItem(TechnologicaItems.BLACKBERRY.get());
+		simpleItem(TechnologicaItems.BLUEBERRY.get());
+		simpleItem(TechnologicaItems.CELERY.get());
+		simpleItem(TechnologicaItems.CHERRY.get());
+		simpleItem(TechnologicaItems.CHESTNUT.get());
+		simpleItem(TechnologicaItems.CHILI_PEPPER.get());
+		simpleItem(TechnologicaItems.CINNAMON.get());
+		simpleItem(TechnologicaItems.COCONUT.get());
+		simpleItem(TechnologicaItems.CORN.get());
+		simpleItem(TechnologicaItems.CRANBERRY.get());
+		simpleItem(TechnologicaItems.CUCUMBER.get());
+		simpleItem(TechnologicaItems.GARLIC.get());
+		simpleItem(TechnologicaItems.GINGER.get());
+		simpleItem(TechnologicaItems.GRAPE.get());
+		simpleItem(TechnologicaItems.KIWI.get());
+		simpleItem(TechnologicaItems.LEMON.get());
+		simpleItem(TechnologicaItems.LETTUCE.get());
+		simpleItem(TechnologicaItems.LIME.get());
+		simpleItem(TechnologicaItems.MUSTARD_GREENS.get());
+		simpleItem(TechnologicaItems.OATS.get());
+		simpleItem(TechnologicaItems.OLIVE.get());
+		simpleItem(TechnologicaItems.ONION.get());
+		simpleItem(TechnologicaItems.ORANGE.get());
+		simpleItem(TechnologicaItems.PEAS.get());
+		simpleItem(TechnologicaItems.PEACH.get());
+		simpleItem(TechnologicaItems.PEANUT.get());
+		simpleItem(TechnologicaItems.PEAR.get());
+		simpleItem(TechnologicaItems.PEPPERCORNS.get());
+		simpleItem(TechnologicaItems.PINEAPPLE.get());
+		simpleItem(TechnologicaItems.PLUM.get());
+		simpleItem(TechnologicaItems.PURPLE_CABBAGE.get());
+		simpleItem(TechnologicaItems.RADISH.get());
+		simpleItem(TechnologicaItems.RASPBERRY.get());
+		simpleItem(TechnologicaItems.RICE.get());
+		simpleItem(TechnologicaItems.RYE.get());
+		simpleItem(TechnologicaItems.SQUASH.get());
+		simpleItem(TechnologicaItems.SWEET_POTATO.get());
+		simpleItem(TechnologicaItems.STRAWBERRY.get());
+		simpleItem(TechnologicaItems.TEA_LEAF.get());
+		simpleItem(TechnologicaItems.TOMATO.get());
+		simpleItem(TechnologicaItems.TURNIP.get());
+		simpleItem(TechnologicaItems.WALNUT.get());
+		simpleItem(TechnologicaItems.ZUCCHINI.get());
+		simpleItem(TechnologicaItems.BANANAS_FOSTER.get());
+		simpleItem(TechnologicaItems.BLACK_FOREST_CAKE.get());
+		simpleItem(TechnologicaItems.BLUEBERRY_CHEESECAKE.get());
+		simpleItem(TechnologicaItems.COCONUT_CREAM_PIE.get());
+		simpleItem(TechnologicaItems.GRAPE_SHAVED_ICE.get());
+		simpleItem(TechnologicaItems.KEY_LIME_MOUSSE.get());
+		simpleItem(TechnologicaItems.KIWI_SORBET.get());
+		simpleItem(TechnologicaItems.LEMON_BAR.get());
+		simpleItem(TechnologicaItems.ORANGE_DREAMSICLE.get());
+		simpleItem(TechnologicaItems.PEACH_COBBLER.get());
+		simpleItem(TechnologicaItems.PEAR_TART.get());
+		simpleItem(TechnologicaItems.STRAWBERRY_SHORTCAKE.get());
+		simpleItem(TechnologicaItems.TAPENADE.get());
+		simpleItem(TechnologicaItems.CINNAMON_ROLL.get());
+		
+		
+		
+	
+		
+		
+		
 		
 		automaticItemModel(TechnologicaItems.ITEMS.getEntries());
 	}
@@ -147,9 +374,8 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		for(Supplier<? extends Item> itemSupplier:collection) {
 			Item item = itemSupplier.get();
 				
-			if (item instanceof ForgeSpawnEggItem) simpleSpawnEggItem(item); //Once you've added all spawn eggs, you can delete this line
-			else if (item instanceof ItemNameBlockItem) simpleItem(item);
-			else if (item instanceof BlockItem && ResourceLocationHelper.getPath(item).contains("_sapling")) simpleBlockItem(item); //Once you've added all saplings, you can delete this line
+			
+			 if (item instanceof ItemNameBlockItem) simpleItem(item);
 			else if (!(item instanceof BlockItem)) { 
 				if (!item.getRegistryName().getPath().contains("bazooka") && !item.getRegistryName().getPath().contains("spear_gun") && !item.getRegistryName().getPath().contains("_spawn_egg")) {
 					simpleItem(item);
