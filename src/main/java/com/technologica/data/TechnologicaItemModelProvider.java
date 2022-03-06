@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 import com.technologica.Technologica;
-import com.technologica.util.text.ResourceLocationHelper;
 import com.technologica.world.item.TechnologicaItems;
 
 import net.minecraft.data.DataGenerator;
@@ -14,7 +13,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -26,9 +24,7 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 	
 	@Override
 	protected void registerModels() {
-		/**
-		 * SEEDS
-		 */
+		
 		simpleItem(TechnologicaItems.ASPARAGUS_SEEDS.get()); 
 		simpleItem(TechnologicaItems.BARLEY_SEEDS.get()); 
 		simpleItem(TechnologicaItems.BLACKBERRY_SEEDS.get());
@@ -67,9 +63,7 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.TURNIP_SEEDS.get());
 		simpleItem(TechnologicaItems.ZUCCHINI_SEEDS.get());
 		
-		/**
-		 * SAPLINGS
-		 */
+		simpleItem(TechnologicaItems.COTTON.get());
 		
 		simpleBlockItem(TechnologicaItems.APRICOT_SAPLING_ITEM.get()); 
 		simpleBlockItem(TechnologicaItems.ASPEN_SAPLING_ITEM.get()); 
@@ -104,10 +98,6 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleBlockItem(TechnologicaItems.BENEVOLENT_APOTHECARY_SAPLING_ITEM.get()); 
 		simpleBlockItem(TechnologicaItems.MALEVOLENT_APOTHECARY_SAPLING_ITEM.get());
 		simpleBlockItem(TechnologicaItems.NECROTIC_SAPLING_ITEM.get());
-		
-		/**
-		 * SPAWN EGGS
-		 */
 		
 		simpleSpawnEggItem(TechnologicaItems.ALLIGATOR_SPAWN_EGG.get()); 
 		simpleSpawnEggItem(TechnologicaItems.BEAVER_SPAWN_EGG.get()); 
@@ -150,10 +140,7 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		
 		simpleSpawnEggItem(TechnologicaItems.PEEPER_SPAWN_EGG.get());
 		simpleSpawnEggItem(TechnologicaItems.SWEEPER_SPAWN_EGG.get());
-		/**
-		 * MINERAL
-		 */
-	
+		
 		simpleItem(TechnologicaItems.LITHIUM_INGOT.get());
 		simpleItem(TechnologicaItems.BERYLLIUM_INGOT.get());
 		simpleItem(TechnologicaItems.SODIUM_INGOT.get());
@@ -265,10 +252,6 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.SAWDUST.get());
 		simpleItem(TechnologicaItems.RUBBER.get());
 		
-		/**
-		 * BUCKET ITEMS
-		 */
-		
 		simpleItem(TechnologicaItems.PIRANHA_BUCKET.get());
 		simpleItem(TechnologicaItems.HYDROGEN_BUCKET.get());
 		simpleItem(TechnologicaItems.HELIUM_BUCKET.get());
@@ -291,10 +274,6 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.GASOLINE_BUCKET.get());
 		simpleItem(TechnologicaItems.MACHINE_OIL_BUCKET.get());
 		simpleItem(TechnologicaItems.COOLANT_BUCKET.get());
-		
-		/**
-		 * FOOD
-		 */
 		
 		simpleItem(TechnologicaItems.APRICOT.get());
 		simpleItem(TechnologicaItems.ASPARAGUS.get());
@@ -360,28 +339,48 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.TAPENADE.get());
 		simpleItem(TechnologicaItems.CINNAMON_ROLL.get());
 		
+		simpleItem(TechnologicaItems.STEEL_SHAFT.get());
+		simpleItem(TechnologicaItems.PULLEY_BELT.get());
+		simpleItem(TechnologicaItems.CHISEL.get());
+		simpleItem(TechnologicaItems.HAMMER.get());
+		simpleItem(TechnologicaItems.SAW.get());
+		simpleItem(TechnologicaItems.PIPE_WRENCH.get());
+		simpleItem(TechnologicaItems.WRENCH.get());
+		simpleItem(TechnologicaItems.SAWBLADE.get());
 		
+		simpleItem(TechnologicaItems.OVERLAY_PASS_ITEM.get());
+		simpleItem(TechnologicaItems.OVERLAY_WARN_ITEM.get());
+		simpleItem(TechnologicaItems.OVERLAY_FAIL_ITEM.get());
 		
-	
+		simpleItem(TechnologicaItems.PRIMITIVE_DAGGER.get());
+		simpleItem(TechnologicaItems.PRIMITIVE_PICKAXE.get());
+		simpleItem(TechnologicaItems.PRIMITIVE_HOE.get());
+		simpleItem(TechnologicaItems.PRIMITIVE_SHOVEL.get());
+		simpleItem(TechnologicaItems.PRIMITIVE_HATCHET.get());
 		
+		simpleItem(TechnologicaItems.DODGEBALL_ITEM.get());
+		simpleItem(TechnologicaItems.HARPOON.get());
 		
+		simpleItem(TechnologicaItems.SPACE_HELMET.get());
+		simpleItem(TechnologicaItems.SPACE_SUIT.get());
+		simpleItem(TechnologicaItems.SPACE_PANTS.get());
+		simpleItem(TechnologicaItems.SPACE_BOOTS.get());
 		
+		simpleItem(TechnologicaItems.SNORKEL_HELMET.get());
+		simpleItem(TechnologicaItems.SNORKEL_SUIT.get());
+		simpleItem(TechnologicaItems.SNORKEL_PANTS.get());
+		simpleItem(TechnologicaItems.SNORKEL_BOOTS.get());
 		
+		simpleItem(TechnologicaItems.DIVE_HELMET.get());
+		simpleItem(TechnologicaItems.DIVE_SUIT.get());
+		simpleItem(TechnologicaItems.DIVE_PANTS.get());
+		simpleItem(TechnologicaItems.DIVE_BOOTS.get());
 		
-	}
-	
-	private final void automaticItemModel(Collection<RegistryObject<Item>> collection) {
-		for(Supplier<? extends Item> itemSupplier:collection) {
-			Item item = itemSupplier.get();
-				
-			
-			 if (item instanceof ItemNameBlockItem) simpleItem(item);
-			else if (!(item instanceof BlockItem)) { 
-				if (!item.getRegistryName().getPath().contains("bazooka") && !item.getRegistryName().getPath().contains("spear_gun") && !item.getRegistryName().getPath().contains("_spawn_egg")) {
-					simpleItem(item);
-				}
-			}
-		}
+		simpleItem(TechnologicaItems.SCUBA_HELMET.get());
+		simpleItem(TechnologicaItems.SCUBA_SUIT.get());
+		simpleItem(TechnologicaItems.SCUBA_PANTS.get());
+		simpleItem(TechnologicaItems.SCUBA_BOOTS.get());
+		
 	}
 	
 	public void simpleItem(Item item) {
