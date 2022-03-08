@@ -1,0 +1,6 @@
+{
+  "parent": "technologica:block/large_pulley_model",
+  "textures": {
+    "pulley": "technologica:block/pulley"
+  }
+}

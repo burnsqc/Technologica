@@ -1,0 +1,14 @@
+{
+  "config": {
+    "top_material": {
+      "Name": "technologica:moon_dust"
+    },
+    "under_material": {
+      "Name": "technologica:moon_dust"
+    },
+    "underwater_material": {
+      "Name": "technologica:moon_dust"
+    }
+  },
+  "type": "technologica:silent_flats"
+}

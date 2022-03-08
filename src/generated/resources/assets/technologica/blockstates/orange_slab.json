@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "technologica:block/orange_slab_top"
+    },
+    "type=bottom": {
+      "model": "technologica:block/orange_slab"
+    },
+    "type=double": {
+      "model": "technologica:block/orange_planks"
+    }
+  }
+}

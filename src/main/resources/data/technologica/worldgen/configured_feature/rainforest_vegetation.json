@@ -1,0 +1,59 @@
+{
+  "config": {
+    "feature": {
+      "config": {
+        "feature": {
+          "config": {
+            "features": [
+              {
+                "feature": "technologica:avocado",
+                "chance": 0.1
+              },
+              {
+                "feature": "technologica:banana",
+                "chance": 0.1
+              },
+              {
+                "feature": "technologica:cinnamon",
+                "chance": 0.1
+              },
+              {
+                "feature": "technologica:mahogany",
+                "chance": 0.1
+              },
+              {
+                "feature": "technologica:rubber",
+                "chance": 0.1
+              }
+            ],
+            "default": "technologica:rosewood"
+          },
+          "type": "minecraft:random_selector"
+        },
+        "decorator": {
+          "config": {
+            "outer": {
+              "config": {},
+              "type": "minecraft:square"
+            },
+            "inner": {
+              "config": {},
+              "type": "minecraft:heightmap"
+            }
+          },
+          "type": "minecraft:decorated"
+        }
+      },
+      "type": "minecraft:decorated"
+    },
+    "decorator": {
+      "config": {
+        "count": 20,
+        "extra_chance": 0.5,
+        "extra_count": 5
+      },
+      "type": "minecraft:count_extra"
+    }
+  },
+  "type": "minecraft:decorated"
+}

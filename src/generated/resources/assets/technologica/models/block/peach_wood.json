@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "technologica:block/peach_log",
+    "end": "technologica:block/peach_log"
+  }
+}

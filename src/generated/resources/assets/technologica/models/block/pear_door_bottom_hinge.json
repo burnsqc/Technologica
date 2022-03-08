@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_bottom_rh",
+  "textures": {
+    "bottom": "technologica:block/pear_door_bottom",
+    "top": "technologica:block/pear_door_top"
+  }
+}

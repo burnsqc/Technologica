@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "side": "technologica:block/orange_log",
+    "end": "technologica:block/orange_log_top"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "technologica:block/maple_chair"
+    },
+    "facing=south": {
+      "model": "technologica:block/maple_chair",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "technologica:block/maple_chair",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "technologica:block/maple_chair",
+      "y": 90
+    }
+  }
+}
