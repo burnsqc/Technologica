@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "side": "technologica:block/cinnamon_planks",
-    "bottom": "technologica:block/cinnamon_planks",
-    "top": "technologica:block/cinnamon_planks"
-  }
-}

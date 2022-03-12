@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "side": "technologica:block/aspen_bookshelf",
-    "end": "technologica:block/aspen_planks"
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "side": "technologica:block/frostbitten_planks",
-    "bottom": "technologica:block/frostbitten_planks",
-    "top": "technologica:block/frostbitten_planks"
-  }
-}

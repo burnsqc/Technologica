@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/crop",
-  "textures": {
-    "crop": "technologica:block/pea_crop_stage2"
-  }
-}

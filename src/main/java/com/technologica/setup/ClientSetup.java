@@ -29,182 +29,19 @@ public class ClientSetup {
 		MenuScreens.register(TechnologicaContainerType.ANNUNCIATOR.get(), AnnunciatorScreen::new);
 		
 		event.enqueueWork(() -> {			
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ASPARAGUS_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.BARLEY_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.BLACKBERRY_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.BLUEBERRY_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.BROCCOLI_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CELERY_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CHILI_PEPPER_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.COFFEE_BEAN_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.COTTON_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CUCUMBER_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.GARLIC_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.GINGER_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.GRAPE_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.LETTUCE_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.MUSTARD_GREENS_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.OATS_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ONION_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.PEA_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.PEANUT_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.PINEAPPLE_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.PURPLE_CABBAGE_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.RADISH_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.RASPBERRY_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.RED_BEAN_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.RYE_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.SOYBEAN_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.SQUASH_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.STRAWBERRY_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.SWEET_POTATO_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.TEA_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.TOMATO_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.TURNIP_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ZUCCHINI_CROP.get(), RenderType.cutoutMipped());
+			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ASPARAGUS_CROP.get(), RenderType.cutoutMipped()); //Finish regular crops
 			
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CORN_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.PEPPERCORN_CROP.get(), RenderType.cutoutMipped());
+			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CORN_CROP.get(), RenderType.cutoutMipped()); //Finish tall crops
 			
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.RICE_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CRANBERRY_CROP.get(), RenderType.cutoutMipped());
+			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.RICE_CROP.get(), RenderType.cutoutMipped()); //Finish water crops
 			
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.APRICOT_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ASPEN_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.AVOCADO_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.BANANA_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CHERRY_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CHESTNUT_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CINNAMON_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.COCONUT_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.EBONY_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.KIWI_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.LEMON_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.LIME_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.MAHOGANY_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.MAPLE_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.OLIVE_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ORANGE_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.PEACH_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.PEAR_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.PLUM_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.REDWOOD_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ROSEWOOD_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.RUBBER_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.TEAK_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.WALNUT_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ZEBRAWOOD_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ANCIENT_AMBROSIA_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.SERENDIPITOUS_APOTHECARY_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.BENEVOLENT_APOTHECARY_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.MALEVOLENT_APOTHECARY_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.NECROTIC_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.TOWERING_INFERNO_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.THUNDEROUS_CONDUCTOR_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CRYOGENIC_SPIRE_SAPLING.get(), RenderType.cutoutMipped());
+			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.APRICOT_SAPLING.get(), RenderType.cutoutMipped()); //Finish saplings
 			
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_APRICOT_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_ASPEN_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_AVOCADO_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_BANANA_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_CHERRY_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_CHESTNUT_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_CINNAMON_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_COCONUT_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_EBONY_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_KIWI_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_LEMON_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_LIME_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_MAHOGANY_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_MAPLE_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_OLIVE_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_ORANGE_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_PEACH_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_PEAR_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_PLUM_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_REDWOOD_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_ROSEWOOD_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_RUBBER_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_TEAK_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_WALNUT_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_ZEBRAWOOD_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_ANCIENT_AMBROSIA_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_SERENDIPITOUS_APOTHECARY_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_BENEVOLENT_APOTHECARY_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_MALEVOLENT_APOTHECARY_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_NECROTIC_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_TOWERING_INFERNO_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_THUNDEROUS_CONDUCTOR_SAPLING.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_CRYOGENIC_SPIRE_SAPLING.get(), RenderType.cutoutMipped());
+			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_APRICOT_SAPLING.get(), RenderType.cutoutMipped()); //Finish potted saplings
 			
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.APRICOT_DOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ASPEN_DOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.AVOCADO_DOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.BANANA_DOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CHERRY_DOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CHESTNUT_DOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CINNAMON_DOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.COCONUT_DOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.EBONY_DOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.KIWI_DOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.LEMON_DOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.LIME_DOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.MAHOGANY_DOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.MAPLE_DOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.OLIVE_DOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ORANGE_DOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.PEACH_DOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.PEAR_DOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.PLUM_DOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.REDWOOD_DOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ROSEWOOD_DOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.RUBBER_DOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.TEAK_DOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.WALNUT_DOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ZEBRAWOOD_DOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ALCHEMICAL_DOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.BENEVOLENT_DOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CONDUCTIVE_DOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.FROSTBITTEN_DOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.FRUITFUL_DOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.INFERNAL_DOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.MALEVOLENT_DOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.NECROTIC_DOOR.get(), RenderType.cutoutMipped());
+			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.APRICOT_DOOR.get(), RenderType.cutoutMipped()); //Finish doors
 			
-
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.APRICOT_TRAPDOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ASPEN_TRAPDOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.AVOCADO_TRAPDOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.BANANA_TRAPDOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CHERRY_TRAPDOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CHESTNUT_TRAPDOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CINNAMON_TRAPDOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.COCONUT_TRAPDOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.EBONY_TRAPDOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.KIWI_TRAPDOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.LEMON_TRAPDOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.LIME_TRAPDOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.MAHOGANY_TRAPDOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.MAPLE_TRAPDOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.OLIVE_TRAPDOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ORANGE_TRAPDOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.PEACH_TRAPDOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.PEAR_TRAPDOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.PLUM_TRAPDOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.REDWOOD_TRAPDOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ROSEWOOD_TRAPDOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.RUBBER_TRAPDOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.TEAK_TRAPDOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.WALNUT_TRAPDOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ZEBRAWOOD_TRAPDOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ALCHEMICAL_TRAPDOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.BENEVOLENT_TRAPDOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CONDUCTIVE_TRAPDOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.FROSTBITTEN_TRAPDOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.FRUITFUL_TRAPDOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.INFERNAL_TRAPDOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.MALEVOLENT_TRAPDOOR.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.NECROTIC_TRAPDOOR.get(), RenderType.cutoutMipped());
+			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.APRICOT_TRAPDOOR.get(), RenderType.cutoutMipped()); //Finish trapdoors
 			
 			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.NAVAL_MINE_CHAIN.get(), RenderType.cutoutMipped());
       			
@@ -307,5 +144,34 @@ public class ClientSetup {
 	}
    
 	public static void stitch(final TextureStitchEvent.Pre event) {
-		if (event.getAtlas().location().equals(InventoryMenu.BLOCK_ATLAS)) 
-			event.addSprite(new ResourceLocation(Technologica.MODID, "block/pulley_belt"));}}
+		if (event.getAtlas().location().equals(InventoryMenu.BLOCK_ATLAS)) {
+			event.addSprite(new ResourceLocation(Technologica.MODID, "block/pulley_belt"));
+		} else if (event.getAtlas().location().equals(Sheets.SIGN_SHEET)) {
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/apricot"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/aspen"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/avocado"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/banana"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/cherry"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/chestnut"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/cinnamon"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/coconut"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/ebony"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/kiwi"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/lemon"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/lime"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/mahogany"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/maple"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/olive"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/orange"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/peach"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/pear"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/plum"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/redwood"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/rosewood"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/rubber"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/teak"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/walnut"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "entity/signs/zebrawood"));
+		}
+	}
+}

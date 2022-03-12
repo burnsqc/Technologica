@@ -1,6 +1,0 @@
-{
-  "parent": "technologica:block/hexagonal_crystal",
-  "textures": {
-    "crystal": "technologica:block/ulexite_crystal"
-  }
-}

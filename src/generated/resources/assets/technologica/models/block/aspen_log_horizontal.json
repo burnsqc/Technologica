@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column_horizontal",
-  "textures": {
-    "side": "technologica:block/aspen_log",
-    "end": "technologica:block/aspen_log_top"
-  }
-}

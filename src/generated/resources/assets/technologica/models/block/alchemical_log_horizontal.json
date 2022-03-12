@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column_horizontal",
-  "textures": {
-    "side": "technologica:block/alchemical_log",
-    "end": "technologica:block/alchemical_log_top"
-  }
-}

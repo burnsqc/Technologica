@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "side": "technologica:block/conductive_planks",
-    "bottom": "technologica:block/conductive_planks",
-    "top": "technologica:block/conductive_planks"
-  }
-}
