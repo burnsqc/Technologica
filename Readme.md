@@ -7,10 +7,10 @@ Technologica is a mod for Minecraft which is currently under development.  As su
 The major content groups of Technologica can be broken down into the following categories:
 
 * Agriculture
-   * Botany
-    * 37 new crops including 2 tall crops and 2 water crops
-    * New fertilizer item provides radius of growth on use 
- * Dendrology
+  * Botany
+      * 37 new crops including 2 tall crops and 2 water crops
+      * New fertilizer item provides radius of growth on use 
+  * Dendrology
     * 25 new trees including 14 fruit trees and 2 sap trees which can be found scattered in existing vanilla biomes or in new Technologica biomes.
     * Fruit trees have leaves which age over time, bearing fruit at the final stage of maturity.  Right-clicking mature fruit tree leaves will drop the fruit and reset the age.
     * Sap trees have logs which age over time.  Placing a tree tap on the side of a sap log will gradually decrease the age to zero and drop sap.
