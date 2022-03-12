@@ -3,7 +3,6 @@ package com.technologica.setup;
 import com.technologica.data.worldgen.TechnologicaVegetationPlacements;
 import com.technologica.data.worldgen.features.TechnologicaTreeFeatures;
 
-import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.GenerationStep;
