@@ -7,7 +7,7 @@ Technologica is a mod for Minecraft which is currently under development.  As su
 The major content groups of Technologica can be broken down into the following categories:
 
 * Agriculture
- * Botany
+   * Botany
     * 37 new crops including 2 tall crops and 2 water crops
     * New fertilizer item provides radius of growth on use 
  * Dendrology
