@@ -257,8 +257,8 @@ public class ClientSetup {
 			ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.COOLANT.get(), RenderType.translucent());
 			ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_COOLANT.get(), RenderType.translucent());
     	  	
-    	  	Sheets.addWoodType(TechnologicaWoodType.ALCHEMICAL);
-			Sheets.addWoodType(TechnologicaWoodType.APRICOT);
+			Sheets.addWoodType(TechnologicaWoodType.ALCHEMICAL);
+    	  	Sheets.addWoodType(TechnologicaWoodType.APRICOT);
 			Sheets.addWoodType(TechnologicaWoodType.ASPEN);
 			Sheets.addWoodType(TechnologicaWoodType.AVOCADO);
 			Sheets.addWoodType(TechnologicaWoodType.BANANA);
