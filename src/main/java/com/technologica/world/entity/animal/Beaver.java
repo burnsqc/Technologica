@@ -68,7 +68,7 @@ public class Beaver extends Animal {
 
 	protected void registerGoals() {
 		this.goalSelector.addGoal(1, new FloatGoal(this));
-		this.goalSelector.addGoal(1, new Beaver.PanicGoal(this, 2.2D));
+		this.goalSelector.addGoal(1, new Beaver.PanicGoal(this, 1.25D));
 		this.goalSelector.addGoal(2, new BreedGoal(this, 0.8D));
 		this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, Ingredient.of(Items.CARROT, Items.GOLDEN_CARROT, Blocks.DANDELION), false));
 		this.goalSelector.addGoal(4, new Beaver.AvoidEntityGoal<>(this, Player.class, 8.0F, 2.2D, 2.2D));

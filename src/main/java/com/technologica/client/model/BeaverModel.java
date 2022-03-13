@@ -32,11 +32,14 @@ public class BeaverModel<T extends Beaver> extends QuadrupedModel<T> {
 
 	@Override
 	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		if (limbSwingAmount > 0.3F) {
+			limbSwingAmount = 0.3F;
+		}
 		this.head.xRot = headPitch * ((float) Math.PI / 180F) * 0.5F;
 		this.head.yRot = netHeadYaw * ((float) Math.PI / 180F) * 0.5F;
-		this.rightHindLeg.xRot = Mth.square(Mth.cos(limbSwing) * 2.0F * limbSwingAmount);
-		this.leftHindLeg.xRot = Mth.square(Mth.cos(limbSwing + (float) Math.PI/2) * 2.0F * limbSwingAmount);
-		this.rightFrontLeg.xRot = -Mth.square(Mth.cos(limbSwing + (float) Math.PI/2) * 2.0F * limbSwingAmount);
-		this.leftFrontLeg.xRot =  -Mth.square(Mth.cos(limbSwing) * 2.0F * limbSwingAmount);
+		this.leftHindLeg.xRot = 3.0F * Mth.square(Mth.cos(limbSwing * 0.6662F + (float) Math.PI/2) * 1.4F * limbSwingAmount);
+		this.rightHindLeg.xRot = 3.0F * Mth.square(Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount);
+		this.leftFrontLeg.xRot =  -3.0F * Mth.square(Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount);
+		this.rightFrontLeg.xRot = -3.0F * Mth.square(Mth.cos(limbSwing * 0.6662F + (float) Math.PI/2) * 1.4F * limbSwingAmount);
 	}
 }
