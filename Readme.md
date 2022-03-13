@@ -2,8 +2,6 @@
   <img src="https://raw.githubusercontent.com/burnsqc/Technologica/1.18.1/src/main/resources/modconfiggraphic.png">
 </div>
 
-# TECHNOLOGICA
-
 Technologica is a mod for Minecraft which is currently under development.  As such, at this time the development team makes no guarantee of functionality. 
 
 # CONTENT
