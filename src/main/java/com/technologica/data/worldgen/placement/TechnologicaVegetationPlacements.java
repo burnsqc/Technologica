@@ -7,5 +7,5 @@ import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 public class TechnologicaVegetationPlacements {
-	public static final PlacedFeature TREES_MODIFIED_SAVANNA = PlacementUtils.register("trees_zebrawood", TechnologicaVegetationFeatures.TREES__MODIFIED_SAVANNA.placed(VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.1F, 1))));
+	public static final PlacedFeature TREES_MODIFIED_SAVANNA = PlacementUtils.register("trees_zebrawood", TechnologicaVegetationFeatures.TREES_MODIFIED_SAVANNA.placed(VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.1F, 1))));
 }
