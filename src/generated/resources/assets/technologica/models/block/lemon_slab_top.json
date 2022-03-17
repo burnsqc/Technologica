@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "side": "technologica:block/lemon_planks",
+    "bottom": "technologica:block/lemon_planks",
+    "top": "technologica:block/lemon_planks"
+  }
+}
