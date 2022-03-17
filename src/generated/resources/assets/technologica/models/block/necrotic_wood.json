@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "technologica:block/necrotic_log",
+    "end": "technologica:block/necrotic_log"
+  }
+}
