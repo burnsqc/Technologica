@@ -174,6 +174,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 //		simpleBlock(TechnologicaBlocks.NECROTIC_LEAVES.get());
 		
 		simpleBlock(TechnologicaBlocks.MULCH.get(), models().cubeBottomTop(ResourceLocationHelper.getPath(TechnologicaBlocks.MULCH.get()), modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.MULCH.get()) + "_side"), mcLoc("block/dirt"), modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.MULCH.get()) + "_top")));
+//		simpleBlock(TechnologicaBlocks.FERTILIZER.get(), models().cubeBottomTop(ResourceLocationHelper.getPath(TechnologicaBlocks.FERTILIZER.get()), modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.FERTILIZER.get()) + "_side"), mcLoc("block/dirt"), modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.FERTILIZER.get()) + "_top")));
 		
 		simpleBlock(TechnologicaBlocks.SALT.get());
 		simpleBlock(TechnologicaBlocks.LITHIUM_CLAY.get());
@@ -181,12 +182,42 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		simpleBlock(TechnologicaBlocks.MOON_DUST.get());
 		
 		simpleBlock(TechnologicaBlocks.BAUXITE_ORE.get());
+		simpleBlock(TechnologicaBlocks.CHROMITE_ORE.get());
+		simpleBlock(TechnologicaBlocks.ILMENITE_ORE.get());
+		simpleBlock(TechnologicaBlocks.PYROLUSITE_ORE.get());
+		simpleBlock(TechnologicaBlocks.COBALTITE_ORE.get());
+		simpleBlock(TechnologicaBlocks.GARNIERITE_ORE.get());
+		simpleBlock(TechnologicaBlocks.BORAX_ORE.get());
+		simpleBlock(TechnologicaBlocks.MAGNESITE_ORE.get());
+		simpleBlock(TechnologicaBlocks.SPODUMENE_ORE.get());
 		
 		twentyFourDirectionBlockState(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get(), hexagonalCrystalModel(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get()), hexagonalCrystalModel(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get()));
 		
 		twentyFourDirectionBlockState(TechnologicaBlocks.DOLOMITE_CRYSTAL.get(), cubicCrystalModel(TechnologicaBlocks.DOLOMITE_CRYSTAL.get()), cubicCrystalModel(TechnologicaBlocks.DOLOMITE_CRYSTAL.get()));
+		twentyFourDirectionBlockState(TechnologicaBlocks.FLUORITE_CRYSTAL.get(), cubicCrystalModel(TechnologicaBlocks.FLUORITE_CRYSTAL.get()), cubicCrystalModel(TechnologicaBlocks.FLUORITE_CRYSTAL.get()));
+		twentyFourDirectionBlockState(TechnologicaBlocks.ULEXITE_CRYSTAL.get(), cubicCrystalModel(TechnologicaBlocks.ULEXITE_CRYSTAL.get()), cubicCrystalModel(TechnologicaBlocks.ULEXITE_CRYSTAL.get()));
 		
 		getVariantBuilder(TechnologicaBlocks.HYDROGEN.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.HYDROGEN.get())));
+		getVariantBuilder(TechnologicaBlocks.HELIUM.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.HELIUM.get())));
+		getVariantBuilder(TechnologicaBlocks.NITROGEN.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.NITROGEN.get())));
+		getVariantBuilder(TechnologicaBlocks.OXYGEN.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.OXYGEN.get())));
+		getVariantBuilder(TechnologicaBlocks.FLUORINE.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.FLUORINE.get())));
+		getVariantBuilder(TechnologicaBlocks.NEON.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.NEON.get())));
+		getVariantBuilder(TechnologicaBlocks.CHLORINE.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.CHLORINE.get())));
+		getVariantBuilder(TechnologicaBlocks.ARGON.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.ARGON.get())));
+		getVariantBuilder(TechnologicaBlocks.KRYPTON.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.KRYPTON.get())));
+		getVariantBuilder(TechnologicaBlocks.XENON.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.XENON.get())));
+		getVariantBuilder(TechnologicaBlocks.RADON.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.RADON.get())));
+		getVariantBuilder(TechnologicaBlocks.BROMINE.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.BROMINE.get())));
+		getVariantBuilder(TechnologicaBlocks.MERCURY.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.MERCURY.get())));
+		getVariantBuilder(TechnologicaBlocks.BRINE.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.BRINE.get())));
+		getVariantBuilder(TechnologicaBlocks.OIL.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.OIL.get())));
+		getVariantBuilder(TechnologicaBlocks.NATURAL_GAS.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.NATURAL_GAS.get())));
+		getVariantBuilder(TechnologicaBlocks.MAPLE_SYRUP.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.MAPLE_SYRUP.get())));
+		getVariantBuilder(TechnologicaBlocks.RUBBER_RESIN.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.RUBBER_RESIN.get())));
+		getVariantBuilder(TechnologicaBlocks.GASOLINE.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.GASOLINE.get())));
+		getVariantBuilder(TechnologicaBlocks.MACHINE_OIL.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.MACHINE_OIL.get())));
+		getVariantBuilder(TechnologicaBlocks.COOLANT.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.COOLANT.get())));
 		
 		logBlock((RotatedPillarBlock) TechnologicaBlocks.APRICOT_LOG.get());
 		logBlock((RotatedPillarBlock) TechnologicaBlocks.ASPEN_LOG.get());
@@ -526,6 +557,35 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		fenceGateBlock((FenceGateBlock) TechnologicaBlocks.NECROTIC_FENCE_GATE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.NECROTIC_FENCE_GATE.get()), "_fence_gate", "_planks"));
 		
 		doorBlock((DoorBlock) TechnologicaBlocks.APRICOT_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.APRICOT_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.APRICOT_DOOR.get()), "_top"));
+		doorBlock((DoorBlock) TechnologicaBlocks.ASPEN_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.ASPEN_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.ASPEN_DOOR.get()), "_top"));
+		doorBlock((DoorBlock) TechnologicaBlocks.AVOCADO_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.AVOCADO_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.AVOCADO_DOOR.get()), "_top"));
+		doorBlock((DoorBlock) TechnologicaBlocks.BANANA_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.BANANA_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.BANANA_DOOR.get()), "_top"));
+		doorBlock((DoorBlock) TechnologicaBlocks.CHERRY_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.CHERRY_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.CHERRY_DOOR.get()), "_top"));
+		doorBlock((DoorBlock) TechnologicaBlocks.CHESTNUT_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.CHESTNUT_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.CHESTNUT_DOOR.get()), "_top"));
+		doorBlock((DoorBlock) TechnologicaBlocks.CINNAMON_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.CINNAMON_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.CINNAMON_DOOR.get()), "_top"));
+		doorBlock((DoorBlock) TechnologicaBlocks.COCONUT_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.COCONUT_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.COCONUT_DOOR.get()), "_top"));
+		doorBlock((DoorBlock) TechnologicaBlocks.EBONY_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.EBONY_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.EBONY_DOOR.get()), "_top"));
+		doorBlock((DoorBlock) TechnologicaBlocks.KIWI_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.KIWI_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.KIWI_DOOR.get()), "_top"));
+		doorBlock((DoorBlock) TechnologicaBlocks.LEMON_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.LEMON_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.LEMON_DOOR.get()), "_top"));
+		doorBlock((DoorBlock) TechnologicaBlocks.LIME_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.LIME_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.LIME_DOOR.get()), "_top"));
+		doorBlock((DoorBlock) TechnologicaBlocks.MAHOGANY_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.MAHOGANY_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.MAHOGANY_DOOR.get()), "_top"));
+		doorBlock((DoorBlock) TechnologicaBlocks.MAPLE_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.MAPLE_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.MAPLE_DOOR.get()), "_top"));
+		doorBlock((DoorBlock) TechnologicaBlocks.OLIVE_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.OLIVE_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.OLIVE_DOOR.get()), "_top"));
+		doorBlock((DoorBlock) TechnologicaBlocks.ORANGE_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.ORANGE_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.ORANGE_DOOR.get()), "_top"));
+		doorBlock((DoorBlock) TechnologicaBlocks.REDWOOD_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.REDWOOD_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.REDWOOD_DOOR.get()), "_top"));
+		doorBlock((DoorBlock) TechnologicaBlocks.ROSEWOOD_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.ROSEWOOD_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.ROSEWOOD_DOOR.get()), "_top"));
+		doorBlock((DoorBlock) TechnologicaBlocks.RUBBER_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.RUBBER_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.RUBBER_DOOR.get()), "_top"));
+		doorBlock((DoorBlock) TechnologicaBlocks.TEAK_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.TEAK_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.TEAK_DOOR.get()), "_top"));
+		doorBlock((DoorBlock) TechnologicaBlocks.WALNUT_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.WALNUT_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.WALNUT_DOOR.get()), "_top"));
+		doorBlock((DoorBlock) TechnologicaBlocks.ZEBRAWOOD_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.ZEBRAWOOD_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.ZEBRAWOOD_DOOR.get()), "_top"));
+//		doorBlock((DoorBlock) TechnologicaBlocks.ANCIENT_AMBROSIA_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.ANCIENT_AMBROSIA_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.ANCIENT_AMBROSIA_DOOR.get()), "_top"));
+//		doorBlock((DoorBlock) TechnologicaBlocks.CRYOGENIC_SPIRE_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.CRYOGENIC_SPIRE_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.CRYOGENIC_SPIRE_DOOR.get()), "_top"));
+//		doorBlock((DoorBlock) TechnologicaBlocks.THUNDEROUS_CONDUCTOR_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.THUNDEROUS_CONDUCTOR_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.THUNDEROUS_CONDUCTOR_DOOR.get()), "_top"));
+//		doorBlock((DoorBlock) TechnologicaBlocks.TOWERING_INFERNO_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.TOWERING_INFERNO_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.TOWERING_INFERNO_DOOR.get()), "_top"));
+//		doorBlock((DoorBlock) TechnologicaBlocks.SERENDIPITIOUS_APOTHECARY_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.SERENDIPITIOUS_APOTHECARY_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.SERENDIPITIOUS_APOTHECARY_DOOR.get()), "_top"));
+//		doorBlock((DoorBlock) TechnologicaBlocks.BENEVOLENT_APOTHECARY_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.BENEVOLENT_APOTHECARY_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.BENEVOLENT_APOTHECARY_DOOR.get()), "_top"));
+//		doorBlock((DoorBlock) TechnologicaBlocks.MALEVOLENT_APOTHECARY_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.MALEVOLENT_APOTHECARY_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.MALEVOLENT_APOTHECARY_DOOR.get()), "_top"));
+		doorBlock((DoorBlock) TechnologicaBlocks.NECROTIC_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.NECROTIC_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.NECROTIC_DOOR.get()), "_top"));
 		
 		trapdoorBlock((TrapDoorBlock) TechnologicaBlocks.APRICOT_TRAPDOOR.get(), blockTexture(TechnologicaBlocks.APRICOT_TRAPDOOR.get()), true);
 		
