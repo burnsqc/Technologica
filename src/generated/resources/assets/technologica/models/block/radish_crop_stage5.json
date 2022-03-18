@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "technologica:block/radish_crop_stage5"
+  }
+}

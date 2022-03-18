@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "technologica:block/coconut_chair"
+    },
+    "facing=south": {
+      "model": "technologica:block/coconut_chair",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "technologica:block/coconut_chair",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "technologica:block/coconut_chair",
+      "y": 90
+    }
+  }
+}
