@@ -37,43 +37,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 
 	@Override
 	protected void registerStatesAndModels() {
-		cropBlock(TechnologicaBlocks.ASPARAGUS_CROP.get());
-		cropBlock(TechnologicaBlocks.BARLEY_CROP.get());
-		cropBlock(TechnologicaBlocks.BLACKBERRY_CROP.get());
-		cropBlock(TechnologicaBlocks.BLUEBERRY_CROP.get());
-		cropBlock(TechnologicaBlocks.BROCCOLI_CROP.get());
-		cropBlock(TechnologicaBlocks.CELERY_CROP.get());
-		cropBlock(TechnologicaBlocks.CHILI_PEPPER_CROP.get());
-		cropBlock(TechnologicaBlocks.COFFEE_BEAN_CROP.get());
-		cropBlock(TechnologicaBlocks.COTTON_CROP.get());
-		cropBlock(TechnologicaBlocks.CUCUMBER_CROP.get());
-		cropBlock(TechnologicaBlocks.GARLIC_CROP.get());
-		cropBlock(TechnologicaBlocks.GINGER_CROP.get());
-		cropBlock(TechnologicaBlocks.LETTUCE_CROP.get());
-		cropBlock(TechnologicaBlocks.MUSTARD_GREENS_CROP.get());
-		cropBlock(TechnologicaBlocks.OATS_CROP.get());
-		cropBlock(TechnologicaBlocks.ONION_CROP.get());
-		cropBlock(TechnologicaBlocks.PEA_CROP.get());
-		cropBlock(TechnologicaBlocks.PEANUT_CROP.get());
-		cropBlock(TechnologicaBlocks.PINEAPPLE_CROP.get());
-		cropBlock(TechnologicaBlocks.PURPLE_CABBAGE_CROP.get());
-		cropBlock(TechnologicaBlocks.RADISH_CROP.get());
-		cropBlock(TechnologicaBlocks.RASPBERRY_CROP.get());
-		cropBlock(TechnologicaBlocks.RED_BEAN_CROP.get());
-		cropBlock(TechnologicaBlocks.SOYBEAN_CROP.get());
-		cropBlock(TechnologicaBlocks.SQUASH_CROP.get());
-		cropBlock(TechnologicaBlocks.SWEET_POTATO_CROP.get());
-		cropBlock(TechnologicaBlocks.STRAWBERRY_CROP.get());
-		cropBlock(TechnologicaBlocks.TEA_CROP.get());
-		cropBlock(TechnologicaBlocks.TOMATO_CROP.get());
-		cropBlock(TechnologicaBlocks.TURNIP_CROP.get());
-		cropBlock(TechnologicaBlocks.ZUCCHINI_CROP.get());
-		
-		tallCropBlock(TechnologicaBlocks.CORN_CROP.get());
-//		tallCropBlock(TechnologicaBlocks.GRAPE_CROP.get());
-		tallCropBlock(TechnologicaBlocks.PEPPERCORN_CROP.get());
-		tallCropBlock(TechnologicaBlocks.CRANBERRY_CROP.get());
-		tallCropBlock(TechnologicaBlocks.RICE_CROP.get());
+		cropBlockNew();
 		
 		simpleBlock(TechnologicaBlocks.APRICOT_SAPLING.get(), models().cross(ResourceLocationHelper.getPath(TechnologicaBlocks.APRICOT_SAPLING.get()), blockTexture(TechnologicaBlocks.APRICOT_SAPLING.get())));
 		simpleBlock(TechnologicaBlocks.ASPEN_SAPLING.get(), models().cross(ResourceLocationHelper.getPath(TechnologicaBlocks.ASPEN_SAPLING.get()), blockTexture(TechnologicaBlocks.ASPEN_SAPLING.get())));
@@ -253,6 +217,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		logBlock((RotatedPillarBlock) TechnologicaBlocks.ALCHEMICAL_LOG.get());
 		logBlock((RotatedPillarBlock) TechnologicaBlocks.BENEVOLENT_LOG.get());
 		logBlock((RotatedPillarBlock) TechnologicaBlocks.MALEVOLENT_LOG.get());
+		logBlock((RotatedPillarBlock) TechnologicaBlocks.INFERNAL_LOG.get());
 		logBlock((RotatedPillarBlock) TechnologicaBlocks.NECROTIC_LOG.get());
 		
 		logBlock((RotatedPillarBlock) TechnologicaBlocks.STRIPPED_APRICOT_LOG.get());
@@ -286,6 +251,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		logBlock((RotatedPillarBlock) TechnologicaBlocks.STRIPPED_ALCHEMICAL_LOG.get());
 		logBlock((RotatedPillarBlock) TechnologicaBlocks.STRIPPED_BENEVOLENT_LOG.get());
 		logBlock((RotatedPillarBlock) TechnologicaBlocks.STRIPPED_MALEVOLENT_LOG.get());
+		logBlock((RotatedPillarBlock) TechnologicaBlocks.STRIPPED_INFERNAL_LOG.get());
 		logBlock((RotatedPillarBlock) TechnologicaBlocks.STRIPPED_NECROTIC_LOG.get());
 		
 		axisBlock((RotatedPillarBlock) TechnologicaBlocks.APRICOT_WOOD.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.APRICOT_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_WOOD.get()), "_wood", "_log")), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.APRICOT_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_WOOD.get()), "_wood", "_log")));
@@ -319,6 +285,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		axisBlock((RotatedPillarBlock) TechnologicaBlocks.ALCHEMICAL_WOOD.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.ALCHEMICAL_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ALCHEMICAL_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ALCHEMICAL_WOOD.get()), "_wood", "_log")), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.ALCHEMICAL_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ALCHEMICAL_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ALCHEMICAL_WOOD.get()), "_wood", "_log")));
 		axisBlock((RotatedPillarBlock) TechnologicaBlocks.BENEVOLENT_WOOD.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.BENEVOLENT_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.BENEVOLENT_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.BENEVOLENT_WOOD.get()), "_wood", "_log")), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.BENEVOLENT_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.BENEVOLENT_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.BENEVOLENT_WOOD.get()), "_wood", "_log")));
 		axisBlock((RotatedPillarBlock) TechnologicaBlocks.MALEVOLENT_WOOD.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.MALEVOLENT_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.MALEVOLENT_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.MALEVOLENT_WOOD.get()), "_wood", "_log")), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.MALEVOLENT_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.MALEVOLENT_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.MALEVOLENT_WOOD.get()), "_wood", "_log")));
+		axisBlock((RotatedPillarBlock) TechnologicaBlocks.INFERNAL_WOOD.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.INFERNAL_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.INFERNAL_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.INFERNAL_WOOD.get()), "_wood", "_log")), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.INFERNAL_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.INFERNAL_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.INFERNAL_WOOD.get()), "_wood", "_log")));
 		axisBlock((RotatedPillarBlock) TechnologicaBlocks.NECROTIC_WOOD.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.NECROTIC_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.NECROTIC_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.NECROTIC_WOOD.get()), "_wood", "_log")), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.NECROTIC_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.NECROTIC_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.NECROTIC_WOOD.get()), "_wood", "_log")));
 
 		axisBlock((RotatedPillarBlock) TechnologicaBlocks.STRIPPED_APRICOT_WOOD.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.STRIPPED_APRICOT_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_APRICOT_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_APRICOT_WOOD.get()), "_wood", "_log")), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.STRIPPED_APRICOT_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_APRICOT_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_APRICOT_WOOD.get()), "_wood", "_log")));
@@ -352,6 +319,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		axisBlock((RotatedPillarBlock) TechnologicaBlocks.STRIPPED_ALCHEMICAL_WOOD.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.STRIPPED_ALCHEMICAL_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_ALCHEMICAL_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_ALCHEMICAL_WOOD.get()), "_wood", "_log")), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.STRIPPED_ALCHEMICAL_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_ALCHEMICAL_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_ALCHEMICAL_WOOD.get()), "_wood", "_log")));
 		axisBlock((RotatedPillarBlock) TechnologicaBlocks.STRIPPED_BENEVOLENT_WOOD.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.STRIPPED_BENEVOLENT_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_BENEVOLENT_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_BENEVOLENT_WOOD.get()), "_wood", "_log")), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.STRIPPED_BENEVOLENT_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_BENEVOLENT_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_BENEVOLENT_WOOD.get()), "_wood", "_log")));
 		axisBlock((RotatedPillarBlock) TechnologicaBlocks.STRIPPED_MALEVOLENT_WOOD.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.STRIPPED_MALEVOLENT_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_MALEVOLENT_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_MALEVOLENT_WOOD.get()), "_wood", "_log")), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.STRIPPED_MALEVOLENT_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_MALEVOLENT_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_MALEVOLENT_WOOD.get()), "_wood", "_log")));
+		axisBlock((RotatedPillarBlock) TechnologicaBlocks.STRIPPED_INFERNAL_WOOD.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.STRIPPED_INFERNAL_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_INFERNAL_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_INFERNAL_WOOD.get()), "_wood", "_log")), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.STRIPPED_INFERNAL_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_INFERNAL_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_INFERNAL_WOOD.get()), "_wood", "_log")));
 		axisBlock((RotatedPillarBlock) TechnologicaBlocks.STRIPPED_NECROTIC_WOOD.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.STRIPPED_NECROTIC_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_NECROTIC_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_NECROTIC_WOOD.get()), "_wood", "_log")), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.STRIPPED_NECROTIC_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_NECROTIC_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_NECROTIC_WOOD.get()), "_wood", "_log")));
 
 		simpleBlock(TechnologicaBlocks.APRICOT_PLANKS.get());
@@ -385,6 +353,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		simpleBlock(TechnologicaBlocks.ALCHEMICAL_PLANKS.get());
 		simpleBlock(TechnologicaBlocks.BENEVOLENT_PLANKS.get());
 		simpleBlock(TechnologicaBlocks.MALEVOLENT_PLANKS.get());
+		simpleBlock(TechnologicaBlocks.INFERNAL_PLANKS.get());
 		simpleBlock(TechnologicaBlocks.NECROTIC_PLANKS.get());
 		
 		slabBlock((SlabBlock) TechnologicaBlocks.APRICOT_SLAB.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_SLAB.get()), "_slab", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_SLAB.get()), "_slab", "_planks"));
@@ -418,6 +387,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		slabBlock((SlabBlock) TechnologicaBlocks.ALCHEMICAL_SLAB.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ALCHEMICAL_SLAB.get()), "_slab", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ALCHEMICAL_SLAB.get()), "_slab", "_planks"));
 		slabBlock((SlabBlock) TechnologicaBlocks.BENEVOLENT_SLAB.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.BENEVOLENT_SLAB.get()), "_slab", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.BENEVOLENT_SLAB.get()), "_slab", "_planks"));
 		slabBlock((SlabBlock) TechnologicaBlocks.MALEVOLENT_SLAB.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.MALEVOLENT_SLAB.get()), "_slab", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.MALEVOLENT_SLAB.get()), "_slab", "_planks"));
+		slabBlock((SlabBlock) TechnologicaBlocks.INFERNAL_SLAB.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.INFERNAL_SLAB.get()), "_slab", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.INFERNAL_SLAB.get()), "_slab", "_planks"));
 		slabBlock((SlabBlock) TechnologicaBlocks.NECROTIC_SLAB.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.NECROTIC_SLAB.get()), "_slab", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.NECROTIC_SLAB.get()), "_slab", "_planks"));
 		
 		stairsBlock((StairBlock) TechnologicaBlocks.APRICOT_STAIRS.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_STAIRS.get()), "_stairs", "_planks"));
@@ -451,6 +421,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		stairsBlock((StairBlock) TechnologicaBlocks.ALCHEMICAL_STAIRS.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ALCHEMICAL_STAIRS.get()), "_stairs", "_planks"));
 		stairsBlock((StairBlock) TechnologicaBlocks.BENEVOLENT_STAIRS.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.BENEVOLENT_STAIRS.get()), "_stairs", "_planks"));
 		stairsBlock((StairBlock) TechnologicaBlocks.MALEVOLENT_STAIRS.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.MALEVOLENT_STAIRS.get()), "_stairs", "_planks"));
+		stairsBlock((StairBlock) TechnologicaBlocks.INFERNAL_STAIRS.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.INFERNAL_STAIRS.get()), "_stairs", "_planks"));
 		stairsBlock((StairBlock) TechnologicaBlocks.NECROTIC_STAIRS.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.NECROTIC_STAIRS.get()), "_stairs", "_planks"));
 		
 		simpleBlock(TechnologicaBlocks.APRICOT_BOOKSHELF.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.APRICOT_BOOKSHELF.get()), blockTexture(TechnologicaBlocks.APRICOT_BOOKSHELF.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_BOOKSHELF.get()), "bookshelf", "planks")));
@@ -484,6 +455,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		simpleBlock(TechnologicaBlocks.ALCHEMICAL_BOOKSHELF.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.ALCHEMICAL_BOOKSHELF.get()), blockTexture(TechnologicaBlocks.ALCHEMICAL_BOOKSHELF.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ALCHEMICAL_BOOKSHELF.get()), "bookshelf", "planks")));
 		simpleBlock(TechnologicaBlocks.BENEVOLENT_BOOKSHELF.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.BENEVOLENT_BOOKSHELF.get()), blockTexture(TechnologicaBlocks.BENEVOLENT_BOOKSHELF.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.BENEVOLENT_BOOKSHELF.get()), "bookshelf", "planks")));
 		simpleBlock(TechnologicaBlocks.MALEVOLENT_BOOKSHELF.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.MALEVOLENT_BOOKSHELF.get()), blockTexture(TechnologicaBlocks.MALEVOLENT_BOOKSHELF.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.MALEVOLENT_BOOKSHELF.get()), "bookshelf", "planks")));
+		simpleBlock(TechnologicaBlocks.INFERNAL_BOOKSHELF.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.INFERNAL_BOOKSHELF.get()), blockTexture(TechnologicaBlocks.INFERNAL_BOOKSHELF.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.INFERNAL_BOOKSHELF.get()), "bookshelf", "planks")));
 		simpleBlock(TechnologicaBlocks.NECROTIC_BOOKSHELF.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.NECROTIC_BOOKSHELF.get()), blockTexture(TechnologicaBlocks.NECROTIC_BOOKSHELF.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.NECROTIC_BOOKSHELF.get()), "bookshelf", "planks")));
 		
 		fenceBlock((FenceBlock) TechnologicaBlocks.APRICOT_FENCE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_FENCE.get()), "_fence", "_planks"));
@@ -517,6 +489,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		fenceBlock((FenceBlock) TechnologicaBlocks.ALCHEMICAL_FENCE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ALCHEMICAL_FENCE.get()), "_fence", "_planks"));
 		fenceBlock((FenceBlock) TechnologicaBlocks.BENEVOLENT_FENCE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.BENEVOLENT_FENCE.get()), "_fence", "_planks"));
 		fenceBlock((FenceBlock) TechnologicaBlocks.MALEVOLENT_FENCE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.MALEVOLENT_FENCE.get()), "_fence", "_planks"));
+		fenceBlock((FenceBlock) TechnologicaBlocks.INFERNAL_FENCE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.INFERNAL_FENCE.get()), "_fence", "_planks"));
 		fenceBlock((FenceBlock) TechnologicaBlocks.NECROTIC_FENCE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.NECROTIC_FENCE.get()), "_fence", "_planks"));
 		
 		fenceGateBlock((FenceGateBlock) TechnologicaBlocks.APRICOT_FENCE_GATE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_FENCE_GATE.get()), "_fence_gate", "_planks"));
@@ -550,6 +523,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		fenceGateBlock((FenceGateBlock) TechnologicaBlocks.ALCHEMICAL_FENCE_GATE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ALCHEMICAL_FENCE_GATE.get()), "_fence_gate", "_planks"));
 		fenceGateBlock((FenceGateBlock) TechnologicaBlocks.BENEVOLENT_FENCE_GATE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.BENEVOLENT_FENCE_GATE.get()), "_fence_gate", "_planks"));
 		fenceGateBlock((FenceGateBlock) TechnologicaBlocks.MALEVOLENT_FENCE_GATE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.MALEVOLENT_FENCE_GATE.get()), "_fence_gate", "_planks"));
+		fenceGateBlock((FenceGateBlock) TechnologicaBlocks.INFERNAL_FENCE_GATE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.INFERNAL_FENCE_GATE.get()), "_fence_gate", "_planks"));
 		fenceGateBlock((FenceGateBlock) TechnologicaBlocks.NECROTIC_FENCE_GATE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.NECROTIC_FENCE_GATE.get()), "_fence_gate", "_planks"));
 		
 		doorBlock((DoorBlock) TechnologicaBlocks.APRICOT_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.APRICOT_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.APRICOT_DOOR.get()), "_top"));
@@ -583,6 +557,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		doorBlock((DoorBlock) TechnologicaBlocks.ALCHEMICAL_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.ALCHEMICAL_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.ALCHEMICAL_DOOR.get()), "_top"));
 		doorBlock((DoorBlock) TechnologicaBlocks.BENEVOLENT_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.BENEVOLENT_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.BENEVOLENT_DOOR.get()), "_top"));
 		doorBlock((DoorBlock) TechnologicaBlocks.MALEVOLENT_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.MALEVOLENT_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.MALEVOLENT_DOOR.get()), "_top"));
+		doorBlock((DoorBlock) TechnologicaBlocks.INFERNAL_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.INFERNAL_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.INFERNAL_DOOR.get()), "_top"));
 		doorBlock((DoorBlock) TechnologicaBlocks.NECROTIC_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.NECROTIC_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.NECROTIC_DOOR.get()), "_top"));
 		
 		trapdoorBlock((TrapDoorBlock) TechnologicaBlocks.APRICOT_TRAPDOOR.get(), blockTexture(TechnologicaBlocks.APRICOT_TRAPDOOR.get()), true);
@@ -616,6 +591,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		trapdoorBlock((TrapDoorBlock) TechnologicaBlocks.ALCHEMICAL_TRAPDOOR.get(), blockTexture(TechnologicaBlocks.ALCHEMICAL_TRAPDOOR.get()), true);
 		trapdoorBlock((TrapDoorBlock) TechnologicaBlocks.BENEVOLENT_TRAPDOOR.get(), blockTexture(TechnologicaBlocks.BENEVOLENT_TRAPDOOR.get()), true);
 		trapdoorBlock((TrapDoorBlock) TechnologicaBlocks.MALEVOLENT_TRAPDOOR.get(), blockTexture(TechnologicaBlocks.MALEVOLENT_TRAPDOOR.get()), true);
+		trapdoorBlock((TrapDoorBlock) TechnologicaBlocks.INFERNAL_TRAPDOOR.get(), blockTexture(TechnologicaBlocks.INFERNAL_TRAPDOOR.get()), true);
 		trapdoorBlock((TrapDoorBlock) TechnologicaBlocks.NECROTIC_TRAPDOOR.get(), blockTexture(TechnologicaBlocks.NECROTIC_TRAPDOOR.get()), true);
 		
 		pressurePlateBlockState(TechnologicaBlocks.APRICOT_PRESSURE_PLATE.get(), pressurePlateModel(TechnologicaBlocks.APRICOT_PRESSURE_PLATE.get()), pressurePlateDownModel(TechnologicaBlocks.APRICOT_PRESSURE_PLATE.get()));
@@ -649,6 +625,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		pressurePlateBlockState(TechnologicaBlocks.ALCHEMICAL_PRESSURE_PLATE.get(), pressurePlateModel(TechnologicaBlocks.ALCHEMICAL_PRESSURE_PLATE.get()), pressurePlateDownModel(TechnologicaBlocks.ALCHEMICAL_PRESSURE_PLATE.get()));
 		pressurePlateBlockState(TechnologicaBlocks.BENEVOLENT_PRESSURE_PLATE.get(), pressurePlateModel(TechnologicaBlocks.BENEVOLENT_PRESSURE_PLATE.get()), pressurePlateDownModel(TechnologicaBlocks.BENEVOLENT_PRESSURE_PLATE.get()));
 		pressurePlateBlockState(TechnologicaBlocks.MALEVOLENT_PRESSURE_PLATE.get(), pressurePlateModel(TechnologicaBlocks.MALEVOLENT_PRESSURE_PLATE.get()), pressurePlateDownModel(TechnologicaBlocks.MALEVOLENT_PRESSURE_PLATE.get()));
+		pressurePlateBlockState(TechnologicaBlocks.INFERNAL_PRESSURE_PLATE.get(), pressurePlateModel(TechnologicaBlocks.INFERNAL_PRESSURE_PLATE.get()), pressurePlateDownModel(TechnologicaBlocks.INFERNAL_PRESSURE_PLATE.get()));
 		pressurePlateBlockState(TechnologicaBlocks.NECROTIC_PRESSURE_PLATE.get(), pressurePlateModel(TechnologicaBlocks.NECROTIC_PRESSURE_PLATE.get()), pressurePlateDownModel(TechnologicaBlocks.NECROTIC_PRESSURE_PLATE.get()));
 		
 		buttonBlockState(TechnologicaBlocks.APRICOT_BUTTON.get(), buttonModel(TechnologicaBlocks.APRICOT_BUTTON.get()), buttonPressedModel(TechnologicaBlocks.APRICOT_BUTTON.get()), buttonInventoryModel(TechnologicaBlocks.APRICOT_BUTTON.get()));
@@ -682,6 +659,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		buttonBlockState(TechnologicaBlocks.ALCHEMICAL_BUTTON.get(), buttonModel(TechnologicaBlocks.ALCHEMICAL_BUTTON.get()), buttonPressedModel(TechnologicaBlocks.ALCHEMICAL_BUTTON.get()), buttonInventoryModel(TechnologicaBlocks.ALCHEMICAL_BUTTON.get()));
 		buttonBlockState(TechnologicaBlocks.BENEVOLENT_BUTTON.get(), buttonModel(TechnologicaBlocks.BENEVOLENT_BUTTON.get()), buttonPressedModel(TechnologicaBlocks.BENEVOLENT_BUTTON.get()), buttonInventoryModel(TechnologicaBlocks.BENEVOLENT_BUTTON.get()));
 		buttonBlockState(TechnologicaBlocks.MALEVOLENT_BUTTON.get(), buttonModel(TechnologicaBlocks.MALEVOLENT_BUTTON.get()), buttonPressedModel(TechnologicaBlocks.MALEVOLENT_BUTTON.get()), buttonInventoryModel(TechnologicaBlocks.MALEVOLENT_BUTTON.get()));
+		buttonBlockState(TechnologicaBlocks.INFERNAL_BUTTON.get(), buttonModel(TechnologicaBlocks.INFERNAL_BUTTON.get()), buttonPressedModel(TechnologicaBlocks.INFERNAL_BUTTON.get()), buttonInventoryModel(TechnologicaBlocks.INFERNAL_BUTTON.get()));
 		buttonBlockState(TechnologicaBlocks.NECROTIC_BUTTON.get(), buttonModel(TechnologicaBlocks.NECROTIC_BUTTON.get()), buttonPressedModel(TechnologicaBlocks.NECROTIC_BUTTON.get()), buttonInventoryModel(TechnologicaBlocks.NECROTIC_BUTTON.get()));
 		
 		signBlock(TechnologicaBlocks.APRICOT_SIGN.get());
@@ -713,6 +691,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		signBlock(TechnologicaBlocks.ALCHEMICAL_SIGN.get());
 		signBlock(TechnologicaBlocks.BENEVOLENT_SIGN.get());
 		signBlock(TechnologicaBlocks.MALEVOLENT_SIGN.get());
+		signBlock(TechnologicaBlocks.INFERNAL_SIGN.get());
 		signBlock(TechnologicaBlocks.NECROTIC_SIGN.get());
 		
 		signBlock(TechnologicaBlocks.APRICOT_WALL_SIGN.get());
@@ -744,6 +723,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		signBlock(TechnologicaBlocks.ALCHEMICAL_WALL_SIGN.get());
 		signBlock(TechnologicaBlocks.BENEVOLENT_WALL_SIGN.get());
 		signBlock(TechnologicaBlocks.MALEVOLENT_WALL_SIGN.get());
+		signBlock(TechnologicaBlocks.INFERNAL_WALL_SIGN.get());
 		signBlock(TechnologicaBlocks.NECROTIC_WALL_SIGN.get());
 		
 		twelveDirectionBlockState(TechnologicaBlocks.LINE_SHAFT_HANGER.get(), lineShaftHangerModel(TechnologicaBlocks.LINE_SHAFT_HANGER.get()), lineShaftHangerModel2(TechnologicaBlocks.LINE_SHAFT_HANGER.get()));
@@ -779,6 +759,9 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		fourDirectionBlockState(TechnologicaBlocks.OAK_CHAIR.get(), chairModel(TechnologicaBlocks.OAK_CHAIR.get(), mcLoc(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.OAK_CHAIR.get()).getPath(), "chair", "planks"))));
 		fourDirectionBlockState(TechnologicaBlocks.OLIVE_CHAIR.get(), chairModel(TechnologicaBlocks.OLIVE_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.OLIVE_CHAIR.get()), "chair", "planks")));
 		fourDirectionBlockState(TechnologicaBlocks.ORANGE_CHAIR.get(), chairModel(TechnologicaBlocks.ORANGE_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ORANGE_CHAIR.get()), "chair", "planks")));
+		fourDirectionBlockState(TechnologicaBlocks.PEACH_CHAIR.get(), chairModel(TechnologicaBlocks.PEACH_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.PEACH_CHAIR.get()), "chair", "planks")));
+		fourDirectionBlockState(TechnologicaBlocks.PEAR_CHAIR.get(), chairModel(TechnologicaBlocks.PEAR_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.PEAR_CHAIR.get()), "chair", "planks")));
+		fourDirectionBlockState(TechnologicaBlocks.PLUM_CHAIR.get(), chairModel(TechnologicaBlocks.PLUM_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.PLUM_CHAIR.get()), "chair", "planks")));
 		fourDirectionBlockState(TechnologicaBlocks.REDWOOD_CHAIR.get(), chairModel(TechnologicaBlocks.REDWOOD_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.REDWOOD_CHAIR.get()), "chair", "planks")));
 		fourDirectionBlockState(TechnologicaBlocks.ROSEWOOD_CHAIR.get(), chairModel(TechnologicaBlocks.ROSEWOOD_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ROSEWOOD_CHAIR.get()), "chair", "planks")));
 		fourDirectionBlockState(TechnologicaBlocks.RUBBER_CHAIR.get(), chairModel(TechnologicaBlocks.RUBBER_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.RUBBER_CHAIR.get()), "chair", "planks")));
@@ -792,10 +775,12 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		fourDirectionBlockState(TechnologicaBlocks.ALCHEMICAL_CHAIR.get(), chairModel(TechnologicaBlocks.ALCHEMICAL_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ALCHEMICAL_CHAIR.get()), "chair", "planks")));
 		fourDirectionBlockState(TechnologicaBlocks.BENEVOLENT_CHAIR.get(), chairModel(TechnologicaBlocks.BENEVOLENT_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.BENEVOLENT_CHAIR.get()), "chair", "planks")));
 		fourDirectionBlockState(TechnologicaBlocks.MALEVOLENT_CHAIR.get(), chairModel(TechnologicaBlocks.MALEVOLENT_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.MALEVOLENT_CHAIR.get()), "chair", "planks")));
+		fourDirectionBlockState(TechnologicaBlocks.INFERNAL_CHAIR.get(), chairModel(TechnologicaBlocks.INFERNAL_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.INFERNAL_CHAIR.get()), "chair", "planks")));	
 		fourDirectionBlockState(TechnologicaBlocks.NECROTIC_CHAIR.get(), chairModel(TechnologicaBlocks.NECROTIC_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.NECROTIC_CHAIR.get()), "chair", "planks")));
 		
 		simpleBlock(TechnologicaBlocks.ACACIA_TABLE.get(), tableModel(TechnologicaBlocks.ACACIA_TABLE.get(), mcLoc(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ACACIA_TABLE.get()).getPath(), "table", "planks"))));
 		simpleBlock(TechnologicaBlocks.APRICOT_TABLE.get(), tableModel(TechnologicaBlocks.APRICOT_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_TABLE.get()), "table", "planks")));
+		simpleBlock(TechnologicaBlocks.ASPEN_TABLE.get(), tableModel(TechnologicaBlocks.ASPEN_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ASPEN_TABLE.get()), "table", "planks")));
 		simpleBlock(TechnologicaBlocks.AVOCADO_TABLE.get(), tableModel(TechnologicaBlocks.AVOCADO_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.AVOCADO_TABLE.get()), "table", "planks")));
 		simpleBlock(TechnologicaBlocks.BANANA_TABLE.get(), tableModel(TechnologicaBlocks.BANANA_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.BANANA_TABLE.get()), "table", "planks")));
 		simpleBlock(TechnologicaBlocks.BIRCH_TABLE.get(), tableModel(TechnologicaBlocks.BIRCH_TABLE.get(), mcLoc(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.BIRCH_TABLE.get()).getPath(), "table", "planks"))));
@@ -814,6 +799,9 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		simpleBlock(TechnologicaBlocks.OAK_TABLE.get(), tableModel(TechnologicaBlocks.OAK_TABLE.get(), mcLoc(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.OAK_TABLE.get()).getPath(), "table", "planks"))));
 		simpleBlock(TechnologicaBlocks.OLIVE_TABLE.get(), tableModel(TechnologicaBlocks.OLIVE_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.OLIVE_TABLE.get()), "table", "planks")));
 		simpleBlock(TechnologicaBlocks.ORANGE_TABLE.get(), tableModel(TechnologicaBlocks.ORANGE_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ORANGE_TABLE.get()), "table", "planks")));
+		simpleBlock(TechnologicaBlocks.PEACH_TABLE.get(), tableModel(TechnologicaBlocks.PEACH_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.PEACH_TABLE.get()), "table", "planks")));
+		simpleBlock(TechnologicaBlocks.PEAR_TABLE.get(), tableModel(TechnologicaBlocks.PEAR_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.PEAR_TABLE.get()), "table", "planks")));
+		simpleBlock(TechnologicaBlocks.PLUM_TABLE.get(), tableModel(TechnologicaBlocks.PLUM_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.PLUM_TABLE.get()), "table", "planks")));
 		simpleBlock(TechnologicaBlocks.REDWOOD_TABLE.get(), tableModel(TechnologicaBlocks.REDWOOD_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.REDWOOD_TABLE.get()), "table", "planks")));
 		simpleBlock(TechnologicaBlocks.ROSEWOOD_TABLE.get(), tableModel(TechnologicaBlocks.ROSEWOOD_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ROSEWOOD_TABLE.get()), "table", "planks")));
 		simpleBlock(TechnologicaBlocks.RUBBER_TABLE.get(), tableModel(TechnologicaBlocks.RUBBER_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.RUBBER_TABLE.get()), "table", "planks")));
@@ -827,6 +815,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		simpleBlock(TechnologicaBlocks.ALCHEMICAL_TABLE.get(), tableModel(TechnologicaBlocks.ALCHEMICAL_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ALCHEMICAL_TABLE.get()), "table", "planks")));
 		simpleBlock(TechnologicaBlocks.BENEVOLENT_TABLE.get(), tableModel(TechnologicaBlocks.BENEVOLENT_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.BENEVOLENT_TABLE.get()), "table", "planks")));
 		simpleBlock(TechnologicaBlocks.MALEVOLENT_TABLE.get(), tableModel(TechnologicaBlocks.MALEVOLENT_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.MALEVOLENT_TABLE.get()), "table", "planks")));
+		simpleBlock(TechnologicaBlocks.INFERNAL_TABLE.get(), tableModel(TechnologicaBlocks.INFERNAL_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.INFERNAL_TABLE.get()), "table", "planks")));
 		simpleBlock(TechnologicaBlocks.NECROTIC_TABLE.get(), tableModel(TechnologicaBlocks.NECROTIC_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.NECROTIC_TABLE.get()), "table", "planks")));
 		
 		simpleBlock(TechnologicaBlocks.DISPLAY_CASE.get(), displayModel(TechnologicaBlocks.DISPLAY_CASE.get()));
@@ -870,6 +859,8 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		simpleBlockItem(TechnologicaBlocks.ALCHEMICAL_LEAVES.get(), cubeAll(TechnologicaBlocks.ALCHEMICAL_LEAVES.get()));
 		simpleBlockItem(TechnologicaBlocks.BENEVOLENT_LEAVES.get(), cubeAll(TechnologicaBlocks.BENEVOLENT_LEAVES.get()));
 		simpleBlockItem(TechnologicaBlocks.MALEVOLENT_LEAVES.get(), cubeAll(TechnologicaBlocks.MALEVOLENT_LEAVES.get()));
+		simpleBlockItem(TechnologicaBlocks.MALEVOLENT_LEAVES.get(), cubeAll(TechnologicaBlocks.MALEVOLENT_LEAVES.get()));
+		
 		simpleBlockItem(TechnologicaBlocks.CURSED_LEAVES.get(), cubeAll(TechnologicaBlocks.CURSED_LEAVES.get()));
 		
 		simpleBlockItem(TechnologicaBlocks.SALT.get(), cubeAll(TechnologicaBlocks.SALT.get()));
@@ -910,6 +901,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		simpleBlockItem(TechnologicaBlocks.ALCHEMICAL_LOG.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.ALCHEMICAL_LOG.get()), blockTexture(TechnologicaBlocks.ALCHEMICAL_LOG.get()), new ResourceLocation(blockTexture(TechnologicaBlocks.ALCHEMICAL_LOG.get()) + "_top")));
 		simpleBlockItem(TechnologicaBlocks.BENEVOLENT_LOG.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.BENEVOLENT_LOG.get()), blockTexture(TechnologicaBlocks.BENEVOLENT_LOG.get()), new ResourceLocation(blockTexture(TechnologicaBlocks.BENEVOLENT_LOG.get()) + "_top")));
 		simpleBlockItem(TechnologicaBlocks.MALEVOLENT_LOG.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.MALEVOLENT_LOG.get()), blockTexture(TechnologicaBlocks.MALEVOLENT_LOG.get()), new ResourceLocation(blockTexture(TechnologicaBlocks.MALEVOLENT_LOG.get()) + "_top")));
+		simpleBlockItem(TechnologicaBlocks.INFERNAL_LOG.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.INFERNAL_LOG.get()), blockTexture(TechnologicaBlocks.INFERNAL_LOG.get()), new ResourceLocation(blockTexture(TechnologicaBlocks.INFERNAL_LOG.get()) + "_top")));
 		simpleBlockItem(TechnologicaBlocks.NECROTIC_LOG.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.NECROTIC_LOG.get()), blockTexture(TechnologicaBlocks.NECROTIC_LOG.get()), new ResourceLocation(blockTexture(TechnologicaBlocks.NECROTIC_LOG.get()) + "_top")));
 		
 		simpleBlockItem(TechnologicaBlocks.STRIPPED_APRICOT_LOG.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.STRIPPED_APRICOT_LOG.get()), blockTexture(TechnologicaBlocks.STRIPPED_APRICOT_LOG.get()), new ResourceLocation(blockTexture(TechnologicaBlocks.STRIPPED_APRICOT_LOG.get()) + "_top")));
@@ -943,6 +935,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		simpleBlockItem(TechnologicaBlocks.STRIPPED_ALCHEMICAL_LOG.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.STRIPPED_ALCHEMICAL_LOG.get()), blockTexture(TechnologicaBlocks.STRIPPED_ALCHEMICAL_LOG.get()), new ResourceLocation(blockTexture(TechnologicaBlocks.STRIPPED_ALCHEMICAL_LOG.get()) + "_top")));
 		simpleBlockItem(TechnologicaBlocks.STRIPPED_BENEVOLENT_LOG.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.STRIPPED_BENEVOLENT_LOG.get()), blockTexture(TechnologicaBlocks.STRIPPED_BENEVOLENT_LOG.get()), new ResourceLocation(blockTexture(TechnologicaBlocks.STRIPPED_BENEVOLENT_LOG.get()) + "_top")));
 		simpleBlockItem(TechnologicaBlocks.STRIPPED_MALEVOLENT_LOG.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.STRIPPED_MALEVOLENT_LOG.get()), blockTexture(TechnologicaBlocks.STRIPPED_MALEVOLENT_LOG.get()), new ResourceLocation(blockTexture(TechnologicaBlocks.STRIPPED_MALEVOLENT_LOG.get()) + "_top")));
+		simpleBlockItem(TechnologicaBlocks.STRIPPED_INFERNAL_LOG.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.STRIPPED_INFERNAL_LOG.get()), blockTexture(TechnologicaBlocks.STRIPPED_INFERNAL_LOG.get()), new ResourceLocation(blockTexture(TechnologicaBlocks.STRIPPED_INFERNAL_LOG.get()) + "_top")));
 		simpleBlockItem(TechnologicaBlocks.STRIPPED_NECROTIC_LOG.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.STRIPPED_NECROTIC_LOG.get()), blockTexture(TechnologicaBlocks.STRIPPED_NECROTIC_LOG.get()), new ResourceLocation(blockTexture(TechnologicaBlocks.STRIPPED_NECROTIC_LOG.get()) + "_top")));
 		
 		simpleBlockItem(TechnologicaBlocks.APRICOT_WOOD.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.APRICOT_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_WOOD.get()), "_wood", "_log")));
@@ -976,6 +969,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		simpleBlockItem(TechnologicaBlocks.ALCHEMICAL_WOOD.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.ALCHEMICAL_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ALCHEMICAL_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ALCHEMICAL_WOOD.get()), "_wood", "_log")));
 		simpleBlockItem(TechnologicaBlocks.BENEVOLENT_WOOD.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.BENEVOLENT_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.BENEVOLENT_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.BENEVOLENT_WOOD.get()), "_wood", "_log")));
 		simpleBlockItem(TechnologicaBlocks.MALEVOLENT_WOOD.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.MALEVOLENT_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.MALEVOLENT_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.MALEVOLENT_WOOD.get()), "_wood", "_log")));
+		simpleBlockItem(TechnologicaBlocks.INFERNAL_WOOD.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.INFERNAL_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.INFERNAL_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.INFERNAL_WOOD.get()), "_wood", "_log")));
 		simpleBlockItem(TechnologicaBlocks.NECROTIC_WOOD.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.NECROTIC_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.NECROTIC_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.NECROTIC_WOOD.get()), "_wood", "_log")));
 		
 		simpleBlockItem(TechnologicaBlocks.STRIPPED_APRICOT_WOOD.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.STRIPPED_APRICOT_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_APRICOT_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_APRICOT_WOOD.get()), "_wood", "_log")));
@@ -1009,6 +1003,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		simpleBlockItem(TechnologicaBlocks.STRIPPED_ALCHEMICAL_WOOD.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.STRIPPED_ALCHEMICAL_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_ALCHEMICAL_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_ALCHEMICAL_WOOD.get()), "_wood", "_log")));
 		simpleBlockItem(TechnologicaBlocks.STRIPPED_BENEVOLENT_WOOD.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.STRIPPED_BENEVOLENT_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_BENEVOLENT_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_BENEVOLENT_WOOD.get()), "_wood", "_log")));
 		simpleBlockItem(TechnologicaBlocks.STRIPPED_MALEVOLENT_WOOD.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.STRIPPED_MALEVOLENT_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_MALEVOLENT_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_MALEVOLENT_WOOD.get()), "_wood", "_log")));
+		simpleBlockItem(TechnologicaBlocks.STRIPPED_INFERNAL_WOOD.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.STRIPPED_INFERNAL_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_INFERNAL_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_INFERNAL_WOOD.get()), "_wood", "_log")));
 		simpleBlockItem(TechnologicaBlocks.STRIPPED_NECROTIC_WOOD.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.STRIPPED_NECROTIC_WOOD.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_NECROTIC_WOOD.get()), "_wood", "_log"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.STRIPPED_NECROTIC_WOOD.get()), "_wood", "_log")));
 		
 		simpleBlockItem(TechnologicaBlocks.APRICOT_PLANKS.get(), cubeAll(TechnologicaBlocks.APRICOT_PLANKS.get()));
@@ -1042,6 +1037,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		simpleBlockItem(TechnologicaBlocks.ALCHEMICAL_PLANKS.get(), cubeAll(TechnologicaBlocks.ALCHEMICAL_PLANKS.get()));
 		simpleBlockItem(TechnologicaBlocks.BENEVOLENT_PLANKS.get(), cubeAll(TechnologicaBlocks.BENEVOLENT_PLANKS.get()));
 		simpleBlockItem(TechnologicaBlocks.MALEVOLENT_PLANKS.get(), cubeAll(TechnologicaBlocks.MALEVOLENT_PLANKS.get()));
+		simpleBlockItem(TechnologicaBlocks.INFERNAL_PLANKS.get(), cubeAll(TechnologicaBlocks.INFERNAL_PLANKS.get()));
 		simpleBlockItem(TechnologicaBlocks.NECROTIC_PLANKS.get(), cubeAll(TechnologicaBlocks.NECROTIC_PLANKS.get()));
 		
 		simpleBlockItem(TechnologicaBlocks.APRICOT_SLAB.get(), models().slab(ResourceLocationHelper.getPath(TechnologicaBlocks.APRICOT_SLAB.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_SLAB.get()), "_slab", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_SLAB.get()), "_slab", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_SLAB.get()), "_slab", "_planks")));
@@ -1075,6 +1071,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		simpleBlockItem(TechnologicaBlocks.ALCHEMICAL_SLAB.get(), models().slab(ResourceLocationHelper.getPath(TechnologicaBlocks.ALCHEMICAL_SLAB.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ALCHEMICAL_SLAB.get()), "_slab", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ALCHEMICAL_SLAB.get()), "_slab", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ALCHEMICAL_SLAB.get()), "_slab", "_planks")));
 		simpleBlockItem(TechnologicaBlocks.BENEVOLENT_SLAB.get(), models().slab(ResourceLocationHelper.getPath(TechnologicaBlocks.BENEVOLENT_SLAB.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.BENEVOLENT_SLAB.get()), "_slab", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.BENEVOLENT_SLAB.get()), "_slab", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.BENEVOLENT_SLAB.get()), "_slab", "_planks")));
 		simpleBlockItem(TechnologicaBlocks.MALEVOLENT_SLAB.get(), models().slab(ResourceLocationHelper.getPath(TechnologicaBlocks.MALEVOLENT_SLAB.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.MALEVOLENT_SLAB.get()), "_slab", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.MALEVOLENT_SLAB.get()), "_slab", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.MALEVOLENT_SLAB.get()), "_slab", "_planks")));
+		simpleBlockItem(TechnologicaBlocks.INFERNAL_SLAB.get(), models().slab(ResourceLocationHelper.getPath(TechnologicaBlocks.INFERNAL_SLAB.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.INFERNAL_SLAB.get()), "_slab", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.INFERNAL_SLAB.get()), "_slab", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.INFERNAL_SLAB.get()), "_slab", "_planks")));
 		simpleBlockItem(TechnologicaBlocks.NECROTIC_SLAB.get(), models().slab(ResourceLocationHelper.getPath(TechnologicaBlocks.NECROTIC_SLAB.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.NECROTIC_SLAB.get()), "_slab", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.NECROTIC_SLAB.get()), "_slab", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.NECROTIC_SLAB.get()), "_slab", "_planks")));
 		
 		simpleBlockItem(TechnologicaBlocks.APRICOT_STAIRS.get(), models().stairs(ResourceLocationHelper.getPath(TechnologicaBlocks.APRICOT_STAIRS.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_STAIRS.get()), "_stairs", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_STAIRS.get()), "_stairs", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_STAIRS.get()), "_stairs", "_planks")));
@@ -1108,6 +1105,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		simpleBlockItem(TechnologicaBlocks.ALCHEMICAL_STAIRS.get(), models().stairs(ResourceLocationHelper.getPath(TechnologicaBlocks.ALCHEMICAL_STAIRS.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ALCHEMICAL_STAIRS.get()), "_stairs", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ALCHEMICAL_STAIRS.get()), "_stairs", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ALCHEMICAL_STAIRS.get()), "_stairs", "_planks")));
 		simpleBlockItem(TechnologicaBlocks.BENEVOLENT_STAIRS.get(), models().stairs(ResourceLocationHelper.getPath(TechnologicaBlocks.BENEVOLENT_STAIRS.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.BENEVOLENT_STAIRS.get()), "_stairs", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.BENEVOLENT_STAIRS.get()), "_stairs", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.BENEVOLENT_STAIRS.get()), "_stairs", "_planks")));
 		simpleBlockItem(TechnologicaBlocks.MALEVOLENT_STAIRS.get(), models().stairs(ResourceLocationHelper.getPath(TechnologicaBlocks.MALEVOLENT_STAIRS.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.MALEVOLENT_STAIRS.get()), "_stairs", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.MALEVOLENT_STAIRS.get()), "_stairs", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.MALEVOLENT_STAIRS.get()), "_stairs", "_planks")));
+		simpleBlockItem(TechnologicaBlocks.INFERNAL_STAIRS.get(), models().stairs(ResourceLocationHelper.getPath(TechnologicaBlocks.INFERNAL_STAIRS.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.INFERNAL_STAIRS.get()), "_stairs", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.INFERNAL_STAIRS.get()), "_stairs", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.INFERNAL_STAIRS.get()), "_stairs", "_planks")));
 		simpleBlockItem(TechnologicaBlocks.NECROTIC_STAIRS.get(), models().stairs(ResourceLocationHelper.getPath(TechnologicaBlocks.NECROTIC_STAIRS.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.NECROTIC_STAIRS.get()), "_stairs", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.NECROTIC_STAIRS.get()), "_stairs", "_planks"), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.NECROTIC_STAIRS.get()), "_stairs", "_planks")));
 		
 		simpleBlockItem(TechnologicaBlocks.APRICOT_BOOKSHELF.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.APRICOT_BOOKSHELF.get()), blockTexture(TechnologicaBlocks.APRICOT_BOOKSHELF.get()), ResourceLocationHelper.replace(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_BOOKSHELF.get()), "bookshelf", "planks"), "bookshelf", "planks")));
@@ -1141,6 +1139,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		simpleBlockItem(TechnologicaBlocks.MALEVOLENT_BOOKSHELF.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.MALEVOLENT_BOOKSHELF.get()), blockTexture(TechnologicaBlocks.MALEVOLENT_BOOKSHELF.get()), ResourceLocationHelper.replace(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.MALEVOLENT_BOOKSHELF.get()), "bookshelf", "planks"), "bookshelf", "planks")));
 		simpleBlockItem(TechnologicaBlocks.CONDUCTIVE_BOOKSHELF.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.CONDUCTIVE_BOOKSHELF.get()), blockTexture(TechnologicaBlocks.CONDUCTIVE_BOOKSHELF.get()), ResourceLocationHelper.replace(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.CONDUCTIVE_BOOKSHELF.get()), "bookshelf", "planks"), "bookshelf", "planks")));
 		simpleBlockItem(TechnologicaBlocks.FROSTBITTEN_BOOKSHELF.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.FROSTBITTEN_BOOKSHELF.get()), blockTexture(TechnologicaBlocks.FROSTBITTEN_BOOKSHELF.get()), ResourceLocationHelper.replace(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.FROSTBITTEN_BOOKSHELF.get()), "bookshelf", "planks"), "bookshelf", "planks")));
+		simpleBlockItem(TechnologicaBlocks.INFERNAL_BOOKSHELF.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.INFERNAL_BOOKSHELF.get()), blockTexture(TechnologicaBlocks.INFERNAL_BOOKSHELF.get()), ResourceLocationHelper.replace(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.INFERNAL_BOOKSHELF.get()), "bookshelf", "planks"), "bookshelf", "planks")));
 		simpleBlockItem(TechnologicaBlocks.NECROTIC_BOOKSHELF.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.NECROTIC_BOOKSHELF.get()), blockTexture(TechnologicaBlocks.NECROTIC_BOOKSHELF.get()), ResourceLocationHelper.replace(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.NECROTIC_BOOKSHELF.get()), "bookshelf", "planks"), "bookshelf", "planks")));
 		
 		simpleBlockItem(TechnologicaBlocks.APRICOT_FENCE.get(), models().fenceInventory(blockTexture(TechnologicaBlocks.APRICOT_FENCE.get()) + "_inventory", ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_FENCE.get()), "_fence", "_planks")));
@@ -1174,6 +1173,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		simpleBlockItem(TechnologicaBlocks.CONDUCTIVE_FENCE.get(), models().fenceInventory(blockTexture(TechnologicaBlocks.CONDUCTIVE_FENCE.get()) + "_inventory", ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.CONDUCTIVE_FENCE.get()), "_fence", "_planks")));
 		simpleBlockItem(TechnologicaBlocks.BENEVOLENT_FENCE.get(), models().fenceInventory(blockTexture(TechnologicaBlocks.BENEVOLENT_FENCE.get()) + "_inventory", ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.BENEVOLENT_FENCE.get()), "_fence", "_planks")));
 		simpleBlockItem(TechnologicaBlocks.MALEVOLENT_FENCE.get(), models().fenceInventory(blockTexture(TechnologicaBlocks.MALEVOLENT_FENCE.get()) + "_inventory", ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.MALEVOLENT_FENCE.get()), "_fence", "_planks")));
+		simpleBlockItem(TechnologicaBlocks.INFERNAL_FENCE.get(), models().fenceInventory(blockTexture(TechnologicaBlocks.INFERNAL_FENCE.get()) + "_inventory", ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.INFERNAL_FENCE.get()), "_fence", "_planks")));
 		simpleBlockItem(TechnologicaBlocks.NECROTIC_FENCE.get(), models().fenceInventory(blockTexture(TechnologicaBlocks.NECROTIC_FENCE.get()) + "_inventory", ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.NECROTIC_FENCE.get()), "_fence", "_planks")));
 		
 		simpleBlockItem(TechnologicaBlocks.APRICOT_FENCE_GATE.get(), models().fenceGate(ResourceLocationHelper.getPath(TechnologicaBlocks.APRICOT_FENCE_GATE.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_FENCE_GATE.get()), "_fence_gate", "_planks")));
@@ -1207,6 +1207,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		simpleBlockItem(TechnologicaBlocks.CONDUCTIVE_FENCE_GATE.get(), models().fenceGate(ResourceLocationHelper.getPath(TechnologicaBlocks.CONDUCTIVE_FENCE_GATE.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.CONDUCTIVE_FENCE_GATE.get()), "_fence_gate", "_planks")));
 		simpleBlockItem(TechnologicaBlocks.BENEVOLENT_FENCE_GATE.get(), models().fenceGate(ResourceLocationHelper.getPath(TechnologicaBlocks.BENEVOLENT_FENCE_GATE.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.BENEVOLENT_FENCE_GATE.get()), "_fence_gate", "_planks")));
 		simpleBlockItem(TechnologicaBlocks.MALEVOLENT_FENCE_GATE.get(), models().fenceGate(ResourceLocationHelper.getPath(TechnologicaBlocks.MALEVOLENT_FENCE_GATE.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.MALEVOLENT_FENCE_GATE.get()), "_fence_gate", "_planks")));
+		simpleBlockItem(TechnologicaBlocks.INFERNAL_FENCE_GATE.get(), models().fenceGate(ResourceLocationHelper.getPath(TechnologicaBlocks.INFERNAL_FENCE_GATE.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.INFERNAL_FENCE_GATE.get()), "_fence_gate", "_planks")));
 		simpleBlockItem(TechnologicaBlocks.NECROTIC_FENCE_GATE.get(), models().fenceGate(ResourceLocationHelper.getPath(TechnologicaBlocks.NECROTIC_FENCE_GATE.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.NECROTIC_FENCE_GATE.get()), "_fence_gate", "_planks")));
 		
 		doorBlockItem(TechnologicaBlocks.APRICOT_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
@@ -1240,6 +1241,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		doorBlockItem(TechnologicaBlocks.ALCHEMICAL_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
 		doorBlockItem(TechnologicaBlocks.BENEVOLENT_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
 		doorBlockItem(TechnologicaBlocks.MALEVOLENT_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
+		doorBlockItem(TechnologicaBlocks.INFERNAL_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
 		doorBlockItem(TechnologicaBlocks.NECROTIC_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
 		
 		simpleBlockItem(TechnologicaBlocks.APRICOT_TRAPDOOR.get(), models().trapdoorOrientableBottom(ResourceLocationHelper.getPath(TechnologicaBlocks.APRICOT_TRAPDOOR.get()) + "_bottom", blockTexture(TechnologicaBlocks.APRICOT_TRAPDOOR.get())));
@@ -1273,6 +1275,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		simpleBlockItem(TechnologicaBlocks.ALCHEMICAL_TRAPDOOR.get(), models().trapdoorOrientableBottom(ResourceLocationHelper.getPath(TechnologicaBlocks.ALCHEMICAL_TRAPDOOR.get()) + "_bottom", blockTexture(TechnologicaBlocks.ALCHEMICAL_TRAPDOOR.get())));
 		simpleBlockItem(TechnologicaBlocks.BENEVOLENT_TRAPDOOR.get(), models().trapdoorOrientableBottom(ResourceLocationHelper.getPath(TechnologicaBlocks.BENEVOLENT_TRAPDOOR.get()) + "_bottom", blockTexture(TechnologicaBlocks.BENEVOLENT_TRAPDOOR.get())));
 		simpleBlockItem(TechnologicaBlocks.MALEVOLENT_TRAPDOOR.get(), models().trapdoorOrientableBottom(ResourceLocationHelper.getPath(TechnologicaBlocks.MALEVOLENT_TRAPDOOR.get()) + "_bottom", blockTexture(TechnologicaBlocks.MALEVOLENT_TRAPDOOR.get())));
+		simpleBlockItem(TechnologicaBlocks.INFERNAL_TRAPDOOR.get(), models().trapdoorOrientableBottom(ResourceLocationHelper.getPath(TechnologicaBlocks.INFERNAL_TRAPDOOR.get()) + "_bottom", blockTexture(TechnologicaBlocks.INFERNAL_TRAPDOOR.get())));
 		simpleBlockItem(TechnologicaBlocks.NECROTIC_TRAPDOOR.get(), models().trapdoorOrientableBottom(ResourceLocationHelper.getPath(TechnologicaBlocks.NECROTIC_TRAPDOOR.get()) + "_bottom", blockTexture(TechnologicaBlocks.NECROTIC_TRAPDOOR.get())));
 		
 		simpleBlockItem(TechnologicaBlocks.ACACIA_CHAIR.get(), chairModel(TechnologicaBlocks.ACACIA_CHAIR.get(), mcLoc(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ACACIA_CHAIR.get()).getPath(), "chair", "planks"))));
@@ -1312,10 +1315,50 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		simpleBlockItem(TechnologicaBlocks.ALCHEMICAL_CHAIR.get(), chairModel(TechnologicaBlocks.ALCHEMICAL_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ALCHEMICAL_CHAIR.get()), "chair", "planks")));
 		simpleBlockItem(TechnologicaBlocks.BENEVOLENT_CHAIR.get(), chairModel(TechnologicaBlocks.BENEVOLENT_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.BENEVOLENT_CHAIR.get()), "chair", "planks")));
 		simpleBlockItem(TechnologicaBlocks.MALEVOLENT_CHAIR.get(), chairModel(TechnologicaBlocks.MALEVOLENT_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.MALEVOLENT_CHAIR.get()), "chair", "planks")));
+		simpleBlockItem(TechnologicaBlocks.INFERNAL_CHAIR.get(), chairModel(TechnologicaBlocks.INFERNAL_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.INFERNAL_CHAIR.get()), "chair", "planks")));
 		simpleBlockItem(TechnologicaBlocks.NECROTIC_CHAIR.get(), chairModel(TechnologicaBlocks.NECROTIC_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.NECROTIC_CHAIR.get()), "chair", "planks")));
 		
 		simpleBlockItem(TechnologicaBlocks.DISPLAY_CASE.get(), displayModel(TechnologicaBlocks.DISPLAY_CASE.get()));
-	}	
+	}
+	
+	private void cropBlockNew() {
+		cropBlock(TechnologicaBlocks.ASPARAGUS_CROP.get());
+		cropBlock(TechnologicaBlocks.BARLEY_CROP.get());
+		cropBlock(TechnologicaBlocks.BLACKBERRY_CROP.get());
+		cropBlock(TechnologicaBlocks.BLUEBERRY_CROP.get());
+		cropBlock(TechnologicaBlocks.BROCCOLI_CROP.get());
+		cropBlock(TechnologicaBlocks.CELERY_CROP.get());
+		cropBlock(TechnologicaBlocks.CHILI_PEPPER_CROP.get());
+		cropBlock(TechnologicaBlocks.COTTON_CROP.get());
+		cropBlock(TechnologicaBlocks.CUCUMBER_CROP.get());
+		cropBlock(TechnologicaBlocks.GARLIC_CROP.get());
+		cropBlock(TechnologicaBlocks.GINGER_CROP.get());
+		cropBlock(TechnologicaBlocks.LETTUCE_CROP.get());
+		cropBlock(TechnologicaBlocks.MUSTARD_GREENS_CROP.get());
+		cropBlock(TechnologicaBlocks.OATS_CROP.get());
+		cropBlock(TechnologicaBlocks.ONION_CROP.get());
+		cropBlock(TechnologicaBlocks.PEA_CROP.get());
+		cropBlock(TechnologicaBlocks.PEANUT_CROP.get());
+		cropBlock(TechnologicaBlocks.PINEAPPLE_CROP.get());
+		cropBlock(TechnologicaBlocks.PURPLE_CABBAGE_CROP.get());
+		cropBlock(TechnologicaBlocks.RADISH_CROP.get());
+		cropBlock(TechnologicaBlocks.RASPBERRY_CROP.get());
+		cropBlock(TechnologicaBlocks.RED_BEAN_CROP.get());
+		cropBlock(TechnologicaBlocks.RYE_CROP.get());
+		cropBlock(TechnologicaBlocks.SOYBEAN_CROP.get());
+		cropBlock(TechnologicaBlocks.STRAWBERRY_CROP.get());
+		cropBlock(TechnologicaBlocks.SQUASH_CROP.get());
+		cropBlock(TechnologicaBlocks.SWEET_POTATO_CROP.get());
+		cropBlock(TechnologicaBlocks.TEA_CROP.get());
+		cropBlock(TechnologicaBlocks.TOMATO_CROP.get());
+		cropBlock(TechnologicaBlocks.TURNIP_CROP.get());
+		cropBlock(TechnologicaBlocks.ZUCCHINI_CROP.get());
+		tallCropBlock(TechnologicaBlocks.CORN_CROP.get());
+//		tallCropBlock(TechnologicaBlocks.GRAPE_CROP.get());
+		tallCropBlock(TechnologicaBlocks.PEPPERCORN_CROP.get());
+		tallCropBlock(TechnologicaBlocks.CRANBERRY_CROP.get());
+		tallCropBlock(TechnologicaBlocks.RICE_CROP.get());
+	}
 	
 	/*
 	 * ModelFiles
