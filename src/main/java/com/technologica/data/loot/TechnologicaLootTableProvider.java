@@ -19,7 +19,7 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 
 public class TechnologicaLootTableProvider extends LootTableProvider {
-	private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> loot_tables = ImmutableList.of(Pair.of(TechnologicaBlockLoot::new, LootContextParamSets.BLOCK));
+	private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> subProviders = ImmutableList.of(Pair.of(TechnologicaBlockLoot::new, LootContextParamSets.BLOCK), Pair.of(TechnologicaChestLoot::new, LootContextParamSets.CHEST));
 	
 	public TechnologicaLootTableProvider (DataGenerator generatorIn) {
 		super(generatorIn);
@@ -27,7 +27,7 @@ public class TechnologicaLootTableProvider extends LootTableProvider {
 	
 	@Override
 	protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, Builder>>>, LootContextParamSet>> getTables() {
-		return loot_tables;
+		return subProviders;
 	}
 	
 	@Override
