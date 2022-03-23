@@ -616,6 +616,8 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		signBlock(TechnologicaBlocks.KIWI_SIGN.get());
 		signBlock(TechnologicaBlocks.LEMON_SIGN.get());
 		signBlock(TechnologicaBlocks.LIME_SIGN.get());
+		signBlock(TechnologicaBlocks.MAHOGANY_SIGN.get());
+		signBlock(TechnologicaBlocks.MAPLE_SIGN.get());
 		signBlock(TechnologicaBlocks.OLIVE_SIGN.get());
 		signBlock(TechnologicaBlocks.ORANGE_SIGN.get());
 		signBlock(TechnologicaBlocks.PEACH_SIGN.get());
@@ -648,6 +650,8 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		signBlock(TechnologicaBlocks.KIWI_WALL_SIGN.get());
 		signBlock(TechnologicaBlocks.LEMON_WALL_SIGN.get());
 		signBlock(TechnologicaBlocks.LIME_WALL_SIGN.get());
+		signBlock(TechnologicaBlocks.MAHOGANY_WALL_SIGN.get());
+		signBlock(TechnologicaBlocks.MAPLE_WALL_SIGN.get());
 		signBlock(TechnologicaBlocks.OLIVE_WALL_SIGN.get());
 		signBlock(TechnologicaBlocks.ORANGE_WALL_SIGN.get());
 		signBlock(TechnologicaBlocks.PEACH_WALL_SIGN.get());
