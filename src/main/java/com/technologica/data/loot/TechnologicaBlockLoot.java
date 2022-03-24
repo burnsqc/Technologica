@@ -16,6 +16,7 @@ import com.technologica.world.level.block.TwentyFourDirectionBlock;
 
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.loot.BlockLoot;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -74,6 +75,44 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		add(TechnologicaBlocks.TOMATO_CROP.get(), createCropDrops(TechnologicaBlocks.TOMATO_CROP.get(), TechnologicaItems.TOMATO.get(), TechnologicaBlocks.TOMATO_CROP.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.TOMATO_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
 		add(TechnologicaBlocks.TURNIP_CROP.get(), createCropDrops(TechnologicaBlocks.TURNIP_CROP.get(), TechnologicaItems.TURNIP.get(), TechnologicaBlocks.TURNIP_CROP.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.TURNIP_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
 		add(TechnologicaBlocks.ZUCCHINI_CROP.get(), createCropDrops(TechnologicaBlocks.ZUCCHINI_CROP.get(), TechnologicaItems.ZUCCHINI.get(), TechnologicaBlocks.ZUCCHINI_CROP.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.ZUCCHINI_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
+		
+		dropSelf(TechnologicaItems.ASPARAGUS_SEEDS.get());
+		dropSelf(TechnologicaItems.BARLEY_SEEDS.get());
+		dropSelf(TechnologicaItems.BLACKBERRY_SEEDS.get());
+		dropSelf(TechnologicaItems.BLUEBERRY_SEEDS.get());
+		dropSelf(TechnologicaItems.BROCCOLI_SEEDS.get());
+		dropSelf(TechnologicaItems.CELERY_SEEDS.get());
+		dropSelf(TechnologicaItems.CHILI_PEPPER_SEEDS.get());
+		dropSelf(TechnologicaItems.COFFEE_BEANS.get());
+		dropSelf(TechnologicaItems.CORN_SEEDS.get());
+		dropSelf(TechnologicaItems.COTTON_SEEDS.get());
+		dropSelf(TechnologicaItems.CRANBERRY_SEEDS.get());
+		dropSelf(TechnologicaItems.CUCUMBER_SEEDS.get());
+		dropSelf(TechnologicaItems.GARLIC_SEEDS.get());
+		dropSelf(TechnologicaItems.GINGER_SEEDS.get());
+		dropSelf(TechnologicaItems.GRAPE_SEEDS.get());
+		dropSelf(TechnologicaItems.LETTUCE_SEEDS.get());
+		dropSelf(TechnologicaItems.MUSTARD_GREENS.get());
+		dropSelf(TechnologicaItems.OATS_SEEDS.get());
+		dropSelf(TechnologicaItems.ONION_SEEDS.get());
+		dropSelf(TechnologicaItems.PEA_SEEDS.get());
+		dropSelf(TechnologicaItems.PEANUT_SEEDS.get());
+		dropSelf(TechnologicaItems.PEPPERCORN_SEEDS.get());
+		dropSelf(TechnologicaItems.PINEAPPLE_SEEDS.get());
+		dropSelf(TechnologicaItems.PURPLE_CABBAGE_SEEDS.get());
+		dropSelf(TechnologicaItems.RADISH_SEEDS.get());
+		dropSelf(TechnologicaItems.RASPBERRY_SEEDS.get());
+		dropSelf(TechnologicaItems.RED_BEANS.get());
+		dropSelf(TechnologicaItems.RICE_SEEDS.get());
+		dropSelf(TechnologicaItems.RYE_SEEDS.get());
+		dropSelf(TechnologicaItems.SOYBEANS.get());
+		dropSelf(TechnologicaItems.SQUASH_SEEDS.get());
+		dropSelf(TechnologicaItems.STRAWBERRY_SEEDS.get());
+		dropSelf(TechnologicaItems.SWEET_POTATO_SEEDS.get());
+		dropSelf(TechnologicaItems.TEA_SEEDS.get());
+		dropSelf(TechnologicaItems.TOMATO_SEEDS.get());
+		dropSelf(TechnologicaItems.TURNIP_SEEDS.get());
+		dropSelf(TechnologicaItems.ZUCCHINI_SEEDS.get());
 		
 		dropSelf(TechnologicaBlocks.APRICOT_PLANKS.get());
 		dropSelf(TechnologicaBlocks.ASPEN_PLANKS.get());
@@ -335,6 +374,11 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		dropSelf(TechnologicaBlocks.ANNUNCIATOR.get());
 	}
 	
+	private void dropSelf(Item item) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	/**
 	 * Iterates through a deferred register of blocks, generating loot tables for each applicable entry.
 	 * This is primarily only intended as a time save for two use cases: 
