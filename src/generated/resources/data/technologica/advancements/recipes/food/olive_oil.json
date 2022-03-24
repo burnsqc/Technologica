@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "technologica:olive_oil"
+    ]
+  },
+  "criteria": {
+    "has_olive": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "technologica:olive"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "technologica:olive_oil"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_olive",
+      "has_the_recipe"
+    ]
+  ]
+}

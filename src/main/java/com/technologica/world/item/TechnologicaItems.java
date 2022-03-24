@@ -430,7 +430,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> STRAWBERRY_SHORTCAKE = ITEMS.register("strawberry_shortcake", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.STRAWBERRY_SHORTCAKE)));
     public static final RegistryObject<Item> TAPENADE = ITEMS.register("tapenade", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.TAPENADE)));
     public static final RegistryObject<Item> CINNAMON_ROLL = ITEMS.register("cinnamon_roll", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.CINNAMON_ROLL)));
-//    public static final RegistryObject<Item> OLIVE_OIL = ITEMS.register("olive_oil", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.OLIVE_OIL)));
+    public static final RegistryObject<Item> OLIVE_OIL = ITEMS.register("olive_oil", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.OLIVE_OIL)));
     
     /**
      * CONSTRUCTION
