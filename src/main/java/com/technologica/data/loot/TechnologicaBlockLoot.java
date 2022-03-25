@@ -1,34 +1,14 @@
 package com.technologica.data.loot;
 
-import java.util.Collection;
-import java.util.function.Supplier;
-
-import com.technologica.util.text.ResourceLocationHelper;
 import com.technologica.world.item.TechnologicaItems;
-import com.technologica.world.level.block.ChairBlock;
-import com.technologica.world.level.block.FruitingLeavesBlock;
-import com.technologica.world.level.block.SapLogBlock;
-import com.technologica.world.level.block.SawmillBlock;
-import com.technologica.world.level.block.TableBlock;
 import com.technologica.world.level.block.TechnologicaBlocks;
-import com.technologica.world.level.block.TreeTapBlock;
-import com.technologica.world.level.block.TwentyFourDirectionBlock;
 
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.loot.BlockLoot;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
-import net.minecraft.world.level.block.DoorBlock;
-import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraft.world.level.block.LeavesBlock;
-import net.minecraft.world.level.block.PressurePlateBlock;
-import net.minecraft.world.level.block.RotatedPillarBlock;
-import net.minecraft.world.level.block.SaplingBlock;
-import net.minecraft.world.level.block.TrapDoorBlock;
-import net.minecraft.world.level.block.WoodButtonBlock;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraftforge.registries.RegistryObject;
@@ -110,39 +90,39 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		dropSelf(TechnologicaBlocks.MALEVOLENT_APOTHECARY_SAPLING.get());
 		dropSelf(TechnologicaBlocks.NECROTIC_SAPLING.get());
 		
-		dropSelf(TechnologicaBlocks.POTTED_APRICOT_SAPLING.get());
-		dropSelf(TechnologicaBlocks.POTTED_ASPEN_SAPLING.get());
-		dropSelf(TechnologicaBlocks.POTTED_AVOCADO_SAPLING.get());
-		dropSelf(TechnologicaBlocks.POTTED_BANANA_SAPLING.get());
-		dropSelf(TechnologicaBlocks.POTTED_CHERRY_SAPLING.get());
-		dropSelf(TechnologicaBlocks.POTTED_CHESTNUT_SAPLING.get());
-		dropSelf(TechnologicaBlocks.POTTED_CINNAMON_SAPLING.get());
-		dropSelf(TechnologicaBlocks.POTTED_COCONUT_SAPLING.get());
-		dropSelf(TechnologicaBlocks.POTTED_EBONY_SAPLING.get());
-		dropSelf(TechnologicaBlocks.POTTED_KIWI_SAPLING.get());
-		dropSelf(TechnologicaBlocks.POTTED_LEMON_SAPLING.get());
-		dropSelf(TechnologicaBlocks.POTTED_LIME_SAPLING.get());
-		dropSelf(TechnologicaBlocks.POTTED_MAHOGANY_SAPLING.get());
-		dropSelf(TechnologicaBlocks.POTTED_MAPLE_SAPLING.get());
-		dropSelf(TechnologicaBlocks.POTTED_OLIVE_SAPLING.get());
-		dropSelf(TechnologicaBlocks.POTTED_ORANGE_SAPLING.get());
-		dropSelf(TechnologicaBlocks.POTTED_PEACH_SAPLING.get());
-		dropSelf(TechnologicaBlocks.POTTED_PEAR_SAPLING.get());
-		dropSelf(TechnologicaBlocks.POTTED_PLUM_SAPLING.get());
-		dropSelf(TechnologicaBlocks.POTTED_REDWOOD_SAPLING.get());
-		dropSelf(TechnologicaBlocks.POTTED_ROSEWOOD_SAPLING.get());
-		dropSelf(TechnologicaBlocks.POTTED_RUBBER_SAPLING.get());
-		dropSelf(TechnologicaBlocks.POTTED_TEAK_SAPLING.get());
-		dropSelf(TechnologicaBlocks.POTTED_WALNUT_SAPLING.get());
-		dropSelf(TechnologicaBlocks.POTTED_ZEBRAWOOD_SAPLING.get());
-		dropSelf(TechnologicaBlocks.POTTED_SERENDIPITOUS_APOTHECARY_SAPLING.get());
-		dropSelf(TechnologicaBlocks.POTTED_BENEVOLENT_APOTHECARY_SAPLING.get());
-		dropSelf(TechnologicaBlocks.POTTED_THUNDEROUS_CONDUCTOR_SAPLING.get());
-		dropSelf(TechnologicaBlocks.POTTED_CRYOGENIC_SPIRE_SAPLING.get());
-		dropSelf(TechnologicaBlocks.POTTED_ANCIENT_AMBROSIA_SAPLING.get());
-		dropSelf(TechnologicaBlocks.POTTED_TOWERING_INFERNO_SAPLING.get());
-		dropSelf(TechnologicaBlocks.POTTED_MALEVOLENT_APOTHECARY_SAPLING.get());
-		dropSelf(TechnologicaBlocks.POTTED_NECROTIC_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_APRICOT_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_ASPEN_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_AVOCADO_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_BANANA_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_CHERRY_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_CHESTNUT_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_CINNAMON_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_COCONUT_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_EBONY_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_KIWI_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_LEMON_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_LIME_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_MAHOGANY_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_MAPLE_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_OLIVE_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_ORANGE_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_PEACH_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_PEAR_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_PLUM_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_REDWOOD_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_ROSEWOOD_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_RUBBER_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_TEAK_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_WALNUT_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_ZEBRAWOOD_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_SERENDIPITOUS_APOTHECARY_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_BENEVOLENT_APOTHECARY_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_THUNDEROUS_CONDUCTOR_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_CRYOGENIC_SPIRE_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_ANCIENT_AMBROSIA_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_TOWERING_INFERNO_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_MALEVOLENT_APOTHECARY_SAPLING.get());
+		dropPottedContents(TechnologicaBlocks.POTTED_NECROTIC_SAPLING.get());
 		
 		add(TechnologicaBlocks.APRICOT_LEAVES.get(), createLeavesDrops(TechnologicaBlocks.APRICOT_LEAVES.get(), TechnologicaBlocks.APRICOT_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES));
 		add(TechnologicaBlocks.ASPEN_LEAVES.get(), createLeavesDrops(TechnologicaBlocks.ASPEN_LEAVES.get(), TechnologicaBlocks.ASPEN_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES));
@@ -179,8 +159,8 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		
 		dropOther(TechnologicaBlocks.MULCH.get(), Blocks.DIRT);
 		
-		add(TechnologicaBlocks.LITHIUM_CLAY.get(), (clay) -> createSingleItemTableWithSilkTouch(clay, TechnologicaItems.LITHIUM_CLAY_BALL.get(), ConstantValue.exactly(4)));
 		dropSelf(TechnologicaBlocks.SALT.get());
+		add(TechnologicaBlocks.LITHIUM_CLAY.get(), (clay) -> createSingleItemTableWithSilkTouch(clay, TechnologicaItems.LITHIUM_CLAY_BALL.get(), ConstantValue.exactly(4)));
 		
 		dropSelf(TechnologicaBlocks.MOON_ROCK.get());
 		dropSelf(TechnologicaBlocks.MOON_DUST.get());
@@ -438,46 +418,46 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		dropSelf(TechnologicaBlocks.MALEVOLENT_STAIRS.get());
 		dropSelf(TechnologicaBlocks.NECROTIC_STAIRS.get());
 		
-		dropSelf(TechnologicaBlocks.SPRUCE_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.BIRCH_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.JUNGLE_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.ACACIA_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.DARK_OAK_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.CRIMSON_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.WARPED_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.APRICOT_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.ASPEN_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.AVOCADO_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.BANANA_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.CHERRY_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.CHESTNUT_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.CINNAMON_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.COCONUT_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.EBONY_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.KIWI_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.LEMON_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.LIME_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.MAHOGANY_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.MAPLE_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.OLIVE_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.ORANGE_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.PEACH_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.PEAR_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.PLUM_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.REDWOOD_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.ROSEWOOD_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.RUBBER_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.TEAK_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.WALNUT_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.ZEBRAWOOD_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.ALCHEMICAL_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.BENEVOLENT_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.CONDUCTIVE_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.FROSTBITTEN_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.FRUITFUL_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.INFERNAL_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.MALEVOLENT_BOOKSHELF.get());
-		dropSelf(TechnologicaBlocks.NECROTIC_BOOKSHELF.get());
+		add(TechnologicaBlocks.SPRUCE_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.BIRCH_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.JUNGLE_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.ACACIA_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.DARK_OAK_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.CRIMSON_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.WARPED_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.APRICOT_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.ASPEN_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.AVOCADO_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.BANANA_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.CHERRY_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.CHESTNUT_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.CINNAMON_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.COCONUT_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.EBONY_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.KIWI_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.LEMON_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.LIME_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.MAHOGANY_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.MAPLE_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.OLIVE_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.ORANGE_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.PEACH_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.PEAR_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.PLUM_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.REDWOOD_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.ROSEWOOD_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.RUBBER_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.TEAK_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.WALNUT_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.ZEBRAWOOD_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.ALCHEMICAL_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.BENEVOLENT_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.CONDUCTIVE_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.FROSTBITTEN_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.FRUITFUL_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.INFERNAL_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.MALEVOLENT_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
+		add(TechnologicaBlocks.NECROTIC_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
 		
 		dropSelf(TechnologicaBlocks.APRICOT_FENCE.get());
 		dropSelf(TechnologicaBlocks.ASPEN_FENCE.get());
@@ -547,6 +527,142 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		dropSelf(TechnologicaBlocks.MALEVOLENT_FENCE_GATE.get());
 		dropSelf(TechnologicaBlocks.NECROTIC_FENCE_GATE.get());
 		
+		add(TechnologicaBlocks.APRICOT_DOOR.get(), BlockLoot::createDoorTable);
+		add(TechnologicaBlocks.ASPEN_DOOR.get(), BlockLoot::createDoorTable);
+		add(TechnologicaBlocks.AVOCADO_DOOR.get(), BlockLoot::createDoorTable);
+		add(TechnologicaBlocks.BANANA_DOOR.get(), BlockLoot::createDoorTable);
+		add(TechnologicaBlocks.CHERRY_DOOR.get(), BlockLoot::createDoorTable);
+		add(TechnologicaBlocks.CHESTNUT_DOOR.get(), BlockLoot::createDoorTable);
+		add(TechnologicaBlocks.CINNAMON_DOOR.get(), BlockLoot::createDoorTable);
+		add(TechnologicaBlocks.COCONUT_DOOR.get(), BlockLoot::createDoorTable);
+		add(TechnologicaBlocks.EBONY_DOOR.get(), BlockLoot::createDoorTable);
+		add(TechnologicaBlocks.KIWI_DOOR.get(), BlockLoot::createDoorTable);
+		add(TechnologicaBlocks.LEMON_DOOR.get(), BlockLoot::createDoorTable);
+		add(TechnologicaBlocks.LIME_DOOR.get(), BlockLoot::createDoorTable);
+		add(TechnologicaBlocks.MAHOGANY_DOOR.get(), BlockLoot::createDoorTable);
+		add(TechnologicaBlocks.MAPLE_DOOR.get(), BlockLoot::createDoorTable);
+		add(TechnologicaBlocks.OLIVE_DOOR.get(), BlockLoot::createDoorTable);
+		add(TechnologicaBlocks.ORANGE_DOOR.get(), BlockLoot::createDoorTable);
+		add(TechnologicaBlocks.PEACH_DOOR.get(), BlockLoot::createDoorTable);
+		add(TechnologicaBlocks.PEAR_DOOR.get(), BlockLoot::createDoorTable);
+		add(TechnologicaBlocks.PLUM_DOOR.get(), BlockLoot::createDoorTable);
+		add(TechnologicaBlocks.REDWOOD_DOOR.get(), BlockLoot::createDoorTable);
+		add(TechnologicaBlocks.ROSEWOOD_DOOR.get(), BlockLoot::createDoorTable);
+		add(TechnologicaBlocks.RUBBER_DOOR.get(), BlockLoot::createDoorTable);
+		add(TechnologicaBlocks.TEAK_DOOR.get(), BlockLoot::createDoorTable);
+		add(TechnologicaBlocks.WALNUT_DOOR.get(), BlockLoot::createDoorTable);
+		add(TechnologicaBlocks.ZEBRAWOOD_DOOR.get(), BlockLoot::createDoorTable);
+		add(TechnologicaBlocks.ALCHEMICAL_DOOR.get(), BlockLoot::createDoorTable);
+		add(TechnologicaBlocks.BENEVOLENT_DOOR.get(), BlockLoot::createDoorTable);
+		add(TechnologicaBlocks.CONDUCTIVE_DOOR.get(), BlockLoot::createDoorTable);
+		add(TechnologicaBlocks.FROSTBITTEN_DOOR.get(), BlockLoot::createDoorTable);
+		add(TechnologicaBlocks.FRUITFUL_DOOR.get(), BlockLoot::createDoorTable);
+		add(TechnologicaBlocks.INFERNAL_DOOR.get(), BlockLoot::createDoorTable);
+		add(TechnologicaBlocks.MALEVOLENT_DOOR.get(), BlockLoot::createDoorTable);
+		add(TechnologicaBlocks.NECROTIC_DOOR.get(), BlockLoot::createDoorTable);
+		
+		dropSelf(TechnologicaBlocks.APRICOT_TRAPDOOR.get());
+		dropSelf(TechnologicaBlocks.ASPEN_TRAPDOOR.get());
+		dropSelf(TechnologicaBlocks.AVOCADO_TRAPDOOR.get());
+		dropSelf(TechnologicaBlocks.BANANA_TRAPDOOR.get());
+		dropSelf(TechnologicaBlocks.CHERRY_TRAPDOOR.get());
+		dropSelf(TechnologicaBlocks.CHESTNUT_TRAPDOOR.get());
+		dropSelf(TechnologicaBlocks.CINNAMON_TRAPDOOR.get());
+		dropSelf(TechnologicaBlocks.COCONUT_TRAPDOOR.get());
+		dropSelf(TechnologicaBlocks.EBONY_TRAPDOOR.get());
+		dropSelf(TechnologicaBlocks.KIWI_TRAPDOOR.get());
+		dropSelf(TechnologicaBlocks.LEMON_TRAPDOOR.get());
+		dropSelf(TechnologicaBlocks.LIME_TRAPDOOR.get());
+		dropSelf(TechnologicaBlocks.MAHOGANY_TRAPDOOR.get());
+		dropSelf(TechnologicaBlocks.MAPLE_TRAPDOOR.get());
+		dropSelf(TechnologicaBlocks.OLIVE_TRAPDOOR.get());
+		dropSelf(TechnologicaBlocks.ORANGE_TRAPDOOR.get());
+		dropSelf(TechnologicaBlocks.PEACH_TRAPDOOR.get());
+		dropSelf(TechnologicaBlocks.PEAR_TRAPDOOR.get());
+		dropSelf(TechnologicaBlocks.PLUM_TRAPDOOR.get());
+		dropSelf(TechnologicaBlocks.REDWOOD_TRAPDOOR.get());
+		dropSelf(TechnologicaBlocks.ROSEWOOD_TRAPDOOR.get());
+		dropSelf(TechnologicaBlocks.RUBBER_TRAPDOOR.get());
+		dropSelf(TechnologicaBlocks.TEAK_TRAPDOOR.get());
+		dropSelf(TechnologicaBlocks.WALNUT_TRAPDOOR.get());
+		dropSelf(TechnologicaBlocks.ZEBRAWOOD_TRAPDOOR.get());
+		dropSelf(TechnologicaBlocks.ALCHEMICAL_TRAPDOOR.get());
+		dropSelf(TechnologicaBlocks.BENEVOLENT_TRAPDOOR.get());
+		dropSelf(TechnologicaBlocks.CONDUCTIVE_TRAPDOOR.get());
+		dropSelf(TechnologicaBlocks.FROSTBITTEN_TRAPDOOR.get());
+		dropSelf(TechnologicaBlocks.FRUITFUL_TRAPDOOR.get());
+		dropSelf(TechnologicaBlocks.INFERNAL_TRAPDOOR.get());
+		dropSelf(TechnologicaBlocks.MALEVOLENT_TRAPDOOR.get());
+		dropSelf(TechnologicaBlocks.NECROTIC_TRAPDOOR.get());
+		
+		dropSelf(TechnologicaBlocks.APRICOT_PRESSURE_PLATE.get());
+		dropSelf(TechnologicaBlocks.ASPEN_PRESSURE_PLATE.get());
+		dropSelf(TechnologicaBlocks.AVOCADO_PRESSURE_PLATE.get());
+		dropSelf(TechnologicaBlocks.BANANA_PRESSURE_PLATE.get());
+		dropSelf(TechnologicaBlocks.CHERRY_PRESSURE_PLATE.get());
+		dropSelf(TechnologicaBlocks.CHESTNUT_PRESSURE_PLATE.get());
+		dropSelf(TechnologicaBlocks.CINNAMON_PRESSURE_PLATE.get());
+		dropSelf(TechnologicaBlocks.COCONUT_PRESSURE_PLATE.get());
+		dropSelf(TechnologicaBlocks.EBONY_PRESSURE_PLATE.get());
+		dropSelf(TechnologicaBlocks.KIWI_PRESSURE_PLATE.get());
+		dropSelf(TechnologicaBlocks.LEMON_PRESSURE_PLATE.get());
+		dropSelf(TechnologicaBlocks.LIME_PRESSURE_PLATE.get());
+		dropSelf(TechnologicaBlocks.MAHOGANY_PRESSURE_PLATE.get());
+		dropSelf(TechnologicaBlocks.MAPLE_PRESSURE_PLATE.get());
+		dropSelf(TechnologicaBlocks.OLIVE_PRESSURE_PLATE.get());
+		dropSelf(TechnologicaBlocks.ORANGE_PRESSURE_PLATE.get());
+		dropSelf(TechnologicaBlocks.PEACH_PRESSURE_PLATE.get());
+		dropSelf(TechnologicaBlocks.PEAR_PRESSURE_PLATE.get());
+		dropSelf(TechnologicaBlocks.PLUM_PRESSURE_PLATE.get());
+		dropSelf(TechnologicaBlocks.REDWOOD_PRESSURE_PLATE.get());
+		dropSelf(TechnologicaBlocks.ROSEWOOD_PRESSURE_PLATE.get());
+		dropSelf(TechnologicaBlocks.RUBBER_PRESSURE_PLATE.get());
+		dropSelf(TechnologicaBlocks.TEAK_PRESSURE_PLATE.get());
+		dropSelf(TechnologicaBlocks.WALNUT_PRESSURE_PLATE.get());
+		dropSelf(TechnologicaBlocks.ZEBRAWOOD_PRESSURE_PLATE.get());
+		dropSelf(TechnologicaBlocks.ALCHEMICAL_PRESSURE_PLATE.get());
+		dropSelf(TechnologicaBlocks.BENEVOLENT_PRESSURE_PLATE.get());
+		dropSelf(TechnologicaBlocks.CONDUCTIVE_PRESSURE_PLATE.get());
+		dropSelf(TechnologicaBlocks.FROSTBITTEN_PRESSURE_PLATE.get());
+		dropSelf(TechnologicaBlocks.FRUITFUL_PRESSURE_PLATE.get());
+		dropSelf(TechnologicaBlocks.INFERNAL_PRESSURE_PLATE.get());
+		dropSelf(TechnologicaBlocks.MALEVOLENT_PRESSURE_PLATE.get());
+		dropSelf(TechnologicaBlocks.NECROTIC_PRESSURE_PLATE.get());
+		
+		dropSelf(TechnologicaBlocks.APRICOT_BUTTON.get());
+		dropSelf(TechnologicaBlocks.ASPEN_BUTTON.get());
+		dropSelf(TechnologicaBlocks.AVOCADO_BUTTON.get());
+		dropSelf(TechnologicaBlocks.BANANA_BUTTON.get());
+		dropSelf(TechnologicaBlocks.CHERRY_BUTTON.get());
+		dropSelf(TechnologicaBlocks.CHESTNUT_BUTTON.get());
+		dropSelf(TechnologicaBlocks.CINNAMON_BUTTON.get());
+		dropSelf(TechnologicaBlocks.COCONUT_BUTTON.get());
+		dropSelf(TechnologicaBlocks.EBONY_BUTTON.get());
+		dropSelf(TechnologicaBlocks.KIWI_BUTTON.get());
+		dropSelf(TechnologicaBlocks.LEMON_BUTTON.get());
+		dropSelf(TechnologicaBlocks.LIME_BUTTON.get());
+		dropSelf(TechnologicaBlocks.MAHOGANY_BUTTON.get());
+		dropSelf(TechnologicaBlocks.MAPLE_BUTTON.get());
+		dropSelf(TechnologicaBlocks.OLIVE_BUTTON.get());
+		dropSelf(TechnologicaBlocks.ORANGE_BUTTON.get());
+		dropSelf(TechnologicaBlocks.PEACH_BUTTON.get());
+		dropSelf(TechnologicaBlocks.PEAR_BUTTON.get());
+		dropSelf(TechnologicaBlocks.PLUM_BUTTON.get());
+		dropSelf(TechnologicaBlocks.REDWOOD_BUTTON.get());
+		dropSelf(TechnologicaBlocks.ROSEWOOD_BUTTON.get());
+		dropSelf(TechnologicaBlocks.RUBBER_BUTTON.get());
+		dropSelf(TechnologicaBlocks.TEAK_BUTTON.get());
+		dropSelf(TechnologicaBlocks.WALNUT_BUTTON.get());
+		dropSelf(TechnologicaBlocks.ZEBRAWOOD_BUTTON.get());
+		dropSelf(TechnologicaBlocks.ALCHEMICAL_BUTTON.get());
+		dropSelf(TechnologicaBlocks.BENEVOLENT_BUTTON.get());
+		dropSelf(TechnologicaBlocks.CONDUCTIVE_BUTTON.get());
+		dropSelf(TechnologicaBlocks.FROSTBITTEN_BUTTON.get());
+		dropSelf(TechnologicaBlocks.FRUITFUL_BUTTON.get());
+		dropSelf(TechnologicaBlocks.INFERNAL_BUTTON.get());
+		dropSelf(TechnologicaBlocks.MALEVOLENT_BUTTON.get());
+		dropSelf(TechnologicaBlocks.NECROTIC_BUTTON.get());
+		
 		dropSelf(TechnologicaBlocks.APRICOT_SIGN.get());
 		dropSelf(TechnologicaBlocks.ASPEN_SIGN.get());
 		dropSelf(TechnologicaBlocks.AVOCADO_SIGN.get());
@@ -614,75 +730,107 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		dropSelf(TechnologicaBlocks.INFERNAL_WALL_SIGN.get());
 		dropSelf(TechnologicaBlocks.MALEVOLENT_WALL_SIGN.get());
 		dropSelf(TechnologicaBlocks.NECROTIC_WALL_SIGN.get());
-		
-		
-		
-		
+
 		dropSelf(TechnologicaBlocks.LINE_SHAFT_HANGER.get());
 		dropOther(TechnologicaBlocks.LINE_SHAFT.get(), TechnologicaItems.STEEL_SHAFT.get());
-		dropOther(TechnologicaBlocks.NAVAL_MINE_CHAIN.get(), Items.CHAIN);
+		
 		dropSelf(TechnologicaBlocks.SMALL_PULLEY.get());
 		dropSelf(TechnologicaBlocks.MEDIUM_PULLEY.get());
 		dropSelf(TechnologicaBlocks.LARGE_PULLEY.get());
 		dropSelf(TechnologicaBlocks.MOTOR_1HP.get());
 		dropSelf(TechnologicaBlocks.MOTOR_5HP.get());
 		dropSelf(TechnologicaBlocks.MOTOR_20HP.get());
+		dropSelf(TechnologicaBlocks.TREE_TAP.get());
+		dropSelf(TechnologicaBlocks.SAWMILL.get());
+		
+		dropSelf(TechnologicaBlocks.OAK_CHAIR.get());
+		dropSelf(TechnologicaBlocks.SPRUCE_CHAIR.get());
+		dropSelf(TechnologicaBlocks.BIRCH_CHAIR.get());
+		dropSelf(TechnologicaBlocks.JUNGLE_CHAIR.get());
+		dropSelf(TechnologicaBlocks.ACACIA_CHAIR.get());
+		dropSelf(TechnologicaBlocks.DARK_OAK_CHAIR.get());
+		dropSelf(TechnologicaBlocks.CRIMSON_CHAIR.get());
+		dropSelf(TechnologicaBlocks.WARPED_CHAIR.get());
+		dropSelf(TechnologicaBlocks.APRICOT_CHAIR.get());
+		dropSelf(TechnologicaBlocks.ASPEN_CHAIR.get());
+		dropSelf(TechnologicaBlocks.AVOCADO_CHAIR.get());
+		dropSelf(TechnologicaBlocks.BANANA_CHAIR.get());
+		dropSelf(TechnologicaBlocks.CHERRY_CHAIR.get());
+		dropSelf(TechnologicaBlocks.CHESTNUT_CHAIR.get());
+		dropSelf(TechnologicaBlocks.CINNAMON_CHAIR.get());
+		dropSelf(TechnologicaBlocks.COCONUT_CHAIR.get());
+		dropSelf(TechnologicaBlocks.EBONY_CHAIR.get());
+		dropSelf(TechnologicaBlocks.KIWI_CHAIR.get());
+		dropSelf(TechnologicaBlocks.LEMON_CHAIR.get());
+		dropSelf(TechnologicaBlocks.LIME_CHAIR.get());
+		dropSelf(TechnologicaBlocks.MAHOGANY_CHAIR.get());
+		dropSelf(TechnologicaBlocks.MAPLE_CHAIR.get());
+		dropSelf(TechnologicaBlocks.OLIVE_CHAIR.get());
+		dropSelf(TechnologicaBlocks.ORANGE_CHAIR.get());
+		dropSelf(TechnologicaBlocks.PEACH_CHAIR.get());
+		dropSelf(TechnologicaBlocks.PEAR_CHAIR.get());
+		dropSelf(TechnologicaBlocks.PLUM_CHAIR.get());
+		dropSelf(TechnologicaBlocks.REDWOOD_CHAIR.get());
+		dropSelf(TechnologicaBlocks.ROSEWOOD_CHAIR.get());
+		dropSelf(TechnologicaBlocks.RUBBER_CHAIR.get());
+		dropSelf(TechnologicaBlocks.TEAK_CHAIR.get());
+		dropSelf(TechnologicaBlocks.WALNUT_CHAIR.get());
+		dropSelf(TechnologicaBlocks.ZEBRAWOOD_CHAIR.get());
+		dropSelf(TechnologicaBlocks.ALCHEMICAL_CHAIR.get());
+		dropSelf(TechnologicaBlocks.BENEVOLENT_CHAIR.get());
+		dropSelf(TechnologicaBlocks.CONDUCTIVE_CHAIR.get());
+		dropSelf(TechnologicaBlocks.FROSTBITTEN_CHAIR.get());
+		dropSelf(TechnologicaBlocks.FRUITFUL_CHAIR.get());
+		dropSelf(TechnologicaBlocks.INFERNAL_CHAIR.get());
+		dropSelf(TechnologicaBlocks.MALEVOLENT_CHAIR.get());
+		dropSelf(TechnologicaBlocks.NECROTIC_CHAIR.get());
+		
+		dropSelf(TechnologicaBlocks.OAK_TABLE.get());
+		dropSelf(TechnologicaBlocks.SPRUCE_TABLE.get());
+		dropSelf(TechnologicaBlocks.BIRCH_TABLE.get());
+		dropSelf(TechnologicaBlocks.JUNGLE_TABLE.get());
+		dropSelf(TechnologicaBlocks.ACACIA_TABLE.get());
+		dropSelf(TechnologicaBlocks.DARK_OAK_TABLE.get());
+		dropSelf(TechnologicaBlocks.CRIMSON_TABLE.get());
+		dropSelf(TechnologicaBlocks.WARPED_TABLE.get());
+		dropSelf(TechnologicaBlocks.APRICOT_TABLE.get());
+		dropSelf(TechnologicaBlocks.ASPEN_TABLE.get());
+		dropSelf(TechnologicaBlocks.AVOCADO_TABLE.get());
+		dropSelf(TechnologicaBlocks.BANANA_TABLE.get());
+		dropSelf(TechnologicaBlocks.CHERRY_TABLE.get());
+		dropSelf(TechnologicaBlocks.CHESTNUT_TABLE.get());
+		dropSelf(TechnologicaBlocks.CINNAMON_TABLE.get());
+		dropSelf(TechnologicaBlocks.COCONUT_TABLE.get());
+		dropSelf(TechnologicaBlocks.EBONY_TABLE.get());
+		dropSelf(TechnologicaBlocks.KIWI_TABLE.get());
+		dropSelf(TechnologicaBlocks.LEMON_TABLE.get());
+		dropSelf(TechnologicaBlocks.LIME_TABLE.get());
+		dropSelf(TechnologicaBlocks.MAHOGANY_TABLE.get());
+		dropSelf(TechnologicaBlocks.MAPLE_TABLE.get());
+		dropSelf(TechnologicaBlocks.OLIVE_TABLE.get());
+		dropSelf(TechnologicaBlocks.ORANGE_TABLE.get());
+		dropSelf(TechnologicaBlocks.PEACH_TABLE.get());
+		dropSelf(TechnologicaBlocks.PEAR_TABLE.get());
+		dropSelf(TechnologicaBlocks.PLUM_TABLE.get());
+		dropSelf(TechnologicaBlocks.REDWOOD_TABLE.get());
+		dropSelf(TechnologicaBlocks.ROSEWOOD_TABLE.get());
+		dropSelf(TechnologicaBlocks.RUBBER_TABLE.get());
+		dropSelf(TechnologicaBlocks.TEAK_TABLE.get());
+		dropSelf(TechnologicaBlocks.WALNUT_TABLE.get());
+		dropSelf(TechnologicaBlocks.ZEBRAWOOD_TABLE.get());
+		dropSelf(TechnologicaBlocks.ALCHEMICAL_TABLE.get());
+		dropSelf(TechnologicaBlocks.BENEVOLENT_TABLE.get());
+		dropSelf(TechnologicaBlocks.CONDUCTIVE_TABLE.get());
+		dropSelf(TechnologicaBlocks.FROSTBITTEN_TABLE.get());
+		dropSelf(TechnologicaBlocks.FRUITFUL_TABLE.get());
+		dropSelf(TechnologicaBlocks.INFERNAL_TABLE.get());
+		dropSelf(TechnologicaBlocks.MALEVOLENT_TABLE.get());
+		dropSelf(TechnologicaBlocks.NECROTIC_TABLE.get());
 		
 		dropSelf(TechnologicaBlocks.DISPLAY_CASE.get());
 		dropSelf(TechnologicaBlocks.ANNUNCIATOR.get());
-	}
-	
-	private void dropSelf(Item item) {
-		// TODO Auto-generated method stub
 		
-	}
-
-	/**
-	 * Iterates through a deferred register of blocks, generating loot tables for each applicable entry.
-	 * This is primarily only intended as a time save for two use cases: 
-	 * mod blocks with loot tables which replicate vanilla loot tables 
-	 * and mod blocks which have multiple entries with identically formatted loot tables.  
-	 * All other cases should be handled as exceptions.
-	 * Primary evaluation criteria is a block's class, with secondary evaluation criteria being translation key when the primary criteria is not enough to positively identify the appropriate loot table. 
-	 * @param collection a collection of block deferred registry entries
-	 */
-	
-	private final void automaticLootTable(Collection<RegistryObject<Block>> blockCollection) {
-		for(Supplier<? extends Block> blockSupplier:blockCollection) {
-			Block block = blockSupplier.get();
-			String path = ResourceLocationHelper.getPath(block);
-			
-			if (block instanceof RotatedPillarBlock) dropSelf(block);
-			else if (block.getClass().equals(SaplingBlock.class)) dropSelf(block);
-			else if (block.getClass().equals(FlowerPotBlock.class)) dropPottedContents(block);
-			else if (block.getDescriptionId().contains("bookshelf")) add(block, (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
-			else if (block.getClass().equals(DoorBlock.class)) add(block, BlockLoot::createDoorTable);
-			else if (block.getClass().equals(TrapDoorBlock.class)) dropSelf(block);
-			else if (block.getClass().equals(PressurePlateBlock.class)) dropSelf(block);
-			else if (block.getClass().equals(WoodButtonBlock.class)) dropSelf(block);
-			else if (block.getRegistryName().getPath().contains("ore")) dropSelf(block);
-			else if (block.getClass().equals(TwentyFourDirectionBlock.class)) dropSelf(block);
-			else if (block.getClass().equals(SapLogBlock.class)) dropSelf(block);
-			else if (block.getClass().equals(ChairBlock.class)) dropSelf(block);
-			else if (block.getClass().equals(TableBlock.class)) dropSelf(block);
-			else if (block.getClass().equals(TreeTapBlock.class)) dropSelf(block);
-			else if (block.getClass().equals(TreeTapBlock.class)) dropSelf(block);
-			else if (block.getClass().equals(SawmillBlock.class)) dropSelf(block);
-			
-			
-			else if (block.getClass().equals(FruitingLeavesBlock.class) || block.getClass().equals(LeavesBlock.class)) {
-				Block sapling = Blocks.OAK_SAPLING;
-				for(Supplier<? extends Block> blockSupplier2:blockCollection) {
-					Block block2 = blockSupplier2.get();
-					if (ResourceLocationHelper.replace(block.getRegistryName().getPath(), "leaves", "sapling").equals(block2.getRegistryName().getPath())) sapling = block2;
-				}	
-				add(block, createLeavesDrops(block, sapling, DEFAULT_SAPLING_DROP_RATES));
-			} else if (!block.getClass().equals(FruitingLeavesBlock.class) && !block.getClass().equals(LeavesBlock.class) && block instanceof LeavesBlock) {
-				dropSelf(block);
-			} else if (path.contains("moon")) {
-				dropSelf(block);
-			}
-		}
+		dropOther(TechnologicaBlocks.NAVAL_MINE_CHAIN.get(), Items.CHAIN);
 	}
 	
 	@Override
