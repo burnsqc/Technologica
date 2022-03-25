@@ -31,6 +31,7 @@ import com.technologica.world.item.crafting.TechnologicaRecipeSerializer;
 import com.technologica.world.level.biome.TechnologicaBiomes;
 import com.technologica.world.level.block.TechnologicaBlocks;
 import com.technologica.world.level.block.entity.TechnologicaBlockEntityType;
+import com.technologica.world.level.levelgen.feature.TechnologicaFeature;
 import com.technologica.world.level.levelgen.feature.foliageplacers.TechnologicaFoliagePlacers;
 import com.technologica.world.level.material.TechnologicaFluids;
 
@@ -72,7 +73,7 @@ public class Technologica {
 		TechnologicaRecipeSerializer.init();
 		TechnologicaSoundEvents.init();
 		TechnologicaBiomes.init();
-//		TechnologicaFeature.init();
+		TechnologicaFeature.init();
 		TechnologicaFoliagePlacers.init();
 		
 		FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(Block.class, RegistrationListener::onRegisterBlocks);

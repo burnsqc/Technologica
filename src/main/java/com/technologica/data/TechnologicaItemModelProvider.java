@@ -56,8 +56,6 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.TURNIP_SEEDS.get());
 		simpleItem(TechnologicaItems.ZUCCHINI_SEEDS.get());
 		
-		simpleItem(TechnologicaItems.COTTON.get());
-		
 		simpleBlockItem(TechnologicaItems.APRICOT_SAPLING_ITEM.get()); 
 		simpleBlockItem(TechnologicaItems.ASPEN_SAPLING_ITEM.get()); 
 		simpleBlockItem(TechnologicaItems.AVOCADO_SAPLING_ITEM.get()); 
@@ -91,6 +89,8 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleBlockItem(TechnologicaItems.BENEVOLENT_APOTHECARY_SAPLING_ITEM.get()); 
 		simpleBlockItem(TechnologicaItems.MALEVOLENT_APOTHECARY_SAPLING_ITEM.get());
 		simpleBlockItem(TechnologicaItems.NECROTIC_SAPLING_ITEM.get());
+		
+		simpleItem(TechnologicaItems.COTTON.get());
 		
 		simpleSpawnEggItem(TechnologicaItems.ALLIGATOR_SPAWN_EGG.get()); 
 		simpleSpawnEggItem(TechnologicaItems.BEAVER_SPAWN_EGG.get()); 
@@ -133,6 +133,8 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		
 		simpleSpawnEggItem(TechnologicaItems.PEEPER_SPAWN_EGG.get());
 		simpleSpawnEggItem(TechnologicaItems.SWEEPER_SPAWN_EGG.get());
+		
+		simpleItem(TechnologicaItems.PIRANHA_BUCKET.get());
 		
 		simpleItem(TechnologicaItems.LITHIUM_INGOT.get());
 		simpleItem(TechnologicaItems.BERYLLIUM_INGOT.get());
@@ -245,7 +247,6 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.SAWDUST.get());
 		simpleItem(TechnologicaItems.RUBBER.get());
 		
-		simpleItem(TechnologicaItems.PIRANHA_BUCKET.get());
 		simpleItem(TechnologicaItems.HYDROGEN_BUCKET.get());
 		simpleItem(TechnologicaItems.HELIUM_BUCKET.get());
 		simpleItem(TechnologicaItems.NITROGEN_BUCKET.get());
@@ -333,7 +334,44 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.CINNAMON_ROLL.get());
 		simpleItem(TechnologicaItems.OLIVE_OIL.get());
 		
+		simpleItem(TechnologicaItems.APRICOT_BOAT.get()); 
+		simpleItem(TechnologicaItems.ASPEN_BOAT.get()); 
+		simpleItem(TechnologicaItems.AVOCADO_BOAT.get()); 
+		simpleItem(TechnologicaItems.BANANA_BOAT.get()); 
+		simpleItem(TechnologicaItems.CHERRY_BOAT.get()); 
+		simpleItem(TechnologicaItems.CHESTNUT_BOAT.get()); 
+		simpleItem(TechnologicaItems.CINNAMON_BOAT.get()); 
+		simpleItem(TechnologicaItems.COCONUT_BOAT.get()); 
+		simpleItem(TechnologicaItems.EBONY_BOAT.get()); 
+		simpleItem(TechnologicaItems.KIWI_BOAT.get()); 
+		simpleItem(TechnologicaItems.LEMON_BOAT.get()); 
+		simpleItem(TechnologicaItems.LIME_BOAT.get()); 
+		simpleItem(TechnologicaItems.MAHOGANY_BOAT.get()); 
+		simpleItem(TechnologicaItems.MAPLE_BOAT.get()); 
+		simpleItem(TechnologicaItems.OLIVE_BOAT.get()); 
+		simpleItem(TechnologicaItems.ORANGE_BOAT.get()); 
+		simpleItem(TechnologicaItems.PEACH_BOAT.get()); 
+		simpleItem(TechnologicaItems.PEAR_BOAT.get()); 
+		simpleItem(TechnologicaItems.PLUM_BOAT.get()); 
+		simpleItem(TechnologicaItems.REDWOOD_BOAT.get()); 
+		simpleItem(TechnologicaItems.ROSEWOOD_BOAT.get()); 
+		simpleItem(TechnologicaItems.RUBBER_BOAT.get()); 
+		simpleItem(TechnologicaItems.TEAK_BOAT.get()); 
+		simpleItem(TechnologicaItems.WALNUT_BOAT.get()); 
+		simpleItem(TechnologicaItems.ZEBRAWOOD_BOAT.get()); 
+		simpleItem(TechnologicaItems.ALCHEMICAL_BOAT.get()); 
+		simpleItem(TechnologicaItems.BENEVOLENT_BOAT.get()); 
+		simpleItem(TechnologicaItems.CONDUCTIVE_BOAT.get()); 
+		simpleItem(TechnologicaItems.FROSTBITTEN_BOAT.get()); 
+		simpleItem(TechnologicaItems.FRUITFUL_BOAT.get()); 
+		simpleItem(TechnologicaItems.INFERNAL_BOAT.get()); 
+		simpleItem(TechnologicaItems.MALEVOLENT_BOAT.get());
+		//simpleItem(TechnologicaItems.NECROTIC_BOAT.get());
+		
 		simpleItem(TechnologicaItems.STEEL_SHAFT.get());
+		simpleItem(TechnologicaItems.SMALL_PULLEY_ITEM.get());
+		simpleItem(TechnologicaItems.MEDIUM_PULLEY_ITEM.get());
+		simpleItem(TechnologicaItems.LARGE_PULLEY_ITEM.get());
 		simpleItem(TechnologicaItems.PULLEY_BELT.get());
 		simpleItem(TechnologicaItems.CHISEL.get());
 		simpleItem(TechnologicaItems.HAMMER.get());

@@ -1,5 +1,6 @@
 package com.technologica.setup;
 
+import com.technologica.data.worldgen.placement.TechnologicaMiscOverworldPlacements;
 import com.technologica.data.worldgen.placement.TechnologicaVegetationPlacements;
 import com.technologica.world.entity.TechnologicaEntityType;
 
@@ -14,7 +15,6 @@ public class VanillaBiomeModifier {
 	public static void init(final BiomeLoadingEvent biomeIn) {
 		if (biomeIn.getName().getPath().equals("jungle")) {
 			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaVegetationPlacements.TREES_MODIFIED_JUNGLE);
-//			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.SURFACE_STRUCTURES).
 			//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.GORILLA.get(), 100, 1, 5));
 			//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.SLOTH.get(), 100, 1, 13));
 		} 
@@ -72,7 +72,7 @@ public class VanillaBiomeModifier {
 		
 		else if (biomeIn.getName().getPath().equals("swamp")) {
 			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(() -> TechnologicaVegetationPlacements.TREES_MODIFIED_SWAMP);
-			//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.ALLIGATOR.get(), 100, 1, 3));
+			biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.ALLIGATOR.get(), 100, 1, 3));
 			//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.COTTONMOUTH.get(), 100, 1, 1));
 			//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.FLAMINGO.get(), 100, 1, 3));
 			//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.FROG.get(), 100, 1, 3));
@@ -123,7 +123,7 @@ public class VanillaBiomeModifier {
 		} 
 		
 		else if (biomeIn.getCategory().equals(Biome.BiomeCategory.DESERT)) {
-			//biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.LAKES).add(() -> TechnologicaConfiguredFeatures.OASIS_FEATURE.placed(RarityFilter.onAverageOnceEvery(200)));
+			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.FLUID_SPRINGS).add(() -> TechnologicaMiscOverworldPlacements.OASIS);
 			//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.CAMEL.get(), 100, 1, 5));
 			//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.COBRA.get(), 100, 1, 1));
 		}

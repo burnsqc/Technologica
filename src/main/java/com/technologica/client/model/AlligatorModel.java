@@ -5,7 +5,6 @@ import com.technologica.world.entity.animal.Alligator;
 import net.minecraft.client.model.QuadrupedModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
-import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
@@ -14,109 +13,38 @@ import net.minecraft.util.Mth;
 
 public class AlligatorModel<T extends Alligator> extends QuadrupedModel<T> {
 
-	//private final ModelPart tail;
-	//private final ModelPart tail2;
-	//private final ModelPart tail3;
-	//private final ModelPart nose;
-	//private final ModelPart jaw;
-	//private final ModelPart teethUpper;
-	//private final ModelPart teethLower;
-	//private final ModelPart eyeLeft;
-	//private final ModelPart eyeRight;
-	
+	protected final ModelPart tail;
+	protected final ModelPart tail2;
+	protected final ModelPart tail3;
+	protected final ModelPart nose;
+		
 	public AlligatorModel(ModelPart modelPartIn) {
 		super(modelPartIn, true, 10.0F, 4.0F, 2.0F, 2.0F, 24);
-		/*
-		this.texWidth = 64;
-		this.texHeight = 64;
-
-		this.body = new ModelPart(this, 0, 0);
-		this.body.addBox(-5.0F, -3.0F, -8.0F, 10.0F, 6.0F, 16.0F);
-		this.body.setPos(0.0F, 19.0F, 0.0F);
-
-		this.tail = new ModelPart(this, 36, 0);
-		this.tail.addBox(-3.0F, -3.0F, 0.0F, 6.0F, 6.0F, 8.0F);
-		this.tail.setPos(0.0F, 0.0F, 8.0F);
-		this.body.addChild(this.tail);
-		
-		this.tail2 = new ModelPart(this, 0, 22);
-		this.tail2.addBox(-2.0F, -2.0F, 0.0F, 4.0F, 5.0F, 8.0F);
-		this.tail2.setPos(0.0F, 0.0F, 8.0F);
-		this.tail.addChild(this.tail2);
-		
-		this.tail3 = new ModelPart(this, 44, 14);
-		this.tail3.addBox(-1.0F, -1.0F, 0.0F, 2.0F, 4.0F, 8.0F);
-		this.tail3.setPos(0.0F, 0.0F, 8.0F);
-		this.tail2.addChild(this.tail3);
-		
-		this.head = new ModelPart(this, 24, 22);
-		this.head.addBox(-4.0F, -3.0F, -4.0F, 8.0F, 6.0F, 4.0F);
-		this.head.setPos(0.0F, 19.0F, -8.0F);
-		
-		this.nose = new ModelPart(this, 0, 35);
-		this.nose.setPos(0.0F, -1.0F, -4.0F);
-		this.nose.addBox(-3.0F, -2.0F, -8.0F, 6.0F, 2.0F, 8.0F);
-		this.head.addChild(this.nose);
-		
-		this.jaw = new ModelPart(this, 20, 32);
-		this.jaw.setPos(0.0F, -1.0F, -4.0F);
-		this.jaw.addBox(-3.0F, 0.0F, -8.0F, 6.0F, 2.0F, 8.0F);
-		this.head.addChild(this.jaw);
-		
-		this.teethUpper = new ModelPart(this, 0, 45);
-		this.teethUpper.addBox(-2.5F, 0.0F, -7.5F, 5.0F, 1.0F, 8.0F);
-		this.nose.addChild(this.teethUpper);
-		
-		this.teethLower = new ModelPart(this, 26, 45);
-		this.teethLower.addBox(-2.5F, -1.0F, -7.5F, 5.0F, 1.0F, 8.0F);
-		this.jaw.addChild(this.teethLower);
-		
-		this.eyeLeft = new ModelPart(this, 0, 10);
-		this.eyeLeft.addBox(1.0F, -3.0F, -3.0F, 1.0F, 1.0F, 2.0F);
-		this.nose.addChild(this.eyeLeft);
-		
-		this.eyeRight = new ModelPart(this, 6, 10);
-		this.eyeRight.addBox(-2.0F, -3.0F, -3.0F, 1.0F, 1.0F, 2.0F);
-		this.nose.addChild(this.eyeRight);
-		
-		this.leg0 = new ModelPart(this, 0, 0);
-		this.leg0.addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F);
-		this.leg0.setPos(-5.0F, 18.0F, 7.0F);
-		
-		this.leg1 = new ModelPart(this, 0, 0);
-		this.leg1.addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F);
-		this.leg1.setPos(5.0F, 18.0F, 7.0F);
-		
-		this.leg2 = new ModelPart(this, 0, 0);
-		this.leg2.addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F);
-		this.leg2.setPos(-5.0F, 18.0F, -5.0F);
-		
-		this.leg3 = new ModelPart(this, 0, 0);
-		this.leg3.addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F);
-		this.leg3.setPos(5.0F, 18.0F, -5.0F);
-		*/
+		this.nose = modelPartIn.getChild("head").getChild("nose");
+		this.tail = modelPartIn.getChild("body").getChild("tail");
+		this.tail2 = modelPartIn.getChild("body").getChild("tail").getChild("tail2");
+		this.tail3 = modelPartIn.getChild("body").getChild("tail").getChild("tail2").getChild("tail3");
 	}
-
+	
 	public static LayerDefinition createBodyLayer() {
-		MeshDefinition meshdefinition = QuadrupedModel.createBodyMesh(6, CubeDeformation.NONE);
+		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
-		
-		partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 14).addBox(-2.0F, -4.0F, -4.0F, 4.0F, 4.0F, 4.0F), PartPose.offset(0.0F, 21.0F, -4.0F));
-		partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-3.0F, 10.0F, -6.0F, 6.0F, 6.0F, 8.0F), PartPose.offset(0.0F, 6.0F, 2.0F));
-		
-		partdefinition.addOrReplaceChild("rightHindLeg", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, 1.0F, -1.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(-2.0F, 21.0F, 3.0F));
-		partdefinition.addOrReplaceChild("leftHindLeg", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, 1.0F, -1.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(2.0F, 21.0F, 3.0F));
-		partdefinition.addOrReplaceChild("rightFrontLeg", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, 1.0F, -1.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(-2.0F, 21.0F, -3.0F));
-		partdefinition.addOrReplaceChild("leftFrontLeg", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, 1.0F, -1.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(2.0F, 21.0F, -3.0F));
-		partdefinition.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(0, 22).addBox(-2.0F, 0.0F, 0.0F, 4.0F, 1.0F, 6.0F), PartPose.offset(0.0F, 14.0F, 2.0F));
-		
-		return LayerDefinition.create(meshdefinition, 32, 32);
+		PartDefinition headDefinition = partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(24, 22).addBox(-4.0F, -3.0F, -4.0F, 8.0F, 6.0F, 4.0F).texOffs(20, 32).addBox("jaw", -3.0F, 0.0F, -12.0F, 6.0F, 2.0F, 8.0F).texOffs(26, 45).addBox("lower_teeth", -2.5F, -1.0F, -11.5F, 5.0F, 1.0F, 8.0F), PartPose.offset(0.0F, 19.0F, -8.0F));
+		headDefinition.addOrReplaceChild("nose", CubeListBuilder.create().texOffs(0, 35).addBox(-3.0F, -2.0F, -8.0F, 6.0F, 2.0F, 8.0F).texOffs(0, 10).addBox("left_eye", 1.0F, -3.0F, -3.0F, 1.0F, 1.0F, 2.0F).texOffs(6, 10).addBox("right_eye", -2.0F, -3.0F, -3.0F, 1.0F, 1.0F, 2.0F).texOffs(0, 45).addBox("upper_teeth", -2.5F, 0.0F, -7.5F, 5.0F, 1.0F, 8.0F), PartPose.offset(0.0F, -1.0F, -4.0F));
+		PartDefinition bodyDefinition = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-5.0F, -3.0F, -8.0F, 10.0F, 6.0F, 16.0F), PartPose.offset(0.0F, 19.0F, 0.0F));
+		PartDefinition tailDefinition = bodyDefinition.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(36, 0).addBox(-3.0F, -3.0F, 0.0F, 6.0F, 6.0F, 8.0F), PartPose.offset(0.0F, 0.0F, 8.0F));
+		PartDefinition tailDefinition2 = tailDefinition.addOrReplaceChild("tail2", CubeListBuilder.create().texOffs(0, 22).addBox(-2.0F, -2.0F, 0.0F, 4.0F, 5.0F, 8.0F), PartPose.offset(0.0F, 0.0F, 8.0F));
+		tailDefinition2.addOrReplaceChild("tail3", CubeListBuilder.create().texOffs(44, 14).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 4.0F, 8.0F), PartPose.offset(0.0F, 0.0F, 8.0F));
+		partdefinition.addOrReplaceChild("left_hind_leg", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F), PartPose.offset(5.0F, 18.0F, 7.0F));
+		partdefinition.addOrReplaceChild("right_hind_leg", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F), PartPose.offset(-5.0F, 18.0F, 7.0F));
+		partdefinition.addOrReplaceChild("left_front_leg", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F), PartPose.offset(5.0F, 18.0F, -5.0F));
+		partdefinition.addOrReplaceChild("right_front_leg", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F), PartPose.offset(-5.0F, 18.0F, -5.0F));
+		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
 	
 	@Override
 	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.body.xRot = 0;
-		//this.nose.xRot = -(Mth.sin(ageInTicks / 10) * Mth.sin(ageInTicks / 10))/2;
-		//this.leg1.xRot = 0;
+		this.nose.xRot = -(Mth.sin(ageInTicks / 10) * Mth.sin(ageInTicks / 10))/2;
 	}
 }

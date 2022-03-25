@@ -96,8 +96,8 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		
 		twentyFourDirectionBlockState(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get(), hexagonalCrystalModel(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get()), hexagonalCrystalModel(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get()));
 		twentyFourDirectionBlockState(TechnologicaBlocks.DOLOMITE_CRYSTAL.get(), cubicCrystalModel(TechnologicaBlocks.DOLOMITE_CRYSTAL.get()), cubicCrystalModel(TechnologicaBlocks.DOLOMITE_CRYSTAL.get()));
-		twentyFourDirectionBlockState(TechnologicaBlocks.FLUORITE_CRYSTAL.get(), cubicCrystalModel(TechnologicaBlocks.FLUORITE_CRYSTAL.get()), cubicCrystalModel(TechnologicaBlocks.FLUORITE_CRYSTAL.get()));
-		twentyFourDirectionBlockState(TechnologicaBlocks.ULEXITE_CRYSTAL.get(), cubicCrystalModel(TechnologicaBlocks.ULEXITE_CRYSTAL.get()), cubicCrystalModel(TechnologicaBlocks.ULEXITE_CRYSTAL.get()));
+		twentyFourDirectionBlockState(TechnologicaBlocks.FLUORITE_CRYSTAL.get(), hexagonalCrystalModel(TechnologicaBlocks.FLUORITE_CRYSTAL.get()), cubicCrystalModel(TechnologicaBlocks.FLUORITE_CRYSTAL.get()));
+		twentyFourDirectionBlockState(TechnologicaBlocks.ULEXITE_CRYSTAL.get(), hexagonalCrystalModel(TechnologicaBlocks.ULEXITE_CRYSTAL.get()), cubicCrystalModel(TechnologicaBlocks.ULEXITE_CRYSTAL.get()));
 		
 		getVariantBuilder(TechnologicaBlocks.HYDROGEN.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.HYDROGEN.get())));
 		getVariantBuilder(TechnologicaBlocks.HELIUM.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.HELIUM.get())));
