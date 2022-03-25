@@ -1,5 +1,7 @@
 package com.technologica.data.loot;
 
+import java.util.stream.Stream;
+
 import com.technologica.world.item.TechnologicaItems;
 import com.technologica.world.level.block.TechnologicaBlocks;
 
@@ -10,7 +12,6 @@ import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.BlockPos;
 import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
@@ -20,7 +21,6 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
-import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LocationCheck;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
@@ -73,9 +73,9 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		add(TechnologicaBlocks.TURNIP_CROP.get(), createCropDrops(TechnologicaBlocks.TURNIP_CROP.get(), TechnologicaItems.TURNIP.get(), TechnologicaBlocks.TURNIP_CROP.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.TURNIP_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
 		add(TechnologicaBlocks.ZUCCHINI_CROP.get(), createCropDrops(TechnologicaBlocks.ZUCCHINI_CROP.get(), TechnologicaItems.ZUCCHINI.get(), TechnologicaBlocks.ZUCCHINI_CROP.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.ZUCCHINI_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
 		
-//		add(Blocks.TALL_GRASS, (p_124321) -> {
-//			return createDoublePlantWithSeedDrops(p_124321, Blocks.GRASS);
-//		});
+		add(Blocks.TALL_GRASS, (p_124321) -> {
+			return createDoublePlantWithSeedDrops(p_124321, Blocks.GRASS);
+		});
 		
 		dropSelf(TechnologicaBlocks.APRICOT_SAPLING.get());
 		dropSelf(TechnologicaBlocks.ASPEN_SAPLING.get());
@@ -860,7 +860,10 @@ public class TechnologicaBlockLoot extends BlockLoot {
 	}
 	
 	@Override
-	protected Iterable<Block> getKnownBlocks() {
-		return TechnologicaBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
+	protected Iterable<Block> getKnownBlocks() {	
+		Stream<Block> technologicaBlockStream = TechnologicaBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get);
+		Stream<Block> vanillaBlockStream = Stream.of(Blocks.TALL_GRASS);
+		Stream<Block> stream2 = Stream.concat(technologicaBlockStream, vanillaBlockStream);
+		return stream2::iterator;
 	}
 }
