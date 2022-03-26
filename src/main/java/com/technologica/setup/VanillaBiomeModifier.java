@@ -89,10 +89,12 @@ public class VanillaBiomeModifier {
 		} 
 		
 		else if (biomeIn.getName().getPath().equals("plains")) {
+			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.FLUID_SPRINGS).add(() -> TechnologicaMiscOverworldPlacements.BRINE_POOL);
 			//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.BUFFALO.get(), 100, 3, 10));
 		} 
 		
-		else if (biomeIn.getCategory().equals(Biome.BiomeCategory.MESA)) {
+		else if (biomeIn.getName().getPath().contains("badlands")) {
+			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.FLUID_SPRINGS).add(() -> TechnologicaMiscOverworldPlacements.BRINE_POOL);
 			//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.COYOTE.get(), 100, 3, 10));
 			//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.LIZARD.get(), 100, 1, 3));
 			//biomeIn.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.SCORPION.get(), 100, 1, 1));
