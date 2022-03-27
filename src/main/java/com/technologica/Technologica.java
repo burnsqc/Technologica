@@ -72,7 +72,7 @@ public class Technologica {
 		TechnologicaParticleTypes.init();
 		TechnologicaRecipeSerializer.init();
 		TechnologicaSoundEvents.init();
-		TechnologicaBiomes.init();
+		//TechnologicaBiomes.init();
 		TechnologicaFeature.init();
 		TechnologicaFoliagePlacers.init();
 		

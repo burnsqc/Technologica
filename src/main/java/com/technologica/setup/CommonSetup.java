@@ -98,7 +98,7 @@ public class CommonSetup {
 			flowerPotBlock.addPlant(TechnologicaBlocks.THUNDEROUS_CONDUCTOR_SAPLING.get().getRegistryName(), TechnologicaBlocks.POTTED_THUNDEROUS_CONDUCTOR_SAPLING);
 			flowerPotBlock.addPlant(TechnologicaBlocks.TOWERING_INFERNO_SAPLING.get().getRegistryName(), TechnologicaBlocks.POTTED_TOWERING_INFERNO_SAPLING);
 			
-			BiomeManager.addBiome(BiomeType.DESERT, new BiomeEntry(saltFlatsBiomeKey, 1000));
+			BiomeManager.addAdditionalOverworldBiomes(saltFlatsBiomeKey);
 			BiomeManager.addBiome(BiomeType.COOL, new BiomeEntry(redwoodForestBiomeKey, 1000));
 			BiomeManager.addBiome(BiomeType.WARM, new BiomeEntry(rainforestBiomeKey, 1000));
 			BiomeManager.addBiome(BiomeType.WARM, new BiomeEntry(coastBiomeKey, 1000));
