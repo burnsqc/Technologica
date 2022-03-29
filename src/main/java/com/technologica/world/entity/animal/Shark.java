@@ -1,23 +1,17 @@
 package com.technologica.world.entity.animal;
 
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Random;
 import java.util.UUID;
 import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.TimeUtil;
@@ -58,8 +52,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.phys.Vec3;
 
 public class Shark extends WaterAnimal implements NeutralMob {
@@ -217,18 +209,6 @@ public class Shark extends WaterAnimal implements NeutralMob {
 		}
 	}
 
-	public static boolean checkDolphinSpawnRules(EntityType<Shark> p_223364_0_, Level p_223364_1_,
-			MobSpawnType reason, BlockPos p_223364_3_, Random p_223364_4_) {
-		if (p_223364_3_.getY() > 45 && p_223364_3_.getY() < p_223364_1_.getSeaLevel()) {
-			Optional<ResourceKey<Biome>> optional = p_223364_1_.getBiomeName(p_223364_3_);
-			return (!Objects.equals(optional, Optional.of(Biomes.OCEAN))
-					|| !Objects.equals(optional, Optional.of(Biomes.DEEP_OCEAN)))
-					&& p_223364_1_.getFluidState(p_223364_3_).is(FluidTags.WATER);
-		} else {
-			return false;
-		}
-	}
-
 	class AttackGoal extends net.minecraft.world.entity.ai.goal.MeleeAttackGoal {
 		public AttackGoal() {
 			super(Shark.this, 1.50D, true);
@@ -315,11 +295,6 @@ public class Shark extends WaterAnimal implements NeutralMob {
 	@Override
 	protected SoundEvent getSwimSound() {
 		return SoundEvents.DOLPHIN_SWIM;
-	}
-
-	protected boolean closeToTarget() {
-		BlockPos blockpos = this.getNavigation().getTargetPos();
-		return blockpos != null && blockpos.closerThan(this.position(), 12.0D);
 	}
 
 	@Override

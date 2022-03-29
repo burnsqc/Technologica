@@ -178,7 +178,7 @@ public class Owl extends ShoulderRidingEntity implements FlyingAnimal {
     * use this to react to sunlight and start to burn.
     */
    public void aiStep() {
-      if (this.jukeboxPosition == null || !this.jukeboxPosition.closerThan(this.position(), 3.46D) || !this.level.getBlockState(this.jukeboxPosition).is(Blocks.JUKEBOX)) {
+      if (this.jukeboxPosition == null || !this.jukeboxPosition.closerToCenterThan(this.position(), 3.46D) || !this.level.getBlockState(this.jukeboxPosition).is(Blocks.JUKEBOX)) {
          this.partyParrot = false;
          this.jukeboxPosition = null;
       }

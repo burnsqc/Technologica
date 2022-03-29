@@ -1,10 +1,7 @@
 package com.technologica.data.loot;
 
-import java.util.Optional;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.technologica.Technologica;
 import com.technologica.world.entity.TechnologicaEntityType;
 import com.technologica.world.item.TechnologicaItems;
 
@@ -23,7 +20,6 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemKilledByPlayerC
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceWithLootingCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class TechnologicaEntityLoot extends EntityLoot {
@@ -83,6 +79,5 @@ public class TechnologicaEntityLoot extends EntityLoot {
 		Stream<EntityType<?>> vanillaEntityStream = Stream.of(EntityType.ZOMBIE);
 		Stream<EntityType<?>> stream2 = Stream.concat(technologicaEntityStream, vanillaEntityStream);
 		return stream2::iterator;
-//		return ForgeRegistries.ENTITIES.getValues().stream().filter(entity -> Optional.ofNullable(entity.getRegistryName()).filter(registryName -> registryName.getNamespace().equals(Technologica.MODID)).isPresent()).collect(Collectors.toList());
 	}
 }

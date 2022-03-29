@@ -25,6 +25,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.registries.ForgeRegistries;
 
 /**
  * Special one-off class for the sawmill.
@@ -59,7 +60,7 @@ public class SawmillBlock extends FourDirectionBlock implements EntityBlock {
 				tile.setBlade(true);
 				worldIn.playSound((Player)null, posIn, SoundEvents.ANVIL_PLACE, SoundSource.BLOCKS, 0.25F, 1.0F + worldIn.random.nextFloat() * 0.4F);
 				itemstack.shrink(1);
-			} else if (ItemTags.LOGS.contains(itemstack.getItem())) {
+			} else if (ForgeRegistries.ITEMS.tags().getTag(ItemTags.LOGS).contains(itemstack.getItem())) {
 				tile.setLog(new ItemStack(itemstack.getItem(), 1));
 				worldIn.playSound((Player)null, posIn, SoundEvents.WOOD_PLACE, SoundSource.BLOCKS, 0.25F, 1.0F + worldIn.random.nextFloat() * 0.4F);
 				itemstack.shrink(1);

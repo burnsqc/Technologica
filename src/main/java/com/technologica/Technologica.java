@@ -28,11 +28,11 @@ import com.technologica.world.entity.TechnologicaEntityType;
 import com.technologica.world.inventory.TechnologicaContainerType;
 import com.technologica.world.item.TechnologicaItems;
 import com.technologica.world.item.crafting.TechnologicaRecipeSerializer;
-import com.technologica.world.level.biome.TechnologicaBiomes;
 import com.technologica.world.level.block.TechnologicaBlocks;
 import com.technologica.world.level.block.entity.TechnologicaBlockEntityType;
 import com.technologica.world.level.levelgen.feature.TechnologicaFeature;
 import com.technologica.world.level.levelgen.feature.foliageplacers.TechnologicaFoliagePlacers;
+import com.technologica.world.level.levelgen.feature.trunkplacers.TechnologicaTrunkPlacerType;
 import com.technologica.world.level.material.TechnologicaFluids;
 
 import net.minecraft.core.particles.ParticleType;
@@ -46,9 +46,11 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.crafting.CraftingHelper;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -88,6 +90,9 @@ public class Technologica {
 		FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(Biome.class, RegistrationListener::onRegisterBiomes);
 		FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(Feature.class, RegistrationListener::onRegisterFeatures);
 		FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(FoliagePlacerType.class, RegistrationListener::onRegisterFoliagePlacers);
+//		FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(TrunkPlacerType.class, (RegistryEvent.Register event) -> {
+//			TechnologicaTrunkPlacerType.init();
+//        });
 		
 		CraftingHelper.register(DisablePlankConditionFactory.Serializer.INSTANCE);
 		CraftingHelper.register(EnablePlankConditionFactory.Serializer.INSTANCE);

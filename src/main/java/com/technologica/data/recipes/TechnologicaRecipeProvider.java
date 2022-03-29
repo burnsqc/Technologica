@@ -16,7 +16,7 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
@@ -308,15 +308,15 @@ public class TechnologicaRecipeProvider extends RecipeProvider {
 //		sawmillRecipe(Ingredient.fromTag(TechnologicaItemTags.ASPEN_LOGS), TechnologicaItems.ASPEN_PLANKS_ITEM.get(), 1).build(consumer, new ResourceLocation(Technologica.MODID, "aspen_planks_from_aspen_logs_sawmill"));
 	}	
 	
-	private static void vanillaPlanks(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, Tag<Item> input) {
+	private static void vanillaPlanks(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, TagKey<Item> input) {
 		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(output, 4).requires(input).group("planks").unlockedBy("has_log", has(input)).save(consumer2)).build(recipeConsumer, new ResourceLocation(output.asItem().getRegistryName().getPath()));
 	}
 	
-	private static void vanillaLikePlanks(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, Tag<Item> input) {
+	private static void vanillaLikePlanks(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, TagKey<Item> input) {
 		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(output, 4).requires(input).group("planks").unlockedBy("has_log", has(input)).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, output.asItem().getRegistryName().getPath()));
 	}
 	
-	private static void proPlanks(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, Tag<Item> input) {
+	private static void proPlanks(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, TagKey<Item> input) {
 		ConditionalRecipe.builder().addCondition(new DisablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(output, 1).requires(input).requires(TechnologicaItems.SAW.get()).group("planks").unlockedBy("has_saw", has(TechnologicaItems.SAW.get())).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, output.asItem().getRegistryName().getPath() + "_pro"));
 	}
 	

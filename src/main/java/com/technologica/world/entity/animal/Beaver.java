@@ -44,7 +44,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CarrotBlock;
@@ -275,15 +274,8 @@ public class Beaver extends Animal {
 	}
 
 	private int getRandomRabbitType(LevelAccessor p_213610_1_) {
-		Biome biome = p_213610_1_.getBiome(this.blockPosition());
 		int i = this.random.nextInt(100);
-		if (biome.getPrecipitation() == Biome.Precipitation.SNOW) {
-			return i < 80 ? 1 : 3;
-		} else if (biome.getBiomeCategory() == Biome.BiomeCategory.DESERT) {
-			return 4;
-		} else {
-			return i < 50 ? 0 : (i < 90 ? 5 : 2);
-		}
+		return i < 50 ? 0 : (i < 90 ? 5 : 2);
 	}
 
 	public static boolean checkRabbitSpawnRules(EntityType<Beaver> p_223321_0_, LevelAccessor p_223321_1_, MobSpawnType reason,
