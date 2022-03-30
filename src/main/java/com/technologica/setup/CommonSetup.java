@@ -2,20 +2,19 @@ package com.technologica.setup;
 
 import com.technologica.Technologica;
 import com.technologica.capabilities.TechnologicaCapabilities;
+import com.technologica.data.worldgen.features.TechnologicaTreeFeatures;
+import com.technologica.data.worldgen.placement.TechnologicaTreePlacements;
 import com.technologica.network.play.server.Packets;
 import com.technologica.world.level.block.TechnologicaBlocks;
 import com.technologica.world.level.block.state.properties.TechnologicaWoodType;
 
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.properties.WoodType;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.Registry;
-import net.minecraft.world.level.biome.Biome;
-import net.minecraftforge.common.BiomeManager;
-import net.minecraftforge.common.BiomeManager.BiomeEntry;
-import net.minecraftforge.common.BiomeManager.BiomeType;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 public class CommonSetup {
@@ -30,6 +29,10 @@ public class CommonSetup {
 		Packets.onCommonSetupEvent();
 
 		event.enqueueWork(() -> {
+			
+			TechnologicaTreeFeatures.register();
+			TechnologicaTreePlacements.register();
+			
 			WoodType.register(TechnologicaWoodType.ALCHEMICAL);
 			WoodType.register(TechnologicaWoodType.APRICOT);
 			WoodType.register(TechnologicaWoodType.ASPEN);

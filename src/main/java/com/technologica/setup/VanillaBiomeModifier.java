@@ -89,7 +89,6 @@ public class VanillaBiomeModifier {
 		} 
 		
 		else if (biomeIn.getName().getPath().equals("plains")) {
-			biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.FLUID_SPRINGS).add(TechnologicaMiscOverworldPlacements.BRINE_POOL);
 			//biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.BUFFALO.get(), 100, 3, 10));
 		} 
 		
