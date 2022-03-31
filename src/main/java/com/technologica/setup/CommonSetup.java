@@ -16,14 +16,11 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.properties.WoodType;
+import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 public class CommonSetup {
-	public static final ResourceKey<Biome> saltFlatsBiomeKey = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(Technologica.MODID, "salt_flats"));
-	public static final ResourceKey<Biome> redwoodForestBiomeKey = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(Technologica.MODID, "redwood_forest"));
-	public static final ResourceKey<Biome> rainforestBiomeKey = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(Technologica.MODID, "rainforest"));
-	public static final ResourceKey<Biome> coastBiomeKey = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(Technologica.MODID, "coast"));
-	
+		
 	public static void init(final FMLCommonSetupEvent event) {
 		FlowerPotBlock flowerPotBlock = (FlowerPotBlock) Blocks.FLOWER_POT;
 		TechnologicaCapabilities.init();
@@ -34,6 +31,7 @@ public class CommonSetup {
 			TechnologicaTrunkPlacerType.register();
 			TechnologicaTreeFeatures.register();
 			TechnologicaTreePlacements.register();
+			ResourceKey<Biome> saltFlatsBiomeKey = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(Technologica.MODID, "salt_flats"));
 			
 			WoodType.register(TechnologicaWoodType.ALCHEMICAL);
 			WoodType.register(TechnologicaWoodType.APRICOT);
@@ -103,7 +101,7 @@ public class CommonSetup {
 			flowerPotBlock.addPlant(TechnologicaBlocks.THUNDEROUS_CONDUCTOR_SAPLING.get().getRegistryName(), TechnologicaBlocks.POTTED_THUNDEROUS_CONDUCTOR_SAPLING);
 			flowerPotBlock.addPlant(TechnologicaBlocks.TOWERING_INFERNO_SAPLING.get().getRegistryName(), TechnologicaBlocks.POTTED_TOWERING_INFERNO_SAPLING);
 			
-			//BiomeManager.addAdditionalOverworldBiomes(saltFlatsBiomeKey);
+			BiomeManager.addAdditionalOverworldBiomes(saltFlatsBiomeKey);
 			//BiomeManager.addBiome(BiomeType.COOL, new BiomeEntry(redwoodForestBiomeKey, 1000));
 			//BiomeManager.addBiome(BiomeType.WARM, new BiomeEntry(rainforestBiomeKey, 1000));
 			//BiomeManager.addBiome(BiomeType.WARM, new BiomeEntry(coastBiomeKey, 1000));
