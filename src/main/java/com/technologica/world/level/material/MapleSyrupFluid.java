@@ -100,7 +100,7 @@ public abstract class MapleSyrupFluid extends FlowingFluid {
 	}
 
 	public boolean canBeReplacedWith(FluidState fluidState, BlockGetter blockReader, BlockPos pos, Fluid fluid, Direction direction) {
-		return direction == Direction.DOWN && !fluid.is(FluidTags.WATER);
+		return direction == Direction.DOWN && !fluidState.is(FluidTags.WATER);
 	}
 
 	protected float getExplosionResistance() {

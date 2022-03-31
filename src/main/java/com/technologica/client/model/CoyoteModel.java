@@ -1,6 +1,5 @@
 package com.technologica.client.model;
 
-import com.google.common.collect.ImmutableList;
 import com.technologica.world.entity.animal.Coyote;
 
 import net.minecraft.client.model.ColorableAgeableListModel;
@@ -12,7 +11,6 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
-import net.minecraft.util.Mth;
 
 public class CoyoteModel<T extends Coyote> extends ColorableAgeableListModel<T> {
   /*

@@ -1,8 +1,5 @@
 package com.technologica.client.model;
 
-import com.google.common.collect.ImmutableList;
-import com.technologica.world.entity.animal.Scorpion;
-
 import net.minecraft.client.model.ListModel;
 import net.minecraft.client.model.QuadrupedModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -13,7 +10,6 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.util.Mth;
 
 public class ScorpionModel<T extends Entity> extends ListModel<T> {
 	/*

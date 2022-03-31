@@ -1,6 +1,5 @@
 package com.technologica.client.model;
 
-import com.google.common.collect.ImmutableList;
 import com.technologica.world.entity.item.NavalMine;
 
 import net.minecraft.client.model.ListModel;

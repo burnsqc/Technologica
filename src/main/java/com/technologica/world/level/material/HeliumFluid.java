@@ -137,7 +137,7 @@ public abstract class HeliumFluid extends FlowingFluid {
 
 	@Override
 	public boolean canBeReplacedWith(FluidState fluidState, BlockGetter blockReader, BlockPos pos, Fluid fluid, Direction direction) {
-		return direction == Direction.UP && !fluid.is(FluidTags.WATER);
+		return direction == Direction.UP && !fluidState.is(FluidTags.WATER);
 	}
 
 	@Override

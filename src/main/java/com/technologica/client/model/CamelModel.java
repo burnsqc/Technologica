@@ -1,6 +1,5 @@
 package com.technologica.client.model;
 
-import com.google.common.collect.ImmutableList;
 import com.technologica.world.entity.animal.Camel;
 
 import net.minecraft.client.model.AgeableListModel;
@@ -12,7 +11,6 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
-import net.minecraft.util.Mth;
 
 public class CamelModel<T extends Camel> extends AgeableListModel<T> {
 	/*
@@ -150,8 +148,8 @@ public class CamelModel<T extends Camel> extends AgeableListModel<T> {
 	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		//this.tail.xRot = ((float) Math.PI / 6F);
 		
-		boolean flag = entityIn.isSaddled();
-		boolean flag1 = entityIn.isVehicle();
+		//boolean flag = entityIn.isSaddled();
+		//boolean flag1 = entityIn.isVehicle();
 
 		/*
 		for (ModelPart modelrenderer : this.saddleParts) {

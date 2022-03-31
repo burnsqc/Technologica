@@ -7,6 +7,7 @@ import com.technologica.data.worldgen.placement.TechnologicaTreePlacements;
 import com.technologica.network.play.server.Packets;
 import com.technologica.world.level.block.TechnologicaBlocks;
 import com.technologica.world.level.block.state.properties.TechnologicaWoodType;
+import com.technologica.world.level.levelgen.feature.trunkplacers.TechnologicaTrunkPlacerType;
 
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
@@ -30,6 +31,7 @@ public class CommonSetup {
 
 		event.enqueueWork(() -> {
 			
+			TechnologicaTrunkPlacerType.register();
 			TechnologicaTreeFeatures.register();
 			TechnologicaTreePlacements.register();
 			

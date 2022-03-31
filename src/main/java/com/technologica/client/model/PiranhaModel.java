@@ -1,7 +1,5 @@
 package com.technologica.client.model;
 
-import com.google.common.collect.ImmutableList;
-
 import net.minecraft.client.model.ColorableHierarchicalModel;
 import net.minecraft.client.model.QuadrupedModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -11,7 +9,6 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
-import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 
 public class PiranhaModel<T extends Entity> extends ColorableHierarchicalModel<T> {

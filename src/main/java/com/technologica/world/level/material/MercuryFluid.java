@@ -134,9 +134,8 @@ public abstract class MercuryFluid extends FlowingFluid {
 	}
 
 	@Override
-	public boolean canBeReplacedWith(FluidState fluidState, BlockGetter blockReader, BlockPos pos, Fluid fluid,
-	                           Direction direction) {
-		return direction == Direction.DOWN && !fluid.is(FluidTags.WATER);
+	public boolean canBeReplacedWith(FluidState fluidState, BlockGetter blockReader, BlockPos pos, Fluid fluid, Direction direction) {
+		return direction == Direction.DOWN && !fluidState.is(FluidTags.WATER);
 	}
 
 	@Override

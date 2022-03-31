@@ -105,7 +105,7 @@ public abstract class BrineFluid extends FlowingFluid {
 
 	@Override
 	public boolean canBeReplacedWith(FluidState fluidState, BlockGetter blockReader, BlockPos pos, Fluid fluid, Direction direction) {
-		return direction == Direction.DOWN && !fluid.is(FluidTags.WATER);
+		return direction == Direction.DOWN && !fluidState.is(FluidTags.WATER);
 	}
 
 	@Override

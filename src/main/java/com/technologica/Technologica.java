@@ -87,9 +87,6 @@ public class Technologica {
 		FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(Biome.class, RegistrationListener::onRegisterBiomes);
 		FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(Feature.class, RegistrationListener::onRegisterFeatures);
 		FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(FoliagePlacerType.class, RegistrationListener::onRegisterFoliagePlacers);
-//		FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(TrunkPlacerType.class, (RegistryEvent.Register event) -> {
-//			TechnologicaTrunkPlacerType.init();
-//        });
 		
 		CraftingHelper.register(DisablePlankConditionFactory.Serializer.INSTANCE);
 		CraftingHelper.register(EnablePlankConditionFactory.Serializer.INSTANCE);
