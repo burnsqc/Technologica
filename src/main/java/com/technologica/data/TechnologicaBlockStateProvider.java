@@ -1333,7 +1333,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 	
 	private void cropBlockNew() {
 		cropBlock(TechnologicaBlocks.ASPARAGUS_CROP.get());
-		cropBlock(TechnologicaBlocks.BARLEY_CROP.get());
+		cropBlock(TechnologicaBlocks.BARLEY.get());
 		cropBlock(TechnologicaBlocks.BLACKBERRY_CROP.get());
 		cropBlock(TechnologicaBlocks.BLUEBERRY_CROP.get());
 		cropBlock(TechnologicaBlocks.BROCCOLI_CROP.get());
@@ -1347,7 +1347,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		cropBlock(TechnologicaBlocks.GRAPE_CROP.get());
 		cropBlock(TechnologicaBlocks.LETTUCE_CROP.get());
 		cropBlock(TechnologicaBlocks.MUSTARD_GREENS_CROP.get());
-		cropBlock(TechnologicaBlocks.OATS_CROP.get());
+		cropBlock(TechnologicaBlocks.OATS.get());
 		cropBlock(TechnologicaBlocks.ONION_CROP.get());
 		cropBlock(TechnologicaBlocks.PEA_CROP.get());
 		cropBlock(TechnologicaBlocks.PEANUT_CROP.get());
@@ -1356,11 +1356,11 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		cropBlock(TechnologicaBlocks.RADISH_CROP.get());
 		cropBlock(TechnologicaBlocks.RASPBERRY_CROP.get());
 		cropBlock(TechnologicaBlocks.RED_BEAN_CROP.get());
-		cropBlock(TechnologicaBlocks.RYE_CROP.get());
+		cropBlock(TechnologicaBlocks.RYE.get());
 		cropBlock(TechnologicaBlocks.SOYBEAN_CROP.get());
 		cropBlock(TechnologicaBlocks.STRAWBERRY_CROP.get());
 		cropBlock(TechnologicaBlocks.SQUASH_CROP.get());
-		cropBlock(TechnologicaBlocks.SWEET_POTATO_CROP.get());
+		cropBlock2(TechnologicaBlocks.SWEET_POTATOES.get());
 		cropBlock(TechnologicaBlocks.TEA_CROP.get());
 		cropBlock(TechnologicaBlocks.TOMATO_CROP.get());
 		cropBlock(TechnologicaBlocks.TURNIP_CROP.get());
@@ -1687,6 +1687,18 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 			.partialState().with(CropBlock.AGE, 5).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage5", ResourceLocationHelper.extend(blockTexture(block), "_stage5"))).addModel()
 			.partialState().with(CropBlock.AGE, 6).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage6", ResourceLocationHelper.extend(blockTexture(block), "_stage6"))).addModel()
 			.partialState().with(CropBlock.AGE, 7).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage7", ResourceLocationHelper.extend(blockTexture(block), "_stage7"))).addModel();
+	}
+	
+	public void cropBlock2(Block block) {
+		getVariantBuilder(block)
+			.partialState().with(CropBlock.AGE, 0).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage0", ResourceLocationHelper.extend(blockTexture(block), "_stage0"))).addModel()
+			.partialState().with(CropBlock.AGE, 1).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage0", ResourceLocationHelper.extend(blockTexture(block), "_stage0"))).addModel()
+			.partialState().with(CropBlock.AGE, 2).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage1", ResourceLocationHelper.extend(blockTexture(block), "_stage1"))).addModel()
+			.partialState().with(CropBlock.AGE, 3).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage1", ResourceLocationHelper.extend(blockTexture(block), "_stage1"))).addModel()
+			.partialState().with(CropBlock.AGE, 4).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage2", ResourceLocationHelper.extend(blockTexture(block), "_stage2"))).addModel()
+			.partialState().with(CropBlock.AGE, 5).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage2", ResourceLocationHelper.extend(blockTexture(block), "_stage2"))).addModel()
+			.partialState().with(CropBlock.AGE, 6).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage2", ResourceLocationHelper.extend(blockTexture(block), "_stage2"))).addModel()
+			.partialState().with(CropBlock.AGE, 7).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage3", ResourceLocationHelper.extend(blockTexture(block), "_stage3"))).addModel();
 	}
 	
 	public void tallCropBlock(Block block) {

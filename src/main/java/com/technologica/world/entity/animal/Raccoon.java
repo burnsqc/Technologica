@@ -1,7 +1,7 @@
 package com.technologica.world.entity.animal;
 
 import com.technologica.world.entity.TechnologicaEntityType;
-import com.technologica.world.entity.ai.BegGoal;
+import com.technologica.world.entity.ai.goal.BegGoal;
 
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;

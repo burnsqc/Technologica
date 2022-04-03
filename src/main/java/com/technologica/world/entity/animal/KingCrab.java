@@ -4,7 +4,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import com.technologica.world.entity.ai.GoToWaterGoal;
+import com.technologica.world.entity.ai.goal.GoToWaterGoal;
 
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;

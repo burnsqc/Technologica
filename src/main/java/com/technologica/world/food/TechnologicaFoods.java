@@ -7,7 +7,6 @@ public class TechnologicaFoods {
 	public static final FoodProperties ASPARAGUS = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 	public static final FoodProperties AVOCADO = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 	public static final FoodProperties BANANA = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
-	public static final FoodProperties BARLEY = (new FoodProperties.Builder().build());
 	public static final FoodProperties BROCCOLI = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 	public static final FoodProperties BLACKBERRY = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 	public static final FoodProperties BLUEBERRY = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
@@ -28,7 +27,6 @@ public class TechnologicaFoods {
 	public static final FoodProperties LETTUCE = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 	public static final FoodProperties LIME = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 	public static final FoodProperties MUSTARD_GREENS = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
-	public static final FoodProperties OATS = (new FoodProperties.Builder().build());
 	public static final FoodProperties OLIVE = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 	public static final FoodProperties ONION = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 	public static final FoodProperties ORANGE = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
@@ -43,9 +41,8 @@ public class TechnologicaFoods {
 	public static final FoodProperties RADISH = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 	public static final FoodProperties RASPBERRY = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 	public static final FoodProperties RICE = (new FoodProperties.Builder().build());
-	public static final FoodProperties RYE = (new FoodProperties.Builder().build());
 	public static final FoodProperties SQUASH = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
-	public static final FoodProperties SWEET_POTATO = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
+	public static final FoodProperties SWEET_POTATO = (new FoodProperties.Builder().nutrition(1).saturationMod(0.3F).build());
 	public static final FoodProperties STRAWBERRY = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 	public static final FoodProperties TEA_LEAF = (new FoodProperties.Builder().build());
 	public static final FoodProperties TOMATO = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
