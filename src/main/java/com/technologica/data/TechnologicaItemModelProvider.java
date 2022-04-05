@@ -20,8 +20,6 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 	protected void registerModels() {
 		simpleItem(TechnologicaItems.ASPARAGUS_SEEDS.get()); 
 		simpleItem(TechnologicaItems.BARLEY_SEEDS.get()); 
-		simpleItem(TechnologicaItems.BLACKBERRY_SEEDS.get());
-		simpleItem(TechnologicaItems.BLUEBERRY_SEEDS.get());
 		simpleItem(TechnologicaItems.BROCCOLI_SEEDS.get());
 		simpleItem(TechnologicaItems.CELERY_SEEDS.get());
 		simpleItem(TechnologicaItems.CHILI_PEPPER_SEEDS.get());
@@ -31,7 +29,6 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.CRANBERRY_SEEDS.get());
 		simpleItem(TechnologicaItems.CUCUMBER_SEEDS.get());
 		simpleItem(TechnologicaItems.GARLIC_SEEDS.get());
-		simpleItem(TechnologicaItems.GINGER_SEEDS.get());
 		simpleItem(TechnologicaItems.GRAPE_SEEDS.get());
 		simpleItem(TechnologicaItems.LETTUCE_SEEDS.get());
 		simpleItem(TechnologicaItems.MUSTARD_SEEDS.get());
@@ -43,12 +40,10 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.PINEAPPLE_SEEDS.get());
 		simpleItem(TechnologicaItems.PURPLE_CABBAGE_SEEDS.get());
 		simpleItem(TechnologicaItems.RADISH_SEEDS.get());
-		simpleItem(TechnologicaItems.RASPBERRY_SEEDS.get());
 		simpleItem(TechnologicaItems.RED_BEANS.get());
 		simpleItem(TechnologicaItems.RICE_SEEDS.get());
 		simpleItem(TechnologicaItems.RYE_SEEDS.get());
 		simpleItem(TechnologicaItems.SOYBEANS.get());
-		simpleItem(TechnologicaItems.STRAWBERRY_SEEDS.get());
 		simpleItem(TechnologicaItems.SQUASH_SEEDS.get());
 		simpleItem(TechnologicaItems.TEA_SEEDS.get());
 		simpleItem(TechnologicaItems.TOMATO_SEEDS.get());

@@ -20,7 +20,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class GrassLootModifier extends LootModifier {
 	private final Item addition;
-	private final List<Item> additions = List.of(Items.WHEAT_SEEDS, TechnologicaItems.BARLEY_SEEDS.get(), TechnologicaItems.COTTON_SEEDS.get(), TechnologicaItems.MUSTARD_SEEDS.get(), TechnologicaItems.OATS_SEEDS.get(), TechnologicaItems.RYE_SEEDS.get());
+	private final List<Item> grainSeeds = List.of(Items.WHEAT_SEEDS, TechnologicaItems.BARLEY_SEEDS.get(), TechnologicaItems.OATS_SEEDS.get(), TechnologicaItems.RYE_SEEDS.get());
 
 	protected GrassLootModifier(LootItemCondition[] conditionsIn, Item addition) {
 		super(conditionsIn);
@@ -30,12 +30,8 @@ public class GrassLootModifier extends LootModifier {
 	@Nonnull
 	@Override
 	protected List<ItemStack> doApply(List<ItemStack> generatedLoot, LootContext context) {
-		if (!generatedLoot.isEmpty()) {
-			if (generatedLoot.get(0).getItem().equals(Items.WHEAT_SEEDS)) {
-				int index = context.getRandom().nextInt(additions.size());
-				generatedLoot.remove(0);
-				generatedLoot.add(new ItemStack(additions.get(index)));
-			}
+		if (generatedLoot.removeIf((itemStack) -> itemStack.getItem().equals(Items.WHEAT_SEEDS))) {
+			generatedLoot.add(new ItemStack(grainSeeds.get(context.getRandom().nextInt(grainSeeds.size()))));
 		}
 		return generatedLoot;
 	}

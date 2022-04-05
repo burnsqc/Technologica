@@ -3,6 +3,10 @@
   "entries": [
     "technologica:technologica_seeds_from_grass",
     "technologica:technologica_seeds_from_tall_grass",
-    "technologica:technologica_seeds_from_large_fern"
+    "technologica:technologica_seeds_from_fern",
+    "technologica:technologica_seeds_from_large_fern",
+    "technologica:technologica_foods_from_husk",
+    "technologica:technologica_foods_from_zombie",
+    "technologica:technologica_foods_from_zombie_villager"
   ]
 }

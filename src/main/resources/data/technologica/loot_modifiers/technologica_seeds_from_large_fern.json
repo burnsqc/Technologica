@@ -2,9 +2,9 @@
   "conditions": [
     {
       "condition": "block_state_property",
-      "block": "minecraft:large_fern"
+      "block": "minecraft:fern"
     }
   ],
   "addition": "technologica:barley_seeds",
-  "type": "technologica:technologica_seeds_from_large_fern"
+  "type": "technologica:technologica_seeds_from_fern"
 }

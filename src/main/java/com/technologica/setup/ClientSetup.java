@@ -31,8 +31,8 @@ public class ClientSetup {
 		event.enqueueWork(() -> {			
 			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ASPARAGUS_CROP.get(), RenderType.cutoutMipped());
 			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.BARLEY.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.BLACKBERRY_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.BLUEBERRY_CROP.get(), RenderType.cutoutMipped());
+			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.BLACKBERRY_BUSH.get(), RenderType.cutoutMipped());
+			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.BLUEBERRY_BUSH.get(), RenderType.cutoutMipped());
 			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.BROCCOLI_CROP.get(), RenderType.cutoutMipped());
 			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CELERY_CROP.get(), RenderType.cutoutMipped());
 			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CHILI_PEPPER_CROP.get(), RenderType.cutoutMipped());
@@ -40,7 +40,7 @@ public class ClientSetup {
 			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.COTTON_CROP.get(), RenderType.cutoutMipped());
 			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CUCUMBER_CROP.get(), RenderType.cutoutMipped());
 			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.GARLIC_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.GINGER_CROP.get(), RenderType.cutoutMipped());
+			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.GINGER.get(), RenderType.cutoutMipped());
 			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.GRAPE_CROP.get(), RenderType.cutoutMipped());
 			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.LETTUCE_CROP.get(), RenderType.cutoutMipped());
 			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.MUSTARD_GREENS_CROP.get(), RenderType.cutoutMipped());
@@ -51,19 +51,19 @@ public class ClientSetup {
 			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.PINEAPPLE_CROP.get(), RenderType.cutoutMipped());
 			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.PURPLE_CABBAGE_CROP.get(), RenderType.cutoutMipped());
 			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.RADISH_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.RASPBERRY_CROP.get(), RenderType.cutoutMipped());
+			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.RASPBERRY_BUSH.get(), RenderType.cutoutMipped());
 			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.RED_BEAN_CROP.get(), RenderType.cutoutMipped());
 			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.RYE.get(), RenderType.cutoutMipped());
 			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.SOYBEAN_CROP.get(), RenderType.cutoutMipped());
 			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.SQUASH_CROP.get(), RenderType.cutoutMipped());
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.STRAWBERRY_CROP.get(), RenderType.cutoutMipped());
+			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.STRAWBERRY_BUSH.get(), RenderType.cutoutMipped());
 			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.SWEET_POTATOES.get(), RenderType.cutoutMipped());
 			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.TEA_CROP.get(), RenderType.cutoutMipped());
 			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.TOMATO_CROP.get(), RenderType.cutoutMipped());
 			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.TURNIP_CROP.get(), RenderType.cutoutMipped());
 			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ZUCCHINI_CROP.get(), RenderType.cutoutMipped());
 			
-			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CORN_CROP.get(), RenderType.cutoutMipped());
+			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CORN.get(), RenderType.cutoutMipped());
 			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.PEPPERCORN_CROP.get(), RenderType.cutoutMipped());
 			
 			ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CRANBERRY_CROP.get(), RenderType.cutoutMipped());

@@ -12,7 +12,7 @@ import net.minecraft.world.item.ItemStack;
 
 public class PickupTechnologicaSeedsGoal extends Goal {
 	protected final Villager villager;
-	private final ImmutableSet<Item> requestedItems = ImmutableSet.of(TechnologicaItems.BARLEY_SEEDS.get(), TechnologicaItems.OATS_SEEDS.get(), TechnologicaItems.RYE_SEEDS.get(), TechnologicaItems.BARLEY.get(), TechnologicaItems.OATS.get(), TechnologicaItems.RYE.get(), TechnologicaItems.SWEET_POTATO.get());
+	private final ImmutableSet<Item> requestedItems = ImmutableSet.of(TechnologicaItems.BARLEY_SEEDS.get(), TechnologicaItems.OATS_SEEDS.get(), TechnologicaItems.RYE_SEEDS.get(), TechnologicaItems.CORN_SEEDS.get(), TechnologicaItems.BARLEY.get(), TechnologicaItems.OATS.get(), TechnologicaItems.RYE.get(), TechnologicaItems.CORN.get(), TechnologicaItems.GINGER.get(), TechnologicaItems.SWEET_POTATO.get());
 	public PickupTechnologicaSeedsGoal(Villager villagerIn) {
 		villager = villagerIn;
 	}

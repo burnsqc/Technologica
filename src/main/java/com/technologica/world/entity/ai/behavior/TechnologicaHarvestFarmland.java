@@ -132,6 +132,12 @@ public class TechnologicaHarvestFarmland extends Behavior<Villager> {
 							} else if (itemstack.is(TechnologicaItems.RYE_SEEDS.get())) {
 								p_23196_.setBlock(this.aboveFarmlandPos, TechnologicaBlocks.RYE.get().defaultBlockState(), 3);
 								flag = true;
+							} else if (itemstack.is(TechnologicaItems.CORN_SEEDS.get())) {
+								p_23196_.setBlock(this.aboveFarmlandPos, TechnologicaBlocks.CORN.get().defaultBlockState(), 3);
+								flag = true;
+							} else if (itemstack.is(TechnologicaItems.GINGER.get())) {
+								p_23196_.setBlock(this.aboveFarmlandPos, TechnologicaBlocks.GINGER.get().defaultBlockState(), 3);
+								flag = true;
 							} else if (itemstack.is(TechnologicaItems.SWEET_POTATO.get())) {
 								p_23196_.setBlock(this.aboveFarmlandPos, TechnologicaBlocks.SWEET_POTATOES.get().defaultBlockState(), 3);
 								flag = true;
@@ -182,6 +188,6 @@ public class TechnologicaHarvestFarmland extends Behavior<Villager> {
 	}
 
 	public boolean hasFarmSeeds(Villager p_23197_) {
-		return p_23197_.getInventory().hasAnyOf(ImmutableSet.of(TechnologicaItems.BARLEY_SEEDS.get(), TechnologicaItems.OATS_SEEDS.get(), TechnologicaItems.RYE_SEEDS.get(), TechnologicaItems.SWEET_POTATO.get()));
+		return p_23197_.getInventory().hasAnyOf(ImmutableSet.of(TechnologicaItems.BARLEY_SEEDS.get(), TechnologicaItems.OATS_SEEDS.get(), TechnologicaItems.RYE_SEEDS.get(), TechnologicaItems.CORN_SEEDS.get(), TechnologicaItems.GINGER.get(), TechnologicaItems.SWEET_POTATO.get()));
 	}
 }

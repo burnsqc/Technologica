@@ -18,7 +18,6 @@ import net.minecraft.world.entity.ai.behavior.StrollToPoi;
 import net.minecraft.world.entity.ai.behavior.StrollToPoiList;
 import net.minecraft.world.entity.ai.behavior.UpdateActivityFromSchedule;
 import net.minecraft.world.entity.ai.behavior.UseBonemeal;
-import net.minecraft.world.entity.ai.behavior.WorkAtComposter;
 import net.minecraft.world.entity.ai.behavior.WorkAtPoi;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.npc.Villager;
@@ -28,7 +27,7 @@ public class TechnologicaVillagerGoalPackages {
 	public static ImmutableList<Pair<Integer, ? extends Behavior<? super Villager>>> getWorkPackage(VillagerProfession p_24590_, float p_24591_) {
 		WorkAtPoi workatpoi;
 		if (p_24590_ == VillagerProfession.FARMER) {
-			workatpoi = new WorkAtComposter();
+			workatpoi = new TechnologicaWorkAtComposter();
 		} else {
 			workatpoi = new WorkAtPoi();
 		}

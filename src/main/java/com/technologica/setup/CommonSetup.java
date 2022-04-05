@@ -121,15 +121,12 @@ public class CommonSetup {
 	
 	private static void addToComposter() {
 		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.ASPARAGUS_SEEDS.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.BLACKBERRY_SEEDS.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.BLUEBERRY_SEEDS.get().asItem(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(TechnologicaItems.BROCCOLI_SEEDS.get().asItem(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(TechnologicaItems.CELERY_SEEDS.get().asItem(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(TechnologicaItems.CHILI_PEPPER_SEEDS.get().asItem(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(TechnologicaItems.COTTON_SEEDS.get().asItem(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(TechnologicaItems.CUCUMBER_SEEDS.get().asItem(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(TechnologicaItems.GARLIC_SEEDS.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.GINGER_SEEDS.get().asItem(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(TechnologicaItems.GRAPE_SEEDS.get().asItem(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(TechnologicaItems.LETTUCE_SEEDS.get().asItem(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(TechnologicaItems.MUSTARD_SEEDS.get().asItem(), 0.3F);
@@ -139,9 +136,7 @@ public class CommonSetup {
         ComposterBlock.COMPOSTABLES.put(TechnologicaItems.PINEAPPLE_SEEDS.get().asItem(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(TechnologicaItems.PURPLE_CABBAGE_SEEDS.get().asItem(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(TechnologicaItems.RADISH_SEEDS.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.RASPBERRY_SEEDS.get().asItem(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(TechnologicaItems.SQUASH_SEEDS.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.STRAWBERRY_SEEDS.get().asItem(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(TechnologicaItems.TEA_SEEDS.get().asItem(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(TechnologicaItems.TOMATO_SEEDS.get().asItem(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(TechnologicaItems.TURNIP_SEEDS.get().asItem(), 0.3F);
@@ -152,11 +147,14 @@ public class CommonSetup {
         ComposterBlock.COMPOSTABLES.put(TechnologicaItems.RICE_SEEDS.get().asItem(), 0.3F);
         
         ComposterBlock.COMPOSTABLES.put(TechnologicaItems.BARLEY_SEEDS.get().asItem(), 0.3F);
+        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.CORN_SEEDS.get().asItem(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(TechnologicaItems.OATS_SEEDS.get().asItem(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(TechnologicaItems.RYE_SEEDS.get().asItem(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(TechnologicaItems.BARLEY.get().asItem(), 0.65F);
         ComposterBlock.COMPOSTABLES.put(TechnologicaItems.OATS.get().asItem(), 0.65F);
         ComposterBlock.COMPOSTABLES.put(TechnologicaItems.RYE.get().asItem(), 0.65F);
+        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.CORN.get().asItem(), 0.65F);
+        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.GINGER.get().asItem(), 0.65F);
         ComposterBlock.COMPOSTABLES.put(TechnologicaItems.SWEET_POTATO.get().asItem(), 0.65F);
 	}
 }

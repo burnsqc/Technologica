@@ -16,10 +16,12 @@ import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.FenceGateBlock;
+import net.minecraft.world.level.block.PotatoBlock;
 import net.minecraft.world.level.block.PressurePlateBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.SweetBerryBushBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.state.properties.AttachFace;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -1334,8 +1336,8 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 	private void cropBlockNew() {
 		cropBlock(TechnologicaBlocks.ASPARAGUS_CROP.get());
 		cropBlock(TechnologicaBlocks.BARLEY.get());
-		cropBlock(TechnologicaBlocks.BLACKBERRY_CROP.get());
-		cropBlock(TechnologicaBlocks.BLUEBERRY_CROP.get());
+		cropBlock3(TechnologicaBlocks.BLACKBERRY_BUSH.get());
+		cropBlock3(TechnologicaBlocks.BLUEBERRY_BUSH.get());
 		cropBlock(TechnologicaBlocks.BROCCOLI_CROP.get());
 		cropBlock(TechnologicaBlocks.CELERY_CROP.get());
 		cropBlock(TechnologicaBlocks.CHILI_PEPPER_CROP.get());
@@ -1343,7 +1345,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		cropBlock(TechnologicaBlocks.COTTON_CROP.get());
 		cropBlock(TechnologicaBlocks.CUCUMBER_CROP.get());
 		cropBlock(TechnologicaBlocks.GARLIC_CROP.get());
-		cropBlock(TechnologicaBlocks.GINGER_CROP.get());
+		cropBlock2(TechnologicaBlocks.GINGER.get());
 		cropBlock(TechnologicaBlocks.GRAPE_CROP.get());
 		cropBlock(TechnologicaBlocks.LETTUCE_CROP.get());
 		cropBlock(TechnologicaBlocks.MUSTARD_GREENS_CROP.get());
@@ -1354,18 +1356,18 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		cropBlock(TechnologicaBlocks.PINEAPPLE_CROP.get());
 		cropBlock(TechnologicaBlocks.PURPLE_CABBAGE_CROP.get());
 		cropBlock(TechnologicaBlocks.RADISH_CROP.get());
-		cropBlock(TechnologicaBlocks.RASPBERRY_CROP.get());
+		cropBlock3(TechnologicaBlocks.RASPBERRY_BUSH.get());
 		cropBlock(TechnologicaBlocks.RED_BEAN_CROP.get());
 		cropBlock(TechnologicaBlocks.RYE.get());
 		cropBlock(TechnologicaBlocks.SOYBEAN_CROP.get());
-		cropBlock(TechnologicaBlocks.STRAWBERRY_CROP.get());
+		cropBlock3(TechnologicaBlocks.STRAWBERRY_BUSH.get());
 		cropBlock(TechnologicaBlocks.SQUASH_CROP.get());
 		cropBlock2(TechnologicaBlocks.SWEET_POTATOES.get());
 		cropBlock(TechnologicaBlocks.TEA_CROP.get());
 		cropBlock(TechnologicaBlocks.TOMATO_CROP.get());
 		cropBlock(TechnologicaBlocks.TURNIP_CROP.get());
 		cropBlock(TechnologicaBlocks.ZUCCHINI_CROP.get());
-		tallCropBlock(TechnologicaBlocks.CORN_CROP.get());
+		tallCropBlock(TechnologicaBlocks.CORN.get());
 		tallCropBlock(TechnologicaBlocks.PEPPERCORN_CROP.get());
 		tallCropBlock(TechnologicaBlocks.CRANBERRY_CROP.get());
 		tallCropBlock(TechnologicaBlocks.RICE_CROP.get());
@@ -1691,34 +1693,42 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 	
 	public void cropBlock2(Block block) {
 		getVariantBuilder(block)
-			.partialState().with(CropBlock.AGE, 0).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage0", ResourceLocationHelper.extend(blockTexture(block), "_stage0"))).addModel()
-			.partialState().with(CropBlock.AGE, 1).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage0", ResourceLocationHelper.extend(blockTexture(block), "_stage0"))).addModel()
-			.partialState().with(CropBlock.AGE, 2).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage1", ResourceLocationHelper.extend(blockTexture(block), "_stage1"))).addModel()
-			.partialState().with(CropBlock.AGE, 3).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage1", ResourceLocationHelper.extend(blockTexture(block), "_stage1"))).addModel()
-			.partialState().with(CropBlock.AGE, 4).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage2", ResourceLocationHelper.extend(blockTexture(block), "_stage2"))).addModel()
-			.partialState().with(CropBlock.AGE, 5).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage2", ResourceLocationHelper.extend(blockTexture(block), "_stage2"))).addModel()
-			.partialState().with(CropBlock.AGE, 6).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage2", ResourceLocationHelper.extend(blockTexture(block), "_stage2"))).addModel()
-			.partialState().with(CropBlock.AGE, 7).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage3", ResourceLocationHelper.extend(blockTexture(block), "_stage3"))).addModel();
+			.partialState().with(PotatoBlock.AGE, 0).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage0", ResourceLocationHelper.extend(blockTexture(block), "_stage0"))).addModel()
+			.partialState().with(PotatoBlock.AGE, 1).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage0", ResourceLocationHelper.extend(blockTexture(block), "_stage0"))).addModel()
+			.partialState().with(PotatoBlock.AGE, 2).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage1", ResourceLocationHelper.extend(blockTexture(block), "_stage1"))).addModel()
+			.partialState().with(PotatoBlock.AGE, 3).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage1", ResourceLocationHelper.extend(blockTexture(block), "_stage1"))).addModel()
+			.partialState().with(PotatoBlock.AGE, 4).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage2", ResourceLocationHelper.extend(blockTexture(block), "_stage2"))).addModel()
+			.partialState().with(PotatoBlock.AGE, 5).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage2", ResourceLocationHelper.extend(blockTexture(block), "_stage2"))).addModel()
+			.partialState().with(PotatoBlock.AGE, 6).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage2", ResourceLocationHelper.extend(blockTexture(block), "_stage2"))).addModel()
+			.partialState().with(PotatoBlock.AGE, 7).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage3", ResourceLocationHelper.extend(blockTexture(block), "_stage3"))).addModel();
+	}
+	
+	public void cropBlock3(Block block) {
+		getVariantBuilder(block)
+			.partialState().with(SweetBerryBushBlock.AGE, 0).modelForState().modelFile(models().cross(ResourceLocationHelper.getPath(block) + "_stage0", ResourceLocationHelper.extend(blockTexture(block), "_stage0"))).addModel()
+			.partialState().with(SweetBerryBushBlock.AGE, 1).modelForState().modelFile(models().cross(ResourceLocationHelper.getPath(block) + "_stage1", ResourceLocationHelper.extend(blockTexture(block), "_stage1"))).addModel()
+			.partialState().with(SweetBerryBushBlock.AGE, 2).modelForState().modelFile(models().cross(ResourceLocationHelper.getPath(block) + "_stage2", ResourceLocationHelper.extend(blockTexture(block), "_stage2"))).addModel()
+			.partialState().with(SweetBerryBushBlock.AGE, 3).modelForState().modelFile(models().cross(ResourceLocationHelper.getPath(block) + "_stage3", ResourceLocationHelper.extend(blockTexture(block), "_stage3"))).addModel();
 	}
 	
 	public void tallCropBlock(Block block) {
 		getVariantBuilder(block)
-			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropBlock.AGE, 0).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_lower_stage0", ResourceLocationHelper.extend(blockTexture(block), "_lower_stage0"))).addModel()
-			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropBlock.AGE, 1).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_lower_stage1", ResourceLocationHelper.extend(blockTexture(block), "_lower_stage1"))).addModel()
-			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropBlock.AGE, 2).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_lower_stage2", ResourceLocationHelper.extend(blockTexture(block), "_lower_stage2"))).addModel()
-			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropBlock.AGE, 3).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_lower_stage3", ResourceLocationHelper.extend(blockTexture(block), "_lower_stage3"))).addModel()
-			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropBlock.AGE, 4).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_lower_stage4", ResourceLocationHelper.extend(blockTexture(block), "_lower_stage4"))).addModel()
-			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropBlock.AGE, 5).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_lower_stage5", ResourceLocationHelper.extend(blockTexture(block), "_lower_stage5"))).addModel()
-			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropBlock.AGE, 6).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_lower_stage6", ResourceLocationHelper.extend(blockTexture(block), "_lower_stage6"))).addModel()
-			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropBlock.AGE, 7).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_lower_stage7", ResourceLocationHelper.extend(blockTexture(block), "_lower_stage7"))).addModel()
-			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropBlock.AGE, 0).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_upper_stage0", ResourceLocationHelper.extend(blockTexture(block), "_upper_stage0"))).addModel()
-			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropBlock.AGE, 1).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_upper_stage1", ResourceLocationHelper.extend(blockTexture(block), "_upper_stage1"))).addModel()
-			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropBlock.AGE, 2).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_upper_stage2", ResourceLocationHelper.extend(blockTexture(block), "_upper_stage2"))).addModel()
-			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropBlock.AGE, 3).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_upper_stage3", ResourceLocationHelper.extend(blockTexture(block), "_upper_stage3"))).addModel()
-			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropBlock.AGE, 4).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_upper_stage4", ResourceLocationHelper.extend(blockTexture(block), "_upper_stage4"))).addModel()
-			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropBlock.AGE, 5).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_upper_stage5", ResourceLocationHelper.extend(blockTexture(block), "_upper_stage5"))).addModel()
-			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropBlock.AGE, 6).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_upper_stage6", ResourceLocationHelper.extend(blockTexture(block), "_upper_stage6"))).addModel()
-			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropBlock.AGE, 7).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_upper_stage7", ResourceLocationHelper.extend(blockTexture(block), "_upper_stage7"))).addModel();
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropBlock.AGE, 0).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_bottom_stage0", ResourceLocationHelper.extend(blockTexture(block), "_bottom_stage0"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropBlock.AGE, 1).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_bottom_stage1", ResourceLocationHelper.extend(blockTexture(block), "_bottom_stage1"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropBlock.AGE, 2).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_bottom_stage2", ResourceLocationHelper.extend(blockTexture(block), "_bottom_stage2"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropBlock.AGE, 3).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_bottom_stage3", ResourceLocationHelper.extend(blockTexture(block), "_bottom_stage3"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropBlock.AGE, 4).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_bottom_stage4", ResourceLocationHelper.extend(blockTexture(block), "_bottom_stage4"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropBlock.AGE, 5).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_bottom_stage5", ResourceLocationHelper.extend(blockTexture(block), "_bottom_stage5"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropBlock.AGE, 6).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_bottom_stage6", ResourceLocationHelper.extend(blockTexture(block), "_bottom_stage6"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.LOWER).with(CropBlock.AGE, 7).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_bottom_stage7", ResourceLocationHelper.extend(blockTexture(block), "_bottom_stage7"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropBlock.AGE, 0).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_top_stage0", ResourceLocationHelper.extend(blockTexture(block), "_top_stage0"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropBlock.AGE, 1).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_top_stage1", ResourceLocationHelper.extend(blockTexture(block), "_top_stage1"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropBlock.AGE, 2).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_top_stage2", ResourceLocationHelper.extend(blockTexture(block), "_top_stage2"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropBlock.AGE, 3).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_top_stage3", ResourceLocationHelper.extend(blockTexture(block), "_top_stage3"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropBlock.AGE, 4).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_top_stage4", ResourceLocationHelper.extend(blockTexture(block), "_top_stage4"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropBlock.AGE, 5).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_top_stage5", ResourceLocationHelper.extend(blockTexture(block), "_top_stage5"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropBlock.AGE, 6).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_top_stage6", ResourceLocationHelper.extend(blockTexture(block), "_top_stage6"))).addModel()
+			.partialState().with(TallCropsBlock.HALF, DoubleBlockHalf.UPPER).with(CropBlock.AGE, 7).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_top_stage7", ResourceLocationHelper.extend(blockTexture(block), "_top_stage7"))).addModel();
 	}
 	
 	public void annunciatorBlockState(Block block) {

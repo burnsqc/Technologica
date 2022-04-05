@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "technologica:block/raspberry_bush_stage1"
+  }
+}
