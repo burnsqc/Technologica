@@ -1,5 +1,9 @@
 package com.technologica.setup;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.Set;
+
 import com.technologica.Technologica;
 import com.technologica.capabilities.TechnologicaCapabilities;
 import com.technologica.data.worldgen.features.TechnologicaTreeFeatures;
@@ -13,6 +17,8 @@ import com.technologica.world.level.levelgen.feature.trunkplacers.TechnologicaTr
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ComposterBlock;
@@ -20,6 +26,7 @@ import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 
 public class CommonSetup {
 		
@@ -43,6 +50,21 @@ public class CommonSetup {
 			//BiomeManager.addBiome(BiomeType.COOL, new BiomeEntry(redwoodForestBiomeKey, 1000));
 			//BiomeManager.addBiome(BiomeType.WARM, new BiomeEntry(rainforestBiomeKey, 1000));
 			//BiomeManager.addBiome(BiomeType.WARM, new BiomeEntry(coastBiomeKey, 1000));
+			
+			Field field = ObfuscationReflectionHelper.findField(Villager.class, "WANTED_ITEMS");
+			
+			try {
+				field.setAccessible(true);
+				Set<Item> WANTED_ITEMS_NEW = Set.of(TechnologicaItems.BARLEY.get(), TechnologicaItems.OATS.get());
+				field.set(null, (Set<Item>) WANTED_ITEMS_NEW);
+			} catch (IllegalArgumentException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				e.printStackTrace();
+			}
+			
 		});
 	}
 	
@@ -154,6 +176,7 @@ public class CommonSetup {
         ComposterBlock.COMPOSTABLES.put(TechnologicaItems.OATS.get().asItem(), 0.65F);
         ComposterBlock.COMPOSTABLES.put(TechnologicaItems.RYE.get().asItem(), 0.65F);
         ComposterBlock.COMPOSTABLES.put(TechnologicaItems.CORN.get().asItem(), 0.65F);
+        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.RICE.get().asItem(), 0.65F);
         ComposterBlock.COMPOSTABLES.put(TechnologicaItems.GINGER.get().asItem(), 0.65F);
         ComposterBlock.COMPOSTABLES.put(TechnologicaItems.SWEET_POTATO.get().asItem(), 0.65F);
 	}

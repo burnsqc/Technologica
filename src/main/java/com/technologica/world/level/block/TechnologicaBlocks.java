@@ -103,12 +103,13 @@ public class TechnologicaBlocks {
 	 * FLORA
 	 */
 	
-	public static final RegistryObject<Block> BARLEY = BLOCKS.register("barley", () -> grainCropBlock(TechnologicaItems.BARLEY_SEEDS)); //DONE
-	public static final RegistryObject<Block> OATS = BLOCKS.register("oats", () -> grainCropBlock(TechnologicaItems.OATS_SEEDS)); //DONE
-	public static final RegistryObject<Block> RYE = BLOCKS.register("rye", () -> grainCropBlock(TechnologicaItems.RYE_SEEDS)); //DONE
-	public static final RegistryObject<Block> CORN = BLOCKS.register("corn", () -> new TallCropsBlock(TechnologicaItems.CORN_SEEDS)); //DONE
+	public static final RegistryObject<Block> BARLEY = BLOCKS.register("barley", () -> grainCropBlock(TechnologicaItems.BARLEY_SEEDS));
+	public static final RegistryObject<Block> OATS = BLOCKS.register("oats", () -> grainCropBlock(TechnologicaItems.OATS_SEEDS));
+	public static final RegistryObject<Block> RYE = BLOCKS.register("rye", () -> grainCropBlock(TechnologicaItems.RYE_SEEDS));
+	public static final RegistryObject<Block> CORN = BLOCKS.register("corn", () -> new TallCropsBlock(TechnologicaItems.CORN_SEEDS));
+	public static final RegistryObject<Block> RICE = BLOCKS.register("rice", () -> new WaterCropsBlock(TechnologicaItems.RICE_SEEDS));
 	
-	public static final RegistryObject<Block> SWEET_POTATOES = BLOCKS.register("sweet_potatoes", () -> tuberCropBlock(TechnologicaItems.SWEET_POTATO)); //DONE
+	public static final RegistryObject<Block> SWEET_POTATOES = BLOCKS.register("sweet_potatoes", () -> tuberCropBlock(TechnologicaItems.SWEET_POTATO));
 	public static final RegistryObject<Block> GINGER = BLOCKS.register("ginger", () -> tuberCropBlock(TechnologicaItems.GINGER));
 	
 	public static final RegistryObject<Block> BLACKBERRY_BUSH = BLOCKS.register("blackberry_bush", () -> berryBushBlock(TechnologicaItems.BLACKBERRY));
@@ -121,7 +122,6 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> CELERY_CROP = BLOCKS.register("celery_crop", () -> grainCropBlock(TechnologicaItems.CELERY_SEEDS));
     public static final RegistryObject<Block> CHILI_PEPPER_CROP = BLOCKS.register("chili_pepper_crop", () -> grainCropBlock(TechnologicaItems.CHILI_PEPPER_SEEDS));
     public static final RegistryObject<Block> COFFEE_BEAN_CROP = BLOCKS.register("coffee_bean_crop", () -> grainCropBlock(TechnologicaItems.COFFEE_BEANS));    
-    
     public static final RegistryObject<Block> COTTON_CROP = BLOCKS.register("cotton_crop", () -> grainCropBlock(TechnologicaItems.COTTON_SEEDS));
     public static final RegistryObject<Block> CRANBERRY_CROP = BLOCKS.register("cranberry", () -> new WaterCropsBlock(TechnologicaItems.CRANBERRY_SEEDS));
     public static final RegistryObject<Block> CUCUMBER_CROP = BLOCKS.register("cucumber_crop", () -> grainCropBlock(TechnologicaItems.CUCUMBER_SEEDS));
@@ -137,7 +137,6 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> PURPLE_CABBAGE_CROP = BLOCKS.register("purple_cabbage_crop", () -> grainCropBlock(TechnologicaItems.PURPLE_CABBAGE_SEEDS));
     public static final RegistryObject<Block> RADISH_CROP = BLOCKS.register("radish_crop", () -> grainCropBlock(TechnologicaItems.RADISH_SEEDS));
     public static final RegistryObject<Block> RED_BEAN_CROP = BLOCKS.register("red_bean_crop", () -> grainCropBlock(TechnologicaItems.RED_BEANS));
-    public static final RegistryObject<Block> RICE_CROP = BLOCKS.register("rice", () -> new WaterCropsBlock(TechnologicaItems.RICE_SEEDS));
     public static final RegistryObject<Block> SOYBEAN_CROP = BLOCKS.register("soybean_crop", () -> grainCropBlock(TechnologicaItems.SOYBEANS));
     public static final RegistryObject<Block> SQUASH_CROP = BLOCKS.register("squash_crop", () -> grainCropBlock(TechnologicaItems.SQUASH_SEEDS));
     public static final RegistryObject<Block> TEA_CROP = BLOCKS.register("tea_crop", () -> grainCropBlock(TechnologicaItems.TEA_SEEDS));
@@ -970,7 +969,7 @@ public class TechnologicaBlocks {
      * VANILLA REPLICATORS
      */
     
-    private static CropBlock grainCropBlock(Supplier<Item> seeds) { //DONE
+    private static CropBlock grainCropBlock(Supplier<Item> seeds) {
     	return new CropBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP)) {
     		@Override
     		protected ItemLike getBaseSeedId() {
@@ -979,7 +978,7 @@ public class TechnologicaBlocks {
     	};
     }
     
-    private static PotatoBlock tuberCropBlock(Supplier<Item> yield) { //DONE
+    private static PotatoBlock tuberCropBlock(Supplier<Item> yield) {
     	return new PotatoBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP)) {
     		@Override
     		protected ItemLike getBaseSeedId() {
@@ -1011,6 +1010,16 @@ public class TechnologicaBlocks {
     				return super.use(p_57275_, p_57276_, p_57277_, p_57278_, p_57279_, p_57280_);
     			}
     		}
+    		
+    		@Override
+    		public int getFlammability(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
+        		return 60;
+        	}
+
+        	@Override
+        	public int getFireSpreadSpeed(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
+        		return 100;
+        	}
     	};
     }
     

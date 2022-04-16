@@ -45,12 +45,13 @@ public class TechnologicaItems {
 	 * FLORA
 	 */
 	
-	public static final RegistryObject<Item> BARLEY_SEEDS = ITEMS.register("barley_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.BARLEY.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA))); //DONE
-	public static final RegistryObject<Item> OATS_SEEDS = ITEMS.register("oats_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.OATS.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA))); //DONE
-	public static final RegistryObject<Item> RYE_SEEDS = ITEMS.register("rye_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.RYE.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA))); //DONE
-	public static final RegistryObject<Item> CORN_SEEDS = ITEMS.register("corn_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.CORN.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA))); //DONE
+	public static final RegistryObject<Item> BARLEY_SEEDS = ITEMS.register("barley_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.BARLEY.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
+	public static final RegistryObject<Item> OATS_SEEDS = ITEMS.register("oats_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.OATS.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
+	public static final RegistryObject<Item> RYE_SEEDS = ITEMS.register("rye_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.RYE.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
+	public static final RegistryObject<Item> CORN_SEEDS = ITEMS.register("corn_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.CORN.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
+	public static final RegistryObject<Item> RICE_SEEDS = ITEMS.register("rice_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.RICE.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
 	
-	public static final RegistryObject<Item> SWEET_POTATO = ITEMS.register("sweet_potato", () -> new ItemNameBlockItem(TechnologicaBlocks.SWEET_POTATOES.get(), new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.SWEET_POTATO))); //DONE
+	public static final RegistryObject<Item> SWEET_POTATO = ITEMS.register("sweet_potato", () -> new ItemNameBlockItem(TechnologicaBlocks.SWEET_POTATOES.get(), new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.SWEET_POTATO)));
 	public static final RegistryObject<Item> GINGER = ITEMS.register("ginger", () -> new ItemNameBlockItem(TechnologicaBlocks.GINGER.get(), new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.GINGER)));
 	
 	public static final RegistryObject<Item> BLACKBERRY = ITEMS.register("blackberry", () -> new ItemNameBlockItem(TechnologicaBlocks.BLACKBERRY_BUSH.get(), new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.BLACKBERRY)));
@@ -79,7 +80,6 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> PURPLE_CABBAGE_SEEDS = ITEMS.register("purple_cabbage_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.PURPLE_CABBAGE_CROP.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
     public static final RegistryObject<Item> RADISH_SEEDS = ITEMS.register("radish_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.RADISH_CROP.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
     public static final RegistryObject<Item> RED_BEANS = ITEMS.register("red_beans", () -> new ItemNameBlockItem(TechnologicaBlocks.RED_BEAN_CROP.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
-    public static final RegistryObject<Item> RICE_SEEDS = ITEMS.register("rice_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.RICE_CROP.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
     public static final RegistryObject<Item> SOYBEANS = ITEMS.register("soybeans", () -> new ItemNameBlockItem(TechnologicaBlocks.SOYBEAN_CROP.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
     public static final RegistryObject<Item> SQUASH_SEEDS = ITEMS.register("squash_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.SQUASH_CROP.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
     public static final RegistryObject<Item> TEA_SEEDS = ITEMS.register("tea_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.TEA_CROP.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));

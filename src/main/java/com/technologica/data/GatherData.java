@@ -1,13 +1,11 @@
-package com.technologica.setup;
+package com.technologica.data;
 
-import com.technologica.data.TechnologicaBlockStateProvider;
-import com.technologica.data.TechnologicaItemModelProvider;
-import com.technologica.data.TechnologicaLanguageProvider;
+import com.technologica.data.advancements.TechnologicaAdvancementProvider;
 import com.technologica.data.loot.TechnologicaLootTableProvider;
 import com.technologica.data.recipes.TechnologicaRecipeProvider;
+import com.technologica.data.tags.TechnologicaBlockTagsProvider;
 import com.technologica.data.tags.TechnologicaFluidTagsProvider;
 import com.technologica.data.tags.TechnologicaItemTagsProvider;
-import com.technologica.data.tags.TechnologicaBlockTagsProvider;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -30,6 +28,7 @@ public class GatherData {
 			generator.addProvider(technologicaBlockTagsProvider);
 			generator.addProvider(new TechnologicaItemTagsProvider(generator, technologicaBlockTagsProvider, helper));
 			generator.addProvider(new TechnologicaRecipeProvider(generator));
+			generator.addProvider(new TechnologicaAdvancementProvider(generator, helper));
 			generator.addProvider(new TechnologicaLootTableProvider(generator));
 		}	
 	}

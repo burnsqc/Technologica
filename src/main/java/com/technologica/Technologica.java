@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.technologica.core.particles.TechnologicaParticleTypes;
+import com.technologica.data.GatherData;
 import com.technologica.listeners.BadLuckBananaWhenFishing;
 import com.technologica.listeners.DisableLogDrops;
 import com.technologica.listeners.DropBarkOnLogStrip;
@@ -18,7 +19,6 @@ import com.technologica.listeners.WaterWalk;
 import com.technologica.setup.ClientSetup;
 import com.technologica.setup.CommonSetup;
 import com.technologica.setup.Config;
-import com.technologica.setup.GatherData;
 import com.technologica.setup.ParticleSetup;
 import com.technologica.setup.VanillaBiomeModifier;
 import com.technologica.setup.VanillaEntityModifier;

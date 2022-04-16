@@ -1370,7 +1370,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		tallCropBlock(TechnologicaBlocks.CORN.get());
 		tallCropBlock(TechnologicaBlocks.PEPPERCORN_CROP.get());
 		tallCropBlock(TechnologicaBlocks.CRANBERRY_CROP.get());
-		tallCropBlock(TechnologicaBlocks.RICE_CROP.get());
+		tallCropBlock(TechnologicaBlocks.RICE.get());
 	}
 	public void saplingBlockNew() {
 		simpleBlock(TechnologicaBlocks.APRICOT_SAPLING.get(), models().cross(ResourceLocationHelper.getPath(TechnologicaBlocks.APRICOT_SAPLING.get()), blockTexture(TechnologicaBlocks.APRICOT_SAPLING.get())));
