@@ -34,12 +34,10 @@ public class SlothModel<T extends Sloth> extends QuadrupedModel<T> {
 	PartDefinition lefthindlegdefinition = partdefinition.addOrReplaceChild("left_hind_leg", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, 0.0F, 0.0F, 2.0F, 6.0F, 2.0F), PartPose.offset(2.0F, 20.0F, 3.0F));
 	PartDefinition rightfrontlegdefinition = partdefinition.addOrReplaceChild("right_front_leg", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, 0.0F, -2.0F, 2.0F, 6.0F, 2.0F), PartPose.offset(-2.0F, 20.0F, -3.0F));
 	PartDefinition leftfrontlegdefinition = partdefinition.addOrReplaceChild("left_front_leg", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, 0.0F, -2.0F, 2.0F, 6.0F, 2.0F), PartPose.offset(2.0F, 20.0F, -3.0F));
-
 	righthindlegdefinition.addOrReplaceChild("legBackRightLower", CubeListBuilder.create().texOffs(22, 0).addBox(-1.0F, 0.0F, 0.0F, 2.0F, 4.0F, 2.0F).texOffs(0, 16).addBox(0.0F, 4.0F, 0.0F, 1.0F, 3.0F, 1.0F).texOffs(0, 16).addBox(-1.0F, 4.0F, 0.0F, 1.0F, 3.0F, 1.0F), PartPose.offset(0.0F, 6.0F, 0.0F));
 	lefthindlegdefinition.addOrReplaceChild("legBackLeftLower", CubeListBuilder.create().texOffs(22, 0).addBox(-1.0F, 0.0F, 0.0F, 2.0F, 4.0F, 2.0F).texOffs(0, 16).addBox(-1.0F, 4.0F, 0.0F, 1.0F, 3.0F, 1.0F).texOffs(0, 16).addBox(0.0F, 4.0F, 0.0F, 1.0F, 3.0F, 1.0F), PartPose.offset(0.0F, 6.0F, 0.0F));
 	rightfrontlegdefinition.addOrReplaceChild("legFrontRightLower", CubeListBuilder.create().texOffs(22, 0).addBox(-1.0F, 0.0F, -2.0F, 2.0F, 4.0F, 2.0F).texOffs(0, 16).addBox(0.0F, 4.0F, -1.0F, 1.0F, 3.0F, 1.0F).texOffs(0, 16).addBox(-1.0F, 4.0F, -1.0F, 1.0F, 3.0F, 1.0F), PartPose.offset(0.0F, 6.0F, 0.0F));
 	leftfrontlegdefinition.addOrReplaceChild("legFrontLeftLower", CubeListBuilder.create().texOffs(22, 0).addBox(-1.0F, 0.0F, -2.0F, 2.0F, 4.0F, 2.0F).texOffs(0, 16).addBox(-1.0F, 4.0F, -1.0F, 1.0F, 3.0F, 1.0F).texOffs(0, 16).addBox(0.0F, 4.0F, -1.0F, 1.0F, 3.0F, 1.0F), PartPose.offset(0.0F, 6.0F, 0.0F));
-
 	return LayerDefinition.create(meshdefinition, 32, 32);
     }
 

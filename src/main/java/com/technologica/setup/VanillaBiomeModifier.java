@@ -16,7 +16,7 @@ public class VanillaBiomeModifier {
 	if (biomeIn.getName().getPath().equals("jungle")) {
 	    biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(TechnologicaVegetationPlacements.TREES_MODIFIED_JUNGLE);
 	    // biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.GORILLA.get(), 100, 1, 5));
-	    // biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.SLOTH.get(), 100, 1, 13));
+	    biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.SLOTH.get(), 100, 1, 13));
 	}
 
 	else if (biomeIn.getName().getPath().equals("sparse_jungle")) {
@@ -120,7 +120,7 @@ public class VanillaBiomeModifier {
 	}
 
 	else if (biomeIn.getName().getPath().equals("ice_spikes")) {
-	    // biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.PENGUIN.get(), 100, 5, 10));
+	    biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.PENGUIN.get(), 100, 5, 10));
 	}
 
 	else if (biomeIn.getCategory().equals(Biome.BiomeCategory.DESERT)) {
