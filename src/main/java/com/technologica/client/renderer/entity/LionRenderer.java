@@ -2,6 +2,7 @@ package com.technologica.client.renderer.entity;
 
 import com.technologica.Technologica;
 import com.technologica.client.model.LionModel;
+import com.technologica.client.model.geom.TechnologicaModelLayers;
 import com.technologica.world.entity.animal.Lion;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -12,7 +13,7 @@ public final class LionRenderer extends MobRenderer<Lion, LionModel<Lion>> {
 	private static final ResourceLocation LION_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/lion.png");
 
 	public LionRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new LionModel<>(), 1.1F);
+		super(renderManagerIn, new LionModel<>(renderManagerIn.bakeLayer(TechnologicaModelLayers.LION)), 1.1F);
 	}
 
 	@Override
