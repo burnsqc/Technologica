@@ -21,7 +21,7 @@ import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class TechnologicaWorkAtComposter extends WorkAtPoi {
-	private static final List<Item> COMPOSTABLE_ITEMS = ImmutableList.of(Items.WHEAT_SEEDS, TechnologicaItems.BARLEY_SEEDS.get(), TechnologicaItems.OATS_SEEDS.get(), TechnologicaItems.RYE_SEEDS.get(), TechnologicaItems.CORN_SEEDS.get(), Items.BEETROOT_SEEDS);
+	private static final List<Item> COMPOSTABLE_ITEMS = ImmutableList.of(Items.WHEAT_SEEDS, TechnologicaItems.BARLEY_SEEDS.get(), TechnologicaItems.OATS_SEEDS.get(), TechnologicaItems.RYE_SEEDS.get(), TechnologicaItems.CORN_SEEDS.get(), Items.BEETROOT_SEEDS, TechnologicaItems.ONION_SEEDS.get(), TechnologicaItems.RADISH_SEEDS.get(), TechnologicaItems.TURNIP_SEEDS.get());
 
 	protected void useWorkstation(ServerLevel p_24790_, Villager p_24791_) {
 		Optional<GlobalPos> optional = p_24791_.getBrain().getMemory(MemoryModuleType.JOB_SITE);

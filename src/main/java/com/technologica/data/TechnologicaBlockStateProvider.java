@@ -11,6 +11,7 @@ import com.technologica.world.level.block.state.properties.TechnologicaBlockStat
 import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.BeetrootBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.DoorBlock;
@@ -1336,36 +1337,36 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 	private void cropBlockNew() {
 		cropBlock(TechnologicaBlocks.ASPARAGUS_CROP.get());
 		cropBlock(TechnologicaBlocks.BARLEY.get());
-		cropBlock3(TechnologicaBlocks.BLACKBERRY_BUSH.get());
-		cropBlock3(TechnologicaBlocks.BLUEBERRY_BUSH.get());
+		cropBlock4(TechnologicaBlocks.BLACKBERRY_BUSH.get());
+		cropBlock4(TechnologicaBlocks.BLUEBERRY_BUSH.get());
 		cropBlock(TechnologicaBlocks.BROCCOLI_CROP.get());
 		cropBlock(TechnologicaBlocks.CELERY_CROP.get());
 		cropBlock(TechnologicaBlocks.CHILI_PEPPER_CROP.get());
 		cropBlock(TechnologicaBlocks.COFFEE_BEAN_CROP.get());
 		cropBlock(TechnologicaBlocks.COTTON_CROP.get());
 		cropBlock(TechnologicaBlocks.CUCUMBER_CROP.get());
-		cropBlock(TechnologicaBlocks.GARLIC_CROP.get());
+		cropBlock2(TechnologicaBlocks.GARLIC.get());
 		cropBlock2(TechnologicaBlocks.GINGER.get());
 		cropBlock(TechnologicaBlocks.GRAPE_CROP.get());
 		cropBlock(TechnologicaBlocks.LETTUCE_CROP.get());
 		cropBlock(TechnologicaBlocks.MUSTARD_GREENS_CROP.get());
 		cropBlock(TechnologicaBlocks.OATS.get());
-		cropBlock(TechnologicaBlocks.ONION_CROP.get());
+		cropBlock3(TechnologicaBlocks.ONIONS.get());
 		cropBlock(TechnologicaBlocks.PEA_CROP.get());
-		cropBlock(TechnologicaBlocks.PEANUT_CROP.get());
+		cropBlock2(TechnologicaBlocks.PEANUTS.get());
 		cropBlock(TechnologicaBlocks.PINEAPPLE_CROP.get());
 		cropBlock(TechnologicaBlocks.PURPLE_CABBAGE_CROP.get());
-		cropBlock(TechnologicaBlocks.RADISH_CROP.get());
-		cropBlock3(TechnologicaBlocks.RASPBERRY_BUSH.get());
+		cropBlock3(TechnologicaBlocks.RADISHES.get());
+		cropBlock4(TechnologicaBlocks.RASPBERRY_BUSH.get());
 		cropBlock(TechnologicaBlocks.RED_BEAN_CROP.get());
 		cropBlock(TechnologicaBlocks.RYE.get());
 		cropBlock(TechnologicaBlocks.SOYBEAN_CROP.get());
-		cropBlock3(TechnologicaBlocks.STRAWBERRY_BUSH.get());
+		cropBlock4(TechnologicaBlocks.STRAWBERRY_BUSH.get());
 		cropBlock(TechnologicaBlocks.SQUASH_CROP.get());
 		cropBlock2(TechnologicaBlocks.SWEET_POTATOES.get());
 		cropBlock(TechnologicaBlocks.TEA_CROP.get());
 		cropBlock(TechnologicaBlocks.TOMATO_CROP.get());
-		cropBlock(TechnologicaBlocks.TURNIP_CROP.get());
+		cropBlock3(TechnologicaBlocks.TURNIPS.get());
 		cropBlock(TechnologicaBlocks.ZUCCHINI_CROP.get());
 		tallCropBlock(TechnologicaBlocks.CORN.get());
 		tallCropBlock(TechnologicaBlocks.PEPPERCORN_CROP.get());
@@ -1704,6 +1705,14 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 	}
 	
 	public void cropBlock3(Block block) {
+		getVariantBuilder(block)
+			.partialState().with(BeetrootBlock.AGE, 0).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage0", ResourceLocationHelper.extend(blockTexture(block), "_stage0"))).addModel()
+			.partialState().with(BeetrootBlock.AGE, 1).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage1", ResourceLocationHelper.extend(blockTexture(block), "_stage1"))).addModel()
+			.partialState().with(BeetrootBlock.AGE, 2).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage2", ResourceLocationHelper.extend(blockTexture(block), "_stage2"))).addModel()
+			.partialState().with(BeetrootBlock.AGE, 3).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage3", ResourceLocationHelper.extend(blockTexture(block), "_stage3"))).addModel();
+	}
+	
+	public void cropBlock4(Block block) {
 		getVariantBuilder(block)
 			.partialState().with(SweetBerryBushBlock.AGE, 0).modelForState().modelFile(models().cross(ResourceLocationHelper.getPath(block) + "_stage0", ResourceLocationHelper.extend(blockTexture(block), "_stage0"))).addModel()
 			.partialState().with(SweetBerryBushBlock.AGE, 1).modelForState().modelFile(models().cross(ResourceLocationHelper.getPath(block) + "_stage1", ResourceLocationHelper.extend(blockTexture(block), "_stage1"))).addModel()

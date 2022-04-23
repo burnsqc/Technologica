@@ -28,14 +28,12 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.COTTON_SEEDS.get());
 		simpleItem(TechnologicaItems.CRANBERRY_SEEDS.get());
 		simpleItem(TechnologicaItems.CUCUMBER_SEEDS.get());
-		simpleItem(TechnologicaItems.GARLIC_SEEDS.get());
 		simpleItem(TechnologicaItems.GRAPE_SEEDS.get());
 		simpleItem(TechnologicaItems.LETTUCE_SEEDS.get());
 		simpleItem(TechnologicaItems.MUSTARD_SEEDS.get());
 		simpleItem(TechnologicaItems.OATS_SEEDS.get());
 		simpleItem(TechnologicaItems.ONION_SEEDS.get());
 		simpleItem(TechnologicaItems.PEA_SEEDS.get());
-		simpleItem(TechnologicaItems.PEANUT_SEEDS.get());
 		simpleItem(TechnologicaItems.PEPPERCORN_SEEDS.get());
 		simpleItem(TechnologicaItems.PINEAPPLE_SEEDS.get());
 		simpleItem(TechnologicaItems.PURPLE_CABBAGE_SEEDS.get());

@@ -2,6 +2,7 @@ package com.technologica.client.renderer.entity;
 
 import com.technologica.Technologica;
 import com.technologica.client.model.TurkeyModel;
+import com.technologica.client.model.geom.TechnologicaModelLayers;
 import com.technologica.world.entity.animal.Turkey;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -13,7 +14,7 @@ public final class TurkeyRenderer extends MobRenderer<Turkey, TurkeyModel<Turkey
 	private static final ResourceLocation TURKEY_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/turkey.png");
 
 	public TurkeyRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new TurkeyModel<>(), 0.4F);
+		super(renderManagerIn, new TurkeyModel<>(renderManagerIn.bakeLayer(TechnologicaModelLayers.TURKEY)), 0.4F);
 	}
 
 	@Override

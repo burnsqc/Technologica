@@ -8,7 +8,6 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.technologica.world.item.TechnologicaItems;
-import com.technologica.world.level.block.TechnologicaBlocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -24,9 +23,7 @@ import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -40,8 +37,7 @@ public class TechnologicaHarvestFarmland extends Behavior<Villager> {
 	private final List<BlockPos> validFarmlandAroundVillager = Lists.newArrayList();
 
 	public TechnologicaHarvestFarmland() {
-		super(ImmutableMap.of(MemoryModuleType.LOOK_TARGET, MemoryStatus.VALUE_ABSENT, MemoryModuleType.WALK_TARGET,
-				MemoryStatus.VALUE_ABSENT, MemoryModuleType.SECONDARY_JOB_SITE, MemoryStatus.VALUE_PRESENT));
+		super(ImmutableMap.of(MemoryModuleType.LOOK_TARGET, MemoryStatus.VALUE_ABSENT, MemoryModuleType.WALK_TARGET, MemoryStatus.VALUE_ABSENT, MemoryModuleType.SECONDARY_JOB_SITE, MemoryStatus.VALUE_PRESENT));
 	}
 
 	protected boolean checkExtraStartConditions(ServerLevel p_23174_, Villager p_23175_) {
@@ -111,43 +107,9 @@ public class TechnologicaHarvestFarmland extends Behavior<Villager> {
 						ItemStack itemstack = simplecontainer.getItem(i);
 						boolean flag = false;
 						if (!itemstack.isEmpty()) {
-							if (itemstack.is(Items.WHEAT_SEEDS)) {
-		                        p_23196_.setBlock(this.aboveFarmlandPos, Blocks.WHEAT.defaultBlockState(), 3);
-		                        flag = true;
-							} else if (itemstack.is(Items.POTATO)) {
-								p_23196_.setBlock(this.aboveFarmlandPos, Blocks.POTATOES.defaultBlockState(), 3);
-								flag = true;
-							} else if (itemstack.is(Items.CARROT)) {
-								p_23196_.setBlock(this.aboveFarmlandPos, Blocks.CARROTS.defaultBlockState(), 3);
-								flag = true;
-							} else if (itemstack.is(Items.BEETROOT_SEEDS)) {
-								p_23196_.setBlock(this.aboveFarmlandPos, Blocks.BEETROOTS.defaultBlockState(), 3);
-								flag = true;
-							} else if (itemstack.is(TechnologicaItems.BARLEY_SEEDS.get())) {
-								p_23196_.setBlock(this.aboveFarmlandPos, TechnologicaBlocks.BARLEY.get().defaultBlockState(), 3);
-								flag = true;
-							} else if (itemstack.is(TechnologicaItems.OATS_SEEDS.get())) {
-								p_23196_.setBlock(this.aboveFarmlandPos, TechnologicaBlocks.OATS.get().defaultBlockState(), 3);
-								flag = true;
-							} else if (itemstack.is(TechnologicaItems.RYE_SEEDS.get())) {
-								p_23196_.setBlock(this.aboveFarmlandPos, TechnologicaBlocks.RYE.get().defaultBlockState(), 3);
-								flag = true;
-							} else if (itemstack.is(TechnologicaItems.CORN_SEEDS.get())) {
-								p_23196_.setBlock(this.aboveFarmlandPos, TechnologicaBlocks.CORN.get().defaultBlockState(), 3);
-								flag = true;
-							} else if (itemstack.is(TechnologicaItems.GINGER.get())) {
-								p_23196_.setBlock(this.aboveFarmlandPos, TechnologicaBlocks.GINGER.get().defaultBlockState(), 3);
-								flag = true;
-							} else if (itemstack.is(TechnologicaItems.SWEET_POTATO.get())) {
-								p_23196_.setBlock(this.aboveFarmlandPos, TechnologicaBlocks.SWEET_POTATOES.get().defaultBlockState(), 3);
-								flag = true;
-							} else if (itemstack.getItem() instanceof net.minecraftforge.common.IPlantable) {
-								if (((net.minecraftforge.common.IPlantable) itemstack.getItem()).getPlantType(p_23196_,
-										aboveFarmlandPos) == net.minecraftforge.common.PlantType.CROP) {
-									p_23196_.setBlock(aboveFarmlandPos,
-											((net.minecraftforge.common.IPlantable) itemstack.getItem())
-													.getPlant(p_23196_, aboveFarmlandPos),
-											3);
+							if (itemstack.getItem() instanceof net.minecraftforge.common.IPlantable) {
+								if (((net.minecraftforge.common.IPlantable) itemstack.getItem()).getPlantType(p_23196_, aboveFarmlandPos) == net.minecraftforge.common.PlantType.CROP) {
+									p_23196_.setBlock(aboveFarmlandPos, ((net.minecraftforge.common.IPlantable) itemstack.getItem()).getPlant(p_23196_, aboveFarmlandPos), 3);
 									flag = true;
 								}
 							}
@@ -188,6 +150,6 @@ public class TechnologicaHarvestFarmland extends Behavior<Villager> {
 	}
 
 	public boolean hasFarmSeeds(Villager p_23197_) {
-		return p_23197_.getInventory().hasAnyOf(ImmutableSet.of(TechnologicaItems.BARLEY_SEEDS.get(), TechnologicaItems.OATS_SEEDS.get(), TechnologicaItems.RYE_SEEDS.get(), TechnologicaItems.CORN_SEEDS.get(), TechnologicaItems.GINGER.get(), TechnologicaItems.SWEET_POTATO.get()));
+		return p_23197_.getInventory().hasAnyOf(ImmutableSet.of(TechnologicaItems.BARLEY_SEEDS.get(), TechnologicaItems.OATS_SEEDS.get(), TechnologicaItems.RYE_SEEDS.get(), TechnologicaItems.CORN_SEEDS.get(), TechnologicaItems.GARLIC.get(), TechnologicaItems.GINGER.get(), TechnologicaItems.SWEET_POTATO.get(), TechnologicaItems.PEANUT.get(), TechnologicaItems.ONION_SEEDS.get(), TechnologicaItems.RADISH_SEEDS.get(), TechnologicaItems.TURNIP_SEEDS.get()));
 	}
 }

@@ -58,7 +58,7 @@ public class RegisterEntityAttributes {
 		event.put(TechnologicaEntityType.CAMEL.get(), Camel.registerAttributes().build());
 		event.put(TechnologicaEntityType.COBRA.get(), Cobra.registerAttributes().build());
 		event.put(TechnologicaEntityType.COTTONMOUTH.get(), Cottonmouth.registerAttributes().build());
-		event.put(TechnologicaEntityType.COYOTE.get(), Coyote.registerAttributes().build());
+		event.put(TechnologicaEntityType.COYOTE.get(), Coyote.createAttributes().build());
 		event.put(TechnologicaEntityType.CRAB.get(), Crab.registerAttributes().build());
 		event.put(TechnologicaEntityType.DEER.get(), Deer.registerAttributes().build());
 		event.put(TechnologicaEntityType.DUCK.get(), Duck.registerAttributes().build());
