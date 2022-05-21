@@ -11,16 +11,16 @@ import net.minecraft.data.advancements.AdvancementProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class TechnologicaAdvancementProvider extends AdvancementProvider {
-	private final List<Consumer<Consumer<Advancement>>> tabs = ImmutableList.of(new TechnologicaHusbandryAdvancements(fileHelper));
+    private final List<Consumer<Consumer<Advancement>>> tabs = ImmutableList.of(new TechnologicaHusbandryAdvancements(fileHelper));
 
-	public TechnologicaAdvancementProvider(DataGenerator generatorIn, ExistingFileHelper fileHelperIn) {
-		super(generatorIn, fileHelperIn);
-	}
+    public TechnologicaAdvancementProvider(DataGenerator generatorIn, ExistingFileHelper fileHelperIn) {
+	super(generatorIn, fileHelperIn);
+    }
 
-	@Override
-	protected void registerAdvancements(Consumer<Advancement> consumer, net.minecraftforge.common.data.ExistingFileHelper fileHelper) {
-		for (Consumer<Consumer<Advancement>> consumer1 : this.tabs) {
-			consumer1.accept(consumer);
-		}
+    @Override
+    protected void registerAdvancements(Consumer<Advancement> consumer, net.minecraftforge.common.data.ExistingFileHelper fileHelper) {
+	for (Consumer<Consumer<Advancement>> consumer1 : this.tabs) {
+	    consumer1.accept(consumer);
 	}
+    }
 }

@@ -10,27 +10,19 @@ import net.minecraft.server.level.ServerLevel;
 
 public class Deer extends AbstractHorse {
 
-	public Deer(EntityType<? extends Deer> type, Level worldIn) {
-		super(type, worldIn);
-	}
+    public int earCounter;
 
-	@Override
-	public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob mate) {
-		return null;
-	}
-	
-	public static AttributeSupplier.Builder registerAttributes() {
-		return AttributeSupplier.builder()
-				.add(Attributes.MAX_HEALTH, 10.0D)
-				.add(Attributes.MOVEMENT_SPEED, 0.25D)
-				.add(Attributes.FOLLOW_RANGE, 16.0D)
-				.add(Attributes.ATTACK_KNOCKBACK)
-				.add(Attributes.KNOCKBACK_RESISTANCE)
-				.add(Attributes.ARMOR)
-				.add(Attributes.ARMOR_TOUGHNESS)
-				.add(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get())
-				.add(net.minecraftforge.common.ForgeMod.NAMETAG_DISTANCE.get())
-				.add(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get());
-	}
+    public Deer(EntityType<? extends Deer> type, Level worldIn) {
+	super(type, worldIn);
+    }
+
+    @Override
+    public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob mate) {
+	return null;
+    }
+
+    public static AttributeSupplier.Builder registerAttributes() {
+	return AttributeSupplier.builder().add(Attributes.MAX_HEALTH, 10.0D).add(Attributes.MOVEMENT_SPEED, 0.25D).add(Attributes.FOLLOW_RANGE, 16.0D).add(Attributes.ATTACK_KNOCKBACK).add(Attributes.KNOCKBACK_RESISTANCE).add(Attributes.ARMOR).add(Attributes.ARMOR_TOUGHNESS).add(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get()).add(net.minecraftforge.common.ForgeMod.NAMETAG_DISTANCE.get()).add(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get());
+    }
 
 }

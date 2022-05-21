@@ -83,7 +83,7 @@ public class VanillaBiomeModifier {
 	    biomeIn.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION).add(TechnologicaVegetationPlacements.TREES_MODIFIED_SAVANNA);
 	    // biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.ELEPHANT.get(), 100, 1, 3));
 	    // biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.GIRAFFE.get(), 100, 1, 3));
-	    // biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.LION.get(), 100, 1, 3));
+	    biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.LION.get(), 100, 1, 3));
 	    // biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.OSTRICH.get(), 100, 1, 3));
 	    // biomeIn.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(TechnologicaEntityType.ZEBRA.get(), 100, 1, 3));
 	}
