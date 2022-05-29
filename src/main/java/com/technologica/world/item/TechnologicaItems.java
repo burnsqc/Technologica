@@ -968,7 +968,7 @@ public class TechnologicaItems {
     public static final RegistryObject<Item> INFERNAL_BOAT = ITEMS.register("infernal_boat", () -> new VanillaBoatItem(VanillaBoat.Type.INFERNAL, (new Item.Properties()).stacksTo(1).tab(TechnologicaItemGroup.CONSTRUCTION)));
     public static final RegistryObject<Item> MALEVOLENT_BOAT = ITEMS.register("malevolent_boat", () -> new VanillaBoatItem(VanillaBoat.Type.MALEVOLENT, (new Item.Properties()).stacksTo(1).tab(TechnologicaItemGroup.CONSTRUCTION)));
 
-    public static final RegistryObject<Item> GLUE = ITEMS.register("glue", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.CONSTRUCTION)));
+    public static final RegistryObject<Item> GLUE_BOTTLE = ITEMS.register("glue_bottle", () -> new ItemNameBlockItem(TechnologicaBlocks.GLUE.get(), new Item.Properties().tab(TechnologicaItemGroup.CONSTRUCTION)));
 
     /**
      * MACHINERY

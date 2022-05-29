@@ -82,6 +82,7 @@ import net.minecraft.world.level.block.StemBlock;
 import net.minecraft.world.level.block.StemGrownBlock;
 import net.minecraft.world.level.block.SweetBerryBushBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
+import net.minecraft.world.level.block.VineBlock;
 import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.WoodButtonBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -882,6 +883,7 @@ public class TechnologicaBlocks {
     public static final RegistryObject<Block> MOTOR_20HP = BLOCKS.register("motor_20hp", () -> new MotorBlock(400.0F, 240.0F));
     public static final RegistryObject<Block> TREE_TAP = BLOCKS.register("tree_tap", TreeTapBlock::new);
     public static final RegistryObject<Block> SAWMILL = BLOCKS.register("sawmill", SawmillBlock::new);
+    public static final RegistryObject<Block> GLUE = BLOCKS.register("glue", () -> new GlueBlock(BlockBehaviour.Properties.of(Material.REPLACEABLE_PLANT).noCollission().randomTicks().strength(0.2F).sound(SoundType.VINE)));
 
     /*
      * DECORATIVE

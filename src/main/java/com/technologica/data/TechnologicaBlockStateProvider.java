@@ -1344,7 +1344,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		cropBlock(TechnologicaBlocks.CHILI_PEPPER_CROP.get());
 		cropBlock(TechnologicaBlocks.COFFEE_BEAN_CROP.get());
 		cropBlock(TechnologicaBlocks.COTTON_CROP.get());
-		cropBlock(TechnologicaBlocks.CUCUMBERS.get());
+		//cropBlock(TechnologicaBlocks.CUCUMBERS.get()); 
 		cropBlock2(TechnologicaBlocks.GARLIC.get());
 		cropBlock2(TechnologicaBlocks.GINGER.get());
 		cropBlock(TechnologicaBlocks.GRAPE_CROP.get());

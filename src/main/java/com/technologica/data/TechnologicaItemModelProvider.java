@@ -405,7 +405,7 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.SCUBA_PANTS.get());
 		simpleItem(TechnologicaItems.SCUBA_BOOTS.get());
 		
-		simpleItem(TechnologicaItems.GLUE.get());
+		simpleItem(TechnologicaItems.GLUE_BOTTLE.get());
 	}
 	
 	public void simpleItem(Item item) {
