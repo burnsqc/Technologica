@@ -258,6 +258,8 @@ public class ClientSetup {
 			
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.DISPLAY_CASE.get(), RenderType.translucent());
 		
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.GLUE.get(), RenderType.cutoutMipped());
+		
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.FLUORITE_CRYSTAL.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ULEXITE_CRYSTAL.get(), RenderType.translucent());
