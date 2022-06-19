@@ -59,10 +59,10 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 public class Technologica {
 	public static final String MODID = "technologica";
 	public static final Logger LOGGER = LogManager.getLogger();
-	
+
 	public Technologica() {
 		ModLoadingContext.get().registerConfig(Type.COMMON, Config.SPEC, "technologica-common.toml");
-		
+
 		TechnologicaBlocks.init();
 		TechnologicaItems.init();
 		TechnologicaBlockEntityType.init();
@@ -74,7 +74,7 @@ public class Technologica {
 		TechnologicaSoundEvents.init();
 		TechnologicaFeature.init();
 		TechnologicaFoliagePlacers.init();
-		
+
 		FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(Block.class, RegistrationListener::onRegisterBlocks);
 		FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(Item.class, RegistrationListener::onRegisterItems);
 		FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(BlockEntityType.class, RegistrationListener::onRegisterTileEntities);
@@ -87,22 +87,22 @@ public class Technologica {
 		FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(Biome.class, RegistrationListener::onRegisterBiomes);
 		FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(Feature.class, RegistrationListener::onRegisterFeatures);
 		FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(FoliagePlacerType.class, RegistrationListener::onRegisterFoliagePlacers);
-		
+
 		CraftingHelper.register(DisablePlankConditionFactory.Serializer.INSTANCE);
 		CraftingHelper.register(EnablePlankConditionFactory.Serializer.INSTANCE);
-		
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(CommonSetup::init);	//1st event during mod lifecycle startup
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientSetup::init);	//2nd event during mod lifecycle startup
+
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(CommonSetup::init); // 1st event during mod lifecycle startup
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientSetup::init); // 2nd event during mod lifecycle startup
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(GatherData::init);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientSetup::stitch);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(ParticleSetup::init);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(RegisterEntityAttributes::onEntityAttributeCreationEvent);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(RegisterEntityRenderers::onRegisterEntityRenderers);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(RegisterLayerDefinitons::on);
-		
-		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, VanillaBiomeModifier::init);	
-		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, VanillaEntityModifier::init);	
-		
+
+		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, VanillaBiomeModifier::init);
+		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, VanillaEntityModifier::init);
+
 		MinecraftForge.EVENT_BUS.register(new BadLuckBananaWhenFishing());
 		MinecraftForge.EVENT_BUS.register(new LunarLowGrav());
 		MinecraftForge.EVENT_BUS.register(new DropBarkOnLogStrip());
