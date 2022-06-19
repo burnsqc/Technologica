@@ -23,7 +23,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 public class PipeWrenchItem extends DiggerItem {
 	public PipeWrenchItem(Tier tier, int attackDamageIn, float attackSpeedIn, Item.Properties builder) {
-		super((float) attackDamageIn, attackSpeedIn, tier, BlockTags.MINEABLE_WITH_PICKAXE, builder);
+		super(attackDamageIn, attackSpeedIn, tier, BlockTags.MINEABLE_WITH_PICKAXE, builder);
 	}
 
 	@Override
@@ -35,34 +35,32 @@ public class PipeWrenchItem extends DiggerItem {
 	@Override
 	public float getDestroySpeed(ItemStack stack, BlockState state) {
 		Material material = state.getMaterial();
-		return material != Material.METAL && material != Material.HEAVY_METAL && material != Material.STONE
-				? super.getDestroySpeed(stack, state)
-				: this.speed;
+		return material != Material.METAL && material != Material.HEAVY_METAL && material != Material.STONE ? super.getDestroySpeed(stack, state) : this.speed;
 	}
 
 	@Override
 	public InteractionResult useOn(UseOnContext context) {
-   		Level world = context.getLevel();
-   		if (!world.isClientSide) {
-   			BlockPos pos = context.getClickedPos();
-   			BlockState state = world.getBlockState(pos);
-   			if (state.is(TechnologicaBlocks.LINE_SHAFT_HANGER.get())) {
-   				Player player = context.getPlayer();
-   	   			ItemStack stack = player.getItemInHand(context.getHand());
-   	   			ILink linkCapability = stack.getCapability(LinkProvider.LINK_CAP).orElseThrow(NullPointerException::new);
-   				if (!linkCapability.getLinking()) {
-   					linkCapability.startLink(world, pos, state, player);
-   				} else {
-   					linkCapability.stopLink(pos, state);
-   					if (linkCapability.checkAxis() && linkCapability.checkInlinePos() && linkCapability.checkObstructed() && linkCapability.checkDistance() && linkCapability.checkMaterial()) {
-   						linkCapability.createLineShaft();
-   					}
-   				}
-   			}
-   		}
-   		return InteractionResult.PASS;  
-   	}
-	
+		Level world = context.getLevel();
+		if (!world.isClientSide) {
+			BlockPos pos = context.getClickedPos();
+			BlockState state = world.getBlockState(pos);
+			if (state.is(TechnologicaBlocks.LINE_SHAFT_HANGER.get())) {
+				Player player = context.getPlayer();
+				ItemStack stack = player.getItemInHand(context.getHand());
+				ILink linkCapability = stack.getCapability(LinkProvider.LINK_CAP).orElseThrow(NullPointerException::new);
+				if (!linkCapability.getLinking()) {
+					linkCapability.startLink(world, pos, state, player);
+				} else {
+					linkCapability.stopLink(pos, state);
+					if (linkCapability.checkAxis() && linkCapability.checkInlinePos() && linkCapability.checkObstructed() && linkCapability.checkDistance() && linkCapability.checkMaterial()) {
+						linkCapability.createLineShaft();
+					}
+				}
+			}
+		}
+		return InteractionResult.PASS;
+	}
+
 	@Override
 	public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundTag nbt) {
 		return new LinkProvider();
