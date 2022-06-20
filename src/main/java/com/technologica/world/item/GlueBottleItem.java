@@ -5,6 +5,7 @@ import com.technologica.world.level.block.TechnologicaBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -25,7 +26,7 @@ import net.minecraft.world.level.chunk.LevelChunkSection;
 public class GlueBottleItem extends Item implements Vanishable {
 
 	public GlueBottleItem(Properties properties) {
-		super(properties);
+		super(properties.durability(16));
 	}
 
 	@Override
@@ -104,5 +105,12 @@ public class GlueBottleItem extends Item implements Vanishable {
 				}
 			}
 		}
+	}
+
+	@Override
+	public int getBarColor(ItemStack p_150901_) {
+		float stackMaxDamage = this.getMaxDamage(p_150901_);
+		float f = Math.max(0.0F, (stackMaxDamage - p_150901_.getDamageValue()) / stackMaxDamage);
+		return Mth.hsvToRgb(0.9F - 0.3F * f, 1.0F, 1.0F);
 	}
 }
