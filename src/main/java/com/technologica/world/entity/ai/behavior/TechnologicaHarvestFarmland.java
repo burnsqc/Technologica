@@ -40,6 +40,7 @@ public class TechnologicaHarvestFarmland extends Behavior<Villager> {
 		super(ImmutableMap.of(MemoryModuleType.LOOK_TARGET, MemoryStatus.VALUE_ABSENT, MemoryModuleType.WALK_TARGET, MemoryStatus.VALUE_ABSENT, MemoryModuleType.SECONDARY_JOB_SITE, MemoryStatus.VALUE_PRESENT));
 	}
 
+	@Override
 	protected boolean checkExtraStartConditions(ServerLevel p_23174_, Villager p_23175_) {
 		if (!net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(p_23174_, p_23175_)) {
 			return false;
@@ -51,7 +52,7 @@ public class TechnologicaHarvestFarmland extends Behavior<Villager> {
 			for (int i = -1; i <= 1; ++i) {
 				for (int j = -1; j <= 1; ++j) {
 					for (int k = -1; k <= 1; ++k) {
-						blockpos$mutableblockpos.set(p_23175_.getX() + (double) i, p_23175_.getY() + (double) j, p_23175_.getZ() + (double) k);
+						blockpos$mutableblockpos.set(p_23175_.getX() + i, p_23175_.getY() + j, p_23175_.getZ() + k);
 						if (this.validPos(blockpos$mutableblockpos, p_23174_)) {
 							this.validFarmlandAroundVillager.add(new BlockPos(blockpos$mutableblockpos));
 						}
@@ -75,6 +76,7 @@ public class TechnologicaHarvestFarmland extends Behavior<Villager> {
 		return block instanceof CropBlock && ((CropBlock) block).isMaxAge(blockstate) || blockstate.isAir() && block1 instanceof FarmBlock;
 	}
 
+	@Override
 	protected void start(ServerLevel p_23177_, Villager p_23178_, long p_23179_) {
 		if (p_23179_ > this.nextOkStartTime && this.aboveFarmlandPos != null) {
 			p_23178_.getBrain().setMemory(MemoryModuleType.LOOK_TARGET, new BlockPosTracker(this.aboveFarmlandPos));
@@ -83,6 +85,7 @@ public class TechnologicaHarvestFarmland extends Behavior<Villager> {
 
 	}
 
+	@Override
 	protected void stop(ServerLevel p_23188_, Villager p_23189_, long p_23190_) {
 		p_23189_.getBrain().eraseMemory(MemoryModuleType.LOOK_TARGET);
 		p_23189_.getBrain().eraseMemory(MemoryModuleType.WALK_TARGET);
@@ -90,6 +93,7 @@ public class TechnologicaHarvestFarmland extends Behavior<Villager> {
 		this.nextOkStartTime = p_23190_ + 40L;
 	}
 
+	@Override
 	protected void tick(ServerLevel p_23196_, Villager villagerIn, long p_23198_) {
 		if (this.aboveFarmlandPos == null || this.aboveFarmlandPos.closerToCenterThan(villagerIn.position(), 1.0D)) {
 			if (this.aboveFarmlandPos != null && p_23198_ > this.nextOkStartTime) {
@@ -116,9 +120,7 @@ public class TechnologicaHarvestFarmland extends Behavior<Villager> {
 						}
 
 						if (flag) {
-							p_23196_.playSound((Player) null, (double) this.aboveFarmlandPos.getX(),
-									(double) this.aboveFarmlandPos.getY(), (double) this.aboveFarmlandPos.getZ(),
-									SoundEvents.CROP_PLANTED, SoundSource.BLOCKS, 1.0F, 1.0F);
+							p_23196_.playSound((Player) null, this.aboveFarmlandPos.getX(), this.aboveFarmlandPos.getY(), this.aboveFarmlandPos.getZ(), SoundEvents.CROP_PLANTED, SoundSource.BLOCKS, 1.0F, 1.0F);
 							itemstack.shrink(1);
 							if (itemstack.isEmpty()) {
 								simplecontainer.setItem(i, ItemStack.EMPTY);
@@ -133,10 +135,8 @@ public class TechnologicaHarvestFarmland extends Behavior<Villager> {
 					this.aboveFarmlandPos = this.getValidFarmland(p_23196_);
 					if (this.aboveFarmlandPos != null) {
 						this.nextOkStartTime = p_23198_ + 20L;
-						villagerIn.getBrain().setMemory(MemoryModuleType.WALK_TARGET,
-								new WalkTarget(new BlockPosTracker(this.aboveFarmlandPos), 0.5F, 1));
-						villagerIn.getBrain().setMemory(MemoryModuleType.LOOK_TARGET,
-								new BlockPosTracker(this.aboveFarmlandPos));
+						villagerIn.getBrain().setMemory(MemoryModuleType.WALK_TARGET, new WalkTarget(new BlockPosTracker(this.aboveFarmlandPos), 0.5F, 1));
+						villagerIn.getBrain().setMemory(MemoryModuleType.LOOK_TARGET, new BlockPosTracker(this.aboveFarmlandPos));
 					}
 				}
 			}
@@ -145,11 +145,12 @@ public class TechnologicaHarvestFarmland extends Behavior<Villager> {
 		}
 	}
 
+	@Override
 	protected boolean canStillUse(ServerLevel p_23204_, Villager p_23205_, long p_23206_) {
 		return this.timeWorkedSoFar < 200;
 	}
 
 	public boolean hasFarmSeeds(Villager p_23197_) {
-		return p_23197_.getInventory().hasAnyOf(ImmutableSet.of(TechnologicaItems.BARLEY_SEEDS.get(), TechnologicaItems.OATS_SEEDS.get(), TechnologicaItems.RYE_SEEDS.get(), TechnologicaItems.CORN_SEEDS.get(), TechnologicaItems.GARLIC.get(), TechnologicaItems.GINGER.get(), TechnologicaItems.SWEET_POTATO.get(), TechnologicaItems.PEANUT.get(), TechnologicaItems.ONION_SEEDS.get(), TechnologicaItems.RADISH_SEEDS.get(), TechnologicaItems.TURNIP_SEEDS.get()));
+		return p_23197_.getInventory().hasAnyOf(ImmutableSet.of(TechnologicaItems.BARLEY_SEEDS.get(), TechnologicaItems.OATS_SEEDS.get(), TechnologicaItems.RYE_SEEDS.get(), TechnologicaItems.CORN_SEEDS.get(), TechnologicaItems.ASPARAGUS.get(), TechnologicaItems.CHILI_PEPPER.get(), TechnologicaItems.COFFEE_BEANS.get(), TechnologicaItems.GARLIC.get(), TechnologicaItems.GINGER.get(), TechnologicaItems.PEANUT.get(), TechnologicaItems.PEAS.get(), TechnologicaItems.RED_BEANS.get(), TechnologicaItems.SOY_BEANS.get(), TechnologicaItems.SWEET_POTATO.get(), TechnologicaItems.BROCCOLI_SEEDS.get(), TechnologicaItems.CELERY_SEEDS.get(), TechnologicaItems.LETTUCE_SEEDS.get(), TechnologicaItems.MUSTARD_SEEDS.get(), TechnologicaItems.PINEAPPLE_SEEDS.get(), TechnologicaItems.PURPLE_CABBAGE_SEEDS.get(), TechnologicaItems.ONION_SEEDS.get(), TechnologicaItems.PINEAPPLE_SEEDS.get(), TechnologicaItems.RADISH_SEEDS.get(), TechnologicaItems.TEA_SEEDS.get(), TechnologicaItems.TURNIP_SEEDS.get()));
 	}
 }

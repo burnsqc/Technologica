@@ -26,8 +26,8 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.RegistryObject;
 
 public class TechnologicaBlockLoot extends BlockLoot {
-	private static final float[] DEFAULT_SAPLING_DROP_RATES = new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F};
-	
+	private static final float[] DEFAULT_SAPLING_DROP_RATES = new float[] { 0.05F, 0.0625F, 0.083333336F, 0.1F };
+
 	@Override
 	protected void addTables() {
 		this.add(TechnologicaBlocks.BARLEY.get(), createCropDrops(TechnologicaBlocks.BARLEY.get(), TechnologicaItems.BARLEY.get(), TechnologicaItems.BARLEY_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.BARLEY.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
@@ -35,16 +35,31 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		this.add(TechnologicaBlocks.RYE.get(), createCropDrops(TechnologicaBlocks.RYE.get(), TechnologicaItems.RYE.get(), TechnologicaItems.RYE_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.RYE.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
 		this.add(TechnologicaBlocks.CORN.get(), createCropDrops(TechnologicaBlocks.CORN.get(), TechnologicaItems.CORN.get(), TechnologicaItems.CORN_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.CORN.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
 		this.add(TechnologicaBlocks.RICE.get(), createCropDrops(TechnologicaBlocks.RICE.get(), TechnologicaItems.RICE.get(), TechnologicaItems.RICE_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.RICE.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
-		
+
+		this.add(TechnologicaBlocks.ASPARAGUS.get(), applyExplosionDecay(TechnologicaBlocks.ASPARAGUS.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TechnologicaItems.ASPARAGUS.get()))).withPool(LootPool.lootPool().when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.ASPARAGUS.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(PotatoBlock.AGE, 7))).add(LootItem.lootTableItem(TechnologicaItems.ASPARAGUS.get()).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3))))));
+		this.add(TechnologicaBlocks.CHILI_PEPPERS.get(), applyExplosionDecay(TechnologicaBlocks.CHILI_PEPPERS.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TechnologicaItems.CHILI_PEPPER.get()))).withPool(LootPool.lootPool().when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.CHILI_PEPPERS.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(PotatoBlock.AGE, 7))).add(LootItem.lootTableItem(TechnologicaItems.CHILI_PEPPER.get()).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3))))));
+		this.add(TechnologicaBlocks.COFFEE.get(), applyExplosionDecay(TechnologicaBlocks.COFFEE.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TechnologicaItems.COFFEE_BEANS.get()))).withPool(LootPool.lootPool().when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.COFFEE.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(PotatoBlock.AGE, 7))).add(LootItem.lootTableItem(TechnologicaItems.COFFEE_BEANS.get()).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3))))));
 		this.add(TechnologicaBlocks.GARLIC.get(), applyExplosionDecay(TechnologicaBlocks.GARLIC.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TechnologicaItems.GARLIC.get()))).withPool(LootPool.lootPool().when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.GARLIC.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(PotatoBlock.AGE, 7))).add(LootItem.lootTableItem(TechnologicaItems.GARLIC.get()).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3))))));
 		this.add(TechnologicaBlocks.GINGER.get(), applyExplosionDecay(TechnologicaBlocks.GINGER.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TechnologicaItems.GINGER.get()))).withPool(LootPool.lootPool().when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.GINGER.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(PotatoBlock.AGE, 7))).add(LootItem.lootTableItem(TechnologicaItems.GINGER.get()).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3))))));
+		this.add(TechnologicaBlocks.PEAS.get(), applyExplosionDecay(TechnologicaBlocks.PEAS.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TechnologicaItems.PEAS.get()))).withPool(LootPool.lootPool().when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.PEAS.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(PotatoBlock.AGE, 7))).add(LootItem.lootTableItem(TechnologicaItems.PEAS.get()).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3))))));
 		this.add(TechnologicaBlocks.PEANUTS.get(), applyExplosionDecay(TechnologicaBlocks.PEANUTS.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TechnologicaItems.PEANUT.get()))).withPool(LootPool.lootPool().when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.PEANUTS.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(PotatoBlock.AGE, 7))).add(LootItem.lootTableItem(TechnologicaItems.PEANUT.get()).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3))))));
+		this.add(TechnologicaBlocks.RED_BEANS.get(), applyExplosionDecay(TechnologicaBlocks.RED_BEANS.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TechnologicaItems.RED_BEANS.get()))).withPool(LootPool.lootPool().when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.RED_BEANS.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(PotatoBlock.AGE, 7))).add(LootItem.lootTableItem(TechnologicaItems.RED_BEANS.get()).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3))))));
+		this.add(TechnologicaBlocks.SOY_BEANS.get(), applyExplosionDecay(TechnologicaBlocks.SOY_BEANS.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TechnologicaItems.SOY_BEANS.get()))).withPool(LootPool.lootPool().when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.SOY_BEANS.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(PotatoBlock.AGE, 7))).add(LootItem.lootTableItem(TechnologicaItems.SOY_BEANS.get()).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3))))));
+
 		this.add(TechnologicaBlocks.SWEET_POTATOES.get(), applyExplosionDecay(TechnologicaBlocks.SWEET_POTATOES.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TechnologicaItems.SWEET_POTATO.get()))).withPool(LootPool.lootPool().when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.SWEET_POTATOES.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(PotatoBlock.AGE, 7))).add(LootItem.lootTableItem(TechnologicaItems.SWEET_POTATO.get()).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3))))));
-		
+
+		this.add(TechnologicaBlocks.BROCCOLI.get(), createCropDrops(TechnologicaBlocks.BROCCOLI.get(), TechnologicaItems.BROCCOLI.get(), TechnologicaItems.BROCCOLI_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.BROCCOLI.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BeetrootBlock.AGE, 3))));
+		this.add(TechnologicaBlocks.CELERY.get(), createCropDrops(TechnologicaBlocks.CELERY.get(), TechnologicaItems.CELERY.get(), TechnologicaItems.CELERY_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.CELERY.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BeetrootBlock.AGE, 3))));
+		this.add(TechnologicaBlocks.LETTUCE.get(), createCropDrops(TechnologicaBlocks.LETTUCE.get(), TechnologicaItems.LETTUCE.get(), TechnologicaItems.LETTUCE_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.LETTUCE.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BeetrootBlock.AGE, 3))));
+		this.add(TechnologicaBlocks.MUSTARD_GREENS.get(), createCropDrops(TechnologicaBlocks.MUSTARD_GREENS.get(), TechnologicaItems.MUSTARD_GREENS.get(), TechnologicaItems.MUSTARD_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.MUSTARD_GREENS.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BeetrootBlock.AGE, 3))));
+		this.add(TechnologicaBlocks.PURPLE_CABBAGE.get(), createCropDrops(TechnologicaBlocks.PURPLE_CABBAGE.get(), TechnologicaItems.PURPLE_CABBAGE.get(), TechnologicaItems.PURPLE_CABBAGE_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.PURPLE_CABBAGE.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BeetrootBlock.AGE, 3))));
+		this.add(TechnologicaBlocks.PINEAPPLES.get(), createCropDrops(TechnologicaBlocks.PINEAPPLES.get(), TechnologicaItems.PINEAPPLE.get(), TechnologicaItems.PINEAPPLE_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.PINEAPPLES.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BeetrootBlock.AGE, 3))));
 		this.add(TechnologicaBlocks.ONIONS.get(), createCropDrops(TechnologicaBlocks.ONIONS.get(), TechnologicaItems.ONION.get(), TechnologicaItems.ONION_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.ONIONS.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BeetrootBlock.AGE, 3))));
 		this.add(TechnologicaBlocks.RADISHES.get(), createCropDrops(TechnologicaBlocks.RADISHES.get(), TechnologicaItems.RADISH.get(), TechnologicaItems.RADISH_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.RADISHES.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BeetrootBlock.AGE, 3))));
+		this.add(TechnologicaBlocks.TEA.get(), createCropDrops(TechnologicaBlocks.TEA.get(), TechnologicaItems.TEA_LEAF.get(), TechnologicaItems.TEA_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.TEA.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BeetrootBlock.AGE, 3))));
+
 		this.add(TechnologicaBlocks.TURNIPS.get(), createCropDrops(TechnologicaBlocks.TURNIPS.get(), TechnologicaItems.TURNIP.get(), TechnologicaItems.TURNIP_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.TURNIPS.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BeetrootBlock.AGE, 3))));
-		
+
 		this.add(TechnologicaBlocks.BLACKBERRY_BUSH.get(), (bush) -> {
 			return applyExplosionDecay(bush, LootTable.lootTable().withPool(LootPool.lootPool().when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(bush).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SweetBerryBushBlock.AGE, 3))).add(LootItem.lootTableItem(TechnologicaItems.BLACKBERRY.get())).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 3.0F))).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))).withPool(LootPool.lootPool().when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(bush).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SweetBerryBushBlock.AGE, 2))).add(LootItem.lootTableItem(TechnologicaItems.BLACKBERRY.get())).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))));
 		});
@@ -57,31 +72,18 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		this.add(TechnologicaBlocks.STRAWBERRY_BUSH.get(), (bush) -> {
 			return applyExplosionDecay(bush, LootTable.lootTable().withPool(LootPool.lootPool().when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(bush).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SweetBerryBushBlock.AGE, 3))).add(LootItem.lootTableItem(TechnologicaItems.STRAWBERRY.get())).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 3.0F))).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))).withPool(LootPool.lootPool().when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(bush).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SweetBerryBushBlock.AGE, 2))).add(LootItem.lootTableItem(TechnologicaItems.STRAWBERRY.get())).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))));
 		});
-		
-		add(TechnologicaBlocks.ASPARAGUS_CROP.get(), createCropDrops(TechnologicaBlocks.ASPARAGUS_CROP.get(), TechnologicaItems.ASPARAGUS.get(), TechnologicaBlocks.ASPARAGUS_CROP.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.ASPARAGUS_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
-		add(TechnologicaBlocks.BROCCOLI_CROP.get(), createCropDrops(TechnologicaBlocks.BROCCOLI_CROP.get(), TechnologicaItems.BROCCOLI.get(), TechnologicaBlocks.BROCCOLI_CROP.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.BROCCOLI_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
-		add(TechnologicaBlocks.CELERY_CROP.get(), createCropDrops(TechnologicaBlocks.CELERY_CROP.get(), TechnologicaItems.CELERY.get(), TechnologicaBlocks.CELERY_CROP.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.CELERY_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
-		add(TechnologicaBlocks.CHILI_PEPPER_CROP.get(), createCropDrops(TechnologicaBlocks.CHILI_PEPPER_CROP.get(), TechnologicaItems.CHILI_PEPPER.get(), TechnologicaBlocks.CHILI_PEPPER_CROP.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.CHILI_PEPPER_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
-		add(TechnologicaBlocks.COFFEE_BEAN_CROP.get(), createCropDrops(TechnologicaBlocks.COFFEE_BEAN_CROP.get(), TechnologicaItems.COFFEE_BEANS.get(), TechnologicaBlocks.COFFEE_BEAN_CROP.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.COFFEE_BEAN_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
+
 		add(TechnologicaBlocks.COTTON_CROP.get(), createCropDrops(TechnologicaBlocks.COTTON_CROP.get(), TechnologicaItems.COTTON.get(), TechnologicaBlocks.COTTON_CROP.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.COTTON_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
 		add(TechnologicaBlocks.CRANBERRY_CROP.get(), createCropDrops(TechnologicaBlocks.CRANBERRY_CROP.get(), TechnologicaItems.CRANBERRY.get(), TechnologicaBlocks.CRANBERRY_CROP.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.CRANBERRY_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
 		add(TechnologicaBlocks.CUCUMBERS.get(), createCropDrops(TechnologicaBlocks.CUCUMBERS.get(), TechnologicaItems.CUCUMBER.get(), TechnologicaBlocks.CUCUMBERS.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.CUCUMBERS.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
 		add(TechnologicaBlocks.CUCUMBER_STEM.get(), createCropDrops(TechnologicaBlocks.CUCUMBERS.get(), TechnologicaItems.CUCUMBER.get(), TechnologicaBlocks.CUCUMBERS.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.CUCUMBERS.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
 		add(TechnologicaBlocks.ATTACHED_CUCUMBER_STEM.get(), createCropDrops(TechnologicaBlocks.CUCUMBERS.get(), TechnologicaItems.CUCUMBER.get(), TechnologicaBlocks.CUCUMBERS.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.CUCUMBERS.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
 		add(TechnologicaBlocks.GRAPE_CROP.get(), createCropDrops(TechnologicaBlocks.GRAPE_CROP.get(), TechnologicaItems.GRAPE.get(), TechnologicaBlocks.GRAPE_CROP.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.GRAPE_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
-		add(TechnologicaBlocks.LETTUCE_CROP.get(), createCropDrops(TechnologicaBlocks.LETTUCE_CROP.get(), TechnologicaItems.LETTUCE.get(), TechnologicaBlocks.LETTUCE_CROP.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.LETTUCE_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
-		add(TechnologicaBlocks.MUSTARD_GREENS_CROP.get(), createCropDrops(TechnologicaBlocks.MUSTARD_GREENS_CROP.get(), TechnologicaItems.MUSTARD_GREENS.get(), TechnologicaBlocks.MUSTARD_GREENS_CROP.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.MUSTARD_GREENS_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
-		add(TechnologicaBlocks.PEA_CROP.get(), createCropDrops(TechnologicaBlocks.PEA_CROP.get(), TechnologicaItems.PEAS.get(), TechnologicaBlocks.PEA_CROP.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.PEA_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
 		add(TechnologicaBlocks.PEPPERCORN_CROP.get(), createCropDrops(TechnologicaBlocks.PEPPERCORN_CROP.get(), TechnologicaItems.PEPPERCORNS.get(), TechnologicaBlocks.PEPPERCORN_CROP.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.PEPPERCORN_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
-		add(TechnologicaBlocks.PINEAPPLE_CROP.get(), createCropDrops(TechnologicaBlocks.PINEAPPLE_CROP.get(), TechnologicaItems.PINEAPPLE.get(), TechnologicaBlocks.PINEAPPLE_CROP.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.PINEAPPLE_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
-		add(TechnologicaBlocks.PURPLE_CABBAGE_CROP.get(), createCropDrops(TechnologicaBlocks.PURPLE_CABBAGE_CROP.get(), TechnologicaItems.PURPLE_CABBAGE.get(), TechnologicaBlocks.PURPLE_CABBAGE_CROP.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.PURPLE_CABBAGE_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
-		add(TechnologicaBlocks.RED_BEAN_CROP.get(), createCropDrops(TechnologicaBlocks.RED_BEAN_CROP.get(), TechnologicaItems.RED_BEANS.get(), TechnologicaBlocks.RED_BEAN_CROP.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.RED_BEAN_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
-		add(TechnologicaBlocks.SOYBEAN_CROP.get(), createCropDrops(TechnologicaBlocks.SOYBEAN_CROP.get(), TechnologicaItems.SOYBEANS.get(), TechnologicaBlocks.SOYBEAN_CROP.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.SOYBEAN_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
 		add(TechnologicaBlocks.SQUASH_CROP.get(), createCropDrops(TechnologicaBlocks.SQUASH_CROP.get(), TechnologicaItems.SQUASH.get(), TechnologicaBlocks.SQUASH_CROP.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.SQUASH_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
-		add(TechnologicaBlocks.TEA_CROP.get(), createCropDrops(TechnologicaBlocks.TEA_CROP.get(), TechnologicaItems.TEA_LEAF.get(), TechnologicaBlocks.TEA_CROP.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.TEA_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
 		add(TechnologicaBlocks.TOMATO_CROP.get(), createCropDrops(TechnologicaBlocks.TOMATO_CROP.get(), TechnologicaItems.TOMATO.get(), TechnologicaBlocks.TOMATO_CROP.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.TOMATO_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
 		add(TechnologicaBlocks.ZUCCHINI_CROP.get(), createCropDrops(TechnologicaBlocks.ZUCCHINI_CROP.get(), TechnologicaItems.ZUCCHINI.get(), TechnologicaBlocks.ZUCCHINI_CROP.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.ZUCCHINI_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
-		
+
 		dropSelf(TechnologicaBlocks.APRICOT_SAPLING.get());
 		dropSelf(TechnologicaBlocks.ASPEN_SAPLING.get());
 		dropSelf(TechnologicaBlocks.AVOCADO_SAPLING.get());
@@ -115,7 +117,7 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		dropSelf(TechnologicaBlocks.TOWERING_INFERNO_SAPLING.get());
 		dropSelf(TechnologicaBlocks.MALEVOLENT_APOTHECARY_SAPLING.get());
 		dropSelf(TechnologicaBlocks.NECROTIC_SAPLING.get());
-		
+
 		dropPottedContents(TechnologicaBlocks.POTTED_APRICOT_SAPLING.get());
 		dropPottedContents(TechnologicaBlocks.POTTED_ASPEN_SAPLING.get());
 		dropPottedContents(TechnologicaBlocks.POTTED_AVOCADO_SAPLING.get());
@@ -149,7 +151,7 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		dropPottedContents(TechnologicaBlocks.POTTED_TOWERING_INFERNO_SAPLING.get());
 		dropPottedContents(TechnologicaBlocks.POTTED_MALEVOLENT_APOTHECARY_SAPLING.get());
 		dropPottedContents(TechnologicaBlocks.POTTED_NECROTIC_SAPLING.get());
-		
+
 		add(TechnologicaBlocks.APRICOT_LEAVES.get(), createLeavesDrops(TechnologicaBlocks.APRICOT_LEAVES.get(), TechnologicaBlocks.APRICOT_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES));
 		add(TechnologicaBlocks.ASPEN_LEAVES.get(), createLeavesDrops(TechnologicaBlocks.ASPEN_LEAVES.get(), TechnologicaBlocks.ASPEN_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES));
 		add(TechnologicaBlocks.AVOCADO_LEAVES.get(), createLeavesDrops(TechnologicaBlocks.AVOCADO_LEAVES.get(), TechnologicaBlocks.AVOCADO_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES));
@@ -182,17 +184,17 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		add(TechnologicaBlocks.FRUITFUL_LEAVES.get(), createLeavesDrops(TechnologicaBlocks.FRUITFUL_LEAVES.get(), TechnologicaBlocks.ANCIENT_AMBROSIA_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES));
 		add(TechnologicaBlocks.MALEVOLENT_LEAVES.get(), createLeavesDrops(TechnologicaBlocks.MALEVOLENT_LEAVES.get(), TechnologicaBlocks.MALEVOLENT_APOTHECARY_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES));
 		add(TechnologicaBlocks.CURSED_LEAVES.get(), createLeavesDrops(TechnologicaBlocks.CURSED_LEAVES.get(), TechnologicaBlocks.NECROTIC_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES));
-		
+
 		this.add(TechnologicaBlocks.GLUE.get(), noDrop());
-		
+
 		dropOther(TechnologicaBlocks.MULCH.get(), Blocks.DIRT);
-		
+
 		dropSelf(TechnologicaBlocks.SALT.get());
 		add(TechnologicaBlocks.LITHIUM_CLAY.get(), (clay) -> createSingleItemTableWithSilkTouch(clay, TechnologicaItems.LITHIUM_CLAY_BALL.get(), ConstantValue.exactly(4)));
-		
+
 		dropSelf(TechnologicaBlocks.MOON_ROCK.get());
 		dropSelf(TechnologicaBlocks.MOON_DUST.get());
-		
+
 		dropSelf(TechnologicaBlocks.BAUXITE_ORE.get());
 		dropSelf(TechnologicaBlocks.CHROMITE_ORE.get());
 		dropSelf(TechnologicaBlocks.ILMENITE_ORE.get());
@@ -202,12 +204,12 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		dropSelf(TechnologicaBlocks.BORAX_ORE.get());
 		dropSelf(TechnologicaBlocks.MAGNESITE_ORE.get());
 		dropSelf(TechnologicaBlocks.SPODUMENE_ORE.get());
-		
+
 		dropSelf(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get());
 		dropSelf(TechnologicaBlocks.DOLOMITE_CRYSTAL.get());
 		dropSelf(TechnologicaBlocks.FLUORITE_CRYSTAL.get());
 		dropSelf(TechnologicaBlocks.ULEXITE_CRYSTAL.get());
-		
+
 		dropSelf(TechnologicaBlocks.APRICOT_LOG.get());
 		dropSelf(TechnologicaBlocks.ASPEN_LOG.get());
 		dropSelf(TechnologicaBlocks.AVOCADO_LOG.get());
@@ -241,7 +243,7 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		dropSelf(TechnologicaBlocks.INFERNAL_LOG.get());
 		dropSelf(TechnologicaBlocks.MALEVOLENT_LOG.get());
 		dropSelf(TechnologicaBlocks.NECROTIC_LOG.get());
-		
+
 		dropSelf(TechnologicaBlocks.STRIPPED_APRICOT_LOG.get());
 		dropSelf(TechnologicaBlocks.STRIPPED_ASPEN_LOG.get());
 		dropSelf(TechnologicaBlocks.STRIPPED_AVOCADO_LOG.get());
@@ -275,7 +277,7 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		dropSelf(TechnologicaBlocks.STRIPPED_INFERNAL_LOG.get());
 		dropSelf(TechnologicaBlocks.STRIPPED_MALEVOLENT_LOG.get());
 		dropSelf(TechnologicaBlocks.STRIPPED_NECROTIC_LOG.get());
-		
+
 		dropSelf(TechnologicaBlocks.APRICOT_WOOD.get());
 		dropSelf(TechnologicaBlocks.ASPEN_WOOD.get());
 		dropSelf(TechnologicaBlocks.AVOCADO_WOOD.get());
@@ -309,7 +311,7 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		dropSelf(TechnologicaBlocks.INFERNAL_WOOD.get());
 		dropSelf(TechnologicaBlocks.MALEVOLENT_WOOD.get());
 		dropSelf(TechnologicaBlocks.NECROTIC_WOOD.get());
-		
+
 		dropSelf(TechnologicaBlocks.STRIPPED_APRICOT_WOOD.get());
 		dropSelf(TechnologicaBlocks.STRIPPED_ASPEN_WOOD.get());
 		dropSelf(TechnologicaBlocks.STRIPPED_AVOCADO_WOOD.get());
@@ -343,7 +345,7 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		dropSelf(TechnologicaBlocks.STRIPPED_INFERNAL_WOOD.get());
 		dropSelf(TechnologicaBlocks.STRIPPED_MALEVOLENT_WOOD.get());
 		dropSelf(TechnologicaBlocks.STRIPPED_NECROTIC_WOOD.get());
-		
+
 		dropSelf(TechnologicaBlocks.APRICOT_PLANKS.get());
 		dropSelf(TechnologicaBlocks.ASPEN_PLANKS.get());
 		dropSelf(TechnologicaBlocks.AVOCADO_PLANKS.get());
@@ -377,7 +379,7 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		dropSelf(TechnologicaBlocks.INFERNAL_PLANKS.get());
 		dropSelf(TechnologicaBlocks.MALEVOLENT_PLANKS.get());
 		dropSelf(TechnologicaBlocks.NECROTIC_PLANKS.get());
-		
+
 		add((TechnologicaBlocks.APRICOT_SLAB.get()), BlockLoot::createSlabItemTable);
 		add((TechnologicaBlocks.ASPEN_SLAB.get()), BlockLoot::createSlabItemTable);
 		add((TechnologicaBlocks.AVOCADO_SLAB.get()), BlockLoot::createSlabItemTable);
@@ -411,7 +413,7 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		add((TechnologicaBlocks.INFERNAL_SLAB.get()), BlockLoot::createSlabItemTable);
 		add((TechnologicaBlocks.MALEVOLENT_SLAB.get()), BlockLoot::createSlabItemTable);
 		add((TechnologicaBlocks.NECROTIC_SLAB.get()), BlockLoot::createSlabItemTable);
-		
+
 		dropSelf(TechnologicaBlocks.APRICOT_STAIRS.get());
 		dropSelf(TechnologicaBlocks.ASPEN_STAIRS.get());
 		dropSelf(TechnologicaBlocks.AVOCADO_STAIRS.get());
@@ -445,7 +447,7 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		dropSelf(TechnologicaBlocks.INFERNAL_STAIRS.get());
 		dropSelf(TechnologicaBlocks.MALEVOLENT_STAIRS.get());
 		dropSelf(TechnologicaBlocks.NECROTIC_STAIRS.get());
-		
+
 		add(TechnologicaBlocks.SPRUCE_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
 		add(TechnologicaBlocks.BIRCH_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
 		add(TechnologicaBlocks.JUNGLE_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
@@ -486,7 +488,7 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		add(TechnologicaBlocks.INFERNAL_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
 		add(TechnologicaBlocks.MALEVOLENT_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
 		add(TechnologicaBlocks.NECROTIC_BOOKSHELF.get(), (bookshelf) -> createSingleItemTableWithSilkTouch(bookshelf, Items.BOOK, ConstantValue.exactly(3)));
-		
+
 		dropSelf(TechnologicaBlocks.APRICOT_FENCE.get());
 		dropSelf(TechnologicaBlocks.ASPEN_FENCE.get());
 		dropSelf(TechnologicaBlocks.AVOCADO_FENCE.get());
@@ -520,7 +522,7 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		dropSelf(TechnologicaBlocks.INFERNAL_FENCE.get());
 		dropSelf(TechnologicaBlocks.MALEVOLENT_FENCE.get());
 		dropSelf(TechnologicaBlocks.NECROTIC_FENCE.get());
-	
+
 		dropSelf(TechnologicaBlocks.APRICOT_FENCE_GATE.get());
 		dropSelf(TechnologicaBlocks.ASPEN_FENCE_GATE.get());
 		dropSelf(TechnologicaBlocks.AVOCADO_FENCE_GATE.get());
@@ -554,7 +556,7 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		dropSelf(TechnologicaBlocks.INFERNAL_FENCE_GATE.get());
 		dropSelf(TechnologicaBlocks.MALEVOLENT_FENCE_GATE.get());
 		dropSelf(TechnologicaBlocks.NECROTIC_FENCE_GATE.get());
-		
+
 		add(TechnologicaBlocks.APRICOT_DOOR.get(), BlockLoot::createDoorTable);
 		add(TechnologicaBlocks.ASPEN_DOOR.get(), BlockLoot::createDoorTable);
 		add(TechnologicaBlocks.AVOCADO_DOOR.get(), BlockLoot::createDoorTable);
@@ -588,7 +590,7 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		add(TechnologicaBlocks.INFERNAL_DOOR.get(), BlockLoot::createDoorTable);
 		add(TechnologicaBlocks.MALEVOLENT_DOOR.get(), BlockLoot::createDoorTable);
 		add(TechnologicaBlocks.NECROTIC_DOOR.get(), BlockLoot::createDoorTable);
-		
+
 		dropSelf(TechnologicaBlocks.APRICOT_TRAPDOOR.get());
 		dropSelf(TechnologicaBlocks.ASPEN_TRAPDOOR.get());
 		dropSelf(TechnologicaBlocks.AVOCADO_TRAPDOOR.get());
@@ -622,7 +624,7 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		dropSelf(TechnologicaBlocks.INFERNAL_TRAPDOOR.get());
 		dropSelf(TechnologicaBlocks.MALEVOLENT_TRAPDOOR.get());
 		dropSelf(TechnologicaBlocks.NECROTIC_TRAPDOOR.get());
-		
+
 		dropSelf(TechnologicaBlocks.APRICOT_PRESSURE_PLATE.get());
 		dropSelf(TechnologicaBlocks.ASPEN_PRESSURE_PLATE.get());
 		dropSelf(TechnologicaBlocks.AVOCADO_PRESSURE_PLATE.get());
@@ -656,7 +658,7 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		dropSelf(TechnologicaBlocks.INFERNAL_PRESSURE_PLATE.get());
 		dropSelf(TechnologicaBlocks.MALEVOLENT_PRESSURE_PLATE.get());
 		dropSelf(TechnologicaBlocks.NECROTIC_PRESSURE_PLATE.get());
-		
+
 		dropSelf(TechnologicaBlocks.APRICOT_BUTTON.get());
 		dropSelf(TechnologicaBlocks.ASPEN_BUTTON.get());
 		dropSelf(TechnologicaBlocks.AVOCADO_BUTTON.get());
@@ -690,7 +692,7 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		dropSelf(TechnologicaBlocks.INFERNAL_BUTTON.get());
 		dropSelf(TechnologicaBlocks.MALEVOLENT_BUTTON.get());
 		dropSelf(TechnologicaBlocks.NECROTIC_BUTTON.get());
-		
+
 		dropSelf(TechnologicaBlocks.APRICOT_SIGN.get());
 		dropSelf(TechnologicaBlocks.ASPEN_SIGN.get());
 		dropSelf(TechnologicaBlocks.AVOCADO_SIGN.get());
@@ -724,7 +726,7 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		dropSelf(TechnologicaBlocks.INFERNAL_SIGN.get());
 		dropSelf(TechnologicaBlocks.MALEVOLENT_SIGN.get());
 		dropSelf(TechnologicaBlocks.NECROTIC_SIGN.get());
-		
+
 		dropSelf(TechnologicaBlocks.APRICOT_WALL_SIGN.get());
 		dropSelf(TechnologicaBlocks.ASPEN_WALL_SIGN.get());
 		dropSelf(TechnologicaBlocks.AVOCADO_WALL_SIGN.get());
@@ -761,7 +763,7 @@ public class TechnologicaBlockLoot extends BlockLoot {
 
 		dropSelf(TechnologicaBlocks.LINE_SHAFT_HANGER.get());
 		dropOther(TechnologicaBlocks.LINE_SHAFT.get(), TechnologicaItems.STEEL_SHAFT.get());
-		
+
 		dropSelf(TechnologicaBlocks.SMALL_PULLEY.get());
 		dropSelf(TechnologicaBlocks.MEDIUM_PULLEY.get());
 		dropSelf(TechnologicaBlocks.LARGE_PULLEY.get());
@@ -770,7 +772,7 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		dropSelf(TechnologicaBlocks.MOTOR_20HP.get());
 		dropSelf(TechnologicaBlocks.TREE_TAP.get());
 		dropSelf(TechnologicaBlocks.SAWMILL.get());
-		
+
 		dropSelf(TechnologicaBlocks.OAK_CHAIR.get());
 		dropSelf(TechnologicaBlocks.SPRUCE_CHAIR.get());
 		dropSelf(TechnologicaBlocks.BIRCH_CHAIR.get());
@@ -812,7 +814,7 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		dropSelf(TechnologicaBlocks.INFERNAL_CHAIR.get());
 		dropSelf(TechnologicaBlocks.MALEVOLENT_CHAIR.get());
 		dropSelf(TechnologicaBlocks.NECROTIC_CHAIR.get());
-		
+
 		dropSelf(TechnologicaBlocks.OAK_TABLE.get());
 		dropSelf(TechnologicaBlocks.SPRUCE_TABLE.get());
 		dropSelf(TechnologicaBlocks.BIRCH_TABLE.get());
@@ -854,19 +856,19 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		dropSelf(TechnologicaBlocks.INFERNAL_TABLE.get());
 		dropSelf(TechnologicaBlocks.MALEVOLENT_TABLE.get());
 		dropSelf(TechnologicaBlocks.NECROTIC_TABLE.get());
-		
+
 		dropSelf(TechnologicaBlocks.DISPLAY_CASE.get());
 		dropSelf(TechnologicaBlocks.ANNUNCIATOR.get());
-		
+
 		dropOther(TechnologicaBlocks.NAVAL_MINE_CHAIN.get(), Items.CHAIN);
 	}
-	
+
 	protected static LootTable.Builder createBerryBushDrops(Block blockIn, Item itemIn, LootItemCondition.Builder p_124146_) {
 		return applyExplosionDecay(blockIn, LootTable.lootTable().withPool(LootPool.lootPool().when(p_124146_).add(LootItem.lootTableItem(itemIn)).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 3.0F))).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))).withPool(LootPool.lootPool().when(p_124146_).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))));
 	}
-	
+
 	@Override
-	protected Iterable<Block> getKnownBlocks() {	
+	protected Iterable<Block> getKnownBlocks() {
 		return TechnologicaBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
 	}
 }

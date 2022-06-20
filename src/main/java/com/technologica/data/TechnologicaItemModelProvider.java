@@ -15,14 +15,12 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 	public TechnologicaItemModelProvider(DataGenerator generatorIn, ExistingFileHelper helperIn) {
 		super(generatorIn, Technologica.MODID, helperIn);
 	}
-	
+
 	@Override
 	protected void registerModels() {
-		simpleItem(TechnologicaItems.ASPARAGUS_SEEDS.get()); 
-		simpleItem(TechnologicaItems.BARLEY_SEEDS.get()); 
+		simpleItem(TechnologicaItems.BARLEY_SEEDS.get());
 		simpleItem(TechnologicaItems.BROCCOLI_SEEDS.get());
 		simpleItem(TechnologicaItems.CELERY_SEEDS.get());
-		simpleItem(TechnologicaItems.CHILI_PEPPER_SEEDS.get());
 		simpleItem(TechnologicaItems.COFFEE_BEANS.get());
 		simpleItem(TechnologicaItems.CORN_SEEDS.get());
 		simpleItem(TechnologicaItems.COTTON_SEEDS.get());
@@ -33,7 +31,6 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.MUSTARD_SEEDS.get());
 		simpleItem(TechnologicaItems.OATS_SEEDS.get());
 		simpleItem(TechnologicaItems.ONION_SEEDS.get());
-		simpleItem(TechnologicaItems.PEA_SEEDS.get());
 		simpleItem(TechnologicaItems.PEPPERCORN_SEEDS.get());
 		simpleItem(TechnologicaItems.PINEAPPLE_SEEDS.get());
 		simpleItem(TechnologicaItems.PURPLE_CABBAGE_SEEDS.get());
@@ -41,93 +38,93 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.RED_BEANS.get());
 		simpleItem(TechnologicaItems.RICE_SEEDS.get());
 		simpleItem(TechnologicaItems.RYE_SEEDS.get());
-		simpleItem(TechnologicaItems.SOYBEANS.get());
+		simpleItem(TechnologicaItems.SOY_BEANS.get());
 		simpleItem(TechnologicaItems.SQUASH_SEEDS.get());
 		simpleItem(TechnologicaItems.TEA_SEEDS.get());
 		simpleItem(TechnologicaItems.TOMATO_SEEDS.get());
 		simpleItem(TechnologicaItems.TURNIP_SEEDS.get());
 		simpleItem(TechnologicaItems.ZUCCHINI_SEEDS.get());
-		
-		simpleBlockItem(TechnologicaItems.APRICOT_SAPLING_ITEM.get()); 
-		simpleBlockItem(TechnologicaItems.ASPEN_SAPLING_ITEM.get()); 
-		simpleBlockItem(TechnologicaItems.AVOCADO_SAPLING_ITEM.get()); 
-		simpleBlockItem(TechnologicaItems.BANANA_SAPLING_ITEM.get()); 
-		simpleBlockItem(TechnologicaItems.CHERRY_SAPLING_ITEM.get()); 
-		simpleBlockItem(TechnologicaItems.CHESTNUT_SAPLING_ITEM.get()); 
-		simpleBlockItem(TechnologicaItems.CINNAMON_SAPLING_ITEM.get()); 
-		simpleBlockItem(TechnologicaItems.COCONUT_SAPLING_ITEM.get()); 
-		simpleBlockItem(TechnologicaItems.EBONY_SAPLING_ITEM.get()); 
-		simpleBlockItem(TechnologicaItems.KIWI_SAPLING_ITEM.get()); 
-		simpleBlockItem(TechnologicaItems.LEMON_SAPLING_ITEM.get()); 
-		simpleBlockItem(TechnologicaItems.LIME_SAPLING_ITEM.get()); 
-		simpleBlockItem(TechnologicaItems.MAHOGANY_SAPLING_ITEM.get()); 
-		simpleBlockItem(TechnologicaItems.MAPLE_SAPLING_ITEM.get()); 
-		simpleBlockItem(TechnologicaItems.OLIVE_SAPLING_ITEM.get()); 
-		simpleBlockItem(TechnologicaItems.ORANGE_SAPLING_ITEM.get()); 
-		simpleBlockItem(TechnologicaItems.PEACH_SAPLING_ITEM.get()); 
-		simpleBlockItem(TechnologicaItems.PEAR_SAPLING_ITEM.get()); 
-		simpleBlockItem(TechnologicaItems.PLUM_SAPLING_ITEM.get()); 
-		simpleBlockItem(TechnologicaItems.REDWOOD_SAPLING_ITEM.get()); 
-		simpleBlockItem(TechnologicaItems.ROSEWOOD_SAPLING_ITEM.get()); 
-		simpleBlockItem(TechnologicaItems.RUBBER_SAPLING_ITEM.get()); 
-		simpleBlockItem(TechnologicaItems.TEAK_SAPLING_ITEM.get()); 
-		simpleBlockItem(TechnologicaItems.WALNUT_SAPLING_ITEM.get()); 
-		simpleBlockItem(TechnologicaItems.ZEBRAWOOD_SAPLING_ITEM.get()); 
-		simpleBlockItem(TechnologicaItems.ANCIENT_AMBROSIA_SAPLING_ITEM.get()); 
-		simpleBlockItem(TechnologicaItems.CRYOGENIC_SPIRE_SAPLING_ITEM.get()); 
-		simpleBlockItem(TechnologicaItems.THUNDEROUS_CONDUCTOR_SAPLING_ITEM.get()); 
-		simpleBlockItem(TechnologicaItems.TOWERING_INFERNO_SAPLING_ITEM.get()); 
-		simpleBlockItem(TechnologicaItems.SERENDIPITOUS_APOTHECARY_SAPLING_ITEM.get()); 
-		simpleBlockItem(TechnologicaItems.BENEVOLENT_APOTHECARY_SAPLING_ITEM.get()); 
+
+		simpleBlockItem(TechnologicaItems.APRICOT_SAPLING_ITEM.get());
+		simpleBlockItem(TechnologicaItems.ASPEN_SAPLING_ITEM.get());
+		simpleBlockItem(TechnologicaItems.AVOCADO_SAPLING_ITEM.get());
+		simpleBlockItem(TechnologicaItems.BANANA_SAPLING_ITEM.get());
+		simpleBlockItem(TechnologicaItems.CHERRY_SAPLING_ITEM.get());
+		simpleBlockItem(TechnologicaItems.CHESTNUT_SAPLING_ITEM.get());
+		simpleBlockItem(TechnologicaItems.CINNAMON_SAPLING_ITEM.get());
+		simpleBlockItem(TechnologicaItems.COCONUT_SAPLING_ITEM.get());
+		simpleBlockItem(TechnologicaItems.EBONY_SAPLING_ITEM.get());
+		simpleBlockItem(TechnologicaItems.KIWI_SAPLING_ITEM.get());
+		simpleBlockItem(TechnologicaItems.LEMON_SAPLING_ITEM.get());
+		simpleBlockItem(TechnologicaItems.LIME_SAPLING_ITEM.get());
+		simpleBlockItem(TechnologicaItems.MAHOGANY_SAPLING_ITEM.get());
+		simpleBlockItem(TechnologicaItems.MAPLE_SAPLING_ITEM.get());
+		simpleBlockItem(TechnologicaItems.OLIVE_SAPLING_ITEM.get());
+		simpleBlockItem(TechnologicaItems.ORANGE_SAPLING_ITEM.get());
+		simpleBlockItem(TechnologicaItems.PEACH_SAPLING_ITEM.get());
+		simpleBlockItem(TechnologicaItems.PEAR_SAPLING_ITEM.get());
+		simpleBlockItem(TechnologicaItems.PLUM_SAPLING_ITEM.get());
+		simpleBlockItem(TechnologicaItems.REDWOOD_SAPLING_ITEM.get());
+		simpleBlockItem(TechnologicaItems.ROSEWOOD_SAPLING_ITEM.get());
+		simpleBlockItem(TechnologicaItems.RUBBER_SAPLING_ITEM.get());
+		simpleBlockItem(TechnologicaItems.TEAK_SAPLING_ITEM.get());
+		simpleBlockItem(TechnologicaItems.WALNUT_SAPLING_ITEM.get());
+		simpleBlockItem(TechnologicaItems.ZEBRAWOOD_SAPLING_ITEM.get());
+		simpleBlockItem(TechnologicaItems.ANCIENT_AMBROSIA_SAPLING_ITEM.get());
+		simpleBlockItem(TechnologicaItems.CRYOGENIC_SPIRE_SAPLING_ITEM.get());
+		simpleBlockItem(TechnologicaItems.THUNDEROUS_CONDUCTOR_SAPLING_ITEM.get());
+		simpleBlockItem(TechnologicaItems.TOWERING_INFERNO_SAPLING_ITEM.get());
+		simpleBlockItem(TechnologicaItems.SERENDIPITOUS_APOTHECARY_SAPLING_ITEM.get());
+		simpleBlockItem(TechnologicaItems.BENEVOLENT_APOTHECARY_SAPLING_ITEM.get());
 		simpleBlockItem(TechnologicaItems.MALEVOLENT_APOTHECARY_SAPLING_ITEM.get());
 		simpleBlockItem(TechnologicaItems.NECROTIC_SAPLING_ITEM.get());
-		
+
 		simpleItem(TechnologicaItems.COTTON.get());
-		
-		simpleSpawnEggItem(TechnologicaItems.ALLIGATOR_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.BEAVER_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.BUFFALO_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.CAMEL_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.COBRA_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.COTTONMOUTH_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.COYOTE_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.CRAB_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.DEER_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.DUCK_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.ELEPHANT_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.FLAMINGO_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.FROG_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.GIRAFFE_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.GORILLA_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.GRIZZLY_BEAR_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.JAGUAR_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.KING_CRAB_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.LEOPARD_SEAL_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.LION_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.LIZARD_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.MOOSE_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.NARWHAL_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.OCTOPUS_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.OSTRICH_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.OWL_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.PENGUIN_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.PIRANHA_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.POISON_DART_FROG_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.RACCOON_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.SCORPION_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.SHARK_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.SLOTH_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.STINGRAY_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.TURKEY_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.VULTURE_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.WALRUS_SPAWN_EGG.get()); 
-		simpleSpawnEggItem(TechnologicaItems.ZEBRA_SPAWN_EGG.get()); 
-		
+
+		simpleSpawnEggItem(TechnologicaItems.ALLIGATOR_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.BEAVER_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.BUFFALO_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.CAMEL_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.COBRA_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.COTTONMOUTH_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.COYOTE_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.CRAB_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.DEER_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.DUCK_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.ELEPHANT_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.FLAMINGO_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.FROG_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.GIRAFFE_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.GORILLA_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.GRIZZLY_BEAR_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.JAGUAR_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.KING_CRAB_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.LEOPARD_SEAL_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.LION_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.LIZARD_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.MOOSE_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.NARWHAL_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.OCTOPUS_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.OSTRICH_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.OWL_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.PENGUIN_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.PIRANHA_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.POISON_DART_FROG_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.RACCOON_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.SCORPION_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.SHARK_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.SLOTH_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.STINGRAY_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.TURKEY_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.VULTURE_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.WALRUS_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.ZEBRA_SPAWN_EGG.get());
+
 		simpleSpawnEggItem(TechnologicaItems.PEEPER_SPAWN_EGG.get());
 		simpleSpawnEggItem(TechnologicaItems.SWEEPER_SPAWN_EGG.get());
-		
+
 		simpleItem(TechnologicaItems.PIRANHA_BUCKET.get());
-		
+
 		simpleItem(TechnologicaItems.LITHIUM_INGOT.get());
 		simpleItem(TechnologicaItems.BERYLLIUM_INGOT.get());
 		simpleItem(TechnologicaItems.SODIUM_INGOT.get());
@@ -219,7 +216,7 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.LIVERMORIUM_INGOT.get());
 		simpleItem(TechnologicaItems.TENNESSINE_INGOT.get());
 		simpleItem(TechnologicaItems.OGANESSON_INGOT.get());
-		
+
 		simpleItem(TechnologicaItems.LITHIUM_CLAY_BALL.get());
 		simpleItem(TechnologicaItems.BORON_CHUNK.get());
 		simpleItem(TechnologicaItems.CARBON_CHUNK.get());
@@ -233,12 +230,12 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.TELLURIUM_CHUNK.get());
 		simpleItem(TechnologicaItems.IODINE_CHUNK.get());
 		simpleItem(TechnologicaItems.ASTATINE_CHUNK.get());
-		
+
 		simpleItem(TechnologicaItems.MULCH.get());
 		simpleItem(TechnologicaItems.FERTILIZER.get());
 		simpleItem(TechnologicaItems.SAWDUST.get());
 		simpleItem(TechnologicaItems.RUBBER.get());
-		
+
 		simpleItem(TechnologicaItems.HYDROGEN_BUCKET.get());
 		simpleItem(TechnologicaItems.HELIUM_BUCKET.get());
 		simpleItem(TechnologicaItems.NITROGEN_BUCKET.get());
@@ -260,7 +257,7 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.GASOLINE_BUCKET.get());
 		simpleItem(TechnologicaItems.MACHINE_OIL_BUCKET.get());
 		simpleItem(TechnologicaItems.COOLANT_BUCKET.get());
-		
+
 		simpleItem(TechnologicaItems.APRICOT.get());
 		simpleItem(TechnologicaItems.ASPARAGUS.get());
 		simpleItem(TechnologicaItems.AVOCADO.get());
@@ -325,41 +322,41 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.TAPENADE.get());
 		simpleItem(TechnologicaItems.CINNAMON_ROLL.get());
 		simpleItem(TechnologicaItems.OLIVE_OIL.get());
-		
-		simpleItem(TechnologicaItems.APRICOT_BOAT.get()); 
-		simpleItem(TechnologicaItems.ASPEN_BOAT.get()); 
-		simpleItem(TechnologicaItems.AVOCADO_BOAT.get()); 
-		simpleItem(TechnologicaItems.BANANA_BOAT.get()); 
-		simpleItem(TechnologicaItems.CHERRY_BOAT.get()); 
-		simpleItem(TechnologicaItems.CHESTNUT_BOAT.get()); 
-		simpleItem(TechnologicaItems.CINNAMON_BOAT.get()); 
-		simpleItem(TechnologicaItems.COCONUT_BOAT.get()); 
-		simpleItem(TechnologicaItems.EBONY_BOAT.get()); 
-		simpleItem(TechnologicaItems.KIWI_BOAT.get()); 
-		simpleItem(TechnologicaItems.LEMON_BOAT.get()); 
-		simpleItem(TechnologicaItems.LIME_BOAT.get()); 
-		simpleItem(TechnologicaItems.MAHOGANY_BOAT.get()); 
-		simpleItem(TechnologicaItems.MAPLE_BOAT.get()); 
-		simpleItem(TechnologicaItems.OLIVE_BOAT.get()); 
-		simpleItem(TechnologicaItems.ORANGE_BOAT.get()); 
-		simpleItem(TechnologicaItems.PEACH_BOAT.get()); 
-		simpleItem(TechnologicaItems.PEAR_BOAT.get()); 
-		simpleItem(TechnologicaItems.PLUM_BOAT.get()); 
-		simpleItem(TechnologicaItems.REDWOOD_BOAT.get()); 
-		simpleItem(TechnologicaItems.ROSEWOOD_BOAT.get()); 
-		simpleItem(TechnologicaItems.RUBBER_BOAT.get()); 
-		simpleItem(TechnologicaItems.TEAK_BOAT.get()); 
-		simpleItem(TechnologicaItems.WALNUT_BOAT.get()); 
-		simpleItem(TechnologicaItems.ZEBRAWOOD_BOAT.get()); 
-		simpleItem(TechnologicaItems.ALCHEMICAL_BOAT.get()); 
-		simpleItem(TechnologicaItems.BENEVOLENT_BOAT.get()); 
-		simpleItem(TechnologicaItems.CONDUCTIVE_BOAT.get()); 
-		simpleItem(TechnologicaItems.FROSTBITTEN_BOAT.get()); 
-		simpleItem(TechnologicaItems.FRUITFUL_BOAT.get()); 
-		simpleItem(TechnologicaItems.INFERNAL_BOAT.get()); 
+
+		simpleItem(TechnologicaItems.APRICOT_BOAT.get());
+		simpleItem(TechnologicaItems.ASPEN_BOAT.get());
+		simpleItem(TechnologicaItems.AVOCADO_BOAT.get());
+		simpleItem(TechnologicaItems.BANANA_BOAT.get());
+		simpleItem(TechnologicaItems.CHERRY_BOAT.get());
+		simpleItem(TechnologicaItems.CHESTNUT_BOAT.get());
+		simpleItem(TechnologicaItems.CINNAMON_BOAT.get());
+		simpleItem(TechnologicaItems.COCONUT_BOAT.get());
+		simpleItem(TechnologicaItems.EBONY_BOAT.get());
+		simpleItem(TechnologicaItems.KIWI_BOAT.get());
+		simpleItem(TechnologicaItems.LEMON_BOAT.get());
+		simpleItem(TechnologicaItems.LIME_BOAT.get());
+		simpleItem(TechnologicaItems.MAHOGANY_BOAT.get());
+		simpleItem(TechnologicaItems.MAPLE_BOAT.get());
+		simpleItem(TechnologicaItems.OLIVE_BOAT.get());
+		simpleItem(TechnologicaItems.ORANGE_BOAT.get());
+		simpleItem(TechnologicaItems.PEACH_BOAT.get());
+		simpleItem(TechnologicaItems.PEAR_BOAT.get());
+		simpleItem(TechnologicaItems.PLUM_BOAT.get());
+		simpleItem(TechnologicaItems.REDWOOD_BOAT.get());
+		simpleItem(TechnologicaItems.ROSEWOOD_BOAT.get());
+		simpleItem(TechnologicaItems.RUBBER_BOAT.get());
+		simpleItem(TechnologicaItems.TEAK_BOAT.get());
+		simpleItem(TechnologicaItems.WALNUT_BOAT.get());
+		simpleItem(TechnologicaItems.ZEBRAWOOD_BOAT.get());
+		simpleItem(TechnologicaItems.ALCHEMICAL_BOAT.get());
+		simpleItem(TechnologicaItems.BENEVOLENT_BOAT.get());
+		simpleItem(TechnologicaItems.CONDUCTIVE_BOAT.get());
+		simpleItem(TechnologicaItems.FROSTBITTEN_BOAT.get());
+		simpleItem(TechnologicaItems.FRUITFUL_BOAT.get());
+		simpleItem(TechnologicaItems.INFERNAL_BOAT.get());
 		simpleItem(TechnologicaItems.MALEVOLENT_BOAT.get());
-		//simpleItem(TechnologicaItems.NECROTIC_BOAT.get());
-		
+		// simpleItem(TechnologicaItems.NECROTIC_BOAT.get());
+
 		simpleItem(TechnologicaItems.STEEL_SHAFT.get());
 		simpleItem(TechnologicaItems.SMALL_PULLEY_ITEM.get());
 		simpleItem(TechnologicaItems.MEDIUM_PULLEY_ITEM.get());
@@ -371,53 +368,53 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.PIPE_WRENCH.get());
 		simpleItem(TechnologicaItems.WRENCH.get());
 		simpleItem(TechnologicaItems.SAWBLADE.get());
-		
+
 		simpleItem(TechnologicaItems.OVERLAY_PASS_ITEM.get());
 		simpleItem(TechnologicaItems.OVERLAY_WARN_ITEM.get());
 		simpleItem(TechnologicaItems.OVERLAY_FAIL_ITEM.get());
-		
+
 		simpleItem(TechnologicaItems.PRIMITIVE_DAGGER.get());
 		simpleItem(TechnologicaItems.PRIMITIVE_PICKAXE.get());
 		simpleItem(TechnologicaItems.PRIMITIVE_HOE.get());
 		simpleItem(TechnologicaItems.PRIMITIVE_SHOVEL.get());
 		simpleItem(TechnologicaItems.PRIMITIVE_HATCHET.get());
-		
+
 		simpleItem(TechnologicaItems.DODGEBALL_ITEM.get());
 		simpleItem(TechnologicaItems.HARPOON.get());
-		
+
 		simpleItem(TechnologicaItems.SPACE_HELMET.get());
 		simpleItem(TechnologicaItems.SPACE_SUIT.get());
 		simpleItem(TechnologicaItems.SPACE_PANTS.get());
 		simpleItem(TechnologicaItems.SPACE_BOOTS.get());
-		
+
 		simpleItem(TechnologicaItems.SNORKEL_HELMET.get());
 		simpleItem(TechnologicaItems.SNORKEL_SUIT.get());
 		simpleItem(TechnologicaItems.SNORKEL_PANTS.get());
 		simpleItem(TechnologicaItems.SNORKEL_BOOTS.get());
-		
+
 		simpleItem(TechnologicaItems.DIVE_HELMET.get());
 		simpleItem(TechnologicaItems.DIVE_SUIT.get());
 		simpleItem(TechnologicaItems.DIVE_PANTS.get());
 		simpleItem(TechnologicaItems.DIVE_BOOTS.get());
-		
+
 		simpleItem(TechnologicaItems.SCUBA_HELMET.get());
 		simpleItem(TechnologicaItems.SCUBA_SUIT.get());
 		simpleItem(TechnologicaItems.SCUBA_PANTS.get());
 		simpleItem(TechnologicaItems.SCUBA_BOOTS.get());
-		
+
 		simpleItem(TechnologicaItems.GLUE_BOTTLE.get());
 	}
-	
+
 	public void simpleItem(Item item) {
 		ResourceLocation location = item.getRegistryName();
 		this.getBuilder(location.getPath()).parent(new ModelFile.UncheckedModelFile("item/generated")).texture("layer0", new ResourceLocation(location.getNamespace(), ITEM_FOLDER + "/" + location.getPath()));
 	}
-	
+
 	public void simpleBlockItem(Item item) {
 		ResourceLocation location = item.getRegistryName();
 		this.getBuilder(location.getPath()).parent(new ModelFile.UncheckedModelFile("item/generated")).texture("layer0", new ResourceLocation(location.getNamespace(), BLOCK_FOLDER + "/" + location.getPath()));
 	}
-	
+
 	public void simpleSpawnEggItem(Item item) {
 		ResourceLocation location = item.getRegistryName();
 		this.getBuilder(location.getPath()).parent(new ModelFile.UncheckedModelFile("item/template_spawn_egg"));

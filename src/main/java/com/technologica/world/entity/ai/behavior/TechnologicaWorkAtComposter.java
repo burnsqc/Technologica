@@ -21,8 +21,9 @@ import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class TechnologicaWorkAtComposter extends WorkAtPoi {
-	private static final List<Item> COMPOSTABLE_ITEMS = ImmutableList.of(Items.WHEAT_SEEDS, TechnologicaItems.BARLEY_SEEDS.get(), TechnologicaItems.OATS_SEEDS.get(), TechnologicaItems.RYE_SEEDS.get(), TechnologicaItems.CORN_SEEDS.get(), Items.BEETROOT_SEEDS, TechnologicaItems.ONION_SEEDS.get(), TechnologicaItems.RADISH_SEEDS.get(), TechnologicaItems.TURNIP_SEEDS.get());
+	private static final List<Item> COMPOSTABLE_ITEMS = ImmutableList.of(Items.WHEAT_SEEDS, TechnologicaItems.BARLEY_SEEDS.get(), TechnologicaItems.OATS_SEEDS.get(), TechnologicaItems.RYE_SEEDS.get(), TechnologicaItems.CORN_SEEDS.get(), Items.BEETROOT_SEEDS, TechnologicaItems.BROCCOLI_SEEDS.get(), TechnologicaItems.CELERY_SEEDS.get(), TechnologicaItems.LETTUCE_SEEDS.get(), TechnologicaItems.MUSTARD_SEEDS.get(), TechnologicaItems.PINEAPPLE_SEEDS.get(), TechnologicaItems.PURPLE_CABBAGE_SEEDS.get(), TechnologicaItems.ONION_SEEDS.get(), TechnologicaItems.RADISH_SEEDS.get(), TechnologicaItems.TEA_SEEDS.get(), TechnologicaItems.TURNIP_SEEDS.get());
 
+	@Override
 	protected void useWorkstation(ServerLevel p_24790_, Villager p_24791_) {
 		Optional<GlobalPos> optional = p_24791_.getBrain().getMemory(MemoryModuleType.JOB_SITE);
 		if (optional.isPresent()) {
@@ -73,8 +74,7 @@ public class TechnologicaWorkAtComposter extends WorkAtPoi {
 		this.spawnComposterFillEffects(p_24793_, p_24796_, blockpos, blockstate);
 	}
 
-	private void spawnComposterFillEffects(ServerLevel p_24798_, BlockState p_24799_, BlockPos p_24800_,
-			BlockState p_24801_) {
+	private void spawnComposterFillEffects(ServerLevel p_24798_, BlockState p_24799_, BlockPos p_24800_, BlockState p_24801_) {
 		p_24798_.levelEvent(1500, p_24800_, p_24801_ != p_24799_ ? 1 : 0);
 	}
 

@@ -28,32 +28,32 @@ import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 public class CommonSetup {
-		
+
 	public static void init(final FMLCommonSetupEvent event) {
-		
+
 		TechnologicaCapabilities.init();
 		Packets.onCommonSetupEvent();
 
 		event.enqueueWork(() -> {
-			
+
 			TechnologicaTrunkPlacerType.register();
 			TechnologicaTreeFeatures.register();
 			TechnologicaTreePlacements.register();
 			ResourceKey<Biome> saltFlatsBiomeKey = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(Technologica.MODID, "salt_flats"));
-			
+
 			addToFlowerPot();
 			addToComposter();
 			addToVillagerWantedItems();
 			registerWoodTypes();
-			
+
 			BiomeManager.addAdditionalOverworldBiomes(saltFlatsBiomeKey);
-			//BiomeManager.addBiome(BiomeType.COOL, new BiomeEntry(redwoodForestBiomeKey, 1000));
-			//BiomeManager.addBiome(BiomeType.WARM, new BiomeEntry(rainforestBiomeKey, 1000));
-			//BiomeManager.addBiome(BiomeType.WARM, new BiomeEntry(coastBiomeKey, 1000));
-			
+			// BiomeManager.addBiome(BiomeType.COOL, new BiomeEntry(redwoodForestBiomeKey, 1000));
+			// BiomeManager.addBiome(BiomeType.WARM, new BiomeEntry(rainforestBiomeKey, 1000));
+			// BiomeManager.addBiome(BiomeType.WARM, new BiomeEntry(coastBiomeKey, 1000));
+
 		});
 	}
-	
+
 	private static void registerWoodTypes() {
 		WoodType.register(TechnologicaWoodType.ALCHEMICAL);
 		WoodType.register(TechnologicaWoodType.APRICOT);
@@ -89,7 +89,7 @@ public class CommonSetup {
 		WoodType.register(TechnologicaWoodType.WALNUT);
 		WoodType.register(TechnologicaWoodType.ZEBRAWOOD);
 	}
-	
+
 	private static void addToFlowerPot() {
 		FlowerPotBlock flowerPotBlock = (FlowerPotBlock) Blocks.FLOWER_POT;
 		flowerPotBlock.addPlant(TechnologicaBlocks.APRICOT_SAPLING.get().getRegistryName(), TechnologicaBlocks.POTTED_APRICOT_SAPLING);
@@ -126,53 +126,62 @@ public class CommonSetup {
 		flowerPotBlock.addPlant(TechnologicaBlocks.THUNDEROUS_CONDUCTOR_SAPLING.get().getRegistryName(), TechnologicaBlocks.POTTED_THUNDEROUS_CONDUCTOR_SAPLING);
 		flowerPotBlock.addPlant(TechnologicaBlocks.TOWERING_INFERNO_SAPLING.get().getRegistryName(), TechnologicaBlocks.POTTED_TOWERING_INFERNO_SAPLING);
 	}
-	
+
 	private static void addToComposter() {
-		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.ASPARAGUS_SEEDS.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.BROCCOLI_SEEDS.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.CELERY_SEEDS.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.CHILI_PEPPER_SEEDS.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.COTTON_SEEDS.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.CUCUMBER_SEEDS.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.GRAPE_SEEDS.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.LETTUCE_SEEDS.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.MUSTARD_SEEDS.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.PEA_SEEDS.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.PINEAPPLE_SEEDS.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.PURPLE_CABBAGE_SEEDS.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.SQUASH_SEEDS.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.TEA_SEEDS.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.TOMATO_SEEDS.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.ZUCCHINI_SEEDS.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.CORN_SEEDS.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.PEPPERCORN_SEEDS.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.CRANBERRY_SEEDS.get().asItem(), 0.3F);
-        
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.BARLEY_SEEDS.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.CORN_SEEDS.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.OATS_SEEDS.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.RYE_SEEDS.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.RICE_SEEDS.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.ONION_SEEDS.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.RADISH_SEEDS.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.TURNIP_SEEDS.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.BARLEY.get().asItem(), 0.65F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.OATS.get().asItem(), 0.65F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.RYE.get().asItem(), 0.65F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.CORN.get().asItem(), 0.65F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.RICE.get().asItem(), 0.65F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.GARLIC.get().asItem(), 0.65F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.GINGER.get().asItem(), 0.65F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.SWEET_POTATO.get().asItem(), 0.65F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.PEANUT.get().asItem(), 0.65F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.ONION.get().asItem(), 0.65F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.RADISH.get().asItem(), 0.65F);
-        ComposterBlock.COMPOSTABLES.put(TechnologicaItems.TURNIP.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.COTTON_SEEDS.get().asItem(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.CUCUMBER_SEEDS.get().asItem(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.GRAPE_SEEDS.get().asItem(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.SQUASH_SEEDS.get().asItem(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.TOMATO_SEEDS.get().asItem(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.ZUCCHINI_SEEDS.get().asItem(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.PEPPERCORN_SEEDS.get().asItem(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.CRANBERRY_SEEDS.get().asItem(), 0.3F);
+
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.BARLEY_SEEDS.get().asItem(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.CORN_SEEDS.get().asItem(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.OATS_SEEDS.get().asItem(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.RYE_SEEDS.get().asItem(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.RICE_SEEDS.get().asItem(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.BROCCOLI_SEEDS.get().asItem(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.CELERY_SEEDS.get().asItem(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.COFFEE_BEANS.get().asItem(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.LETTUCE_SEEDS.get().asItem(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.MUSTARD_SEEDS.get().asItem(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.ONION_SEEDS.get().asItem(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.PEAS.get().asItem(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.PINEAPPLE_SEEDS.get().asItem(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.PURPLE_CABBAGE_SEEDS.get().asItem(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.RADISH_SEEDS.get().asItem(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.RED_BEANS.get().asItem(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.SOY_BEANS.get().asItem(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.TEA_SEEDS.get().asItem(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.TURNIP_SEEDS.get().asItem(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.BARLEY.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.OATS.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.RYE.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.CORN.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.RICE.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.ASPARAGUS.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.CHILI_PEPPER.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.GARLIC.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.GINGER.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.SWEET_POTATO.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.PEANUT.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.BROCCOLI.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.CELERY.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.LETTUCE.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.MUSTARD_GREENS.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.PINEAPPLE.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.PURPLE_CABBAGE.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.ONION.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.RADISH.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.TEA_LEAF.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.TURNIP.get().asItem(), 0.65F);
 	}
-	
+
 	private static void addToVillagerWantedItems() {
 		Stream<Item> vanillaWantedItems = Villager.WANTED_ITEMS.stream();
-		Stream<Item> technologicaWantedItems = Stream.of(TechnologicaItems.BARLEY.get(), TechnologicaItems.BARLEY_SEEDS.get(), TechnologicaItems.OATS.get(), TechnologicaItems.OATS_SEEDS.get(), TechnologicaItems.RYE.get(), TechnologicaItems.RYE_SEEDS.get(), TechnologicaItems.CORN.get(), TechnologicaItems.CORN_SEEDS.get(), TechnologicaItems.RICE.get(), TechnologicaItems.RICE_SEEDS.get(), TechnologicaItems.GARLIC.get(), TechnologicaItems.GINGER.get(), TechnologicaItems.PEANUT.get(), TechnologicaItems.SWEET_POTATO.get(), TechnologicaItems.ONION.get(), TechnologicaItems.ONION_SEEDS.get(), TechnologicaItems.RADISH.get(), TechnologicaItems.RADISH_SEEDS.get(), TechnologicaItems.TURNIP.get(), TechnologicaItems.TURNIP_SEEDS.get());
+		Stream<Item> technologicaWantedItems = Stream.of(TechnologicaItems.BARLEY.get(), TechnologicaItems.BARLEY_SEEDS.get(), TechnologicaItems.OATS.get(), TechnologicaItems.OATS_SEEDS.get(), TechnologicaItems.RYE.get(), TechnologicaItems.RYE_SEEDS.get(), TechnologicaItems.CORN.get(), TechnologicaItems.CORN_SEEDS.get(), TechnologicaItems.RICE.get(), TechnologicaItems.RICE_SEEDS.get(), TechnologicaItems.ASPARAGUS.get(), TechnologicaItems.CHILI_PEPPER.get(), TechnologicaItems.COFFEE_BEANS.get(), TechnologicaItems.GARLIC.get(), TechnologicaItems.GINGER.get(), TechnologicaItems.PEAS.get(), TechnologicaItems.PEANUT.get(), TechnologicaItems.RED_BEANS.get(), TechnologicaItems.SOY_BEANS.get(), TechnologicaItems.SWEET_POTATO.get(), TechnologicaItems.BROCCOLI.get(), TechnologicaItems.BROCCOLI_SEEDS.get(), TechnologicaItems.CELERY.get(), TechnologicaItems.CELERY_SEEDS.get(), TechnologicaItems.LETTUCE.get(), TechnologicaItems.LETTUCE_SEEDS.get(), TechnologicaItems.MUSTARD_GREENS.get(), TechnologicaItems.MUSTARD_SEEDS.get(), TechnologicaItems.PINEAPPLE.get(), TechnologicaItems.PINEAPPLE_SEEDS.get(), TechnologicaItems.PURPLE_CABBAGE.get(), TechnologicaItems.PURPLE_CABBAGE_SEEDS.get(), TechnologicaItems.ONION.get(), TechnologicaItems.ONION_SEEDS.get(), TechnologicaItems.RADISH.get(), TechnologicaItems.RADISH_SEEDS.get(), TechnologicaItems.TEA_LEAF.get(), TechnologicaItems.TEA_SEEDS.get(), TechnologicaItems.TURNIP.get(), TechnologicaItems.TURNIP_SEEDS.get());
 		Villager.WANTED_ITEMS = ImmutableSet.copyOf(Stream.concat(vanillaWantedItems, technologicaWantedItems).collect(Collectors.toSet()));
 	}
 }
