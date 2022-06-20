@@ -51,6 +51,7 @@ public class GlueBottleItem extends Item implements Vanishable {
 		return InteractionResult.PASS;
 	}
 
+	@SuppressWarnings("deprecation")
 	public BlockState setBlockStateGlued(BlockPos p_62865_, BlockState p_62866_, boolean p_62867_, Level worldIn) {
 
 		LevelChunk levelchunk = worldIn.getChunkAt(p_62865_);

@@ -12,15 +12,11 @@
     },
     {
       "when": {
-        "up": "false",
-        "north": "false",
-        "west": "false",
-        "south": "false",
-        "east": "false"
+        "down": "true"
       },
       "apply": {
         "model": "technologica:block/glue",
-        "x": 270,
+        "x": 90,
         "uvlock": true
       }
     },
@@ -34,33 +30,7 @@
     },
     {
       "when": {
-        "up": "false",
-        "north": "false",
-        "west": "false",
-        "south": "false",
-        "east": "false"
-      },
-      "apply": {
-        "model": "technologica:block/glue"
-      }
-    },
-    {
-      "when": {
         "west": "true"
-      },
-      "apply": {
-        "model": "technologica:block/glue",
-        "y": 270,
-        "uvlock": true
-      }
-    },
-    {
-      "when": {
-        "up": "false",
-        "north": "false",
-        "west": "false",
-        "south": "false",
-        "east": "false"
       },
       "apply": {
         "model": "technologica:block/glue",
@@ -80,35 +50,7 @@
     },
     {
       "when": {
-        "up": "false",
-        "north": "false",
-        "west": "false",
-        "south": "false",
-        "east": "false"
-      },
-      "apply": {
-        "model": "technologica:block/glue",
-        "y": 180,
-        "uvlock": true
-      }
-    },
-    {
-      "when": {
         "east": "true"
-      },
-      "apply": {
-        "model": "technologica:block/glue",
-        "y": 90,
-        "uvlock": true
-      }
-    },
-    {
-      "when": {
-        "up": "false",
-        "north": "false",
-        "west": "false",
-        "south": "false",
-        "east": "false"
       },
       "apply": {
         "model": "technologica:block/glue",
