@@ -1,0 +1,6 @@
+{
+  "parent": "technologica:block/gourd",
+  "textures": {
+    "gourd": "technologica:block/squash"
+  }
+}

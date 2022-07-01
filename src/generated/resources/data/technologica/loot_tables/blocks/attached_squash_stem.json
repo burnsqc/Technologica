@@ -13,17 +13,17 @@
               "conditions": [
                 {
                   "condition": "minecraft:block_state_property",
-                  "block": "technologica:pineapples",
+                  "block": "technologica:squash",
                   "properties": {
-                    "age": "3"
+                    "age": "7"
                   }
                 }
               ],
-              "name": "technologica:pineapple"
+              "name": "technologica:squash"
             },
             {
               "type": "minecraft:item",
-              "name": "technologica:pineapple_seeds"
+              "name": "minecraft:air"
             }
           ]
         }
@@ -46,15 +46,15 @@
               }
             }
           ],
-          "name": "technologica:pineapple_seeds"
+          "name": "minecraft:air"
         }
       ],
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "technologica:pineapples",
+          "block": "technologica:squash",
           "properties": {
-            "age": "3"
+            "age": "7"
           }
         }
       ]

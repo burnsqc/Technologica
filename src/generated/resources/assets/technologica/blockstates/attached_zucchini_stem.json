@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "technologica:block/attached_zucchini_stem",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "technologica:block/attached_zucchini_stem",
+      "y": 270
+    },
+    "facing=west": {
+      "model": "technologica:block/attached_zucchini_stem"
+    },
+    "facing=east": {
+      "model": "technologica:block/attached_zucchini_stem",
+      "y": 180
+    }
+  }
+}

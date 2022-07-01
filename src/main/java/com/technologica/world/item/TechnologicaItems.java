@@ -98,9 +98,9 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> CUCUMBER_SEEDS = ITEMS.register("cucumber_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.CUCUMBER_STEM.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
 	public static final RegistryObject<Item> GRAPE_SEEDS = ITEMS.register("grape_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.GRAPE_CROP.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
 	public static final RegistryObject<Item> PEPPERCORN_SEEDS = ITEMS.register("peppercorn_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.PEPPERCORN_CROP.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
-	public static final RegistryObject<Item> SQUASH_SEEDS = ITEMS.register("squash_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.SQUASH_CROP.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
+	public static final RegistryObject<Item> SQUASH_SEEDS = ITEMS.register("squash_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.SQUASH_STEM.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
 	public static final RegistryObject<Item> TOMATO_SEEDS = ITEMS.register("tomato_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.TOMATO_CROP.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
-	public static final RegistryObject<Item> ZUCCHINI_SEEDS = ITEMS.register("zucchini_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.ZUCCHINI_CROP.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
+	public static final RegistryObject<Item> ZUCCHINI_SEEDS = ITEMS.register("zucchini_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.ZUCCHINI_STEM.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
 
 	public static final RegistryObject<Item> APRICOT_SAPLING_ITEM = ITEMS.register("apricot_sapling", () -> new BlockItem(TechnologicaBlocks.APRICOT_SAPLING.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
 	public static final RegistryObject<Item> ASPEN_SAPLING_ITEM = ITEMS.register("aspen_sapling", () -> new BlockItem(TechnologicaBlocks.ASPEN_SAPLING.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));

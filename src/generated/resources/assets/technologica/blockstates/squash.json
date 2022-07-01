@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "technologica:block/squash"
+    },
+    "facing=south": {
+      "model": "technologica:block/squash",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "technologica:block/squash",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "technologica:block/squash",
+      "y": 90
+    }
+  }
+}

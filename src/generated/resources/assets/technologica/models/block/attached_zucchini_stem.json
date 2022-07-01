@@ -1,0 +1,7 @@
+{
+  "parent": "technologica:block/stem_gourd",
+  "textures": {
+    "stem": "technologica:block/zucchini_stem",
+    "upperstem": "technologica:block/attached_zucchini_stem"
+  }
+}

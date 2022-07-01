@@ -27,12 +27,12 @@ public class ClientSetup {
 	@SuppressWarnings("unchecked")
 	public static void init(final FMLClientSetupEvent event) {
 		MenuScreens.register(TechnologicaContainerType.ANNUNCIATOR.get(), AnnunciatorScreen::new);
-		
-		event.enqueueWork(() -> {	
+
+		event.enqueueWork(() -> {
 			TechnologicaItemBlockRenderTypes();
 
 			Sheets.addWoodType(TechnologicaWoodType.ALCHEMICAL);
-    	  	Sheets.addWoodType(TechnologicaWoodType.APRICOT);
+			Sheets.addWoodType(TechnologicaWoodType.APRICOT);
 			Sheets.addWoodType(TechnologicaWoodType.ASPEN);
 			Sheets.addWoodType(TechnologicaWoodType.AVOCADO);
 			Sheets.addWoodType(TechnologicaWoodType.BANANA);
@@ -65,12 +65,13 @@ public class ClientSetup {
 			Sheets.addWoodType(TechnologicaWoodType.WALNUT);
 			Sheets.addWoodType(TechnologicaWoodType.ZEBRAWOOD);
 		});
-		
+
 		Field effects = ObfuscationReflectionHelper.findField(DimensionSpecialEffects.class, "EFFECTS");
 		DimensionSpecialEffects dimensionRenderInfo = new DimensionSpecialEffects.OverworldEffects();
 		dimensionRenderInfo.setSkyRenderHandler(new MoonRenderer());
-		dimensionRenderInfo.setCloudRenderHandler((ticks, partialTicks, matrixStack, world, mc, viewEntityX, viewEntityY, viewEntityZ) -> {});
-        try {
+		dimensionRenderInfo.setCloudRenderHandler((ticks, partialTicks, matrixStack, world, mc, viewEntityX, viewEntityY, viewEntityZ) -> {
+		});
+		try {
 			((Object2ObjectMap<ResourceLocation, DimensionSpecialEffects>) effects.get(null)).put(new ResourceLocation(Technologica.MODID, "moon"), dimensionRenderInfo);
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
@@ -78,7 +79,7 @@ public class ClientSetup {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private static void TechnologicaItemBlockRenderTypes() {
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ASPARAGUS.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.BARLEY.get(), RenderType.cutoutMipped());
@@ -89,6 +90,8 @@ public class ClientSetup {
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CHILI_PEPPERS.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.COFFEE.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.COTTON_CROP.get(), RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ATTACHED_CUCUMBER_STEM.get(), RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CUCUMBER_STEM.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CUCUMBERS.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.GARLIC.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.GINGER.get(), RenderType.cutoutMipped());
@@ -106,18 +109,22 @@ public class ClientSetup {
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.RED_BEANS.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.RYE.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.SOY_BEANS.get(), RenderType.cutoutMipped());
-		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.SQUASH_CROP.get(), RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ATTACHED_SQUASH_STEM.get(), RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.SQUASH_STEM.get(), RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.SQUASH.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.STRAWBERRY_BUSH.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.SWEET_POTATOES.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.TEA.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.TOMATO_CROP.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.TURNIPS.get(), RenderType.cutoutMipped());
-		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ZUCCHINI_CROP.get(), RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ATTACHED_ZUCCHINI_STEM.get(), RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ZUCCHINI_STEM.get(), RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ZUCCHINI.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CORN.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.PEPPERCORN_CROP.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CRANBERRY_CROP.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.RICE.get(), RenderType.cutoutMipped());
-		
+
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.APRICOT_SAPLING.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ASPEN_SAPLING.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.AVOCADO_SAPLING.get(), RenderType.cutoutMipped());
@@ -151,7 +158,7 @@ public class ClientSetup {
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.TOWERING_INFERNO_SAPLING.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.THUNDEROUS_CONDUCTOR_SAPLING.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CRYOGENIC_SPIRE_SAPLING.get(), RenderType.cutoutMipped());
-		
+
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_APRICOT_SAPLING.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_ASPEN_SAPLING.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_AVOCADO_SAPLING.get(), RenderType.cutoutMipped());
@@ -185,7 +192,7 @@ public class ClientSetup {
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_TOWERING_INFERNO_SAPLING.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_THUNDEROUS_CONDUCTOR_SAPLING.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.POTTED_CRYOGENIC_SPIRE_SAPLING.get(), RenderType.cutoutMipped());
-		
+
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.APRICOT_DOOR.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ASPEN_DOOR.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.AVOCADO_DOOR.get(), RenderType.cutoutMipped());
@@ -219,7 +226,7 @@ public class ClientSetup {
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.INFERNAL_DOOR.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.MALEVOLENT_DOOR.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.NECROTIC_DOOR.get(), RenderType.cutoutMipped());
-		
+
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.APRICOT_TRAPDOOR.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ASPEN_TRAPDOOR.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.AVOCADO_TRAPDOOR.get(), RenderType.cutoutMipped());
@@ -253,18 +260,18 @@ public class ClientSetup {
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.INFERNAL_TRAPDOOR.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.MALEVOLENT_TRAPDOOR.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.NECROTIC_TRAPDOOR.get(), RenderType.cutoutMipped());
-		
+
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.NAVAL_MINE_CHAIN.get(), RenderType.cutoutMipped());
-			
+
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.DISPLAY_CASE.get(), RenderType.translucent());
-		
+
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.GLUE.get(), RenderType.cutoutMipped());
-		
+
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.FLUORITE_CRYSTAL.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ULEXITE_CRYSTAL.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.DOLOMITE_CRYSTAL.get(), RenderType.translucent());
-		
+
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.HYDROGEN.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_HYDROGEN.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.HELIUM.get(), RenderType.translucent());
@@ -287,20 +294,20 @@ public class ClientSetup {
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_XENON.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.RADON.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_RADON.get(), RenderType.translucent());
-		
+
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.BROMINE.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_BROMINE.get(), RenderType.translucent());
-		
+
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.BRINE.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_BRINE.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.NATURAL_GAS.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_NATURAL_GAS.get(), RenderType.translucent());
-		
+
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.MAPLE_SYRUP.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_MAPLE_SYRUP.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.RUBBER_RESIN.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_RUBBER_RESIN.get(), RenderType.translucent());
-		
+
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.GASOLINE.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_GASOLINE.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.MACHINE_OIL.get(), RenderType.translucent());
@@ -308,7 +315,7 @@ public class ClientSetup {
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.COOLANT.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_COOLANT.get(), RenderType.translucent());
 	}
-   
+
 	public static void stitch(final TextureStitchEvent.Pre event) {
 		if (event.getAtlas().location().equals(InventoryMenu.BLOCK_ATLAS)) {
 			event.addSprite(new ResourceLocation(Technologica.MODID, "block/pulley_belt"));

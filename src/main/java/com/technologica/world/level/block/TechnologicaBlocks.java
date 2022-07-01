@@ -67,7 +67,6 @@ import net.minecraft.world.level.block.FenceGateBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.LiquidBlock;
-import net.minecraft.world.level.block.MelonBlock;
 import net.minecraft.world.level.block.OreBlock;
 import net.minecraft.world.level.block.PotatoBlock;
 import net.minecraft.world.level.block.PressurePlateBlock;
@@ -78,7 +77,6 @@ import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.StandingSignBlock;
-import net.minecraft.world.level.block.StemBlock;
 import net.minecraft.world.level.block.StemGrownBlock;
 import net.minecraft.world.level.block.SweetBerryBushBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
@@ -141,16 +139,27 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> RASPBERRY_BUSH = BLOCKS.register("raspberry_bush", () -> berryBushBlock(TechnologicaItems.RASPBERRY));
 	public static final RegistryObject<Block> STRAWBERRY_BUSH = BLOCKS.register("strawberry_bush", () -> berryBushBlock(TechnologicaItems.STRAWBERRY));
 
-	public static final RegistryObject<Block> CUCUMBERS = BLOCKS.register("cucumbers", () -> gourdCropBlock());
+	public static final RegistryObject<Block> CUCUMBERS = BLOCKS.register("cucumbers", () -> new GourdCropBlock(0));
 	public static final RegistryObject<Block> ATTACHED_CUCUMBER_STEM = BLOCKS.register("attached_cucumber_stem", () -> new AttachedStemBlock((StemGrownBlock) CUCUMBERS.get(), () -> {
 		return TechnologicaItems.CUCUMBER_SEEDS.get();
 	}, BlockBehaviour.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.WOOD)));
-	public static final RegistryObject<Block> CUCUMBER_STEM = BLOCKS.register("cucumber_stem", () -> new StemBlock((StemGrownBlock) CUCUMBERS.get(), () -> {
+	public static final RegistryObject<Block> CUCUMBER_STEM = BLOCKS.register("cucumber_stem", () -> new GourdStemBlock((StemGrownBlock) CUCUMBERS.get(), () -> {
 		return TechnologicaItems.CUCUMBER_SEEDS.get();
 	}, BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.HARD_CROP)));
-
-	public static final RegistryObject<Block> SQUASH_CROP = BLOCKS.register("squash_crop", () -> grainCropBlock(TechnologicaItems.SQUASH_SEEDS));
-	public static final RegistryObject<Block> ZUCCHINI_CROP = BLOCKS.register("zucchini_crop", () -> grainCropBlock(TechnologicaItems.ZUCCHINI_SEEDS));
+	public static final RegistryObject<Block> SQUASH = BLOCKS.register("squash", () -> new GourdCropBlock(1));
+	public static final RegistryObject<Block> ATTACHED_SQUASH_STEM = BLOCKS.register("attached_squash_stem", () -> new AttachedStemBlock((StemGrownBlock) SQUASH.get(), () -> {
+		return TechnologicaItems.SQUASH_SEEDS.get();
+	}, BlockBehaviour.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> SQUASH_STEM = BLOCKS.register("squash_stem", () -> new GourdStemBlock((StemGrownBlock) SQUASH.get(), () -> {
+		return TechnologicaItems.SQUASH_SEEDS.get();
+	}, BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.HARD_CROP)));
+	public static final RegistryObject<Block> ZUCCHINI = BLOCKS.register("zucchini", () -> new GourdCropBlock(2));
+	public static final RegistryObject<Block> ATTACHED_ZUCCHINI_STEM = BLOCKS.register("attached_zucchini_stem", () -> new AttachedStemBlock((StemGrownBlock) ZUCCHINI.get(), () -> {
+		return TechnologicaItems.ZUCCHINI_SEEDS.get();
+	}, BlockBehaviour.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> ZUCCHINI_STEM = BLOCKS.register("zucchini_stem", () -> new GourdStemBlock((StemGrownBlock) ZUCCHINI.get(), () -> {
+		return TechnologicaItems.ZUCCHINI_SEEDS.get();
+	}, BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.HARD_CROP)));
 
 	public static final RegistryObject<Block> COTTON_CROP = BLOCKS.register("cotton_crop", () -> grainCropBlock(TechnologicaItems.COTTON_SEEDS));
 	public static final RegistryObject<Block> CRANBERRY_CROP = BLOCKS.register("cranberry", () -> new WaterCropsBlock(TechnologicaItems.CRANBERRY_SEEDS));
@@ -1007,20 +1016,6 @@ public class TechnologicaBlocks {
 			@Override
 			protected ItemLike getBaseSeedId() {
 				return yield.get();
-			}
-		};
-	}
-
-	private static MelonBlock gourdCropBlock() {
-		return new MelonBlock(BlockBehaviour.Properties.of(Material.VEGETABLE, MaterialColor.COLOR_LIGHT_GREEN).strength(1.0F).sound(SoundType.WOOD)) {
-			@Override
-			public StemBlock getStem() {
-				return (StemBlock) CUCUMBER_STEM.get();
-			}
-
-			@Override
-			public AttachedStemBlock getAttachedStem() {
-				return (AttachedStemBlock) ATTACHED_CUCUMBER_STEM.get();
 			}
 		};
 	}
