@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/crop",
   "textures": {
-    "crop": "technologica:block/peppercorn_top_stage6"
+    "crop": "technologica:block/peppercorns_bottom_stage6"
   }
 }

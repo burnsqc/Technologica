@@ -13,7 +13,7 @@
               "conditions": [
                 {
                   "condition": "minecraft:block_state_property",
-                  "block": "technologica:peppercorn",
+                  "block": "technologica:peppercorns",
                   "properties": {
                     "age": "7"
                   }
@@ -52,7 +52,7 @@
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "technologica:peppercorn",
+          "block": "technologica:peppercorns",
           "properties": {
             "age": "7"
           }
