@@ -121,7 +121,7 @@ public class ClientSetup {
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ZUCCHINI_STEM.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.ZUCCHINI.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CORN.get(), RenderType.cutoutMipped());
-		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.PEPPERCORN_CROP.get(), RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.PEPPERCORNS.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.CRANBERRY_CROP.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.RICE.get(), RenderType.cutoutMipped());
 

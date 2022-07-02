@@ -97,7 +97,7 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> CRANBERRY_SEEDS = ITEMS.register("cranberry_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.CRANBERRY_CROP.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
 	public static final RegistryObject<Item> CUCUMBER_SEEDS = ITEMS.register("cucumber_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.CUCUMBER_STEM.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
 	public static final RegistryObject<Item> GRAPE_SEEDS = ITEMS.register("grape_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.GRAPE_CROP.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
-	public static final RegistryObject<Item> PEPPERCORN_SEEDS = ITEMS.register("peppercorn_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.PEPPERCORN_CROP.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
+	public static final RegistryObject<Item> PEPPERCORN_SEEDS = ITEMS.register("peppercorn_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.PEPPERCORNS.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
 	public static final RegistryObject<Item> SQUASH_SEEDS = ITEMS.register("squash_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.SQUASH_STEM.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
 	public static final RegistryObject<Item> TOMATO_SEEDS = ITEMS.register("tomato_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.TOMATO_CROP.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
 	public static final RegistryObject<Item> ZUCCHINI_SEEDS = ITEMS.register("zucchini_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.ZUCCHINI_STEM.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
@@ -217,7 +217,7 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> PEEPER_SPAWN_EGG = ITEMS.register("peeper_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityType.PEEPER, 0xb38dff, 0x000000, new Item.Properties().tab(TechnologicaItemGroup.FAUNA)));
 	public static final RegistryObject<Item> SWEEPER_SPAWN_EGG = ITEMS.register("sweeper_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityType.SWEEPER, 0xd3be2b, 0x000000, new Item.Properties().tab(TechnologicaItemGroup.FAUNA)));
 
-	public static final RegistryObject<Item> PIRANHA_BUCKET = ITEMS.register("salmon_bucket", () -> new MobBucketItem(TechnologicaEntityType.PIRANHA, () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_FISH, (new Item.Properties()).stacksTo(1).tab(TechnologicaItemGroup.FAUNA)));
+	public static final RegistryObject<Item> PIRANHA_BUCKET = ITEMS.register("bucket_of_piranha", () -> new MobBucketItem(TechnologicaEntityType.PIRANHA, () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_FISH, (new Item.Properties()).stacksTo(1).tab(TechnologicaItemGroup.FAUNA)));
 
 	/**
 	 * MINERAL
@@ -1101,5 +1101,5 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> SCUBA_PANTS = ITEMS.register("scuba_pants", () -> new ArmorItem(TechnologicaArmorMaterial.SCUBA, EquipmentSlot.LEGS, (new Item.Properties()).tab(TechnologicaItemGroup.ARMORY)));
 	public static final RegistryObject<Item> SCUBA_BOOTS = ITEMS.register("scuba_boots", () -> new ArmorItem(TechnologicaArmorMaterial.SCUBA, EquipmentSlot.FEET, (new Item.Properties()).tab(TechnologicaItemGroup.ARMORY)));
 
-	// public static final RegistryObject<Item> NAVAL_MINE = ITEMS.register("naval_mine", () -> new ForgeSpawnEggItem(TechnologicaEntityType.NAVAL_MINE, 0, 0, new Item.Properties().tab(TechnologicaItemGroup.FAUNA)));
+	public static final RegistryObject<Item> NAVAL_MINE = ITEMS.register("naval_mine", () -> new NavalMineItem(new Item.Properties().tab(TechnologicaItemGroup.ARMORY)));
 }

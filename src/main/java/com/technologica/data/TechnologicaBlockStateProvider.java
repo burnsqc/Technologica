@@ -1368,7 +1368,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		grainCropBlock(TechnologicaBlocks.TOMATO_CROP.get());
 
 		tallCropBlock(TechnologicaBlocks.CORN.get());
-		tallCropBlock(TechnologicaBlocks.PEPPERCORN_CROP.get());
+		tallCropBlock(TechnologicaBlocks.PEPPERCORNS.get());
 		tallCropBlock(TechnologicaBlocks.CRANBERRY_CROP.get());
 		tallCropBlock(TechnologicaBlocks.RICE.get());
 

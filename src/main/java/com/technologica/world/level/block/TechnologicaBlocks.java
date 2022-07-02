@@ -164,7 +164,7 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> COTTON_CROP = BLOCKS.register("cotton_crop", () -> grainCropBlock(TechnologicaItems.COTTON_SEEDS));
 	public static final RegistryObject<Block> CRANBERRY_CROP = BLOCKS.register("cranberry", () -> new WaterCropsBlock(TechnologicaItems.CRANBERRY_SEEDS));
 	public static final RegistryObject<Block> GRAPE_CROP = BLOCKS.register("grape_crop", () -> grainCropBlock(TechnologicaItems.GRAPE_SEEDS));
-	public static final RegistryObject<Block> PEPPERCORN_CROP = BLOCKS.register("peppercorn", () -> new TallCropsBlock(TechnologicaItems.PEPPERCORN_SEEDS));
+	public static final RegistryObject<Block> PEPPERCORNS = BLOCKS.register("peppercorns", () -> new TallCropsBlock(TechnologicaItems.PEPPERCORN_SEEDS));
 	public static final RegistryObject<Block> TOMATO_CROP = BLOCKS.register("tomato_crop", () -> grainCropBlock(TechnologicaItems.TOMATO_SEEDS));
 
 	public static final RegistryObject<Block> APRICOT_SAPLING = BLOCKS.register("apricot_sapling", () -> new SaplingBlock(new ApricotTreeGrower(), BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "technologica:item/salmon_bucket"
+    "layer0": "technologica:item/bucket_of_piranha"
   }
 }

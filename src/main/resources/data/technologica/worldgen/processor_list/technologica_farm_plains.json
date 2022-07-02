@@ -113,6 +113,86 @@
           "location_predicate": {
             "predicate_type": "minecraft:always_true"
           }
+        },
+        {
+          "output_state": {
+            "Properties": {
+              "age": "0"
+            },
+            "Name": "technologica:grape_crop"
+          },
+          "input_predicate": {
+            "block": "minecraft:wheat",
+            "probability": 0.2,
+            "predicate_type": "minecraft:random_block_match"
+          },
+          "location_predicate": {
+            "predicate_type": "minecraft:always_true"
+          }
+        },
+        {
+          "output_state": {
+            "Properties": {
+              "age": "0"
+            },
+            "Name": "technologica:lettuce"
+          },
+          "input_predicate": {
+            "block": "minecraft:wheat",
+            "probability": 0.2,
+            "predicate_type": "minecraft:random_block_match"
+          },
+          "location_predicate": {
+            "predicate_type": "minecraft:always_true"
+          }
+        },
+        {
+          "output_state": {
+            "Properties": {
+              "age": "0"
+            },
+            "Name": "technologica:mustard_greens"
+          },
+          "input_predicate": {
+            "block": "minecraft:wheat",
+            "probability": 0.2,
+            "predicate_type": "minecraft:random_block_match"
+          },
+          "location_predicate": {
+            "predicate_type": "minecraft:always_true"
+          }
+        },
+        {
+          "output_state": {
+            "Properties": {
+              "age": "0"
+            },
+            "Name": "technologica:peas"
+          },
+          "input_predicate": {
+            "block": "minecraft:wheat",
+            "probability": 0.2,
+            "predicate_type": "minecraft:random_block_match"
+          },
+          "location_predicate": {
+            "predicate_type": "minecraft:always_true"
+          }
+        },
+        {
+          "output_state": {
+            "Properties": {
+              "age": "0"
+            },
+            "Name": "technologica:tomato_crop"
+          },
+          "input_predicate": {
+            "block": "minecraft:wheat",
+            "probability": 0.2,
+            "predicate_type": "minecraft:random_block_match"
+          },
+          "location_predicate": {
+            "predicate_type": "minecraft:always_true"
+          }
         }
       ],
       "processor_type": "minecraft:rule"

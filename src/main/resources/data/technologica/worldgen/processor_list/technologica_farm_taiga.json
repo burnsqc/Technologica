@@ -81,6 +81,102 @@
           "location_predicate": {
             "predicate_type": "minecraft:always_true"
           }
+        },
+        {
+          "output_state": {
+            "Properties": {
+              "age": "0"
+            },
+            "Name": "technologica:asparagus"
+          },
+          "input_predicate": {
+            "block": "minecraft:wheat",
+            "probability": 0.2,
+            "predicate_type": "minecraft:random_block_match"
+          },
+          "location_predicate": {
+            "predicate_type": "minecraft:always_true"
+          }
+        },
+        {
+          "output_state": {
+            "Properties": {
+              "age": "0"
+            },
+            "Name": "technologica:broccoli"
+          },
+          "input_predicate": {
+            "block": "minecraft:wheat",
+            "probability": 0.2,
+            "predicate_type": "minecraft:random_block_match"
+          },
+          "location_predicate": {
+            "predicate_type": "minecraft:always_true"
+          }
+        },
+        {
+          "output_state": {
+            "Properties": {
+              "age": "0"
+            },
+            "Name": "technologica:celery"
+          },
+          "input_predicate": {
+            "block": "minecraft:wheat",
+            "probability": 0.2,
+            "predicate_type": "minecraft:random_block_match"
+          },
+          "location_predicate": {
+            "predicate_type": "minecraft:always_true"
+          }
+        },
+        {
+          "output_state": {
+            "Properties": {
+              "age": "0"
+            },
+            "Name": "technologica:purple_cabbage"
+          },
+          "input_predicate": {
+            "block": "minecraft:wheat",
+            "probability": 0.2,
+            "predicate_type": "minecraft:random_block_match"
+          },
+          "location_predicate": {
+            "predicate_type": "minecraft:always_true"
+          }
+        },
+        {
+          "output_state": {
+            "Properties": {
+              "age": "0"
+            },
+            "Name": "technologica:red_beans"
+          },
+          "input_predicate": {
+            "block": "minecraft:wheat",
+            "probability": 0.2,
+            "predicate_type": "minecraft:random_block_match"
+          },
+          "location_predicate": {
+            "predicate_type": "minecraft:always_true"
+          }
+        },
+        {
+          "output_state": {
+            "Properties": {
+              "age": "0"
+            },
+            "Name": "technologica:soybeans"
+          },
+          "input_predicate": {
+            "block": "minecraft:wheat",
+            "probability": 0.2,
+            "predicate_type": "minecraft:random_block_match"
+          },
+          "location_predicate": {
+            "predicate_type": "minecraft:always_true"
+          }
         }
       ],
       "processor_type": "minecraft:rule"

@@ -6,26 +6,8 @@
       "bonus_rolls": 0.0,
       "entries": [
         {
-          "type": "minecraft:alternatives",
-          "children": [
-            {
-              "type": "minecraft:item",
-              "conditions": [
-                {
-                  "condition": "minecraft:block_state_property",
-                  "block": "technologica:zucchini",
-                  "properties": {
-                    "age": "7"
-                  }
-                }
-              ],
-              "name": "technologica:zucchini"
-            },
-            {
-              "type": "minecraft:item",
-              "name": "minecraft:air"
-            }
-          ]
+          "type": "minecraft:item",
+          "name": "technologica:zucchini"
         }
       ]
     },
@@ -46,16 +28,7 @@
               }
             }
           ],
-          "name": "minecraft:air"
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:block_state_property",
-          "block": "technologica:zucchini",
-          "properties": {
-            "age": "7"
-          }
+          "name": "technologica:zucchini"
         }
       ]
     }
