@@ -156,6 +156,7 @@ public class CommonSetup {
 		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.SOY_BEANS.get().asItem(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.TEA_SEEDS.get().asItem(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.TURNIP_SEEDS.get().asItem(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.PEPPERCORNS.get().asItem(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.BARLEY.get().asItem(), 0.65F);
 		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.OATS.get().asItem(), 0.65F);
 		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.RYE.get().asItem(), 0.65F);
@@ -177,6 +178,33 @@ public class CommonSetup {
 		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.RADISH.get().asItem(), 0.65F);
 		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.TEA_LEAF.get().asItem(), 0.65F);
 		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.TURNIP.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.CRANBERRY.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.BLACKBERRY.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.BLUEBERRY.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.RASPBERRY.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.STRAWBERRY.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.GRAPE.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.TOMATO.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.CUCUMBER.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.SQUASH.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.ZUCCHINI.get().asItem(), 0.65F);
+
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.APRICOT.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.AVOCADO.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.BANANA.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.CHERRY.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.CHESTNUT.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.CINNAMON.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.COCONUT.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.KIWI.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.LEMON.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.LIME.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.OLIVE.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.ORANGE.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.PEACH.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.PEAR.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.PLUM.get().asItem(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.WALNUT.get().asItem(), 0.65F);
 	}
 
 	private static void addToVillagerWantedItems() {
