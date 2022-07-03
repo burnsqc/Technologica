@@ -45,6 +45,7 @@ public class NavalMine extends Entity {
 		this.zo = z;
 	}
 
+	@Override
 	protected void defineSynchedData() {
 		this.entityData.define(FUSE, 100);
 		this.entityData.define(DETONATE, false);
@@ -55,14 +56,16 @@ public class NavalMine extends Entity {
 		return false;
 	}
 
+	@Override
 	public boolean canCollideWith(Entity entity) {
 		return true;
 	}
 
+	@Override
 	public boolean isPickable() {
 		return true;
 	}
-	
+
 	@Override
 	public void tick() {
 		if (this.getDetonate()) {
@@ -74,7 +77,7 @@ public class NavalMine extends Entity {
 			if (this.getFuse() > 0) {
 				--this.armingFuse;
 			} else {
-				List<Entity> list = this.level.getEntities(this, this.getBoundingBox().inflate((double) 0.2F, (double) -0.01F, (double) 0.2F), null);
+				List<Entity> list = this.level.getEntities(this, this.getBoundingBox().inflate(0.2F, -0.01F, 0.2F));
 				for (Entity entry : list) {
 					if (!(entry instanceof ItemEntity)) {
 						this.setDetonate(true);
@@ -82,27 +85,26 @@ public class NavalMine extends Entity {
 				}
 			}
 		}
-		
+
 		if (this.getChains() == 0 && !(this.level.getBlockState(this.blockPosition()).getBlock() instanceof NavalMineChainBlock) && this.level.getBlockState(this.blockPosition().above()).getFluidState().is(FluidTags.WATER)) {
 			Vec3 vector3d = this.getDeltaMovement().add(0.0D, 0.1D, 0.0D);
 			this.move(MoverType.SELF, vector3d);
 		}
-			
-			
+
 		if (this.getChains() > 0 && this.level.getBlockState(this.blockPosition().above()).getFluidState().is(FluidTags.WATER)) {
 			Vec3 vector3d = this.getDeltaMovement().add(0.0D, 0.1D, 0.0D);
 			this.move(MoverType.SELF, vector3d);
-			
-			
+
 			if (!(this.level.getBlockState(this.blockPosition()).getBlock() instanceof NavalMineChainBlock)) {
 				this.level.setBlockAndUpdate(this.blockPosition(), TechnologicaBlocks.NAVAL_MINE_CHAIN.get().defaultBlockState());
 				this.level.sendBlockUpdated(this.blockPosition(), this.level.getBlockState(this.blockPosition()), TechnologicaBlocks.NAVAL_MINE_CHAIN.get().defaultBlockState(), 3);
 				this.setChains(this.getChains() - 1);
-			}	
+			}
 		}
-	
+
 	}
-	
+
+	@Override
 	public boolean hurt(DamageSource source, float amount) {
 		this.setDetonate(true);
 		return true;
@@ -112,12 +114,14 @@ public class NavalMine extends Entity {
 		this.level.explode(this, this.getX(), this.getY(), this.getZ(), 8.0F, Explosion.BlockInteraction.BREAK);
 	}
 
+	@Override
 	protected void addAdditionalSaveData(CompoundTag compound) {
 		compound.putShort("Fuse", (short) this.getFuse());
 		compound.putBoolean("Detonate", this.getDetonate());
 		compound.putShort("Chains", (short) this.getChains());
 	}
 
+	@Override
 	protected void readAdditionalSaveData(CompoundTag compound) {
 		this.setFuse(compound.getShort("Fuse"));
 		this.setDetonate(compound.getBoolean("Detonate"));
@@ -128,12 +132,12 @@ public class NavalMine extends Entity {
 		this.entityData.set(FUSE, fuseIn);
 		this.armingFuse = fuseIn;
 	}
-	
+
 	public void setDetonate(boolean detonateIn) {
 		this.entityData.set(DETONATE, detonateIn);
 		this.detonate = detonateIn;
 	}
-	
+
 	public void setChains(int chainsIn) {
 		this.entityData.set(CHAINS, chainsIn);
 		this.chains = chainsIn;
@@ -155,20 +159,19 @@ public class NavalMine extends Entity {
 	public int getFuseDataManager() {
 		return this.entityData.get(FUSE);
 	}
-	
+
 	public boolean getDetonateDataManager() {
 		return this.entityData.get(DETONATE);
 	}
-	
+
 	public int getChainsDataManager() {
 		return this.entityData.get(CHAINS);
 	}
-	
 
 	public int getFuse() {
 		return this.armingFuse;
 	}
-	
+
 	public boolean getDetonate() {
 		return this.detonate;
 	}
@@ -176,7 +179,8 @@ public class NavalMine extends Entity {
 	public int getChains() {
 		return this.chains;
 	}
-	
+
+	@Override
 	public Packet<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}

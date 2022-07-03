@@ -21,6 +21,7 @@ import com.technologica.client.model.LionModel;
 import com.technologica.client.model.LizardModel;
 import com.technologica.client.model.MooseModel;
 import com.technologica.client.model.NarwhalModel;
+import com.technologica.client.model.NavalMineModel;
 import com.technologica.client.model.OctopusModel;
 import com.technologica.client.model.OstrichModel;
 import com.technologica.client.model.OwlModel;
@@ -89,11 +90,13 @@ public class RegisterLayerDefinitons {
 		event.registerLayerDefinition(TechnologicaModelLayers.VULTURE, VultureModel::createBodyLayer);
 		event.registerLayerDefinition(TechnologicaModelLayers.WALRUS, WalrusModel::createBodyLayer);
 		event.registerLayerDefinition(TechnologicaModelLayers.ZEBRA, () -> LayerDefinition.create(HorseModel.createBodyMesh(CubeDeformation.NONE), 64, 64));
-		
+
 		event.registerLayerDefinition(TechnologicaModelLayers.PEEPER, () -> CreeperModel.createBodyLayer(CubeDeformation.NONE));
 		event.registerLayerDefinition(TechnologicaModelLayers.SWEEPER, () -> CreeperModel.createBodyLayer(CubeDeformation.NONE));
-		
-		for(VanillaBoat.Type boat$type : VanillaBoat.Type.values()) {
+
+		event.registerLayerDefinition(TechnologicaModelLayers.NAVAL_MINE, NavalMineModel::createBodyModel);
+
+		for (VanillaBoat.Type boat$type : VanillaBoat.Type.values()) {
 			event.registerLayerDefinition(TechnologicaModelLayers.createBoatModelName(boat$type), () -> BoatModel.createBodyModel());
 		}
 	}
