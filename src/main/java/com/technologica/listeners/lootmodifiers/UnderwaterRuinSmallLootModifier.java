@@ -18,11 +18,11 @@ import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.common.loot.LootModifier;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class BastionHoglinStableLootModifier extends LootModifier {
+public class UnderwaterRuinSmallLootModifier extends LootModifier {
 	private final Item addition;
-	private final List<Item> gourdSeeds = List.of(Items.PUMPKIN_SEEDS, TechnologicaItems.SQUASH_SEEDS.get(), TechnologicaItems.ZUCCHINI_SEEDS.get());
+	private final List<Item> grain = List.of(Items.WHEAT, TechnologicaItems.BARLEY.get(), TechnologicaItems.CORN.get(), TechnologicaItems.OATS.get(), TechnologicaItems.RICE.get(), TechnologicaItems.RYE.get());
 
-	protected BastionHoglinStableLootModifier(LootItemCondition[] conditionsIn, Item addition) {
+	protected UnderwaterRuinSmallLootModifier(LootItemCondition[] conditionsIn, Item addition) {
 		super(conditionsIn);
 		this.addition = addition;
 	}
@@ -30,21 +30,25 @@ public class BastionHoglinStableLootModifier extends LootModifier {
 	@Nonnull
 	@Override
 	protected List<ItemStack> doApply(List<ItemStack> generatedLoot, LootContext context) {
-		if (generatedLoot.removeIf((itemStack) -> itemStack.getItem().equals(Items.PUMPKIN_SEEDS))) {
-			generatedLoot.add(new ItemStack(gourdSeeds.get(context.getRandom().nextInt(gourdSeeds.size()))));
+		int count = 0;
+		for (int i = 0; i < generatedLoot.size(); i++) {
+			if (generatedLoot.get(i).getItem().equals(Items.WHEAT)) {
+				count = generatedLoot.get(i).getCount();
+				generatedLoot.set(i, new ItemStack(grain.get(context.getRandom().nextInt(grain.size())), count));
+			}
 		}
 		return generatedLoot;
 	}
 
-	public static class Serializer extends GlobalLootModifierSerializer<BastionHoglinStableLootModifier> {
+	public static class Serializer extends GlobalLootModifierSerializer<UnderwaterRuinSmallLootModifier> {
 		@Override
-		public BastionHoglinStableLootModifier read(ResourceLocation name, JsonObject object, LootItemCondition[] conditionsIn) {
+		public UnderwaterRuinSmallLootModifier read(ResourceLocation name, JsonObject object, LootItemCondition[] conditionsIn) {
 			Item addition = ForgeRegistries.ITEMS.getValue(new ResourceLocation(GsonHelper.getAsString(object, "addition")));
-			return new BastionHoglinStableLootModifier(conditionsIn, addition);
+			return new UnderwaterRuinSmallLootModifier(conditionsIn, addition);
 		}
 
 		@Override
-		public JsonObject write(BastionHoglinStableLootModifier instance) {
+		public JsonObject write(UnderwaterRuinSmallLootModifier instance) {
 			JsonObject json = makeConditions(instance.conditions);
 			json.addProperty("addition", ForgeRegistries.ITEMS.getKey(instance.addition).toString());
 			return json;

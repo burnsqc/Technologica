@@ -1,0 +1,10 @@
+{
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:chests/village/village_taiga_house"
+    }
+  ],
+  "addition": "technologica:cucumber_seeds",
+  "type": "technologica:technologica_seeds_from_village_taiga_house_chest"
+}

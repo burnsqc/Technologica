@@ -1,0 +1,10 @@
+{
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:chests/shipwreck_supply"
+    }
+  ],
+  "addition": "technologica:cucumber_seeds",
+  "type": "technologica:technologica_seeds_from_shipwreck_supply_chest"
+}
