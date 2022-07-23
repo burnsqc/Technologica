@@ -987,6 +987,7 @@ public class TechnologicaBlocks {
 	 * ARMORY
 	 */
 
+	public static final RegistryObject<Block> NITRO = BLOCKS.register("nitro", () -> new NitroBlock(BlockBehaviour.Properties.of(Material.EXPLOSIVE).noCollission().instabreak().sound(SoundType.GRASS)));
 	public static final RegistryObject<Block> NAVAL_MINE_CHAIN = BLOCKS.register("naval_mine_chain", NavalMineChainBlock::new);
 
 	/*
