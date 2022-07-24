@@ -1101,6 +1101,6 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> SCUBA_PANTS = ITEMS.register("scuba_pants", () -> new ArmorItem(TechnologicaArmorMaterial.SCUBA, EquipmentSlot.LEGS, (new Item.Properties()).tab(TechnologicaItemGroup.ARMORY)));
 	public static final RegistryObject<Item> SCUBA_BOOTS = ITEMS.register("scuba_boots", () -> new ArmorItem(TechnologicaArmorMaterial.SCUBA, EquipmentSlot.FEET, (new Item.Properties()).tab(TechnologicaItemGroup.ARMORY)));
 
-	public static final RegistryObject<Item> NITRO_ITEM = ITEMS.register("nitro", () -> new BlockItem(TechnologicaBlocks.NITRO.get(), new Item.Properties().tab(TechnologicaItemGroup.ARMORY)));
+	public static final RegistryObject<Item> NITROGLYCERIN_ITEM = ITEMS.register("nitroglycerin", () -> new BlockItem(TechnologicaBlocks.NITROGLYCERIN.get(), new Item.Properties().tab(TechnologicaItemGroup.ARMORY)));
 	public static final RegistryObject<Item> NAVAL_MINE = ITEMS.register("naval_mine", () -> new NavalMineItem(new Item.Properties().tab(TechnologicaItemGroup.ARMORY)));
 }

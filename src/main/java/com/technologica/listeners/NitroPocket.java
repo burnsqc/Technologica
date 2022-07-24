@@ -25,7 +25,7 @@ public class NitroPocket {
 				Level level = player.getLevel();
 				for (int i = 0; i < player.getInventory().getContainerSize(); ++i) {
 					ItemStack testStack = player.getInventory().getItem(i);
-					if (testStack.getItem() == TechnologicaItems.NITRO_ITEM.get()) {
+					if (testStack.getItem() == TechnologicaItems.NITROGLYCERIN_ITEM.get()) {
 						if (level.getRandom().nextBoolean()) {
 							level.explode(null, player.getX(), player.getY(), player.getZ(), 4.0F, Explosion.BlockInteraction.BREAK);
 						}
@@ -42,7 +42,7 @@ public class NitroPocket {
 			Level level = player.getLevel();
 			for (int i = 0; i < player.getInventory().getContainerSize(); ++i) {
 				ItemStack testStack = player.getInventory().getItem(i);
-				if (testStack.getItem() == TechnologicaItems.NITRO_ITEM.get()) {
+				if (testStack.getItem() == TechnologicaItems.NITROGLYCERIN_ITEM.get()) {
 					if (event.getSource() == DamageSource.IN_FIRE || event.getSource() == DamageSource.ON_FIRE || event.getSource() == DamageSource.LAVA || event.getSource() == DamageSource.LIGHTNING_BOLT || event.getSource() == DamageSource.HOT_FLOOR || event.getSource().isExplosion()) {
 						player.getInventory().removeItem(testStack);
 						level.explode(null, player.getX(), player.getY(), player.getZ(), 4.0F, Explosion.BlockInteraction.BREAK);

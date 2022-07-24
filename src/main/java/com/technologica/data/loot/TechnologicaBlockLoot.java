@@ -877,6 +877,7 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		dropSelf(TechnologicaBlocks.DISPLAY_CASE.get());
 		dropSelf(TechnologicaBlocks.ANNUNCIATOR.get());
 
+		dropSelf(TechnologicaBlocks.NITROGLYCERIN.get());
 		dropOther(TechnologicaBlocks.NAVAL_MINE_CHAIN.get(), Items.CHAIN);
 	}
 
