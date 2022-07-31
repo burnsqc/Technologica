@@ -126,4 +126,7 @@ public class TechnologicaBlockEntityType {
 	public static final RegistryObject<BlockEntityType<MulchTileEntity>> MULCH_TILE = TILEENTITIES.register("mulch_tile", 
 			() -> BlockEntityType.Builder.of(MulchTileEntity::new, 
 					TechnologicaBlocks.MULCH.get()).build(null));
+	public static final RegistryObject<BlockEntityType<LandMineBlockEntity>> LAND_MINE_TILE = TILEENTITIES.register("land_mine_tile", 
+			() -> BlockEntityType.Builder.of(LandMineBlockEntity::new, 
+					TechnologicaBlocks.LAND_MINE.get()).build(null));
 }
