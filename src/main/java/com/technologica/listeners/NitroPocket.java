@@ -1,5 +1,6 @@
 package com.technologica.listeners;
 
+import com.technologica.world.damagesource.TechnologicaDamageSource;
 import com.technologica.world.item.TechnologicaItems;
 
 import net.minecraft.client.Minecraft;
@@ -9,7 +10,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -36,8 +37,8 @@ public class NitroPocket {
 	}
 
 	@SubscribeEvent
-	public void onLivingDamageEvent(LivingDamageEvent event) {
-		if (event.getEntity() instanceof Player) {
+	public void onLivingDamageEvent(LivingAttackEvent event) {
+		if (event.getEntity() instanceof ServerPlayer) {
 			Player player = (Player) event.getEntity();
 			Level level = player.getLevel();
 			for (int i = 0; i < player.getInventory().getContainerSize(); ++i) {
@@ -48,7 +49,9 @@ public class NitroPocket {
 						level.explode(null, player.getX(), player.getY(), player.getZ(), 4.0F, Explosion.BlockInteraction.BREAK);
 					} else if (level.getRandom().nextBoolean()) {
 						player.getInventory().removeItem(testStack);
-						level.explode(null, player.getX(), player.getY(), player.getZ(), 4.0F, Explosion.BlockInteraction.BREAK);
+						player.hurt(TechnologicaDamageSource.NITRO_BLAST, 20.1F);
+						// level.explode(null, player.getX(), player.getY(), player.getZ(), 4.0F, Explosion.BlockInteraction.BREAK);
+
 					}
 				}
 			}
