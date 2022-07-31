@@ -643,6 +643,7 @@
   "block.technologica.zebrawood_table": "Zebrawood Table",
   "block.technologica.zebrawood_trapdoor": "Zebrawood Trapdoor",
   "block.technologica.zebrawood_wood": "Zebrawood Wood",
+  "death.attack.jostled_the_nitro": "%1$s jostled the nitro",
   "entity.technologica.alligator": "Alligator",
   "entity.technologica.beaver": "Beaver",
   "entity.technologica.buffalo": "Buffalo",
