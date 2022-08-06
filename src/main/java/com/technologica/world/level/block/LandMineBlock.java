@@ -11,24 +11,17 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.Material;
 
 public class LandMineBlock extends BaseEntityBlock {
-	public static final IntegerProperty MULCH_AGE = BlockStateProperties.AGE_3;
-
 	public LandMineBlock() {
 		super(BlockBehaviour.Properties.of(Material.GRASS).randomTicks().strength(0.6F).sound(SoundType.GRASS));
-		this.registerDefaultState(this.stateDefinition.any().setValue(MULCH_AGE, 0));
 	}
 
 	/*
@@ -47,12 +40,6 @@ public class LandMineBlock extends BaseEntityBlock {
 			p_153777_.playSound((Player) null, p_153778_, SoundEvents.ANVIL_HIT, SoundSource.BLOCKS, 1.0F, 0.8F + p_153777_.random.nextFloat() * 0.4F);
 		}
 		super.stepOn(p_153777_, p_153778_, p_153779_, p_153780_);
-	}
-
-	@Override
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builderIn) {
-		builderIn.add(MULCH_AGE);
-		super.createBlockStateDefinition(builderIn);
 	}
 
 	/*

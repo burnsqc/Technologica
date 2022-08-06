@@ -38,7 +38,6 @@ public class LandMineBlockEntity extends BlockEntity {
 
 	public void serverTick() {
 		if (isArmed) {
-			assert level != null;
 			if (!level.hasNearbyAlivePlayer(worldPosition.getX() + 0.5D, worldPosition.getY() + 0.5D, worldPosition.getZ() + 0.5D, 1.0D)) {
 				level.explode(null, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), 4.0F, Explosion.BlockInteraction.BREAK);
 			}
