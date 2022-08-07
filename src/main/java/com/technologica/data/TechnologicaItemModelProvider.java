@@ -403,6 +403,7 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.SCUBA_BOOTS.get());
 
 		simpleItem(TechnologicaItems.GLUE_BOTTLE.get());
+		simpleItem(TechnologicaItems.LAND_MINE.get());
 		simpleItem(TechnologicaItems.NAVAL_MINE.get());
 	}
 
