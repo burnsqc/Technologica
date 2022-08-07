@@ -37,7 +37,7 @@ public class LandMineBlock extends BaseEntityBlock {
 		LandMineBlockEntity landMineBlockEntity = getTileEntity(p_153777_, p_153778_);
 		if (!landMineBlockEntity.getArmed()) {
 			landMineBlockEntity.setArmed();
-			p_153777_.playSound((Player) null, p_153778_, SoundEvents.ANVIL_HIT, SoundSource.BLOCKS, 1.0F, 0.8F + p_153777_.random.nextFloat() * 0.4F);
+			p_153777_.playSound((Player) null, p_153778_, SoundEvents.AMETHYST_BLOCK_BREAK, SoundSource.BLOCKS, 1.0F, 0.8F + p_153777_.random.nextFloat() * 0.4F);
 		}
 		super.stepOn(p_153777_, p_153778_, p_153779_, p_153780_);
 	}
