@@ -7,6 +7,7 @@ import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 
 public class LandMineBlockEntity extends BlockEntity {
 	private BlockState previousBlockState = Blocks.AIR.defaultBlockState();
@@ -38,11 +39,10 @@ public class LandMineBlockEntity extends BlockEntity {
 
 	public void serverTick() {
 		if (isArmed) {
-			if (!level.hasNearbyAlivePlayer(worldPosition.getX() + 0.5D, worldPosition.getY() + 0.5D, worldPosition.getZ() + 0.5D, 1.0D)) {
+			if (this.level.getEntities(null, new AABB(this.getBlockPos()).expandTowards(0.0D, 1.0D, 0.0D)).isEmpty()) {
 				level.explode(null, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), 4.0F, Explosion.BlockInteraction.BREAK);
 			}
 		}
-
 	}
 
 	@Override

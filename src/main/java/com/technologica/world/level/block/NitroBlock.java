@@ -122,7 +122,6 @@ public class NitroBlock extends Block {
 	public void entityInside(BlockState p_49314_, Level p_49315_, BlockPos p_49316_, Entity p_49317_) {
 		if (!p_49315_.isClientSide) {
 			p_49315_.explode(null, p_49316_.getX(), p_49316_.getY(), p_49316_.getZ(), 4.0F, Explosion.BlockInteraction.BREAK);
-
 		}
 	}
 
