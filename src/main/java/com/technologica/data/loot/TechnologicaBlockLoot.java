@@ -203,6 +203,7 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		add(TechnologicaBlocks.CURSED_LEAVES.get(), createLeavesDrops(TechnologicaBlocks.CURSED_LEAVES.get(), TechnologicaBlocks.NECROTIC_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES));
 
 		this.add(TechnologicaBlocks.GLUE.get(), noDrop());
+		this.add(TechnologicaBlocks.LAND_MINE.get(), noDrop());
 
 		dropOther(TechnologicaBlocks.MULCH.get(), Blocks.DIRT);
 

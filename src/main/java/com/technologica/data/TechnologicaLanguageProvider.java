@@ -29,6 +29,7 @@ public class TechnologicaLanguageProvider extends LanguageProvider {
 		addItemGroups(TechnologicaItemGroup.FLORA, TechnologicaItemGroup.FAUNA, TechnologicaItemGroup.MINERAL, TechnologicaItemGroup.FOOD, TechnologicaItemGroup.CONSTRUCTION, TechnologicaItemGroup.MACHINERY, TechnologicaItemGroup.DECORATIVE, TechnologicaItemGroup.ARMORY, TechnologicaItemGroup.CRYPTICA);
 
 		add("death.attack.jostled_the_nitro", "%1$s jostled the nitro");
+		add("death.attack.jostled_the_nitro.player", "%1$s jostled the nitro whilst fighting %2$s");
 	}
 
 	/**
