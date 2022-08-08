@@ -3,6 +3,7 @@ package com.technologica.listeners;
 import com.technologica.client.renderer.blockentity.AnnunciatorRenderer;
 import com.technologica.client.renderer.blockentity.DisplayCaseRenderer;
 import com.technologica.client.renderer.blockentity.FruitRenderer;
+import com.technologica.client.renderer.blockentity.LandMineRenderer;
 import com.technologica.client.renderer.blockentity.LineShaftHangerRenderer;
 import com.technologica.client.renderer.blockentity.LineShaftRenderer;
 import com.technologica.client.renderer.blockentity.PotionRenderer;
@@ -63,17 +64,17 @@ public class RegisterEntityRenderers {
 	@SubscribeEvent
 	public static void onRegisterEntityRenderers(final RegisterRenderers event) {
 		event.registerEntityRenderer(TechnologicaEntityType.MOD_BOAT.get(), VanillaBoatRenderer::new);
-		
+
 		event.registerEntityRenderer(TechnologicaEntityType.INVISIBLE_SEAT.get(), InvisibleRenderer::new);
-		
-		event.registerEntityRenderer(TechnologicaEntityType.COCONUT.get(), (renderManager) -> { 
+
+		event.registerEntityRenderer(TechnologicaEntityType.COCONUT.get(), (renderManager) -> {
 			return new ThrownItemRenderer<>(renderManager, 1.0F, true);
 		});
-		event.registerEntityRenderer(TechnologicaEntityType.DODGEBALL.get(), (renderManager) -> { 
+		event.registerEntityRenderer(TechnologicaEntityType.DODGEBALL.get(), (renderManager) -> {
 			return new ThrownItemRenderer<>(renderManager, 1.0F, true);
 		});
 		event.registerEntityRenderer(TechnologicaEntityType.HARPOON.get(), HarpoonRenderer::new);
-		
+
 		event.registerEntityRenderer(TechnologicaEntityType.ALLIGATOR.get(), AlligatorRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityType.BEAVER.get(), BeaverRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityType.BUFFALO.get(), BuffaloRenderer::new);
@@ -112,19 +113,20 @@ public class RegisterEntityRenderers {
 		event.registerEntityRenderer(TechnologicaEntityType.VULTURE.get(), VultureRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityType.WALRUS.get(), WalrusRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityType.ZEBRA.get(), ZebraRenderer::new);
-		
+
 		event.registerEntityRenderer(TechnologicaEntityType.PEEPER.get(), PeeperRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityType.SWEEPER.get(), SweeperRenderer::new);
-		
+
 		event.registerEntityRenderer(TechnologicaEntityType.NAVAL_MINE.get(), NavalMineRenderer::new);
-		
+
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.ANNUNCIATOR_TILE.get(), AnnunciatorRenderer::new);
-	  	event.registerBlockEntityRenderer(TechnologicaBlockEntityType.VANILLA_SIGN.get(), SignRenderer::new);
-	  	event.registerBlockEntityRenderer(TechnologicaBlockEntityType.FRUIT_CROP.get(), FruitRenderer::new);
-	  	event.registerBlockEntityRenderer(TechnologicaBlockEntityType.POTION_CROP.get(), PotionRenderer::new);
-	  	event.registerBlockEntityRenderer(TechnologicaBlockEntityType.DISPLAY_TILE.get(), DisplayCaseRenderer::new);
-	  	event.registerBlockEntityRenderer(TechnologicaBlockEntityType.LINE_SHAFT_TILE.get(), LineShaftRenderer::new);
-	  	event.registerBlockEntityRenderer(TechnologicaBlockEntityType.LINE_SHAFT_HANGER_TILE.get(), LineShaftHangerRenderer::new);
-	  	event.registerBlockEntityRenderer(TechnologicaBlockEntityType.SAWMILL_TILE.get(), SawmillRenderer::new); 
+		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.VANILLA_SIGN.get(), SignRenderer::new);
+		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.FRUIT_CROP.get(), FruitRenderer::new);
+		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.POTION_CROP.get(), PotionRenderer::new);
+		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.DISPLAY_TILE.get(), DisplayCaseRenderer::new);
+		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.LINE_SHAFT_TILE.get(), LineShaftRenderer::new);
+		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.LINE_SHAFT_HANGER_TILE.get(), LineShaftHangerRenderer::new);
+		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.SAWMILL_TILE.get(), SawmillRenderer::new);
+		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.LAND_MINE_TILE.get(), LandMineRenderer::new);
 	}
 }

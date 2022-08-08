@@ -3,6 +3,8 @@ package com.technologica.world.level.block.entity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
+import net.minecraft.network.Connection;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -35,6 +37,26 @@ public class LandMineBlockEntity extends BlockEntity {
 
 	public void setArmed() {
 		isArmed = true;
+	}
+
+	@Override
+	public ClientboundBlockEntityDataPacket getUpdatePacket() {
+		return ClientboundBlockEntityDataPacket.create(this);
+	}
+
+	@Override
+	public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) {
+		load(pkt.getTag());
+	}
+
+	@Override
+	public CompoundTag getUpdateTag() {
+		return this.saveWithoutMetadata();
+	}
+
+	@Override
+	public void handleUpdateTag(CompoundTag parentNBTTagCompound) {
+		this.load(parentNBTTagCompound);
 	}
 
 	public void serverTick() {
