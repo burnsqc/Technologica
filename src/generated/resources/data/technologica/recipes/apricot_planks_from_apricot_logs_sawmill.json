@@ -1,0 +1,8 @@
+{
+  "type": "technologica:sawmill",
+  "ingredient": {
+    "tag": "technologica:apricot_logs"
+  },
+  "result": "technologica:apricot_planks",
+  "count": 1
+}

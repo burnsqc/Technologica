@@ -11,6 +11,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -21,12 +22,8 @@ import net.minecraft.world.level.material.Material;
 
 public class LandMineBlock extends BaseEntityBlock {
 	public LandMineBlock() {
-		super(BlockBehaviour.Properties.of(Material.GRASS).randomTicks().strength(0.6F).sound(SoundType.GRASS));
+		super(BlockBehaviour.Properties.of(Material.GRASS).randomTicks().strength(0.6F).sound(SoundType.GRASS).noOcclusion());
 	}
-
-	/*
-	 * Technologica Methods
-	 */
 
 	public LandMineBlockEntity getTileEntity(Level worldIn, BlockPos posIn) {
 		return (LandMineBlockEntity) worldIn.getBlockEntity(posIn);
@@ -41,10 +38,6 @@ public class LandMineBlock extends BaseEntityBlock {
 		}
 		super.stepOn(p_153777_, p_153778_, p_153779_, p_153780_);
 	}
-
-	/*
-	 * Forge Methods
-	 */
 
 	@Override
 	public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
@@ -62,5 +55,10 @@ public class LandMineBlock extends BaseEntityBlock {
 				tile.serverTick();
 			}
 		};
+	}
+
+	@Override
+	public RenderShape getRenderShape(BlockState stateIn) {
+		return RenderShape.INVISIBLE;
 	}
 }

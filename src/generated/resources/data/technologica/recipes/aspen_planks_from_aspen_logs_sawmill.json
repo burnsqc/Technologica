@@ -1,0 +1,8 @@
+{
+  "type": "technologica:sawmill",
+  "ingredient": {
+    "tag": "technologica:aspen_logs"
+  },
+  "result": "technologica:aspen_planks",
+  "count": 1
+}

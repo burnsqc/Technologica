@@ -7,6 +7,7 @@ import com.technologica.tags.TechnologicaItemTags;
 import com.technologica.util.DisablePlankConditionFactory;
 import com.technologica.util.EnablePlankConditionFactory;
 import com.technologica.world.item.TechnologicaItems;
+import com.technologica.world.item.crafting.TechnologicaRecipeSerializer;
 import com.technologica.world.level.block.TechnologicaBlocks;
 
 import net.minecraft.data.DataGenerator;
@@ -14,11 +15,13 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.data.recipes.SingleItemRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.crafting.ConditionalRecipe;
@@ -28,7 +31,7 @@ public class TechnologicaRecipeProvider extends RecipeProvider {
 	public TechnologicaRecipeProvider(DataGenerator generatorIn) {
 		super(generatorIn);
 	}
-	
+
 	@Override
 	protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
 		vanillaPlanks(consumer, Blocks.OAK_PLANKS, ItemTags.OAK_LOGS);
@@ -39,7 +42,7 @@ public class TechnologicaRecipeProvider extends RecipeProvider {
 		vanillaPlanks(consumer, Blocks.DARK_OAK_PLANKS, ItemTags.DARK_OAK_LOGS);
 		vanillaPlanks(consumer, Blocks.CRIMSON_PLANKS, ItemTags.CRIMSON_STEMS);
 		vanillaPlanks(consumer, Blocks.WARPED_PLANKS, ItemTags.WARPED_STEMS);
-		
+
 		vanillaSlabs(consumer, Blocks.OAK_SLAB, Blocks.OAK_PLANKS);
 		vanillaSlabs(consumer, Blocks.SPRUCE_SLAB, Blocks.SPRUCE_PLANKS);
 		vanillaSlabs(consumer, Blocks.BIRCH_SLAB, Blocks.BIRCH_PLANKS);
@@ -48,7 +51,7 @@ public class TechnologicaRecipeProvider extends RecipeProvider {
 		vanillaSlabs(consumer, Blocks.DARK_OAK_SLAB, Blocks.DARK_OAK_PLANKS);
 		vanillaSlabs(consumer, Blocks.CRIMSON_SLAB, Blocks.CRIMSON_PLANKS);
 		vanillaSlabs(consumer, Blocks.WARPED_SLAB, Blocks.WARPED_PLANKS);
-		
+
 		vanillaStairs(consumer, Blocks.OAK_STAIRS, Blocks.OAK_PLANKS);
 		vanillaStairs(consumer, Blocks.SPRUCE_STAIRS, Blocks.SPRUCE_PLANKS);
 		vanillaStairs(consumer, Blocks.BIRCH_STAIRS, Blocks.BIRCH_PLANKS);
@@ -57,7 +60,7 @@ public class TechnologicaRecipeProvider extends RecipeProvider {
 		vanillaStairs(consumer, Blocks.DARK_OAK_STAIRS, Blocks.DARK_OAK_PLANKS);
 		vanillaStairs(consumer, Blocks.CRIMSON_STAIRS, Blocks.CRIMSON_PLANKS);
 		vanillaStairs(consumer, Blocks.WARPED_STAIRS, Blocks.WARPED_PLANKS);
-		
+
 		vanillaLikePlanks(consumer, TechnologicaBlocks.APRICOT_PLANKS.get(), TechnologicaItemTags.APRICOT_LOGS);
 		vanillaLikePlanks(consumer, TechnologicaBlocks.ASPEN_PLANKS.get(), TechnologicaItemTags.ASPEN_LOGS);
 		vanillaLikePlanks(consumer, TechnologicaBlocks.AVOCADO_PLANKS.get(), TechnologicaItemTags.AVOCADO_LOGS);
@@ -90,7 +93,7 @@ public class TechnologicaRecipeProvider extends RecipeProvider {
 		vanillaLikePlanks(consumer, TechnologicaBlocks.FRUITFUL_PLANKS.get(), TechnologicaItemTags.FRUITFUL_LOGS);
 		vanillaLikePlanks(consumer, TechnologicaBlocks.INFERNAL_PLANKS.get(), TechnologicaItemTags.INFERNAL_LOGS);
 		vanillaLikePlanks(consumer, TechnologicaBlocks.MALEVOLENT_PLANKS.get(), TechnologicaItemTags.MALEVOLENT_LOGS);
-		
+
 		vanillaLikeSlabs(consumer, TechnologicaBlocks.APRICOT_SLAB.get(), TechnologicaBlocks.APRICOT_PLANKS.get());
 		vanillaLikeSlabs(consumer, TechnologicaBlocks.ASPEN_SLAB.get(), TechnologicaBlocks.ASPEN_PLANKS.get());
 		vanillaLikeSlabs(consumer, TechnologicaBlocks.AVOCADO_SLAB.get(), TechnologicaBlocks.AVOCADO_PLANKS.get());
@@ -123,7 +126,7 @@ public class TechnologicaRecipeProvider extends RecipeProvider {
 		vanillaLikeSlabs(consumer, TechnologicaBlocks.FRUITFUL_SLAB.get(), TechnologicaBlocks.FRUITFUL_PLANKS.get());
 		vanillaLikeSlabs(consumer, TechnologicaBlocks.INFERNAL_SLAB.get(), TechnologicaBlocks.INFERNAL_PLANKS.get());
 		vanillaLikeSlabs(consumer, TechnologicaBlocks.MALEVOLENT_SLAB.get(), TechnologicaBlocks.MALEVOLENT_PLANKS.get());
-		
+
 		vanillaLikeStairs(consumer, TechnologicaBlocks.APRICOT_STAIRS.get(), TechnologicaBlocks.APRICOT_PLANKS.get());
 		vanillaLikeStairs(consumer, TechnologicaBlocks.ASPEN_STAIRS.get(), TechnologicaBlocks.ASPEN_PLANKS.get());
 		vanillaLikeStairs(consumer, TechnologicaBlocks.AVOCADO_STAIRS.get(), TechnologicaBlocks.AVOCADO_PLANKS.get());
@@ -156,7 +159,7 @@ public class TechnologicaRecipeProvider extends RecipeProvider {
 		vanillaLikeStairs(consumer, TechnologicaBlocks.FRUITFUL_STAIRS.get(), TechnologicaBlocks.FRUITFUL_PLANKS.get());
 		vanillaLikeStairs(consumer, TechnologicaBlocks.INFERNAL_STAIRS.get(), TechnologicaBlocks.INFERNAL_PLANKS.get());
 		vanillaLikeStairs(consumer, TechnologicaBlocks.MALEVOLENT_STAIRS.get(), TechnologicaBlocks.MALEVOLENT_PLANKS.get());
-		
+
 		proPlanks(consumer, Blocks.OAK_PLANKS, ItemTags.OAK_LOGS);
 		proPlanks(consumer, Blocks.SPRUCE_PLANKS, ItemTags.SPRUCE_LOGS);
 		proPlanks(consumer, Blocks.BIRCH_PLANKS, ItemTags.BIRCH_LOGS);
@@ -238,7 +241,7 @@ public class TechnologicaRecipeProvider extends RecipeProvider {
 		proSlabs(consumer, TechnologicaBlocks.FRUITFUL_SLAB.get(), TechnologicaBlocks.FRUITFUL_PLANKS.get());
 		proSlabs(consumer, TechnologicaBlocks.INFERNAL_SLAB.get(), TechnologicaBlocks.INFERNAL_PLANKS.get());
 		proSlabs(consumer, TechnologicaBlocks.MALEVOLENT_SLAB.get(), TechnologicaBlocks.MALEVOLENT_PLANKS.get());
-		
+
 		proStairs(consumer, Blocks.OAK_STAIRS, Blocks.OAK_PLANKS);
 		proStairs(consumer, Blocks.SPRUCE_STAIRS, Blocks.SPRUCE_PLANKS);
 		proStairs(consumer, Blocks.BIRCH_STAIRS, Blocks.BIRCH_PLANKS);
@@ -279,7 +282,7 @@ public class TechnologicaRecipeProvider extends RecipeProvider {
 		proStairs(consumer, TechnologicaBlocks.FRUITFUL_STAIRS.get(), TechnologicaBlocks.FRUITFUL_PLANKS.get());
 		proStairs(consumer, TechnologicaBlocks.INFERNAL_STAIRS.get(), TechnologicaBlocks.INFERNAL_PLANKS.get());
 		proStairs(consumer, TechnologicaBlocks.MALEVOLENT_STAIRS.get(), TechnologicaBlocks.MALEVOLENT_PLANKS.get());
-		
+
 		ShapelessRecipeBuilder.shapeless(TechnologicaItems.BANANAS_FOSTER.get(), 1).requires(TechnologicaItems.BANANA.get()).requires(Items.ICE).requires(Items.MILK_BUCKET).requires(Items.SUGAR).unlockedBy("has_banana", has(TechnologicaItems.BANANA.get())).save(consumer, new ResourceLocation(Technologica.MODID, "bananas_foster"));
 		ShapelessRecipeBuilder.shapeless(TechnologicaItems.BLACK_FOREST_CAKE.get(), 1).requires(TechnologicaItems.CHERRY.get()).requires(Items.EGG).requires(Items.MILK_BUCKET).requires(Items.SUGAR).requires(Items.COCOA_BEANS).unlockedBy("has_cherry", has(TechnologicaItems.CHERRY.get())).save(consumer, new ResourceLocation(Technologica.MODID, "black_forest_cake"));
 		ShapelessRecipeBuilder.shapeless(TechnologicaItems.BLUEBERRY_CHEESECAKE.get(), 1).requires(TechnologicaItems.BLUEBERRY.get()).requires(Items.COOKIE).requires(Items.MILK_BUCKET).requires(Items.SUGAR).unlockedBy("has_blueberry", has(TechnologicaItems.BLUEBERRY.get())).save(consumer, new ResourceLocation(Technologica.MODID, "blueberry_cheesecake"));
@@ -295,56 +298,56 @@ public class TechnologicaRecipeProvider extends RecipeProvider {
 		ShapelessRecipeBuilder.shapeless(TechnologicaItems.TAPENADE.get(), 1).requires(TechnologicaItems.OLIVE.get()).requires(TechnologicaItems.GARLIC.get()).unlockedBy("has_olive", has(TechnologicaItems.OLIVE.get())).save(consumer, new ResourceLocation(Technologica.MODID, "tapenade"));
 		ShapelessRecipeBuilder.shapeless(TechnologicaItems.CINNAMON_ROLL.get(), 1).requires(TechnologicaItems.CINNAMON.get()).requires(Items.EGG).requires(Items.SUGAR).requires(Items.MILK_BUCKET).unlockedBy("has_cinnamon", has(TechnologicaItems.CINNAMON.get())).save(consumer, new ResourceLocation(Technologica.MODID, "cinnamon_roll"));
 		ShapelessRecipeBuilder.shapeless(TechnologicaItems.OLIVE_OIL.get(), 1).requires(TechnologicaItems.OLIVE.get()).unlockedBy("has_olive", has(TechnologicaItems.OLIVE.get())).save(consumer, new ResourceLocation(Technologica.MODID, "olive_oil"));
-		
+
 		ShapedRecipeBuilder.shaped(TechnologicaItems.PRIMITIVE_SHOVEL.get()).define('T', Items.STICK).define('F', Items.FLINT).define('S', Items.STRING).pattern(" F ").pattern(" TS").pattern(" T ").unlockedBy("has_flint", has(Items.FLINT)).save(consumer, new ResourceLocation(Technologica.MODID, "primitive_shovel"));
 		ShapedRecipeBuilder.shaped(TechnologicaItems.PRIMITIVE_PICKAXE.get()).define('T', Items.STICK).define('F', Items.FLINT).define('S', Items.STRING).pattern("FFF").pattern(" TS").pattern(" T ").unlockedBy("has_flint", has(Items.FLINT)).save(consumer, new ResourceLocation(Technologica.MODID, "primitive_pickaxe"));
 		ShapedRecipeBuilder.shaped(TechnologicaItems.PRIMITIVE_HATCHET.get()).define('T', Items.STICK).define('F', Items.FLINT).define('S', Items.STRING).pattern("FF ").pattern("FTS").pattern(" T ").unlockedBy("has_flint", has(Items.FLINT)).save(consumer, new ResourceLocation(Technologica.MODID, "primitive_hatchet"));
 		ShapedRecipeBuilder.shaped(TechnologicaItems.PRIMITIVE_HOE.get()).define('T', Items.STICK).define('F', Items.FLINT).define('S', Items.STRING).pattern("FF ").pattern(" TS").pattern(" T ").unlockedBy("has_flint", has(Items.FLINT)).save(consumer, new ResourceLocation(Technologica.MODID, "primitive_hoe"));
 		ShapedRecipeBuilder.shaped(TechnologicaItems.PRIMITIVE_DAGGER.get()).define('T', Items.STICK).define('F', Items.FLINT).define('S', Items.STRING).pattern("F ").pattern("FS").pattern("T ").unlockedBy("has_flint", has(Items.FLINT)).save(consumer, new ResourceLocation(Technologica.MODID, "primitive_dagger"));
-		
+
 //		ShapelessRecipeBuilder.shapeless(TechnologicaItems.GLUE.get(), 1).requires(WATER_BUCKET).requires(BONEMEAL).requires(RUBBER)
-		
-//		sawmillRecipe(Ingredient.fromTag(TechnologicaItemTags.APRICOT_LOGS), TechnologicaItems.APRICOT_PLANKS_ITEM.get(), 1).build(consumer, new ResourceLocation(Technologica.MODID, "apricot_planks_from_apricot_logs_sawmill"));
-//		sawmillRecipe(Ingredient.fromTag(TechnologicaItemTags.ASPEN_LOGS), TechnologicaItems.ASPEN_PLANKS_ITEM.get(), 1).build(consumer, new ResourceLocation(Technologica.MODID, "aspen_planks_from_aspen_logs_sawmill"));
-	}	
-	
+
+		sawmillRecipe(Ingredient.of(TechnologicaItemTags.APRICOT_LOGS), TechnologicaItems.APRICOT_PLANKS_ITEM.get(), 1).save(consumer, new ResourceLocation(Technologica.MODID, "apricot_planks_from_apricot_logs_sawmill"));
+		sawmillRecipe(Ingredient.of(TechnologicaItemTags.ASPEN_LOGS), TechnologicaItems.ASPEN_PLANKS_ITEM.get(), 1).save(consumer, new ResourceLocation(Technologica.MODID, "aspen_planks_from_aspen_logs_sawmill"));
+	}
+
 	private static void vanillaPlanks(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, TagKey<Item> input) {
 		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(output, 4).requires(input).group("planks").unlockedBy("has_log", has(input)).save(consumer2)).build(recipeConsumer, new ResourceLocation(output.asItem().getRegistryName().getPath()));
 	}
-	
+
 	private static void vanillaLikePlanks(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, TagKey<Item> input) {
 		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(output, 4).requires(input).group("planks").unlockedBy("has_log", has(input)).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, output.asItem().getRegistryName().getPath()));
 	}
-	
+
 	private static void proPlanks(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, TagKey<Item> input) {
 		ConditionalRecipe.builder().addCondition(new DisablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(output, 1).requires(input).requires(TechnologicaItems.SAW.get()).group("planks").unlockedBy("has_saw", has(TechnologicaItems.SAW.get())).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, output.asItem().getRegistryName().getPath() + "_pro"));
 	}
-	
+
 	private static void vanillaSlabs(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, ItemLike input) {
 		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(output, 6).define('#', input).pattern("###").group("wooden_slab").unlockedBy("has_planks", has(input)).save(consumer2)).build(recipeConsumer, new ResourceLocation(output.asItem().getRegistryName().getPath()));
 	}
-	
+
 	private static void vanillaLikeSlabs(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, ItemLike input) {
 		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(output, 6).define('#', input).pattern("###").group("wooden_slab").unlockedBy("has_planks", has(input)).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, output.asItem().getRegistryName().getPath()));
 	}
-	
+
 	private static void proSlabs(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, ItemLike input) {
 		ConditionalRecipe.builder().addCondition(new DisablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(output, 2).requires(input).requires(TechnologicaItems.SAW.get()).group("wooden_slab").unlockedBy("has_saw", has(TechnologicaItems.SAW.get())).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, output.asItem().getRegistryName().getPath() + "_pro"));
 	}
-	
+
 	private static void vanillaStairs(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, ItemLike input) {
 		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(output, 4).define('#', input).pattern("#  ").pattern("## ").pattern("###").group("wooden_stairs").unlockedBy("has_planks", has(input)).save(consumer2)).build(recipeConsumer, new ResourceLocation(output.asItem().getRegistryName().getPath()));
 	}
-	
+
 	private static void vanillaLikeStairs(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, ItemLike input) {
 		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(output, 4).define('#', input).pattern("#  ").pattern("## ").pattern("###").group("wooden_stairs").unlockedBy("has_planks", has(input)).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, output.asItem().getRegistryName().getPath()));
 	}
-	
+
 	private static void proStairs(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, ItemLike input) {
 		ConditionalRecipe.builder().addCondition(new DisablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(output, 1).requires(input).requires(TechnologicaItems.CHISEL.get()).group("wooden_slab").unlockedBy("has_chisel", has(TechnologicaItems.CHISEL.get())).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, output.asItem().getRegistryName().getPath() + "_pro"));
 	}
-	
-//	public static SingleItemRecipeBuilder sawmillRecipe(Ingredient ingredientIn, IItemProvider resultIn, int countIn) {
-//		return new SingleItemRecipeBuilder(TechnologicaRecipeSerializer.SAWMILL.get(), ingredientIn, resultIn, countIn).addCriterion("has_logs", hasItem(TechnologicaItemTags.APRICOT_LOGS));
-//	}
+
+	public static SingleItemRecipeBuilder sawmillRecipe(Ingredient ingredientIn, ItemLike output, int countIn) {
+		return new SingleItemRecipeBuilder(TechnologicaRecipeSerializer.SAWMILL.get(), ingredientIn, output, countIn).unlockedBy("has_logs", has(TechnologicaItemTags.APRICOT_LOGS));
+	}
 }

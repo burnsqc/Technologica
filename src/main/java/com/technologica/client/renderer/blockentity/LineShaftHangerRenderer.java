@@ -50,7 +50,7 @@ public class LineShaftHangerRenderer implements BlockEntityRenderer<LineShaftHan
 				matrixStack.mulPose(Vector3f.ZP.rotationDegrees(angle));
 				matrixStack.translate(-0.5, -0.5, 0.0);
 			}
-			blockModelRenderer.renderModel(matrixStack.last(), buffer.getBuffer(RenderType.solid()), state, blockrendererdispatcher.getBlockModel(state), 0.0F, 0.0F, 0.0F, combinedOverlay, combinedOverlay);
+			blockModelRenderer.renderModel(matrixStack.last(), buffer.getBuffer(RenderType.solid()), state, blockrendererdispatcher.getBlockModel(state), 0.0F, 0.0F, 0.0F, combinedLight, combinedOverlay);
 			matrixStack.popPose();
 		}
 	}

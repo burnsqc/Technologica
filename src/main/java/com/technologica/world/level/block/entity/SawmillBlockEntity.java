@@ -1,17 +1,23 @@
 package com.technologica.world.level.block.entity;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
+import com.technologica.world.item.crafting.TechnologicaRecipeType;
+import com.technologica.world.level.block.SawmillBlock;
 
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.Vec3i;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.StackedContents;
 import net.minecraft.world.inventory.RecipeHolder;
@@ -20,8 +26,15 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 
-public class SawmillTileEntity extends BlockEntity implements WorldlyContainer, RecipeHolder, StackedContentsCompatible {
+public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer, RecipeHolder, StackedContentsCompatible {
+	private final ItemStackHandler itemHandler = createHandler();
+	private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
 	private boolean blade = false;
 	private ItemStack log = ItemStack.EMPTY;
 	private int sawTime;
@@ -29,8 +42,46 @@ public class SawmillTileEntity extends BlockEntity implements WorldlyContainer, 
 	protected NonNullList<ItemStack> items = NonNullList.withSize(3, ItemStack.EMPTY);
 	private final Object2IntOpenHashMap<ResourceLocation> recipes = new Object2IntOpenHashMap<>();
 
-	public SawmillTileEntity(BlockPos p_155700_, BlockState p_155701_) {
+	public SawmillBlockEntity(BlockPos p_155700_, BlockState p_155701_) {
 		super(TechnologicaBlockEntityType.SAWMILL_TILE.get(), p_155700_, p_155701_);
+	}
+
+	private ItemStackHandler createHandler() {
+		return new ItemStackHandler(1) {
+			@Override
+			protected void onContentsChanged(int slot) {
+				setChanged();
+			}
+
+			@Override
+			public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
+				return stack.getItem().getRegistryName().getPath().contains("log");
+			}
+
+			@Override
+			public int getSlotLimit(int slot) {
+				return 1;
+			}
+
+			@Nonnull
+			@Override
+			public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+				if (!isItemValid(slot, stack)) {
+					return stack;
+				}
+
+				return super.insertItem(slot, stack, simulate);
+			}
+		};
+	}
+
+	@Nonnull
+	@Override
+	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+		if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+			return handler.cast();
+		}
+		return super.getCapability(cap, side);
 	}
 
 	public boolean getBlade() {
@@ -47,7 +98,10 @@ public class SawmillTileEntity extends BlockEntity implements WorldlyContainer, 
 
 	public void setLog(ItemStack logIn) {
 		log = logIn;
-		this.sawTime = 100;
+		if (!ItemStack.matches(logIn, ItemStack.EMPTY)) {
+			this.sawTime = 100;
+			itemHandler.insertItem(0, logIn, false);
+		}
 	}
 
 	public boolean isSawing() {
@@ -61,7 +115,7 @@ public class SawmillTileEntity extends BlockEntity implements WorldlyContainer, 
 	@Override
 	public ClientboundBlockEntityDataPacket getUpdatePacket() {
 		return ClientboundBlockEntityDataPacket.create(this);
-	} 
+	}
 
 	@Override
 	public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) {
@@ -87,6 +141,9 @@ public class SawmillTileEntity extends BlockEntity implements WorldlyContainer, 
 		if (nbt.contains("sawTime")) {
 			this.sawTime = nbt.getInt("sawTime");
 		}
+		if (nbt.contains("logPos")) {
+			this.logPos = nbt.getDouble("logPos");
+		}
 		if (nbt.contains("log")) {
 			this.setLog(ItemStack.of(nbt.getCompound("log")));
 		}
@@ -97,36 +154,30 @@ public class SawmillTileEntity extends BlockEntity implements WorldlyContainer, 
 		super.saveAdditional(compound);
 		compound.putBoolean("blade", blade);
 		compound.putInt("sawTime", this.sawTime);
+		compound.putDouble("logPos", this.logPos);
 		compound.put("log", this.getLog().save(new CompoundTag()));
 	}
 
-	public void tick() {
-		if (level.isClientSide() && this.sawTime > 0F) {
-			logPos = 1.0 - 4.0 * (sawTime / 200);
-			sawTime--;
+	public void serverTick() {
+		if (this.sawTime > 0F) {
+			this.sawTime--;
 		} else if (!log.isEmpty()) {
-			setLog(ItemStack.EMPTY);
+			Recipe<?> recipe = this.level.getRecipeManager().getRecipeFor(TechnologicaRecipeType.SAWMILL, this, this.level).orElse(null);
+			if (recipe != null) {
+				ItemStack output = recipe.getResultItem();
+				Vec3i offset = this.getBlockState().getValue(SawmillBlock.NESW_FACING).getNormal();
+				this.level.addFreshEntity(new ItemEntity(level, this.worldPosition.offset(offset).getX(), this.worldPosition.getY() + 1, this.worldPosition.offset(offset).getZ(), output));
+				setLog(ItemStack.EMPTY);
+			}
 		}
 	}
 
-	@SuppressWarnings("unused")
-	private void saw(@Nullable Recipe<?> recipe) {
-		if (recipe != null && this.canSaw(recipe)) {
-			ItemStack itemstack = this.items.get(0);
-			@SuppressWarnings("unchecked")
-			ItemStack itemstack1 = ((Recipe<WorldlyContainer>) recipe).assemble(this);
-			ItemStack itemstack2 = this.items.get(2);
-			if (itemstack2.isEmpty()) {
-				this.items.set(2, itemstack1.copy());
-			} else if (itemstack2.getItem() == itemstack1.getItem()) {
-				itemstack2.grow(itemstack1.getCount());
-			}
-
-			if (!this.level.isClientSide) {
-				this.setRecipeUsed(recipe);
-			}
-
-			itemstack.shrink(1);
+	public void clientTick() {
+		if (this.sawTime > 0F) {
+			this.logPos = 1.0D - 4.0D * (sawTime / 200.0D);
+			this.sawTime--;
+		} else if (!log.isEmpty()) {
+			setLog(ItemStack.EMPTY);
 		}
 	}
 
@@ -142,26 +193,26 @@ public class SawmillTileEntity extends BlockEntity implements WorldlyContainer, 
 					return true;
 				} else if (!itemstack1.sameItem(itemstack)) {
 					return false;
-				} else if (itemstack1.getCount() + itemstack.getCount() <= this.getMaxStackSize() && itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxStackSize()) { 																																								
+				} else if (itemstack1.getCount() + itemstack.getCount() <= this.getMaxStackSize() && itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxStackSize()) {
 					return true;
 				} else {
-					return itemstack1.getCount() + itemstack.getCount() <= itemstack.getMaxStackSize(); 																										
+					return itemstack1.getCount() + itemstack.getCount() <= itemstack.getMaxStackSize();
 				}
 			}
 		} else {
 			return false;
 		}
 	}
-	
+
 	public int getSawTime() {
 		return this.sawTime;
 	}
 
 	@Override
 	public void fillStackedContents(StackedContents helper) {
-		for(ItemStack itemstack : this.items) {
-	         helper.accountStack(itemstack);
-	      }
+		for (ItemStack itemstack : this.items) {
+			helper.accountStack(itemstack);
+		}
 	}
 
 	@Override
@@ -169,7 +220,7 @@ public class SawmillTileEntity extends BlockEntity implements WorldlyContainer, 
 		if (recipe != null) {
 			ResourceLocation resourcelocation = recipe.getId();
 			this.recipes.addTo(resourcelocation, 1);
-		}	
+		}
 	}
 
 	@Override
@@ -184,7 +235,7 @@ public class SawmillTileEntity extends BlockEntity implements WorldlyContainer, 
 
 	@Override
 	public boolean isEmpty() {
-		for(ItemStack itemstack : this.items) {
+		for (ItemStack itemstack : this.items) {
 			if (!itemstack.isEmpty()) {
 				return false;
 			}
@@ -195,7 +246,7 @@ public class SawmillTileEntity extends BlockEntity implements WorldlyContainer, 
 
 	@Override
 	public ItemStack getItem(int index) {
-		return this.items.get(index);
+		return this.itemHandler.getStackInSlot(index);
 	}
 
 	@Override
@@ -216,13 +267,13 @@ public class SawmillTileEntity extends BlockEntity implements WorldlyContainer, 
 		if (stack.getCount() > this.getMaxStackSize()) {
 			stack.setCount(this.getMaxStackSize());
 		}
-		
+
 		if (index == 0 && !flag) {
-			//this.sawTimeTotal = this.getSawTime();
+			// this.sawTimeTotal = this.getSawTime();
 			this.sawTime = 0;
 			this.setChanged();
 		}
-		
+
 	}
 
 	@Override
@@ -230,7 +281,7 @@ public class SawmillTileEntity extends BlockEntity implements WorldlyContainer, 
 		if (this.level.getBlockEntity(this.worldPosition) != this) {
 			return false;
 		} else {
-			return player.distanceToSqr((double)this.worldPosition.getX() + 0.5D, (double)this.worldPosition.getY() + 0.5D, (double)this.worldPosition.getZ() + 0.5D) <= 64.0D;
+			return player.distanceToSqr(this.worldPosition.getX() + 0.5D, this.worldPosition.getY() + 0.5D, this.worldPosition.getZ() + 0.5D) <= 64.0D;
 		}
 	}
 

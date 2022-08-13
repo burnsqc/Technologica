@@ -777,6 +777,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		annunciatorBlockState(TechnologicaBlocks.ANNUNCIATOR.get());
 
 		simpleBlock(TechnologicaBlocks.NITROGLYCERIN.get(), models().cubeBottomTop(ResourceLocationHelper.getPath(TechnologicaBlocks.NITROGLYCERIN.get()), modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.NITROGLYCERIN.get()) + "_side"), modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.NITROGLYCERIN.get()) + "_bottom"), modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.NITROGLYCERIN.get()) + "_top")));
+		simpleBlock(TechnologicaBlocks.LAND_MINE.get());
 		axisBlock((RotatedPillarBlock) TechnologicaBlocks.NAVAL_MINE_CHAIN.get(), models().withExistingParent(ResourceLocationHelper.getPath(TechnologicaBlocks.NAVAL_MINE_CHAIN.get()), "block/chain"), models().withExistingParent(ResourceLocationHelper.getPath(TechnologicaBlocks.NAVAL_MINE_CHAIN.get()), "block/chain"));
 
 		/*
