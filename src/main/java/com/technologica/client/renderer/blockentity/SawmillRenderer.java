@@ -26,8 +26,10 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class SawmillRenderer implements BlockEntityRenderer<SawmillBlockEntity> {
 	public static final ResourceLocation SAW_TEXTURE = new ResourceLocation(Technologica.MODID, "block/sawblade");
+	private float angle;
 
 	public SawmillRenderer(BlockEntityRendererProvider.Context rendererDispatcherIn) {
+		angle = 0;
 	}
 
 	private void addBox(PoseStack matrixStack, MultiBufferSource buffer) {
@@ -79,7 +81,8 @@ public class SawmillRenderer implements BlockEntityRenderer<SawmillBlockEntity> 
 			default:
 				break;
 			}
-			matrixStack.mulPose(angle());
+
+			matrixStack.mulPose(this.angle(partialTicks));
 			addBox(matrixStack, buffer);
 			matrixStack.popPose();
 		}
@@ -113,11 +116,9 @@ public class SawmillRenderer implements BlockEntityRenderer<SawmillBlockEntity> 
 		}
 	}
 
-	private Quaternion angle() {
-		long time = System.currentTimeMillis();
-		float angle = time % 360;
+	private Quaternion angle(float partialTicks) {
+		angle = partialTicks * 90;
 		Vector3f vector = Vector3f.XP;
-
 		return vector.rotationDegrees(angle);
 	}
 }
