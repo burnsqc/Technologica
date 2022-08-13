@@ -3,14 +3,14 @@ package com.technologica.world.item.crafting;
 import com.google.gson.JsonObject;
 import com.technologica.world.item.TechnologicaItems;
 
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.GsonHelper;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SingleItemRecipe;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.util.GsonHelper;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ForgeRegistryEntry;
@@ -23,9 +23,10 @@ public class SawmillRecipe extends SingleItemRecipe {
 
 	@Override
 	public boolean matches(Container inv, Level worldIn) {
-		return this.ingredient.test(inv.getItem(0));
+		return this.ingredient.test(inv.getItem(1));
 	}
 
+	@Override
 	public ItemStack getToastSymbol() {
 		return new ItemStack(TechnologicaItems.SAWBLADE.get());
 	}

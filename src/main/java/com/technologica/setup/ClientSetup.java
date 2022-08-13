@@ -319,6 +319,7 @@ public class ClientSetup {
 	public static void stitch(final TextureStitchEvent.Pre event) {
 		if (event.getAtlas().location().equals(InventoryMenu.BLOCK_ATLAS)) {
 			event.addSprite(new ResourceLocation(Technologica.MODID, "block/pulley_belt"));
+			event.addSprite(new ResourceLocation(Technologica.MODID, "block/sawblade"));
 		}
 	}
 }

@@ -1,9 +1,10 @@
 package com.technologica.client.renderer.blockentity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Quaternion;
 import com.mojang.math.Vector3f;
-import com.technologica.world.item.TechnologicaItems;
+import com.technologica.Technologica;
 import com.technologica.world.level.block.SawmillBlock;
 import com.technologica.world.level.block.entity.SawmillBlockEntity;
 
@@ -12,19 +13,40 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.block.ModelBlockRenderer;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.client.renderer.entity.ItemRenderer;
-import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class SawmillRenderer implements BlockEntityRenderer<SawmillBlockEntity> {
+	public static final ResourceLocation SAW_TEXTURE = new ResourceLocation(Technologica.MODID, "block/sawblade");
+
 	public SawmillRenderer(BlockEntityRendererProvider.Context rendererDispatcherIn) {
+	}
+
+	private void addBox(PoseStack matrixStack, MultiBufferSource buffer) {
+		TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(SAW_TEXTURE);
+		VertexConsumer builder = buffer.getBuffer(RenderType.cutoutMipped());
+
+		add(builder, matrixStack, 0.0F, 2.0F, 2.0F, sprite.getU1(), sprite.getV1());
+		add(builder, matrixStack, 0.0F, -2.0F, 2.0F, sprite.getU0(), sprite.getV1());
+		add(builder, matrixStack, 0.0F, -2.0F, -2.0F, sprite.getU0(), sprite.getV0());
+		add(builder, matrixStack, 0.0F, 2.0F, -2.0F, sprite.getU1(), sprite.getV0());
+
+		add(builder, matrixStack, 0.0F, 2.0F, -2.0F, sprite.getU1(), sprite.getV0());
+		add(builder, matrixStack, 0.0F, -2.0F, -2.0F, sprite.getU0(), sprite.getV0());
+		add(builder, matrixStack, 0.0F, -2.0F, 2.0F, sprite.getU0(), sprite.getV1());
+		add(builder, matrixStack, 0.0F, 2.0F, 2.0F, sprite.getU1(), sprite.getV1());
+	}
+
+	private void add(VertexConsumer renderer, PoseStack stack, float x, float y, float z, float u, float v) {
+		renderer.vertex(stack.last().pose(), x, y, z).color(1.0f, 1.0f, 1.0f, 1.0f).uv(u, v).uv2(0, 240).normal(1, 0, 0).endVertex();
 	}
 
 	@SuppressWarnings("deprecation")
@@ -36,33 +58,29 @@ public class SawmillRenderer implements BlockEntityRenderer<SawmillBlockEntity> 
 		BlockRenderDispatcher blockrendererdispatcher = Minecraft.getInstance().getBlockRenderer();
 		ModelBlockRenderer blockModelRenderer = blockrendererdispatcher.getModelRenderer();
 
-		ItemStack blade = new ItemStack(TechnologicaItems.SAWBLADE.get().asItem(), 1);
-		ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
-		BakedModel ibakedmodel = itemRenderer.getModel(blade, tileEntity.getLevel(), null, combinedOverlay);
-
 		if (tileEntity.getBlade()) {
 
 			matrixStack.pushPose();
-			matrixStack.translate(0.5, 0.9, 0.5);
+			matrixStack.translate(0.5, 0.75, 0.5);
+
 			switch (tileEntity.getBlockState().getValue(SawmillBlock.NESW_FACING)) {
 			case NORTH:
-				matrixStack.mulPose(Vector3f.YP.rotationDegrees(90));
+				//
 				break;
 			case EAST:
-				break;
-			case SOUTH:
 				matrixStack.mulPose(Vector3f.YP.rotationDegrees(270));
 				break;
-			case WEST:
+			case SOUTH:
 				matrixStack.mulPose(Vector3f.YP.rotationDegrees(180));
+				break;
+			case WEST:
+				matrixStack.mulPose(Vector3f.YP.rotationDegrees(90));
 				break;
 			default:
 				break;
 			}
-
 			matrixStack.mulPose(angle());
-			matrixStack.scale(2.25F, 2.25F, 1.0F);
-			itemRenderer.render(blade, ItemTransforms.TransformType.NONE, true, matrixStack, buffer, combinedLight, combinedOverlay, ibakedmodel);
+			addBox(matrixStack, buffer);
 			matrixStack.popPose();
 		}
 
@@ -97,8 +115,8 @@ public class SawmillRenderer implements BlockEntityRenderer<SawmillBlockEntity> 
 
 	private Quaternion angle() {
 		long time = System.currentTimeMillis();
-		float angle = time % 360 / 2;
-		Vector3f vector = Vector3f.ZP;
+		float angle = time % 360;
+		Vector3f vector = Vector3f.XP;
 
 		return vector.rotationDegrees(angle);
 	}

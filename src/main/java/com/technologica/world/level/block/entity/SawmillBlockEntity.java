@@ -3,6 +3,7 @@ package com.technologica.world.level.block.entity;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import com.technologica.world.item.TechnologicaItems;
 import com.technologica.world.item.crafting.TechnologicaRecipeType;
 import com.technologica.world.level.block.SawmillBlock;
 
@@ -35,8 +36,6 @@ import net.minecraftforge.items.ItemStackHandler;
 public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer, RecipeHolder, StackedContentsCompatible {
 	private final ItemStackHandler itemHandler = createHandler();
 	private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
-	private boolean blade = false;
-	private ItemStack log = ItemStack.EMPTY;
 	private int sawTime;
 	private double logPos;
 	protected NonNullList<ItemStack> items = NonNullList.withSize(3, ItemStack.EMPTY);
@@ -47,7 +46,7 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 	}
 
 	private ItemStackHandler createHandler() {
-		return new ItemStackHandler(1) {
+		return new ItemStackHandler(3) {
 			@Override
 			protected void onContentsChanged(int slot) {
 				setChanged();
@@ -55,6 +54,11 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 
 			@Override
 			public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
+				if (slot == 0) {
+					return stack.getItem().getRegistryName().getPath().contains("sawblade");
+				} else if (slot == 2) {
+					return stack.getItem().getRegistryName().getPath().contains("planks") || stack.isEmpty();
+				}
 				return stack.getItem().getRegistryName().getPath().contains("log");
 			}
 
@@ -85,23 +89,32 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 	}
 
 	public boolean getBlade() {
-		return blade;
+		if (getItem(0) != ItemStack.EMPTY) {
+			return true;
+		}
+		return false;
 	}
 
 	public void setBlade(boolean bladeIn) {
-		blade = bladeIn;
+		if (bladeIn) {
+			itemHandler.insertItem(0, new ItemStack(TechnologicaItems.SAWBLADE.get(), 1), false);
+		} else {
+			itemHandler.insertItem(0, ItemStack.EMPTY, false);
+		}
 	}
 
 	public ItemStack getLog() {
-		return log;
+		return getItem(1);
 	}
 
 	public void setLog(ItemStack logIn) {
-		log = logIn;
 		if (!ItemStack.matches(logIn, ItemStack.EMPTY)) {
 			this.sawTime = 100;
-			itemHandler.insertItem(0, logIn, false);
+			itemHandler.insertItem(1, logIn, false);
+		} else {
+			itemHandler.setStackInSlot(1, logIn);
 		}
+
 	}
 
 	public boolean isSawing() {
@@ -135,48 +148,43 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 	@Override
 	public void load(CompoundTag nbt) {
 		super.load(nbt);
-		if (nbt.contains("blade")) {
-			blade = nbt.getBoolean("blade");
-		}
 		if (nbt.contains("sawTime")) {
 			this.sawTime = nbt.getInt("sawTime");
 		}
 		if (nbt.contains("logPos")) {
 			this.logPos = nbt.getDouble("logPos");
 		}
-		if (nbt.contains("log")) {
-			this.setLog(ItemStack.of(nbt.getCompound("log")));
-		}
 	}
 
 	@Override
 	public void saveAdditional(CompoundTag compound) {
 		super.saveAdditional(compound);
-		compound.putBoolean("blade", blade);
 		compound.putInt("sawTime", this.sawTime);
 		compound.putDouble("logPos", this.logPos);
-		compound.put("log", this.getLog().save(new CompoundTag()));
 	}
 
 	public void serverTick() {
 		if (this.sawTime > 0F) {
 			this.sawTime--;
-		} else if (!log.isEmpty()) {
+		} else if (!getItem(1).isEmpty()) {
 			Recipe<?> recipe = this.level.getRecipeManager().getRecipeFor(TechnologicaRecipeType.SAWMILL, this, this.level).orElse(null);
 			if (recipe != null) {
 				ItemStack output = recipe.getResultItem();
-				Vec3i offset = this.getBlockState().getValue(SawmillBlock.NESW_FACING).getNormal();
-				this.level.addFreshEntity(new ItemEntity(level, this.worldPosition.offset(offset).getX(), this.worldPosition.getY() + 1, this.worldPosition.offset(offset).getZ(), output));
-				setLog(ItemStack.EMPTY);
+				if (!output.isEmpty()) {
+					setLog(ItemStack.EMPTY);
+					itemHandler.insertItem(2, output, false);
+					Vec3i offset = this.getBlockState().getValue(SawmillBlock.NESW_FACING).getNormal().multiply(2);
+					this.level.addFreshEntity(new ItemEntity(level, this.worldPosition.offset(offset).getX(), this.worldPosition.getY() + 1, this.worldPosition.offset(offset).getZ(), output));
+				}
 			}
 		}
 	}
 
 	public void clientTick() {
 		if (this.sawTime > 0F) {
-			this.logPos = 1.0D - 4.0D * (sawTime / 200.0D);
+			this.logPos = 2.0D - 4.0D * (sawTime / 100.0D);
 			this.sawTime--;
-		} else if (!log.isEmpty()) {
+		} else if (!getItem(1).isEmpty()) {
 			setLog(ItemStack.EMPTY);
 		}
 	}
@@ -269,7 +277,6 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 		}
 
 		if (index == 0 && !flag) {
-			// this.sawTimeTotal = this.getSawTime();
 			this.sawTime = 0;
 			this.setChanged();
 		}
@@ -291,7 +298,7 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 	}
 
 	@Override
-	public int[] getSlotsForFace(Direction side) {
+	public int[] getSlotsForFace(Direction direction) {
 		return null;
 	}
 
@@ -301,7 +308,7 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 	}
 
 	@Override
-	public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
+	public boolean canTakeItemThroughFace(int index, ItemStack itemStackIn, Direction direction) {
 		return false;
 	}
 }
