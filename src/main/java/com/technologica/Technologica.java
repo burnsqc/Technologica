@@ -15,6 +15,7 @@ import com.technologica.listeners.RegisterEntityAttributes;
 import com.technologica.listeners.RegisterEntityRenderers;
 import com.technologica.listeners.RegisterFarmerBrain;
 import com.technologica.listeners.RegisterLayerDefinitons;
+import com.technologica.listeners.RegisterVillagerTrades;
 import com.technologica.listeners.RegistrationListener;
 import com.technologica.listeners.WaterWalk;
 import com.technologica.setup.ClientSetup;
@@ -112,5 +113,6 @@ public class Technologica {
 		MinecraftForge.EVENT_BUS.register(new RegisterFarmerBrain());
 		MinecraftForge.EVENT_BUS.register(new WaterWalk());
 		MinecraftForge.EVENT_BUS.register(new NitroPocket());
+		MinecraftForge.EVENT_BUS.register(new RegisterVillagerTrades());
 	}
 }
