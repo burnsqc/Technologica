@@ -3,6 +3,7 @@ package com.technologica.world.level.block;
 import java.util.Random;
 
 import com.technologica.util.Radius;
+import com.technologica.util.lineshaftsystem.Manager;
 import com.technologica.world.item.TechnologicaItems;
 import com.technologica.world.level.block.entity.LineShaftTileEntity;
 import com.technologica.world.level.block.state.properties.TechnologicaBlockStateProperties;
@@ -85,6 +86,11 @@ public class LineShaftBlock extends RotatedPillarBlock implements EntityBlock {
 				worldIn.playSound((Player) null, posIn, SoundEvents.ANVIL_PLACE, SoundSource.BLOCKS, 0.25F, 1.0F + worldIn.random.nextFloat() * 0.4F);
 			}
 		}
+		if (!worldIn.isClientSide) {
+			Manager lssManager = new Manager();
+			lssManager.onChanged(getTileEntity(worldIn, posIn));
+		}
+
 		return InteractionResult.sidedSuccess(worldIn.isClientSide);
 	}
 
@@ -113,6 +119,14 @@ public class LineShaftBlock extends RotatedPillarBlock implements EntityBlock {
 	@Override
 	public void tick(BlockState stateIn, ServerLevel worldIn, BlockPos posIn, Random randomIn) {
 		if (!canSurvive(stateIn, worldIn, posIn)) {
+			LineShaftTileEntity tile = getTileEntity(worldIn, posIn);
+			if (tile.getBeltPos() != null) {
+				LineShaftTileEntity tile2 = getTileEntity(worldIn, tile.getBeltPos());
+				if (tile2 != null) {
+					tile2.setBeltPos(null);
+				}
+				tile.setBeltPos(null);
+			}
 			worldIn.destroyBlock(posIn, true);
 		}
 	}
@@ -122,8 +136,10 @@ public class LineShaftBlock extends RotatedPillarBlock implements EntityBlock {
 		LineShaftTileEntity tile = getTileEntity(worldIn, posIn);
 		if (tile.getBeltPos() != null) {
 			LineShaftTileEntity tile2 = getTileEntity(worldIn, tile.getBeltPos());
+			if (tile2 != null) {
+				tile2.setBeltPos(null);
+			}
 			tile.setBeltPos(null);
-			tile2.setBeltPos(null);
 		}
 	}
 

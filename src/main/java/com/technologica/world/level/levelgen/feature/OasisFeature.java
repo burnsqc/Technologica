@@ -40,9 +40,9 @@ public class OasisFeature extends Feature<BlockStateConfiguration> {
 				for (int relativeX = 1; relativeX < 15; ++relativeX) {
 					for (int relativeZ = 1; relativeZ < 15; ++relativeZ) {
 						for (int relativeY = 1; relativeY < 15; ++relativeY) {
-							double d6 = ((double) relativeX - 10.5D) / 4.5D;
-							double d7 = ((double) relativeY - 3.5D) / 4.5D;
-							double d8 = ((double) relativeZ - 10.5D) / 4.5D;
+							double d6 = (relativeX - 10.5D) / 4.5D;
+							double d7 = (relativeY - 3.5D) / 4.5D;
+							double d8 = (relativeZ - 10.5D) / 4.5D;
 							double d9 = d6 * d6 + d7 * d7 + d8 * d8;
 							if (d9 < 1.0D) {
 								aboolean[(relativeX * 16 + relativeZ) * 8 + relativeY] = true;
@@ -55,13 +55,7 @@ public class OasisFeature extends Feature<BlockStateConfiguration> {
 			for (int k1 = 0; k1 < 16; ++k1) {
 				for (int l2 = 0; l2 < 16; ++l2) {
 					for (int k = 0; k < 8; ++k) {
-						boolean flag = !aboolean[(k1 * 16 + l2) * 8 + k]
-								&& (k1 < 15 && aboolean[((k1 + 1) * 16 + l2) * 8 + k]
-										|| k1 > 0 && aboolean[((k1 - 1) * 16 + l2) * 8 + k]
-										|| l2 < 15 && aboolean[(k1 * 16 + l2 + 1) * 8 + k]
-										|| l2 > 0 && aboolean[(k1 * 16 + (l2 - 1)) * 8 + k]
-										|| k < 7 && aboolean[(k1 * 16 + l2) * 8 + k + 1]
-										|| k > 0 && aboolean[(k1 * 16 + l2) * 8 + (k - 1)]);
+						boolean flag = !aboolean[(k1 * 16 + l2) * 8 + k] && (k1 < 15 && aboolean[((k1 + 1) * 16 + l2) * 8 + k] || k1 > 0 && aboolean[((k1 - 1) * 16 + l2) * 8 + k] || l2 < 15 && aboolean[(k1 * 16 + l2 + 1) * 8 + k] || l2 > 0 && aboolean[(k1 * 16 + (l2 - 1)) * 8 + k] || k < 7 && aboolean[(k1 * 16 + l2) * 8 + k + 1] || k > 0 && aboolean[(k1 * 16 + l2) * 8 + (k - 1)]);
 						if (flag) {
 							Material material = worldgenlevel.getBlockState(blockpos.offset(k1, k, l2)).getMaterial();
 							if (k >= 4 && material.isLiquid()) {
@@ -78,34 +72,31 @@ public class OasisFeature extends Feature<BlockStateConfiguration> {
 			for (int relativeX = 0; relativeX < 16; ++relativeX) {
 				for (int relativeZ = 0; relativeZ < 16; ++relativeZ) {
 					for (int relativeY = 3; relativeY < 16; ++relativeY) {
-						if (relativeY == 3 && (relativeX-8) * (relativeX-8) + (relativeZ-8) * (relativeZ-8) <= 36) {
+						if (relativeY == 3 && (relativeX - 8) * (relativeX - 8) + (relativeZ - 8) * (relativeZ - 8) <= 36) {
 							worldgenlevel.setBlock(blockpos.offset(relativeX, relativeY, relativeZ), Blocks.DIRT.defaultBlockState(), 2);
-						} else if (relativeY >= 4 && (relativeX-8) * (relativeX-8) + (relativeZ-8) * (relativeZ-8) <= 50) {
+						} else if (relativeY >= 4 && (relativeX - 8) * (relativeX - 8) + (relativeZ - 8) * (relativeZ - 8) <= 50) {
 							worldgenlevel.setBlock(blockpos.offset(relativeX, relativeY, relativeZ), relativeY >= 5 ? Blocks.AIR.defaultBlockState() : Blocks.GRASS_BLOCK.defaultBlockState(), 2);
-							if ((relativeX-8) * (relativeX-8) + (relativeZ-8) * (relativeZ-8) <= 18) {
+							if ((relativeX - 8) * (relativeX - 8) + (relativeZ - 8) * (relativeZ - 8) <= 18) {
 								worldgenlevel.setBlock(blockpos.offset(relativeX, relativeY, relativeZ), relativeY >= 5 ? Blocks.AIR.defaultBlockState() : Blocks.WATER.defaultBlockState(), 2);
 							}
-						} 
-						
+						}
+
 					}
 				}
-			}	
-			
+			}
+
 			for (int relativeX = 0; relativeX < 16; ++relativeX) {
 				for (int relativeZ = 0; relativeZ < 16; ++relativeZ) {
 					if (worldgenlevel.getBlockState(blockpos.offset(relativeX, 4, relativeZ)).is(Blocks.GRASS_BLOCK)) {
 						if (random.nextInt(30) == 0) {
 							if (random.nextBoolean()) {
-								TechnologicaTreeFeatures.LEMON.value().place(worldgenlevel, p_159958_.chunkGenerator(), random, blockpos.offset(relativeX, 5, relativeZ)); 
+								TechnologicaTreeFeatures.LEMON.value().place(worldgenlevel, p_159958_.chunkGenerator(), random, blockpos.offset(relativeX, 5, relativeZ));
 							} else {
 								TechnologicaTreeFeatures.LIME.value().place(worldgenlevel, p_159958_.chunkGenerator(), random, blockpos.offset(relativeX, 5, relativeZ));
 							}
-						} else if (worldgenlevel.getBlockState(blockpos.offset(relativeX + 1, 4, relativeZ)).is(Blocks.WATER) 
-								|| worldgenlevel.getBlockState(blockpos.offset(relativeX - 1, 4, relativeZ)).is(Blocks.WATER) 
-								|| worldgenlevel.getBlockState(blockpos.offset(relativeX, 4, relativeZ + 1)).is(Blocks.WATER)
-								|| worldgenlevel.getBlockState(blockpos.offset(relativeX, 4, relativeZ - 1)).is(Blocks.WATER)) {
+						} else if (worldgenlevel.getBlockState(blockpos.offset(relativeX + 1, 4, relativeZ)).is(Blocks.WATER) || worldgenlevel.getBlockState(blockpos.offset(relativeX - 1, 4, relativeZ)).is(Blocks.WATER) || worldgenlevel.getBlockState(blockpos.offset(relativeX, 4, relativeZ + 1)).is(Blocks.WATER) || worldgenlevel.getBlockState(blockpos.offset(relativeX, 4, relativeZ - 1)).is(Blocks.WATER)) {
 							VegetationFeatures.PATCH_SUGAR_CANE.value().place(worldgenlevel, p_159958_.chunkGenerator(), random, blockpos.offset(relativeX, 5, relativeZ));
-						} else if (worldgenlevel.getBlockState(blockpos.offset(relativeX + 1, 5, relativeZ)).is(Blocks.AIR)) {						
+						} else if (worldgenlevel.getBlockState(blockpos.offset(relativeX + 1, 5, relativeZ)).is(Blocks.AIR)) {
 							if (random.nextInt(4) == 0) {
 								worldgenlevel.setBlock(blockpos.offset(relativeX, 5, relativeZ), Blocks.GRASS.defaultBlockState(), 2);
 							} else if (random.nextInt(4) == 1) {
@@ -118,7 +109,7 @@ public class OasisFeature extends Feature<BlockStateConfiguration> {
 						}
 					}
 				}
-			}	
+			}
 			return true;
 		}
 	}

@@ -2,10 +2,14 @@ package com.technologica.capabilities;
 
 import static com.technologica.Technologica.LOGGER;
 
+import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+
 public class TechnologicaCapabilities {
 
-	public static void init() {
+	@SubscribeEvent
+	public void init(RegisterCapabilitiesEvent event) {
 		LOGGER.info("INITIALIZING CAPABILITIES");
-		//CapabilityManager.INSTANCE.register(ILink.class, new Link.LinkStorage(), new Link.Factory());
+		event.register(ILink.class);
 	}
 }

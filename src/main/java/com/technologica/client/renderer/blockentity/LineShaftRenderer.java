@@ -79,7 +79,7 @@ public class LineShaftRenderer implements BlockEntityRenderer<LineShaftTileEntit
 			if (tileEntity.getLevel().getBlockEntity(tileEntity.getBeltPos()) instanceof LineShaftTileEntity) {
 				radius2 = tileEntity.getLevel().getBlockState(tileEntity.getBeltPos()).getValue(LineShaftBlock.RADIUS);
 			} else {
-				radius2 = null;
+				radius2 = Radius.NONE;
 			}
 
 			float[] coords;
@@ -104,6 +104,7 @@ public class LineShaftRenderer implements BlockEntityRenderer<LineShaftTileEntit
 				addBox(matrixStack, buffer, 0.376f, coords[1] - tileEntity.getBlockPos().getY(), coords[0] - tileEntity.getBlockPos().getX(), 0.624f, coords[3] - tileEntity.getBlockPos().getY(), coords[2] - tileEntity.getBlockPos().getX(), coords[5] - tileEntity.getBlockPos().getY(), coords[4] - tileEntity.getBlockPos().getX(), coords[7] - tileEntity.getBlockPos().getY(), coords[6] - tileEntity.getBlockPos().getX());
 				break;
 			}
+
 		}
 		matrixStack.popPose();
 

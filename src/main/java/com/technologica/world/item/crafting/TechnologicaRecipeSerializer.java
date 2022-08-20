@@ -12,12 +12,12 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class TechnologicaRecipeSerializer {
 	public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, Technologica.MODID);
-	
+
 	public static void init() {
 		LOGGER.info("INITIALIZING RECIPE SERIALIZERS");
 		RECIPE_SERIALIZERS.register(FMLJavaModLoadingContext.get().getModEventBus());
 		LOGGER.info(RECIPE_SERIALIZERS.getEntries().size() + " RECIPE SERIALIZERS INITIALIZED");
-    }
-	
+	}
+
 	public static final RegistryObject<RecipeSerializer<SawmillRecipe>> SAWMILL = RECIPE_SERIALIZERS.register("sawmill", SawmillRecipe.Serializer::new);
 }

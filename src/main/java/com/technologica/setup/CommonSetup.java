@@ -5,7 +5,6 @@ import java.util.stream.Stream;
 
 import com.google.common.collect.ImmutableSet;
 import com.technologica.Technologica;
-import com.technologica.capabilities.TechnologicaCapabilities;
 import com.technologica.data.worldgen.features.TechnologicaTreeFeatures;
 import com.technologica.data.worldgen.placement.TechnologicaTreePlacements;
 import com.technologica.network.play.server.Packets;
@@ -32,7 +31,6 @@ public class CommonSetup {
 
 	public static void init(final FMLCommonSetupEvent event) {
 
-		TechnologicaCapabilities.init();
 		Packets.onCommonSetupEvent();
 
 		event.enqueueWork(() -> {
