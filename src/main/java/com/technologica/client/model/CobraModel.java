@@ -1,5 +1,7 @@
 package com.technologica.client.model;
 
+import com.google.common.collect.ImmutableList;
+
 import net.minecraft.client.model.ListModel;
 import net.minecraft.client.model.QuadrupedModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -12,7 +14,7 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.world.entity.Entity;
 
 public class CobraModel<T extends Entity> extends ListModel<T> {
-	/*
+	
 	private final ModelPart headUpper;
 	private final ModelPart headLower;
 	private final ModelPart fangs;
@@ -35,173 +37,88 @@ public class CobraModel<T extends Entity> extends ListModel<T> {
 	private final ModelPart hood3;
 	private final ModelPart hood4;
 	private final ModelPart hood5;
-*/
-	public CobraModel() {
-		/*
-		texWidth = 32;
-		texHeight = 16;
 
-		this.headLower = new ModelPart(this, 0, 8);
-		this.headLower.setPos(0.0F, 23.0F, 0.0F);
-		this.headLower.addBox(-1.5F, 0.0F, -3.0F, 3.0F, 1.0F, 3.0F);
+	public CobraModel(ModelPart modelPartIn) {
 		
-		this.headUpper = new ModelPart(this, 0, 4);
-		this.headUpper.setPos(0.0F, 0.0F, 0.0F);
-		this.headUpper.addBox(-1.5F, -1.0F, -3.0F, 3.0F, 1.0F, 3.0F);
-		this.headLower.addChild(this.headUpper);
+		this.headLower = modelPartIn.getChild("headLower");
+		this.headUpper = headLower.getChild("headUpper");
+		this.fangs = headUpper.getChild("fangs");
+		this.body1 = headLower.getChild("body1");
+		this.hood1 = body1.getChild("hood1");
+		this.body2 = body1.getChild("body2");
+		this.hood2 = body2.getChild("hood2");
+		this.body3 = body2.getChild("body3");
+		this.hood3 = body3.getChild("hood3");
+		this.body4 = body3.getChild("body4");
+		this.hood4 = body4.getChild("hood4");
+		this.body5 = body4.getChild("body5");
+		this.hood5 = body5.getChild("hood5");
+		this.body6 = body5.getChild("body6");
+		this.body7 = body6.getChild("body7");
+		this.body8 = body7.getChild("body8");
+		this.body9 = body8.getChild("body9");
+		this.body10 = body9.getChild("body10");
+		this.body11 = body10.getChild("body11");
+		this.body12 = body11.getChild("body12");
+		this.body13 = body12.getChild("body13");
+		this.body14 = body13.getChild("body14");
 		
-		this.fangs = new ModelPart(this, 0, 12);
-		this.fangs.addBox(-1.0F, -0.5F, -0.5F, 2.0F, 1.0F, 1.0F);
-		this.fangs.setPos(0.0F, 0.0F, -2.0F);
-		this.headUpper.addChild(this.fangs);
-		
-		body1 = new ModelPart(this, 0, 0);
-		body1.setPos(0.0F, 0.0F, 0.0F);
-		body1.addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F);
-		this.headLower.addChild(this.body1);
-		
-		hood1 = new ModelPart(this, 8, 0);
-		hood1.setPos(0.0F, 0.0F, 0.0F);
-		hood1.addBox(-2.0F, -1.0F, 0.0F, 4.0F, 1.0F, 2.0F);
-		this.body1.addChild(this.hood1);
-		
-		body2 = new ModelPart(this, 0, 0);
-		body2.setPos(0.0F, 0.0F, 2.0F);
-		body2.addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F);	
-		this.body1.addChild(this.body2);
-		
-		hood2 = new ModelPart(this, 4, 12);
-		hood2.setPos(0.0F, 0.0F, 0.0F);
-		hood2.addBox(-3.0F, -1.0F, 0.0F, 6.0F, 1.0F, 2.0F);
-		this.body2.addChild(this.hood2);
-		
-		body3 = new ModelPart(this, 0, 0);
-		body3.setPos(0.0F, 0.0F, 2.0F);
-		body3.addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F);	
-		this.body2.addChild(this.body3);
-		
-		hood3 = new ModelPart(this, 4, 12);
-		hood3.setPos(0.0F, 0.0F, 0.0F);
-		hood3.addBox(-3.0F, -1.0F, 0.0F, 6.0F, 1.0F, 2.0F);
-		this.body3.addChild(this.hood3);
-		
-		body4 = new ModelPart(this, 0, 0);
-		body4.setPos(0.0F, 0.0F, 2.0F);
-		body4.addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F);	
-		this.body3.addChild(this.body4);
-		
-		hood4 = new ModelPart(this, 8, 0);
-		hood4.setPos(0.0F, 0.0F, 0.0F);
-		hood4.addBox(-2.0F, -1.0F, 0.0F, 4.0F, 1.0F, 2.0F);
-		this.body4.addChild(this.hood4);
-		
-		body5 = new ModelPart(this, 0, 0);
-		body5.setPos(0.0F, 0.0F, 2.0F);
-		body5.addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F);	
-		this.body4.addChild(this.body5);
-		
-		hood5 = new ModelPart(this, 8, 0);
-		hood5.setPos(0.0F, 0.0F, 0.0F);
-		hood5.addBox(-2.0F, -1.0F, 0.0F, 4.0F, 1.0F, 2.0F);
-		this.body5.addChild(this.hood5);
-		
-		body6 = new ModelPart(this, 0, 0);
-		body6.setPos(0.0F, 0.0F, 2.0F);
-		body6.addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F);	
-		this.body5.addChild(this.body6);
-		
-		body7 = new ModelPart(this, 0, 0);
-		body7.setPos(0.0F, 0.0F, 2.0F);
-		body7.addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F);	
-		this.body6.addChild(this.body7);
-		
-		body8 = new ModelPart(this, 0, 0);
-		body8.setPos(0.0F, 0.0F, 2.0F);
-		body8.addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F);	
-		this.body7.addChild(this.body8);
-		
-		body9 = new ModelPart(this, 0, 0);
-		body9.setPos(0.0F, 0.0F, 2.0F);
-		body9.addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F);	
-		this.body8.addChild(this.body9);
-		
-		body10 = new ModelPart(this, 0, 0);
-		body10.setPos(0.0F, 0.0F, 2.0F);
-		body10.addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F);	
-		this.body9.addChild(this.body10);
-		
-		body11 = new ModelPart(this, 0, 0);
-		body11.setPos(0.0F, 0.0F, 2.0F);
-		body11.addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F);	
-		this.body10.addChild(this.body11);
-		
-		body12 = new ModelPart(this, 0, 0);
-		body12.setPos(0.0F, 0.0F, 2.0F);
-		body12.addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F);	
-		this.body11.addChild(this.body12);
-		
-		body13 = new ModelPart(this, 0, 0);
-		body13.setPos(0.0F, 0.0F, 2.0F);
-		body13.addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F);	
-		this.body12.addChild(this.body13);
-		
-		body14 = new ModelPart(this, 0, 0);
-		body14.setPos(0.0F, 0.0F, 2.0F);
-		body14.addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F);	
-		this.body13.addChild(this.body14);
-		*/
 	}
 
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = QuadrupedModel.createBodyMesh(6, CubeDeformation.NONE);
 		PartDefinition partdefinition = meshdefinition.getRoot();
 		
-		partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 14).addBox(-2.0F, -4.0F, -4.0F, 4.0F, 4.0F, 4.0F), PartPose.offset(0.0F, 21.0F, -4.0F));
-		partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-3.0F, 10.0F, -6.0F, 6.0F, 6.0F, 8.0F), PartPose.offset(0.0F, 6.0F, 2.0F));
+		PartDefinition headLower = partdefinition.addOrReplaceChild("headLower", CubeListBuilder.create().texOffs(0, 8).addBox(-1.5F, 0.0F, -3.0F, 3.0F, 1.0F, 3.0F), PartPose.offset(0.0F, 23.0F, 0.0F));
 		
-		partdefinition.addOrReplaceChild("rightHindLeg", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, 1.0F, -1.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(-2.0F, 21.0F, 3.0F));
-		partdefinition.addOrReplaceChild("leftHindLeg", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, 1.0F, -1.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(2.0F, 21.0F, 3.0F));
-		partdefinition.addOrReplaceChild("rightFrontLeg", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, 1.0F, -1.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(-2.0F, 21.0F, -3.0F));
-		partdefinition.addOrReplaceChild("leftFrontLeg", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, 1.0F, -1.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(2.0F, 21.0F, -3.0F));
-		partdefinition.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(0, 22).addBox(-2.0F, 0.0F, 0.0F, 4.0F, 1.0F, 6.0F), PartPose.offset(0.0F, 14.0F, 2.0F));
+		PartDefinition headUpper = headLower.addOrReplaceChild("headUpper", CubeListBuilder.create().texOffs(0, 4).addBox(-1.5F, -1.0F, -3.0F, 3.0F, 1.0F, 3.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+		headUpper.addOrReplaceChild("fangs", CubeListBuilder.create().texOffs(0, 12).addBox(-1.0F, -0.5F, -0.5F, 2.0F, 1.0F, 1.0F), PartPose.offset(0.0F, 0.0F, -2.0F));
 		
-		return LayerDefinition.create(meshdefinition, 32, 32);
+		PartDefinition body1 = headLower.addOrReplaceChild("body1", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+		body1.addOrReplaceChild("hood1", CubeListBuilder.create().texOffs(8, 0).addBox(-2.0F, -1.0F, 0.0F, 4.0F, 1.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+		PartDefinition body2 = body1.addOrReplaceChild("body2", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
+		body2.addOrReplaceChild("hood2", CubeListBuilder.create().texOffs(4, 12).addBox(-3.0F, -1.0F, 0.0F, 6.0F, 1.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+		PartDefinition body3 = body2.addOrReplaceChild("body3", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
+		body3.addOrReplaceChild("hood3", CubeListBuilder.create().texOffs(4, 12).addBox(-3.0F, -1.0F, 0.0F, 6.0F, 1.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+		PartDefinition body4 = body3.addOrReplaceChild("body4", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
+		body4.addOrReplaceChild("hood4", CubeListBuilder.create().texOffs(8, 0).addBox(-2.0F, -1.0F, 0.0F, 4.0F, 1.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+		PartDefinition body5 = body4.addOrReplaceChild("body5", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
+		body5.addOrReplaceChild("hood5", CubeListBuilder.create().texOffs(8, 0).addBox(-2.0F, -1.0F, 0.0F, 4.0F, 1.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 0.0F));		
+		PartDefinition body6 = body5.addOrReplaceChild("body6", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
+		PartDefinition body7 = body6.addOrReplaceChild("body7", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
+		PartDefinition body8 = body7.addOrReplaceChild("body8", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
+		PartDefinition body9 = body8.addOrReplaceChild("body9", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
+		PartDefinition body10 = body9.addOrReplaceChild("body10", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
+		PartDefinition body11 = body10.addOrReplaceChild("body11", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
+		PartDefinition body12 = body11.addOrReplaceChild("body12", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
+		PartDefinition body13 = body12.addOrReplaceChild("body13", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
+		body13.addOrReplaceChild("body14", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
+		
+		return LayerDefinition.create(meshdefinition, 32, 16);
 	}
 	
 	@Override
 	public Iterable<ModelPart> parts() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setupAnim(T p_102618_, float p_102619_, float p_102620_, float p_102621_, float p_102622_,
-			float p_102623_) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/*
-	public Iterable<ModelPart> parts() {
 		return ImmutableList.of(this.headLower);
 	}
 
+	@Override
 	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.headUpper.xRot = -(Mth.sin(ageInTicks / 10) * Mth.sin(ageInTicks / 10))/2;
-		this.body1.yRot = -Mth.sin(ageInTicks / 10)/3;
-		this.body2.yRot = -Mth.sin(ageInTicks / 10)/3;
-		this.body3.yRot = -Mth.sin(ageInTicks / 10)/3;
-		this.body4.yRot = -Mth.sin(ageInTicks / 10)/3;
-		this.body5.yRot = Mth.sin(ageInTicks / 10)/3;
-		this.body6.yRot = Mth.sin(ageInTicks / 10)/3;
-		this.body7.yRot = Mth.sin(ageInTicks / 10)/3;
-		this.body8.yRot = Mth.sin(ageInTicks / 10)/3;
-		this.body9.yRot = -Mth.sin(ageInTicks / 10)/3;
-		this.body10.yRot = -Mth.sin(ageInTicks / 10)/3;
-		this.body11.yRot = -Mth.sin(ageInTicks / 10)/3;
-		this.body12.yRot = -Mth.sin(ageInTicks / 10)/3;
-		this.body13.yRot = Mth.sin(ageInTicks / 10)/3;
-		this.body14.yRot = Mth.sin(ageInTicks / 10)/3;
+		this.headUpper.xRot = (float) (-(Math.sin(ageInTicks / 10) * Math.sin(ageInTicks / 10))/2);
+		this.body1.yRot = (float) (-Math.sin(ageInTicks / 10)/3);
+		this.body2.yRot = (float) (-Math.sin(ageInTicks / 10)/3);
+		this.body3.yRot = (float) (-Math.sin(ageInTicks / 10)/3);
+		this.body4.yRot = (float) (-Math.sin(ageInTicks / 10)/3);
+		this.body5.yRot = (float) (Math.sin(ageInTicks / 10)/3);
+		this.body6.yRot = (float) (Math.sin(ageInTicks / 10)/3);
+		this.body7.yRot = (float) (Math.sin(ageInTicks / 10)/3);
+		this.body8.yRot = (float) (Math.sin(ageInTicks / 10)/3);
+		this.body9.yRot = (float) (-Math.sin(ageInTicks / 10)/3);
+		this.body10.yRot = (float) (-Math.sin(ageInTicks / 10)/3);
+		this.body11.yRot = (float) (-Math.sin(ageInTicks / 10)/3);
+		this.body12.yRot = (float) (-Math.sin(ageInTicks / 10)/3);
+		this.body13.yRot = (float) (Math.sin(ageInTicks / 10)/3);
+		this.body14.yRot = (float) (Math.sin(ageInTicks / 10)/3);
 		this.fangs.xRot = (float) Math.PI/4;
 	}
 
@@ -210,5 +127,5 @@ public class CobraModel<T extends Entity> extends ListModel<T> {
 		modelRenderer.yRot = y;
 		modelRenderer.zRot = z;
 	}
-	*/
+	
 }
