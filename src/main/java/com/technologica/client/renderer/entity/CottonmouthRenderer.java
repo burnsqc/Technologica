@@ -2,6 +2,7 @@ package com.technologica.client.renderer.entity;
 
 import com.technologica.Technologica;
 import com.technologica.client.model.CottonmouthModel;
+import com.technologica.client.model.geom.TechnologicaModelLayers;
 import com.technologica.world.entity.animal.Cottonmouth;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -12,7 +13,7 @@ public final class CottonmouthRenderer extends MobRenderer<Cottonmouth, Cottonmo
 	private static final ResourceLocation COTTONMOUTH_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/cottonmouth.png");
 
 	public CottonmouthRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new CottonmouthModel<>(), 1.1F);
+		super(renderManagerIn, new CottonmouthModel<>(renderManagerIn.bakeLayer(TechnologicaModelLayers.COTTONMOUTH)), 1.1F);
 	}
 
 	@Override
