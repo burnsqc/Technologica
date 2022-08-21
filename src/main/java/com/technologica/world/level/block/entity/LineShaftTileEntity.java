@@ -57,6 +57,7 @@ public class LineShaftTileEntity extends BlockEntity {
 
 	public void setRPM(float rpmIn) {
 		this.rpm = rpmIn;
+		this.level.sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), 0);
 		setChanged();
 	}
 
@@ -100,12 +101,11 @@ public class LineShaftTileEntity extends BlockEntity {
 
 	@Override
 	public void saveAdditional(CompoundTag compound) {
-
+		super.saveAdditional(compound);
 		if (beltPos != null) {
 			compound.put("beltPos", NbtUtils.writeBlockPos(beltPos));
 		}
 		compound.putFloat("torque", torque);
 		compound.putFloat("rpm", rpm);
-		super.saveAdditional(compound);
 	}
 }

@@ -1,10 +1,11 @@
 package com.technologica.util.lineshaftsystem;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.mojang.datafixers.util.Pair;
+import com.technologica.world.level.block.LineShaftBlock;
 import com.technologica.world.level.block.entity.LineShaftHangerTileEntity;
 import com.technologica.world.level.block.entity.LineShaftTileEntity;
 
@@ -18,44 +19,40 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
  * Manager class for the Line Shaft System.
  */
 public class Manager {
+	private boolean isCyclic = false;
+	private boolean jammed = false;
 	public int shaftIndex = 0;
 	public float load;
-	public List<BlockEntity> allShaftBlocks;
-	public List<LineShaft> allShafts;
-	private LinkedList<Integer> adj[];
+	public List<BlockEntity> allShaftBlockEntities = new ArrayList<>();
+	public List<LineShaft> allShafts = new ArrayList<>();
+	private LinkedList<Pair<Integer, Float>> adj[];
+	private float RPM;
 
 	public Manager() {
 		adj = new LinkedList[1];
 		adj[0] = new LinkedList();
-		// Check for safe assumptions before spinning up new manager vs merging into existing one
 	}
 
-	public void onChanged(BlockEntity be) {
+	public void onChanged(BlockEntity be, float rpmIn) {
+		this.RPM = rpmIn;
 		this.reGroup(be);
-		if (this.isValid()) {
-			this.setAll();
-		} else {
-			// idk
-		}
+		this.setAll();
 	}
 
 	/**
 	 * This method scans outward from a single block entity and attempts to group any and all Line Shaft and Line Shaft Hanger Block Entities into a complete Line Shaft System.
 	 * 
-	 * @param be
+	 * @param blockEntityIn
 	 */
-	private void reGroup(BlockEntity be) {
+	private void reGroup(BlockEntity blockEntityIn) {
 		// Start with a single LineShaftBlockEntity. Incrementally search in both coaxial directions for aligned LineShaftBlocks and build a new LineShaft object.
-		Level level = be.getLevel();
+		Level level = blockEntityIn.getLevel();
 
 		List<BlockEntity> tempAllShaftBlocks = new ArrayList<>();
-		tempAllShaftBlocks.add(be);
-		if (allShaftBlocks == null) {
-			allShaftBlocks = new ArrayList<>();
-		}
-		allShaftBlocks.add(be);
+		tempAllShaftBlocks.add(blockEntityIn);
+		allShaftBlockEntities.add(blockEntityIn);
 
-		Axis axis = be.getBlockState().getValue(BlockStateProperties.AXIS);
+		Axis axis = blockEntityIn.getBlockState().getValue(BlockStateProperties.AXIS);
 		Direction direction1 = null;
 		Direction direction2 = null;
 
@@ -75,46 +72,42 @@ public class Manager {
 		}
 
 		int offset = 1;
-		BlockEntity shaftCheck = level.getBlockEntity(be.getBlockPos().relative(direction1, offset));
+		BlockEntity scannedBlockEntity = level.getBlockEntity(blockEntityIn.getBlockPos().relative(direction1, offset));
 
-		while ((shaftCheck instanceof LineShaftTileEntity || shaftCheck instanceof LineShaftHangerTileEntity) && shaftCheck.getBlockState().getValue(BlockStateProperties.AXIS) == be.getBlockState().getValue(BlockStateProperties.AXIS)) {
-			tempAllShaftBlocks.add(shaftCheck);
-			allShaftBlocks.add(shaftCheck);
+		while ((scannedBlockEntity instanceof LineShaftTileEntity || scannedBlockEntity instanceof LineShaftHangerTileEntity) && scannedBlockEntity.getBlockState().getValue(BlockStateProperties.AXIS) == blockEntityIn.getBlockState().getValue(BlockStateProperties.AXIS)) {
+			tempAllShaftBlocks.add(scannedBlockEntity);
+			allShaftBlockEntities.add(scannedBlockEntity);
 			offset++;
-			shaftCheck = level.getBlockEntity(be.getBlockPos().relative(direction1, offset));
+			scannedBlockEntity = level.getBlockEntity(blockEntityIn.getBlockPos().relative(direction1, offset));
 		}
 
 		offset = 1;
-		shaftCheck = level.getBlockEntity(be.getBlockPos().relative(direction2, offset));
+		scannedBlockEntity = level.getBlockEntity(blockEntityIn.getBlockPos().relative(direction2, offset));
 
-		while ((shaftCheck instanceof LineShaftTileEntity || shaftCheck instanceof LineShaftHangerTileEntity) && shaftCheck.getBlockState().getValue(BlockStateProperties.AXIS) == be.getBlockState().getValue(BlockStateProperties.AXIS)) {
-			tempAllShaftBlocks.add(shaftCheck);
-			allShaftBlocks.add(shaftCheck);
+		while ((scannedBlockEntity instanceof LineShaftTileEntity || scannedBlockEntity instanceof LineShaftHangerTileEntity) && scannedBlockEntity.getBlockState().getValue(BlockStateProperties.AXIS) == blockEntityIn.getBlockState().getValue(BlockStateProperties.AXIS)) {
+			tempAllShaftBlocks.add(scannedBlockEntity);
+			allShaftBlockEntities.add(scannedBlockEntity);
 			offset++;
-			shaftCheck = level.getBlockEntity(be.getBlockPos().relative(direction2, offset));
+			scannedBlockEntity = level.getBlockEntity(blockEntityIn.getBlockPos().relative(direction2, offset));
 		}
 
-		LineShaft shaft = new LineShaft(tempAllShaftBlocks, shaftIndex);
+		LineShaft lineShaft = new LineShaft(tempAllShaftBlocks, shaftIndex);
 		shaftIndex++;
-
-		if (allShafts == null) {
-			allShafts = new ArrayList<>();
-		}
-
-		allShafts.add(shaft);
+		allShafts.add(lineShaft);
 
 		// Now check the above LineShaft object for pulley connections and loop back to top. Be sure to check if they are already a part of the allShafts list.
-		for (BlockEntity shaftBlock : shaft.shaftList) {
+		for (BlockEntity shaftBlock : lineShaft.shaftList) {
 			if (shaftBlock instanceof LineShaftTileEntity) {
 				if (((LineShaftTileEntity) shaftBlock).getBeltPos() != null) {
-					if (!allShaftBlocks.contains(level.getBlockEntity(((LineShaftTileEntity) shaftBlock).getBeltPos()))) {
-						addEdge(shaft.getIndex(), shaftIndex);
+					if (!allShaftBlockEntities.contains(level.getBlockEntity(((LineShaftTileEntity) shaftBlock).getBeltPos()))) {
+						addEdge(lineShaft.getIndex(), shaftIndex, shaftBlock.getBlockState().getValue(LineShaftBlock.RADIUS).getRadius() / level.getBlockEntity(((LineShaftTileEntity) shaftBlock).getBeltPos()).getBlockState().getValue(LineShaftBlock.RADIUS).getRadius());
 						reGroup(level.getBlockEntity(((LineShaftTileEntity) shaftBlock).getBeltPos()));
 					} else {
+						this.isCyclic = true;
 						for (LineShaft shaft2 : allShafts) {
 							if (shaft2.shaftList.contains(level.getBlockEntity(((LineShaftTileEntity) shaftBlock).getBeltPos()))) {
-								if (level.getBlockEntity(((LineShaftTileEntity) shaftBlock).getBeltPos()) != level.getBlockEntity(((LineShaftTileEntity) be).getBeltPos())) {
-									addEdge(shaft.getIndex(), shaft2.getIndex());
+								if (level.getBlockEntity(((LineShaftTileEntity) shaftBlock).getBeltPos()) != level.getBlockEntity(((LineShaftTileEntity) blockEntityIn).getBeltPos())) {
+									addEdge(lineShaft.getIndex(), shaft2.getIndex(), shaftBlock.getBlockState().getValue(LineShaftBlock.RADIUS).getRadius() / level.getBlockEntity(((LineShaftTileEntity) shaftBlock).getBeltPos()).getBlockState().getValue(LineShaftBlock.RADIUS).getRadius());
 									break;
 								}
 							}
@@ -125,71 +118,70 @@ public class Manager {
 		}
 	}
 
-	/**
-	 * Treat the system as an undirected graph, since any torque/rpm change can happen anywhere in the system and any pulley connections should have equal possibility to drive or be driven.
-	 * 
-	 * @return
-	 */
-	public boolean isValid() {
-		// Directed graphs
-		// Simple cycles
+	public void setAll() {
+		int numberofShafts = allShafts.size();
+		Boolean visited[] = new Boolean[numberofShafts];
+		float ratio = 1.0F;
+		int count = 0;
 
-		// for (LineShaft shaft : allShafts) {
-		// for (BlockEntity shaftBlock : shaft.shaftList) {
-		// if (shaftBlock instanceof LineShaftTileEntity) {
-		// if (((LineShaftTileEntity) shaftBlock).getBeltPos() != null) {
-		// if (allShaftBlocks.contains(level.getBlockEntity(((LineShaftTileEntity) shaftBlock).getBeltPos()))) {
-		// // cycle
-		// }
-		// }
-		// }
-		// }
-		// }
+		for (int i = 0; i < numberofShafts; i++) {
+			visited[i] = false;
+		}
 
-		boolean loopRatio1 = true;
+		allShafts.get(0).setRPM(RPM);
+		visited[0] = true;
 
-		if (!isCyclic()) {
-			return true;
-		} else {
-			if (loopRatio1) {
-				return true;
-			} else {
-				return false;
+		while (adj.length > 0) {
+			while (!adj[0].isEmpty()) {
+				int shaftIndex = adj[0].get(0).getFirst();
+				ratio = adj[0].get(0).getSecond();
+				if (!visited[shaftIndex]) {
+					allShafts.get(shaftIndex).setRPM(allShafts.get(count).getRPM() * ratio);
+					visited[shaftIndex] = true;
+				} else {
+					if (allShafts.get(shaftIndex).getRPM() != allShafts.get(count).getRPM() * ratio) {
+						jammed = true;
+					}
+				}
+
+				adj[0].remove(0);
+			}
+
+			LinkedList<Pair<Integer, Float>> temp[] = adj.clone();
+			adj = new LinkedList[adj.length - 1];
+
+			for (int i = 0; i < adj.length; i++) {
+				adj[i] = new LinkedList();
+			}
+
+			for (int i = 1; i < temp.length; i++) {
+				if (temp[i] != null) {
+					adj[i - 1] = temp[i];
+				}
+			}
+			count++;
+		}
+
+		for (LineShaft shaft : allShafts) {
+			if (jammed) {
+				shaft.setRPM(0.0F);
+			}
+			for (BlockEntity shaftBlock : shaft.shaftList) {
+				if (shaftBlock instanceof LineShaftTileEntity) {
+					((LineShaftTileEntity) shaftBlock).setRPM(shaft.getRPM());
+					((LineShaftTileEntity) shaftBlock).setTorque(shaft.getTorque());
+				} else if (shaftBlock instanceof LineShaftHangerTileEntity) {
+					((LineShaftHangerTileEntity) shaftBlock).setRPM(shaft.getRPM());
+					((LineShaftHangerTileEntity) shaftBlock).setTorque(shaft.getTorque());
+				}
 			}
 		}
 	}
 
-	public void setAll() {
-
-	}
-
-	/**
-	 * In light of the fact that reGroup essentially builds a new system from scratch, do we actually need this?
-	 * 
-	 * @param manLeft
-	 * @param manRight
-	 */
-	public void merge(Manager manLeft, Manager manRight) {
-		Manager managerNew = new Manager();
-		managerNew.allShaftBlocks.addAll(manLeft.allShaftBlocks);
-		managerNew.allShaftBlocks.addAll(manRight.allShaftBlocks);
-		// managerNew.onChanged();
-	}
-
-	/**
-	 * If we do away with merge in favor of reGroup, something similar might apply here. Severing a pulley connection should trigger a regroup on each of the two previously connected pulleys.
-	 * 
-	 * @param manIn
-	 */
-	public void split(Manager manIn) {
-		// Directed graphs again
-		// Detect two independent systems and pare the allShaftBlocks
-	}
-
-	public void addEdge(int v, int w) {
+	public void addEdge(int v, int w, float ratioIn) {
 		int max = Math.max(v, w) + 1;
 		if (max > adj.length) {
-			LinkedList<Integer> temp[] = adj.clone();
+			LinkedList<Pair<Integer, Float>> temp[] = adj.clone();
 			adj = new LinkedList[max];
 
 			for (int i = 0; i < max; i++) {
@@ -203,44 +195,7 @@ public class Manager {
 			}
 		}
 
-		adj[v].add(w);
-		adj[w].add(v);
-	}
-
-	public Boolean isCyclic() {
-		int V = allShafts.size();
-		Boolean visited[] = new Boolean[V];
-
-		for (int i = 0; i < V; i++) {
-			visited[i] = false;
-		}
-
-		for (int u = 0; u < V; u++) {
-			if (!visited[u]) {
-				if (isCyclicUtil(u, visited, -1)) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-
-	public Boolean isCyclicUtil(int v, Boolean visited[], int parent) {
-		visited[v] = true;
-		Integer i;
-		Iterator<Integer> it = adj[v].iterator();
-
-		while (it.hasNext()) {
-			i = it.next();
-
-			if (!visited[i]) {
-				if (isCyclicUtil(i, visited, v)) {
-					return true;
-				}
-			} else if (i != parent) {
-				return true;
-			}
-		}
-		return false;
+		adj[v].add(new Pair<>(w, ratioIn));
+		adj[w].add(new Pair<>(v, 1 / ratioIn));
 	}
 }

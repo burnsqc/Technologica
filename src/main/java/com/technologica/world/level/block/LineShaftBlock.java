@@ -3,7 +3,6 @@ package com.technologica.world.level.block;
 import java.util.Random;
 
 import com.technologica.util.Radius;
-import com.technologica.util.lineshaftsystem.Manager;
 import com.technologica.world.item.TechnologicaItems;
 import com.technologica.world.level.block.entity.LineShaftTileEntity;
 import com.technologica.world.level.block.state.properties.TechnologicaBlockStateProperties;
@@ -85,10 +84,6 @@ public class LineShaftBlock extends RotatedPillarBlock implements EntityBlock {
 				worldIn.setBlock(posIn, stateIn.setValue(RADIUS, Radius.LARGE), 1);
 				worldIn.playSound((Player) null, posIn, SoundEvents.ANVIL_PLACE, SoundSource.BLOCKS, 0.25F, 1.0F + worldIn.random.nextFloat() * 0.4F);
 			}
-		}
-		if (!worldIn.isClientSide) {
-			Manager lssManager = new Manager();
-			lssManager.onChanged(getTileEntity(worldIn, posIn));
 		}
 
 		return InteractionResult.sidedSuccess(worldIn.isClientSide);

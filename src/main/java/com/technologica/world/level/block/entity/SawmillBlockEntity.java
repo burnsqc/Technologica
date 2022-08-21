@@ -88,23 +88,20 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 		return super.getCapability(cap, side);
 	}
 
-	public boolean getBlade() {
-		if (getItem(0) != ItemStack.EMPTY) {
-			return true;
-		}
-		return false;
-	}
-
 	public void setBlade(boolean bladeIn) {
 		if (bladeIn) {
 			itemHandler.insertItem(0, new ItemStack(TechnologicaItems.SAWBLADE.get(), 1), false);
 		} else {
 			itemHandler.insertItem(0, ItemStack.EMPTY, false);
 		}
+		setChanged();
 	}
 
-	public ItemStack getLog() {
-		return getItem(1);
+	public boolean getBlade() {
+		if (getItem(0) != ItemStack.EMPTY) {
+			return true;
+		}
+		return false;
 	}
 
 	public void setLog(ItemStack logIn) {
@@ -114,7 +111,11 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 		} else {
 			itemHandler.setStackInSlot(1, logIn);
 		}
+		setChanged();
+	}
 
+	public ItemStack getLog() {
+		return getItem(1);
 	}
 
 	public boolean isSawing() {
@@ -148,6 +149,9 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 	@Override
 	public void load(CompoundTag nbt) {
 		super.load(nbt);
+		if (nbt.contains("sawBlade")) {
+			this.setBlade(nbt.getBoolean("sawBlade"));
+		}
 		if (nbt.contains("sawTime")) {
 			this.sawTime = nbt.getInt("sawTime");
 		}
@@ -159,6 +163,7 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 	@Override
 	public void saveAdditional(CompoundTag compound) {
 		super.saveAdditional(compound);
+		compound.putBoolean("sawBlade", this.getBlade());
 		compound.putInt("sawTime", this.sawTime);
 		compound.putDouble("logPos", this.logPos);
 	}

@@ -36,6 +36,7 @@ public class LineShaftHangerTileEntity extends BlockEntity {
 
 	public void setRPM(float rpmIn) {
 		this.rpm = rpmIn;
+		this.level.sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), 0);
 		setChanged();
 	}
 

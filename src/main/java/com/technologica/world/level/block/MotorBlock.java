@@ -1,6 +1,9 @@
 package com.technologica.world.level.block;
 
+import com.technologica.util.lineshaftsystem.Manager;
 import com.technologica.world.item.TechnologicaItems;
+import com.technologica.world.level.block.entity.LineShaftHangerTileEntity;
+import com.technologica.world.level.block.entity.LineShaftTileEntity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -12,6 +15,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -41,22 +45,30 @@ public class MotorBlock extends TwentyFourDirectionBlock {
 
 	@Override
 	public void neighborChanged(BlockState stateIn, Level worldIn, BlockPos posIn, Block blockIn, BlockPos fromPosIn, boolean isMovingIn) {
-		if (!worldIn.isClientSide) {
-			boolean alreadyPowered = stateIn.getValue(POWERED);
+		boolean alreadyPowered = stateIn.getValue(POWERED);
 
-			if (worldIn.hasNeighborSignal(posIn) != alreadyPowered) {
-				worldIn.setBlock(posIn, stateIn.cycle(POWERED), 3);
-				// BlockEntity tile;
+		if (worldIn.hasNeighborSignal(posIn) != alreadyPowered) {
+			worldIn.setBlock(posIn, stateIn.cycle(POWERED), 3);
+			BlockEntity tile;
 
-				// if (worldIn.getBlockEntity(posIn.relative(stateIn.getValue(SUB_FACING))) instanceof LineShaftTileEntity && worldIn.getBlockState(posIn.relative(stateIn.getValue(SUB_FACING))).getValue(RotatedPillarBlock.AXIS) == stateIn.getValue(SUB_FACING).getAxis()) {
-				// tile = worldIn.getBlockEntity(posIn.relative(stateIn.getValue(SUB_FACING)));
-				// if (worldIn.hasNeighborSignal(posIn)) ((LineShaftTileEntity) tile).checkSetShaftTorqueRPM(maxTorque, maxRPM);
-				// else if (!worldIn.hasNeighborSignal(posIn)) ((LineShaftTileEntity) tile).subtractTorque(maxTorque);
-				// } else if (worldIn.getBlockEntity(posIn.relative(stateIn.getValue(SUB_FACING))) instanceof LineShaftHangerTileEntity && worldIn.getBlockState(posIn.relative(stateIn.getValue(SUB_FACING))).getValue(RotatedPillarBlock.AXIS) == stateIn.getValue(SUB_FACING).getAxis()) {
-				// tile = worldIn.getBlockEntity(posIn.relative(stateIn.getValue(SUB_FACING)));
-				// if (worldIn.hasNeighborSignal(posIn)) ((LineShaftHangerTileEntity) tile).checkSetShaftTorqueRPM(maxTorque, maxRPM);
-				// else if (!worldIn.hasNeighborSignal(posIn)) ((LineShaftHangerTileEntity) tile).subtractTorque(maxTorque);
-				// }
+			if (worldIn.getBlockEntity(posIn.relative(stateIn.getValue(SUB_FACING))) instanceof LineShaftTileEntity && worldIn.getBlockState(posIn.relative(stateIn.getValue(SUB_FACING))).getValue(RotatedPillarBlock.AXIS) == stateIn.getValue(SUB_FACING).getAxis()) {
+				tile = worldIn.getBlockEntity(posIn.relative(stateIn.getValue(SUB_FACING)));
+				if (worldIn.hasNeighborSignal(posIn)) {
+					Manager lssManager = new Manager();
+					lssManager.onChanged(tile, maxRPM);
+				} else if (!worldIn.hasNeighborSignal(posIn)) {
+					Manager lssManager = new Manager();
+					lssManager.onChanged(tile, 0.0F);
+				}
+			} else if (worldIn.getBlockEntity(posIn.relative(stateIn.getValue(SUB_FACING))) instanceof LineShaftHangerTileEntity && worldIn.getBlockState(posIn.relative(stateIn.getValue(SUB_FACING))).getValue(RotatedPillarBlock.AXIS) == stateIn.getValue(SUB_FACING).getAxis()) {
+				tile = worldIn.getBlockEntity(posIn.relative(stateIn.getValue(SUB_FACING)));
+				if (worldIn.hasNeighborSignal(posIn)) {
+					Manager lssManager = new Manager();
+					lssManager.onChanged(tile, maxRPM);
+				} else if (!worldIn.hasNeighborSignal(posIn)) {
+					Manager lssManager = new Manager();
+					lssManager.onChanged(tile, 0.0F);
+				}
 			}
 		}
 	}
