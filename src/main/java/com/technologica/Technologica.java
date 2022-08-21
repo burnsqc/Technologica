@@ -3,6 +3,7 @@ package com.technologica;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.technologica.capabilities.TechnologicaCapabilities;
 import com.technologica.core.particles.TechnologicaParticleTypes;
 import com.technologica.data.GatherData;
 import com.technologica.listeners.BadLuckBananaWhenFishing;
@@ -116,5 +117,7 @@ public class Technologica {
 		MinecraftForge.EVENT_BUS.register(new NitroPocket());
 		MinecraftForge.EVENT_BUS.register(new TechnologicaVillagerTrades());
 		MinecraftForge.EVENT_BUS.register(new TechnologicaWanderingTraderTrades());
+
+		MinecraftForge.EVENT_BUS.register(new TechnologicaCapabilities());
 	}
 }

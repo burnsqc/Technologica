@@ -21,20 +21,20 @@ public class LinkProvider implements ICapabilitySerializable<Tag> {
 	}
 
 	@Nonnull
-    @Override
-    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap) {
-        return getCapability(cap, null);
-    }
-	
+	@Override
+	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap) {
+		return getCapability(cap, null);
+	}
+
 	@Override
 	public Tag serializeNBT() {
 		CompoundTag nbt = new CompoundTag();
-		nbt.putBoolean("linking", ((ILink) instance).getLinking());
+		// nbt.putBoolean("linking", ((ILink) instance).getLinking());
 		return nbt;
 	}
 
 	@Override
 	public void deserializeNBT(Tag nbt) {
-		
+
 	}
 }

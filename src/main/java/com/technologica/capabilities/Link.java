@@ -1,7 +1,5 @@
 package com.technologica.capabilities;
 
-import java.util.concurrent.Callable;
-
 import com.technologica.world.item.TechnologicaItems;
 import com.technologica.world.level.block.TechnologicaBlocks;
 import com.technologica.world.level.block.TwelveDirectionBlock;
@@ -38,19 +36,19 @@ public class Link implements ILink, INBTSerializable<CompoundTag> {
 	private int distance;
 	private Player player;
 	private String message;
-	
+
 	@Override
 	public boolean getLinking() {
 		return this.linking;
 	}
-	
+
 	@Override
 	public BlockPos getLinkAnchorPos() {
 		return this.linkPos1;
 	}
-	
+
 	@Override
-	public void startLink(Level worldIn ,BlockPos posIn, BlockState stateIn, Player playerIn) {
+	public void startLink(Level worldIn, BlockPos posIn, BlockState stateIn, Player playerIn) {
 		this.linking = true;
 		this.world = worldIn;
 		this.linkPos1 = posIn;
@@ -59,14 +57,14 @@ public class Link implements ILink, INBTSerializable<CompoundTag> {
 		this.message = "LINK STARTED";
 		this.player.sendMessage(new TextComponent(this.message), Util.NIL_UUID);
 	}
-	
+
 	@Override
 	public void stopLink(BlockPos posIn, BlockState stateIn) {
 		this.linking = false;
 		this.linkPos2 = posIn;
 		this.linkState2 = stateIn;
 	}
-	
+
 	@Override
 	public boolean checkAxis() {
 		if (this.linkState1.getValue(TwelveDirectionBlock.AXIS).equals(this.linkState2.getValue(TwelveDirectionBlock.AXIS))) {
@@ -78,7 +76,7 @@ public class Link implements ILink, INBTSerializable<CompoundTag> {
 			return false;
 		}
 	}
-	
+
 	@Override
 	public boolean checkInlinePos() {
 		boolean bool = false;
@@ -103,9 +101,9 @@ public class Link implements ILink, INBTSerializable<CompoundTag> {
 			this.message = "LINK FAILED: POSITION MISALIGNMENT";
 			this.player.sendMessage(new TextComponent(message), Util.NIL_UUID);
 		}
-		return bool; 
+		return bool;
 	}
-	
+
 	@Override
 	public boolean checkPlanarPos() {
 		boolean bool = false;
@@ -130,20 +128,20 @@ public class Link implements ILink, INBTSerializable<CompoundTag> {
 			this.message = "LINK FAILED: POSITION MISALIGNMENT";
 			this.player.sendMessage(new TextComponent(message), Util.NIL_UUID);
 		}
-		return bool; 
+		return bool;
 	}
-	
+
 	@Override
 	public boolean checkObstructed() {
 		boolean bool = true;
 		for (int k = 1; k < this.distance; k++) {
 			if (!this.world.isEmptyBlock(this.linkPos1.relative(this.direction, k))) {
 				bool = false;
-			}	
+			}
 		}
 		if (!bool) {
 			this.message = "LINK FAILED: OBSTRUCTED";
-			this.player.sendMessage(new TextComponent(message), Util.NIL_UUID);	
+			this.player.sendMessage(new TextComponent(message), Util.NIL_UUID);
 		}
 		return bool;
 	}
@@ -152,7 +150,7 @@ public class Link implements ILink, INBTSerializable<CompoundTag> {
 	public boolean checkDistance() {
 		boolean bool1 = false;
 		boolean bool2 = false;
-		
+
 		bool1 = this.distance < 10;
 		bool2 = this.distance > 1;
 		if (!bool1) {
@@ -162,9 +160,9 @@ public class Link implements ILink, INBTSerializable<CompoundTag> {
 			this.message = "LINK FAILED: DISTANCE TOO SHORT";
 			this.player.sendMessage(new TextComponent(message), Util.NIL_UUID);
 		}
-		return bool1 && bool2; 
+		return bool1 && bool2;
 	}
-	
+
 	@Override
 	public boolean checkMaterial() {
 		Inventory inv = this.player.getInventory();
@@ -174,15 +172,15 @@ public class Link implements ILink, INBTSerializable<CompoundTag> {
 		int shaft1;
 		int shaft2;
 		boolean bool = false;
-		
+
 		shaft1 = ((LineShaftHangerTileEntity) this.linkTile1).getShaft() ? 0 : 1;
 		shaft2 = ((LineShaftHangerTileEntity) this.linkTile2).getShaft() ? 0 : 1;
-		
-		for(int i = 0; i < inv.getContainerSize(); i++) {
-		    ItemStack stack = inv.getItem(i);  
-		    if(stack.getItem() == TechnologicaItems.STEEL_SHAFT.get()) {
-		        count = count + stack.getCount();
-		    }    
+
+		for (int i = 0; i < inv.getContainerSize(); i++) {
+			ItemStack stack = inv.getItem(i);
+			if (stack.getItem() == TechnologicaItems.STEEL_SHAFT.get()) {
+				count = count + stack.getCount();
+			}
 		}
 		bool = this.distance - 1 + shaft1 + shaft2 <= count;
 		if (!bool) {
@@ -191,22 +189,22 @@ public class Link implements ILink, INBTSerializable<CompoundTag> {
 		}
 		return bool;
 	}
-	
+
 	@Override
 	public void createLineShaft() {
 		((LineShaftHangerTileEntity) this.linkTile1).setShaft(true);
 		((LineShaftHangerTileEntity) this.linkTile2).setShaft(true);
 		this.world.sendBlockUpdated(this.linkPos1, this.linkState1, this.linkState1, 3);
 		this.world.sendBlockUpdated(this.linkPos2, this.linkState2, this.linkState2, 3);
-		
+
 		for (int k = 1; k < this.distance; k++) {
 			this.world.setBlock(this.linkPos1.relative(this.direction, k), TechnologicaBlocks.LINE_SHAFT.get().defaultBlockState().setValue(BlockStateProperties.AXIS, this.axis), 3);
 			this.world.sendBlockUpdated(this.linkPos1.relative(this.direction, k), Blocks.AIR.defaultBlockState(), TechnologicaBlocks.LINE_SHAFT.get().defaultBlockState().setValue(BlockStateProperties.AXIS, this.axis), 3);
 		}
 		this.message = "LINK SUCCESS";
-		this.player.sendMessage(new TextComponent(message), Util.NIL_UUID);	
+		this.player.sendMessage(new TextComponent(message), Util.NIL_UUID);
 	}
-	
+
 	@Override
 	public void createBelt() {
 		this.linkTile1 = this.world.getBlockEntity(this.linkPos1);
@@ -216,9 +214,9 @@ public class Link implements ILink, INBTSerializable<CompoundTag> {
 		this.world.sendBlockUpdated(this.linkPos1, this.linkState1, this.linkState1, 3);
 		this.world.sendBlockUpdated(this.linkPos2, this.linkState2, this.linkState2, 3);
 		this.message = "LINK SUCCESS";
-		this.player.sendMessage(new TextComponent(message), Util.NIL_UUID);	
+		this.player.sendMessage(new TextComponent(message), Util.NIL_UUID);
 	}
-	
+
 	@Override
 	public CompoundTag serializeNBT() {
 		CompoundTag nbt = new CompoundTag();
@@ -230,11 +228,4 @@ public class Link implements ILink, INBTSerializable<CompoundTag> {
 	public void deserializeNBT(CompoundTag nbt) {
 		this.linking = nbt.getBoolean(BOOLEAN_LINKING_KEY);
 	}
-	
-	public static class Factory implements Callable<ILink> {
-		@Override
-		public ILink call() throws Exception {
-			return new Link();
-		}
-	}	
 }
