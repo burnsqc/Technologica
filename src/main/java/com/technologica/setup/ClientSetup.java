@@ -264,6 +264,7 @@ public class ClientSetup {
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.NAVAL_MINE_CHAIN.get(), RenderType.cutoutMipped());
 
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.DISPLAY_CASE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.GLUE.get(), RenderType.cutoutMipped());
 
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.FROSTBITTEN_PLANKS.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.FROSTBITTEN_SLAB.get(), RenderType.translucent());
