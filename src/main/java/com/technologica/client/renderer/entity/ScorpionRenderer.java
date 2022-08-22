@@ -2,6 +2,7 @@ package com.technologica.client.renderer.entity;
 
 import com.technologica.Technologica;
 import com.technologica.client.model.ScorpionModel;
+import com.technologica.client.model.geom.TechnologicaModelLayers;
 import com.technologica.world.entity.animal.Scorpion;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -13,7 +14,7 @@ public class ScorpionRenderer<T extends Scorpion> extends MobRenderer<T, Scorpio
 			"textures/entity/scorpion.png");
 
 	public ScorpionRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new ScorpionModel<>(), 0.8F);
+		super(renderManagerIn, new ScorpionModel<>(renderManagerIn.bakeLayer(TechnologicaModelLayers.SCORPION)), 0.8F);
 	}
 
 	protected float getFlipDegrees(T entityLivingBaseIn) {
