@@ -19,7 +19,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
  * Manager class for the Line Shaft System.
  */
 public class Manager {
-	private boolean isCyclic = false;
 	private boolean jammed = false;
 	public int shaftIndex = 0;
 	public float load;
@@ -103,7 +102,6 @@ public class Manager {
 						addEdge(lineShaft.getIndex(), shaftIndex, shaftBlock.getBlockState().getValue(LineShaftBlock.RADIUS).getRadius() / level.getBlockEntity(((LineShaftTileEntity) shaftBlock).getBeltPos()).getBlockState().getValue(LineShaftBlock.RADIUS).getRadius());
 						reGroup(level.getBlockEntity(((LineShaftTileEntity) shaftBlock).getBeltPos()));
 					} else {
-						this.isCyclic = true;
 						for (LineShaft shaft2 : allShafts) {
 							if (shaft2.shaftList.contains(level.getBlockEntity(((LineShaftTileEntity) shaftBlock).getBeltPos()))) {
 								if (level.getBlockEntity(((LineShaftTileEntity) shaftBlock).getBeltPos()) != level.getBlockEntity(((LineShaftTileEntity) blockEntityIn).getBeltPos())) {

@@ -265,7 +265,18 @@ public class ClientSetup {
 
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.DISPLAY_CASE.get(), RenderType.translucent());
 
-		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.GLUE.get(), RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.FROSTBITTEN_PLANKS.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.FROSTBITTEN_SLAB.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.FROSTBITTEN_STAIRS.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.FROSTBITTEN_BOOKSHELF.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.FROSTBITTEN_FENCE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.FROSTBITTEN_FENCE_GATE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.FROSTBITTEN_PRESSURE_PLATE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.FROSTBITTEN_BUTTON.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.FROSTBITTEN_SIGN.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.FROSTBITTEN_WALL_SIGN.get(), RenderType.translucent());
+
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get(), RenderType.translucent());
 
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.FLUORITE_CRYSTAL.get(), RenderType.translucent());
