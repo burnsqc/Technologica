@@ -5,11 +5,12 @@ import com.technologica.world.level.block.entity.LandMineBlockEntity;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.client.model.data.EmptyModelData;
+import net.minecraftforge.client.model.data.ModelData;
 
 public class LandMineRenderer implements BlockEntityRenderer<LandMineBlockEntity> {
 	public LandMineRenderer(BlockEntityRendererProvider.Context rendererDispatcherIn) {
@@ -21,7 +22,7 @@ public class LandMineRenderer implements BlockEntityRenderer<LandMineBlockEntity
 		BlockRenderDispatcher blockrendererdispatcher = Minecraft.getInstance().getBlockRenderer();
 
 		matrixStack.pushPose();
-		blockrendererdispatcher.renderSingleBlock(state, matrixStack, buffer, combinedLight, combinedOverlay, EmptyModelData.INSTANCE);
+		blockrendererdispatcher.renderSingleBlock(state, matrixStack, buffer, combinedLight, combinedOverlay, ModelData.EMPTY, RenderType.cutoutMipped());
 		matrixStack.popPose();
 	}
 }

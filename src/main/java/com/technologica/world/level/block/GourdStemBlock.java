@@ -1,11 +1,11 @@
 package com.technologica.world.level.block;
 
-import java.util.Random;
 import java.util.function.Supplier;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
@@ -25,7 +25,7 @@ public class GourdStemBlock extends StemBlock {
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public void randomTick(BlockState p_57042_, ServerLevel p_57043_, BlockPos p_57044_, Random p_57045_) {
+	public void randomTick(BlockState p_57042_, ServerLevel p_57043_, BlockPos p_57044_, RandomSource p_57045_) {
 		if (!p_57043_.isAreaLoaded(p_57044_, 1))
 			return;
 		if (p_57043_.getRawBrightness(p_57044_, 0) >= 9) {

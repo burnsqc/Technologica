@@ -14,7 +14,7 @@ public class DisableLogDrops {
 	@SubscribeEvent
 	public void onHarvestCheck(HarvestCheck event) {
 		BlockState blockState = event.getTargetBlock();
-		Player player = event.getPlayer();
+		Player player = event.getEntity();
 		
 		if (Config.disable_vanilla_log_harvesting.get()) {
 			if (blockState.is(BlockTags.LOGS) && !(player.getMainHandItem().getItem() instanceof AxeItem)) {

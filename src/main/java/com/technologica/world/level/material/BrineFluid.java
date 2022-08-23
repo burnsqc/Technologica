@@ -1,36 +1,36 @@
 package com.technologica.world.level.material;
 
-import java.util.Random;
+import java.util.Optional;
 
 import javax.annotation.Nullable;
 
-import com.technologica.Technologica;
 import com.technologica.core.particles.DrippingLiquidParticleData;
 import com.technologica.world.item.TechnologicaItems;
 import com.technologica.world.level.block.TechnologicaBlocks;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.item.Item;
-import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.tags.FluidTags;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.Level;
-import net.minecraftforge.fluids.FluidAttributes;
+import net.minecraftforge.fluids.FluidType;
 
 public abstract class BrineFluid extends FlowingFluid {
 	@Override
@@ -49,14 +49,14 @@ public abstract class BrineFluid extends FlowingFluid {
 	}
 
 	@Override
-	public void animateTick(Level worldIn, BlockPos pos, FluidState state, Random random) {
+	public void animateTick(Level worldIn, BlockPos pos, FluidState state, RandomSource random) {
 		if (worldIn.isClientSide) {
 			if (!state.isSource() && Boolean.FALSE.equals(state.getValue(FALLING))) {
 				if (random.nextInt(64) == 0) {
-					worldIn.playLocalSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.WATER_AMBIENT, SoundSource.BLOCKS, random.nextFloat() * 0.25F + 0.75F, random.nextFloat() + 0.5F, false);
+					worldIn.playLocalSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, SoundEvents.WATER_AMBIENT, SoundSource.BLOCKS, random.nextFloat() * 0.25F + 0.75F, random.nextFloat() + 0.5F, false);
 				}
 			} else if (random.nextInt(10) == 0) {
-				worldIn.addParticle(ParticleTypes.UNDERWATER, (double) pos.getX() + random.nextDouble(), (double) pos.getY() + random.nextDouble(), (double) pos.getZ() + random.nextDouble(), 0.0D, 0.0D, 0.0D);
+				worldIn.addParticle(ParticleTypes.UNDERWATER, pos.getX() + random.nextDouble(), pos.getY() + random.nextDouble(), pos.getZ() + random.nextDouble(), 0.0D, 0.0D, 0.0D);
 			}
 		}
 	}
@@ -113,6 +113,11 @@ public abstract class BrineFluid extends FlowingFluid {
 		return 100.0F;
 	}
 
+	@Override
+	public Optional<SoundEvent> getPickupSound() {
+		return Optional.of(SoundEvents.BUCKET_FILL);
+	}
+
 	public static class Flowing extends BrineFluid {
 		@Override
 		protected void createFluidStateDefinition(StateDefinition.Builder<Fluid, FluidState> builder) {
@@ -129,6 +134,11 @@ public abstract class BrineFluid extends FlowingFluid {
 		public boolean isSource(FluidState state) {
 			return false;
 		}
+
+		@Override
+		public FluidType getFluidType() {
+			return TechnologicaFluids.TEST_FLUID_TYPE.get();
+		}
 	}
 
 	public static class Source extends BrineFluid {
@@ -142,9 +152,9 @@ public abstract class BrineFluid extends FlowingFluid {
 			return true;
 		}
 	}
-	
+
 	@Override
-	public FluidAttributes createAttributes() {
-		return FluidAttributes.builder(new ResourceLocation(Technologica.MODID, "block/opaque_fluid_still"), new ResourceLocation(Technologica.MODID, "block/opaque_fluid_flow")).color(-5579521).build(TechnologicaFluids.BRINE.get());
+	public FluidType getFluidType() {
+		return TechnologicaFluids.TEST_FLUID_TYPE.get();
 	}
 }

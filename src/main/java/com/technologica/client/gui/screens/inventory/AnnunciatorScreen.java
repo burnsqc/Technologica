@@ -24,7 +24,6 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
@@ -37,7 +36,7 @@ public class AnnunciatorScreen extends AbstractContainerScreen<AnnunciatorContai
 	private int updateCounter;
 
 	public AnnunciatorScreen(AnnunciatorContainer screenContainerIn, Inventory playerInventoryIn, Component titleIn) {
-		super(screenContainerIn, playerInventoryIn, new TextComponent("Annunciator"));
+		super(screenContainerIn, playerInventoryIn, Component.literal("Annunciator"));
 		this.passEvents = false;
 		this.imageHeight = 231;
 		this.inventoryLabelY = 137;
@@ -56,7 +55,7 @@ public class AnnunciatorScreen extends AbstractContainerScreen<AnnunciatorContai
 			return this.multiLineText[this.editLine];
 		}, (p_238850_1_) -> {
 			this.multiLineText[this.editLine] = p_238850_1_;
-			this.tileEntity.setText(this.editLine, new TextComponent(p_238850_1_));
+			this.tileEntity.setText(this.editLine, Component.literal(p_238850_1_));
 		}, TextFieldHelper.createClipboardGetter(this.minecraft), TextFieldHelper.createClipboardSetter(this.minecraft), (p_238848_1_) -> {
 			return this.minecraft.font.width(p_238848_1_) <= 90;
 		});
@@ -66,7 +65,7 @@ public class AnnunciatorScreen extends AbstractContainerScreen<AnnunciatorContai
 	public void removed() {
 		this.minecraft.keyboardHandler.setSendRepeatsToGui(false);
 		ClientPacketListener clientplaynethandler = this.minecraft.getConnection();
-		
+
 		if (clientplaynethandler != null) {
 			Packets.INSTANCE.sendToServer(new CUpdateAnnunciatorPacket(this.tileEntity.getBlockPos(), this.multiLineText[0], this.multiLineText[1], this.multiLineText[2], this.multiLineText[3], this.multiLineText[4], this.multiLineText[5], this.multiLineText[6], this.multiLineText[7]));
 		}
@@ -78,23 +77,23 @@ public class AnnunciatorScreen extends AbstractContainerScreen<AnnunciatorContai
 	public void containerTick() {
 		++this.updateCounter;
 	}
-	
+
 	private void close() {
 		this.tileEntity.setChanged();
 		this.minecraft.setScreen((Screen) null);
 	}
-	
+
 	@Override
 	public boolean charTyped(char charIn, int modifiersIn) {
 		this.textInputUtil.charTyped(charIn);
 		return true;
 	}
-	
+
 	@Override
 	public void onClose() {
 		this.close();
 	}
-	
+
 	@Override
 	public boolean keyPressed(int keyCodeIn, int scanCodeIn, int modifiersIn) {
 		if (keyCodeIn == 265) {
@@ -148,21 +147,21 @@ public class AnnunciatorScreen extends AbstractContainerScreen<AnnunciatorContai
 
 		for (int i1 = 0; i1 < this.multiLineText.length; ++i1) {
 			String s = this.multiLineText[i1];
-			
+
 			if (s != null) {
 				if (this.font.isBidirectional()) {
 					s = this.font.bidirectionalShaping(s);
 				}
 
-				float f3 = (float) (-this.minecraft.font.width(s) / 2);
-				this.minecraft.font.drawInBatch(s, f3, (float) (i1 * 10 - this.multiLineText.length * 5), i, false, matrix4f, irendertypebuffer$impl, false, 0, 15728880, false);
-				
+				float f3 = -this.minecraft.font.width(s) / 2;
+				this.minecraft.font.drawInBatch(s, f3, i1 * 10 - this.multiLineText.length * 5, i, false, matrix4f, irendertypebuffer$impl, false, 0, 15728880, false);
+
 				if (i1 == this.editLine && j >= 0 && flag1) {
 					int j1 = this.minecraft.font.width(s.substring(0, Math.max(Math.min(j, s.length()), 0)));
 					int k1 = j1 - this.minecraft.font.width(s) / 2;
-					
+
 					if (j >= s.length()) {
-						this.minecraft.font.drawInBatch("_", (float) k1, (float) l, i, false, matrix4f, irendertypebuffer$impl, false, 0, 15728880, false);
+						this.minecraft.font.drawInBatch("_", k1, l, i, false, matrix4f, irendertypebuffer$impl, false, 0, 15728880, false);
 					}
 				}
 			}
@@ -172,11 +171,11 @@ public class AnnunciatorScreen extends AbstractContainerScreen<AnnunciatorContai
 
 		for (int i3 = 0; i3 < this.multiLineText.length; ++i3) {
 			String s1 = this.multiLineText[i3];
-			
+
 			if (s1 != null && i3 == this.editLine && j >= 0) {
 				int j3 = this.minecraft.font.width(s1.substring(0, Math.max(Math.min(j, s1.length()), 0)));
 				int k3 = j3 - this.minecraft.font.width(s1) / 2;
-				
+
 				if (flag1 && j < s1.length()) {
 					fill(matrixStack, k3, l - 1, k3 + 1, l + 9, -16777216 | i);
 				}
@@ -194,12 +193,11 @@ public class AnnunciatorScreen extends AbstractContainerScreen<AnnunciatorContai
 					RenderSystem.enableColorLogicOp();
 					RenderSystem.logicOp(GlStateManager.LogicOp.OR_REVERSE);
 					bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
-					bufferbuilder.vertex(matrix4f, (float) k2, (float) (l + 9), 0.0F).color(0, 0, 255, 255).endVertex();
-					bufferbuilder.vertex(matrix4f, (float) l2, (float) (l + 9), 0.0F).color(0, 0, 255, 255).endVertex();
-					bufferbuilder.vertex(matrix4f, (float) l2, (float) l, 0.0F).color(0, 0, 255, 255).endVertex();
-					bufferbuilder.vertex(matrix4f, (float) k2, (float) l, 0.0F).color(0, 0, 255, 255).endVertex();
-					bufferbuilder.end();
-					BufferUploader.end(bufferbuilder);
+					bufferbuilder.vertex(matrix4f, k2, l + 9, 0.0F).color(0, 0, 255, 255).endVertex();
+					bufferbuilder.vertex(matrix4f, l2, l + 9, 0.0F).color(0, 0, 255, 255).endVertex();
+					bufferbuilder.vertex(matrix4f, l2, l, 0.0F).color(0, 0, 255, 255).endVertex();
+					bufferbuilder.vertex(matrix4f, k2, l, 0.0F).color(0, 0, 255, 255).endVertex();
+					BufferUploader.drawWithShader(bufferbuilder.end());
 					RenderSystem.disableColorLogicOp();
 					RenderSystem.enableTexture();
 				}

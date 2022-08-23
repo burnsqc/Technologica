@@ -59,8 +59,6 @@ public class DisplayCaseBlockEntity extends BlockEntity {
 	@Override
 	public void saveAdditional(CompoundTag compound) {
 		super.saveAdditional(compound);
-		if (!this.getDisplayStack().isEmpty()) {
-			compound.put(ITEM_NAME, this.getDisplayStack().save(new CompoundTag()));
-		}
+		compound.put(ITEM_NAME, this.getDisplayStack().save(new CompoundTag()));
 	}
 }

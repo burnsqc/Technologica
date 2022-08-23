@@ -4,12 +4,10 @@ import com.technologica.util.TechnologicaSoundEvents;
 import com.technologica.world.entity.TechnologicaEntityType;
 import com.technologica.world.item.TechnologicaItems;
 
-import net.minecraft.Util;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.chat.ChatType;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
@@ -29,7 +27,7 @@ import net.minecraftforge.network.NetworkHooks;
 
 public class Dodgeball extends ThrowableItemProjectile {
 	private String message = "";
-	
+
 	public Dodgeball(EntityType<? extends Dodgeball> p_i50159_1_, Level p_i50159_2_) {
 		super(p_i50159_1_, p_i50159_2_);
 	}
@@ -49,7 +47,7 @@ public class Dodgeball extends ThrowableItemProjectile {
 
 	private ParticleOptions makeParticle() {
 		ItemStack itemstack = this.getItemRaw();
-		return (ParticleOptions) (itemstack.isEmpty() ? ParticleTypes.NOTE: new ItemParticleOption(ParticleTypes.ITEM, itemstack));
+		return itemstack.isEmpty() ? ParticleTypes.NOTE : new ItemParticleOption(ParticleTypes.ITEM, itemstack);
 	}
 
 	@Override
@@ -69,14 +67,12 @@ public class Dodgeball extends ThrowableItemProjectile {
 		super.onHitEntity(result);
 		Entity entity = result.getEntity();
 		entity.hurt(DamageSource.thrown(this, this.getOwner()), 0);
-		
+
 		if (entity instanceof ServerPlayer) {
-			message = entity.getDisplayName().getString() + " HAS BEEN ELIMINATED!"; 
-			this.getServer().getPlayerList().broadcastMessage(new TextComponent(this.message), ChatType.SYSTEM, Util.NIL_UUID);
+			message = entity.getDisplayName().getString() + " HAS BEEN ELIMINATED!";
+			this.getServer().getPlayerList().broadcastSystemMessage(Component.literal(this.message), true);
 		}
-		
-		
-		
+
 	}
 
 	@Override
@@ -90,7 +86,7 @@ public class Dodgeball extends ThrowableItemProjectile {
 
 		this.level.playSound((Player) null, this.getX(), this.getY(), this.getZ(), TechnologicaSoundEvents.DODGEBALL.get(), SoundSource.NEUTRAL, 1.0F, 1.0F);
 	}
-	
+
 	@Override
 	public Packet<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);

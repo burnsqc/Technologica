@@ -1,7 +1,5 @@
 package com.technologica.world.level.block;
 
-import java.util.Random;
-
 import javax.annotation.Nullable;
 
 import com.technologica.world.item.TechnologicaItems;
@@ -13,6 +11,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -75,7 +74,7 @@ public class SawmillBlock extends FourDirectionBlock implements EntityBlock {
 	}
 
 	@Override
-	public void animateTick(BlockState stateIn, Level worldIn, BlockPos posIn, Random randomIn) {
+	public void animateTick(BlockState stateIn, Level worldIn, BlockPos posIn, RandomSource randomIn) {
 		if (getTileEntity(worldIn, posIn).isSawing()) {
 			double d0 = posIn.getX() + randomIn.nextDouble();
 			double d1 = posIn.getY() + 2.0D;

@@ -11,6 +11,7 @@ import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.player.Player;
@@ -89,7 +90,9 @@ public class NavalMineItem extends Item {
 				return InteractionResultHolder.pass(itemstack);
 			} else if (worldIn.mayInteract(playerIn, blockpos) && playerIn.mayUseItemAt(blockpos, blockhitresult.getDirection(), itemstack)) {
 				EntityType<?> entitytype = TechnologicaEntityType.NAVAL_MINE.get();
-				if (entitytype.spawn((ServerLevel) worldIn, itemstack, playerIn, blockpos, MobSpawnType.SPAWN_EGG, false, false) == null) {
+				Entity entity = entitytype.spawn((ServerLevel) worldIn, itemstack, playerIn, blockpos, MobSpawnType.SPAWN_EGG, false, false);
+
+				if (entity == null) {
 					return InteractionResultHolder.pass(itemstack);
 				} else {
 					if (!playerIn.getAbilities().instabuild) {
@@ -97,7 +100,7 @@ public class NavalMineItem extends Item {
 					}
 
 					playerIn.awardStat(Stats.ITEM_USED.get(this));
-					worldIn.gameEvent(GameEvent.ENTITY_PLACE, playerIn);
+					worldIn.gameEvent(playerIn, GameEvent.ENTITY_PLACE, entity.position());
 					return InteractionResultHolder.consume(itemstack);
 				}
 			} else {

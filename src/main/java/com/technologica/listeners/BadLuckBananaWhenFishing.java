@@ -11,7 +11,7 @@ public class BadLuckBananaWhenFishing {
 
 	@SubscribeEvent
 	public void onItemFishedEvent(ItemFishedEvent event) {
-		Player player = event.getPlayer();
+		Player player = event.getEntity();
 		boolean cancel = false;
 		for(int i = 0; i < player.getInventory().getContainerSize(); ++i) {
         	ItemStack testStack = player.getInventory().getItem(i);

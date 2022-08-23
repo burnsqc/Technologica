@@ -14,6 +14,8 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 /**
  * Special one-off class for logs which belong to fruiting trees.
  * Created to handle mulch growth acceleration.

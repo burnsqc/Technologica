@@ -16,14 +16,14 @@ import net.minecraft.world.entity.animal.Cow;
 import net.minecraft.world.entity.animal.Sheep;
 import net.minecraft.world.entity.animal.TropicalFish;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 
 public class VanillaEntityModifier {
 	
 	private VanillaEntityModifier() {
 	}
 
-	public static void init(final EntityJoinWorldEvent event) {
+	public static void init(final EntityJoinLevelEvent event) {
 		Entity entity = event.getEntity();
 		
 		if (entity instanceof Bee) {

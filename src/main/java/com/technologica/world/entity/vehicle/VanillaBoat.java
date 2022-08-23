@@ -65,7 +65,7 @@ public class VanillaBoat extends Boat {
 	private static final EntityDataAccessor<Integer> DATA_ID_BUBBLE_TIME = SynchedEntityData.defineId(VanillaBoat.class, EntityDataSerializers.INT);
 	public static final int PADDLE_LEFT = 0;
 	public static final int PADDLE_RIGHT = 1;
-	public static final double PADDLE_SOUND_TIME = (double)((float)Math.PI / 4F);
+	public static final double PADDLE_SOUND_TIME = (float) Math.PI / 4F;
 	public static final int BUBBLE_TIME = 60;
 	private final float[] paddlePositions = new float[2];
 	private float invFriction;
@@ -106,14 +106,17 @@ public class VanillaBoat extends Boat {
 		this.zo = z;
 	}
 
+	@Override
 	protected float getEyeHeight(Pose p_38327_, EntityDimensions p_38328_) {
 		return p_38328_.height;
 	}
 
+	@Override
 	protected Entity.MovementEmission getMovementEmission() {
 		return Entity.MovementEmission.NONE;
 	}
 
+	@Override
 	protected void defineSynchedData() {
 		this.entityData.define(DATA_ID_HURT, 0);
 		this.entityData.define(DATA_ID_HURTDIR, 1);
@@ -124,6 +127,7 @@ public class VanillaBoat extends Boat {
 		this.entityData.define(DATA_ID_BUBBLE_TIME, 0);
 	}
 
+	@Override
 	public boolean canCollideWith(Entity entity) {
 		return canVehicleCollide(this, entity);
 	}
@@ -132,22 +136,27 @@ public class VanillaBoat extends Boat {
 		return (entity.canBeCollidedWith() || entity.isPushable()) && !p_242378_0_.isPassengerOfSameVehicle(entity);
 	}
 
+	@Override
 	public boolean canBeCollidedWith() {
 		return true;
 	}
 
+	@Override
 	public boolean isPushable() {
 		return true;
 	}
 
+	@Override
 	protected Vec3 getRelativePortalPosition(Direction.Axis axis, BlockUtil.FoundRectangle result) {
 		return LivingEntity.resetForwardDirectionOfRelativePortalPosition(super.getRelativePortalPosition(axis, result));
 	}
 
+	@Override
 	public double getPassengersRidingOffset() {
 		return -0.1D;
 	}
 
+	@Override
 	public boolean hurt(DamageSource source, float amount) {
 		if (this.isInvulnerableTo(source)) {
 			return false;
@@ -171,6 +180,7 @@ public class VanillaBoat extends Boat {
 		}
 	}
 
+	@Override
 	public void onAboveBubbleCol(boolean p_38381_) {
 		if (!this.level.isClientSide) {
 			this.isAboveBubbleColumn = true;
@@ -180,7 +190,7 @@ public class VanillaBoat extends Boat {
 			}
 		}
 
-		this.level.addParticle(ParticleTypes.SPLASH, this.getX() + (double) this.random.nextFloat(), this.getY() + 0.7D, this.getZ() + (double) this.random.nextFloat(), 0.0D, 0.0D, 0.0D);
+		this.level.addParticle(ParticleTypes.SPLASH, this.getX() + this.random.nextFloat(), this.getY() + 0.7D, this.getZ() + this.random.nextFloat(), 0.0D, 0.0D, 0.0D);
 		if (this.random.nextInt(20) == 0) {
 			this.level.playLocalSound(this.getX(), this.getY(), this.getZ(), this.getSwimSplashSound(), this.getSoundSource(), 1.0F, 0.8F + 0.4F * this.random.nextFloat(), false);
 		}
@@ -188,6 +198,7 @@ public class VanillaBoat extends Boat {
 		this.gameEvent(GameEvent.SPLASH, this.getControllingPassenger());
 	}
 
+	@Override
 	public void push(Entity entityIn) {
 		if (entityIn instanceof VanillaBoat) {
 			if (entityIn.getBoundingBox().minY < this.getBoundingBox().maxY) {
@@ -270,29 +281,34 @@ public class VanillaBoat extends Boat {
 		}
 	}
 
+	@Override
 	public void animateHurt() {
 		this.setHurtDir(-this.getHurtDir());
 		this.setHurtTime(10);
 		this.setDamage(this.getDamage() * 11.0F);
 	}
-	
+
+	@Override
 	public boolean isPickable() {
 		return isAlive();
 	}
 
+	@Override
 	public void lerpTo(double p_38299_, double p_38300_, double p_38301_, float p_38302_, float p_38303_, int p_38304_, boolean p_38305_) {
 		this.lerpX = p_38299_;
 		this.lerpY = p_38300_;
 		this.lerpZ = p_38301_;
-		this.lerpYRot = (double)p_38302_;
-		this.lerpXRot = (double)p_38303_;
+		this.lerpYRot = p_38302_;
+		this.lerpXRot = p_38303_;
 		this.lerpSteps = 10;
 	}
-	
+
+	@Override
 	public Direction getMotionDirection() {
 		return this.getDirection().getClockWise();
 	}
 
+	@Override
 	public void tick() {
 		this.oldStatus = this.status;
 		this.status = this.getStatus();
@@ -323,8 +339,7 @@ public class VanillaBoat extends Boat {
 			this.floatMotion();
 			if (this.level.isClientSide) {
 				this.controlBoat();
-				this.level.sendPacketToServer(
-						new ServerboundPaddleBoatPacket(this.getPaddleState(0), this.getPaddleState(1)));
+				this.level.sendPacketToServer(new ServerboundPaddleBoatPacket(this.getPaddleState(0), this.getPaddleState(1)));
 			}
 
 			this.move(MoverType.SELF, this.getDeltaMovement());
@@ -336,18 +351,13 @@ public class VanillaBoat extends Boat {
 
 		for (int i = 0; i <= 1; ++i) {
 			if (this.getPaddleState(i)) {
-				if (!this.isSilent()
-						&& (double) (this.paddlePositions[i] % ((float) Math.PI * 2F)) <= (double) ((float) Math.PI
-								/ 4F)
-						&& ((double) this.paddlePositions[i] + (double) ((float) Math.PI / 8F))
-								% (double) ((float) Math.PI * 2F) >= (double) ((float) Math.PI / 4F)) {
+				if (!this.isSilent() && (double) (this.paddlePositions[i] % ((float) Math.PI * 2F)) <= (double) ((float) Math.PI / 4F) && ((double) this.paddlePositions[i] + (double) ((float) Math.PI / 8F)) % ((float) Math.PI * 2F) >= (float) Math.PI / 4F) {
 					SoundEvent soundevent = this.getPaddleSound();
 					if (soundevent != null) {
 						Vec3 vector3d = this.getViewVector(1.0F);
 						double d0 = i == 1 ? -vector3d.z : vector3d.z;
 						double d1 = i == 1 ? vector3d.x : -vector3d.x;
-						this.level.playSound((Player) null, this.getX() + d0, this.getY(), this.getZ() + d1, soundevent,
-								this.getSoundSource(), 1.0F, 0.8F + 0.4F * this.random.nextFloat());
+						this.level.playSound((Player) null, this.getX() + d0, this.getY(), this.getZ() + d1, soundevent, this.getSoundSource(), 1.0F, 0.8F + 0.4F * this.random.nextFloat());
 					}
 				}
 
@@ -358,9 +368,7 @@ public class VanillaBoat extends Boat {
 		}
 
 		this.checkInsideBlocks();
-		List<Entity> list = this.level.getEntities(this,
-				this.getBoundingBox().inflate((double) 0.2F, (double) -0.01F, (double) 0.2F),
-				EntitySelector.pushableBy(this));
+		List<Entity> list = this.level.getEntities(this, this.getBoundingBox().inflate(0.2F, -0.01F, 0.2F), EntitySelector.pushableBy(this));
 
 		if (!list.isEmpty()) {
 			boolean flag = !this.level.isClientSide && !(this.getControllingPassenger() instanceof Player);
@@ -368,9 +376,7 @@ public class VanillaBoat extends Boat {
 			for (int j = 0; j < list.size(); ++j) {
 				Entity entity = list.get(j);
 				if (!entity.hasPassenger(this)) {
-					if (flag && this.getPassengers().size() < 2 && !entity.isPassenger()
-							&& entity.getBbWidth() < this.getBbWidth() && entity instanceof LivingEntity
-							&& !(entity instanceof WaterAnimal) && !(entity instanceof Player)) {
+					if (flag && this.getPassengers().size() < 2 && !entity.isPassenger() && entity.getBbWidth() < this.getBbWidth() && entity instanceof LivingEntity && !(entity instanceof WaterAnimal) && !(entity instanceof Player)) {
 						entity.startRiding(this);
 					} else {
 						this.push(entity);
@@ -392,7 +398,7 @@ public class VanillaBoat extends Boat {
 
 			this.bubbleMultiplier = Mth.clamp(this.bubbleMultiplier, 0.0F, 1.0F);
 			this.bubbleAngleO = this.bubbleAngle;
-			this.bubbleAngle = 10.0F * (float) Math.sin((double) (0.5F * (float) this.level.getGameTime())) * this.bubbleMultiplier;
+			this.bubbleAngle = 10.0F * (float) Math.sin(0.5F * this.level.getGameTime()) * this.bubbleMultiplier;
 		} else {
 			if (!this.isAboveBubbleColumn) {
 				this.setBubbleTime(0);
@@ -422,6 +428,7 @@ public class VanillaBoat extends Boat {
 
 	}
 
+	@Override
 	@Nullable
 	protected SoundEvent getPaddleSound() {
 		switch (this.getStatus()) {
@@ -440,29 +447,31 @@ public class VanillaBoat extends Boat {
 	private void tickLerp() {
 		if (this.isControlledByLocalInstance()) {
 			this.lerpSteps = 0;
-			this.setPacketCoordinates(this.getX(), this.getY(), this.getZ());
+			this.syncPacketPositionCodec(this.getX(), this.getY(), this.getZ());
 		}
 
 		if (this.lerpSteps > 0) {
-			double d0 = this.getX() + (this.lerpX - this.getX()) / (double) this.lerpSteps;
-			double d1 = this.getY() + (this.lerpY - this.getY()) / (double) this.lerpSteps;
-			double d2 = this.getZ() + (this.lerpZ - this.getZ()) / (double) this.lerpSteps;
-			double d3 = Mth.wrapDegrees(this.lerpYRot - (double) this.getYRot());
-			this.setYRot(this.getYRot() + (float) d3 / (float) this.lerpSteps);
-			this.setXRot(this.getXRot() + (float) (this.lerpXRot - (double) this.getXRot()) / (float) this.lerpSteps);
+			double d0 = this.getX() + (this.lerpX - this.getX()) / this.lerpSteps;
+			double d1 = this.getY() + (this.lerpY - this.getY()) / this.lerpSteps;
+			double d2 = this.getZ() + (this.lerpZ - this.getZ()) / this.lerpSteps;
+			double d3 = Mth.wrapDegrees(this.lerpYRot - this.getYRot());
+			this.setYRot(this.getYRot() + (float) d3 / this.lerpSteps);
+			this.setXRot(this.getXRot() + (float) (this.lerpXRot - this.getXRot()) / this.lerpSteps);
 			--this.lerpSteps;
 			this.setPos(d0, d1, d2);
 			this.setRot(this.getYRot(), this.getXRot());
 		}
 	}
 
+	@Override
 	public void setPaddleState(boolean left, boolean right) {
 		this.entityData.set(DATA_ID_PADDLE_LEFT, left);
 		this.entityData.set(DATA_ID_PADDLE_RIGHT, right);
 	}
 
+	@Override
 	public float getRowingTime(int side, float limbSwing) {
-		return this.getPaddleState(side) ? (float) Mth.clampedLerp((double) this.paddlePositions[side] - (double) ((float) Math.PI / 8F), (double) this.paddlePositions[side], (double) limbSwing) : 0.0F;
+		return this.getPaddleState(side) ? (float) Mth.clampedLerp((double) this.paddlePositions[side] - (double) ((float) Math.PI / 8F), this.paddlePositions[side], limbSwing) : 0.0F;
 	}
 
 	private VanillaBoat.Status getStatus() {
@@ -483,6 +492,7 @@ public class VanillaBoat extends Boat {
 		}
 	}
 
+	@Override
 	public float getWaterLevelAbove() {
 		AABB axisalignedbb = this.getBoundingBox();
 		int i = Mth.floor(axisalignedbb.minX);
@@ -511,13 +521,14 @@ public class VanillaBoat extends Boat {
 			}
 
 			if (f < 1.0F) {
-				return (float) blockpos$mutable.getY() + f;
+				return blockpos$mutable.getY() + f;
 			}
 		}
 
-		return (float) (l + 1);
+		return l + 1;
 	}
 
+	@Override
 	public float getGroundFriction() {
 		AABB axisalignedbb = this.getBoundingBox();
 		AABB axisalignedbb1 = new AABB(axisalignedbb.minX, axisalignedbb.minY - 0.001D, axisalignedbb.minZ, axisalignedbb.maxX, axisalignedbb.minY, axisalignedbb.maxZ);
@@ -540,7 +551,7 @@ public class VanillaBoat extends Boat {
 						if (j2 <= 0 || k2 != k && k2 != l - 1) {
 							blockpos$mutable.set(l1, k2, i2);
 							BlockState blockstate = this.level.getBlockState(blockpos$mutable);
-							if (!(blockstate.getBlock() instanceof WaterlilyBlock) && Shapes.joinIsNotEmpty(blockstate.getCollisionShape(this.level, blockpos$mutable).move((double) l1, (double) k2, (double) i2), voxelshape, BooleanOp.AND)) {
+							if (!(blockstate.getBlock() instanceof WaterlilyBlock) && Shapes.joinIsNotEmpty(blockstate.getCollisionShape(this.level, blockpos$mutable).move(l1, k2, i2), voxelshape, BooleanOp.AND)) {
 								f += blockstate.getFriction(this.level, blockpos$mutable, this);
 								++k1;
 							}
@@ -550,7 +561,7 @@ public class VanillaBoat extends Boat {
 			}
 		}
 
-		return f / (float) k1;
+		return f / k1;
 	}
 
 	private boolean checkInWater() {
@@ -571,9 +582,9 @@ public class VanillaBoat extends Boat {
 					blockpos$mutable.set(k1, l1, i2);
 					FluidState fluidstate = this.level.getFluidState(blockpos$mutable);
 					if (fluidstate.is(FluidTags.WATER)) {
-						float f = (float) l1 + fluidstate.getHeight(this.level, blockpos$mutable);
-						this.waterLevel = Math.max((double) f, this.waterLevel);
-						flag |= axisalignedbb.minY < (double) f;
+						float f = l1 + fluidstate.getHeight(this.level, blockpos$mutable);
+						this.waterLevel = Math.max(f, this.waterLevel);
+						flag |= axisalignedbb.minY < f;
 					}
 				}
 			}
@@ -600,8 +611,7 @@ public class VanillaBoat extends Boat {
 				for (int i2 = i1; i2 < j1; ++i2) {
 					blockpos$mutable.set(k1, l1, i2);
 					FluidState fluidstate = this.level.getFluidState(blockpos$mutable);
-					if (fluidstate.is(FluidTags.WATER) && d0 < (double) ((float) blockpos$mutable.getY()
-							+ fluidstate.getHeight(this.level, blockpos$mutable))) {
+					if (fluidstate.is(FluidTags.WATER) && d0 < blockpos$mutable.getY() + fluidstate.getHeight(this.level, blockpos$mutable)) {
 						if (!fluidstate.isSource()) {
 							return VanillaBoat.Status.UNDER_FLOWING_WATER;
 						}
@@ -621,19 +631,19 @@ public class VanillaBoat extends Boat {
 		this.invFriction = 0.05F;
 		if (this.oldStatus == VanillaBoat.Status.IN_AIR && this.status != VanillaBoat.Status.IN_AIR && this.status != VanillaBoat.Status.ON_LAND) {
 			this.waterLevel = this.getY(1.0D);
-			this.setPos(this.getX(), (double) (this.getWaterLevelAbove() - this.getBbHeight()) + 0.101D, this.getZ());
+			this.setPos(this.getX(), this.getWaterLevelAbove() - this.getBbHeight() + 0.101D, this.getZ());
 			this.setDeltaMovement(this.getDeltaMovement().multiply(1.0D, 0.0D, 1.0D));
 			this.lastYd = 0.0D;
 			this.status = VanillaBoat.Status.IN_WATER;
 		} else {
 			if (this.status == VanillaBoat.Status.IN_WATER) {
-				d2 = (this.waterLevel - this.getY()) / (double) this.getBbHeight();
+				d2 = (this.waterLevel - this.getY()) / this.getBbHeight();
 				this.invFriction = 0.9F;
 			} else if (this.status == VanillaBoat.Status.UNDER_FLOWING_WATER) {
 				d1 = -7.0E-4D;
 				this.invFriction = 0.9F;
 			} else if (this.status == VanillaBoat.Status.UNDER_WATER) {
-				d2 = (double) 0.01F;
+				d2 = 0.01F;
 				this.invFriction = 0.45F;
 			} else if (this.status == VanillaBoat.Status.IN_AIR) {
 				this.invFriction = 0.9F;
@@ -645,8 +655,7 @@ public class VanillaBoat extends Boat {
 			}
 
 			Vec3 vector3d = this.getDeltaMovement();
-			this.setDeltaMovement(vector3d.x * (double) this.invFriction, vector3d.y + d1,
-					vector3d.z * (double) this.invFriction);
+			this.setDeltaMovement(vector3d.x * this.invFriction, vector3d.y + d1, vector3d.z * this.invFriction);
 			this.deltaRotation *= this.invFriction;
 			if (d2 > 0.0D) {
 				Vec3 vector3d1 = this.getDeltaMovement();
@@ -680,19 +689,16 @@ public class VanillaBoat extends Boat {
 				f -= 0.005F;
 			}
 
-			this.setDeltaMovement(
-					this.getDeltaMovement().add((double) (Mth.sin(-this.getYRot() * ((float) Math.PI / 180F)) * f),
-							0.0D, (double) (Mth.cos(this.getYRot() * ((float) Math.PI / 180F)) * f)));
-			this.setPaddleState(this.inputRight && !this.inputLeft || this.inputUp,
-					this.inputLeft && !this.inputRight || this.inputUp);
+			this.setDeltaMovement(this.getDeltaMovement().add(Mth.sin(-this.getYRot() * ((float) Math.PI / 180F)) * f, 0.0D, Mth.cos(this.getYRot() * ((float) Math.PI / 180F)) * f));
+			this.setPaddleState(this.inputRight && !this.inputLeft || this.inputUp, this.inputLeft && !this.inputRight || this.inputUp);
 		}
 	}
 
+	@Override
 	public void positionRider(Entity p_38379_) {
 		if (this.hasPassenger(p_38379_)) {
 			float f = 0.0F;
-			float f1 = (float) ((this.isRemoved() ? (double) 0.01F : this.getPassengersRidingOffset())
-					+ p_38379_.getMyRidingOffset());
+			float f1 = (float) ((this.isRemoved() ? (double) 0.01F : this.getPassengersRidingOffset()) + p_38379_.getMyRidingOffset());
 			if (this.getPassengers().size() > 1) {
 				int i = this.getPassengers().indexOf(p_38379_);
 				if (i == 0) {
@@ -702,27 +708,27 @@ public class VanillaBoat extends Boat {
 				}
 
 				if (p_38379_ instanceof Animal) {
-					f = (float) ((double) f + 0.2D);
+					f = (float) (f + 0.2D);
 				}
 			}
 
-			Vec3 vec3 = (new Vec3((double) f, 0.0D, 0.0D))
-					.yRot(-this.getYRot() * ((float) Math.PI / 180F) - ((float) Math.PI / 2F));
-			p_38379_.setPos(this.getX() + vec3.x, this.getY() + (double) f1, this.getZ() + vec3.z);
+			Vec3 vec3 = (new Vec3(f, 0.0D, 0.0D)).yRot(-this.getYRot() * ((float) Math.PI / 180F) - ((float) Math.PI / 2F));
+			p_38379_.setPos(this.getX() + vec3.x, this.getY() + f1, this.getZ() + vec3.z);
 			p_38379_.setYRot(p_38379_.getYRot() + this.deltaRotation);
 			p_38379_.setYHeadRot(p_38379_.getYHeadRot() + this.deltaRotation);
 			this.clampRotation(p_38379_);
 			if (p_38379_ instanceof Animal && this.getPassengers().size() > 1) {
 				int j = p_38379_.getId() % 2 == 0 ? 90 : 270;
-				p_38379_.setYBodyRot(((Animal) p_38379_).yBodyRot + (float) j);
-				p_38379_.setYHeadRot(p_38379_.getYHeadRot() + (float) j);
+				p_38379_.setYBodyRot(((Animal) p_38379_).yBodyRot + j);
+				p_38379_.setYHeadRot(p_38379_.getYHeadRot() + j);
 			}
 
 		}
 	}
 
+	@Override
 	public Vec3 getDismountLocationForPassenger(LivingEntity p_38357_) {
-		Vec3 vec3 = getCollisionHorizontalEscapeVector((double) (this.getBbWidth() * Mth.SQRT_OF_TWO), (double) p_38357_.getBbWidth(), p_38357_.getYRot());
+		Vec3 vec3 = getCollisionHorizontalEscapeVector(this.getBbWidth() * Mth.SQRT_OF_TWO, p_38357_.getBbWidth(), p_38357_.getYRot());
 		double d0 = this.getX() + vec3.x;
 		double d1 = this.getZ() + vec3.z;
 		BlockPos blockpos = new BlockPos(d0, this.getBoundingBox().maxY, d1);
@@ -731,12 +737,12 @@ public class VanillaBoat extends Boat {
 			List<Vec3> list = Lists.newArrayList();
 			double d2 = this.level.getBlockFloorHeight(blockpos);
 			if (DismountHelper.isBlockFloorValid(d2)) {
-				list.add(new Vec3(d0, (double) blockpos.getY() + d2, d1));
+				list.add(new Vec3(d0, blockpos.getY() + d2, d1));
 			}
 
 			double d3 = this.level.getBlockFloorHeight(blockpos1);
 			if (DismountHelper.isBlockFloorValid(d3)) {
-				list.add(new Vec3(d0, (double) blockpos1.getY() + d3, d1));
+				list.add(new Vec3(d0, blockpos1.getY() + d3, d1));
 			}
 
 			for (Pose pose : p_38357_.getDismountPoses()) {
@@ -752,6 +758,7 @@ public class VanillaBoat extends Boat {
 		return super.getDismountLocationForPassenger(p_38357_);
 	}
 
+	@Override
 	protected void clampRotation(Entity p_38322_) {
 		p_38322_.setYBodyRot(this.getYRot());
 		float f = Mth.wrapDegrees(p_38322_.getYRot() - this.getYRot());
@@ -760,21 +767,25 @@ public class VanillaBoat extends Boat {
 		p_38322_.setYRot(p_38322_.getYRot() + f1 - f);
 		p_38322_.setYHeadRot(p_38322_.getYRot());
 	}
-	
+
+	@Override
 	public void onPassengerTurned(Entity p_38383_) {
 		this.clampRotation(p_38383_);
 	}
 
+	@Override
 	protected void addAdditionalSaveData(CompoundTag compound) {
 		compound.putString("Type", this.getVanillaBoatType().getName());
 	}
 
+	@Override
 	protected void readAdditionalSaveData(CompoundTag compound) {
 		if (compound.contains("Type", 8)) {
 			this.setType(VanillaBoat.Type.getTypeFromString(compound.getString("Type")));
 		}
 	}
 
+	@Override
 	public InteractionResult interact(Player player, InteractionHand hand) {
 		if (player.isSecondaryUseActive()) {
 			return InteractionResult.PASS;
@@ -789,6 +800,7 @@ public class VanillaBoat extends Boat {
 		}
 	}
 
+	@Override
 	protected void checkFallDamage(double y, boolean onGroundIn, BlockState state, BlockPos pos) {
 		this.lastYd = this.getDeltaMovement().y;
 		if (!this.isPassenger()) {
@@ -816,28 +828,33 @@ public class VanillaBoat extends Boat {
 
 				this.resetFallDistance();
 			} else if (!this.level.getFluidState(this.blockPosition().below()).is(FluidTags.WATER) && y < 0.0D) {
-				this.fallDistance = (float) ((double) this.fallDistance - y);
+				this.fallDistance = (float) (this.fallDistance - y);
 			}
 
 		}
 	}
 
+	@Override
 	public boolean getPaddleState(int side) {
 		return this.entityData.<Boolean>get(side == 0 ? DATA_ID_PADDLE_LEFT : DATA_ID_PADDLE_RIGHT) && this.getControllingPassenger() != null;
 	}
 
+	@Override
 	public void setDamage(float damageTaken) {
 		this.entityData.set(DATA_ID_DAMAGE, damageTaken);
 	}
 
+	@Override
 	public float getDamage() {
 		return this.entityData.get(DATA_ID_DAMAGE);
 	}
 
+	@Override
 	public void setHurtTime(int timeSinceHit) {
 		this.entityData.set(DATA_ID_HURT, timeSinceHit);
 	}
 
+	@Override
 	public int getHurtTime() {
 		return this.entityData.get(DATA_ID_HURT);
 	}
@@ -850,14 +867,17 @@ public class VanillaBoat extends Boat {
 		return this.entityData.get(DATA_ID_BUBBLE_TIME);
 	}
 
+	@Override
 	public float getBubbleAngle(float p_38353_) {
 		return Mth.lerp(p_38353_, this.bubbleAngleO, this.bubbleAngle);
 	}
 
+	@Override
 	public void setHurtDir(int forwardDirection) {
 		this.entityData.set(DATA_ID_HURTDIR, forwardDirection);
 	}
 
+	@Override
 	public int getHurtDir() {
 		return this.entityData.get(DATA_ID_HURTDIR);
 	}
@@ -870,15 +890,18 @@ public class VanillaBoat extends Boat {
 		return VanillaBoat.Type.byId(this.entityData.get(DATA_ID_TYPE));
 	}
 
+	@Override
 	protected boolean canAddPassenger(Entity passenger) {
-		return this.getPassengers().size() < 2 && !this.isEyeInFluid(FluidTags.WATER);
+		return this.getPassengers().size() < this.getMaxPassengers() && !this.canBoatInFluid(this.getEyeInFluidType());
 	}
 
+	@Override
 	@Nullable
 	public Entity getControllingPassenger() {
 		return this.getFirstPassenger();
 	}
 
+	@Override
 	public void setInput(boolean p_38343_, boolean p_38344_, boolean p_38345_, boolean p_38346_) {
 		this.inputLeft = p_38343_;
 		this.inputRight = p_38344_;
@@ -886,10 +909,12 @@ public class VanillaBoat extends Boat {
 		this.inputDown = p_38346_;
 	}
 
+	@Override
 	public Packet<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 
+	@Override
 	public boolean isUnderWater() {
 		return this.status == VanillaBoat.Status.UNDER_WATER || this.status == VanillaBoat.Status.UNDER_FLOWING_WATER;
 	}
@@ -902,46 +927,18 @@ public class VanillaBoat extends Boat {
 			this.absMoveTo(this.lerpX, this.lerpY, this.lerpZ, (float) this.lerpYRot, (float) this.lerpXRot);
 		}
 	}
-	
+
+	@Override
 	public ItemStack getPickResult() {
 		return new ItemStack(this.getDropItem());
 	}
 
 	public static enum Status {
-		IN_WATER, 
-		UNDER_WATER, 
-		UNDER_FLOWING_WATER, 
-		ON_LAND, 
-		IN_AIR;
+		IN_WATER, UNDER_WATER, UNDER_FLOWING_WATER, ON_LAND, IN_AIR;
 	}
 
 	public static enum Type {
-		APRICOT(TechnologicaBlocks.APRICOT_PLANKS.get(), "apricot"),
-		ASPEN(TechnologicaBlocks.ASPEN_PLANKS.get(), "aspen"),
-		AVOCADO(TechnologicaBlocks.AVOCADO_PLANKS.get(), "avocado"),
-		BANANA(TechnologicaBlocks.BANANA_PLANKS.get(), "banana"),
-		CHERRY(TechnologicaBlocks.CHERRY_PLANKS.get(), "cherry"),
-		CHESTNUT(TechnologicaBlocks.CHESTNUT_PLANKS.get(), "chestnut"),
-		CINNAMON(TechnologicaBlocks.CINNAMON_PLANKS.get(), "cinnamon"),
-		COCONUT(TechnologicaBlocks.COCONUT_PLANKS.get(), "coconut"),
-		EBONY(TechnologicaBlocks.EBONY_PLANKS.get(), "ebony"), KIWI(TechnologicaBlocks.KIWI_PLANKS.get(), "kiwi"),
-		LEMON(TechnologicaBlocks.LEMON_PLANKS.get(), "lemon"), LIME(TechnologicaBlocks.LIME_PLANKS.get(), "lime"),
-		MAHOGANY(TechnologicaBlocks.MAHOGANY_PLANKS.get(), "mahogany"),
-		MAPLE(TechnologicaBlocks.MAPLE_PLANKS.get(), "maple"), OLIVE(TechnologicaBlocks.OLIVE_PLANKS.get(), "olive"),
-		ORANGE(TechnologicaBlocks.ORANGE_PLANKS.get(), "orange"), PEACH(TechnologicaBlocks.PEACH_PLANKS.get(), "peach"),
-		PEAR(TechnologicaBlocks.PEAR_PLANKS.get(), "pear"), PLUM(TechnologicaBlocks.PLUM_PLANKS.get(), "plum"),
-		REDWOOD(TechnologicaBlocks.REDWOOD_PLANKS.get(), "redwood"),
-		ROSEWOOD(TechnologicaBlocks.ROSEWOOD_PLANKS.get(), "rosewood"),
-		RUBBER(TechnologicaBlocks.RUBBER_PLANKS.get(), "rubber"), TEAK(TechnologicaBlocks.TEAK_PLANKS.get(), "teak"),
-		WALNUT(TechnologicaBlocks.WALNUT_PLANKS.get(), "walnut"),
-		ZEBRAWOOD(TechnologicaBlocks.ZEBRAWOOD_PLANKS.get(), "zebrawood"),
-		ALCHEMICAL(TechnologicaBlocks.ALCHEMICAL_PLANKS.get(), "alchemical"),
-		BENEVOLENT(TechnologicaBlocks.BENEVOLENT_PLANKS.get(), "benevolent"),
-		CONDUCTIVE(TechnologicaBlocks.CONDUCTIVE_PLANKS.get(), "conductive"),
-		FROSTBITTEN(TechnologicaBlocks.FROSTBITTEN_PLANKS.get(), "frostbitten"),
-		FRUITFUL(TechnologicaBlocks.FRUITFUL_PLANKS.get(), "fruitful"),
-		INFERNAL(TechnologicaBlocks.INFERNAL_PLANKS.get(), "infernal"),
-		MALEVOLENT(TechnologicaBlocks.MALEVOLENT_PLANKS.get(), "malevolent");
+		APRICOT(TechnologicaBlocks.APRICOT_PLANKS.get(), "apricot"), ASPEN(TechnologicaBlocks.ASPEN_PLANKS.get(), "aspen"), AVOCADO(TechnologicaBlocks.AVOCADO_PLANKS.get(), "avocado"), BANANA(TechnologicaBlocks.BANANA_PLANKS.get(), "banana"), CHERRY(TechnologicaBlocks.CHERRY_PLANKS.get(), "cherry"), CHESTNUT(TechnologicaBlocks.CHESTNUT_PLANKS.get(), "chestnut"), CINNAMON(TechnologicaBlocks.CINNAMON_PLANKS.get(), "cinnamon"), COCONUT(TechnologicaBlocks.COCONUT_PLANKS.get(), "coconut"), EBONY(TechnologicaBlocks.EBONY_PLANKS.get(), "ebony"), KIWI(TechnologicaBlocks.KIWI_PLANKS.get(), "kiwi"), LEMON(TechnologicaBlocks.LEMON_PLANKS.get(), "lemon"), LIME(TechnologicaBlocks.LIME_PLANKS.get(), "lime"), MAHOGANY(TechnologicaBlocks.MAHOGANY_PLANKS.get(), "mahogany"), MAPLE(TechnologicaBlocks.MAPLE_PLANKS.get(), "maple"), OLIVE(TechnologicaBlocks.OLIVE_PLANKS.get(), "olive"), ORANGE(TechnologicaBlocks.ORANGE_PLANKS.get(), "orange"), PEACH(TechnologicaBlocks.PEACH_PLANKS.get(), "peach"), PEAR(TechnologicaBlocks.PEAR_PLANKS.get(), "pear"), PLUM(TechnologicaBlocks.PLUM_PLANKS.get(), "plum"), REDWOOD(TechnologicaBlocks.REDWOOD_PLANKS.get(), "redwood"), ROSEWOOD(TechnologicaBlocks.ROSEWOOD_PLANKS.get(), "rosewood"), RUBBER(TechnologicaBlocks.RUBBER_PLANKS.get(), "rubber"), TEAK(TechnologicaBlocks.TEAK_PLANKS.get(), "teak"), WALNUT(TechnologicaBlocks.WALNUT_PLANKS.get(), "walnut"), ZEBRAWOOD(TechnologicaBlocks.ZEBRAWOOD_PLANKS.get(), "zebrawood"), ALCHEMICAL(TechnologicaBlocks.ALCHEMICAL_PLANKS.get(), "alchemical"), BENEVOLENT(TechnologicaBlocks.BENEVOLENT_PLANKS.get(), "benevolent"), CONDUCTIVE(TechnologicaBlocks.CONDUCTIVE_PLANKS.get(), "conductive"), FROSTBITTEN(TechnologicaBlocks.FROSTBITTEN_PLANKS.get(), "frostbitten"), FRUITFUL(TechnologicaBlocks.FRUITFUL_PLANKS.get(), "fruitful"), INFERNAL(TechnologicaBlocks.INFERNAL_PLANKS.get(), "infernal"), MALEVOLENT(TechnologicaBlocks.MALEVOLENT_PLANKS.get(), "malevolent");
 
 		private final String name;
 		private final Block planks;
@@ -959,6 +956,7 @@ public class VanillaBoat extends Boat {
 			return this.planks;
 		}
 
+		@Override
 		public String toString() {
 			return this.name;
 		}

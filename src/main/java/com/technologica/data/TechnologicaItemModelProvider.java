@@ -9,6 +9,7 @@ import net.minecraft.world.item.Item;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class TechnologicaItemModelProvider extends ItemModelProvider {
 
@@ -408,17 +409,17 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 	}
 
 	public void simpleItem(Item item) {
-		ResourceLocation location = item.getRegistryName();
+		ResourceLocation location = ForgeRegistries.ITEMS.getKey(item);
 		this.getBuilder(location.getPath()).parent(new ModelFile.UncheckedModelFile("item/generated")).texture("layer0", new ResourceLocation(location.getNamespace(), ITEM_FOLDER + "/" + location.getPath()));
 	}
 
 	public void simpleBlockItem(Item item) {
-		ResourceLocation location = item.getRegistryName();
+		ResourceLocation location = ForgeRegistries.ITEMS.getKey(item);
 		this.getBuilder(location.getPath()).parent(new ModelFile.UncheckedModelFile("item/generated")).texture("layer0", new ResourceLocation(location.getNamespace(), BLOCK_FOLDER + "/" + location.getPath()));
 	}
 
 	public void simpleSpawnEggItem(Item item) {
-		ResourceLocation location = item.getRegistryName();
+		ResourceLocation location = ForgeRegistries.ITEMS.getKey(item);
 		this.getBuilder(location.getPath()).parent(new ModelFile.UncheckedModelFile("item/template_spawn_egg"));
 	}
 }

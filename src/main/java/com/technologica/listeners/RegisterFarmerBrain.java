@@ -10,13 +10,13 @@ import net.minecraft.world.entity.ai.memory.MemoryStatus;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.schedule.Activity;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class RegisterFarmerBrain {
 
 	@SubscribeEvent
-	public void onEntityJoinWorldEvent(EntityJoinWorldEvent event) {
+	public void onEntityJoinWorldEvent(EntityJoinLevelEvent event) {
 		if (event.getEntity() instanceof Villager) {
 			Villager villager = (Villager) event.getEntity();
 			VillagerProfession villagerProfession = villager.getVillagerData().getProfession();

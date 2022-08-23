@@ -9,6 +9,8 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 /**
  * General class for extending, allowing orientation with six facing directions and two sub-facing directions. 
  * Created for ease of use.

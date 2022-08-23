@@ -1,6 +1,5 @@
 package com.technologica.world.level.block;
 
-import java.util.Random;
 import java.util.function.Supplier;
 
 import com.technologica.world.item.TechnologicaItems;
@@ -11,6 +10,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -35,13 +35,12 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 
 /**
- * Special one-off class for fruiting leaves.    
- * Created to add the age property as well as handle player interaction and associated tile entity.
+ * Special one-off class for fruiting leaves. Created to add the age property as well as handle player interaction and associated tile entity.
  */
 public class FruitingLeavesBlock extends LeavesBlock implements EntityBlock {
 	public static final IntegerProperty AGE = BlockStateProperties.AGE_15;
 	private Supplier<Item>[] fruit;
-	
+
 	@SafeVarargs
 	public FruitingLeavesBlock(Supplier<Item>... fruitIn) {
 		super(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion());
@@ -52,7 +51,7 @@ public class FruitingLeavesBlock extends LeavesBlock implements EntityBlock {
 	/*
 	 * Technologica Methods
 	 */
-	
+
 	public FruitBlockEntity getTileEntity(Level worldIn, BlockPos posIn) {
 		return (FruitBlockEntity) worldIn.getBlockEntity(posIn);
 	}
@@ -68,7 +67,7 @@ public class FruitingLeavesBlock extends LeavesBlock implements EntityBlock {
 			popResource(worldIn, posIn.below(), tile.getFruitStack());
 		}
 	}
-	
+
 	@Override
 	public InteractionResult use(BlockState stateIn, Level worldIn, BlockPos posIn, Player playerIn, InteractionHand handIn, BlockHitResult hitIn) {
 		FruitBlockEntity tile = getTileEntity(worldIn, posIn);
@@ -84,7 +83,7 @@ public class FruitingLeavesBlock extends LeavesBlock implements EntityBlock {
 	}
 
 	@Override
-	public void randomTick(BlockState stateIn, ServerLevel worldIn, BlockPos posIn, Random randomIn) {
+	public void randomTick(BlockState stateIn, ServerLevel worldIn, BlockPos posIn, RandomSource randomIn) {
 		FruitBlockEntity tile = getTileEntity(worldIn, posIn);
 
 		if (stateIn.getValue(DISTANCE) == 7) {
@@ -98,11 +97,11 @@ public class FruitingLeavesBlock extends LeavesBlock implements EntityBlock {
 			} else {
 				worldIn.setBlock(posIn, stateIn.setValue(AGE, stateIn.getValue(AGE) + 1), 7);
 			}
-				
+
 			if (stateIn.getValue(AGE) == 14) {
 				if (fruit[0].get().equals(Items.POTION)) {
 					int potionType = randomIn.nextInt(15);
-					
+
 					if (potionType == 0) {
 						tile.setFruitStack(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.LONG_NIGHT_VISION));
 					} else if (potionType == 1) {
@@ -140,12 +139,12 @@ public class FruitingLeavesBlock extends LeavesBlock implements EntityBlock {
 			}
 		}
 	}
-	
+
 	@Override
 	public boolean isRandomlyTicking(BlockState stateIn) {
 		return !stateIn.getValue(PERSISTENT);
 	}
-	
+
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builderIn) {
 		builderIn.add(AGE);
@@ -160,7 +159,7 @@ public class FruitingLeavesBlock extends LeavesBlock implements EntityBlock {
 	public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
 		return new FruitBlockEntity(p_153215_, p_153216_);
 	}
-	
+
 	@Override
 	public int getFlammability(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
 		return 30;

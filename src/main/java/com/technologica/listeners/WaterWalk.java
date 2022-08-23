@@ -2,22 +2,23 @@ package com.technologica.listeners;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.tags.FluidTags;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.core.BlockPos;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class WaterWalk {
-	
+
 	@SubscribeEvent
 	public void onLivingEquipmentChangeEvent(LivingEquipmentChangeEvent event) {
 		if (event.getEntity() instanceof Player) {
@@ -27,10 +28,10 @@ public class WaterWalk {
 			Iterable<ItemStack> armor = player.getArmorSlots();
 
 			for (ItemStack piece : armor) {
-				if (!piece.getItem().getRegistryName().getPath().contains("dive")) {
+				if (!ForgeRegistries.ITEMS.getKey(piece.getItem()).getPath().contains("dive")) {
 					fullDiveSet = false;
 				}
-				if (!piece.getItem().getRegistryName().getPath().contains("scuba")) {
+				if (!ForgeRegistries.ITEMS.getKey(piece.getItem()).getPath().contains("scuba")) {
 					fullScubaSet = false;
 				}
 			}
@@ -47,17 +48,17 @@ public class WaterWalk {
 
 	@SubscribeEvent
 	public void onPlayerTickEvent(PlayerTickEvent event) {
-		Player player = (Player) event.player;
+		Player player = event.player;
 		Minecraft mc = Minecraft.getInstance();
 		boolean fullDiveSet = true;
 		boolean fullScubaSet = true;
 		Iterable<ItemStack> armor = player.getArmorSlots();
 
 		for (ItemStack piece : armor) {
-			if (!piece.getItem().getRegistryName().getPath().contains("dive")) {
+			if (!ForgeRegistries.ITEMS.getKey(piece.getItem()).getPath().contains("dive")) {
 				fullDiveSet = false;
 			}
-			if (!piece.getItem().getRegistryName().getPath().contains("scuba")) {
+			if (!ForgeRegistries.ITEMS.getKey(piece.getItem()).getPath().contains("scuba")) {
 				fullScubaSet = false;
 			}
 		}
@@ -111,8 +112,7 @@ public class WaterWalk {
 						blockpos$mutable.set(l1, i2, j2);
 						FluidState fluidstate = player.level.getFluidState(blockpos$mutable);
 						if (fluidstate.is(FluidTags.WATER)) {
-							double d1 = (double) ((float) i2
-									+ fluidstate.getHeight(player.level, blockpos$mutable));
+							double d1 = i2 + fluidstate.getHeight(player.level, blockpos$mutable);
 							if (d1 >= axisalignedbb.minY) {
 								flag1 = true;
 								d0 = Math.max(d1 - axisalignedbb.minY, d0);
@@ -133,7 +133,7 @@ public class WaterWalk {
 
 			if (vector3d.length() > 0.0D) {
 				if (k1 > 0) {
-					vector3d = vector3d.scale(1.0D / (double) k1);
+					vector3d = vector3d.scale(1.0D / k1);
 				}
 
 				if (!(player instanceof Player)) {
@@ -143,8 +143,7 @@ public class WaterWalk {
 				Vec3 vector3d2 = player.getDeltaMovement();
 				vector3d = vector3d.scale(0.014D * 1.0D);
 
-				if (Math.abs(vector3d2.x) < 0.003D && Math.abs(vector3d2.z) < 0.003D
-						&& vector3d.length() < 0.0045000000000000005D) {
+				if (Math.abs(vector3d2.x) < 0.003D && Math.abs(vector3d2.z) < 0.003D && vector3d.length() < 0.0045000000000000005D) {
 					vector3d = vector3d.normalize().scale(0.0045000000000000005D);
 				}
 

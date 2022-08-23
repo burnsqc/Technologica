@@ -32,6 +32,7 @@ import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class TechnologicaBlockStateProvider extends BlockStateProvider {
 	public TechnologicaBlockStateProvider(DataGenerator generatorIn, ExistingFileHelper helperIn) {
@@ -1483,12 +1484,12 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 	}
 
 	public ModelFile hexagonalCrystalModel(Block block) {
-		ResourceLocation location = block.getRegistryName();
+		ResourceLocation location = ForgeRegistries.BLOCKS.getKey(block);
 		return models().singleTexture(ResourceLocationHelper.getPath(block), modLoc("hexagonal_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath()));
 	}
 
 	public ModelFile cubicCrystalModel(Block block) {
-		ResourceLocation location = block.getRegistryName();
+		ResourceLocation location = ForgeRegistries.BLOCKS.getKey(block);
 		return models().singleTexture(ResourceLocationHelper.getPath(block), modLoc("cubic_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath()));
 	}
 
@@ -1557,7 +1558,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 	}
 
 	public ModelFile sign(Block block) {
-		ResourceLocation location = block.getRegistryName();
+		ResourceLocation location = ForgeRegistries.BLOCKS.getKey(block);
 		return models().getBuilder(location.getPath()).texture("particle", ResourceLocationHelper.replace(ResourceLocationHelper.replace(blockTexture(block), "_wall", ""), "_sign", "_planks"));
 	}
 
@@ -1566,7 +1567,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 	}
 
 	public ModelFile fluid(Block block) {
-		ResourceLocation location = block.getRegistryName();
+		ResourceLocation location = ForgeRegistries.BLOCKS.getKey(block);
 		return models().getBuilder(location.getPath()).texture("particle", "minecraft:block/water_still");
 	}
 
@@ -1638,70 +1639,70 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 	}
 
 	public void annunciatorBlockState(Block block) {
-		ResourceLocation sides = new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_side");
+		ResourceLocation sides = new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_side");
 		getVariantBuilder(block)
 				.partialState()
 				.with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH)
 				.with(BlockStateProperties.LIT, false)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.INFO)
 				.modelForState()
-				.modelFile(models().orientable(block.getRegistryName().getPath() + "_info", sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_info"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_info", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_info"), sides))
 				.addModel()
 				.partialState()
 				.with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH)
 				.with(BlockStateProperties.LIT, false)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.FAIL)
 				.modelForState()
-				.modelFile(models().orientable(block.getRegistryName().getPath() + "_fail", sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_fail"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_fail", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_fail"), sides))
 				.addModel()
 				.partialState()
 				.with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH)
 				.with(BlockStateProperties.LIT, false)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.PASS)
 				.modelForState()
-				.modelFile(models().orientable(block.getRegistryName().getPath() + "_pass", sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_pass"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_pass", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_pass"), sides))
 				.addModel()
 				.partialState()
 				.with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH)
 				.with(BlockStateProperties.LIT, false)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.WARN)
 				.modelForState()
-				.modelFile(models().orientable(block.getRegistryName().getPath() + "_warn", sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_warn"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_warn", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_warn"), sides))
 				.addModel()
 				.partialState()
 				.with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH)
 				.with(BlockStateProperties.LIT, true)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.INFO)
 				.modelForState()
-				.modelFile(models().orientable(block.getRegistryName().getPath() + "_lit_info", sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_lit_info"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_info", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_info"), sides))
 				.addModel()
 				.partialState()
 				.with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH)
 				.with(BlockStateProperties.LIT, true)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.FAIL)
 				.modelForState()
-				.modelFile(models().orientable(block.getRegistryName().getPath() + "_lit_fail", sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_lit_fail"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_fail", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_fail"), sides))
 				.addModel()
 				.partialState()
 				.with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH)
 				.with(BlockStateProperties.LIT, true)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.PASS)
 				.modelForState()
-				.modelFile(models().orientable(block.getRegistryName().getPath() + "_lit_pass", sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_lit_pass"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_pass", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_pass"), sides))
 				.addModel()
 				.partialState()
 				.with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH)
 				.with(BlockStateProperties.LIT, true)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.WARN)
 				.modelForState()
-				.modelFile(models().orientable(block.getRegistryName().getPath() + "_lit_warn", sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_lit_warn"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_warn", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_warn"), sides))
 				.addModel()
 				.partialState()
 				.with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST)
 				.with(BlockStateProperties.LIT, false)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.INFO)
 				.modelForState()
-				.modelFile(models().orientable(block.getRegistryName().getPath() + "_info", sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_info"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_info", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_info"), sides))
 				.rotationY(90)
 				.addModel()
 				.partialState()
@@ -1709,7 +1710,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, false)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.FAIL)
 				.modelForState()
-				.modelFile(models().orientable(block.getRegistryName().getPath() + "_fail", sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_fail"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_fail", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_fail"), sides))
 				.rotationY(90)
 				.addModel()
 				.partialState()
@@ -1717,7 +1718,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, false)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.PASS)
 				.modelForState()
-				.modelFile(models().orientable(block.getRegistryName().getPath() + "_pass", sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_pass"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_pass", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_pass"), sides))
 				.rotationY(90)
 				.addModel()
 				.partialState()
@@ -1725,7 +1726,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, false)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.WARN)
 				.modelForState()
-				.modelFile(models().orientable(block.getRegistryName().getPath() + "_warn", sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_warn"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_warn", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_warn"), sides))
 				.rotationY(90)
 				.addModel()
 				.partialState()
@@ -1733,7 +1734,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, true)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.INFO)
 				.modelForState()
-				.modelFile(models().orientable(block.getRegistryName().getPath() + "_lit_info", sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_lit_info"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_info", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_info"), sides))
 				.rotationY(90)
 				.addModel()
 				.partialState()
@@ -1741,7 +1742,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, true)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.FAIL)
 				.modelForState()
-				.modelFile(models().orientable(block.getRegistryName().getPath() + "_lit_fail", sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_lit_fail"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_fail", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_fail"), sides))
 				.rotationY(90)
 				.addModel()
 				.partialState()
@@ -1749,7 +1750,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, true)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.PASS)
 				.modelForState()
-				.modelFile(models().orientable(block.getRegistryName().getPath() + "_lit_pass", sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_lit_pass"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_pass", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_pass"), sides))
 				.rotationY(90)
 				.addModel()
 				.partialState()
@@ -1757,7 +1758,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, true)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.WARN)
 				.modelForState()
-				.modelFile(models().orientable(block.getRegistryName().getPath() + "_lit_warn", sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_lit_warn"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_warn", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_warn"), sides))
 				.rotationY(90)
 				.addModel()
 				.partialState()
@@ -1765,7 +1766,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, false)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.INFO)
 				.modelForState()
-				.modelFile(models().orientable(block.getRegistryName().getPath() + "_info", sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_info"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_info", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_info"), sides))
 				.rotationY(180)
 				.addModel()
 				.partialState()
@@ -1773,7 +1774,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, false)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.FAIL)
 				.modelForState()
-				.modelFile(models().orientable(block.getRegistryName().getPath() + "_fail", sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_fail"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_fail", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_fail"), sides))
 				.rotationY(180)
 				.addModel()
 				.partialState()
@@ -1781,7 +1782,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, false)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.PASS)
 				.modelForState()
-				.modelFile(models().orientable(block.getRegistryName().getPath() + "_pass", sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_pass"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_pass", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_pass"), sides))
 				.rotationY(180)
 				.addModel()
 				.partialState()
@@ -1789,7 +1790,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, false)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.WARN)
 				.modelForState()
-				.modelFile(models().orientable(block.getRegistryName().getPath() + "_warn", sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_warn"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_warn", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_warn"), sides))
 				.rotationY(180)
 				.addModel()
 				.partialState()
@@ -1797,7 +1798,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, true)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.INFO)
 				.modelForState()
-				.modelFile(models().orientable(block.getRegistryName().getPath() + "_lit_info", sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_lit_info"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_info", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_info"), sides))
 				.rotationY(180)
 				.addModel()
 				.partialState()
@@ -1805,7 +1806,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, true)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.FAIL)
 				.modelForState()
-				.modelFile(models().orientable(block.getRegistryName().getPath() + "_lit_fail", sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_lit_fail"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_fail", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_fail"), sides))
 				.rotationY(180)
 				.addModel()
 				.partialState()
@@ -1813,7 +1814,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, true)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.PASS)
 				.modelForState()
-				.modelFile(models().orientable(block.getRegistryName().getPath() + "_lit_pass", sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_lit_pass"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_pass", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_pass"), sides))
 				.rotationY(180)
 				.addModel()
 				.partialState()
@@ -1821,7 +1822,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, true)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.WARN)
 				.modelForState()
-				.modelFile(models().orientable(block.getRegistryName().getPath() + "_lit_warn", sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_lit_warn"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_warn", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_warn"), sides))
 				.rotationY(180)
 				.addModel()
 				.partialState()
@@ -1829,7 +1830,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, false)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.INFO)
 				.modelForState()
-				.modelFile(models().orientable(block.getRegistryName().getPath() + "_info", sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_info"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_info", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_info"), sides))
 				.rotationY(270)
 				.addModel()
 				.partialState()
@@ -1837,7 +1838,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, false)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.FAIL)
 				.modelForState()
-				.modelFile(models().orientable(block.getRegistryName().getPath() + "_fail", sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_fail"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_fail", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_fail"), sides))
 				.rotationY(270)
 				.addModel()
 				.partialState()
@@ -1845,7 +1846,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, false)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.PASS)
 				.modelForState()
-				.modelFile(models().orientable(block.getRegistryName().getPath() + "_pass", sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_pass"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_pass", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_pass"), sides))
 				.rotationY(270)
 				.addModel()
 				.partialState()
@@ -1853,7 +1854,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, false)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.WARN)
 				.modelForState()
-				.modelFile(models().orientable(block.getRegistryName().getPath() + "_warn", sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_warn"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_warn", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_warn"), sides))
 				.rotationY(270)
 				.addModel()
 				.partialState()
@@ -1861,7 +1862,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, true)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.INFO)
 				.modelForState()
-				.modelFile(models().orientable(block.getRegistryName().getPath() + "_lit_info", sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_lit_info"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_info", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_info"), sides))
 				.rotationY(270)
 				.addModel()
 				.partialState()
@@ -1869,7 +1870,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, true)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.FAIL)
 				.modelForState()
-				.modelFile(models().orientable(block.getRegistryName().getPath() + "_lit_fail", sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_lit_fail"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_fail", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_fail"), sides))
 				.rotationY(270)
 				.addModel()
 				.partialState()
@@ -1877,7 +1878,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, true)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.PASS)
 				.modelForState()
-				.modelFile(models().orientable(block.getRegistryName().getPath() + "_lit_pass", sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_lit_pass"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_pass", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_pass"), sides))
 				.rotationY(270)
 				.addModel()
 				.partialState()
@@ -1885,10 +1886,10 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, true)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.WARN)
 				.modelForState()
-				.modelFile(models().orientable(block.getRegistryName().getPath() + "_lit_warn", sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_lit_warn"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_warn", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_warn"), sides))
 				.rotationY(270)
 				.addModel();
-		this.simpleBlockItem(block, models().orientable(block.getRegistryName().getPath(), sides, new ResourceLocation(Technologica.MODID, "block/" + block.getRegistryName().getPath() + "_lit_info"), sides));
+		this.simpleBlockItem(block, models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath(), sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_info"), sides));
 	}
 
 	/*
@@ -1896,12 +1897,12 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 	 */
 
 	public void doorBlockItem(Block block, ModelFile model) {
-		ResourceLocation location = block.getRegistryName();
+		ResourceLocation location = ForgeRegistries.BLOCKS.getKey(block);
 		itemModels().getBuilder(location.getPath()).parent(model).texture("layer0", new ResourceLocation(location.getNamespace(), "item/" + location.getPath()));
 	}
 
 	public void signItem(Block block, ModelFile model) {
-		ResourceLocation location = block.getRegistryName();
+		ResourceLocation location = ForgeRegistries.BLOCKS.getKey(block);
 		itemModels().getBuilder(location.getPath()).parent(model).texture("layer0", ResourceLocationHelper.replace(ResourceLocationHelper.replace(blockTexture(block), "_wall", ""), "block", "item"));
 	}
 }

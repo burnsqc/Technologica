@@ -1,7 +1,6 @@
 package com.technologica.world.item;
 
 import java.util.List;
-import java.util.Random;
 import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
@@ -15,13 +14,13 @@ import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
@@ -188,7 +187,7 @@ public class SpearGunItem extends ProjectileWeaponItem implements Vanishable {
 
 	private static void fireProjectile(Level worldIn, LivingEntity livingEntityIn, InteractionHand handIn, ItemStack spearGunStackIn, ItemStack harpoonStackIn, float soundPitch, boolean isCreativeMode, float velocity, float inaccuracy, float projectileAngle) {
 		if (!worldIn.isClientSide) {
-			
+
 			Harpoon harpoonEntity = new Harpoon(worldIn, livingEntityIn);
 			harpoonEntity.shootFromRotation(livingEntityIn, livingEntityIn.getXRot(), livingEntityIn.getYRot(), 0.0F, velocity, 1.0F);
 
@@ -201,16 +200,15 @@ public class SpearGunItem extends ProjectileWeaponItem implements Vanishable {
 				Vec3 vector3d = livingEntityIn.getViewVector(1.0F);
 				Vector3f vector3f = new Vector3f(vector3d);
 				vector3f.transform(quaternion);
-				harpoonEntity.shoot((double) vector3f.x(), (double) vector3f.y(), (double) vector3f.z(), velocity, inaccuracy);
+				harpoonEntity.shoot(vector3f.x(), vector3f.y(), vector3f.z(), velocity, inaccuracy);
 			}
 
 			spearGunStackIn.hurtAndBreak(1, livingEntityIn, (p_220017_1_) -> {
 				p_220017_1_.broadcastBreakEvent(handIn);
 			});
-			
+
 			worldIn.addFreshEntity(harpoonEntity);
-			worldIn.playSound((Player) null, livingEntityIn.getX(), livingEntityIn.getY(), livingEntityIn.getZ(),
-					SoundEvents.CROSSBOW_SHOOT, SoundSource.PLAYERS, 1.0F, soundPitch);
+			worldIn.playSound((Player) null, livingEntityIn.getX(), livingEntityIn.getY(), livingEntityIn.getZ(), SoundEvents.CROSSBOW_SHOOT, SoundSource.PLAYERS, 1.0F, soundPitch);
 		}
 	}
 
@@ -235,14 +233,14 @@ public class SpearGunItem extends ProjectileWeaponItem implements Vanishable {
 		fireProjectilesAfter(worldIn, shooter, stack);
 	}
 
-	private static float[] getRandomSoundPitches(Random rand) {
-		boolean flag = rand.nextBoolean();
-		return new float[] { 1.0F, getRandomSoundPitch(flag, rand), getRandomSoundPitch(!flag, rand) };
+	private static float[] getRandomSoundPitches(RandomSource randomSource) {
+		boolean flag = randomSource.nextBoolean();
+		return new float[] { 1.0F, getRandomSoundPitch(flag, randomSource), getRandomSoundPitch(!flag, randomSource) };
 	}
 
-	private static float getRandomSoundPitch(boolean flagIn, Random random) {
+	private static float getRandomSoundPitch(boolean flagIn, RandomSource randomSource) {
 		float f = flagIn ? 0.63F : 0.43F;
-		return 1.0F / (random.nextFloat() * 0.5F + 1.8F) + f;
+		return 1.0F / (randomSource.nextFloat() * 0.5F + 1.8F) + f;
 	}
 
 	private static void fireProjectilesAfter(Level worldIn, LivingEntity shooter, ItemStack stack) {
@@ -277,18 +275,15 @@ public class SpearGunItem extends ProjectileWeaponItem implements Vanishable {
 			}
 		}
 	}
-	
 
 	@Override
 	public int getUseDuration(ItemStack stack) {
 		return getChargeTime(stack) + 3;
 	}
-	
 
 	public static int getChargeTime(ItemStack stack) {
 		return 25;
 	}
-	
 
 	@Override
 	public UseAnim getUseAnimation(ItemStack stack) {
@@ -312,7 +307,7 @@ public class SpearGunItem extends ProjectileWeaponItem implements Vanishable {
 		List<ItemStack> list = getChargedProjectiles(stack);
 		if (isCharged(stack) && !list.isEmpty()) {
 			ItemStack itemstack = list.get(0);
-			tooltip.add((new TranslatableComponent("item.minecraft.crossbow.projectile")).append(" ").append(itemstack.getDisplayName()));
+			tooltip.add((Component.literal("item.minecraft.crossbow.projectile")).append(" ").append(itemstack.getDisplayName()));
 		}
 	}
 
@@ -320,12 +315,13 @@ public class SpearGunItem extends ProjectileWeaponItem implements Vanishable {
 		return (hasChargedProjectile(itemStackIn, TechnologicaItems.HARPOON.get()) || playerIn.getAbilities().instabuild) && playerIn.isEyeInFluid(FluidTags.WATER) ? 3.0F : 0.5F;
 	}
 
+	@Override
 	public int getDefaultProjectileRange() {
 		return 8;
 	}
-	
+
 	@Override
 	public boolean useOnRelease(ItemStack stack) {
-	      return true;
-	   }
+		return true;
+	}
 }

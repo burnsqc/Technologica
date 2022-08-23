@@ -97,7 +97,7 @@ public class RegisterLayerDefinitons {
 		event.registerLayerDefinition(TechnologicaModelLayers.NAVAL_MINE, NavalMineModel::createBodyModel);
 
 		for (VanillaBoat.Type boat$type : VanillaBoat.Type.values()) {
-			event.registerLayerDefinition(TechnologicaModelLayers.createBoatModelName(boat$type), () -> BoatModel.createBodyModel());
+			event.registerLayerDefinition(TechnologicaModelLayers.createBoatModelName(boat$type), () -> BoatModel.createBodyModel(false));
 		}
 	}
 }

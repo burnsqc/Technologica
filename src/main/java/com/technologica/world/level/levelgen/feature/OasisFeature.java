@@ -1,12 +1,11 @@
 package com.technologica.world.level.levelgen.feature;
 
-import java.util.Random;
-
 import com.mojang.serialization.Codec;
 import com.technologica.data.worldgen.features.TechnologicaTreeFeatures;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.data.worldgen.features.VegetationFeatures;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -24,7 +23,7 @@ public class OasisFeature extends Feature<BlockStateConfiguration> {
 	public boolean place(FeaturePlaceContext<BlockStateConfiguration> p_159958_) {
 		BlockPos blockpos = p_159958_.origin();
 		WorldGenLevel worldgenlevel = p_159958_.level();
-		Random random = p_159958_.random();
+		RandomSource RandomSource = p_159958_.random();
 		BlockStateConfiguration lakefeature$configuration = p_159958_.config();
 		while (blockpos.getY() > 5 && worldgenlevel.isEmptyBlock(blockpos)) {
 			blockpos = blockpos.below();
@@ -35,7 +34,7 @@ public class OasisFeature extends Feature<BlockStateConfiguration> {
 		} else {
 			blockpos = blockpos.below(4);
 			boolean[] aboolean = new boolean[2048];
-			int i = random.nextInt(4) + 4;
+			int i = RandomSource.nextInt(4) + 4;
 			for (int j = 0; j < i; ++j) {
 				for (int relativeX = 1; relativeX < 15; ++relativeX) {
 					for (int relativeZ = 1; relativeZ < 15; ++relativeZ) {
@@ -88,20 +87,20 @@ public class OasisFeature extends Feature<BlockStateConfiguration> {
 			for (int relativeX = 0; relativeX < 16; ++relativeX) {
 				for (int relativeZ = 0; relativeZ < 16; ++relativeZ) {
 					if (worldgenlevel.getBlockState(blockpos.offset(relativeX, 4, relativeZ)).is(Blocks.GRASS_BLOCK)) {
-						if (random.nextInt(30) == 0) {
-							if (random.nextBoolean()) {
-								TechnologicaTreeFeatures.LEMON.value().place(worldgenlevel, p_159958_.chunkGenerator(), random, blockpos.offset(relativeX, 5, relativeZ));
+						if (RandomSource.nextInt(30) == 0) {
+							if (RandomSource.nextBoolean()) {
+								TechnologicaTreeFeatures.LEMON.value().place(worldgenlevel, p_159958_.chunkGenerator(), RandomSource, blockpos.offset(relativeX, 5, relativeZ));
 							} else {
-								TechnologicaTreeFeatures.LIME.value().place(worldgenlevel, p_159958_.chunkGenerator(), random, blockpos.offset(relativeX, 5, relativeZ));
+								TechnologicaTreeFeatures.LIME.value().place(worldgenlevel, p_159958_.chunkGenerator(), RandomSource, blockpos.offset(relativeX, 5, relativeZ));
 							}
 						} else if (worldgenlevel.getBlockState(blockpos.offset(relativeX + 1, 4, relativeZ)).is(Blocks.WATER) || worldgenlevel.getBlockState(blockpos.offset(relativeX - 1, 4, relativeZ)).is(Blocks.WATER) || worldgenlevel.getBlockState(blockpos.offset(relativeX, 4, relativeZ + 1)).is(Blocks.WATER) || worldgenlevel.getBlockState(blockpos.offset(relativeX, 4, relativeZ - 1)).is(Blocks.WATER)) {
-							VegetationFeatures.PATCH_SUGAR_CANE.value().place(worldgenlevel, p_159958_.chunkGenerator(), random, blockpos.offset(relativeX, 5, relativeZ));
+							VegetationFeatures.PATCH_SUGAR_CANE.value().place(worldgenlevel, p_159958_.chunkGenerator(), RandomSource, blockpos.offset(relativeX, 5, relativeZ));
 						} else if (worldgenlevel.getBlockState(blockpos.offset(relativeX + 1, 5, relativeZ)).is(Blocks.AIR)) {
-							if (random.nextInt(4) == 0) {
+							if (RandomSource.nextInt(4) == 0) {
 								worldgenlevel.setBlock(blockpos.offset(relativeX, 5, relativeZ), Blocks.GRASS.defaultBlockState(), 2);
-							} else if (random.nextInt(4) == 1) {
+							} else if (RandomSource.nextInt(4) == 1) {
 								worldgenlevel.setBlock(blockpos.offset(relativeX, 5, relativeZ), Blocks.POPPY.defaultBlockState(), 2);
-							} else if (random.nextInt(4) == 2) {
+							} else if (RandomSource.nextInt(4) == 2) {
 								worldgenlevel.setBlock(blockpos.offset(relativeX, 5, relativeZ), Blocks.BLUE_ORCHID.defaultBlockState(), 2);
 							} else {
 								worldgenlevel.setBlock(blockpos.offset(relativeX, 5, relativeZ), Blocks.POPPY.defaultBlockState(), 2);

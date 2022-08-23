@@ -1,10 +1,9 @@
 package com.technologica.world.level.block;
 
-import java.util.Random;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.ChainBlock;
@@ -31,7 +30,7 @@ public class NavalMineChainBlock extends ChainBlock {
 	}
 
 	@Override
-	public void tick(BlockState stateIn, ServerLevel worldIn, BlockPos posIn, Random randomIn) {
+	public void tick(BlockState stateIn, ServerLevel worldIn, BlockPos posIn, RandomSource randomIn) {
 		if (!stateIn.canSurvive(worldIn, posIn)) {
 			worldIn.destroyBlock(posIn, true);
 		}

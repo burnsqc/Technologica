@@ -4,56 +4,56 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.entity.AgeableMob;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.SpawnGroupData;
-import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.animal.horse.AbstractHorse;
-import net.minecraft.world.entity.animal.horse.Variant;
-import net.minecraft.world.entity.animal.horse.Markings;
-import net.minecraft.world.entity.animal.horse.Donkey;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.Container;
-import net.minecraft.world.item.HorseArmorItem;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.InteractionHand;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.Util;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.Container;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.animal.horse.AbstractHorse;
+import net.minecraft.world.entity.animal.horse.Donkey;
+import net.minecraft.world.entity.animal.horse.Markings;
+import net.minecraft.world.entity.animal.horse.Variant;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.HorseArmorItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.SoundType;
 
 public class Zebra extends AbstractHorse {
 	private static final UUID ARMOR_MODIFIER_UUID = UUID.fromString("556E1665-8B10-40C8-8F9D-CF9B1667F295");
-	private static final EntityDataAccessor<Integer> HORSE_VARIANT = SynchedEntityData.defineId(Zebra.class,
-			EntityDataSerializers.INT);
+	private static final EntityDataAccessor<Integer> HORSE_VARIANT = SynchedEntityData.defineId(Zebra.class, EntityDataSerializers.INT);
 
 	public Zebra(EntityType<? extends Zebra> type, Level worldIn) {
 		super(type, worldIn);
 	}
 
 	@Override
-	public void randomizeAttributes() {
-		this.getAttribute(Attributes.MAX_HEALTH).setBaseValue((double) this.generateRandomMaxHealth());
-		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(this.generateRandomSpeed());
-		this.getAttribute(Attributes.JUMP_STRENGTH).setBaseValue(this.generateRandomJumpStrength());
+	public void randomizeAttributes(RandomSource p_218815_) {
+		this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(this.generateRandomMaxHealth(p_218815_));
+		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(this.generateRandomSpeed(p_218815_));
+		this.getAttribute(Attributes.JUMP_STRENGTH).setBaseValue(this.generateRandomJumpStrength(p_218815_));
 	}
 
-	//Register Attributes, Goals, and Data
-	//Attributes are registered inside AbstractHourseEntity with method createBaseHorseAttributes
+	// Register Attributes, Goals, and Data
+	// Attributes are registered inside AbstractHourseEntity with method createBaseHorseAttributes
 	@Override
 	protected void defineSynchedData() {
 		super.defineSynchedData();
@@ -105,9 +105,7 @@ public class Zebra extends AbstractHorse {
 			if (this.isArmor(p_213804_1_)) {
 				int i = ((HorseArmorItem) p_213804_1_.getItem()).getProtection();
 				if (i != 0) {
-					this.getAttribute(Attributes.ARMOR)
-							.addTransientModifier(new AttributeModifier(ARMOR_MODIFIER_UUID, "Horse armor bonus",
-									(double) i, AttributeModifier.Operation.ADDITION));
+					this.getAttribute(Attributes.ARMOR).addTransientModifier(new AttributeModifier(ARMOR_MODIFIER_UUID, "Horse armor bonus", i, AttributeModifier.Operation.ADDITION));
 				}
 			}
 		}
@@ -115,8 +113,7 @@ public class Zebra extends AbstractHorse {
 	}
 
 	/**
-	 * Called by InventoryBasic.onInventoryChanged() on a array that is never
-	 * filled.
+	 * Called by InventoryBasic.onInventoryChanged() on a array that is never filled.
 	 */
 	@Override
 	public void containerChanged(Container invBasic) {
@@ -176,7 +173,7 @@ public class Zebra extends AbstractHorse {
 		ItemStack itemstack = playerIn.getItemInHand(hand);
 		if (!this.isBaby()) {
 			if (this.isTamed() && playerIn.isSecondaryUseActive()) {
-				this.openInventory(playerIn);
+				this.openCustomInventoryScreen(playerIn);
 				return InteractionResult.sidedSuccess(this.level.isClientSide);
 			}
 
@@ -202,7 +199,7 @@ public class Zebra extends AbstractHorse {
 
 			boolean flag = !this.isBaby() && !this.isSaddled() && itemstack.getItem() == Items.SADDLE;
 			if (this.isArmor(itemstack) || flag) {
-				this.openInventory(playerIn);
+				this.openCustomInventoryScreen(playerIn);
 				return InteractionResult.sidedSuccess(this.level.isClientSide);
 			}
 		}
@@ -271,8 +268,7 @@ public class Zebra extends AbstractHorse {
 
 	@Override
 	@Nullable
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason,
-			@Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
 		Variant coatcolors;
 		if (spawnDataIn instanceof Zebra.HorseData) {
 			coatcolors = ((Zebra.HorseData) spawnDataIn).variant;

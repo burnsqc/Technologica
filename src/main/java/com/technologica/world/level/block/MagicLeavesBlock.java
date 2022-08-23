@@ -1,22 +1,20 @@
 package com.technologica.world.level.block;
 
-import java.util.Random;
-
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.LeavesBlock;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.animal.SnowGolem;
-import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.server.level.ServerLevel;
 
 /**
- * Special one-off class for magic leaves.
- * Created to spawn entities on random ticks.
+ * Special one-off class for magic leaves. Created to spawn entities on random ticks.
  */
 public class MagicLeavesBlock extends LeavesBlock {
 	private int leavesType;
@@ -31,7 +29,7 @@ public class MagicLeavesBlock extends LeavesBlock {
 	 */
 
 	@Override
-	public void randomTick(BlockState stateIn, ServerLevel worldIn, BlockPos posIn, Random randomIn) {
+	public void randomTick(BlockState stateIn, ServerLevel worldIn, BlockPos posIn, RandomSource randomIn) {
 		if (leavesType == 1) {
 			LightningBolt lightningboltentity = EntityType.LIGHTNING_BOLT.create(worldIn);
 			lightningboltentity.moveTo(Vec3.atBottomCenterOf(posIn));
@@ -44,7 +42,7 @@ public class MagicLeavesBlock extends LeavesBlock {
 			worldIn.removeBlock(posIn, false);
 		}
 	}
-	
+
 	@Override
 	public boolean isRandomlyTicking(BlockState stateIn) {
 		return !stateIn.getValue(PERSISTENT);

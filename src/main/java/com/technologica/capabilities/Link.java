@@ -6,11 +6,10 @@ import com.technologica.world.level.block.TwelveDirectionBlock;
 import com.technologica.world.level.block.entity.LineShaftHangerTileEntity;
 import com.technologica.world.level.block.entity.LineShaftTileEntity;
 
-import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -55,7 +54,7 @@ public class Link implements ILink, INBTSerializable<CompoundTag> {
 		this.linkState1 = stateIn;
 		this.player = playerIn;
 		this.message = "LINK STARTED";
-		this.player.sendMessage(new TextComponent(this.message), Util.NIL_UUID);
+		this.player.displayClientMessage(Component.literal(this.message), true);
 	}
 
 	@Override
@@ -72,7 +71,7 @@ public class Link implements ILink, INBTSerializable<CompoundTag> {
 			return true;
 		} else {
 			this.message = "LINK FAILED: AXIS MISALIGNMENT";
-			this.player.sendMessage(new TextComponent(message), Util.NIL_UUID);
+			this.player.displayClientMessage(Component.literal(this.message), true);
 			return false;
 		}
 	}
@@ -99,7 +98,7 @@ public class Link implements ILink, INBTSerializable<CompoundTag> {
 		}
 		if (!bool) {
 			this.message = "LINK FAILED: POSITION MISALIGNMENT";
-			this.player.sendMessage(new TextComponent(message), Util.NIL_UUID);
+			this.player.displayClientMessage(Component.literal(this.message), true);
 		}
 		return bool;
 	}
@@ -126,7 +125,7 @@ public class Link implements ILink, INBTSerializable<CompoundTag> {
 		}
 		if (!bool) {
 			this.message = "LINK FAILED: POSITION MISALIGNMENT";
-			this.player.sendMessage(new TextComponent(message), Util.NIL_UUID);
+			this.player.displayClientMessage(Component.literal(this.message), true);
 		}
 		return bool;
 	}
@@ -141,7 +140,7 @@ public class Link implements ILink, INBTSerializable<CompoundTag> {
 		}
 		if (!bool) {
 			this.message = "LINK FAILED: OBSTRUCTED";
-			this.player.sendMessage(new TextComponent(message), Util.NIL_UUID);
+			this.player.displayClientMessage(Component.literal(this.message), true);
 		}
 		return bool;
 	}
@@ -155,10 +154,10 @@ public class Link implements ILink, INBTSerializable<CompoundTag> {
 		bool2 = this.distance > 1;
 		if (!bool1) {
 			this.message = "LINK FAILED: DISTANCE TOO FAR";
-			this.player.sendMessage(new TextComponent(message), Util.NIL_UUID);
+			this.player.displayClientMessage(Component.literal(this.message), true);
 		} else if (!bool2) {
 			this.message = "LINK FAILED: DISTANCE TOO SHORT";
-			this.player.sendMessage(new TextComponent(message), Util.NIL_UUID);
+			this.player.displayClientMessage(Component.literal(this.message), true);
 		}
 		return bool1 && bool2;
 	}
@@ -185,7 +184,7 @@ public class Link implements ILink, INBTSerializable<CompoundTag> {
 		bool = this.distance - 1 + shaft1 + shaft2 <= count;
 		if (!bool) {
 			this.message = "LINK FAILED: MATERIAL SHORTAGE";
-			this.player.sendMessage(new TextComponent(message), Util.NIL_UUID);
+			this.player.displayClientMessage(Component.literal(this.message), true);
 		}
 		return bool;
 	}
@@ -202,7 +201,7 @@ public class Link implements ILink, INBTSerializable<CompoundTag> {
 			this.world.sendBlockUpdated(this.linkPos1.relative(this.direction, k), Blocks.AIR.defaultBlockState(), TechnologicaBlocks.LINE_SHAFT.get().defaultBlockState().setValue(BlockStateProperties.AXIS, this.axis), 3);
 		}
 		this.message = "LINK SUCCESS";
-		this.player.sendMessage(new TextComponent(message), Util.NIL_UUID);
+		this.player.displayClientMessage(Component.literal(this.message), true);
 	}
 
 	@Override
@@ -214,7 +213,7 @@ public class Link implements ILink, INBTSerializable<CompoundTag> {
 		this.world.sendBlockUpdated(this.linkPos1, this.linkState1, this.linkState1, 3);
 		this.world.sendBlockUpdated(this.linkPos2, this.linkState2, this.linkState2, 3);
 		this.message = "LINK SUCCESS";
-		this.player.sendMessage(new TextComponent(message), Util.NIL_UUID);
+		this.player.displayClientMessage(Component.literal(this.message), true);
 	}
 
 	@Override

@@ -1,6 +1,5 @@
 package com.technologica.world.level.levelgen.feature.foliageplacers;
 
-import java.util.Random;
 import java.util.function.BiConsumer;
 
 import com.mojang.datafixers.Products.P3;
@@ -10,6 +9,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder.Instance;
 import com.mojang.serialization.codecs.RecordCodecBuilder.Mu;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.block.state.BlockState;
@@ -39,15 +39,15 @@ public class TeardropFoliagePlacer extends FoliagePlacer {
 	}
 
 	@Override
-	protected void createFoliage(LevelSimulatedReader readerIn, BiConsumer<BlockPos, BlockState> biConsumerIn, Random randomIn, TreeConfiguration configIn, int p_161426_, FoliageAttachment attachmentIn, int p_161428_, int diameter, int topLayer) {
+	protected void createFoliage(LevelSimulatedReader readerIn, BiConsumer<BlockPos, BlockState> biConsumerIn, RandomSource RandomSourceIn, TreeConfiguration configIn, int p_161426_, FoliageAttachment attachmentIn, int p_161428_, int diameter, int topLayer) {
 		for (int layer = topLayer + 3; layer >= topLayer + 3 - p_161428_; --layer) {
 			int j = Math.max(diameter + 1 + attachmentIn.radiusOffset(), 0);
-			this.placeLeavesRow(readerIn, biConsumerIn, randomIn, configIn, attachmentIn.pos(), j, layer, attachmentIn.doubleTrunk());
+			this.placeLeavesRow(readerIn, biConsumerIn, RandomSourceIn, configIn, attachmentIn.pos(), j, layer, attachmentIn.doubleTrunk());
 		}
 	}
 
 	@Override
-	public int foliageHeight(Random randomIn, int i, TreeConfiguration configIn) {
+	public int foliageHeight(RandomSource RandomSourceIn, int i, TreeConfiguration configIn) {
 		int trim;
 		if (i == 7) {
 			trim = i + 1;
@@ -61,7 +61,7 @@ public class TeardropFoliagePlacer extends FoliagePlacer {
 	}
 
 	@Override
-	protected boolean shouldSkipLocation(Random randomIn, int relativeZ, int relativeY, int relativeX, int p_230373_5_, boolean p_230373_6_) {
+	protected boolean shouldSkipLocation(RandomSource RandomSourceIn, int relativeZ, int relativeY, int relativeX, int p_230373_5_, boolean p_230373_6_) {
 		if (relativeY >= 2) {
 			return relativeX + relativeZ >= 1;
 		} else if (relativeY == 1) {

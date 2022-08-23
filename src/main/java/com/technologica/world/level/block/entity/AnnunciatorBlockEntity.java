@@ -17,7 +17,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.ComponentUtils;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -34,9 +33,10 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class AnnunciatorBlockEntity extends BlockEntity {
-	private Component[] signText = new Component[] { TextComponent.EMPTY, TextComponent.EMPTY, TextComponent.EMPTY, TextComponent.EMPTY, TextComponent.EMPTY, TextComponent.EMPTY, TextComponent.EMPTY, TextComponent.EMPTY };
+	private Component[] signText = new Component[] { Component.empty(), Component.empty(), Component.empty(), Component.empty(), Component.empty(), Component.empty(), Component.empty(), Component.empty() };
 	private final ItemStackHandler itemHandler = createHandler();
 	private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
 	private final FormattedCharSequence[] renderText = new FormattedCharSequence[8];
@@ -53,23 +53,19 @@ public class AnnunciatorBlockEntity extends BlockEntity {
 				BlockState state = level.getBlockState(worldPosition);
 
 				if (this.getStackInSlot(0).isEmpty()) {
-					level.setBlock(worldPosition, state.setValue(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY,
-							AnnunciatorOverlay.INFO), 7);
-				} else if (this.getStackInSlot(0).getItem().getRegistryName().getPath().contains("fail")) {
-					level.setBlock(worldPosition, state.setValue(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY,
-							AnnunciatorOverlay.FAIL), 7);
-				} else if (this.getStackInSlot(0).getItem().getRegistryName().getPath().contains("pass")) {
-					level.setBlock(worldPosition, state.setValue(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY,
-							AnnunciatorOverlay.PASS), 7);
-				} else if (this.getStackInSlot(0).getItem().getRegistryName().getPath().contains("warn")) {
-					level.setBlock(worldPosition, state.setValue(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY,
-							AnnunciatorOverlay.WARN), 7);
+					level.setBlock(worldPosition, state.setValue(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.INFO), 7);
+				} else if (ForgeRegistries.ITEMS.getKey(this.getStackInSlot(0).getItem()).getPath().contains("fail")) {
+					level.setBlock(worldPosition, state.setValue(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.FAIL), 7);
+				} else if (ForgeRegistries.ITEMS.getKey(this.getStackInSlot(0).getItem()).getPath().contains("pass")) {
+					level.setBlock(worldPosition, state.setValue(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.PASS), 7);
+				} else if (ForgeRegistries.ITEMS.getKey(this.getStackInSlot(0).getItem()).getPath().contains("warn")) {
+					level.setBlock(worldPosition, state.setValue(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.WARN), 7);
 				}
 			}
 
 			@Override
 			public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-				return stack.getItem().getRegistryName().getPath().contains("overlay");
+				return ForgeRegistries.ITEMS.getKey(stack.getItem()).getPath().contains("overlay");
 			}
 
 			@Override
@@ -122,14 +118,11 @@ public class AnnunciatorBlockEntity extends BlockEntity {
 
 	public CommandSourceStack getCommandSource(@Nullable ServerPlayer playerIn) {
 		String s = playerIn == null ? "Sign" : playerIn.getName().getString();
-		Component itextcomponent = (Component) (playerIn == null ? new TextComponent("Sign")
-				: playerIn.getDisplayName());
-		return new CommandSourceStack(CommandSource.NULL, Vec3.atCenterOf(this.worldPosition), Vec2.ZERO,
-				(ServerLevel) this.level, 2, s, itextcomponent, this.level.getServer(), playerIn);
+		Component itextcomponent = playerIn == null ? Component.literal("Sign") : playerIn.getDisplayName();
+		return new CommandSourceStack(CommandSource.NULL, Vec3.atCenterOf(this.worldPosition), Vec2.ZERO, (ServerLevel) this.level, 2, s, itextcomponent, this.level.getServer(), playerIn);
 	}
 
-	public FormattedCharSequence reorderText(int row,
-			Function<Component, FormattedCharSequence> textProcessorFunction) {
+	public FormattedCharSequence reorderText(int row, Function<Component, FormattedCharSequence> textProcessorFunction) {
 		if (this.renderText[row] == null && this.signText[row] != null) {
 			this.renderText[row] = textProcessorFunction.apply(this.signText[row]);
 		}
@@ -137,6 +130,7 @@ public class AnnunciatorBlockEntity extends BlockEntity {
 		return this.renderText[row];
 	}
 
+	@Override
 	public ClientboundBlockEntityDataPacket getUpdatePacket() {
 		return ClientboundBlockEntityDataPacket.create(this);
 	}
@@ -166,8 +160,7 @@ public class AnnunciatorBlockEntity extends BlockEntity {
 			Component itextcomponent = Component.Serializer.fromJson(s.isEmpty() ? "\"\"" : s);
 			if (this.level instanceof ServerLevel) {
 				try {
-					this.signText[i] = ComponentUtils.updateForEntity(this.getCommandSource((ServerPlayer) null),
-							itextcomponent, (Entity) null, 0);
+					this.signText[i] = ComponentUtils.updateForEntity(this.getCommandSource((ServerPlayer) null), itextcomponent, (Entity) null, 0);
 				} catch (CommandSyntaxException commandsyntaxexception) {
 					this.signText[i] = itextcomponent;
 				}

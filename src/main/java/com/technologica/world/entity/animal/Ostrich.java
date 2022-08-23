@@ -6,30 +6,31 @@ import javax.annotation.Nullable;
 
 import com.technologica.world.entity.TechnologicaEntityType;
 
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.Container;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.TemptGoal;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.HorseArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.Level;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.block.SoundType;
 
 public class Ostrich extends AbstractHorse {
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.of(Items.ACACIA_LEAVES);
@@ -42,10 +43,10 @@ public class Ostrich extends AbstractHorse {
 	}
 
 	@Override
-	public void randomizeAttributes() {
-		this.getAttribute(Attributes.MAX_HEALTH).setBaseValue((double) this.generateRandomMaxHealth());
-		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(this.generateRandomSpeed());
-		this.getAttribute(Attributes.JUMP_STRENGTH).setBaseValue(this.generateRandomJumpStrength());
+	public void randomizeAttributes(RandomSource p_218815_) {
+		this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(this.generateRandomMaxHealth(p_218815_));
+		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(this.generateRandomSpeed(p_218815_));
+		this.getAttribute(Attributes.JUMP_STRENGTH).setBaseValue(this.generateRandomJumpStrength(p_218815_));
 	}
 
 	// Register Attributes, Goals, and Data
@@ -70,7 +71,7 @@ public class Ostrich extends AbstractHorse {
 	private void moveWings() {
 		this.wingCounter = 10;
 	}
-	
+
 	@Override
 	public void aiStep() {
 		if (this.random.nextInt(200) == 1 || this.isJumping) {
@@ -113,9 +114,7 @@ public class Ostrich extends AbstractHorse {
 			if (this.isArmor(p_213804_1_)) {
 				int i = ((HorseArmorItem) p_213804_1_.getItem()).getProtection();
 				if (i != 0) {
-					this.getAttribute(Attributes.ARMOR)
-							.addTransientModifier(new AttributeModifier(ARMOR_MODIFIER_UUID, "Horse armor bonus",
-									(double) i, AttributeModifier.Operation.ADDITION));
+					this.getAttribute(Attributes.ARMOR).addTransientModifier(new AttributeModifier(ARMOR_MODIFIER_UUID, "Horse armor bonus", i, AttributeModifier.Operation.ADDITION));
 				}
 			}
 		}
@@ -183,7 +182,7 @@ public class Ostrich extends AbstractHorse {
 		ItemStack itemstack = playerIn.getItemInHand(hand);
 		if (!this.isBaby()) {
 			if (this.isTamed() && playerIn.isSecondaryUseActive()) {
-				this.openInventory(playerIn);
+				this.openCustomInventoryScreen(playerIn);
 				return InteractionResult.sidedSuccess(this.level.isClientSide);
 			}
 
@@ -211,7 +210,7 @@ public class Ostrich extends AbstractHorse {
 			boolean flag = !this.isBaby() && !this.isSaddled() && itemstack.getItem() == Items.SADDLE;
 
 			if (this.isArmor(itemstack) || flag) {
-				this.openInventory(playerIn);
+				this.openCustomInventoryScreen(playerIn);
 				return InteractionResult.sidedSuccess(this.level.isClientSide);
 			}
 		}
@@ -252,8 +251,7 @@ public class Ostrich extends AbstractHorse {
 		}
 
 		if (this.isBaby() && i > 0) {
-			this.level.addParticle(ParticleTypes.HAPPY_VILLAGER, this.getRandomX(1.0D), this.getRandomY() + 0.5D,
-					this.getRandomZ(1.0D), 0.0D, 0.0D, 0.0D);
+			this.level.addParticle(ParticleTypes.HAPPY_VILLAGER, this.getRandomX(1.0D), this.getRandomY() + 0.5D, this.getRandomZ(1.0D), 0.0D, 0.0D, 0.0D);
 			if (!this.level.isClientSide) {
 				this.ageUp(i);
 			}
@@ -279,8 +277,7 @@ public class Ostrich extends AbstractHorse {
 		if (!this.isSilent()) {
 			SoundEvent soundevent = this.getEatingSound();
 			if (soundevent != null) {
-				this.level.playSound((Player) null, this.getX(), this.getY(), this.getZ(), soundevent,
-						this.getSoundSource(), 1.0F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
+				this.level.playSound((Player) null, this.getX(), this.getY(), this.getZ(), soundevent, this.getSoundSource(), 1.0F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
 			}
 		}
 

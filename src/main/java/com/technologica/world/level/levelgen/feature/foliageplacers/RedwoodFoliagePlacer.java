@@ -1,12 +1,12 @@
 package com.technologica.world.level.levelgen.feature.foliageplacers;
 
-import java.util.Random;
 import java.util.function.BiConsumer;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.block.state.BlockState;
@@ -23,12 +23,13 @@ public class RedwoodFoliagePlacer extends FoliagePlacer {
 		super(p_i241995_1_, p_i241995_2_);
 	}
 
+	@Override
 	protected FoliagePlacerType<?> type() {
 		return TechnologicaFoliagePlacers.REDWOOD.get();
 	}
 
 	@Override
-	protected void createFoliage(LevelSimulatedReader p_161422_, BiConsumer<BlockPos, BlockState> p_161423_, Random p_161424_, TreeConfiguration p_161425_, int p_161426_, FoliageAttachment p_161427_, int p_161428_, int diameter, int topLayer) {
+	protected void createFoliage(LevelSimulatedReader p_161422_, BiConsumer<BlockPos, BlockState> p_161423_, RandomSource p_161424_, TreeConfiguration p_161425_, int p_161426_, FoliageAttachment p_161427_, int p_161428_, int diameter, int topLayer) {
 		int i = p_161424_.nextInt(2);
 		int j = 0;
 		int k = 0;
@@ -45,20 +46,19 @@ public class RedwoodFoliagePlacer extends FoliagePlacer {
 		}
 	}
 
-	public int foliageHeight(Random randomIn, int i, TreeConfiguration configIn) {
+	public int foliageHeight(RandomSource RandomSourceIn, int i, TreeConfiguration configIn) {
 		int trim;
 		if (i == 2) {
 			trim = i - 1;
 		} else if (i == 3) {
 			trim = i - 1;
 		} else {
-			trim = (randomIn.nextInt(5) == 0) ? i - 1 : i - 2;
+			trim = (RandomSourceIn.nextInt(5) == 0) ? i - 1 : i - 2;
 		}
 		return trim;
 	}
 
-	protected boolean shouldSkipLocation(Random randomIn, int relativeZ, int relativeY, int relativeX, int p_230373_5_,
-			boolean p_230373_6_) {
+	protected boolean shouldSkipLocation(RandomSource RandomSourceIn, int relativeZ, int relativeY, int relativeX, int p_230373_5_, boolean p_230373_6_) {
 		if (relativeY >= 2) {
 			return (relativeX + relativeZ >= 0);
 		} else if (relativeY == 1) {

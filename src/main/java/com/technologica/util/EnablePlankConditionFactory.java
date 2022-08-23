@@ -10,17 +10,17 @@ import net.minecraftforge.common.crafting.conditions.IConditionSerializer;
 
 public class EnablePlankConditionFactory implements ICondition {
 	private static final ResourceLocation ID = new ResourceLocation(Technologica.MODID, "enable_vanilla_plank_crafting");
-	
+
 	@Override
 	public ResourceLocation getID() {
 		return ID;
 	}
 
 	@Override
-	public boolean test() {
+	public boolean test(IContext context) {
 		return !Config.disable_vanilla_plank_recipes.get();
 	}
-	
+
 	public static class Serializer implements IConditionSerializer<EnablePlankConditionFactory> {
 		public static final Serializer INSTANCE = new Serializer();
 
@@ -30,14 +30,14 @@ public class EnablePlankConditionFactory implements ICondition {
 
 		@Override
 		public EnablePlankConditionFactory read(JsonObject json) {
-			 return new EnablePlankConditionFactory();
+			return new EnablePlankConditionFactory();
 		}
 
 		@Override
 		public ResourceLocation getID() {
 			return EnablePlankConditionFactory.ID;
 		}
-		
+
 	}
-	
+
 }

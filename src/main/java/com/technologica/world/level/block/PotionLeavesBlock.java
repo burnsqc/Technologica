@@ -1,11 +1,11 @@
 package com.technologica.world.level.block;
-import java.util.Random;
 
 import com.technologica.world.level.block.entity.PotionTileEntity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionUtils;
@@ -25,8 +25,7 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.Material;
 
 /**
- * Special one-off class for potion leaves.
- * Created to spawn splash potions when player is nearby.
+ * Special one-off class for potion leaves. Created to spawn splash potions when player is nearby.
  */
 public class PotionLeavesBlock extends LeavesBlock implements EntityBlock {
 	public static final IntegerProperty AGE = BlockStateProperties.AGE_7;
@@ -41,23 +40,23 @@ public class PotionLeavesBlock extends LeavesBlock implements EntityBlock {
 	/*
 	 * Technologica Methods
 	 */
-	
+
 	public PotionTileEntity getTileEntity(Level worldIn, BlockPos posIn) {
 		return (PotionTileEntity) worldIn.getBlockEntity(posIn);
-    }
-	
+	}
+
 	/*
 	 * Minecraft Methods
 	 */
-	
+
 	@Override
-	public void randomTick(BlockState stateIn, ServerLevel worldIn, BlockPos posIn, Random randomIn) {
+	public void randomTick(BlockState stateIn, ServerLevel worldIn, BlockPos posIn, RandomSource randomIn) {
 		PotionTileEntity tile = getTileEntity(worldIn, posIn);
 		if (stateIn.getValue(DISTANCE) == 7) {
 			dropResources(stateIn, worldIn, posIn);
 			worldIn.removeBlock(posIn, false);
 		} else if (worldIn.isEmptyBlock(posIn.below()) && stateIn.getValue(AGE) <= 6) {
-			worldIn.setBlock(posIn, stateIn.setValue(AGE, Integer.valueOf(stateIn.getValue(AGE) + 1)), 7);	
+			worldIn.setBlock(posIn, stateIn.setValue(AGE, Integer.valueOf(stateIn.getValue(AGE) + 1)), 7);
 			if (stateIn.getValue(AGE) == 6) {
 				if (potionType == 1) {
 					int potionSubType = randomIn.nextInt(11);
@@ -94,12 +93,12 @@ public class PotionLeavesBlock extends LeavesBlock implements EntityBlock {
 						tile.setPotionStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.LONG_POISON));
 					} else if (potionSubType == 14) {
 						tile.setPotionStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.LONG_WEAKNESS));
-					}				
+					}
 				}
 			}
-		}	
+		}
 	}
-	
+
 	@Override
 	public boolean isRandomlyTicking(BlockState stateIn) {
 		return !stateIn.getValue(PERSISTENT);
@@ -110,7 +109,7 @@ public class PotionLeavesBlock extends LeavesBlock implements EntityBlock {
 		builderIn.add(AGE);
 		super.createBlockStateDefinition(builderIn);
 	}
-	
+
 	/*
 	 * Forge Methods
 	 */
@@ -119,7 +118,7 @@ public class PotionLeavesBlock extends LeavesBlock implements EntityBlock {
 	public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
 		return new PotionTileEntity(p_153215_, p_153216_);
 	}
-	
+
 	@Override
 	public int getFlammability(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
 		return 30;

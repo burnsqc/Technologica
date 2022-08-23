@@ -4,7 +4,6 @@ import java.lang.reflect.Field;
 
 import com.technologica.Technologica;
 import com.technologica.client.gui.screens.inventory.AnnunciatorScreen;
-import com.technologica.client.renderer.MoonRenderer;
 import com.technologica.world.inventory.TechnologicaContainerType;
 import com.technologica.world.level.block.TechnologicaBlocks;
 import com.technologica.world.level.block.state.properties.TechnologicaWoodType;
@@ -68,9 +67,9 @@ public class ClientSetup {
 
 		Field effects = ObfuscationReflectionHelper.findField(DimensionSpecialEffects.class, "EFFECTS");
 		DimensionSpecialEffects dimensionRenderInfo = new DimensionSpecialEffects.OverworldEffects();
-		dimensionRenderInfo.setSkyRenderHandler(new MoonRenderer());
-		dimensionRenderInfo.setCloudRenderHandler((ticks, partialTicks, matrixStack, world, mc, viewEntityX, viewEntityY, viewEntityZ) -> {
-		});
+		// dimensionRenderInfo.setSkyRenderHandler(new MoonRenderer());
+		// dimensionRenderInfo.setCloudRenderHandler((ticks, partialTicks, matrixStack, world, mc, viewEntityX, viewEntityY, viewEntityZ) -> {
+		// });
 		try {
 			((Object2ObjectMap<ResourceLocation, DimensionSpecialEffects>) effects.get(null)).put(new ResourceLocation(Technologica.MODID, "moon"), dimensionRenderInfo);
 		} catch (IllegalArgumentException e) {

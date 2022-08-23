@@ -1,7 +1,6 @@
 package com.technologica.world.level.levelgen.feature.trunkplacers;
 
 import java.util.List;
-import java.util.Random;
 import java.util.function.BiConsumer;
 
 import com.google.common.collect.ImmutableList;
@@ -10,6 +9,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelSimulatedRW;
 import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.block.state.BlockState;
@@ -27,11 +27,12 @@ public class ThreeWideTrunkPlacer extends GiantTrunkPlacer {
 		super(baseHeight, heightRandA, heightRandB);
 	}
 
+	@Override
 	protected TrunkPlacerType<?> type() {
 		return TechnologicaTrunkPlacerType.THREE_WIDE_TRUNK_PLACER;
 	}
 
-	public List<FoliagePlacer.FoliageAttachment> placeTrunk(LevelSimulatedRW p_161835_, BiConsumer<BlockPos, BlockState> p_161836_, Random rand, int treeHeight, BlockPos p_230382_4_, TreeConfiguration p_161840_) {
+	public List<FoliagePlacer.FoliageAttachment> placeTrunk(LevelSimulatedRW p_161835_, BiConsumer<BlockPos, BlockState> p_161836_, RandomSource rand, int treeHeight, BlockPos p_230382_4_, TreeConfiguration p_161840_) {
 		List<FoliagePlacer.FoliageAttachment> list = Lists.newArrayList();
 		BlockPos blockpos = p_230382_4_.below();
 		setDirtAt(p_161835_, p_161836_, rand, blockpos.east(), p_161840_);
@@ -62,8 +63,8 @@ public class ThreeWideTrunkPlacer extends GiantTrunkPlacer {
 		return list;
 	}
 
-	private static void placeLogIfFreeWithOffset(LevelSimulatedReader p_161842_, BiConsumer<BlockPos, BlockState> p_161843_, Random p_161844_, BlockPos.MutableBlockPos p_161845_, TreeConfiguration p_161846_, BlockPos p_161847_, int p_161848_, int p_161849_, int p_161850_) {
+	private void placeLogIfFreeWithOffset(LevelSimulatedReader p_161842_, BiConsumer<BlockPos, BlockState> p_161843_, RandomSource p_161844_, BlockPos.MutableBlockPos p_161845_, TreeConfiguration p_161846_, BlockPos p_161847_, int p_161848_, int p_161849_, int p_161850_) {
 		p_161845_.setWithOffset(p_161847_, p_161848_, p_161849_, p_161850_);
-		placeLogIfFree(p_161842_, p_161843_, p_161844_, p_161845_, p_161846_);
+		this.placeLogIfFree(p_161842_, p_161843_, p_161844_, p_161845_, p_161846_);
 	}
 }

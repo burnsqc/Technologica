@@ -25,6 +25,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.crafting.ConditionalRecipe;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class TechnologicaRecipeProvider extends RecipeProvider {
 
@@ -312,39 +313,39 @@ public class TechnologicaRecipeProvider extends RecipeProvider {
 	}
 
 	private static void vanillaPlanks(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, TagKey<Item> input) {
-		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(output, 4).requires(input).group("planks").unlockedBy("has_log", has(input)).save(consumer2)).build(recipeConsumer, new ResourceLocation(output.asItem().getRegistryName().getPath()));
+		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(output, 4).requires(input).group("planks").unlockedBy("has_log", has(input)).save(consumer2)).build(recipeConsumer, new ResourceLocation(ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
 	}
 
 	private static void vanillaLikePlanks(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, TagKey<Item> input) {
-		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(output, 4).requires(input).group("planks").unlockedBy("has_log", has(input)).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, output.asItem().getRegistryName().getPath()));
+		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(output, 4).requires(input).group("planks").unlockedBy("has_log", has(input)).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
 	}
 
 	private static void proPlanks(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, TagKey<Item> input) {
-		ConditionalRecipe.builder().addCondition(new DisablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(output, 1).requires(input).requires(TechnologicaItems.SAW.get()).group("planks").unlockedBy("has_saw", has(TechnologicaItems.SAW.get())).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, output.asItem().getRegistryName().getPath() + "_pro"));
+		ConditionalRecipe.builder().addCondition(new DisablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(output, 1).requires(input).requires(TechnologicaItems.SAW.get()).group("planks").unlockedBy("has_saw", has(TechnologicaItems.SAW.get())).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, ForgeRegistries.ITEMS.getKey(output.asItem()).getPath() + "_pro"));
 	}
 
 	private static void vanillaSlabs(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, ItemLike input) {
-		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(output, 6).define('#', input).pattern("###").group("wooden_slab").unlockedBy("has_planks", has(input)).save(consumer2)).build(recipeConsumer, new ResourceLocation(output.asItem().getRegistryName().getPath()));
+		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(output, 6).define('#', input).pattern("###").group("wooden_slab").unlockedBy("has_planks", has(input)).save(consumer2)).build(recipeConsumer, new ResourceLocation(ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
 	}
 
 	private static void vanillaLikeSlabs(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, ItemLike input) {
-		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(output, 6).define('#', input).pattern("###").group("wooden_slab").unlockedBy("has_planks", has(input)).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, output.asItem().getRegistryName().getPath()));
+		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(output, 6).define('#', input).pattern("###").group("wooden_slab").unlockedBy("has_planks", has(input)).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
 	}
 
 	private static void proSlabs(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, ItemLike input) {
-		ConditionalRecipe.builder().addCondition(new DisablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(output, 2).requires(input).requires(TechnologicaItems.SAW.get()).group("wooden_slab").unlockedBy("has_saw", has(TechnologicaItems.SAW.get())).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, output.asItem().getRegistryName().getPath() + "_pro"));
+		ConditionalRecipe.builder().addCondition(new DisablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(output, 2).requires(input).requires(TechnologicaItems.SAW.get()).group("wooden_slab").unlockedBy("has_saw", has(TechnologicaItems.SAW.get())).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, ForgeRegistries.ITEMS.getKey(output.asItem()).getPath() + "_pro"));
 	}
 
 	private static void vanillaStairs(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, ItemLike input) {
-		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(output, 4).define('#', input).pattern("#  ").pattern("## ").pattern("###").group("wooden_stairs").unlockedBy("has_planks", has(input)).save(consumer2)).build(recipeConsumer, new ResourceLocation(output.asItem().getRegistryName().getPath()));
+		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(output, 4).define('#', input).pattern("#  ").pattern("## ").pattern("###").group("wooden_stairs").unlockedBy("has_planks", has(input)).save(consumer2)).build(recipeConsumer, new ResourceLocation(ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
 	}
 
 	private static void vanillaLikeStairs(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, ItemLike input) {
-		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(output, 4).define('#', input).pattern("#  ").pattern("## ").pattern("###").group("wooden_stairs").unlockedBy("has_planks", has(input)).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, output.asItem().getRegistryName().getPath()));
+		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(output, 4).define('#', input).pattern("#  ").pattern("## ").pattern("###").group("wooden_stairs").unlockedBy("has_planks", has(input)).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
 	}
 
 	private static void proStairs(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, ItemLike input) {
-		ConditionalRecipe.builder().addCondition(new DisablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(output, 1).requires(input).requires(TechnologicaItems.CHISEL.get()).group("wooden_slab").unlockedBy("has_chisel", has(TechnologicaItems.CHISEL.get())).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, output.asItem().getRegistryName().getPath() + "_pro"));
+		ConditionalRecipe.builder().addCondition(new DisablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(output, 1).requires(input).requires(TechnologicaItems.CHISEL.get()).group("wooden_slab").unlockedBy("has_chisel", has(TechnologicaItems.CHISEL.get())).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, ForgeRegistries.ITEMS.getKey(output.asItem()).getPath() + "_pro"));
 	}
 
 	public static SingleItemRecipeBuilder sawmillRecipe(Ingredient ingredientIn, ItemLike output, int countIn) {

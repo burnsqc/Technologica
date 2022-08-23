@@ -23,6 +23,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.chunk.LevelChunkSection;
 
+import net.minecraft.world.item.Item.Properties;
+
 public class GlueBottleItem extends Item implements Vanishable {
 
 	public GlueBottleItem(Properties properties) {

@@ -1,6 +1,5 @@
 package com.technologica.world.level.block;
 
-import java.util.Random;
 import java.util.function.ToIntFunction;
 
 import javax.annotation.Nullable;
@@ -13,9 +12,9 @@ import com.technologica.world.level.block.state.properties.TechnologicaBlockStat
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
@@ -48,19 +47,16 @@ public class AnnunciatorBlock extends BaseEntityBlock {
 
 	public AnnunciatorBlock() {
 		super(BlockBehaviour.Properties.of(Material.METAL).lightLevel(getLightValueLit(15)).strength(1.0F).sound(SoundType.METAL));
-		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, false)
-				.setValue(OVERLAY, AnnunciatorOverlay.INFO));
+		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, false).setValue(OVERLAY, AnnunciatorOverlay.INFO));
 	}
 
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite()).setValue(LIT,
-				Boolean.valueOf(context.getLevel().hasNeighborSignal(context.getClickedPos())));
+		return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite()).setValue(LIT, Boolean.valueOf(context.getLevel().hasNeighborSignal(context.getClickedPos())));
 	}
 
 	@Override
-	public void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, BlockPos fromPos,
-			boolean isMoving) {
+	public void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
 		if (!worldIn.isClientSide) {
 			boolean flag = state.getValue(LIT);
 			if (flag != worldIn.hasNeighborSignal(pos)) {
@@ -81,7 +77,7 @@ public class AnnunciatorBlock extends BaseEntityBlock {
 
 			if (tileEntity instanceof AnnunciatorBlockEntity) {
 				MenuProvider containerProvider = createContainerProvider(worldIn, pos);
-				NetworkHooks.openGui(((ServerPlayer) player), containerProvider, tileEntity.getBlockPos());
+				NetworkHooks.openScreen(((ServerPlayer) player), containerProvider, tileEntity.getBlockPos());
 			}
 		}
 		return InteractionResult.SUCCESS;
@@ -91,7 +87,7 @@ public class AnnunciatorBlock extends BaseEntityBlock {
 		return new MenuProvider() {
 			@Override
 			public Component getDisplayName() {
-				return new TranslatableComponent("screen.annunciator");
+				return Component.translatable("screen.annunciator");
 			}
 
 			@Nullable
@@ -103,7 +99,7 @@ public class AnnunciatorBlock extends BaseEntityBlock {
 	}
 
 	@Override
-	public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, Random rand) {
+	public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource rand) {
 		if (state.getValue(LIT) && !worldIn.hasNeighborSignal(pos)) {
 			worldIn.setBlock(pos, state.cycle(LIT), 2);
 		}
@@ -122,7 +118,7 @@ public class AnnunciatorBlock extends BaseEntityBlock {
 	public RenderShape getRenderShape(BlockState iBlockState) {
 		return RenderShape.MODEL;
 	}
-	
+
 	private static ToIntFunction<BlockState> getLightValueLit(int lightValue) {
 		return (state) -> {
 			return state.getValue(BlockStateProperties.LIT) ? lightValue : 0;

@@ -10,10 +10,10 @@ import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SingleItemRecipe;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 
 public class SawmillRecipe extends SingleItemRecipe {
 
@@ -31,7 +31,12 @@ public class SawmillRecipe extends SingleItemRecipe {
 		return new ItemStack(TechnologicaItems.SAWBLADE.get());
 	}
 
-	public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<SawmillRecipe> {
+	@Override
+	public RecipeType<?> getType() {
+		return TechnologicaRecipeType.SAWMILL;
+	}
+
+	public static class Serializer implements RecipeSerializer<SawmillRecipe> {
 
 		@Override
 		public SawmillRecipe fromJson(ResourceLocation recipeId, JsonObject json) {

@@ -9,27 +9,23 @@ import com.technologica.data.tags.TechnologicaItemTagsProvider;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
+import net.minecraftforge.data.event.GatherDataEvent;
 
 public class GatherData {
 	public static void init(final GatherDataEvent event) {
 		DataGenerator generator = event.getGenerator();
 		ExistingFileHelper helper = event.getExistingFileHelper();
-		
-		if(event.includeClient()) {
-			generator.addProvider(new TechnologicaLanguageProvider(generator));
-			generator.addProvider(new TechnologicaBlockStateProvider(generator, helper));
-			generator.addProvider(new TechnologicaItemModelProvider(generator, helper));
-		}
-		
-		if(event.includeServer()) {
-			generator.addProvider(new TechnologicaFluidTagsProvider(generator, helper));
-			TechnologicaBlockTagsProvider technologicaBlockTagsProvider = new TechnologicaBlockTagsProvider(generator, helper);
-			generator.addProvider(technologicaBlockTagsProvider);
-			generator.addProvider(new TechnologicaItemTagsProvider(generator, technologicaBlockTagsProvider, helper));
-			generator.addProvider(new TechnologicaRecipeProvider(generator));
-			generator.addProvider(new TechnologicaAdvancementProvider(generator, helper));
-			generator.addProvider(new TechnologicaLootTableProvider(generator));
-		}	
+
+		generator.addProvider(event.includeClient(), new TechnologicaLanguageProvider(generator));
+		generator.addProvider(event.includeClient(), new TechnologicaBlockStateProvider(generator, helper));
+		generator.addProvider(event.includeClient(), new TechnologicaItemModelProvider(generator, helper));
+
+		generator.addProvider(event.includeServer(), new TechnologicaFluidTagsProvider(generator, helper));
+		TechnologicaBlockTagsProvider technologicaBlockTagsProvider = new TechnologicaBlockTagsProvider(generator, helper);
+		generator.addProvider(event.includeServer(), technologicaBlockTagsProvider);
+		generator.addProvider(event.includeServer(), new TechnologicaItemTagsProvider(generator, technologicaBlockTagsProvider, helper));
+		generator.addProvider(event.includeServer(), new TechnologicaRecipeProvider(generator));
+		generator.addProvider(event.includeServer(), new TechnologicaAdvancementProvider(generator, helper));
+		generator.addProvider(event.includeServer(), new TechnologicaLootTableProvider(generator));
 	}
 }

@@ -2,9 +2,10 @@ package com.technologica.util.text;
 
 import com.technologica.Technologica;
 
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.item.Item;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class ResourceLocationHelper {
 
@@ -15,24 +16,24 @@ public class ResourceLocationHelper {
 	public static ResourceLocation technologicaLocation(String pathIn) {
 		return new ResourceLocation(Technologica.MODID, pathIn);
 	}
-	
+
 	public static String getPath(Block block) {
-        return block.getRegistryName().getPath();
-    }
-	
+		return ForgeRegistries.BLOCKS.getKey(block).getPath();
+	}
+
 	public static String getPath(Item item) {
-        return item.getRegistryName().getPath();
-    }
-	
+		return ForgeRegistries.ITEMS.getKey(item).getPath();
+	}
+
 	public static String replace(String originalIn, String toBeReplacedIn, String replacementIn) {
-        return new String(originalIn.replaceAll(toBeReplacedIn, replacementIn));
-    }
-	
+		return new String(originalIn.replaceAll(toBeReplacedIn, replacementIn));
+	}
+
 	public static ResourceLocation extend(ResourceLocation rl, String suffix) {
-        return new ResourceLocation(rl.getNamespace(), rl.getPath() + suffix);
-    }
-	
+		return new ResourceLocation(rl.getNamespace(), rl.getPath() + suffix);
+	}
+
 	public static ResourceLocation replace(ResourceLocation rl, String regex, String replacement) {
-        return new ResourceLocation(rl.getNamespace(), rl.getPath().replaceAll(regex, replacement));
-    }
+		return new ResourceLocation(rl.getNamespace(), rl.getPath().replaceAll(regex, replacement));
+	}
 }

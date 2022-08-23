@@ -1,10 +1,10 @@
 package com.technologica.listeners;
 
 import java.util.List;
-import java.util.Random;
 
 import com.technologica.world.item.TechnologicaItems;
 
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.npc.VillagerTrades.ItemListing;
@@ -75,7 +75,7 @@ public class TechnologicaVillagerTrades {
 		}
 
 		@Override
-		public MerchantOffer getOffer(Entity p_35771_, Random p_35772_) {
+		public MerchantOffer getOffer(Entity p_35771_, RandomSource p_35772_) {
 			return new MerchantOffer(new ItemStack(Items.EMERALD, this.emeraldCost), new ItemStack(this.itemStack.getItem(), this.numberOfItems), this.maxUses, this.villagerXp, this.priceMultiplier);
 		}
 	}

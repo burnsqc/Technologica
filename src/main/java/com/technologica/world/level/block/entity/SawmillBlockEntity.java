@@ -32,6 +32,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer, RecipeHolder, StackedContentsCompatible {
 	private final ItemStackHandler itemHandler = createHandler();
@@ -55,11 +56,11 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 			@Override
 			public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
 				if (slot == 0) {
-					return stack.getItem().getRegistryName().getPath().contains("sawblade");
+					return ForgeRegistries.ITEMS.getKey(stack.getItem()).getPath().contains("sawblade");
 				} else if (slot == 2) {
-					return stack.getItem().getRegistryName().getPath().contains("planks") || stack.isEmpty();
+					return ForgeRegistries.ITEMS.getKey(stack.getItem()).getPath().contains("planks") || stack.isEmpty();
 				}
-				return stack.getItem().getRegistryName().getPath().contains("log");
+				return ForgeRegistries.ITEMS.getKey(stack.getItem()).getPath().contains("log");
 			}
 
 			@Override

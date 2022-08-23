@@ -1,7 +1,5 @@
 package com.technologica.world.level.block;
 
-import java.util.Random;
-
 import com.technologica.util.Radius;
 import com.technologica.world.item.TechnologicaItems;
 import com.technologica.world.level.block.entity.LineShaftTileEntity;
@@ -12,6 +10,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -112,7 +111,7 @@ public class LineShaftBlock extends RotatedPillarBlock implements EntityBlock {
 	}
 
 	@Override
-	public void tick(BlockState stateIn, ServerLevel worldIn, BlockPos posIn, Random randomIn) {
+	public void tick(BlockState stateIn, ServerLevel worldIn, BlockPos posIn, RandomSource randomIn) {
 		if (!canSurvive(stateIn, worldIn, posIn)) {
 			LineShaftTileEntity tile = getTileEntity(worldIn, posIn);
 			if (tile.getBeltPos() != null) {

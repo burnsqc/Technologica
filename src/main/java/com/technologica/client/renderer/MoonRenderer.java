@@ -17,15 +17,15 @@ import com.mojang.math.Matrix4f;
 import com.mojang.math.Vector3f;
 import com.technologica.Technologica;
 
-import net.minecraft.client.Minecraft;
+import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.client.ISkyRenderHandler;
+import net.minecraftforge.client.extensions.IForgeDimensionSpecialEffects;
 
-public class MoonRenderer implements ISkyRenderHandler {
+public class MoonRenderer implements IForgeDimensionSpecialEffects {
 
 	@Nullable
 	private VertexBuffer starVBO;
@@ -42,12 +42,12 @@ public class MoonRenderer implements ISkyRenderHandler {
 	}
 
 	@Override
-	public void render(int ticks, float partialTicks, PoseStack matrixStackIn, ClientLevel world, Minecraft mc) {
+	public boolean renderSky(ClientLevel level, int ticks, float partialTicks, PoseStack matrixStackIn, Camera camera, Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog) {
 		this.skyVBO = new VertexBuffer();
 		generateStars();
 
 		RenderSystem.disableTexture();
-		Vec3 vector3d = world.getSkyColor(mc.gameRenderer.getMainCamera().getPosition(), partialTicks);
+		Vec3 vector3d = level.getSkyColor(camera.getPosition(), partialTicks);
 		float f = (float) vector3d.x;
 		float f1 = (float) vector3d.y;
 		float f2 = (float) vector3d.z;
@@ -63,13 +63,13 @@ public class MoonRenderer implements ISkyRenderHandler {
 		this.skyVertexFormat.clearBufferState();
 		RenderSystem.enableBlend();
 		RenderSystem.defaultBlendFunc();
-		float[] afloat = world.effects().getSunriseColor(world.getTimeOfDay(partialTicks), partialTicks);
+		float[] afloat = level.effects().getSunriseColor(level.getTimeOfDay(partialTicks), partialTicks);
 		if (afloat != null) {
 			RenderSystem.disableTexture();
 			RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 			matrixStackIn.pushPose();
 			matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(90.0F));
-			float f3 = Mth.sin(world.getSunAngle(partialTicks)) < 0.0F ? 180.0F : 0.0F;
+			float f3 = Mth.sin(level.getSunAngle(partialTicks)) < 0.0F ? 180.0F : 0.0F;
 			matrixStackIn.mulPose(Vector3f.ZP.rotationDegrees(f3));
 			matrixStackIn.mulPose(Vector3f.ZP.rotationDegrees(90.0F));
 			float f4 = afloat[0];
@@ -79,21 +79,20 @@ public class MoonRenderer implements ISkyRenderHandler {
 			bufferbuilder.begin(VertexFormat.Mode.TRIANGLE_FAN, DefaultVertexFormat.POSITION_COLOR);
 			bufferbuilder.vertex(matrix4f, 0.0F, 100.0F, 0.0F).color(f4, f5, f6, afloat[3]).endVertex();
 			for (int j = 0; j <= 16; ++j) {
-				float f7 = (float) j * ((float) Math.PI * 2F) / 16.0F;
+				float f7 = j * ((float) Math.PI * 2F) / 16.0F;
 				float f8 = Mth.sin(f7);
 				float f9 = Mth.cos(f7);
 				bufferbuilder.vertex(matrix4f, f8 * 120.0F, f9 * 120.0F, -f9 * 40.0F * afloat[3]).color(afloat[0], afloat[1], afloat[2], 0.0F).endVertex();
 			}
 
-			bufferbuilder.end();
-			BufferUploader.end(bufferbuilder);
+			BufferUploader.drawWithShader(bufferbuilder.end());
 			matrixStackIn.popPose();
 		}
 
 		RenderSystem.enableTexture();
 		RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
 		matrixStackIn.pushPose();
-		float f11 = 1.0F - world.getRainLevel(partialTicks);
+		float f11 = 1.0F - level.getRainLevel(partialTicks);
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, f11);
 		matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(-90.0F));
 		matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(45.0F));
@@ -105,12 +104,11 @@ public class MoonRenderer implements ISkyRenderHandler {
 		bufferbuilder.vertex(matrix4f1, f12, 70.0F, -f12).uv(1.0F, 0.0F).endVertex();
 		bufferbuilder.vertex(matrix4f1, f12, 70.0F, f12).uv(1.0F, 1.0F).endVertex();
 		bufferbuilder.vertex(matrix4f1, -f12, 70.0F, f12).uv(0.0F, 1.0F).endVertex();
-		bufferbuilder.end();
-		BufferUploader.end(bufferbuilder);
+		BufferUploader.drawWithShader(bufferbuilder.end());
 
 		matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(-45.0F));
-		
-		matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(world.getTimeOfDay(partialTicks) * 360.0F));
+
+		matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(level.getTimeOfDay(partialTicks) * 360.0F));
 		matrix4f1 = matrixStackIn.last().pose();
 
 		RenderSystem.setShaderTexture(0, SUN_TEXTURES);
@@ -119,8 +117,7 @@ public class MoonRenderer implements ISkyRenderHandler {
 		bufferbuilder.vertex(matrix4f1, f12, 100.0F, -f12).uv(1.0F, 0.0F).endVertex();
 		bufferbuilder.vertex(matrix4f1, f12, 100.0F, f12).uv(1.0F, 1.0F).endVertex();
 		bufferbuilder.vertex(matrix4f1, -f12, 100.0F, f12).uv(0.0F, 1.0F).endVertex();
-		bufferbuilder.end();
-		BufferUploader.end(bufferbuilder);
+		BufferUploader.drawWithShader(bufferbuilder.end());
 
 		RenderSystem.disableTexture();
 
@@ -133,14 +130,13 @@ public class MoonRenderer implements ISkyRenderHandler {
 
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		RenderSystem.disableBlend();
-		
 
 		matrixStackIn.popPose();
 
 		RenderSystem.disableTexture();
 		RenderSystem.setShaderColor(0.0F, 0.0F, 0.0F, 1.0F);
 
-		if (world.effects().hasGround()) {
+		if (level.effects().hasGround()) {
 			RenderSystem.setShaderColor(f * 0.2F + 0.04F, f1 * 0.2F + 0.04F, f2 * 0.6F + 0.1F, 1.0F);
 		} else {
 			RenderSystem.setShaderColor(f, f1, f2, 1.0F);
@@ -148,6 +144,7 @@ public class MoonRenderer implements ISkyRenderHandler {
 
 		RenderSystem.enableTexture();
 		RenderSystem.depthMask(true);
+		return true;
 	}
 
 	private void generateStars() {
@@ -159,8 +156,7 @@ public class MoonRenderer implements ISkyRenderHandler {
 
 		this.starVBO = new VertexBuffer();
 		this.renderStars(bufferbuilder);
-		bufferbuilder.end();
-		this.starVBO.upload(bufferbuilder);
+		this.starVBO.upload(bufferbuilder.end());
 	}
 
 	private void renderStars(BufferBuilder bufferBuilderIn) {
@@ -168,10 +164,10 @@ public class MoonRenderer implements ISkyRenderHandler {
 		bufferBuilderIn.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION);
 
 		for (int i = 0; i < 1500; ++i) {
-			double d0 = (double) (random.nextFloat() * 2.0F - 1.0F);
-			double d1 = (double) (random.nextFloat() * 2.0F - 1.0F);
-			double d2 = (double) (random.nextFloat() * 2.0F - 1.0F);
-			double d3 = (double) (0.15F + random.nextFloat() * 0.1F);
+			double d0 = random.nextFloat() * 2.0F - 1.0F;
+			double d1 = random.nextFloat() * 2.0F - 1.0F;
+			double d2 = random.nextFloat() * 2.0F - 1.0F;
+			double d3 = 0.15F + random.nextFloat() * 0.1F;
 			double d4 = d0 * d0 + d1 * d1 + d2 * d2;
 			if (d4 < 1.0D && d4 > 0.01D) {
 				d4 = 1.0D / Math.sqrt(d4);
@@ -192,8 +188,8 @@ public class MoonRenderer implements ISkyRenderHandler {
 				double d16 = Math.cos(d14);
 
 				for (int j = 0; j < 4; ++j) {
-					double d18 = (double) ((j & 2) - 1) * d3;
-					double d19 = (double) ((j + 1 & 2) - 1) * d3;
+					double d18 = ((j & 2) - 1) * d3;
+					double d19 = ((j + 1 & 2) - 1) * d3;
 					double d21 = d18 * d16 - d19 * d15;
 					double d22 = d19 * d16 + d18 * d15;
 					double d23 = d21 * d12 + 0.0D * d13;

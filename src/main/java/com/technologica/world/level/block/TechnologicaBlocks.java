@@ -62,12 +62,12 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.FenceGateBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.LiquidBlock;
-import net.minecraft.world.level.block.OreBlock;
 import net.minecraft.world.level.block.PotatoBlock;
 import net.minecraft.world.level.block.PressurePlateBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
@@ -280,46 +280,46 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> MOON_ROCK = BLOCKS.register("moon_rock", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F)));
 	public static final RegistryObject<Block> MOON_DUST = BLOCKS.register("moon_dust", () -> new SandBlock(14406560, BlockBehaviour.Properties.of(Material.SAND, MaterialColor.SAND).strength(0.5F).sound(SoundType.SAND)));
 
-	public static final RegistryObject<Block> BAUXITE_ORE = BLOCKS.register("bauxite_ore", () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> CHROMITE_ORE = BLOCKS.register("chromite_ore", () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> ILMENITE_ORE = BLOCKS.register("ilmenite_ore", () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> PYROLUSITE_ORE = BLOCKS.register("pyrolusite_ore", () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> COBALTITE_ORE = BLOCKS.register("cobaltite_ore", () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> GARNIERITE_ORE = BLOCKS.register("garnierite_ore", () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> BORAX_ORE = BLOCKS.register("borax_ore", () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> MAGNESITE_ORE = BLOCKS.register("magnesite_ore", () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> SPODUMENE_ORE = BLOCKS.register("spodumene_ore", () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> BAUXITE_ORE = BLOCKS.register("bauxite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> CHROMITE_ORE = BLOCKS.register("chromite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> ILMENITE_ORE = BLOCKS.register("ilmenite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> PYROLUSITE_ORE = BLOCKS.register("pyrolusite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> COBALTITE_ORE = BLOCKS.register("cobaltite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> GARNIERITE_ORE = BLOCKS.register("garnierite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> BORAX_ORE = BLOCKS.register("borax_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> MAGNESITE_ORE = BLOCKS.register("magnesite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> SPODUMENE_ORE = BLOCKS.register("spodumene_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
 
 	public static final RegistryObject<Block> AQUAMARINE_CRYSTAL = BLOCKS.register("aquamarine_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.GLASS).noOcclusion()));
 	public static final RegistryObject<Block> DOLOMITE_CRYSTAL = BLOCKS.register("dolomite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.GLASS).noOcclusion()));
 	public static final RegistryObject<Block> FLUORITE_CRYSTAL = BLOCKS.register("fluorite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.GLASS).noOcclusion()));
 	public static final RegistryObject<Block> ULEXITE_CRYSTAL = BLOCKS.register("ulexite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.GLASS).noOcclusion()));
 
-	public static final RegistryObject<LiquidBlock> HYDROGEN = BLOCKS.register("hydrogen", () -> new LiquidBlock(TechnologicaFluids.HYDROGEN, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
-	public static final RegistryObject<LiquidBlock> HELIUM = BLOCKS.register("helium", () -> new LiquidBlock(TechnologicaFluids.HELIUM, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
-	public static final RegistryObject<LiquidBlock> NITROGEN = BLOCKS.register("nitrogen", () -> new LiquidBlock(TechnologicaFluids.NITROGEN, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
-	public static final RegistryObject<LiquidBlock> OXYGEN = BLOCKS.register("oxygen", () -> new LiquidBlock(TechnologicaFluids.OXYGEN, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
-	public static final RegistryObject<LiquidBlock> FLUORINE = BLOCKS.register("fluorine", () -> new LiquidBlock(TechnologicaFluids.FLUORINE, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
-	public static final RegistryObject<LiquidBlock> NEON = BLOCKS.register("neon", () -> new LiquidBlock(TechnologicaFluids.NEON, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
-	public static final RegistryObject<LiquidBlock> CHLORINE = BLOCKS.register("chlorine", () -> new LiquidBlock(TechnologicaFluids.CHLORINE, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
-	public static final RegistryObject<LiquidBlock> ARGON = BLOCKS.register("argon", () -> new LiquidBlock(TechnologicaFluids.ARGON, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
-	public static final RegistryObject<LiquidBlock> KRYPTON = BLOCKS.register("krypton", () -> new LiquidBlock(TechnologicaFluids.KRYPTON, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
-	public static final RegistryObject<LiquidBlock> XENON = BLOCKS.register("xenon", () -> new LiquidBlock(TechnologicaFluids.XENON, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
-	public static final RegistryObject<LiquidBlock> RADON = BLOCKS.register("radon", () -> new LiquidBlock(TechnologicaFluids.RADON, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
+	public static final RegistryObject<LiquidBlock> HYDROGEN = BLOCKS.register("hydrogen", () -> new LiquidBlock(TechnologicaFluids.HYDROGEN, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F)));
+	public static final RegistryObject<LiquidBlock> HELIUM = BLOCKS.register("helium", () -> new LiquidBlock(TechnologicaFluids.HELIUM, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F)));
+	public static final RegistryObject<LiquidBlock> NITROGEN = BLOCKS.register("nitrogen", () -> new LiquidBlock(TechnologicaFluids.NITROGEN, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F)));
+	public static final RegistryObject<LiquidBlock> OXYGEN = BLOCKS.register("oxygen", () -> new LiquidBlock(TechnologicaFluids.OXYGEN, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F)));
+	public static final RegistryObject<LiquidBlock> FLUORINE = BLOCKS.register("fluorine", () -> new LiquidBlock(TechnologicaFluids.FLUORINE, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F)));
+	public static final RegistryObject<LiquidBlock> NEON = BLOCKS.register("neon", () -> new LiquidBlock(TechnologicaFluids.NEON, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F)));
+	public static final RegistryObject<LiquidBlock> CHLORINE = BLOCKS.register("chlorine", () -> new LiquidBlock(TechnologicaFluids.CHLORINE, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F)));
+	public static final RegistryObject<LiquidBlock> ARGON = BLOCKS.register("argon", () -> new LiquidBlock(TechnologicaFluids.ARGON, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F)));
+	public static final RegistryObject<LiquidBlock> KRYPTON = BLOCKS.register("krypton", () -> new LiquidBlock(TechnologicaFluids.KRYPTON, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F)));
+	public static final RegistryObject<LiquidBlock> XENON = BLOCKS.register("xenon", () -> new LiquidBlock(TechnologicaFluids.XENON, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F)));
+	public static final RegistryObject<LiquidBlock> RADON = BLOCKS.register("radon", () -> new LiquidBlock(TechnologicaFluids.RADON, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F)));
 
-	public static final RegistryObject<LiquidBlock> BROMINE = BLOCKS.register("bromine", () -> new LiquidBlock(TechnologicaFluids.BROMINE, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
-	public static final RegistryObject<LiquidBlock> MERCURY = BLOCKS.register("mercury", () -> new LiquidBlock(TechnologicaFluids.MERCURY, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
+	public static final RegistryObject<LiquidBlock> BROMINE = BLOCKS.register("bromine", () -> new LiquidBlock(TechnologicaFluids.BROMINE, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F)));
+	public static final RegistryObject<LiquidBlock> MERCURY = BLOCKS.register("mercury", () -> new LiquidBlock(TechnologicaFluids.MERCURY, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F)));
 
-	public static final RegistryObject<LiquidBlock> BRINE = BLOCKS.register("brine", () -> new LiquidBlock(TechnologicaFluids.BRINE, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
-	public static final RegistryObject<LiquidBlock> OIL = BLOCKS.register("oil", () -> new LiquidBlock(TechnologicaFluids.OIL, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
-	public static final RegistryObject<LiquidBlock> NATURAL_GAS = BLOCKS.register("natural_gas", () -> new LiquidBlock(TechnologicaFluids.NATURAL_GAS, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
+	public static final RegistryObject<LiquidBlock> BRINE = BLOCKS.register("brine", () -> new LiquidBlock(TechnologicaFluids.BRINE, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F)));
+	public static final RegistryObject<LiquidBlock> OIL = BLOCKS.register("oil", () -> new LiquidBlock(TechnologicaFluids.OIL, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F)));
+	public static final RegistryObject<LiquidBlock> NATURAL_GAS = BLOCKS.register("natural_gas", () -> new LiquidBlock(TechnologicaFluids.NATURAL_GAS, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F)));
 
-	public static final RegistryObject<LiquidBlock> MAPLE_SYRUP = BLOCKS.register("maple_syrup", () -> new LiquidBlock(TechnologicaFluids.MAPLE_SYRUP, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
-	public static final RegistryObject<LiquidBlock> RUBBER_RESIN = BLOCKS.register("rubber_resin", () -> new LiquidBlock(TechnologicaFluids.RUBBER_RESIN, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
+	public static final RegistryObject<LiquidBlock> MAPLE_SYRUP = BLOCKS.register("maple_syrup", () -> new LiquidBlock(TechnologicaFluids.MAPLE_SYRUP, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F)));
+	public static final RegistryObject<LiquidBlock> RUBBER_RESIN = BLOCKS.register("rubber_resin", () -> new LiquidBlock(TechnologicaFluids.RUBBER_RESIN, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F)));
 
-	public static final RegistryObject<LiquidBlock> GASOLINE = BLOCKS.register("gasoline", () -> new LiquidBlock(TechnologicaFluids.GASOLINE, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
-	public static final RegistryObject<LiquidBlock> MACHINE_OIL = BLOCKS.register("machine_oil", () -> new LiquidBlock(TechnologicaFluids.MACHINE_OIL, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
-	public static final RegistryObject<LiquidBlock> COOLANT = BLOCKS.register("coolant", () -> new LiquidBlock(TechnologicaFluids.COOLANT, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
+	public static final RegistryObject<LiquidBlock> GASOLINE = BLOCKS.register("gasoline", () -> new LiquidBlock(TechnologicaFluids.GASOLINE, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F)));
+	public static final RegistryObject<LiquidBlock> MACHINE_OIL = BLOCKS.register("machine_oil", () -> new LiquidBlock(TechnologicaFluids.MACHINE_OIL, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F)));
+	public static final RegistryObject<LiquidBlock> COOLANT = BLOCKS.register("coolant", () -> new LiquidBlock(TechnologicaFluids.COOLANT, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F)));
 
 	/*
 	 * CONSTRUCTION
