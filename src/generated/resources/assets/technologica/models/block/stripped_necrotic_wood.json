@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "side": "technologica:block/stripped_necrotic_log",
-    "end": "technologica:block/stripped_necrotic_log"
+    "end": "technologica:block/stripped_necrotic_log",
+    "side": "technologica:block/stripped_necrotic_log"
   }
 }

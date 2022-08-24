@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "side": "technologica:block/avocado_log",
-    "end": "technologica:block/avocado_log"
+    "end": "technologica:block/avocado_log",
+    "side": "technologica:block/avocado_log"
   }
 }

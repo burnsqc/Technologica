@@ -19,8 +19,8 @@
           }
         ],
         "result": {
-          "item": "technologica:maple_slab",
-          "count": 2
+          "count": 2,
+          "item": "technologica:maple_slab"
         }
       }
     }

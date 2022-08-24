@@ -19,8 +19,8 @@
           }
         ],
         "result": {
-          "item": "minecraft:dark_oak_slab",
-          "count": 2
+          "count": 2,
+          "item": "minecraft:dark_oak_slab"
         }
       }
     }

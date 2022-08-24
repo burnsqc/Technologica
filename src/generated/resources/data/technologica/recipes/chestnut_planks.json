@@ -16,8 +16,8 @@
           }
         ],
         "result": {
-          "item": "technologica:chestnut_planks",
-          "count": 4
+          "count": 4,
+          "item": "technologica:chestnut_planks"
         }
       }
     }

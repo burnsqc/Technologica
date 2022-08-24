@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_left",
+  "textures": {
+    "bottom": "technologica:block/teak_door_bottom",
+    "top": "technologica:block/teak_door_top"
+  }
+}

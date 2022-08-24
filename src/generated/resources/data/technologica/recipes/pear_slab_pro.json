@@ -19,8 +19,8 @@
           }
         ],
         "result": {
-          "item": "technologica:pear_slab",
-          "count": 2
+          "count": 2,
+          "item": "technologica:pear_slab"
         }
       }
     }

@@ -1,13 +1,13 @@
 {
   "variants": {
-    "type=top": {
-      "model": "technologica:block/kiwi_slab_top"
-    },
     "type=bottom": {
       "model": "technologica:block/kiwi_slab"
     },
     "type=double": {
       "model": "technologica:block/kiwi_planks"
+    },
+    "type=top": {
+      "model": "technologica:block/kiwi_slab_top"
     }
   }
 }

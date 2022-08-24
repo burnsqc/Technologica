@@ -19,8 +19,8 @@
           }
         ],
         "result": {
-          "item": "technologica:lemon_slab",
-          "count": 2
+          "count": 2,
+          "item": "technologica:lemon_slab"
         }
       }
     }

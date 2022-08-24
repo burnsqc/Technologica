@@ -18,7 +18,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class SawmillRecipe extends SingleItemRecipe {
 
 	public SawmillRecipe(ResourceLocation id, String group, Ingredient ingredient, ItemStack result) {
-		super(TechnologicaRecipeType.SAWMILL, TechnologicaRecipeSerializer.SAWMILL.get(), id, group, ingredient, result);
+		super(TechnologicaRecipeType.SAWMILL.get(), TechnologicaRecipeSerializer.SAWMILL.get(), id, group, ingredient, result);
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class SawmillRecipe extends SingleItemRecipe {
 
 	@Override
 	public RecipeType<?> getType() {
-		return TechnologicaRecipeType.SAWMILL;
+		return TechnologicaRecipeType.SAWMILL.get();
 	}
 
 	public static class Serializer implements RecipeSerializer<SawmillRecipe> {

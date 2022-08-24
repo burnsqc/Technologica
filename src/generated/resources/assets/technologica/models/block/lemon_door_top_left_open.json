@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_left_open",
+  "textures": {
+    "bottom": "technologica:block/lemon_door_bottom",
+    "top": "technologica:block/lemon_door_top"
+  }
+}

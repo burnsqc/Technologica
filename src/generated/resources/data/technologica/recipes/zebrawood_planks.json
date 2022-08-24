@@ -16,8 +16,8 @@
           }
         ],
         "result": {
-          "item": "technologica:zebrawood_planks",
-          "count": 4
+          "count": 4,
+          "item": "technologica:zebrawood_planks"
         }
       }
     }

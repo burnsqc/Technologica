@@ -16,8 +16,8 @@
           }
         ],
         "result": {
-          "item": "technologica:peach_planks",
-          "count": 4
+          "count": 4,
+          "item": "technologica:peach_planks"
         }
       }
     }

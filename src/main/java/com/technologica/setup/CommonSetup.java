@@ -9,8 +9,6 @@ import com.technologica.data.worldgen.features.TechnologicaTreeFeatures;
 import com.technologica.data.worldgen.placement.TechnologicaTreePlacements;
 import com.technologica.network.play.server.Packets;
 import com.technologica.world.item.TechnologicaItems;
-import com.technologica.world.item.crafting.TechnologicaRecipeSerializer;
-import com.technologica.world.item.crafting.TechnologicaRecipeType;
 import com.technologica.world.level.block.TechnologicaBlocks;
 import com.technologica.world.level.block.state.properties.TechnologicaWoodType;
 import com.technologica.world.level.levelgen.feature.trunkplacers.TechnologicaTrunkPlacerType;
@@ -40,8 +38,6 @@ public class CommonSetup {
 			TechnologicaTrunkPlacerType.register();
 			TechnologicaTreeFeatures.register();
 			TechnologicaTreePlacements.register();
-			TechnologicaRecipeType.register();
-			TechnologicaRecipeSerializer.init();
 			ResourceKey<Biome> saltFlatsBiomeKey = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(Technologica.MODID, "salt_flats"));
 
 			addToFlowerPot();

@@ -24,7 +24,7 @@ public class TechnologicaLanguageProvider extends LanguageProvider {
 	@Override
 	protected void addTranslations() {
 		addItems(TechnologicaItems.ITEMS.getEntries());
-		addEntities(TechnologicaEntityType.ENTITIES.getEntries());
+		addEntities(TechnologicaEntityType.ENTITY_TYPES.getEntries());
 
 		addItemGroups(TechnologicaItemGroup.FLORA, TechnologicaItemGroup.FAUNA, TechnologicaItemGroup.MINERAL, TechnologicaItemGroup.FOOD, TechnologicaItemGroup.CONSTRUCTION, TechnologicaItemGroup.MACHINERY, TechnologicaItemGroup.DECORATIVE, TechnologicaItemGroup.ARMORY, TechnologicaItemGroup.CRYPTICA);
 

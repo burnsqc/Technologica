@@ -173,7 +173,7 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 		if (this.sawTime > 0F) {
 			this.sawTime--;
 		} else if (!getItem(1).isEmpty()) {
-			Recipe<?> recipe = this.level.getRecipeManager().getRecipeFor(TechnologicaRecipeType.SAWMILL, this, this.level).orElse(null);
+			Recipe<?> recipe = this.level.getRecipeManager().getRecipeFor(TechnologicaRecipeType.SAWMILL.get(), this, this.level).orElse(null);
 			if (recipe != null) {
 				ItemStack output = recipe.getResultItem();
 				if (!output.isEmpty()) {

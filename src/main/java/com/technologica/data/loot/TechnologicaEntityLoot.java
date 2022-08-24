@@ -67,7 +67,7 @@ public class TechnologicaEntityLoot extends EntityLoot {
 	
 	@Override
 	protected Iterable<EntityType<?>> getKnownEntities() {
-		Stream<EntityType<?>> technologicaEntityStream = TechnologicaEntityType.ENTITIES.getEntries().stream().map(RegistryObject::get);
+		Stream<EntityType<?>> technologicaEntityStream = TechnologicaEntityType.ENTITY_TYPES.getEntries().stream().map(RegistryObject::get);
 		return technologicaEntityStream::iterator;
 	}
 }

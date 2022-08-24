@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_left_open",
+  "textures": {
+    "bottom": "technologica:block/frostbitten_door_bottom",
+    "top": "technologica:block/frostbitten_door_top"
+  }
+}

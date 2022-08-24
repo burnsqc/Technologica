@@ -16,8 +16,8 @@
           }
         ],
         "result": {
-          "item": "technologica:frostbitten_planks",
-          "count": 4
+          "count": 4,
+          "item": "technologica:frostbitten_planks"
         }
       }
     }

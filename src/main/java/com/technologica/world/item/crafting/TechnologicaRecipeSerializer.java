@@ -14,9 +14,8 @@ public class TechnologicaRecipeSerializer {
 	public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.Keys.RECIPE_SERIALIZERS, Technologica.MODID);
 
 	public static void init() {
-		LOGGER.info("INITIALIZING RECIPE SERIALIZERS");
 		RECIPE_SERIALIZERS.register(FMLJavaModLoadingContext.get().getModEventBus());
-		LOGGER.info(RECIPE_SERIALIZERS.getEntries().size() + " RECIPE SERIALIZERS INITIALIZED");
+		LOGGER.info("RECIPE SERILIZERS INITIALIZED: " + RECIPE_SERIALIZERS.getEntries().size() + " OF 1");
 	}
 
 	public static final RegistryObject<RecipeSerializer<SawmillRecipe>> SAWMILL = RECIPE_SERIALIZERS.register("sawmill", SawmillRecipe.Serializer::new);

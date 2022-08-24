@@ -1,7 +1,7 @@
 {
   "parent": "technologica:block/display",
   "textures": {
-    "case": "technologica:block/display_case",
-    "base": "minecraft:block/black_wool"
+    "base": "minecraft:block/black_wool",
+    "case": "technologica:block/display_case"
   }
 }

@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "side": "technologica:block/olive_bookshelf",
-    "end": "technologica:block/olive_planks"
+    "end": "technologica:block/olive_planks",
+    "side": "technologica:block/olive_bookshelf"
   }
 }

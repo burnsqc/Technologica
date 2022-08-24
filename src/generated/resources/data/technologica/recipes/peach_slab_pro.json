@@ -19,8 +19,8 @@
           }
         ],
         "result": {
-          "item": "technologica:peach_slab",
-          "count": 2
+          "count": 2,
+          "item": "technologica:peach_slab"
         }
       }
     }

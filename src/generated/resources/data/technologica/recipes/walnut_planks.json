@@ -16,8 +16,8 @@
           }
         ],
         "result": {
-          "item": "technologica:walnut_planks",
-          "count": 4
+          "count": 4,
+          "item": "technologica:walnut_planks"
         }
       }
     }

@@ -10,19 +10,19 @@
       "recipe": {
         "type": "minecraft:crafting_shaped",
         "group": "wooden_stairs",
-        "pattern": [
-          "#  ",
-          "## ",
-          "###"
-        ],
         "key": {
           "#": {
             "item": "technologica:alchemical_planks"
           }
         },
+        "pattern": [
+          "#  ",
+          "## ",
+          "###"
+        ],
         "result": {
-          "item": "technologica:alchemical_stairs",
-          "count": 4
+          "count": 4,
+          "item": "technologica:alchemical_stairs"
         }
       }
     }

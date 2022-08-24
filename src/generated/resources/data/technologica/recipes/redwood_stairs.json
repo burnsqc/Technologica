@@ -10,19 +10,19 @@
       "recipe": {
         "type": "minecraft:crafting_shaped",
         "group": "wooden_stairs",
-        "pattern": [
-          "#  ",
-          "## ",
-          "###"
-        ],
         "key": {
           "#": {
             "item": "technologica:redwood_planks"
           }
         },
+        "pattern": [
+          "#  ",
+          "## ",
+          "###"
+        ],
         "result": {
-          "item": "technologica:redwood_stairs",
-          "count": 4
+          "count": 4,
+          "item": "technologica:redwood_stairs"
         }
       }
     }

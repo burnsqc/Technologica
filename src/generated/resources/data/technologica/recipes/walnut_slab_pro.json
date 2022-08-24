@@ -19,8 +19,8 @@
           }
         ],
         "result": {
-          "item": "technologica:walnut_slab",
-          "count": 2
+          "count": 2,
+          "item": "technologica:walnut_slab"
         }
       }
     }

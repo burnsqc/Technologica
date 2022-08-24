@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/slab_top",
   "textures": {
-    "side": "technologica:block/banana_planks",
     "bottom": "technologica:block/banana_planks",
+    "side": "technologica:block/banana_planks",
     "top": "technologica:block/banana_planks"
   }
 }

@@ -16,8 +16,8 @@
           }
         ],
         "result": {
-          "item": "technologica:lemon_planks",
-          "count": 4
+          "count": 4,
+          "item": "technologica:lemon_planks"
         }
       }
     }

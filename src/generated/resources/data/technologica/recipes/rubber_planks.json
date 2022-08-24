@@ -16,8 +16,8 @@
           }
         ],
         "result": {
-          "item": "technologica:rubber_planks",
-          "count": 4
+          "count": 4,
+          "item": "technologica:rubber_planks"
         }
       }
     }

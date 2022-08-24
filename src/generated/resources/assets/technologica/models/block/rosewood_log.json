@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "side": "technologica:block/rosewood_log",
-    "end": "technologica:block/rosewood_log_top"
+    "end": "technologica:block/rosewood_log_top",
+    "side": "technologica:block/rosewood_log"
   }
 }

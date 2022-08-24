@@ -16,8 +16,8 @@
           }
         ],
         "result": {
-          "item": "technologica:maple_planks",
-          "count": 4
+          "count": 4,
+          "item": "technologica:maple_planks"
         }
       }
     }

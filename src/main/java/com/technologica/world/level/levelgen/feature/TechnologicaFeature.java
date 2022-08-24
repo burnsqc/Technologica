@@ -13,14 +13,13 @@ import net.minecraftforge.registries.RegistryObject;
 
 @SuppressWarnings("deprecation")
 public class TechnologicaFeature {
-	private static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, MODID);
+	private static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.Keys.FEATURES, MODID);
 
 	public static void init() {
-		LOGGER.info("INITIALIZING FEATURES");
 		FEATURES.register(FMLJavaModLoadingContext.get().getModEventBus());
-		LOGGER.info(FEATURES.getEntries().size() + " FEATURES INITIALIZED");
+		LOGGER.info("FEATURES INITIALIZED: " + FEATURES.getEntries().size() + " OF 3");
 	}
-	
+
 	public static final RegistryObject<Feature<LakeFeature.Configuration>> BRINE_POOL = FEATURES.register("brine_pool", () -> new LakeFeature(LakeFeature.Configuration.CODEC));
 	public static final RegistryObject<Feature<BlockStateConfiguration>> OASIS = FEATURES.register("oasis", () -> new OasisFeature(BlockStateConfiguration.CODEC));
 	public static final RegistryObject<Feature<BlockStateConfiguration>> CRATER = FEATURES.register("crater", () -> new CraterFeature(BlockStateConfiguration.CODEC));

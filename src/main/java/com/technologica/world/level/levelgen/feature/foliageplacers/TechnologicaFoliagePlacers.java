@@ -10,18 +10,17 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class TechnologicaFoliagePlacers {
-	private static final DeferredRegister<FoliagePlacerType<?>> FOLIAGES = DeferredRegister.create(ForgeRegistries.FOLIAGE_PLACER_TYPES, MODID);
-	
-	public static void init() {
-		LOGGER.info("INITIALIZING FOLIAGE PLACERS");
-        FOLIAGES.register(FMLJavaModLoadingContext.get().getModEventBus());
-        LOGGER.info(FOLIAGES.getEntries().size() + " FOLIAGE PLACERS INITIALIZED");
-    }
+	private static final DeferredRegister<FoliagePlacerType<?>> FOLIAGE_PLACER_TYPES = DeferredRegister.create(ForgeRegistries.Keys.FOLIAGE_PLACER_TYPES, MODID);
 
-	public static final RegistryObject<FoliagePlacerType<?>> CONICAL = FOLIAGES.register("conical_foliage_placer", () -> new FoliagePlacerType<>(ConicalFoliagePlacer.conicalCodec));
-    public static final RegistryObject<FoliagePlacerType<?>> CYLINDRICAL = FOLIAGES.register("cylindrical_foliage_placer", () -> new FoliagePlacerType<>(CylindricalFoliagePlacer.cylindricalCodec));
-    public static final RegistryObject<FoliagePlacerType<?>> DISH = FOLIAGES.register("dish_foliage_placer", () -> new FoliagePlacerType<>(DishFoliagePlacer.dishCodec));
-    public static final RegistryObject<FoliagePlacerType<?>> PALM = FOLIAGES.register("palm_foliage_placer", () -> new FoliagePlacerType<>(PalmFoliagePlacer.palmCodec));
-    public static final RegistryObject<FoliagePlacerType<?>> TEARDROP = FOLIAGES.register("teardrop_foliage_placer", () -> new FoliagePlacerType<>(TeardropFoliagePlacer.teardropCodec));    
-    public static final RegistryObject<FoliagePlacerType<?>> REDWOOD = FOLIAGES.register("redwood_foliage_placer", () -> new FoliagePlacerType<>(RedwoodFoliagePlacer.redwoodCodec));    	
+	public static void init() {
+		FOLIAGE_PLACER_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
+		LOGGER.info("FOLIAGE PLACER TYPES INITIALIZED: " + FOLIAGE_PLACER_TYPES.getEntries().size() + " OF 6");
+	}
+
+	public static final RegistryObject<FoliagePlacerType<?>> CONICAL = FOLIAGE_PLACER_TYPES.register("conical_foliage_placer", () -> new FoliagePlacerType<>(ConicalFoliagePlacer.conicalCodec));
+	public static final RegistryObject<FoliagePlacerType<?>> CYLINDRICAL = FOLIAGE_PLACER_TYPES.register("cylindrical_foliage_placer", () -> new FoliagePlacerType<>(CylindricalFoliagePlacer.cylindricalCodec));
+	public static final RegistryObject<FoliagePlacerType<?>> DISH = FOLIAGE_PLACER_TYPES.register("dish_foliage_placer", () -> new FoliagePlacerType<>(DishFoliagePlacer.dishCodec));
+	public static final RegistryObject<FoliagePlacerType<?>> PALM = FOLIAGE_PLACER_TYPES.register("palm_foliage_placer", () -> new FoliagePlacerType<>(PalmFoliagePlacer.palmCodec));
+	public static final RegistryObject<FoliagePlacerType<?>> TEARDROP = FOLIAGE_PLACER_TYPES.register("teardrop_foliage_placer", () -> new FoliagePlacerType<>(TeardropFoliagePlacer.teardropCodec));
+	public static final RegistryObject<FoliagePlacerType<?>> REDWOOD = FOLIAGE_PLACER_TYPES.register("redwood_foliage_placer", () -> new FoliagePlacerType<>(RedwoodFoliagePlacer.redwoodCodec));
 }

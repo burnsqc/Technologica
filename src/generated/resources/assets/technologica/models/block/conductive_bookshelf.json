@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "side": "technologica:block/conductive_bookshelf",
-    "end": "technologica:block/conductive_planks"
+    "end": "technologica:block/conductive_planks",
+    "side": "technologica:block/conductive_bookshelf"
   }
 }

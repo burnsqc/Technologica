@@ -19,8 +19,8 @@
           }
         ],
         "result": {
-          "item": "technologica:rosewood_slab",
-          "count": 2
+          "count": 2,
+          "item": "technologica:rosewood_slab"
         }
       }
     }

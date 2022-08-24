@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "side": "technologica:block/zebrawood_log",
-    "end": "technologica:block/zebrawood_log_top"
+    "end": "technologica:block/zebrawood_log_top",
+    "side": "technologica:block/zebrawood_log"
   }
 }

@@ -16,8 +16,8 @@
           }
         ],
         "result": {
-          "item": "technologica:kiwi_planks",
-          "count": 4
+          "count": 4,
+          "item": "technologica:kiwi_planks"
         }
       }
     }

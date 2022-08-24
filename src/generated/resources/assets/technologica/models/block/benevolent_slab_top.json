@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/slab_top",
   "textures": {
-    "side": "technologica:block/benevolent_planks",
     "bottom": "technologica:block/benevolent_planks",
+    "side": "technologica:block/benevolent_planks",
     "top": "technologica:block/benevolent_planks"
   }
 }

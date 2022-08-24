@@ -14,15 +14,14 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class TechnologicaContainerType {
-	private static final DeferredRegister<MenuType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, Technologica.MODID);
-	
+	private static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(ForgeRegistries.MENU_TYPES, Technologica.MODID);
+
 	public static void init() {
-		LOGGER.info("INITIALIZING CONTAINERS");
-		CONTAINERS.register(FMLJavaModLoadingContext.get().getModEventBus());
-		LOGGER.info(CONTAINERS.getEntries().size() + " CONTAINERS INITIALIZED");
+		MENU_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
+		LOGGER.info("MENU TYPES INITIALIZED: " + MENU_TYPES.getEntries().size() + " OF 1");
 	}
-	
-	public static final RegistryObject<MenuType<AnnunciatorContainer>> ANNUNCIATOR = CONTAINERS.register("annunciator_container", () -> IForgeMenuType.create((windowId, inv, data) -> {
+
+	public static final RegistryObject<MenuType<AnnunciatorContainer>> ANNUNCIATOR = MENU_TYPES.register("annunciator_container", () -> IForgeMenuType.create((windowId, inv, data) -> {
 		BlockPos pos = data.readBlockPos();
 		Level world = inv.player.getCommandSenderWorld();
 		return new AnnunciatorContainer(windowId, world, pos, inv);

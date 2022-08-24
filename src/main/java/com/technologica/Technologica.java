@@ -19,6 +19,7 @@ import com.technologica.listeners.RegisterLayerDefinitons;
 import com.technologica.listeners.TechnologicaVillagerTrades;
 import com.technologica.listeners.TechnologicaWanderingTraderTrades;
 import com.technologica.listeners.WaterWalk;
+import com.technologica.listeners.lootmodifiers.LootModifierListener;
 import com.technologica.setup.ClientSetup;
 import com.technologica.setup.CommonSetup;
 import com.technologica.setup.Config;
@@ -30,6 +31,8 @@ import com.technologica.util.TechnologicaSoundEvents;
 import com.technologica.world.entity.TechnologicaEntityType;
 import com.technologica.world.inventory.TechnologicaContainerType;
 import com.technologica.world.item.TechnologicaItems;
+import com.technologica.world.item.crafting.TechnologicaRecipeSerializer;
+import com.technologica.world.item.crafting.TechnologicaRecipeType;
 import com.technologica.world.level.block.TechnologicaBlocks;
 import com.technologica.world.level.block.entity.TechnologicaBlockEntityType;
 import com.technologica.world.level.levelgen.feature.TechnologicaFeature;
@@ -53,17 +56,19 @@ public class Technologica {
 		ModLoadingContext.get().registerConfig(Type.COMMON, Config.SPEC, "technologica-common.toml");
 
 		TechnologicaBlocks.init();
-		TechnologicaItems.init();
-		TechnologicaBlockEntityType.init();
-		TechnologicaEntityType.init();
-		TechnologicaFluids.init2();
 		TechnologicaFluids.init();
-		TechnologicaContainerType.init();
-		TechnologicaParticleTypes.init();
-
+		TechnologicaFluids.init2();
+		TechnologicaItems.init();
 		TechnologicaSoundEvents.init();
+		TechnologicaEntityType.init();
+		TechnologicaParticleTypes.init();
+		TechnologicaContainerType.init();
+		TechnologicaBlockEntityType.init();
+		TechnologicaRecipeType.init();
+		TechnologicaRecipeSerializer.init();
 		TechnologicaFeature.init();
 		TechnologicaFoliagePlacers.init();
+		LootModifierListener.init();
 
 		// FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(Block.class, RegistrationListener::onRegisterBlocks);
 		// FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(Item.class, RegistrationListener::onRegisterItems);

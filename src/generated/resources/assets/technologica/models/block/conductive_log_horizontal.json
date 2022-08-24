@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column_horizontal",
   "textures": {
-    "side": "technologica:block/conductive_log",
-    "end": "technologica:block/conductive_log_top"
+    "end": "technologica:block/conductive_log_top",
+    "side": "technologica:block/conductive_log"
   }
 }

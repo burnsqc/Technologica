@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/slab_top",
   "textures": {
-    "side": "technologica:block/aspen_planks",
     "bottom": "technologica:block/aspen_planks",
+    "side": "technologica:block/aspen_planks",
     "top": "technologica:block/aspen_planks"
   }
 }

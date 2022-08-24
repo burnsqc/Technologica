@@ -19,8 +19,8 @@
           }
         ],
         "result": {
-          "item": "technologica:zebrawood_slab",
-          "count": 2
+          "count": 2,
+          "item": "technologica:zebrawood_slab"
         }
       }
     }

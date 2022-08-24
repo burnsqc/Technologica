@@ -1,13 +1,13 @@
 {
   "variants": {
-    "type=top": {
-      "model": "technologica:block/banana_slab_top"
-    },
     "type=bottom": {
       "model": "technologica:block/banana_slab"
     },
     "type=double": {
       "model": "technologica:block/banana_planks"
+    },
+    "type=top": {
+      "model": "technologica:block/banana_slab_top"
     }
   }
 }
