@@ -10,15 +10,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-
 /**
- * General class for extending, allowing orientation with six facing directions and four sub-facing directions. 
- * Created for ease of use.
+ * General class for extending, allowing orientation with six facing directions and four sub-facing directions. Created for ease of use.
  */
 public class TwentyFourDirectionBlock extends DirectionalBlock {
 	public static final DirectionProperty SUB_FACING = TechnologicaBlockStateProperties.SUB_FACING;
-	
+
 	public TwentyFourDirectionBlock(Properties propertiesIn) {
 		super(propertiesIn);
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.UP).setValue(SUB_FACING, Direction.NORTH));
@@ -27,7 +24,7 @@ public class TwentyFourDirectionBlock extends DirectionalBlock {
 	/*
 	 * Minecraft Methods
 	 */
-	
+
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext contextIn) {
 		int i = 0;
@@ -36,12 +33,12 @@ public class TwentyFourDirectionBlock extends DirectionalBlock {
 			i++;
 		}
 		return this.defaultBlockState().setValue(FACING, contextIn.getClickedFace()).setValue(SUB_FACING, adirection[i]);
-	}	
-	
+	}
+
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builderIn) {
 		builderIn.add(FACING, SUB_FACING);
 		super.createBlockStateDefinition(builderIn);
 	}
-	
+
 }

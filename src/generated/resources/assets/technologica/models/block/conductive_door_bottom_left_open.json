@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/door_bottom_left_open",
+  "render_type": "minecraft:cutout_mipped",
   "textures": {
     "bottom": "technologica:block/conductive_door_bottom",
     "top": "technologica:block/conductive_door_top"

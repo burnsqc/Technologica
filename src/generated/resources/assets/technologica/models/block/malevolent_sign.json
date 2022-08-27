@@ -1,4 +1,5 @@
 {
+  "render_type": "minecraft:solid",
   "textures": {
     "particle": "technologica:block/malevolent_planks"
   }

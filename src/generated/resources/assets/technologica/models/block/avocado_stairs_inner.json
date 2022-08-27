@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/inner_stairs",
+  "render_type": "minecraft:solid",
   "textures": {
     "bottom": "technologica:block/avocado_planks",
     "side": "technologica:block/avocado_planks",

@@ -1032,6 +1032,8 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> WALNUT_CHAIR_ITEM = ITEMS.register("walnut_chair", () -> new BlockItem(TechnologicaBlocks.WALNUT_CHAIR.get(), new Item.Properties().tab(TechnologicaItemGroup.DECORATIVE)));
 	public static final RegistryObject<Item> WARPED_CHAIR_ITEM = ITEMS.register("warped_chair", () -> new BlockItem(TechnologicaBlocks.WARPED_CHAIR.get(), new Item.Properties().tab(TechnologicaItemGroup.DECORATIVE)));
 	public static final RegistryObject<Item> ZEBRAWOOD_CHAIR_ITEM = ITEMS.register("zebrawood_chair", () -> new BlockItem(TechnologicaBlocks.ZEBRAWOOD_CHAIR.get(), new Item.Properties().tab(TechnologicaItemGroup.DECORATIVE)));
+	public static final RegistryObject<Item> FROSTBITTEN_CHAIR_ITEM = ITEMS.register("frostbitten_chair", () -> new BlockItem(TechnologicaBlocks.FROSTBITTEN_CHAIR.get(), new Item.Properties().tab(TechnologicaItemGroup.DECORATIVE)));
+
 	public static final RegistryObject<Item> ACACIA_TABLE_ITEM = ITEMS.register("acacia_table", () -> new BlockItem(TechnologicaBlocks.ACACIA_TABLE.get(), new Item.Properties().tab(TechnologicaItemGroup.DECORATIVE)));
 	public static final RegistryObject<Item> APRICOT_TABLE_ITEM = ITEMS.register("apricot_table", () -> new BlockItem(TechnologicaBlocks.APRICOT_TABLE.get(), new Item.Properties().tab(TechnologicaItemGroup.DECORATIVE)));
 	public static final RegistryObject<Item> ASPEN_TABLE_ITEM = ITEMS.register("aspen_table", () -> new BlockItem(TechnologicaBlocks.ASPEN_TABLE.get(), new Item.Properties().tab(TechnologicaItemGroup.DECORATIVE)));
@@ -1065,6 +1067,7 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> WALNUT_TABLE_ITEM = ITEMS.register("walnut_table", () -> new BlockItem(TechnologicaBlocks.WALNUT_TABLE.get(), new Item.Properties().tab(TechnologicaItemGroup.DECORATIVE)));
 	public static final RegistryObject<Item> WARPED_TABLE_ITEM = ITEMS.register("warped_table", () -> new BlockItem(TechnologicaBlocks.WARPED_TABLE.get(), new Item.Properties().tab(TechnologicaItemGroup.DECORATIVE)));
 	public static final RegistryObject<Item> ZEBRAWOOD_TABLE_ITEM = ITEMS.register("zebrawood_table", () -> new BlockItem(TechnologicaBlocks.ZEBRAWOOD_TABLE.get(), new Item.Properties().tab(TechnologicaItemGroup.DECORATIVE)));
+	public static final RegistryObject<Item> FROSTBITTEN_TABLE_ITEM = ITEMS.register("frostbitten_table", () -> new BlockItem(TechnologicaBlocks.FROSTBITTEN_TABLE.get(), new Item.Properties().tab(TechnologicaItemGroup.DECORATIVE)));
 
 	/**
 	 * ARMORY

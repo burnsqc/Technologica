@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "technologica:block/necrotic_wall_sign"
+      "model": "technologica:block/necrotic_sign"
     }
   }
 }

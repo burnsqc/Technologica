@@ -8,8 +8,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-
 /**
  * General class for extending, similar to vanilla Minecraft HorizontalBlock. The difference between the two is that this class fills the state container and handles placement, removing the need to for classes which extend this one to do so. Created for ease of use.
  */

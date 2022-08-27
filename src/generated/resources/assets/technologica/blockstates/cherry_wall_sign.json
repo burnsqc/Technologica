@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "technologica:block/cherry_wall_sign"
+      "model": "technologica:block/cherry_sign"
     }
   }
 }

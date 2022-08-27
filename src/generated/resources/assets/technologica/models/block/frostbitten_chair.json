@@ -1,5 +1,6 @@
 {
   "parent": "technologica:block/chair",
+  "render_type": "minecraft:translucent",
   "textures": {
     "planks": "technologica:block/frostbitten_planks"
   }

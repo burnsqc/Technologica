@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "technologica:block/mahogany_wall_sign"
+      "model": "technologica:block/mahogany_sign"
     }
   }
 }

@@ -6,6 +6,7 @@ import static com.technologica.Technologica.MODID;
 import java.util.function.Supplier;
 
 import com.technologica.world.item.TechnologicaItems;
+import com.technologica.world.level.block.entity.TechnologicaSignBlockEntity;
 import com.technologica.world.level.block.entity.VanillaSignBlockEntity;
 import com.technologica.world.level.block.grower.AncientAmbrosiaTreeGrower;
 import com.technologica.world.level.block.grower.ApricotTreeGrower;
@@ -836,7 +837,7 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> ALCHEMICAL_SIGN = BLOCKS.register("alchemical_sign", () -> standingSignBlock(TechnologicaWoodType.ALCHEMICAL));
 	public static final RegistryObject<Block> BENEVOLENT_SIGN = BLOCKS.register("benevolent_sign", () -> standingSignBlock(TechnologicaWoodType.BENEVOLENT));
 	public static final RegistryObject<Block> CONDUCTIVE_SIGN = BLOCKS.register("conductive_sign", () -> standingSignBlock(TechnologicaWoodType.CONDUCTIVE));
-	public static final RegistryObject<Block> FROSTBITTEN_SIGN = BLOCKS.register("frostbitten_sign", () -> standingSignBlock(TechnologicaWoodType.FROSTBITTEN));
+	public static final RegistryObject<Block> FROSTBITTEN_SIGN = BLOCKS.register("frostbitten_sign", () -> technologicaStandingSignBlock(TechnologicaWoodType.FROSTBITTEN));
 	public static final RegistryObject<Block> FRUITFUL_SIGN = BLOCKS.register("fruitful_sign", () -> standingSignBlock(TechnologicaWoodType.FRUITFUL));
 	public static final RegistryObject<Block> INFERNAL_SIGN = BLOCKS.register("infernal_sign", () -> standingSignBlock(TechnologicaWoodType.INFERNAL));
 	public static final RegistryObject<Block> MALEVOLENT_SIGN = BLOCKS.register("malevolent_sign", () -> standingSignBlock(TechnologicaWoodType.MALEVOLENT));
@@ -870,7 +871,7 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> ALCHEMICAL_WALL_SIGN = BLOCKS.register("alchemical_wall_sign", () -> wallSignBlock(TechnologicaWoodType.ALCHEMICAL));
 	public static final RegistryObject<Block> BENEVOLENT_WALL_SIGN = BLOCKS.register("benevolent_wall_sign", () -> wallSignBlock(TechnologicaWoodType.BENEVOLENT));
 	public static final RegistryObject<Block> CONDUCTIVE_WALL_SIGN = BLOCKS.register("conductive_wall_sign", () -> wallSignBlock(TechnologicaWoodType.CONDUCTIVE));
-	public static final RegistryObject<Block> FROSTBITTEN_WALL_SIGN = BLOCKS.register("frostbitten_wall_sign", () -> wallSignBlock(TechnologicaWoodType.FROSTBITTEN));
+	public static final RegistryObject<Block> FROSTBITTEN_WALL_SIGN = BLOCKS.register("frostbitten_wall_sign", () -> technologicaWallSignBlock(TechnologicaWoodType.FROSTBITTEN));
 	public static final RegistryObject<Block> FRUITFUL_WALL_SIGN = BLOCKS.register("fruitful_wall_sign", () -> wallSignBlock(TechnologicaWoodType.FRUITFUL));
 	public static final RegistryObject<Block> INFERNAL_WALL_SIGN = BLOCKS.register("infernal_wall_sign", () -> wallSignBlock(TechnologicaWoodType.INFERNAL));
 	public static final RegistryObject<Block> MALEVOLENT_WALL_SIGN = BLOCKS.register("malevolent_wall_sign", () -> wallSignBlock(TechnologicaWoodType.MALEVOLENT));
@@ -1186,6 +1187,24 @@ public class TechnologicaBlocks {
 			@Override
 			public BlockEntity newBlockEntity(BlockPos p_154556_, BlockState p_154557_) {
 				return new VanillaSignBlockEntity(p_154556_, p_154557_);
+			}
+		};
+	}
+
+	private static StandingSignBlock technologicaStandingSignBlock(WoodType typeIn) {
+		return new StandingSignBlock(BlockBehaviour.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD), typeIn) {
+			@Override
+			public BlockEntity newBlockEntity(BlockPos p_154556_, BlockState p_154557_) {
+				return new TechnologicaSignBlockEntity(p_154556_, p_154557_);
+			}
+		};
+	}
+
+	private static WallSignBlock technologicaWallSignBlock(WoodType typeIn) {
+		return new WallSignBlock(BlockBehaviour.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD), typeIn) {
+			@Override
+			public BlockEntity newBlockEntity(BlockPos p_154556_, BlockState p_154557_) {
+				return new TechnologicaSignBlockEntity(p_154556_, p_154557_);
 			}
 		};
 	}

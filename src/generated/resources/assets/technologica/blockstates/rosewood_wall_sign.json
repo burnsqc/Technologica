@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "technologica:block/rosewood_wall_sign"
+      "model": "technologica:block/rosewood_sign"
     }
   }
 }

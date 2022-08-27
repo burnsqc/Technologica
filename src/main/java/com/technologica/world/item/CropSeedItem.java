@@ -8,8 +8,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
 
-import net.minecraft.world.item.Item.Properties;
-
 public class CropSeedItem extends ItemNameBlockItem implements IPlantable {
 	private Block crop;
 

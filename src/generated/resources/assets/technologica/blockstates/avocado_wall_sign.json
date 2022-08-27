@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "technologica:block/avocado_wall_sign"
+      "model": "technologica:block/avocado_sign"
     }
   }
 }

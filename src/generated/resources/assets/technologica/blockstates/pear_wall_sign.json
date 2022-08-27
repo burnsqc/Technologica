@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "technologica:block/pear_wall_sign"
+      "model": "technologica:block/pear_sign"
     }
   }
 }

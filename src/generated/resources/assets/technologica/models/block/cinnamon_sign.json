@@ -1,4 +1,5 @@
 {
+  "render_type": "minecraft:solid",
   "textures": {
     "particle": "technologica:block/cinnamon_planks"
   }

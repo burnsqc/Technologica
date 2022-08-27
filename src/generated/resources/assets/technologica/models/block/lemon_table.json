@@ -1,5 +1,6 @@
 {
   "parent": "technologica:block/table",
+  "render_type": "minecraft:solid",
   "textures": {
     "planks": "technologica:block/lemon_planks"
   }

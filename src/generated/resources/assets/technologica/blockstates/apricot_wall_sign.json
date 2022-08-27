@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "technologica:block/apricot_wall_sign"
+      "model": "technologica:block/apricot_sign"
     }
   }
 }

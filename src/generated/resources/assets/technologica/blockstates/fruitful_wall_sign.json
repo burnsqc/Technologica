@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "technologica:block/fruitful_wall_sign"
+      "model": "technologica:block/fruitful_sign"
     }
   }
 }

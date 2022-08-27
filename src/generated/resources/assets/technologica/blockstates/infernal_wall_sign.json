@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "technologica:block/infernal_wall_sign"
+      "model": "technologica:block/infernal_sign"
     }
   }
 }

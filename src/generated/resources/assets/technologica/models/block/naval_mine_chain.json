@@ -1,3 +1,4 @@
 {
-  "parent": "minecraft:block/chain"
+  "parent": "minecraft:block/chain",
+  "render_type": "minecraft:cutout_mipped"
 }

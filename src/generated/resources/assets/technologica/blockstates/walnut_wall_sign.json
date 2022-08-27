@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "technologica:block/walnut_wall_sign"
+      "model": "technologica:block/walnut_sign"
     }
   }
 }

@@ -14,11 +14,8 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-
 /**
- * Special one-off class for logs which belong to fruiting trees.
- * Created to handle mulch growth acceleration.
+ * Special one-off class for logs which belong to fruiting trees. Created to handle mulch growth acceleration.
  */
 public class FruitingLogBlock extends RotatedPillarBlock {
 	public static final BooleanProperty PERSISTENT = BlockStateProperties.PERSISTENT;
@@ -27,11 +24,11 @@ public class FruitingLogBlock extends RotatedPillarBlock {
 		super(Properties.of(Material.WOOD, state -> state.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? MaterialColor.WOOD : MaterialColor.PODZOL).strength(2.0F).sound(SoundType.WOOD));
 		this.registerDefaultState(this.stateDefinition.any().setValue(PERSISTENT, false).setValue(AXIS, Direction.Axis.Y));
 	}
-	
+
 	/*
 	 * Minecraft Methods
 	 */
-	
+
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
 		return this.defaultBlockState().setValue(AXIS, context.getClickedFace().getAxis()).setValue(PERSISTENT, true);
@@ -42,7 +39,7 @@ public class FruitingLogBlock extends RotatedPillarBlock {
 		builder.add(PERSISTENT);
 		super.createBlockStateDefinition(builder);
 	}
-	
+
 	@Override
 	public int getFlammability(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
 		return 5;

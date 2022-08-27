@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "technologica:block/conductive_wall_sign"
+      "model": "technologica:block/conductive_sign"
     }
   }
 }

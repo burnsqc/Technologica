@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "technologica:block/kiwi_wall_sign"
+      "model": "technologica:block/kiwi_sign"
     }
   }
 }

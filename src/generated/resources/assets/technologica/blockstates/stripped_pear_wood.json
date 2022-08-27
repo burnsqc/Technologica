@@ -1,7 +1,7 @@
 {
   "variants": {
     "axis=x": {
-      "model": "technologica:block/stripped_pear_wood",
+      "model": "technologica:block/stripped_pear_wood_horizontal",
       "x": 90,
       "y": 90
     },
@@ -9,7 +9,7 @@
       "model": "technologica:block/stripped_pear_wood"
     },
     "axis=z": {
-      "model": "technologica:block/stripped_pear_wood",
+      "model": "technologica:block/stripped_pear_wood_horizontal",
       "x": 90
     }
   }

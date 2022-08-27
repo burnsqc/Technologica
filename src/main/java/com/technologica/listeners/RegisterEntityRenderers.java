@@ -8,6 +8,7 @@ import com.technologica.client.renderer.blockentity.LineShaftHangerRenderer;
 import com.technologica.client.renderer.blockentity.LineShaftRenderer;
 import com.technologica.client.renderer.blockentity.PotionRenderer;
 import com.technologica.client.renderer.blockentity.SawmillRenderer;
+import com.technologica.client.renderer.blockentity.TechnologicaSignRenderer;
 import com.technologica.client.renderer.entity.AlligatorRenderer;
 import com.technologica.client.renderer.entity.BeaverRenderer;
 import com.technologica.client.renderer.entity.BuffaloRenderer;
@@ -121,6 +122,7 @@ public class RegisterEntityRenderers {
 
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.ANNUNCIATOR_TILE.get(), AnnunciatorRenderer::new);
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.VANILLA_SIGN.get(), SignRenderer::new);
+		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.TECHNOLOGICA_SIGN.get(), TechnologicaSignRenderer::new);
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.FRUIT_CROP.get(), FruitRenderer::new);
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.POTION_CROP.get(), PotionRenderer::new);
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.DISPLAY_TILE.get(), DisplayCaseRenderer::new);
