@@ -206,7 +206,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		simpleBlockItem(TechnologicaBlocks.WALNUT_LOG.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.WALNUT_LOG.get()), blockTexture(TechnologicaBlocks.WALNUT_LOG.get()), new ResourceLocation(blockTexture(TechnologicaBlocks.WALNUT_LOG.get()) + "_top")));
 		simpleBlockItem(TechnologicaBlocks.ZEBRAWOOD_LOG.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.ZEBRAWOOD_LOG.get()), blockTexture(TechnologicaBlocks.ZEBRAWOOD_LOG.get()), new ResourceLocation(blockTexture(TechnologicaBlocks.ZEBRAWOOD_LOG.get()) + "_top")));
 		simpleBlockItem(TechnologicaBlocks.FRUITFUL_LOG.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.FRUITFUL_LOG.get()), blockTexture(TechnologicaBlocks.FRUITFUL_LOG.get()), new ResourceLocation(blockTexture(TechnologicaBlocks.FRUITFUL_LOG.get()) + "_top")));
-		simpleBlockItem(TechnologicaBlocks.FROSTBITTEN_LOG.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.FROSTBITTEN_LOG.get()), blockTexture(TechnologicaBlocks.FROSTBITTEN_LOG.get()), new ResourceLocation(blockTexture(TechnologicaBlocks.FROSTBITTEN_LOG.get()) + "_top")));
+		simpleBlockItem(TechnologicaBlocks.FROSTBITTEN_LOG.get(), hollowLogModel(TechnologicaBlocks.FROSTBITTEN_LOG.get()));
 		simpleBlockItem(TechnologicaBlocks.CONDUCTIVE_LOG.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.CONDUCTIVE_LOG.get()), blockTexture(TechnologicaBlocks.CONDUCTIVE_LOG.get()), new ResourceLocation(blockTexture(TechnologicaBlocks.CONDUCTIVE_LOG.get()) + "_top")));
 		simpleBlockItem(TechnologicaBlocks.ALCHEMICAL_LOG.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.ALCHEMICAL_LOG.get()), blockTexture(TechnologicaBlocks.ALCHEMICAL_LOG.get()), new ResourceLocation(blockTexture(TechnologicaBlocks.ALCHEMICAL_LOG.get()) + "_top")));
 		simpleBlockItem(TechnologicaBlocks.BENEVOLENT_LOG.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.BENEVOLENT_LOG.get()), blockTexture(TechnologicaBlocks.BENEVOLENT_LOG.get()), new ResourceLocation(blockTexture(TechnologicaBlocks.BENEVOLENT_LOG.get()) + "_top")));
@@ -527,39 +527,39 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		simpleBlockItem(TechnologicaBlocks.INFERNAL_FENCE_GATE.get(), models().fenceGate(ResourceLocationHelper.getPath(TechnologicaBlocks.INFERNAL_FENCE_GATE.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.INFERNAL_FENCE_GATE.get()), "_fence_gate", "_planks")));
 		simpleBlockItem(TechnologicaBlocks.NECROTIC_FENCE_GATE.get(), models().fenceGate(ResourceLocationHelper.getPath(TechnologicaBlocks.NECROTIC_FENCE_GATE.get()), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.NECROTIC_FENCE_GATE.get()), "_fence_gate", "_planks")));
 
-		doorBlockItem(TechnologicaBlocks.APRICOT_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
-		doorBlockItem(TechnologicaBlocks.ASPEN_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
-		doorBlockItem(TechnologicaBlocks.AVOCADO_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
-		doorBlockItem(TechnologicaBlocks.BANANA_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
-		doorBlockItem(TechnologicaBlocks.CHERRY_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
-		doorBlockItem(TechnologicaBlocks.CHESTNUT_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
-		doorBlockItem(TechnologicaBlocks.CINNAMON_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
-		doorBlockItem(TechnologicaBlocks.COCONUT_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
-		doorBlockItem(TechnologicaBlocks.EBONY_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
-		doorBlockItem(TechnologicaBlocks.KIWI_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
-		doorBlockItem(TechnologicaBlocks.LEMON_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
-		doorBlockItem(TechnologicaBlocks.LIME_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
-		doorBlockItem(TechnologicaBlocks.MAHOGANY_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
-		doorBlockItem(TechnologicaBlocks.MAPLE_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
-		doorBlockItem(TechnologicaBlocks.OLIVE_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
-		doorBlockItem(TechnologicaBlocks.ORANGE_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
-		doorBlockItem(TechnologicaBlocks.PEACH_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
-		doorBlockItem(TechnologicaBlocks.PEAR_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
-		doorBlockItem(TechnologicaBlocks.PLUM_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
-		doorBlockItem(TechnologicaBlocks.REDWOOD_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
-		doorBlockItem(TechnologicaBlocks.ROSEWOOD_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
-		doorBlockItem(TechnologicaBlocks.RUBBER_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
-		doorBlockItem(TechnologicaBlocks.TEAK_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
-		doorBlockItem(TechnologicaBlocks.WALNUT_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
-		doorBlockItem(TechnologicaBlocks.ZEBRAWOOD_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
-		doorBlockItem(TechnologicaBlocks.FRUITFUL_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
-		doorBlockItem(TechnologicaBlocks.FROSTBITTEN_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
-		doorBlockItem(TechnologicaBlocks.CONDUCTIVE_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
-		doorBlockItem(TechnologicaBlocks.ALCHEMICAL_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
-		doorBlockItem(TechnologicaBlocks.BENEVOLENT_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
-		doorBlockItem(TechnologicaBlocks.MALEVOLENT_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
-		doorBlockItem(TechnologicaBlocks.INFERNAL_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
-		doorBlockItem(TechnologicaBlocks.NECROTIC_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"));
+		doorBlockItem(TechnologicaBlocks.APRICOT_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
+		doorBlockItem(TechnologicaBlocks.ASPEN_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
+		doorBlockItem(TechnologicaBlocks.AVOCADO_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
+		doorBlockItem(TechnologicaBlocks.BANANA_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
+		doorBlockItem(TechnologicaBlocks.CHERRY_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
+		doorBlockItem(TechnologicaBlocks.CHESTNUT_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
+		doorBlockItem(TechnologicaBlocks.CINNAMON_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
+		doorBlockItem(TechnologicaBlocks.COCONUT_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
+		doorBlockItem(TechnologicaBlocks.EBONY_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
+		doorBlockItem(TechnologicaBlocks.KIWI_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
+		doorBlockItem(TechnologicaBlocks.LEMON_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
+		doorBlockItem(TechnologicaBlocks.LIME_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
+		doorBlockItem(TechnologicaBlocks.MAHOGANY_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
+		doorBlockItem(TechnologicaBlocks.MAPLE_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
+		doorBlockItem(TechnologicaBlocks.OLIVE_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
+		doorBlockItem(TechnologicaBlocks.ORANGE_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
+		doorBlockItem(TechnologicaBlocks.PEACH_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
+		doorBlockItem(TechnologicaBlocks.PEAR_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
+		doorBlockItem(TechnologicaBlocks.PLUM_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
+		doorBlockItem(TechnologicaBlocks.REDWOOD_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
+		doorBlockItem(TechnologicaBlocks.ROSEWOOD_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
+		doorBlockItem(TechnologicaBlocks.RUBBER_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
+		doorBlockItem(TechnologicaBlocks.TEAK_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
+		doorBlockItem(TechnologicaBlocks.WALNUT_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
+		doorBlockItem(TechnologicaBlocks.ZEBRAWOOD_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
+		doorBlockItem(TechnologicaBlocks.FRUITFUL_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
+		doorBlockItem(TechnologicaBlocks.FROSTBITTEN_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "translucent");
+		doorBlockItem(TechnologicaBlocks.CONDUCTIVE_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
+		doorBlockItem(TechnologicaBlocks.ALCHEMICAL_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
+		doorBlockItem(TechnologicaBlocks.BENEVOLENT_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
+		doorBlockItem(TechnologicaBlocks.MALEVOLENT_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
+		doorBlockItem(TechnologicaBlocks.INFERNAL_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
+		doorBlockItem(TechnologicaBlocks.NECROTIC_DOOR.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
 
 		simpleBlockItem(TechnologicaBlocks.APRICOT_TRAPDOOR.get(), models().trapdoorOrientableBottom(ResourceLocationHelper.getPath(TechnologicaBlocks.APRICOT_TRAPDOOR.get()) + "_bottom", blockTexture(TechnologicaBlocks.APRICOT_TRAPDOOR.get())));
 		simpleBlockItem(TechnologicaBlocks.ASPEN_TRAPDOOR.get(), models().trapdoorOrientableBottom(ResourceLocationHelper.getPath(TechnologicaBlocks.ASPEN_TRAPDOOR.get()) + "_bottom", blockTexture(TechnologicaBlocks.ASPEN_TRAPDOOR.get())));
@@ -869,7 +869,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		logBlockWithRenderType((RotatedPillarBlock) TechnologicaBlocks.WALNUT_LOG.get(), "solid");
 		logBlockWithRenderType((RotatedPillarBlock) TechnologicaBlocks.ZEBRAWOOD_LOG.get(), "solid");
 		logBlockWithRenderType((RotatedPillarBlock) TechnologicaBlocks.FRUITFUL_LOG.get(), "solid");
-		logBlockWithRenderType((RotatedPillarBlock) TechnologicaBlocks.FROSTBITTEN_LOG.get(), "solid");
+		axisBlock((RotatedPillarBlock) TechnologicaBlocks.FROSTBITTEN_LOG.get(), hollowLogModel(TechnologicaBlocks.FROSTBITTEN_LOG.get()), hollowLogModel(TechnologicaBlocks.FROSTBITTEN_LOG.get()));
 		logBlockWithRenderType((RotatedPillarBlock) TechnologicaBlocks.CONDUCTIVE_LOG.get(), "solid");
 		logBlockWithRenderType((RotatedPillarBlock) TechnologicaBlocks.ALCHEMICAL_LOG.get(), "solid");
 		logBlockWithRenderType((RotatedPillarBlock) TechnologicaBlocks.BENEVOLENT_LOG.get(), "solid");
@@ -905,7 +905,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		logBlockWithRenderType((RotatedPillarBlock) TechnologicaBlocks.STRIPPED_WALNUT_LOG.get(), "solid");
 		logBlockWithRenderType((RotatedPillarBlock) TechnologicaBlocks.STRIPPED_ZEBRAWOOD_LOG.get(), "solid");
 		logBlockWithRenderType((RotatedPillarBlock) TechnologicaBlocks.STRIPPED_FRUITFUL_LOG.get(), "solid");
-		logBlockWithRenderType((RotatedPillarBlock) TechnologicaBlocks.STRIPPED_FROSTBITTEN_LOG.get(), "solid");
+		logBlockWithRenderType((RotatedPillarBlock) TechnologicaBlocks.STRIPPED_FROSTBITTEN_LOG.get(), "translucent");
 		logBlockWithRenderType((RotatedPillarBlock) TechnologicaBlocks.STRIPPED_CONDUCTIVE_LOG.get(), "solid");
 		logBlockWithRenderType((RotatedPillarBlock) TechnologicaBlocks.STRIPPED_ALCHEMICAL_LOG.get(), "solid");
 		logBlockWithRenderType((RotatedPillarBlock) TechnologicaBlocks.STRIPPED_BENEVOLENT_LOG.get(), "solid");
@@ -941,7 +941,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		axisBlockWithRenderType((RotatedPillarBlock) TechnologicaBlocks.STRIPPED_WALNUT_WOOD.get(), blockTexture(TechnologicaBlocks.STRIPPED_WALNUT_LOG.get()), blockTexture(TechnologicaBlocks.STRIPPED_WALNUT_LOG.get()), "solid");
 		axisBlockWithRenderType((RotatedPillarBlock) TechnologicaBlocks.STRIPPED_ZEBRAWOOD_WOOD.get(), blockTexture(TechnologicaBlocks.STRIPPED_ZEBRAWOOD_LOG.get()), blockTexture(TechnologicaBlocks.STRIPPED_ZEBRAWOOD_LOG.get()), "solid");
 		axisBlockWithRenderType((RotatedPillarBlock) TechnologicaBlocks.STRIPPED_FRUITFUL_WOOD.get(), blockTexture(TechnologicaBlocks.STRIPPED_FRUITFUL_LOG.get()), blockTexture(TechnologicaBlocks.STRIPPED_FRUITFUL_LOG.get()), "solid");
-		axisBlockWithRenderType((RotatedPillarBlock) TechnologicaBlocks.STRIPPED_FROSTBITTEN_WOOD.get(), blockTexture(TechnologicaBlocks.STRIPPED_FRUITFUL_LOG.get()), blockTexture(TechnologicaBlocks.STRIPPED_FRUITFUL_LOG.get()), "solid");
+		axisBlockWithRenderType((RotatedPillarBlock) TechnologicaBlocks.STRIPPED_FROSTBITTEN_WOOD.get(), blockTexture(TechnologicaBlocks.STRIPPED_FROSTBITTEN_LOG.get()), blockTexture(TechnologicaBlocks.STRIPPED_FROSTBITTEN_LOG.get()), "translucent");
 		axisBlockWithRenderType((RotatedPillarBlock) TechnologicaBlocks.STRIPPED_CONDUCTIVE_WOOD.get(), blockTexture(TechnologicaBlocks.STRIPPED_CONDUCTIVE_LOG.get()), blockTexture(TechnologicaBlocks.STRIPPED_CONDUCTIVE_LOG.get()), "solid");
 		axisBlockWithRenderType((RotatedPillarBlock) TechnologicaBlocks.STRIPPED_ALCHEMICAL_WOOD.get(), blockTexture(TechnologicaBlocks.STRIPPED_ALCHEMICAL_LOG.get()), blockTexture(TechnologicaBlocks.STRIPPED_ALCHEMICAL_LOG.get()), "solid");
 		axisBlockWithRenderType((RotatedPillarBlock) TechnologicaBlocks.STRIPPED_BENEVOLENT_WOOD.get(), blockTexture(TechnologicaBlocks.STRIPPED_BENEVOLENT_LOG.get()), blockTexture(TechnologicaBlocks.STRIPPED_BENEVOLENT_LOG.get()), "solid");
@@ -977,7 +977,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		axisBlockWithRenderType((RotatedPillarBlock) TechnologicaBlocks.WALNUT_WOOD.get(), blockTexture(TechnologicaBlocks.WALNUT_LOG.get()), blockTexture(TechnologicaBlocks.WALNUT_LOG.get()), "solid");
 		axisBlockWithRenderType((RotatedPillarBlock) TechnologicaBlocks.ZEBRAWOOD_WOOD.get(), blockTexture(TechnologicaBlocks.ZEBRAWOOD_LOG.get()), blockTexture(TechnologicaBlocks.ZEBRAWOOD_LOG.get()), "solid");
 		axisBlockWithRenderType((RotatedPillarBlock) TechnologicaBlocks.FRUITFUL_WOOD.get(), blockTexture(TechnologicaBlocks.FRUITFUL_LOG.get()), blockTexture(TechnologicaBlocks.FRUITFUL_LOG.get()), "solid");
-		axisBlockWithRenderType((RotatedPillarBlock) TechnologicaBlocks.FROSTBITTEN_WOOD.get(), blockTexture(TechnologicaBlocks.FRUITFUL_LOG.get()), blockTexture(TechnologicaBlocks.FRUITFUL_LOG.get()), "solid");
+		axisBlockWithRenderType((RotatedPillarBlock) TechnologicaBlocks.FROSTBITTEN_WOOD.get(), blockTexture(TechnologicaBlocks.FROSTBITTEN_LOG.get()), blockTexture(TechnologicaBlocks.FROSTBITTEN_LOG.get()), "solid");
 		axisBlockWithRenderType((RotatedPillarBlock) TechnologicaBlocks.CONDUCTIVE_WOOD.get(), blockTexture(TechnologicaBlocks.CONDUCTIVE_LOG.get()), blockTexture(TechnologicaBlocks.CONDUCTIVE_LOG.get()), "solid");
 		axisBlockWithRenderType((RotatedPillarBlock) TechnologicaBlocks.ALCHEMICAL_WOOD.get(), blockTexture(TechnologicaBlocks.ALCHEMICAL_LOG.get()), blockTexture(TechnologicaBlocks.ALCHEMICAL_LOG.get()), "solid");
 		axisBlockWithRenderType((RotatedPillarBlock) TechnologicaBlocks.BENEVOLENT_WOOD.get(), blockTexture(TechnologicaBlocks.BENEVOLENT_LOG.get()), blockTexture(TechnologicaBlocks.BENEVOLENT_LOG.get()), "solid");
@@ -1271,7 +1271,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		doorBlockWithRenderType((DoorBlock) TechnologicaBlocks.WALNUT_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.WALNUT_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.WALNUT_DOOR.get()), "_top"), "cutout_mipped");
 		doorBlockWithRenderType((DoorBlock) TechnologicaBlocks.ZEBRAWOOD_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.ZEBRAWOOD_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.ZEBRAWOOD_DOOR.get()), "_top"), "cutout_mipped");
 		doorBlockWithRenderType((DoorBlock) TechnologicaBlocks.FRUITFUL_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.FRUITFUL_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.FRUITFUL_DOOR.get()), "_top"), "cutout_mipped");
-		doorBlockWithRenderType((DoorBlock) TechnologicaBlocks.FROSTBITTEN_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.FROSTBITTEN_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.FROSTBITTEN_DOOR.get()), "_top"), "cutout_mipped");
+		doorBlockWithRenderType((DoorBlock) TechnologicaBlocks.FROSTBITTEN_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.FROSTBITTEN_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.FROSTBITTEN_DOOR.get()), "_top"), "translucent");
 		doorBlockWithRenderType((DoorBlock) TechnologicaBlocks.CONDUCTIVE_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.CONDUCTIVE_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.CONDUCTIVE_DOOR.get()), "_top"), "cutout_mipped");
 		doorBlockWithRenderType((DoorBlock) TechnologicaBlocks.ALCHEMICAL_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.ALCHEMICAL_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.ALCHEMICAL_DOOR.get()), "_top"), "cutout_mipped");
 		doorBlockWithRenderType((DoorBlock) TechnologicaBlocks.BENEVOLENT_DOOR.get(), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.BENEVOLENT_DOOR.get()), "_bottom"), ResourceLocationHelper.extend(blockTexture(TechnologicaBlocks.BENEVOLENT_DOOR.get()), "_top"), "cutout_mipped");
@@ -1307,7 +1307,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		trapdoorBlockWithRenderType((TrapDoorBlock) TechnologicaBlocks.WALNUT_TRAPDOOR.get(), blockTexture(TechnologicaBlocks.WALNUT_TRAPDOOR.get()), true, "cutout_mipped");
 		trapdoorBlockWithRenderType((TrapDoorBlock) TechnologicaBlocks.ZEBRAWOOD_TRAPDOOR.get(), blockTexture(TechnologicaBlocks.ZEBRAWOOD_TRAPDOOR.get()), true, "cutout_mipped");
 		trapdoorBlockWithRenderType((TrapDoorBlock) TechnologicaBlocks.FRUITFUL_TRAPDOOR.get(), blockTexture(TechnologicaBlocks.FRUITFUL_TRAPDOOR.get()), true, "cutout_mipped");
-		trapdoorBlockWithRenderType((TrapDoorBlock) TechnologicaBlocks.FROSTBITTEN_TRAPDOOR.get(), blockTexture(TechnologicaBlocks.FROSTBITTEN_TRAPDOOR.get()), true, "cutout_mipped");
+		trapdoorBlockWithRenderType((TrapDoorBlock) TechnologicaBlocks.FROSTBITTEN_TRAPDOOR.get(), blockTexture(TechnologicaBlocks.FROSTBITTEN_TRAPDOOR.get()), true, "translucent");
 		trapdoorBlockWithRenderType((TrapDoorBlock) TechnologicaBlocks.CONDUCTIVE_TRAPDOOR.get(), blockTexture(TechnologicaBlocks.CONDUCTIVE_TRAPDOOR.get()), true, "cutout_mipped");
 		trapdoorBlockWithRenderType((TrapDoorBlock) TechnologicaBlocks.ALCHEMICAL_TRAPDOOR.get(), blockTexture(TechnologicaBlocks.ALCHEMICAL_TRAPDOOR.get()), true, "cutout_mipped");
 		trapdoorBlockWithRenderType((TrapDoorBlock) TechnologicaBlocks.BENEVOLENT_TRAPDOOR.get(), blockTexture(TechnologicaBlocks.BENEVOLENT_TRAPDOOR.get()), true, "cutout_mipped");
@@ -1353,39 +1353,39 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 	}
 
 	private void signBlocks() {
-		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.APRICOT_SIGN.get(), (WallSignBlock) TechnologicaBlocks.APRICOT_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.APRICOT_PLANKS.get()), "solid");
-		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.ASPEN_SIGN.get(), (WallSignBlock) TechnologicaBlocks.ASPEN_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.ASPEN_PLANKS.get()), "solid");
-		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.AVOCADO_SIGN.get(), (WallSignBlock) TechnologicaBlocks.AVOCADO_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.AVOCADO_PLANKS.get()), "solid");
-		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.BANANA_SIGN.get(), (WallSignBlock) TechnologicaBlocks.BANANA_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.BANANA_PLANKS.get()), "solid");
-		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.CHERRY_SIGN.get(), (WallSignBlock) TechnologicaBlocks.CHERRY_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.CHERRY_PLANKS.get()), "solid");
-		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.CHESTNUT_SIGN.get(), (WallSignBlock) TechnologicaBlocks.CHESTNUT_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.CHESTNUT_PLANKS.get()), "solid");
-		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.CINNAMON_SIGN.get(), (WallSignBlock) TechnologicaBlocks.CINNAMON_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.CINNAMON_PLANKS.get()), "solid");
-		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.COCONUT_SIGN.get(), (WallSignBlock) TechnologicaBlocks.COCONUT_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.COCONUT_PLANKS.get()), "solid");
-		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.EBONY_SIGN.get(), (WallSignBlock) TechnologicaBlocks.EBONY_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.EBONY_PLANKS.get()), "solid");
-		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.KIWI_SIGN.get(), (WallSignBlock) TechnologicaBlocks.KIWI_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.KIWI_PLANKS.get()), "solid");
-		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.LEMON_SIGN.get(), (WallSignBlock) TechnologicaBlocks.LEMON_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.LEMON_PLANKS.get()), "solid");
-		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.LIME_SIGN.get(), (WallSignBlock) TechnologicaBlocks.LIME_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.LIME_PLANKS.get()), "solid");
-		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.MAHOGANY_SIGN.get(), (WallSignBlock) TechnologicaBlocks.MAHOGANY_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.MAHOGANY_PLANKS.get()), "solid");
-		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.MAPLE_SIGN.get(), (WallSignBlock) TechnologicaBlocks.MAPLE_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.MAPLE_PLANKS.get()), "solid");
-		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.OLIVE_SIGN.get(), (WallSignBlock) TechnologicaBlocks.OLIVE_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.OLIVE_PLANKS.get()), "solid");
-		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.ORANGE_SIGN.get(), (WallSignBlock) TechnologicaBlocks.ORANGE_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.ORANGE_PLANKS.get()), "solid");
-		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.PEACH_SIGN.get(), (WallSignBlock) TechnologicaBlocks.PEACH_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.PEACH_PLANKS.get()), "solid");
-		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.PEAR_SIGN.get(), (WallSignBlock) TechnologicaBlocks.PEAR_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.PEAR_PLANKS.get()), "solid");
-		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.PLUM_SIGN.get(), (WallSignBlock) TechnologicaBlocks.PLUM_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.PLUM_PLANKS.get()), "solid");
-		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.REDWOOD_SIGN.get(), (WallSignBlock) TechnologicaBlocks.REDWOOD_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.REDWOOD_PLANKS.get()), "solid");
-		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.ROSEWOOD_SIGN.get(), (WallSignBlock) TechnologicaBlocks.ROSEWOOD_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.ROSEWOOD_PLANKS.get()), "solid");
-		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.RUBBER_SIGN.get(), (WallSignBlock) TechnologicaBlocks.RUBBER_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.RUBBER_PLANKS.get()), "solid");
-		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.TEAK_SIGN.get(), (WallSignBlock) TechnologicaBlocks.TEAK_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.TEAK_PLANKS.get()), "solid");
-		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.WALNUT_SIGN.get(), (WallSignBlock) TechnologicaBlocks.WALNUT_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.WALNUT_PLANKS.get()), "solid");
-		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.ZEBRAWOOD_SIGN.get(), (WallSignBlock) TechnologicaBlocks.ZEBRAWOOD_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.ZEBRAWOOD_PLANKS.get()), "solid");
-		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.FRUITFUL_SIGN.get(), (WallSignBlock) TechnologicaBlocks.FRUITFUL_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.FRUITFUL_PLANKS.get()), "solid");
+		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.APRICOT_SIGN.get(), (WallSignBlock) TechnologicaBlocks.APRICOT_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.APRICOT_PLANKS.get()), "cutout");
+		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.ASPEN_SIGN.get(), (WallSignBlock) TechnologicaBlocks.ASPEN_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.ASPEN_PLANKS.get()), "cutout");
+		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.AVOCADO_SIGN.get(), (WallSignBlock) TechnologicaBlocks.AVOCADO_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.AVOCADO_PLANKS.get()), "cutout");
+		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.BANANA_SIGN.get(), (WallSignBlock) TechnologicaBlocks.BANANA_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.BANANA_PLANKS.get()), "cutout");
+		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.CHERRY_SIGN.get(), (WallSignBlock) TechnologicaBlocks.CHERRY_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.CHERRY_PLANKS.get()), "cutout");
+		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.CHESTNUT_SIGN.get(), (WallSignBlock) TechnologicaBlocks.CHESTNUT_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.CHESTNUT_PLANKS.get()), "cutout");
+		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.CINNAMON_SIGN.get(), (WallSignBlock) TechnologicaBlocks.CINNAMON_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.CINNAMON_PLANKS.get()), "cutout");
+		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.COCONUT_SIGN.get(), (WallSignBlock) TechnologicaBlocks.COCONUT_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.COCONUT_PLANKS.get()), "cutout");
+		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.EBONY_SIGN.get(), (WallSignBlock) TechnologicaBlocks.EBONY_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.EBONY_PLANKS.get()), "cutout");
+		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.KIWI_SIGN.get(), (WallSignBlock) TechnologicaBlocks.KIWI_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.KIWI_PLANKS.get()), "cutout");
+		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.LEMON_SIGN.get(), (WallSignBlock) TechnologicaBlocks.LEMON_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.LEMON_PLANKS.get()), "cutout");
+		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.LIME_SIGN.get(), (WallSignBlock) TechnologicaBlocks.LIME_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.LIME_PLANKS.get()), "cutout");
+		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.MAHOGANY_SIGN.get(), (WallSignBlock) TechnologicaBlocks.MAHOGANY_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.MAHOGANY_PLANKS.get()), "cutout");
+		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.MAPLE_SIGN.get(), (WallSignBlock) TechnologicaBlocks.MAPLE_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.MAPLE_PLANKS.get()), "cutout");
+		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.OLIVE_SIGN.get(), (WallSignBlock) TechnologicaBlocks.OLIVE_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.OLIVE_PLANKS.get()), "cutout");
+		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.ORANGE_SIGN.get(), (WallSignBlock) TechnologicaBlocks.ORANGE_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.ORANGE_PLANKS.get()), "cutout");
+		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.PEACH_SIGN.get(), (WallSignBlock) TechnologicaBlocks.PEACH_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.PEACH_PLANKS.get()), "cutout");
+		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.PEAR_SIGN.get(), (WallSignBlock) TechnologicaBlocks.PEAR_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.PEAR_PLANKS.get()), "cutout");
+		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.PLUM_SIGN.get(), (WallSignBlock) TechnologicaBlocks.PLUM_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.PLUM_PLANKS.get()), "cutout");
+		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.REDWOOD_SIGN.get(), (WallSignBlock) TechnologicaBlocks.REDWOOD_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.REDWOOD_PLANKS.get()), "cutout");
+		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.ROSEWOOD_SIGN.get(), (WallSignBlock) TechnologicaBlocks.ROSEWOOD_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.ROSEWOOD_PLANKS.get()), "cutout");
+		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.RUBBER_SIGN.get(), (WallSignBlock) TechnologicaBlocks.RUBBER_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.RUBBER_PLANKS.get()), "cutout");
+		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.TEAK_SIGN.get(), (WallSignBlock) TechnologicaBlocks.TEAK_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.TEAK_PLANKS.get()), "cutout");
+		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.WALNUT_SIGN.get(), (WallSignBlock) TechnologicaBlocks.WALNUT_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.WALNUT_PLANKS.get()), "cutout");
+		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.ZEBRAWOOD_SIGN.get(), (WallSignBlock) TechnologicaBlocks.ZEBRAWOOD_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.ZEBRAWOOD_PLANKS.get()), "cutout");
+		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.FRUITFUL_SIGN.get(), (WallSignBlock) TechnologicaBlocks.FRUITFUL_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.FRUITFUL_PLANKS.get()), "cutout");
 		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.FROSTBITTEN_SIGN.get(), (WallSignBlock) TechnologicaBlocks.FROSTBITTEN_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.FROSTBITTEN_PLANKS.get()), "translucent");
-		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.CONDUCTIVE_SIGN.get(), (WallSignBlock) TechnologicaBlocks.CONDUCTIVE_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.CONDUCTIVE_PLANKS.get()), "solid");
-		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.ALCHEMICAL_SIGN.get(), (WallSignBlock) TechnologicaBlocks.ALCHEMICAL_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.ALCHEMICAL_PLANKS.get()), "solid");
-		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.BENEVOLENT_SIGN.get(), (WallSignBlock) TechnologicaBlocks.BENEVOLENT_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.BENEVOLENT_PLANKS.get()), "solid");
-		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.MALEVOLENT_SIGN.get(), (WallSignBlock) TechnologicaBlocks.MALEVOLENT_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.MALEVOLENT_PLANKS.get()), "solid");
-		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.INFERNAL_SIGN.get(), (WallSignBlock) TechnologicaBlocks.INFERNAL_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.INFERNAL_PLANKS.get()), "solid");
-		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.NECROTIC_SIGN.get(), (WallSignBlock) TechnologicaBlocks.NECROTIC_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.NECROTIC_PLANKS.get()), "solid");
+		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.CONDUCTIVE_SIGN.get(), (WallSignBlock) TechnologicaBlocks.CONDUCTIVE_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.CONDUCTIVE_PLANKS.get()), "cutout");
+		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.ALCHEMICAL_SIGN.get(), (WallSignBlock) TechnologicaBlocks.ALCHEMICAL_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.ALCHEMICAL_PLANKS.get()), "cutout");
+		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.BENEVOLENT_SIGN.get(), (WallSignBlock) TechnologicaBlocks.BENEVOLENT_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.BENEVOLENT_PLANKS.get()), "cutout");
+		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.MALEVOLENT_SIGN.get(), (WallSignBlock) TechnologicaBlocks.MALEVOLENT_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.MALEVOLENT_PLANKS.get()), "cutout");
+		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.INFERNAL_SIGN.get(), (WallSignBlock) TechnologicaBlocks.INFERNAL_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.INFERNAL_PLANKS.get()), "cutout");
+		signBlockWithRenderType((StandingSignBlock) TechnologicaBlocks.NECROTIC_SIGN.get(), (WallSignBlock) TechnologicaBlocks.NECROTIC_WALL_SIGN.get(), blockTexture(TechnologicaBlocks.NECROTIC_PLANKS.get()), "cutout");
 	}
 
 	private void chairBlocks() {
@@ -1565,6 +1565,10 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 	public ModelFile fluid(Block block) {
 		ResourceLocation location = ForgeRegistries.BLOCKS.getKey(block);
 		return models().getBuilder(location.getPath()).texture("particle", "minecraft:block/water_still");
+	}
+
+	public ModelFile hollowLogModel(Block block) {
+		return models().withExistingParent(ResourceLocationHelper.getPath(block), modLoc("hollow_log")).texture("side", blockTexture(TechnologicaBlocks.FROSTBITTEN_LOG.get())).texture("end", blockTexture(TechnologicaBlocks.FROSTBITTEN_LOG.get()) + "_top").texture("inside", blockTexture(TechnologicaBlocks.STRIPPED_FROSTBITTEN_LOG.get()) + "_solid").renderType("translucent");
 	}
 
 	/*
@@ -1905,9 +1909,9 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 	 * Item model providers
 	 */
 
-	public void doorBlockItem(Block block, ModelFile model) {
+	public void doorBlockItem(Block block, ModelFile model, String renderType) {
 		ResourceLocation location = ForgeRegistries.BLOCKS.getKey(block);
-		itemModels().getBuilder(location.getPath()).parent(model).texture("layer0", new ResourceLocation(location.getNamespace(), "item/" + location.getPath()));
+		itemModels().getBuilder(location.getPath()).parent(model).texture("layer0", new ResourceLocation(location.getNamespace(), "item/" + location.getPath())).renderType(renderType);
 	}
 
 	public void signItem(Block block, ModelFile model, String renderType) {

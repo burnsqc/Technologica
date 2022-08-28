@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
-  "render_type": "minecraft:solid",
+  "render_type": "minecraft:cutout",
   "textures": {
     "layer0": "technologica:item/plum_sign"
   }

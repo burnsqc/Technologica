@@ -354,7 +354,7 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> ALCHEMICAL_LOG = BLOCKS.register("alchemical_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
 	public static final RegistryObject<Block> BENEVOLENT_LOG = BLOCKS.register("benevolent_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
 	public static final RegistryObject<Block> CONDUCTIVE_LOG = BLOCKS.register("conductive_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> FROSTBITTEN_LOG = BLOCKS.register("frostbitten_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> FROSTBITTEN_LOG = BLOCKS.register("frostbitten_log", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.ICE).strength(0.5F).sound(SoundType.GLASS).noOcclusion()));
 	public static final RegistryObject<Block> FRUITFUL_LOG = BLOCKS.register("fruitful_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
 	public static final RegistryObject<Block> INFERNAL_LOG = BLOCKS.register("infernal_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
 	public static final RegistryObject<Block> MALEVOLENT_LOG = BLOCKS.register("malevolent_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
@@ -388,7 +388,7 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> STRIPPED_ALCHEMICAL_LOG = BLOCKS.register("stripped_alchemical_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
 	public static final RegistryObject<Block> STRIPPED_BENEVOLENT_LOG = BLOCKS.register("stripped_benevolent_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
 	public static final RegistryObject<Block> STRIPPED_CONDUCTIVE_LOG = BLOCKS.register("stripped_conductive_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_FROSTBITTEN_LOG = BLOCKS.register("stripped_frostbitten_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_FROSTBITTEN_LOG = BLOCKS.register("stripped_frostbitten_log", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.ICE).friction(0.98F).strength(0.5F).sound(SoundType.GLASS).noOcclusion()));;
 	public static final RegistryObject<Block> STRIPPED_FRUITFUL_LOG = BLOCKS.register("stripped_fruitful_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
 	public static final RegistryObject<Block> STRIPPED_INFERNAL_LOG = BLOCKS.register("stripped_infernal_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
 	public static final RegistryObject<Block> STRIPPED_MALEVOLENT_LOG = BLOCKS.register("stripped_malevolent_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
@@ -459,7 +459,7 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> STRIPPED_MALEVOLENT_WOOD = BLOCKS.register("stripped_malevolent_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
 	public static final RegistryObject<Block> STRIPPED_NECROTIC_WOOD = BLOCKS.register("stripped_necrotic_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
 	public static final RegistryObject<Block> STRIPPED_CONDUCTIVE_WOOD = BLOCKS.register("stripped_conductive_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_FROSTBITTEN_WOOD = BLOCKS.register("stripped_frostbitten_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_FROSTBITTEN_WOOD = BLOCKS.register("stripped_frostbitten_wood", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.ICE).friction(0.98F).strength(0.5F).sound(SoundType.GLASS).noOcclusion()));
 	public static final RegistryObject<Block> STRIPPED_INFERNAL_WOOD = BLOCKS.register("stripped_infernal_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
 
 	public static final RegistryObject<Block> APRICOT_PLANKS = BLOCKS.register("apricot_planks", () -> planksBlock());
@@ -490,7 +490,7 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> ALCHEMICAL_PLANKS = BLOCKS.register("alchemical_planks", () -> planksBlock());
 	public static final RegistryObject<Block> BENEVOLENT_PLANKS = BLOCKS.register("benevolent_planks", () -> planksBlock());
 	public static final RegistryObject<Block> CONDUCTIVE_PLANKS = BLOCKS.register("conductive_planks", () -> planksBlock());
-	public static final RegistryObject<Block> FROSTBITTEN_PLANKS = BLOCKS.register("frostbitten_planks", () -> planksBlock());
+	public static final RegistryObject<Block> FROSTBITTEN_PLANKS = BLOCKS.register("frostbitten_planks", () -> new Block(BlockBehaviour.Properties.of(Material.ICE).friction(0.98F).randomTicks().strength(0.5F).sound(SoundType.GLASS).noOcclusion()));
 	public static final RegistryObject<Block> FRUITFUL_PLANKS = BLOCKS.register("fruitful_planks", () -> planksBlock());
 	public static final RegistryObject<Block> INFERNAL_PLANKS = BLOCKS.register("infernal_planks", () -> planksBlock());
 	public static final RegistryObject<Block> MALEVOLENT_PLANKS = BLOCKS.register("malevolent_planks", () -> planksBlock());
@@ -524,7 +524,7 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> ALCHEMICAL_SLAB = BLOCKS.register("alchemical_slab", () -> slabBlock());
 	public static final RegistryObject<Block> BENEVOLENT_SLAB = BLOCKS.register("benevolent_slab", () -> slabBlock());
 	public static final RegistryObject<Block> CONDUCTIVE_SLAB = BLOCKS.register("conductive_slab", () -> slabBlock());
-	public static final RegistryObject<Block> FROSTBITTEN_SLAB = BLOCKS.register("frostbitten_slab", () -> slabBlock());
+	public static final RegistryObject<Block> FROSTBITTEN_SLAB = BLOCKS.register("frostbitten_slab", () -> new SlabBlock(BlockBehaviour.Properties.of(Material.ICE).friction(0.98F).randomTicks().strength(0.5F).sound(SoundType.GLASS).noOcclusion()));
 	public static final RegistryObject<Block> FRUITFUL_SLAB = BLOCKS.register("fruitful_slab", () -> slabBlock());
 	public static final RegistryObject<Block> INFERNAL_SLAB = BLOCKS.register("infernal_slab", () -> slabBlock());
 	public static final RegistryObject<Block> MALEVOLENT_SLAB = BLOCKS.register("malevolent_slab", () -> slabBlock());
@@ -558,7 +558,7 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> ALCHEMICAL_STAIRS = BLOCKS.register("alchemical_stairs", () -> stairBlock(() -> ALCHEMICAL_PLANKS.get().defaultBlockState()));
 	public static final RegistryObject<Block> BENEVOLENT_STAIRS = BLOCKS.register("benevolent_stairs", () -> stairBlock(() -> BENEVOLENT_PLANKS.get().defaultBlockState()));
 	public static final RegistryObject<Block> CONDUCTIVE_STAIRS = BLOCKS.register("conductive_stairs", () -> stairBlock(() -> CONDUCTIVE_PLANKS.get().defaultBlockState()));
-	public static final RegistryObject<Block> FROSTBITTEN_STAIRS = BLOCKS.register("frostbitten_stairs", () -> stairBlock(() -> FROSTBITTEN_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> FROSTBITTEN_STAIRS = BLOCKS.register("frostbitten_stairs", () -> new StairBlock(() -> FROSTBITTEN_PLANKS.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.ICE).friction(0.98F).randomTicks().strength(0.5F).sound(SoundType.GLASS).noOcclusion()));
 	public static final RegistryObject<Block> FRUITFUL_STAIRS = BLOCKS.register("fruitful_stairs", () -> stairBlock(() -> FRUITFUL_PLANKS.get().defaultBlockState()));
 	public static final RegistryObject<Block> INFERNAL_STAIRS = BLOCKS.register("infernal_stairs", () -> stairBlock(() -> INFERNAL_PLANKS.get().defaultBlockState()));
 	public static final RegistryObject<Block> MALEVOLENT_STAIRS = BLOCKS.register("malevolent_stairs", () -> stairBlock(() -> MALEVOLENT_PLANKS.get().defaultBlockState()));
@@ -599,7 +599,7 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> ALCHEMICAL_BOOKSHELF = BLOCKS.register("alchemical_bookshelf", () -> bookshelfBlock());
 	public static final RegistryObject<Block> BENEVOLENT_BOOKSHELF = BLOCKS.register("benevolent_bookshelf", () -> bookshelfBlock());
 	public static final RegistryObject<Block> CONDUCTIVE_BOOKSHELF = BLOCKS.register("conductive_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> FROSTBITTEN_BOOKSHELF = BLOCKS.register("frostbitten_bookshelf", () -> bookshelfBlock());
+	public static final RegistryObject<Block> FROSTBITTEN_BOOKSHELF = BLOCKS.register("frostbitten_bookshelf", () -> new Block(BlockBehaviour.Properties.of(Material.ICE).friction(0.98F).randomTicks().strength(0.5F).sound(SoundType.GLASS).noOcclusion()));
 	public static final RegistryObject<Block> FRUITFUL_BOOKSHELF = BLOCKS.register("fruitful_bookshelf", () -> bookshelfBlock());
 	public static final RegistryObject<Block> INFERNAL_BOOKSHELF = BLOCKS.register("infernal_bookshelf", () -> bookshelfBlock());
 	public static final RegistryObject<Block> MALEVOLENT_BOOKSHELF = BLOCKS.register("malevolent_bookshelf", () -> bookshelfBlock());
@@ -1208,5 +1208,4 @@ public class TechnologicaBlocks {
 			}
 		};
 	}
-
 }
