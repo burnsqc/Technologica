@@ -1,4 +1,6 @@
-{	"textures": {
+{	
+	"ambientocclusion": false,
+	"textures": {
 		"particle": "#case",
 		"gourd": "#gourd",
 		"side": "#side"

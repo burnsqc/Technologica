@@ -108,7 +108,7 @@ public class SawmillRenderer implements BlockEntityRenderer<SawmillBlockEntity> 
 				break;
 			}
 
-			blockModelRenderer.renderModel(matrixStack.last(), buffer.getBuffer(RenderType.solid()), state, blockrendererdispatcher.getBlockModel(state), 0.0F, 0.0F, 0.0F, combinedLight, combinedOverlay);
+			blockModelRenderer.renderModel(matrixStack.last(), buffer.getBuffer(RenderType.translucentMovingBlock()), state, blockrendererdispatcher.getBlockModel(state), 0.0F, 0.0F, 0.0F, combinedLight, combinedOverlay);
 			matrixStack.popPose();
 		}
 	}
