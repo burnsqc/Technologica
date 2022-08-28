@@ -1,9 +1,8 @@
 {	
 	"ambientocclusion": false,
 	"textures": {
-		"particle": "#case",
-		"gourd": "#gourd",
-		"side": "#side"
+		"particle": "#gourd",
+		"gourd": "#gourd"
 	},
 	"elements": [
 		{

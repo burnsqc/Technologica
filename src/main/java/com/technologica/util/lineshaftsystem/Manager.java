@@ -103,7 +103,7 @@ public class Manager {
 						reGroup(level.getBlockEntity(((LineShaftTileEntity) shaftBlock).getBeltPos()));
 					} else {
 						for (LineShaft shaft2 : allShafts) {
-							if (shaft2.shaftList.contains(level.getBlockEntity(((LineShaftTileEntity) shaftBlock).getBeltPos()))) {
+							if (shaft2.shaftList.contains(level.getBlockEntity(((LineShaftTileEntity) shaftBlock).getBeltPos())) && blockEntityIn instanceof LineShaftTileEntity) {
 								if (level.getBlockEntity(((LineShaftTileEntity) shaftBlock).getBeltPos()) != level.getBlockEntity(((LineShaftTileEntity) blockEntityIn).getBeltPos())) {
 									addEdge(lineShaft.getIndex(), shaft2.getIndex(), shaftBlock.getBlockState().getValue(LineShaftBlock.RADIUS).getRadius() / level.getBlockEntity(((LineShaftTileEntity) shaftBlock).getBeltPos()).getBlockState().getValue(LineShaftBlock.RADIUS).getRadius());
 									break;
