@@ -19,7 +19,7 @@ public class GourdCropBlock extends StemGrownBlock {
 	private int index;
 
 	public GourdCropBlock(int indexIn) {
-		super(BlockBehaviour.Properties.of(Material.VEGETABLE, MaterialColor.COLOR_LIGHT_GREEN).strength(1.0F).sound(SoundType.WOOD).noOcclusion());
+		super(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_LIGHT_GREEN).strength(1.0F).sound(SoundType.WOOD).noOcclusion());
 		this.registerDefaultState(this.stateDefinition.any().setValue(NESW_FACING, Direction.NORTH));
 		index = indexIn;
 	}
