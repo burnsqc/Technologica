@@ -158,7 +158,6 @@ public abstract class MercuryFluid extends FlowingFluid {
 		public boolean isSource(FluidState state) {
 			return false;
 		}
-
 	}
 
 	public static class Source extends MercuryFluid {
@@ -175,6 +174,6 @@ public abstract class MercuryFluid extends FlowingFluid {
 
 	@Override
 	public FluidType getFluidType() {
-		return TechnologicaFluids.TEST_FLUID_TYPE.get();
+		return TechnologicaFluids.MERCURY_TYPE.get();
 	}
 }

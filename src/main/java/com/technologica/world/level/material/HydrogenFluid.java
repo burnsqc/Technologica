@@ -160,11 +160,6 @@ public abstract class HydrogenFluid extends FlowingFluid {
 		public boolean isSource(FluidState state) {
 			return false;
 		}
-
-		@Override
-		public FluidType getFluidType() {
-			return TechnologicaFluids.TEST_FLUID_TYPE.get();
-		}
 	}
 
 	public static class Source extends HydrogenFluid {
@@ -181,6 +176,6 @@ public abstract class HydrogenFluid extends FlowingFluid {
 
 	@Override
 	public FluidType getFluidType() {
-		return TechnologicaFluids.TEST_FLUID_TYPE.get();
+		return TechnologicaFluids.HYDROGEN_TYPE.get();
 	}
 }

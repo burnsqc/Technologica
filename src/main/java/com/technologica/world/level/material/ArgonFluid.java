@@ -133,11 +133,6 @@ public abstract class ArgonFluid extends FlowingFluid {
 		public boolean isSource(FluidState state) {
 			return false;
 		}
-
-		@Override
-		public FluidType getFluidType() {
-			return TechnologicaFluids.TEST_FLUID_TYPE.get();
-		}
 	}
 
 	public static class Source extends ArgonFluid {
@@ -150,11 +145,10 @@ public abstract class ArgonFluid extends FlowingFluid {
 		public boolean isSource(FluidState state) {
 			return true;
 		}
-
 	}
 
 	@Override
 	public FluidType getFluidType() {
-		return TechnologicaFluids.TEST_FLUID_TYPE.get();
+		return TechnologicaFluids.ARGON_TYPE.get();
 	}
 }

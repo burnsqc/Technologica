@@ -1,0 +1,19 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "jungle",
+  "spawners":
+  [
+    {
+      "type": "technologica:sloth",
+      "weight": 100,
+      "minCount": 1, 
+      "maxCount": 3 
+    },
+    {
+      "type": "technologica:sloth",
+      "weight": 100,
+      "minCount": 1, 
+      "maxCount": 3 
+    }
+  ]
+}

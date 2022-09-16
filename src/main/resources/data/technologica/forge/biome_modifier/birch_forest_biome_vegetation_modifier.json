@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "birch_forest",
+  "features": "trees_peach",
+  "step": "vegetal_decoration"
+}

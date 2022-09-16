@@ -133,7 +133,6 @@ public abstract class NeonFluid extends FlowingFluid {
 		public boolean isSource(FluidState state) {
 			return false;
 		}
-
 	}
 
 	public static class Source extends NeonFluid {
@@ -150,6 +149,6 @@ public abstract class NeonFluid extends FlowingFluid {
 
 	@Override
 	public FluidType getFluidType() {
-		return TechnologicaFluids.TEST_FLUID_TYPE.get();
+		return TechnologicaFluids.NEON_TYPE.get();
 	}
 }

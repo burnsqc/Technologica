@@ -160,7 +160,6 @@ public abstract class NitrogenFluid extends FlowingFluid {
 		public boolean isSource(FluidState state) {
 			return false;
 		}
-
 	}
 
 	public static class Source extends NitrogenFluid {
@@ -177,6 +176,6 @@ public abstract class NitrogenFluid extends FlowingFluid {
 
 	@Override
 	public FluidType getFluidType() {
-		return TechnologicaFluids.TEST_FLUID_TYPE.get();
+		return TechnologicaFluids.NITROGEN_TYPE.get();
 	}
 }

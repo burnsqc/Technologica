@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "jungle",
+  "features": "trees_modified_jungle",
+  "step": "vegetal_decoration"
+}

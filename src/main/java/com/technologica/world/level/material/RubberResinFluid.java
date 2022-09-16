@@ -150,6 +150,6 @@ public abstract class RubberResinFluid extends FlowingFluid {
 
 	@Override
 	public FluidType getFluidType() {
-		return TechnologicaFluids.TEST_FLUID_TYPE.get();
+		return TechnologicaFluids.RUBBER_RESIN_TYPE.get();
 	}
 }

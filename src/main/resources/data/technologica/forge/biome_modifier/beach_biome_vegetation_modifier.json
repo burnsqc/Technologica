@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "beach",
+  "features": "trees_coconut",
+  "step": "vegetal_decoration"
+}

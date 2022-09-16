@@ -1,0 +1,19 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "savanna",
+  "spawners":
+  [
+    {
+      "type": "technologica:lion",
+      "weight": 100,
+      "minCount": 1, 
+      "maxCount": 3 
+    },
+    {
+      "type": "technologica:zebra",
+      "weight": 100,
+      "minCount": 1, 
+      "maxCount": 3 
+    }
+  ]
+}

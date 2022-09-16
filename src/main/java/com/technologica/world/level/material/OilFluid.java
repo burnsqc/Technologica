@@ -134,7 +134,6 @@ public abstract class OilFluid extends FlowingFluid {
 		public boolean isSource(FluidState state) {
 			return false;
 		}
-
 	}
 
 	public static class Source extends OilFluid {
@@ -151,6 +150,6 @@ public abstract class OilFluid extends FlowingFluid {
 
 	@Override
 	public FluidType getFluidType() {
-		return TechnologicaFluids.TEST_FLUID_TYPE.get();
+		return TechnologicaFluids.OIL_TYPE.get();
 	}
 }

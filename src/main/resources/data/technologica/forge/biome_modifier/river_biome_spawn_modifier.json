@@ -1,0 +1,25 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "river",
+  "spawners":
+  [
+    {
+      "type": "technologica:beaver",
+      "weight": 100,
+      "minCount": 1, 
+      "maxCount": 3 
+    },
+    {
+      "type": "technologica:duck",
+      "weight": 100,
+      "minCount": 1, 
+      "maxCount": 3 
+    },
+    {
+      "type": "technologica:piranha",
+      "weight": 100,
+      "minCount": 1, 
+      "maxCount": 3 
+    }
+  ]
+}

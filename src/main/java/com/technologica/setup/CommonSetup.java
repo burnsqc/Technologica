@@ -5,8 +5,12 @@ import java.util.stream.Stream;
 
 import com.google.common.collect.ImmutableSet;
 import com.technologica.Technologica;
+import com.technologica.data.worldgen.features.TechnologicaOreFeatures;
 import com.technologica.data.worldgen.features.TechnologicaTreeFeatures;
+import com.technologica.data.worldgen.placement.TechnologicaMiscOverworldPlacements;
+import com.technologica.data.worldgen.placement.TechnologicaOrePlacements;
 import com.technologica.data.worldgen.placement.TechnologicaTreePlacements;
+import com.technologica.data.worldgen.placement.TechnologicaVegetationPlacements;
 import com.technologica.network.play.server.Packets;
 import com.technologica.world.item.TechnologicaItems;
 import com.technologica.world.level.block.TechnologicaBlocks;
@@ -38,6 +42,10 @@ public class CommonSetup {
 			TechnologicaTrunkPlacerType.register();
 			TechnologicaTreeFeatures.register();
 			TechnologicaTreePlacements.register();
+			TechnologicaVegetationPlacements.register();
+			TechnologicaMiscOverworldPlacements.register();
+			TechnologicaOreFeatures.register();
+			TechnologicaOrePlacements.register();
 			ResourceKey<Biome> saltFlatsBiomeKey = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(Technologica.MODID, "salt_flats"));
 
 			addToFlowerPot();

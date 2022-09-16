@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "windswept_forest",
+  "features": "trees_aspen",
+  "step": "vegetal_decoration"
+}

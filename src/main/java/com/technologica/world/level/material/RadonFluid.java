@@ -149,6 +149,6 @@ public abstract class RadonFluid extends FlowingFluid {
 
 	@Override
 	public FluidType getFluidType() {
-		return TechnologicaFluids.TEST_FLUID_TYPE.get();
+		return TechnologicaFluids.RADON_TYPE.get();
 	}
 }

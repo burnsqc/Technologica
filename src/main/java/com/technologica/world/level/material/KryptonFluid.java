@@ -133,11 +133,6 @@ public abstract class KryptonFluid extends FlowingFluid {
 		public boolean isSource(FluidState state) {
 			return false;
 		}
-
-		@Override
-		public FluidType getFluidType() {
-			return TechnologicaFluids.TEST_FLUID_TYPE.get();
-		}
 	}
 
 	public static class Source extends KryptonFluid {
@@ -154,6 +149,6 @@ public abstract class KryptonFluid extends FlowingFluid {
 
 	@Override
 	public FluidType getFluidType() {
-		return TechnologicaFluids.TEST_FLUID_TYPE.get();
+		return TechnologicaFluids.KRYPTON_TYPE.get();
 	}
 }

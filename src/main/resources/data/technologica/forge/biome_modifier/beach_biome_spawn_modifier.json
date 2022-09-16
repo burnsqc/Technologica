@@ -1,0 +1,13 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "beach",
+  "spawners":
+  [
+    {
+      "type": "technologica:crab",
+      "weight": 100,
+      "minCount": 1, 
+      "maxCount": 3 
+    }
+  ]
+}

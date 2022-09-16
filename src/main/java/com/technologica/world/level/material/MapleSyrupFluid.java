@@ -134,11 +134,6 @@ public abstract class MapleSyrupFluid extends FlowingFluid {
 		public boolean isSource(FluidState state) {
 			return false;
 		}
-
-		@Override
-		public FluidType getFluidType() {
-			return TechnologicaFluids.TEST_FLUID_TYPE.get();
-		}
 	}
 
 	public static class Source extends MapleSyrupFluid {
@@ -155,6 +150,6 @@ public abstract class MapleSyrupFluid extends FlowingFluid {
 
 	@Override
 	public FluidType getFluidType() {
-		return TechnologicaFluids.TEST_FLUID_TYPE.get();
+		return TechnologicaFluids.MAPLE_SYRUP_TYPE.get();
 	}
 }

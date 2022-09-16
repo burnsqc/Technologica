@@ -1,0 +1,19 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "badlands",
+  "spawners":
+  [
+    {
+      "type": "technologica:coyote",
+      "weight": 100,
+      "minCount": 1, 
+      "maxCount": 3 
+    },
+    {
+      "type": "technologica:scorpion",
+      "weight": 100,
+      "minCount": 1, 
+      "maxCount": 3 
+    }
+  ]
+}

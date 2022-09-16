@@ -1,0 +1,25 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "birch_forest",
+  "spawners":
+  [
+    {
+      "type": "technologica:deer",
+      "weight": 100,
+      "minCount": 1, 
+      "maxCount": 3 
+    },
+    {
+      "type": "technologica:raccoon",
+      "weight": 100,
+      "minCount": 1, 
+      "maxCount": 3 
+    },
+    {
+      "type": "technologica:turkey",
+      "weight": 100,
+      "minCount": 1, 
+      "maxCount": 3 
+    }
+  ]
+}

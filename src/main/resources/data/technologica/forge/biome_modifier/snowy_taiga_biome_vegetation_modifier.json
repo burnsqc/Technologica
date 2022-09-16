@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "snowy_taiga",
+  "features": "trees_snowy_taiga",
+  "step": "vegetal_decoration"
+}

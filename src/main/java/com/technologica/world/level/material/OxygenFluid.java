@@ -176,6 +176,6 @@ public abstract class OxygenFluid extends FlowingFluid {
 
 	@Override
 	public FluidType getFluidType() {
-		return TechnologicaFluids.TEST_FLUID_TYPE.get();
+		return TechnologicaFluids.OXYGEN_TYPE.get();
 	}
 }

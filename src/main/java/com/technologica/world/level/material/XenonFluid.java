@@ -149,6 +149,6 @@ public abstract class XenonFluid extends FlowingFluid {
 
 	@Override
 	public FluidType getFluidType() {
-		return TechnologicaFluids.TEST_FLUID_TYPE.get();
+		return TechnologicaFluids.XENON_TYPE.get();
 	}
 }

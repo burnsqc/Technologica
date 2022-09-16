@@ -1,0 +1,31 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "windswept_forest",
+  "spawners":
+  [
+    {
+      "type": "technologica:beaver",
+      "weight": 100,
+      "minCount": 1, 
+      "maxCount": 3 
+    },
+    {
+      "type": "technologica:deer",
+      "weight": 100,
+      "minCount": 1, 
+      "maxCount": 3 
+    },
+    {
+      "type": "technologica:grizzly_bear",
+      "weight": 100,
+      "minCount": 1, 
+      "maxCount": 3 
+    },
+    {
+      "type": "technologica:turkey",
+      "weight": 100,
+      "minCount": 1, 
+      "maxCount": 3 
+    }
+  ]
+}

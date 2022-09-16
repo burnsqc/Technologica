@@ -12,6 +12,11 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.placement.RarityFilter;
 
 public class TechnologicaMiscOverworldPlacements {
-	public static final Holder<PlacedFeature> BRINE_POOL = PlacementUtils.register("brine_pool", TechnologicaMiscOverworldFeatures.BRINE_POOL, RarityFilter.onAverageOnceEvery(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
-	public static final Holder<PlacedFeature> OASIS = PlacementUtils.register("oasis", TechnologicaMiscOverworldFeatures.OASIS, RarityFilter.onAverageOnceEvery(200), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(192)), BiomeFilter.biome());
+	public static Holder<PlacedFeature> BRINE_POOL;
+	public static Holder<PlacedFeature> OASIS;
+
+	public static void register() {
+		BRINE_POOL = PlacementUtils.register("brine_pool", TechnologicaMiscOverworldFeatures.BRINE_POOL, RarityFilter.onAverageOnceEvery(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+		OASIS = PlacementUtils.register("oasis", TechnologicaMiscOverworldFeatures.OASIS, RarityFilter.onAverageOnceEvery(200), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(192)), BiomeFilter.biome());
+	}
 }

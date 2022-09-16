@@ -133,11 +133,6 @@ public abstract class ChlorineFluid extends FlowingFluid {
 		public boolean isSource(FluidState state) {
 			return false;
 		}
-
-		@Override
-		public FluidType getFluidType() {
-			return TechnologicaFluids.TEST_FLUID_TYPE.get();
-		}
 	}
 
 	public static class Source extends ChlorineFluid {
@@ -154,6 +149,6 @@ public abstract class ChlorineFluid extends FlowingFluid {
 
 	@Override
 	public FluidType getFluidType() {
-		return TechnologicaFluids.TEST_FLUID_TYPE.get();
+		return TechnologicaFluids.CHLORINE_TYPE.get();
 	}
 }
