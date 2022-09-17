@@ -89,6 +89,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
@@ -1045,6 +1046,11 @@ public class TechnologicaBlocks {
 				} else {
 					return super.use(p_57275_, p_57276_, p_57277_, p_57278_, p_57279_, p_57280_);
 				}
+			}
+
+			@Override
+			public boolean isPathfindable(BlockState p_51023_, BlockGetter p_51024_, BlockPos p_51025_, PathComputationType p_51026_) {
+				return false;
 			}
 
 			@Override

@@ -1,6 +1,13 @@
 {
   "type": "forge:add_features",
   "biomes": "snowy_taiga",
-  "features": "trees_snowy_taiga",
+  "features": 
+  [
+  	"trees_snowy_taiga",
+  	"patch_blackberry_rare",
+	"patch_blueberry_rare",
+	"patch_raspberry_rare",
+	"patch_strawberry_rare"
+  ],
   "step": "vegetal_decoration"
 }

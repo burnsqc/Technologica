@@ -1,9 +1,8 @@
 {
   "type": "forge:add_features",
-  "biomes": "taiga",
+  "biomes": "old_growth_spruce_taiga",
   "features": 
   [
-	"trees_modified_taiga",
 	"patch_blackberry_common",
 	"patch_blueberry_common",
 	"patch_raspberry_common",
