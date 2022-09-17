@@ -5,6 +5,8 @@ import static com.technologica.Technologica.MODID;
 
 import java.util.function.Supplier;
 
+import org.jetbrains.annotations.Nullable;
+
 import com.technologica.world.item.TechnologicaItems;
 import com.technologica.world.level.block.entity.TechnologicaSignBlockEntity;
 import com.technologica.world.level.block.entity.VanillaSignBlockEntity;
@@ -50,6 +52,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -89,7 +92,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
-import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
@@ -1049,8 +1052,13 @@ public class TechnologicaBlocks {
 			}
 
 			@Override
-			public boolean isPathfindable(BlockState p_51023_, BlockGetter p_51024_, BlockPos p_51025_, PathComputationType p_51026_) {
-				return false;
+			public BlockPathTypes getBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob) {
+				return BlockPathTypes.DAMAGE_OTHER;
+			}
+
+			@Override
+			public BlockPathTypes getAdjacentBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob, BlockPathTypes originalType) {
+				return BlockPathTypes.DANGER_OTHER;
 			}
 
 			@Override
