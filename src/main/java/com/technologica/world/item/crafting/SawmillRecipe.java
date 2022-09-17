@@ -36,6 +36,11 @@ public class SawmillRecipe extends SingleItemRecipe {
 		return TechnologicaRecipeType.SAWMILL.get();
 	}
 
+	@Override
+	public boolean isSpecial() {
+		return true;
+	}
+
 	public static class Serializer implements RecipeSerializer<SawmillRecipe> {
 
 		@Override
