@@ -29,7 +29,7 @@ public class Manager {
 
 	public Manager() {
 		adj = new LinkedList[1];
-		adj[0] = new LinkedList();
+		adj[0] = new LinkedList<Pair<Integer, Float>>();
 	}
 
 	public void onChanged(BlockEntity be, float rpmIn) {
@@ -149,7 +149,7 @@ public class Manager {
 			adj = new LinkedList[adj.length - 1];
 
 			for (int i = 0; i < adj.length; i++) {
-				adj[i] = new LinkedList();
+				adj[i] = new LinkedList<Pair<Integer, Float>>();
 			}
 
 			for (int i = 1; i < temp.length; i++) {
@@ -183,7 +183,7 @@ public class Manager {
 			adj = new LinkedList[max];
 
 			for (int i = 0; i < max; i++) {
-				adj[i] = new LinkedList();
+				adj[i] = new LinkedList<Pair<Integer, Float>>();
 			}
 
 			for (int i = 0; i < temp.length; i++) {

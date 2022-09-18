@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_features",
+  "biomes": "beach",
+  "features": 
+  [
+  "ore_phosphorite",
+  "ore_garnierite"
+  ],
+  "step": "underground_ores"
+}

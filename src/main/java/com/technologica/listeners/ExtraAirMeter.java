@@ -7,13 +7,13 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.client.gui.overlay.GuiOverlayManager;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -48,7 +48,7 @@ public class ExtraAirMeter {
 		maxAir = fullDiveSet ? 6000 : maxAir;
 		maxAir = fullScubaSet ? 12000 : maxAir;
 
-		if (!player.isEyeInFluid(FluidTags.WATER) || player.level.getBlockState(new BlockPos(player.getX(), player.getEyeY(), player.getZ())).is(Blocks.BUBBLE_COLUMN)) {
+		if (!player.isEyeInFluidType(ForgeMod.WATER_TYPE.get()) || player.level.getBlockState(new BlockPos(player.getX(), player.getEyeY(), player.getZ())).is(Blocks.BUBBLE_COLUMN)) {
 			if (air >= 300 && air < maxAir && event.phase == Phase.END) {
 				player.setAirSupply(Math.min(air + 4, maxAir));
 			}
@@ -92,7 +92,7 @@ public class ExtraAirMeter {
 
 				int air = player.getAirSupply();
 
-				if (player.isEyeInFluid(FluidTags.WATER) || air < 600) {
+				if (player.isEyeInFluidType(ForgeMod.WATER_TYPE.get()) || air < 600) {
 					int full = Mth.ceil((air - 2) * 10.0D / 300.0D);
 					int partial = Mth.ceil(air * 10.0D / 300.0D) - full;
 
@@ -115,7 +115,7 @@ public class ExtraAirMeter {
 
 				int air = player.getAirSupply();
 
-				if (player.isEyeInFluid(FluidTags.WATER) || air < 6000) {
+				if (player.isEyeInFluidType(ForgeMod.WATER_TYPE.get()) || air < 6000) {
 					float remaining = air / 6000.0F * 81;
 					GuiComponent.blit(event.getPoseStack(), left - 81, top, -90, 0.0F, 9.0F, (int) (remaining), 9, 256, 256);
 					GuiComponent.blit(event.getPoseStack(), left - 81, top, -90, 0.0F, 0.0F, 81, 9, 256, 256);
@@ -132,7 +132,7 @@ public class ExtraAirMeter {
 
 				int air = player.getAirSupply();
 
-				if (player.isEyeInFluid(FluidTags.WATER) || air < 12000) {
+				if (player.isEyeInFluidType(ForgeMod.WATER_TYPE.get()) || air < 12000) {
 					float remaining = air / 12000.0F * 81;
 					GuiComponent.blit(event.getPoseStack(), left - 81, top, -90, 0.0F, 9.0F, (int) (remaining), 9, 256, 256);
 					GuiComponent.blit(event.getPoseStack(), left - 81, top, -90, 0.0F, 0.0F, 81, 9, 256, 256);

@@ -1,0 +1,14 @@
+{
+  "type": "forge:add_features",
+  "biomes": "stony_peaks",
+  "features": 
+  [
+  "ore_magnesite",
+  "ore_apatite",
+  "ore_ilmenite",
+  "ore_chromite",
+  "ore_cobaltite",
+  "ore_patronite"
+  ],
+  "step": "underground_ores"
+}

@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "taiga",
+  "features": "ore_gadolinite",
+  "step": "underground_ores"
+}

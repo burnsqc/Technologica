@@ -19,7 +19,6 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -34,6 +33,7 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.Vanishable;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.ForgeMod;
 
 public class SpearGunItem extends ProjectileWeaponItem implements Vanishable {
 	private boolean isLoadingStart = false;
@@ -312,7 +312,7 @@ public class SpearGunItem extends ProjectileWeaponItem implements Vanishable {
 	}
 
 	private static float setVelocity(ItemStack itemStackIn, Player playerIn) {
-		return (hasChargedProjectile(itemStackIn, TechnologicaItems.HARPOON.get()) || playerIn.getAbilities().instabuild) && playerIn.isEyeInFluid(FluidTags.WATER) ? 3.0F : 0.5F;
+		return (hasChargedProjectile(itemStackIn, TechnologicaItems.HARPOON.get()) || playerIn.getAbilities().instabuild) && playerIn.isEyeInFluidType(ForgeMod.WATER_TYPE.get()) ? 3.0F : 0.5F;
 	}
 
 	@Override

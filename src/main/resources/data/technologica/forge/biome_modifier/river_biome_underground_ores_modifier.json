@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "river",
+  "features": "ore_borax",
+  "step": "underground_ores"
+}

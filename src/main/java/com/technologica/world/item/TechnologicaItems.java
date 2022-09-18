@@ -229,20 +229,26 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> MOON_ROCK_ITEM = ITEMS.register("moon_rock", () -> new BlockItem(TechnologicaBlocks.MOON_ROCK.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 	public static final RegistryObject<Item> MOON_DUST_ITEM = ITEMS.register("moon_dust", () -> new BlockItem(TechnologicaBlocks.MOON_DUST.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 
+	public static final RegistryObject<Item> APATITE_ORE_ITEM = ITEMS.register("apatite_ore", () -> new BlockItem(TechnologicaBlocks.APATITE_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 	public static final RegistryObject<Item> BAUXITE_ORE_ITEM = ITEMS.register("bauxite_ore", () -> new BlockItem(TechnologicaBlocks.BAUXITE_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 	public static final RegistryObject<Item> CHROMITE_ORE_ITEM = ITEMS.register("chromite_ore", () -> new BlockItem(TechnologicaBlocks.CHROMITE_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
+	public static final RegistryObject<Item> GADOLINITE_ORE_ITEM = ITEMS.register("gadolinite_ore", () -> new BlockItem(TechnologicaBlocks.GADOLINITE_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 	public static final RegistryObject<Item> ILMENITE_ORE_ITEM = ITEMS.register("ilmenite_ore", () -> new BlockItem(TechnologicaBlocks.ILMENITE_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 	public static final RegistryObject<Item> PYROLUSITE_ORE_ITEM = ITEMS.register("pyrolusite_ore", () -> new BlockItem(TechnologicaBlocks.PYROLUSITE_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 	public static final RegistryObject<Item> COBALTITE_ORE_ITEM = ITEMS.register("cobaltite_ore", () -> new BlockItem(TechnologicaBlocks.COBALTITE_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 	public static final RegistryObject<Item> GARNIERITE_ORE_ITEM = ITEMS.register("garnierite_ore", () -> new BlockItem(TechnologicaBlocks.GARNIERITE_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 	public static final RegistryObject<Item> BORAX_ORE_ITEM = ITEMS.register("borax_ore", () -> new BlockItem(TechnologicaBlocks.BORAX_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 	public static final RegistryObject<Item> MAGNESITE_ORE_ITEM = ITEMS.register("magnesite_ore", () -> new BlockItem(TechnologicaBlocks.MAGNESITE_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
+	public static final RegistryObject<Item> PATRONITE_ORE_ITEM = ITEMS.register("patronite_ore", () -> new BlockItem(TechnologicaBlocks.PATRONITE_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
+	public static final RegistryObject<Item> PHOSPHORITE_ORE_ITEM = ITEMS.register("phosphorite_ore", () -> new BlockItem(TechnologicaBlocks.PHOSPHORITE_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 	public static final RegistryObject<Item> SPODUMENE_ORE_ITEM = ITEMS.register("spodumene_ore", () -> new BlockItem(TechnologicaBlocks.SPODUMENE_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 
 	public static final RegistryObject<Item> AQUAMARINE_CRYSTAL_ITEM = ITEMS.register("aquamarine_crystal", () -> new BlockItem(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 	public static final RegistryObject<Item> DOLOMITE_CRYSTAL_ITEM = ITEMS.register("dolomite_crystal", () -> new BlockItem(TechnologicaBlocks.DOLOMITE_CRYSTAL.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 	public static final RegistryObject<Item> FLUORITE_CRYSTAL_ITEM = ITEMS.register("fluorite_crystal", () -> new BlockItem(TechnologicaBlocks.FLUORITE_CRYSTAL.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
+	public static final RegistryObject<Item> SPHALERITE_CRYSTAL_ITEM = ITEMS.register("sphalerite_crystal", () -> new BlockItem(TechnologicaBlocks.SPHALERITE_CRYSTAL.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 	public static final RegistryObject<Item> ULEXITE_CRYSTAL_ITEM = ITEMS.register("ulexite_crystal", () -> new BlockItem(TechnologicaBlocks.ULEXITE_CRYSTAL.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
+	public static final RegistryObject<Item> VANADINITE_CRYSTAL_ITEM = ITEMS.register("vanadinite_crystal", () -> new BlockItem(TechnologicaBlocks.VANADINITE_CRYSTAL.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 
 	public static final RegistryObject<Item> LITHIUM_INGOT = ITEMS.register("lithium_ingot", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 	public static final RegistryObject<Item> BERYLLIUM_INGOT = ITEMS.register("beryllium_ingot", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));

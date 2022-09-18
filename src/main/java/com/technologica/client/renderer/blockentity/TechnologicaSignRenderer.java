@@ -44,9 +44,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class TechnologicaSignRenderer implements BlockEntityRenderer<SignBlockEntity> {
 	public static final int MAX_LINE_WIDTH = 90;
-	private static final int LINE_HEIGHT = 10;
-	private static final String STICK = "stick";
-	private static final int BLACK_TEXT_OUTLINE_COLOR = -988212;
 	private static final int OUTLINE_RENDER_DISTANCE = Mth.square(16);
 	private final Map<WoodType, TechnologicaSignRenderer.SignModel> signModels;
 	private final Font font;
@@ -64,7 +61,6 @@ public class TechnologicaSignRenderer implements BlockEntityRenderer<SignBlockEn
 	public void render(SignBlockEntity p_112497_, float p_112498_, PoseStack p_112499_, MultiBufferSource p_112500_, int p_112501_, int p_112502_) {
 		BlockState blockstate = p_112497_.getBlockState();
 		p_112499_.pushPose();
-		float f = 0.6666667F;
 		WoodType woodtype = getWoodType(blockstate.getBlock());
 		TechnologicaSignRenderer.SignModel signrenderer$signmodel = this.signModels.get(woodtype);
 		if (blockstate.getBlock() instanceof StandingSignBlock) {
@@ -86,11 +82,9 @@ public class TechnologicaSignRenderer implements BlockEntityRenderer<SignBlockEn
 		VertexConsumer vertexconsumer = material.buffer(p_112500_, signrenderer$signmodel::renderType);
 		signrenderer$signmodel.root.render(p_112499_, vertexconsumer, p_112501_, p_112502_);
 		p_112499_.popPose();
-		float f2 = 0.010416667F;
 		p_112499_.translate(0.0D, 0.33333334F, 0.046666667F);
 		p_112499_.scale(0.010416667F, -0.010416667F, 0.010416667F);
 		int i = getDarkColor(p_112497_);
-		int j = 20;
 		FormattedCharSequence[] aformattedcharsequence = p_112497_.getRenderMessages(Minecraft.getInstance().isTextFilteringEnabled(), (p_173653_) -> {
 			List<FormattedCharSequence> list = this.font.split(p_173653_, 90);
 			return list.isEmpty() ? FormattedCharSequence.EMPTY : list.get(0);
@@ -138,7 +132,6 @@ public class TechnologicaSignRenderer implements BlockEntityRenderer<SignBlockEn
 
 	private static int getDarkColor(SignBlockEntity p_173640_) {
 		int i = p_173640_.getColor().getTextColor();
-		double d0 = 0.4D;
 		int j = (int) (NativeImage.getR(i) * 0.4D);
 		int k = (int) (NativeImage.getG(i) * 0.4D);
 		int l = (int) (NativeImage.getB(i) * 0.4D);

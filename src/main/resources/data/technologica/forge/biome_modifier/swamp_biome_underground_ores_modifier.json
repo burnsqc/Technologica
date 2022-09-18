@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "swamp",
+  "features": "ore_pyrolusite",
+  "step": "underground_ores"
+}
