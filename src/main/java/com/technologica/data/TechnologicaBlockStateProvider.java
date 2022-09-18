@@ -75,16 +75,24 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 
 		simpleBlock(TechnologicaBlocks.APATITE_ORE.get());
 		simpleBlock(TechnologicaBlocks.BAUXITE_ORE.get());
+		simpleBlock(TechnologicaBlocks.DEEPSLATE_BAUXITE_ORE.get());
 		simpleBlock(TechnologicaBlocks.CHROMITE_ORE.get());
+		simpleBlock(TechnologicaBlocks.DEEPSLATE_CHROMITE_ORE.get());
 		simpleBlock(TechnologicaBlocks.GADOLINITE_ORE.get());
 		simpleBlock(TechnologicaBlocks.ILMENITE_ORE.get());
 		simpleBlock(TechnologicaBlocks.PYROLUSITE_ORE.get());
+		simpleBlock(TechnologicaBlocks.DEEPSLATE_PYROLUSITE_ORE.get());
 		simpleBlock(TechnologicaBlocks.COBALTITE_ORE.get());
+		simpleBlock(TechnologicaBlocks.DEEPSLATE_COBALTITE_ORE.get());
 		simpleBlock(TechnologicaBlocks.GARNIERITE_ORE.get());
+		simpleBlock(TechnologicaBlocks.DEEPSLATE_GARNIERITE_ORE.get());
 		simpleBlock(TechnologicaBlocks.BORAX_ORE.get());
+		simpleBlock(TechnologicaBlocks.DEEPSLATE_BORAX_ORE.get());
 		simpleBlock(TechnologicaBlocks.MAGNESITE_ORE.get());
 		simpleBlock(TechnologicaBlocks.PATRONITE_ORE.get());
+		simpleBlock(TechnologicaBlocks.DEEPSLATE_PATRONITE_ORE.get());
 		simpleBlock(TechnologicaBlocks.PHOSPHORITE_ORE.get());
+		simpleBlock(TechnologicaBlocks.DEEPSLATE_PHOSPHORITE_ORE.get());
 		simpleBlock(TechnologicaBlocks.SPODUMENE_ORE.get());
 
 		twentyFourDirectionBlockState(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get(), hexagonalCrystalModel(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get()), hexagonalCrystalModel(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get()));
@@ -178,16 +186,24 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 
 		simpleBlockItem(TechnologicaBlocks.APATITE_ORE.get(), cubeAll(TechnologicaBlocks.APATITE_ORE.get()));
 		simpleBlockItem(TechnologicaBlocks.BAUXITE_ORE.get(), cubeAll(TechnologicaBlocks.BAUXITE_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.DEEPSLATE_BAUXITE_ORE.get(), cubeAll(TechnologicaBlocks.DEEPSLATE_BAUXITE_ORE.get()));
 		simpleBlockItem(TechnologicaBlocks.CHROMITE_ORE.get(), cubeAll(TechnologicaBlocks.CHROMITE_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.DEEPSLATE_CHROMITE_ORE.get(), cubeAll(TechnologicaBlocks.DEEPSLATE_CHROMITE_ORE.get()));
 		simpleBlockItem(TechnologicaBlocks.GADOLINITE_ORE.get(), cubeAll(TechnologicaBlocks.GADOLINITE_ORE.get()));
 		simpleBlockItem(TechnologicaBlocks.ILMENITE_ORE.get(), cubeAll(TechnologicaBlocks.ILMENITE_ORE.get()));
 		simpleBlockItem(TechnologicaBlocks.PYROLUSITE_ORE.get(), cubeAll(TechnologicaBlocks.PYROLUSITE_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.DEEPSLATE_PYROLUSITE_ORE.get(), cubeAll(TechnologicaBlocks.DEEPSLATE_PYROLUSITE_ORE.get()));
 		simpleBlockItem(TechnologicaBlocks.COBALTITE_ORE.get(), cubeAll(TechnologicaBlocks.COBALTITE_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.DEEPSLATE_COBALTITE_ORE.get(), cubeAll(TechnologicaBlocks.DEEPSLATE_COBALTITE_ORE.get()));
 		simpleBlockItem(TechnologicaBlocks.GARNIERITE_ORE.get(), cubeAll(TechnologicaBlocks.GARNIERITE_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.DEEPSLATE_GARNIERITE_ORE.get(), cubeAll(TechnologicaBlocks.DEEPSLATE_GARNIERITE_ORE.get()));
 		simpleBlockItem(TechnologicaBlocks.BORAX_ORE.get(), cubeAll(TechnologicaBlocks.BORAX_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.DEEPSLATE_BORAX_ORE.get(), cubeAll(TechnologicaBlocks.DEEPSLATE_BORAX_ORE.get()));
 		simpleBlockItem(TechnologicaBlocks.MAGNESITE_ORE.get(), cubeAll(TechnologicaBlocks.MAGNESITE_ORE.get()));
 		simpleBlockItem(TechnologicaBlocks.PATRONITE_ORE.get(), cubeAll(TechnologicaBlocks.PATRONITE_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.DEEPSLATE_PATRONITE_ORE.get(), cubeAll(TechnologicaBlocks.DEEPSLATE_PATRONITE_ORE.get()));
 		simpleBlockItem(TechnologicaBlocks.PHOSPHORITE_ORE.get(), cubeAll(TechnologicaBlocks.PHOSPHORITE_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.DEEPSLATE_PHOSPHORITE_ORE.get(), cubeAll(TechnologicaBlocks.DEEPSLATE_PHOSPHORITE_ORE.get()));
 		simpleBlockItem(TechnologicaBlocks.SPODUMENE_ORE.get(), cubeAll(TechnologicaBlocks.SPODUMENE_ORE.get()));
 
 		simpleBlockItem(TechnologicaBlocks.APRICOT_LOG.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.APRICOT_LOG.get()), blockTexture(TechnologicaBlocks.APRICOT_LOG.get()), new ResourceLocation(blockTexture(TechnologicaBlocks.APRICOT_LOG.get()) + "_top")));
