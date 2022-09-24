@@ -97,7 +97,6 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> CRANBERRY_SEEDS = ITEMS.register("cranberry_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.CRANBERRY_CROP.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
 	public static final RegistryObject<Item> CUCUMBER_SEEDS = ITEMS.register("cucumber_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.CUCUMBER_STEM.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
 	public static final RegistryObject<Item> GRAPE_SEEDS = ITEMS.register("grape_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.GRAPE_CROP.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
-	public static final RegistryObject<Item> PEPPERCORN_SEEDS = ITEMS.register("peppercorn_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.PEPPERCORNS.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
 	public static final RegistryObject<Item> SQUASH_SEEDS = ITEMS.register("squash_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.SQUASH_STEM.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
 	public static final RegistryObject<Item> TOMATO_SEEDS = ITEMS.register("tomato_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.TOMATO_CROP.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
 	public static final RegistryObject<Item> ZUCCHINI_SEEDS = ITEMS.register("zucchini_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.ZUCCHINI_STEM.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));

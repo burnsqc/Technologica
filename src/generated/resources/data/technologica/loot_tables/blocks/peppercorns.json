@@ -27,7 +27,7 @@
             },
             {
               "type": "minecraft:item",
-              "name": "technologica:peppercorn_seeds"
+              "name": "minecraft:air"
             }
           ]
         }
@@ -59,7 +59,7 @@
               }
             }
           ],
-          "name": "technologica:peppercorn_seeds"
+          "name": "minecraft:air"
         }
       ],
       "rolls": 1.0
