@@ -19,9 +19,9 @@ import net.minecraft.world.level.LevelReader;
  * Special one-off class for water crops.
  * Created to handle crops which grow upwards beyond a single block and the lower block must be in water.
  */
-public class WaterCropsBlock extends TallCropsBlock implements LiquidBlockContainer {
+public class WaterCropBlock extends TallCropBlock implements LiquidBlockContainer {
 
-	public WaterCropsBlock(Supplier<Item> seedsIn) {
+	public WaterCropBlock(Supplier<Item> seedsIn) {
 		super(seedsIn);
 	}
 	

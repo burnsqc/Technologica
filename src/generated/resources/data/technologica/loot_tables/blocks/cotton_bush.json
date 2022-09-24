@@ -16,7 +16,7 @@
               "type": "minecraft:item",
               "conditions": [
                 {
-                  "block": "technologica:cotton_crop",
+                  "block": "technologica:cotton_bush",
                   "condition": "minecraft:block_state_property",
                   "properties": {
                     "age": "7"
@@ -27,7 +27,7 @@
             },
             {
               "type": "minecraft:item",
-              "name": "technologica:cotton_seeds"
+              "name": "technologica:cotton"
             }
           ]
         }
@@ -38,7 +38,7 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "technologica:cotton_crop",
+          "block": "technologica:cotton_bush",
           "condition": "minecraft:block_state_property",
           "properties": {
             "age": "7"
@@ -59,7 +59,7 @@
               }
             }
           ],
-          "name": "technologica:cotton_seeds"
+          "name": "technologica:cotton"
         }
       ],
       "rolls": 1.0
