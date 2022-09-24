@@ -92,8 +92,8 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> BLUEBERRY = ITEMS.register("blueberry", () -> new ItemNameBlockItem(TechnologicaBlocks.BLUEBERRY_BUSH.get(), new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.BLUEBERRY)));
 	public static final RegistryObject<Item> RASPBERRY = ITEMS.register("raspberry", () -> new ItemNameBlockItem(TechnologicaBlocks.RASPBERRY_BUSH.get(), new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.RASPBERRY)));
 	public static final RegistryObject<Item> STRAWBERRY = ITEMS.register("strawberry", () -> new ItemNameBlockItem(TechnologicaBlocks.STRAWBERRY_BUSH.get(), new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.STRAWBERRY)));
+	public static final RegistryObject<Item> COTTON = ITEMS.register("cotton", () -> new ItemNameBlockItem(TechnologicaBlocks.COTTON_BUSH.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
 
-	public static final RegistryObject<Item> COTTON_SEEDS = ITEMS.register("cotton_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.COTTON_CROP.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
 	public static final RegistryObject<Item> CRANBERRY_SEEDS = ITEMS.register("cranberry_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.CRANBERRY_CROP.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
 	public static final RegistryObject<Item> CUCUMBER_SEEDS = ITEMS.register("cucumber_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.CUCUMBER_STEM.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
 	public static final RegistryObject<Item> GRAPE_SEEDS = ITEMS.register("grape_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.GRAPE_CROP.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
@@ -168,8 +168,6 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> CONDUCTIVE_LEAVES_ITEM = ITEMS.register("conductive_leaves", () -> new BlockItem(TechnologicaBlocks.CONDUCTIVE_LEAVES.get(), new Item.Properties().tab(TechnologicaItemGroup.CRYPTICA)));
 	public static final RegistryObject<Item> FROSTBITTEN_LEAVES_ITEM = ITEMS.register("frostbitten_leaves", () -> new BlockItem(TechnologicaBlocks.FROSTBITTEN_LEAVES.get(), new Item.Properties().tab(TechnologicaItemGroup.CRYPTICA)));
 	public static final RegistryObject<Item> CURSED_LEAVES_ITEM = ITEMS.register("cursed_leaves", () -> new BlockItem(TechnologicaBlocks.CURSED_LEAVES.get(), new Item.Properties().tab(TechnologicaItemGroup.CRYPTICA)));
-
-	public static final RegistryObject<Item> COTTON = ITEMS.register("cotton", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
 
 	/**
 	 * FAUNA

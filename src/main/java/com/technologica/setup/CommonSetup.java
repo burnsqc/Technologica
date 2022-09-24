@@ -139,7 +139,6 @@ public class CommonSetup {
 	}
 
 	private static void addToComposter() {
-		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.COTTON_SEEDS.get().asItem(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.CUCUMBER_SEEDS.get().asItem(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.GRAPE_SEEDS.get().asItem(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(TechnologicaItems.SQUASH_SEEDS.get().asItem(), 0.3F);
