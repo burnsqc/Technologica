@@ -1501,11 +1501,11 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 	 */
 
 	public ModelFile stem(String name, ResourceLocation stem, int growth) {
-		return models().withExistingParent(name, mcLoc("stem_growth" + growth)).renderType("cutout_mipped").texture("stem", stem);
+		return models().withExistingParent(name, mcLoc("stem_growth" + growth)).renderType("cutout").texture("stem", stem);
 	}
 
 	public ModelFile attachedStem(String name, ResourceLocation stem, ResourceLocation upperStem) {
-		return models().withExistingParent(name, modLoc("stem_gourd")).renderType("cutout_mipped").texture("stem", stem).texture("upperstem", upperStem);
+		return models().withExistingParent(name, modLoc("stem_gourd")).renderType("cutout").texture("stem", stem).texture("upperstem", upperStem);
 	}
 
 	public ModelFile gourdCropModel(Block block) {
@@ -1652,7 +1652,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 	}
 
 	public void seededCropBlock(Block block) {
-		getVariantBuilder(block).partialState().with(BeetrootBlock.AGE, 0).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage0", ResourceLocationHelper.extend(blockTexture(block), "_stage0")).renderType("cutout_mipped")).addModel().partialState().with(BeetrootBlock.AGE, 1).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage1", ResourceLocationHelper.extend(blockTexture(block), "_stage1")).renderType("cutout_mipped")).addModel().partialState().with(BeetrootBlock.AGE, 2).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage2", ResourceLocationHelper.extend(blockTexture(block), "_stage2")).renderType("cutout_mipped")).addModel().partialState().with(BeetrootBlock.AGE, 3).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage3", ResourceLocationHelper.extend(blockTexture(block), "_stage3")).renderType("cutout_mipped")).addModel();
+		getVariantBuilder(block).partialState().with(BeetrootBlock.AGE, 0).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage0", ResourceLocationHelper.extend(blockTexture(block), "_stage0")).renderType("cutout")).addModel().partialState().with(BeetrootBlock.AGE, 1).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage1", ResourceLocationHelper.extend(blockTexture(block), "_stage1")).renderType("cutout")).addModel().partialState().with(BeetrootBlock.AGE, 2).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage2", ResourceLocationHelper.extend(blockTexture(block), "_stage2")).renderType("cutout")).addModel().partialState().with(BeetrootBlock.AGE, 3).modelForState().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_stage3", ResourceLocationHelper.extend(blockTexture(block), "_stage3")).renderType("cutout")).addModel();
 	}
 
 	public void berryBushBlock(Block block) {
