@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "technologica:soybeans"
+          "name": "technologica:soy_beans"
         }
       ],
       "rolls": 1.0
@@ -20,7 +20,7 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "technologica:soybeans",
+          "block": "technologica:soy_beans",
           "condition": "minecraft:block_state_property",
           "properties": {
             "age": "7"
@@ -41,7 +41,7 @@
               }
             }
           ],
-          "name": "technologica:soybeans"
+          "name": "technologica:soy_beans"
         }
       ],
       "rolls": 1.0

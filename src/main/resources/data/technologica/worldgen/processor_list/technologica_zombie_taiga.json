@@ -329,7 +329,7 @@
             "Properties": {
               "age": "0"
             },
-            "Name": "technologica:soybeans"
+            "Name": "technologica:soy_beans"
           },
           "input_predicate": {
             "block": "minecraft:wheat",

@@ -64,7 +64,7 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> PEAS = ITEMS.register("peas", () -> new CropSeedItem(TechnologicaBlocks.PEAS.get(), new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.PEAS)));
 	public static final RegistryObject<Item> PEANUT = ITEMS.register("peanut", () -> new CropSeedItem(TechnologicaBlocks.PEANUTS.get(), new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.PEANUT)));
 	public static final RegistryObject<Item> RED_BEANS = ITEMS.register("red_beans", () -> new CropSeedItem(TechnologicaBlocks.RED_BEANS.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
-	public static final RegistryObject<Item> SOY_BEANS = ITEMS.register("soybeans", () -> new CropSeedItem(TechnologicaBlocks.SOY_BEANS.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
+	public static final RegistryObject<Item> SOY_BEANS = ITEMS.register("soy_beans", () -> new CropSeedItem(TechnologicaBlocks.SOY_BEANS.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
 	public static final RegistryObject<Item> SWEET_POTATO = ITEMS.register("sweet_potato", () -> new CropSeedItem(TechnologicaBlocks.SWEET_POTATOES.get(), new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.SWEET_POTATO)));
 
 	public static final RegistryObject<Item> BROCCOLI = ITEMS.register("broccoli", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.BROCCOLI)));
@@ -93,6 +93,7 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> RASPBERRY = ITEMS.register("raspberry", () -> new ItemNameBlockItem(TechnologicaBlocks.RASPBERRY_BUSH.get(), new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.RASPBERRY)));
 	public static final RegistryObject<Item> STRAWBERRY = ITEMS.register("strawberry", () -> new ItemNameBlockItem(TechnologicaBlocks.STRAWBERRY_BUSH.get(), new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.STRAWBERRY)));
 	public static final RegistryObject<Item> COTTON = ITEMS.register("cotton", () -> new ItemNameBlockItem(TechnologicaBlocks.COTTON_BUSH.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
+	public static final RegistryObject<Item> PEPPERCORNS = ITEMS.register("peppercorns", () -> new ItemNameBlockItem(TechnologicaBlocks.PEPPERCORNS.get(), new Item.Properties().tab(TechnologicaItemGroup.FOOD)));
 
 	public static final RegistryObject<Item> CRANBERRY_SEEDS = ITEMS.register("cranberry_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.CRANBERRY_CROP.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
 	public static final RegistryObject<Item> CUCUMBER_SEEDS = ITEMS.register("cucumber_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.CUCUMBER_STEM.get(), new Item.Properties().tab(TechnologicaItemGroup.FLORA)));
@@ -413,7 +414,6 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> ORANGE = ITEMS.register("orange", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.ORANGE)));
 	public static final RegistryObject<Item> PEACH = ITEMS.register("peach", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.PEACH)));
 	public static final RegistryObject<Item> PEAR = ITEMS.register("pear", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.PEAR)));
-	public static final RegistryObject<Item> PEPPERCORNS = ITEMS.register("peppercorns", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD)));
 	public static final RegistryObject<Item> PLUM = ITEMS.register("plum", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.PLUM)));
 	public static final RegistryObject<Item> SQUASH = ITEMS.register("squash", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.SQUASH)));
 	public static final RegistryObject<Item> TOMATO = ITEMS.register("tomato", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.TOMATO)));

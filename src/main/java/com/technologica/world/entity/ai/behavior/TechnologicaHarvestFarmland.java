@@ -111,7 +111,7 @@ public class TechnologicaHarvestFarmland extends Behavior<Villager> {
 						ItemStack itemstack = simplecontainer.getItem(i);
 						boolean flag = false;
 						if (!itemstack.isEmpty()) {
-							if (itemstack.getItem() instanceof net.minecraftforge.common.IPlantable) {
+							if (itemstack.getItem() instanceof net.minecraftforge.common.IPlantable && itemstack.getItem() != TechnologicaItems.RICE_SEEDS.get()) {
 								if (((net.minecraftforge.common.IPlantable) itemstack.getItem()).getPlantType(p_23196_, aboveFarmlandPos) == net.minecraftforge.common.PlantType.CROP) {
 									p_23196_.setBlock(aboveFarmlandPos, ((net.minecraftforge.common.IPlantable) itemstack.getItem()).getPlant(p_23196_, aboveFarmlandPos), 3);
 									flag = true;

@@ -30,6 +30,8 @@ public class TechnologicaVegetationPlacements {
 	public static Holder<PlacedFeature> PATCH_RASPBERRY_RARE;
 	public static Holder<PlacedFeature> PATCH_STRAWBERRY_COMMON;
 	public static Holder<PlacedFeature> PATCH_STRAWBERRY_RARE;
+	public static Holder<PlacedFeature> PATCH_COTTON;
+	public static Holder<PlacedFeature> PATCH_PEPPERCORNS;
 
 	public static void register() {
 		TREES_MODIFIED_SAVANNA = PlacementUtils.register("trees_zebrawood", TechnologicaVegetationFeatures.TREES_MODIFIED_SAVANNA, VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 1)));
@@ -51,5 +53,7 @@ public class TechnologicaVegetationPlacements {
 		PATCH_RASPBERRY_RARE = PlacementUtils.register("patch_raspberry_rare", TechnologicaVegetationFeatures.PATCH_RASPBERRY_BUSH, RarityFilter.onAverageOnceEvery(384), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		PATCH_STRAWBERRY_COMMON = PlacementUtils.register("patch_strawberry_common", TechnologicaVegetationFeatures.PATCH_STRAWBERRY_BUSH, RarityFilter.onAverageOnceEvery(32), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		PATCH_STRAWBERRY_RARE = PlacementUtils.register("patch_strawberry_rare", TechnologicaVegetationFeatures.PATCH_STRAWBERRY_BUSH, RarityFilter.onAverageOnceEvery(384), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+		PATCH_COTTON = PlacementUtils.register("patch_cotton", TechnologicaVegetationFeatures.PATCH_COTTON_BUSH, RarityFilter.onAverageOnceEvery(32), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+		PATCH_PEPPERCORNS = PlacementUtils.register("patch_peppercorns", TechnologicaVegetationFeatures.PATCH_PEPPERCORN_BUSH, RarityFilter.onAverageOnceEvery(5), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 	}
 }

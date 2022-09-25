@@ -1,6 +1,10 @@
 {
   "type": "forge:add_features",
-  "biomes": "bamboo_jungle",
-  "features": "trees_bamboo_jungle",
+  "biomes": "jungle",
+  "features": 
+  [
+  "trees_modified_jungle",
+  "patch_peppercorns"
+  ],
   "step": "vegetal_decoration"
 }

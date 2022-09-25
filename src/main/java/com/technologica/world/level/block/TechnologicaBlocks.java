@@ -125,7 +125,7 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> PEAS = BLOCKS.register("peas", () -> replantableCropBlock(TechnologicaItems.PEAS));
 	public static final RegistryObject<Block> PEANUTS = BLOCKS.register("peanuts", () -> replantableCropBlock(TechnologicaItems.PEANUT));
 	public static final RegistryObject<Block> RED_BEANS = BLOCKS.register("red_beans", () -> replantableCropBlock(TechnologicaItems.RED_BEANS));
-	public static final RegistryObject<Block> SOY_BEANS = BLOCKS.register("soybeans", () -> replantableCropBlock(TechnologicaItems.SOY_BEANS));
+	public static final RegistryObject<Block> SOY_BEANS = BLOCKS.register("soy_beans", () -> replantableCropBlock(TechnologicaItems.SOY_BEANS));
 	public static final RegistryObject<Block> SWEET_POTATOES = BLOCKS.register("sweet_potatoes", () -> replantableCropBlock(TechnologicaItems.SWEET_POTATO));
 
 	public static final RegistryObject<Block> BROCCOLI = BLOCKS.register("broccoli", () -> seededCropBlock(TechnologicaItems.BROCCOLI_SEEDS));

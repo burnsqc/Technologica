@@ -8,6 +8,7 @@ import com.technologica.world.level.block.TechnologicaBlocks;
 import net.minecraft.core.Holder;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.SweetBerryBushBlock;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -33,6 +34,8 @@ public class TechnologicaVegetationFeatures {
 	public static Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> PATCH_BLUEBERRY_BUSH;
 	public static Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> PATCH_RASPBERRY_BUSH;
 	public static Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> PATCH_STRAWBERRY_BUSH;
+	public static Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> PATCH_COTTON_BUSH;
+	public static Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> PATCH_PEPPERCORN_BUSH;
 
 	public static void register() {
 		TREES_MODIFIED_SAVANNA = FeatureUtils.register("trees_modified_savanna", Feature.RANDOM_SELECTOR, (new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(TechnologicaTreePlacements.ZEBRAWOOD_CHECKED, 0.8F)), TechnologicaTreePlacements.ZEBRAWOOD_CHECKED)));
@@ -50,5 +53,7 @@ public class TechnologicaVegetationFeatures {
 		PATCH_BLUEBERRY_BUSH = FeatureUtils.register("patch_blueberry_bush", Feature.RANDOM_PATCH, FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(TechnologicaBlocks.BLUEBERRY_BUSH.get().defaultBlockState().setValue(SweetBerryBushBlock.AGE, Integer.valueOf(3)))), List.of(Blocks.GRASS_BLOCK)));
 		PATCH_RASPBERRY_BUSH = FeatureUtils.register("patch_raspberry_bush", Feature.RANDOM_PATCH, FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(TechnologicaBlocks.RASPBERRY_BUSH.get().defaultBlockState().setValue(SweetBerryBushBlock.AGE, Integer.valueOf(3)))), List.of(Blocks.GRASS_BLOCK)));
 		PATCH_STRAWBERRY_BUSH = FeatureUtils.register("patch_strawberry_bush", Feature.RANDOM_PATCH, FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(TechnologicaBlocks.STRAWBERRY_BUSH.get().defaultBlockState().setValue(SweetBerryBushBlock.AGE, Integer.valueOf(3)))), List.of(Blocks.GRASS_BLOCK)));
+		PATCH_COTTON_BUSH = FeatureUtils.register("patch_cotton_bush", Feature.RANDOM_PATCH, FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(TechnologicaBlocks.COTTON_BUSH.get().defaultBlockState().setValue(SweetBerryBushBlock.AGE, Integer.valueOf(3)))), List.of(Blocks.GRASS_BLOCK)));
+		PATCH_PEPPERCORN_BUSH = FeatureUtils.register("patch_peppercorn_bush", Feature.RANDOM_PATCH, FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(TechnologicaBlocks.PEPPERCORNS.get().defaultBlockState().setValue(CropBlock.AGE, Integer.valueOf(3)))), List.of(Blocks.GRASS_BLOCK)));
 	}
 }

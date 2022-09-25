@@ -27,7 +27,7 @@
             },
             {
               "type": "minecraft:item",
-              "name": "minecraft:air"
+              "name": "technologica:peppercorns"
             }
           ]
         }
@@ -59,7 +59,7 @@
               }
             }
           ],
-          "name": "minecraft:air"
+          "name": "technologica:peppercorns"
         }
       ],
       "rolls": 1.0

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "technologica:item/soybeans"
+    "layer0": "technologica:item/soy_beans"
   }
 }
