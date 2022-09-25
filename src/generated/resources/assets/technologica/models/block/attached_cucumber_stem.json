@@ -1,6 +1,6 @@
 {
   "parent": "technologica:block/stem_gourd",
-  "render_type": "minecraft:cutout_mipped",
+  "render_type": "minecraft:cutout",
   "textures": {
     "stem": "technologica:block/cucumber_stem",
     "upperstem": "technologica:block/attached_cucumber_stem"

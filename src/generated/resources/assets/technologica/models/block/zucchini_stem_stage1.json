@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/stem_growth1",
-  "render_type": "minecraft:cutout_mipped",
+  "render_type": "minecraft:cutout",
   "textures": {
     "stem": "technologica:block/zucchini_stem"
   }

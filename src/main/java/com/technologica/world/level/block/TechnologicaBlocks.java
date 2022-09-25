@@ -144,7 +144,6 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> RASPBERRY_BUSH = BLOCKS.register("raspberry_bush", () -> berryBushBlock(TechnologicaItems.RASPBERRY));
 	public static final RegistryObject<Block> STRAWBERRY_BUSH = BLOCKS.register("strawberry_bush", () -> berryBushBlock(TechnologicaItems.STRAWBERRY));
 	public static final RegistryObject<Block> COTTON_BUSH = BLOCKS.register("cotton_bush", () -> berryBushBlock(TechnologicaItems.COTTON));
-
 	public static final RegistryObject<Block> PEPPERCORNS = BLOCKS.register("peppercorns", () -> new TallBushCropBlock(TechnologicaItems.PEPPERCORNS));
 
 	public static final RegistryObject<Block> CUCUMBERS = BLOCKS.register("cucumbers", () -> new GourdCropBlock(0));
