@@ -10,7 +10,7 @@ The major content groups of Technologica can be broken down into the following c
 
 * Agriculture
   * Botany
-      * 37 new crops including 2 tall crops and 2 water crops.
+      * 37 new crops including 4 grain crops (with 1 tall grain crop), 10 replantable crops, 10 seeded crops, 6 bushes (with 1 tall bush), 3 stem crops, 2 water crops, and 2 vine crops.
       * New fertilizer item provides radius of growth on use.
   * Dendrology
     * 25 new trees including 14 fruit trees and 2 sap trees which can be found scattered in existing vanilla biomes or in new Technologica biomes.
