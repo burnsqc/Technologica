@@ -97,9 +97,9 @@ public class TechnologicaBlockLoot extends BlockLoot {
 
 		add(TechnologicaBlocks.COTTON_BUSH.get(), createCropDrops(TechnologicaBlocks.COTTON_BUSH.get(), TechnologicaItems.COTTON.get(), TechnologicaBlocks.COTTON_BUSH.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.COTTON_BUSH.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
 		add(TechnologicaBlocks.CRANBERRY_CROP.get(), createCropDrops(TechnologicaBlocks.CRANBERRY_CROP.get(), TechnologicaItems.CRANBERRY.get(), TechnologicaBlocks.CRANBERRY_CROP.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.CRANBERRY_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
-		add(TechnologicaBlocks.GRAPE_CROP.get(), createCropDrops(TechnologicaBlocks.GRAPE_CROP.get(), TechnologicaItems.GRAPE.get(), TechnologicaBlocks.GRAPE_CROP.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.GRAPE_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
+		add(TechnologicaBlocks.GRAPES.get(), createCropDrops(TechnologicaBlocks.GRAPES.get(), TechnologicaItems.GRAPE.get(), TechnologicaBlocks.GRAPES.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.GRAPES.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
 		add(TechnologicaBlocks.PEPPERCORNS.get(), createCropDrops(TechnologicaBlocks.PEPPERCORNS.get(), TechnologicaItems.PEPPERCORNS.get(), TechnologicaBlocks.PEPPERCORNS.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.PEPPERCORNS.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
-		add(TechnologicaBlocks.TOMATO_CROP.get(), createCropDrops(TechnologicaBlocks.TOMATO_CROP.get(), TechnologicaItems.TOMATO.get(), TechnologicaBlocks.TOMATO_CROP.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.TOMATO_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
+		add(TechnologicaBlocks.TOMATOES.get(), createCropDrops(TechnologicaBlocks.TOMATOES.get(), TechnologicaItems.TOMATO.get(), TechnologicaBlocks.TOMATOES.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.TOMATOES.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
 
 		dropSelf(TechnologicaBlocks.APRICOT_SAPLING.get());
 		dropSelf(TechnologicaBlocks.ASPEN_SAPLING.get());
@@ -206,6 +206,7 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		this.add(TechnologicaBlocks.LAND_MINE.get(), noDrop());
 
 		dropOther(TechnologicaBlocks.MULCH.get(), Blocks.DIRT);
+		dropSelf(TechnologicaBlocks.TRELLIS.get());
 
 		dropSelf(TechnologicaBlocks.SALT.get());
 		add(TechnologicaBlocks.LITHIUM_CLAY.get(), (clay) -> createSingleItemTableWithSilkTouch(clay, TechnologicaItems.LITHIUM_CLAY_BALL.get(), ConstantValue.exactly(4)));

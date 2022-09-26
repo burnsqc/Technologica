@@ -6,6 +6,8 @@ import com.technologica.util.Radius;
 import com.technologica.util.text.ResourceLocationHelper;
 import com.technologica.world.level.block.TallCropBlock;
 import com.technologica.world.level.block.TechnologicaBlocks;
+import com.technologica.world.level.block.TrellisBlock;
+import com.technologica.world.level.block.VineCropBlock;
 import com.technologica.world.level.block.state.properties.TechnologicaBlockStateProperties;
 
 import net.minecraft.core.Direction;
@@ -67,6 +69,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		tableBlocks();
 
 		simpleBlock(TechnologicaBlocks.MULCH.get(), models().cubeBottomTop(ResourceLocationHelper.getPath(TechnologicaBlocks.MULCH.get()), modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.MULCH.get()) + "_side"), mcLoc("block/dirt"), modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.MULCH.get()) + "_top")));
+		tallBlock(TechnologicaBlocks.TRELLIS.get(), trellis(TechnologicaBlocks.TRELLIS.get(), blockTexture(TechnologicaBlocks.TRELLIS.get())));
 
 		simpleBlock(TechnologicaBlocks.SALT.get());
 		simpleBlock(TechnologicaBlocks.LITHIUM_CLAY.get());
@@ -740,8 +743,8 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		berryBushBlock(TechnologicaBlocks.STRAWBERRY_BUSH.get());
 		berryBushBlock(TechnologicaBlocks.COTTON_BUSH.get());
 		tallBushCropBlock(TechnologicaBlocks.PEPPERCORNS.get());
-		grainCropBlock(TechnologicaBlocks.GRAPE_CROP.get());
-		grainCropBlock(TechnologicaBlocks.TOMATO_CROP.get());
+		vineCropBlock(TechnologicaBlocks.GRAPES.get());
+		vineCropBlock(TechnologicaBlocks.TOMATOES.get());
 		tallCropBlock(TechnologicaBlocks.CRANBERRY_CROP.get());
 		stemCropBlock(TechnologicaBlocks.CUCUMBER_STEM.get());
 		attachedStemCropBlock(TechnologicaBlocks.ATTACHED_CUCUMBER_STEM.get(), attachedStem(ResourceLocationHelper.getPath(TechnologicaBlocks.ATTACHED_CUCUMBER_STEM.get()), blockTexture(TechnologicaBlocks.CUCUMBER_STEM.get()), blockTexture(TechnologicaBlocks.ATTACHED_CUCUMBER_STEM.get())));
@@ -1516,6 +1519,10 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		return models().withExistingParent(ResourceLocationHelper.getPath(block) + "_inventory", "block/button_inventory").renderType(renderType).texture("texture", ResourceLocationHelper.replace(blockTexture(block), "_button", "_planks"));
 	}
 
+	public ModelFile trellis(Block block, ResourceLocation texture) {
+		return models().singleTexture(ResourceLocationHelper.getPath(block), modLoc("trellis_model"), texture).renderType("cutout");
+	}
+
 	public ModelFile chairModel(Block block, ResourceLocation texture, String renderType) {
 		return models().singleTexture(ResourceLocationHelper.getPath(block), modLoc("chair"), "planks", texture).renderType(renderType);
 	}
@@ -1632,6 +1639,11 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		this.simpleBlockItem(block, blockModel1);
 	}
 
+	public void tallBlock(Block block, ModelFile blockModel) {
+		getVariantBuilder(block).partialState().with(TrellisBlock.HALF, DoubleBlockHalf.LOWER).modelForState().modelFile(blockModel).addModel().partialState().with(TrellisBlock.HALF, DoubleBlockHalf.UPPER).modelForState().modelFile(blockModel).addModel();
+		this.simpleBlockItem(block, blockModel);
+	}
+
 	public void lineShaftBlockState(Block block, ModelFile blockModel1, ModelFile blockModel2, ModelFile blockModel3, ModelFile blockModel4) {
 		getVariantBuilder(block).partialState().with(BlockStateProperties.AXIS, Direction.Axis.X).with(TechnologicaBlockStateProperties.RADIUS, Radius.NONE).modelForState().modelFile(blockModel1).rotationX(90).rotationY(90).addModel().partialState().with(BlockStateProperties.AXIS, Direction.Axis.Y).with(TechnologicaBlockStateProperties.RADIUS, Radius.NONE).modelForState().modelFile(blockModel1).addModel().partialState().with(BlockStateProperties.AXIS, Direction.Axis.Z).with(TechnologicaBlockStateProperties.RADIUS, Radius.NONE).modelForState().modelFile(blockModel1).rotationX(90).addModel().partialState().with(BlockStateProperties.AXIS, Direction.Axis.X).with(TechnologicaBlockStateProperties.RADIUS, Radius.SMALL).modelForState().modelFile(blockModel2).rotationX(90).rotationY(90).addModel().partialState().with(BlockStateProperties.AXIS, Direction.Axis.Y).with(TechnologicaBlockStateProperties.RADIUS, Radius.SMALL).modelForState().modelFile(blockModel2).addModel().partialState().with(BlockStateProperties.AXIS, Direction.Axis.Z).with(TechnologicaBlockStateProperties.RADIUS, Radius.SMALL).modelForState().modelFile(blockModel2).rotationX(90).addModel().partialState().with(BlockStateProperties.AXIS, Direction.Axis.X).with(TechnologicaBlockStateProperties.RADIUS, Radius.MEDIUM).modelForState().modelFile(blockModel3).rotationX(90).rotationY(90).addModel().partialState().with(BlockStateProperties.AXIS, Direction.Axis.Y).with(TechnologicaBlockStateProperties.RADIUS, Radius.MEDIUM).modelForState().modelFile(blockModel3).addModel().partialState().with(BlockStateProperties.AXIS, Direction.Axis.Z).with(TechnologicaBlockStateProperties.RADIUS, Radius.MEDIUM).modelForState().modelFile(blockModel3).rotationX(90).addModel().partialState().with(BlockStateProperties.AXIS, Direction.Axis.X).with(TechnologicaBlockStateProperties.RADIUS, Radius.LARGE).modelForState().modelFile(blockModel4).rotationX(90).rotationY(90).addModel().partialState().with(BlockStateProperties.AXIS, Direction.Axis.Y).with(TechnologicaBlockStateProperties.RADIUS, Radius.LARGE).modelForState().modelFile(blockModel4).addModel().partialState().with(BlockStateProperties.AXIS, Direction.Axis.Z).with(TechnologicaBlockStateProperties.RADIUS, Radius.LARGE).modelForState().modelFile(blockModel4).rotationX(90).addModel();
 		this.simpleBlockItem(block, blockModel1);
@@ -1673,6 +1685,10 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 
 	public void attachedStemCropBlock(Block block, ModelFile blockModel) {
 		getVariantBuilder(block).partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).modelForState().modelFile(blockModel).rotationY(180).addModel().partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).modelForState().modelFile(blockModel).rotationY(90).addModel().partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).modelForState().modelFile(blockModel).rotationY(270).addModel().partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).modelForState().modelFile(blockModel).addModel();
+	}
+
+	public void vineCropBlock(Block block) {
+		getMultipartBuilder(block).part().modelFile(trellis(TechnologicaBlocks.TRELLIS.get(), blockTexture(TechnologicaBlocks.TRELLIS.get()))).addModel().condition(VineCropBlock.TRELLIS, true).end().part().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_bottom_stage0", ResourceLocationHelper.extend(blockTexture(block), "_bottom_stage0")).renderType("cutout")).addModel().condition(VineCropBlock.HALF, DoubleBlockHalf.LOWER).condition(VineCropBlock.AGE, 0).end().part().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_bottom_stage1", ResourceLocationHelper.extend(blockTexture(block), "_bottom_stage1")).renderType("cutout")).addModel().condition(VineCropBlock.HALF, DoubleBlockHalf.LOWER).condition(VineCropBlock.AGE, 1).end().part().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_bottom_stage2", ResourceLocationHelper.extend(blockTexture(block), "_bottom_stage2")).renderType("cutout")).addModel().condition(VineCropBlock.HALF, DoubleBlockHalf.LOWER).condition(VineCropBlock.AGE, 2).end().part().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_bottom_stage3", ResourceLocationHelper.extend(blockTexture(block), "_bottom_stage3")).renderType("cutout")).addModel().condition(VineCropBlock.HALF, DoubleBlockHalf.LOWER).condition(VineCropBlock.AGE, 3).end().part().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_bottom_stage4", ResourceLocationHelper.extend(blockTexture(block), "_bottom_stage4")).renderType("cutout")).addModel().condition(VineCropBlock.HALF, DoubleBlockHalf.LOWER).condition(VineCropBlock.AGE, 4).end().part().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_bottom_stage5", ResourceLocationHelper.extend(blockTexture(block), "_bottom_stage5")).renderType("cutout")).addModel().condition(VineCropBlock.HALF, DoubleBlockHalf.LOWER).condition(VineCropBlock.AGE, 5).end().part().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_bottom_stage6", ResourceLocationHelper.extend(blockTexture(block), "_bottom_stage6")).renderType("cutout")).addModel().condition(VineCropBlock.HALF, DoubleBlockHalf.LOWER).condition(VineCropBlock.AGE, 6).end().part().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_bottom_stage7", ResourceLocationHelper.extend(blockTexture(block), "_bottom_stage7")).renderType("cutout")).addModel().condition(VineCropBlock.HALF, DoubleBlockHalf.LOWER).condition(VineCropBlock.AGE, 7).end().part().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_top_stage0", ResourceLocationHelper.extend(blockTexture(block), "_top_stage0")).renderType("cutout")).addModel().condition(VineCropBlock.HALF, DoubleBlockHalf.UPPER).condition(VineCropBlock.AGE, 0).end().part().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_top_stage1", ResourceLocationHelper.extend(blockTexture(block), "_top_stage1")).renderType("cutout")).addModel().condition(VineCropBlock.HALF, DoubleBlockHalf.UPPER).condition(VineCropBlock.AGE, 1).end().part().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_top_stage2", ResourceLocationHelper.extend(blockTexture(block), "_top_stage2")).renderType("cutout")).addModel().condition(VineCropBlock.HALF, DoubleBlockHalf.UPPER).condition(VineCropBlock.AGE, 2).end().part().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_top_stage3", ResourceLocationHelper.extend(blockTexture(block), "_top_stage3")).renderType("cutout")).addModel().condition(VineCropBlock.HALF, DoubleBlockHalf.UPPER).condition(VineCropBlock.AGE, 3).end().part().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_top_stage4", ResourceLocationHelper.extend(blockTexture(block), "_top_stage4")).renderType("cutout")).addModel().condition(VineCropBlock.HALF, DoubleBlockHalf.UPPER).condition(VineCropBlock.AGE, 4).end().part().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_top_stage5", ResourceLocationHelper.extend(blockTexture(block), "_top_stage5")).renderType("cutout")).addModel().condition(VineCropBlock.HALF, DoubleBlockHalf.UPPER).condition(VineCropBlock.AGE, 5).end().part().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_top_stage6", ResourceLocationHelper.extend(blockTexture(block), "_top_stage6")).renderType("cutout")).addModel().condition(VineCropBlock.HALF, DoubleBlockHalf.UPPER).condition(VineCropBlock.AGE, 6).end().part().modelFile(models().crop(ResourceLocationHelper.getPath(block) + "_top_stage7", ResourceLocationHelper.extend(blockTexture(block), "_top_stage7")).renderType("cutout")).addModel().condition(VineCropBlock.HALF, DoubleBlockHalf.UPPER).condition(VineCropBlock.AGE, 7).end();
 	}
 
 	public void annunciatorBlockState(Block block) {

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "technologica:block/trellis"
+    },
+    "half=upper": {
+      "model": "technologica:block/trellis"
+    }
+  }
+}

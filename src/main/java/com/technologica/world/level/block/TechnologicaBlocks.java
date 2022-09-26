@@ -104,7 +104,7 @@ public class TechnologicaBlocks {
 
 	public static void init() {
 		BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-		LOGGER.info("BLOCKS INITIALIZED: " + BLOCKS.getEntries().size() + " OF 813");
+		LOGGER.info("BLOCKS INITIALIZED: " + BLOCKS.getEntries().size() + " OF 827");
 	}
 
 	/*
@@ -115,8 +115,6 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> OATS = BLOCKS.register("oats", () -> grainCropBlock(TechnologicaItems.OATS_SEEDS));
 	public static final RegistryObject<Block> RYE = BLOCKS.register("rye", () -> grainCropBlock(TechnologicaItems.RYE_SEEDS));
 	public static final RegistryObject<Block> CORN = BLOCKS.register("corn", () -> new TallCropBlock(TechnologicaItems.CORN_SEEDS));
-	public static final RegistryObject<Block> RICE = BLOCKS.register("rice", () -> new WaterCropBlock(TechnologicaItems.RICE_SEEDS));
-
 	public static final RegistryObject<Block> ASPARAGUS = BLOCKS.register("asparagus", () -> replantableCropBlock(TechnologicaItems.ASPARAGUS));
 	public static final RegistryObject<Block> CHILI_PEPPERS = BLOCKS.register("chili_peppers", () -> replantableCropBlock(TechnologicaItems.CHILI_PEPPER));
 	public static final RegistryObject<Block> COFFEE = BLOCKS.register("coffee", () -> replantableCropBlock(TechnologicaItems.COFFEE_BEANS));
@@ -127,7 +125,6 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> RED_BEANS = BLOCKS.register("red_beans", () -> replantableCropBlock(TechnologicaItems.RED_BEANS));
 	public static final RegistryObject<Block> SOY_BEANS = BLOCKS.register("soy_beans", () -> replantableCropBlock(TechnologicaItems.SOY_BEANS));
 	public static final RegistryObject<Block> SWEET_POTATOES = BLOCKS.register("sweet_potatoes", () -> replantableCropBlock(TechnologicaItems.SWEET_POTATO));
-
 	public static final RegistryObject<Block> BROCCOLI = BLOCKS.register("broccoli", () -> seededCropBlock(TechnologicaItems.BROCCOLI_SEEDS));
 	public static final RegistryObject<Block> CELERY = BLOCKS.register("celery", () -> seededCropBlock(TechnologicaItems.CELERY_SEEDS));
 	public static final RegistryObject<Block> LETTUCE = BLOCKS.register("lettuce", () -> seededCropBlock(TechnologicaItems.LETTUCE_SEEDS));
@@ -138,39 +135,37 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> RADISHES = BLOCKS.register("radishes", () -> seededCropBlock(TechnologicaItems.RADISH_SEEDS));
 	public static final RegistryObject<Block> TEA = BLOCKS.register("tea", () -> seededCropBlock(TechnologicaItems.TEA_SEEDS));
 	public static final RegistryObject<Block> TURNIPS = BLOCKS.register("turnips", () -> seededCropBlock(TechnologicaItems.TURNIP_SEEDS));
-
-	public static final RegistryObject<Block> BLACKBERRY_BUSH = BLOCKS.register("blackberry_bush", () -> berryBushBlock(TechnologicaItems.BLACKBERRY));
-	public static final RegistryObject<Block> BLUEBERRY_BUSH = BLOCKS.register("blueberry_bush", () -> berryBushBlock(TechnologicaItems.BLUEBERRY));
-	public static final RegistryObject<Block> RASPBERRY_BUSH = BLOCKS.register("raspberry_bush", () -> berryBushBlock(TechnologicaItems.RASPBERRY));
-	public static final RegistryObject<Block> STRAWBERRY_BUSH = BLOCKS.register("strawberry_bush", () -> berryBushBlock(TechnologicaItems.STRAWBERRY));
-	public static final RegistryObject<Block> COTTON_BUSH = BLOCKS.register("cotton_bush", () -> berryBushBlock(TechnologicaItems.COTTON));
-	public static final RegistryObject<Block> PEPPERCORNS = BLOCKS.register("peppercorns", () -> new TallBushCropBlock(TechnologicaItems.PEPPERCORNS));
-
-	public static final RegistryObject<Block> CUCUMBERS = BLOCKS.register("cucumbers", () -> new GourdCropBlock(0));
+	public static final RegistryObject<Block> CUCUMBERS = BLOCKS.register("cucumbers", () -> new GourdCropBlock(BlockBehaviour.Properties.of(Material.VEGETABLE, MaterialColor.WARPED_WART_BLOCK).strength(1.0F).sound(SoundType.WOOD).noOcclusion(), 0));
 	public static final RegistryObject<Block> ATTACHED_CUCUMBER_STEM = BLOCKS.register("attached_cucumber_stem", () -> new AttachedStemBlock((StemGrownBlock) CUCUMBERS.get(), () -> {
 		return TechnologicaItems.CUCUMBER_SEEDS.get();
 	}, BlockBehaviour.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> CUCUMBER_STEM = BLOCKS.register("cucumber_stem", () -> new GourdStemBlock((StemGrownBlock) CUCUMBERS.get(), () -> {
 		return TechnologicaItems.CUCUMBER_SEEDS.get();
 	}, BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.HARD_CROP)));
-	public static final RegistryObject<Block> SQUASH = BLOCKS.register("squash", () -> new GourdCropBlock(1));
+	public static final RegistryObject<Block> SQUASH = BLOCKS.register("squash", () -> new GourdCropBlock(BlockBehaviour.Properties.of(Material.VEGETABLE, MaterialColor.COLOR_YELLOW).strength(1.0F).sound(SoundType.WOOD).noOcclusion(), 1));
 	public static final RegistryObject<Block> ATTACHED_SQUASH_STEM = BLOCKS.register("attached_squash_stem", () -> new AttachedStemBlock((StemGrownBlock) SQUASH.get(), () -> {
 		return TechnologicaItems.SQUASH_SEEDS.get();
 	}, BlockBehaviour.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> SQUASH_STEM = BLOCKS.register("squash_stem", () -> new GourdStemBlock((StemGrownBlock) SQUASH.get(), () -> {
 		return TechnologicaItems.SQUASH_SEEDS.get();
 	}, BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.HARD_CROP)));
-	public static final RegistryObject<Block> ZUCCHINI = BLOCKS.register("zucchini", () -> new GourdCropBlock(2));
+	public static final RegistryObject<Block> ZUCCHINI = BLOCKS.register("zucchini", () -> new GourdCropBlock(BlockBehaviour.Properties.of(Material.VEGETABLE, MaterialColor.COLOR_GREEN).strength(1.0F).sound(SoundType.WOOD).noOcclusion(), 2));
 	public static final RegistryObject<Block> ATTACHED_ZUCCHINI_STEM = BLOCKS.register("attached_zucchini_stem", () -> new AttachedStemBlock((StemGrownBlock) ZUCCHINI.get(), () -> {
 		return TechnologicaItems.ZUCCHINI_SEEDS.get();
 	}, BlockBehaviour.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> ZUCCHINI_STEM = BLOCKS.register("zucchini_stem", () -> new GourdStemBlock((StemGrownBlock) ZUCCHINI.get(), () -> {
 		return TechnologicaItems.ZUCCHINI_SEEDS.get();
 	}, BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.HARD_CROP)));
-
+	public static final RegistryObject<Block> BLACKBERRY_BUSH = BLOCKS.register("blackberry_bush", () -> bushCropBlock(TechnologicaItems.BLACKBERRY));
+	public static final RegistryObject<Block> BLUEBERRY_BUSH = BLOCKS.register("blueberry_bush", () -> bushCropBlock(TechnologicaItems.BLUEBERRY));
+	public static final RegistryObject<Block> RASPBERRY_BUSH = BLOCKS.register("raspberry_bush", () -> bushCropBlock(TechnologicaItems.RASPBERRY));
+	public static final RegistryObject<Block> STRAWBERRY_BUSH = BLOCKS.register("strawberry_bush", () -> bushCropBlock(TechnologicaItems.STRAWBERRY));
+	public static final RegistryObject<Block> COTTON_BUSH = BLOCKS.register("cotton_bush", () -> bushCropBlock(TechnologicaItems.COTTON));
+	public static final RegistryObject<Block> PEPPERCORNS = BLOCKS.register("peppercorns", () -> new TallBushCropBlock(TechnologicaItems.PEPPERCORNS));
+	public static final RegistryObject<Block> GRAPES = BLOCKS.register("grapes", () -> new VineCropBlock(TechnologicaItems.GRAPE_SEEDS));
+	public static final RegistryObject<Block> TOMATOES = BLOCKS.register("tomatoes", () -> new VineCropBlock(TechnologicaItems.TOMATO_SEEDS));
 	public static final RegistryObject<Block> CRANBERRY_CROP = BLOCKS.register("cranberry", () -> new WaterCropBlock(TechnologicaItems.CRANBERRY_SEEDS));
-	public static final RegistryObject<Block> GRAPE_CROP = BLOCKS.register("grape_crop", () -> grainCropBlock(TechnologicaItems.GRAPE_SEEDS));
-	public static final RegistryObject<Block> TOMATO_CROP = BLOCKS.register("tomato_crop", () -> grainCropBlock(TechnologicaItems.TOMATO_SEEDS));
+	public static final RegistryObject<Block> RICE = BLOCKS.register("rice", () -> new WaterCropBlock(TechnologicaItems.RICE_SEEDS));
 
 	public static final RegistryObject<Block> APRICOT_SAPLING = BLOCKS.register("apricot_sapling", () -> new SaplingBlock(new ApricotTreeGrower(), BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
 	public static final RegistryObject<Block> ASPEN_SAPLING = BLOCKS.register("aspen_sapling", () -> new SaplingBlock(new AspenTreeGrower(), BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
@@ -274,6 +269,7 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> FROSTBITTEN_LEAVES = BLOCKS.register("frostbitten_leaves", () -> new MagicLeavesBlock(2));
 
 	public static final RegistryObject<Block> MULCH = BLOCKS.register("mulch", MulchBlock::new);
+	public static final RegistryObject<Block> TRELLIS = BLOCKS.register("trellis", TrellisBlock::new);
 
 	/*
 	 * MINERAL
@@ -1035,29 +1031,29 @@ public class TechnologicaBlocks {
 		};
 	}
 
-	private static PotatoBlock replantableCropBlock(Supplier<Item> yield) {
+	private static PotatoBlock replantableCropBlock(Supplier<Item> seeds) {
 		return new PotatoBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP)) {
 			@Override
 			protected ItemLike getBaseSeedId() {
-				return yield.get();
+				return seeds.get();
 			}
 		};
 	}
 
-	private static BeetrootBlock seededCropBlock(Supplier<Item> yield) {
+	private static BeetrootBlock seededCropBlock(Supplier<Item> seeds) {
 		return new BeetrootBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP)) {
 			@Override
 			protected ItemLike getBaseSeedId() {
-				return yield.get();
+				return seeds.get();
 			}
 		};
 	}
 
-	private static SweetBerryBushBlock berryBushBlock(Supplier<Item> berry) {
+	private static SweetBerryBushBlock bushCropBlock(Supplier<Item> clone) {
 		return new SweetBerryBushBlock(BlockBehaviour.Properties.of(Material.PLANT).randomTicks().noCollission().sound(SoundType.SWEET_BERRY_BUSH)) {
 			@Override
 			public ItemStack getCloneItemStack(BlockGetter p_57256_, BlockPos p_57257_, BlockState p_57258_) {
-				return new ItemStack(berry.get());
+				return new ItemStack(clone.get());
 			}
 
 			@Override
@@ -1068,7 +1064,7 @@ public class TechnologicaBlocks {
 					return InteractionResult.PASS;
 				} else if (i > 1) {
 					int j = 1 + p_57276_.random.nextInt(2);
-					popResource(p_57276_, p_57277_, new ItemStack(berry.get(), j + (flag ? 1 : 0)));
+					popResource(p_57276_, p_57277_, new ItemStack(clone.get(), j + (flag ? 1 : 0)));
 					p_57276_.playSound((Player) null, p_57277_, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + p_57276_.random.nextFloat() * 0.4F);
 					p_57276_.setBlock(p_57277_, p_57275_.setValue(AGE, Integer.valueOf(1)), 2);
 					return InteractionResult.sidedSuccess(p_57276_.isClientSide);
