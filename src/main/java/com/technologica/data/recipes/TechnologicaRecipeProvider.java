@@ -306,6 +306,8 @@ public class TechnologicaRecipeProvider extends RecipeProvider {
 		ShapedRecipeBuilder.shaped(TechnologicaItems.PRIMITIVE_HOE.get()).define('T', Items.STICK).define('F', Items.FLINT).define('S', Items.STRING).pattern("FF ").pattern(" TS").pattern(" T ").unlockedBy("has_flint", has(Items.FLINT)).save(consumer, new ResourceLocation(Technologica.MODID, "primitive_hoe"));
 		ShapedRecipeBuilder.shaped(TechnologicaItems.PRIMITIVE_DAGGER.get()).define('T', Items.STICK).define('F', Items.FLINT).define('S', Items.STRING).pattern("F ").pattern("FS").pattern("T ").unlockedBy("has_flint", has(Items.FLINT)).save(consumer, new ResourceLocation(Technologica.MODID, "primitive_dagger"));
 
+		ShapedRecipeBuilder.shaped(TechnologicaItems.TRELLIS.get()).define('S', Items.STRING).define('B', Items.IRON_BARS).pattern("SBS").pattern("SBS").unlockedBy("has_iron_bars", has(Items.IRON_BARS)).save(consumer, new ResourceLocation(Technologica.MODID, "trellis"));
+
 //		ShapelessRecipeBuilder.shapeless(TechnologicaItems.GLUE.get(), 1).requires(WATER_BUCKET).requires(BONEMEAL).requires(RUBBER)
 
 		sawmillRecipe(Ingredient.of(TechnologicaItemTags.APRICOT_LOGS), TechnologicaItems.APRICOT_PLANKS_ITEM.get(), 1).save(consumer, new ResourceLocation(Technologica.MODID, "apricot_planks_from_apricot_logs_sawmill"));

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": {
+      "item": "minecraft:iron_bars"
+    },
+    "S": {
+      "item": "minecraft:string"
+    }
+  },
+  "pattern": [
+    "SBS",
+    "SBS"
+  ],
+  "result": {
+    "item": "technologica:trellis"
+  }
+}

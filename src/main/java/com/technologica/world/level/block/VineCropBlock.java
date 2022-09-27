@@ -9,14 +9,10 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -26,7 +22,6 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -48,15 +43,17 @@ import net.minecraft.world.phys.shapes.VoxelShape;
  */
 public class VineCropBlock extends CropBlock {
 	private Supplier<Item> seeds;
+	private Supplier<Item> yield;
 	public static final BooleanProperty TRELLIS = BlockStateProperties.ATTACHED;
 	public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 	private static final VoxelShape[] SHAPE_BY_AGE_LOWER = new VoxelShape[] { Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D) };
 	private static final VoxelShape[] SHAPE_BY_AGE_UPPER = new VoxelShape[] { Block.box(0.0D, 0.0D, 0.0D, 16.0D, 0.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 0.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 0.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 0.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D) };
 
-	public VineCropBlock(Supplier<Item> seedsIn) {
+	public VineCropBlock(Supplier<Item> seedsIn, Supplier<Item> yieldIn) {
 		super(BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP));
 		this.registerDefaultState(this.stateDefinition.any().setValue(HALF, DoubleBlockHalf.LOWER).setValue(AGE, 0).setValue(TRELLIS, false));
-		seeds = seedsIn;
+		this.seeds = seedsIn;
+		this.yield = yieldIn;
 	}
 
 	/*
@@ -65,40 +62,33 @@ public class VineCropBlock extends CropBlock {
 
 	@Override
 	public boolean canSurvive(BlockState stateIn, LevelReader worldIn, BlockPos posIn) {
-		Boolean unobstructed;
-		BlockPos ground = posIn.below();
-
-		if (!worldIn.getBlockState(posIn.north()).isFaceSturdy(worldIn, posIn.north(), Direction.SOUTH) && !worldIn.getBlockState(posIn.east()).isFaceSturdy(worldIn, posIn.east(), Direction.WEST) && !worldIn.getBlockState(posIn.south()).isFaceSturdy(worldIn, posIn.south(), Direction.NORTH) && !worldIn.getBlockState(posIn.west()).isFaceSturdy(worldIn, posIn.west(), Direction.EAST) && !stateIn.getValue(TRELLIS)) {
-			return false;
-		}
-
-		if (stateIn.getValue(HALF) == DoubleBlockHalf.LOWER) {
-			if (stateIn.getValue(AGE) <= 3) {
-				unobstructed = isAir(worldIn.getBlockState(posIn.above()));
-			} else {
-				if (worldIn.getBlockState(posIn.above()).getBlock() == this) {
-					unobstructed = worldIn.getBlockState(posIn.above()).getValue(HALF) == DoubleBlockHalf.UPPER;
-				} else {
-					unobstructed = false;
-				}
-			}
-			return worldIn.getBlockState(ground).canSustainPlant(worldIn, ground, Direction.UP, this) && unobstructed;
-		} else {
-			if (worldIn.getBlockState(ground).getBlock() == this) {
-				return worldIn.getBlockState(ground).getValue(HALF) == DoubleBlockHalf.LOWER && worldIn.getBlockState(ground).getValue(AGE) >= 4;
-			} else {
+		Boolean isContinuous = false;
+		if (!worldIn.isClientSide()) {
+			if (!stateIn.getValue(TRELLIS)) {
 				return false;
 			}
-		}
-	}
 
-	@Override
-	protected boolean mayPlaceOn(BlockState p_51042_, BlockGetter p_51043_, BlockPos p_51044_) {
-		return p_51042_.is(BlockTags.DIRT) || p_51042_.is(Blocks.FARMLAND);
+			if (stateIn.getValue(HALF) == DoubleBlockHalf.LOWER) {
+				if (worldIn.getBlockState(posIn.above()).getBlock() == this) {
+					isContinuous = worldIn.getBlockState(posIn.above()).getValue(HALF) == DoubleBlockHalf.UPPER;
+				}
+				return worldIn.getBlockState(posIn.below()).canSustainPlant(worldIn, posIn.below(), Direction.UP, this) && isContinuous;
+			} else {
+				if (worldIn.getBlockState(posIn.below()).getBlock() == this) {
+					isContinuous = worldIn.getBlockState(posIn.below()).getValue(HALF) == DoubleBlockHalf.LOWER;
+				}
+				return worldIn.getBlockState(posIn.below()).getValue(AGE) >= 4 && isContinuous || worldIn.getBlockState(posIn.below()).getValue(TRELLIS);
+			}
+		} else {
+			return false;
+		}
 	}
 
 	@Override
 	public VoxelShape getShape(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, CollisionContext contextIn) {
+		if (stateIn.getValue(TRELLIS)) {
+			return SHAPE_BY_AGE_LOWER[7];
+		}
 		if (stateIn.getValue(HALF) == DoubleBlockHalf.LOWER) {
 			return SHAPE_BY_AGE_LOWER[stateIn.getValue(this.getAgeProperty())];
 		} else {
@@ -134,17 +124,7 @@ public class VineCropBlock extends CropBlock {
 
 	@Override
 	public void entityInside(BlockState p_57270_, Level p_57271_, BlockPos p_57272_, Entity p_57273_) {
-		if (p_57273_ instanceof LivingEntity && p_57273_.getType() != EntityType.FOX && p_57273_.getType() != EntityType.BEE) {
-			p_57273_.makeStuckInBlock(p_57270_, new Vec3(0.8F, 0.75D, 0.8F));
-			if (!p_57271_.isClientSide && p_57270_.getValue(AGE) > 0 && (p_57273_.xOld != p_57273_.getX() || p_57273_.zOld != p_57273_.getZ())) {
-				double d0 = Math.abs(p_57273_.getX() - p_57273_.xOld);
-				double d1 = Math.abs(p_57273_.getZ() - p_57273_.zOld);
-				if (d0 >= 0.003F || d1 >= 0.003F) {
-					p_57273_.hurt(DamageSource.SWEET_BERRY_BUSH, 1.0F);
-				}
-			}
-
-		}
+		p_57273_.makeStuckInBlock(p_57270_, new Vec3(0.8F, 0.75D, 0.8F));
 	}
 
 	@SuppressWarnings("deprecation")
@@ -159,9 +139,16 @@ public class VineCropBlock extends CropBlock {
 			return InteractionResult.sidedSuccess(p_57276_.isClientSide);
 		} else if (i > 6) {
 			int j = 1 + p_57276_.random.nextInt(2);
-			popResource(p_57276_, p_57277_, new ItemStack(seeds.get(), j + (flag ? 1 : 0)));
+			popResource(p_57276_, p_57277_, new ItemStack(yield.get(), j + (flag ? 1 : 0)));
 			p_57276_.playSound((Player) null, p_57277_, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + p_57276_.random.nextFloat() * 0.4F);
-			BlockState blockstate = p_57275_.setValue(AGE, Integer.valueOf(6));
+			BlockState blockstate = p_57275_.setValue(AGE, 5);
+
+			if (p_57275_.getValue(HALF) == DoubleBlockHalf.LOWER) {
+				p_57276_.setBlock(p_57277_.above(), blockstate.setValue(HALF, DoubleBlockHalf.UPPER), 2);
+			} else {
+				p_57276_.setBlock(p_57277_.below(), blockstate.setValue(HALF, DoubleBlockHalf.LOWER), 2);
+			}
+
 			p_57276_.setBlock(p_57277_, blockstate, 2);
 			p_57276_.gameEvent(GameEvent.BLOCK_CHANGE, p_57277_, GameEvent.Context.of(p_57278_, blockstate));
 			return InteractionResult.sidedSuccess(p_57276_.isClientSide);

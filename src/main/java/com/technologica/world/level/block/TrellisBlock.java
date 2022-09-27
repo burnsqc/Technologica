@@ -122,9 +122,11 @@ public class TrellisBlock extends Block {
 		if (p_57275_.getValue(HALF) == DoubleBlockHalf.LOWER) {
 			if (p_57278_.getItemInHand(p_57279_).is(TechnologicaItems.GRAPE_SEEDS.get())) {
 				p_57276_.setBlock(p_57277_, TechnologicaBlocks.GRAPES.get().defaultBlockState().setValue(VineCropBlock.TRELLIS, true), 3);
+				p_57276_.setBlock(p_57277_.above(), TechnologicaBlocks.GRAPES.get().defaultBlockState().setValue(VineCropBlock.HALF, DoubleBlockHalf.UPPER).setValue(VineCropBlock.AGE, 0).setValue(VineCropBlock.TRELLIS, true), 3);
 				return InteractionResult.PASS;
 			} else if (p_57278_.getItemInHand(p_57279_).is(TechnologicaItems.TOMATO_SEEDS.get())) {
 				p_57276_.setBlock(p_57277_, TechnologicaBlocks.TOMATOES.get().defaultBlockState().setValue(VineCropBlock.TRELLIS, true), 3);
+				p_57276_.setBlock(p_57277_.above(), TechnologicaBlocks.TOMATOES.get().defaultBlockState().setValue(VineCropBlock.HALF, DoubleBlockHalf.UPPER).setValue(VineCropBlock.AGE, 0).setValue(VineCropBlock.TRELLIS, true), 3);
 				return InteractionResult.PASS;
 			} else {
 				return super.use(p_57275_, p_57276_, p_57277_, p_57278_, p_57279_, p_57280_);
