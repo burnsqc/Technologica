@@ -1,7 +1,5 @@
 package com.technologica.setup;
 
-import java.lang.reflect.Field;
-
 import com.technologica.Technologica;
 import com.technologica.client.gui.screens.inventory.AnnunciatorScreen;
 import com.technologica.world.inventory.TechnologicaContainerType;
@@ -9,9 +7,7 @@ import com.technologica.world.level.block.TechnologicaBlocks;
 import com.technologica.world.level.block.state.properties.TechnologicaWoodType;
 import com.technologica.world.level.material.TechnologicaFluids;
 
-import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.client.renderer.DimensionSpecialEffects;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
@@ -19,7 +15,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 
 public class ClientSetup {
 
@@ -64,19 +59,6 @@ public class ClientSetup {
 			Sheets.addWoodType(TechnologicaWoodType.WALNUT);
 			Sheets.addWoodType(TechnologicaWoodType.ZEBRAWOOD);
 		});
-
-		Field effects = ObfuscationReflectionHelper.findField(DimensionSpecialEffects.class, "EFFECTS");
-		DimensionSpecialEffects dimensionRenderInfo = new DimensionSpecialEffects.OverworldEffects();
-		// dimensionRenderInfo.setSkyRenderHandler(new MoonRenderer());
-		// dimensionRenderInfo.setCloudRenderHandler((ticks, partialTicks, matrixStack, world, mc, viewEntityX, viewEntityY, viewEntityZ) -> {
-		// });
-		try {
-			((Object2ObjectMap<ResourceLocation, DimensionSpecialEffects>) effects.get(null)).put(new ResourceLocation(Technologica.MODID, "moon"), dimensionRenderInfo);
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		}
 	}
 
 	private static void TechnologicaItemBlockRenderTypes() {

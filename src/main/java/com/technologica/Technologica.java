@@ -16,6 +16,7 @@ import com.technologica.listeners.RegisterEntityAttributes;
 import com.technologica.listeners.RegisterEntityRenderers;
 import com.technologica.listeners.RegisterFarmerBrain;
 import com.technologica.listeners.RegisterLayerDefinitons;
+import com.technologica.listeners.TechnologicaDimensionSpecialEffects;
 import com.technologica.listeners.TechnologicaVillagerTrades;
 import com.technologica.listeners.TechnologicaWanderingTraderTrades;
 import com.technologica.listeners.WaterWalk;
@@ -93,7 +94,8 @@ public class Technologica {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(ParticleSetup::init);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(RegisterEntityAttributes::onEntityAttributeCreationEvent);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(RegisterEntityRenderers::onRegisterEntityRenderers);
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(RegisterLayerDefinitons::on);
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(RegisterLayerDefinitons::onRegisterLayerDefinitions);
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(TechnologicaDimensionSpecialEffects::onRegisterDimensionSpecialEffectsEvent);
 
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, VanillaEntityModifier::init);
 

@@ -51,7 +51,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class RegisterLayerDefinitons {
 	@SubscribeEvent
-	public static void on(EntityRenderersEvent.RegisterLayerDefinitions event) {
+	public static void onRegisterLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
 		event.registerLayerDefinition(TechnologicaModelLayers.ALLIGATOR, AlligatorModel::createBodyLayer);
 		event.registerLayerDefinition(TechnologicaModelLayers.BEAVER, BeaverModel::createBodyLayer);
 		event.registerLayerDefinition(TechnologicaModelLayers.BUFFALO, BuffaloModel::createBodyLayer);
