@@ -2,7 +2,6 @@ package com.technologica.client.renderer;
 
 import javax.annotation.Nullable;
 
-import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.BufferUploader;
@@ -20,9 +19,7 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.DimensionSpecialEffects;
 import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.extensions.IForgeDimensionSpecialEffects;
@@ -33,142 +30,67 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 	private VertexBuffer starBuffer;
 	@Nullable
 	private VertexBuffer skyBuffer;
-	@Nullable
-	private VertexBuffer sky2VBO;
-	private final VertexFormat skyVertexFormat = DefaultVertexFormat.POSITION;
-	private static final ResourceLocation SUN_TEXTURES = new ResourceLocation("textures/environment/sun.png");
+	private static final ResourceLocation SUN_TEXTURES = new ResourceLocation(Technologica.MODID, "textures/environment/sun.png");
 	private static final ResourceLocation EARTH_TEXTURES = new ResourceLocation(Technologica.MODID, "textures/environment/earth.png");
-	private final float[] sunriseCol = { 0.0F, 0.0F, 0.0F, 0.0F };
 
 	public MoonRenderer() {
 		super(Float.NaN, true, DimensionSpecialEffects.SkyType.NORMAL, false, false);
-		this.createSky();
 		this.createStars();
 	}
 
 	@Override
 	public boolean renderSky(ClientLevel level, int ticks, float partialTicks, PoseStack matrixStackIn, Camera camera, Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog) {
+		FogRenderer.setupNoFog();
 		RenderSystem.disableTexture();
-		Vec3 vector3d = level.getSkyColor(camera.getPosition(), partialTicks);
-		float f = (float) vector3d.x;
-		float f1 = (float) vector3d.y;
-		float f2 = (float) vector3d.z;
-		FogRenderer.levelFogColor();
 		BufferBuilder bufferbuilder = Tesselator.getInstance().getBuilder();
 		RenderSystem.depthMask(false);
-		RenderSystem.setShaderColor(f, f1, f2, 1.0F);
-		ShaderInstance shaderinstance = RenderSystem.getShader();
-		this.skyBuffer.bind();
-		this.skyBuffer.drawWithShader(matrixStackIn.last().pose(), projectionMatrix, shaderinstance);
-		VertexBuffer.unbind();
 		RenderSystem.enableBlend();
 		RenderSystem.defaultBlendFunc();
-		float[] afloat = sunriseCol;
-		if (afloat != null) {
-			RenderSystem.disableTexture();
-			RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-			matrixStackIn.pushPose();
-			matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(90.0F));
-			float f3 = Mth.sin(level.getSunAngle(partialTicks)) < 0.0F ? 180.0F : 0.0F;
-			matrixStackIn.mulPose(Vector3f.ZP.rotationDegrees(f3));
-			matrixStackIn.mulPose(Vector3f.ZP.rotationDegrees(90.0F));
-			float f4 = afloat[0];
-			float f5 = afloat[1];
-			float f6 = afloat[2];
-			Matrix4f matrix4f = matrixStackIn.last().pose();
-			bufferbuilder.begin(VertexFormat.Mode.TRIANGLE_FAN, DefaultVertexFormat.POSITION_COLOR);
-			bufferbuilder.vertex(matrix4f, 0.0F, 100.0F, 0.0F).color(f4, f5, f6, afloat[3]).endVertex();
-			for (int j = 0; j <= 16; ++j) {
-				float f7 = j * ((float) Math.PI * 2F) / 16.0F;
-				float f8 = Mth.sin(f7);
-				float f9 = Mth.cos(f7);
-				bufferbuilder.vertex(matrix4f, f8 * 120.0F, f9 * 120.0F, -f9 * 40.0F * afloat[3]).color(afloat[0], afloat[1], afloat[2], 0.0F).endVertex();
-			}
-
-			BufferUploader.drawWithShader(bufferbuilder.end());
-			matrixStackIn.popPose();
-		}
-
 		RenderSystem.enableTexture();
-		RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+
 		matrixStackIn.pushPose();
-		float f11 = 1.0F - level.getRainLevel(partialTicks);
-		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, f11);
 		matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(-90.0F));
 		matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(45.0F));
-		Matrix4f matrix4f1 = matrixStackIn.last().pose();
-		float f12 = 30.0F;
-		RenderSystem.setShader(GameRenderer::getPositionTexShader);
-		RenderSystem.setShaderTexture(0, EARTH_TEXTURES);
-		bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-		bufferbuilder.vertex(matrix4f1, -f12, 70.0F, -f12).uv(0.0F, 0.0F).endVertex();
-		bufferbuilder.vertex(matrix4f1, f12, 70.0F, -f12).uv(1.0F, 0.0F).endVertex();
-		bufferbuilder.vertex(matrix4f1, f12, 70.0F, f12).uv(1.0F, 1.0F).endVertex();
-		bufferbuilder.vertex(matrix4f1, -f12, 70.0F, f12).uv(0.0F, 1.0F).endVertex();
-		BufferUploader.drawWithShader(bufferbuilder.end());
-
+		Matrix4f matrix4f1 = matrixStackIn.last().pose().copy();
 		matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(-45.0F));
-
 		matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(level.getTimeOfDay(partialTicks) * 360.0F));
-		matrix4f1 = matrixStackIn.last().pose();
+		Matrix4f matrix4f2 = matrixStackIn.last().pose();
 
-		RenderSystem.setShaderTexture(0, SUN_TEXTURES);
-		bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-		bufferbuilder.vertex(matrix4f1, -f12, 100.0F, -f12).uv(0.0F, 0.0F).endVertex();
-		bufferbuilder.vertex(matrix4f1, f12, 100.0F, -f12).uv(1.0F, 0.0F).endVertex();
-		bufferbuilder.vertex(matrix4f1, f12, 100.0F, f12).uv(1.0F, 1.0F).endVertex();
-		bufferbuilder.vertex(matrix4f1, -f12, 100.0F, f12).uv(0.0F, 1.0F).endVertex();
-		BufferUploader.drawWithShader(bufferbuilder.end());
-		RenderSystem.disableTexture();
-
-		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-		FogRenderer.setupNoFog();
 		this.starBuffer.bind();
-		this.starBuffer.drawWithShader(matrixStackIn.last().pose(), projectionMatrix, GameRenderer.getPositionShader());
+		this.starBuffer.drawWithShader(matrix4f2, projectionMatrix, GameRenderer.getPositionShader());
 		VertexBuffer.unbind();
 
-		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-		RenderSystem.disableBlend();
+		RenderSystem.setShader(GameRenderer::getPositionTexShader);
+		RenderSystem.setShaderTexture(0, SUN_TEXTURES);
+		bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
+		bufferbuilder.vertex(matrix4f2, -30.0F, 100.0F, -30.0F).uv(0.0F, 0.0F).endVertex();
+		bufferbuilder.vertex(matrix4f2, 30.0F, 100.0F, -30.0F).uv(1.0F, 0.0F).endVertex();
+		bufferbuilder.vertex(matrix4f2, 30.0F, 100.0F, 30.0F).uv(1.0F, 1.0F).endVertex();
+		bufferbuilder.vertex(matrix4f2, -30.0F, 100.0F, 30.0F).uv(0.0F, 1.0F).endVertex();
+		BufferUploader.drawWithShader(bufferbuilder.end());
+
+		RenderSystem.setShaderTexture(0, EARTH_TEXTURES);
+		bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
+		bufferbuilder.vertex(matrix4f1, -30.0F, 70.0F, -30.0F).uv(0.0F, 0.0F).endVertex();
+		bufferbuilder.vertex(matrix4f1, 30.0F, 70.0F, -30.0F).uv(1.0F, 0.0F).endVertex();
+		bufferbuilder.vertex(matrix4f1, 30.0F, 70.0F, 30.0F).uv(1.0F, 1.0F).endVertex();
+		bufferbuilder.vertex(matrix4f1, -30.0F, 70.0F, 30.0F).uv(0.0F, 1.0F).endVertex();
+		BufferUploader.drawWithShader(bufferbuilder.end());
+
 		matrixStackIn.popPose();
+
+		RenderSystem.disableBlend();
 		RenderSystem.disableTexture();
 		RenderSystem.setShaderColor(0.0F, 0.0F, 0.0F, 1.0F);
-
-		if (level.effects().hasGround()) {
-			RenderSystem.setShaderColor(f * 0.2F + 0.04F, f1 * 0.2F + 0.04F, f2 * 0.6F + 0.1F, 1.0F);
-		} else {
-			RenderSystem.setShaderColor(f, f1, f2, 1.0F);
-		}
-
 		RenderSystem.enableTexture();
 		RenderSystem.depthMask(true);
 		return true;
 	}
 
-	private void createSky() {
-		Tesselator tesselator = Tesselator.getInstance();
-		BufferBuilder bufferbuilder = tesselator.getBuilder();
-		if (this.skyBuffer != null) {
-			this.skyBuffer.close();
-		}
-
-		this.skyBuffer = new VertexBuffer();
-		BufferBuilder.RenderedBuffer bufferbuilder$renderedbuffer = buildSkyDisc(bufferbuilder, 16.0F);
-		this.skyBuffer.bind();
-		this.skyBuffer.upload(bufferbuilder$renderedbuffer);
-		VertexBuffer.unbind();
-	}
-
-	private static BufferBuilder.RenderedBuffer buildSkyDisc(BufferBuilder p_234268_, float p_234269_) {
-		float f = Math.signum(p_234269_) * 512.0F;
-		RenderSystem.setShader(GameRenderer::getPositionShader);
-		p_234268_.begin(VertexFormat.Mode.TRIANGLE_FAN, DefaultVertexFormat.POSITION);
-		p_234268_.vertex(0.0D, p_234269_, 0.0D).endVertex();
-
-		for (int i = -180; i <= 180; i += 45) {
-			p_234268_.vertex(f * Mth.cos(i * ((float) Math.PI / 180F)), p_234269_, 512.0F * Mth.sin(i * ((float) Math.PI / 180F))).endVertex();
-		}
-
-		return p_234268_.end();
+	@Override
+	public float[] getSunriseColor(float p_108872_, float p_108873_) {
+		return null;
 	}
 
 	private void createStars() {
@@ -233,7 +155,7 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 
 	@Override
 	public Vec3 getBrightnessDependentFogColor(Vec3 p_108878_, float p_108879_) {
-		return p_108878_.scale(0.15F);
+		return p_108878_.scale(0.0F);
 	}
 
 	@Override
