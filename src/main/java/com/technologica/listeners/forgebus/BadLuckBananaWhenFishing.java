@@ -1,4 +1,4 @@
-package com.technologica.listeners;
+package com.technologica.listeners.forgebus;
 
 import com.technologica.world.item.TechnologicaItems;
 
@@ -13,13 +13,12 @@ public class BadLuckBananaWhenFishing {
 	public void onItemFishedEvent(ItemFishedEvent event) {
 		Player player = event.getEntity();
 		boolean cancel = false;
-		for(int i = 0; i < player.getInventory().getContainerSize(); ++i) {
-        	ItemStack testStack = player.getInventory().getItem(i);
-        	if (testStack.getItem() == TechnologicaItems.BANANA.get()) {
-        		cancel = true;
-        	}
-        }
-		
+		for (int i = 0; i < player.getInventory().getContainerSize(); ++i) {
+			ItemStack testStack = player.getInventory().getItem(i);
+			if (testStack.getItem() == TechnologicaItems.BANANA.get()) {
+				cancel = true;
+			}
+		}
 		event.setCanceled(cancel);
 	}
 }

@@ -1,4 +1,6 @@
-package com.technologica.listeners;
+package com.technologica.listeners.modbus;
+
+import static com.technologica.Technologica.LOGGER;
 
 import com.technologica.client.renderer.blockentity.AnnunciatorRenderer;
 import com.technologica.client.renderer.blockentity.DisplayCaseRenderer;
@@ -43,6 +45,7 @@ import com.technologica.client.renderer.entity.PenguinRenderer;
 import com.technologica.client.renderer.entity.PiranhaRenderer;
 import com.technologica.client.renderer.entity.PoisonDartFrogRenderer;
 import com.technologica.client.renderer.entity.RaccoonRenderer;
+import com.technologica.client.renderer.entity.RocketRenderer;
 import com.technologica.client.renderer.entity.ScorpionRenderer;
 import com.technologica.client.renderer.entity.SharkRenderer;
 import com.technologica.client.renderer.entity.SlothRenderer;
@@ -59,10 +62,9 @@ import com.technologica.world.level.block.entity.TechnologicaBlockEntityType;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraftforge.client.event.EntityRenderersEvent.RegisterRenderers;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class RegisterEntityRenderers {
-	@SubscribeEvent
+
 	public static void onRegisterEntityRenderers(final RegisterRenderers event) {
 		event.registerEntityRenderer(TechnologicaEntityType.MOD_BOAT.get(), VanillaBoatRenderer::new);
 
@@ -119,6 +121,7 @@ public class RegisterEntityRenderers {
 		event.registerEntityRenderer(TechnologicaEntityType.SWEEPER.get(), SweeperRenderer::new);
 
 		event.registerEntityRenderer(TechnologicaEntityType.NAVAL_MINE.get(), NavalMineRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityType.ROCKET.get(), RocketRenderer::new);
 
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.ANNUNCIATOR_TILE.get(), AnnunciatorRenderer::new);
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.VANILLA_SIGN.get(), SignRenderer::new);
@@ -130,5 +133,6 @@ public class RegisterEntityRenderers {
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.LINE_SHAFT_HANGER_TILE.get(), LineShaftHangerRenderer::new);
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.SAWMILL_TILE.get(), SawmillRenderer::new);
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.LAND_MINE_TILE.get(), LandMineRenderer::new);
+		LOGGER.info("ENTITY RENDERERS REGISTERED: 57 OF 57");
 	}
 }

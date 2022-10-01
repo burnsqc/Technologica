@@ -16,8 +16,6 @@ import net.minecraft.world.entity.Entity;
 public class CrabModel<T extends Entity> extends ListModel<T> {
 
 	private final ModelPart body;
-	private final ModelPart eyeRight;
-	private final ModelPart eyeLeft;
 	private final ModelPart leg1;
 	private final ModelPart leg2;
 	private final ModelPart leg3;
@@ -36,8 +34,6 @@ public class CrabModel<T extends Entity> extends ListModel<T> {
 	public CrabModel(ModelPart modelPartIn) {
 
 		this.body = modelPartIn.getChild("body");
-		this.eyeRight = body.getChild("eyeRight");
-		this.eyeLeft = body.getChild("eyeLeft");
 		this.leg1 = modelPartIn.getChild("leg1");
 		this.leg2 = modelPartIn.getChild("leg2");
 		this.leg3 = modelPartIn.getChild("leg3");
@@ -74,11 +70,11 @@ public class CrabModel<T extends Entity> extends ListModel<T> {
 		partdefinition.addOrReplaceChild("leg8", CubeListBuilder.create().texOffs(0, 7).addBox(-1.0F, -1.0F, 0.0F, 4.0F, 1.0F, 1.0F), PartPose.offset(3.0F, 22.0F, -2.0F));
 
 		PartDefinition armLeft = body.addOrReplaceChild("armLeft", CubeListBuilder.create().texOffs(0, 9).addBox(0.0F, 16.0F, 0.0F, 3.0F, 1.0F, 1.0F), PartPose.offset(2.0F, 1.0F, 0.0F));
-		PartDefinition clawLeft = armLeft.addOrReplaceChild("clawLeft", CubeListBuilder.create().texOffs(0, 11).addBox(-2.0F, 16.0F, 0.0F, 2.0F, 1.0F, 1.0F), PartPose.offset(3.0F, 0.0F, 1.0F));
+		armLeft.addOrReplaceChild("clawLeft", CubeListBuilder.create().texOffs(0, 11).addBox(-2.0F, 16.0F, 0.0F, 2.0F, 1.0F, 1.0F), PartPose.offset(3.0F, 0.0F, 1.0F));
 		armLeft.addOrReplaceChild("pincherLeftInner", CubeListBuilder.create().texOffs(0, 11).addBox(-2.0F, 16.0F, 0.0F, 2.0F, 1.0F, 1.0F), PartPose.offset(3.0F, 0.0F, 1.0F));
 
 		PartDefinition armRight = body.addOrReplaceChild("armRight", CubeListBuilder.create().texOffs(0, 9).addBox(-3.0F, 16.0F, 0.0F, 3.0F, 1.0F, 1.0F), PartPose.offset(-2.0F, 1.0F, 0.0F));
-		PartDefinition clawRight = armRight.addOrReplaceChild("clawRight", CubeListBuilder.create().texOffs(0, 11).addBox(-2.0F, 16.0F, -1.0F, 2.0F, 1.0F, 1.0F), PartPose.offset(-3.0F, 0.0F, 1.0F));
+		armRight.addOrReplaceChild("clawRight", CubeListBuilder.create().texOffs(0, 11).addBox(-2.0F, 16.0F, -1.0F, 2.0F, 1.0F, 1.0F), PartPose.offset(-3.0F, 0.0F, 1.0F));
 		armRight.addOrReplaceChild("pincherRightInner", CubeListBuilder.create().texOffs(0, 11).addBox(-2.0F, 16.0F, -1.0F, 2.0F, 1.0F, 1.0F), PartPose.offset(-3.0F, 0.0F, 1.0F));
 
 		return LayerDefinition.create(meshdefinition, 32, 16);

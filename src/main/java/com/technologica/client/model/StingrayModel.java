@@ -17,39 +17,15 @@ import net.minecraft.world.entity.Entity;
 public class StingrayModel<T extends Entity> extends ListModel<T> {
 
 	private final ModelPart body;
-	private final ModelPart bodyLeft1;
-	private final ModelPart bodyLeft2;
-	private final ModelPart bodyLeft3;
-	private final ModelPart bodyLeft4;
-	private final ModelPart bodyRight1;
-	private final ModelPart bodyRight2;
-	private final ModelPart bodyRight3;
-	private final ModelPart bodyRight4;
-	private final ModelPart head;
 	private final ModelPart tail1;
 	private final ModelPart tail2;
 	private final ModelPart tail3;
 
 	public StingrayModel(ModelPart modelPartIn) {
-
 		this.body = modelPartIn.getChild("body");
-
-		this.head = body.getChild("head");
-
-		this.bodyLeft1 = body.getChild("bodyLeft1");
-		this.bodyLeft2 = bodyLeft1.getChild("bodyLeft2");
-		this.bodyLeft3 = bodyLeft2.getChild("bodyLeft3");
-		this.bodyLeft4 = bodyLeft3.getChild("bodyLeft4");
-
-		this.bodyRight1 = body.getChild("bodyRight1");
-		this.bodyRight2 = bodyRight1.getChild("bodyRight2");
-		this.bodyRight3 = bodyRight2.getChild("bodyRight3");
-		this.bodyRight4 = bodyRight3.getChild("bodyRight4");
-
 		this.tail1 = body.getChild("tail1");
 		this.tail2 = tail1.getChild("tail2");
 		this.tail3 = tail2.getChild("tail3");
-
 	}
 
 	public static LayerDefinition createBodyLayer() {

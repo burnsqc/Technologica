@@ -4,6 +4,7 @@ import static com.technologica.Technologica.LOGGER;
 import static com.technologica.Technologica.MODID;
 
 import com.technologica.world.entity.TechnologicaEntityType;
+import com.technologica.world.entity.vehicle.Rocket;
 import com.technologica.world.entity.vehicle.VanillaBoat;
 import com.technologica.world.food.TechnologicaFoods;
 import com.technologica.world.level.block.TechnologicaBlocks;
@@ -1116,4 +1117,6 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> LAND_MINE = ITEMS.register("land_mine", () -> new LandMineItem(new Item.Properties().tab(TechnologicaItemGroup.ARMORY)));
 	public static final RegistryObject<Item> NITROGLYCERIN_ITEM = ITEMS.register("nitroglycerin", () -> new BlockItem(TechnologicaBlocks.NITROGLYCERIN.get(), new Item.Properties().tab(TechnologicaItemGroup.ARMORY)));
 	public static final RegistryObject<Item> NAVAL_MINE = ITEMS.register("naval_mine", () -> new NavalMineItem(new Item.Properties().tab(TechnologicaItemGroup.ARMORY)));
+	public static final RegistryObject<Item> ROCKET = ITEMS.register("rocket", () -> new RocketItem(Rocket.Type.MALEVOLENT, (new Item.Properties()).stacksTo(1).tab(TechnologicaItemGroup.CONSTRUCTION)));
+
 }

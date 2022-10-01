@@ -22,7 +22,6 @@ public class ScorpionModel<T extends Entity> extends ListModel<T> {
 	private final ModelPart tail3;
 	private final ModelPart tail4;
 	private final ModelPart tail5;
-	private final ModelPart tail6;
 	private final ModelPart leg1;
 	private final ModelPart leg2;
 	private final ModelPart leg3;
@@ -35,20 +34,16 @@ public class ScorpionModel<T extends Entity> extends ListModel<T> {
 	private final ModelPart armLeft;
 	private final ModelPart clawRight;
 	private final ModelPart clawLeft;
-	private final ModelPart pincherRightInner;
 	private final ModelPart pincherRightOuter;
-	private final ModelPart pincherLeftInner;
 	private final ModelPart pincherLeftOuter;
 
 	public ScorpionModel(ModelPart modelPartIn) {
-
 		this.body = modelPartIn.getChild("body");
 		this.tail1 = body.getChild("tail1");
 		this.tail2 = tail1.getChild("tail2");
 		this.tail3 = tail2.getChild("tail3");
 		this.tail4 = tail3.getChild("tail4");
 		this.tail5 = tail4.getChild("tail5");
-		this.tail6 = tail5.getChild("tail6");
 		this.leg1 = modelPartIn.getChild("leg1");
 		this.leg2 = modelPartIn.getChild("leg2");
 		this.leg3 = modelPartIn.getChild("leg3");
@@ -59,13 +54,10 @@ public class ScorpionModel<T extends Entity> extends ListModel<T> {
 		this.leg8 = modelPartIn.getChild("leg8");
 		this.armLeft = body.getChild("armLeft");
 		this.clawLeft = armLeft.getChild("clawLeft");
-		this.pincherLeftInner = clawLeft.getChild("pincherLeftInner");
 		this.pincherLeftOuter = clawLeft.getChild("pincherLeftOuter");
 		this.armRight = body.getChild("armRight");
 		this.clawRight = armRight.getChild("clawRight");
-		this.pincherRightInner = clawRight.getChild("pincherRightInner");
 		this.pincherRightOuter = clawRight.getChild("pincherRightOuter");
-
 	}
 
 	public static LayerDefinition createBodyLayer() {

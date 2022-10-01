@@ -48,6 +48,7 @@ import com.technologica.world.entity.monster.Sweeper;
 import com.technologica.world.entity.projectile.Coconut;
 import com.technologica.world.entity.projectile.Dodgeball;
 import com.technologica.world.entity.projectile.Harpoon;
+import com.technologica.world.entity.vehicle.Rocket;
 import com.technologica.world.entity.vehicle.VanillaBoat;
 
 import net.minecraft.world.entity.EntityType;
@@ -120,6 +121,7 @@ public class TechnologicaEntityType {
 	 */
 
 	public static final RegistryObject<EntityType<VanillaBoat>> MOD_BOAT = ENTITY_TYPES.register("mod_boat", () -> EntityType.Builder.<VanillaBoat>of(VanillaBoat::new, MobCategory.MISC).sized(1.375F, 0.5625F).setCustomClientFactory((spawnEntity, world) -> new VanillaBoat(world, 0, 0, 0)).clientTrackingRange(10).build("mod_boat"));
+	public static final RegistryObject<EntityType<Rocket>> ROCKET = ENTITY_TYPES.register("rocket", () -> EntityType.Builder.<Rocket>of(Rocket::new, MobCategory.MISC).sized(1.375F, 0.5625F).setCustomClientFactory((spawnEntity, world) -> new Rocket(world, 0, 0, 0)).clientTrackingRange(10).build("rocket"));
 
 	/*
 	 * PROJECTILES

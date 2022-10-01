@@ -1,4 +1,4 @@
-package com.technologica.listeners;
+package com.technologica.listeners.forgebus;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;

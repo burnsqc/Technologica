@@ -1,4 +1,4 @@
-package com.technologica.listeners;
+package com.technologica.listeners.forgebus;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.technologica.Technologica;

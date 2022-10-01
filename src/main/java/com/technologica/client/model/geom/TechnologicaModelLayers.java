@@ -55,6 +55,7 @@ public class TechnologicaModelLayers {
 	public static final ModelLayerLocation SWEEPER = register("sweeper");
 
 	public static final ModelLayerLocation NAVAL_MINE = register("naval_mine");
+	public static final ModelLayerLocation ROCKET = register("rocket");
 
 	private static ModelLayerLocation register(String p_171294_) {
 		return register(p_171294_, "main");

@@ -1,4 +1,4 @@
-package com.technologica.listeners;
+package com.technologica.listeners.forgebus;
 
 import com.technologica.world.item.TechnologicaItems;
 

@@ -1,4 +1,4 @@
-package com.technologica.listeners;
+package com.technologica.listeners.modbus;
 
 import static com.technologica.Technologica.LOGGER;
 
@@ -45,13 +45,10 @@ import com.technologica.world.entity.monster.Peeper;
 import com.technologica.world.entity.monster.Sweeper;
 
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class RegisterEntityAttributes {
 
-	@SubscribeEvent
 	public static void onEntityAttributeCreationEvent(final EntityAttributeCreationEvent event) {
-		LOGGER.info("REGISTERING ENTITY ATTRIBUTES");
 		event.put(TechnologicaEntityType.ALLIGATOR.get(), Alligator.registerAttributes().build());
 		event.put(TechnologicaEntityType.BEAVER.get(), Beaver.registerAttributes().build());
 		event.put(TechnologicaEntityType.BUFFALO.get(), Buffalo.registerAttributes().build());
@@ -90,8 +87,8 @@ public class RegisterEntityAttributes {
 		event.put(TechnologicaEntityType.VULTURE.get(), Vulture.registerAttributes().build());
 		event.put(TechnologicaEntityType.WALRUS.get(), Walrus.registerAttributes().build());
 		event.put(TechnologicaEntityType.ZEBRA.get(), Zebra.createBaseHorseAttributes().build());
-		
 		event.put(TechnologicaEntityType.PEEPER.get(), Peeper.registerAttributes().build());
 		event.put(TechnologicaEntityType.SWEEPER.get(), Sweeper.registerAttributes().build());
+		LOGGER.info("ENTITY ATTRIBUTES REGISTERED: 40 OF 40");
 	}
 }

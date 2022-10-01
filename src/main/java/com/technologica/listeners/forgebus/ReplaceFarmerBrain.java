@@ -1,4 +1,4 @@
-package com.technologica.listeners;
+package com.technologica.listeners.forgebus;
 
 import com.google.common.collect.ImmutableSet;
 import com.mojang.datafixers.util.Pair;
@@ -13,7 +13,7 @@ import net.minecraft.world.entity.schedule.Activity;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-public class RegisterFarmerBrain {
+public class ReplaceFarmerBrain {
 
 	@SubscribeEvent
 	public void onEntityJoinWorldEvent(EntityJoinLevelEvent event) {

@@ -1,10 +1,9 @@
-package com.technologica.setup;
+package com.technologica.listeners.modbus;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.google.common.collect.ImmutableSet;
-import com.technologica.Technologica;
 import com.technologica.data.worldgen.features.TechnologicaOreFeatures;
 import com.technologica.data.worldgen.features.TechnologicaTreeFeatures;
 import com.technologica.data.worldgen.features.TechnologicaVegetationFeatures;
@@ -19,28 +18,21 @@ import com.technologica.world.level.block.TechnologicaBlocks;
 import com.technologica.world.level.block.state.properties.TechnologicaWoodType;
 import com.technologica.world.level.levelgen.feature.trunkplacers.TechnologicaTrunkPlacerType;
 
-import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.properties.WoodType;
-import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class CommonSetup {
 
-	public static void init(final FMLCommonSetupEvent event) {
-
+	public static void onFMLCommonSetupEvent(final FMLCommonSetupEvent event) {
 		Packets.onCommonSetupEvent();
 
 		event.enqueueWork(() -> {
-
 			TechnologicaTrunkPlacerType.register();
 			TechnologicaTreeFeatures.register();
 			TechnologicaTreePlacements.register();
@@ -50,18 +42,11 @@ public class CommonSetup {
 			TechnologicaMiscOverworldPlacements.register();
 			TechnologicaOreFeatures.register();
 			TechnologicaOrePlacements.register();
-			ResourceKey<Biome> saltFlatsBiomeKey = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(Technologica.MODID, "salt_flats"));
 
 			addToFlowerPot();
 			addToComposter();
 			addToVillagerWantedItems();
 			registerWoodTypes();
-
-			BiomeManager.addAdditionalOverworldBiomes(saltFlatsBiomeKey);
-			// BiomeManager.addBiome(BiomeType.COOL, new BiomeEntry(redwoodForestBiomeKey, 1000));
-			// BiomeManager.addBiome(BiomeType.WARM, new BiomeEntry(rainforestBiomeKey, 1000));
-			// BiomeManager.addBiome(BiomeType.WARM, new BiomeEntry(coastBiomeKey, 1000));
-
 		});
 	}
 
