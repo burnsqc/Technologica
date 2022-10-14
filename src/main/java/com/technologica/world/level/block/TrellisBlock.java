@@ -36,15 +36,16 @@ public class TrellisBlock extends Block {
 		this.registerDefaultState(this.stateDefinition.any().setValue(HALF, DoubleBlockHalf.LOWER));
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public BlockState updateShape(BlockState p_52894_, Direction p_52895_, BlockState p_52896_, LevelAccessor p_52897_, BlockPos p_52898_, BlockPos p_52899_) {
 		DoubleBlockHalf doubleblockhalf = p_52894_.getValue(HALF);
 		if (p_52895_.getAxis() != Direction.Axis.Y || doubleblockhalf == DoubleBlockHalf.LOWER != (p_52895_ == Direction.UP) || p_52896_.is(this) && p_52896_.getValue(HALF) != doubleblockhalf) {
-			return doubleblockhalf == DoubleBlockHalf.LOWER && p_52895_ == Direction.DOWN && !p_52894_.canSurvive(p_52897_, p_52898_) ? Blocks.AIR.defaultBlockState() : p_52894_.updateShape(p_52895_, p_52896_, p_52897_, p_52898_, p_52899_);
+			return doubleblockhalf == DoubleBlockHalf.LOWER && p_52895_ == Direction.DOWN && !p_52894_.canSurvive(p_52897_, p_52898_) ? Blocks.AIR.defaultBlockState() : super.updateShape(p_52894_, p_52895_, p_52896_, p_52897_, p_52898_, p_52899_);
 		} else {
 			if (p_52897_.getBlockState(p_52898_.below()).getBlock() instanceof VineCropBlock) {
 				if (p_52897_.getBlockState(p_52898_.below()).getValue(VineCropBlock.TRELLIS)) {
-					return p_52894_.updateShape(p_52895_, p_52896_, p_52897_, p_52898_, p_52899_);
+					return super.updateShape(p_52894_, p_52895_, p_52896_, p_52897_, p_52898_, p_52899_);
 				} else {
 					return Blocks.AIR.defaultBlockState();
 				}
@@ -73,7 +74,7 @@ public class TrellisBlock extends Block {
 	public boolean canSurvive(BlockState stateIn, LevelReader worldIn, BlockPos posIn) {
 		if (stateIn.getValue(HALF) == DoubleBlockHalf.LOWER) {
 			if (worldIn.getBlockState(posIn.below()).getBlock() == Blocks.FARMLAND) {
-				return stateIn.canSurvive(worldIn, posIn);
+				return true;
 			} else {
 				return false;
 			}
@@ -115,6 +116,7 @@ public class TrellisBlock extends Block {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public InteractionResult use(BlockState p_57275_, Level p_57276_, BlockPos p_57277_, Player p_57278_, InteractionHand p_57279_, BlockHitResult p_57280_) {
 		if (p_57275_.getValue(HALF) == DoubleBlockHalf.LOWER) {
@@ -127,10 +129,10 @@ public class TrellisBlock extends Block {
 				p_57276_.setBlock(p_57277_.above(), TechnologicaBlocks.TOMATOES.get().defaultBlockState().setValue(VineCropBlock.HALF, DoubleBlockHalf.UPPER).setValue(VineCropBlock.AGE, 0).setValue(VineCropBlock.TRELLIS, true), 3);
 				return InteractionResult.PASS;
 			} else {
-				return p_57275_.use(p_57276_, p_57278_, p_57279_, p_57280_);
+				return super.use(p_57275_, p_57276_, p_57277_, p_57278_, p_57279_, p_57280_);
 			}
 		} else {
-			return p_57275_.use(p_57276_, p_57278_, p_57279_, p_57280_);
+			return super.use(p_57275_, p_57276_, p_57277_, p_57278_, p_57279_, p_57280_);
 		}
 	}
 
