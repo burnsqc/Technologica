@@ -419,6 +419,8 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> WALNUT = ITEMS.register("walnut", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.WALNUT)));
 	public static final RegistryObject<Item> ZUCCHINI = ITEMS.register("zucchini", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.ZUCCHINI)));
 
+	public static final RegistryObject<Item> ALLIGATOR_MEAT = ITEMS.register("alligator_meat", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.ALLIGATOR_MEAT)));
+
 	public static final RegistryObject<Item> BANANAS_FOSTER = ITEMS.register("bananas_foster", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.BANANAS_FOSTER)));
 	public static final RegistryObject<Item> BLACK_FOREST_CAKE = ITEMS.register("black_forest_cake", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.BLACK_FOREST_CAKE)));
 	public static final RegistryObject<Item> BLUEBERRY_CHEESECAKE = ITEMS.register("blueberry_cheesecake", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.BLUEBERRY_CHEESECAKE)));

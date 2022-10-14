@@ -306,6 +306,7 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.TURNIP.get());
 		simpleItem(TechnologicaItems.WALNUT.get());
 		simpleItem(TechnologicaItems.ZUCCHINI.get());
+		simpleItem(TechnologicaItems.ALLIGATOR_MEAT.get());
 		simpleItem(TechnologicaItems.BANANAS_FOSTER.get());
 		simpleItem(TechnologicaItems.BLACK_FOREST_CAKE.get());
 		simpleItem(TechnologicaItems.BLUEBERRY_CHEESECAKE.get());

@@ -1,5 +1,7 @@
 package com.technologica.world.food;
 
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 
 public class TechnologicaFoods {
@@ -49,7 +51,9 @@ public class TechnologicaFoods {
 	public static final FoodProperties TURNIP = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 	public static final FoodProperties WALNUT = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 	public static final FoodProperties ZUCCHINI = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
-	
+
+	public static final FoodProperties ALLIGATOR_MEAT = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).effect(() -> new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.3F).meat().build();
+
 	public static final FoodProperties BANANAS_FOSTER = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 	public static final FoodProperties BLACK_FOREST_CAKE = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 	public static final FoodProperties BLUEBERRY_CHEESECAKE = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
