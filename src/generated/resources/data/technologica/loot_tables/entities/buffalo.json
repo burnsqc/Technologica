@@ -25,7 +25,7 @@
               "function": "minecraft:looting_enchant"
             }
           ],
-          "name": "minecraft:feather"
+          "name": "technologica:fur"
         }
       ],
       "rolls": 1.0
@@ -36,6 +36,15 @@
         {
           "type": "minecraft:item",
           "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 3.0,
+                "min": 1.0
+              },
+              "function": "minecraft:set_count"
+            },
             {
               "conditions": [
                 {
@@ -59,7 +68,7 @@
               "function": "minecraft:looting_enchant"
             }
           ],
-          "name": "minecraft:chicken"
+          "name": "technologica:raw_bison"
         }
       ],
       "rolls": 1.0

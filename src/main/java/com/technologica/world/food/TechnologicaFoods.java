@@ -52,7 +52,19 @@ public class TechnologicaFoods {
 	public static final FoodProperties WALNUT = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 	public static final FoodProperties ZUCCHINI = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 
-	public static final FoodProperties ALLIGATOR_MEAT = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).effect(() -> new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.3F).meat().build();
+	public static final FoodProperties RAW_ALLIGATOR = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).effect(() -> new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.3F).meat().build();
+	public static final FoodProperties RAW_BEAR = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.3F).meat().build();
+	public static final FoodProperties RAW_BISON = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).meat().build();
+	public static final FoodProperties RAW_CRAB = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).meat().build();
+	public static final FoodProperties RAW_CRAB_LEGS = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).meat().build();
+	public static final FoodProperties RAW_DUCK = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).effect(() -> new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.3F).meat().build();
+	public static final FoodProperties RAW_OCTOPUS = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).meat().build();
+	public static final FoodProperties RAW_OSTRICH = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.3F).effect(() -> new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.3F).meat().build();
+	public static final FoodProperties RAW_PIRANHA = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).build();
+	public static final FoodProperties RAW_SHARK = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).meat().build();
+	public static final FoodProperties RAW_TURKEY = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.3F).effect(() -> new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.3F).meat().build();
+	public static final FoodProperties RAW_VENISON = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).meat().build();
+	public static final FoodProperties BLUBBER = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).effect(() -> new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.3F).meat().build();
 
 	public static final FoodProperties BANANAS_FOSTER = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 	public static final FoodProperties BLACK_FOREST_CAKE = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());

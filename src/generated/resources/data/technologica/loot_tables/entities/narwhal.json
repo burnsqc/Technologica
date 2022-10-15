@@ -25,7 +25,7 @@
               "function": "minecraft:looting_enchant"
             }
           ],
-          "name": "minecraft:feather"
+          "name": "technologica:narwhal_tusk"
         }
       ],
       "rolls": 1.0
@@ -37,20 +37,6 @@
           "type": "minecraft:item",
           "functions": [
             {
-              "conditions": [
-                {
-                  "condition": "minecraft:entity_properties",
-                  "entity": "this",
-                  "predicate": {
-                    "flags": {
-                      "is_on_fire": true
-                    }
-                  }
-                }
-              ],
-              "function": "minecraft:furnace_smelt"
-            },
-            {
               "count": {
                 "type": "minecraft:uniform",
                 "max": 1.0,
@@ -59,7 +45,7 @@
               "function": "minecraft:looting_enchant"
             }
           ],
-          "name": "minecraft:chicken"
+          "name": "technologica:blubber"
         }
       ],
       "rolls": 1.0

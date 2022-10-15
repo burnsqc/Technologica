@@ -11,8 +11,8 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 2.0,
-                "min": 0.0
+                "max": 3.0,
+                "min": 1.0
               },
               "function": "minecraft:set_count"
             },
@@ -25,14 +25,9 @@
               "function": "minecraft:looting_enchant"
             }
           ],
-          "name": "technologica:alligator_meat"
+          "name": "technologica:raw_alligator"
         }
       ],
-      "rolls": 1.0
-    },
-    {
-      "bonus_rolls": 0.0,
-      "entries": [],
       "rolls": 1.0
     }
   ]

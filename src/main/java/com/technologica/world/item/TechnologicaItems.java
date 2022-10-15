@@ -184,6 +184,14 @@ public class TechnologicaItems {
 
 	public static final RegistryObject<Item> PIRANHA_BUCKET = ITEMS.register("bucket_of_piranha", () -> new MobBucketItem(TechnologicaEntityType.PIRANHA, () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_FISH, (new Item.Properties()).stacksTo(1).tab(TechnologicaItemGroup.FAUNA)));
 
+	public static final RegistryObject<Item> FUR = ITEMS.register("fur", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FAUNA)));
+	public static final RegistryObject<Item> IVORY = ITEMS.register("ivory", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FAUNA)));
+	public static final RegistryObject<Item> NARWHAL_TUSK = ITEMS.register("narwhal_tusk", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FAUNA)));
+	public static final RegistryObject<Item> BATRACHOTOXIN_SAC = ITEMS.register("batrachotoxin_sac", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FAUNA)));
+	public static final RegistryObject<Item> HEMOTOXIN_SAC = ITEMS.register("hemotoxin_sac", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FAUNA)));
+	public static final RegistryObject<Item> NECROTOXIN_SAC = ITEMS.register("necrotoxin_sac", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FAUNA)));
+	public static final RegistryObject<Item> NEUROTOXIN_SAC = ITEMS.register("neurotoxin_sac", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FAUNA)));
+
 	/**
 	 * MINERAL
 	 */
@@ -419,7 +427,19 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> WALNUT = ITEMS.register("walnut", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.WALNUT)));
 	public static final RegistryObject<Item> ZUCCHINI = ITEMS.register("zucchini", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.ZUCCHINI)));
 
-	public static final RegistryObject<Item> ALLIGATOR_MEAT = ITEMS.register("alligator_meat", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.ALLIGATOR_MEAT)));
+	public static final RegistryObject<Item> RAW_ALLIGATOR = ITEMS.register("raw_alligator", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.RAW_ALLIGATOR)));
+	public static final RegistryObject<Item> RAW_BEAR = ITEMS.register("raw_bear", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.RAW_BEAR)));
+	public static final RegistryObject<Item> RAW_BISON = ITEMS.register("raw_bison", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.RAW_BISON)));
+	public static final RegistryObject<Item> RAW_CRAB = ITEMS.register("raw_crab", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.RAW_CRAB)));
+	public static final RegistryObject<Item> RAW_CRAB_LEGS = ITEMS.register("raw_crab_legs", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.RAW_CRAB_LEGS)));
+	public static final RegistryObject<Item> RAW_DUCK = ITEMS.register("raw_duck", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.RAW_DUCK)));
+	public static final RegistryObject<Item> RAW_OCTOPUS = ITEMS.register("raw_octopus", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.RAW_OCTOPUS)));
+	public static final RegistryObject<Item> RAW_OSTRICH = ITEMS.register("raw_ostrich", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.RAW_OSTRICH)));
+	public static final RegistryObject<Item> RAW_PIRANHA = ITEMS.register("raw_piranha", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.RAW_PIRANHA)));
+	public static final RegistryObject<Item> RAW_SHARK = ITEMS.register("raw_shark", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.RAW_TURKEY)));
+	public static final RegistryObject<Item> RAW_TURKEY = ITEMS.register("raw_turkey", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.RAW_TURKEY)));
+	public static final RegistryObject<Item> RAW_VENISON = ITEMS.register("raw_venison", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.RAW_VENISON)));
+	public static final RegistryObject<Item> BLUBBER = ITEMS.register("blubber", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.BLUBBER)));
 
 	public static final RegistryObject<Item> BANANAS_FOSTER = ITEMS.register("bananas_foster", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.BANANAS_FOSTER)));
 	public static final RegistryObject<Item> BLACK_FOREST_CAKE = ITEMS.register("black_forest_cake", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.BLACK_FOREST_CAKE)));
@@ -1120,5 +1140,12 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> NITROGLYCERIN_ITEM = ITEMS.register("nitroglycerin", () -> new BlockItem(TechnologicaBlocks.NITROGLYCERIN.get(), new Item.Properties().tab(TechnologicaItemGroup.ARMORY)));
 	public static final RegistryObject<Item> NAVAL_MINE = ITEMS.register("naval_mine", () -> new NavalMineItem(new Item.Properties().tab(TechnologicaItemGroup.ARMORY)));
 	public static final RegistryObject<Item> ROCKET = ITEMS.register("rocket", () -> new RocketItem(Rocket.Type.MALEVOLENT, (new Item.Properties()).stacksTo(1).tab(TechnologicaItemGroup.CONSTRUCTION)));
+
+	/**
+	 * CRYPTICA
+	 */
+
+	public static final RegistryObject<Item> PERSISTENT_GLARE = ITEMS.register("persistent_glare", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.CRYPTICA)));
+	public static final RegistryObject<Item> SINGULARITY_GRANULE = ITEMS.register("singularity_granule", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.CRYPTICA)));
 
 }

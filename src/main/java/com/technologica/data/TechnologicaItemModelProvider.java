@@ -124,6 +124,14 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 
 		simpleItem(TechnologicaItems.PIRANHA_BUCKET.get());
 
+		simpleItem(TechnologicaItems.FUR.get());
+		simpleItem(TechnologicaItems.IVORY.get());
+		simpleItem(TechnologicaItems.NARWHAL_TUSK.get());
+		simpleItem(TechnologicaItems.BATRACHOTOXIN_SAC.get());
+		simpleItem(TechnologicaItems.HEMOTOXIN_SAC.get());
+		simpleItem(TechnologicaItems.NECROTOXIN_SAC.get());
+		simpleItem(TechnologicaItems.NEUROTOXIN_SAC.get());
+
 		simpleItem(TechnologicaItems.LITHIUM_INGOT.get());
 		simpleItem(TechnologicaItems.BERYLLIUM_INGOT.get());
 		simpleItem(TechnologicaItems.SODIUM_INGOT.get());
@@ -306,7 +314,21 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.TURNIP.get());
 		simpleItem(TechnologicaItems.WALNUT.get());
 		simpleItem(TechnologicaItems.ZUCCHINI.get());
-		simpleItem(TechnologicaItems.ALLIGATOR_MEAT.get());
+
+		simpleItem(TechnologicaItems.RAW_ALLIGATOR.get());
+		simpleItem(TechnologicaItems.RAW_BEAR.get());
+		simpleItem(TechnologicaItems.RAW_BISON.get());
+		simpleItem(TechnologicaItems.RAW_CRAB.get());
+		simpleItem(TechnologicaItems.RAW_CRAB_LEGS.get());
+		simpleItem(TechnologicaItems.RAW_DUCK.get());
+		simpleItem(TechnologicaItems.RAW_OCTOPUS.get());
+		simpleItem(TechnologicaItems.RAW_OSTRICH.get());
+		simpleItem(TechnologicaItems.RAW_PIRANHA.get());
+		simpleItem(TechnologicaItems.RAW_SHARK.get());
+		simpleItem(TechnologicaItems.RAW_TURKEY.get());
+		simpleItem(TechnologicaItems.RAW_VENISON.get());
+		simpleItem(TechnologicaItems.BLUBBER.get());
+
 		simpleItem(TechnologicaItems.BANANAS_FOSTER.get());
 		simpleItem(TechnologicaItems.BLACK_FOREST_CAKE.get());
 		simpleItem(TechnologicaItems.BLUEBERRY_CHEESECAKE.get());
@@ -405,6 +427,9 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.GLUE_BOTTLE.get());
 		simpleItem(TechnologicaItems.LAND_MINE.get());
 		simpleItem(TechnologicaItems.NAVAL_MINE.get());
+
+		simpleItem(TechnologicaItems.PERSISTENT_GLARE.get());
+		simpleItem(TechnologicaItems.SINGULARITY_GRANULE.get());
 	}
 
 	public void simpleItem(Item item) {
