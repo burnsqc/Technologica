@@ -97,6 +97,18 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		simpleBlock(TechnologicaBlocks.PHOSPHORITE_ORE.get());
 		simpleBlock(TechnologicaBlocks.DEEPSLATE_PHOSPHORITE_ORE.get());
 		simpleBlock(TechnologicaBlocks.SPODUMENE_ORE.get());
+		simpleBlock(TechnologicaBlocks.URANINITE_ORE.get());
+		simpleBlock(TechnologicaBlocks.DEEPSLATE_URANINITE_ORE.get());
+		simpleBlock(TechnologicaBlocks.THORIANITE_ORE.get());
+		simpleBlock(TechnologicaBlocks.DEEPSLATE_THORIANITE_ORE.get());
+		simpleBlock(TechnologicaBlocks.RUBY_ORE.get());
+		simpleBlock(TechnologicaBlocks.DEEPSLATE_RUBY_ORE.get());
+		simpleBlock(TechnologicaBlocks.SAPPHIRE_ORE.get());
+		simpleBlock(TechnologicaBlocks.DEEPSLATE_SAPPHIRE_ORE.get());
+		simpleBlock(TechnologicaBlocks.TOPAZ_ORE.get());
+		simpleBlock(TechnologicaBlocks.DEEPSLATE_TOPAZ_ORE.get());
+		simpleBlock(TechnologicaBlocks.GALENA_ORE.get());
+		simpleBlock(TechnologicaBlocks.DEEPSLATE_GALENA_ORE.get());
 
 		twentyFourDirectionBlockState(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get(), hexagonalCrystalModel(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get()), hexagonalCrystalModel(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get()));
 		twentyFourDirectionBlockState(TechnologicaBlocks.DOLOMITE_CRYSTAL.get(), cubicCrystalModel(TechnologicaBlocks.DOLOMITE_CRYSTAL.get()), cubicCrystalModel(TechnologicaBlocks.DOLOMITE_CRYSTAL.get()));
@@ -208,6 +220,18 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		simpleBlockItem(TechnologicaBlocks.PHOSPHORITE_ORE.get(), cubeAll(TechnologicaBlocks.PHOSPHORITE_ORE.get()));
 		simpleBlockItem(TechnologicaBlocks.DEEPSLATE_PHOSPHORITE_ORE.get(), cubeAll(TechnologicaBlocks.DEEPSLATE_PHOSPHORITE_ORE.get()));
 		simpleBlockItem(TechnologicaBlocks.SPODUMENE_ORE.get(), cubeAll(TechnologicaBlocks.SPODUMENE_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.URANINITE_ORE.get(), cubeAll(TechnologicaBlocks.URANINITE_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.DEEPSLATE_URANINITE_ORE.get(), cubeAll(TechnologicaBlocks.DEEPSLATE_URANINITE_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.THORIANITE_ORE.get(), cubeAll(TechnologicaBlocks.THORIANITE_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.DEEPSLATE_THORIANITE_ORE.get(), cubeAll(TechnologicaBlocks.DEEPSLATE_THORIANITE_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.RUBY_ORE.get(), cubeAll(TechnologicaBlocks.RUBY_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.DEEPSLATE_RUBY_ORE.get(), cubeAll(TechnologicaBlocks.DEEPSLATE_RUBY_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.SAPPHIRE_ORE.get(), cubeAll(TechnologicaBlocks.SAPPHIRE_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.DEEPSLATE_SAPPHIRE_ORE.get(), cubeAll(TechnologicaBlocks.DEEPSLATE_SAPPHIRE_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.TOPAZ_ORE.get(), cubeAll(TechnologicaBlocks.TOPAZ_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.DEEPSLATE_TOPAZ_ORE.get(), cubeAll(TechnologicaBlocks.DEEPSLATE_TOPAZ_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.GALENA_ORE.get(), cubeAll(TechnologicaBlocks.GALENA_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.DEEPSLATE_GALENA_ORE.get(), cubeAll(TechnologicaBlocks.DEEPSLATE_GALENA_ORE.get()));
 
 		simpleBlockItem(TechnologicaBlocks.APRICOT_LOG.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.APRICOT_LOG.get()), blockTexture(TechnologicaBlocks.APRICOT_LOG.get()), new ResourceLocation(blockTexture(TechnologicaBlocks.APRICOT_LOG.get()) + "_top")));
 		simpleBlockItem(TechnologicaBlocks.ASPEN_LOG.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.ASPEN_LOG.get()), blockTexture(TechnologicaBlocks.ASPEN_LOG.get()), new ResourceLocation(blockTexture(TechnologicaBlocks.ASPEN_LOG.get()) + "_top")));

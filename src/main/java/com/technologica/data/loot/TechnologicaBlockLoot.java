@@ -235,6 +235,18 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		dropSelf(TechnologicaBlocks.PHOSPHORITE_ORE.get());
 		dropSelf(TechnologicaBlocks.DEEPSLATE_PHOSPHORITE_ORE.get());
 		dropSelf(TechnologicaBlocks.SPODUMENE_ORE.get());
+		dropSelf(TechnologicaBlocks.URANINITE_ORE.get());
+		dropSelf(TechnologicaBlocks.DEEPSLATE_URANINITE_ORE.get());
+		dropSelf(TechnologicaBlocks.THORIANITE_ORE.get());
+		dropSelf(TechnologicaBlocks.DEEPSLATE_THORIANITE_ORE.get());
+		dropSelf(TechnologicaBlocks.RUBY_ORE.get());
+		dropSelf(TechnologicaBlocks.DEEPSLATE_RUBY_ORE.get());
+		dropSelf(TechnologicaBlocks.SAPPHIRE_ORE.get());
+		dropSelf(TechnologicaBlocks.DEEPSLATE_SAPPHIRE_ORE.get());
+		dropSelf(TechnologicaBlocks.TOPAZ_ORE.get());
+		dropSelf(TechnologicaBlocks.DEEPSLATE_TOPAZ_ORE.get());
+		dropSelf(TechnologicaBlocks.GALENA_ORE.get());
+		dropSelf(TechnologicaBlocks.DEEPSLATE_GALENA_ORE.get());
 
 		dropSelf(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get());
 		dropSelf(TechnologicaBlocks.DOLOMITE_CRYSTAL.get());
