@@ -235,10 +235,33 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> DEEPSLATE_TOPAZ_ORE_ITEM = ITEMS.register("deepslate_topaz_ore", () -> new BlockItem(TechnologicaBlocks.DEEPSLATE_TOPAZ_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 	public static final RegistryObject<Item> GALENA_ORE_ITEM = ITEMS.register("galena_ore", () -> new BlockItem(TechnologicaBlocks.GALENA_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 	public static final RegistryObject<Item> DEEPSLATE_GALENA_ORE_ITEM = ITEMS.register("deepslate_galena_ore", () -> new BlockItem(TechnologicaBlocks.DEEPSLATE_GALENA_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
+	public static final RegistryObject<Item> ARSENOPYRITE_ORE_ITEM = ITEMS.register("arsenopyrite_ore", () -> new BlockItem(TechnologicaBlocks.ARSENOPYRITE_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
+	public static final RegistryObject<Item> DEEPSLATE_ARSENOPYRITE_ORE_ITEM = ITEMS.register("deepslate_arsenopyrite_ore", () -> new BlockItem(TechnologicaBlocks.DEEPSLATE_ARSENOPYRITE_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
+	public static final RegistryObject<Item> CROOKESITE_ORE_ITEM = ITEMS.register("crookesite_ore", () -> new BlockItem(TechnologicaBlocks.CROOKESITE_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
+	public static final RegistryObject<Item> DEEPSLATE_CROOKESITE_ORE_ITEM = ITEMS.register("deepslate_crookesite_ore", () -> new BlockItem(TechnologicaBlocks.DEEPSLATE_CROOKESITE_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
+	public static final RegistryObject<Item> LEPIDOLITE_ORE_ITEM = ITEMS.register("lepidolite_ore", () -> new BlockItem(TechnologicaBlocks.LEPIDOLITE_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
+	public static final RegistryObject<Item> DEEPSLATE_LEPIDOLITE_ORE_ITEM = ITEMS.register("deepslate_lepidolite_ore", () -> new BlockItem(TechnologicaBlocks.DEEPSLATE_LEPIDOLITE_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
+
+	public static final RegistryObject<Item> ARGENTITE_ORE_ITEM = ITEMS.register("argentite_ore", () -> new BlockItem(TechnologicaBlocks.ARGENTITE_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
+	public static final RegistryObject<Item> DEEPSLATE_ARGENTITE_ORE_ITEM = ITEMS.register("deepslate_argentite_ore", () -> new BlockItem(TechnologicaBlocks.DEEPSLATE_ARGENTITE_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
+	public static final RegistryObject<Item> NETHER_ARGENTITE_ORE_ITEM = ITEMS.register("nether_argentite_ore", () -> new BlockItem(TechnologicaBlocks.NETHER_ARGENTITE_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
+
+	public static final RegistryObject<Item> SYLVANITE_ORE_ITEM = ITEMS.register("sylvanite_ore", () -> new BlockItem(TechnologicaBlocks.SYLVANITE_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
+	public static final RegistryObject<Item> DEEPSLATE_SYLVANITE_ORE_ITEM = ITEMS.register("deepslate_sylvanite_ore", () -> new BlockItem(TechnologicaBlocks.DEEPSLATE_SYLVANITE_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
+	public static final RegistryObject<Item> NETHER_SYLVANITE_ORE_ITEM = ITEMS.register("nether_sylvanite_ore", () -> new BlockItem(TechnologicaBlocks.NETHER_SYLVANITE_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
+
+	public static final RegistryObject<Item> OSMIRIDIUM_ORE_ITEM = ITEMS.register("osmiridium_ore", () -> new BlockItem(TechnologicaBlocks.OSMIRIDIUM_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
+	public static final RegistryObject<Item> DEEPSLATE_OSMIRIDIUM_ORE_ITEM = ITEMS.register("deepslate_osmiridium_ore", () -> new BlockItem(TechnologicaBlocks.DEEPSLATE_OSMIRIDIUM_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
+	public static final RegistryObject<Item> NETHER_OSMIRIDIUM_ORE_ITEM = ITEMS.register("nether_osmiridium_ore", () -> new BlockItem(TechnologicaBlocks.NETHER_OSMIRIDIUM_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
+
+	public static final RegistryObject<Item> PLATINUM_ORE_ITEM = ITEMS.register("platinum_ore", () -> new BlockItem(TechnologicaBlocks.PLATINUM_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
+	public static final RegistryObject<Item> DEEPSLATE_PLATINUM_ORE_ITEM = ITEMS.register("deepslate_platinum_ore", () -> new BlockItem(TechnologicaBlocks.DEEPSLATE_PLATINUM_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
+	public static final RegistryObject<Item> NETHER_PLATINUM_ORE_ITEM = ITEMS.register("nether_platinum_ore", () -> new BlockItem(TechnologicaBlocks.NETHER_PLATINUM_ORE.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 
 	public static final RegistryObject<Item> AQUAMARINE_CRYSTAL_ITEM = ITEMS.register("aquamarine_crystal", () -> new BlockItem(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 	public static final RegistryObject<Item> DOLOMITE_CRYSTAL_ITEM = ITEMS.register("dolomite_crystal", () -> new BlockItem(TechnologicaBlocks.DOLOMITE_CRYSTAL.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 	public static final RegistryObject<Item> FLUORITE_CRYSTAL_ITEM = ITEMS.register("fluorite_crystal", () -> new BlockItem(TechnologicaBlocks.FLUORITE_CRYSTAL.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
+	public static final RegistryObject<Item> TELLURITE_CRYSTAL_ITEM = ITEMS.register("tellurite_crystal", () -> new BlockItem(TechnologicaBlocks.TELLURITE_CRYSTAL.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 	public static final RegistryObject<Item> SPHALERITE_CRYSTAL_ITEM = ITEMS.register("sphalerite_crystal", () -> new BlockItem(TechnologicaBlocks.SPHALERITE_CRYSTAL.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 	public static final RegistryObject<Item> ULEXITE_CRYSTAL_ITEM = ITEMS.register("ulexite_crystal", () -> new BlockItem(TechnologicaBlocks.ULEXITE_CRYSTAL.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 	public static final RegistryObject<Item> VANADINITE_CRYSTAL_ITEM = ITEMS.register("vanadinite_crystal", () -> new BlockItem(TechnologicaBlocks.VANADINITE_CRYSTAL.get(), new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));

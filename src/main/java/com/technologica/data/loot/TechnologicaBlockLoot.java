@@ -247,11 +247,34 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		dropSelf(TechnologicaBlocks.DEEPSLATE_TOPAZ_ORE.get());
 		dropSelf(TechnologicaBlocks.GALENA_ORE.get());
 		dropSelf(TechnologicaBlocks.DEEPSLATE_GALENA_ORE.get());
+		dropSelf(TechnologicaBlocks.ARSENOPYRITE_ORE.get());
+		dropSelf(TechnologicaBlocks.DEEPSLATE_ARSENOPYRITE_ORE.get());
+		dropSelf(TechnologicaBlocks.CROOKESITE_ORE.get());
+		dropSelf(TechnologicaBlocks.DEEPSLATE_CROOKESITE_ORE.get());
+		dropSelf(TechnologicaBlocks.LEPIDOLITE_ORE.get());
+		dropSelf(TechnologicaBlocks.DEEPSLATE_LEPIDOLITE_ORE.get());
+
+		dropSelf(TechnologicaBlocks.ARGENTITE_ORE.get());
+		dropSelf(TechnologicaBlocks.DEEPSLATE_ARGENTITE_ORE.get());
+		dropSelf(TechnologicaBlocks.NETHER_ARGENTITE_ORE.get());
+
+		dropSelf(TechnologicaBlocks.SYLVANITE_ORE.get());
+		dropSelf(TechnologicaBlocks.DEEPSLATE_SYLVANITE_ORE.get());
+		dropSelf(TechnologicaBlocks.NETHER_SYLVANITE_ORE.get());
+
+		dropSelf(TechnologicaBlocks.OSMIRIDIUM_ORE.get());
+		dropSelf(TechnologicaBlocks.DEEPSLATE_OSMIRIDIUM_ORE.get());
+		dropSelf(TechnologicaBlocks.NETHER_OSMIRIDIUM_ORE.get());
+
+		dropSelf(TechnologicaBlocks.PLATINUM_ORE.get());
+		dropSelf(TechnologicaBlocks.DEEPSLATE_PLATINUM_ORE.get());
+		dropSelf(TechnologicaBlocks.NETHER_PLATINUM_ORE.get());
 
 		dropSelf(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get());
 		dropSelf(TechnologicaBlocks.DOLOMITE_CRYSTAL.get());
 		dropSelf(TechnologicaBlocks.FLUORITE_CRYSTAL.get());
 		dropSelf(TechnologicaBlocks.SPHALERITE_CRYSTAL.get());
+		dropSelf(TechnologicaBlocks.TELLURITE_CRYSTAL.get());
 		dropSelf(TechnologicaBlocks.ULEXITE_CRYSTAL.get());
 		dropSelf(TechnologicaBlocks.VANADINITE_CRYSTAL.get());
 
