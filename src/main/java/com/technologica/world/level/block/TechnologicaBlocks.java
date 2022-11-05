@@ -287,6 +287,7 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> CHROMITE_ORE = BLOCKS.register("chromite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> DEEPSLATE_CHROMITE_ORE = BLOCKS.register("deepslate_chromite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> GADOLINITE_ORE = BLOCKS.register("gadolinite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> DEEPSLATE_GADOLINITE_ORE = BLOCKS.register("deepslate_gadolinite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> ILMENITE_ORE = BLOCKS.register("ilmenite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> PYROLUSITE_ORE = BLOCKS.register("pyrolusite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> DEEPSLATE_PYROLUSITE_ORE = BLOCKS.register("deepslate_pyrolusite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
@@ -320,6 +321,18 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> DEEPSLATE_CROOKESITE_ORE = BLOCKS.register("deepslate_crookesite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> LEPIDOLITE_ORE = BLOCKS.register("lepidolite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> DEEPSLATE_LEPIDOLITE_ORE = BLOCKS.register("deepslate_lepidolite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> CINNABAR_ORE = BLOCKS.register("cinnabar_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> DEEPSLATE_CINNABAR_ORE = BLOCKS.register("deepslate_cinnabar_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> MOLYBDENITE_ORE = BLOCKS.register("molybdenite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> DEEPSLATE_MOLYBDENITE_ORE = BLOCKS.register("deepslate_molybdenite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> WOLFRAMITE_ORE = BLOCKS.register("wolframite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> DEEPSLATE_WOLFRAMITE_ORE = BLOCKS.register("deepslate_wolframite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> TANTALITE_ORE = BLOCKS.register("tantalite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> DEEPSLATE_TANTALITE_ORE = BLOCKS.register("deepslate_tantalite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> BASTNAESITE_ORE = BLOCKS.register("bastnaesite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> DEEPSLATE_BASTNAESITE_ORE = BLOCKS.register("deepslate_bastnaesite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> PENTLANDITE_ORE = BLOCKS.register("pentlandite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> DEEPSLATE_PENTLANDITE_ORE = BLOCKS.register("deepslate_pentlandite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
 
 	public static final RegistryObject<Block> ARGENTITE_ORE = BLOCKS.register("argentite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> DEEPSLATE_ARGENTITE_ORE = BLOCKS.register("deepslate_argentite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
@@ -337,7 +350,22 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> DEEPSLATE_PLATINUM_ORE = BLOCKS.register("deepslate_platinum_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> NETHER_PLATINUM_ORE = BLOCKS.register("nether_platinum_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
 
+	public static final RegistryObject<Block> AUTUNITE_CRYSTAL = BLOCKS.register("autunite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
+		return 5;
+	})));
 	public static final RegistryObject<Block> AQUAMARINE_CRYSTAL = BLOCKS.register("aquamarine_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
+		return 5;
+	})));
+	public static final RegistryObject<Block> BARYTE_CRYSTAL = BLOCKS.register("baryte_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
+		return 5;
+	})));
+	public static final RegistryObject<Block> BISMITHUNITE_CRYSTAL = BLOCKS.register("bismithunite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
+		return 5;
+	})));
+	public static final RegistryObject<Block> CELESTINE_CRYSTAL = BLOCKS.register("celestine_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
+		return 5;
+	})));
+	public static final RegistryObject<Block> COLUMBITE_CRYSTAL = BLOCKS.register("columbite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
 		return 5;
 	})));
 	public static final RegistryObject<Block> DOLOMITE_CRYSTAL = BLOCKS.register("dolomite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
@@ -346,7 +374,28 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> FLUORITE_CRYSTAL = BLOCKS.register("fluorite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
 		return 5;
 	})));
+	public static final RegistryObject<Block> HUTCHINSONITE_CRYSTAL = BLOCKS.register("hutchinsonite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
+		return 5;
+	})));
+	public static final RegistryObject<Block> MONAZITE_CRYSTAL = BLOCKS.register("monazite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
+		return 5;
+	})));
+	public static final RegistryObject<Block> POLLUCITE_CRYSTAL = BLOCKS.register("pollucite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
+		return 5;
+	})));
+	public static final RegistryObject<Block> RUTILE_CRYSTAL = BLOCKS.register("rutile_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
+		return 5;
+	})));
+	public static final RegistryObject<Block> SCHEELITE_CRYSTAL = BLOCKS.register("scheelite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
+		return 5;
+	})));
 	public static final RegistryObject<Block> SPHALERITE_CRYSTAL = BLOCKS.register("sphalerite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
+		return 5;
+	})));
+	public static final RegistryObject<Block> STIBNITE_CRYSTAL = BLOCKS.register("stibnite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
+		return 5;
+	})));
+	public static final RegistryObject<Block> STRONTIANITE_CRYSTAL = BLOCKS.register("strontianite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
 		return 5;
 	})));
 	public static final RegistryObject<Block> TELLURITE_CRYSTAL = BLOCKS.register("tellurite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
@@ -356,6 +405,15 @@ public class TechnologicaBlocks {
 		return 5;
 	})));
 	public static final RegistryObject<Block> VANADINITE_CRYSTAL = BLOCKS.register("vanadinite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
+		return 5;
+	})));
+	public static final RegistryObject<Block> WULFENITE_CRYSTAL = BLOCKS.register("wulfenite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
+		return 5;
+	})));
+	public static final RegistryObject<Block> XENOTIME_CRYSTAL = BLOCKS.register("xenotime_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
+		return 5;
+	})));
+	public static final RegistryObject<Block> ZIRCON_CRYSTAL = BLOCKS.register("zircon_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
 		return 5;
 	})));
 

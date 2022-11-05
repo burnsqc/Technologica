@@ -82,6 +82,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		simpleBlock(TechnologicaBlocks.CHROMITE_ORE.get());
 		simpleBlock(TechnologicaBlocks.DEEPSLATE_CHROMITE_ORE.get());
 		simpleBlock(TechnologicaBlocks.GADOLINITE_ORE.get());
+		simpleBlock(TechnologicaBlocks.DEEPSLATE_GADOLINITE_ORE.get());
 		simpleBlock(TechnologicaBlocks.ILMENITE_ORE.get());
 		simpleBlock(TechnologicaBlocks.PYROLUSITE_ORE.get());
 		simpleBlock(TechnologicaBlocks.DEEPSLATE_PYROLUSITE_ORE.get());
@@ -115,6 +116,18 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		simpleBlock(TechnologicaBlocks.DEEPSLATE_CROOKESITE_ORE.get());
 		simpleBlock(TechnologicaBlocks.LEPIDOLITE_ORE.get());
 		simpleBlock(TechnologicaBlocks.DEEPSLATE_LEPIDOLITE_ORE.get());
+		simpleBlock(TechnologicaBlocks.CINNABAR_ORE.get());
+		simpleBlock(TechnologicaBlocks.DEEPSLATE_CINNABAR_ORE.get());
+		simpleBlock(TechnologicaBlocks.MOLYBDENITE_ORE.get());
+		simpleBlock(TechnologicaBlocks.DEEPSLATE_MOLYBDENITE_ORE.get());
+		simpleBlock(TechnologicaBlocks.WOLFRAMITE_ORE.get());
+		simpleBlock(TechnologicaBlocks.DEEPSLATE_WOLFRAMITE_ORE.get());
+		simpleBlock(TechnologicaBlocks.TANTALITE_ORE.get());
+		simpleBlock(TechnologicaBlocks.DEEPSLATE_TANTALITE_ORE.get());
+		simpleBlock(TechnologicaBlocks.BASTNAESITE_ORE.get());
+		simpleBlock(TechnologicaBlocks.DEEPSLATE_BASTNAESITE_ORE.get());
+		simpleBlock(TechnologicaBlocks.PENTLANDITE_ORE.get());
+		simpleBlock(TechnologicaBlocks.DEEPSLATE_PENTLANDITE_ORE.get());
 
 		simpleBlock(TechnologicaBlocks.ARGENTITE_ORE.get());
 		simpleBlock(TechnologicaBlocks.DEEPSLATE_ARGENTITE_ORE.get());
@@ -132,13 +145,28 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		simpleBlock(TechnologicaBlocks.DEEPSLATE_PLATINUM_ORE.get());
 		simpleBlock(TechnologicaBlocks.NETHER_PLATINUM_ORE.get());
 
+		twentyFourDirectionBlockState(TechnologicaBlocks.AUTUNITE_CRYSTAL.get(), leafyCrystalModel(TechnologicaBlocks.AUTUNITE_CRYSTAL.get()), leafyCrystalModel(TechnologicaBlocks.AUTUNITE_CRYSTAL.get()));
 		twentyFourDirectionBlockState(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get(), hexagonalCrystalModel(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get()), hexagonalCrystalModel(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get()));
+		twentyFourDirectionBlockState(TechnologicaBlocks.BARYTE_CRYSTAL.get(), leafyCrystalModel(TechnologicaBlocks.BARYTE_CRYSTAL.get()), leafyCrystalModel(TechnologicaBlocks.BARYTE_CRYSTAL.get()));
+		twentyFourDirectionBlockState(TechnologicaBlocks.BISMITHUNITE_CRYSTAL.get(), spikyCrystalModel(TechnologicaBlocks.BISMITHUNITE_CRYSTAL.get()), spikyCrystalModel(TechnologicaBlocks.BISMITHUNITE_CRYSTAL.get()));
+		twentyFourDirectionBlockState(TechnologicaBlocks.CELESTINE_CRYSTAL.get(), hexagonalCrystalModel(TechnologicaBlocks.CELESTINE_CRYSTAL.get()), hexagonalCrystalModel(TechnologicaBlocks.CELESTINE_CRYSTAL.get()));
+		twentyFourDirectionBlockState(TechnologicaBlocks.COLUMBITE_CRYSTAL.get(), cubicCrystalModel(TechnologicaBlocks.COLUMBITE_CRYSTAL.get()), cubicCrystalModel(TechnologicaBlocks.COLUMBITE_CRYSTAL.get()));
 		twentyFourDirectionBlockState(TechnologicaBlocks.DOLOMITE_CRYSTAL.get(), cubicCrystalModel(TechnologicaBlocks.DOLOMITE_CRYSTAL.get()), cubicCrystalModel(TechnologicaBlocks.DOLOMITE_CRYSTAL.get()));
 		twentyFourDirectionBlockState(TechnologicaBlocks.FLUORITE_CRYSTAL.get(), hexagonalCrystalModel(TechnologicaBlocks.FLUORITE_CRYSTAL.get()), hexagonalCrystalModel(TechnologicaBlocks.FLUORITE_CRYSTAL.get()));
+		twentyFourDirectionBlockState(TechnologicaBlocks.HUTCHINSONITE_CRYSTAL.get(), spikyCrystalModel(TechnologicaBlocks.HUTCHINSONITE_CRYSTAL.get()), spikyCrystalModel(TechnologicaBlocks.HUTCHINSONITE_CRYSTAL.get()));
+		twentyFourDirectionBlockState(TechnologicaBlocks.MONAZITE_CRYSTAL.get(), spikyCrystalModel(TechnologicaBlocks.MONAZITE_CRYSTAL.get()), spikyCrystalModel(TechnologicaBlocks.MONAZITE_CRYSTAL.get()));
+		twentyFourDirectionBlockState(TechnologicaBlocks.POLLUCITE_CRYSTAL.get(), leafyCrystalModel(TechnologicaBlocks.POLLUCITE_CRYSTAL.get()), leafyCrystalModel(TechnologicaBlocks.POLLUCITE_CRYSTAL.get()));
+		twentyFourDirectionBlockState(TechnologicaBlocks.RUTILE_CRYSTAL.get(), spikyCrystalModel(TechnologicaBlocks.RUTILE_CRYSTAL.get()), spikyCrystalModel(TechnologicaBlocks.RUTILE_CRYSTAL.get()));
+		twentyFourDirectionBlockState(TechnologicaBlocks.SCHEELITE_CRYSTAL.get(), cubicCrystalModel(TechnologicaBlocks.SCHEELITE_CRYSTAL.get()), cubicCrystalModel(TechnologicaBlocks.SCHEELITE_CRYSTAL.get()));
 		twentyFourDirectionBlockState(TechnologicaBlocks.SPHALERITE_CRYSTAL.get(), cubicCrystalModel(TechnologicaBlocks.SPHALERITE_CRYSTAL.get()), cubicCrystalModel(TechnologicaBlocks.SPHALERITE_CRYSTAL.get()));
+		twentyFourDirectionBlockState(TechnologicaBlocks.STIBNITE_CRYSTAL.get(), spikyCrystalModel(TechnologicaBlocks.STIBNITE_CRYSTAL.get()), spikyCrystalModel(TechnologicaBlocks.STIBNITE_CRYSTAL.get()));
+		twentyFourDirectionBlockState(TechnologicaBlocks.STRONTIANITE_CRYSTAL.get(), spikyCrystalModel(TechnologicaBlocks.STRONTIANITE_CRYSTAL.get()), spikyCrystalModel(TechnologicaBlocks.STRONTIANITE_CRYSTAL.get()));
 		twentyFourDirectionBlockState(TechnologicaBlocks.TELLURITE_CRYSTAL.get(), hexagonalCrystalModel(TechnologicaBlocks.TELLURITE_CRYSTAL.get()), hexagonalCrystalModel(TechnologicaBlocks.TELLURITE_CRYSTAL.get()));
 		twentyFourDirectionBlockState(TechnologicaBlocks.ULEXITE_CRYSTAL.get(), hexagonalCrystalModel(TechnologicaBlocks.ULEXITE_CRYSTAL.get()), hexagonalCrystalModel(TechnologicaBlocks.ULEXITE_CRYSTAL.get()));
 		twentyFourDirectionBlockState(TechnologicaBlocks.VANADINITE_CRYSTAL.get(), hexagonalCrystalModel(TechnologicaBlocks.VANADINITE_CRYSTAL.get()), hexagonalCrystalModel(TechnologicaBlocks.VANADINITE_CRYSTAL.get()));
+		twentyFourDirectionBlockState(TechnologicaBlocks.WULFENITE_CRYSTAL.get(), leafyCrystalModel(TechnologicaBlocks.WULFENITE_CRYSTAL.get()), leafyCrystalModel(TechnologicaBlocks.WULFENITE_CRYSTAL.get()));
+		twentyFourDirectionBlockState(TechnologicaBlocks.XENOTIME_CRYSTAL.get(), cubicCrystalModel(TechnologicaBlocks.XENOTIME_CRYSTAL.get()), cubicCrystalModel(TechnologicaBlocks.XENOTIME_CRYSTAL.get()));
+		twentyFourDirectionBlockState(TechnologicaBlocks.ZIRCON_CRYSTAL.get(), cubicCrystalModel(TechnologicaBlocks.ZIRCON_CRYSTAL.get()), cubicCrystalModel(TechnologicaBlocks.ZIRCON_CRYSTAL.get()));
 
 		getVariantBuilder(TechnologicaBlocks.HYDROGEN.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.HYDROGEN.get())));
 		getVariantBuilder(TechnologicaBlocks.HELIUM.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.HELIUM.get())));
@@ -228,6 +256,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		simpleBlockItem(TechnologicaBlocks.CHROMITE_ORE.get(), cubeAll(TechnologicaBlocks.CHROMITE_ORE.get()));
 		simpleBlockItem(TechnologicaBlocks.DEEPSLATE_CHROMITE_ORE.get(), cubeAll(TechnologicaBlocks.DEEPSLATE_CHROMITE_ORE.get()));
 		simpleBlockItem(TechnologicaBlocks.GADOLINITE_ORE.get(), cubeAll(TechnologicaBlocks.GADOLINITE_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.DEEPSLATE_GADOLINITE_ORE.get(), cubeAll(TechnologicaBlocks.DEEPSLATE_GADOLINITE_ORE.get()));
 		simpleBlockItem(TechnologicaBlocks.ILMENITE_ORE.get(), cubeAll(TechnologicaBlocks.ILMENITE_ORE.get()));
 		simpleBlockItem(TechnologicaBlocks.PYROLUSITE_ORE.get(), cubeAll(TechnologicaBlocks.PYROLUSITE_ORE.get()));
 		simpleBlockItem(TechnologicaBlocks.DEEPSLATE_PYROLUSITE_ORE.get(), cubeAll(TechnologicaBlocks.DEEPSLATE_PYROLUSITE_ORE.get()));
@@ -261,6 +290,18 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		simpleBlockItem(TechnologicaBlocks.DEEPSLATE_CROOKESITE_ORE.get(), cubeAll(TechnologicaBlocks.DEEPSLATE_CROOKESITE_ORE.get()));
 		simpleBlockItem(TechnologicaBlocks.LEPIDOLITE_ORE.get(), cubeAll(TechnologicaBlocks.LEPIDOLITE_ORE.get()));
 		simpleBlockItem(TechnologicaBlocks.DEEPSLATE_LEPIDOLITE_ORE.get(), cubeAll(TechnologicaBlocks.DEEPSLATE_LEPIDOLITE_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.CINNABAR_ORE.get(), cubeAll(TechnologicaBlocks.CINNABAR_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.DEEPSLATE_CINNABAR_ORE.get(), cubeAll(TechnologicaBlocks.DEEPSLATE_CINNABAR_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.MOLYBDENITE_ORE.get(), cubeAll(TechnologicaBlocks.MOLYBDENITE_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.DEEPSLATE_MOLYBDENITE_ORE.get(), cubeAll(TechnologicaBlocks.DEEPSLATE_MOLYBDENITE_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.WOLFRAMITE_ORE.get(), cubeAll(TechnologicaBlocks.WOLFRAMITE_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.DEEPSLATE_WOLFRAMITE_ORE.get(), cubeAll(TechnologicaBlocks.DEEPSLATE_WOLFRAMITE_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.TANTALITE_ORE.get(), cubeAll(TechnologicaBlocks.TANTALITE_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.DEEPSLATE_TANTALITE_ORE.get(), cubeAll(TechnologicaBlocks.DEEPSLATE_TANTALITE_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.BASTNAESITE_ORE.get(), cubeAll(TechnologicaBlocks.BASTNAESITE_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.DEEPSLATE_BASTNAESITE_ORE.get(), cubeAll(TechnologicaBlocks.DEEPSLATE_BASTNAESITE_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.PENTLANDITE_ORE.get(), cubeAll(TechnologicaBlocks.PENTLANDITE_ORE.get()));
+		simpleBlockItem(TechnologicaBlocks.DEEPSLATE_PENTLANDITE_ORE.get(), cubeAll(TechnologicaBlocks.DEEPSLATE_PENTLANDITE_ORE.get()));
 
 		simpleBlockItem(TechnologicaBlocks.ARGENTITE_ORE.get(), cubeAll(TechnologicaBlocks.ARGENTITE_ORE.get()));
 		simpleBlockItem(TechnologicaBlocks.DEEPSLATE_ARGENTITE_ORE.get(), cubeAll(TechnologicaBlocks.DEEPSLATE_ARGENTITE_ORE.get()));
@@ -1608,6 +1649,16 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 	public ModelFile cubicCrystalModel(Block block) {
 		ResourceLocation location = ForgeRegistries.BLOCKS.getKey(block);
 		return models().singleTexture(ResourceLocationHelper.getPath(block), modLoc("cubic_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath())).renderType("translucent");
+	}
+
+	public ModelFile spikyCrystalModel(Block block) {
+		ResourceLocation location = ForgeRegistries.BLOCKS.getKey(block);
+		return models().singleTexture(ResourceLocationHelper.getPath(block), modLoc("spiky_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath())).renderType("translucent");
+	}
+
+	public ModelFile leafyCrystalModel(Block block) {
+		ResourceLocation location = ForgeRegistries.BLOCKS.getKey(block);
+		return models().singleTexture(ResourceLocationHelper.getPath(block), modLoc("leafy_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath())).renderType("translucent");
 	}
 
 	public ModelFile smallPulleyModel(Block block) {

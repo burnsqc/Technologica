@@ -220,6 +220,7 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		dropSelf(TechnologicaBlocks.CHROMITE_ORE.get());
 		dropSelf(TechnologicaBlocks.DEEPSLATE_CHROMITE_ORE.get());
 		dropSelf(TechnologicaBlocks.GADOLINITE_ORE.get());
+		dropSelf(TechnologicaBlocks.DEEPSLATE_GADOLINITE_ORE.get());
 		dropSelf(TechnologicaBlocks.ILMENITE_ORE.get());
 		dropSelf(TechnologicaBlocks.PYROLUSITE_ORE.get());
 		dropSelf(TechnologicaBlocks.DEEPSLATE_PYROLUSITE_ORE.get());
@@ -253,6 +254,18 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		dropSelf(TechnologicaBlocks.DEEPSLATE_CROOKESITE_ORE.get());
 		dropSelf(TechnologicaBlocks.LEPIDOLITE_ORE.get());
 		dropSelf(TechnologicaBlocks.DEEPSLATE_LEPIDOLITE_ORE.get());
+		dropSelf(TechnologicaBlocks.CINNABAR_ORE.get());
+		dropSelf(TechnologicaBlocks.DEEPSLATE_CINNABAR_ORE.get());
+		dropSelf(TechnologicaBlocks.MOLYBDENITE_ORE.get());
+		dropSelf(TechnologicaBlocks.DEEPSLATE_MOLYBDENITE_ORE.get());
+		dropSelf(TechnologicaBlocks.WOLFRAMITE_ORE.get());
+		dropSelf(TechnologicaBlocks.DEEPSLATE_WOLFRAMITE_ORE.get());
+		dropSelf(TechnologicaBlocks.TANTALITE_ORE.get());
+		dropSelf(TechnologicaBlocks.DEEPSLATE_TANTALITE_ORE.get());
+		dropSelf(TechnologicaBlocks.BASTNAESITE_ORE.get());
+		dropSelf(TechnologicaBlocks.DEEPSLATE_BASTNAESITE_ORE.get());
+		dropSelf(TechnologicaBlocks.PENTLANDITE_ORE.get());
+		dropSelf(TechnologicaBlocks.DEEPSLATE_PENTLANDITE_ORE.get());
 
 		dropSelf(TechnologicaBlocks.ARGENTITE_ORE.get());
 		dropSelf(TechnologicaBlocks.DEEPSLATE_ARGENTITE_ORE.get());
@@ -270,13 +283,28 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		dropSelf(TechnologicaBlocks.DEEPSLATE_PLATINUM_ORE.get());
 		dropSelf(TechnologicaBlocks.NETHER_PLATINUM_ORE.get());
 
+		dropSelf(TechnologicaBlocks.AUTUNITE_CRYSTAL.get());
 		dropSelf(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get());
+		dropSelf(TechnologicaBlocks.BARYTE_CRYSTAL.get());
+		dropSelf(TechnologicaBlocks.BISMITHUNITE_CRYSTAL.get());
+		dropSelf(TechnologicaBlocks.CELESTINE_CRYSTAL.get());
+		dropSelf(TechnologicaBlocks.COLUMBITE_CRYSTAL.get());
 		dropSelf(TechnologicaBlocks.DOLOMITE_CRYSTAL.get());
 		dropSelf(TechnologicaBlocks.FLUORITE_CRYSTAL.get());
+		dropSelf(TechnologicaBlocks.HUTCHINSONITE_CRYSTAL.get());
+		dropSelf(TechnologicaBlocks.MONAZITE_CRYSTAL.get());
+		dropSelf(TechnologicaBlocks.POLLUCITE_CRYSTAL.get());
+		dropSelf(TechnologicaBlocks.RUTILE_CRYSTAL.get());
+		dropSelf(TechnologicaBlocks.SCHEELITE_CRYSTAL.get());
 		dropSelf(TechnologicaBlocks.SPHALERITE_CRYSTAL.get());
+		dropSelf(TechnologicaBlocks.STIBNITE_CRYSTAL.get());
+		dropSelf(TechnologicaBlocks.STRONTIANITE_CRYSTAL.get());
 		dropSelf(TechnologicaBlocks.TELLURITE_CRYSTAL.get());
 		dropSelf(TechnologicaBlocks.ULEXITE_CRYSTAL.get());
 		dropSelf(TechnologicaBlocks.VANADINITE_CRYSTAL.get());
+		dropSelf(TechnologicaBlocks.WULFENITE_CRYSTAL.get());
+		dropSelf(TechnologicaBlocks.XENOTIME_CRYSTAL.get());
+		dropSelf(TechnologicaBlocks.ZIRCON_CRYSTAL.get());
 
 		dropSelf(TechnologicaBlocks.APRICOT_LOG.get());
 		dropSelf(TechnologicaBlocks.ASPEN_LOG.get());
