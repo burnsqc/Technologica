@@ -51,6 +51,7 @@ public class TechnologicaModelLayers {
 	public static final ModelLayerLocation WALRUS = register("walrus");
 	public static final ModelLayerLocation ZEBRA = register("zebra");
 
+	public static final ModelLayerLocation ATOMIC_CREEPER = register("atomic_creeper");
 	public static final ModelLayerLocation PEEPER = register("peeper");
 	public static final ModelLayerLocation SWEEPER = register("sweeper");
 

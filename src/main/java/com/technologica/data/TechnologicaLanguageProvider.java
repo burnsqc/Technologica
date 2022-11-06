@@ -30,6 +30,7 @@ public class TechnologicaLanguageProvider extends LanguageProvider {
 
 		add("death.attack.jostled_the_nitro", "%1$s jostled the nitro");
 		add("death.attack.jostled_the_nitro.player", "%1$s jostled the nitro whilst fighting %2$s");
+		add("effect.technologica.radiation", "Radiation");
 	}
 
 	/**

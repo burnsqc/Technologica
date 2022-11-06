@@ -43,6 +43,7 @@ import com.technologica.world.entity.animal.Walrus;
 import com.technologica.world.entity.animal.Zebra;
 import com.technologica.world.entity.decoration.InvisibleSeat;
 import com.technologica.world.entity.item.NavalMine;
+import com.technologica.world.entity.monster.AtomicCreeper;
 import com.technologica.world.entity.monster.Peeper;
 import com.technologica.world.entity.monster.Sweeper;
 import com.technologica.world.entity.projectile.Coconut;
@@ -113,6 +114,7 @@ public class TechnologicaEntityType {
 	 * MONSTERS
 	 */
 
+	public static final RegistryObject<EntityType<AtomicCreeper>> ATOMIC_CREEPER = ENTITY_TYPES.register("atomic_creeper", () -> EntityType.Builder.<AtomicCreeper>of(AtomicCreeper::new, MobCategory.MONSTER).sized(0.6F, 1.7F).clientTrackingRange(16).build("atomic_creeper"));
 	public static final RegistryObject<EntityType<Peeper>> PEEPER = ENTITY_TYPES.register("peeper", () -> EntityType.Builder.<Peeper>of(Peeper::new, MobCategory.MONSTER).sized(0.6F, 1.7F).clientTrackingRange(16).build("peeper"));
 	public static final RegistryObject<EntityType<Sweeper>> SWEEPER = ENTITY_TYPES.register("sweeper", () -> EntityType.Builder.<Sweeper>of(Sweeper::new, MobCategory.MONSTER).sized(0.6F, 1.7F).clientTrackingRange(8).build("sweeper"));
 

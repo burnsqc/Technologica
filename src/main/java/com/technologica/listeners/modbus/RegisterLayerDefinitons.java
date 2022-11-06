@@ -92,6 +92,7 @@ public class RegisterLayerDefinitons {
 		event.registerLayerDefinition(TechnologicaModelLayers.WALRUS, WalrusModel::createBodyLayer);
 		event.registerLayerDefinition(TechnologicaModelLayers.ZEBRA, () -> LayerDefinition.create(HorseModel.createBodyMesh(CubeDeformation.NONE), 64, 64));
 
+		event.registerLayerDefinition(TechnologicaModelLayers.ATOMIC_CREEPER, () -> CreeperModel.createBodyLayer(CubeDeformation.NONE));
 		event.registerLayerDefinition(TechnologicaModelLayers.PEEPER, () -> CreeperModel.createBodyLayer(CubeDeformation.NONE));
 		event.registerLayerDefinition(TechnologicaModelLayers.SWEEPER, () -> CreeperModel.createBodyLayer(CubeDeformation.NONE));
 

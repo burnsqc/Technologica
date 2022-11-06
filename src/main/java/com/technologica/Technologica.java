@@ -30,6 +30,7 @@ import com.technologica.setup.Config;
 import com.technologica.util.DisablePlankConditionFactory;
 import com.technologica.util.EnablePlankConditionFactory;
 import com.technologica.util.TechnologicaSoundEvents;
+import com.technologica.world.effect.TechnologicaMobEffects;
 import com.technologica.world.entity.TechnologicaEntityType;
 import com.technologica.world.inventory.TechnologicaContainerType;
 import com.technologica.world.item.TechnologicaItems;
@@ -70,6 +71,7 @@ public class Technologica {
 		TechnologicaFeature.init();
 		TechnologicaFoliagePlacers.init();
 		LootModifierListener.init();
+		TechnologicaMobEffects.init();
 
 		// FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(Block.class, RegistrationListener::onRegisterBlocks);
 		// FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(Item.class, RegistrationListener::onRegisterItems);

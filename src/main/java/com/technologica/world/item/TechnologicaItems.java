@@ -179,6 +179,7 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> WALRUS_SPAWN_EGG = ITEMS.register("walrus_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityType.WALRUS, 0x655a48, 0xf6f2e2, new Item.Properties().tab(TechnologicaItemGroup.FAUNA)));
 	public static final RegistryObject<Item> ZEBRA_SPAWN_EGG = ITEMS.register("zebra_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityType.ZEBRA, 0xffffff, 0x000000, new Item.Properties().tab(TechnologicaItemGroup.FAUNA)));
 
+	public static final RegistryObject<Item> ATOMIC_CREEPER_SPAWN_EGG = ITEMS.register("atomic_creeper_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityType.ATOMIC_CREEPER, 0x00FF00, 0x000000, new Item.Properties().tab(TechnologicaItemGroup.FAUNA)));
 	public static final RegistryObject<Item> PEEPER_SPAWN_EGG = ITEMS.register("peeper_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityType.PEEPER, 0xb38dff, 0x000000, new Item.Properties().tab(TechnologicaItemGroup.FAUNA)));
 	public static final RegistryObject<Item> SWEEPER_SPAWN_EGG = ITEMS.register("sweeper_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityType.SWEEPER, 0xd3be2b, 0x000000, new Item.Properties().tab(TechnologicaItemGroup.FAUNA)));
 
