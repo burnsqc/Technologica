@@ -238,7 +238,6 @@ public class AtomicCreeper extends Monster implements PowerableMob {
 	private void explodeCreeper() {
 		if (!this.level.isClientSide) {
 			Explosion.BlockInteraction explosion$blockinteraction = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this) ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.NONE;
-			float f = this.isPowered() ? 2.0F : 1.0F;
 			this.dead = true;
 			this.level.explode(this, this.getX(), this.getY(), this.getZ(), this.explosionRadius * 5.0F, explosion$blockinteraction);
 			this.discard();

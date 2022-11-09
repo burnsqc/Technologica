@@ -345,6 +345,7 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.TAPENADE.get());
 		simpleItem(TechnologicaItems.CINNAMON_ROLL.get());
 		simpleItem(TechnologicaItems.OLIVE_OIL.get());
+		simpleItem(TechnologicaItems.IODINE_PILL.get());
 
 		simpleItem(TechnologicaItems.APRICOT_BOAT.get());
 		simpleItem(TechnologicaItems.ASPEN_BOAT.get());

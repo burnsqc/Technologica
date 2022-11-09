@@ -2,7 +2,10 @@ package com.technologica.world.level.block;
 
 import java.util.function.ToIntFunction;
 
+import javax.annotation.Nullable;
+
 import com.technologica.core.particles.FlyingRadiationParticleData;
+import com.technologica.world.level.block.entity.RadioactiveOreBlockEntity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -16,8 +19,13 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RedstoneTorchBlock;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -25,7 +33,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
-public class RadioactiveOreBlock extends Block {
+public class RadioactiveOreBlock extends BaseEntityBlock {
 	public static final BooleanProperty LIT = RedstoneTorchBlock.LIT;
 
 	public RadioactiveOreBlock(BlockBehaviour.Properties p_55453_) {
@@ -101,10 +109,9 @@ public class RadioactiveOreBlock extends Block {
 
 	@Override
 	public void animateTick(BlockState p_221913_, Level p_221914_, BlockPos p_221915_, RandomSource p_221916_) {
-		if (p_221913_.getValue(LIT) && p_221914_.isClientSide) {
+		if (p_221913_.getValue(LIT)) {
 			spawnParticles(p_221914_, p_221915_);
 		}
-
 	}
 
 	private static void spawnParticles(Level p_55455_, BlockPos p_55456_) {
@@ -120,11 +127,37 @@ public class RadioactiveOreBlock extends Block {
 				p_55455_.addParticle(FlyingRadiationParticleData.RADIATION, p_55456_.getX() + d1, p_55456_.getY() + d2, p_55456_.getZ() + d3, 0.5D * (d1 - 0.5D), 0.5D * (d2 - 0.5D), 0.5D * (d3 - 0.5D));
 			}
 		}
-
 	}
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_55484_) {
 		p_55484_.add(LIT);
+	}
+
+	@Override
+	@Nullable
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> type) {
+		if (level.isClientSide()) {
+			return null;
+		}
+		return (lvl, pos, blockState2, t) -> {
+			if (t instanceof RadioactiveOreBlockEntity tile) {
+				tile.serverTick(level, blockState);
+			}
+		};
+	}
+
+	@Override
+	public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
+		return new RadioactiveOreBlockEntity(p_153215_, p_153216_);
+	}
+
+	public RadioactiveOreBlockEntity getTileEntity(Level levelIn, BlockPos posIn) {
+		return (RadioactiveOreBlockEntity) levelIn.getBlockEntity(posIn);
+	}
+
+	@Override
+	public RenderShape getRenderShape(BlockState p_48727_) {
+		return RenderShape.MODEL;
 	}
 }

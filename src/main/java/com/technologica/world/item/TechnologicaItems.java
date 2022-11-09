@@ -523,6 +523,8 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> CINNAMON_ROLL = ITEMS.register("cinnamon_roll", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.CINNAMON_ROLL)));
 	public static final RegistryObject<Item> OLIVE_OIL = ITEMS.register("olive_oil", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.OLIVE_OIL)));
 
+	public static final RegistryObject<Item> IODINE_PILL = ITEMS.register("iodine_pill", () -> new IodinePillItem(new Item.Properties().tab(TechnologicaItemGroup.FOOD).food(TechnologicaFoods.IODINE_PILL)));
+
 	/**
 	 * CONSTRUCTION
 	 */

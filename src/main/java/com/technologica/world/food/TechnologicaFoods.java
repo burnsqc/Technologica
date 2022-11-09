@@ -81,4 +81,6 @@ public class TechnologicaFoods {
 	public static final FoodProperties TAPENADE = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 	public static final FoodProperties CINNAMON_ROLL = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 	public static final FoodProperties OLIVE_OIL = (new FoodProperties.Builder().build());
+
+	public static final FoodProperties IODINE_PILL = (new FoodProperties.Builder().alwaysEat().fast().build());
 }

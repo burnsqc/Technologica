@@ -15,6 +15,6 @@ public class RegisterParticleProviders {
 		event.register(TechnologicaParticleTypes.FALLING_FLUID.get(), TechnologicaDripParticle.FallingFactory::new);
 		event.register(TechnologicaParticleTypes.LANDING_FLUID.get(), TechnologicaDripParticle.LandingFactory::new);
 		event.register(TechnologicaParticleTypes.FLYING_RADIATION.get(), RadiationParticle.FlyingFactory::new);
-		LOGGER.info("PARTICLE PROVIDERS REGISTERED: 5 OF 5");
+		LOGGER.info("PARTICLE PROVIDERS REGISTERED: 4 OF 4");
 	}
 }

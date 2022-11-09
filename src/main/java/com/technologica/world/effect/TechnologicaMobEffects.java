@@ -18,5 +18,5 @@ public class TechnologicaMobEffects {
 		LOGGER.info("MOB EFFECTS INITIALIZED: " + MOB_EFFECTS.getEntries().size() + " OF 1");
 	}
 
-	public static final RegistryObject<MobEffect> RADIATION = MOB_EFFECTS.register("radiation", () -> new RadiationEffect(MobEffectCategory.HARMFUL, 3124687));
+	public static final RegistryObject<MobEffect> RADIATION = MOB_EFFECTS.register("radiation", () -> new RadiationEffect(MobEffectCategory.HARMFUL, 0x00BFFF));
 }
