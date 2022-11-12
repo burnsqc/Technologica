@@ -361,7 +361,7 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> ACTINIUM_INGOT = ITEMS.register("actinium_ingot", () -> new SimpleFoiledItem(new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 	public static final RegistryObject<Item> THORIUM_INGOT = ITEMS.register("thorium_ingot", () -> new SimpleFoiledItem(new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 	public static final RegistryObject<Item> PROTACTINIUM_INGOT = ITEMS.register("protactinium_ingot", () -> new SimpleFoiledItem(new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
-	public static final RegistryObject<Item> URANIUM_INGOT = ITEMS.register("uranium_ingot", () -> new SimpleFoiledItem(new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
+	public static final RegistryObject<Item> URANIUM_INGOT = ITEMS.register("uranium_ingot", () -> new RadioactiveItem(new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 	public static final RegistryObject<Item> NEPTUNIUM_INGOT = ITEMS.register("neptunium_ingot", () -> new SimpleFoiledItem(new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 	public static final RegistryObject<Item> PLUTONIUM_INGOT = ITEMS.register("plutonium_ingot", () -> new SimpleFoiledItem(new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 	public static final RegistryObject<Item> AMERICIUM_INGOT = ITEMS.register("americium_ingot", () -> new SimpleFoiledItem(new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
@@ -386,8 +386,8 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> FLEVORIUM_INGOT = ITEMS.register("flevorium_ingot", () -> new SimpleFoiledItem(new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 	public static final RegistryObject<Item> MOSCOVIUM_INGOT = ITEMS.register("moscovium_ingot", () -> new SimpleFoiledItem(new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 	public static final RegistryObject<Item> LIVERMORIUM_INGOT = ITEMS.register("livermorium_ingot", () -> new SimpleFoiledItem(new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
-	public static final RegistryObject<Item> TENNESSINE_INGOT = ITEMS.register("tennessine_ingot", () -> new SimpleFoiledItem(new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
-	public static final RegistryObject<Item> OGANESSON_INGOT = ITEMS.register("oganesson_ingot", () -> new SimpleFoiledItem(new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
+	public static final RegistryObject<Item> TENNESSINE_INGOT = ITEMS.register("tennessine_ingot", () -> new RadioactiveItem(new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
+	public static final RegistryObject<Item> OGANESSON_INGOT = ITEMS.register("oganesson_ingot", () -> new RadioactiveItem(new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 
 	public static final RegistryObject<Item> LITHIUM_CLAY_BALL = ITEMS.register("lithium_clay_ball", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
 	public static final RegistryObject<Item> BORON_CHUNK = ITEMS.register("boron_chunk", () -> new Item(new Item.Properties().tab(TechnologicaItemGroup.MINERAL)));
