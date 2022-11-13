@@ -2,17 +2,22 @@ package com.technologica.world.item;
 
 import java.util.function.Consumer;
 
+import com.technologica.Technologica;
 import com.technologica.client.renderer.blockentity.CustomGlintRenderer;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 
 public class RadioactiveItem extends Item {
-	public RadioactiveItem(Item.Properties p_43136_) {
+	private ResourceLocation BASE_MODEL_LOCATION;
+
+	public RadioactiveItem(Item.Properties p_43136_, String name) {
 		super(p_43136_);
+		BASE_MODEL_LOCATION = new ResourceLocation(Technologica.MODID, "item/" + name + "_base");
 	}
 
 	@Override
@@ -26,7 +31,7 @@ public class RadioactiveItem extends Item {
 
 			@Override
 			public BlockEntityWithoutLevelRenderer getCustomRenderer() {
-				return new CustomGlintRenderer(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels());
+				return new CustomGlintRenderer(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels(), BASE_MODEL_LOCATION);
 			}
 		});
 	}

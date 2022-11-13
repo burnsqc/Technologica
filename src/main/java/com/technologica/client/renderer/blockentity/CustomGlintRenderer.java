@@ -29,24 +29,24 @@ import net.minecraftforge.client.RenderTypeHelper;
 import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 
 public class CustomGlintRenderer extends BlockEntityWithoutLevelRenderer {
-	private static final ResourceLocation MODEL_LOCATION = new ResourceLocation(Technologica.MODID, "item/oganesson_ingot");
-	private static final ResourceLocation GLINT_TEX_LOCATION = new ResourceLocation(Technologica.MODID, "textures/misc/custom_glint.png");
+	private ResourceLocation BASE_MODEL_LOCATION;
+	private static final ResourceLocation GLINT_TEX_LOCATION = new ResourceLocation(Technologica.MODID, "textures/misc/radioactive_item_glint.png");
 	private static ItemRenderer renderer = null;
 
-	public CustomGlintRenderer(BlockEntityRenderDispatcher dispatcher, EntityModelSet modelSet) {
+	public CustomGlintRenderer(BlockEntityRenderDispatcher dispatcher, EntityModelSet modelSet, ResourceLocation baseModelLocation) {
 		super(dispatcher, modelSet);
+		BASE_MODEL_LOCATION = baseModelLocation;
+		if (renderer == null) {
+			renderer = Minecraft.getInstance().getItemRenderer();
+		}
 	}
 
 	@Override
 	public void renderByItem(ItemStack stack, ItemTransforms.TransformType transformType, PoseStack poseStack, MultiBufferSource buffer, int packedLight, int packedOverlay) {
-		if (renderer == null) {
-			renderer = Minecraft.getInstance().getItemRenderer();
-		}
-
 		poseStack.popPose();
 		poseStack.pushPose();
 
-		BakedModel mainModel = Minecraft.getInstance().getModelManager().getModel(MODEL_LOCATION);
+		BakedModel mainModel = Minecraft.getInstance().getModelManager().getModel(BASE_MODEL_LOCATION);
 		mainModel = mainModel.applyTransform(transformType, poseStack, isLeftHand(transformType));
 		poseStack.translate(-.5, -.5, -.5);
 
@@ -73,7 +73,7 @@ public class CustomGlintRenderer extends BlockEntityWithoutLevelRenderer {
 
 	public static final class CustomRenderType extends RenderStateShard {
 		public static final Function<ResourceLocation, RenderType> CUSTOM_GLINT_DIRECT = Util.memoize(texture -> {
-			RenderType type = RenderType.create("custom_glint_direct", DefaultVertexFormat.POSITION_TEX, VertexFormat.Mode.QUADS, 256, false, false, RenderType.CompositeState.builder().setShaderState(RENDERTYPE_GLINT_DIRECT_SHADER).setTextureState(new RenderStateShard.TextureStateShard(texture, true, false)).setWriteMaskState(COLOR_WRITE).setCullState(NO_CULL).setDepthTestState(EQUAL_DEPTH_TEST).setTransparencyState(GLINT_TRANSPARENCY).setTexturingState(GLINT_TEXTURING).createCompositeState(false));
+			RenderType type = RenderType.create("custom_glint_direct", DefaultVertexFormat.POSITION_TEX, VertexFormat.Mode.QUADS, 256, false, false, RenderType.CompositeState.builder().setShaderState(RENDERTYPE_GLINT_DIRECT_SHADER).setTextureState(new RenderStateShard.TextureStateShard(texture, true, false)).setWriteMaskState(COLOR_WRITE).setCullState(NO_CULL).setDepthTestState(EQUAL_DEPTH_TEST).setTransparencyState(TRANSLUCENT_TRANSPARENCY).setTexturingState(GLINT_TEXTURING).createCompositeState(false));
 
 			SortedMap<RenderType, BufferBuilder> fixedBuffers = ObfuscationReflectionHelper.getPrivateValue(RenderBuffers.class, Minecraft.getInstance().renderBuffers(), "f_110093_");
 			fixedBuffers.put(type, new BufferBuilder(type.bufferSize()));
