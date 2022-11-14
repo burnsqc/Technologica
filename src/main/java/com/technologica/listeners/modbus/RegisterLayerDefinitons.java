@@ -7,6 +7,7 @@ import com.technologica.client.model.BeaverModel;
 import com.technologica.client.model.BuffaloModel;
 import com.technologica.client.model.CamelModel;
 import com.technologica.client.model.CobraModel;
+import com.technologica.client.model.CoconutBazookaModel;
 import com.technologica.client.model.CottonmouthModel;
 import com.technologica.client.model.CoyoteModel;
 import com.technologica.client.model.CrabModel;
@@ -34,6 +35,7 @@ import com.technologica.client.model.RaccoonModel;
 import com.technologica.client.model.ScorpionModel;
 import com.technologica.client.model.SharkModel;
 import com.technologica.client.model.SlothModel;
+import com.technologica.client.model.SpearGunModel;
 import com.technologica.client.model.StingrayModel;
 import com.technologica.client.model.TurkeyModel;
 import com.technologica.client.model.VultureModel;
@@ -92,11 +94,15 @@ public class RegisterLayerDefinitons {
 		event.registerLayerDefinition(TechnologicaModelLayers.WALRUS, WalrusModel::createBodyLayer);
 		event.registerLayerDefinition(TechnologicaModelLayers.ZEBRA, () -> LayerDefinition.create(HorseModel.createBodyMesh(CubeDeformation.NONE), 64, 64));
 
+		event.registerLayerDefinition(TechnologicaModelLayers.ATOMIC_CREEPER, () -> CreeperModel.createBodyLayer(CubeDeformation.NONE));
 		event.registerLayerDefinition(TechnologicaModelLayers.PEEPER, () -> CreeperModel.createBodyLayer(CubeDeformation.NONE));
 		event.registerLayerDefinition(TechnologicaModelLayers.SWEEPER, () -> CreeperModel.createBodyLayer(CubeDeformation.NONE));
 
 		event.registerLayerDefinition(TechnologicaModelLayers.NAVAL_MINE, NavalMineModel::createBodyModel);
 		event.registerLayerDefinition(TechnologicaModelLayers.ROCKET, () -> BoatModel.createBodyModel(false));
+
+		event.registerLayerDefinition(TechnologicaModelLayers.COCONUT_BAZOOKA, CoconutBazookaModel::createLayer);
+		event.registerLayerDefinition(TechnologicaModelLayers.SPEAR_GUN, SpearGunModel::createLayer);
 
 		for (VanillaBoat.Type boat$type : VanillaBoat.Type.values()) {
 			event.registerLayerDefinition(TechnologicaModelLayers.createBoatModelName(boat$type), () -> BoatModel.createBodyModel(false));

@@ -12,6 +12,7 @@ import com.technologica.client.renderer.blockentity.PotionRenderer;
 import com.technologica.client.renderer.blockentity.SawmillRenderer;
 import com.technologica.client.renderer.blockentity.TechnologicaSignRenderer;
 import com.technologica.client.renderer.entity.AlligatorRenderer;
+import com.technologica.client.renderer.entity.AtomicCreeperRenderer;
 import com.technologica.client.renderer.entity.BeaverRenderer;
 import com.technologica.client.renderer.entity.BuffaloRenderer;
 import com.technologica.client.renderer.entity.CamelRenderer;
@@ -117,6 +118,7 @@ public class RegisterEntityRenderers {
 		event.registerEntityRenderer(TechnologicaEntityType.WALRUS.get(), WalrusRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityType.ZEBRA.get(), ZebraRenderer::new);
 
+		event.registerEntityRenderer(TechnologicaEntityType.ATOMIC_CREEPER.get(), AtomicCreeperRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityType.PEEPER.get(), PeeperRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityType.SWEEPER.get(), SweeperRenderer::new);
 

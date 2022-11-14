@@ -19,7 +19,7 @@ public class TechnologicaParticleTypes {
 
 	public static void init() {
 		PARTICLE_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
-		LOGGER.info("PARTICLE TYPES INITIALIZED: " + PARTICLE_TYPES.getEntries().size() + " OF 3");
+		LOGGER.info("PARTICLE TYPES INITIALIZED: " + PARTICLE_TYPES.getEntries().size() + " OF 5");
 	}
 
 	public static final RegistryObject<ParticleType<DrippingLiquidParticleData>> DRIPPING_FLUID = PARTICLE_TYPES.register("dripping_fluid", () -> create(DrippingLiquidParticleData.DESERIALIZER, (p_239822_0_) -> {
@@ -32,6 +32,10 @@ public class TechnologicaParticleTypes {
 
 	public static final RegistryObject<ParticleType<LandingLiquidParticleData>> LANDING_FLUID = PARTICLE_TYPES.register("landing_fluid", () -> create(LandingLiquidParticleData.DESERIALIZER, (p_239822_0_) -> {
 		return LandingLiquidParticleData.CODEC;
+	}));
+
+	public static final RegistryObject<ParticleType<FlyingRadiationParticleData>> FLYING_RADIATION = PARTICLE_TYPES.register("flying_radiation", () -> create(FlyingRadiationParticleData.DESERIALIZER, (p_239822_0_) -> {
+		return FlyingRadiationParticleData.CODEC;
 	}));
 
 	private static <T extends ParticleOptions> ParticleType<T> create(@SuppressWarnings("deprecation") ParticleOptions.Deserializer<T> deserializer, final Function<ParticleType<T>, Codec<T>> p_218416_2_) {

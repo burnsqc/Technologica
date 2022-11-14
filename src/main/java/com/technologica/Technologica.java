@@ -24,12 +24,14 @@ import com.technologica.listeners.modbus.RegisterDimensionSpecialEffects;
 import com.technologica.listeners.modbus.RegisterEntityAttributes;
 import com.technologica.listeners.modbus.RegisterEntityRenderers;
 import com.technologica.listeners.modbus.RegisterLayerDefinitons;
+import com.technologica.listeners.modbus.RegisterModels;
 import com.technologica.listeners.modbus.RegisterParticleProviders;
 import com.technologica.listeners.modbus.TextureStitchPre;
 import com.technologica.setup.Config;
 import com.technologica.util.DisablePlankConditionFactory;
 import com.technologica.util.EnablePlankConditionFactory;
 import com.technologica.util.TechnologicaSoundEvents;
+import com.technologica.world.effect.TechnologicaMobEffects;
 import com.technologica.world.entity.TechnologicaEntityType;
 import com.technologica.world.inventory.TechnologicaContainerType;
 import com.technologica.world.item.TechnologicaItems;
@@ -70,6 +72,7 @@ public class Technologica {
 		TechnologicaFeature.init();
 		TechnologicaFoliagePlacers.init();
 		LootModifierListener.init();
+		TechnologicaMobEffects.init();
 
 		// FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(Block.class, RegistrationListener::onRegisterBlocks);
 		// FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(Item.class, RegistrationListener::onRegisterItems);
@@ -93,6 +96,7 @@ public class Technologica {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientSetup::onFMLClientSetupEvent); // 2nd event during mod lifecycle startup
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(RegisterEntityRenderers::onRegisterEntityRenderers);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(RegisterLayerDefinitons::onRegisterLayerDefinitions);
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(RegisterModels::onRegisterModelsEvent);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(RegisterParticleProviders::onRegisterParticleProvidersEvent);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(RegisterDimensionSpecialEffects::onRegisterDimensionSpecialEffectsEvent);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(TextureStitchPre::onTextureStitchPre);
@@ -106,6 +110,7 @@ public class Technologica {
 		MinecraftForge.EVENT_BUS.register(new LunarLowGrav());
 		MinecraftForge.EVENT_BUS.register(new NitroPocket());
 		MinecraftForge.EVENT_BUS.register(new RegisterCapabilities());
+		// MinecraftForge.EVENT_BUS.register(new RegisterModels());
 		MinecraftForge.EVENT_BUS.register(new ReplaceFarmerBrain());
 		MinecraftForge.EVENT_BUS.register(new TechnologicaVillagerTrades());
 		MinecraftForge.EVENT_BUS.register(new TechnologicaWanderingTraderTrades());

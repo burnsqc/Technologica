@@ -3,6 +3,7 @@ package com.technologica.data;
 import com.technologica.Technologica;
 import com.technologica.world.item.TechnologicaItems;
 
+import net.minecraft.client.renderer.block.model.BlockModel.GuiLight;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -119,6 +120,7 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleSpawnEggItem(TechnologicaItems.WALRUS_SPAWN_EGG.get());
 		simpleSpawnEggItem(TechnologicaItems.ZEBRA_SPAWN_EGG.get());
 
+		simpleSpawnEggItem(TechnologicaItems.ATOMIC_CREEPER_SPAWN_EGG.get());
 		simpleSpawnEggItem(TechnologicaItems.PEEPER_SPAWN_EGG.get());
 		simpleSpawnEggItem(TechnologicaItems.SWEEPER_SPAWN_EGG.get());
 
@@ -155,7 +157,7 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.ZIRCONIUM_INGOT.get());
 		simpleItem(TechnologicaItems.NIOBIUM_INGOT.get());
 		simpleItem(TechnologicaItems.MOLYBDENUM_INGOT.get());
-		simpleItem(TechnologicaItems.TECHNETIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.TECHNETIUM_INGOT.get());
 		simpleItem(TechnologicaItems.RUTHENIUM_INGOT.get());
 		simpleItem(TechnologicaItems.RHODIUM_INGOT.get());
 		simpleItem(TechnologicaItems.PALLADIUM_INGOT.get());
@@ -169,7 +171,7 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.CERIUM_INGOT.get());
 		simpleItem(TechnologicaItems.PRASEODYMIUM_INGOT.get());
 		simpleItem(TechnologicaItems.NEODYMIUM_INGOT.get());
-		simpleItem(TechnologicaItems.PROMETHIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.PROMETHIUM_INGOT.get());
 		simpleItem(TechnologicaItems.SAMARIUM_INGOT.get());
 		simpleItem(TechnologicaItems.EUROPIUM_INGOT.get());
 		simpleItem(TechnologicaItems.GADOLINIUM_INGOT.get());
@@ -190,39 +192,39 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.THALLIUM_INGOT.get());
 		simpleItem(TechnologicaItems.LEAD_INGOT.get());
 		simpleItem(TechnologicaItems.BISMUTH_INGOT.get());
-		simpleItem(TechnologicaItems.POLONIUM_INGOT.get());
-		simpleItem(TechnologicaItems.FRANCIUM_INGOT.get());
-		simpleItem(TechnologicaItems.RADIUM_INGOT.get());
-		simpleItem(TechnologicaItems.ACTINIUM_INGOT.get());
-		simpleItem(TechnologicaItems.THORIUM_INGOT.get());
-		simpleItem(TechnologicaItems.PROTACTINIUM_INGOT.get());
-		simpleItem(TechnologicaItems.URANIUM_INGOT.get());
-		simpleItem(TechnologicaItems.NEPTUNIUM_INGOT.get());
-		simpleItem(TechnologicaItems.PLUTONIUM_INGOT.get());
-		simpleItem(TechnologicaItems.AMERICIUM_INGOT.get());
-		simpleItem(TechnologicaItems.CURIUM_INGOT.get());
-		simpleItem(TechnologicaItems.BERKELIUM_INGOT.get());
-		simpleItem(TechnologicaItems.CALIFORNIUM_INGOT.get());
-		simpleItem(TechnologicaItems.EINSTEINIUM_INGOT.get());
-		simpleItem(TechnologicaItems.FERMIUM_INGOT.get());
-		simpleItem(TechnologicaItems.MENDELEVIUM_INGOT.get());
-		simpleItem(TechnologicaItems.NOBELIUM_INGOT.get());
-		simpleItem(TechnologicaItems.LAWRENCIUM_INGOT.get());
-		simpleItem(TechnologicaItems.RUTHERFORDIUM_INGOT.get());
-		simpleItem(TechnologicaItems.DUBNIUM_INGOT.get());
-		simpleItem(TechnologicaItems.SEABORGIUM_INGOT.get());
-		simpleItem(TechnologicaItems.BOHRIUM_INGOT.get());
-		simpleItem(TechnologicaItems.HASSIUM_INGOT.get());
-		simpleItem(TechnologicaItems.MEITNERIUM_INGOT.get());
-		simpleItem(TechnologicaItems.DARMSTADTIUM_INGOT.get());
-		simpleItem(TechnologicaItems.ROENTGENIUM_INGOT.get());
-		simpleItem(TechnologicaItems.COPERNICIUM_INGOT.get());
-		simpleItem(TechnologicaItems.NIHONIUM_INGOT.get());
-		simpleItem(TechnologicaItems.FLEVORIUM_INGOT.get());
-		simpleItem(TechnologicaItems.MOSCOVIUM_INGOT.get());
-		simpleItem(TechnologicaItems.LIVERMORIUM_INGOT.get());
-		simpleItem(TechnologicaItems.TENNESSINE_INGOT.get());
-		simpleItem(TechnologicaItems.OGANESSON_INGOT.get());
+		radioactiveItem(TechnologicaItems.POLONIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.FRANCIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.RADIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.ACTINIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.THORIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.PROTACTINIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.URANIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.NEPTUNIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.PLUTONIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.AMERICIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.CURIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.BERKELIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.CALIFORNIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.EINSTEINIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.FERMIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.MENDELEVIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.NOBELIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.LAWRENCIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.RUTHERFORDIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.DUBNIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.SEABORGIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.BOHRIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.HASSIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.MEITNERIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.DARMSTADTIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.ROENTGENIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.COPERNICIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.NIHONIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.FLEVORIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.MOSCOVIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.LIVERMORIUM_INGOT.get());
+		radioactiveItem(TechnologicaItems.TENNESSINE_INGOT.get());
+		radioactiveItem(TechnologicaItems.OGANESSON_INGOT.get());
 
 		simpleItem(TechnologicaItems.LITHIUM_CLAY_BALL.get());
 		simpleItem(TechnologicaItems.BORON_CHUNK.get());
@@ -236,7 +238,7 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.ANTIMONY_CHUNK.get());
 		simpleItem(TechnologicaItems.TELLURIUM_CHUNK.get());
 		simpleItem(TechnologicaItems.IODINE_CHUNK.get());
-		simpleItem(TechnologicaItems.ASTATINE_CHUNK.get());
+		radioactiveItem(TechnologicaItems.ASTATINE_CHUNK.get());
 
 		simpleItem(TechnologicaItems.MULCH.get());
 		simpleItem(TechnologicaItems.FERTILIZER.get());
@@ -344,6 +346,7 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.TAPENADE.get());
 		simpleItem(TechnologicaItems.CINNAMON_ROLL.get());
 		simpleItem(TechnologicaItems.OLIVE_OIL.get());
+		simpleItem(TechnologicaItems.IODINE_PILL.get());
 
 		simpleItem(TechnologicaItems.APRICOT_BOAT.get());
 		simpleItem(TechnologicaItems.ASPEN_BOAT.get());
@@ -445,5 +448,11 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 	public void simpleSpawnEggItem(Item item) {
 		ResourceLocation location = ForgeRegistries.ITEMS.getKey(item);
 		this.getBuilder(location.getPath()).parent(new ModelFile.UncheckedModelFile("item/template_spawn_egg"));
+	}
+
+	public void radioactiveItem(Item item) {
+		ResourceLocation location = ForgeRegistries.ITEMS.getKey(item);
+		this.getBuilder(location.getPath()).parent(new ModelFile.UncheckedModelFile("builtin/entity")).guiLight(GuiLight.FRONT).texture("layer0", new ResourceLocation(location.getNamespace(), ITEM_FOLDER + "/" + location.getPath()));
+		this.getBuilder(location.getPath() + "_base").parent(new ModelFile.UncheckedModelFile("item/generated")).texture("layer0", new ResourceLocation(location.getNamespace(), ITEM_FOLDER + "/" + location.getPath()));
 	}
 }

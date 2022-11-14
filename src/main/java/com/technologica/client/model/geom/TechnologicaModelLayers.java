@@ -51,11 +51,15 @@ public class TechnologicaModelLayers {
 	public static final ModelLayerLocation WALRUS = register("walrus");
 	public static final ModelLayerLocation ZEBRA = register("zebra");
 
+	public static final ModelLayerLocation ATOMIC_CREEPER = register("atomic_creeper");
 	public static final ModelLayerLocation PEEPER = register("peeper");
 	public static final ModelLayerLocation SWEEPER = register("sweeper");
 
 	public static final ModelLayerLocation NAVAL_MINE = register("naval_mine");
 	public static final ModelLayerLocation ROCKET = register("rocket");
+
+	public static final ModelLayerLocation COCONUT_BAZOOKA = register("coconut_bazooka");
+	public static final ModelLayerLocation SPEAR_GUN = register("spear_gun");
 
 	private static ModelLayerLocation register(String p_171294_) {
 		return register(p_171294_, "main");

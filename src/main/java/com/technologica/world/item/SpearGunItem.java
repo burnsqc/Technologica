@@ -1,6 +1,7 @@
 package com.technologica.world.item;
 
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
@@ -8,9 +9,12 @@ import javax.annotation.Nullable;
 import com.google.common.collect.Lists;
 import com.mojang.math.Quaternion;
 import com.mojang.math.Vector3f;
+import com.technologica.client.renderer.blockentity.SpearGunRenderer;
 import com.technologica.world.entity.projectile.Harpoon;
 
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
@@ -33,6 +37,7 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.Vanishable;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.common.ForgeMod;
 
 public class SpearGunItem extends ProjectileWeaponItem implements Vanishable {
@@ -323,5 +328,16 @@ public class SpearGunItem extends ProjectileWeaponItem implements Vanishable {
 	@Override
 	public boolean useOnRelease(ItemStack stack) {
 		return true;
+	}
+
+	@Override
+	public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+		consumer.accept(new IClientItemExtensions() {
+
+			@Override
+			public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+				return new SpearGunRenderer(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels());
+			}
+		});
 	}
 }
