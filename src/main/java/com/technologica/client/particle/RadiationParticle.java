@@ -10,25 +10,24 @@ import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.particle.TextureSheetParticle;
-import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.Vec3;
 
 public class RadiationParticle extends TextureSheetParticle {
-	private final Fluid fluid;
 	protected boolean fullbright;
 	protected boolean collided;
+	protected boolean collidedX;
+	protected boolean collidedY;
+	protected boolean collidedZ;
 
 	private RadiationParticle(ClientLevel world, double x, double y, double z, Fluid fluid) {
 		super(world, x, y, z);
 		this.setSize(0.01F, 0.01F);
 		this.gravity = 0.0F;
-		this.fluid = fluid;
 	}
 
 	@Override
@@ -49,22 +48,16 @@ public class RadiationParticle extends TextureSheetParticle {
 		this.ageParticle();
 		if (!this.removed) {
 			this.move(this.xd, this.yd, this.zd);
-
-			if ((Math.abs(this.xd) >= 1.0E-5F && this.xo == this.x) || (Math.abs(this.yd) >= 1.0E-5F && this.yo == this.y) || (Math.abs(this.zd) >= 1.0E-5F && this.zo == this.z)) {
-				this.collided = true;
+			if (Math.abs(this.xd) >= 1.0E-5F && this.xo == this.x) {
+				this.collidedX = true;
+			}
+			if (Math.abs(this.yd) >= 1.0E-5F && this.yo == this.y) {
+				this.collidedY = true;
+			}
+			if (Math.abs(this.zd) >= 1.0E-5F && this.zo == this.z) {
+				this.collidedZ = true;
 			}
 			this.updateMotion();
-			if (!this.removed) {
-				this.xd *= 0.98F;
-				this.yd *= 0.98F;
-				this.zd *= 0.98F;
-				BlockPos blockpos = new BlockPos(this.x, this.y, this.z);
-				FluidState fluidstate = this.level.getFluidState(blockpos);
-				if (fluidstate.getType() == fluid && this.y < blockpos.getY() + fluidstate.getHeight(this.level, blockpos)) {
-					this.remove();
-				}
-
-			}
 		}
 	}
 
@@ -104,10 +97,20 @@ public class RadiationParticle extends TextureSheetParticle {
 
 		@Override
 		protected void updateMotion() {
-			if (this.collided) {
-				this.remove();
-				// this.level.addParticle(FlyingRadiationParticleData.RADIATION, this.x, this.y, this.z, -this.xd, -this.yd, -this.zd);
+			if (this.collidedX) {
+				this.xd = -this.xd;
 				this.level.playLocalSound(this.x + 0.5D, this.y, this.z + 0.5D, SoundEvents.UI_BUTTON_CLICK, SoundSource.BLOCKS, (0.01F + this.level.random.nextFloat()) / 100.0F, 2.0F, false);
+				this.collidedX = false;
+			}
+			if (this.collidedY) {
+				this.yd = -this.yd;
+				this.level.playLocalSound(this.x + 0.5D, this.y, this.z + 0.5D, SoundEvents.UI_BUTTON_CLICK, SoundSource.BLOCKS, (0.01F + this.level.random.nextFloat()) / 100.0F, 2.0F, false);
+				this.collidedY = false;
+			}
+			if (this.collidedZ) {
+				this.zd = -this.zd;
+				this.level.playLocalSound(this.x + 0.5D, this.y, this.z + 0.5D, SoundEvents.UI_BUTTON_CLICK, SoundSource.BLOCKS, (0.01F + this.level.random.nextFloat()) / 100.0F, 2.0F, false);
+				this.collidedZ = false;
 			}
 		}
 	}

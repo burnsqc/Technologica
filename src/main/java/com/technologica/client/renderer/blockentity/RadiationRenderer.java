@@ -28,12 +28,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.RenderTypeHelper;
 import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 
-public class CustomGlintRenderer extends BlockEntityWithoutLevelRenderer {
+public class RadiationRenderer extends BlockEntityWithoutLevelRenderer {
 	private ResourceLocation BASE_MODEL_LOCATION;
-	private static final ResourceLocation GLINT_TEX_LOCATION = new ResourceLocation(Technologica.MODID, "textures/misc/radioactive_item_glint.png");
+	private static final ResourceLocation RADIATION_TEXTURE_LOCATION = new ResourceLocation(Technologica.MODID, "textures/misc/radioactive_item_glint.png");
 	private static ItemRenderer renderer = null;
 
-	public CustomGlintRenderer(BlockEntityRenderDispatcher dispatcher, EntityModelSet modelSet, ResourceLocation baseModelLocation) {
+	public RadiationRenderer(BlockEntityRenderDispatcher dispatcher, EntityModelSet modelSet, ResourceLocation baseModelLocation) {
 		super(dispatcher, modelSet);
 		BASE_MODEL_LOCATION = baseModelLocation;
 		if (renderer == null) {
@@ -66,7 +66,7 @@ public class CustomGlintRenderer extends BlockEntityWithoutLevelRenderer {
 
 	private static VertexConsumer getFoilBuffer(MultiBufferSource buffer, RenderType type, boolean glint) {
 		if (glint) {
-			return VertexMultiConsumer.create(buffer.getBuffer(CustomRenderType.CUSTOM_GLINT_DIRECT.apply(GLINT_TEX_LOCATION)), buffer.getBuffer(type));
+			return VertexMultiConsumer.create(buffer.getBuffer(CustomRenderType.CUSTOM_GLINT_DIRECT.apply(RADIATION_TEXTURE_LOCATION)), buffer.getBuffer(type));
 		}
 		return buffer.getBuffer(type);
 	}

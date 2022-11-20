@@ -11,9 +11,6 @@ public class RadiationEffect extends MobEffect {
 
 	@Override
 	public void applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
-		if (!pLivingEntity.level.isClientSide()) {
-
-		}
 		super.applyEffectTick(pLivingEntity, pAmplifier);
 	}
 
