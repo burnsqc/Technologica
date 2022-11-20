@@ -397,6 +397,7 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.OVERLAY_PASS_ITEM.get());
 		simpleItem(TechnologicaItems.OVERLAY_WARN_ITEM.get());
 		simpleItem(TechnologicaItems.OVERLAY_FAIL_ITEM.get());
+		simpleItem(TechnologicaItems.SAWMILL_BLUEPRINT.get());
 
 		simpleItem(TechnologicaItems.PRIMITIVE_DAGGER.get());
 		simpleItem(TechnologicaItems.PRIMITIVE_PICKAXE.get());

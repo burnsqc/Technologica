@@ -1092,6 +1092,8 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> OVERLAY_WARN_ITEM = ITEMS.register("overlay_warn", () -> new Item(new Properties().tab(TechnologicaItemGroup.MACHINERY)));
 	public static final RegistryObject<Item> OVERLAY_FAIL_ITEM = ITEMS.register("overlay_fail", () -> new Item(new Properties().tab(TechnologicaItemGroup.MACHINERY)));
 
+	public static final RegistryObject<Item> SAWMILL_BLUEPRINT = ITEMS.register("sawmill_blueprint", () -> new Item(new Properties().tab(TechnologicaItemGroup.MACHINERY)));
+
 	/**
 	 * DECORATIVE
 	 */

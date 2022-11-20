@@ -1,6 +1,8 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/orientable",
   "textures": {
-    "all": "technologica:block/sawmill"
+    "front": "minecraft:block/anvil",
+    "side": "minecraft:block/anvil",
+    "top": "minecraft:block/anvil"
   }
 }
