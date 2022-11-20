@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "minecraft:block/anvil",
+    "side": "technologica:block/sawmill_side1",
+    "top": "technologica:block/sawmill_top1"
+  }
+}
