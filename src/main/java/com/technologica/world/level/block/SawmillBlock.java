@@ -81,15 +81,15 @@ public class SawmillBlock extends FourDirectionBlock implements EntityBlock {
 				playerIn.containerMenu.broadcastChanges();
 			} else if (item == TechnologicaItems.SAWMILL_BLUEPRINT.get()) {
 				if (stateIn.getValue(NESW_FACING) == Direction.NORTH) {
-					if (worldIn.getBlockState(posIn.below()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.south()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.south().south()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.east()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.east().east()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().south()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().south().south()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().east()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().east().east()).getBlock() instanceof SawmillBlock) {
+					if (worldIn.getBlockState(posIn.below()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.south()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.south().south()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.north()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.north().north()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().south()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().south().south()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().north()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().north().north()).getBlock() instanceof SawmillBlock) {
 						worldIn.setBlock(posIn, stateIn.setValue(MIDDLE_END, MiddleEnd.MIDDLE), UPDATE_ALL);
-						worldIn.setBlock(posIn.east(), stateIn.setValue(MIDDLE_END, MiddleEnd.MIDDLE), UPDATE_ALL);
-						worldIn.setBlock(posIn.east().east(), stateIn.setValue(MIDDLE_END, MiddleEnd.RIGHT), UPDATE_ALL);
+						worldIn.setBlock(posIn.north(), stateIn.setValue(MIDDLE_END, MiddleEnd.MIDDLE), UPDATE_ALL);
+						worldIn.setBlock(posIn.north().north(), stateIn.setValue(MIDDLE_END, MiddleEnd.RIGHT), UPDATE_ALL);
 						worldIn.setBlock(posIn.south(), stateIn.setValue(MIDDLE_END, MiddleEnd.MIDDLE), UPDATE_ALL);
 						worldIn.setBlock(posIn.south().south(), stateIn.setValue(MIDDLE_END, MiddleEnd.LEFT), UPDATE_ALL);
 						worldIn.setBlock(posIn.below(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
-						worldIn.setBlock(posIn.below().east(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
-						worldIn.setBlock(posIn.below().east().east(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
+						worldIn.setBlock(posIn.below().north(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
+						worldIn.setBlock(posIn.below().north().north(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
 						worldIn.setBlock(posIn.below().south(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
 						worldIn.setBlock(posIn.below().south().south(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
 					}
@@ -109,15 +109,15 @@ public class SawmillBlock extends FourDirectionBlock implements EntityBlock {
 					}
 				}
 				if (stateIn.getValue(NESW_FACING) == Direction.SOUTH) {
-					if (worldIn.getBlockState(posIn.below()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.south()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.south().south()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.east()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.east().east()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().south()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().south().south()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().east()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().east().east()).getBlock() instanceof SawmillBlock) {
+					if (worldIn.getBlockState(posIn.below()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.south()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.south().south()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.north()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.north().north()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().south()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().south().south()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().north()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().north().north()).getBlock() instanceof SawmillBlock) {
 						worldIn.setBlock(posIn, stateIn.setValue(MIDDLE_END, MiddleEnd.MIDDLE), UPDATE_ALL);
-						worldIn.setBlock(posIn.east(), stateIn.setValue(MIDDLE_END, MiddleEnd.MIDDLE), UPDATE_ALL);
-						worldIn.setBlock(posIn.east().east(), stateIn.setValue(MIDDLE_END, MiddleEnd.RIGHT), UPDATE_ALL);
+						worldIn.setBlock(posIn.north(), stateIn.setValue(MIDDLE_END, MiddleEnd.MIDDLE), UPDATE_ALL);
+						worldIn.setBlock(posIn.north().north(), stateIn.setValue(MIDDLE_END, MiddleEnd.RIGHT), UPDATE_ALL);
 						worldIn.setBlock(posIn.south(), stateIn.setValue(MIDDLE_END, MiddleEnd.MIDDLE), UPDATE_ALL);
 						worldIn.setBlock(posIn.south().south(), stateIn.setValue(MIDDLE_END, MiddleEnd.LEFT), UPDATE_ALL);
 						worldIn.setBlock(posIn.below(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
-						worldIn.setBlock(posIn.below().east(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
-						worldIn.setBlock(posIn.below().east().east(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
+						worldIn.setBlock(posIn.below().north(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
+						worldIn.setBlock(posIn.below().north().north(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
 						worldIn.setBlock(posIn.below().south(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
 						worldIn.setBlock(posIn.below().south().south(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
 					}
