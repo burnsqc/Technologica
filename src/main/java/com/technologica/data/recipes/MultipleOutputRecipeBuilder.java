@@ -95,7 +95,8 @@ public Item getResult() {
          this.advancementId = p_126347_;
       }
 
-      @Override
+      @SuppressWarnings("deprecation")
+	@Override
 	public void serializeRecipeData(JsonObject p_126349_) {
          if (!this.group.isEmpty()) {
             p_126349_.addProperty("group", this.group);

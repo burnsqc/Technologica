@@ -17,6 +17,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
@@ -62,7 +63,7 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 				} else if (slot == 2) {
 					return ForgeRegistries.ITEMS.getKey(stack.getItem()).getPath().contains("planks") || stack.isEmpty();
 				}
-				return ForgeRegistries.ITEMS.getKey(stack.getItem()).getPath().contains("log");
+				return ForgeRegistries.ITEMS.tags().getTag(ItemTags.LOGS).contains(stack.getItem()) || ForgeRegistries.ITEMS.tags().getTag(ItemTags.PLANKS).contains(stack.getItem());
 			}
 
 			@Override
@@ -184,7 +185,7 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 					itemHandler.insertItem(2, output, false);
 					Vec3i offset = this.getBlockState().getValue(SawmillBlock.NESW_FACING).getNormal().multiply(2);
 					this.level.addFreshEntity(new ItemEntity(level, this.worldPosition.offset(offset).getX(), this.worldPosition.getY() + 1, this.worldPosition.offset(offset).getZ(), output));
-					this.level.addFreshEntity(new ItemEntity(level, this.worldPosition.offset(offset).getX(), this.worldPosition.getY() + 1, this.worldPosition.offset(offset).getZ(), output2));
+					this.level.addFreshEntity(new ItemEntity(level, this.worldPosition.getX(), this.worldPosition.getY() + 1, this.worldPosition.getZ(), output2));
 				}
 			}
 		}

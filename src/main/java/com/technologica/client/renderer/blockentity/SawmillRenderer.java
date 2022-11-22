@@ -18,11 +18,13 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class SawmillRenderer implements BlockEntityRenderer<SawmillBlockEntity> {
 	public static final ResourceLocation SAW_TEXTURE = new ResourceLocation(Technologica.MODID, "block/sawblade");
@@ -86,7 +88,11 @@ public class SawmillRenderer implements BlockEntityRenderer<SawmillBlockEntity> 
 
 		if (!stack.isEmpty()) {
 			matrixStack.pushPose();
-			BlockState state = log.defaultBlockState().setValue(RotatedPillarBlock.AXIS, Direction.Axis.X);
+			BlockState state = log.defaultBlockState();
+			
+			if (ForgeRegistries.ITEMS.tags().getTag(ItemTags.LOGS).contains(stack.getItem())) {
+				state = log.defaultBlockState().setValue(RotatedPillarBlock.AXIS, Direction.Axis.X);
+			}
 
 			switch (tileEntity.getBlockState().getValue(SawmillBlock.NESW_FACING)) {
 			case NORTH:
@@ -107,7 +113,6 @@ public class SawmillRenderer implements BlockEntityRenderer<SawmillBlockEntity> 
 			default:
 				break;
 			}
-
 			blockModelRenderer.renderModel(matrixStack.last(), buffer.getBuffer(RenderType.translucentMovingBlock()), state, blockrendererdispatcher.getBlockModel(state), 0.0F, 0.0F, 0.0F, combinedLight, combinedOverlay);
 			matrixStack.popPose();
 		}

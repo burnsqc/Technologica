@@ -75,7 +75,7 @@ public class SawmillBlock extends FourDirectionBlock implements EntityBlock {
 				if (!playerIn.getAbilities().instabuild) {
 					itemstack.shrink(1);
 				}
-			} else if (ForgeRegistries.ITEMS.tags().getTag(ItemTags.LOGS).contains(itemstack.getItem())) {
+			} else if (ForgeRegistries.ITEMS.tags().getTag(ItemTags.LOGS).contains(itemstack.getItem()) || ForgeRegistries.ITEMS.tags().getTag(ItemTags.PLANKS).contains(itemstack.getItem())) {
 				tile.setLog(new ItemStack(itemstack.getItem(), 1));
 				worldIn.playSound((Player) null, posIn, SoundEvents.WOOD_PLACE, SoundSource.BLOCKS, 0.25F, 1.0F + worldIn.random.nextFloat() * 0.4F);
 				itemstack.shrink(1);

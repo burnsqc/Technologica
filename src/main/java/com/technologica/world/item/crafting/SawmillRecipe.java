@@ -66,9 +66,10 @@ public class SawmillRecipe extends SingleItemRecipe {
 			String s1 = GsonHelper.getAsString(json, "result");
 			String s2 = GsonHelper.getAsString(json, "result2");
 			int i = GsonHelper.getAsInt(json, "count");
+			int i2 = GsonHelper.getAsInt(json, "count2");
 
 			ItemStack itemstack = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(s1)), i);
-			ItemStack itemstack2 = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(s2)), i);
+			ItemStack itemstack2 = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(s2)), i2);
 			return new SawmillRecipe(recipeId, s, ingredient, itemstack, itemstack2);
 		}
 
