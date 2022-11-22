@@ -1,48 +1,49 @@
 {
   "variants": {
     "bottom=false,facing=east,middle_end=left": {
-      "model": "technologica:block/sawmill",
-      "y": 180
+      "model": "technologica:block/sawmillupper_left_east"
     },
     "bottom=false,facing=east,middle_end=middle": {
-      "model": "technologica:block/sawmill",
-      "y": 180
+      "model": "technologica:block/sawmillupper_middle_east"
     },
     "bottom=false,facing=east,middle_end=right": {
-      "model": "technologica:block/sawmill",
-      "y": 180
+      "model": "technologica:block/sawmillupper_right_east"
     },
     "bottom=false,facing=north,middle_end=left": {
-      "model": "technologica:block/sawmill",
-      "y": 90
+      "model": "technologica:block/sawmillupper_left_north",
+      "y": 270
     },
     "bottom=false,facing=north,middle_end=middle": {
-      "model": "technologica:block/sawmill"
+      "model": "technologica:block/sawmillupper_middle_north",
+      "y": 270
     },
     "bottom=false,facing=north,middle_end=right": {
-      "model": "technologica:block/sawmill",
-      "y": 90
+      "model": "technologica:block/sawmillupper_right_north",
+      "y": 270
     },
     "bottom=false,facing=south,middle_end=left": {
-      "model": "technologica:block/sawmill",
-      "y": 270
+      "model": "technologica:block/sawmillupper_left_south",
+      "y": 90
     },
     "bottom=false,facing=south,middle_end=middle": {
-      "model": "technologica:block/sawmill",
-      "y": 270
+      "model": "technologica:block/sawmillupper_middle_south",
+      "y": 90
     },
     "bottom=false,facing=south,middle_end=right": {
-      "model": "technologica:block/sawmill",
-      "y": 270
+      "model": "technologica:block/sawmillupper_right_south",
+      "y": 90
     },
     "bottom=false,facing=west,middle_end=left": {
-      "model": "technologica:block/sawmill"
+      "model": "technologica:block/sawmillupper_left_west",
+      "y": 180
     },
     "bottom=false,facing=west,middle_end=middle": {
-      "model": "technologica:block/sawmill"
+      "model": "technologica:block/sawmillupper_middle_west",
+      "y": 180
     },
     "bottom=false,facing=west,middle_end=right": {
-      "model": "technologica:block/sawmill"
+      "model": "technologica:block/sawmillupper_right_west",
+      "y": 180
     },
     "bottom=true,facing=east,middle_end=left": {
       "model": "technologica:block/sawmilllower_left_east"
