@@ -72,7 +72,9 @@ public class SawmillBlock extends FourDirectionBlock implements EntityBlock {
 			if (item == TechnologicaItems.SAWBLADE.get()) {
 				tile.setBlade(true);
 				worldIn.playSound((Player) null, posIn, SoundEvents.ANVIL_PLACE, SoundSource.BLOCKS, 0.25F, 1.0F + worldIn.random.nextFloat() * 0.4F);
-				itemstack.shrink(1);
+				if (!playerIn.getAbilities().instabuild) {
+					itemstack.shrink(1);
+				}
 			} else if (ForgeRegistries.ITEMS.tags().getTag(ItemTags.LOGS).contains(itemstack.getItem())) {
 				tile.setLog(new ItemStack(itemstack.getItem(), 1));
 				worldIn.playSound((Player) null, posIn, SoundEvents.WOOD_PLACE, SoundSource.BLOCKS, 0.25F, 1.0F + worldIn.random.nextFloat() * 0.4F);
@@ -80,62 +82,73 @@ public class SawmillBlock extends FourDirectionBlock implements EntityBlock {
 				playerIn.getInventory().setItem(playerIn.getInventory().selected, itemstack);
 				playerIn.containerMenu.broadcastChanges();
 			} else if (item == TechnologicaItems.SAWMILL_BLUEPRINT.get()) {
-				if (stateIn.getValue(NESW_FACING) == Direction.NORTH) {
+				switch (hitIn.getDirection()) {
+				case DOWN:
+					break;
+				case EAST:
 					if (worldIn.getBlockState(posIn.below()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.south()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.south().south()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.north()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.north().north()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().south()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().south().south()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().north()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().north().north()).getBlock() instanceof SawmillBlock) {
-						worldIn.setBlock(posIn, stateIn.setValue(MIDDLE_END, MiddleEnd.MIDDLE), UPDATE_ALL);
-						worldIn.setBlock(posIn.north(), stateIn.setValue(MIDDLE_END, MiddleEnd.MIDDLE), UPDATE_ALL);
-						worldIn.setBlock(posIn.north().north(), stateIn.setValue(MIDDLE_END, MiddleEnd.RIGHT), UPDATE_ALL);
-						worldIn.setBlock(posIn.south(), stateIn.setValue(MIDDLE_END, MiddleEnd.MIDDLE), UPDATE_ALL);
-						worldIn.setBlock(posIn.south().south(), stateIn.setValue(MIDDLE_END, MiddleEnd.LEFT), UPDATE_ALL);
-						worldIn.setBlock(posIn.below(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
-						worldIn.setBlock(posIn.below().north(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
-						worldIn.setBlock(posIn.below().north().north(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
-						worldIn.setBlock(posIn.below().south(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
-						worldIn.setBlock(posIn.below().south().south(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
+						worldIn.setBlock(posIn, stateIn.setValue(BOTTOM, false).setValue(MIDDLE_END, MiddleEnd.MIDDLE).setValue(NESW_FACING, Direction.NORTH), UPDATE_ALL);
+						worldIn.setBlock(posIn.north(), stateIn.setValue(BOTTOM, false).setValue(MIDDLE_END, MiddleEnd.MIDDLE).setValue(NESW_FACING, Direction.NORTH), UPDATE_ALL);
+						worldIn.setBlock(posIn.north().north(), stateIn.setValue(BOTTOM, false).setValue(MIDDLE_END, MiddleEnd.RIGHT).setValue(NESW_FACING, Direction.NORTH), UPDATE_ALL);
+						worldIn.setBlock(posIn.south(), stateIn.setValue(BOTTOM, false).setValue(MIDDLE_END, MiddleEnd.MIDDLE).setValue(NESW_FACING, Direction.NORTH), UPDATE_ALL);
+						worldIn.setBlock(posIn.south().south(), stateIn.setValue(BOTTOM, false).setValue(MIDDLE_END, MiddleEnd.LEFT).setValue(NESW_FACING, Direction.NORTH), UPDATE_ALL);
+						worldIn.setBlock(posIn.below(), stateIn.setValue(BOTTOM, true).setValue(MIDDLE_END, MiddleEnd.MIDDLE).setValue(NESW_FACING, Direction.NORTH), UPDATE_ALL);
+						worldIn.setBlock(posIn.below().north(), stateIn.setValue(BOTTOM, true).setValue(MIDDLE_END, MiddleEnd.MIDDLE).setValue(NESW_FACING, Direction.NORTH), UPDATE_ALL);
+						worldIn.setBlock(posIn.below().north().north(), stateIn.setValue(BOTTOM, true).setValue(MIDDLE_END, MiddleEnd.RIGHT).setValue(NESW_FACING, Direction.NORTH), UPDATE_ALL);
+						worldIn.setBlock(posIn.below().south(), stateIn.setValue(BOTTOM, true).setValue(MIDDLE_END, MiddleEnd.MIDDLE).setValue(NESW_FACING, Direction.NORTH), UPDATE_ALL);
+						worldIn.setBlock(posIn.below().south().south(), stateIn.setValue(BOTTOM, true).setValue(MIDDLE_END, MiddleEnd.LEFT).setValue(NESW_FACING, Direction.NORTH), UPDATE_ALL);
 					}
-				}
-				if (stateIn.getValue(NESW_FACING) == Direction.EAST) {
+					break;
+				case NORTH:
 					if (worldIn.getBlockState(posIn.below()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.west()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.west().west()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.east()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.east().east()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().west()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().west().west()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().east()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().east().east()).getBlock() instanceof SawmillBlock) {
-						worldIn.setBlock(posIn, stateIn.setValue(MIDDLE_END, MiddleEnd.MIDDLE), UPDATE_ALL);
-						worldIn.setBlock(posIn.east(), stateIn.setValue(MIDDLE_END, MiddleEnd.MIDDLE), UPDATE_ALL);
-						worldIn.setBlock(posIn.east().east(), stateIn.setValue(MIDDLE_END, MiddleEnd.RIGHT), UPDATE_ALL);
-						worldIn.setBlock(posIn.west(), stateIn.setValue(MIDDLE_END, MiddleEnd.MIDDLE), UPDATE_ALL);
-						worldIn.setBlock(posIn.west().west(), stateIn.setValue(MIDDLE_END, MiddleEnd.LEFT), UPDATE_ALL);
-						worldIn.setBlock(posIn.below(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
-						worldIn.setBlock(posIn.below().east(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
-						worldIn.setBlock(posIn.below().east().east(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
-						worldIn.setBlock(posIn.below().west(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
-						worldIn.setBlock(posIn.below().west().west(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
+						worldIn.setBlock(posIn, stateIn.setValue(BOTTOM, false).setValue(MIDDLE_END, MiddleEnd.MIDDLE).setValue(NESW_FACING, Direction.WEST), UPDATE_ALL);
+						worldIn.setBlock(posIn.east(), stateIn.setValue(BOTTOM, false).setValue(MIDDLE_END, MiddleEnd.MIDDLE).setValue(NESW_FACING, Direction.WEST), UPDATE_ALL);
+						worldIn.setBlock(posIn.east().east(), stateIn.setValue(BOTTOM, false).setValue(MIDDLE_END, MiddleEnd.LEFT).setValue(NESW_FACING, Direction.WEST), UPDATE_ALL);
+						worldIn.setBlock(posIn.west(), stateIn.setValue(BOTTOM, false).setValue(MIDDLE_END, MiddleEnd.MIDDLE).setValue(NESW_FACING, Direction.WEST), UPDATE_ALL);
+						worldIn.setBlock(posIn.west().west(), stateIn.setValue(BOTTOM, false).setValue(MIDDLE_END, MiddleEnd.RIGHT).setValue(NESW_FACING, Direction.WEST), UPDATE_ALL);
+						worldIn.setBlock(posIn.below(), stateIn.setValue(BOTTOM, true).setValue(MIDDLE_END, MiddleEnd.MIDDLE).setValue(NESW_FACING, Direction.WEST), UPDATE_ALL);
+						worldIn.setBlock(posIn.below().east(), stateIn.setValue(BOTTOM, true).setValue(MIDDLE_END, MiddleEnd.MIDDLE).setValue(NESW_FACING, Direction.WEST), UPDATE_ALL);
+						worldIn.setBlock(posIn.below().east().east(), stateIn.setValue(BOTTOM, true).setValue(MIDDLE_END, MiddleEnd.LEFT).setValue(NESW_FACING, Direction.WEST), UPDATE_ALL);
+						worldIn.setBlock(posIn.below().west(), stateIn.setValue(BOTTOM, true).setValue(MIDDLE_END, MiddleEnd.MIDDLE).setValue(NESW_FACING, Direction.WEST), UPDATE_ALL);
+						worldIn.setBlock(posIn.below().west().west(), stateIn.setValue(BOTTOM, true).setValue(MIDDLE_END, MiddleEnd.RIGHT).setValue(NESW_FACING, Direction.WEST), UPDATE_ALL);
 					}
-				}
-				if (stateIn.getValue(NESW_FACING) == Direction.SOUTH) {
+					break;
+				case SOUTH:
+					if (worldIn.getBlockState(posIn.below()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.west()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.west().west()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.east()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.east().east()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().west()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().west().west()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().east()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().east().east()).getBlock() instanceof SawmillBlock) {
+						worldIn.setBlock(posIn, stateIn.setValue(BOTTOM, false).setValue(MIDDLE_END, MiddleEnd.MIDDLE).setValue(NESW_FACING, Direction.EAST), UPDATE_ALL);
+						worldIn.setBlock(posIn.east(), stateIn.setValue(BOTTOM, false).setValue(MIDDLE_END, MiddleEnd.MIDDLE).setValue(NESW_FACING, Direction.EAST), UPDATE_ALL);
+						worldIn.setBlock(posIn.east().east(), stateIn.setValue(BOTTOM, false).setValue(MIDDLE_END, MiddleEnd.RIGHT).setValue(NESW_FACING, Direction.EAST), UPDATE_ALL);
+						worldIn.setBlock(posIn.west(), stateIn.setValue(BOTTOM, false).setValue(MIDDLE_END, MiddleEnd.MIDDLE).setValue(NESW_FACING, Direction.EAST), UPDATE_ALL);
+						worldIn.setBlock(posIn.west().west(), stateIn.setValue(BOTTOM, false).setValue(MIDDLE_END, MiddleEnd.LEFT).setValue(NESW_FACING, Direction.EAST), UPDATE_ALL);
+						worldIn.setBlock(posIn.below(), stateIn.setValue(BOTTOM, true).setValue(MIDDLE_END, MiddleEnd.MIDDLE).setValue(NESW_FACING, Direction.EAST), UPDATE_ALL);
+						worldIn.setBlock(posIn.below().east(), stateIn.setValue(BOTTOM, true).setValue(MIDDLE_END, MiddleEnd.MIDDLE).setValue(NESW_FACING, Direction.EAST), UPDATE_ALL);
+						worldIn.setBlock(posIn.below().east().east(), stateIn.setValue(BOTTOM, true).setValue(MIDDLE_END, MiddleEnd.RIGHT).setValue(NESW_FACING, Direction.EAST), UPDATE_ALL);
+						worldIn.setBlock(posIn.below().west(), stateIn.setValue(BOTTOM, true).setValue(MIDDLE_END, MiddleEnd.MIDDLE).setValue(NESW_FACING, Direction.EAST), UPDATE_ALL);
+						worldIn.setBlock(posIn.below().west().west(), stateIn.setValue(BOTTOM, true).setValue(MIDDLE_END, MiddleEnd.LEFT).setValue(NESW_FACING, Direction.EAST), UPDATE_ALL);
+					}
+					break;
+				case UP:
+					break;
+				case WEST:
 					if (worldIn.getBlockState(posIn.below()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.south()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.south().south()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.north()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.north().north()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().south()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().south().south()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().north()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().north().north()).getBlock() instanceof SawmillBlock) {
-						worldIn.setBlock(posIn, stateIn.setValue(MIDDLE_END, MiddleEnd.MIDDLE), UPDATE_ALL);
-						worldIn.setBlock(posIn.north(), stateIn.setValue(MIDDLE_END, MiddleEnd.MIDDLE), UPDATE_ALL);
-						worldIn.setBlock(posIn.north().north(), stateIn.setValue(MIDDLE_END, MiddleEnd.RIGHT), UPDATE_ALL);
-						worldIn.setBlock(posIn.south(), stateIn.setValue(MIDDLE_END, MiddleEnd.MIDDLE), UPDATE_ALL);
-						worldIn.setBlock(posIn.south().south(), stateIn.setValue(MIDDLE_END, MiddleEnd.LEFT), UPDATE_ALL);
-						worldIn.setBlock(posIn.below(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
-						worldIn.setBlock(posIn.below().north(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
-						worldIn.setBlock(posIn.below().north().north(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
-						worldIn.setBlock(posIn.below().south(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
-						worldIn.setBlock(posIn.below().south().south(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
+						worldIn.setBlock(posIn, stateIn.setValue(BOTTOM, false).setValue(MIDDLE_END, MiddleEnd.MIDDLE).setValue(NESW_FACING, Direction.SOUTH), UPDATE_ALL);
+						worldIn.setBlock(posIn.north(), stateIn.setValue(BOTTOM, false).setValue(MIDDLE_END, MiddleEnd.MIDDLE).setValue(NESW_FACING, Direction.SOUTH), UPDATE_ALL);
+						worldIn.setBlock(posIn.north().north(), stateIn.setValue(BOTTOM, false).setValue(MIDDLE_END, MiddleEnd.LEFT).setValue(NESW_FACING, Direction.SOUTH), UPDATE_ALL);
+						worldIn.setBlock(posIn.south(), stateIn.setValue(BOTTOM, false).setValue(MIDDLE_END, MiddleEnd.MIDDLE).setValue(NESW_FACING, Direction.SOUTH), UPDATE_ALL);
+						worldIn.setBlock(posIn.south().south(), stateIn.setValue(BOTTOM, false).setValue(MIDDLE_END, MiddleEnd.RIGHT).setValue(NESW_FACING, Direction.SOUTH), UPDATE_ALL);
+						worldIn.setBlock(posIn.below(), stateIn.setValue(BOTTOM, true).setValue(MIDDLE_END, MiddleEnd.MIDDLE).setValue(NESW_FACING, Direction.SOUTH), UPDATE_ALL);
+						worldIn.setBlock(posIn.below().north(), stateIn.setValue(BOTTOM, true).setValue(MIDDLE_END, MiddleEnd.MIDDLE).setValue(NESW_FACING, Direction.SOUTH), UPDATE_ALL);
+						worldIn.setBlock(posIn.below().north().north(), stateIn.setValue(BOTTOM, true).setValue(MIDDLE_END, MiddleEnd.LEFT).setValue(NESW_FACING, Direction.SOUTH), UPDATE_ALL);
+						worldIn.setBlock(posIn.below().south(), stateIn.setValue(BOTTOM, true).setValue(MIDDLE_END, MiddleEnd.MIDDLE).setValue(NESW_FACING, Direction.SOUTH), UPDATE_ALL);
+						worldIn.setBlock(posIn.below().south().south(), stateIn.setValue(BOTTOM, true).setValue(MIDDLE_END, MiddleEnd.RIGHT).setValue(NESW_FACING, Direction.SOUTH), UPDATE_ALL);
 					}
+
+					break;
+				default:
+					break;
 				}
-				if (stateIn.getValue(NESW_FACING) == Direction.WEST) {
-					if (worldIn.getBlockState(posIn.below()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.west()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.west().west()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.east()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.east().east()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().west()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().west().west()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().east()).getBlock() instanceof SawmillBlock && worldIn.getBlockState(posIn.below().east().east()).getBlock() instanceof SawmillBlock) {
-						worldIn.setBlock(posIn, stateIn.setValue(MIDDLE_END, MiddleEnd.MIDDLE), UPDATE_ALL);
-						worldIn.setBlock(posIn.east(), stateIn.setValue(MIDDLE_END, MiddleEnd.MIDDLE), UPDATE_ALL);
-						worldIn.setBlock(posIn.east().east(), stateIn.setValue(MIDDLE_END, MiddleEnd.RIGHT), UPDATE_ALL);
-						worldIn.setBlock(posIn.west(), stateIn.setValue(MIDDLE_END, MiddleEnd.MIDDLE), UPDATE_ALL);
-						worldIn.setBlock(posIn.west().west(), stateIn.setValue(MIDDLE_END, MiddleEnd.LEFT), UPDATE_ALL);
-						worldIn.setBlock(posIn.below(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
-						worldIn.setBlock(posIn.below().east(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
-						worldIn.setBlock(posIn.below().east().east(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
-						worldIn.setBlock(posIn.below().west(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
-						worldIn.setBlock(posIn.below().west().west(), stateIn.setValue(BOTTOM, true), UPDATE_ALL);
-					}
-				}
+			}
+			if (!playerIn.getAbilities().instabuild) {
 				itemstack.shrink(1);
 			}
 		}

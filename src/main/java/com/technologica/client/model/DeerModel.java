@@ -98,13 +98,13 @@ public class DeerModel<T extends AbstractHorse> extends AgeableListModel<T> {
 
 		body.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -4.0F, -8.0F, 8.0F, 8.0F, 16.0F), PartPose.offset(0.0F, 8.0F, 0.0F));
 
-		PartDefinition legUpperBackRight = body.addOrReplaceChild("legUpperBackRight", CubeListBuilder.create().texOffs(52, 0).addBox(-2.0F, -3.0F, -3.0F, 3.0F, 7.0F, 3.0F), PartPose.offset(-2.0F, 12.0F, 8.0F));
+		PartDefinition legUpperBackRight = body.addOrReplaceChild("legUpperBackRight", CubeListBuilder.create().texOffs(52, 0).mirror().addBox(-2.0F, -3.0F, -3.0F, 3.0F, 7.0F, 3.0F), PartPose.offset(-2.0F, 12.0F, 8.0F));
 		PartDefinition legUpperBackLeft = body.addOrReplaceChild("legUpperBackLeft", CubeListBuilder.create().texOffs(52, 0).addBox(-2.0F, -3.0F, -3.0F, 3.0F, 7.0F, 3.0F), PartPose.offset(3.0F, 12.0F, 8.0F));
-		PartDefinition legUpperFrontRight = body.addOrReplaceChild("legUpperFrontRight", CubeListBuilder.create().texOffs(52, 10).addBox(-2.0F, -3.0F, 0.0F, 3.0F, 9.0F, 3.0F), PartPose.offset(-2.0F, 12.0F, -8.0F));
+		PartDefinition legUpperFrontRight = body.addOrReplaceChild("legUpperFrontRight", CubeListBuilder.create().texOffs(52, 10).mirror().addBox(-2.0F, -3.0F, 0.0F, 3.0F, 9.0F, 3.0F), PartPose.offset(-2.0F, 12.0F, -8.0F));
 		PartDefinition legUpperFrontLeft = body.addOrReplaceChild("legUpperFrontLeft", CubeListBuilder.create().texOffs(52, 10).addBox(-2.0F, -3.0F, 0.0F, 3.0F, 9.0F, 3.0F), PartPose.offset(3.0F, 12.0F, -8.0F));
-		legUpperBackRight.addOrReplaceChild("legLowerBackRight", CubeListBuilder.create().texOffs(52, 22).addBox(-2.0F, 0.0F, -3.0F, 3.0F, 8.0F, 3.0F), PartPose.offset(0.0F, 4.0F, 0.0F));
+		legUpperBackRight.addOrReplaceChild("legLowerBackRight", CubeListBuilder.create().texOffs(52, 22).mirror().addBox(-2.0F, 0.0F, -3.0F, 3.0F, 8.0F, 3.0F), PartPose.offset(0.0F, 4.0F, 0.0F));
 		legUpperBackLeft.addOrReplaceChild("legLowerBackLeft", CubeListBuilder.create().texOffs(52, 22).addBox(-2.0F, 0.0F, -3.0F, 3.0F, 8.0F, 3.0F), PartPose.offset(0.0F, 4.0F, 0.0F));
-		legUpperFrontRight.addOrReplaceChild("legLowerFrontRight", CubeListBuilder.create().texOffs(52, 33).addBox(-2.0F, 0.0F, 0.0F, 3.0F, 6.0F, 3.0F), PartPose.offset(0.0F, 6.0F, 0.0F));
+		legUpperFrontRight.addOrReplaceChild("legLowerFrontRight", CubeListBuilder.create().texOffs(52, 33).mirror().addBox(-2.0F, 0.0F, 0.0F, 3.0F, 6.0F, 3.0F), PartPose.offset(0.0F, 6.0F, 0.0F));
 		legUpperFrontLeft.addOrReplaceChild("legLowerFrontLeft", CubeListBuilder.create().texOffs(52, 33).addBox(-2.0F, 0.0F, 0.0F, 3.0F, 6.0F, 3.0F), PartPose.offset(0.0F, 6.0F, 0.0F));
 
 		body.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(8, 7).addBox(-1.0F, 0.0F, -2.0F, 2.0F, 4.0F, 2.0F), PartPose.offset(0.0F, 5.0F, 8.0F));

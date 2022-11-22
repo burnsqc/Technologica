@@ -1,52 +1,93 @@
 {
   "variants": {
     "bottom=false,facing=east,middle_end=left": {
-      "model": "technologica:block/sawmilltop_left_end_east",
+      "model": "technologica:block/sawmill",
       "y": 180
     },
     "bottom=false,facing=east,middle_end=middle": {
-      "model": "technologica:block/sawmilltop_middle_east",
+      "model": "technologica:block/sawmill",
       "y": 180
     },
     "bottom=false,facing=east,middle_end=right": {
-      "model": "technologica:block/sawmilltop_right_end_east",
+      "model": "technologica:block/sawmill",
       "y": 180
     },
     "bottom=false,facing=north,middle_end=left": {
-      "model": "technologica:block/sawmilltop_left_end_north",
+      "model": "technologica:block/sawmill",
       "y": 90
     },
     "bottom=false,facing=north,middle_end=middle": {
-      "model": "technologica:block/sawmill_top_middle_north",
-      "y": 90
+      "model": "technologica:block/sawmill"
     },
     "bottom=false,facing=north,middle_end=right": {
-      "model": "technologica:block/sawmilltop_right_end_north",
+      "model": "technologica:block/sawmill",
       "y": 90
     },
     "bottom=false,facing=south,middle_end=left": {
-      "model": "technologica:block/sawmilltop_left_end_south",
+      "model": "technologica:block/sawmill",
       "y": 270
     },
     "bottom=false,facing=south,middle_end=middle": {
-      "model": "technologica:block/sawmilltop_middle_south",
+      "model": "technologica:block/sawmill",
       "y": 270
     },
     "bottom=false,facing=south,middle_end=right": {
-      "model": "technologica:block/sawmilltop_right_end_south",
+      "model": "technologica:block/sawmill",
       "y": 270
     },
     "bottom=false,facing=west,middle_end=left": {
-      "model": "technologica:block/sawmilltop_left_end_west"
+      "model": "technologica:block/sawmill"
     },
     "bottom=false,facing=west,middle_end=middle": {
-      "model": "technologica:block/sawmilltop_middle_west"
+      "model": "technologica:block/sawmill"
     },
     "bottom=false,facing=west,middle_end=right": {
-      "model": "technologica:block/sawmilltop_right_end_west"
+      "model": "technologica:block/sawmill"
     },
-    "bottom=true": {
-      "model": "technologica:block/sawmillbottom"
+    "bottom=true,facing=east,middle_end=left": {
+      "model": "technologica:block/sawmilllower_left_east"
+    },
+    "bottom=true,facing=east,middle_end=middle": {
+      "model": "technologica:block/sawmilllower_middle_east"
+    },
+    "bottom=true,facing=east,middle_end=right": {
+      "model": "technologica:block/sawmilllower_right_east"
+    },
+    "bottom=true,facing=north,middle_end=left": {
+      "model": "technologica:block/sawmilllower_left_north",
+      "y": 270
+    },
+    "bottom=true,facing=north,middle_end=middle": {
+      "model": "technologica:block/sawmilllower_middle_north",
+      "y": 270
+    },
+    "bottom=true,facing=north,middle_end=right": {
+      "model": "technologica:block/sawmilllower_right_north",
+      "y": 270
+    },
+    "bottom=true,facing=south,middle_end=left": {
+      "model": "technologica:block/sawmilllower_left_south",
+      "y": 90
+    },
+    "bottom=true,facing=south,middle_end=middle": {
+      "model": "technologica:block/sawmilllower_middle_south",
+      "y": 90
+    },
+    "bottom=true,facing=south,middle_end=right": {
+      "model": "technologica:block/sawmilllower_right_south",
+      "y": 90
+    },
+    "bottom=true,facing=west,middle_end=left": {
+      "model": "technologica:block/sawmilllower_left_west",
+      "y": 180
+    },
+    "bottom=true,facing=west,middle_end=middle": {
+      "model": "technologica:block/sawmilllower_middle_west",
+      "y": 180
+    },
+    "bottom=true,facing=west,middle_end=right": {
+      "model": "technologica:block/sawmilllower_right_west",
+      "y": 180
     }
   }
 }

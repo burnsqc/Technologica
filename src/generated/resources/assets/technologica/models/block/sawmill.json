@@ -1,8 +1,14 @@
 {
   "parent": "minecraft:block/orientable",
   "textures": {
-    "front": "minecraft:block/anvil",
-    "side": "minecraft:block/anvil",
-    "top": "minecraft:block/anvil"
+    "down": "technologica:block/sawmill_lower_side_middle",
+    "east": "technologica:block/sawmill_lower_side_middle",
+    "front": "technologica:block/sawmill_upper_side_end",
+    "north": "technologica:block/sawmill_lower_side_middle",
+    "side": "technologica:block/sawmill_upper_side_end",
+    "south": "technologica:block/sawmill_lower_side_middle",
+    "top": "technologica:block/sawmill_upper_side_end",
+    "up": "technologica:block/sawmill_lower_side_middle",
+    "west": "technologica:block/sawmill_lower_side_middle"
   }
 }
