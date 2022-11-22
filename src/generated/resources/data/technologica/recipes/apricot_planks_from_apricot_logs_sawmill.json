@@ -1,8 +1,10 @@
 {
   "type": "technologica:sawmill",
   "count": 1,
+  "count2": 1,
   "ingredient": {
-    "tag": "technologica:apricot_logs"
+    "item": "technologica:apricot_log"
   },
-  "result": "technologica:apricot_planks"
+  "result": "technologica:stripped_apricot_log",
+  "result2": "technologica:mulch"
 }

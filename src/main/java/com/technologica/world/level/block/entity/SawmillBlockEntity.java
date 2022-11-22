@@ -4,6 +4,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.technologica.world.item.TechnologicaItems;
+import com.technologica.world.item.crafting.SawmillRecipe;
 import com.technologica.world.item.crafting.TechnologicaRecipeType;
 import com.technologica.world.level.block.SawmillBlock;
 
@@ -16,6 +17,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -173,14 +175,16 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 		if (this.sawTime > 0F) {
 			this.sawTime--;
 		} else if (!getItem(1).isEmpty()) {
-			Recipe<?> recipe = this.level.getRecipeManager().getRecipeFor(TechnologicaRecipeType.SAWMILL.get(), this, this.level).orElse(null);
+			Recipe<Container> recipe = this.level.getRecipeManager().getRecipeFor(TechnologicaRecipeType.SAWMILL.get(), this, this.level).orElse(null);
 			if (recipe != null) {
-				ItemStack output = recipe.getResultItem();
+				ItemStack output = ((SawmillRecipe) recipe).getResultItem1();
+				ItemStack output2 = ((SawmillRecipe) recipe).getResultItem2();
 				if (!output.isEmpty()) {
 					setLog(ItemStack.EMPTY);
 					itemHandler.insertItem(2, output, false);
 					Vec3i offset = this.getBlockState().getValue(SawmillBlock.NESW_FACING).getNormal().multiply(2);
 					this.level.addFreshEntity(new ItemEntity(level, this.worldPosition.offset(offset).getX(), this.worldPosition.getY() + 1, this.worldPosition.offset(offset).getZ(), output));
+					this.level.addFreshEntity(new ItemEntity(level, this.worldPosition.offset(offset).getX(), this.worldPosition.getY() + 1, this.worldPosition.offset(offset).getZ(), output2));
 				}
 			}
 		}

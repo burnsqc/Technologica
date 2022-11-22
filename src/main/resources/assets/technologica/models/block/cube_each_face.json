@@ -1,8 +1,6 @@
 {
     "parent": "block/cube",
-    
     "textures": {
-        "particle": "#front",
         "down": "#down",
         "up": "#up",
         "north": "#north",

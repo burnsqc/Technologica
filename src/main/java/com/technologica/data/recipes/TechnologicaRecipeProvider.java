@@ -15,7 +15,6 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
-import net.minecraft.data.recipes.SingleItemRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -310,8 +309,8 @@ public class TechnologicaRecipeProvider extends RecipeProvider {
 
 //		ShapelessRecipeBuilder.shapeless(TechnologicaItems.GLUE.get(), 1).requires(WATER_BUCKET).requires(BONEMEAL).requires(RUBBER)
 
-		sawmillRecipe(Ingredient.of(TechnologicaItemTags.APRICOT_LOGS), TechnologicaItems.APRICOT_PLANKS_ITEM.get(), 1).save(consumer, new ResourceLocation(Technologica.MODID, "apricot_planks_from_apricot_logs_sawmill"));
-		sawmillRecipe(Ingredient.of(TechnologicaItemTags.ASPEN_LOGS), TechnologicaItems.ASPEN_PLANKS_ITEM.get(), 1).save(consumer, new ResourceLocation(Technologica.MODID, "aspen_planks_from_aspen_logs_sawmill"));
+		sawmillRecipe(Ingredient.of(TechnologicaItems.APRICOT_LOG_ITEM.get()), TechnologicaItems.STRIPPED_APRICOT_LOG_ITEM.get(), 1, TechnologicaItems.MULCH.get(), 1).save(consumer, new ResourceLocation(Technologica.MODID, "apricot_planks_from_apricot_logs_sawmill"));
+		//sawmillRecipe(Ingredient.of(TechnologicaItemTags.ASPEN_LOGS), TechnologicaItems.ASPEN_PLANKS_ITEM.get(), 1).save(consumer, new ResourceLocation(Technologica.MODID, "aspen_planks_from_aspen_logs_sawmill"));
 	}
 
 	private static void vanillaPlanks(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, TagKey<Item> input) {
@@ -350,7 +349,7 @@ public class TechnologicaRecipeProvider extends RecipeProvider {
 		ConditionalRecipe.builder().addCondition(new DisablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(output, 1).requires(input).requires(TechnologicaItems.CHISEL.get()).group("wooden_slab").unlockedBy("has_chisel", has(TechnologicaItems.CHISEL.get())).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, ForgeRegistries.ITEMS.getKey(output.asItem()).getPath() + "_pro"));
 	}
 
-	public static SingleItemRecipeBuilder sawmillRecipe(Ingredient ingredientIn, ItemLike output, int countIn) {
-		return new SingleItemRecipeBuilder(TechnologicaRecipeSerializer.SAWMILL.get(), ingredientIn, output, countIn).unlockedBy("has_logs", has(TechnologicaItemTags.APRICOT_LOGS));
+	public static MultipleOutputRecipeBuilder sawmillRecipe(Ingredient ingredientIn, ItemLike output, int countIn, ItemLike output2, int count2) {
+		return new MultipleOutputRecipeBuilder(TechnologicaRecipeSerializer.SAWMILL.get(), ingredientIn, output, countIn, output2, count2).unlockedBy("has_logs", has(TechnologicaItemTags.APRICOT_LOGS));
 	}
 }

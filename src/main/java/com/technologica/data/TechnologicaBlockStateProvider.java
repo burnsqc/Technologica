@@ -2027,7 +2027,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		.rotationY(180)
 		.addModel();
 
-		this.simpleBlockItem(block, models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath(), upper_side_end, upper_side_end, upper_side_end));
+		this.simpleBlockItem(block, models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath(), upper_side_end, upper_side_end, top_middle));
 	}
 
 	public void annunciatorBlockState(Block block) {

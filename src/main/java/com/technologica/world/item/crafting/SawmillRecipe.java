@@ -16,9 +16,11 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class SawmillRecipe extends SingleItemRecipe {
+	protected final ItemStack result2;
 
-	public SawmillRecipe(ResourceLocation id, String group, Ingredient ingredient, ItemStack result) {
+	public SawmillRecipe(ResourceLocation id, String group, Ingredient ingredient, ItemStack result, ItemStack result2) {
 		super(TechnologicaRecipeType.SAWMILL.get(), TechnologicaRecipeSerializer.SAWMILL.get(), id, group, ingredient, result);
+		this.result2 = result2;
 	}
 
 	@Override
@@ -35,6 +37,14 @@ public class SawmillRecipe extends SingleItemRecipe {
 	public RecipeType<?> getType() {
 		return TechnologicaRecipeType.SAWMILL.get();
 	}
+	
+	public ItemStack getResultItem1() {
+	      return this.result;
+	   }
+	
+	public ItemStack getResultItem2() {
+	      return this.result2;
+	   }
 
 	@Override
 	public boolean isSpecial() {
@@ -54,10 +64,12 @@ public class SawmillRecipe extends SingleItemRecipe {
 			}
 
 			String s1 = GsonHelper.getAsString(json, "result");
+			String s2 = GsonHelper.getAsString(json, "result2");
 			int i = GsonHelper.getAsInt(json, "count");
 
 			ItemStack itemstack = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(s1)), i);
-			return new SawmillRecipe(recipeId, s, ingredient, itemstack);
+			ItemStack itemstack2 = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(s2)), i);
+			return new SawmillRecipe(recipeId, s, ingredient, itemstack, itemstack2);
 		}
 
 		@Override
@@ -65,7 +77,8 @@ public class SawmillRecipe extends SingleItemRecipe {
 			String s = buffer.readUtf(32767);
 			Ingredient ingredient = Ingredient.fromNetwork(buffer);
 			ItemStack itemstack = buffer.readItem();
-			return new SawmillRecipe(recipeId, s, ingredient, itemstack);
+			ItemStack itemstack2 = buffer.readItem();
+			return new SawmillRecipe(recipeId, s, ingredient, itemstack, itemstack2);
 		}
 
 		@Override
@@ -73,6 +86,7 @@ public class SawmillRecipe extends SingleItemRecipe {
 			buffer.writeUtf(recipe.group);
 			recipe.ingredient.toNetwork(buffer);
 			buffer.writeItem(recipe.result);
+			buffer.writeItem(recipe.result2);
 		}
 	}
 }
