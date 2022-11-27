@@ -18,12 +18,18 @@ public class TechnologicaContainerType {
 
 	public static void init() {
 		MENU_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
-		LOGGER.info("MENU TYPES INITIALIZED: " + MENU_TYPES.getEntries().size() + " OF 1");
+		LOGGER.info("MENU TYPES INITIALIZED: " + MENU_TYPES.getEntries().size() + " OF 2");
 	}
 
 	public static final RegistryObject<MenuType<AnnunciatorContainer>> ANNUNCIATOR = MENU_TYPES.register("annunciator_container", () -> IForgeMenuType.create((windowId, inv, data) -> {
 		BlockPos pos = data.readBlockPos();
 		Level world = inv.player.getCommandSenderWorld();
 		return new AnnunciatorContainer(windowId, world, pos, inv);
+	}));
+	
+	public static final RegistryObject<MenuType<SawmillContainer>> SAWMILL = MENU_TYPES.register("sawmill_container", () -> IForgeMenuType.create((windowId, inv, data) -> {
+		BlockPos pos = data.readBlockPos();
+		Level world = inv.player.getCommandSenderWorld();
+		return new SawmillContainer(windowId, world, pos, inv);
 	}));
 }
