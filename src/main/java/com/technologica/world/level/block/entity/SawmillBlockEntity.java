@@ -6,13 +6,11 @@ import javax.annotation.Nullable;
 import com.technologica.world.item.TechnologicaItems;
 import com.technologica.world.item.crafting.SawmillRecipe;
 import com.technologica.world.item.crafting.TechnologicaRecipeType;
-import com.technologica.world.level.block.SawmillBlock;
 
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.Vec3i;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -21,7 +19,6 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.StackedContents;
 import net.minecraft.world.inventory.RecipeHolder;
@@ -50,7 +47,7 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 	}
 
 	private ItemStackHandler createHandler() {
-		return new ItemStackHandler(3) {
+		return new ItemStackHandler(5) {
 			@Override
 			protected void onContentsChanged(int slot) {
 				setChanged();
@@ -60,15 +57,15 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 			public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
 				if (slot == 0) {
 					return ForgeRegistries.ITEMS.getKey(stack.getItem()).getPath().contains("sawblade");
-				} else if (slot == 2) {
-					return ForgeRegistries.ITEMS.getKey(stack.getItem()).getPath().contains("planks") || stack.isEmpty();
+				} else if (slot == 1) {
+					return ForgeRegistries.ITEMS.tags().getTag(ItemTags.LOGS).contains(stack.getItem()) || ForgeRegistries.ITEMS.tags().getTag(ItemTags.PLANKS).contains(stack.getItem());
 				}
-				return ForgeRegistries.ITEMS.tags().getTag(ItemTags.LOGS).contains(stack.getItem()) || ForgeRegistries.ITEMS.tags().getTag(ItemTags.PLANKS).contains(stack.getItem());
+				return true;
 			}
 
 			@Override
 			public int getSlotLimit(int slot) {
-				return 1;
+				return 64;
 			}
 
 			@Nonnull
@@ -76,6 +73,9 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 			public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
 				if (!isItemValid(slot, stack)) {
 					return stack;
+				}
+				if (slot == 1) {
+					setLog(new ItemStack(stack.getItem(), 1));
 				}
 
 				return super.insertItem(slot, stack, simulate);
@@ -111,7 +111,7 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 	public void setLog(ItemStack logIn) {
 		if (!ItemStack.matches(logIn, ItemStack.EMPTY)) {
 			this.sawTime = 100;
-			itemHandler.insertItem(1, logIn, false);
+			//itemHandler.insertItem(1, logIn, false);
 		} else {
 			itemHandler.setStackInSlot(1, logIn);
 		}
@@ -180,13 +180,18 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 			if (recipe != null) {
 				ItemStack output = ((SawmillRecipe) recipe).getResultItem1();
 				ItemStack output2 = ((SawmillRecipe) recipe).getResultItem2();
-				if (!output.isEmpty()) {
-					setLog(ItemStack.EMPTY);
-					itemHandler.insertItem(2, output, false);
-					Vec3i offset = this.getBlockState().getValue(SawmillBlock.NESW_FACING).getNormal().multiply(2);
-					this.level.addFreshEntity(new ItemEntity(level, this.worldPosition.offset(offset).getX(), this.worldPosition.getY() + 1, this.worldPosition.offset(offset).getZ(), output));
-					this.level.addFreshEntity(new ItemEntity(level, this.worldPosition.getX(), this.worldPosition.getY() + 1, this.worldPosition.getZ(), output2));
+				
+				itemHandler.insertItem(2, output, false);
+				
+				if (output2.getItem() == TechnologicaItems.MULCH.get()) {
+					itemHandler.insertItem(3, output2, false);
+				} else if (output2.getItem() == TechnologicaItems.SAWDUST.get()) {
+					itemHandler.insertItem(4, output2, false);
 				}
+				
+				
+				setLog(ItemStack.EMPTY);
+				
 			}
 		}
 	}

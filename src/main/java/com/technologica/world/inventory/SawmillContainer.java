@@ -31,7 +31,11 @@ public class SawmillContainer extends AbstractContainerMenu {
 		
 		if (tileEntity != null) {
 			tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-				this.addSlot(new SlotItemHandler(h, 0, 80, 62)); 	
+				this.addSlot(new SlotItemHandler(h, 0, 80, 62));
+				this.addSlot(new SlotItemHandler(h, 1, 44, 35));
+				this.addSlot(new SlotItemHandler(h, 2, 116, 35));
+				this.addSlot(new SlotItemHandler(h, 3, 107, 62));
+				this.addSlot(new SlotItemHandler(h, 4, 125, 62));
 			});
 		}
 		

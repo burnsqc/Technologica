@@ -80,18 +80,10 @@ public class SawmillBlock extends FourDirectionBlock implements EntityBlock {
 		return InteractionResult.SUCCESS;
 		/*
 		if (tile.getLog().isEmpty()) {
-			if (item == TechnologicaItems.SAWBLADE.get()) {
-				tile.setBlade(true);
-				worldIn.playSound((Player) null, posIn, SoundEvents.ANVIL_PLACE, SoundSource.BLOCKS, 0.25F, 1.0F + worldIn.random.nextFloat() * 0.4F);
-				if (!playerIn.getAbilities().instabuild) {
-					itemstack.shrink(1);
-				}
+			
 			} else if (ForgeRegistries.ITEMS.tags().getTag(ItemTags.LOGS).contains(itemstack.getItem()) || ForgeRegistries.ITEMS.tags().getTag(ItemTags.PLANKS).contains(itemstack.getItem())) {
 				tile.setLog(new ItemStack(itemstack.getItem(), 1));
-				worldIn.playSound((Player) null, posIn, SoundEvents.WOOD_PLACE, SoundSource.BLOCKS, 0.25F, 1.0F + worldIn.random.nextFloat() * 0.4F);
-				itemstack.shrink(1);
-				playerIn.getInventory().setItem(playerIn.getInventory().selected, itemstack);
-				playerIn.containerMenu.broadcastChanges();
+				
 			} else if (item == TechnologicaItems.SAWMILL_BLUEPRINT.get()) {
 				switch (hitIn.getDirection()) {
 				case DOWN:
