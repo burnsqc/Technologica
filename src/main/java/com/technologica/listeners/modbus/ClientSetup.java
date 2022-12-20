@@ -2,7 +2,7 @@ package com.technologica.listeners.modbus;
 
 import com.technologica.client.gui.screens.inventory.AnnunciatorScreen;
 import com.technologica.client.gui.screens.inventory.SawmillScreen;
-import com.technologica.world.inventory.TechnologicaContainerType;
+import com.technologica.world.inventory.TechnologicaMenuType;
 import com.technologica.world.level.block.TechnologicaBlocks;
 import com.technologica.world.level.block.state.properties.TechnologicaWoodType;
 import com.technologica.world.level.material.TechnologicaFluids;
@@ -16,8 +16,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 public class ClientSetup {
 
 	public static void onFMLClientSetupEvent(final FMLClientSetupEvent event) {
-		MenuScreens.register(TechnologicaContainerType.ANNUNCIATOR.get(), AnnunciatorScreen::new);
-		MenuScreens.register(TechnologicaContainerType.SAWMILL.get(), SawmillScreen::new);
+		MenuScreens.register(TechnologicaMenuType.ANNUNCIATOR.get(), AnnunciatorScreen::new);
+		MenuScreens.register(TechnologicaMenuType.SAWMILL.get(), SawmillScreen::new);
 
 		event.enqueueWork(() -> {
 			setTechnologicaFluidRenderTypes();

@@ -3,7 +3,7 @@ package com.technologica.world.level.block;
 import javax.annotation.Nullable;
 
 import com.technologica.util.MiddleEnd;
-import com.technologica.world.inventory.SawmillContainer;
+import com.technologica.world.inventory.SawmillMenu;
 import com.technologica.world.level.block.entity.SawmillBlockEntity;
 import com.technologica.world.level.block.state.properties.TechnologicaBlockStateProperties;
 
@@ -213,7 +213,7 @@ public class SawmillBlock extends FourDirectionBlock implements EntityBlock {
 			@Nullable
 			@Override
 			public AbstractContainerMenu createMenu(int i, Inventory playerInventory, Player playerEntity) {
-				return new SawmillContainer(i, worldIn, pos, playerInventory);
+				return new SawmillMenu(i, worldIn, pos, playerInventory);
 			}
 		};
 	}

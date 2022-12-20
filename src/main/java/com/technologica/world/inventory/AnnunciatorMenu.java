@@ -1,41 +1,37 @@
 package com.technologica.world.inventory;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class SawmillContainer extends AbstractContainerMenu {
+public class AnnunciatorMenu extends AbstractContainerMenu {
 	private final BlockEntity tileEntity;
 	
-	public SawmillContainer(int windowIdIn, Level worldIn, BlockPos posIn, Inventory playerInventoryIn) {
-		super(TechnologicaContainerType.SAWMILL.get(), windowIdIn);
+	public AnnunciatorMenu(int windowIdIn, Level worldIn, BlockPos posIn, Inventory playerInventoryIn) {
+		super(TechnologicaMenuType.ANNUNCIATOR.get(), windowIdIn);
 		this.tileEntity = worldIn.getBlockEntity(posIn);
 		
 		for (int l = 0; l < 3; ++l) {
 			for (int j1 = 0; j1 < 9; ++j1) {
-				this.addSlot(new Slot(playerInventoryIn, j1 + l * 9 + 9, 8 + j1 * 18, 48 + l * 18 + 36));
+				this.addSlot(new Slot(playerInventoryIn, j1 + l * 9 + 9, 8 + j1 * 18, 112 + l * 18 + 36));
 			}
 		}
 
 		for (int i1 = 0; i1 < 9; ++i1) {
-			this.addSlot(new Slot(playerInventoryIn, i1, 8 + i1 * 18, 141));
+			this.addSlot(new Slot(playerInventoryIn, i1, 8 + i1 * 18, 206));
 		}
 		
 		if (tileEntity != null) {
 			tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-				this.addSlot(new SlotItemHandler(h, 0, 80, 62));
-				this.addSlot(new SlotItemHandler(h, 1, 44, 35));
-				this.addSlot(new SlotItemHandler(h, 2, 116, 35));
-				this.addSlot(new SlotItemHandler(h, 3, 107, 62));
-				this.addSlot(new SlotItemHandler(h, 4, 125, 62));
+				this.addSlot(new SlotItemHandler(h, 0, 80, 8)); 	
 			});
 		}
 		
@@ -73,7 +69,7 @@ public class SawmillContainer extends AbstractContainerMenu {
 
 	@Override
 	public MenuType<?> getType() {
-		return TechnologicaContainerType.SAWMILL.get();
+		return TechnologicaMenuType.ANNUNCIATOR.get();
 	}
 	
 	public BlockEntity getTileEntity() {

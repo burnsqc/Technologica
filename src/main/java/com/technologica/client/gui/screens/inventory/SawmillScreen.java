@@ -4,7 +4,7 @@ import com.mojang.blaze3d.platform.Lighting;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.technologica.Technologica;
-import com.technologica.world.inventory.SawmillContainer;
+import com.technologica.world.inventory.SawmillMenu;
 import com.technologica.world.level.block.entity.SawmillBlockEntity;
 
 import net.minecraft.client.gui.screens.Screen;
@@ -15,12 +15,12 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-public class SawmillScreen extends AbstractContainerScreen<SawmillContainer> {
+public class SawmillScreen extends AbstractContainerScreen<SawmillMenu> {
 	private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/gui/container/sawmill.png");
 	private SawmillBlockEntity tileEntity;
 	private int updateCounter;
 
-	public SawmillScreen(SawmillContainer screenContainerIn, Inventory playerInventoryIn, Component titleIn) {
+	public SawmillScreen(SawmillMenu screenContainerIn, Inventory playerInventoryIn, Component titleIn) {
 		super(screenContainerIn, playerInventoryIn, Component.literal("Sawmill"));
 		this.passEvents = false;
 		this.imageHeight = 165;

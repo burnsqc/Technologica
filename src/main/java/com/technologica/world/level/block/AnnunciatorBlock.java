@@ -5,7 +5,7 @@ import java.util.function.ToIntFunction;
 import javax.annotation.Nullable;
 
 import com.technologica.util.AnnunciatorOverlay;
-import com.technologica.world.inventory.AnnunciatorContainer;
+import com.technologica.world.inventory.AnnunciatorMenu;
 import com.technologica.world.level.block.entity.AnnunciatorBlockEntity;
 import com.technologica.world.level.block.state.properties.TechnologicaBlockStateProperties;
 
@@ -93,7 +93,7 @@ public class AnnunciatorBlock extends BaseEntityBlock {
 			@Nullable
 			@Override
 			public AbstractContainerMenu createMenu(int i, Inventory playerInventory, Player playerEntity) {
-				return new AnnunciatorContainer(i, worldIn, pos, playerInventory);
+				return new AnnunciatorMenu(i, worldIn, pos, playerInventory);
 			}
 		};
 	}

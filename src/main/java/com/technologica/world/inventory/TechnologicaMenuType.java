@@ -13,7 +13,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-public class TechnologicaContainerType {
+public class TechnologicaMenuType {
 	private static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(ForgeRegistries.MENU_TYPES, Technologica.MODID);
 
 	public static void init() {
@@ -21,15 +21,15 @@ public class TechnologicaContainerType {
 		LOGGER.info("MENU TYPES INITIALIZED: " + MENU_TYPES.getEntries().size() + " OF 2");
 	}
 
-	public static final RegistryObject<MenuType<AnnunciatorContainer>> ANNUNCIATOR = MENU_TYPES.register("annunciator_container", () -> IForgeMenuType.create((windowId, inv, data) -> {
+	public static final RegistryObject<MenuType<AnnunciatorMenu>> ANNUNCIATOR = MENU_TYPES.register("annunciator_container", () -> IForgeMenuType.create((windowId, inv, data) -> {
 		BlockPos pos = data.readBlockPos();
 		Level world = inv.player.getCommandSenderWorld();
-		return new AnnunciatorContainer(windowId, world, pos, inv);
+		return new AnnunciatorMenu(windowId, world, pos, inv);
 	}));
 	
-	public static final RegistryObject<MenuType<SawmillContainer>> SAWMILL = MENU_TYPES.register("sawmill_container", () -> IForgeMenuType.create((windowId, inv, data) -> {
+	public static final RegistryObject<MenuType<SawmillMenu>> SAWMILL = MENU_TYPES.register("sawmill_container", () -> IForgeMenuType.create((windowId, inv, data) -> {
 		BlockPos pos = data.readBlockPos();
 		Level world = inv.player.getCommandSenderWorld();
-		return new SawmillContainer(windowId, world, pos, inv);
+		return new SawmillMenu(windowId, world, pos, inv);
 	}));
 }

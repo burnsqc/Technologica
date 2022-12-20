@@ -33,7 +33,7 @@ import com.technologica.util.EnablePlankConditionFactory;
 import com.technologica.util.TechnologicaSoundEvents;
 import com.technologica.world.effect.TechnologicaMobEffects;
 import com.technologica.world.entity.TechnologicaEntityType;
-import com.technologica.world.inventory.TechnologicaContainerType;
+import com.technologica.world.inventory.TechnologicaMenuType;
 import com.technologica.world.item.TechnologicaItems;
 import com.technologica.world.item.crafting.TechnologicaRecipeSerializer;
 import com.technologica.world.item.crafting.TechnologicaRecipeType;
@@ -65,7 +65,7 @@ public class Technologica {
 		TechnologicaSoundEvents.init();
 		TechnologicaEntityType.init();
 		TechnologicaParticleTypes.init();
-		TechnologicaContainerType.init();
+		TechnologicaMenuType.init();
 		TechnologicaBlockEntityType.init();
 		TechnologicaRecipeType.init();
 		TechnologicaRecipeSerializer.init();

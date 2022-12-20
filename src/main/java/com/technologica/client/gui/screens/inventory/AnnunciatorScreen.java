@@ -15,7 +15,7 @@ import com.mojang.math.Matrix4f;
 import com.technologica.Technologica;
 import com.technologica.network.play.client.CUpdateAnnunciatorPacket;
 import com.technologica.network.play.server.Packets;
-import com.technologica.world.inventory.AnnunciatorContainer;
+import com.technologica.world.inventory.AnnunciatorMenu;
 import com.technologica.world.level.block.entity.AnnunciatorBlockEntity;
 
 import net.minecraft.client.gui.font.TextFieldHelper;
@@ -27,7 +27,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-public class AnnunciatorScreen extends AbstractContainerScreen<AnnunciatorContainer> {
+public class AnnunciatorScreen extends AbstractContainerScreen<AnnunciatorMenu> {
 	private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/gui/container/annunciator_screen.png");
 	private AnnunciatorBlockEntity tileEntity;
 	private TextFieldHelper textInputUtil;
@@ -35,7 +35,7 @@ public class AnnunciatorScreen extends AbstractContainerScreen<AnnunciatorContai
 	private int editLine;
 	private int updateCounter;
 
-	public AnnunciatorScreen(AnnunciatorContainer screenContainerIn, Inventory playerInventoryIn, Component titleIn) {
+	public AnnunciatorScreen(AnnunciatorMenu screenContainerIn, Inventory playerInventoryIn, Component titleIn) {
 		super(screenContainerIn, playerInventoryIn, Component.literal("Annunciator"));
 		this.passEvents = false;
 		this.imageHeight = 231;
