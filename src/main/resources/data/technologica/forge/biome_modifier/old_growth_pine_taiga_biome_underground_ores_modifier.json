@@ -1,6 +1,6 @@
 {
   "type": "forge:add_features",
-  "biomes": "swamp",
+  "biomes": "old_growth_pine_taiga",
   "features": 
   [
   "ore_spodumene",

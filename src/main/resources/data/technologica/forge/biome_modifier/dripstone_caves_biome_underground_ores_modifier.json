@@ -1,6 +1,6 @@
 {
   "type": "forge:add_features",
-  "biomes": "swamp",
+  "biomes": "dripstone_caves",
   "features": 
   [
   "ore_spodumene",

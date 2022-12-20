@@ -1,6 +1,6 @@
 {
   "type": "forge:add_features",
-  "biomes": "swamp",
+  "biomes": "sunflower_plains",
   "features": 
   [
   "ore_spodumene",

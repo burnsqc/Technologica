@@ -1,6 +1,6 @@
 {
   "type": "forge:add_features",
-  "biomes": "swamp",
+  "biomes": "stony_shore",
   "features": 
   [
   "ore_spodumene",

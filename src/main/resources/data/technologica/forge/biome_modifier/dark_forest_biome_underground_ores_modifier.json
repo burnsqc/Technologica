@@ -1,6 +1,6 @@
 {
   "type": "forge:add_features",
-  "biomes": "swamp",
+  "biomes": "dark_forest",
   "features": 
   [
   "ore_spodumene",

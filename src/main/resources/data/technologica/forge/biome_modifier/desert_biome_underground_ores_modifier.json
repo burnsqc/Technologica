@@ -1,6 +1,6 @@
 {
   "type": "forge:add_features",
-  "biomes": "swamp",
+  "biomes": "desert",
   "features": 
   [
   "ore_spodumene",

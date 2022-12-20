@@ -1,6 +1,6 @@
 {
   "type": "forge:add_features",
-  "biomes": "swamp",
+  "biomes": "mushroom_fields",
   "features": 
   [
   "ore_spodumene",

@@ -156,10 +156,10 @@ public class DecoratedOreFeature extends Feature<OreConfiguration> {
 																for (Direction direction : Direction.values()) {
 																	blockpos$mutableblockpos2.setWithOffset(blockpos$mutableblockpos, direction);
 																	if (airPredicate.test(fun.apply(blockpos$mutableblockpos2))) {
-																		if (isAdjacentToAir(fun, blockpos$mutableblockpos2)) {
+																		if (isAdjacentToAir(fun, blockpos$mutableblockpos2) && p_225173_.nextInt(5) == 0) {
 																			levelchunksection.setBlockState(SectionPos.sectionRelative(blockpos$mutableblockpos2.getX()), SectionPos.sectionRelative(blockpos$mutableblockpos2.getY()), SectionPos.sectionRelative(blockpos$mutableblockpos2.getZ()), crystal.get().defaultBlockState().setValue(DirectionalBlock.FACING, direction).setValue(TwentyFourDirectionBlock.SUB_FACING, (Direction) this.selectRandom(TwentyFourDirectionBlock.SUB_FACING.getPossibleValues())), false);
 																		}
-																	} else if (levelchunksection.getBlockState(SectionPos.sectionRelative(blockpos$mutableblockpos2.getX()), SectionPos.sectionRelative(blockpos$mutableblockpos2.getY()), SectionPos.sectionRelative(blockpos$mutableblockpos2.getZ())).getFluidState().is(Fluids.WATER)) {
+																	} else if (levelchunksection.getBlockState(SectionPos.sectionRelative(blockpos$mutableblockpos2.getX()), SectionPos.sectionRelative(blockpos$mutableblockpos2.getY()), SectionPos.sectionRelative(blockpos$mutableblockpos2.getZ())).getFluidState().is(Fluids.WATER) && p_225173_.nextInt(5) == 0) {
 																		levelchunksection.setBlockState(SectionPos.sectionRelative(blockpos$mutableblockpos2.getX()), SectionPos.sectionRelative(blockpos$mutableblockpos2.getY()), SectionPos.sectionRelative(blockpos$mutableblockpos2.getZ()), crystal.get().defaultBlockState().setValue(DirectionalBlock.FACING, direction).setValue(TwentyFourDirectionBlock.SUB_FACING, (Direction) this.selectRandom(TwentyFourDirectionBlock.SUB_FACING.getPossibleValues())).setValue(TwentyFourDirectionBlock.WATERLOGGED, true), false);
 																	}
 																}

@@ -1,6 +1,6 @@
 {
   "type": "forge:add_features",
-  "biomes": "swamp",
+  "biomes": "lukewarm_ocean",
   "features": 
   [
   "ore_spodumene",
