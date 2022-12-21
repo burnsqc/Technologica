@@ -2,6 +2,7 @@ package com.technologica.client.renderer.entity;
 
 import com.technologica.Technologica;
 import com.technologica.client.model.VultureModel;
+import com.technologica.client.model.geom.TechnologicaModelLayers;
 import com.technologica.world.entity.animal.Vulture;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -12,7 +13,7 @@ public final class VultureRenderer extends MobRenderer<Vulture, VultureModel<Vul
 	private static final ResourceLocation VULTURE_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/vulture.png");
 
 	public VultureRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new VultureModel<>(), 1.1F);
+		super(renderManagerIn, new VultureModel<>(renderManagerIn.bakeLayer(TechnologicaModelLayers.VULTURE)), 1.1F);
 	}
 
 	@Override
