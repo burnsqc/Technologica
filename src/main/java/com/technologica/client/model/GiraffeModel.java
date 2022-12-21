@@ -1,5 +1,8 @@
 package com.technologica.client.model;
 
+import com.google.common.collect.ImmutableList;
+import com.technologica.world.entity.animal.Giraffe;
+
 import net.minecraft.client.model.AgeableListModel;
 import net.minecraft.client.model.QuadrupedModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -9,19 +12,15 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
 
 public class GiraffeModel<T extends AbstractHorse> extends AgeableListModel<T> {
-	/*
 	private final ModelPart body;
 	private final ModelPart neck;
-	private final ModelPart mane;
 	private final ModelPart head;
-	private final ModelPart nose;
 	private final ModelPart earLeft;
 	private final ModelPart earRight;
-	private final ModelPart hornLeft;
-	private final ModelPart hornRight;
 	private final ModelPart legUpperBackLeft;
 	private final ModelPart legUpperBackRight;
 	private final ModelPart legUpperFrontLeft;
@@ -31,110 +30,36 @@ public class GiraffeModel<T extends AbstractHorse> extends AgeableListModel<T> {
 	private final ModelPart legLowerFrontLeft;
 	private final ModelPart legLowerFrontRight;
 	private final ModelPart tail;
-	private final ModelPart saddle;
-	private final ModelPart leftBit;
-	private final ModelPart rightBit;
-	private final ModelPart headBridle;
-	private final ModelPart noseBridle;
-	private final ModelPart leftReign;
-	private final ModelPart rightReign;
-	private final ModelPart[] saddles;
-	private final ModelPart[] reigns;
-	*/
+	//private final ModelPart saddle;
+	//private final ModelPart leftBit;
+	//private final ModelPart rightBit;
+	//private final ModelPart headBridle;
+	//private final ModelPart noseBridle;
+	//private final ModelPart leftReign;
+	//private final ModelPart rightReign;
+	//private final ModelPart[] saddles;
+	//private final ModelPart[] reigns;
 
-	public GiraffeModel() {
+	public GiraffeModel(ModelPart modelPartIn) {
 		super(true, 24.0F, 1.36F, 2.7272F, 2.0F, 24.0F);
+		this.body = modelPartIn.getChild("body");
+		this.neck = modelPartIn.getChild("neck");
+		this.head = this.neck.getChild("head");
+		this.earLeft = this.head.getChild("ear_left");
+		this.earRight = this.head.getChild("ear_right");
+		this.legUpperBackLeft = body.getChild("legUpperBackLeft");
+		this.legUpperBackRight = body.getChild("legUpperBackRight");
+		this.legUpperFrontLeft = body.getChild("legUpperFrontLeft");
+		this.legUpperFrontRight = body.getChild("legUpperFrontRight");
+		this.legLowerBackLeft = legUpperBackLeft.getChild("legLowerBackLeft");
+		this.legLowerBackRight = legUpperBackRight.getChild("legLowerBackRight");
+		this.legLowerFrontLeft = legUpperFrontLeft.getChild("legLowerFrontLeft");
+		this.legLowerFrontRight = legUpperFrontRight.getChild("legLowerFrontRight");
+		this.tail = body.getChild("tail");
 		/*
-		this.texWidth = 128;
-		this.texHeight = 128;
 
-		this.body = new ModelPart(this, 0, 0);
-		this.body.addBox(-5.0F, -31.0F, -17.0F, 10.0F, 12.0F, 22.0F);
-		this.body.setPos(0.0F, 28.0F, 3.0F);
-
-		this.neck = new ModelPart(this, 0, 34);
-		this.neck.addBox(-2.0F, -38.0F, -6.0F, 4.0F, 37.0F, 6.0F);
-
-		this.mane = new ModelPart(this, 20, 34);
-		this.mane.addBox(-1.0F, -40.0F, 0.0F, 2.0F, 37.0F, 2.0F);
-		this.neck.addChild(mane);
-
-		this.head = new ModelPart(this, 42, 0);
-		this.head.addBox(-3.0F, -5.0F, -9.0F, 6.0F, 5.0F, 9.0F);
-		this.head.setPos(0.0F, -35.0F, 0.0F);
-		this.neck.addChild(head);
-
-		this.nose = new ModelPart(this, 0, 0);
-		this.nose.addBox(-1.5F, -4.0F, -15.0F, 3.0F, 4.0F, 6.0F);
-		this.head.addChild(nose);
-
-		this.earLeft = new ModelPart(this, 12, 10);
-		this.earLeft.addBox(0F, -3.0F, -1.0F, 4.0F, 3.0F, 1.0F, 0.0F);
-		this.earLeft.setPos(3.0F, -1.0F, -2.0F);
-		this.head.addChild(earLeft);
-
-		this.earRight = new ModelPart(this, 12, 0);
-		this.earRight.addBox(-4.0F, -3.0F, -1.0F, 4.0F, 3.0F, 1.0F, 0.0F);
-		this.earRight.setPos(-3.0F, -1.0F, -2.0F);
-		this.head.addChild(earRight);
-
-		this.hornLeft = new ModelPart(this, 0, 0);
-		this.hornLeft.addBox(1.0F, -7.0F, -3.0F, 1.0F, 2.0F, 1.0F, 0.0F);
-		this.head.addChild(hornLeft);
-
-		this.hornRight = new ModelPart(this, 0, 0);
-		this.hornRight.addBox(-2.0F, -7.0F, -3.0F, 1.0F, 2.0F, 1.0F, 0.0F);
-		this.head.addChild(hornRight);
-
-		this.legUpperBackLeft = new ModelPart(this, 28, 34);
-		this.legUpperBackLeft.mirror = true;
-		this.legUpperBackLeft.addBox(-1.99F, -4.0F, -3.99F, 3.98F, 12.0F, 3.98F, 0.0F);
-		this.legUpperBackLeft.setPos(3.0F, -19.0F, 5.0F);
-		this.body.addChild(this.legUpperBackLeft);
-
-		this.legUpperBackRight = new ModelPart(this, 28, 34);
-		this.legUpperBackRight.addBox(-1.99F, -4.0F, -3.99F, 3.98F, 12.0F, 3.98F, 0.0F);
-		this.legUpperBackRight.setPos(-3.0F, -19.0F, 5.0F);
-		this.body.addChild(this.legUpperBackRight);
-
-		this.legUpperFrontLeft = new ModelPart(this, 44, 56);
-		this.legUpperFrontLeft.mirror = true;
-		this.legUpperFrontLeft.addBox(-1.99F, -4.0F, 0.01F, 3.98F, 18.0F, 3.98F, 0.0F);
-		this.legUpperFrontLeft.setPos(3.0F, -19.0F, -17.0F);
-		this.body.addChild(this.legUpperFrontLeft);
-
-		this.legUpperFrontRight = new ModelPart(this, 44, 56);
-		this.legUpperFrontRight.addBox(-1.99F, -4.0F, 0.01F, 3.98F, 18.0F, 3.98F, 0.0F);
-		this.legUpperFrontRight.setPos(-3.0F, -19.0F, -17.0F);
-		this.body.addChild(this.legUpperFrontRight);
-
-		this.legLowerBackLeft = new ModelPart(this, 60, 34);
-		this.legLowerBackLeft.mirror = true;
-		this.legLowerBackLeft.addBox(-2.0F, 0.0F, -4.0F, 4.0F, 24.0F, 4.0F, 0.0F);
-		this.legLowerBackLeft.setPos(0.0F, 8.0F, 0.0F);
-		this.legUpperBackLeft.addChild(this.legLowerBackLeft);
-
-		this.legLowerBackRight = new ModelPart(this, 60, 34);
-		this.legLowerBackRight.addBox(-2.0F, 0.0F, -4.0F, 4.0F, 24.0F, 4.0F, 0.0F);
-		this.legLowerBackRight.setPos(0.0F, 8.0F, 0.0F);
-		this.legUpperBackRight.addChild(this.legLowerBackRight);
-
-		this.legLowerFrontLeft = new ModelPart(this, 44, 34);
-		this.legLowerFrontLeft.mirror = true;
-		this.legLowerFrontLeft.addBox(-2.0F, 0.0F, 0.0F, 4.0F, 18.0F, 4.0F, 0.0F);
-		this.legLowerFrontLeft.setPos(0.0F, 14.0F, 0.0F);
-		this.legUpperFrontLeft.addChild(this.legLowerFrontLeft);
-
-		this.legLowerFrontRight = new ModelPart(this, 44, 34);
-		this.legLowerFrontRight.addBox(-2.0F, 0.0F, 0.0F, 4.0F, 18.0F, 4.0F, 0.0F);
-		this.legLowerFrontRight.setPos(0.0F, 14.0F, 0.0F);
-		this.legUpperFrontRight.addChild(this.legLowerFrontRight);
-
-		this.tail = new ModelPart(this, 28, 50);
-		this.tail.addBox(-1.0F, 0.0F, -2.0F, 2.0F, 16.0F, 2.0F);
-		this.tail.setPos(0.0F, -30.0F, 5.0F);
-		this.body.addChild(this.tail);
-
+		
+		
 		this.saddle = new ModelPart(this, 72, 0);
 		this.saddle.addBox(-5.0F, -31.0F, -9.0F, 10.0F, 9.0F, 9.0F, 0.5F);
 		this.body.addChild(saddle);
@@ -172,40 +97,39 @@ public class GiraffeModel<T extends AbstractHorse> extends AgeableListModel<T> {
 
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = QuadrupedModel.createBodyMesh(6, CubeDeformation.NONE);
-		PartDefinition partdefinition = meshdefinition.getRoot();
-		
-		partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 14).addBox(-2.0F, -4.0F, -4.0F, 4.0F, 4.0F, 4.0F), PartPose.offset(0.0F, 21.0F, -4.0F));
-		partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-3.0F, 10.0F, -6.0F, 6.0F, 6.0F, 8.0F), PartPose.offset(0.0F, 6.0F, 2.0F));
-		
-		partdefinition.addOrReplaceChild("rightHindLeg", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, 1.0F, -1.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(-2.0F, 21.0F, 3.0F));
-		partdefinition.addOrReplaceChild("leftHindLeg", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, 1.0F, -1.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(2.0F, 21.0F, 3.0F));
-		partdefinition.addOrReplaceChild("rightFrontLeg", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, 1.0F, -1.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(-2.0F, 21.0F, -3.0F));
-		partdefinition.addOrReplaceChild("leftFrontLeg", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, 1.0F, -1.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(2.0F, 21.0F, -3.0F));
-		partdefinition.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(0, 22).addBox(-2.0F, 0.0F, 0.0F, 4.0F, 1.0F, 6.0F), PartPose.offset(0.0F, 14.0F, 2.0F));
-		
-		return LayerDefinition.create(meshdefinition, 32, 32);
+		PartDefinition root = meshdefinition.getRoot();
+		PartDefinition body = root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-5.0F, -31.0F, -17.0F, 10.0F, 12.0F, 22.0F), PartPose.offset(0.0F, 28.0F, 3.0F));
+		PartDefinition neck = root.addOrReplaceChild("neck", CubeListBuilder.create().texOffs(0, 34).addBox(-2.0F, -38.0F, -6.0F, 4.0F, 37.0F, 6.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+		neck.addOrReplaceChild("mane", CubeListBuilder.create().texOffs(20, 34).addBox(-1.0F, -40.0F, 0.0F, 2.0F, 37.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+		PartDefinition head = neck.addOrReplaceChild("head", CubeListBuilder.create().texOffs(42, 0).addBox(-3.0F, -5.0F, -9.0F, 6.0F, 5.0F, 9.0F), PartPose.offset(0.0F, -35.0F, 0.0F));
+		head.addOrReplaceChild("nose", CubeListBuilder.create().texOffs(0, 0).addBox(-1.5F, -4.0F, -15.0F, 3.0F, 4.0F, 6.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+		head.addOrReplaceChild("ear_left", CubeListBuilder.create().texOffs(12, 10).addBox(0.0F, -3.0F, -1.0F, 4.0F, 3.0F, 1.0F), PartPose.offset(3.0F, -1.0F, -2.0F));
+		head.addOrReplaceChild("ear_right", CubeListBuilder.create().texOffs(12, 0).addBox(-4.0F, -3.0F, -1.0F, 4.0F, 3.0F, 1.0F), PartPose.offset(-3.0F, -1.0F, -2.0F));
+		head.addOrReplaceChild("horn_left", CubeListBuilder.create().texOffs(0, 0).addBox(1.0F, -7.0F, -3.0F, 1.0F, 2.0F, 1.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+		head.addOrReplaceChild("horn_right", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, -7.0F, -3.0F, 1.0F, 2.0F, 1.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+		PartDefinition legUpperBackRight = body.addOrReplaceChild("legUpperBackRight", CubeListBuilder.create().texOffs(28, 34).mirror().addBox(-1.99F, -4.0F, -3.99F, 3.98F, 12.0F, 3.98F), PartPose.offset(-3.0F, -19.0F, 5.0F));
+		PartDefinition legUpperBackLeft = body.addOrReplaceChild("legUpperBackLeft", CubeListBuilder.create().texOffs(28, 34).addBox(-1.99F, -4.0F, -3.99F, 3.98F, 12.0F, 3.98F), PartPose.offset(3.0F, -19.0F, 5.0F));
+		PartDefinition legUpperFrontRight = body.addOrReplaceChild("legUpperFrontRight", CubeListBuilder.create().texOffs(44, 56).mirror().addBox(-1.99F, -4.0F, 0.01F, 3.98F, 18.0F, 3.98F), PartPose.offset(-3.0F, -19.0F, -17.0F));
+		PartDefinition legUpperFrontLeft = body.addOrReplaceChild("legUpperFrontLeft", CubeListBuilder.create().texOffs(44, 56).addBox(-1.99F, -4.0F, 0.01F, 3.98F, 18.0F, 3.98F), PartPose.offset(3.0F, -19.0F, -17.0F));
+		legUpperBackRight.addOrReplaceChild("legLowerBackRight", CubeListBuilder.create().texOffs(60, 34).mirror().addBox(-2.0F, 0.0F, -4.0F, 4.0F, 24.0F, 4.0F), PartPose.offset(0.0F, 8.0F, 0.0F));
+		legUpperBackLeft.addOrReplaceChild("legLowerBackLeft", CubeListBuilder.create().texOffs(60, 34).addBox(-2.0F, 0.0F, -4.0F, 4.0F, 24.0F, 4.0F), PartPose.offset(0.0F, 8.0F, 0.0F));
+		legUpperFrontRight.addOrReplaceChild("legLowerFrontRight", CubeListBuilder.create().texOffs(44, 34).mirror().addBox(-2.0F, 0.0F, 0.0F, 4.0F, 18.0F, 4.0F), PartPose.offset(0.0F, 14.0F, 0.0F));
+		legUpperFrontLeft.addOrReplaceChild("legLowerFrontLeft", CubeListBuilder.create().texOffs(44, 34).addBox(-2.0F, 0.0F, 0.0F, 4.0F, 18.0F, 4.0F), PartPose.offset(0.0F, 14.0F, 0.0F));
+		body.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(28, 50).addBox(-1.0F, 0.0F, -2.0F, 2.0F, 16.0F, 2.0F), PartPose.offset(0.0F, -30.0F, 5.0F));
+		return LayerDefinition.create(meshdefinition, 128, 128);
 	}
 	
 	@Override
 	protected Iterable<ModelPart> headParts() {
-		// TODO Auto-generated method stub
-		return null;
+		return ImmutableList.of(this.neck);
 	}
 
 	@Override
 	protected Iterable<ModelPart> bodyParts() {
-		// TODO Auto-generated method stub
-		return null;
+		return ImmutableList.of(this.body);
 	}
 
 	@Override
-	public void setupAnim(T p_102618_, float p_102619_, float p_102620_, float p_102621_, float p_102622_,
-			float p_102623_) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/*
 	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		boolean flag = entityIn.isSaddled();
 		boolean flag1 = entityIn.isVehicle();
@@ -214,25 +138,19 @@ public class GiraffeModel<T extends AbstractHorse> extends AgeableListModel<T> {
 		this.earRight.zRot = 0.5F;
 		this.tail.xRot = ((float) Math.PI / 8F);
 
-		for (ModelPart modelrenderer : this.saddles) {
-			modelrenderer.visible = flag;
-		}
+		//for (ModelPart modelrenderer : this.saddles) {
+		//	modelrenderer.visible = flag;
+		//}
 
-		for (ModelPart modelrenderer1 : this.reigns) {
-			modelrenderer1.visible = flag1 && flag;
-		}
+		//for (ModelPart modelrenderer1 : this.reigns) {
+		//	modelrenderer1.visible = flag1 && flag;
+		//}
 
 		this.body.y = 11.0F;
 	}
 
-	public Iterable<ModelPart> headParts() {
-		return ImmutableList.of(this.neck);
-	}
 
-	protected Iterable<ModelPart> bodyParts() {
-		return ImmutableList.of(this.body);
-	}
-
+	@Override
 	public void prepareMobModel(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
 		float f = Mth.lerp(partialTick, entityIn.yBodyRotO, entityIn.yBodyRot);
 		float f1 = Mth.lerp(partialTick, entityIn.yHeadRotO, entityIn.yHeadRot);
@@ -249,11 +167,11 @@ public class GiraffeModel<T extends AbstractHorse> extends AgeableListModel<T> {
 
 	    float f6 = entityIn.getStandAnim(partialTick);
 	    float f7 = 1.0F - f6;
-	    float f9 = (float)entityIn.tickCount + partialTick;
+	    float f9 = entityIn.tickCount + partialTick;
 		float f10 = entityIn.isInWater() ? 0.2F : 1.0F;
 		
 		boolean tailWagging = entityIn.tailCounter != 0;
-		boolean earsFlapping = ((GiraffeEntity) entityIn).earCounter != 0;
+		boolean earsFlapping = ((Giraffe) entityIn).earCounter != 0;
 		
 		this.neck.y = -16.0F;
 		this.neck.z = -8.0F;
@@ -287,12 +205,12 @@ public class GiraffeModel<T extends AbstractHorse> extends AgeableListModel<T> {
 		}
 		
 		if (earsFlapping) {
-			this.earLeft.yRot = Mth.cos((float) entityIn.tickCount + partialTick);
-			this.earRight.yRot = -Mth.cos((float) entityIn.tickCount + partialTick);
+			this.earLeft.yRot = Mth.cos(entityIn.tickCount + partialTick);
+			this.earRight.yRot = -Mth.cos(entityIn.tickCount + partialTick);
 		} else {
 			this.earLeft.yRot = 0.0F;
 			this.earRight.yRot = 0.0F;
 		}
 	}
-	*/
+	
 }
