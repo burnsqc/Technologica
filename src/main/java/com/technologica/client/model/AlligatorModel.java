@@ -36,9 +36,9 @@ public class AlligatorModel<T extends Alligator> extends QuadrupedModel<T> {
 		PartDefinition tailDefinition2 = tailDefinition.addOrReplaceChild("tail2", CubeListBuilder.create().texOffs(0, 22).addBox(-2.0F, -2.0F, 0.0F, 4.0F, 5.0F, 8.0F), PartPose.offset(0.0F, 0.0F, 8.0F));
 		tailDefinition2.addOrReplaceChild("tail3", CubeListBuilder.create().texOffs(44, 14).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 4.0F, 8.0F), PartPose.offset(0.0F, 0.0F, 8.0F));
 		partdefinition.addOrReplaceChild("left_hind_leg", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F), PartPose.offset(5.0F, 18.0F, 7.0F));
-		partdefinition.addOrReplaceChild("right_hind_leg", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F), PartPose.offset(-5.0F, 18.0F, 7.0F));
+		partdefinition.addOrReplaceChild("right_hind_leg", CubeListBuilder.create().texOffs(0, 0).mirror().addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F), PartPose.offset(-5.0F, 18.0F, 7.0F));
 		partdefinition.addOrReplaceChild("left_front_leg", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F), PartPose.offset(5.0F, 18.0F, -5.0F));
-		partdefinition.addOrReplaceChild("right_front_leg", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F), PartPose.offset(-5.0F, 18.0F, -5.0F));
+		partdefinition.addOrReplaceChild("right_front_leg", CubeListBuilder.create().texOffs(0, 0).mirror().addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F), PartPose.offset(-5.0F, 18.0F, -5.0F));
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
 
