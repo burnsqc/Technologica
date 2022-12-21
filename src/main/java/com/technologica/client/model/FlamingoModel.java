@@ -1,5 +1,7 @@
 package com.technologica.client.model;
 
+import com.google.common.collect.ImmutableList;
+
 import net.minecraft.client.model.AgeableListModel;
 import net.minecraft.client.model.QuadrupedModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -12,7 +14,6 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.world.entity.animal.Animal;
 
 public class FlamingoModel<T extends Animal> extends AgeableListModel<T> {
-	/*
 	private final ModelPart head;
 	private final ModelPart neck1;
 	private final ModelPart neck2;
@@ -20,122 +21,45 @@ public class FlamingoModel<T extends Animal> extends AgeableListModel<T> {
 	private final ModelPart neck4;
 	private final ModelPart neck5;
 	private final ModelPart body;
-	private final ModelPart rightLeg;
-	private final ModelPart leftLeg;
-	private final ModelPart rightLegLower;
-	private final ModelPart leftLegLower;
-	private final ModelPart rightWing;
-	private final ModelPart leftWing;
-	private final ModelPart bill;
-	*/
+	private final ModelPart legRight;
+	private final ModelPart legLeft;
+	private final ModelPart wingRight;
+	private final ModelPart wingLeft;
 
-	public FlamingoModel() {
-		/*
-		texWidth = 64;
-		texHeight = 32;
-		
-		this.neck1 = new ModelPart(this, 14, 23);
-		this.neck1.addBox(-1.0F, -2.0F, -4.0F, 2.0F, 2.0F, 4.0F);
-		this.neck1.setPos(0.0F, 12.0F, -4.0F);
-		
-		this.neck2 = new ModelPart(this, 14, 23);
-		this.neck2.addBox(-1.0F, -2.0F, -4.0F, 2.0F, 2.0F, 4.0F);
-		this.neck2.setPos(0.0F, 0.0F, -4.0F);
-		this.neck1.addChild(this.neck2);
-		
-		this.neck3 = new ModelPart(this, 14, 23);
-		this.neck3.addBox(-1.0F, -2.0F, -4.0F, 2.0F, 2.0F, 4.0F);
-		this.neck3.setPos(0.0F, 0.0F, -4.0F);
-		this.neck2.addChild(this.neck3);
-		
-		this.neck4 = new ModelPart(this, 14, 23);
-		this.neck4.addBox(-1.0F, 0.0F, -4.0F, 2.0F, 2.0F, 4.0F);
-		this.neck4.setPos(0.0F, -2.0F, -4.0F);
-		this.neck3.addChild(this.neck4);
-		
-		this.neck5 = new ModelPart(this, 14, 23);
-		this.neck5.addBox(-1.0F, 0.0F, -4.0F, 2.0F, 2.0F, 4.0F);
-		this.neck5.setPos(0.0F, 0.0F, -4.0F);
-		this.neck4.addChild(this.neck5);
-		
-		this.head = new ModelPart(this, 20, 0);
-		this.head.addBox(-1.5F, 0.0F, -3.0F, 3.0F, 3.0F, 3.0F);
-		this.head.setPos(0.0F, 0.0F, -4.0F);
-		this.neck5.addChild(this.head);
-		
-		this.bill = new ModelPart(this, 0, 14);
-		this.bill.addBox(-1.0F, 1.0F, -6.0F, 2.0F, 2.0F, 3.0F);
-		this.head.addChild(this.bill);
-		
-		this.body = new ModelPart(this, 0, 0);
-		this.body.addBox(-3.0F, -3.0F, -4.0F, 6.0F, 6.0F, 8.0F);
-		this.body.setPos(0.0F, 9.0F, 0.0F);
-		
-		this.rightLeg = new ModelPart(this, 10, 14);
-		this.rightLeg.addBox(-1.0F, 0.0F, -3.0F, 3.0F, 6.0F, 3.0F);
-		this.rightLeg.setPos(-2.0F, 12.0F, 0.0F);
-		
-		this.leftLeg = new ModelPart(this, 10, 14);
-		this.leftLeg.addBox(-1.0F, 0.0F, -3.0F, 3.0F, 6.0F, 3.0F);
-		this.leftLeg.setPos(1.0F, 12.0F, 0.0F);
-		
-		this.rightLegLower = new ModelPart(this, 22, 14);
-		this.rightLegLower.addBox(-1.0F, 0.0F, -3.0F, 3.0F, 6.0F, 3.0F);
-		this.rightLegLower.setPos(0.0F, 6.0F, 0.0F);
-		this.rightLeg.addChild(this.rightLegLower);
-		
-		this.leftLegLower = new ModelPart(this, 22, 14);
-		this.leftLegLower.addBox(-1.0F, 0.0F, -3.0F, 3.0F, 6.0F, 3.0F);
-		this.leftLegLower.setPos(0.0F, 6.0F, 0.0F);
-		this.leftLeg.addChild(this.leftLegLower);
-		
-		this.rightWing = new ModelPart(this, 0, 19);
-		this.rightWing.addBox(0.0F, 0.0F, -3.0F, 1.0F, 4.0F, 6.0F);
-		this.rightWing.setPos(-4.0F, 7.0F, 0.0F);
-		this.rightWing.mirror = true;
-		
-		this.leftWing = new ModelPart(this, 0, 19);
-		this.leftWing.addBox(-1.0F, 0.0F, -3.0F, 1.0F, 4.0F, 6.0F);
-		this.leftWing.setPos(4.0F, 7.0F, 0.0F);
-		*/
+	public FlamingoModel(ModelPart modelPartIn) {
+		this.body = modelPartIn.getChild("body");
+		this.neck1 = modelPartIn.getChild("neck1");
+		this.neck2 = neck1.getChild("neck2");
+		this.neck3 = neck2.getChild("neck3");
+		this.neck4 = neck3.getChild("neck4");
+		this.neck5 = neck4.getChild("neck5");
+		this.head = neck5.getChild("head");
+		this.legRight = modelPartIn.getChild("leg_right");
+		this.legLeft = modelPartIn.getChild("leg_left");
+		this.wingRight = modelPartIn.getChild("wing_right");
+		this.wingLeft = modelPartIn.getChild("wing_left");
 	}
 
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = QuadrupedModel.createBodyMesh(6, CubeDeformation.NONE);
-		PartDefinition partdefinition = meshdefinition.getRoot();
-		
-		partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 14).addBox(-2.0F, -4.0F, -4.0F, 4.0F, 4.0F, 4.0F), PartPose.offset(0.0F, 21.0F, -4.0F));
-		partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-3.0F, 10.0F, -6.0F, 6.0F, 6.0F, 8.0F), PartPose.offset(0.0F, 6.0F, 2.0F));
-		
-		partdefinition.addOrReplaceChild("rightHindLeg", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, 1.0F, -1.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(-2.0F, 21.0F, 3.0F));
-		partdefinition.addOrReplaceChild("leftHindLeg", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, 1.0F, -1.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(2.0F, 21.0F, 3.0F));
-		partdefinition.addOrReplaceChild("rightFrontLeg", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, 1.0F, -1.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(-2.0F, 21.0F, -3.0F));
-		partdefinition.addOrReplaceChild("leftFrontLeg", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, 1.0F, -1.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(2.0F, 21.0F, -3.0F));
-		partdefinition.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(0, 22).addBox(-2.0F, 0.0F, 0.0F, 4.0F, 1.0F, 6.0F), PartPose.offset(0.0F, 14.0F, 2.0F));
-		
-		return LayerDefinition.create(meshdefinition, 32, 32);
+		PartDefinition root = meshdefinition.getRoot();
+		root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-3.0F, -3.0F, -4.0F, 6.0F, 6.0F, 8.0F), PartPose.offset(0.0F, 9.0F, 0.0F));
+		root.addOrReplaceChild("wing_right", CubeListBuilder.create().texOffs(0, 19).mirror().addBox(0.0F, 0.0F, -3.0F, 1.0F, 4.0F, 6.0F), PartPose.offset(-4.0F, 7.0F, 0.0F));
+		root.addOrReplaceChild("wing_left", CubeListBuilder.create().texOffs(0, 19).addBox(-1.0F, 0.0F, -3.0F, 1.0F, 4.0F, 6.0F), PartPose.offset(4.0F, 7.0F, 0.0F));
+		PartDefinition rightLeg = root.addOrReplaceChild("leg_right", CubeListBuilder.create().texOffs(10, 14).addBox(-1.0F, 0.0F, -3.0F, 3.0F, 6.0F, 3.0F), PartPose.offset(-2.0F, 12.0F, 0.0F));
+		PartDefinition leftLeg = root.addOrReplaceChild("leg_left", CubeListBuilder.create().texOffs(10, 14).addBox(-1.0F, 0.0F, -3.0F, 3.0F, 6.0F, 3.0F), PartPose.offset(1.0F, 12.0F, 0.0F));
+		rightLeg.addOrReplaceChild("right_leg_lower", CubeListBuilder.create().texOffs(22, 14).addBox(-1.0F, 0.0F, -3.0F, 3.0F, 6.0F, 3.0F), PartPose.offset(0.0F, 6.0F, 0.0F));
+		leftLeg.addOrReplaceChild("left_leg_lower", CubeListBuilder.create().texOffs(22, 14).addBox(-1.0F, 0.0F, -3.0F, 3.0F, 6.0F, 3.0F), PartPose.offset(0.0F, 6.0F, 0.0F));
+		PartDefinition neck1 = root.addOrReplaceChild("neck1", CubeListBuilder.create().texOffs(14, 23).addBox(-1.0F, -2.0F, -4.0F, 2.0F, 2.0F, 4.0F), PartPose.offset(0.0F, 12.0F, -4.0F));
+		PartDefinition neck2 = neck1.addOrReplaceChild("neck2", CubeListBuilder.create().texOffs(14, 23).addBox(-1.0F, -2.0F, -4.0F, 2.0F, 2.0F, 4.0F), PartPose.offset(0.0F, 0.0F, -4.0F));
+		PartDefinition neck3 = neck2.addOrReplaceChild("neck3", CubeListBuilder.create().texOffs(14, 23).addBox(-1.0F, -2.0F, -4.0F, 2.0F, 2.0F, 4.0F), PartPose.offset(0.0F, 0.0F, -4.0F));
+		PartDefinition neck4 = neck3.addOrReplaceChild("neck4", CubeListBuilder.create().texOffs(14, 23).addBox(-1.0F, 0.0F, -4.0F, 2.0F, 2.0F, 4.0F), PartPose.offset(0.0F, -2.0F, -4.0F));
+		PartDefinition neck5 = neck4.addOrReplaceChild("neck5", CubeListBuilder.create().texOffs(14, 23).addBox(-1.0F, 0.0F, -4.0F, 2.0F, 2.0F, 4.0F), PartPose.offset(0.0F, 0.0F, -4.0F));
+		PartDefinition head = neck5.addOrReplaceChild("head", CubeListBuilder.create().texOffs(20, 0).addBox(-1.5F, 0.0F, -3.0F, 3.0F, 3.0F, 3.0F), PartPose.offset(0.0F, 0.0F, -4.0F));
+		head.addOrReplaceChild("bill", CubeListBuilder.create().texOffs(0, 14).addBox(-1.0F, 1.0F, -6.0F, 2.0F, 2.0F, 3.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+		return LayerDefinition.create(meshdefinition, 64, 32);
 	}
 	
-	@Override
-	protected Iterable<ModelPart> headParts() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	protected Iterable<ModelPart> bodyParts() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setupAnim(T p_102618_, float p_102619_, float p_102620_, float p_102621_, float p_102622_,
-			float p_102623_) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/*
 	@Override
 	protected Iterable<ModelPart> headParts() {
 		return ImmutableList.of(this.neck1);
@@ -143,7 +67,7 @@ public class FlamingoModel<T extends Animal> extends AgeableListModel<T> {
 
 	@Override
 	protected Iterable<ModelPart> bodyParts() {
-		return ImmutableList.of(this.body, this.rightLeg, this.leftLeg, this.rightWing, this.leftWing);
+		return ImmutableList.of(this.body, this.legRight, this.legLeft, this.wingRight, this.wingLeft);
 	}
 
 	@Override
@@ -155,6 +79,4 @@ public class FlamingoModel<T extends Animal> extends AgeableListModel<T> {
 		this.neck5.xRot = (float)Math.PI/4;
 		this.head.xRot = (float)Math.PI/4;
 	}
-	*/
-
 }

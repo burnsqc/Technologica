@@ -2,6 +2,7 @@ package com.technologica.client.renderer.entity;
 
 import com.technologica.Technologica;
 import com.technologica.client.model.FlamingoModel;
+import com.technologica.client.model.geom.TechnologicaModelLayers;
 import com.technologica.world.entity.animal.Flamingo;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -12,7 +13,7 @@ public final class FlamingoRenderer extends MobRenderer<Flamingo, FlamingoModel<
 	private static final ResourceLocation FLAMINGO_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/flamingo.png");
 
 	public FlamingoRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new FlamingoModel<>(), 1.1F);
+		super(renderManagerIn, new FlamingoModel<>(renderManagerIn.bakeLayer(TechnologicaModelLayers.FLAMINGO)), 0.5F);
 	}
 
 	@Override
