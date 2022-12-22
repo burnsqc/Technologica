@@ -54,15 +54,15 @@ public class CamelModel<T extends Camel> extends AgeableListModel<T> {
 		body.addOrReplaceChild("hump_rear", CubeListBuilder.create().texOffs(24, 28).addBox(-3.0F, 0.0F, 0.0F, 6.0F, 4.0F, 6.0F), PartPose.offset(0.0F, -14.0F, -2.0F));
 		PartDefinition neckLower = root.addOrReplaceChild("neck_lower", CubeListBuilder.create().texOffs(0, 44).addBox(-2.0F, 5.0F, -6.0F, 4.0F, 5.0F, 10.0F), PartPose.offset(0.0F, 0.0F, -9.0F));
 		PartDefinition neck = neckLower.addOrReplaceChild("neck", CubeListBuilder.create().texOffs(38, 0).addBox(-2.0F, -12.0F, 0.0F, 4.0F, 12.0F, 5.0F), PartPose.offset(0.0F, 10.0F, -6.0F));
-		PartDefinition head = neck.addOrReplaceChild("head", CubeListBuilder.create().texOffs(21, 52).addBox(-3.0F, -17.0F, -2.0F, 6.0F, 5.0F, 7.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
-		head.addOrReplaceChild("nose", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, -16.0F, -7.0F, 4.0F, 4.0F, 5.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
-		head.addOrReplaceChild("ear_left", CubeListBuilder.create().texOffs(0, 9).addBox(2.0F, -17.0F, 3.0F, 2.0F, 2.0F, 1.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
-		head.addOrReplaceChild("ear_right", CubeListBuilder.create().texOffs(0, 9).addBox(-4.0F, -17.0F, 3.0F, 2.0F, 2.0F, 1.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+		PartDefinition head = neck.addOrReplaceChild("head", CubeListBuilder.create().texOffs(21, 52).addBox(-3.0F, -5.0F, -2.0F, 6.0F, 5.0F, 7.0F), PartPose.offset(0.0F, -12.0F, 0.0F));
+		head.addOrReplaceChild("nose", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, -4.0F, -7.0F, 4.0F, 4.0F, 5.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+		head.addOrReplaceChild("ear_left", CubeListBuilder.create().texOffs(0, 9).addBox(2.0F, -5.0F, 3.0F, 2.0F, 2.0F, 1.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+		head.addOrReplaceChild("ear_right", CubeListBuilder.create().texOffs(0, 9).addBox(-4.0F, -5.0F, 3.0F, 2.0F, 2.0F, 1.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
 		root.addOrReplaceChild("right_hind_leg", CubeListBuilder.create().texOffs(40, 41).mirror().addBox(-3.0F, -1.0F, -1.5F, 3.0F, 13.0F, 3.0F), PartPose.offset(5.0F, 12.0F, 8.5F));
 		root.addOrReplaceChild("left_hind_leg", CubeListBuilder.create().texOffs(40, 41).addBox(-1.0F, -1.0F, -1.5F, 3.0F, 13.0F, 3.0F), PartPose.offset(-4.0F, 12.0F, 8.5F));
 		root.addOrReplaceChild("right_front_leg", CubeListBuilder.create().texOffs(40, 41).mirror().addBox(-3.0F, -1.0F, -1.5F, 3.0F, 13.0F, 3.0F), PartPose.offset(5.0F, 12.0F, -6.5F));
 		root.addOrReplaceChild("left_front_leg", CubeListBuilder.create().texOffs(40, 41).addBox(-1.0F, -1.0F, -1.5F, 3.0F, 13.0F, 3.0F), PartPose.offset(-4.0F, 12.0F, -6.5F));
-		body.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(56, 0).addBox(-1.0F, -1.0F, 1.0F, 2.0F, 12.0F, 2.0F), PartPose.offset(0.0F, -5.0F, 2.0F));
+		body.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(56, 0).addBox(-1.0F, -1.0F, 1.0F, 2.0F, 12.0F, 2.0F), PartPose.offset(0.0F, -7.0F, 2.0F));
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
 	
@@ -99,7 +99,6 @@ public class CamelModel<T extends Camel> extends AgeableListModel<T> {
 
 	@Override
 	public void prepareMobModel(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
-		super.prepareMobModel(entityIn, limbSwing, limbSwingAmount, partialTick);
 		float f = Mth.lerp(partialTick, entityIn.yBodyRotO, entityIn.yBodyRot);
 		float f1 = Mth.lerp(partialTick, entityIn.yHeadRotO, entityIn.yHeadRot);
 		
@@ -132,6 +131,10 @@ public class CamelModel<T extends Camel> extends AgeableListModel<T> {
 		this.leftHindLeg.xRot = f14 + f11 * 0.5F * limbSwingAmount * f7;
 		this.rightFrontLeg.xRot = f16;
 		this.leftFrontLeg.xRot = f17;
+		
+		this.neck.xRot = 0.3F + Mth.sin(f10 * limbSwing * 0.5F) / 4;
+		this.head.xRot = -0.3F - Mth.sin(f10 * limbSwing * 0.5F) / 4;
+		
 		if (flag) {
 			this.tail.yRot = Mth.cos(f9 * 0.7F);
 		} else {
