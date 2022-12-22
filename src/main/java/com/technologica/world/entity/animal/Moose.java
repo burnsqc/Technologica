@@ -1,14 +1,16 @@
 package com.technologica.world.entity.animal;
 
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.level.Level;
-import net.minecraft.server.level.ServerLevel;
 
 public class Moose extends AbstractHorse {
+
+	public int earCounter;
 
 	public Moose(EntityType<? extends Moose> type, Level worldIn) {
 		super(type, worldIn);
