@@ -76,13 +76,11 @@ public class DeerModel<T extends AbstractHorse> extends AgeableListModel<T> {
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = QuadrupedModel.createBodyMesh(6, CubeDeformation.NONE);
 		PartDefinition body = meshdefinition.getRoot();
-
 		PartDefinition partdefinition1 = body.addOrReplaceChild("neck", CubeListBuilder.create().texOffs(32, 0).addBox(-2.0F, -4.0F, -3.0F, 4.0F, 8.0F, 6.0F), PartPose.offset(0.0F, 4.0F, -8.0F));
 		PartDefinition head = partdefinition1.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 24).addBox(-2.5F, 0.0F, -5.0F, 5.0F, 5.0F, 5.0F), PartPose.offset(0.0F, -4.0F, 3.0F));
 		head.addOrReplaceChild("nose", CubeListBuilder.create().texOffs(0, 0).addBox(-1.5F, 2.0F, -9.0F, 3.0F, 3.0F, 4.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
 		head.addOrReplaceChild("ear_right", CubeListBuilder.create().texOffs(0, 7).addBox(-3.0F, -2.0F, -1.0F, 3.0F, 2.0F, 1.0F), PartPose.offset(-2.5F, 2.0F, 0.0F));
 		head.addOrReplaceChild("ear_left", CubeListBuilder.create().texOffs(0, 7).addBox(0.0F, -2.0F, -1.0F, 3.0F, 2.0F, 1.0F), PartPose.offset(2.5F, 2.0F, 0.0F));
-
 		PartDefinition antlerLeft1 = head.addOrReplaceChild("antlerLeft1", CubeListBuilder.create().texOffs(0, 10).addBox(0.0F, -5.0F, -1.0F, 1.0F, 5.0F, 1.0F), PartPose.offset(0.5F, 0.0F, -2.0F));
 		PartDefinition antlerRight1 = head.addOrReplaceChild("antlerRight1", CubeListBuilder.create().texOffs(0, 10).addBox(-1.0F, -5.0F, -1.0F, 1.0F, 5.0F, 1.0F), PartPose.offset(-0.5F, 0.0F, -2.0F));
 		PartDefinition antlerLeft2 = antlerLeft1.addOrReplaceChild("antlerLeft2", CubeListBuilder.create().texOffs(0, 10).addBox(0.0F, -5.0F, -1.0F, 1.0F, 5.0F, 1.0F), PartPose.offset(0.0F, -5.0F, 0.0F));
@@ -95,9 +93,7 @@ public class DeerModel<T extends AbstractHorse> extends AgeableListModel<T> {
 		antlerRight2.addOrReplaceChild("antlerRight5", CubeListBuilder.create().texOffs(0, 10).addBox(0.0F, -4.0F, 0.0F, 1.0F, 4.0F, 1.0F), PartPose.offset(0.0F, -1.0F, -1.0F));
 		antlerLeft2.addOrReplaceChild("antlerLeft6", CubeListBuilder.create().texOffs(0, 10).addBox(-1.0F, -4.0F, 0.0F, 1.0F, 4.0F, 1.0F), PartPose.offset(0.0F, -3.0F, -1.0F));
 		antlerRight2.addOrReplaceChild("antlerRight6", CubeListBuilder.create().texOffs(0, 10).addBox(0.0F, -4.0F, 0.0F, 1.0F, 4.0F, 1.0F), PartPose.offset(0.0F, -3.0F, -1.0F));
-
 		body.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -4.0F, -8.0F, 8.0F, 8.0F, 16.0F), PartPose.offset(0.0F, 8.0F, 0.0F));
-
 		PartDefinition legUpperBackRight = body.addOrReplaceChild("legUpperBackRight", CubeListBuilder.create().texOffs(52, 0).mirror().addBox(-2.0F, -3.0F, -3.0F, 3.0F, 7.0F, 3.0F), PartPose.offset(-2.0F, 12.0F, 8.0F));
 		PartDefinition legUpperBackLeft = body.addOrReplaceChild("legUpperBackLeft", CubeListBuilder.create().texOffs(52, 0).addBox(-2.0F, -3.0F, -3.0F, 3.0F, 7.0F, 3.0F), PartPose.offset(3.0F, 12.0F, 8.0F));
 		PartDefinition legUpperFrontRight = body.addOrReplaceChild("legUpperFrontRight", CubeListBuilder.create().texOffs(52, 10).mirror().addBox(-2.0F, -3.0F, 0.0F, 3.0F, 9.0F, 3.0F), PartPose.offset(-2.0F, 12.0F, -8.0F));
@@ -106,7 +102,6 @@ public class DeerModel<T extends AbstractHorse> extends AgeableListModel<T> {
 		legUpperBackLeft.addOrReplaceChild("legLowerBackLeft", CubeListBuilder.create().texOffs(52, 22).addBox(-2.0F, 0.0F, -3.0F, 3.0F, 8.0F, 3.0F), PartPose.offset(0.0F, 4.0F, 0.0F));
 		legUpperFrontRight.addOrReplaceChild("legLowerFrontRight", CubeListBuilder.create().texOffs(52, 33).mirror().addBox(-2.0F, 0.0F, 0.0F, 3.0F, 6.0F, 3.0F), PartPose.offset(0.0F, 6.0F, 0.0F));
 		legUpperFrontLeft.addOrReplaceChild("legLowerFrontLeft", CubeListBuilder.create().texOffs(52, 33).addBox(-2.0F, 0.0F, 0.0F, 3.0F, 6.0F, 3.0F), PartPose.offset(0.0F, 6.0F, 0.0F));
-
 		body.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(8, 7).addBox(-1.0F, 0.0F, -2.0F, 2.0F, 4.0F, 2.0F), PartPose.offset(0.0F, 5.0F, 8.0F));
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
@@ -192,6 +187,5 @@ public class DeerModel<T extends AbstractHorse> extends AgeableListModel<T> {
 			this.earLeft.yRot = 0.0F;
 			this.earRight.yRot = 0.0F;
 		}
-
 	}
 }

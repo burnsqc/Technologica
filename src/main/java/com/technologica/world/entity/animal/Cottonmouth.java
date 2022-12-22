@@ -1,12 +1,13 @@
 package com.technologica.world.entity.animal;
 
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.level.Level;
-import net.minecraft.server.level.ServerLevel;
 
 public class Cottonmouth extends Animal {
 
@@ -31,6 +32,11 @@ public class Cottonmouth extends Animal {
 				.add(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get())
 				.add(net.minecraftforge.common.ForgeMod.NAMETAG_DISTANCE.get())
 				.add(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get());
+	}
+	
+	@Override
+	protected void registerGoals() {
+		this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 0.8D));
 	}
 
 }

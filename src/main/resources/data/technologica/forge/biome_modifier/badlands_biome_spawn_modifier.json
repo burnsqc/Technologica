@@ -14,6 +14,18 @@
       "weight": 100,
       "minCount": 1, 
       "maxCount": 3 
+    },
+    {
+      "type": "technologica:lizard",
+      "weight": 100,
+      "minCount": 1, 
+      "maxCount": 3 
+    },
+    {
+      "type": "technologica:vulture",
+      "weight": 100,
+      "minCount": 1, 
+      "maxCount": 3 
     }
   ]
 }
