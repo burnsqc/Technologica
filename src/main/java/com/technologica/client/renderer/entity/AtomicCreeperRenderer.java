@@ -35,9 +35,6 @@ public class AtomicCreeperRenderer extends MobRenderer<AtomicCreeper, CreeperMod
 		return (int) (f * 10.0F) % 2 == 0 ? 0.0F : Mth.clamp(f, 0.5F, 1.0F);
 	}
 
-	/**
-	 * Returns the location of an entity's texture.
-	 */
 	@Override
 	public ResourceLocation getTextureLocation(AtomicCreeper entity) {
 		return ATOMIC_CREEPER_TEXTURES;
