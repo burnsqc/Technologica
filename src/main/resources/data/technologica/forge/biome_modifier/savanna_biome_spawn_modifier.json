@@ -3,8 +3,26 @@
   "biomes": "savanna",
   "spawners":
   [
+  	{
+      "type": "technologica:elephant",
+      "weight": 100,
+      "minCount": 1, 
+      "maxCount": 3 
+    },
+    {
+      "type": "technologica:giraffe",
+      "weight": 100,
+      "minCount": 1, 
+      "maxCount": 3 
+    },
     {
       "type": "technologica:lion",
+      "weight": 100,
+      "minCount": 1, 
+      "maxCount": 3 
+    },
+    {
+      "type": "technologica:ostrich",
       "weight": 100,
       "minCount": 1, 
       "maxCount": 3 
