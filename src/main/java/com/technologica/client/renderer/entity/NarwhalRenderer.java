@@ -2,6 +2,7 @@ package com.technologica.client.renderer.entity;
 
 import com.technologica.Technologica;
 import com.technologica.client.model.NarwhalModel;
+import com.technologica.client.model.geom.TechnologicaModelLayers;
 import com.technologica.world.entity.animal.Narwhal;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -12,7 +13,7 @@ public final class NarwhalRenderer extends MobRenderer<Narwhal, NarwhalModel<Nar
 	private static final ResourceLocation NARWHAL_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/narwhal.png");
 
 	public NarwhalRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new NarwhalModel<>(), 1.1F);
+		super(renderManagerIn, new NarwhalModel<>(renderManagerIn.bakeLayer(TechnologicaModelLayers.NARWHAL)), 1.1F);
 	}
 
 	@Override
