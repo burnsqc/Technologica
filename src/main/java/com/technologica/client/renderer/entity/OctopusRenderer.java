@@ -2,6 +2,7 @@ package com.technologica.client.renderer.entity;
 
 import com.technologica.Technologica;
 import com.technologica.client.model.OctopusModel;
+import com.technologica.client.model.geom.TechnologicaModelLayers;
 import com.technologica.world.entity.animal.Octopus;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -12,7 +13,7 @@ public final class OctopusRenderer extends MobRenderer<Octopus, OctopusModel<Oct
 	private static final ResourceLocation OCTOPUS_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/octopus.png");
 
 	public OctopusRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new OctopusModel<>(), 1.1F);
+		super(renderManagerIn, new OctopusModel<>(renderManagerIn.bakeLayer(TechnologicaModelLayers.OCTOPUS)), 1.1F);
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package com.technologica.client.model;
 
+import com.google.common.collect.ImmutableList;
+
 import net.minecraft.client.model.ListModel;
 import net.minecraft.client.model.QuadrupedModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -12,11 +14,8 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.world.entity.Entity;
 
 public class OctopusModel<T extends Entity> extends ListModel<T> {
-	/*
 	private final ModelPart body;
 	private final ModelPart head;
-	private final ModelPart eyeLeft;
-	private final ModelPart eyeRight;
 	private final ModelPart legBackBackLeftUpper;
 	private final ModelPart legBackBackLeftLower;
 	private final ModelPart legBackBackRightUpper;
@@ -33,103 +32,55 @@ public class OctopusModel<T extends Entity> extends ListModel<T> {
 	private final ModelPart legFrontFrontRightLower;
 	private final ModelPart legFrontFrontLeftUpper;
 	private final ModelPart legFrontFrontLeftLower;
-	*/
-	public OctopusModel() {
-		/*
-		this.texWidth = 64;
-		this.texHeight = 32;
 
-		this.body = new ModelPart(this, 0, 0);
-		this.body.setPos(0.0F, 17.0F, 1.0F);
-		this.body.addBox(-3.0F, -6.0F, -3.0F, 6.0F, 8.0F, 6.0F);
-		
-		this.head = new ModelPart(this, 24, 0);
-		this.head.setPos(0.0F, -6.0F, -3.0F);
-		this.head.addBox(-4.0F, -8.0F, 0.0F, 8.0F, 8.0F, 8.0F);
-		this.body.addChild(this.head);
-		
-		this.eyeLeft = new ModelPart(this, 0, 0);
-		this.eyeLeft.addBox(2.0F, -6.0F, -4.0F, 1.0F, 2.0F, 1.0F, true);
-		this.body.addChild(this.eyeLeft);
-		
-		this.eyeRight = new ModelPart(this, 0, 0);
-		this.eyeRight.addBox(-3.0F, -6.0F, -4.0F, 1.0F, 2.0F, 1.0F);
-		this.body.addChild(this.eyeRight);
-		
-		this.legBackBackLeftUpper = new ModelPart(this, 0, 14);
-		this.legBackBackLeftUpper.setPos(0.0F, 19.0F, 0.0F);
-		this.legBackBackLeftUpper.addBox(-1.5F, 0.0F, 1.0F, 3.0F, 8.0F, 3.0F);
-		
-		this.legBackBackLeftLower = new ModelPart(this, 12, 14);
-		this.legBackBackLeftLower.setPos(0.0F, 8.0F, 2.5F);
-		this.legBackBackLeftLower.addBox(-1.0F, -1.0F, -1.0F, 2.0F, 9.0F, 2.0F);
-		this.legBackBackLeftUpper.addChild(this.legBackBackLeftLower);
-		
-		this.legBackBackRightUpper = new ModelPart(this, 0, 14);
-		this.legBackBackRightUpper.setPos(0.0F, 19.0F, 0.0F);
-		this.legBackBackRightUpper.addBox(-1.5F, 0.0F, 1.0F, 3.0F, 8.0F, 3.0F);
-		
-		this.legBackBackRightLower = new ModelPart(this, 12, 14);
-		this.legBackBackRightLower.setPos(0.0F, 8.0F, 2.5F);
-		this.legBackBackRightLower.addBox(-1.0F, -1.0F, -1.0F, 2.0F, 9.0F, 2.0F);
-		this.legBackBackRightUpper.addChild(this.legBackBackRightLower);
-
-		this.legBackLeftUpper = new ModelPart(this, 0, 14);
-		this.legBackLeftUpper.setPos(0.0F, 19.0F, 0.0F);
-		this.legBackLeftUpper.addBox(-1.5F, 0.0F, 1.0F, 3.0F, 8.0F, 3.0F);
-		
-		this.legBackLeftLower = new ModelPart(this, 12, 14);
-		this.legBackLeftLower.setPos(0.0F, 8.0F, 2.5F);
-		this.legBackLeftLower.addBox(-1.0F, -1.0F, -1.0F, 2.0F, 9.0F, 2.0F);
-		this.legBackLeftUpper.addChild(this.legBackLeftLower);
-
-		this.legBackRightUpper = new ModelPart(this, 0, 14);
-		this.legBackRightUpper.setPos(0.0F, 19.0F, 0.0F);
-		this.legBackRightUpper.addBox(-1.5F, 0.0F, 1.0F, 3.0F, 8.0F, 3.0F);
-		
-		this.legBackRightLower = new ModelPart(this, 12, 14);
-		this.legBackRightLower.setPos(0.0F, 8.0F, 2.5F);
-		this.legBackRightLower.addBox(-1.0F, -1.0F, -1.0F, 2.0F, 9.0F, 2.0F);
-		this.legBackRightUpper.addChild(this.legBackRightLower);
-
-		this.legFrontLeftUpper = new ModelPart(this, 0, 14);
-		this.legFrontLeftUpper.setPos(0.0F, 19.0F, 0.0F);
-		this.legFrontLeftUpper.addBox(-1.5F, 0.0F, 1.0F, 3.0F, 8.0F, 3.0F);
-		
-		this.legFrontLeftLower = new ModelPart(this, 12, 14);
-		this.legFrontLeftLower.setPos(0.0F, 8.0F, 2.5F);
-		this.legFrontLeftLower.addBox(-1.0F, -1.0F, -1.0F, 2.0F, 9.0F, 2.0F);
-		this.legFrontLeftUpper.addChild(this.legFrontLeftLower);
-
-		this.legFrontRightUpper = new ModelPart(this, 0, 14);
-		this.legFrontRightUpper.setPos(0.0F, 19.0F, 0.0F);
-		this.legFrontRightUpper.addBox(-1.5F, 0.0F, 1.0F, 3.0F, 8.0F, 3.0F);
-		
-		this.legFrontRightLower = new ModelPart(this, 12, 14);
-		this.legFrontRightLower.setPos(0.0F, 8.0F, 2.5F);
-		this.legFrontRightLower.addBox(-1.0F, -1.0F, -1.0F, 2.0F, 9.0F, 2.0F);
-		this.legFrontRightUpper.addChild(this.legFrontRightLower);
-
-		this.legFrontFrontLeftUpper = new ModelPart(this, 0, 14);
-		this.legFrontFrontLeftUpper.setPos(0.0F, 19.0F, 0.0F);
-		this.legFrontFrontLeftUpper.addBox(-1.5F, 0.0F, 1.0F, 3.0F, 8.0F, 3.0F);
-		
-		this.legFrontFrontLeftLower = new ModelPart(this, 12, 14);
-		this.legFrontFrontLeftLower.setPos(0.0F, 8.0F, 2.5F);
-		this.legFrontFrontLeftLower.addBox(-1.0F, -1.0F, -1.0F, 2.0F, 9.0F, 2.0F);
-		this.legFrontFrontLeftUpper.addChild(this.legFrontFrontLeftLower);
-
-		this.legFrontFrontRightUpper = new ModelPart(this, 0, 14);
-		this.legFrontFrontRightUpper.setPos(0.0F, 19.0F, 0.0F);
-		this.legFrontFrontRightUpper.addBox(-1.5F, 0.0F, 1.0F, 3.0F, 8.0F, 3.0F);
-		
-		this.legFrontFrontRightLower = new ModelPart(this, 12, 14);
-		this.legFrontFrontRightLower.setPos(0.0F, 8.0F, 2.5F);
-		this.legFrontFrontRightLower.addBox(-1.0F, -1.0F, -1.0F, 2.0F, 9.0F, 2.0F);
-		this.legFrontFrontRightUpper.addChild(this.legFrontFrontRightLower);
-		*/
+	public OctopusModel(ModelPart modelPartIn) {
+		this.body = modelPartIn.getChild("body");
+		this.head = this.body.getChild("head");
+		this.legBackBackLeftUpper = modelPartIn.getChild("legBackBackLeftUpper");
+		this.legBackBackRightUpper = modelPartIn.getChild("legBackBackRightUpper");
+		this.legBackLeftUpper = modelPartIn.getChild("legBackLeftUpper");
+		this.legBackRightUpper = modelPartIn.getChild("legBackRightUpper");
+		this.legFrontLeftUpper = modelPartIn.getChild("legFrontLeftUpper");
+		this.legFrontRightUpper = modelPartIn.getChild("legFrontRightUpper");
+		this.legFrontFrontLeftUpper = modelPartIn.getChild("legFrontFrontLeftUpper");
+		this.legFrontFrontRightUpper = modelPartIn.getChild("legFrontFrontRightUpper");
+		this.legBackBackLeftLower = legBackBackLeftUpper.getChild("legBackBackLeftLower");
+		this.legBackBackRightLower = legBackBackRightUpper.getChild("legBackBackRightLower");
+		this.legBackLeftLower = legBackLeftUpper.getChild("legBackLeftLower");
+		this.legBackRightLower = legBackRightUpper.getChild("legBackRightLower");
+		this.legFrontLeftLower = legFrontLeftUpper.getChild("legFrontLeftLower");
+		this.legFrontRightLower = legFrontRightUpper.getChild("legFrontRightLower");
+		this.legFrontFrontLeftLower = legFrontFrontLeftUpper.getChild("legFrontFrontLeftLower");
+		this.legFrontFrontRightLower = legFrontFrontRightUpper.getChild("legFrontFrontRightLower");
 	}
-	/*
+
+	public static LayerDefinition createBodyLayer() {
+		MeshDefinition meshdefinition = QuadrupedModel.createBodyMesh(6, CubeDeformation.NONE);
+		PartDefinition root = meshdefinition.getRoot();
+		PartDefinition body = root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-3.0F, -6.0F, -3.0F, 6.0F, 8.0F, 6.0F), PartPose.offset(0.0F, 17.0F, 1.0F));
+		body.addOrReplaceChild("head", CubeListBuilder.create().texOffs(24, 0).addBox(-4.0F, -8.0F, 0.0F, 8.0F, 8.0F, 8.0F), PartPose.offset(0.0F, -6.0F, -3.0F));
+		body.addOrReplaceChild("eye_left", CubeListBuilder.create().texOffs(0, 0).mirror().addBox(2.0F, -6.0F, -4.0F, 1.0F, 2.0F, 1.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+		body.addOrReplaceChild("eye_right", CubeListBuilder.create().texOffs(0, 0).addBox(-3.0F, -6.0F, -4.0F, 1.0F, 2.0F, 1.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+		PartDefinition legBackBackLeftUpper = root.addOrReplaceChild("legBackBackLeftUpper", CubeListBuilder.create().texOffs(0, 14).addBox(-1.5F, 0.0F, 1.0F, 3.0F, 8.0F, 3.0F), PartPose.offset(0.0F, 19.0F, 0.0F));
+		PartDefinition legBackBackRightUpper = root.addOrReplaceChild("legBackBackRightUpper", CubeListBuilder.create().texOffs(0, 14).addBox(-1.5F, 0.0F, 1.0F, 3.0F, 8.0F, 3.0F), PartPose.offset(0.0F, 19.0F, 0.0F));
+		PartDefinition legBackLeftUpper = root.addOrReplaceChild("legBackLeftUpper", CubeListBuilder.create().texOffs(0, 14).addBox(-1.5F, 0.0F, 1.0F, 3.0F, 8.0F, 3.0F), PartPose.offset(0.0F, 19.0F, 0.0F));
+		PartDefinition legBackRightUpper = root.addOrReplaceChild("legBackRightUpper", CubeListBuilder.create().texOffs(0, 14).addBox(-1.5F, 0.0F, 1.0F, 3.0F, 8.0F, 3.0F), PartPose.offset(0.0F, 19.0F, 0.0F));
+		PartDefinition legFrontLeftUpper = root.addOrReplaceChild("legFrontLeftUpper", CubeListBuilder.create().texOffs(0, 14).addBox(-1.5F, 0.0F, 1.0F, 3.0F, 8.0F, 3.0F), PartPose.offset(0.0F, 19.0F, 0.0F));
+		PartDefinition legFrontRightUpper = root.addOrReplaceChild("legFrontRightUpper", CubeListBuilder.create().texOffs(0, 14).addBox(-1.5F, 0.0F, 1.0F, 3.0F, 8.0F, 3.0F), PartPose.offset(0.0F, 19.0F, 0.0F));
+		PartDefinition legFrontFrontLeftUpper = root.addOrReplaceChild("legFrontFrontLeftUpper", CubeListBuilder.create().texOffs(0, 14).addBox(-1.5F, 0.0F, 1.0F, 3.0F, 8.0F, 3.0F), PartPose.offset(0.0F, 19.0F, 0.0F));
+		PartDefinition legFrontFrontRightUpper = root.addOrReplaceChild("legFrontFrontRightUpper", CubeListBuilder.create().texOffs(0, 14).addBox(-1.5F, 0.0F, 1.0F, 3.0F, 8.0F, 3.0F), PartPose.offset(0.0F, 19.0F, 0.0F));
+		legBackBackLeftUpper.addOrReplaceChild("legBackBackLeftLower", CubeListBuilder.create().texOffs(12, 14).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 9.0F, 2.0F), PartPose.offset(0.0F, 8.0F, 2.5F));
+		legBackBackRightUpper.addOrReplaceChild("legBackBackRightLower", CubeListBuilder.create().texOffs(12, 14).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 9.0F, 2.0F), PartPose.offset(0.0F, 8.0F, 2.5F));
+		legBackLeftUpper.addOrReplaceChild("legBackLeftLower", CubeListBuilder.create().texOffs(12, 14).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 9.0F, 2.0F), PartPose.offset(0.0F, 8.0F, 2.5F));
+		legBackRightUpper.addOrReplaceChild("legBackRightLower", CubeListBuilder.create().texOffs(12, 14).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 9.0F, 2.0F), PartPose.offset(0.0F, 8.0F, 2.5F));
+		legFrontLeftUpper.addOrReplaceChild("legFrontLeftLower", CubeListBuilder.create().texOffs(12, 14).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 9.0F, 2.0F), PartPose.offset(0.0F, 8.0F, 2.5F));
+		legFrontRightUpper.addOrReplaceChild("legFrontRightLower", CubeListBuilder.create().texOffs(12, 14).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 9.0F, 2.0F), PartPose.offset(0.0F, 8.0F, 2.5F));
+		legFrontFrontLeftUpper.addOrReplaceChild("legFrontFrontLeftLower", CubeListBuilder.create().texOffs(12, 14).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 9.0F, 2.0F), PartPose.offset(0.0F, 8.0F, 2.5F));
+		legFrontFrontRightUpper.addOrReplaceChild("legFrontFrontRightLower", CubeListBuilder.create().texOffs(12, 14).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 9.0F, 2.0F), PartPose.offset(0.0F, 8.0F, 2.5F));
+		return LayerDefinition.create(meshdefinition, 64, 32);
+	}
+	
+	@Override
 	public Iterable<ModelPart> parts() {
 		return ImmutableList.of(this.body, this.legBackBackRightUpper, this.legBackBackLeftUpper, this.legBackRightUpper, this.legBackLeftUpper, this.legFrontRightUpper, this.legFrontLeftUpper, this.legFrontFrontRightUpper, this.legFrontFrontLeftUpper);
 	}
@@ -176,39 +127,10 @@ public class OctopusModel<T extends Entity> extends ListModel<T> {
 		this.legFrontFrontRightLower.zRot = 0;//-(float) Math.PI / 4;
 	}
 
+
 	public void setRotationAngle(ModelPart modelRenderer, float x, float y, float z) {
 		modelRenderer.xRot = x;
 		modelRenderer.yRot = y;
 		modelRenderer.zRot = z;
-	}
-	*/
-
-	public static LayerDefinition createBodyLayer() {
-		MeshDefinition meshdefinition = QuadrupedModel.createBodyMesh(6, CubeDeformation.NONE);
-		PartDefinition partdefinition = meshdefinition.getRoot();
-		
-		partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 14).addBox(-2.0F, -4.0F, -4.0F, 4.0F, 4.0F, 4.0F), PartPose.offset(0.0F, 21.0F, -4.0F));
-		partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-3.0F, 10.0F, -6.0F, 6.0F, 6.0F, 8.0F), PartPose.offset(0.0F, 6.0F, 2.0F));
-		
-		partdefinition.addOrReplaceChild("rightHindLeg", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, 1.0F, -1.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(-2.0F, 21.0F, 3.0F));
-		partdefinition.addOrReplaceChild("leftHindLeg", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, 1.0F, -1.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(2.0F, 21.0F, 3.0F));
-		partdefinition.addOrReplaceChild("rightFrontLeg", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, 1.0F, -1.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(-2.0F, 21.0F, -3.0F));
-		partdefinition.addOrReplaceChild("leftFrontLeg", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, 1.0F, -1.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(2.0F, 21.0F, -3.0F));
-		partdefinition.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(0, 22).addBox(-2.0F, 0.0F, 0.0F, 4.0F, 1.0F, 6.0F), PartPose.offset(0.0F, 14.0F, 2.0F));
-		
-		return LayerDefinition.create(meshdefinition, 32, 32);
-	}
-	
-	@Override
-	public Iterable<ModelPart> parts() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setupAnim(T p_102618_, float p_102619_, float p_102620_, float p_102621_, float p_102622_,
-			float p_102623_) {
-		// TODO Auto-generated method stub
-		
 	}
 }
