@@ -2,6 +2,7 @@ package com.technologica.client.renderer.entity;
 
 import com.technologica.Technologica;
 import com.technologica.client.model.SharkModel;
+import com.technologica.client.model.geom.TechnologicaModelLayers;
 import com.technologica.world.entity.animal.Shark;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -12,9 +13,10 @@ public class SharkRenderer extends MobRenderer<Shark, SharkModel<Shark>> {
 	private static final ResourceLocation SHARK_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/shark.png");
 
 	public SharkRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new SharkModel<>(), 0.7F);
+		super(renderManagerIn, new SharkModel<>(renderManagerIn.bakeLayer(TechnologicaModelLayers.SHARK)), 0.7F);
 	}
 
+	@Override
 	public ResourceLocation getTextureLocation(Shark entity) {
 		return SHARK_TEXTURE;
 	}
