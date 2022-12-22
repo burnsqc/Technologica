@@ -13,7 +13,7 @@ public final class CamelRenderer extends MobRenderer<Camel, CamelModel<Camel>> {
 	private static final ResourceLocation CAMEL_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/camel.png");
 
 	public CamelRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new CamelModel<>(renderManagerIn.bakeLayer(TechnologicaModelLayers.CAMEL)), 1.1F);
+		super(renderManagerIn, new CamelModel<>(renderManagerIn.bakeLayer(TechnologicaModelLayers.CAMEL)), 0.7F);
 	}
 
 	@Override
