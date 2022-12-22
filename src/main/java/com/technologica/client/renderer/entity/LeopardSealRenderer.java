@@ -2,6 +2,7 @@ package com.technologica.client.renderer.entity;
 
 import com.technologica.Technologica;
 import com.technologica.client.model.LeopardSealModel;
+import com.technologica.client.model.geom.TechnologicaModelLayers;
 import com.technologica.world.entity.animal.LeopardSeal;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -12,7 +13,7 @@ public final class LeopardSealRenderer extends MobRenderer<LeopardSeal, LeopardS
 	private static final ResourceLocation LEOPARD_SEAL_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/leopard_seal.png");
 
 	public LeopardSealRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new LeopardSealModel<>(), 1.1F);
+		super(renderManagerIn, new LeopardSealModel<>(renderManagerIn.bakeLayer(TechnologicaModelLayers.LEOPARD_SEAL)), 1.1F);
 	}
 
 	@Override
