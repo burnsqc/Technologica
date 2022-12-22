@@ -30,7 +30,7 @@ public class CamelModel<T extends Camel> extends AgeableListModel<T> {
 	protected final ModelPart earRight;
 	
 	public CamelModel(ModelPart modelPartIn) {
-		super(true, 16.2F, 1.36F, 2.7272F, 2.0F, 20.0F);
+		super(true, 21.0F, 1.36F, 2.7272F, 2.0F, 24.0F);
 		this.body = modelPartIn.getChild("body");
 		this.humpFront = body.getChild("hump_front");
 		this.humpRear = body.getChild("hump_rear");
@@ -112,41 +112,25 @@ public class CamelModel<T extends Camel> extends AgeableListModel<T> {
 			f3 = -20.0F;
 		}
 
-		float f6 = entityIn.getStandAnim(partialTick);
-		float f7 = 1.0F - f6;
-		boolean flag = entityIn.tailCounter != 0;
 		float f9 = entityIn.tickCount + partialTick;
-		
 		this.body.xRot = 0.0F;
 		this.neckLower.yRot = f3 * ((float) Math.PI / 180F);
 		float f10 = entityIn.isInWater() ? 0.2F : 1.0F;
 		float f11 = Mth.cos(f10 * limbSwing * 0.6662F + (float) Math.PI);
 		float f12 = f11 * 0.8F * limbSwingAmount;
-		this.body.xRot = f6 * (-(float) Math.PI / 4F) + f7 * this.body.xRot;
-		float f14 = 0.2617994F * f6;
-		float f15 = Mth.cos(f9 * 0.6F + (float) Math.PI);
-		float f16 = ((-(float) Math.PI / 3F) + f15) * f6 + f12 * f7;
-		float f17 = ((-(float) Math.PI / 3F) - f15) * f6 - f12 * f7;
-		this.rightHindLeg.xRot = f14 - f11 * 0.5F * limbSwingAmount * f7;
-		this.leftHindLeg.xRot = f14 + f11 * 0.5F * limbSwingAmount * f7;
-		this.rightFrontLeg.xRot = f16;
-		this.leftFrontLeg.xRot = f17;
+		this.rightHindLeg.xRot = -f11 * 0.5F * limbSwingAmount;
+		this.leftHindLeg.xRot = f11 * 0.5F * limbSwingAmount;
+		this.rightFrontLeg.xRot = f12;
+		this.leftFrontLeg.xRot = -f12;
 		
-		this.neck.xRot = 0.3F + Mth.sin(f10 * limbSwing * 0.5F) / 4;
-		this.head.xRot = -0.3F - Mth.sin(f10 * limbSwing * 0.5F) / 4;
+		this.neck.xRot = 0.25F + Mth.sin(f10 * limbSwing * 0.5F) / 4;
+		this.head.xRot = -0.25F - Mth.sin(f10 * limbSwing * 0.5F) / 4;
 		
+		boolean flag = entityIn.tailCounter != 0;
 		if (flag) {
 			this.tail.yRot = Mth.cos(f9 * 0.7F);
 		} else {
 			this.tail.yRot = 0.0F;
 		}
-
-		boolean flag1 = entityIn.isBaby();
-		this.rightHindLeg.visible = !flag1;
-		this.leftHindLeg.visible = !flag1;
-		this.rightFrontLeg.visible = !flag1;
-		this.leftFrontLeg.visible = !flag1;
-		
-		this.body.y = flag1 ? 10.8F : 0.0F;
 	}
 }
