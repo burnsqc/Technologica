@@ -1,0 +1,17 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": [
+    "minecraft:birch_forest",
+    "minecraft:snowy_slopes",
+    "minecraft:snowy_taiga",
+    "minecraft:stony_peaks",
+    "minecraft:windswept_forest",
+    "minecraft:windswept_hills"
+  ],
+  "spawners": {
+    "type": "technologica:turkey",
+    "maxCount": 2,
+    "minCount": 1,
+    "weight": 100
+  }
+}

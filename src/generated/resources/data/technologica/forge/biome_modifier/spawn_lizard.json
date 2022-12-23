@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "minecraft:badlands",
+  "spawners": {
+    "type": "technologica:lizard",
+    "maxCount": 5,
+    "minCount": 3,
+    "weight": 100
+  }
+}

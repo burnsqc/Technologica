@@ -1,22 +1,15 @@
 package com.technologica.world.entity.animal;
 
-import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.WaterAnimal;
 import net.minecraft.world.level.Level;
-import net.minecraft.server.level.ServerLevel;
 
-public class Stingray extends Animal {
+public class Stingray extends WaterAnimal {
 
 	public Stingray(EntityType<? extends Stingray> type, Level worldIn) {
 		super(type, worldIn);
-	}
-
-	@Override
-	public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob mate) {
-		return null;
 	}
 	
 	public static AttributeSupplier.Builder registerAttributes() {
@@ -32,10 +25,4 @@ public class Stingray extends Animal {
 				.add(net.minecraftforge.common.ForgeMod.NAMETAG_DISTANCE.get())
 				.add(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get());
 	}
-	
-	@Override
-	public boolean canBreatheUnderwater() {
-		return true;
-	}
-
 }
