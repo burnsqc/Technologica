@@ -1,0 +1,25 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "mangrove_swamp",
+  "spawners":
+  [
+    {
+      "type": "technologica:jaguar",
+      "weight": 100,
+      "minCount": 1, 
+      "maxCount": 1 
+    },
+    {
+      "type": "technologica:poison_dart_frog",
+      "weight": 100,
+      "minCount": 1, 
+      "maxCount": 1 
+    },
+    {
+      "type": "technologica:stingray",
+      "weight": 100,
+      "minCount": 1, 
+      "maxCount": 1 
+    }
+  ]
+}

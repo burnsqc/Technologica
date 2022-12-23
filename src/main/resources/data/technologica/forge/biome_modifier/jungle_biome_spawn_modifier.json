@@ -4,7 +4,7 @@
   "spawners":
   [
     {
-      "type": "technologica:sloth",
+      "type": "technologica:gorilla",
       "weight": 100,
       "minCount": 1, 
       "maxCount": 3 

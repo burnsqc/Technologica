@@ -1,20 +1,19 @@
 package com.technologica.world.entity.animal;
 
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.WaterAnimal;
 import net.minecraft.world.level.Level;
-import net.minecraft.server.level.ServerLevel;
 
-public class Octopus extends Animal {
+public class Octopus extends WaterAnimal {
 
 	public Octopus(EntityType<? extends Octopus> type, Level worldIn) {
 		super(type, worldIn);
 	}
 
-	@Override
 	public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob mate) {
 		return null;
 	}
