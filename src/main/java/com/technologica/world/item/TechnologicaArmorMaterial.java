@@ -28,6 +28,10 @@ public enum TechnologicaArmorMaterial implements ArmorMaterial {
 	
 	SCUBA("scuba", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
 	      return Ingredient.of(TechnologicaItems.RUBBER.get());
+	   }),
+	
+	HAZMAT("hazmat", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+	      return Ingredient.of(TechnologicaItems.RUBBER.get());
 	   });
 	
 	private static final int[] MAX_DAMAGE_ARRAY = new int[] { 13, 15, 16, 11 };

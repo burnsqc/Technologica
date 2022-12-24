@@ -14,11 +14,13 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class RadioactiveOreBlockEntity extends BlockEntity {
 
@@ -47,6 +49,20 @@ public class RadioactiveOreBlockEntity extends BlockEntity {
 						atomicCreeper.moveTo(livingentity.getX(), livingentity.getY(), livingentity.getZ());
 						livingentity.setRemoved(Entity.RemovalReason.DISCARDED);
 						p_221914_.addFreshEntity(atomicCreeper);
+					} else if (livingentity instanceof Player) {
+						Player player = (Player) livingentity;
+						boolean fullHazmatSuit = true;
+						Iterable<ItemStack> armor = player.getArmorSlots();
+
+						for (ItemStack piece : armor) {
+							if (!ForgeRegistries.ITEMS.getKey(piece.getItem()).getPath().contains("hazmat")) {
+								fullHazmatSuit = false;
+							}
+						}
+						
+						if (!fullHazmatSuit) {
+							livingentity.addEffect(instance);
+						}
 					} else {
 						livingentity.addEffect(instance);
 					}

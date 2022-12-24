@@ -56,7 +56,11 @@ public class GatherData {
 		generator.addProvider(event.includeServer(), new TechnologicaLootTableProvider(generator));
 		
 		//PROTOTYPING
+		
+		//ResourceKey<PlacedFeature> oilLakeSurfaceKey = ResourceKey.get.create(Registry.PLACED_FEATURE_REGISTRY, OIL_LAKE_SURFACE_RL);
+		
 		Function<ResourceKey<Biome>, Holder<Biome>> func = x -> registryAccess.registryOrThrow(Registry.BIOME_REGISTRY).getHolder(x).get();
+		//Function<ResourceKey<PlacedFeature>, Holder<PlacedFeature>> func2 = x -> registryAccess.registryOrThrow(Registry.PLACED_FEATURE_REGISTRY).getHolder(x).get();
 		
 		ResourceLocation alligator = new ResourceLocation(Technologica.MODID, "spawn_alligator");
 		ResourceLocation beaver = new ResourceLocation(Technologica.MODID, "spawn_beaver");
@@ -119,7 +123,7 @@ public class GatherData {
 		BiomeModifier vultureSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.BADLANDS)), List.of(new SpawnerData(TechnologicaEntityType.VULTURE.get(), 100, 1, 2)));
 		BiomeModifier zebraSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.SAVANNA)), List.of(new SpawnerData(TechnologicaEntityType.ZEBRA.get(), 100, 1, 2)));
 		
-		//BiomeModifier biomeModifier14 = new ForgeBiomeModifiers.AddFeaturesBiomeModifier(badlands, brine_pool, Decoration.FLUID_SPRINGS);
+		//BiomeModifier brinePools = new ForgeBiomeModifiers.AddFeaturesBiomeModifier(biomes(func.apply(Biomes.BADLANDS)), placed(registryAccess.registryOrThrow(Registry.PLACED_FEATURE_REGISTRY).getId(MiscOverworldPlacements.BLUE_ICE)), Decoration.FLUID_SPRINGS);
 		
 		Map<ResourceLocation, BiomeModifier> map = new HashMap<>();
 		map.put(alligator, alligatorSpawner);
@@ -151,6 +155,7 @@ public class GatherData {
 		map.put(turkey, turkeySpawner);
 		map.put(vulture, vultureSpawner);
 		map.put(zebra, zebraSpawner);
+		//map.put(brinePoolFeature, brinePools);
 		JsonCodecProvider<BiomeModifier> provider = JsonCodecProvider.forDatapackRegistry(generator, helper, Technologica.MODID, registryOps, ForgeRegistries.Keys.BIOME_MODIFIERS, map);
 		
 		generator.addProvider(event.includeServer(), provider);
@@ -160,4 +165,9 @@ public class GatherData {
 	private static HolderSet<Biome> biomes(Holder<Biome>... holders) {
 		return HolderSet.direct(holders);
 	}
+	
+	//@SafeVarargs
+	//private static HolderSet<PlacedFeature> placed(Holder<PlacedFeature>... holders) {
+	//	return HolderSet.direct(holders);
+	//}
 }

@@ -427,6 +427,11 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.SCUBA_SUIT.get());
 		simpleItem(TechnologicaItems.SCUBA_PANTS.get());
 		simpleItem(TechnologicaItems.SCUBA_BOOTS.get());
+		
+		simpleItem(TechnologicaItems.HAZMAT_HOOD.get());
+		simpleItem(TechnologicaItems.HAZMAT_SUIT.get());
+		simpleItem(TechnologicaItems.HAZMAT_PANTS.get());
+		simpleItem(TechnologicaItems.HAZMAT_BOOTS.get());
 
 		simpleItem(TechnologicaItems.GLUE_BOTTLE.get());
 		simpleItem(TechnologicaItems.LAND_MINE.get());
