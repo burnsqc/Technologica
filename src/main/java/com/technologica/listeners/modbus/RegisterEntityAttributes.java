@@ -42,6 +42,7 @@ import com.technologica.world.entity.animal.Vulture;
 import com.technologica.world.entity.animal.Walrus;
 import com.technologica.world.entity.animal.Zebra;
 import com.technologica.world.entity.monster.AtomicCreeper;
+import com.technologica.world.entity.monster.Mummy;
 import com.technologica.world.entity.monster.Peeper;
 import com.technologica.world.entity.monster.Sweeper;
 
@@ -89,6 +90,7 @@ public class RegisterEntityAttributes {
 		event.put(TechnologicaEntityType.WALRUS.get(), Walrus.registerAttributes().build());
 		event.put(TechnologicaEntityType.ZEBRA.get(), Zebra.createBaseHorseAttributes().build());
 		event.put(TechnologicaEntityType.ATOMIC_CREEPER.get(), AtomicCreeper.registerAttributes().build());
+		event.put(TechnologicaEntityType.MUMMY.get(), Mummy.registerAttributes().build());
 		event.put(TechnologicaEntityType.PEEPER.get(), Peeper.registerAttributes().build());
 		event.put(TechnologicaEntityType.SWEEPER.get(), Sweeper.registerAttributes().build());
 		LOGGER.info("ENTITY ATTRIBUTES REGISTERED: 40 OF 40");

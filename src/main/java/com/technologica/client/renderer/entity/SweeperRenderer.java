@@ -13,8 +13,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.monster.Creeper;
 
 public class SweeperRenderer extends MobRenderer<Sweeper, CreeperModel<Sweeper>> {
-	private static final ResourceLocation SWEEPER_TEXTURES = new ResourceLocation(Technologica.MODID,
-			"textures/entity/sweeper.png");
+	private static final ResourceLocation SWEEPER_TEXTURES = new ResourceLocation(Technologica.MODID, "textures/entity/sweeper.png");
 
 	public SweeperRenderer(EntityRendererProvider.Context p_173958_) {
 		super(p_173958_, new CreeperModel<>(p_173958_.bakeLayer(TechnologicaModelLayers.SWEEPER)), 0.5F);
@@ -39,6 +38,7 @@ public class SweeperRenderer extends MobRenderer<Sweeper, CreeperModel<Sweeper>>
 	/**
 	 * Returns the location of an entity's texture.
 	 */
+	@Override
 	public ResourceLocation getTextureLocation(Sweeper entity) {
 		return SWEEPER_TEXTURES;
 	}

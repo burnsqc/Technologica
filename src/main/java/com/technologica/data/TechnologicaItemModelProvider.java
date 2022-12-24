@@ -121,6 +121,7 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleSpawnEggItem(TechnologicaItems.ZEBRA_SPAWN_EGG.get());
 
 		simpleSpawnEggItem(TechnologicaItems.ATOMIC_CREEPER_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.MUMMY_SPAWN_EGG.get());
 		simpleSpawnEggItem(TechnologicaItems.PEEPER_SPAWN_EGG.get());
 		simpleSpawnEggItem(TechnologicaItems.SWEEPER_SPAWN_EGG.get());
 

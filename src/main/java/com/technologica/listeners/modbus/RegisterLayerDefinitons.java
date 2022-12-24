@@ -48,6 +48,7 @@ import net.minecraft.client.model.ChickenModel;
 import net.minecraft.client.model.CreeperModel;
 import net.minecraft.client.model.HorseModel;
 import net.minecraft.client.model.PolarBearModel;
+import net.minecraft.client.model.ZombieModel;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraftforge.client.event.EntityRenderersEvent.RegisterLayerDefinitions;
@@ -95,6 +96,7 @@ public class RegisterLayerDefinitons {
 		event.registerLayerDefinition(TechnologicaModelLayers.ZEBRA, () -> LayerDefinition.create(HorseModel.createBodyMesh(CubeDeformation.NONE), 64, 64));
 
 		event.registerLayerDefinition(TechnologicaModelLayers.ATOMIC_CREEPER, () -> CreeperModel.createBodyLayer(CubeDeformation.NONE));
+		event.registerLayerDefinition(TechnologicaModelLayers.MUMMY, () -> LayerDefinition.create(ZombieModel.createMesh(CubeDeformation.NONE, 0.0F), 64, 64));
 		event.registerLayerDefinition(TechnologicaModelLayers.PEEPER, () -> CreeperModel.createBodyLayer(CubeDeformation.NONE));
 		event.registerLayerDefinition(TechnologicaModelLayers.SWEEPER, () -> CreeperModel.createBodyLayer(CubeDeformation.NONE));
 

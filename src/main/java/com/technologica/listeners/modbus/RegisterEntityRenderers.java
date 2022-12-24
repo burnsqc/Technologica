@@ -36,6 +36,7 @@ import com.technologica.client.renderer.entity.LeopardSealRenderer;
 import com.technologica.client.renderer.entity.LionRenderer;
 import com.technologica.client.renderer.entity.LizardRenderer;
 import com.technologica.client.renderer.entity.MooseRenderer;
+import com.technologica.client.renderer.entity.MummyRenderer;
 import com.technologica.client.renderer.entity.NarwhalRenderer;
 import com.technologica.client.renderer.entity.NavalMineRenderer;
 import com.technologica.client.renderer.entity.OctopusRenderer;
@@ -119,6 +120,7 @@ public class RegisterEntityRenderers {
 		event.registerEntityRenderer(TechnologicaEntityType.ZEBRA.get(), ZebraRenderer::new);
 
 		event.registerEntityRenderer(TechnologicaEntityType.ATOMIC_CREEPER.get(), AtomicCreeperRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityType.MUMMY.get(), MummyRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityType.PEEPER.get(), PeeperRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityType.SWEEPER.get(), SweeperRenderer::new);
 

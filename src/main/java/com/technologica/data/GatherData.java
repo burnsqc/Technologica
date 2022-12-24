@@ -91,6 +91,7 @@ public class GatherData {
 		ResourceLocation turkey = new ResourceLocation(Technologica.MODID, "spawn_turkey");
 		ResourceLocation vulture = new ResourceLocation(Technologica.MODID, "spawn_vulture");
 		ResourceLocation zebra = new ResourceLocation(Technologica.MODID, "spawn_zebra");
+		ResourceLocation mummy = new ResourceLocation(Technologica.MODID, "spawn_mummy");
 		//ResourceLocation brinePoolFeature = new ResourceLocation(Technologica.MODID, "brine_pool_feature");
 		
 		BiomeModifier alligatorSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.SWAMP)), List.of(new SpawnerData(TechnologicaEntityType.ALLIGATOR.get(), 100, 1, 2)));
@@ -122,6 +123,7 @@ public class GatherData {
 		BiomeModifier turkeySpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.BIRCH_FOREST), func.apply(Biomes.SNOWY_SLOPES), func.apply(Biomes.SNOWY_TAIGA), func.apply(Biomes.STONY_PEAKS), func.apply(Biomes.WINDSWEPT_FOREST), func.apply(Biomes.WINDSWEPT_HILLS)), List.of(new SpawnerData(TechnologicaEntityType.TURKEY.get(), 100, 1, 2)));
 		BiomeModifier vultureSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.BADLANDS)), List.of(new SpawnerData(TechnologicaEntityType.VULTURE.get(), 100, 1, 2)));
 		BiomeModifier zebraSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.SAVANNA)), List.of(new SpawnerData(TechnologicaEntityType.ZEBRA.get(), 100, 1, 2)));
+		BiomeModifier mummySpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.DESERT)), List.of(new SpawnerData(TechnologicaEntityType.MUMMY.get(), 100, 1, 1)));
 		
 		//BiomeModifier brinePools = new ForgeBiomeModifiers.AddFeaturesBiomeModifier(biomes(func.apply(Biomes.BADLANDS)), placed(registryAccess.registryOrThrow(Registry.PLACED_FEATURE_REGISTRY).getId(MiscOverworldPlacements.BLUE_ICE)), Decoration.FLUID_SPRINGS);
 		
@@ -155,6 +157,7 @@ public class GatherData {
 		map.put(turkey, turkeySpawner);
 		map.put(vulture, vultureSpawner);
 		map.put(zebra, zebraSpawner);
+		map.put(mummy, mummySpawner);
 		//map.put(brinePoolFeature, brinePools);
 		JsonCodecProvider<BiomeModifier> provider = JsonCodecProvider.forDatapackRegistry(generator, helper, Technologica.MODID, registryOps, ForgeRegistries.Keys.BIOME_MODIFIERS, map);
 		
