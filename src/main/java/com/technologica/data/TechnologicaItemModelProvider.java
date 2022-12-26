@@ -93,7 +93,7 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleSpawnEggItem(TechnologicaItems.DUCK_SPAWN_EGG.get());
 		simpleSpawnEggItem(TechnologicaItems.ELEPHANT_SPAWN_EGG.get());
 		simpleSpawnEggItem(TechnologicaItems.FLAMINGO_SPAWN_EGG.get());
-		simpleSpawnEggItem(TechnologicaItems.FROG_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.FIGURE_EIGHT_PUFFERFISH_SPAWN_EGG.get());
 		simpleSpawnEggItem(TechnologicaItems.GIRAFFE_SPAWN_EGG.get());
 		simpleSpawnEggItem(TechnologicaItems.GORILLA_SPAWN_EGG.get());
 		simpleSpawnEggItem(TechnologicaItems.GRIZZLY_BEAR_SPAWN_EGG.get());

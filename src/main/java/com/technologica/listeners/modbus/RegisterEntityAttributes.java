@@ -63,7 +63,7 @@ public class RegisterEntityAttributes {
 		event.put(TechnologicaEntityType.DUCK.get(), Duck.registerAttributes().build());
 		event.put(TechnologicaEntityType.ELEPHANT.get(), Elephant.registerAttributes().build());
 		event.put(TechnologicaEntityType.FLAMINGO.get(), Flamingo.registerAttributes().build());
-		event.put(TechnologicaEntityType.FROG.get(), Frog.registerAttributes().build());
+		event.put(TechnologicaEntityType.FIGURE_EIGHT_PUFFERFISH.get(), Frog.registerAttributes().build());
 		event.put(TechnologicaEntityType.GIRAFFE.get(), Giraffe.createBaseHorseAttributes().build());
 		event.put(TechnologicaEntityType.GORILLA.get(), Gorilla.registerAttributes().build());
 		event.put(TechnologicaEntityType.GRIZZLY_BEAR.get(), GrizzlyBear.registerAttributes().build());

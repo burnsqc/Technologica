@@ -23,8 +23,10 @@ public class TechnologicaModelLayers {
 	public static final ModelLayerLocation DEER = register("deer");
 	public static final ModelLayerLocation DUCK = register("duck");
 	public static final ModelLayerLocation ELEPHANT = register("elephant");
+	public static final ModelLayerLocation FIGURE_EIGHT_PUFFERFISH_BIG = register("figure_eight_pufferfish_big");
+	public static final ModelLayerLocation FIGURE_EIGHT_PUFFERFISH_MEDIUM = register("figure_eight_pufferfish_medium");
+	public static final ModelLayerLocation FIGURE_EIGHT_PUFFERFISH_SMALL = register("figure_eight_pufferfish_small");
 	public static final ModelLayerLocation FLAMINGO = register("flamingo");
-	public static final ModelLayerLocation FROG = register("frog");
 	public static final ModelLayerLocation GIRAFFE = register("giraffe");
 	public static final ModelLayerLocation GORILLA = register("gorilla");
 	public static final ModelLayerLocation GRIZZLY_BEAR = register("grizzly_bear");

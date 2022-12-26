@@ -14,8 +14,8 @@ import com.technologica.world.entity.animal.Crab;
 import com.technologica.world.entity.animal.Deer;
 import com.technologica.world.entity.animal.Duck;
 import com.technologica.world.entity.animal.Elephant;
+import com.technologica.world.entity.animal.FigureEightPufferfish;
 import com.technologica.world.entity.animal.Flamingo;
-import com.technologica.world.entity.animal.Frog;
 import com.technologica.world.entity.animal.Giraffe;
 import com.technologica.world.entity.animal.Gorilla;
 import com.technologica.world.entity.animal.GrizzlyBear;
@@ -84,7 +84,7 @@ public class TechnologicaEntityType {
 	public static final RegistryObject<EntityType<Duck>> DUCK = ENTITY_TYPES.register("duck", () -> EntityType.Builder.<Duck>of(Duck::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("duck"));
 	public static final RegistryObject<EntityType<Elephant>> ELEPHANT = ENTITY_TYPES.register("elephant", () -> EntityType.Builder.<Elephant>of(Elephant::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("elephant"));
 	public static final RegistryObject<EntityType<Flamingo>> FLAMINGO = ENTITY_TYPES.register("flamingo", () -> EntityType.Builder.<Flamingo>of(Flamingo::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("flamingo"));
-	public static final RegistryObject<EntityType<Frog>> FROG = ENTITY_TYPES.register("frog", () -> EntityType.Builder.<Frog>of(Frog::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("frog"));
+	public static final RegistryObject<EntityType<FigureEightPufferfish>> FIGURE_EIGHT_PUFFERFISH = ENTITY_TYPES.register("figure_eight_pufferfish", () -> EntityType.Builder.<FigureEightPufferfish>of(FigureEightPufferfish::new, MobCategory.WATER_AMBIENT).sized(0.7F, 0.7F).clientTrackingRange(4).build("figure_eight_pufferfish"));
 	public static final RegistryObject<EntityType<Giraffe>> GIRAFFE = ENTITY_TYPES.register("giraffe", () -> EntityType.Builder.<Giraffe>of(Giraffe::new, MobCategory.CREATURE).sized(1.4F, 3.0F).clientTrackingRange(20).build("giraffe"));
 	public static final RegistryObject<EntityType<Gorilla>> GORILLA = ENTITY_TYPES.register("gorilla", () -> EntityType.Builder.<Gorilla>of(Gorilla::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("gorilla"));
 	public static final RegistryObject<EntityType<GrizzlyBear>> GRIZZLY_BEAR = ENTITY_TYPES.register("grizzly_bear", () -> EntityType.Builder.<GrizzlyBear>of(GrizzlyBear::new, MobCategory.CREATURE).sized(1.4F, 1.4F).clientTrackingRange(10).build("grizzly_bear"));

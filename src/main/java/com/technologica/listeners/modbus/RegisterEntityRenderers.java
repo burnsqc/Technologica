@@ -23,8 +23,8 @@ import com.technologica.client.renderer.entity.CrabRenderer;
 import com.technologica.client.renderer.entity.DeerRenderer;
 import com.technologica.client.renderer.entity.DuckRenderer;
 import com.technologica.client.renderer.entity.ElephantRenderer;
+import com.technologica.client.renderer.entity.FigureEightPufferfishRenderer;
 import com.technologica.client.renderer.entity.FlamingoRenderer;
-import com.technologica.client.renderer.entity.FrogRenderer;
 import com.technologica.client.renderer.entity.GiraffeRenderer;
 import com.technologica.client.renderer.entity.GorillaRenderer;
 import com.technologica.client.renderer.entity.GrizzlyBearRenderer;
@@ -92,7 +92,7 @@ public class RegisterEntityRenderers {
 		event.registerEntityRenderer(TechnologicaEntityType.DUCK.get(), DuckRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityType.ELEPHANT.get(), ElephantRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityType.FLAMINGO.get(), FlamingoRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.FROG.get(), FrogRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityType.FIGURE_EIGHT_PUFFERFISH.get(), FigureEightPufferfishRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityType.GIRAFFE.get(), GiraffeRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityType.GORILLA.get(), GorillaRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityType.GRIZZLY_BEAR.get(), GrizzlyBearRenderer::new);
