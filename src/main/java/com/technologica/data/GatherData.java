@@ -72,6 +72,7 @@ public class GatherData {
 		ResourceLocation deer = new ResourceLocation(Technologica.MODID, "spawn_deer");
 		ResourceLocation duck = new ResourceLocation(Technologica.MODID, "spawn_duck");
 		ResourceLocation elephant = new ResourceLocation(Technologica.MODID, "spawn_elephant");
+		ResourceLocation figureEightPufferfish= new ResourceLocation(Technologica.MODID, "spawn_figure_eight_pufferfish");
 		ResourceLocation flamingo = new ResourceLocation(Technologica.MODID, "spawn_flamingo");
 		ResourceLocation giraffe = new ResourceLocation(Technologica.MODID, "spawn_giraffe");
 		ResourceLocation gorilla = new ResourceLocation(Technologica.MODID, "spawn_gorilla");
@@ -104,6 +105,7 @@ public class GatherData {
 		BiomeModifier deerSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.BIRCH_FOREST), func.apply(Biomes.FOREST), func.apply(Biomes.SNOWY_SLOPES), func.apply(Biomes.SNOWY_TAIGA), func.apply(Biomes.STONY_PEAKS), func.apply(Biomes.WINDSWEPT_FOREST), func.apply(Biomes.WINDSWEPT_HILLS)), List.of(new SpawnerData(TechnologicaEntityType.DEER.get(), 100, 1, 2)));
 		BiomeModifier duckSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.RIVER)), List.of(new SpawnerData(TechnologicaEntityType.DUCK.get(), 100, 1, 2)));
 		BiomeModifier elephantSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.SAVANNA)), List.of(new SpawnerData(TechnologicaEntityType.ELEPHANT.get(), 100, 1, 2)));
+		BiomeModifier figureEightPufferfishSpawnerSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.MANGROVE_SWAMP)), List.of(new SpawnerData(TechnologicaEntityType.FIGURE_EIGHT_PUFFERFISH.get(), 100, 1, 2)));
 		BiomeModifier flamingoSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.SWAMP)), List.of(new SpawnerData(TechnologicaEntityType.FLAMINGO.get(), 100, 1, 2)));
 		BiomeModifier giraffeSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.SAVANNA)), List.of(new SpawnerData(TechnologicaEntityType.ELEPHANT.get(), 100, 1, 2)));
 		BiomeModifier gorillaSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.JUNGLE)), List.of(new SpawnerData(TechnologicaEntityType.GORILLA.get(), 100, 1, 2)));
@@ -138,6 +140,7 @@ public class GatherData {
 		map.put(deer, deerSpawner);
 		map.put(duck, duckSpawner);
 		map.put(elephant, elephantSpawner);
+		map.put(figureEightPufferfish, figureEightPufferfishSpawnerSpawner);
 		map.put(flamingo, flamingoSpawner);
 		map.put(giraffe, giraffeSpawner);
 		map.put(gorilla, gorillaSpawner);
