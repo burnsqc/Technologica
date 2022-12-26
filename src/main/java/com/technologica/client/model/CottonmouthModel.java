@@ -56,24 +56,24 @@ public class CottonmouthModel<T extends Entity> extends ListModel<T> {
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = QuadrupedModel.createBodyMesh(6, CubeDeformation.NONE);
 		PartDefinition partdefinition = meshdefinition.getRoot();
-		PartDefinition headLower = partdefinition.addOrReplaceChild("headLower", CubeListBuilder.create().texOffs(0, 8).addBox(-1.5F, 0.0F, -3.0F, 3.0F, 1.0F, 3.0F), PartPose.offset(0.0F, 23.0F, 0.0F));
-		PartDefinition headUpper = headLower.addOrReplaceChild("headUpper", CubeListBuilder.create().texOffs(0, 4).addBox(-1.5F, -1.0F, -3.0F, 3.0F, 1.0F, 3.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
-		headUpper.addOrReplaceChild("fangs", CubeListBuilder.create().texOffs(0, 12).addBox(-1.0F, -0.5F, -0.5F, 2.0F, 1.0F, 1.0F), PartPose.offset(0.0F, 0.0F, -2.0F));
-		PartDefinition body1 = headLower.addOrReplaceChild("body1", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
-		PartDefinition body2 = body1.addOrReplaceChild("body2", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
-		PartDefinition body3 = body2.addOrReplaceChild("body3", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
-		PartDefinition body4 = body3.addOrReplaceChild("body4", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
-		PartDefinition body5 = body4.addOrReplaceChild("body5", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
-		PartDefinition body6 = body5.addOrReplaceChild("body6", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
-		PartDefinition body7 = body6.addOrReplaceChild("body7", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
-		PartDefinition body8 = body7.addOrReplaceChild("body8", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
-		PartDefinition body9 = body8.addOrReplaceChild("body9", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
-		PartDefinition body10 = body9.addOrReplaceChild("body10", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
-		PartDefinition body11 = body10.addOrReplaceChild("body11", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
-		PartDefinition body12 = body11.addOrReplaceChild("body12", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
-		PartDefinition body13 = body12.addOrReplaceChild("body13", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
-		body13.addOrReplaceChild("body14", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
-		return LayerDefinition.create(meshdefinition, 16, 16);
+		PartDefinition headLower = partdefinition.addOrReplaceChild("headLower", CubeListBuilder.create().texOffs(0, 4).addBox(-1.5F, 0.0F, -3.0F, 3.0F, 1.0F, 3.0F), PartPose.offset(0.0F, 23.0F, 0.0F));
+		PartDefinition headUpper = headLower.addOrReplaceChild("headUpper", CubeListBuilder.create().texOffs(0, 0).addBox(-1.5F, -1.0F, -3.0F, 3.0F, 1.0F, 3.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+		headUpper.addOrReplaceChild("fangs", CubeListBuilder.create().texOffs(0, 8).addBox(-1.0F, -0.5F, -0.5F, 2.0F, 1.0F, 1.0F), PartPose.offset(0.0F, 0.0F, -2.0F));
+		PartDefinition body1 = headLower.addOrReplaceChild("body1", CubeListBuilder.create().texOffs(12, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+		PartDefinition body2 = body1.addOrReplaceChild("body2", CubeListBuilder.create().texOffs(12, 4).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
+		PartDefinition body3 = body2.addOrReplaceChild("body3", CubeListBuilder.create().texOffs(12, 8).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
+		PartDefinition body4 = body3.addOrReplaceChild("body4", CubeListBuilder.create().texOffs(12, 12).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
+		PartDefinition body5 = body4.addOrReplaceChild("body5", CubeListBuilder.create().texOffs(12, 16).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
+		PartDefinition body6 = body5.addOrReplaceChild("body6", CubeListBuilder.create().texOffs(12, 20).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
+		PartDefinition body7 = body6.addOrReplaceChild("body7", CubeListBuilder.create().texOffs(12, 24).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
+		PartDefinition body8 = body7.addOrReplaceChild("body8", CubeListBuilder.create().texOffs(12, 28).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
+		PartDefinition body9 = body8.addOrReplaceChild("body9", CubeListBuilder.create().texOffs(20, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
+		PartDefinition body10 = body9.addOrReplaceChild("body10", CubeListBuilder.create().texOffs(20, 4).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
+		PartDefinition body11 = body10.addOrReplaceChild("body11", CubeListBuilder.create().texOffs(20, 8).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
+		PartDefinition body12 = body11.addOrReplaceChild("body12", CubeListBuilder.create().texOffs(20, 12).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
+		PartDefinition body13 = body12.addOrReplaceChild("body13", CubeListBuilder.create().texOffs(20, 16).addBox(-0.5F, -1.0F, 0.0F, 1.0F, 1.0F, 2.0F), PartPose.offset(0.0F, 1.0F, 2.0F));
+		body13.addOrReplaceChild("body14", CubeListBuilder.create().texOffs(20, 19).addBox(-0.5F, -1.0F, 0.0F, 1.0F, 1.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
+		return LayerDefinition.create(meshdefinition, 32, 32);
 	}
 	
 	@Override
