@@ -12,6 +12,7 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 
 public class ElephantModel<T extends Elephant> extends QuadrupedModel<T> {
+	protected ModelPart forehead;
 	protected ModelPart earLeft;
 	protected ModelPart earRight;
 	protected ModelPart tuskLeft;
@@ -23,6 +24,7 @@ public class ElephantModel<T extends Elephant> extends QuadrupedModel<T> {
 	
 	public ElephantModel(ModelPart modelPartIn) {
 		super(modelPartIn, true, 10.0F, 4.0F, 2.0F, 2.0F, 24);
+		this.forehead = this.head.getChild("forehead");
 		this.tuskLeft = this.head.getChild("tusk_left");
 		this.tuskRight = this.head.getChild("tusk_right");
 		this.earLeft = this.head.getChild("ear_left");
@@ -36,21 +38,22 @@ public class ElephantModel<T extends Elephant> extends QuadrupedModel<T> {
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = QuadrupedModel.createBodyMesh(6, CubeDeformation.NONE);
 		PartDefinition root = meshdefinition.getRoot();
-		PartDefinition body = root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-18.0F, -20.0F, -32.0F, 36.0F, 40.0F, 64.0F), PartPose.offset(0.0F, -20.0F, 0.0F));
-		PartDefinition head = root.addOrReplaceChild("head", CubeListBuilder.create().texOffs(135, 0).addBox(-12.0F, -12.0F, -24.0F, 24.0F, 24.0F, 24.0F), PartPose.offset(0.0F, -28.0F, -32.0F));
-		head.addOrReplaceChild("nose", CubeListBuilder.create().texOffs(0, 104).addBox(-6.0F, -6.0F, -30.0F, 12.0F, 18.0F, 6.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
-		head.addOrReplaceChild("ear_left", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -10.0F, 0.0F, 1.0F, 24.0F, 24.0F), PartPose.offset(12.0F, -2.0F, -10.0F));
-		head.addOrReplaceChild("ear_right", CubeListBuilder.create().texOffs(0, 0).addBox(0.0F, -10.0F, 0.0F, 1.0F, 24.0F, 24.0F), PartPose.offset(-12.0F, -2.0F, -10.0F));
-		head.addOrReplaceChild("tusk_left", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, 0.0F, -4.0F, 4.0F, 16.0F, 4.0F), PartPose.offset(9.0F, 12.0F, -19.0F));
-		head.addOrReplaceChild("tusk_right", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, 0.0F, -4.0F, 4.0F, 16.0F, 4.0F), PartPose.offset(-9.0F, 12.0F, -19.0F));
-		PartDefinition trunk1 = head.addOrReplaceChild("trunk1", CubeListBuilder.create().texOffs(200, 48).addBox(-4.0F, -8.0F, 0.0F, 8.0F, 20.0F, 8.0F), PartPose.offset(0.0F, 12.0F, -30.0F));
-		PartDefinition trunk2 = trunk1.addOrReplaceChild("trunk2", CubeListBuilder.create().texOffs(208, 0).addBox(-3.5F, 0.0F, 0.0F, 7.0F, 12.0F, 7.0F), PartPose.offset(0.0F, 12.0F, 0.0F));
-		trunk2.addOrReplaceChild("trunk3", CubeListBuilder.create().texOffs(136, 0).addBox(-3.0F, 0.0F, 0.0F, 6.0F, 12.0F, 6.0F), PartPose.offset(0.0F, 12.0F, 0.0F));
-		root.addOrReplaceChild("right_hind_leg", CubeListBuilder.create().texOffs(188, 92).addBox(-6.0F, 0.0F, -6.0F, 12.0F, 24.0F, 12.0F), PartPose.offset(-12.0F, 0.0F, 26.0F));
-		root.addOrReplaceChild("left_hind_leg", CubeListBuilder.create().texOffs(188, 92).addBox(-6.0F, 0.0F, -6.0F, 12.0F, 24.0F, 12.0F), PartPose.offset(12.0F, 0.0F, 26.0F));
-		root.addOrReplaceChild("right_front_leg", CubeListBuilder.create().texOffs(188, 92).addBox(-6.0F, 0.0F, -6.0F, 12.0F, 24.0F, 12.0F), PartPose.offset(-12.0F, 0.0F, -26.0F));
-		root.addOrReplaceChild("left_front_leg", CubeListBuilder.create().texOffs(188, 92).addBox(-6.0F, 0.0F, -6.0F, 12.0F, 24.0F, 12.0F), PartPose.offset(12.0F, 0.0F, -26.0F));
-		body.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(236, 0).addBox(-1.5F, 0.0F, -3.0F, 3.0F, 32.0F, 3.0F), PartPose.offset(0.0F, -8.0F, 32.0F));
+		PartDefinition body = root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-14.0F, -15.0F, -24.0F, 28.0F, 30.0F, 48.0F), PartPose.offset(0.0F, -11.0F, 0.0F));
+		PartDefinition head = root.addOrReplaceChild("head", CubeListBuilder.create().texOffs(104, 0).addBox(-9.0F, -9.0F, -18.0F, 18.0F, 18.0F, 18.0F), PartPose.offset(0.0F, -17.0F, -24.0F));
+		head.addOrReplaceChild("forehead", CubeListBuilder.create().texOffs(104, 36).addBox(-3.0F, -6.0F, 0.0F, 6.0F, 6.0F, 4.0F), PartPose.offset(0.0F, -3.0F, -22.0F));
+		head.addOrReplaceChild("nose", CubeListBuilder.create().texOffs(158, 0).addBox(-4.0F, -3.0F, -22.0F, 8.0F, 12.0F, 4.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+		head.addOrReplaceChild("ear_left", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -10.0F, 0.0F, 1.0F, 18.0F, 18.0F), PartPose.offset(10.0F, 1.0F, -10.0F));
+		head.addOrReplaceChild("ear_right", CubeListBuilder.create().texOffs(0, 0).addBox(0.0F, -10.0F, 0.0F, 1.0F, 18.0F, 18.0F), PartPose.offset(-10.0F, 1.0F, -10.0F));
+		head.addOrReplaceChild("tusk_left", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, 0.0F, -4.0F, 3.0F, 12.0F, 3.0F), PartPose.offset(7.0F, 9.0F, -13.0F));
+		head.addOrReplaceChild("tusk_right", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, 0.0F, -4.0F, 3.0F, 12.0F, 3.0F), PartPose.offset(-7.0F, 9.0F, -13.0F));
+		PartDefinition trunk1 = head.addOrReplaceChild("trunk1", CubeListBuilder.create().texOffs(152, 36).addBox(-3.0F, -2.0F, 0.0F, 6.0F, 12.0F, 6.0F), PartPose.offset(0.0F, 8.0F, -22.0F));
+		PartDefinition trunk2 = trunk1.addOrReplaceChild("trunk2", CubeListBuilder.create().texOffs(152, 54).addBox(-2.5F, 0.0F, 0.0F, 5.0F, 12.0F, 5.0F), PartPose.offset(0.0F, 10.0F, 0.0F));
+		trunk2.addOrReplaceChild("trunk3", CubeListBuilder.create().texOffs(152, 71).addBox(-2.0F, 0.0F, 0.0F, 4.0F, 10.0F, 4.0F), PartPose.offset(0.0F, 12.0F, 0.0F));
+		root.addOrReplaceChild("right_hind_leg", CubeListBuilder.create().texOffs(0, 78).addBox(-5.0F, 0.0F, -5.0F, 10.0F, 20.0F, 10.0F), PartPose.offset(-9.0F, 4.0F, 19.0F));
+		root.addOrReplaceChild("left_hind_leg", CubeListBuilder.create().texOffs(0, 78).addBox(-5.0F, 0.0F, -5.0F, 10.0F, 20.0F, 10.0F), PartPose.offset(9.0F, 4.0F, 19.0F));
+		root.addOrReplaceChild("right_front_leg", CubeListBuilder.create().texOffs(0, 78).addBox(-5.0F, 0.0F, -5.0F, 10.0F, 20.0F, 10.0F), PartPose.offset(-9.0F, 4.0F, -19.0F));
+		root.addOrReplaceChild("left_front_leg", CubeListBuilder.create().texOffs(0, 78).addBox(-5.0F, 0.0F, -5.0F, 10.0F, 20.0F, 10.0F), PartPose.offset(9.0F, 4.0F, -19.0F));
+		body.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(40, 78).addBox(-1.5F, 0.0F, -3.0F, 3.0F, 24.0F, 3.0F), PartPose.offset(0.0F, -8.0F, 24.0F));
 		return LayerDefinition.create(meshdefinition, 256, 128);
 	}
 	
@@ -64,5 +67,6 @@ public class ElephantModel<T extends Elephant> extends QuadrupedModel<T> {
 		this.trunk3.xRot = 0;
 		this.earLeft.yRot = (float) Math.PI / 5.0F;
 		this.earRight.yRot = -(float) Math.PI / 5.0F;
+		this.forehead.xRot = -(float) (Math.PI / 4.0F);
 	}
 }
