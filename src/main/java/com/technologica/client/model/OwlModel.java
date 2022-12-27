@@ -6,10 +6,8 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.technologica.world.entity.animal.Owl;
 
 import net.minecraft.client.model.ListModel;
-import net.minecraft.client.model.QuadrupedModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
-import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
@@ -38,17 +36,17 @@ public class OwlModel<T extends Owl> extends ListModel<T> {
 	}
 
 	public static LayerDefinition createBodyLayer() {
-		MeshDefinition meshdefinition = QuadrupedModel.createBodyMesh(6, CubeDeformation.NONE);
+		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition root = meshdefinition.getRoot();
-		root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, 0.0F, -1.5F, 4.0F, 6.0F, 4.0F), PartPose.offset(0.0F, 16.5F, -3.0F));
-		root.addOrReplaceChild("wing_left", CubeListBuilder.create().texOffs(12, 6).addBox(-0.5F, 0.0F, -1.5F, 1.0F, 6.0F, 4.0F), PartPose.offset(2.0F, 16.94F, -1.76F));
-		root.addOrReplaceChild("wing_right", CubeListBuilder.create().texOffs(12, 6).addBox(-0.5F, 0.0F, -1.5F, 1.0F, 6.0F, 4.0F), PartPose.offset(-2.0F, 16.94F, -1.76F));
-		PartDefinition head = root.addOrReplaceChild("head", CubeListBuilder.create().texOffs(18, 0).addBox(-1.5F, -2.0F, -1.5F, 3.0F, 4.0F, 3.0F), PartPose.offset(0.0F, 15.69F, -2.26F));
-		head.addOrReplaceChild("beak", CubeListBuilder.create().texOffs(0, 0).addBox(-0.5F, 0.0F, -0.5F, 1.0F, 1.0F, 1.0F), PartPose.offset(0.0F, 0.0F, -1.5F));
-		root.addOrReplaceChild("leg_left", CubeListBuilder.create().texOffs(12, 0).addBox(-0.5F, 0.0F, -0.5F, 1.0F, 2.0F, 1.0F), PartPose.offset(1.0F, 22.0F, -1.05F));
-		root.addOrReplaceChild("leg_right", CubeListBuilder.create().texOffs(12, 0).addBox(-0.5F, 0.0F, -0.5F, 1.0F, 2.0F, 1.0F), PartPose.offset(-1.0F, 22.0F, -1.05F));
-		root.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(0, 10).addBox(-1.5F, -1.0F, -1.0F, 3.0F, 4.0F, 1.0F), PartPose.offset(0.0F, 21.07F, 1.16F));
-		return LayerDefinition.create(meshdefinition, 32, 16);
+		root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-2.5F, -1.0F, -2.0F, 5.0F, 7.0F, 5.0F), PartPose.offset(0.0F, 16.5F, -3.0F));
+		root.addOrReplaceChild("wing_left", CubeListBuilder.create().texOffs(20, 0).addBox(-0.5F, 0.0F, -1.5F, 1.0F, 6.0F, 4.0F), PartPose.offset(2.5F, 15.94F, -1.76F));
+		root.addOrReplaceChild("wing_right", CubeListBuilder.create().texOffs(20, 0).addBox(-0.5F, 0.0F, -1.5F, 1.0F, 6.0F, 4.0F), PartPose.offset(-2.5F, 15.94F, -1.76F));
+		PartDefinition head = root.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 12).addBox(-2.0F, -3.0F, -1.5F, 4.0F, 5.0F, 4.0F), PartPose.offset(0.0F, 14.69F, -2.76F));
+		head.addOrReplaceChild("beak", CubeListBuilder.create().texOffs(0, 0).addBox(-0.5F, 0.0F, -0.5F, 1.0F, 1.0F, 1.0F), PartPose.offset(0.0F, -1.0F, -1.5F));
+		root.addOrReplaceChild("leg_left", CubeListBuilder.create().texOffs(15, 0).addBox(-0.5F, 0.0F, -0.5F, 1.0F, 2.0F, 1.0F), PartPose.offset(1.0F, 22.0F, -1.05F));
+		root.addOrReplaceChild("leg_right", CubeListBuilder.create().texOffs(15, 0).addBox(-0.5F, 0.0F, -0.5F, 1.0F, 2.0F, 1.0F), PartPose.offset(-1.0F, 22.0F, -1.05F));
+		root.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(20, 10).addBox(-1.5F, -1.0F, -1.0F, 3.0F, 4.0F, 1.0F), PartPose.offset(0.0F, 21.07F, 1.16F));
+		return LayerDefinition.create(meshdefinition, 32, 32);
 	}
 	
 	@Override
@@ -82,8 +80,8 @@ public class OwlModel<T extends Owl> extends ListModel<T> {
 		this.body.x = 0.0F;
 		this.tail.x = 0.0F;
 		
-		this.wing_right.x = -2.0F;
-		this.wing_left.x = 2.0F;
+		this.wing_right.x = -2.5F;
+		this.wing_left.x = 2.5F;
 		
 		switch (stateIn) {
 		case SITTING:
@@ -92,7 +90,7 @@ public class OwlModel<T extends Owl> extends ListModel<T> {
 			float f = Mth.cos(ticksExistedIn);
 			float f1 = Mth.sin(ticksExistedIn);
 			this.head.x = f;
-			this.head.y = 15.69F + f1;
+			this.head.y = 14.69F + f1;
 			
 			this.head.xRot = 0.0F;
 			this.head.yRot = 0.0F;
@@ -103,11 +101,11 @@ public class OwlModel<T extends Owl> extends ListModel<T> {
 			
 			this.wing_left.zRot = -0.0873F - ageInTicksIn;
 			this.wing_left.x = 2.0F + f;
-			this.wing_left.y = 16.94F + f1;
+			this.wing_left.y = 15.94F + f1;
 			
 			this.wing_right.zRot = 0.0873F + ageInTicksIn;
 			this.wing_right.x = -2.0F + f;
-			this.wing_right.y = 16.94F + f1;
+			this.wing_right.y = 15.94F + f1;
 			
 			this.tail.x = f;
 			this.tail.y = 21.07F + f1;
@@ -119,7 +117,7 @@ public class OwlModel<T extends Owl> extends ListModel<T> {
 		case ON_SHOULDER:
 		default:
 			float f2 = ageInTicksIn * 0.3F;
-			this.head.y = 15.69F + f2;
+			this.head.y = 14.69F + f2;
 			
 			this.tail.xRot = 1.015F + Mth.cos(limbSwingIn * 0.6662F) * 0.3F * limbSwingAmountIn;
 			this.tail.y = 21.07F + f2;
@@ -127,10 +125,10 @@ public class OwlModel<T extends Owl> extends ListModel<T> {
 			this.body.y = 16.5F + f2;
 			
 			this.wing_left.zRot = -0.0873F - ageInTicksIn;
-			this.wing_left.y = 16.94F + f2;
+			this.wing_left.y = 15.94F + f2;
 			
 			this.wing_right.zRot = 0.0873F + ageInTicksIn;
-			this.wing_right.y = 16.94F + f2;
+			this.wing_right.y = 15.94F + f2;
 			
 			this.leg_left.y = 22.0F + f2;
 			this.leg_right.y = 22.0F + f2;

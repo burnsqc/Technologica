@@ -1,4 +1,4 @@
-package com.technologica.listeners.modbus;
+package com.technologica.client.model.geom;
 
 import static com.technologica.Technologica.LOGGER;
 
@@ -42,7 +42,6 @@ import com.technologica.client.model.StingrayModel;
 import com.technologica.client.model.TurkeyModel;
 import com.technologica.client.model.VultureModel;
 import com.technologica.client.model.WalrusModel;
-import com.technologica.client.model.geom.TechnologicaModelLayers;
 import com.technologica.world.entity.vehicle.VanillaBoat;
 
 import net.minecraft.client.model.BoatModel;
@@ -55,7 +54,7 @@ import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraftforge.client.event.EntityRenderersEvent.RegisterLayerDefinitions;
 
-public class RegisterLayerDefinitons {
+public class TechnologicaLayerDefinitions {
 
 	public static void onRegisterLayerDefinitions(RegisterLayerDefinitions event) {
 		event.registerLayerDefinition(TechnologicaModelLayers.ALLIGATOR, AlligatorModel::createBodyLayer);
