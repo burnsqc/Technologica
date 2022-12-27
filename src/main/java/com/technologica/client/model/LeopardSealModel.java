@@ -16,6 +16,7 @@ import net.minecraft.world.entity.Entity;
 
 public class LeopardSealModel<T extends Entity> extends ListModel<T> {
 	private final ModelPart body;
+	private final ModelPart neck;
 	private final ModelPart head;
 	private final ModelPart jaw;
 	private final ModelPart flipperLeft;
@@ -26,9 +27,10 @@ public class LeopardSealModel<T extends Entity> extends ListModel<T> {
 	
 	public LeopardSealModel(ModelPart modelPartIn) {
 		this.body = modelPartIn.getChild("body");
+		this.neck = body.getChild("neck");
 		this.flipperLeft = body.getChild("flipper_left");
 		this.flipperRight = body.getChild("flipper_right");
-		this.head = body.getChild("head");
+		this.head = neck.getChild("head");
 		this.jaw = head.getChild("jaw");
 		this.tail = body.getChild("tail");
 		this.tailFlipperLeft = tail.getChild("tail_flipper_left");
@@ -38,15 +40,16 @@ public class LeopardSealModel<T extends Entity> extends ListModel<T> {
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = QuadrupedModel.createBodyMesh(6, CubeDeformation.NONE);
 		PartDefinition root = meshdefinition.getRoot();
-		PartDefinition body = root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(20, 2).addBox(-4.0F, -4.0F, -7.0F, 8.0F, 8.0F, 14.0F), PartPose.offset(0.0F, 20.0F, 0.0F));
-		PartDefinition head = body.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 16).addBox(-3.0F, -3.0F, -4.0F, 6.0F, 6.0F, 4.0F), PartPose.offset(0.0F, 0.0F, -7.0F));
-		head.addOrReplaceChild("nose", CubeListBuilder.create().texOffs(16, 24).addBox(-2.0F, -1.0F, -4.0F, 4.0F, 3.0F, 4.0F), PartPose.offset(0.0F, -1.0F, -4.0F));
-		head.addOrReplaceChild("jaw", CubeListBuilder.create().texOffs(0, 26).addBox(-2.0F, 0.0F, -4.0F, 4.0F, 1.0F, 4.0F), PartPose.offset(0.0F, 1.0F, -4.0F));
-		body.addOrReplaceChild("flipper_left", CubeListBuilder.create().texOffs(32, 24).mirror().addBox(0.0F, 0.0F, 0.0F, 8.0F, 1.0F, 4.0F), PartPose.offset(4.0F, 1.0F, -4.0F));
-		body.addOrReplaceChild("flipper_right", CubeListBuilder.create().texOffs(32, 24).addBox(-8.0F, 0.0F, 0.0F, 8.0F, 1.0F, 4.0F), PartPose.offset(-4.0F, 1.0F, -4.0F));
-		PartDefinition tail = body.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(0, 0).addBox(-3.0F, -3.0F, 0.0F, 6.0F, 6.0F, 10.0F), PartPose.offset(0.0F, 0.0F, 7.0F));
-		tail.addOrReplaceChild("tail_flipper_left", CubeListBuilder.create().texOffs(0, 31).mirror().addBox(0.0F, -3.0F, 0.0F, 1.0F, 6.0F, 8.0F), PartPose.offset(2.0F, 0.0F, 10.0F));
-		tail.addOrReplaceChild("tail_flipper_right", CubeListBuilder.create().texOffs(0, 31).addBox(-1.0F, -3.0F, 0.0F, 1.0F, 6.0F, 8.0F), PartPose.offset(-2.0F, 0.0F, 10.0F));
+		PartDefinition body = root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -4.0F, -7.0F, 8.0F, 8.0F, 14.0F), PartPose.offset(0.0F, 20.0F, 0.0F));
+		PartDefinition neck = body.addOrReplaceChild("neck", CubeListBuilder.create().texOffs(0, 22).addBox(-3.0F, -6.0F, -8.0F, 6.0F, 6.0F, 8.0F), PartPose.offset(0.0F, 3.0F, -7.0F));
+		PartDefinition head = neck.addOrReplaceChild("head", CubeListBuilder.create().texOffs(30, 0).addBox(-3.0F, 0.0F, -6.0F, 6.0F, 6.0F, 6.0F), PartPose.offset(0.0F, -6.0F, -8.0F));
+		head.addOrReplaceChild("nose", CubeListBuilder.create().texOffs(48, 12).addBox(-2.0F, -1.0F, -4.0F, 4.0F, 3.0F, 4.0F).texOffs(0, 0).addBox(-1.5F, 2.0F, -3.0F, 3.0F, 1.0F, 3.0F), PartPose.offset(0.0F, 2.0F, -6.0F));
+		head.addOrReplaceChild("jaw", CubeListBuilder.create().texOffs(48, 0).addBox(-2.0F, 0.0F, -4.0F, 4.0F, 1.0F, 4.0F), PartPose.offset(0.0F, 4.0F, -6.0F));
+		body.addOrReplaceChild("flipper_left", CubeListBuilder.create().texOffs(0, 36).mirror().addBox(0.0F, 0.0F, 0.0F, 1.0F, 3.0F, 7.0F), PartPose.offset(4.0F, 1.0F, -6.0F));
+		body.addOrReplaceChild("flipper_right", CubeListBuilder.create().texOffs(0, 36).addBox(-1.0F, 0.0F, 0.0F, 1.0F, 3.0F, 7.0F), PartPose.offset(-4.0F, 1.0F, -6.0F));
+		PartDefinition tail = body.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(28, 22).addBox(-3.0F, -3.0F, 0.0F, 6.0F, 6.0F, 10.0F), PartPose.offset(0.0F, 1.0F, 7.0F));
+		tail.addOrReplaceChild("tail_flipper_left", CubeListBuilder.create().texOffs(0, 46).mirror().addBox(0.0F, -3.0F, 0.0F, 1.0F, 6.0F, 8.0F), PartPose.offset(2.0F, 0.0F, 10.0F));
+		tail.addOrReplaceChild("tail_flipper_right", CubeListBuilder.create().texOffs(0, 46).addBox(-1.0F, -3.0F, 0.0F, 1.0F, 6.0F, 8.0F), PartPose.offset(-2.0F, 0.0F, 10.0F));
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
 	
@@ -58,15 +61,16 @@ public class LeopardSealModel<T extends Entity> extends ListModel<T> {
 	@Override
 	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.jaw.xRot = (Mth.sin(ageInTicks / 10) * Mth.sin(ageInTicks / 10))/2;
-		
+		this.neck.xRot = -(float) (Math.PI/4);
+		this.head.xRot = (float) (Math.PI/4);
 		this.tailFlipperLeft.yRot = (float) Math.PI / 8;
 		this.tailFlipperRight.yRot = -(float) Math.PI / 8;
 		
-		this.flipperLeft.yRot = -(float) Math.PI / 4;
-		this.flipperLeft.zRot = (float) Math.PI / 8;
+		this.flipperLeft.yRot = 0;//-(float) Math.PI / 4;
+		this.flipperLeft.zRot = 0;//(float) Math.PI / 8;
 		
-		this.flipperRight.yRot = (float) Math.PI / 4;
-		this.flipperRight.zRot = -(float) Math.PI / 8;
+		this.flipperRight.yRot = 0;//(float) Math.PI / 4;
+		this.flipperRight.zRot = 0;//-(float) Math.PI / 8;
 
 		this.body.xRot = headPitch * ((float) Math.PI / 180F);
 		this.body.yRot = netHeadYaw * ((float) Math.PI / 180F);
