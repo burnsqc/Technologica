@@ -28,6 +28,8 @@ public class MooseModel<T extends AbstractHorse> extends AgeableListModel<T> {
 	private final ModelPart antlerRight2;
 	private final ModelPart antlerLeft3;
 	private final ModelPart antlerRight3;
+	private final ModelPart antlerLeft3a;
+	private final ModelPart antlerRight3a;
 	private final ModelPart antlerLeft4;
 	private final ModelPart antlerRight4;
 	private final ModelPart antlerLeft5;
@@ -40,6 +42,12 @@ public class MooseModel<T extends AbstractHorse> extends AgeableListModel<T> {
 	private final ModelPart antlerRight8;
 	private final ModelPart antlerLeft9;
 	private final ModelPart antlerRight9;
+	private final ModelPart antlerLeft10;
+	private final ModelPart antlerRight10;
+	private final ModelPart antlerLeft11;
+	private final ModelPart antlerRight11;
+	private final ModelPart antlerLeft12;
+	private final ModelPart antlerRight12;
 	private final ModelPart legUpperBackLeft;
 	private final ModelPart legUpperBackRight;
 	private final ModelPart legUpperFrontLeft;
@@ -48,6 +56,7 @@ public class MooseModel<T extends AbstractHorse> extends AgeableListModel<T> {
 	private final ModelPart legLowerBackRight;
 	private final ModelPart legLowerFrontLeft;
 	private final ModelPart legLowerFrontRight;
+	protected final ModelPart tail;
 	//private final ModelPart saddle;
 	//private final ModelPart leftBit;
 	//private final ModelPart rightBit;
@@ -70,8 +79,10 @@ public class MooseModel<T extends AbstractHorse> extends AgeableListModel<T> {
 		this.antlerRight1 = head.getChild("antler_right_1");
 		this.antlerLeft2 = antlerLeft1.getChild("antler_left_2");
 		this.antlerRight2 = antlerRight1.getChild("antler_right_2");
-		this.antlerLeft3 = antlerLeft1.getChild("antler_left_3");
-		this.antlerRight3 = antlerRight1.getChild("antler_right_3");
+		this.antlerLeft3 = antlerLeft2.getChild("antler_left_3");
+		this.antlerRight3 = antlerRight2.getChild("antler_right_3");
+		this.antlerLeft3a = antlerLeft2.getChild("antler_left_3a");
+		this.antlerRight3a = antlerRight2.getChild("antler_right_3a");
 		this.antlerLeft4 = antlerLeft2.getChild("antler_left_4");
 		this.antlerRight4 = antlerRight2.getChild("antler_right_4");
 		this.antlerLeft5 = antlerLeft2.getChild("antler_left_5");
@@ -84,6 +95,12 @@ public class MooseModel<T extends AbstractHorse> extends AgeableListModel<T> {
 		this.antlerRight8 = antlerRight2.getChild("antler_right_8");
 		this.antlerLeft9 = antlerLeft2.getChild("antler_left_9");
 		this.antlerRight9 = antlerRight2.getChild("antler_right_9");
+		this.antlerLeft10 = antlerLeft2.getChild("antler_left_10");
+		this.antlerRight10 = antlerRight2.getChild("antler_right_10");
+		this.antlerLeft11 = antlerLeft2.getChild("antler_left_11");
+		this.antlerRight11 = antlerRight2.getChild("antler_right_11");
+		this.antlerLeft12 = antlerLeft2.getChild("antler_left_12");
+		this.antlerRight12 = antlerRight2.getChild("antler_right_12");
 		this.legUpperBackLeft = body.getChild("legUpperBackLeft");
 		this.legUpperBackRight = body.getChild("legUpperBackRight");
 		this.legUpperFrontLeft = body.getChild("legUpperFrontLeft");
@@ -92,6 +109,7 @@ public class MooseModel<T extends AbstractHorse> extends AgeableListModel<T> {
 		this.legLowerBackRight = legUpperBackRight.getChild("legLowerBackRight");
 		this.legLowerFrontLeft = legUpperFrontLeft.getChild("legLowerFrontLeft");
 		this.legLowerFrontRight = legUpperFrontRight.getChild("legLowerFrontRight");
+		this.tail = body.getChild("tail");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -104,25 +122,32 @@ public class MooseModel<T extends AbstractHorse> extends AgeableListModel<T> {
 		head.addOrReplaceChild("nose", CubeListBuilder.create().texOffs(0, 16).addBox(-3.0F, 0.0F, -8.0F, 6.0F, 6.0F, 10.0F), PartPose.offset(0.0F, 2.0F, -8.0F));
 		head.addOrReplaceChild("ear_left", CubeListBuilder.create().texOffs(0, 16).addBox(0.0F, -3.0F, -1.0F, 4.0F, 3.0F, 1.0F), PartPose.offset(4.0F, 3.0F, -1.0F));
 		head.addOrReplaceChild("ear_right", CubeListBuilder.create().texOffs(0, 16).addBox(-4.0F, -3.0F, -1.0F, 4.0F, 3.0F, 1.0F), PartPose.offset(-4.0F, 3.0F, -1.0F));
-		PartDefinition antlerLeft1 = head.addOrReplaceChild("antler_left_1", CubeListBuilder.create().texOffs(0, 0).addBox(0.0F, -5.0F, -1.0F, 1.0F, 5.0F, 1.0F), PartPose.offset(3.0F, 0.0F, -4.0F));
-		PartDefinition antlerRight1 = head.addOrReplaceChild("antler_right_1", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -5.0F, -1.0F, 1.0F, 5.0F, 1.0F), PartPose.offset(-3.0F, 0.0F, -4.0F));
-		PartDefinition antlerLeft2 = antlerLeft1.addOrReplaceChild("antler_left_2", CubeListBuilder.create().texOffs(84, 0).addBox(0.0F, -8.0F, 0.0F, 1.0F, 8.0F, 4.0F), PartPose.offset(0.0F, -5.0F, -1.0F));
-		PartDefinition antlerRight2 = antlerRight1.addOrReplaceChild("antler_right_2", CubeListBuilder.create().texOffs(84, 0).addBox(-1.0F, -8.0F, 0.0F, 1.0F, 8.0F, 4.0F), PartPose.offset(0.0F, -5.0F, -1.0F));
-		antlerLeft1.addOrReplaceChild("antler_left_3", CubeListBuilder.create().texOffs(2, 4).addBox(-1.0F, -1.0F, -2.0F, 1.0F, 1.0F, 2.0F), PartPose.offset(1.0F, -3.0F, -1.0F));
-		antlerRight1.addOrReplaceChild("antler_right_3", CubeListBuilder.create().texOffs(2, 4).addBox(0.0F, -1.0F, -2.0F, 1.0F, 1.0F, 2.0F), PartPose.offset(-1.0F, -3.0F, -1.0F));
-		antlerLeft2.addOrReplaceChild("antler_left_4", CubeListBuilder.create().texOffs(2, 4).addBox(-1.0F, -2.0F, -2.0F, 1.0F, 1.0F, 2.0F), PartPose.offset(1.0F, 0.0F, 0.0F));
-		antlerRight2.addOrReplaceChild("antler_right_4", CubeListBuilder.create().texOffs(2, 4).addBox(0.0F, -2.0F, -2.0F, 1.0F, 1.0F, 2.0F), PartPose.offset(-1.0F, 0.0F, 0.0F));
-		antlerLeft2.addOrReplaceChild("antler_left_5", CubeListBuilder.create().texOffs(2, 4).addBox(-1.0F, -2.0F, -2.0F, 1.0F, 1.0F, 2.0F), PartPose.offset(1.0F, -2.0F, 0.0F));
-		antlerRight2.addOrReplaceChild("antler_right_5", CubeListBuilder.create().texOffs(2, 4).addBox(0.0F, -2.0F, -2.0F, 1.0F, 1.0F, 2.0F), PartPose.offset(-1.0F, -2.0F, 0.0F));
-		antlerLeft2.addOrReplaceChild("antler_left_6", CubeListBuilder.create().texOffs(2, 4).addBox(-1.0F, -2.0F, -2.0F, 1.0F, 1.0F, 2.0F), PartPose.offset(1.0F, -4.0F, 0.0F));
-		antlerRight2.addOrReplaceChild("antler_right_6", CubeListBuilder.create().texOffs(2, 4).addBox(0.0F, -2.0F, -2.0F, 1.0F, 1.0F, 2.0F), PartPose.offset(-1.0F, -4.0F, 0.0F));
-		antlerLeft2.addOrReplaceChild("antler_left_7", CubeListBuilder.create().texOffs(2, 4).addBox(-1.0F, -2.0F, -2.0F, 1.0F, 1.0F, 2.0F), PartPose.offset(1.0F, -6.0F, 0.0F));
-		antlerRight2.addOrReplaceChild("antler_right_7", CubeListBuilder.create().texOffs(2, 4).addBox(0.0F, -2.0F, -2.0F, 1.0F, 1.0F, 2.0F), PartPose.offset(-1.0F, -6.0F, 0.0F));
-		antlerLeft2.addOrReplaceChild("antler_left_8", CubeListBuilder.create().texOffs(4, 0).addBox(-1.0F, -2.0F, -2.0F, 1.0F, 2.0F, 1.0F), PartPose.offset(1.0F, -8.0F, 3.0F));
-		antlerRight2.addOrReplaceChild("antler_right_8", CubeListBuilder.create().texOffs(4, 0).addBox(0.0F, -2.0F, -2.0F, 1.0F, 2.0F, 1.0F), PartPose.offset(-1.0F, -8.0F, 3.0F));
-		antlerLeft2.addOrReplaceChild("antler_left_9", CubeListBuilder.create().texOffs(4, 0).addBox(-1.0F, -2.0F, -2.0F, 1.0F, 2.0F, 1.0F), PartPose.offset(1.0F, -8.0F, 5.0F));
-		antlerRight2.addOrReplaceChild("antler_right_9", CubeListBuilder.create().texOffs(4, 0).addBox(0.0F, -2.0F, -2.0F, 1.0F, 2.0F, 1.0F), PartPose.offset(-1.0F, -8.0F, 5.0F));
-		
+		PartDefinition antlerLeft1 = head.addOrReplaceChild("antler_left_1", CubeListBuilder.create().texOffs(0, 0).addBox(0.0F, -3.0F, -1.0F, 1.0F, 2.0F, 1.0F), PartPose.offset(3.0F, 0.0F, -4.0F));
+		PartDefinition antlerRight1 = head.addOrReplaceChild("antler_right_1", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -3.0F, -1.0F, 1.0F, 2.0F, 1.0F), PartPose.offset(-3.0F, 0.0F, -4.0F));
+		PartDefinition antlerLeft2 = antlerLeft1.addOrReplaceChild("antler_left_2", CubeListBuilder.create().texOffs(84, 0).addBox(-1.0F, -12.0F, -6.0F, 1.0F, 12.0F, 6.0F), PartPose.offset(1.0F, -3.0F, -1.0F));
+		PartDefinition antlerRight2 = antlerRight1.addOrReplaceChild("antler_right_2", CubeListBuilder.create().texOffs(84, 0).addBox(0.0F, -12.0F, -6.0F, 1.0F, 12.0F, 6.0F), PartPose.offset(-1.0F, -3.0F, -1.0F));
+		antlerLeft2.addOrReplaceChild("antler_left_3", CubeListBuilder.create().texOffs(2, 4).addBox(-1.0F, -1.0F, -2.0F, 1.0F, 1.0F, 2.0F), PartPose.offset(0.0F, 0.0F, -1.0F));
+		antlerRight2.addOrReplaceChild("antler_right_3", CubeListBuilder.create().texOffs(2, 4).addBox(0.0F, -1.0F, -2.0F, 1.0F, 1.0F, 2.0F), PartPose.offset(0.0F, 0.0F, -1.0F));
+		antlerLeft2.addOrReplaceChild("antler_left_3a", CubeListBuilder.create().texOffs(24, 0).addBox(-1.0F, -1.0F, -3.0F, 1.0F, 1.0F, 3.0F), PartPose.offset(0.0F, 0.0F, -4.0F));
+		antlerRight2.addOrReplaceChild("antler_right_3a", CubeListBuilder.create().texOffs(24, 0).addBox(0.0F, -1.0F, -3.0F, 1.0F, 1.0F, 3.0F), PartPose.offset(0.0F, 0.0F, -4.0F));
+		antlerLeft2.addOrReplaceChild("antler_left_4", CubeListBuilder.create().texOffs(24, 0).addBox(-1.0F, -2.0F, -3.0F, 1.0F, 1.0F, 3.0F), PartPose.offset(0.0F, 0.0F, -6.0F));
+		antlerRight2.addOrReplaceChild("antler_right_4", CubeListBuilder.create().texOffs(24, 0).addBox(0.0F, -2.0F, -3.0F, 1.0F, 1.0F, 3.0F), PartPose.offset(0.0F, 0.0F, -6.0F));
+		antlerLeft2.addOrReplaceChild("antler_left_5", CubeListBuilder.create().texOffs(24, 0).addBox(-1.0F, -2.0F, -3.0F, 1.0F, 1.0F, 3.0F), PartPose.offset(0.0F, -2.0F, -6.0F));
+		antlerRight2.addOrReplaceChild("antler_right_5", CubeListBuilder.create().texOffs(24, 0).addBox(0.0F, -2.0F, -3.0F, 1.0F, 1.0F, 3.0F), PartPose.offset(0.0F, -2.0F, -6.0F));
+		antlerLeft2.addOrReplaceChild("antler_left_6", CubeListBuilder.create().texOffs(2, 4).addBox(-1.0F, -2.0F, -2.0F, 1.0F, 1.0F, 2.0F), PartPose.offset(0.0F, -4.0F, -6.0F));
+		antlerRight2.addOrReplaceChild("antler_right_6", CubeListBuilder.create().texOffs(2, 4).addBox(0.0F, -2.0F, -2.0F, 1.0F, 1.0F, 2.0F), PartPose.offset(0.0F, -4.0F, -6.0F));
+		antlerLeft2.addOrReplaceChild("antler_left_7", CubeListBuilder.create().texOffs(2, 4).addBox(-1.0F, -2.0F, -2.0F, 1.0F, 1.0F, 2.0F), PartPose.offset(0.0F, -6.0F, -6.0F));
+		antlerRight2.addOrReplaceChild("antler_right_7", CubeListBuilder.create().texOffs(2, 4).addBox(0.0F, -2.0F, -2.0F, 1.0F, 1.0F, 2.0F), PartPose.offset(0.0F, -6.0F, -6.0F));
+		antlerLeft2.addOrReplaceChild("antler_left_8", CubeListBuilder.create().texOffs(2, 4).addBox(-1.0F, -2.0F, -2.0F, 1.0F, 1.0F, 2.0F), PartPose.offset(0.0F, -8.0F, -6.0F));
+		antlerRight2.addOrReplaceChild("antler_right_8", CubeListBuilder.create().texOffs(2, 4).addBox(0.0F, -2.0F, -2.0F, 1.0F, 1.0F, 2.0F), PartPose.offset(0.0F, -8.0F, -6.0F));
+		antlerLeft2.addOrReplaceChild("antler_left_9", CubeListBuilder.create().texOffs(4, 0).addBox(-1.0F, -2.0F, -1.0F, 1.0F, 1.0F, 1.0F), PartPose.offset(0.0F, -10.0F, -6.0F));
+		antlerRight2.addOrReplaceChild("antler_right_9", CubeListBuilder.create().texOffs(4, 0).addBox(0.0F, -2.0F, -1.0F, 1.0F, 1.0F, 1.0F), PartPose.offset(0.0F, -10.0F, -6.0F));
+		antlerLeft2.addOrReplaceChild("antler_left_10", CubeListBuilder.create().texOffs(4, 0).addBox(-1.0F, -1.0F, -2.0F, 1.0F, 1.0F, 1.0F), PartPose.offset(0.0F, -12.0F, -3.0F));
+		antlerRight2.addOrReplaceChild("antler_right_10", CubeListBuilder.create().texOffs(4, 0).addBox(0.0F, -1.0F, -2.0F, 1.0F, 1.0F, 1.0F), PartPose.offset(0.0F, -12.0F, -3.0F));
+		antlerLeft2.addOrReplaceChild("antler_left_11", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, -2.0F, 1.0F, 2.0F, 1.0F), PartPose.offset(0.0F, -12.0F, -1.0F));
+		antlerRight2.addOrReplaceChild("antler_right_11", CubeListBuilder.create().texOffs(0, 0).addBox(0.0F, -2.0F, -2.0F, 1.0F, 2.0F, 1.0F), PartPose.offset(0.0F, -12.0F, -1.0F));
+		antlerLeft2.addOrReplaceChild("antler_left_12", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, -2.0F, 1.0F, 2.0F, 1.0F), PartPose.offset(0.0F, -12.0F, 1.0F));
+		antlerRight2.addOrReplaceChild("antler_right_12", CubeListBuilder.create().texOffs(0, 0).addBox(0.0F, -2.0F, -2.0F, 1.0F, 2.0F, 1.0F), PartPose.offset(0.0F, -12.0F, 1.0F));
 		PartDefinition legUpperBackRight = body.addOrReplaceChild("legUpperBackRight", CubeListBuilder.create().texOffs(0, 48).addBox(-2.0F, -4.0F, -4.0F, 4.0F, 8.0F, 4.0F), PartPose.offset(4.0F, 8.0F, 16.0F));
 		PartDefinition legUpperBackLeft = body.addOrReplaceChild("legUpperBackLeft", CubeListBuilder.create().texOffs(0, 48).mirror().addBox(-2.0F, -4.0F, -4.0F, 4.0F, 8.0F, 4.0F), PartPose.offset(-4.0F, 8.0F, 16.0F));
 		PartDefinition legUpperFrontRight = body.addOrReplaceChild("legUpperFrontRight", CubeListBuilder.create().texOffs(16, 48).addBox(-2.0F, -4.0F, 0.0F, 4.0F, 12.0F, 4.0F), PartPose.offset(4.0F, 8.0F, -16.0F));
@@ -131,7 +156,7 @@ public class MooseModel<T extends AbstractHorse> extends AgeableListModel<T> {
 		legUpperBackLeft.addOrReplaceChild("legLowerBackLeft", CubeListBuilder.create().texOffs(32, 48).mirror().addBox(-2.0F, 0.0F, -4.0F, 4.0F, 12.0F, 4.0F), PartPose.offset(0.0F, 4.0F, 0.0F));
 		legUpperFrontRight.addOrReplaceChild("legLowerFrontRight", CubeListBuilder.create().texOffs(48, 48).addBox(-2.0F, 0.0F, 0.0F, 4.0F, 8.0F, 4.0F), PartPose.offset(0.0F, 8.0F, 0.0F));
 		legUpperFrontLeft.addOrReplaceChild("legLowerFrontLeft", CubeListBuilder.create().texOffs(48, 48).mirror().addBox(-2.0F, 0.0F, 0.0F, 4.0F, 8.0F, 4.0F), PartPose.offset(0.0F, 8.0F, 0.0F));
-		
+		body.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(22, 16).addBox(-1.0F, 0.0F, -2.0F, 2.0F, 4.0F, 2.0F), PartPose.offset(0.0F, -5.0F, 16.0F));
 		/*
 		this.saddle = new ModelPart(this, 72, 0);
 		this.saddle.addBox(-5.0F, -31.0F, -9.0F, 10.0F, 9.0F, 9.0F, 0.5F);
@@ -186,12 +211,19 @@ public class MooseModel<T extends AbstractHorse> extends AgeableListModel<T> {
 		//	modelrenderer1.visible = flag1 && flag;
 		//}
 		
-		this.antlerLeft1.zRot = (float) Math.PI/3;
-		this.antlerRight1.zRot = -(float) Math.PI/3;
-		this.antlerLeft2.xRot = -1.35F;
-		this.antlerRight2.xRot = -1.35F;
-		this.antlerLeft3.xRot = -(float) Math.PI/6;
-		this.antlerRight3.xRot = -(float) Math.PI/6;
+		this.antlerLeft1.zRot = (float) Math.PI/2;
+		this.antlerRight1.zRot = -(float) Math.PI/2;
+		this.antlerLeft1.yRot = -(float) Math.PI/8;
+		this.antlerRight1.yRot = (float) Math.PI/8;
+		
+		this.antlerLeft2.xRot = -1.25F;
+		this.antlerRight2.xRot = -1.25F;
+		this.antlerLeft2.zRot = -0.5F;
+		this.antlerRight2.zRot = 0.5F;
+		this.antlerLeft3.xRot = 1.0F;
+		this.antlerRight3.xRot = 1.0F;
+		this.antlerLeft3a.xRot = 1.0F;
+		this.antlerRight3a.xRot = 1.0F;
 		this.antlerLeft4.yRot = (float) (Math.PI/6);
 		this.antlerRight4.yRot= -(float) (Math.PI/6);
 		this.antlerLeft5.yRot = (float) (Math.PI/6);
@@ -200,10 +232,20 @@ public class MooseModel<T extends AbstractHorse> extends AgeableListModel<T> {
 		this.antlerRight6.yRot = -(float) (Math.PI/6);
 		this.antlerLeft7.yRot = (float) (Math.PI/6);
 		this.antlerRight7.yRot = -(float) (Math.PI/6);
-		this.antlerLeft8.zRot = -(float) (Math.PI/6);
-		this.antlerRight8.zRot = (float) (Math.PI/6);
-		this.antlerLeft9.zRot = -(float) (Math.PI/6);
-		this.antlerRight9.zRot = (float) (Math.PI/6);
+		this.antlerLeft8.yRot = (float) (Math.PI/6);
+		this.antlerRight8.yRot = -(float) (Math.PI/6);
+		this.antlerLeft9.yRot = (float) (Math.PI/6);
+		this.antlerRight9.yRot = -(float) (Math.PI/6);
+		this.antlerLeft10.zRot = -(float) (Math.PI/6);
+		this.antlerRight10.zRot = (float) (Math.PI/6);
+		this.antlerLeft11.zRot = -(float) (Math.PI/6);
+		this.antlerRight11.zRot = (float) (Math.PI/6);
+		this.antlerLeft12.zRot = -(float) (Math.PI/6);
+		this.antlerRight12.zRot = (float) (Math.PI/6);
+		
+		
+		this.tail.xRot = ((float) Math.PI / 8F);
+		
 	}
 
 	@Override

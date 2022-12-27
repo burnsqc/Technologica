@@ -65,13 +65,6 @@ public class LeopardSealModel<T extends Entity> extends ListModel<T> {
 		this.head.xRot = (float) (Math.PI/4);
 		this.tailFlipperLeft.yRot = (float) Math.PI / 8;
 		this.tailFlipperRight.yRot = -(float) Math.PI / 8;
-		
-		this.flipperLeft.yRot = 0;//-(float) Math.PI / 4;
-		this.flipperLeft.zRot = 0;//(float) Math.PI / 8;
-		
-		this.flipperRight.yRot = 0;//(float) Math.PI / 4;
-		this.flipperRight.zRot = 0;//-(float) Math.PI / 8;
-
 		this.body.xRot = headPitch * ((float) Math.PI / 180F);
 		this.body.yRot = netHeadYaw * ((float) Math.PI / 180F);
 		if (entityIn.getDeltaMovement().horizontalDistanceSqr() > 1.0E-7D) {
@@ -81,5 +74,4 @@ public class LeopardSealModel<T extends Entity> extends ListModel<T> {
 			this.tailFlipperRight.yRot = -0.2F * Mth.cos(ageInTicks * 0.3F);
 		}
 	}
-	
 }
