@@ -56,14 +56,12 @@ public class GatherData {
 		generator.addProvider(event.includeServer(), new TechnologicaLootTableProvider(generator));
 		
 		//PROTOTYPING
-		
-		//ResourceKey<PlacedFeature> oilLakeSurfaceKey = ResourceKey.get.create(Registry.PLACED_FEATURE_REGISTRY, OIL_LAKE_SURFACE_RL);
-		
+		//This all changes in 1.19.3 so don't bother making any of it pretty
 		Function<ResourceKey<Biome>, Holder<Biome>> func = x -> registryAccess.registryOrThrow(Registry.BIOME_REGISTRY).getHolder(x).get();
-		//Function<ResourceKey<PlacedFeature>, Holder<PlacedFeature>> func2 = x -> registryAccess.registryOrThrow(Registry.PLACED_FEATURE_REGISTRY).getHolder(x).get();
-		
+
 		ResourceLocation alligator = new ResourceLocation(Technologica.MODID, "spawn_alligator");
 		ResourceLocation beaver = new ResourceLocation(Technologica.MODID, "spawn_beaver");
+		ResourceLocation buffalo = new ResourceLocation(Technologica.MODID, "spawn_buffalo");
 		ResourceLocation camel = new ResourceLocation(Technologica.MODID, "spawn_camel");
 		ResourceLocation cobra = new ResourceLocation(Technologica.MODID, "spawn_cobra");
 		ResourceLocation cottonmouth = new ResourceLocation(Technologica.MODID, "spawn_cottonmouth");
@@ -78,9 +76,15 @@ public class GatherData {
 		ResourceLocation gorilla = new ResourceLocation(Technologica.MODID, "spawn_gorilla");
 		ResourceLocation grizzlyBear = new ResourceLocation(Technologica.MODID, "spawn_grizzly_bear");
 		ResourceLocation jaguar = new ResourceLocation(Technologica.MODID, "spawn_jaguar");
+		ResourceLocation kingCrab = new ResourceLocation(Technologica.MODID, "spawn_king_crab");
+		ResourceLocation leopardSeal = new ResourceLocation(Technologica.MODID, "spawn_leopard_seal");
 		ResourceLocation lion = new ResourceLocation(Technologica.MODID, "spawn_lion");
 		ResourceLocation lizard = new ResourceLocation(Technologica.MODID, "spawn_lizard");
+		ResourceLocation moose = new ResourceLocation(Technologica.MODID, "spawn_moose");
+		ResourceLocation narwhal = new ResourceLocation(Technologica.MODID, "spawn_narwhal");
+		ResourceLocation octopus = new ResourceLocation(Technologica.MODID, "spawn_octopus");
 		ResourceLocation ostrich = new ResourceLocation(Technologica.MODID, "spawn_ostrich");
+		ResourceLocation owl = new ResourceLocation(Technologica.MODID, "spawn_owl");
 		ResourceLocation penguin = new ResourceLocation(Technologica.MODID, "spawn_penguin");
 		ResourceLocation piranha = new ResourceLocation(Technologica.MODID, "spawn_piranha");
 		ResourceLocation poisonDartFrog = new ResourceLocation(Technologica.MODID, "spawn_poison_dart_frog");
@@ -93,10 +97,10 @@ public class GatherData {
 		ResourceLocation vulture = new ResourceLocation(Technologica.MODID, "spawn_vulture");
 		ResourceLocation zebra = new ResourceLocation(Technologica.MODID, "spawn_zebra");
 		ResourceLocation mummy = new ResourceLocation(Technologica.MODID, "spawn_mummy");
-		//ResourceLocation brinePoolFeature = new ResourceLocation(Technologica.MODID, "brine_pool_feature");
 		
 		BiomeModifier alligatorSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.SWAMP)), List.of(new SpawnerData(TechnologicaEntityType.ALLIGATOR.get(), 100, 1, 2)));
 		BiomeModifier beaverSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.FOREST), func.apply(Biomes.RIVER), func.apply(Biomes.SNOWY_SLOPES), func.apply(Biomes.SNOWY_TAIGA), func.apply(Biomes.STONY_PEAKS), func.apply(Biomes.TAIGA), func.apply(Biomes.WINDSWEPT_FOREST), func.apply(Biomes.WINDSWEPT_HILLS)), List.of(new SpawnerData(TechnologicaEntityType.BEAVER.get(), 100, 1, 2)));
+		BiomeModifier buffaloSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.PLAINS)), List.of(new SpawnerData(TechnologicaEntityType.BUFFALO.get(), 100, 1, 2)));
 		BiomeModifier camelSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.DESERT)), List.of(new SpawnerData(TechnologicaEntityType.CAMEL.get(), 100, 1, 2)));
 		BiomeModifier cobraSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.DESERT)), List.of(new SpawnerData(TechnologicaEntityType.COBRA.get(), 100, 1, 2)));
 		BiomeModifier cottonmouthSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.SWAMP)), List.of(new SpawnerData(TechnologicaEntityType.COTTONMOUTH.get(), 100, 1, 2)));
@@ -111,9 +115,15 @@ public class GatherData {
 		BiomeModifier gorillaSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.JUNGLE)), List.of(new SpawnerData(TechnologicaEntityType.GORILLA.get(), 100, 1, 2)));
 		BiomeModifier grizzlyBearSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.FOREST), func.apply(Biomes.SNOWY_SLOPES), func.apply(Biomes.SNOWY_TAIGA), func.apply(Biomes.STONY_PEAKS), func.apply(Biomes.TAIGA), func.apply(Biomes.WINDSWEPT_FOREST), func.apply(Biomes.WINDSWEPT_HILLS)), List.of(new SpawnerData(TechnologicaEntityType.GRIZZLY_BEAR.get(), 100, 1, 2)));
 		BiomeModifier jaguarSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.MANGROVE_SWAMP)), List.of(new SpawnerData(TechnologicaEntityType.JAGUAR.get(), 100, 3, 5)));
+		BiomeModifier kingCrabSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.FROZEN_OCEAN)), List.of(new SpawnerData(TechnologicaEntityType.KING_CRAB.get(), 100, 1, 2)));
+		BiomeModifier leopardSealSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.FROZEN_OCEAN)), List.of(new SpawnerData(TechnologicaEntityType.LEOPARD_SEAL.get(), 100, 1, 2)));
 		BiomeModifier lionSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.SAVANNA)), List.of(new SpawnerData(TechnologicaEntityType.LION.get(), 100, 3, 5)));
 		BiomeModifier lizardSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.BADLANDS)), List.of(new SpawnerData(TechnologicaEntityType.LIZARD.get(), 100, 3, 5)));
+		BiomeModifier mooseSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.TAIGA)), List.of(new SpawnerData(TechnologicaEntityType.MOOSE.get(), 100, 3, 5)));
+		BiomeModifier narwhalSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.FROZEN_OCEAN)), List.of(new SpawnerData(TechnologicaEntityType.NARWHAL.get(), 100, 3, 5)));
+		BiomeModifier octopusSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.WARM_OCEAN)), List.of(new SpawnerData(TechnologicaEntityType.OCTOPUS.get(), 100, 3, 5)));
 		BiomeModifier ostrichSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.SAVANNA)), List.of(new SpawnerData(TechnologicaEntityType.OSTRICH.get(), 100, 1, 2)));
+		BiomeModifier owlSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.TAIGA)), List.of(new SpawnerData(TechnologicaEntityType.OWL.get(), 100, 3, 5)));
 		BiomeModifier penguinSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.ICE_SPIKES)), List.of(new SpawnerData(TechnologicaEntityType.PENGUIN.get(), 100, 3, 5)));
 		BiomeModifier piranhaSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.RIVER)), List.of(new SpawnerData(TechnologicaEntityType.PIRANHA.get(), 100, 3, 5)));
 		BiomeModifier poisonDartFrogSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.MANGROVE_SWAMP)), List.of(new SpawnerData(TechnologicaEntityType.POISON_DART_FROG.get(), 100, 3, 5)));
@@ -126,12 +136,11 @@ public class GatherData {
 		BiomeModifier vultureSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.BADLANDS)), List.of(new SpawnerData(TechnologicaEntityType.VULTURE.get(), 100, 1, 2)));
 		BiomeModifier zebraSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.SAVANNA)), List.of(new SpawnerData(TechnologicaEntityType.ZEBRA.get(), 100, 1, 2)));
 		BiomeModifier mummySpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.DESERT)), List.of(new SpawnerData(TechnologicaEntityType.MUMMY.get(), 100, 1, 1)));
-		
-		//BiomeModifier brinePools = new ForgeBiomeModifiers.AddFeaturesBiomeModifier(biomes(func.apply(Biomes.BADLANDS)), placed(registryAccess.registryOrThrow(Registry.PLACED_FEATURE_REGISTRY).getId(MiscOverworldPlacements.BLUE_ICE)), Decoration.FLUID_SPRINGS);
-		
+	
 		Map<ResourceLocation, BiomeModifier> map = new HashMap<>();
 		map.put(alligator, alligatorSpawner);
 		map.put(beaver, beaverSpawner);
+		map.put(buffalo, buffaloSpawner);
 		map.put(camel, camelSpawner);
 		map.put(cobra, cobraSpawner);
 		map.put(cottonmouth, cottonmouthSpawner);
@@ -146,9 +155,15 @@ public class GatherData {
 		map.put(gorilla, gorillaSpawner);
 		map.put(grizzlyBear, grizzlyBearSpawner);
 		map.put(jaguar, jaguarSpawner);
+		map.put(kingCrab, kingCrabSpawner);
+		map.put(leopardSeal, leopardSealSpawner);
 		map.put(lion, lionSpawner);
 		map.put(lizard, lizardSpawner);
+		map.put(moose, mooseSpawner);
+		map.put(narwhal, narwhalSpawner);
+		map.put(octopus, octopusSpawner);
 		map.put(ostrich, ostrichSpawner);
+		map.put(owl, owlSpawner);
 		map.put(penguin, penguinSpawner);
 		map.put(piranha, piranhaSpawner);
 		map.put(poisonDartFrog, poisonDartFrogSpawner);
@@ -161,7 +176,7 @@ public class GatherData {
 		map.put(vulture, vultureSpawner);
 		map.put(zebra, zebraSpawner);
 		map.put(mummy, mummySpawner);
-		//map.put(brinePoolFeature, brinePools);
+
 		JsonCodecProvider<BiomeModifier> provider = JsonCodecProvider.forDatapackRegistry(generator, helper, Technologica.MODID, registryOps, ForgeRegistries.Keys.BIOME_MODIFIERS, map);
 		
 		generator.addProvider(event.includeServer(), provider);
@@ -171,9 +186,4 @@ public class GatherData {
 	private static HolderSet<Biome> biomes(Holder<Biome>... holders) {
 		return HolderSet.direct(holders);
 	}
-	
-	//@SafeVarargs
-	//private static HolderSet<PlacedFeature> placed(Holder<PlacedFeature>... holders) {
-	//	return HolderSet.direct(holders);
-	//}
 }
