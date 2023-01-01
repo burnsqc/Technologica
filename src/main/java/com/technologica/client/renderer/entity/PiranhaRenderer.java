@@ -15,29 +15,28 @@ import net.minecraft.util.Mth;
 public final class PiranhaRenderer extends MobRenderer<Piranha, PiranhaModel<Piranha>> {
 	private static final ResourceLocation PIRANHA_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/piranha.png");
 
-	public PiranhaRenderer(Context context) {
-		super(context, new PiranhaModel<>(context.bakeLayer(TechnologicaModelLayers.PIRANHA)), 0.15F);
+	public PiranhaRenderer(Context contextIn) {
+		super(contextIn, new PiranhaModel<>(contextIn.bakeLayer(TechnologicaModelLayers.PIRANHA)), 0.2F);
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(Piranha entity) {
+	public ResourceLocation getTextureLocation(Piranha piranhaIn) {
 		return PIRANHA_TEXTURE;
 	}
 
 	@Override
-	protected void setupRotations(Piranha entityLiving, PoseStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
-		super.setupRotations(entityLiving, matrixStackIn, ageInTicks, rotationYaw, partialTicks);
+	protected void setupRotations(Piranha piranhaIn, PoseStack matrixStackIn, float ageInTicksIn, float yawIn, float partialTicksIn) {
+		super.setupRotations(piranhaIn, matrixStackIn, ageInTicksIn, yawIn, partialTicksIn);
 		float f = 1.0F;
 		float f1 = 1.0F;
-		if (!entityLiving.isInWater()) {
+		if (!piranhaIn.isInWater()) {
 			f = 1.3F;
 			f1 = 1.7F;
 		}
-
-		float f2 = f * 4.3F * Mth.sin(f1 * 0.6F * ageInTicks);
+		float f2 = f * 4.3F * Mth.sin(f1 * 0.6F * ageInTicksIn);
 		matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(f2));
 		matrixStackIn.translate(0.0D, 0.0D, -0.4F);
-		if (!entityLiving.isInWater()) {
+		if (!piranhaIn.isInWater()) {
 			matrixStackIn.translate(0.2F, 0.1F, 0.0D);
 			matrixStackIn.mulPose(Vector3f.ZP.rotationDegrees(90.0F));
 		}

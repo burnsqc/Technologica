@@ -6,25 +6,25 @@ import com.technologica.client.model.geom.TechnologicaModelLayers;
 import com.technologica.world.entity.animal.GrizzlyBear;
 
 import net.minecraft.client.model.PolarBearModel;
-import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
 public class GrizzlyBearRenderer extends MobRenderer<GrizzlyBear, PolarBearModel<GrizzlyBear>> {
-   private static final ResourceLocation GRIZZLY_BEAR_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/grizzly_bear.png");
+	private static final ResourceLocation GRIZZLY_BEAR_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/grizzly_bear.png");
 
-   public GrizzlyBearRenderer(EntityRendererProvider.Context p_174356_) {
-	   super(p_174356_, new PolarBearModel<>(p_174356_.bakeLayer(TechnologicaModelLayers.GRIZZLY_BEAR)), 0.9F);
-   }
+	public GrizzlyBearRenderer(Context contextIn) {
+		super(contextIn, new PolarBearModel<>(contextIn.bakeLayer(TechnologicaModelLayers.GRIZZLY_BEAR)), 0.9F);
+	}
 
-   @Override
-   public ResourceLocation getTextureLocation(GrizzlyBear entity) {
-      return GRIZZLY_BEAR_TEXTURE;
-   }
+	@Override
+	public ResourceLocation getTextureLocation(GrizzlyBear grizzlyBearIn) {
+		return GRIZZLY_BEAR_TEXTURE;
+	}
 
-   @Override
-   protected void scale(GrizzlyBear entitylivingbaseIn, PoseStack matrixStackIn, float partialTickTime) {
-      matrixStackIn.scale(1.2F, 1.2F, 1.2F);
-      super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
-   }
+	@Override
+	protected void scale(GrizzlyBear grizzlyBearIn, PoseStack poseStackIn, float partialTicksIn) {
+		poseStackIn.scale(1.2F, 1.2F, 1.2F);
+		super.scale(grizzlyBearIn, poseStackIn, partialTicksIn);
+	}
 }

@@ -1,7 +1,5 @@
 package com.technologica.world.entity.animal;
 
-import java.util.Random;
-
 import javax.annotation.Nullable;
 
 import com.technologica.world.entity.ai.goal.GoToWaterGoal;
@@ -11,6 +9,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
@@ -197,7 +196,7 @@ public class KingCrab extends Animal {
 	public static class GroupData implements SpawnGroupData {
 		public MobEffect effect;
 
-		public void setRandomEffect(Random rand) {
+		public void setRandomEffect(RandomSource rand) {
 			int i = rand.nextInt(5);
 			if (i <= 1) {
 				this.effect = MobEffects.MOVEMENT_SPEED;

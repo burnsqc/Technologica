@@ -5,20 +5,19 @@ import com.technologica.client.model.GiraffeModel;
 import com.technologica.client.model.geom.TechnologicaModelLayers;
 import com.technologica.world.entity.animal.Giraffe;
 
-import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
 public final class GiraffeRenderer extends MobRenderer<Giraffe, GiraffeModel<Giraffe>> {
 	private static final ResourceLocation GIRAFFE_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/giraffe.png");
 
-	public GiraffeRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new GiraffeModel<>(renderManagerIn.bakeLayer(TechnologicaModelLayers.GIRAFFE)), 1.4F);
+	public GiraffeRenderer(Context contextIn) {
+		super(contextIn, new GiraffeModel<>(contextIn.bakeLayer(TechnologicaModelLayers.GIRAFFE)), 0.8F);
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(Giraffe entity) {
+	public ResourceLocation getTextureLocation(Giraffe giraffeIn) {
 		return GIRAFFE_TEXTURE;
 	}
 }
-

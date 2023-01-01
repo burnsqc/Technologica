@@ -5,19 +5,19 @@ import com.technologica.client.model.CottonmouthModel;
 import com.technologica.client.model.geom.TechnologicaModelLayers;
 import com.technologica.world.entity.animal.Cottonmouth;
 
-import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
 public final class CottonmouthRenderer extends MobRenderer<Cottonmouth, CottonmouthModel<Cottonmouth>> {
 	private static final ResourceLocation COTTONMOUTH_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/cottonmouth.png");
 
-	public CottonmouthRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new CottonmouthModel<>(renderManagerIn.bakeLayer(TechnologicaModelLayers.COTTONMOUTH)), 1.1F);
+	public CottonmouthRenderer(Context contextIn) {
+		super(contextIn, new CottonmouthModel<>(contextIn.bakeLayer(TechnologicaModelLayers.COTTONMOUTH)), 0.1F);
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(Cottonmouth entity) {
+	public ResourceLocation getTextureLocation(Cottonmouth cottonmouthIn) {
 		return COTTONMOUTH_TEXTURE;
 	}
 }

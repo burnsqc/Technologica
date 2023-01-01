@@ -5,23 +5,24 @@ import com.technologica.client.model.ScorpionModel;
 import com.technologica.client.model.geom.TechnologicaModelLayers;
 import com.technologica.world.entity.animal.Scorpion;
 
-import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
-public class ScorpionRenderer<T extends Scorpion> extends MobRenderer<T, ScorpionModel<T>> {
-	private static final ResourceLocation SCORPION_TEXTURE = new ResourceLocation(Technologica.MODID,
-			"textures/entity/scorpion.png");
+public class ScorpionRenderer extends MobRenderer<Scorpion, ScorpionModel<Scorpion>> {
+	private static final ResourceLocation SCORPION_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/scorpion.png");
 
-	public ScorpionRenderer(EntityRendererProvider.Context renderManagerIn) {
-		super(renderManagerIn, new ScorpionModel<>(renderManagerIn.bakeLayer(TechnologicaModelLayers.SCORPION)), 0.8F);
+	public ScorpionRenderer(Context contextIn) {
+		super(contextIn, new ScorpionModel<>(contextIn.bakeLayer(TechnologicaModelLayers.SCORPION)), 0.8F);
 	}
 
-	protected float getFlipDegrees(T entityLivingBaseIn) {
-		return 180.0F;
-	}
-
-	public ResourceLocation getTextureLocation(T entity) {
+	@Override
+	public ResourceLocation getTextureLocation(Scorpion scorpionIn) {
 		return SCORPION_TEXTURE;
+	}
+
+	@Override
+	protected float getFlipDegrees(Scorpion scorpionIn) {
+		return 180.0F;
 	}
 }

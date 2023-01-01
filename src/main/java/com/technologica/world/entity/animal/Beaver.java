@@ -1,7 +1,5 @@
 package com.technologica.world.entity.animal;
 
-import java.util.Random;
-
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
@@ -13,6 +11,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
@@ -65,6 +64,7 @@ public class Beaver extends Animal {
 		this.setMovementSpeed(0.0D);
 	}
 
+	@Override
 	protected void registerGoals() {
 		this.goalSelector.addGoal(1, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new Beaver.PanicGoal(this, 1.25D));
@@ -78,22 +78,12 @@ public class Beaver extends Animal {
 	}
 
 	public static AttributeSupplier.Builder registerAttributes() {
-		return AttributeSupplier.builder()
-				.add(Attributes.MAX_HEALTH, 10.0D)
-				.add(Attributes.MOVEMENT_SPEED, 0.25D)
-				.add(Attributes.FOLLOW_RANGE, 16.0D)
-				.add(Attributes.ATTACK_KNOCKBACK)
-				.add(Attributes.KNOCKBACK_RESISTANCE)
-				.add(Attributes.ARMOR)
-				.add(Attributes.ARMOR_TOUGHNESS)
-				.add(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get())
-				.add(net.minecraftforge.common.ForgeMod.NAMETAG_DISTANCE.get())
-				.add(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get());
+		return AttributeSupplier.builder().add(Attributes.MAX_HEALTH, 10.0D).add(Attributes.MOVEMENT_SPEED, 0.25D).add(Attributes.FOLLOW_RANGE, 16.0D).add(Attributes.ATTACK_KNOCKBACK).add(Attributes.KNOCKBACK_RESISTANCE).add(Attributes.ARMOR).add(Attributes.ARMOR_TOUGHNESS).add(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get()).add(net.minecraftforge.common.ForgeMod.NAMETAG_DISTANCE.get()).add(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get());
 	}
 
+	@Override
 	protected float getJumpPower() {
-		if (!this.horizontalCollision
-				&& (!this.moveControl.hasWanted() || !(this.moveControl.getWantedY() > this.getY() + 0.5D))) {
+		if (!this.horizontalCollision && (!this.moveControl.hasWanted() || !(this.moveControl.getWantedY() > this.getY() + 0.5D))) {
 			Path path = this.navigation.getPath();
 			if (path != null && !path.isDone()) {
 				Vec3 vector3d = path.getNextEntityPos(this);
@@ -111,27 +101,28 @@ public class Beaver extends Animal {
 	/**
 	 * Causes this entity to do an upwards motion (jumping).
 	 */
-	
+
 	public void setMovementSpeed(double newSpeed) {
 		this.getNavigation().setSpeedModifier(newSpeed);
-		this.moveControl.setWantedPosition(this.moveControl.getWantedX(), this.moveControl.getWantedY(),
-				this.moveControl.getWantedZ(), newSpeed);
+		this.moveControl.setWantedPosition(this.moveControl.getWantedX(), this.moveControl.getWantedY(), this.moveControl.getWantedZ(), newSpeed);
 	}
 
+	@Override
 	public void setJumping(boolean jumping) {
 		super.setJumping(jumping);
 		if (jumping) {
-			this.playSound(this.getJumpSound(), this.getSoundVolume(),
-					((this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F) * 0.8F);
+			this.playSound(this.getJumpSound(), this.getSoundVolume(), ((this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F) * 0.8F);
 		}
 
 	}
 
+	@Override
 	protected void defineSynchedData() {
 		super.defineSynchedData();
 		this.entityData.define(RABBIT_TYPE, 0);
 	}
 
+	@Override
 	public void customServerAiStep() {
 		if (this.currentMoveTypeDuration > 0) {
 			--this.currentMoveTypeDuration;
@@ -154,6 +145,7 @@ public class Beaver extends Animal {
 		this.wasOnGround = this.onGround;
 	}
 
+	@Override
 	public boolean canSpawnSprintParticle() {
 		return false;
 	}
@@ -172,14 +164,14 @@ public class Beaver extends Animal {
 	}
 
 	/**
-	 * Called frequently so the entity can update its state every tick as required.
-	 * For example, zombies and skeletons use this to react to sunlight and start to
-	 * burn.
+	 * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
 	 */
+	@Override
 	public void aiStep() {
 		super.aiStep();
 	}
 
+	@Override
 	public void addAdditionalSaveData(CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
 		compound.putInt("RabbitType", this.getRabbitType());
@@ -189,6 +181,7 @@ public class Beaver extends Animal {
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
 		this.setRabbitType(compound.getInt("RabbitType"));
@@ -199,28 +192,32 @@ public class Beaver extends Animal {
 		return SoundEvents.RABBIT_JUMP;
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound() {
 		return SoundEvents.RABBIT_AMBIENT;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
 		return SoundEvents.RABBIT_HURT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound() {
 		return SoundEvents.RABBIT_DEATH;
 	}
 
+	@Override
 	public boolean doHurtTarget(Entity entityIn) {
 		if (this.getRabbitType() == 99) {
-			this.playSound(SoundEvents.RABBIT_ATTACK, 1.0F,
-					(this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+			this.playSound(SoundEvents.RABBIT_ATTACK, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 			return entityIn.hurt(DamageSource.mobAttack(this), 8.0F);
 		} else {
 			return entityIn.hurt(DamageSource.mobAttack(this), 3.0F);
 		}
 	}
 
+	@Override
 	public SoundSource getSoundSource() {
 		return this.getRabbitType() == 99 ? SoundSource.HOSTILE : SoundSource.NEUTRAL;
 	}
@@ -228,6 +225,7 @@ public class Beaver extends Animal {
 	/**
 	 * Called when the entity is attacked.
 	 */
+	@Override
 	public boolean hurt(DamageSource source, float amount) {
 		return this.isInvulnerableTo(source) ? false : super.hurt(source, amount);
 	}
@@ -237,9 +235,9 @@ public class Beaver extends Animal {
 	}
 
 	/**
-	 * Checks if the parameter is an item which this animal can be fed to breed it
-	 * (wheat, carrots or seeds depending on the animal type)
+	 * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on the animal type)
 	 */
+	@Override
 	public boolean isFood(ItemStack stack) {
 		return this.isRabbitBreedingItem(stack.getItem());
 	}
@@ -259,9 +257,9 @@ public class Beaver extends Animal {
 		this.entityData.set(RABBIT_TYPE, rabbitTypeId);
 	}
 
+	@Override
 	@Nullable
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason,
-			@Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
 		int i = this.getRandomRabbitType(worldIn);
 		if (spawnDataIn instanceof Beaver.RabbitData) {
 			i = ((Beaver.RabbitData) spawnDataIn).typeData;
@@ -278,16 +276,13 @@ public class Beaver extends Animal {
 		return i < 50 ? 0 : (i < 90 ? 5 : 2);
 	}
 
-	public static boolean checkRabbitSpawnRules(EntityType<Beaver> p_223321_0_, LevelAccessor p_223321_1_, MobSpawnType reason,
-			BlockPos p_223321_3_, Random p_223321_4_) {
+	public static boolean checkRabbitSpawnRules(EntityType<Beaver> p_223321_0_, LevelAccessor p_223321_1_, MobSpawnType reason, BlockPos p_223321_3_, RandomSource p_223321_4_) {
 		BlockState blockstate = p_223321_1_.getBlockState(p_223321_3_.below());
-		return (blockstate.is(Blocks.GRASS_BLOCK) || blockstate.is(Blocks.SNOW)
-				|| blockstate.is(Blocks.SAND)) && p_223321_1_.getRawBrightness(p_223321_3_, 0) > 8;
+		return (blockstate.is(Blocks.GRASS_BLOCK) || blockstate.is(Blocks.SNOW) || blockstate.is(Blocks.SAND)) && p_223321_1_.getRawBrightness(p_223321_3_, 0) > 8;
 	}
 
 	/**
-	 * Returns true if {@link net.minecraft.entity.passive.EntityRabbit#carrotTicks
-	 * carrotTicks} has reached zero
+	 * Returns true if {@link net.minecraft.entity.passive.EntityRabbit#carrotTicks carrotTicks} has reached zero
 	 */
 	private boolean isCarrotEaten() {
 		return this.carrotTicks == 0;
@@ -296,6 +291,7 @@ public class Beaver extends Animal {
 	/**
 	 * Handler for {@link World#setEntityState}
 	 */
+	@Override
 	@OnlyIn(Dist.CLIENT)
 	public void handleEntityEvent(byte id) {
 		if (id == 1) {
@@ -306,24 +302,24 @@ public class Beaver extends Animal {
 
 	}
 
+	@Override
 	@OnlyIn(Dist.CLIENT)
 	public Vec3 getLeashOffset() {
-		return new Vec3(0.0D, (double) (0.6F * this.getEyeHeight()), (double) (this.getBbWidth() * 0.4F));
+		return new Vec3(0.0D, 0.6F * this.getEyeHeight(), this.getBbWidth() * 0.4F);
 	}
 
 	static class AvoidEntityGoal<T extends LivingEntity> extends net.minecraft.world.entity.ai.goal.AvoidEntityGoal<T> {
 		private final Beaver rabbit;
 
-		public AvoidEntityGoal(Beaver rabbit, Class<T> p_i46403_2_, float p_i46403_3_, double p_i46403_4_,
-				double p_i46403_6_) {
+		public AvoidEntityGoal(Beaver rabbit, Class<T> p_i46403_2_, float p_i46403_3_, double p_i46403_4_, double p_i46403_6_) {
 			super(rabbit, p_i46403_2_, p_i46403_3_, p_i46403_4_, p_i46403_6_);
 			this.rabbit = rabbit;
 		}
 
 		/**
-		 * Returns whether execution should begin. You can also read and cache any state
-		 * necessary for execution in this method as well.
+		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 		 */
+		@Override
 		public boolean canUse() {
 			return this.rabbit.getRabbitType() != 99 && super.canUse();
 		}
@@ -334,20 +330,21 @@ public class Beaver extends Animal {
 			super(rabbit, 1.4D, true);
 		}
 
+		@Override
 		protected double getAttackReachSqr(LivingEntity attackTarget) {
-			return (double) (4.0F + attackTarget.getBbWidth());
+			return 4.0F + attackTarget.getBbWidth();
 		}
 	}
 
 	static class MoveHelperController extends MoveControl {
 		private final Beaver rabbit;
-		
 
 		public MoveHelperController(Beaver rabbit) {
 			super(rabbit);
 			this.rabbit = rabbit;
 		}
 
+		@Override
 		public void tick() {
 			super.tick();
 		}
@@ -355,6 +352,7 @@ public class Beaver extends Animal {
 		/**
 		 * Sets the speed and location to move to
 		 */
+		@Override
 		public void setWantedPosition(double x, double y, double z, double speedIn) {
 			if (this.rabbit.isInWater()) {
 				speedIn = 1.5D;
@@ -362,7 +360,7 @@ public class Beaver extends Animal {
 
 			super.setWantedPosition(x, y, z, speedIn);
 			if (speedIn > 0.0D) {
-				
+
 			}
 
 		}
@@ -379,6 +377,7 @@ public class Beaver extends Animal {
 		/**
 		 * Keep ticking a continuous task that has already been started
 		 */
+		@Override
 		public void tick() {
 			super.tick();
 			this.rabbit.setMovementSpeed(this.speedModifier);
@@ -400,14 +399,14 @@ public class Beaver extends Animal {
 		private boolean canRaid;
 
 		public RaidFarmGoal(Beaver rabbitIn) {
-			super(rabbitIn, (double) 0.7F, 16);
+			super(rabbitIn, 0.7F, 16);
 			this.rabbit = rabbitIn;
 		}
 
 		/**
-		 * Returns whether execution should begin. You can also read and cache any state
-		 * necessary for execution in this method as well.
+		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 		 */
+		@Override
 		public boolean canUse() {
 			if (this.nextStartTick <= 0) {
 				if (!net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.rabbit.level, this.rabbit)) {
@@ -425,6 +424,7 @@ public class Beaver extends Animal {
 		/**
 		 * Returns whether an in-progress EntityAIBase should continue executing
 		 */
+		@Override
 		public boolean canContinueToUse() {
 			return this.canRaid && super.canContinueToUse();
 		}
@@ -432,11 +432,10 @@ public class Beaver extends Animal {
 		/**
 		 * Keep ticking a continuous task that has already been started
 		 */
+		@Override
 		public void tick() {
 			super.tick();
-			this.rabbit.getLookControl().setLookAt((double) this.blockPos.getX() + 0.5D,
-					(double) (this.blockPos.getY() + 1), (double) this.blockPos.getZ() + 0.5D, 10.0F,
-					(float) this.rabbit.getMaxHeadXRot());
+			this.rabbit.getLookControl().setLookAt(this.blockPos.getX() + 0.5D, this.blockPos.getY() + 1, this.blockPos.getZ() + 0.5D, 10.0F, this.rabbit.getMaxHeadXRot());
 			if (this.isReachedTarget()) {
 				Level world = this.rabbit.level;
 				BlockPos blockpos = this.blockPos.above();
@@ -448,8 +447,7 @@ public class Beaver extends Animal {
 						world.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 2);
 						world.destroyBlock(blockpos, true, this.rabbit);
 					} else {
-						world.setBlock(blockpos, blockstate.setValue(CarrotBlock.AGE, Integer.valueOf(integer - 1)),
-								2);
+						world.setBlock(blockpos, blockstate.setValue(CarrotBlock.AGE, Integer.valueOf(integer - 1)), 2);
 						world.levelEvent(2001, blockpos, Block.getId(blockstate));
 					}
 
@@ -465,6 +463,7 @@ public class Beaver extends Animal {
 		/**
 		 * Return true to set given position as destination
 		 */
+		@Override
 		protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
 			Block block = worldIn.getBlockState(pos).getBlock();
 			if (block == Blocks.FARMLAND && this.wantsToRaid && !this.canRaid) {

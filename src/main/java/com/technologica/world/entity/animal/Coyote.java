@@ -1,6 +1,5 @@
 package com.technologica.world.entity.animal;
 
-import java.util.Random;
 import java.util.UUID;
 import java.util.function.Predicate;
 
@@ -19,6 +18,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.InteractionHand;
@@ -529,7 +529,7 @@ public class Coyote extends TamableAnimal implements NeutralMob {
 		return new Vec3(0.0D, 0.6F * this.getEyeHeight(), this.getBbWidth() * 0.4F);
 	}
 
-	public static boolean checkCoyoteSpawnRules(EntityType<Coyote> p_186244_, LevelAccessor p_186245_, MobSpawnType p_186246_, BlockPos p_186247_, Random p_186248_) {
+	public static boolean checkCoyoteSpawnRules(EntityType<Coyote> p_186244_, LevelAccessor p_186245_, MobSpawnType p_186246_, BlockPos p_186247_, RandomSource p_186248_) {
 		return p_186245_.getBlockState(p_186247_.below()).is(BlockTags.WOLVES_SPAWNABLE_ON) && isBrightEnoughToSpawn(p_186245_, p_186247_);
 	}
 
