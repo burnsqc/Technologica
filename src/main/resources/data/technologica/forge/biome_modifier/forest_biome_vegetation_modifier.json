@@ -1,6 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "forest",
-  "features": "trees_chestnut",
-  "step": "vegetal_decoration"
-}

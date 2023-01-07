@@ -1,6 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "stony_peaks",
-  "features": "trees_aspen",
-  "step": "vegetal_decoration"
-}

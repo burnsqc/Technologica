@@ -4,7 +4,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.google.common.collect.ImmutableSet;
-import com.technologica.data.worldgen.placement.TechnologicaMiscOverworldPlacements;
 import com.technologica.network.play.server.Packets;
 import com.technologica.world.item.TechnologicaItems;
 import com.technologica.world.level.block.TechnologicaBlocks;
@@ -27,7 +26,6 @@ public class CommonSetup {
 
 		event.enqueueWork(() -> {
 			TechnologicaTrunkPlacerType.register();
-			TechnologicaMiscOverworldPlacements.test();
 			//TechnologicaTreeFeatures.register();
 			//TechnologicaTreePlacements.register();
 			//TechnologicaVegetationFeatures.register();

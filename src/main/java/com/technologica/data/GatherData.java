@@ -42,10 +42,11 @@ public class GatherData {
 	public static void onGatherDataEvent(final GatherDataEvent event) {
 		DataGenerator generator = event.getGenerator();
 		generator.addProvider(event.includeServer(), (DataProvider.Factory<TechnologicaFeatureProvider>) output -> new TechnologicaFeatureProvider(output, event.getLookupProvider()));
-		/*
 		
-		ExistingFileHelper helper = event.getExistingFileHelper();
+		
+		//ExistingFileHelper helper = event.getExistingFileHelper();
 		//RegistryAccess registryAccess = RegistryAccess.builtinCopy();
+		/*
 		//RegistryOps<JsonElement> registryOps = RegistryOps.create(JsonOps.INSTANCE, registryAccess);
 
 		generator.addProvider(event.includeClient(), new TechnologicaLanguageProvider(generator));
@@ -59,11 +60,6 @@ public class GatherData {
 		generator.addProvider(event.includeServer(), new TechnologicaRecipeProvider(generator));
 		generator.addProvider(event.includeServer(), new TechnologicaAdvancementProvider(generator, helper));
 		generator.addProvider(event.includeServer(), new TechnologicaLootTableProvider(generator));
-
-		// PROTOTYPING
-		// This all changes in 1.19.3 so don't bother making any of it pretty
-		/*
-		Function<ResourceKey<Biome>, Holder<Biome>> func = x -> registryAccess.registryOrThrow(Registries.BIOME).getHolder(x).get();
 
 		ResourceLocation alligator = new ResourceLocation(Technologica.MODID, "spawn_alligator");
 		ResourceLocation beaver = new ResourceLocation(Technologica.MODID, "spawn_beaver");

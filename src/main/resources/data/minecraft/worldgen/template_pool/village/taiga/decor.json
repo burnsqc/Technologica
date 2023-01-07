@@ -108,7 +108,7 @@
     {
       "weight": 1,
       "element": {
-        "feature": "minecraft:patch_blackberry_bush",
+        "feature": "technologica:patch_blackberry_common",
         "projection": "rigid",
         "element_type": "minecraft:feature_pool_element"
       }
@@ -116,7 +116,7 @@
     {
       "weight": 1,
       "element": {
-        "feature": "minecraft:patch_blueberry_bush",
+        "feature": "technologica:patch_blueberry_common",
         "projection": "rigid",
         "element_type": "minecraft:feature_pool_element"
       }
@@ -124,7 +124,7 @@
     {
       "weight": 1,
       "element": {
-        "feature": "minecraft:patch_raspberry_bush",
+        "feature": "technologica:patch_raspberry_common",
         "projection": "rigid",
         "element_type": "minecraft:feature_pool_element"
       }
@@ -132,7 +132,7 @@
     {
       "weight": 1,
       "element": {
-        "feature": "minecraft:patch_strawberry_bush",
+        "feature": "technologica:patch_strawberry_common",
         "projection": "rigid",
         "element_type": "minecraft:feature_pool_element"
       }
