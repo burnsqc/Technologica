@@ -1,7 +1,7 @@
 package com.technologica.client.renderer.blockentity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import com.technologica.world.level.block.entity.PotionTileEntity;
 
 import net.minecraft.client.Minecraft;
@@ -27,7 +27,7 @@ public class PotionRenderer implements BlockEntityRenderer<PotionTileEntity> {
     	if (!stack.isEmpty()) {
         	matrixStack.pushPose();       	
         	matrixStack.translate(0.5, -0.2, 0.5);
-        	matrixStack.mulPose(Vector3f.YN.rotationDegrees(clientplayerentity.getYRot()));
+        	matrixStack.mulPose(Axis.YN.rotationDegrees(clientplayerentity.getYRot()));
         	ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
         	BakedModel ibakedmodel = itemRenderer.getModel(stack, tileEntity.getLevel(), null, combinedOverlay);
         	itemRenderer.render(stack, ItemTransforms.TransformType.GROUND, true, matrixStack, buffer, combinedLight, combinedOverlay, ibakedmodel);       	

@@ -1,9 +1,10 @@
 package com.technologica.client.renderer.blockentity;
 
+import org.joml.Quaternionf;
+
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Quaternion;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import com.technologica.Technologica;
 import com.technologica.world.level.block.SawmillBlock;
 import com.technologica.world.level.block.entity.SawmillBlockEntity;
@@ -69,13 +70,13 @@ public class SawmillRenderer implements BlockEntityRenderer<SawmillBlockEntity> 
 			case NORTH:
 				break;
 			case EAST:
-				matrixStack.mulPose(Vector3f.YP.rotationDegrees(270));
+				matrixStack.mulPose(Axis.YP.rotationDegrees(270));
 				break;
 			case SOUTH:
-				matrixStack.mulPose(Vector3f.YP.rotationDegrees(180));
+				matrixStack.mulPose(Axis.YP.rotationDegrees(180));
 				break;
 			case WEST:
-				matrixStack.mulPose(Vector3f.YP.rotationDegrees(90));
+				matrixStack.mulPose(Axis.YP.rotationDegrees(90));
 				break;
 			default:
 				break;
@@ -96,18 +97,18 @@ public class SawmillRenderer implements BlockEntityRenderer<SawmillBlockEntity> 
 
 			switch (tileEntity.getBlockState().getValue(SawmillBlock.NESW_FACING)) {
 			case NORTH:
-				matrixStack.mulPose(Vector3f.YP.rotationDegrees(90));
+				matrixStack.mulPose(Axis.YP.rotationDegrees(90));
 				matrixStack.translate(tileEntity.getLogPos() - 1, 1.0, 0.0);
 				break;
 			case EAST:
 				matrixStack.translate(tileEntity.getLogPos(), 1.0, 0.0);
 				break;
 			case SOUTH:
-				matrixStack.mulPose(Vector3f.YP.rotationDegrees(270));
+				matrixStack.mulPose(Axis.YP.rotationDegrees(270));
 				matrixStack.translate(tileEntity.getLogPos(), 1.0, -1.0);
 				break;
 			case WEST:
-				matrixStack.mulPose(Vector3f.YP.rotationDegrees(180));
+				matrixStack.mulPose(Axis.YP.rotationDegrees(180));
 				matrixStack.translate(tileEntity.getLogPos() - 1, 1.0, -1.0);
 				break;
 			default:
@@ -118,9 +119,9 @@ public class SawmillRenderer implements BlockEntityRenderer<SawmillBlockEntity> 
 		}
 	}
 
-	private Quaternion angle(long time, float partialTicks) {
+	private Quaternionf angle(long time, float partialTicks) {
 		float f = 30 * (Math.floorMod(time, 360) + partialTicks);
-		Vector3f vector = Vector3f.XP;
+		Axis vector = Axis.XP;
 		return vector.rotationDegrees(f);
 	}
 }

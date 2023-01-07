@@ -20,5 +20,5 @@ public class TechnologicaSoundEvents {
 		LOGGER.info("SOUND EVENTS INITIALIZED: " + SOUND_EVENTS.getEntries().size() + " OF 1");
 	}
 
-	public static final RegistryObject<SoundEvent> DODGEBALL = SOUND_EVENTS.register("dodgeball", () -> new SoundEvent(new ResourceLocation(Technologica.MODID, "dodgeball")));
+	public static final RegistryObject<SoundEvent> DODGEBALL = SOUND_EVENTS.register("dodgeball", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(Technologica.MODID, "dodgeball")));
 }

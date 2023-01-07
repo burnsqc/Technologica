@@ -41,7 +41,6 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 
@@ -237,9 +236,8 @@ public class AtomicCreeper extends Monster implements PowerableMob {
 
 	private void explodeCreeper() {
 		if (!this.level.isClientSide) {
-			Explosion.BlockInteraction explosion$blockinteraction = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this) ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.NONE;
 			this.dead = true;
-			this.level.explode(this, this.getX(), this.getY(), this.getZ(), this.explosionRadius * 5.0F, explosion$blockinteraction);
+			this.level.explode(this, this.getX(), this.getY(), this.getZ(), this.explosionRadius * 5.0F, Level.ExplosionInteraction.MOB);
 			this.discard();
 			this.spawnLingeringCloud();
 		}

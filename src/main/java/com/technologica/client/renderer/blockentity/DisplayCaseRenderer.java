@@ -1,7 +1,7 @@
 package com.technologica.client.renderer.blockentity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import com.technologica.world.level.block.entity.DisplayCaseBlockEntity;
 
 import net.minecraft.client.Minecraft;
@@ -26,7 +26,7 @@ public class DisplayCaseRenderer implements BlockEntityRenderer<DisplayCaseBlock
     	if (!stack.isEmpty()) {
         	matrixStack.pushPose();       	
         	matrixStack.translate(0.5, 0.3, 0.5);
-        	matrixStack.mulPose(Vector3f.YN.rotationDegrees(angle));
+        	matrixStack.mulPose(Axis.YN.rotationDegrees(angle));
         	ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
         	BakedModel ibakedmodel = itemRenderer.getModel(stack, tileEntity.getLevel(), null, combinedOverlay);
         	itemRenderer.render(stack, ItemTransforms.TransformType.GROUND, true, matrixStack, buffer, combinedLight, combinedOverlay, ibakedmodel);       	

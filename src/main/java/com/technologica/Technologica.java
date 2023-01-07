@@ -21,12 +21,12 @@ import com.technologica.listeners.forgebus.WaterWalk;
 import com.technologica.listeners.lootmodifiers.LootModifierListener;
 import com.technologica.listeners.modbus.ClientSetup;
 import com.technologica.listeners.modbus.CommonSetup;
+import com.technologica.listeners.modbus.CreativeModeTabs;
 import com.technologica.listeners.modbus.RegisterDimensionSpecialEffects;
 import com.technologica.listeners.modbus.RegisterEntityAttributes;
 import com.technologica.listeners.modbus.RegisterEntityRenderers;
 import com.technologica.listeners.modbus.RegisterModels;
 import com.technologica.listeners.modbus.RegisterParticleProviders;
-import com.technologica.listeners.modbus.TextureStitchPre;
 import com.technologica.setup.Config;
 import com.technologica.util.DisablePlankConditionFactory;
 import com.technologica.util.EnablePlankConditionFactory;
@@ -94,12 +94,13 @@ public class Technologica {
 
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(CommonSetup::onFMLCommonSetupEvent); // 1st event during mod lifecycle startup
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientSetup::onFMLClientSetupEvent); // 2nd event during mod lifecycle startup
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(CreativeModeTabs::onRegisterCreativeModeTabs);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(RegisterEntityRenderers::onRegisterEntityRenderers);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(TechnologicaLayerDefinitions::onRegisterLayerDefinitions);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(RegisterModels::onRegisterModelsEvent);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(RegisterParticleProviders::onRegisterParticleProvidersEvent);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(RegisterDimensionSpecialEffects::onRegisterDimensionSpecialEffectsEvent);
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(TextureStitchPre::onTextureStitchPre);
+		// FMLJavaModLoadingContext.get().getModEventBus().addListener(TextureStitchPre::onTextureStitchPre);
 
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(GatherData::onGatherDataEvent);
 

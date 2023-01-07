@@ -4,14 +4,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.google.common.collect.ImmutableSet;
-import com.technologica.data.worldgen.features.TechnologicaOreFeatures;
-import com.technologica.data.worldgen.features.TechnologicaTreeFeatures;
-import com.technologica.data.worldgen.features.TechnologicaVegetationFeatures;
 import com.technologica.data.worldgen.placement.TechnologicaMiscOverworldPlacements;
-import com.technologica.data.worldgen.placement.TechnologicaOrePlacements;
-import com.technologica.data.worldgen.placement.TechnologicaTreePlacements;
-import com.technologica.data.worldgen.placement.TechnologicaVegetationPlacements;
-import com.technologica.data.worldgen.placement.TechnologicaVillagePlacements;
 import com.technologica.network.play.server.Packets;
 import com.technologica.world.item.TechnologicaItems;
 import com.technologica.world.level.block.TechnologicaBlocks;
@@ -34,14 +27,15 @@ public class CommonSetup {
 
 		event.enqueueWork(() -> {
 			TechnologicaTrunkPlacerType.register();
-			TechnologicaTreeFeatures.register();
-			TechnologicaTreePlacements.register();
-			TechnologicaVegetationFeatures.register();
-			TechnologicaVegetationPlacements.register();
-			TechnologicaVillagePlacements.register();
-			TechnologicaMiscOverworldPlacements.register();
-			TechnologicaOreFeatures.register();
-			TechnologicaOrePlacements.register();
+			TechnologicaMiscOverworldPlacements.test();
+			//TechnologicaTreeFeatures.register();
+			//TechnologicaTreePlacements.register();
+			//TechnologicaVegetationFeatures.register();
+			//TechnologicaVegetationPlacements.register();
+			//TechnologicaVillagePlacements.register();
+			//TechnologicaMiscOverworldPlacements.register();
+			//TechnologicaOreFeatures.register();
+			//TechnologicaOrePlacements.register();
 
 			addToFlowerPot();
 			addToComposter();

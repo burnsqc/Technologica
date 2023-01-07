@@ -8,6 +8,7 @@ import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -24,7 +25,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 
 public class Coconut extends ThrowableItemProjectile {
-	
+
 	public Coconut(EntityType<? extends Coconut> p_i50159_1_, Level p_i50159_2_) {
 		super(p_i50159_1_, p_i50159_2_);
 	}
@@ -44,7 +45,7 @@ public class Coconut extends ThrowableItemProjectile {
 
 	private ParticleOptions makeParticle() {
 		ItemStack itemstack = this.getItemRaw();
-		return (ParticleOptions) (itemstack.isEmpty() ? ParticleTypes.NOTE: new ItemParticleOption(ParticleTypes.ITEM, itemstack));
+		return itemstack.isEmpty() ? ParticleTypes.NOTE : new ItemParticleOption(ParticleTypes.ITEM, itemstack);
 	}
 
 	@Override
@@ -64,10 +65,10 @@ public class Coconut extends ThrowableItemProjectile {
 		Entity entity = result.getEntity();
 		entity.hurt(DamageSource.thrown(this, this.getOwner()), 4);
 
-        Vec3 vector3d = this.getDeltaMovement().multiply(1.0D, 0.0D, 1.0D).normalize().scale(1.0D);
-        if (vector3d.lengthSqr() > 0.0D) {
-        	entity.push(vector3d.x, 0.1D, vector3d.z);
-        }
+		Vec3 vector3d = this.getDeltaMovement().multiply(1.0D, 0.0D, 1.0D).normalize().scale(1.0D);
+		if (vector3d.lengthSqr() > 0.0D) {
+			entity.push(vector3d.x, 0.1D, vector3d.z);
+		}
 	}
 
 	@Override
@@ -80,9 +81,9 @@ public class Coconut extends ThrowableItemProjectile {
 
 		this.level.playSound((Player) null, this.getX(), this.getY(), this.getZ(), TechnologicaSoundEvents.DODGEBALL.get(), SoundSource.NEUTRAL, 1.0F, 1.0F);
 	}
-	
+
 	@Override
-	public Packet<?> getAddEntityPacket() {
+	public Packet<ClientGamePacketListener> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 }

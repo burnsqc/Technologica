@@ -2,6 +2,8 @@ package com.technologica.client.gui.screens.inventory;
 
 import java.util.stream.IntStream;
 
+import org.joml.Matrix4f;
+
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.platform.Lighting;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -11,7 +13,6 @@ import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexFormat;
-import com.mojang.math.Matrix4f;
 import com.technologica.Technologica;
 import com.technologica.network.play.client.CUpdateAnnunciatorPacket;
 import com.technologica.network.play.server.Packets;
@@ -49,7 +50,6 @@ public class AnnunciatorScreen extends AbstractContainerScreen<AnnunciatorMenu> 
 	@Override
 	protected void init() {
 		super.init();
-		this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
 		this.tileEntity.setEditable(false);
 		this.textInputUtil = new TextFieldHelper(() -> {
 			return this.multiLineText[this.editLine];
@@ -63,7 +63,6 @@ public class AnnunciatorScreen extends AbstractContainerScreen<AnnunciatorMenu> 
 
 	@Override
 	public void removed() {
-		this.minecraft.keyboardHandler.setSendRepeatsToGui(false);
 		ClientPacketListener clientplaynethandler = this.minecraft.getConnection();
 
 		if (clientplaynethandler != null) {

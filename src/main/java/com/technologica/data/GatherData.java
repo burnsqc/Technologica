@@ -14,13 +14,15 @@ import com.technologica.data.recipes.TechnologicaRecipeProvider;
 import com.technologica.data.tags.TechnologicaBlockTagsProvider;
 import com.technologica.data.tags.TechnologicaFluidTagsProvider;
 import com.technologica.data.tags.TechnologicaItemTagsProvider;
+import com.technologica.data.worldgen.TechnologicaFeatureProvider;
 import com.technologica.world.entity.TechnologicaEntityType;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
-import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.DataProvider;
 import net.minecraft.resources.RegistryOps;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -36,12 +38,15 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class GatherData {
 	RegistryAccess registryAccess;
-	
+
 	public static void onGatherDataEvent(final GatherDataEvent event) {
 		DataGenerator generator = event.getGenerator();
+		generator.addProvider(event.includeServer(), (DataProvider.Factory<TechnologicaFeatureProvider>) output -> new TechnologicaFeatureProvider(output, event.getLookupProvider()));
+		/*
+		
 		ExistingFileHelper helper = event.getExistingFileHelper();
-		RegistryAccess registryAccess = RegistryAccess.builtinCopy();
-		RegistryOps<JsonElement> registryOps = RegistryOps.create(JsonOps.INSTANCE, registryAccess);
+		//RegistryAccess registryAccess = RegistryAccess.builtinCopy();
+		//RegistryOps<JsonElement> registryOps = RegistryOps.create(JsonOps.INSTANCE, registryAccess);
 
 		generator.addProvider(event.includeClient(), new TechnologicaLanguageProvider(generator));
 		generator.addProvider(event.includeClient(), new TechnologicaBlockStateProvider(generator, helper));
@@ -50,14 +55,15 @@ public class GatherData {
 		generator.addProvider(event.includeServer(), new TechnologicaFluidTagsProvider(generator, helper));
 		TechnologicaBlockTagsProvider technologicaBlockTagsProvider = new TechnologicaBlockTagsProvider(generator, helper);
 		generator.addProvider(event.includeServer(), technologicaBlockTagsProvider);
-		generator.addProvider(event.includeServer(), new TechnologicaItemTagsProvider(generator, technologicaBlockTagsProvider, helper));
+		//generator.addProvider(event.includeServer(), new TechnologicaItemTagsProvider(generator, technologicaBlockTagsProvider, helper));
 		generator.addProvider(event.includeServer(), new TechnologicaRecipeProvider(generator));
 		generator.addProvider(event.includeServer(), new TechnologicaAdvancementProvider(generator, helper));
 		generator.addProvider(event.includeServer(), new TechnologicaLootTableProvider(generator));
-		
-		//PROTOTYPING
-		//This all changes in 1.19.3 so don't bother making any of it pretty
-		Function<ResourceKey<Biome>, Holder<Biome>> func = x -> registryAccess.registryOrThrow(Registry.BIOME_REGISTRY).getHolder(x).get();
+
+		// PROTOTYPING
+		// This all changes in 1.19.3 so don't bother making any of it pretty
+		/*
+		Function<ResourceKey<Biome>, Holder<Biome>> func = x -> registryAccess.registryOrThrow(Registries.BIOME).getHolder(x).get();
 
 		ResourceLocation alligator = new ResourceLocation(Technologica.MODID, "spawn_alligator");
 		ResourceLocation beaver = new ResourceLocation(Technologica.MODID, "spawn_beaver");
@@ -70,7 +76,7 @@ public class GatherData {
 		ResourceLocation deer = new ResourceLocation(Technologica.MODID, "spawn_deer");
 		ResourceLocation duck = new ResourceLocation(Technologica.MODID, "spawn_duck");
 		ResourceLocation elephant = new ResourceLocation(Technologica.MODID, "spawn_elephant");
-		ResourceLocation figureEightPufferfish= new ResourceLocation(Technologica.MODID, "spawn_figure_eight_pufferfish");
+		ResourceLocation figureEightPufferfish = new ResourceLocation(Technologica.MODID, "spawn_figure_eight_pufferfish");
 		ResourceLocation flamingo = new ResourceLocation(Technologica.MODID, "spawn_flamingo");
 		ResourceLocation giraffe = new ResourceLocation(Technologica.MODID, "spawn_giraffe");
 		ResourceLocation gorilla = new ResourceLocation(Technologica.MODID, "spawn_gorilla");
@@ -97,7 +103,7 @@ public class GatherData {
 		ResourceLocation vulture = new ResourceLocation(Technologica.MODID, "spawn_vulture");
 		ResourceLocation zebra = new ResourceLocation(Technologica.MODID, "spawn_zebra");
 		ResourceLocation mummy = new ResourceLocation(Technologica.MODID, "spawn_mummy");
-		
+
 		BiomeModifier alligatorSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.SWAMP)), List.of(new SpawnerData(TechnologicaEntityType.ALLIGATOR.get(), 100, 1, 2)));
 		BiomeModifier beaverSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.FOREST), func.apply(Biomes.RIVER), func.apply(Biomes.SNOWY_SLOPES), func.apply(Biomes.SNOWY_TAIGA), func.apply(Biomes.STONY_PEAKS), func.apply(Biomes.TAIGA), func.apply(Biomes.WINDSWEPT_FOREST), func.apply(Biomes.WINDSWEPT_HILLS)), List.of(new SpawnerData(TechnologicaEntityType.BEAVER.get(), 100, 1, 2)));
 		BiomeModifier buffaloSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.PLAINS)), List.of(new SpawnerData(TechnologicaEntityType.BUFFALO.get(), 100, 1, 2)));
@@ -136,7 +142,7 @@ public class GatherData {
 		BiomeModifier vultureSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.BADLANDS)), List.of(new SpawnerData(TechnologicaEntityType.VULTURE.get(), 100, 1, 2)));
 		BiomeModifier zebraSpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.SAVANNA)), List.of(new SpawnerData(TechnologicaEntityType.ZEBRA.get(), 100, 1, 2)));
 		BiomeModifier mummySpawner = new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes(func.apply(Biomes.DESERT)), List.of(new SpawnerData(TechnologicaEntityType.MUMMY.get(), 100, 1, 1)));
-	
+
 		Map<ResourceLocation, BiomeModifier> map = new HashMap<>();
 		map.put(alligator, alligatorSpawner);
 		map.put(beaver, beaverSpawner);
@@ -178,10 +184,11 @@ public class GatherData {
 		map.put(mummy, mummySpawner);
 
 		JsonCodecProvider<BiomeModifier> provider = JsonCodecProvider.forDatapackRegistry(generator, helper, Technologica.MODID, registryOps, ForgeRegistries.Keys.BIOME_MODIFIERS, map);
-		
+
 		generator.addProvider(event.includeServer(), provider);
+		*/
 	}
-	
+
 	@SafeVarargs
 	private static HolderSet<Biome> biomes(Holder<Biome>... holders) {
 		return HolderSet.direct(holders);

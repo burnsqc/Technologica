@@ -1,7 +1,7 @@
 package com.technologica.client.renderer.entity.layers;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import com.technologica.client.model.RaccoonModel;
 import com.technologica.world.entity.animal.Raccoon;
 
@@ -31,8 +31,8 @@ public class RaccoonHeldItemLayer extends RenderLayer<Raccoon, RaccoonModel<Racc
 
 		matrixStackIn.translate(0D, 1.3125D, -0.3125D);
 
-		matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(netHeadYaw / 2));
-		matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(headPitch / 2));
+		matrixStackIn.mulPose(Axis.YP.rotationDegrees(netHeadYaw / 2));
+		matrixStackIn.mulPose(Axis.XP.rotationDegrees(headPitch / 2));
 
 		if (entitylivingbaseIn.isBaby()) {
 			matrixStackIn.translate(0.06F, 0.26F, -0.6D);
@@ -40,7 +40,7 @@ public class RaccoonHeldItemLayer extends RenderLayer<Raccoon, RaccoonModel<Racc
 			matrixStackIn.translate(0.0D, -0.13D, -0.55D);
 		}
 
-		matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(90.0F));
+		matrixStackIn.mulPose(Axis.XP.rotationDegrees(90.0F));
 
 		ItemStack itemstack = entitylivingbaseIn.getItemBySlot(EquipmentSlot.MAINHAND);
 		Minecraft.getInstance().getEntityRenderDispatcher().getItemInHandRenderer().renderItem(entitylivingbaseIn, itemstack, ItemTransforms.TransformType.GROUND, false, matrixStackIn, bufferIn, packedLightIn);

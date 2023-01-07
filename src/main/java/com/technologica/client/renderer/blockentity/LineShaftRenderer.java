@@ -2,10 +2,11 @@ package com.technologica.client.renderer.blockentity;
 
 import java.util.Arrays;
 
+import org.joml.Quaternionf;
+
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Quaternion;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import com.technologica.Technologica;
 import com.technologica.util.Radius;
 import com.technologica.util.math.MathHelper;
@@ -97,8 +98,8 @@ public class LineShaftRenderer implements BlockEntityRenderer<LineShaftTileEntit
 					}
 					break;
 				case Y:
-					matrixStack.mulPose(Vector3f.YP.rotationDegrees(90));
-					matrixStack.mulPose(Vector3f.ZP.rotationDegrees(90));
+					matrixStack.mulPose(Axis.YP.rotationDegrees(90));
+					matrixStack.mulPose(Axis.ZP.rotationDegrees(90));
 					matrixStack.translate(0, 0.5d, 0.5d);
 					coords = MathHelper.circleTangents(tileEntity.getBlockPos().getX(), tileEntity.getBlockPos().getZ(), tileEntity.getBeltPos().getX(), tileEntity.getBeltPos().getZ(), radius1.getRadius(), radius2.getRadius());
 					addBox(matrixStack, buffer, 0.376f, coords[1] - tileEntity.getBlockPos().getZ(), coords[0] - tileEntity.getBlockPos().getX(), 0.624f, coords[3] - tileEntity.getBlockPos().getZ(), coords[2] - tileEntity.getBlockPos().getX(), coords[5] - tileEntity.getBlockPos().getZ(), coords[4] - tileEntity.getBlockPos().getX(), coords[7] - tileEntity.getBlockPos().getZ(), coords[6] - tileEntity.getBlockPos().getX());
@@ -108,7 +109,7 @@ public class LineShaftRenderer implements BlockEntityRenderer<LineShaftTileEntit
 					}
 					break;
 				case Z:
-					matrixStack.mulPose(Vector3f.YP.rotationDegrees(90));
+					matrixStack.mulPose(Axis.YP.rotationDegrees(90));
 					matrixStack.translate(-1, 0.5d, 0.5d);
 					coords = MathHelper.circleTangents(tileEntity.getBlockPos().getX(), tileEntity.getBlockPos().getY(), tileEntity.getBeltPos().getX(), tileEntity.getBeltPos().getY(), radius1.getRadius(), radius2.getRadius());
 					addBox(matrixStack, buffer, 0.376f, coords[1] - tileEntity.getBlockPos().getY(), coords[0] - tileEntity.getBlockPos().getX(), 0.624f, coords[3] - tileEntity.getBlockPos().getY(), coords[2] - tileEntity.getBlockPos().getX(), coords[5] - tileEntity.getBlockPos().getY(), coords[4] - tileEntity.getBlockPos().getX(), coords[7] - tileEntity.getBlockPos().getY(), coords[6] - tileEntity.getBlockPos().getX());
@@ -152,20 +153,20 @@ public class LineShaftRenderer implements BlockEntityRenderer<LineShaftTileEntit
 		return offset;
 	}
 
-	private Quaternion angle(BlockEntity tileEntityIn) {
+	private Quaternionf angle(BlockEntity tileEntityIn) {
 		long time = System.currentTimeMillis() * 6 * (int) ((LineShaftTileEntity) tileEntityIn).getRPM() / 1000;
 		float angle = time % 360;
-		Vector3f vector = Vector3f.XP;
+		Axis vector = Axis.XP;
 
 		switch (tileEntityIn.getBlockState().getValue(LineShaftBlock.AXIS)) {
 		case X:
-			vector = Vector3f.XP;
+			vector = Axis.XP;
 			break;
 		case Y:
-			vector = Vector3f.YP;
+			vector = Axis.YP;
 			break;
 		case Z:
-			vector = Vector3f.ZP;
+			vector = Axis.ZP;
 			break;
 		}
 

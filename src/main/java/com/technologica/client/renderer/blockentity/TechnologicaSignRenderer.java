@@ -7,7 +7,7 @@ import com.google.common.collect.ImmutableMap;
 import com.mojang.blaze3d.platform.NativeImage;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -66,12 +66,12 @@ public class TechnologicaSignRenderer implements BlockEntityRenderer<SignBlockEn
 		if (blockstate.getBlock() instanceof StandingSignBlock) {
 			p_112499_.translate(0.5D, 0.5D, 0.5D);
 			float f1 = -(blockstate.getValue(StandingSignBlock.ROTATION) * 360 / 16.0F);
-			p_112499_.mulPose(Vector3f.YP.rotationDegrees(f1));
+			p_112499_.mulPose(Axis.YP.rotationDegrees(f1));
 			signrenderer$signmodel.stick.visible = true;
 		} else {
 			p_112499_.translate(0.5D, 0.5D, 0.5D);
 			float f4 = -blockstate.getValue(WallSignBlock.FACING).toYRot();
-			p_112499_.mulPose(Vector3f.YP.rotationDegrees(f4));
+			p_112499_.mulPose(Axis.YP.rotationDegrees(f4));
 			p_112499_.translate(0.0D, -0.3125D, -0.4375D);
 			signrenderer$signmodel.stick.visible = false;
 		}

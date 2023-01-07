@@ -1,7 +1,7 @@
 package com.technologica.client.renderer.blockentity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import com.technologica.world.level.block.TechnologicaBlocks;
 import com.technologica.world.level.block.TwelveDirectionBlock;
 import com.technologica.world.level.block.entity.LineShaftHangerTileEntity;
@@ -37,17 +37,17 @@ public class LineShaftHangerRenderer implements BlockEntityRenderer<LineShaftHan
 			if (tileEntity.getBlockState().getValue(TwelveDirectionBlock.AXIS) == Direction.Axis.X) {
 				state = TechnologicaBlocks.LINE_SHAFT.get().defaultBlockState().setValue(TwelveDirectionBlock.AXIS, Direction.Axis.X);
 				matrixStack.translate(0.0, 0.5, 0.5);
-				matrixStack.mulPose(Vector3f.XP.rotationDegrees(angle));
+				matrixStack.mulPose(Axis.XP.rotationDegrees(angle));
 				matrixStack.translate(0.0, -0.5, -0.5);
 			} else if (tileEntity.getBlockState().getValue(TwelveDirectionBlock.AXIS) == Direction.Axis.Y) {
 				state = TechnologicaBlocks.LINE_SHAFT.get().defaultBlockState().setValue(TwelveDirectionBlock.AXIS, Direction.Axis.Y);
 				matrixStack.translate(0.5, 0.0, 0.5);
-				matrixStack.mulPose(Vector3f.YP.rotationDegrees(angle));
+				matrixStack.mulPose(Axis.YP.rotationDegrees(angle));
 				matrixStack.translate(-0.5, 0.0, -0.5);
 			} else {
 				state = TechnologicaBlocks.LINE_SHAFT.get().defaultBlockState().setValue(TwelveDirectionBlock.AXIS, Direction.Axis.Z);
 				matrixStack.translate(0.5, 0.5, 0.0);
-				matrixStack.mulPose(Vector3f.ZP.rotationDegrees(angle));
+				matrixStack.mulPose(Axis.ZP.rotationDegrees(angle));
 				matrixStack.translate(-0.5, -0.5, 0.0);
 			}
 			blockModelRenderer.renderModel(matrixStack.last(), buffer.getBuffer(RenderType.solid()), state, blockrendererdispatcher.getBlockModel(state), 0.0F, 0.0F, 0.0F, combinedLight, combinedOverlay);

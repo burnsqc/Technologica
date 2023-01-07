@@ -5,7 +5,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -62,7 +62,7 @@ public class LandMineBlockEntity extends BlockEntity {
 	public void serverTick() {
 		if (isArmed) {
 			if (this.level.getEntities(null, new AABB(this.getBlockPos()).expandTowards(0.0D, 1.0D, 0.0D)).isEmpty()) {
-				level.explode(null, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), 4.0F, Explosion.BlockInteraction.BREAK);
+				level.explode(null, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), 4.0F, Level.ExplosionInteraction.TNT);
 			}
 		}
 	}
@@ -71,7 +71,7 @@ public class LandMineBlockEntity extends BlockEntity {
 	public void load(CompoundTag nbt) {
 		super.load(nbt);
 		if (nbt.contains("previousState")) {
-			this.setPreviousBlockState(NbtUtils.readBlockState(nbt.getCompound("previousState")));
+			this.setPreviousBlockState(NbtUtils.readBlockState(null, nbt.getCompound("previousState")));
 		}
 	}
 

@@ -2,6 +2,8 @@ package com.technologica.client.renderer;
 
 import javax.annotation.Nullable;
 
+import org.joml.Matrix4f;
+
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.BufferUploader;
@@ -10,8 +12,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexBuffer;
 import com.mojang.blaze3d.vertex.VertexFormat;
-import com.mojang.math.Matrix4f;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import com.technologica.Technologica;
 
 import net.minecraft.client.Camera;
@@ -50,11 +51,11 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 
 		matrixStackIn.pushPose();
-		matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(-90.0F));
-		matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(45.0F));
-		Matrix4f matrix4f1 = matrixStackIn.last().pose().copy();
-		matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(-45.0F));
-		matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(level.getTimeOfDay(partialTicks) * 360.0F));
+		matrixStackIn.mulPose(Axis.YP.rotationDegrees(-90.0F));
+		matrixStackIn.mulPose(Axis.XP.rotationDegrees(45.0F));
+		Matrix4f matrix4f1 = matrixStackIn.last().pose();
+		matrixStackIn.mulPose(Axis.XP.rotationDegrees(-45.0F));
+		matrixStackIn.mulPose(Axis.XP.rotationDegrees(level.getTimeOfDay(partialTicks) * 360.0F));
 		Matrix4f matrix4f2 = matrixStackIn.last().pose();
 
 		this.starBuffer.bind();

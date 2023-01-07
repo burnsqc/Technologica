@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.mojang.blaze3d.platform.NativeImage;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import com.technologica.world.level.block.AnnunciatorBlock;
 import com.technologica.world.level.block.entity.AnnunciatorBlockEntity;
 
@@ -28,7 +28,7 @@ public class AnnunciatorRenderer implements BlockEntityRenderer<AnnunciatorBlock
 		
 		matrixStackIn.pushPose();
 		matrixStackIn.translate(0.5D, 0.5D, 0.5D);
-		matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(f1));
+		matrixStackIn.mulPose(Axis.YP.rotationDegrees(f1));
 		matrixStackIn.translate(0.0D, 0.18D, 0.51D);
 		matrixStackIn.scale(0.009F, -0.009F, 0.009F);
 		

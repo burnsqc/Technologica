@@ -69,7 +69,7 @@ public class NitroBlock extends Block {
 	@Override
 	public void wasExploded(Level p_57441_, BlockPos p_57442_, Explosion p_57443_) {
 		if (!p_57441_.isClientSide) {
-			p_57441_.explode(null, p_57442_.getX(), p_57442_.getY(), p_57442_.getZ(), 4.0F, Explosion.BlockInteraction.BREAK);
+			p_57441_.explode(null, p_57442_.getX(), p_57442_.getY(), p_57442_.getZ(), 4.0F, Level.ExplosionInteraction.TNT);
 		}
 	}
 
@@ -81,7 +81,7 @@ public class NitroBlock extends Block {
 	@Deprecated // Forge: Prefer using IForgeBlock#catchFire
 	private static void explode(Level p_57437_, BlockPos p_57438_, @Nullable LivingEntity p_57439_) {
 		if (!p_57437_.isClientSide) {
-			p_57437_.explode(null, p_57438_.getX(), p_57438_.getY(), p_57438_.getZ(), 4.0F, Explosion.BlockInteraction.BREAK);
+			p_57437_.explode(null, p_57438_.getX(), p_57438_.getY(), p_57438_.getZ(), 4.0F, Level.ExplosionInteraction.TNT);
 		}
 	}
 
@@ -114,14 +114,14 @@ public class NitroBlock extends Block {
 	public void onProjectileHit(Level p_57429_, BlockState p_57430_, BlockHitResult p_57431_, Projectile p_57432_) {
 		BlockPos pos = p_57431_.getBlockPos();
 		if (!p_57429_.isClientSide) {
-			p_57429_.explode(null, pos.getX(), pos.getY(), pos.getZ(), 4.0F, Explosion.BlockInteraction.BREAK);
+			p_57429_.explode(null, pos.getX(), pos.getY(), pos.getZ(), 4.0F, Level.ExplosionInteraction.TNT);
 		}
 	}
 
 	@Override
 	public void entityInside(BlockState p_49314_, Level p_49315_, BlockPos p_49316_, Entity p_49317_) {
 		if (!p_49315_.isClientSide) {
-			p_49315_.explode(null, p_49316_.getX(), p_49316_.getY(), p_49316_.getZ(), 4.0F, Explosion.BlockInteraction.BREAK);
+			p_49315_.explode(null, p_49316_.getX(), p_49316_.getY(), p_49316_.getZ(), 4.0F, Level.ExplosionInteraction.TNT);
 		}
 	}
 

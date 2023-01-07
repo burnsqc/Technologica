@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
@@ -26,7 +27,7 @@ public class TestFluid extends FlowingFluid {
 	}
 
 	@Override
-	protected boolean canConvertToSource() {
+	protected boolean canConvertToSource(Level p_256670_) {
 		// TODO Auto-generated method stub
 		return false;
 	}

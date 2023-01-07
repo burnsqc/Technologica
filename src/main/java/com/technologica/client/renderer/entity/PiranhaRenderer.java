@@ -1,7 +1,7 @@
 package com.technologica.client.renderer.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import com.technologica.Technologica;
 import com.technologica.client.model.PiranhaModel;
 import com.technologica.client.model.geom.TechnologicaModelLayers;
@@ -34,11 +34,11 @@ public final class PiranhaRenderer extends MobRenderer<Piranha, PiranhaModel<Pir
 			f1 = 1.7F;
 		}
 		float f2 = f * 4.3F * Mth.sin(f1 * 0.6F * ageInTicksIn);
-		matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(f2));
+		matrixStackIn.mulPose(Axis.YP.rotationDegrees(f2));
 		matrixStackIn.translate(0.0D, 0.0D, -0.4F);
 		if (!piranhaIn.isInWater()) {
 			matrixStackIn.translate(0.2F, 0.1F, 0.0D);
-			matrixStackIn.mulPose(Vector3f.ZP.rotationDegrees(90.0F));
+			matrixStackIn.mulPose(Axis.ZP.rotationDegrees(90.0F));
 		}
 	}
 }

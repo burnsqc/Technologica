@@ -4,9 +4,11 @@ import com.technologica.Technologica;
 import com.technologica.tags.TechnologicaBlockTags;
 import com.technologica.world.level.block.TechnologicaBlocks;
 
+import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.BlockTagsProvider;
+
 import net.minecraft.tags.BlockTags;
+import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class TechnologicaBlockTagsProvider extends BlockTagsProvider {
@@ -16,7 +18,7 @@ public class TechnologicaBlockTagsProvider extends BlockTagsProvider {
 	}
 
 	@Override
-	protected void addTags() {
+	protected void addTags(Provider p_256380_) {
 
 		/*
 		 * Minecraft Tags

@@ -1,10 +1,13 @@
 package com.technologica.data.loot;
 
+import java.util.Set;
+
 import com.technologica.world.item.TechnologicaItems;
 import com.technologica.world.level.block.TechnologicaBlocks;
 
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
-import net.minecraft.data.loot.BlockLoot;
+import net.minecraft.data.loot.BlockLootSubProvider;
+import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -25,11 +28,16 @@ import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.RegistryObject;
 
-public class TechnologicaBlockLoot extends BlockLoot {
+public class TechnologicaBlockLoot extends BlockLootSubProvider {
+	protected TechnologicaBlockLoot(Set<Item> p_249153_, FeatureFlagSet p_251215_) {
+		super(p_249153_, p_251215_);
+		// TODO Auto-generated constructor stub
+	}
+
 	private static final float[] DEFAULT_SAPLING_DROP_RATES = new float[] { 0.05F, 0.0625F, 0.083333336F, 0.1F };
 
 	@Override
-	protected void addTables() {
+	protected void generate() {
 		this.add(TechnologicaBlocks.BARLEY.get(), createCropDrops(TechnologicaBlocks.BARLEY.get(), TechnologicaItems.BARLEY.get(), TechnologicaItems.BARLEY_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.BARLEY.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
 		this.add(TechnologicaBlocks.OATS.get(), createCropDrops(TechnologicaBlocks.OATS.get(), TechnologicaItems.OATS.get(), TechnologicaItems.OATS_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.OATS.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
 		this.add(TechnologicaBlocks.RYE.get(), createCropDrops(TechnologicaBlocks.RYE.get(), TechnologicaItems.RYE.get(), TechnologicaItems.RYE_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.RYE.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
@@ -478,39 +486,39 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		dropSelf(TechnologicaBlocks.MALEVOLENT_PLANKS.get());
 		dropSelf(TechnologicaBlocks.NECROTIC_PLANKS.get());
 
-		add((TechnologicaBlocks.APRICOT_SLAB.get()), BlockLoot::createSlabItemTable);
-		add((TechnologicaBlocks.ASPEN_SLAB.get()), BlockLoot::createSlabItemTable);
-		add((TechnologicaBlocks.AVOCADO_SLAB.get()), BlockLoot::createSlabItemTable);
-		add((TechnologicaBlocks.BANANA_SLAB.get()), BlockLoot::createSlabItemTable);
-		add((TechnologicaBlocks.CHERRY_SLAB.get()), BlockLoot::createSlabItemTable);
-		add((TechnologicaBlocks.CHESTNUT_SLAB.get()), BlockLoot::createSlabItemTable);
-		add((TechnologicaBlocks.CINNAMON_SLAB.get()), BlockLoot::createSlabItemTable);
-		add((TechnologicaBlocks.COCONUT_SLAB.get()), BlockLoot::createSlabItemTable);
-		add((TechnologicaBlocks.EBONY_SLAB.get()), BlockLoot::createSlabItemTable);
-		add((TechnologicaBlocks.KIWI_SLAB.get()), BlockLoot::createSlabItemTable);
-		add((TechnologicaBlocks.LEMON_SLAB.get()), BlockLoot::createSlabItemTable);
-		add((TechnologicaBlocks.LIME_SLAB.get()), BlockLoot::createSlabItemTable);
-		add((TechnologicaBlocks.MAHOGANY_SLAB.get()), BlockLoot::createSlabItemTable);
-		add((TechnologicaBlocks.MAPLE_SLAB.get()), BlockLoot::createSlabItemTable);
-		add((TechnologicaBlocks.OLIVE_SLAB.get()), BlockLoot::createSlabItemTable);
-		add((TechnologicaBlocks.ORANGE_SLAB.get()), BlockLoot::createSlabItemTable);
-		add((TechnologicaBlocks.PEACH_SLAB.get()), BlockLoot::createSlabItemTable);
-		add((TechnologicaBlocks.PEAR_SLAB.get()), BlockLoot::createSlabItemTable);
-		add((TechnologicaBlocks.PLUM_SLAB.get()), BlockLoot::createSlabItemTable);
-		add((TechnologicaBlocks.REDWOOD_SLAB.get()), BlockLoot::createSlabItemTable);
-		add((TechnologicaBlocks.ROSEWOOD_SLAB.get()), BlockLoot::createSlabItemTable);
-		add((TechnologicaBlocks.RUBBER_SLAB.get()), BlockLoot::createSlabItemTable);
-		add((TechnologicaBlocks.TEAK_SLAB.get()), BlockLoot::createSlabItemTable);
-		add((TechnologicaBlocks.WALNUT_SLAB.get()), BlockLoot::createSlabItemTable);
-		add((TechnologicaBlocks.ZEBRAWOOD_SLAB.get()), BlockLoot::createSlabItemTable);
-		add((TechnologicaBlocks.ALCHEMICAL_SLAB.get()), BlockLoot::createSlabItemTable);
-		add((TechnologicaBlocks.BENEVOLENT_SLAB.get()), BlockLoot::createSlabItemTable);
-		add((TechnologicaBlocks.CONDUCTIVE_SLAB.get()), BlockLoot::createSlabItemTable);
-		add((TechnologicaBlocks.FROSTBITTEN_SLAB.get()), BlockLoot::createSlabItemTable);
-		add((TechnologicaBlocks.FRUITFUL_SLAB.get()), BlockLoot::createSlabItemTable);
-		add((TechnologicaBlocks.INFERNAL_SLAB.get()), BlockLoot::createSlabItemTable);
-		add((TechnologicaBlocks.MALEVOLENT_SLAB.get()), BlockLoot::createSlabItemTable);
-		add((TechnologicaBlocks.NECROTIC_SLAB.get()), BlockLoot::createSlabItemTable);
+		createSlabItemTable(TechnologicaBlocks.APRICOT_SLAB.get());
+		createSlabItemTable(TechnologicaBlocks.ASPEN_SLAB.get());
+		createSlabItemTable(TechnologicaBlocks.AVOCADO_SLAB.get());
+		createSlabItemTable(TechnologicaBlocks.BANANA_SLAB.get());
+		createSlabItemTable(TechnologicaBlocks.CHERRY_SLAB.get());
+		createSlabItemTable(TechnologicaBlocks.CHESTNUT_SLAB.get());
+		createSlabItemTable(TechnologicaBlocks.CINNAMON_SLAB.get());
+		createSlabItemTable(TechnologicaBlocks.COCONUT_SLAB.get());
+		createSlabItemTable(TechnologicaBlocks.EBONY_SLAB.get());
+		createSlabItemTable(TechnologicaBlocks.KIWI_SLAB.get());
+		createSlabItemTable(TechnologicaBlocks.LEMON_SLAB.get());
+		createSlabItemTable(TechnologicaBlocks.LIME_SLAB.get());
+		createSlabItemTable(TechnologicaBlocks.MAHOGANY_SLAB.get());
+		createSlabItemTable(TechnologicaBlocks.MAPLE_SLAB.get());
+		createSlabItemTable(TechnologicaBlocks.OLIVE_SLAB.get());
+		createSlabItemTable(TechnologicaBlocks.ORANGE_SLAB.get());
+		createSlabItemTable(TechnologicaBlocks.PEACH_SLAB.get());
+		createSlabItemTable(TechnologicaBlocks.PEAR_SLAB.get());
+		createSlabItemTable(TechnologicaBlocks.PLUM_SLAB.get());
+		createSlabItemTable(TechnologicaBlocks.REDWOOD_SLAB.get());
+		createSlabItemTable(TechnologicaBlocks.ROSEWOOD_SLAB.get());
+		createSlabItemTable(TechnologicaBlocks.RUBBER_SLAB.get());
+		createSlabItemTable(TechnologicaBlocks.TEAK_SLAB.get());
+		createSlabItemTable(TechnologicaBlocks.WALNUT_SLAB.get());
+		createSlabItemTable(TechnologicaBlocks.ZEBRAWOOD_SLAB.get());
+		createSlabItemTable(TechnologicaBlocks.ALCHEMICAL_SLAB.get());
+		createSlabItemTable(TechnologicaBlocks.BENEVOLENT_SLAB.get());
+		createSlabItemTable(TechnologicaBlocks.CONDUCTIVE_SLAB.get());
+		createSlabItemTable(TechnologicaBlocks.FROSTBITTEN_SLAB.get());
+		createSlabItemTable(TechnologicaBlocks.FRUITFUL_SLAB.get());
+		createSlabItemTable(TechnologicaBlocks.INFERNAL_SLAB.get());
+		createSlabItemTable(TechnologicaBlocks.MALEVOLENT_SLAB.get());
+		createSlabItemTable(TechnologicaBlocks.NECROTIC_SLAB.get());
 
 		dropSelf(TechnologicaBlocks.APRICOT_STAIRS.get());
 		dropSelf(TechnologicaBlocks.ASPEN_STAIRS.get());
@@ -655,39 +663,39 @@ public class TechnologicaBlockLoot extends BlockLoot {
 		dropSelf(TechnologicaBlocks.MALEVOLENT_FENCE_GATE.get());
 		dropSelf(TechnologicaBlocks.NECROTIC_FENCE_GATE.get());
 
-		add(TechnologicaBlocks.APRICOT_DOOR.get(), BlockLoot::createDoorTable);
-		add(TechnologicaBlocks.ASPEN_DOOR.get(), BlockLoot::createDoorTable);
-		add(TechnologicaBlocks.AVOCADO_DOOR.get(), BlockLoot::createDoorTable);
-		add(TechnologicaBlocks.BANANA_DOOR.get(), BlockLoot::createDoorTable);
-		add(TechnologicaBlocks.CHERRY_DOOR.get(), BlockLoot::createDoorTable);
-		add(TechnologicaBlocks.CHESTNUT_DOOR.get(), BlockLoot::createDoorTable);
-		add(TechnologicaBlocks.CINNAMON_DOOR.get(), BlockLoot::createDoorTable);
-		add(TechnologicaBlocks.COCONUT_DOOR.get(), BlockLoot::createDoorTable);
-		add(TechnologicaBlocks.EBONY_DOOR.get(), BlockLoot::createDoorTable);
-		add(TechnologicaBlocks.KIWI_DOOR.get(), BlockLoot::createDoorTable);
-		add(TechnologicaBlocks.LEMON_DOOR.get(), BlockLoot::createDoorTable);
-		add(TechnologicaBlocks.LIME_DOOR.get(), BlockLoot::createDoorTable);
-		add(TechnologicaBlocks.MAHOGANY_DOOR.get(), BlockLoot::createDoorTable);
-		add(TechnologicaBlocks.MAPLE_DOOR.get(), BlockLoot::createDoorTable);
-		add(TechnologicaBlocks.OLIVE_DOOR.get(), BlockLoot::createDoorTable);
-		add(TechnologicaBlocks.ORANGE_DOOR.get(), BlockLoot::createDoorTable);
-		add(TechnologicaBlocks.PEACH_DOOR.get(), BlockLoot::createDoorTable);
-		add(TechnologicaBlocks.PEAR_DOOR.get(), BlockLoot::createDoorTable);
-		add(TechnologicaBlocks.PLUM_DOOR.get(), BlockLoot::createDoorTable);
-		add(TechnologicaBlocks.REDWOOD_DOOR.get(), BlockLoot::createDoorTable);
-		add(TechnologicaBlocks.ROSEWOOD_DOOR.get(), BlockLoot::createDoorTable);
-		add(TechnologicaBlocks.RUBBER_DOOR.get(), BlockLoot::createDoorTable);
-		add(TechnologicaBlocks.TEAK_DOOR.get(), BlockLoot::createDoorTable);
-		add(TechnologicaBlocks.WALNUT_DOOR.get(), BlockLoot::createDoorTable);
-		add(TechnologicaBlocks.ZEBRAWOOD_DOOR.get(), BlockLoot::createDoorTable);
-		add(TechnologicaBlocks.ALCHEMICAL_DOOR.get(), BlockLoot::createDoorTable);
-		add(TechnologicaBlocks.BENEVOLENT_DOOR.get(), BlockLoot::createDoorTable);
-		add(TechnologicaBlocks.CONDUCTIVE_DOOR.get(), BlockLoot::createDoorTable);
-		add(TechnologicaBlocks.FROSTBITTEN_DOOR.get(), BlockLoot::createDoorTable);
-		add(TechnologicaBlocks.FRUITFUL_DOOR.get(), BlockLoot::createDoorTable);
-		add(TechnologicaBlocks.INFERNAL_DOOR.get(), BlockLoot::createDoorTable);
-		add(TechnologicaBlocks.MALEVOLENT_DOOR.get(), BlockLoot::createDoorTable);
-		add(TechnologicaBlocks.NECROTIC_DOOR.get(), BlockLoot::createDoorTable);
+		createDoorTable(TechnologicaBlocks.APRICOT_DOOR.get());
+		createDoorTable(TechnologicaBlocks.ASPEN_DOOR.get());
+		createDoorTable(TechnologicaBlocks.AVOCADO_DOOR.get());
+		createDoorTable(TechnologicaBlocks.BANANA_DOOR.get());
+		createDoorTable(TechnologicaBlocks.CHERRY_DOOR.get());
+		createDoorTable(TechnologicaBlocks.CHESTNUT_DOOR.get());
+		createDoorTable(TechnologicaBlocks.CINNAMON_DOOR.get());
+		createDoorTable(TechnologicaBlocks.COCONUT_DOOR.get());
+		createDoorTable(TechnologicaBlocks.EBONY_DOOR.get());
+		createDoorTable(TechnologicaBlocks.KIWI_DOOR.get());
+		createDoorTable(TechnologicaBlocks.LEMON_DOOR.get());
+		createDoorTable(TechnologicaBlocks.LIME_DOOR.get());
+		createDoorTable(TechnologicaBlocks.MAHOGANY_DOOR.get());
+		createDoorTable(TechnologicaBlocks.MAPLE_DOOR.get());
+		createDoorTable(TechnologicaBlocks.OLIVE_DOOR.get());
+		createDoorTable(TechnologicaBlocks.ORANGE_DOOR.get());
+		createDoorTable(TechnologicaBlocks.PEACH_DOOR.get());
+		createDoorTable(TechnologicaBlocks.PEAR_DOOR.get());
+		createDoorTable(TechnologicaBlocks.PLUM_DOOR.get());
+		createDoorTable(TechnologicaBlocks.REDWOOD_DOOR.get());
+		createDoorTable(TechnologicaBlocks.ROSEWOOD_DOOR.get());
+		createDoorTable(TechnologicaBlocks.RUBBER_DOOR.get());
+		createDoorTable(TechnologicaBlocks.TEAK_DOOR.get());
+		createDoorTable(TechnologicaBlocks.WALNUT_DOOR.get());
+		createDoorTable(TechnologicaBlocks.ZEBRAWOOD_DOOR.get());
+		createDoorTable(TechnologicaBlocks.ALCHEMICAL_DOOR.get());
+		createDoorTable(TechnologicaBlocks.BENEVOLENT_DOOR.get());
+		createDoorTable(TechnologicaBlocks.CONDUCTIVE_DOOR.get());
+		createDoorTable(TechnologicaBlocks.FROSTBITTEN_DOOR.get());
+		createDoorTable(TechnologicaBlocks.FRUITFUL_DOOR.get());
+		createDoorTable(TechnologicaBlocks.INFERNAL_DOOR.get());
+		createDoorTable(TechnologicaBlocks.MALEVOLENT_DOOR.get());
+		createDoorTable(TechnologicaBlocks.NECROTIC_DOOR.get());
 
 		dropSelf(TechnologicaBlocks.APRICOT_TRAPDOOR.get());
 		dropSelf(TechnologicaBlocks.ASPEN_TRAPDOOR.get());

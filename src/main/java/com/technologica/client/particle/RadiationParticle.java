@@ -99,17 +99,17 @@ public class RadiationParticle extends TextureSheetParticle {
 		protected void updateMotion() {
 			if (this.collidedX) {
 				this.xd = -this.xd;
-				this.level.playLocalSound(this.x + 0.5D, this.y, this.z + 0.5D, SoundEvents.UI_BUTTON_CLICK, SoundSource.BLOCKS, (0.01F + this.level.random.nextFloat()) / 100.0F, 2.0F, false);
+				this.level.playLocalSound(this.x + 0.5D, this.y, this.z + 0.5D, SoundEvents.UI_BUTTON_CLICK.get(), SoundSource.BLOCKS, (0.01F + this.level.random.nextFloat()) / 100.0F, 2.0F, false);
 				this.collidedX = false;
 			}
 			if (this.collidedY) {
 				this.yd = -this.yd;
-				this.level.playLocalSound(this.x + 0.5D, this.y, this.z + 0.5D, SoundEvents.UI_BUTTON_CLICK, SoundSource.BLOCKS, (0.01F + this.level.random.nextFloat()) / 100.0F, 2.0F, false);
+				this.level.playLocalSound(this.x + 0.5D, this.y, this.z + 0.5D, SoundEvents.UI_BUTTON_CLICK.get(), SoundSource.BLOCKS, (0.01F + this.level.random.nextFloat()) / 100.0F, 2.0F, false);
 				this.collidedY = false;
 			}
 			if (this.collidedZ) {
 				this.zd = -this.zd;
-				this.level.playLocalSound(this.x + 0.5D, this.y, this.z + 0.5D, SoundEvents.UI_BUTTON_CLICK, SoundSource.BLOCKS, (0.01F + this.level.random.nextFloat()) / 100.0F, 2.0F, false);
+				this.level.playLocalSound(this.x + 0.5D, this.y, this.z + 0.5D, SoundEvents.UI_BUTTON_CLICK.get(), SoundSource.BLOCKS, (0.01F + this.level.random.nextFloat()) / 100.0F, 2.0F, false);
 				this.collidedZ = false;
 			}
 		}

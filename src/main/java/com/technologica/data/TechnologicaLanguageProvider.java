@@ -5,7 +5,6 @@ import java.util.function.Supplier;
 
 import com.technologica.Technologica;
 import com.technologica.world.entity.TechnologicaEntityType;
-import com.technologica.world.item.TechnologicaItemGroup;
 import com.technologica.world.item.TechnologicaItems;
 
 import net.minecraft.data.DataGenerator;
@@ -26,7 +25,7 @@ public class TechnologicaLanguageProvider extends LanguageProvider {
 		addItems(TechnologicaItems.ITEMS.getEntries());
 		addEntities(TechnologicaEntityType.ENTITY_TYPES.getEntries());
 
-		addItemGroups(TechnologicaItemGroup.FLORA, TechnologicaItemGroup.FAUNA, TechnologicaItemGroup.MINERAL, TechnologicaItemGroup.FOOD, TechnologicaItemGroup.CONSTRUCTION, TechnologicaItemGroup.MACHINERY, TechnologicaItemGroup.DECORATIVE, TechnologicaItemGroup.ARMORY, TechnologicaItemGroup.CRYPTICA);
+		//addItemGroups(CreativeModeTab.FLORA, TechnologicaItemGroup.FAUNA, TechnologicaItemGroup.MINERAL, TechnologicaItemGroup.FOOD, TechnologicaItemGroup.CONSTRUCTION, TechnologicaItemGroup.MACHINERY, TechnologicaItemGroup.DECORATIVE, TechnologicaItemGroup.ARMORY, TechnologicaItemGroup.CRYPTICA);
 
 		add("death.attack.jostled_the_nitro", "%1$s jostled the nitro");
 		add("death.attack.jostled_the_nitro.player", "%1$s jostled the nitro whilst fighting %2$s");

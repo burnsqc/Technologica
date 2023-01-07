@@ -30,7 +30,7 @@ public class MulchTileEntity extends BlockEntity {
 	public void load(CompoundTag nbt) {
 		super.load(nbt);
 	    if (nbt.contains("previousState")) {
-	    	this.setPreviousBlockState(NbtUtils.readBlockState(nbt.getCompound("previousState")));
+	    	this.setPreviousBlockState(NbtUtils.readBlockState(null, nbt.getCompound("previousState")));
 	    }
 	}
 

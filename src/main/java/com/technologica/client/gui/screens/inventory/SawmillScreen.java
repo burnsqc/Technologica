@@ -35,7 +35,6 @@ public class SawmillScreen extends AbstractContainerScreen<SawmillMenu> {
 	
 	@Override
 	public void removed() {
-		this.minecraft.keyboardHandler.setSendRepeatsToGui(false);
 		ClientPacketListener clientplaynethandler = this.minecraft.getConnection();
 	}
 

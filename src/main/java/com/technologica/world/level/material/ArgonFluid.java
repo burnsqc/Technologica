@@ -67,7 +67,7 @@ public abstract class ArgonFluid extends FlowingFluid {
 	}
 
 	@Override
-	protected boolean canConvertToSource() {
+	protected boolean canConvertToSource(Level p_256670_) {
 		return false;
 	}
 

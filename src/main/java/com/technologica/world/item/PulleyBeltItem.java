@@ -22,7 +22,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 public class PulleyBeltItem extends Item {
 
 	public PulleyBeltItem() {
-		super(new Item.Properties().stacksTo(1).tab(TechnologicaItemGroup.MACHINERY));
+		super(new Item.Properties().stacksTo(1));
 	}
 
 	@Override

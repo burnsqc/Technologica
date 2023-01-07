@@ -104,13 +104,13 @@ public class TechnologicaLayerDefinitions {
 		event.registerLayerDefinition(TechnologicaModelLayers.SWEEPER, () -> CreeperModel.createBodyLayer(CubeDeformation.NONE));
 
 		event.registerLayerDefinition(TechnologicaModelLayers.NAVAL_MINE, NavalMineModel::createBodyModel);
-		event.registerLayerDefinition(TechnologicaModelLayers.ROCKET, () -> BoatModel.createBodyModel(false));
+		event.registerLayerDefinition(TechnologicaModelLayers.ROCKET, () -> BoatModel.createBodyModel());
 
 		event.registerLayerDefinition(TechnologicaModelLayers.COCONUT_BAZOOKA, CoconutBazookaModel::createLayer);
 		event.registerLayerDefinition(TechnologicaModelLayers.SPEAR_GUN, SpearGunModel::createLayer);
 
 		for (VanillaBoat.Type boat$type : VanillaBoat.Type.values()) {
-			event.registerLayerDefinition(TechnologicaModelLayers.createBoatModelName(boat$type), () -> BoatModel.createBodyModel(false));
+			event.registerLayerDefinition(TechnologicaModelLayers.createBoatModelName(boat$type), () -> BoatModel.createBodyModel());
 		}
 		LOGGER.info("LAYER DEFINITIONS REGISTERED: 43 OF 43");
 	}

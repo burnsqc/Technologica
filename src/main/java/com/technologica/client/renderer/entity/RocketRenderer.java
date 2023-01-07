@@ -3,11 +3,12 @@ package com.technologica.client.renderer.entity;
 import java.util.Map;
 import java.util.stream.Stream;
 
+import org.joml.Quaternionf;
+
 import com.google.common.collect.ImmutableMap;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.datafixers.util.Pair;
-import com.mojang.math.Quaternion;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import com.technologica.Technologica;
 import com.technologica.client.model.VanillaBoatModel;
 import com.technologica.client.model.geom.TechnologicaModelLayers;
@@ -37,7 +38,7 @@ public class RocketRenderer extends EntityRenderer<Rocket> {
 	public void render(Rocket entityIn, float entityYaw, float partialTicks, PoseStack poseStackIn, MultiBufferSource bufferIn, int packedLightIn) {
 		poseStackIn.pushPose();
 		poseStackIn.translate(0.0D, 0.375D, 0.0D);
-		poseStackIn.mulPose(Vector3f.YP.rotationDegrees(180.0F - entityYaw));
+		poseStackIn.mulPose(Axis.YP.rotationDegrees(180.0F - entityYaw));
 		float f = entityIn.getHurtTime() - partialTicks;
 		float f1 = entityIn.getDamage() - partialTicks;
 		if (f1 < 0.0F) {
@@ -45,16 +46,16 @@ public class RocketRenderer extends EntityRenderer<Rocket> {
 		}
 
 		if (f > 0.0F) {
-			poseStackIn.mulPose(Vector3f.XP.rotationDegrees(Mth.sin(f) * f * f1 / 10.0F * entityIn.getHurtDir()));
+			poseStackIn.mulPose(Axis.XP.rotationDegrees(Mth.sin(f) * f * f1 / 10.0F * entityIn.getHurtDir()));
 		}
 
 		float f2 = entityIn.getBubbleAngle(partialTicks);
 		if (!Mth.equal(f2, 0.0F)) {
-			poseStackIn.mulPose(new Quaternion(new Vector3f(1.0F, 0.0F, 1.0F), entityIn.getBubbleAngle(partialTicks), true));
+			poseStackIn.mulPose((new Quaternionf()).setAngleAxis(entityIn.getBubbleAngle(partialTicks) * ((float)Math.PI / 180F), 1.0F, 0.0F, 1.0F));
 		}
 
 		poseStackIn.scale(-1.0F, -1.0F, 1.0F);
-		poseStackIn.mulPose(Vector3f.YP.rotationDegrees(90.0F));
+		poseStackIn.mulPose(Axis.YP.rotationDegrees(90.0F));
 		poseStackIn.popPose();
 		super.render(entityIn, entityYaw, partialTicks, poseStackIn, bufferIn, packedLightIn);
 	}

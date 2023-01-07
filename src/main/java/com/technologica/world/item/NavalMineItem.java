@@ -50,7 +50,7 @@ public class NavalMineItem extends Item {
 				if (blockentity instanceof SpawnerBlockEntity) {
 					BaseSpawner basespawner = ((SpawnerBlockEntity) blockentity).getSpawner();
 					EntityType<?> entitytype1 = TechnologicaEntityType.NAVAL_MINE.get();
-					basespawner.setEntityId(entitytype1);
+					//basespawner.setEntityId(entitytype1);
 					blockentity.setChanged();
 					level.sendBlockUpdated(blockpos, blockstate, blockstate, 3);
 					itemstack.shrink(1);
