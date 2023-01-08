@@ -3,31 +3,27 @@ package com.technologica.data.worldgen.placement;
 import java.util.List;
 
 import com.technologica.Technologica;
+import com.technologica.world.entity.TechnologicaEntityType;
 import com.technologica.world.level.block.TechnologicaBlocks;
 import com.technologica.world.level.levelgen.feature.TechnologicaFeature;
 import com.technologica.world.level.levelgen.feature.foliageplacers.ConicalFoliagePlacer;
 import com.technologica.world.level.levelgen.feature.foliageplacers.DishFoliagePlacer;
 import com.technologica.world.level.levelgen.feature.foliageplacers.PalmFoliagePlacer;
-import com.technologica.world.level.levelgen.feature.foliageplacers.RedwoodFoliagePlacer;
 import com.technologica.world.level.levelgen.feature.foliageplacers.TeardropFoliagePlacer;
-import com.technologica.world.level.levelgen.feature.trunkplacers.ThreeWideTrunkPlacer;
 
-import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
-import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.features.FeatureUtils;
-import net.minecraft.data.worldgen.features.TreeFeatures;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.biome.MobSpawnSettings.SpawnerData;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.SweetBerryBushBlock;
@@ -40,7 +36,6 @@ import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomFeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
@@ -61,6 +56,7 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.minecraftforge.common.world.BiomeModifier;
 import net.minecraftforge.common.world.ForgeBiomeModifiers.AddFeaturesBiomeModifier;
+import net.minecraftforge.common.world.ForgeBiomeModifiers.AddSpawnsBiomeModifier;
 import net.minecraftforge.registries.ForgeRegistries;
 
 @SuppressWarnings("deprecation")
@@ -327,6 +323,28 @@ public class TechnologicaMiscOverworldPlacements {
 	private static final ResourceKey<BiomeModifier> TAIGA_VEGETATION = ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(Technologica.MODID, "taiga_vegetation"));
 	private static final ResourceKey<BiomeModifier> WINDSWEPT_FOREST_VEGETATION = ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(Technologica.MODID, "windswept_forest_vegetation"));
 	private static final ResourceKey<BiomeModifier> WINDSWEPT_HILLS_VEGETATION = ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(Technologica.MODID, "windswept_hills_vegetation"));
+	
+	private static final ResourceKey<BiomeModifier> BADLANDS_SPAWNS = ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(Technologica.MODID, "badlands_spawns"));
+	private static final ResourceKey<BiomeModifier> BEACH_SPAWNS = ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(Technologica.MODID, "beach_spawns"));
+	private static final ResourceKey<BiomeModifier> BIRCH_FOREST_SPAWNS = ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(Technologica.MODID, "birch_forest_spawns"));
+	private static final ResourceKey<BiomeModifier> DESERT_SPAWNS = ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(Technologica.MODID, "desert_spawns"));
+	private static final ResourceKey<BiomeModifier> FOREST_SPAWNS = ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(Technologica.MODID, "forest_spawns"));
+	private static final ResourceKey<BiomeModifier> FROZEN_OCEAN_SPAWNS = ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(Technologica.MODID, "frozen_ocean_spawns"));
+	private static final ResourceKey<BiomeModifier> ICE_SPIKES_SPAWNS = ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(Technologica.MODID, "ice_spikes_spawns"));
+	private static final ResourceKey<BiomeModifier> JUNGLE_SPAWNS = ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(Technologica.MODID, "jungle_spawns"));
+	private static final ResourceKey<BiomeModifier> MANGROVE_SWAMP_SPAWNS = ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(Technologica.MODID, "mangrove_swamp_spawns"));
+	private static final ResourceKey<BiomeModifier> OCEAN_SPAWNS = ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(Technologica.MODID, "ocean_spawns"));
+	private static final ResourceKey<BiomeModifier> PLAINS_SPAWNS = ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(Technologica.MODID, "plains_spawns"));
+	private static final ResourceKey<BiomeModifier> RIVER_SPAWNS = ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(Technologica.MODID, "river_spawns"));
+	private static final ResourceKey<BiomeModifier> SAVANNA_SPAWNS = ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(Technologica.MODID, "savanna_spawns"));
+	private static final ResourceKey<BiomeModifier> SNOWY_SLOPES_SPAWNS = ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(Technologica.MODID, "snowy_slopes_spawns"));
+	private static final ResourceKey<BiomeModifier> SNOWY_TAIGA_SPAWNS = ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(Technologica.MODID, "snowy_tagia_spawns"));
+	private static final ResourceKey<BiomeModifier> STONY_PEAKS_SPAWNS = ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(Technologica.MODID, "stony_peaks_spawns"));
+	private static final ResourceKey<BiomeModifier> SWAMP_SPAWNS = ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(Technologica.MODID, "swamp_spawns"));
+	private static final ResourceKey<BiomeModifier> TAIGA_SPAWNS = ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(Technologica.MODID, "tagia_spawns"));
+	private static final ResourceKey<BiomeModifier> WARM_OCEAN_SPAWNS = ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(Technologica.MODID, "warm_ocean_spawns"));
+	private static final ResourceKey<BiomeModifier> WINDSWEPT_FOREST_SPAWNS = ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(Technologica.MODID, "windswept_forest_spawns"));
+	private static final ResourceKey<BiomeModifier> WINDSWEPT_HILLS_SPAWNS = ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(Technologica.MODID, "windswept_hills_spawns"));
 	
 	static RuleTest ruletest = new TagMatchTest(BlockTags.BASE_STONE_OVERWORLD);
 	static RuleTest ruletest1 = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
@@ -633,6 +651,28 @@ public class TechnologicaMiscOverworldPlacements {
 				context.register(TAIGA_VEGETATION, new AddFeaturesBiomeModifier(HolderSet.direct(context.lookup(Registries.BIOME).getOrThrow(Biomes.TAIGA)), HolderSet.direct(context.lookup(Registries.PLACED_FEATURE).getOrThrow(TREES_MODIFIED_TAIGA_PLACED), context.lookup(Registries.PLACED_FEATURE).getOrThrow(PATCH_BLACKBERRY_RARE_PLACED), context.lookup(Registries.PLACED_FEATURE).getOrThrow(PATCH_BLUEBERRY_RARE_PLACED), context.lookup(Registries.PLACED_FEATURE).getOrThrow(PATCH_RASPBERRY_RARE_PLACED), context.lookup(Registries.PLACED_FEATURE).getOrThrow(PATCH_STRAWBERRY_RARE_PLACED)), Decoration.VEGETAL_DECORATION));
 				context.register(WINDSWEPT_FOREST_VEGETATION, new AddFeaturesBiomeModifier(HolderSet.direct(context.lookup(Registries.BIOME).getOrThrow(Biomes.WINDSWEPT_FOREST)), HolderSet.direct(context.lookup(Registries.PLACED_FEATURE).getOrThrow(TREES_MODIFIED_WOODED_HILLS_PLACED)), Decoration.VEGETAL_DECORATION));
 				context.register(WINDSWEPT_HILLS_VEGETATION, new AddFeaturesBiomeModifier(HolderSet.direct(context.lookup(Registries.BIOME).getOrThrow(Biomes.WINDSWEPT_HILLS)), HolderSet.direct(context.lookup(Registries.PLACED_FEATURE).getOrThrow(TREES_MODIFIED_WOODED_HILLS_PLACED)), Decoration.VEGETAL_DECORATION));
+				
+				context.register(BADLANDS_SPAWNS, new AddSpawnsBiomeModifier(HolderSet.direct(context.lookup(Registries.BIOME).getOrThrow(Biomes.BADLANDS)), List.of(new SpawnerData(TechnologicaEntityType.COYOTE.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.LIZARD.get(), 100, 3, 5), new SpawnerData(TechnologicaEntityType.SCORPION.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.VULTURE.get(), 100, 1, 2))));
+				context.register(BEACH_SPAWNS, new AddSpawnsBiomeModifier(HolderSet.direct(context.lookup(Registries.BIOME).getOrThrow(Biomes.BEACH)), List.of(new SpawnerData(TechnologicaEntityType.CRAB.get(), 100, 1, 2))));
+				context.register(BIRCH_FOREST_SPAWNS, new AddSpawnsBiomeModifier(HolderSet.direct(context.lookup(Registries.BIOME).getOrThrow(Biomes.BIRCH_FOREST)), List.of(new SpawnerData(TechnologicaEntityType.DEER.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.RACCOON.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.TURKEY.get(), 100, 1, 2))));
+				context.register(DESERT_SPAWNS, new AddSpawnsBiomeModifier(HolderSet.direct(context.lookup(Registries.BIOME).getOrThrow(Biomes.DESERT)), List.of(new SpawnerData(TechnologicaEntityType.CAMEL.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.COBRA.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.MUMMY.get(), 100, 1, 1))));
+				context.register(FOREST_SPAWNS, new AddSpawnsBiomeModifier(HolderSet.direct(context.lookup(Registries.BIOME).getOrThrow(Biomes.FOREST)), List.of(new SpawnerData(TechnologicaEntityType.BEAVER.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.DEER.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.GRIZZLY_BEAR.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.RACCOON.get(), 100, 1, 2))));
+				context.register(FROZEN_OCEAN_SPAWNS, new AddSpawnsBiomeModifier(HolderSet.direct(context.lookup(Registries.BIOME).getOrThrow(Biomes.FROZEN_OCEAN)), List.of(new SpawnerData(TechnologicaEntityType.KING_CRAB.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.LEOPARD_SEAL.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.NARWHAL.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.WALRUS.get(), 100, 1, 2))));
+				context.register(ICE_SPIKES_SPAWNS, new AddSpawnsBiomeModifier(HolderSet.direct(context.lookup(Registries.BIOME).getOrThrow(Biomes.ICE_SPIKES)), List.of(new SpawnerData(TechnologicaEntityType.PENGUIN.get(), 100, 3, 5))));
+				context.register(JUNGLE_SPAWNS, new AddSpawnsBiomeModifier(HolderSet.direct(context.lookup(Registries.BIOME).getOrThrow(Biomes.JUNGLE)), List.of(new SpawnerData(TechnologicaEntityType.GORILLA.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.SLOTH.get(), 100, 1, 2))));
+				context.register(MANGROVE_SWAMP_SPAWNS, new AddSpawnsBiomeModifier(HolderSet.direct(context.lookup(Registries.BIOME).getOrThrow(Biomes.MANGROVE_SWAMP)), List.of(new SpawnerData(TechnologicaEntityType.FIGURE_EIGHT_PUFFERFISH.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.JAGUAR.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.POISON_DART_FROG.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.STINGRAY.get(), 100, 1, 2))));
+				context.register(OCEAN_SPAWNS, new AddSpawnsBiomeModifier(HolderSet.direct(context.lookup(Registries.BIOME).getOrThrow(Biomes.OCEAN)), List.of(new SpawnerData(TechnologicaEntityType.SHARK.get(), 100, 1, 2))));
+				context.register(PLAINS_SPAWNS, new AddSpawnsBiomeModifier(HolderSet.direct(context.lookup(Registries.BIOME).getOrThrow(Biomes.PLAINS)), List.of(new SpawnerData(TechnologicaEntityType.BUFFALO.get(), 100, 1, 2))));
+				context.register(RIVER_SPAWNS, new AddSpawnsBiomeModifier(HolderSet.direct(context.lookup(Registries.BIOME).getOrThrow(Biomes.RIVER)), List.of(new SpawnerData(TechnologicaEntityType.BEAVER.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.DUCK.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.PIRANHA.get(), 100, 3, 5))));
+				context.register(SAVANNA_SPAWNS, new AddSpawnsBiomeModifier(HolderSet.direct(context.lookup(Registries.BIOME).getOrThrow(Biomes.SAVANNA)), List.of(new SpawnerData(TechnologicaEntityType.ELEPHANT.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.GIRAFFE.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.LION.get(), 100, 3, 5), new SpawnerData(TechnologicaEntityType.OSTRICH.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.ZEBRA.get(), 100, 1, 2))));
+				context.register(SNOWY_SLOPES_SPAWNS, new AddSpawnsBiomeModifier(HolderSet.direct(context.lookup(Registries.BIOME).getOrThrow(Biomes.SNOWY_SLOPES)), List.of(new SpawnerData(TechnologicaEntityType.BEAVER.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.DEER.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.GRIZZLY_BEAR.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.TURKEY.get(), 100, 1, 2))));
+				context.register(SNOWY_TAIGA_SPAWNS, new AddSpawnsBiomeModifier(HolderSet.direct(context.lookup(Registries.BIOME).getOrThrow(Biomes.SNOWY_TAIGA)), List.of(new SpawnerData(TechnologicaEntityType.BEAVER.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.DEER.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.GRIZZLY_BEAR.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.TURKEY.get(), 100, 1, 2))));
+				context.register(STONY_PEAKS_SPAWNS, new AddSpawnsBiomeModifier(HolderSet.direct(context.lookup(Registries.BIOME).getOrThrow(Biomes.STONY_PEAKS)), List.of(new SpawnerData(TechnologicaEntityType.BEAVER.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.DEER.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.GRIZZLY_BEAR.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.TURKEY.get(), 100, 1, 2))));
+				context.register(SWAMP_SPAWNS, new AddSpawnsBiomeModifier(HolderSet.direct(context.lookup(Registries.BIOME).getOrThrow(Biomes.SWAMP)), List.of(new SpawnerData(TechnologicaEntityType.ALLIGATOR.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.COTTONMOUTH.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.FLAMINGO.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.STINGRAY.get(), 100, 1, 2))));
+				context.register(TAIGA_SPAWNS, new AddSpawnsBiomeModifier(HolderSet.direct(context.lookup(Registries.BIOME).getOrThrow(Biomes.TAIGA)), List.of(new SpawnerData(TechnologicaEntityType.BEAVER.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.DEER.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.GRIZZLY_BEAR.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.TURKEY.get(), 100, 1, 2))));
+				context.register(WARM_OCEAN_SPAWNS, new AddSpawnsBiomeModifier(HolderSet.direct(context.lookup(Registries.BIOME).getOrThrow(Biomes.WARM_OCEAN)), List.of(new SpawnerData(TechnologicaEntityType.OCTOPUS.get(), 100, 1, 2))));
+				context.register(WINDSWEPT_FOREST_SPAWNS, new AddSpawnsBiomeModifier(HolderSet.direct(context.lookup(Registries.BIOME).getOrThrow(Biomes.WINDSWEPT_FOREST)), List.of(new SpawnerData(TechnologicaEntityType.BEAVER.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.DEER.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.GRIZZLY_BEAR.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.TURKEY.get(), 100, 1, 2))));
+				context.register(WINDSWEPT_HILLS_SPAWNS, new AddSpawnsBiomeModifier(HolderSet.direct(context.lookup(Registries.BIOME).getOrThrow(Biomes.WINDSWEPT_HILLS)), List.of(new SpawnerData(TechnologicaEntityType.BEAVER.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.GRIZZLY_BEAR.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.MOOSE.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityType.OWL.get(), 100, 1, 2))));
 			});
 	
 	private static List<PlacementModifier> orePlacement(PlacementModifier p_195347_, PlacementModifier p_195348_) {

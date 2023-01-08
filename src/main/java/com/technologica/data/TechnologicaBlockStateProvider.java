@@ -12,7 +12,7 @@ import com.technologica.world.level.block.VineCropBlock;
 import com.technologica.world.level.block.state.properties.TechnologicaBlockStateProperties;
 
 import net.minecraft.core.Direction;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.BeetrootBlock;
 import net.minecraft.world.level.block.Block;
@@ -41,7 +41,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class TechnologicaBlockStateProvider extends BlockStateProvider {
-	public TechnologicaBlockStateProvider(DataGenerator generatorIn, ExistingFileHelper helperIn) {
+	public TechnologicaBlockStateProvider(PackOutput generatorIn, ExistingFileHelper helperIn) {
 		super(generatorIn, Technologica.MODID, helperIn);
 	}
 

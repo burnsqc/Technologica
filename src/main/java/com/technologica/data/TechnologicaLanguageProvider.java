@@ -7,16 +7,15 @@ import com.technologica.Technologica;
 import com.technologica.world.entity.TechnologicaEntityType;
 import com.technologica.world.item.TechnologicaItems;
 
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.minecraftforge.registries.RegistryObject;
 
 public class TechnologicaLanguageProvider extends LanguageProvider {
 
-	public TechnologicaLanguageProvider(DataGenerator generatorIn) {
+	public TechnologicaLanguageProvider(PackOutput generatorIn) {
 		super(generatorIn, Technologica.MODID, "en_us");
 	}
 
@@ -58,12 +57,12 @@ public class TechnologicaLanguageProvider extends LanguageProvider {
 	 * @param itemGroups varargs list of item groups
 	 */
 
-	private final void addItemGroups(CreativeModeTab... itemGroups) {
-		for (CreativeModeTab itemGroup : itemGroups) {
-			String key = itemGroup.getRecipeFolderName();
-			add("itemGroup." + key, keyToValue(key));
-		}
-	}
+	//private final void addItemGroups(CreativeModeTab... itemGroups) {
+	//	for (CreativeModeTab itemGroup : itemGroups) {
+	//		String key = itemGroup.getRecipeFolderName();
+	//		add("itemGroup." + key, keyToValue(key));
+	//	}
+	//}
 
 	/**
 	 * Converts the input string "key" into an output string to be used as the value for the en_us.json file entry. This only works as intended if the registry entry name is an exact snake case version of the name to be displayed in-game.

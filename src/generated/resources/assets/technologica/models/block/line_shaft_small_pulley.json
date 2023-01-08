@@ -1,0 +1,6 @@
+{
+  "parent": "technologica:block/line_shaft_small_pulley_model",
+  "textures": {
+    "0": "technologica:block/pulley"
+  }
+}

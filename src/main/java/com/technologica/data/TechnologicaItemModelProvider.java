@@ -4,7 +4,7 @@ import com.technologica.Technologica;
 import com.technologica.world.item.TechnologicaItems;
 
 import net.minecraft.client.renderer.block.model.BlockModel.GuiLight;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
@@ -14,7 +14,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class TechnologicaItemModelProvider extends ItemModelProvider {
 
-	public TechnologicaItemModelProvider(DataGenerator generatorIn, ExistingFileHelper helperIn) {
+	public TechnologicaItemModelProvider(PackOutput generatorIn, ExistingFileHelper helperIn) {
 		super(generatorIn, Technologica.MODID, helperIn);
 	}
 

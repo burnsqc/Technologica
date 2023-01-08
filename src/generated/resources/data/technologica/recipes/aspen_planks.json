@@ -1,0 +1,26 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "technologica:enable_vanilla_plank_crafting"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "category": "building",
+        "group": "planks",
+        "ingredients": [
+          {
+            "tag": "technologica:aspen_logs"
+          }
+        ],
+        "result": {
+          "count": 4,
+          "item": "technologica:aspen_planks"
+        }
+      }
+    }
+  ]
+}

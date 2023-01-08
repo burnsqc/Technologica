@@ -1,0 +1,7 @@
+{
+  "parent": "technologica:block/chair",
+  "render_type": "minecraft:solid",
+  "textures": {
+    "planks": "technologica:block/olive_planks"
+  }
+}

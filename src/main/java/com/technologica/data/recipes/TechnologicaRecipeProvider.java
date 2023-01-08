@@ -10,8 +10,9 @@ import com.technologica.world.item.TechnologicaItems;
 import com.technologica.world.item.crafting.TechnologicaRecipeSerializer;
 import com.technologica.world.level.block.TechnologicaBlocks;
 
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
@@ -28,12 +29,12 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class TechnologicaRecipeProvider extends RecipeProvider {
 
-	public TechnologicaRecipeProvider(DataGenerator generatorIn) {
+	public TechnologicaRecipeProvider(PackOutput generatorIn) {
 		super(generatorIn);
 	}
 
 	@Override
-	protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
+	protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
 		vanillaPlanks(consumer, Blocks.OAK_PLANKS, ItemTags.OAK_LOGS);
 		vanillaPlanks(consumer, Blocks.SPRUCE_PLANKS, ItemTags.SPRUCE_LOGS);
 		vanillaPlanks(consumer, Blocks.BIRCH_PLANKS, ItemTags.BIRCH_LOGS);
@@ -283,29 +284,29 @@ public class TechnologicaRecipeProvider extends RecipeProvider {
 		proStairs(consumer, TechnologicaBlocks.INFERNAL_STAIRS.get(), TechnologicaBlocks.INFERNAL_PLANKS.get());
 		proStairs(consumer, TechnologicaBlocks.MALEVOLENT_STAIRS.get(), TechnologicaBlocks.MALEVOLENT_PLANKS.get());
 
-		ShapelessRecipeBuilder.shapeless(TechnologicaItems.BANANAS_FOSTER.get(), 1).requires(TechnologicaItems.BANANA.get()).requires(Items.ICE).requires(Items.MILK_BUCKET).requires(Items.SUGAR).unlockedBy("has_banana", has(TechnologicaItems.BANANA.get())).save(consumer, new ResourceLocation(Technologica.MODID, "bananas_foster"));
-		ShapelessRecipeBuilder.shapeless(TechnologicaItems.BLACK_FOREST_CAKE.get(), 1).requires(TechnologicaItems.CHERRY.get()).requires(Items.EGG).requires(Items.MILK_BUCKET).requires(Items.SUGAR).requires(Items.COCOA_BEANS).unlockedBy("has_cherry", has(TechnologicaItems.CHERRY.get())).save(consumer, new ResourceLocation(Technologica.MODID, "black_forest_cake"));
-		ShapelessRecipeBuilder.shapeless(TechnologicaItems.BLUEBERRY_CHEESECAKE.get(), 1).requires(TechnologicaItems.BLUEBERRY.get()).requires(Items.COOKIE).requires(Items.MILK_BUCKET).requires(Items.SUGAR).unlockedBy("has_blueberry", has(TechnologicaItems.BLUEBERRY.get())).save(consumer, new ResourceLocation(Technologica.MODID, "blueberry_cheesecake"));
-		ShapelessRecipeBuilder.shapeless(TechnologicaItems.COCONUT_CREAM_PIE.get(), 1).requires(TechnologicaItems.COCONUT.get()).requires(Items.EGG).requires(Items.MILK_BUCKET).requires(Items.SUGAR).unlockedBy("has_coconut", has(TechnologicaItems.COCONUT.get())).save(consumer, new ResourceLocation(Technologica.MODID, "coconut_cream_pie"));
-		ShapelessRecipeBuilder.shapeless(TechnologicaItems.GRAPE_SHAVED_ICE.get(), 1).requires(TechnologicaItems.GRAPE.get()).requires(Items.SNOWBALL).unlockedBy("has_grape", has(TechnologicaItems.GRAPE.get())).save(consumer, new ResourceLocation(Technologica.MODID, "grape_shaved_ice"));
-		ShapelessRecipeBuilder.shapeless(TechnologicaItems.KEY_LIME_MOUSSE.get(), 1).requires(TechnologicaItems.LIME.get()).requires(Items.MILK_BUCKET).requires(Items.SUGAR).unlockedBy("has_lime", has(TechnologicaItems.LIME.get())).save(consumer, new ResourceLocation(Technologica.MODID, "key_lime_mousse"));
-		ShapelessRecipeBuilder.shapeless(TechnologicaItems.KIWI_SORBET.get(), 1).requires(TechnologicaItems.KIWI.get()).requires(Items.SNOWBALL).requires(Items.MILK_BUCKET).requires(Items.SUGAR).unlockedBy("has_kiwi", has(TechnologicaItems.KIWI.get())).save(consumer, new ResourceLocation(Technologica.MODID, "kiwi_sorbet"));
-		ShapelessRecipeBuilder.shapeless(TechnologicaItems.LEMON_BAR.get(), 1).requires(TechnologicaItems.LEMON.get()).requires(Items.EGG).requires(Items.SUGAR).unlockedBy("has_lemon", has(TechnologicaItems.LEMON.get())).save(consumer, new ResourceLocation(Technologica.MODID, "lemon_bar"));
-		ShapelessRecipeBuilder.shapeless(TechnologicaItems.ORANGE_DREAMSICLE.get(), 1).requires(TechnologicaItems.ORANGE.get()).requires(Items.ICE).requires(Items.MILK_BUCKET).requires(Items.SUGAR).unlockedBy("has_orange", has(TechnologicaItems.ORANGE.get())).save(consumer, new ResourceLocation(Technologica.MODID, "orange_dreamsicle"));
-		ShapelessRecipeBuilder.shapeless(TechnologicaItems.PEACH_COBBLER.get(), 1).requires(TechnologicaItems.PEACH.get()).requires(Items.WHEAT).requires(Items.SUGAR).unlockedBy("has_peach", has(TechnologicaItems.PEACH.get())).save(consumer, new ResourceLocation(Technologica.MODID, "peach_cobbler"));
-		ShapelessRecipeBuilder.shapeless(TechnologicaItems.PEAR_TART.get(), 1).requires(TechnologicaItems.PEAR.get()).requires(Items.WHEAT).requires(Items.SUGAR).unlockedBy("has_pear", has(TechnologicaItems.PEAR.get())).save(consumer, new ResourceLocation(Technologica.MODID, "pear_tart"));
-		ShapelessRecipeBuilder.shapeless(TechnologicaItems.STRAWBERRY_SHORTCAKE.get(), 1).requires(TechnologicaItems.STRAWBERRY.get()).requires(Items.EGG).requires(Items.MILK_BUCKET).requires(Items.SUGAR).requires(Items.WHEAT).unlockedBy("has_strawberry", has(TechnologicaItems.STRAWBERRY.get())).save(consumer, new ResourceLocation(Technologica.MODID, "strawberry_shortcake"));
-		ShapelessRecipeBuilder.shapeless(TechnologicaItems.TAPENADE.get(), 1).requires(TechnologicaItems.OLIVE.get()).requires(TechnologicaItems.GARLIC.get()).unlockedBy("has_olive", has(TechnologicaItems.OLIVE.get())).save(consumer, new ResourceLocation(Technologica.MODID, "tapenade"));
-		ShapelessRecipeBuilder.shapeless(TechnologicaItems.CINNAMON_ROLL.get(), 1).requires(TechnologicaItems.CINNAMON.get()).requires(Items.EGG).requires(Items.SUGAR).requires(Items.MILK_BUCKET).unlockedBy("has_cinnamon", has(TechnologicaItems.CINNAMON.get())).save(consumer, new ResourceLocation(Technologica.MODID, "cinnamon_roll"));
-		ShapelessRecipeBuilder.shapeless(TechnologicaItems.OLIVE_OIL.get(), 1).requires(TechnologicaItems.OLIVE.get()).unlockedBy("has_olive", has(TechnologicaItems.OLIVE.get())).save(consumer, new ResourceLocation(Technologica.MODID, "olive_oil"));
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TechnologicaItems.BANANAS_FOSTER.get(), 1).requires(TechnologicaItems.BANANA.get()).requires(Items.ICE).requires(Items.MILK_BUCKET).requires(Items.SUGAR).unlockedBy("has_banana", has(TechnologicaItems.BANANA.get())).save(consumer, new ResourceLocation(Technologica.MODID, "bananas_foster"));
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TechnologicaItems.BLACK_FOREST_CAKE.get(), 1).requires(TechnologicaItems.CHERRY.get()).requires(Items.EGG).requires(Items.MILK_BUCKET).requires(Items.SUGAR).requires(Items.COCOA_BEANS).unlockedBy("has_cherry", has(TechnologicaItems.CHERRY.get())).save(consumer, new ResourceLocation(Technologica.MODID, "black_forest_cake"));
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TechnologicaItems.BLUEBERRY_CHEESECAKE.get(), 1).requires(TechnologicaItems.BLUEBERRY.get()).requires(Items.COOKIE).requires(Items.MILK_BUCKET).requires(Items.SUGAR).unlockedBy("has_blueberry", has(TechnologicaItems.BLUEBERRY.get())).save(consumer, new ResourceLocation(Technologica.MODID, "blueberry_cheesecake"));
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TechnologicaItems.COCONUT_CREAM_PIE.get(), 1).requires(TechnologicaItems.COCONUT.get()).requires(Items.EGG).requires(Items.MILK_BUCKET).requires(Items.SUGAR).unlockedBy("has_coconut", has(TechnologicaItems.COCONUT.get())).save(consumer, new ResourceLocation(Technologica.MODID, "coconut_cream_pie"));
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TechnologicaItems.GRAPE_SHAVED_ICE.get(), 1).requires(TechnologicaItems.GRAPE.get()).requires(Items.SNOWBALL).unlockedBy("has_grape", has(TechnologicaItems.GRAPE.get())).save(consumer, new ResourceLocation(Technologica.MODID, "grape_shaved_ice"));
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TechnologicaItems.KEY_LIME_MOUSSE.get(), 1).requires(TechnologicaItems.LIME.get()).requires(Items.MILK_BUCKET).requires(Items.SUGAR).unlockedBy("has_lime", has(TechnologicaItems.LIME.get())).save(consumer, new ResourceLocation(Technologica.MODID, "key_lime_mousse"));
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TechnologicaItems.KIWI_SORBET.get(), 1).requires(TechnologicaItems.KIWI.get()).requires(Items.SNOWBALL).requires(Items.MILK_BUCKET).requires(Items.SUGAR).unlockedBy("has_kiwi", has(TechnologicaItems.KIWI.get())).save(consumer, new ResourceLocation(Technologica.MODID, "kiwi_sorbet"));
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TechnologicaItems.LEMON_BAR.get(), 1).requires(TechnologicaItems.LEMON.get()).requires(Items.EGG).requires(Items.SUGAR).unlockedBy("has_lemon", has(TechnologicaItems.LEMON.get())).save(consumer, new ResourceLocation(Technologica.MODID, "lemon_bar"));
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TechnologicaItems.ORANGE_DREAMSICLE.get(), 1).requires(TechnologicaItems.ORANGE.get()).requires(Items.ICE).requires(Items.MILK_BUCKET).requires(Items.SUGAR).unlockedBy("has_orange", has(TechnologicaItems.ORANGE.get())).save(consumer, new ResourceLocation(Technologica.MODID, "orange_dreamsicle"));
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TechnologicaItems.PEACH_COBBLER.get(), 1).requires(TechnologicaItems.PEACH.get()).requires(Items.WHEAT).requires(Items.SUGAR).unlockedBy("has_peach", has(TechnologicaItems.PEACH.get())).save(consumer, new ResourceLocation(Technologica.MODID, "peach_cobbler"));
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TechnologicaItems.PEAR_TART.get(), 1).requires(TechnologicaItems.PEAR.get()).requires(Items.WHEAT).requires(Items.SUGAR).unlockedBy("has_pear", has(TechnologicaItems.PEAR.get())).save(consumer, new ResourceLocation(Technologica.MODID, "pear_tart"));
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TechnologicaItems.STRAWBERRY_SHORTCAKE.get(), 1).requires(TechnologicaItems.STRAWBERRY.get()).requires(Items.EGG).requires(Items.MILK_BUCKET).requires(Items.SUGAR).requires(Items.WHEAT).unlockedBy("has_strawberry", has(TechnologicaItems.STRAWBERRY.get())).save(consumer, new ResourceLocation(Technologica.MODID, "strawberry_shortcake"));
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TechnologicaItems.TAPENADE.get(), 1).requires(TechnologicaItems.OLIVE.get()).requires(TechnologicaItems.GARLIC.get()).unlockedBy("has_olive", has(TechnologicaItems.OLIVE.get())).save(consumer, new ResourceLocation(Technologica.MODID, "tapenade"));
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TechnologicaItems.CINNAMON_ROLL.get(), 1).requires(TechnologicaItems.CINNAMON.get()).requires(Items.EGG).requires(Items.SUGAR).requires(Items.MILK_BUCKET).unlockedBy("has_cinnamon", has(TechnologicaItems.CINNAMON.get())).save(consumer, new ResourceLocation(Technologica.MODID, "cinnamon_roll"));
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TechnologicaItems.OLIVE_OIL.get(), 1).requires(TechnologicaItems.OLIVE.get()).unlockedBy("has_olive", has(TechnologicaItems.OLIVE.get())).save(consumer, new ResourceLocation(Technologica.MODID, "olive_oil"));
 
-		ShapedRecipeBuilder.shaped(TechnologicaItems.PRIMITIVE_SHOVEL.get()).define('T', Items.STICK).define('F', Items.FLINT).define('S', Items.STRING).pattern(" F ").pattern(" TS").pattern(" T ").unlockedBy("has_flint", has(Items.FLINT)).save(consumer, new ResourceLocation(Technologica.MODID, "primitive_shovel"));
-		ShapedRecipeBuilder.shaped(TechnologicaItems.PRIMITIVE_PICKAXE.get()).define('T', Items.STICK).define('F', Items.FLINT).define('S', Items.STRING).pattern("FFF").pattern(" TS").pattern(" T ").unlockedBy("has_flint", has(Items.FLINT)).save(consumer, new ResourceLocation(Technologica.MODID, "primitive_pickaxe"));
-		ShapedRecipeBuilder.shaped(TechnologicaItems.PRIMITIVE_HATCHET.get()).define('T', Items.STICK).define('F', Items.FLINT).define('S', Items.STRING).pattern("FF ").pattern("FTS").pattern(" T ").unlockedBy("has_flint", has(Items.FLINT)).save(consumer, new ResourceLocation(Technologica.MODID, "primitive_hatchet"));
-		ShapedRecipeBuilder.shaped(TechnologicaItems.PRIMITIVE_HOE.get()).define('T', Items.STICK).define('F', Items.FLINT).define('S', Items.STRING).pattern("FF ").pattern(" TS").pattern(" T ").unlockedBy("has_flint", has(Items.FLINT)).save(consumer, new ResourceLocation(Technologica.MODID, "primitive_hoe"));
-		ShapedRecipeBuilder.shaped(TechnologicaItems.PRIMITIVE_DAGGER.get()).define('T', Items.STICK).define('F', Items.FLINT).define('S', Items.STRING).pattern("F ").pattern("FS").pattern("T ").unlockedBy("has_flint", has(Items.FLINT)).save(consumer, new ResourceLocation(Technologica.MODID, "primitive_dagger"));
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, TechnologicaItems.PRIMITIVE_SHOVEL.get()).define('T', Items.STICK).define('F', Items.FLINT).define('S', Items.STRING).pattern(" F ").pattern(" TS").pattern(" T ").unlockedBy("has_flint", has(Items.FLINT)).save(consumer, new ResourceLocation(Technologica.MODID, "primitive_shovel"));
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, TechnologicaItems.PRIMITIVE_PICKAXE.get()).define('T', Items.STICK).define('F', Items.FLINT).define('S', Items.STRING).pattern("FFF").pattern(" TS").pattern(" T ").unlockedBy("has_flint", has(Items.FLINT)).save(consumer, new ResourceLocation(Technologica.MODID, "primitive_pickaxe"));
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, TechnologicaItems.PRIMITIVE_HATCHET.get()).define('T', Items.STICK).define('F', Items.FLINT).define('S', Items.STRING).pattern("FF ").pattern("FTS").pattern(" T ").unlockedBy("has_flint", has(Items.FLINT)).save(consumer, new ResourceLocation(Technologica.MODID, "primitive_hatchet"));
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, TechnologicaItems.PRIMITIVE_HOE.get()).define('T', Items.STICK).define('F', Items.FLINT).define('S', Items.STRING).pattern("FF ").pattern(" TS").pattern(" T ").unlockedBy("has_flint", has(Items.FLINT)).save(consumer, new ResourceLocation(Technologica.MODID, "primitive_hoe"));
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, TechnologicaItems.PRIMITIVE_DAGGER.get()).define('T', Items.STICK).define('F', Items.FLINT).define('S', Items.STRING).pattern("F ").pattern("FS").pattern("T ").unlockedBy("has_flint", has(Items.FLINT)).save(consumer, new ResourceLocation(Technologica.MODID, "primitive_dagger"));
 
-		ShapedRecipeBuilder.shaped(TechnologicaItems.TRELLIS.get()).define('S', Items.STRING).define('B', Items.IRON_BARS).pattern("SBS").pattern("SBS").unlockedBy("has_iron_bars", has(Items.IRON_BARS)).save(consumer, new ResourceLocation(Technologica.MODID, "trellis"));
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TechnologicaItems.TRELLIS.get()).define('S', Items.STRING).define('B', Items.IRON_BARS).pattern("SBS").pattern("SBS").unlockedBy("has_iron_bars", has(Items.IRON_BARS)).save(consumer, new ResourceLocation(Technologica.MODID, "trellis"));
 
 		sawmillRecipe(Ingredient.of(Items.OAK_LOG), Items.STRIPPED_OAK_LOG, 1, TechnologicaItems.MULCH.get(), 1).save(consumer, new ResourceLocation(Technologica.MODID, "stripped_oak_log_from_oak_log_sawmill"));
 		sawmillRecipe(Ingredient.of(Items.SPRUCE_LOG), Items.STRIPPED_SPRUCE_LOG, 1, TechnologicaItems.MULCH.get(), 1).save(consumer, new ResourceLocation(Technologica.MODID, "stripped_spruce_log_from_spruce_log_sawmill"));
@@ -436,42 +437,42 @@ public class TechnologicaRecipeProvider extends RecipeProvider {
 	}
 
 	private static void vanillaPlanks(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, TagKey<Item> input) {
-		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(output, 4).requires(input).group("planks").unlockedBy("has_log", has(input)).save(consumer2)).build(recipeConsumer, new ResourceLocation(ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
+		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 4).requires(input).group("planks").unlockedBy("has_log", has(input)).save(consumer2)).build(recipeConsumer, new ResourceLocation(ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
 	}
 
 	private static void vanillaLikePlanks(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, TagKey<Item> input) {
-		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(output, 4).requires(input).group("planks").unlockedBy("has_log", has(input)).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
+		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 4).requires(input).group("planks").unlockedBy("has_log", has(input)).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
 	}
 
 	private static void proPlanks(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, TagKey<Item> input) {
-		ConditionalRecipe.builder().addCondition(new DisablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(output, 1).requires(input).requires(TechnologicaItems.SAW.get()).group("planks").unlockedBy("has_saw", has(TechnologicaItems.SAW.get())).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, ForgeRegistries.ITEMS.getKey(output.asItem()).getPath() + "_pro"));
+		ConditionalRecipe.builder().addCondition(new DisablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 1).requires(input).requires(TechnologicaItems.SAW.get()).group("planks").unlockedBy("has_saw", has(TechnologicaItems.SAW.get())).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, ForgeRegistries.ITEMS.getKey(output.asItem()).getPath() + "_pro"));
 	}
 
 	private static void vanillaSlabs(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, ItemLike input) {
-		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(output, 6).define('#', input).pattern("###").group("wooden_slab").unlockedBy("has_planks", has(input)).save(consumer2)).build(recipeConsumer, new ResourceLocation(ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
+		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 6).define('#', input).pattern("###").group("wooden_slab").unlockedBy("has_planks", has(input)).save(consumer2)).build(recipeConsumer, new ResourceLocation(ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
 	}
 
 	private static void vanillaLikeSlabs(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, ItemLike input) {
-		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(output, 6).define('#', input).pattern("###").group("wooden_slab").unlockedBy("has_planks", has(input)).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
+		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 6).define('#', input).pattern("###").group("wooden_slab").unlockedBy("has_planks", has(input)).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
 	}
 
 	private static void proSlabs(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, ItemLike input) {
-		ConditionalRecipe.builder().addCondition(new DisablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(output, 2).requires(input).requires(TechnologicaItems.SAW.get()).group("wooden_slab").unlockedBy("has_saw", has(TechnologicaItems.SAW.get())).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, ForgeRegistries.ITEMS.getKey(output.asItem()).getPath() + "_pro"));
+		ConditionalRecipe.builder().addCondition(new DisablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 2).requires(input).requires(TechnologicaItems.SAW.get()).group("wooden_slab").unlockedBy("has_saw", has(TechnologicaItems.SAW.get())).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, ForgeRegistries.ITEMS.getKey(output.asItem()).getPath() + "_pro"));
 	}
 
 	private static void vanillaStairs(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, ItemLike input) {
-		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(output, 4).define('#', input).pattern("#  ").pattern("## ").pattern("###").group("wooden_stairs").unlockedBy("has_planks", has(input)).save(consumer2)).build(recipeConsumer, new ResourceLocation(ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
+		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 4).define('#', input).pattern("#  ").pattern("## ").pattern("###").group("wooden_stairs").unlockedBy("has_planks", has(input)).save(consumer2)).build(recipeConsumer, new ResourceLocation(ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
 	}
 
 	private static void vanillaLikeStairs(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, ItemLike input) {
-		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(output, 4).define('#', input).pattern("#  ").pattern("## ").pattern("###").group("wooden_stairs").unlockedBy("has_planks", has(input)).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
+		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 4).define('#', input).pattern("#  ").pattern("## ").pattern("###").group("wooden_stairs").unlockedBy("has_planks", has(input)).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
 	}
 
 	private static void proStairs(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, ItemLike input) {
-		ConditionalRecipe.builder().addCondition(new DisablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(output, 1).requires(input).requires(TechnologicaItems.CHISEL.get()).group("wooden_slab").unlockedBy("has_chisel", has(TechnologicaItems.CHISEL.get())).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, ForgeRegistries.ITEMS.getKey(output.asItem()).getPath() + "_pro"));
+		ConditionalRecipe.builder().addCondition(new DisablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 1).requires(input).requires(TechnologicaItems.CHISEL.get()).group("wooden_slab").unlockedBy("has_chisel", has(TechnologicaItems.CHISEL.get())).save(consumer2)).build(recipeConsumer, new ResourceLocation(Technologica.MODID, ForgeRegistries.ITEMS.getKey(output.asItem()).getPath() + "_pro"));
 	}
 
 	public static MultipleOutputRecipeBuilder sawmillRecipe(Ingredient ingredientIn, ItemLike output, int countIn, ItemLike output2, int count2) {
-		return new MultipleOutputRecipeBuilder(TechnologicaRecipeSerializer.SAWMILL.get(), ingredientIn, output, countIn, output2, count2).unlockedBy("has_logs", has(TechnologicaItemTags.APRICOT_LOGS));
+		return new MultipleOutputRecipeBuilder(RecipeCategory.BUILDING_BLOCKS, TechnologicaRecipeSerializer.SAWMILL.get(), ingredientIn, output, countIn, output2, count2).unlockedBy("has_logs", has(TechnologicaItemTags.APRICOT_LOGS));
 	}
 }

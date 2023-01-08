@@ -1,24 +1,27 @@
 package com.technologica.data.tags;
 
+import java.util.concurrent.CompletableFuture;
+
+import org.jetbrains.annotations.Nullable;
+
 import com.technologica.Technologica;
 import com.technologica.tags.TechnologicaBlockTags;
 import com.technologica.world.level.block.TechnologicaBlocks;
 
 import net.minecraft.core.HolderLookup.Provider;
-import net.minecraft.data.DataGenerator;
-
+import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class TechnologicaBlockTagsProvider extends BlockTagsProvider {
 
-	public TechnologicaBlockTagsProvider(DataGenerator generatorIn, ExistingFileHelper helperIn) {
-		super(generatorIn, Technologica.MODID, helperIn);
+	public TechnologicaBlockTagsProvider(PackOutput packOutputIn, CompletableFuture<Provider> lookupProviderIn, @Nullable ExistingFileHelper existingFileHelperIn) {
+		super(packOutputIn, lookupProviderIn, Technologica.MODID, existingFileHelperIn);
 	}
 
 	@Override
-	protected void addTags(Provider p_256380_) {
+	protected void addTags(Provider providerIn) {
 
 		/*
 		 * Minecraft Tags

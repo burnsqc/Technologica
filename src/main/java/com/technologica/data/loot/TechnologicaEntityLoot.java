@@ -5,8 +5,9 @@ import java.util.stream.Stream;
 import com.technologica.world.entity.TechnologicaEntityType;
 import com.technologica.world.item.TechnologicaItems;
 
-import net.minecraft.data.loot.EntityLoot;
+import net.minecraft.data.loot.EntityLootSubProvider;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -20,10 +21,14 @@ import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.RegistryObject;
 
-public class TechnologicaEntityLoot extends EntityLoot {
+public class TechnologicaEntityLoot extends EntityLootSubProvider {
+
+	public TechnologicaEntityLoot() {
+		super(FeatureFlags.REGISTRY.allFlags());
+	}
 
 	@Override
-	protected void addTables() {
+	public void generate() {
 		this.add(TechnologicaEntityType.ALLIGATOR.get(), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(TechnologicaItems.RAW_ALLIGATOR.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))).apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F))))));
 		this.add(TechnologicaEntityType.BEAVER.get(), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(TechnologicaItems.FUR.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F))).apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F))))).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(Items.STICK).apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F))))));
 		this.add(TechnologicaEntityType.BUFFALO.get(), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(TechnologicaItems.FUR.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F))).apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F))))).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(TechnologicaItems.RAW_BISON.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))).apply(SmeltItemFunction.smelted().when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE))).apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F))))));
@@ -69,8 +74,9 @@ public class TechnologicaEntityLoot extends EntityLoot {
 	}
 
 	@Override
-	protected Iterable<EntityType<?>> getKnownEntities() {
+	protected Stream<EntityType<?>> getKnownEntityTypes() {
 		Stream<EntityType<?>> technologicaEntityStream = TechnologicaEntityType.ENTITY_TYPES.getEntries().stream().map(RegistryObject::get);
-		return technologicaEntityStream::iterator;
+		return technologicaEntityStream;
+		
 	}
 }

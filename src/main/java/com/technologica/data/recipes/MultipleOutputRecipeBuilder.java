@@ -11,9 +11,10 @@ import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.CriterionTriggerInstance;
 import net.minecraft.advancements.RequirementsStrategy;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeBuilder;
+import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -21,6 +22,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 
 public class MultipleOutputRecipeBuilder implements RecipeBuilder {
+	private final RecipeCategory category;
    private final Item result;
    private final Item result2;
    private final Ingredient ingredient;
@@ -31,7 +33,8 @@ public class MultipleOutputRecipeBuilder implements RecipeBuilder {
    private String group;
    private final RecipeSerializer<?> type;
 
-   public MultipleOutputRecipeBuilder(RecipeSerializer<?> p_126309_, Ingredient p_126310_, ItemLike p_126311_, int p_126312_, ItemLike p_126313_, int p_126314_) {
+   public MultipleOutputRecipeBuilder(RecipeCategory p_251345_, RecipeSerializer<?> p_126309_, Ingredient p_126310_, ItemLike p_126311_, int p_126312_, ItemLike p_126313_, int p_126314_) {
+	  this.category = p_251345_;
       this.type = p_126309_;
       this.result = p_126311_.asItem();
       this.result2 = p_126313_.asItem();
@@ -61,7 +64,7 @@ public Item getResult() {
    public void save(Consumer<FinishedRecipe> p_126327_, ResourceLocation p_126328_) {
       this.ensureValid(p_126328_);
       this.advancement.parent(ROOT_RECIPE_ADVANCEMENT).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(p_126328_)).rewards(AdvancementRewards.Builder.recipe(p_126328_)).requirements(RequirementsStrategy.OR);
-      p_126327_.accept(new MultipleOutputRecipeBuilder.Result(p_126328_, this.type, this.group == null ? "" : this.group, this.ingredient, this.result, this.count, this.result2, this.count2, this.advancement, new ResourceLocation(p_126328_.getNamespace(), "recipes/" + this.result.getItemCategory().getRecipeFolderName() + "/" + p_126328_.getPath())));
+      p_126327_.accept(new MultipleOutputRecipeBuilder.Result(p_126328_, this.type, this.group == null ? "" : this.group, this.ingredient, this.result, this.count, this.result2, this.count2, this.advancement, new ResourceLocation(p_126328_.getNamespace(), "recipes/" + this.category.getFolderName() + "/" + p_126328_.getPath())));
    }
 
    private void ensureValid(ResourceLocation p_126330_) {
@@ -103,9 +106,9 @@ public Item getResult() {
          }
 
          p_126349_.add("ingredient", this.ingredient.toJson());
-         p_126349_.addProperty("result", Registry.ITEM.getKey(this.result).toString());
+         p_126349_.addProperty("result", BuiltInRegistries.ITEM.getKey(this.result).toString());
          p_126349_.addProperty("count", this.count);
-         p_126349_.addProperty("result2", Registry.ITEM.getKey(this.result2).toString());
+         p_126349_.addProperty("result2", BuiltInRegistries.ITEM.getKey(this.result2).toString());
          p_126349_.addProperty("count2", this.count2);
       }
 
