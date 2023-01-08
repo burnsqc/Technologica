@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.technologica.data.loot.packs.TechnologicaBlockLoot;
+import com.technologica.data.loot.packs.TechnologicaEntityLoot;
+
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.data.loot.packs.VanillaLootTableProvider;

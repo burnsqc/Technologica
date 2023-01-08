@@ -1,4 +1,4 @@
-package com.technologica.data.advancements;
+package com.technologica.data.advancements.packs;
 
 import java.util.function.Consumer;
 

@@ -1,4 +1,4 @@
-package com.technologica.data;
+package com.technologica.data.lang;
 
 import java.util.Collection;
 import java.util.function.Supplier;
@@ -24,8 +24,16 @@ public class TechnologicaLanguageProvider extends LanguageProvider {
 		addItems(TechnologicaItems.ITEMS.getEntries());
 		addEntities(TechnologicaEntityType.ENTITY_TYPES.getEntries());
 
-		//addItemGroups(CreativeModeTab.FLORA, TechnologicaItemGroup.FAUNA, TechnologicaItemGroup.MINERAL, TechnologicaItemGroup.FOOD, TechnologicaItemGroup.CONSTRUCTION, TechnologicaItemGroup.MACHINERY, TechnologicaItemGroup.DECORATIVE, TechnologicaItemGroup.ARMORY, TechnologicaItemGroup.CRYPTICA);
-
+		add("item_group." + Technologica.MODID + ".flora", "Flora");
+		add("item_group." + Technologica.MODID + ".fauna", "Fauna");
+		add("item_group." + Technologica.MODID + ".mineral", "Mineral");
+		add("item_group." + Technologica.MODID + ".food", "Food");
+		add("item_group." + Technologica.MODID + ".construction", "Construction");
+		add("item_group." + Technologica.MODID + ".machinery", "Machinery");
+		add("item_group." + Technologica.MODID + ".decorative", "Decorative");
+		add("item_group." + Technologica.MODID + ".armory", "Armory");
+		add("item_group." + Technologica.MODID + ".cryptica", "Cryptica");
+		
 		add("death.attack.jostled_the_nitro", "%1$s jostled the nitro");
 		add("death.attack.jostled_the_nitro.player", "%1$s jostled the nitro whilst fighting %2$s");
 		add("effect.technologica.radiation", "Radiation");
@@ -50,19 +58,6 @@ public class TechnologicaLanguageProvider extends LanguageProvider {
 			add(key, keyToValue(key));
 		}
 	}
-
-	/**
-	 * Iterates through vararg item groups, adding each entry to the en_us.json file.
-	 * 
-	 * @param itemGroups varargs list of item groups
-	 */
-
-	//private final void addItemGroups(CreativeModeTab... itemGroups) {
-	//	for (CreativeModeTab itemGroup : itemGroups) {
-	//		String key = itemGroup.getRecipeFolderName();
-	//		add("itemGroup." + key, keyToValue(key));
-	//	}
-	//}
 
 	/**
 	 * Converts the input string "key" into an output string to be used as the value for the en_us.json file entry. This only works as intended if the registry entry name is an exact snake case version of the name to be displayed in-game.

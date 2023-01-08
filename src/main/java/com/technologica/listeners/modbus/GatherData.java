@@ -1,10 +1,13 @@
-package com.technologica.data;
+package com.technologica.listeners.modbus;
 
 import java.util.concurrent.CompletableFuture;
 
 import com.technologica.data.advancements.TechnologicaAdvancementProvider;
+import com.technologica.data.lang.TechnologicaLanguageProvider;
 import com.technologica.data.loot.TechnologicaLootTableProvider;
-import com.technologica.data.recipes.TechnologicaRecipeProvider;
+import com.technologica.data.models.blockstates.TechnologicaBlockStateProvider;
+import com.technologica.data.models.model.TechnologicaItemModelProvider;
+import com.technologica.data.recipes.packs.TechnologicaRecipeProvider;
 import com.technologica.data.tags.TechnologicaBlockTagsProvider;
 import com.technologica.data.tags.TechnologicaFluidTagsProvider;
 import com.technologica.data.tags.TechnologicaItemTagsProvider;

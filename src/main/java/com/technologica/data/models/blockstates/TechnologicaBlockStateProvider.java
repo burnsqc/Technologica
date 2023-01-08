@@ -1,4 +1,4 @@
-package com.technologica.data;
+package com.technologica.data.models.blockstates;
 
 import com.technologica.Technologica;
 import com.technologica.util.AnnunciatorOverlay;

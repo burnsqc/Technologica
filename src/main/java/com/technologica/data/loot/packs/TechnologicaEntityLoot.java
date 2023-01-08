@@ -1,4 +1,4 @@
-package com.technologica.data.loot;
+package com.technologica.data.loot.packs;
 
 import java.util.stream.Stream;
 

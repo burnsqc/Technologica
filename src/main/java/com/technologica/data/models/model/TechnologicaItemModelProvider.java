@@ -1,4 +1,4 @@
-package com.technologica.data;
+package com.technologica.data.models.model;
 
 import com.technologica.Technologica;
 import com.technologica.world.item.TechnologicaItems;

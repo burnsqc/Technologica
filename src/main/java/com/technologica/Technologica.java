@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 
 import com.technologica.client.model.geom.TechnologicaLayerDefinitions;
 import com.technologica.core.particles.TechnologicaParticleTypes;
-import com.technologica.data.GatherData;
 import com.technologica.listeners.forgebus.BadLuckBananaWhenFishing;
 import com.technologica.listeners.forgebus.DisableLogDrops;
 import com.technologica.listeners.forgebus.DropBarkOnLogStrip;
@@ -21,7 +20,8 @@ import com.technologica.listeners.forgebus.WaterWalk;
 import com.technologica.listeners.lootmodifiers.LootModifierListener;
 import com.technologica.listeners.modbus.ClientSetup;
 import com.technologica.listeners.modbus.CommonSetup;
-import com.technologica.listeners.modbus.CreativeModeTabs;
+import com.technologica.listeners.modbus.TechnologicaCreativeModeTabs;
+import com.technologica.listeners.modbus.GatherData;
 import com.technologica.listeners.modbus.RegisterDimensionSpecialEffects;
 import com.technologica.listeners.modbus.RegisterEntityAttributes;
 import com.technologica.listeners.modbus.RegisterEntityRenderers;
@@ -94,7 +94,7 @@ public class Technologica {
 
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(CommonSetup::onFMLCommonSetupEvent); // 1st event during mod lifecycle startup
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientSetup::onFMLClientSetupEvent); // 2nd event during mod lifecycle startup
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(CreativeModeTabs::onRegisterCreativeModeTabs);
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(TechnologicaCreativeModeTabs::onRegisterCreativeModeTabs);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(RegisterEntityRenderers::onRegisterEntityRenderers);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(TechnologicaLayerDefinitions::onRegisterLayerDefinitions);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(RegisterModels::onRegisterModelsEvent);

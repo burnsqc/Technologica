@@ -1140,5 +1140,14 @@
   "item.technologica.zinc_ingot": "Zinc Ingot",
   "item.technologica.zirconium_ingot": "Zirconium Ingot",
   "item.technologica.zucchini": "Zucchini",
-  "item.technologica.zucchini_seeds": "Zucchini Seeds"
+  "item.technologica.zucchini_seeds": "Zucchini Seeds",
+  "item_group.technologica.armory": "Armory",
+  "item_group.technologica.construction": "Construction",
+  "item_group.technologica.cryptica": "Cryptica",
+  "item_group.technologica.decorative": "Decorative",
+  "item_group.technologica.fauna": "Fauna",
+  "item_group.technologica.flora": "Flora",
+  "item_group.technologica.food": "Food",
+  "item_group.technologica.machinery": "Machinery",
+  "item_group.technologica.mineral": "Mineral"
 }

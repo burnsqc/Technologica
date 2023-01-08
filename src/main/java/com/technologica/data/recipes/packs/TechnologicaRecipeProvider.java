@@ -1,8 +1,9 @@
-package com.technologica.data.recipes;
+package com.technologica.data.recipes.packs;
 
 import java.util.function.Consumer;
 
 import com.technologica.Technologica;
+import com.technologica.data.recipes.MultipleOutputRecipeBuilder;
 import com.technologica.tags.TechnologicaItemTags;
 import com.technologica.util.DisablePlankConditionFactory;
 import com.technologica.util.EnablePlankConditionFactory;
