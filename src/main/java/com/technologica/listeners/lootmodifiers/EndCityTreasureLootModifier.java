@@ -24,7 +24,7 @@ public class EndCityTreasureLootModifier extends LootModifier {
 
 	public static final Supplier<Codec<EndCityTreasureLootModifier>> CODEC = Suppliers.memoize(() -> RecordCodecBuilder.create(inst -> codecStart(inst).apply(inst, EndCityTreasureLootModifier::new)));
 
-	protected EndCityTreasureLootModifier(LootItemCondition[] conditionsIn) {
+	public EndCityTreasureLootModifier(LootItemCondition[] conditionsIn) {
 		super(conditionsIn);
 	}
 

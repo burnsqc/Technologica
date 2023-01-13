@@ -17,7 +17,7 @@ import com.technologica.listeners.forgebus.TechnologicaVillagerTrades;
 import com.technologica.listeners.forgebus.TechnologicaWanderingTraderTrades;
 import com.technologica.listeners.forgebus.VanillaEntityModifier;
 import com.technologica.listeners.forgebus.WaterWalk;
-import com.technologica.listeners.lootmodifiers.LootModifierListener;
+import com.technologica.listeners.lootmodifiers.TechnologicaLootModifiers;
 import com.technologica.listeners.modbus.ClientSetup;
 import com.technologica.listeners.modbus.CommonSetup;
 import com.technologica.listeners.modbus.TechnologicaCreativeModeTabs;
@@ -71,7 +71,7 @@ public class Technologica {
 		TechnologicaRecipeSerializer.init();
 		TechnologicaFeature.init();
 		TechnologicaFoliagePlacers.init();
-		LootModifierListener.init();
+		TechnologicaLootModifiers.init();
 		TechnologicaMobEffects.init();
 
 		// FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(Block.class, RegistrationListener::onRegisterBlocks);

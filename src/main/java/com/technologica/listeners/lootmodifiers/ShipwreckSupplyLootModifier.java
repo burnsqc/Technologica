@@ -25,7 +25,7 @@ public class ShipwreckSupplyLootModifier extends LootModifier {
 
 	public static final Supplier<Codec<ShipwreckSupplyLootModifier>> CODEC = Suppliers.memoize(() -> RecordCodecBuilder.create(inst -> codecStart(inst).apply(inst, ShipwreckSupplyLootModifier::new)));
 
-	protected ShipwreckSupplyLootModifier(LootItemCondition[] conditionsIn) {
+	public ShipwreckSupplyLootModifier(LootItemCondition[] conditionsIn) {
 		super(conditionsIn);
 	}
 

@@ -375,6 +375,7 @@ public class TechnologicaCreativeModeTabs {
 						populator.accept(TechnologicaItems.LIVERMORIUM_INGOT.get());
 						populator.accept(TechnologicaItems.TENNESSINE_INGOT.get());
 						populator.accept(TechnologicaItems.OGANESSON_INGOT.get());
+						populator.accept(TechnologicaItems.BRONZE_INGOT.get());
 						populator.accept(TechnologicaItems.LITHIUM_CLAY_BALL.get());
 						populator.accept(TechnologicaItems.BORON_CHUNK.get());
 						populator.accept(TechnologicaItems.CARBON_CHUNK.get());
@@ -1067,6 +1068,7 @@ public class TechnologicaCreativeModeTabs {
 						populator.accept(TechnologicaItems.SAW.get());
 						populator.accept(TechnologicaItems.PIPE_WRENCH.get());
 						populator.accept(TechnologicaItems.WRENCH.get());
+						populator.accept(TechnologicaItems.FAST_HOPPER.get());
 					})	
 				);
 		
@@ -1161,6 +1163,11 @@ public class TechnologicaCreativeModeTabs {
 						populator.accept(TechnologicaItems.PRIMITIVE_HOE.get());
 						populator.accept(TechnologicaItems.PRIMITIVE_SHOVEL.get());
 						populator.accept(TechnologicaItems.PRIMITIVE_HATCHET.get());
+						populator.accept(TechnologicaItems.BRONZE_SWORD.get());
+						populator.accept(TechnologicaItems.BRONZE_PICKAXE.get());
+						populator.accept(TechnologicaItems.BRONZE_HOE.get());
+						populator.accept(TechnologicaItems.BRONZE_SHOVEL.get());
+						populator.accept(TechnologicaItems.BRONZE_AXE.get());
 						populator.accept(TechnologicaItems.COCONUT_BAZOOKA_ITEM.get());
 						populator.accept(TechnologicaItems.SPEAR_GUN_ITEM.get());
 						populator.accept(TechnologicaItems.HARPOON.get());
@@ -1169,6 +1176,10 @@ public class TechnologicaCreativeModeTabs {
 						populator.accept(TechnologicaItems.LAND_MINE.get());
 						populator.accept(TechnologicaItems.NAVAL_MINE.get());
 						populator.accept(TechnologicaItems.ROCKET.get());
+						populator.accept(TechnologicaItems.BRONZE_HELMET.get());
+						populator.accept(TechnologicaItems.BRONZE_CHESTPLATE.get());
+						populator.accept(TechnologicaItems.BRONZE_LEGGINGS.get());
+						populator.accept(TechnologicaItems.BRONZE_BOOTS.get());
 						populator.accept(TechnologicaItems.SNORKEL_HELMET.get());
 						populator.accept(TechnologicaItems.SNORKEL_SUIT.get());
 						populator.accept(TechnologicaItems.SNORKEL_PANTS.get());

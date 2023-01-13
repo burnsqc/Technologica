@@ -11,6 +11,9 @@ import net.minecraft.world.item.crafting.Ingredient;
 public enum TechnologicaItemTier implements Tier {
 	FLINT(0, 16, 2.0F, 1.0F, 15, () -> {
 		return Ingredient.of(Items.FLINT);
+	}),
+	BRONZE(0, 64, 2.0F, 1.0F, 15, () -> {
+		return Ingredient.of(TechnologicaItems.BRONZE_INGOT.get());
 	});
 
 	private final int harvestLevel;

@@ -25,7 +25,7 @@ public class HuskLootModifier extends LootModifier {
 
 	public static final Supplier<Codec<HuskLootModifier>> CODEC = Suppliers.memoize(() -> RecordCodecBuilder.create(inst -> codecStart(inst).apply(inst, HuskLootModifier::new)));
 
-	protected HuskLootModifier(LootItemCondition[] conditionsIn) {
+	public HuskLootModifier(LootItemCondition[] conditionsIn) {
 		super(conditionsIn);
 	}
 

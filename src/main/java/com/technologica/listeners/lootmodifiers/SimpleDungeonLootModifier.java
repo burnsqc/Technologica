@@ -27,7 +27,7 @@ public class SimpleDungeonLootModifier extends LootModifier {
 
 	public static final Supplier<Codec<SimpleDungeonLootModifier>> CODEC = Suppliers.memoize(() -> RecordCodecBuilder.create(inst -> codecStart(inst).apply(inst, SimpleDungeonLootModifier::new)));
 
-	protected SimpleDungeonLootModifier(LootItemCondition[] conditionsIn) {
+	public SimpleDungeonLootModifier(LootItemCondition[] conditionsIn) {
 		super(conditionsIn);
 	}
 

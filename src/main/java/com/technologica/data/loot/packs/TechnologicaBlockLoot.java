@@ -880,6 +880,7 @@ public class TechnologicaBlockLoot extends BlockLootSubProvider {
 		dropSelf(TechnologicaBlocks.MOTOR_20HP.get());
 		dropSelf(TechnologicaBlocks.TREE_TAP.get());
 		dropSelf(TechnologicaBlocks.SAWMILL.get());
+		dropSelf(TechnologicaBlocks.FAST_HOPPER.get());
 
 		dropSelf(TechnologicaBlocks.OAK_CHAIR.get());
 		dropSelf(TechnologicaBlocks.SPRUCE_CHAIR.get());

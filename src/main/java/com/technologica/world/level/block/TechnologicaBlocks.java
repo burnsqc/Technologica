@@ -1016,7 +1016,8 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> TREE_TAP = BLOCKS.register("tree_tap", TreeTapBlock::new);
 	public static final RegistryObject<Block> SAWMILL = BLOCKS.register("sawmill", SawmillBlock::new);
 	public static final RegistryObject<Block> GLUE = BLOCKS.register("glue", () -> new GlueBlock(BlockBehaviour.Properties.of(Material.WEB).noCollission().randomTicks().strength(0.2F).sound(SoundType.SLIME_BLOCK)));
-
+	public static final RegistryObject<Block> FAST_HOPPER = BLOCKS.register("fast_hopper", () -> new FastHopper(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.STONE).requiresCorrectToolForDrops().strength(3.0F, 4.8F).sound(SoundType.METAL).noOcclusion()));
+	
 	/*
 	 * DECORATIVE
 	 */

@@ -25,7 +25,7 @@ public class ZombieVillagerLootModifier extends LootModifier {
 
 	public static final Supplier<Codec<ZombieVillagerLootModifier>> CODEC = Suppliers.memoize(() -> RecordCodecBuilder.create(inst -> codecStart(inst).apply(inst, ZombieVillagerLootModifier::new)));
 
-	protected ZombieVillagerLootModifier(LootItemCondition[] conditionsIn) {
+	public ZombieVillagerLootModifier(LootItemCondition[] conditionsIn) {
 		super(conditionsIn);
 	}
 

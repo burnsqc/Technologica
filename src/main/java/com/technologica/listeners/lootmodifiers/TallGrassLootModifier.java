@@ -24,7 +24,7 @@ public class TallGrassLootModifier extends LootModifier {
 
 	public static final Supplier<Codec<TallGrassLootModifier>> CODEC = Suppliers.memoize(() -> RecordCodecBuilder.create(inst -> codecStart(inst).apply(inst, TallGrassLootModifier::new)));
 
-	protected TallGrassLootModifier(LootItemCondition[] conditionsIn) {
+	public TallGrassLootModifier(LootItemCondition[] conditionsIn) {
 		super(conditionsIn);
 	}
 

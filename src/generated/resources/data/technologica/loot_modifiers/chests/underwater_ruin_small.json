@@ -1,0 +1,9 @@
+{
+  "type": "technologica:chests/underwater_ruin_small",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:chests/underwater_ruin_small"
+    }
+  ]
+}

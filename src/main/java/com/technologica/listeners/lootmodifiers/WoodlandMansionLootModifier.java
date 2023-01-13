@@ -27,7 +27,7 @@ public class WoodlandMansionLootModifier extends LootModifier {
 
 	public static final Supplier<Codec<WoodlandMansionLootModifier>> CODEC = Suppliers.memoize(() -> RecordCodecBuilder.create(inst -> codecStart(inst).apply(inst, WoodlandMansionLootModifier::new)));
 
-	protected WoodlandMansionLootModifier(LootItemCondition[] conditionsIn) {
+	public WoodlandMansionLootModifier(LootItemCondition[] conditionsIn) {
 		super(conditionsIn);
 	}
 

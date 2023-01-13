@@ -4,6 +4,7 @@ import java.util.concurrent.CompletableFuture;
 
 import com.technologica.data.advancements.TechnologicaAdvancementProvider;
 import com.technologica.data.lang.TechnologicaLanguageProvider;
+import com.technologica.data.loot.TechnologicaGlobalLootModifierProvider;
 import com.technologica.data.loot.TechnologicaLootTableProvider;
 import com.technologica.data.models.blockstates.TechnologicaBlockStateProvider;
 import com.technologica.data.models.model.TechnologicaItemModelProvider;
@@ -40,6 +41,7 @@ public class GatherData {
 		generator.addProvider(event.includeServer(), new TechnologicaAdvancementProvider(packOutput, lookupProvider, helper));
 		generator.addProvider(event.includeServer(), new TechnologicaBiomeModifierProvider(packOutput, lookupProvider));
 		generator.addProvider(event.includeServer(), new TechnologicaLootTableProvider(packOutput));
+		generator.addProvider(event.includeServer(), new TechnologicaGlobalLootModifierProvider(packOutput));
 		generator.addProvider(event.includeServer(), new TechnologicaRecipeProvider(packOutput));
 		TechnologicaBlockTagsProvider technologicaBlockTagsProvider = new TechnologicaBlockTagsProvider(packOutput, lookupProvider, helper);
 		generator.addProvider(event.includeServer(), technologicaBlockTagsProvider);

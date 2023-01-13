@@ -24,7 +24,7 @@ public class VillageFisherLootModifier extends LootModifier {
 
 	public static final Supplier<Codec<VillageFisherLootModifier>> CODEC = Suppliers.memoize(() -> RecordCodecBuilder.create(inst -> codecStart(inst).apply(inst, VillageFisherLootModifier::new)));
 
-	protected VillageFisherLootModifier(LootItemCondition[] conditionsIn) {
+	public VillageFisherLootModifier(LootItemCondition[] conditionsIn) {
 		super(conditionsIn);
 	}
 

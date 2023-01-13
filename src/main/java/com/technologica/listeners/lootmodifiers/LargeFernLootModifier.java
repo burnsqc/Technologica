@@ -24,7 +24,7 @@ public class LargeFernLootModifier extends LootModifier {
 
 	public static final Supplier<Codec<LargeFernLootModifier>> CODEC = Suppliers.memoize(() -> RecordCodecBuilder.create(inst -> codecStart(inst).apply(inst, LargeFernLootModifier::new)));
 
-	protected LargeFernLootModifier(LootItemCondition[] conditionsIn) {
+	public LargeFernLootModifier(LootItemCondition[] conditionsIn) {
 		super(conditionsIn);
 	}
 

@@ -24,7 +24,7 @@ public class VillagePlainsHouseLootModifier extends LootModifier {
 
 	public static final Supplier<Codec<VillagePlainsHouseLootModifier>> CODEC = Suppliers.memoize(() -> RecordCodecBuilder.create(inst -> codecStart(inst).apply(inst, VillagePlainsHouseLootModifier::new)));
 
-	protected VillagePlainsHouseLootModifier(LootItemCondition[] conditionsIn) {
+	public VillagePlainsHouseLootModifier(LootItemCondition[] conditionsIn) {
 		super(conditionsIn);
 	}
 

@@ -226,6 +226,7 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		radioactiveItem(TechnologicaItems.LIVERMORIUM_INGOT.get());
 		radioactiveItem(TechnologicaItems.TENNESSINE_INGOT.get());
 		radioactiveItem(TechnologicaItems.OGANESSON_INGOT.get());
+		simpleItem(TechnologicaItems.BRONZE_INGOT.get());
 
 		simpleItem(TechnologicaItems.LITHIUM_CLAY_BALL.get());
 		simpleItem(TechnologicaItems.BORON_CHUNK.get());
@@ -405,9 +406,20 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.PRIMITIVE_HOE.get());
 		simpleItem(TechnologicaItems.PRIMITIVE_SHOVEL.get());
 		simpleItem(TechnologicaItems.PRIMITIVE_HATCHET.get());
+		
+		simpleItem(TechnologicaItems.BRONZE_SWORD.get());
+		simpleItem(TechnologicaItems.BRONZE_PICKAXE.get());
+		simpleItem(TechnologicaItems.BRONZE_HOE.get());
+		simpleItem(TechnologicaItems.BRONZE_SHOVEL.get());
+		simpleItem(TechnologicaItems.BRONZE_AXE.get());
 
 		simpleItem(TechnologicaItems.DODGEBALL_ITEM.get());
 		simpleItem(TechnologicaItems.HARPOON.get());
+		
+		simpleItem(TechnologicaItems.BRONZE_HELMET.get());
+		simpleItem(TechnologicaItems.BRONZE_CHESTPLATE.get());
+		simpleItem(TechnologicaItems.BRONZE_LEGGINGS.get());
+		simpleItem(TechnologicaItems.BRONZE_BOOTS.get());
 
 		simpleItem(TechnologicaItems.SPACE_HELMET.get());
 		simpleItem(TechnologicaItems.SPACE_SUIT.get());

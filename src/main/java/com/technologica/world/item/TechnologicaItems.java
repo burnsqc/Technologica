@@ -388,6 +388,8 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> LIVERMORIUM_INGOT = ITEMS.register("livermorium_ingot", () -> new RadioactiveItem(new Item.Properties(), "livermorium_ingot"));
 	public static final RegistryObject<Item> TENNESSINE_INGOT = ITEMS.register("tennessine_ingot", () -> new RadioactiveItem(new Item.Properties(), "tennessine_ingot"));
 	public static final RegistryObject<Item> OGANESSON_INGOT = ITEMS.register("oganesson_ingot", () -> new RadioactiveItem(new Item.Properties(), "oganesson_ingot"));
+	
+	public static final RegistryObject<Item> BRONZE_INGOT = ITEMS.register("bronze_ingot", () -> new Item(new Item.Properties()));
 
 	public static final RegistryObject<Item> LITHIUM_CLAY_BALL = ITEMS.register("lithium_clay_ball", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> BORON_CHUNK = ITEMS.register("boron_chunk", () -> new Item(new Item.Properties()));
@@ -1094,6 +1096,8 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> OVERLAY_FAIL_ITEM = ITEMS.register("overlay_fail", () -> new Item(new Properties()));
 
 	public static final RegistryObject<Item> SAWMILL_BLUEPRINT = ITEMS.register("sawmill_blueprint", () -> new Item(new Properties()));
+	
+	public static final RegistryObject<Item> FAST_HOPPER = ITEMS.register("fast_hopper", () -> new BlockItem(TechnologicaBlocks.FAST_HOPPER.get(), new Item.Properties()));
 
 	/**
 	 * DECORATIVE
@@ -1180,6 +1184,17 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> PRIMITIVE_HOE = ITEMS.register("primitive_hoe", () -> new HoeItem(TechnologicaItemTier.FLINT, 6, -3.2F, (new Item.Properties())));
 	public static final RegistryObject<Item> PRIMITIVE_SHOVEL = ITEMS.register("primitive_shovel", () -> new ShovelItem(TechnologicaItemTier.FLINT, 6.0F, -3.2F, (new Item.Properties())));
 	public static final RegistryObject<Item> PRIMITIVE_HATCHET = ITEMS.register("primitive_hatchet", () -> new AxeItem(TechnologicaItemTier.FLINT, 6.0F, -3.2F, (new Item.Properties())));
+	
+	public static final RegistryObject<Item> BRONZE_SWORD = ITEMS.register("bronze_sword", () -> new SwordItem(TechnologicaItemTier.BRONZE, 6, -3.2F, (new Item.Properties())));
+	public static final RegistryObject<Item> BRONZE_PICKAXE = ITEMS.register("bronze_pickaxe", () -> new PickaxeItem(TechnologicaItemTier.BRONZE, 6, -3.2F, (new Item.Properties())));
+	public static final RegistryObject<Item> BRONZE_HOE = ITEMS.register("bronze_hoe", () -> new HoeItem(TechnologicaItemTier.BRONZE, 6, -3.2F, (new Item.Properties())));
+	public static final RegistryObject<Item> BRONZE_SHOVEL = ITEMS.register("bronze_shovel", () -> new ShovelItem(TechnologicaItemTier.BRONZE, 6.0F, -3.2F, (new Item.Properties())));
+	public static final RegistryObject<Item> BRONZE_AXE = ITEMS.register("bronze_axe", () -> new AxeItem(TechnologicaItemTier.BRONZE, 6.0F, -3.2F, (new Item.Properties())));
+	
+	public static final RegistryObject<Item> BRONZE_HELMET = ITEMS.register("bronze_helmet", () -> new ArmorItem(TechnologicaArmorMaterial.BRONZE, EquipmentSlot.HEAD, (new Item.Properties())));
+	public static final RegistryObject<Item> BRONZE_CHESTPLATE = ITEMS.register("bronze_chestplate", () -> new ArmorItem(TechnologicaArmorMaterial.BRONZE, EquipmentSlot.CHEST, (new Item.Properties())));
+	public static final RegistryObject<Item> BRONZE_LEGGINGS = ITEMS.register("bronze_leggings", () -> new ArmorItem(TechnologicaArmorMaterial.BRONZE, EquipmentSlot.LEGS, (new Item.Properties())));
+	public static final RegistryObject<Item> BRONZE_BOOTS = ITEMS.register("bronze_boots", () -> new ArmorItem(TechnologicaArmorMaterial.BRONZE, EquipmentSlot.FEET, (new Item.Properties())));
 
 	public static final RegistryObject<Item> COCONUT_BAZOOKA_ITEM = ITEMS.register("coconut_bazooka", () -> new CoconutBazookaItem((new Item.Properties()).durability(384)));
 	public static final RegistryObject<Item> DODGEBALL_ITEM = ITEMS.register("dodgeball", () -> new DodgeballItem((new Item.Properties()).stacksTo(1)));

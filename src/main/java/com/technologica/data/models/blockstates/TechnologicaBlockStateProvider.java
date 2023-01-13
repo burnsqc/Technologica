@@ -206,6 +206,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		fourDirectionBlockState(TechnologicaBlocks.TREE_TAP.get(), treeTapModel(TechnologicaBlocks.TREE_TAP.get()));
 		sawmillBlockState(TechnologicaBlocks.SAWMILL.get());
 		annunciatorBlockState(TechnologicaBlocks.ANNUNCIATOR.get());
+		this.createHopper(TechnologicaBlocks.FAST_HOPPER.get());
 
 		simpleBlock(TechnologicaBlocks.NITROGLYCERIN.get(), models().cubeBottomTop(ResourceLocationHelper.getPath(TechnologicaBlocks.NITROGLYCERIN.get()), modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.NITROGLYCERIN.get()) + "_side"), modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.NITROGLYCERIN.get()) + "_bottom"), modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.NITROGLYCERIN.get()) + "_top")));
 		axisBlock((RotatedPillarBlock) TechnologicaBlocks.NAVAL_MINE_CHAIN.get(), models().withExistingParent(ResourceLocationHelper.getPath(TechnologicaBlocks.NAVAL_MINE_CHAIN.get()), "block/chain").renderType("cutout_mipped"), models().withExistingParent(ResourceLocationHelper.getPath(TechnologicaBlocks.NAVAL_MINE_CHAIN.get()), "block/chain").renderType("cutout_mipped"));
@@ -1639,6 +1640,22 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 	public ModelFile gourdCropModel(Block block) {
 		return models().withExistingParent(ResourceLocationHelper.getPath(block), modLoc("gourd")).renderType("cutout_mipped").texture("gourd", blockTexture(block));
 	}
+	
+	public ModelFile hopper(String name, String top, String side, String inside) {
+		return models().withExistingParent(name, modLoc("technologica_hopper"))
+				.texture("particle", side)
+				.texture("top", top)
+                .texture("side", side)
+                .texture("inside", inside);
+	}
+	
+	public ModelFile hopperSide(String name, String top, String side, String inside) {
+		return models().withExistingParent(name, modLoc("technologica_hopper_side"))
+				.texture("particle", side)
+				.texture("top", top)
+                .texture("side", side)
+                .texture("inside", inside);
+	}
 
 	public ModelFile buttonInventoryModel(Block block, String renderType) {
 		return models().withExistingParent(ResourceLocationHelper.getPath(block) + "_inventory", "block/button_inventory").renderType(renderType).texture("texture", ResourceLocationHelper.replace(blockTexture(block), "_button", "_planks"));
@@ -2283,10 +2300,50 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 				.addModel();
 		this.simpleBlockItem(block, models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath(), sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_info"), sides));
 	}
+	
+	private void createHopper(Block block) {
+		getVariantBuilder(TechnologicaBlocks.FAST_HOPPER.get())
+			.partialState()
+			.with(BlockStateProperties.FACING_HOPPER, Direction.DOWN)
+			.modelForState()
+			.modelFile(this.hopper(ForgeRegistries.BLOCKS.getKey(block).getPath(), "block/fast_hopper_top", "block/fast_hopper_outside", "block/fast_hopper_inside"))
+			.addModel()
+			.partialState()
+			.with(BlockStateProperties.FACING_HOPPER, Direction.EAST)
+			.modelForState()
+			.modelFile(this.hopperSide(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_side", "block/fast_hopper_top", "block/fast_hopper_outside", "block/fast_hopper_inside"))
+			.rotationY(90)
+			.addModel()
+			.partialState()
+			.with(BlockStateProperties.FACING_HOPPER, Direction.NORTH)
+			.modelForState()
+			.modelFile(this.hopperSide(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_side", "block/fast_hopper_top", "block/fast_hopper_outside", "block/fast_hopper_inside"))
+			.addModel()
+			.partialState()
+			.with(BlockStateProperties.FACING_HOPPER, Direction.SOUTH)
+			.modelForState()
+			.modelFile(this.hopperSide(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_side", "block/fast_hopper_top", "block/fast_hopper_outside", "block/fast_hopper_inside"))
+			.rotationY(180)
+			.addModel()
+			.partialState()
+			.with(BlockStateProperties.FACING_HOPPER, Direction.WEST)
+			.modelForState()
+			.modelFile(this.hopperSide(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_side", "block/fast_hopper_top", "block/fast_hopper_outside", "block/fast_hopper_inside"))
+			.rotationY(270)
+			.addModel();
+		this.simpleFlatItem(TechnologicaBlocks.FAST_HOPPER.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
+	}
+	
+	
 
 	/*
 	 * Item model providers
 	 */
+	
+	private void simpleFlatItem(Block block, ModelFile model, String renderType) {
+		ResourceLocation location = ForgeRegistries.BLOCKS.getKey(block);
+		itemModels().getBuilder(location.getPath()).parent(model).texture("layer0", new ResourceLocation(location.getNamespace(), "item/" + location.getPath())).renderType(renderType);
+	}
 
 	public void doorBlockItem(Block block, ModelFile model, String renderType) {
 		ResourceLocation location = ForgeRegistries.BLOCKS.getKey(block);

@@ -24,7 +24,7 @@ public class UnderwaterRuinSmallLootModifier extends LootModifier {
 
 	public static final Supplier<Codec<UnderwaterRuinSmallLootModifier>> CODEC = Suppliers.memoize(() -> RecordCodecBuilder.create(inst -> codecStart(inst).apply(inst, UnderwaterRuinSmallLootModifier::new)));
 
-	protected UnderwaterRuinSmallLootModifier(LootItemCondition[] conditionsIn) {
+	public UnderwaterRuinSmallLootModifier(LootItemCondition[] conditionsIn) {
 		super(conditionsIn);
 	}
 

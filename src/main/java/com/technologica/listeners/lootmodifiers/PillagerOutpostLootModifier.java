@@ -25,7 +25,7 @@ public class PillagerOutpostLootModifier extends LootModifier {
 
 	public static final Supplier<Codec<PillagerOutpostLootModifier>> CODEC = Suppliers.memoize(() -> RecordCodecBuilder.create(inst -> codecStart(inst).apply(inst, PillagerOutpostLootModifier::new)));
 
-	protected PillagerOutpostLootModifier(LootItemCondition[] conditionsIn) {
+	public PillagerOutpostLootModifier(LootItemCondition[] conditionsIn) {
 		super(conditionsIn);
 	}
 

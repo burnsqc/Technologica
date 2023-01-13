@@ -14,6 +14,10 @@ import net.minecraft.world.item.crafting.Ingredient;
 
 @SuppressWarnings("deprecation")
 public enum TechnologicaArmorMaterial implements ArmorMaterial {
+	BRONZE("bronze", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+	      return Ingredient.of(TechnologicaItems.BRONZE_INGOT.get());
+	   }),
+	
 	SPACE("space", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
 	      return Ingredient.of(Items.IRON_INGOT);
 	   }),

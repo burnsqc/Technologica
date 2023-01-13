@@ -24,7 +24,7 @@ public class GrassLootModifier extends LootModifier {
 
 	public static final Supplier<Codec<GrassLootModifier>> CODEC = Suppliers.memoize(() -> RecordCodecBuilder.create(inst -> codecStart(inst).apply(inst, GrassLootModifier::new)));
 
-	protected GrassLootModifier(LootItemCondition[] conditionsIn) {
+	public GrassLootModifier(LootItemCondition[] conditionsIn) {
 		super(conditionsIn);
 	}
 
