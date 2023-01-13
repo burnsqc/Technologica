@@ -241,7 +241,10 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.TELLURIUM_CHUNK.get());
 		simpleItem(TechnologicaItems.IODINE_CHUNK.get());
 		radioactiveItem(TechnologicaItems.ASTATINE_CHUNK.get());
-
+		simpleItem(TechnologicaItems.RUBY.get());
+		simpleItem(TechnologicaItems.SAPPHIRE.get());
+		simpleItem(TechnologicaItems.TOPAZ.get());
+		
 		simpleItem(TechnologicaItems.MULCH.get());
 		simpleItem(TechnologicaItems.FERTILIZER.get());
 		simpleItem(TechnologicaItems.SAWDUST.get());

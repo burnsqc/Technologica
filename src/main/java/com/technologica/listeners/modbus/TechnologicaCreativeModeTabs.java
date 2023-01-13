@@ -389,6 +389,9 @@ public class TechnologicaCreativeModeTabs {
 						populator.accept(TechnologicaItems.TELLURIUM_CHUNK.get());
 						populator.accept(TechnologicaItems.IODINE_CHUNK.get());
 						populator.accept(TechnologicaItems.ASTATINE_CHUNK.get());
+						populator.accept(TechnologicaItems.RUBY.get());
+						populator.accept(TechnologicaItems.SAPPHIRE.get());
+						populator.accept(TechnologicaItems.TOPAZ.get());
 						populator.accept(TechnologicaItems.MULCH.get());
 						populator.accept(TechnologicaItems.FERTILIZER.get());
 						populator.accept(TechnologicaItems.TRELLIS.get());
