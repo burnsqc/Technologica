@@ -864,13 +864,13 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		tallCropBlock(TechnologicaBlocks.CRANBERRY_CROP.get());
 		stemCropBlock(TechnologicaBlocks.CUCUMBER_STEM.get());
 		attachedStemCropBlock(TechnologicaBlocks.ATTACHED_CUCUMBER_STEM.get(), attachedStem(ResourceLocationHelper.getPath(TechnologicaBlocks.ATTACHED_CUCUMBER_STEM.get()), blockTexture(TechnologicaBlocks.CUCUMBER_STEM.get()), blockTexture(TechnologicaBlocks.ATTACHED_CUCUMBER_STEM.get())));
-		fourDirectionBlockState(TechnologicaBlocks.CUCUMBERS.get(), gourdCropModel(TechnologicaBlocks.CUCUMBERS.get()));
+		fourDirectionBlockState2(TechnologicaBlocks.CUCUMBERS.get(), gourdCropModel(TechnologicaBlocks.CUCUMBERS.get()));
 		stemCropBlock(TechnologicaBlocks.SQUASH_STEM.get());
 		attachedStemCropBlock(TechnologicaBlocks.ATTACHED_SQUASH_STEM.get(), attachedStem(ResourceLocationHelper.getPath(TechnologicaBlocks.ATTACHED_SQUASH_STEM.get()), blockTexture(TechnologicaBlocks.SQUASH_STEM.get()), blockTexture(TechnologicaBlocks.ATTACHED_SQUASH_STEM.get())));
-		fourDirectionBlockState(TechnologicaBlocks.SQUASH.get(), gourdCropModel(TechnologicaBlocks.SQUASH.get()));
+		fourDirectionBlockState2(TechnologicaBlocks.SQUASH.get(), gourdCropModel(TechnologicaBlocks.SQUASH.get()));
 		stemCropBlock(TechnologicaBlocks.ZUCCHINI_STEM.get());
 		attachedStemCropBlock(TechnologicaBlocks.ATTACHED_ZUCCHINI_STEM.get(), attachedStem(ResourceLocationHelper.getPath(TechnologicaBlocks.ATTACHED_ZUCCHINI_STEM.get()), blockTexture(TechnologicaBlocks.ZUCCHINI_STEM.get()), blockTexture(TechnologicaBlocks.ATTACHED_ZUCCHINI_STEM.get())));
-		fourDirectionBlockState(TechnologicaBlocks.ZUCCHINI.get(), gourdCropModel(TechnologicaBlocks.ZUCCHINI.get()));
+		fourDirectionBlockState2(TechnologicaBlocks.ZUCCHINI.get(), gourdCropModel(TechnologicaBlocks.ZUCCHINI.get()));
 	}
 
 	private void saplingBlocks() {
@@ -1779,6 +1779,10 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 	public void fourDirectionBlockState(Block block, ModelFile blockModel) {
 		getVariantBuilder(block).partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).modelForState().modelFile(blockModel).addModel().partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).modelForState().modelFile(blockModel).rotationY(90).addModel().partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).modelForState().modelFile(blockModel).rotationY(180).addModel().partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).modelForState().modelFile(blockModel).rotationY(270).addModel();
 		this.simpleBlockItem(block, blockModel);
+	}
+	
+	public void fourDirectionBlockState2(Block block, ModelFile blockModel) {
+		getVariantBuilder(block).partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).modelForState().modelFile(blockModel).addModel().partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).modelForState().modelFile(blockModel).rotationY(90).addModel().partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).modelForState().modelFile(blockModel).rotationY(180).addModel().partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).modelForState().modelFile(blockModel).rotationY(270).addModel();
 	}
 
 	public void twelveDirectionBlockState(Block block, ModelFile blockModel1, ModelFile blockModel2) {

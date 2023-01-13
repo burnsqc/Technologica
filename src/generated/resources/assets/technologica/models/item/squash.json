@@ -1,3 +1,6 @@
 {
-  "parent": "technologica:block/squash"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "technologica:item/squash"
+  }
 }
