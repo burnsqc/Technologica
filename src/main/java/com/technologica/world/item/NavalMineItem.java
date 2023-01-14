@@ -18,13 +18,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.level.BaseSpawner;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.SpawnerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
@@ -45,18 +41,6 @@ public class NavalMineItem extends Item {
 			BlockPos blockpos = p_43223_.getClickedPos();
 			Direction direction = p_43223_.getClickedFace();
 			BlockState blockstate = level.getBlockState(blockpos);
-			if (blockstate.is(Blocks.SPAWNER)) {
-				BlockEntity blockentity = level.getBlockEntity(blockpos);
-				if (blockentity instanceof SpawnerBlockEntity) {
-					BaseSpawner basespawner = ((SpawnerBlockEntity) blockentity).getSpawner();
-					EntityType<?> entitytype1 = TechnologicaEntityType.NAVAL_MINE.get();
-					//basespawner.setEntityId(entitytype1);
-					blockentity.setChanged();
-					level.sendBlockUpdated(blockpos, blockstate, blockstate, 3);
-					itemstack.shrink(1);
-					return InteractionResult.CONSUME;
-				}
-			}
 
 			BlockPos blockpos1;
 			if (blockstate.getCollisionShape(level, blockpos).isEmpty()) {

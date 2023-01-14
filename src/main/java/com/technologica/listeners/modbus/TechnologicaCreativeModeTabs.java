@@ -1186,6 +1186,7 @@ public class TechnologicaCreativeModeTabs {
 						populator.accept(TechnologicaItems.BRONZE_CHESTPLATE.get());
 						populator.accept(TechnologicaItems.BRONZE_LEGGINGS.get());
 						populator.accept(TechnologicaItems.BRONZE_BOOTS.get());
+						populator.accept(TechnologicaItems.MINING_HELMET.get());
 						populator.accept(TechnologicaItems.SNORKEL_HELMET.get());
 						populator.accept(TechnologicaItems.SNORKEL_SUIT.get());
 						populator.accept(TechnologicaItems.SNORKEL_PANTS.get());

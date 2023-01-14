@@ -1121,6 +1121,10 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> LAND_MINE = BLOCKS.register("land_mine", LandMineBlock::new);
 	public static final RegistryObject<Block> NITROGLYCERIN = BLOCKS.register("nitroglycerin", () -> new NitroBlock(BlockBehaviour.Properties.of(Material.EXPLOSIVE).noCollission().instabreak().sound(SoundType.GRASS)));
 	public static final RegistryObject<Block> NAVAL_MINE_CHAIN = BLOCKS.register("naval_mine_chain", NavalMineChainBlock::new);
+	
+	public static final RegistryObject<Block> LIGHT = BLOCKS.register("light", () -> new LightBlock(BlockBehaviour.Properties.of(Material.AIR).noCollission().noLootTable().air().lightLevel((p_50874_) -> {
+		return 15;
+	})));
 
 	/*
 	 * VANILLA REPLICATORS

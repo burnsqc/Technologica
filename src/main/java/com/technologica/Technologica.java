@@ -10,6 +10,7 @@ import com.technologica.listeners.forgebus.DisableLogDrops;
 import com.technologica.listeners.forgebus.DropBarkOnLogStrip;
 import com.technologica.listeners.forgebus.ExtraAirMeter;
 import com.technologica.listeners.forgebus.LunarLowGrav;
+import com.technologica.listeners.forgebus.MiningLight;
 import com.technologica.listeners.forgebus.NitroPocket;
 import com.technologica.listeners.forgebus.RegisterCapabilities;
 import com.technologica.listeners.forgebus.ReplaceFarmerBrain;
@@ -109,6 +110,7 @@ public class Technologica {
 		MinecraftForge.EVENT_BUS.register(new DropBarkOnLogStrip());
 		MinecraftForge.EVENT_BUS.register(new ExtraAirMeter());
 		MinecraftForge.EVENT_BUS.register(new LunarLowGrav());
+		MinecraftForge.EVENT_BUS.register(new MiningLight());
 		MinecraftForge.EVENT_BUS.register(new NitroPocket());
 		MinecraftForge.EVENT_BUS.register(new RegisterCapabilities());
 		// MinecraftForge.EVENT_BUS.register(new RegisterModels());

@@ -33,4 +33,5 @@ public class TechnologicaBlockEntityType {
 	public static final RegistryObject<BlockEntityType<RadioactiveOreBlockEntity>> RADIOACTIVE_ORE_BLOCK_ENTITY = BLOCK_ENTITY_TYPES.register("radioactive_ore_block_entity", () -> BlockEntityType.Builder.of(RadioactiveOreBlockEntity::new, TechnologicaBlocks.THORIANITE_ORE.get(), TechnologicaBlocks.DEEPSLATE_THORIANITE_ORE.get(), TechnologicaBlocks.URANINITE_ORE.get(), TechnologicaBlocks.DEEPSLATE_URANINITE_ORE.get()).build(null));
 	
 	public static final RegistryObject<BlockEntityType<FastHopperBlockEntity>> FAST_HOPPER_BLOCK_ENTITY = BLOCK_ENTITY_TYPES.register("fast_hopper_block_entity", () -> BlockEntityType.Builder.of(FastHopperBlockEntity::new, TechnologicaBlocks.FAST_HOPPER.get()).build(null));
+	public static final RegistryObject<BlockEntityType<LightBlockEntity>> LIGHT_BLOCK_ENTITY = BLOCK_ENTITY_TYPES.register("light_block_entity", () -> BlockEntityType.Builder.of(LightBlockEntity::new, TechnologicaBlocks.LIGHT.get()).build(null));
 }

@@ -448,6 +448,8 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.HAZMAT_SUIT.get());
 		simpleItem(TechnologicaItems.HAZMAT_PANTS.get());
 		simpleItem(TechnologicaItems.HAZMAT_BOOTS.get());
+		
+		simpleItem(TechnologicaItems.MINING_HELMET.get());
 
 		simpleItem(TechnologicaItems.GLUE_BOTTLE.get());
 		simpleItem(TechnologicaItems.LAND_MINE.get());

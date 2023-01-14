@@ -1233,6 +1233,8 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> HAZMAT_PANTS = ITEMS.register("hazmat_pants", () -> new ArmorItem(TechnologicaArmorMaterial.HAZMAT, EquipmentSlot.LEGS, (new Item.Properties())));
 	public static final RegistryObject<Item> HAZMAT_BOOTS = ITEMS.register("hazmat_boots", () -> new ArmorItem(TechnologicaArmorMaterial.HAZMAT, EquipmentSlot.FEET, (new Item.Properties())));
 	
+	public static final RegistryObject<Item> MINING_HELMET = ITEMS.register("mining_helmet", () -> new ArmorItem(TechnologicaArmorMaterial.MINING, EquipmentSlot.HEAD, (new Item.Properties())));
+	
 	public static final RegistryObject<Item> LAND_MINE = ITEMS.register("land_mine", () -> new LandMineItem(new Item.Properties()));
 	public static final RegistryObject<Item> NITROGLYCERIN_ITEM = ITEMS.register("nitroglycerin", () -> new BlockItem(TechnologicaBlocks.NITROGLYCERIN.get(), new Item.Properties()));
 	public static final RegistryObject<Item> NAVAL_MINE = ITEMS.register("naval_mine", () -> new NavalMineItem(new Item.Properties()));
