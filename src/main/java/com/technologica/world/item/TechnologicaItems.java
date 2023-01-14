@@ -407,6 +407,10 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> RUBY = ITEMS.register("ruby", () -> new Item(new Properties()));
 	public static final RegistryObject<Item> SAPPHIRE = ITEMS.register("sapphire", () -> new Item(new Properties()));
 	public static final RegistryObject<Item> TOPAZ = ITEMS.register("topaz", () -> new Item(new Properties()));
+	
+	public static final RegistryObject<Item> BLOCK_OF_RUBY = ITEMS.register("block_of_ruby", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_RUBY.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_SAPPHIRE = ITEMS.register("block_of_sapphire", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_SAPPHIRE.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_TOPAZ = ITEMS.register("block_of_topaz", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_TOPAZ.get(), new Item.Properties()));
 
 	public static final RegistryObject<Item> MULCH = ITEMS.register("mulch", () -> new MulchItem(new Properties()));
 	public static final RegistryObject<Item> FERTILIZER = ITEMS.register("fertilizer", () -> new FertilizerItem(new Properties()));

@@ -51,6 +51,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
@@ -333,10 +334,10 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> NETHER_PLATINUM_ORE = BLOCKS.register("nether_platinum_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> PYROLUSITE_ORE = BLOCKS.register("pyrolusite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> DEEPSLATE_PYROLUSITE_ORE = BLOCKS.register("deepslate_pyrolusite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> RUBY_ORE = BLOCKS.register("ruby_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> DEEPSLATE_RUBY_ORE = BLOCKS.register("deepslate_ruby_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> SAPPHIRE_ORE = BLOCKS.register("sapphire_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> DEEPSLATE_SAPPHIRE_ORE = BLOCKS.register("deepslate_sapphire_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> RUBY_ORE = BLOCKS.register("ruby_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(3.0F, 3.0F), UniformInt.of(3, 7)));
+	public static final RegistryObject<Block> DEEPSLATE_RUBY_ORE = BLOCKS.register("deepslate_ruby_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(RUBY_ORE.get()).color(MaterialColor.DEEPSLATE).strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE), UniformInt.of(3, 7)));
+	public static final RegistryObject<Block> SAPPHIRE_ORE = BLOCKS.register("sapphire_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(3.0F, 3.0F), UniformInt.of(3, 7)));
+	public static final RegistryObject<Block> DEEPSLATE_SAPPHIRE_ORE = BLOCKS.register("deepslate_sapphire_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(SAPPHIRE_ORE.get()).color(MaterialColor.DEEPSLATE).strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE), UniformInt.of(3, 7)));
 	public static final RegistryObject<Block> SPODUMENE_ORE = BLOCKS.register("spodumene_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> DEEPSLATE_SPODUMENE_ORE = BLOCKS.register("deepslate_spodumene_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> SYLVANITE_ORE = BLOCKS.register("sylvanite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
@@ -346,8 +347,8 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> DEEPSLATE_TANTALITE_ORE = BLOCKS.register("deepslate_tantalite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> THORIANITE_ORE = BLOCKS.register("thorianite_ore", () -> new RadioactiveOreBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> DEEPSLATE_THORIANITE_ORE = BLOCKS.register("deepslate_thorianite_ore", () -> new RadioactiveOreBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> TOPAZ_ORE = BLOCKS.register("topaz_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> DEEPSLATE_TOPAZ_ORE = BLOCKS.register("deepslate_topaz_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> TOPAZ_ORE = BLOCKS.register("topaz_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(3.0F, 3.0F), UniformInt.of(3, 7)));
+	public static final RegistryObject<Block> DEEPSLATE_TOPAZ_ORE = BLOCKS.register("deepslate_topaz_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(TOPAZ_ORE.get()).color(MaterialColor.DEEPSLATE).strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE), UniformInt.of(3, 7)));
 	public static final RegistryObject<Block> URANINITE_ORE = BLOCKS.register("uraninite_ore", () -> new RadioactiveOreBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> DEEPSLATE_URANINITE_ORE = BLOCKS.register("deepslate_uraninite_ore", () -> new RadioactiveOreBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> WOLFRAMITE_ORE = BLOCKS.register("wolframite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(6.0F).sound(SoundType.STONE)));
@@ -420,6 +421,10 @@ public class TechnologicaBlocks {
 		return 5;
 	})));
 
+	public static final RegistryObject<Block> BLOCK_OF_RUBY = BLOCKS.register("block_of_ruby", () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_RED).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
+	public static final RegistryObject<Block> BLOCK_OF_SAPPHIRE = BLOCKS.register("block_of_sapphire", () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_BLUE).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
+	public static final RegistryObject<Block> BLOCK_OF_TOPAZ = BLOCKS.register("block_of_topaz", () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_YELLOW).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
+	
 	public static final RegistryObject<LiquidBlock> HYDROGEN = BLOCKS.register("hydrogen", () -> new LiquidBlock(TechnologicaFluids.HYDROGEN, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F).noLootTable()));
 	public static final RegistryObject<LiquidBlock> HELIUM = BLOCKS.register("helium", () -> new LiquidBlock(TechnologicaFluids.HELIUM, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F).noLootTable()));
 	public static final RegistryObject<LiquidBlock> NITROGEN = BLOCKS.register("nitrogen", () -> new LiquidBlock(TechnologicaFluids.NITROGEN, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F).noLootTable()));

@@ -7,44 +7,30 @@ import com.technologica.world.level.block.entity.FastHopperBlockEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-public class TechnologicaHopperItemHandler extends InvWrapper
-{
+public class TechnologicaHopperItemHandler extends InvWrapper {
     private final FastHopperBlockEntity hopper;
 
-    public TechnologicaHopperItemHandler(FastHopperBlockEntity hopper)
-    {
+    public TechnologicaHopperItemHandler(FastHopperBlockEntity hopper) {
         super(hopper);
         this.hopper = hopper;
     }
 
     @Override
     @NotNull
-    public ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate)
-    {
-        if (simulate)
-        {
+    public ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
+        if (simulate) {
             return super.insertItem(slot, stack, simulate);
-        }
-        else
-        {
+        } else {
             boolean wasEmpty = getInv().isEmpty();
 
             int originalStackSize = stack.getCount();
             stack = super.insertItem(slot, stack, simulate);
 
-            if (wasEmpty && originalStackSize > stack.getCount())
-            {
-                if (!hopper.isOnCustomCooldown())
-                {
-                    // This cooldown is always set to 8 in vanilla with one exception:
-                    // Hopper -> Hopper transfer sets this cooldown to 7 when this hopper
-                    // has not been updated as recently as the one pushing items into it.
-                    // This vanilla behavior is preserved by VanillaInventoryCodeHooks#insertStack,
-                    // the cooldown is set properly by the hopper that is pushing items into this one.
+            if (wasEmpty && originalStackSize > stack.getCount()) {
+                if (!hopper.isOnCustomCooldown()) {
                     hopper.setCooldown(8);
                 }
             }
-
             return stack;
         }
     }

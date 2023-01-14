@@ -392,6 +392,9 @@ public class TechnologicaCreativeModeTabs {
 						populator.accept(TechnologicaItems.RUBY.get());
 						populator.accept(TechnologicaItems.SAPPHIRE.get());
 						populator.accept(TechnologicaItems.TOPAZ.get());
+						populator.accept(TechnologicaItems.BLOCK_OF_RUBY.get());
+						populator.accept(TechnologicaItems.BLOCK_OF_SAPPHIRE.get());
+						populator.accept(TechnologicaItems.BLOCK_OF_TOPAZ.get());
 						populator.accept(TechnologicaItems.MULCH.get());
 						populator.accept(TechnologicaItems.FERTILIZER.get());
 						populator.accept(TechnologicaItems.TRELLIS.get());

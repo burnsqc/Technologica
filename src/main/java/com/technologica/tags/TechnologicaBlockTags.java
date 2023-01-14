@@ -39,5 +39,9 @@ public class TechnologicaBlockTags {
 	public static final TagKey<Block> FROSTBITTEN_LOGS = BlockTags.create(new ResourceLocation(Technologica.MODID, "frostbitten_logs"));
 	public static final TagKey<Block> FRUITFUL_LOGS = BlockTags.create(new ResourceLocation(Technologica.MODID, "fruitful_logs"));
 	public static final TagKey<Block> INFERNAL_LOGS = BlockTags.create(new ResourceLocation(Technologica.MODID, "infernal_logs"));
-	public static final TagKey<Block> MALEVOLENT_LOGS = BlockTags.create(new ResourceLocation(Technologica.MODID, "malevolent_logs"));	
+	public static final TagKey<Block> MALEVOLENT_LOGS = BlockTags.create(new ResourceLocation(Technologica.MODID, "malevolent_logs"));
+	
+	public static final TagKey<Block> RUBY_ORES = BlockTags.create(new ResourceLocation(Technologica.MODID, "ruby_ores"));
+	public static final TagKey<Block> SAPPHIRE_ORES = BlockTags.create(new ResourceLocation(Technologica.MODID, "sapphire_ores"));
+	public static final TagKey<Block> TOPAZ_ORES = BlockTags.create(new ResourceLocation(Technologica.MODID, "topaz_ores"));
 }

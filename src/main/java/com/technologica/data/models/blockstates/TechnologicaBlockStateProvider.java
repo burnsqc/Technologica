@@ -147,6 +147,10 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		simpleBlock(TechnologicaBlocks.DEEPSLATE_URANINITE_ORE.get());
 		simpleBlock(TechnologicaBlocks.WOLFRAMITE_ORE.get());
 		simpleBlock(TechnologicaBlocks.DEEPSLATE_WOLFRAMITE_ORE.get());
+		
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_RUBY.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_SAPPHIRE.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_TOPAZ.get());
 
 		twentyFourDirectionBlockState(TechnologicaBlocks.AUTUNITE_CRYSTAL.get(), leafyCrystalModel(TechnologicaBlocks.AUTUNITE_CRYSTAL.get()), leafyCrystalModel(TechnologicaBlocks.AUTUNITE_CRYSTAL.get()));
 		twentyFourDirectionBlockState(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get(), hexagonalCrystalModel(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get()), hexagonalCrystalModel(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get()));
@@ -324,6 +328,10 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		simpleBlockItem(TechnologicaBlocks.DEEPSLATE_URANINITE_ORE.get(), cubeAll(TechnologicaBlocks.DEEPSLATE_URANINITE_ORE.get()));
 		simpleBlockItem(TechnologicaBlocks.WOLFRAMITE_ORE.get(), cubeAll(TechnologicaBlocks.WOLFRAMITE_ORE.get()));
 		simpleBlockItem(TechnologicaBlocks.DEEPSLATE_WOLFRAMITE_ORE.get(), cubeAll(TechnologicaBlocks.DEEPSLATE_WOLFRAMITE_ORE.get()));
+		
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_RUBY.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_RUBY.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_SAPPHIRE.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_SAPPHIRE.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_TOPAZ.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_TOPAZ.get()));
 
 		simpleBlockItem(TechnologicaBlocks.APRICOT_LOG.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.APRICOT_LOG.get()), blockTexture(TechnologicaBlocks.APRICOT_LOG.get()), new ResourceLocation(blockTexture(TechnologicaBlocks.APRICOT_LOG.get()) + "_top")));
 		simpleBlockItem(TechnologicaBlocks.ASPEN_LOG.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.ASPEN_LOG.get()), blockTexture(TechnologicaBlocks.ASPEN_LOG.get()), new ResourceLocation(blockTexture(TechnologicaBlocks.ASPEN_LOG.get()) + "_top")));

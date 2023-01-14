@@ -275,10 +275,18 @@ public class TechnologicaBlockLoot extends BlockLootSubProvider {
 		dropSelf(TechnologicaBlocks.NETHER_PLATINUM_ORE.get());
 		dropSelf(TechnologicaBlocks.PYROLUSITE_ORE.get());
 		dropSelf(TechnologicaBlocks.DEEPSLATE_PYROLUSITE_ORE.get());
-		dropSelf(TechnologicaBlocks.RUBY_ORE.get());
-		dropSelf(TechnologicaBlocks.DEEPSLATE_RUBY_ORE.get());
-		dropSelf(TechnologicaBlocks.SAPPHIRE_ORE.get());
-		dropSelf(TechnologicaBlocks.DEEPSLATE_SAPPHIRE_ORE.get());
+		this.add(TechnologicaBlocks.RUBY_ORE.get(), (block) -> {
+			return this.createOreDrop(block, TechnologicaItems.RUBY.get());
+		});
+		this.add(TechnologicaBlocks.DEEPSLATE_RUBY_ORE.get(), (block) -> {
+			return this.createOreDrop(block, TechnologicaItems.RUBY.get());
+		});
+		this.add(TechnologicaBlocks.SAPPHIRE_ORE.get(), (block) -> {
+			return this.createOreDrop(block, TechnologicaItems.SAPPHIRE.get());
+		});
+		this.add(TechnologicaBlocks.DEEPSLATE_SAPPHIRE_ORE.get(), (block) -> {
+			return this.createOreDrop(block, TechnologicaItems.SAPPHIRE.get());
+		});
 		dropSelf(TechnologicaBlocks.SPODUMENE_ORE.get());
 		dropSelf(TechnologicaBlocks.DEEPSLATE_SPODUMENE_ORE.get());
 		dropSelf(TechnologicaBlocks.SYLVANITE_ORE.get());
@@ -288,8 +296,12 @@ public class TechnologicaBlockLoot extends BlockLootSubProvider {
 		dropSelf(TechnologicaBlocks.DEEPSLATE_TANTALITE_ORE.get());
 		dropSelf(TechnologicaBlocks.THORIANITE_ORE.get());
 		dropSelf(TechnologicaBlocks.DEEPSLATE_THORIANITE_ORE.get());
-		dropSelf(TechnologicaBlocks.TOPAZ_ORE.get());
-		dropSelf(TechnologicaBlocks.DEEPSLATE_TOPAZ_ORE.get());
+		this.add(TechnologicaBlocks.TOPAZ_ORE.get(), (block) -> {
+			return this.createOreDrop(block, TechnologicaItems.TOPAZ.get());
+		});
+		this.add(TechnologicaBlocks.DEEPSLATE_TOPAZ_ORE.get(), (block) -> {
+			return this.createOreDrop(block, TechnologicaItems.TOPAZ.get());
+		});
 		dropSelf(TechnologicaBlocks.URANINITE_ORE.get());
 		dropSelf(TechnologicaBlocks.DEEPSLATE_URANINITE_ORE.get());
 		dropSelf(TechnologicaBlocks.WOLFRAMITE_ORE.get());
@@ -317,6 +329,10 @@ public class TechnologicaBlockLoot extends BlockLootSubProvider {
 		dropSelf(TechnologicaBlocks.WULFENITE_CRYSTAL.get());
 		dropSelf(TechnologicaBlocks.XENOTIME_CRYSTAL.get());
 		dropSelf(TechnologicaBlocks.ZIRCON_CRYSTAL.get());
+		
+		dropSelf(TechnologicaBlocks.BLOCK_OF_RUBY.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_SAPPHIRE.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_TOPAZ.get());
 
 		dropSelf(TechnologicaBlocks.APRICOT_LOG.get());
 		dropSelf(TechnologicaBlocks.ASPEN_LOG.get());
