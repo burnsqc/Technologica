@@ -42,6 +42,7 @@ import com.technologica.client.model.StingrayModel;
 import com.technologica.client.model.TurkeyModel;
 import com.technologica.client.model.VultureModel;
 import com.technologica.client.model.WalrusModel;
+import com.technologica.client.model.armor.MiningHelmetModel;
 import com.technologica.world.entity.vehicle.VanillaBoat;
 
 import net.minecraft.client.model.BoatModel;
@@ -50,6 +51,7 @@ import net.minecraft.client.model.CreeperModel;
 import net.minecraft.client.model.HorseModel;
 import net.minecraft.client.model.PolarBearModel;
 import net.minecraft.client.model.ZombieModel;
+import net.minecraft.client.model.geom.LayerDefinitions;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraftforge.client.event.EntityRenderersEvent.RegisterLayerDefinitions;
@@ -108,6 +110,8 @@ public class TechnologicaLayerDefinitions {
 
 		event.registerLayerDefinition(TechnologicaModelLayers.COCONUT_BAZOOKA, CoconutBazookaModel::createLayer);
 		event.registerLayerDefinition(TechnologicaModelLayers.SPEAR_GUN, SpearGunModel::createLayer);
+		
+		event.registerLayerDefinition(TechnologicaModelLayers.MINING_HELMET, () -> LayerDefinition.create(MiningHelmetModel.createMesh(LayerDefinitions.OUTER_ARMOR_DEFORMATION, 0.0F), 64, 32));
 
 		for (VanillaBoat.Type boat$type : VanillaBoat.Type.values()) {
 			event.registerLayerDefinition(TechnologicaModelLayers.createBoatModelName(boat$type), () -> BoatModel.createBodyModel());

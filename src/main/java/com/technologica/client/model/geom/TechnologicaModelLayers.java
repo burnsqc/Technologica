@@ -63,6 +63,8 @@ public class TechnologicaModelLayers {
 
 	public static final ModelLayerLocation COCONUT_BAZOOKA = register("coconut_bazooka");
 	public static final ModelLayerLocation SPEAR_GUN = register("spear_gun");
+	
+	public static final ModelLayerLocation MINING_HELMET = register("mining_helmet");
 
 	private static ModelLayerLocation register(String p_171294_) {
 		return register(p_171294_, "main");
