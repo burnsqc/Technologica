@@ -26,10 +26,8 @@ public class TechnologicaMenuType {
 		Level world = inv.player.getCommandSenderWorld();
 		return new AnnunciatorMenu(windowId, world, pos, inv);
 	}));
-	
+
 	public static final RegistryObject<MenuType<SawmillMenu>> SAWMILL = MENU_TYPES.register("sawmill_container", () -> IForgeMenuType.create((windowId, inv, data) -> {
-		BlockPos pos = data.readBlockPos();
-		Level world = inv.player.getCommandSenderWorld();
-		return new SawmillMenu(windowId, world, pos, inv);
+		return new SawmillMenu(windowId, inv);
 	}));
 }
