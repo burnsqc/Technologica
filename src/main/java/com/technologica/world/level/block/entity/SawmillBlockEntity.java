@@ -1,8 +1,8 @@
 package com.technologica.world.level.block.entity;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import com.technologica.world.inventory.SawmillMenu;
 import com.technologica.world.item.TechnologicaItems;
 import com.technologica.world.item.crafting.SawmillRecipe;
 import com.technologica.world.item.crafting.TechnologicaRecipeType;
@@ -10,98 +10,93 @@ import com.technologica.world.item.crafting.TechnologicaRecipeType;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.Container;
-import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.StackedContents;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.RecipeHolder;
-import net.minecraft.world.inventory.StackedContentsCompatible;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.registries.ForgeRegistries;
 
-public class SawmillBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer, RecipeHolder, StackedContentsCompatible {
-	// private final ItemStackHandler itemHandler = createHandler();
+public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer, RecipeHolder {
+	private final ItemStackHandler itemHandler = createHandler();
+	private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
 	private int sawTime;
 	private double logPos;
-	protected NonNullList<ItemStack> items = NonNullList.withSize(5, ItemStack.EMPTY);
+	// protected NonNullList<ItemStack> items = NonNullList.withSize(3, ItemStack.EMPTY);
 	private final Object2IntOpenHashMap<ResourceLocation> recipes = new Object2IntOpenHashMap<>();
-	protected final ContainerData dataAccess = new ContainerData() {
-		@Override
-		public int get(int p_59038_) {
-			switch (p_59038_) {
-			case 0:
-				return SawmillBlockEntity.this.sawTime;
-			case 1:
-				return SawmillBlockEntity.this.sawTime;
-			default:
-				return 0;
-			}
-		}
-
-		@Override
-		public void set(int p_59040_, int p_59041_) {
-			switch (p_59040_) {
-			case 0:
-				SawmillBlockEntity.this.sawTime = p_59041_;
-				break;
-			case 1:
-				SawmillBlockEntity.this.sawTime = p_59041_;
-			}
-
-		}
-
-		@Override
-		public int getCount() {
-			return 2;
-		}
-	};
 
 	public SawmillBlockEntity(BlockPos p_155700_, BlockState p_155701_) {
 		super(TechnologicaBlockEntityType.SAWMILL_TILE.get(), p_155700_, p_155701_);
 	}
 
-	/*
-	 * private ItemStackHandler createHandler() { return new ItemStackHandler(5) {
-	 * 
-	 * @Override protected void onContentsChanged(int slot) { setChanged(); }
-	 * 
-	 * @Override public boolean isItemValid(int slot, @Nonnull ItemStack stack) { if (slot == 0) { return ForgeRegistries.ITEMS.getKey(stack.getItem()).getPath().contains("sawblade"); } else if (slot == 1) { return ForgeRegistries.ITEMS.tags().getTag(ItemTags.LOGS).contains(stack.getItem()) || ForgeRegistries.ITEMS.tags().getTag(ItemTags.PLANKS).contains(stack.getItem()); } return true; }
-	 * 
-	 * @Override public int getSlotLimit(int slot) { return 64; }
-	 * 
-	 * @Nonnull
-	 * 
-	 * @Override public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) { if (!isItemValid(slot, stack)) { return stack; } if (slot == 1) { setLog(new ItemStack(stack.getItem(), 1)); }
-	 * 
-	 * return super.insertItem(slot, stack, simulate); } }; }
-	 */
+	private ItemStackHandler createHandler() {
+		return new ItemStackHandler(5) {
+			@Override
+			protected void onContentsChanged(int slot) {
+				setChanged();
+			}
+
+			@Override
+			public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
+				if (slot == 0) {
+					return ForgeRegistries.ITEMS.getKey(stack.getItem()).getPath().contains("sawblade");
+				} else if (slot == 1) {
+					return ForgeRegistries.ITEMS.tags().getTag(ItemTags.LOGS).contains(stack.getItem()) || ForgeRegistries.ITEMS.tags().getTag(ItemTags.PLANKS).contains(stack.getItem());
+				}
+				return true;
+			}
+
+			@Override
+			public int getSlotLimit(int slot) {
+				return 64;
+			}
+
+			@Nonnull
+			@Override
+			public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+				if (!isItemValid(slot, stack)) {
+					return stack;
+				}
+				if (slot == 1) {
+					setLog(stack);
+				}
+
+				return super.insertItem(slot, stack, simulate);
+			}
+		};
+	}
+
+	@Nonnull
+	@Override
+	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+		if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+			return handler.cast();
+		}
+		return super.getCapability(cap, side);
+	}
 
 	public boolean getBlade() {
-		if (this.items.get(0) != ItemStack.EMPTY) {
+		if (getItem(0) != ItemStack.EMPTY) {
 			return true;
 		}
 		return false;
 	}
 
 	public void setLog(ItemStack logIn) {
-		if (!ItemStack.matches(logIn, ItemStack.EMPTY)) {
-			this.sawTime = 100;
-			// itemHandler.insertItem(1, logIn, false);
-		} else {
-			// itemHandler.setStackInSlot(1, logIn);
-		}
+		this.sawTime = 100;
 		setChanged();
 	}
 
@@ -140,10 +135,8 @@ public class SawmillBlockEntity extends BaseContainerBlockEntity implements Worl
 	@Override
 	public void load(CompoundTag nbt) {
 		super.load(nbt);
-		this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-		if (nbt.contains("sawBlade")) {
-			// this.setBlade(nbt.getBoolean("sawBlade"));
-		}
+		// this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
+		// ContainerHelper.loadAllItems(nbt, this.items);
 		if (nbt.contains("sawTime")) {
 			this.sawTime = nbt.getInt("sawTime");
 		}
@@ -155,138 +148,42 @@ public class SawmillBlockEntity extends BaseContainerBlockEntity implements Worl
 	@Override
 	public void saveAdditional(CompoundTag compound) {
 		super.saveAdditional(compound);
-		ContainerHelper.saveAllItems(compound, this.items);
-		compound.putBoolean("sawBlade", this.getBlade());
+		// ContainerHelper.saveAllItems(compound, this.items);
 		compound.putInt("sawTime", this.sawTime);
 		compound.putDouble("logPos", this.logPos);
 	}
 
 	public void serverTick() {
 		if (this.sawTime > 0F) {
+			this.logPos = 2.0D - 4.0D * (sawTime / 100.0D);
 			this.sawTime--;
+			level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
 		} else if (!getItem(1).isEmpty()) {
 			Recipe<Container> recipe = this.level.getRecipeManager().getRecipeFor(TechnologicaRecipeType.SAWMILL.get(), this, this.level).orElse(null);
 			if (recipe != null) {
 				ItemStack output = ((SawmillRecipe) recipe).getResultItem1();
 				ItemStack output2 = ((SawmillRecipe) recipe).getResultItem2();
 
-				// itemHandler.insertItem(2, output, false);
+				itemHandler.insertItem(2, output, false);
 
 				if (output2.getItem() == TechnologicaItems.MULCH.get()) {
-					// itemHandler.insertItem(3, output2, false);
+					itemHandler.insertItem(3, output2, false);
 				} else if (output2.getItem() == TechnologicaItems.SAWDUST.get()) {
-					// itemHandler.insertItem(4, output2, false);
+					itemHandler.insertItem(4, output2, false);
 				}
 
-				setLog(ItemStack.EMPTY);
-
-			}
-		}
-	}
-
-	public void clientTick() {
-		if (this.sawTime > 0F) {
-			this.logPos = 2.0D - 4.0D * (sawTime / 100.0D);
-			this.sawTime--;
-		} else if (!getItem(1).isEmpty()) {
-			setLog(ItemStack.EMPTY);
-		}
-	}
-
-	protected boolean canSaw(@Nullable Recipe<?> recipeIn) {
-		if (!this.items.get(0).isEmpty() && recipeIn != null) {
-			@SuppressWarnings("unchecked")
-			ItemStack itemstack = ((Recipe<WorldlyContainer>) recipeIn).assemble(this);
-			if (itemstack.isEmpty()) {
-				return false;
-			} else {
-				ItemStack itemstack1 = this.items.get(2);
-				if (itemstack1.isEmpty()) {
-					return true;
-				} else if (!itemstack1.sameItem(itemstack)) {
-					return false;
-				} else if (itemstack1.getCount() + itemstack.getCount() <= this.getMaxStackSize() && itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxStackSize()) {
-					return true;
-				} else {
-					return itemstack1.getCount() + itemstack.getCount() <= itemstack.getMaxStackSize();
+				itemHandler.extractItem(1, 1, false);
+				if (!itemHandler.getStackInSlot(1).isEmpty()) {
+					this.sawTime = 100;
 				}
+				setRecipeUsed(recipe);
+				level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
 			}
-		} else {
-			return false;
 		}
 	}
 
 	public int getSawTime() {
 		return this.sawTime;
-	}
-
-	@Override
-	public int getContainerSize() {
-		return this.items.size();
-	}
-
-	@Override
-	public boolean isEmpty() {
-		for (ItemStack itemstack : this.items) {
-			if (!itemstack.isEmpty()) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	@Override
-	public ItemStack getItem(int index) {
-		return this.items.get(index);
-	}
-
-	@Override
-	public ItemStack removeItem(int index, int count) {
-		return ContainerHelper.removeItem(this.items, index, count);
-	}
-
-	@Override
-	public ItemStack removeItemNoUpdate(int index) {
-		return ContainerHelper.takeItem(this.items, index);
-	}
-
-	@Override
-	public void setItem(int index, ItemStack stack) {
-		ItemStack itemstack = this.items.get(index);
-		boolean flag = !stack.isEmpty() && stack.sameItem(itemstack) && ItemStack.tagMatches(stack, itemstack);
-		this.items.set(index, stack);
-	}
-
-	@Override
-	public boolean stillValid(Player player) {
-		if (this.level.getBlockEntity(this.worldPosition) != this) {
-			return false;
-		} else {
-			return player.distanceToSqr(this.worldPosition.getX() + 0.5D, this.worldPosition.getY() + 0.5D, this.worldPosition.getZ() + 0.5D) <= 64.0D;
-		}
-	}
-
-	@Override
-	public void clearContent() {
-		this.items.clear();
-	}
-
-	@Override
-	public int[] getSlotsForFace(Direction direction) {
-		// MAP SLOTS TO FACES OF MACHINE FOR HOPPER PUSH/PULL
-		return null;
-	}
-
-	@Override
-	public boolean canPlaceItemThroughFace(int index, ItemStack itemStackIn, Direction direction) {
-		// PROBABLY CREATE A NEW METHOD AND CALL IT TO HANDLE INSERTION CHECK
-		return false;
-	}
-
-	@Override
-	public boolean canTakeItemThroughFace(int index, ItemStack itemStackIn, Direction direction) {
-		// LIKELY DON'T NEED A NEW METHOD, JUST A LITTLE EXTRACTION LOGIC
-		return false;
 	}
 
 	@Override
@@ -303,48 +200,67 @@ public class SawmillBlockEntity extends BaseContainerBlockEntity implements Worl
 	}
 
 	@Override
-	public void fillStackedContents(StackedContents helper) {
-		for (ItemStack itemstack : this.items) {
-			helper.accountStack(itemstack);
-		}
-	}
-
-	net.minecraftforge.common.util.LazyOptional<? extends net.minecraftforge.items.IItemHandler>[] handlers = net.minecraftforge.items.wrapper.SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
-
-	@Override
-	public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, @Nullable Direction facing) {
-		if (!this.remove && facing != null && capability == net.minecraftforge.common.capabilities.ForgeCapabilities.ITEM_HANDLER) {
-			if (facing == Direction.UP)
-				return handlers[0].cast();
-			else if (facing == Direction.DOWN)
-				return handlers[1].cast();
-			else
-				return handlers[2].cast();
-		}
-		return super.getCapability(capability, facing);
+	public ItemStack getItem(int index) {
+		return this.itemHandler.getStackInSlot(index);
 	}
 
 	@Override
-	public void invalidateCaps() {
-		super.invalidateCaps();
-		for (int x = 0; x < handlers.length; x++) {
-			handlers[x].invalidate();
+	public boolean stillValid(Player player) {
+		if (this.level.getBlockEntity(this.worldPosition) != this) {
+			return false;
+		} else {
+			return player.distanceToSqr(this.worldPosition.getX() + 0.5D, this.worldPosition.getY() + 0.5D, this.worldPosition.getZ() + 0.5D) <= 64.0D;
 		}
 	}
 
 	@Override
-	public void reviveCaps() {
-		super.reviveCaps();
-		this.handlers = net.minecraftforge.items.wrapper.SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
+	public int[] getSlotsForFace(Direction direction) {
+		return null;
 	}
 
 	@Override
-	protected Component getDefaultName() {
-		return Component.translatable("container.sawmill");
+	public boolean canPlaceItemThroughFace(int index, ItemStack itemStackIn, Direction direction) {
+		return false;
 	}
 
 	@Override
-	protected AbstractContainerMenu createMenu(int p_58627_, Inventory p_58628_) {
-		return new SawmillMenu(p_58627_, p_58628_, this, this.dataAccess);
+	public boolean canTakeItemThroughFace(int index, ItemStack itemStackIn, Direction direction) {
+		return false;
+	}
+
+	@Override
+	public int getContainerSize() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public ItemStack removeItem(int p_18942_, int p_18943_) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ItemStack removeItemNoUpdate(int p_18951_) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setItem(int p_18944_, ItemStack p_18945_) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void clearContent() {
+		// TODO Auto-generated method stub
+
 	}
 }
