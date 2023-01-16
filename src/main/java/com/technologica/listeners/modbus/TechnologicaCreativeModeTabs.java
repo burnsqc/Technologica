@@ -1207,6 +1207,7 @@ public class TechnologicaCreativeModeTabs {
 						populator.accept(TechnologicaItems.SPACE_SUIT.get());
 						populator.accept(TechnologicaItems.SPACE_PANTS.get());
 						populator.accept(TechnologicaItems.SPACE_BOOTS.get());
+						populator.accept(TechnologicaItems.SLEEPING_BAG.get());
 					})	
 				);
 		

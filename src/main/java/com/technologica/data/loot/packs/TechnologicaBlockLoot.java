@@ -14,12 +14,14 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.BeetrootBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.PotatoBlock;
 import net.minecraft.world.level.block.SweetBerryBushBlock;
+import net.minecraft.world.level.block.state.properties.BedPart;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -33,7 +35,7 @@ import net.minecraftforge.registries.RegistryObject;
 public class TechnologicaBlockLoot extends BlockLootSubProvider {
 	private static final Set<Item> EXPLOSION_RESISTANT = Stream.of(Blocks.DRAGON_EGG, Blocks.BEACON, Blocks.CONDUIT, Blocks.SKELETON_SKULL, Blocks.WITHER_SKELETON_SKULL, Blocks.PLAYER_HEAD, Blocks.ZOMBIE_HEAD, Blocks.CREEPER_HEAD, Blocks.DRAGON_HEAD, Blocks.PIGLIN_HEAD, Blocks.SHULKER_BOX, Blocks.BLACK_SHULKER_BOX, Blocks.BLUE_SHULKER_BOX, Blocks.BROWN_SHULKER_BOX, Blocks.CYAN_SHULKER_BOX, Blocks.GRAY_SHULKER_BOX, Blocks.GREEN_SHULKER_BOX, Blocks.LIGHT_BLUE_SHULKER_BOX, Blocks.LIGHT_GRAY_SHULKER_BOX, Blocks.LIME_SHULKER_BOX, Blocks.MAGENTA_SHULKER_BOX, Blocks.ORANGE_SHULKER_BOX, Blocks.PINK_SHULKER_BOX, Blocks.PURPLE_SHULKER_BOX, Blocks.RED_SHULKER_BOX, Blocks.WHITE_SHULKER_BOX, Blocks.YELLOW_SHULKER_BOX).map(ItemLike::asItem).collect(Collectors.toSet());
 	private static final float[] DEFAULT_SAPLING_DROP_RATES = new float[] { 0.05F, 0.0625F, 0.083333336F, 0.1F };
-	
+
 	public TechnologicaBlockLoot() {
 		super(EXPLOSION_RESISTANT, FeatureFlags.REGISTRY.allFlags());
 	}
@@ -329,7 +331,7 @@ public class TechnologicaBlockLoot extends BlockLootSubProvider {
 		dropSelf(TechnologicaBlocks.WULFENITE_CRYSTAL.get());
 		dropSelf(TechnologicaBlocks.XENOTIME_CRYSTAL.get());
 		dropSelf(TechnologicaBlocks.ZIRCON_CRYSTAL.get());
-		
+
 		dropSelf(TechnologicaBlocks.BLOCK_OF_RUBY.get());
 		dropSelf(TechnologicaBlocks.BLOCK_OF_SAPPHIRE.get());
 		dropSelf(TechnologicaBlocks.BLOCK_OF_TOPAZ.get());
@@ -504,39 +506,105 @@ public class TechnologicaBlockLoot extends BlockLootSubProvider {
 		dropSelf(TechnologicaBlocks.MALEVOLENT_PLANKS.get());
 		dropSelf(TechnologicaBlocks.NECROTIC_PLANKS.get());
 
-		this.add(TechnologicaBlocks.APRICOT_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
-		this.add(TechnologicaBlocks.ASPEN_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
-		this.add(TechnologicaBlocks.AVOCADO_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
-		this.add(TechnologicaBlocks.BANANA_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
-		this.add(TechnologicaBlocks.CHERRY_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
-		this.add(TechnologicaBlocks.CHESTNUT_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
-		this.add(TechnologicaBlocks.CINNAMON_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
-		this.add(TechnologicaBlocks.COCONUT_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
-		this.add(TechnologicaBlocks.EBONY_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
-		this.add(TechnologicaBlocks.KIWI_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
-		this.add(TechnologicaBlocks.LEMON_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
-		this.add(TechnologicaBlocks.LIME_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
-		this.add(TechnologicaBlocks.MAHOGANY_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
-		this.add(TechnologicaBlocks.MAPLE_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
-		this.add(TechnologicaBlocks.OLIVE_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
-		this.add(TechnologicaBlocks.ORANGE_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
-		this.add(TechnologicaBlocks.PEACH_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
-		this.add(TechnologicaBlocks.PEAR_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
-		this.add(TechnologicaBlocks.PLUM_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
-		this.add(TechnologicaBlocks.REDWOOD_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
-		this.add(TechnologicaBlocks.ROSEWOOD_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
-		this.add(TechnologicaBlocks.RUBBER_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
-		this.add(TechnologicaBlocks.TEAK_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
-		this.add(TechnologicaBlocks.WALNUT_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
-		this.add(TechnologicaBlocks.ZEBRAWOOD_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
-		this.add(TechnologicaBlocks.ALCHEMICAL_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
-		this.add(TechnologicaBlocks.BENEVOLENT_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
-		this.add(TechnologicaBlocks.CONDUCTIVE_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
-		this.add(TechnologicaBlocks.FROSTBITTEN_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
-		this.add(TechnologicaBlocks.FRUITFUL_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
-		this.add(TechnologicaBlocks.INFERNAL_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
-		this.add(TechnologicaBlocks.MALEVOLENT_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
-		this.add(TechnologicaBlocks.NECROTIC_SLAB.get(), (p_251629_) -> {return this.createSlabItemTable(p_251629_);});
+		this.add(TechnologicaBlocks.APRICOT_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
+		this.add(TechnologicaBlocks.ASPEN_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
+		this.add(TechnologicaBlocks.AVOCADO_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
+		this.add(TechnologicaBlocks.BANANA_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
+		this.add(TechnologicaBlocks.CHERRY_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
+		this.add(TechnologicaBlocks.CHESTNUT_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
+		this.add(TechnologicaBlocks.CINNAMON_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
+		this.add(TechnologicaBlocks.COCONUT_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
+		this.add(TechnologicaBlocks.EBONY_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
+		this.add(TechnologicaBlocks.KIWI_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
+		this.add(TechnologicaBlocks.LEMON_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
+		this.add(TechnologicaBlocks.LIME_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
+		this.add(TechnologicaBlocks.MAHOGANY_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
+		this.add(TechnologicaBlocks.MAPLE_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
+		this.add(TechnologicaBlocks.OLIVE_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
+		this.add(TechnologicaBlocks.ORANGE_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
+		this.add(TechnologicaBlocks.PEACH_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
+		this.add(TechnologicaBlocks.PEAR_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
+		this.add(TechnologicaBlocks.PLUM_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
+		this.add(TechnologicaBlocks.REDWOOD_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
+		this.add(TechnologicaBlocks.ROSEWOOD_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
+		this.add(TechnologicaBlocks.RUBBER_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
+		this.add(TechnologicaBlocks.TEAK_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
+		this.add(TechnologicaBlocks.WALNUT_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
+		this.add(TechnologicaBlocks.ZEBRAWOOD_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
+		this.add(TechnologicaBlocks.ALCHEMICAL_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
+		this.add(TechnologicaBlocks.BENEVOLENT_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
+		this.add(TechnologicaBlocks.CONDUCTIVE_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
+		this.add(TechnologicaBlocks.FROSTBITTEN_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
+		this.add(TechnologicaBlocks.FRUITFUL_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
+		this.add(TechnologicaBlocks.INFERNAL_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
+		this.add(TechnologicaBlocks.MALEVOLENT_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
+		this.add(TechnologicaBlocks.NECROTIC_SLAB.get(), (p_251629_) -> {
+			return this.createSlabItemTable(p_251629_);
+		});
 
 		dropSelf(TechnologicaBlocks.APRICOT_STAIRS.get());
 		dropSelf(TechnologicaBlocks.ASPEN_STAIRS.get());
@@ -681,39 +749,105 @@ public class TechnologicaBlockLoot extends BlockLootSubProvider {
 		dropSelf(TechnologicaBlocks.MALEVOLENT_FENCE_GATE.get());
 		dropSelf(TechnologicaBlocks.NECROTIC_FENCE_GATE.get());
 
-		this.add(TechnologicaBlocks.APRICOT_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
-		this.add(TechnologicaBlocks.ASPEN_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
-		this.add(TechnologicaBlocks.AVOCADO_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
-		this.add(TechnologicaBlocks.BANANA_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
-		this.add(TechnologicaBlocks.CHERRY_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
-		this.add(TechnologicaBlocks.CHESTNUT_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
-		this.add(TechnologicaBlocks.CINNAMON_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
-		this.add(TechnologicaBlocks.COCONUT_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
-		this.add(TechnologicaBlocks.EBONY_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
-		this.add(TechnologicaBlocks.KIWI_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
-		this.add(TechnologicaBlocks.LEMON_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
-		this.add(TechnologicaBlocks.LIME_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
-		this.add(TechnologicaBlocks.MAHOGANY_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
-		this.add(TechnologicaBlocks.MAPLE_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
-		this.add(TechnologicaBlocks.OLIVE_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
-		this.add(TechnologicaBlocks.ORANGE_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
-		this.add(TechnologicaBlocks.PEACH_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
-		this.add(TechnologicaBlocks.PEAR_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
-		this.add(TechnologicaBlocks.PLUM_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
-		this.add(TechnologicaBlocks.REDWOOD_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
-		this.add(TechnologicaBlocks.ROSEWOOD_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
-		this.add(TechnologicaBlocks.RUBBER_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
-		this.add(TechnologicaBlocks.TEAK_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
-		this.add(TechnologicaBlocks.WALNUT_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
-		this.add(TechnologicaBlocks.ZEBRAWOOD_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
-		this.add(TechnologicaBlocks.ALCHEMICAL_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
-		this.add(TechnologicaBlocks.BENEVOLENT_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
-		this.add(TechnologicaBlocks.CONDUCTIVE_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
-		this.add(TechnologicaBlocks.FROSTBITTEN_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
-		this.add(TechnologicaBlocks.FRUITFUL_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
-		this.add(TechnologicaBlocks.INFERNAL_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
-		this.add(TechnologicaBlocks.MALEVOLENT_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
-		this.add(TechnologicaBlocks.NECROTIC_DOOR.get(), (p_251623_) -> {return this.createDoorTable(p_251623_);});
+		this.add(TechnologicaBlocks.APRICOT_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
+		this.add(TechnologicaBlocks.ASPEN_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
+		this.add(TechnologicaBlocks.AVOCADO_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
+		this.add(TechnologicaBlocks.BANANA_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
+		this.add(TechnologicaBlocks.CHERRY_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
+		this.add(TechnologicaBlocks.CHESTNUT_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
+		this.add(TechnologicaBlocks.CINNAMON_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
+		this.add(TechnologicaBlocks.COCONUT_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
+		this.add(TechnologicaBlocks.EBONY_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
+		this.add(TechnologicaBlocks.KIWI_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
+		this.add(TechnologicaBlocks.LEMON_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
+		this.add(TechnologicaBlocks.LIME_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
+		this.add(TechnologicaBlocks.MAHOGANY_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
+		this.add(TechnologicaBlocks.MAPLE_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
+		this.add(TechnologicaBlocks.OLIVE_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
+		this.add(TechnologicaBlocks.ORANGE_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
+		this.add(TechnologicaBlocks.PEACH_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
+		this.add(TechnologicaBlocks.PEAR_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
+		this.add(TechnologicaBlocks.PLUM_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
+		this.add(TechnologicaBlocks.REDWOOD_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
+		this.add(TechnologicaBlocks.ROSEWOOD_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
+		this.add(TechnologicaBlocks.RUBBER_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
+		this.add(TechnologicaBlocks.TEAK_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
+		this.add(TechnologicaBlocks.WALNUT_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
+		this.add(TechnologicaBlocks.ZEBRAWOOD_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
+		this.add(TechnologicaBlocks.ALCHEMICAL_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
+		this.add(TechnologicaBlocks.BENEVOLENT_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
+		this.add(TechnologicaBlocks.CONDUCTIVE_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
+		this.add(TechnologicaBlocks.FROSTBITTEN_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
+		this.add(TechnologicaBlocks.FRUITFUL_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
+		this.add(TechnologicaBlocks.INFERNAL_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
+		this.add(TechnologicaBlocks.MALEVOLENT_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
+		this.add(TechnologicaBlocks.NECROTIC_DOOR.get(), (p_251623_) -> {
+			return this.createDoorTable(p_251623_);
+		});
 
 		dropSelf(TechnologicaBlocks.APRICOT_TRAPDOOR.get());
 		dropSelf(TechnologicaBlocks.ASPEN_TRAPDOOR.get());
@@ -987,6 +1121,10 @@ public class TechnologicaBlockLoot extends BlockLootSubProvider {
 
 		dropSelf(TechnologicaBlocks.NITROGLYCERIN.get());
 		dropOther(TechnologicaBlocks.NAVAL_MINE_CHAIN.get(), Items.CHAIN);
+
+		this.add(TechnologicaBlocks.SLEEPING_BAG.get(), (p_251275_) -> {
+			return this.createSinglePropConditionTable(p_251275_, BedBlock.PART, BedPart.HEAD);
+		});
 	}
 
 	@Override

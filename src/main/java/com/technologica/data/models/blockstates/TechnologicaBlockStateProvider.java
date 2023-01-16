@@ -32,6 +32,7 @@ import net.minecraft.world.level.block.StemBlock;
 import net.minecraft.world.level.block.SweetBerryBushBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.WallSignBlock;
+import net.minecraft.world.level.block.state.properties.BedPart;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -147,7 +148,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		simpleBlock(TechnologicaBlocks.DEEPSLATE_URANINITE_ORE.get());
 		simpleBlock(TechnologicaBlocks.WOLFRAMITE_ORE.get());
 		simpleBlock(TechnologicaBlocks.DEEPSLATE_WOLFRAMITE_ORE.get());
-		
+
 		simpleBlock(TechnologicaBlocks.BLOCK_OF_RUBY.get());
 		simpleBlock(TechnologicaBlocks.BLOCK_OF_SAPPHIRE.get());
 		simpleBlock(TechnologicaBlocks.BLOCK_OF_TOPAZ.get());
@@ -214,6 +215,8 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 
 		simpleBlock(TechnologicaBlocks.NITROGLYCERIN.get(), models().cubeBottomTop(ResourceLocationHelper.getPath(TechnologicaBlocks.NITROGLYCERIN.get()), modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.NITROGLYCERIN.get()) + "_side"), modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.NITROGLYCERIN.get()) + "_bottom"), modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.NITROGLYCERIN.get()) + "_top")));
 		axisBlock((RotatedPillarBlock) TechnologicaBlocks.NAVAL_MINE_CHAIN.get(), models().withExistingParent(ResourceLocationHelper.getPath(TechnologicaBlocks.NAVAL_MINE_CHAIN.get()), "block/chain").renderType("cutout_mipped"), models().withExistingParent(ResourceLocationHelper.getPath(TechnologicaBlocks.NAVAL_MINE_CHAIN.get()), "block/chain").renderType("cutout_mipped"));
+
+		sleepingBag(TechnologicaBlocks.SLEEPING_BAG.get(), panel("block/sleeping_bag_top_head", "block/sleeping_bag_top_head", "block/sleeping_bag_side", "block/sleeping_bag_bottom"), panel("block/sleeping_bag_top", "block/sleeping_bag_top", "block/sleeping_bag_side", "block/sleeping_bag_bottom"));
 
 		/*
 		 * BLOCK ITEMS
@@ -328,7 +331,7 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		simpleBlockItem(TechnologicaBlocks.DEEPSLATE_URANINITE_ORE.get(), cubeAll(TechnologicaBlocks.DEEPSLATE_URANINITE_ORE.get()));
 		simpleBlockItem(TechnologicaBlocks.WOLFRAMITE_ORE.get(), cubeAll(TechnologicaBlocks.WOLFRAMITE_ORE.get()));
 		simpleBlockItem(TechnologicaBlocks.DEEPSLATE_WOLFRAMITE_ORE.get(), cubeAll(TechnologicaBlocks.DEEPSLATE_WOLFRAMITE_ORE.get()));
-		
+
 		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_RUBY.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_RUBY.get()));
 		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_SAPPHIRE.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_SAPPHIRE.get()));
 		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_TOPAZ.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_TOPAZ.get()));
@@ -1628,15 +1631,9 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 	 */
 
 	public ModelFile cubeEachFace(String name, ResourceLocation down, ResourceLocation up, ResourceLocation north, ResourceLocation east, ResourceLocation south, ResourceLocation west) {
-        return models().withExistingParent(name, modLoc("block/cube_each_face"))
-        		.texture("down", down)
-                .texture("up", up)
-                .texture("north", north)
-                .texture("east", east)
-                .texture("south", south)
-                .texture("west", west);
-    }
-	
+		return models().withExistingParent(name, modLoc("block/cube_each_face")).texture("down", down).texture("up", up).texture("north", north).texture("east", east).texture("south", south).texture("west", west);
+	}
+
 	public ModelFile stem(String name, ResourceLocation stem, int growth) {
 		return models().withExistingParent(name, mcLoc("stem_growth" + growth)).renderType("cutout").texture("stem", stem);
 	}
@@ -1648,21 +1645,17 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 	public ModelFile gourdCropModel(Block block) {
 		return models().withExistingParent(ResourceLocationHelper.getPath(block), modLoc("gourd")).renderType("cutout_mipped").texture("gourd", blockTexture(block));
 	}
-	
+
 	public ModelFile hopper(String name, String top, String side, String inside) {
-		return models().withExistingParent(name, modLoc("technologica_hopper"))
-				.texture("particle", side)
-				.texture("top", top)
-                .texture("side", side)
-                .texture("inside", inside);
+		return models().withExistingParent(name, modLoc("technologica_hopper")).texture("particle", side).texture("top", top).texture("side", side).texture("inside", inside);
 	}
-	
+
+	public ModelFile panel(String name, String top, String side, String bottom) {
+		return models().withExistingParent(name, modLoc("panel")).texture("particle", side).texture("top", top).texture("side", side).texture("bottom", bottom);
+	}
+
 	public ModelFile hopperSide(String name, String top, String side, String inside) {
-		return models().withExistingParent(name, modLoc("technologica_hopper_side"))
-				.texture("particle", side)
-				.texture("top", top)
-                .texture("side", side)
-                .texture("inside", inside);
+		return models().withExistingParent(name, modLoc("technologica_hopper_side")).texture("particle", side).texture("top", top).texture("side", side).texture("inside", inside);
 	}
 
 	public ModelFile buttonInventoryModel(Block block, String renderType) {
@@ -1788,7 +1781,11 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		getVariantBuilder(block).partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).modelForState().modelFile(blockModel).addModel().partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).modelForState().modelFile(blockModel).rotationY(90).addModel().partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).modelForState().modelFile(blockModel).rotationY(180).addModel().partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).modelForState().modelFile(blockModel).rotationY(270).addModel();
 		this.simpleBlockItem(block, blockModel);
 	}
-	
+
+	public void sleepingBag(Block block, ModelFile blockModel, ModelFile blockModel2) {
+		getVariantBuilder(block).partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).with(BlockStateProperties.BED_PART, BedPart.HEAD).modelForState().modelFile(blockModel).addModel().partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).with(BlockStateProperties.BED_PART, BedPart.HEAD).modelForState().modelFile(blockModel).rotationY(90).addModel().partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).with(BlockStateProperties.BED_PART, BedPart.HEAD).modelForState().modelFile(blockModel).rotationY(180).addModel().partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).with(BlockStateProperties.BED_PART, BedPart.HEAD).modelForState().modelFile(blockModel).rotationY(270).addModel().partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).with(BlockStateProperties.BED_PART, BedPart.FOOT).modelForState().modelFile(blockModel2).addModel().partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).with(BlockStateProperties.BED_PART, BedPart.FOOT).modelForState().modelFile(blockModel2).rotationY(90).addModel().partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).with(BlockStateProperties.BED_PART, BedPart.FOOT).modelForState().modelFile(blockModel2).rotationY(180).addModel().partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).with(BlockStateProperties.BED_PART, BedPart.FOOT).modelForState().modelFile(blockModel2).rotationY(270).addModel();
+	}
+
 	public void fourDirectionBlockState2(Block block, ModelFile blockModel) {
 		getVariantBuilder(block).partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).modelForState().modelFile(blockModel).addModel().partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).modelForState().modelFile(blockModel).rotationY(90).addModel().partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).modelForState().modelFile(blockModel).rotationY(180).addModel().partialState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).modelForState().modelFile(blockModel).rotationY(270).addModel();
 	}
@@ -1867,194 +1864,8 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 		ResourceLocation top_left = new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_top_left");
 		ResourceLocation top_middle = new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_top_middle");
 		ResourceLocation top_right = new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_top_right");
-		
-		getVariantBuilder(block)
-		.partialState()
-		.with(BlockStateProperties.BOTTOM, true)
-		.with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.LEFT)
-		.with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH)
-		.modelForState()
-		.modelFile(cubeEachFace(name(block) + "lower_left_north", lower_side_left, lower_side_left, lower_side_right, lower_side_end, lower_side_left, lower_side_end))
-		.rotationY(270)
-		.addModel()
-		.partialState()
-		.with(BlockStateProperties.BOTTOM, true)
-		.with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.MIDDLE)
-		.with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH)
-		.modelForState()
-		.modelFile(cubeEachFace(name(block) + "lower_middle_north", lower_side_middle, lower_side_middle, lower_side_middle, lower_side_end, lower_side_middle, lower_side_end))
-		.rotationY(270)
-		.addModel()
-		.partialState()
-		.with(BlockStateProperties.BOTTOM, true)
-		.with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.RIGHT)
-		.with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH)
-		.modelForState()
-		.modelFile(cubeEachFace(name(block) + "lower_right_north", lower_side_right, lower_side_right, lower_side_left, lower_side_end, lower_side_right, lower_side_end))
-		.rotationY(270)
-		.addModel()
-		.partialState()
-		.with(BlockStateProperties.BOTTOM, true)
-		.with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.LEFT)
-		.with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST)
-		.modelForState()
-		.modelFile(cubeEachFace(name(block) + "lower_left_east", lower_side_left, lower_side_left, lower_side_right, lower_side_end, lower_side_left, lower_side_end))
-		.addModel()
-		.partialState()
-		.with(BlockStateProperties.BOTTOM, true)
-		.with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.MIDDLE)
-		.with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST)
-		.modelForState()
-		.modelFile(cubeEachFace(name(block) + "lower_middle_east", lower_side_middle, lower_side_middle, lower_side_middle, lower_side_end, lower_side_middle, lower_side_end))
-		.addModel()
-		.partialState()
-		.with(BlockStateProperties.BOTTOM, true)
-		.with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.RIGHT)
-		.with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST)
-		.modelForState()
-		.modelFile(cubeEachFace(name(block) + "lower_right_east", lower_side_right, lower_side_right, lower_side_left, lower_side_end, lower_side_right, lower_side_end))
-		.addModel()
-		.partialState()
-		.with(BlockStateProperties.BOTTOM, true)
-		.with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.LEFT)
-		.with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH)
-		.modelForState()
-		.modelFile(cubeEachFace(name(block) + "lower_left_south", lower_side_left, lower_side_left, lower_side_right, lower_side_end, lower_side_left, lower_side_end))
-		.rotationY(90)
-		.addModel()
-		.partialState()
-		.with(BlockStateProperties.BOTTOM, true)
-		.with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.MIDDLE)
-		.with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH)
-		.modelForState()
-		.modelFile(cubeEachFace(name(block) + "lower_middle_south", lower_side_middle, lower_side_middle, lower_side_middle, lower_side_end, lower_side_middle, lower_side_end))
-		.rotationY(90)
-		.addModel()
-		.partialState()
-		.with(BlockStateProperties.BOTTOM, true)
-		.with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.RIGHT)
-		.with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH)
-		.modelForState()
-		.modelFile(cubeEachFace(name(block) + "lower_right_south", lower_side_right, lower_side_right, lower_side_left, lower_side_end, lower_side_right, lower_side_end))
-		.rotationY(90)
-		.addModel()
-		.partialState()
-		.with(BlockStateProperties.BOTTOM, true)
-		.with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.LEFT)
-		.with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST)
-		.modelForState()
-		.modelFile(cubeEachFace(name(block) + "lower_left_west", lower_side_left, lower_side_left, lower_side_right, lower_side_end, lower_side_left, lower_side_end))
-		.rotationY(180)
-		.addModel()
-		.partialState()
-		.with(BlockStateProperties.BOTTOM, true)
-		.with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.MIDDLE)
-		.with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST)
-		.modelForState()
-		.modelFile(cubeEachFace(name(block) + "lower_middle_west", lower_side_middle, lower_side_middle, lower_side_middle, lower_side_end, lower_side_middle, lower_side_end))
-		.rotationY(180)
-		.addModel()
-		.partialState()
-		.with(BlockStateProperties.BOTTOM, true)
-		.with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.RIGHT)
-		.with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST)
-		.modelForState()
-		.modelFile(cubeEachFace(name(block) + "lower_right_west", lower_side_right, lower_side_right, lower_side_left, lower_side_end, lower_side_right, lower_side_end))
-		.rotationY(180)
-		.addModel()
-		.partialState()
-		.with(BlockStateProperties.BOTTOM, false)
-		.with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.LEFT)
-		.with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH)
-		.modelForState()
-		.modelFile(cubeEachFace(name(block) + "upper_left_north", lower_side_left, top_left, upper_side_right, upper_side_end, upper_side_left, upper_side_end))
-		.rotationY(270)
-		.addModel()
-		.partialState()
-		.with(BlockStateProperties.BOTTOM, false)
-		.with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.MIDDLE)
-		.with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH)
-		.modelForState()
-		.modelFile(cubeEachFace(name(block) + "upper_middle_north", lower_side_middle, top_middle, upper_side_middle, upper_side_end, upper_side_middle, upper_side_end))
-		.rotationY(270)
-		.addModel()
-		.partialState()
-		.with(BlockStateProperties.BOTTOM, false)
-		.with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.RIGHT)
-		.with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH)
-		.modelForState()
-		.modelFile(cubeEachFace(name(block) + "upper_right_north", lower_side_right, top_right, upper_side_left, upper_side_end, upper_side_right, upper_side_end))
-		.rotationY(270)
-		.addModel()
-		.partialState()
-		.with(BlockStateProperties.BOTTOM, false)
-		.with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.LEFT)
-		.with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST)
-		.modelForState()
-		.modelFile(cubeEachFace(name(block) + "upper_left_east", lower_side_left, top_left, upper_side_right, upper_side_end, upper_side_left, upper_side_end))
-		.addModel()
-		.partialState()
-		.with(BlockStateProperties.BOTTOM, false)
-		.with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.MIDDLE)
-		.with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST)
-		.modelForState()
-		.modelFile(cubeEachFace(name(block) + "upper_middle_east", lower_side_middle, top_middle, upper_side_middle, upper_side_end, upper_side_middle, upper_side_end))
-		.addModel()
-		.partialState()
-		.with(BlockStateProperties.BOTTOM, false)
-		.with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.RIGHT)
-		.with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST)
-		.modelForState()
-		.modelFile(cubeEachFace(name(block) + "upper_right_east", lower_side_right, top_right, upper_side_left, upper_side_end, upper_side_right, upper_side_end))
-		.addModel()
-		.partialState()
-		.with(BlockStateProperties.BOTTOM, false)
-		.with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.LEFT)
-		.with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH)
-		.modelForState()
-		.modelFile(cubeEachFace(name(block) + "upper_left_south", lower_side_left, top_left, upper_side_right, upper_side_end, upper_side_left, upper_side_end))
-		.rotationY(90)
-		.addModel()
-		.partialState()
-		.with(BlockStateProperties.BOTTOM, false)
-		.with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.MIDDLE)
-		.with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH)
-		.modelForState()
-		.modelFile(cubeEachFace(name(block) + "upper_middle_south", lower_side_middle, top_middle, upper_side_middle, upper_side_end, upper_side_middle, upper_side_end))
-		.rotationY(90)
-		.addModel()
-		.partialState()
-		.with(BlockStateProperties.BOTTOM, false)
-		.with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.RIGHT)
-		.with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH)
-		.modelForState()
-		.modelFile(cubeEachFace(name(block) + "upper_right_south", lower_side_right, top_right, upper_side_left, upper_side_end, upper_side_right, upper_side_end))
-		.rotationY(90)
-		.addModel()
-		.partialState()
-		.with(BlockStateProperties.BOTTOM, false)
-		.with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.LEFT)
-		.with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST)
-		.modelForState()
-		.modelFile(cubeEachFace(name(block) + "upper_left_west", lower_side_left, top_left, upper_side_right, upper_side_end, upper_side_left, upper_side_end))
-		.rotationY(180)
-		.addModel()
-		.partialState()
-		.with(BlockStateProperties.BOTTOM, false)
-		.with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.MIDDLE)
-		.with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST)
-		.modelForState()
-		.modelFile(cubeEachFace(name(block) + "upper_middle_west", lower_side_middle, top_middle, upper_side_middle, upper_side_end, upper_side_middle, upper_side_end))
-		.rotationY(180)
-		.addModel()
-		.partialState()
-		.with(BlockStateProperties.BOTTOM, false)
-		.with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.RIGHT)
-		.with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST)
-		.modelForState()
-		.modelFile(cubeEachFace(name(block) + "upper_right_west", lower_side_right, top_right, upper_side_left, upper_side_end, upper_side_right, upper_side_end))
-		.rotationY(180)
-		.addModel();
+
+		getVariantBuilder(block).partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.LEFT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).modelForState().modelFile(cubeEachFace(name(block) + "lower_left_north", lower_side_left, lower_side_left, lower_side_right, lower_side_end, lower_side_left, lower_side_end)).rotationY(270).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.MIDDLE).with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).modelForState().modelFile(cubeEachFace(name(block) + "lower_middle_north", lower_side_middle, lower_side_middle, lower_side_middle, lower_side_end, lower_side_middle, lower_side_end)).rotationY(270).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.RIGHT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).modelForState().modelFile(cubeEachFace(name(block) + "lower_right_north", lower_side_right, lower_side_right, lower_side_left, lower_side_end, lower_side_right, lower_side_end)).rotationY(270).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.LEFT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).modelForState().modelFile(cubeEachFace(name(block) + "lower_left_east", lower_side_left, lower_side_left, lower_side_right, lower_side_end, lower_side_left, lower_side_end)).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.MIDDLE).with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).modelForState().modelFile(cubeEachFace(name(block) + "lower_middle_east", lower_side_middle, lower_side_middle, lower_side_middle, lower_side_end, lower_side_middle, lower_side_end)).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.RIGHT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).modelForState().modelFile(cubeEachFace(name(block) + "lower_right_east", lower_side_right, lower_side_right, lower_side_left, lower_side_end, lower_side_right, lower_side_end)).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.LEFT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).modelForState().modelFile(cubeEachFace(name(block) + "lower_left_south", lower_side_left, lower_side_left, lower_side_right, lower_side_end, lower_side_left, lower_side_end)).rotationY(90).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.MIDDLE).with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).modelForState().modelFile(cubeEachFace(name(block) + "lower_middle_south", lower_side_middle, lower_side_middle, lower_side_middle, lower_side_end, lower_side_middle, lower_side_end)).rotationY(90).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.RIGHT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).modelForState().modelFile(cubeEachFace(name(block) + "lower_right_south", lower_side_right, lower_side_right, lower_side_left, lower_side_end, lower_side_right, lower_side_end)).rotationY(90).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.LEFT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).modelForState().modelFile(cubeEachFace(name(block) + "lower_left_west", lower_side_left, lower_side_left, lower_side_right, lower_side_end, lower_side_left, lower_side_end)).rotationY(180).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.MIDDLE).with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).modelForState().modelFile(cubeEachFace(name(block) + "lower_middle_west", lower_side_middle, lower_side_middle, lower_side_middle, lower_side_end, lower_side_middle, lower_side_end)).rotationY(180).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.RIGHT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).modelForState().modelFile(cubeEachFace(name(block) + "lower_right_west", lower_side_right, lower_side_right, lower_side_left, lower_side_end, lower_side_right, lower_side_end)).rotationY(180).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.LEFT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).modelForState().modelFile(cubeEachFace(name(block) + "upper_left_north", lower_side_left, top_left, upper_side_right, upper_side_end, upper_side_left, upper_side_end)).rotationY(270).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.MIDDLE).with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).modelForState().modelFile(cubeEachFace(name(block) + "upper_middle_north", lower_side_middle, top_middle, upper_side_middle, upper_side_end, upper_side_middle, upper_side_end)).rotationY(270).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.RIGHT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).modelForState().modelFile(cubeEachFace(name(block) + "upper_right_north", lower_side_right, top_right, upper_side_left, upper_side_end, upper_side_right, upper_side_end)).rotationY(270).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.LEFT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).modelForState().modelFile(cubeEachFace(name(block) + "upper_left_east", lower_side_left, top_left, upper_side_right, upper_side_end, upper_side_left, upper_side_end)).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.MIDDLE).with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).modelForState().modelFile(cubeEachFace(name(block) + "upper_middle_east", lower_side_middle, top_middle, upper_side_middle, upper_side_end, upper_side_middle, upper_side_end)).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.RIGHT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).modelForState().modelFile(cubeEachFace(name(block) + "upper_right_east", lower_side_right, top_right, upper_side_left, upper_side_end, upper_side_right, upper_side_end)).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.LEFT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).modelForState().modelFile(cubeEachFace(name(block) + "upper_left_south", lower_side_left, top_left, upper_side_right, upper_side_end, upper_side_left, upper_side_end)).rotationY(90).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.MIDDLE).with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).modelForState().modelFile(cubeEachFace(name(block) + "upper_middle_south", lower_side_middle, top_middle, upper_side_middle, upper_side_end, upper_side_middle, upper_side_end)).rotationY(90).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.RIGHT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).modelForState().modelFile(cubeEachFace(name(block) + "upper_right_south", lower_side_right, top_right, upper_side_left, upper_side_end, upper_side_right, upper_side_end)).rotationY(90).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.LEFT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).modelForState().modelFile(cubeEachFace(name(block) + "upper_left_west", lower_side_left, top_left, upper_side_right, upper_side_end, upper_side_left, upper_side_end)).rotationY(180).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.MIDDLE).with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).modelForState().modelFile(cubeEachFace(name(block) + "upper_middle_west", lower_side_middle, top_middle, upper_side_middle, upper_side_end, upper_side_middle, upper_side_end)).rotationY(180).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.RIGHT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).modelForState().modelFile(cubeEachFace(name(block) + "upper_right_west", lower_side_right, top_right, upper_side_left, upper_side_end, upper_side_right, upper_side_end)).rotationY(180).addModel();
 
 		this.simpleBlockItem(block, models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath(), upper_side_end, upper_side_end, top_middle));
 	}
@@ -2312,46 +2123,16 @@ public class TechnologicaBlockStateProvider extends BlockStateProvider {
 				.addModel();
 		this.simpleBlockItem(block, models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath(), sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_info"), sides));
 	}
-	
+
 	private void createHopper(Block block) {
-		getVariantBuilder(TechnologicaBlocks.FAST_HOPPER.get())
-			.partialState()
-			.with(BlockStateProperties.FACING_HOPPER, Direction.DOWN)
-			.modelForState()
-			.modelFile(this.hopper(ForgeRegistries.BLOCKS.getKey(block).getPath(), "block/fast_hopper_top", "block/fast_hopper_outside", "block/fast_hopper_inside"))
-			.addModel()
-			.partialState()
-			.with(BlockStateProperties.FACING_HOPPER, Direction.EAST)
-			.modelForState()
-			.modelFile(this.hopperSide(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_side", "block/fast_hopper_top", "block/fast_hopper_outside", "block/fast_hopper_inside"))
-			.rotationY(90)
-			.addModel()
-			.partialState()
-			.with(BlockStateProperties.FACING_HOPPER, Direction.NORTH)
-			.modelForState()
-			.modelFile(this.hopperSide(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_side", "block/fast_hopper_top", "block/fast_hopper_outside", "block/fast_hopper_inside"))
-			.addModel()
-			.partialState()
-			.with(BlockStateProperties.FACING_HOPPER, Direction.SOUTH)
-			.modelForState()
-			.modelFile(this.hopperSide(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_side", "block/fast_hopper_top", "block/fast_hopper_outside", "block/fast_hopper_inside"))
-			.rotationY(180)
-			.addModel()
-			.partialState()
-			.with(BlockStateProperties.FACING_HOPPER, Direction.WEST)
-			.modelForState()
-			.modelFile(this.hopperSide(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_side", "block/fast_hopper_top", "block/fast_hopper_outside", "block/fast_hopper_inside"))
-			.rotationY(270)
-			.addModel();
+		getVariantBuilder(TechnologicaBlocks.FAST_HOPPER.get()).partialState().with(BlockStateProperties.FACING_HOPPER, Direction.DOWN).modelForState().modelFile(this.hopper(ForgeRegistries.BLOCKS.getKey(block).getPath(), "block/fast_hopper_top", "block/fast_hopper_outside", "block/fast_hopper_inside")).addModel().partialState().with(BlockStateProperties.FACING_HOPPER, Direction.EAST).modelForState().modelFile(this.hopperSide(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_side", "block/fast_hopper_top", "block/fast_hopper_outside", "block/fast_hopper_inside")).rotationY(90).addModel().partialState().with(BlockStateProperties.FACING_HOPPER, Direction.NORTH).modelForState().modelFile(this.hopperSide(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_side", "block/fast_hopper_top", "block/fast_hopper_outside", "block/fast_hopper_inside")).addModel().partialState().with(BlockStateProperties.FACING_HOPPER, Direction.SOUTH).modelForState().modelFile(this.hopperSide(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_side", "block/fast_hopper_top", "block/fast_hopper_outside", "block/fast_hopper_inside")).rotationY(180).addModel().partialState().with(BlockStateProperties.FACING_HOPPER, Direction.WEST).modelForState().modelFile(this.hopperSide(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_side", "block/fast_hopper_top", "block/fast_hopper_outside", "block/fast_hopper_inside")).rotationY(270).addModel();
 		this.simpleFlatItem(TechnologicaBlocks.FAST_HOPPER.get(), new ModelFile.UncheckedModelFile("item/generated"), "cutout");
 	}
-	
-	
 
 	/*
 	 * Item model providers
 	 */
-	
+
 	private void simpleFlatItem(Block block, ModelFile model, String renderType) {
 		ResourceLocation location = ForgeRegistries.BLOCKS.getKey(block);
 		itemModels().getBuilder(location.getPath()).parent(model).texture("layer0", new ResourceLocation(location.getNamespace(), "item/" + location.getPath())).renderType(renderType);

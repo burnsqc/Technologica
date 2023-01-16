@@ -57,6 +57,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -64,6 +65,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AttachedStemBlock;
+import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.BeetrootBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -92,6 +94,7 @@ import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BedPart;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
@@ -1125,6 +1128,10 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> LIGHT = BLOCKS.register("light", () -> new LightBlock(BlockBehaviour.Properties.of(Material.AIR).noCollission().noLootTable().air().lightLevel((p_50874_) -> {
 		return 15;
 	})));
+	
+	public static final RegistryObject<Block> SLEEPING_BAG = BLOCKS.register("sleeping_bag", ()-> new SleepingBagBlock(DyeColor.RED, BlockBehaviour.Properties.of(Material.WOOL, (p_152613_) -> {
+        return p_152613_.getValue(BedBlock.PART) == BedPart.FOOT ? DyeColor.RED.getMaterialColor() : MaterialColor.WOOL;
+     }).sound(SoundType.WOOD).strength(0.2F).noOcclusion()));
 
 	/*
 	 * VANILLA REPLICATORS

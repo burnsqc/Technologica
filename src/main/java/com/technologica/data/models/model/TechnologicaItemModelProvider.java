@@ -244,7 +244,7 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.RUBY.get());
 		simpleItem(TechnologicaItems.SAPPHIRE.get());
 		simpleItem(TechnologicaItems.TOPAZ.get());
-		
+
 		simpleItem(TechnologicaItems.MULCH.get());
 		simpleItem(TechnologicaItems.FERTILIZER.get());
 		simpleItem(TechnologicaItems.SAWDUST.get());
@@ -409,7 +409,7 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.PRIMITIVE_HOE.get());
 		simpleItem(TechnologicaItems.PRIMITIVE_SHOVEL.get());
 		simpleItem(TechnologicaItems.PRIMITIVE_HATCHET.get());
-		
+
 		simpleItem(TechnologicaItems.BRONZE_SWORD.get());
 		simpleItem(TechnologicaItems.BRONZE_PICKAXE.get());
 		simpleItem(TechnologicaItems.BRONZE_HOE.get());
@@ -418,7 +418,7 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 
 		simpleItem(TechnologicaItems.DODGEBALL_ITEM.get());
 		simpleItem(TechnologicaItems.HARPOON.get());
-		
+
 		simpleItem(TechnologicaItems.BRONZE_HELMET.get());
 		simpleItem(TechnologicaItems.BRONZE_CHESTPLATE.get());
 		simpleItem(TechnologicaItems.BRONZE_LEGGINGS.get());
@@ -443,12 +443,12 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.SCUBA_SUIT.get());
 		simpleItem(TechnologicaItems.SCUBA_PANTS.get());
 		simpleItem(TechnologicaItems.SCUBA_BOOTS.get());
-		
+
 		simpleItem(TechnologicaItems.HAZMAT_HOOD.get());
 		simpleItem(TechnologicaItems.HAZMAT_SUIT.get());
 		simpleItem(TechnologicaItems.HAZMAT_PANTS.get());
 		simpleItem(TechnologicaItems.HAZMAT_BOOTS.get());
-		
+
 		simpleItem(TechnologicaItems.MINING_HELMET.get());
 
 		simpleItem(TechnologicaItems.GLUE_BOTTLE.get());
@@ -457,6 +457,7 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 
 		simpleItem(TechnologicaItems.PERSISTENT_GLARE.get());
 		simpleItem(TechnologicaItems.SINGULARITY_GRANULE.get());
+		simpleItem(TechnologicaItems.SLEEPING_BAG.get());
 	}
 
 	public void simpleItem(Item item) {

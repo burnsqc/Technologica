@@ -1239,6 +1239,8 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> NITROGLYCERIN_ITEM = ITEMS.register("nitroglycerin", () -> new BlockItem(TechnologicaBlocks.NITROGLYCERIN.get(), new Item.Properties()));
 	public static final RegistryObject<Item> NAVAL_MINE = ITEMS.register("naval_mine", () -> new NavalMineItem(new Item.Properties()));
 	public static final RegistryObject<Item> ROCKET = ITEMS.register("rocket", () -> new RocketItem(Rocket.Type.MALEVOLENT, (new Item.Properties()).stacksTo(1)));
+	
+	public static final RegistryObject<Item> SLEEPING_BAG = ITEMS.register("sleeping_bag", () -> new SleepingBagItem(TechnologicaBlocks.SLEEPING_BAG.get(), (new Item.Properties()).stacksTo(1)));
 
 	/**
 	 * CRYPTICA
