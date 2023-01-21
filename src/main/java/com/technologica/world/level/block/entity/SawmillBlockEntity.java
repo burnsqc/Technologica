@@ -35,8 +35,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer, RecipeHolder {
 	private boolean blade;
 	private int sawingTicks;
-	private int sawTime;
-	private double logPos;
+	private double sawingProgress;
+	private double rpm = 1.0D;
 	private final ItemStackHandler itemHandler = createHandler();
 	private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
 	private final Object2IntOpenHashMap<ResourceLocation> recipes = new Object2IntOpenHashMap<>();
@@ -90,7 +90,6 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 	}
 
 	public void setLog(ItemStack logIn) {
-		this.sawTime = 100;
 		setChanged();
 	}
 
@@ -99,11 +98,7 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 	}
 
 	public boolean isSawing() {
-		return this.sawTime > 0;
-	}
-
-	public double getLogPos() {
-		return logPos;
+		return this.sawingTicks > 0;
 	}
 
 	@Override
@@ -132,14 +127,11 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 		if (nbt.contains("sawBlade")) {
 			this.blade = nbt.getBoolean("sawBlade");
 		}
-		if (nbt.contains("sawTime")) {
-			this.sawTime = nbt.getInt("sawTime");
-		}
 		if (nbt.contains("sawingTicks")) {
 			this.sawingTicks = nbt.getInt("sawingTicks");
 		}
 		if (nbt.contains("logPos")) {
-			this.logPos = nbt.getDouble("logPos");
+			this.sawingProgress = nbt.getDouble("logPos");
 		}
 		if (nbt.contains("handler")) {
 			itemHandler.deserializeNBT(nbt.getCompound("handler"));
@@ -150,18 +142,16 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 	public void saveAdditional(CompoundTag compound) {
 		super.saveAdditional(compound);
 		compound.putBoolean("sawBlade", this.blade);
-		compound.putInt("sawTime", this.sawTime);
 		compound.putInt("sawingTicks", this.sawingTicks);
-		compound.putDouble("logPos", this.logPos);
+		compound.putDouble("logPos", this.sawingProgress);
 		compound.put("handler", itemHandler.serializeNBT());
 	}
 
 	public void serverTick() {
-		if (this.sawTime > 0F) {
-			this.logPos = 2.0D - 4.0D * (sawTime / 100.0D);
-			this.sawTime--;
+		if (this.sawingProgress < 100.0D && !getItem(1).isEmpty()) {
+			this.sawingProgress = this.sawingTicks * this.rpm;
 			this.sawingTicks++;
-			// level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
+			level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
 		} else if (!getItem(1).isEmpty()) {
 			Recipe<Container> recipe = this.level.getRecipeManager().getRecipeFor(TechnologicaRecipeType.SAWMILL.get(), this, this.level).orElse(null);
 			if (recipe != null) {
@@ -178,18 +168,18 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 
 				itemHandler.extractItem(1, 1, false);
 				if (!itemHandler.getStackInSlot(1).isEmpty()) {
-					this.sawTime = 100;
+					// this.sawTime = 100;
 				}
 				setRecipeUsed(recipe);
-				this.logPos = -2.0D;
+				this.sawingProgress = 0.0D;
 				this.sawingTicks = 0;
 				// level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
 			}
+		} else {
+			this.sawingProgress = 0.0D;
+			this.sawingTicks = 0;
+			level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
 		}
-	}
-
-	public int getSawTime() {
-		return this.sawTime;
 	}
 
 	@Override
@@ -261,17 +251,19 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 	@Override
 	public void setItem(int p_18944_, ItemStack p_18945_) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void clearContent() {
 		// TODO Auto-generated method stub
-
 	}
 
 	public int getSawingTicks() {
 		return this.sawingTicks;
+	}
+
+	public double getSawingProgress() {
+		return this.sawingProgress;
 	}
 
 	public void setBlade(boolean bladeIn) {

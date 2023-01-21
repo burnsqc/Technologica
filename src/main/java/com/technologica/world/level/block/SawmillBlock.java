@@ -67,7 +67,6 @@ public class SawmillBlock extends FourDirectionBlock implements EntityBlock {
 
 	@Override
 	public InteractionResult use(BlockState stateIn, Level worldIn, BlockPos posIn, Player playerIn, InteractionHand handIn, BlockHitResult hitIn) {
-		SawmillBlockEntity tile = getTileEntity(worldIn, posIn);
 		ItemStack itemstack = playerIn.getItemInHand(handIn);
 		Item item = playerIn.getItemInHand(handIn).getItem();
 		if (!worldIn.isClientSide()) {

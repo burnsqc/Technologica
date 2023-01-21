@@ -91,6 +91,7 @@ public class SawmillRenderer implements BlockEntityRenderer<SawmillBlockEntity> 
 		if (!stack.isEmpty()) {
 			matrixStack.pushPose();
 			BlockState state = log.defaultBlockState();
+			double logPos = -2.0D + 4.0D * (sawmillBlockEntityIn.getSawingProgress() / 100.0D);
 
 			if (ForgeRegistries.ITEMS.tags().getTag(ItemTags.LOGS).contains(stack.getItem())) {
 				state = log.defaultBlockState().setValue(RotatedPillarBlock.AXIS, Direction.Axis.X);
@@ -99,18 +100,18 @@ public class SawmillRenderer implements BlockEntityRenderer<SawmillBlockEntity> 
 			switch (sawmillBlockEntityIn.getBlockState().getValue(SawmillBlock.NESW_FACING)) {
 			case NORTH:
 				matrixStack.mulPose(Axis.YP.rotationDegrees(90));
-				matrixStack.translate(sawmillBlockEntityIn.getLogPos() - 1, 1.0, 0.0);
+				matrixStack.translate(logPos - 1.0D, 1.0D, 0.0D);
 				break;
 			case EAST:
-				matrixStack.translate(sawmillBlockEntityIn.getLogPos(), 1.0, 0.0);
+				matrixStack.translate(logPos, 1.0D, 0.0D);
 				break;
 			case SOUTH:
 				matrixStack.mulPose(Axis.YP.rotationDegrees(270));
-				matrixStack.translate(sawmillBlockEntityIn.getLogPos(), 1.0, -1.0);
+				matrixStack.translate(logPos, 1.0D, -1.0D);
 				break;
 			case WEST:
 				matrixStack.mulPose(Axis.YP.rotationDegrees(180));
-				matrixStack.translate(sawmillBlockEntityIn.getLogPos() - 1, 1.0, -1.0);
+				matrixStack.translate(logPos - 1.0D, 1.0D, -1.0D);
 				break;
 			default:
 				break;

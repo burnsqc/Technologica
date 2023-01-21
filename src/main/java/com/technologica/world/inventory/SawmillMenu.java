@@ -87,6 +87,10 @@ public class SawmillMenu extends AbstractContainerMenu {
 		return this.sawmillBlockEntity.getSawingTicks();
 	}
 
+	public double getSawingProgress() {
+		return this.sawmillBlockEntity.getSawingProgress();
+	}
+
 	static class SawbladeSlot extends SlotItemHandler {
 		public SawbladeSlot(IItemHandler itemHandlerIn, int indexIn, int xPosIn, int yPosIn) {
 			super(itemHandlerIn, indexIn, xPosIn, yPosIn);
