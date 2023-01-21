@@ -3,6 +3,8 @@ package com.technologica.world.level.block.entity;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import org.jetbrains.annotations.NotNull;
+
 import com.technologica.world.item.TechnologicaItems;
 import com.technologica.world.item.crafting.SawmillRecipe;
 import com.technologica.world.item.crafting.TechnologicaRecipeType;
@@ -24,18 +26,19 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer, RecipeHolder {
-	private final ItemStackHandler itemHandler = createHandler();
-	private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
+	private boolean blade;
+	private int sawingTicks;
 	private int sawTime;
 	private double logPos;
-	// protected NonNullList<ItemStack> items = NonNullList.withSize(3, ItemStack.EMPTY);
+	private final ItemStackHandler itemHandler = createHandler();
+	private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
 	private final Object2IntOpenHashMap<ResourceLocation> recipes = new Object2IntOpenHashMap<>();
 
 	public SawmillBlockEntity(BlockPos p_155700_, BlockState p_155701_) {
@@ -47,12 +50,15 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 			@Override
 			protected void onContentsChanged(int slot) {
 				setChanged();
+				if (slot == 0) {
+					setBlade(this.getStackInSlot(slot).is(TechnologicaItems.SAWBLADE.get()));
+				}
 			}
 
 			@Override
 			public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
 				if (slot == 0) {
-					return ForgeRegistries.ITEMS.getKey(stack.getItem()).getPath().contains("sawblade");
+					return stack.is(TechnologicaItems.SAWBLADE.get());
 				} else if (slot == 1) {
 					return ForgeRegistries.ITEMS.tags().getTag(ItemTags.LOGS).contains(stack.getItem()) || ForgeRegistries.ITEMS.tags().getTag(ItemTags.PLANKS).contains(stack.getItem());
 				}
@@ -60,12 +66,7 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 			}
 
 			@Override
-			public int getSlotLimit(int slot) {
-				return 64;
-			}
-
-			@Nonnull
-			@Override
+			@NotNull
 			public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
 				if (!isItemValid(slot, stack)) {
 					return stack;
@@ -81,18 +82,11 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 
 	@Nonnull
 	@Override
-	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-		if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> capabilityIn, @Nullable Direction sideIn) {
+		if (capabilityIn == ForgeCapabilities.ITEM_HANDLER) {
 			return handler.cast();
 		}
-		return super.getCapability(cap, side);
-	}
-
-	public boolean getBlade() {
-		if (getItem(0) != ItemStack.EMPTY) {
-			return true;
-		}
-		return false;
+		return super.getCapability(capabilityIn, sideIn);
 	}
 
 	public void setLog(ItemStack logIn) {
@@ -135,29 +129,39 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 	@Override
 	public void load(CompoundTag nbt) {
 		super.load(nbt);
-		// this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-		// ContainerHelper.loadAllItems(nbt, this.items);
+		if (nbt.contains("sawBlade")) {
+			this.blade = nbt.getBoolean("sawBlade");
+		}
 		if (nbt.contains("sawTime")) {
 			this.sawTime = nbt.getInt("sawTime");
 		}
+		if (nbt.contains("sawingTicks")) {
+			this.sawingTicks = nbt.getInt("sawingTicks");
+		}
 		if (nbt.contains("logPos")) {
 			this.logPos = nbt.getDouble("logPos");
+		}
+		if (nbt.contains("handler")) {
+			itemHandler.deserializeNBT(nbt.getCompound("handler"));
 		}
 	}
 
 	@Override
 	public void saveAdditional(CompoundTag compound) {
 		super.saveAdditional(compound);
-		// ContainerHelper.saveAllItems(compound, this.items);
+		compound.putBoolean("sawBlade", this.blade);
 		compound.putInt("sawTime", this.sawTime);
+		compound.putInt("sawingTicks", this.sawingTicks);
 		compound.putDouble("logPos", this.logPos);
+		compound.put("handler", itemHandler.serializeNBT());
 	}
 
 	public void serverTick() {
 		if (this.sawTime > 0F) {
 			this.logPos = 2.0D - 4.0D * (sawTime / 100.0D);
 			this.sawTime--;
-			level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
+			this.sawingTicks++;
+			// level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
 		} else if (!getItem(1).isEmpty()) {
 			Recipe<Container> recipe = this.level.getRecipeManager().getRecipeFor(TechnologicaRecipeType.SAWMILL.get(), this, this.level).orElse(null);
 			if (recipe != null) {
@@ -177,7 +181,9 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 					this.sawTime = 100;
 				}
 				setRecipeUsed(recipe);
-				level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
+				this.logPos = -2.0D;
+				this.sawingTicks = 0;
+				// level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
 			}
 		}
 	}
@@ -262,5 +268,17 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 	public void clearContent() {
 		// TODO Auto-generated method stub
 
+	}
+
+	public int getSawingTicks() {
+		return this.sawingTicks;
+	}
+
+	public void setBlade(boolean bladeIn) {
+		this.blade = bladeIn;
+	}
+
+	public boolean getBlade() {
+		return this.blade;
 	}
 }

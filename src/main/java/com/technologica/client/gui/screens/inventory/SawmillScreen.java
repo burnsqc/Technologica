@@ -46,5 +46,8 @@ public class SawmillScreen extends AbstractContainerScreen<SawmillMenu> {
 		int j = (this.height - this.imageHeight) / 2;
 		this.blit(matrixStack, i, j, 0, 0, this.imageWidth, 125);
 		this.blit(matrixStack, i, j + 125, 0, 126, this.imageWidth, 105);
+		int sawingTicks = this.menu.getSawingTicks() % 16;
+		this.blit(matrixStack, i + 81, j + 33 - sawingTicks, 176, 14 - sawingTicks, 14, sawingTicks); // Sawdust
+		this.blit(matrixStack, i + 79, j + 35, 176, 14, 24, 17); // Arrow
 	}
 }

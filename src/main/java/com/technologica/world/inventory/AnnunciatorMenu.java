@@ -1,24 +1,24 @@
 package com.technologica.world.inventory;
 
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
 
 public class AnnunciatorMenu extends AbstractContainerMenu {
 	private final BlockEntity tileEntity;
-	
+
 	public AnnunciatorMenu(int windowIdIn, Level worldIn, BlockPos posIn, Inventory playerInventoryIn) {
 		super(TechnologicaMenuType.ANNUNCIATOR.get(), windowIdIn);
 		this.tileEntity = worldIn.getBlockEntity(posIn);
-		
+
 		for (int l = 0; l < 3; ++l) {
 			for (int j1 = 0; j1 < 9; ++j1) {
 				this.addSlot(new Slot(playerInventoryIn, j1 + l * 9 + 9, 8 + j1 * 18, 112 + l * 18 + 36));
@@ -28,13 +28,13 @@ public class AnnunciatorMenu extends AbstractContainerMenu {
 		for (int i1 = 0; i1 < 9; ++i1) {
 			this.addSlot(new Slot(playerInventoryIn, i1, 8 + i1 * 18, 206));
 		}
-		
+
 		if (tileEntity != null) {
-			tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-				this.addSlot(new SlotItemHandler(h, 0, 80, 8)); 	
+			tileEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(h -> {
+				this.addSlot(new SlotItemHandler(h, 0, 80, 8));
 			});
 		}
-		
+
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public class AnnunciatorMenu extends AbstractContainerMenu {
 	public MenuType<?> getType() {
 		return TechnologicaMenuType.ANNUNCIATOR.get();
 	}
-	
+
 	public BlockEntity getTileEntity() {
 		return this.tileEntity;
 	}

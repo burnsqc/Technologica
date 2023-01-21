@@ -37,14 +37,14 @@ public class SawmillRecipe extends SingleItemRecipe {
 	public RecipeType<?> getType() {
 		return TechnologicaRecipeType.SAWMILL.get();
 	}
-	
+
 	public ItemStack getResultItem1() {
-	      return this.result;
-	   }
-	
+		return this.result.copy();
+	}
+
 	public ItemStack getResultItem2() {
-	      return this.result2;
-	   }
+		return this.result2.copy();
+	}
 
 	@Override
 	public boolean isSpecial() {

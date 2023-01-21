@@ -54,19 +54,19 @@ public class SawmillRenderer implements BlockEntityRenderer<SawmillBlockEntity> 
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public void render(SawmillBlockEntity tileEntity, float partialTicks, PoseStack matrixStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
-		ItemStack stack = tileEntity.getLog();
+	public void render(SawmillBlockEntity sawmillBlockEntityIn, float partialTicks, PoseStack matrixStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
+		Boolean blade = sawmillBlockEntityIn.getBlade();
+		ItemStack stack = sawmillBlockEntityIn.getLog();
 
 		Block log = Block.byItem(stack.getItem());
 		BlockRenderDispatcher blockrendererdispatcher = Minecraft.getInstance().getBlockRenderer();
 		ModelBlockRenderer blockModelRenderer = blockrendererdispatcher.getModelRenderer();
 
-		if (tileEntity.getBlade()) {
-
+		if (blade) {
 			matrixStack.pushPose();
 			matrixStack.translate(0.5, 0.75, 0.5);
 
-			switch (tileEntity.getBlockState().getValue(SawmillBlock.NESW_FACING)) {
+			switch (sawmillBlockEntityIn.getBlockState().getValue(SawmillBlock.NESW_FACING)) {
 			case NORTH:
 				break;
 			case EAST:
@@ -81,7 +81,8 @@ public class SawmillRenderer implements BlockEntityRenderer<SawmillBlockEntity> 
 			default:
 				break;
 			}
-			long i = tileEntity.getLevel().getGameTime();
+
+			long i = sawmillBlockEntityIn.getLevel().getGameTime();
 			matrixStack.mulPose(this.angle(i, partialTicks));
 			addBox(matrixStack, buffer);
 			matrixStack.popPose();
@@ -90,26 +91,26 @@ public class SawmillRenderer implements BlockEntityRenderer<SawmillBlockEntity> 
 		if (!stack.isEmpty()) {
 			matrixStack.pushPose();
 			BlockState state = log.defaultBlockState();
-			
+
 			if (ForgeRegistries.ITEMS.tags().getTag(ItemTags.LOGS).contains(stack.getItem())) {
 				state = log.defaultBlockState().setValue(RotatedPillarBlock.AXIS, Direction.Axis.X);
 			}
 
-			switch (tileEntity.getBlockState().getValue(SawmillBlock.NESW_FACING)) {
+			switch (sawmillBlockEntityIn.getBlockState().getValue(SawmillBlock.NESW_FACING)) {
 			case NORTH:
 				matrixStack.mulPose(Axis.YP.rotationDegrees(90));
-				matrixStack.translate(tileEntity.getLogPos() - 1, 1.0, 0.0);
+				matrixStack.translate(sawmillBlockEntityIn.getLogPos() - 1, 1.0, 0.0);
 				break;
 			case EAST:
-				matrixStack.translate(tileEntity.getLogPos(), 1.0, 0.0);
+				matrixStack.translate(sawmillBlockEntityIn.getLogPos(), 1.0, 0.0);
 				break;
 			case SOUTH:
 				matrixStack.mulPose(Axis.YP.rotationDegrees(270));
-				matrixStack.translate(tileEntity.getLogPos(), 1.0, -1.0);
+				matrixStack.translate(sawmillBlockEntityIn.getLogPos(), 1.0, -1.0);
 				break;
 			case WEST:
 				matrixStack.mulPose(Axis.YP.rotationDegrees(180));
-				matrixStack.translate(tileEntity.getLogPos() - 1, 1.0, -1.0);
+				matrixStack.translate(sawmillBlockEntityIn.getLogPos() - 1, 1.0, -1.0);
 				break;
 			default:
 				break;
