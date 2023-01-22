@@ -7,7 +7,7 @@ import java.util.List;
 import com.mojang.datafixers.util.Pair;
 import com.technologica.world.level.block.LineShaftBlock;
 import com.technologica.world.level.block.entity.LineShaftHangerTileEntity;
-import com.technologica.world.level.block.entity.LineShaftTileEntity;
+import com.technologica.world.level.block.entity.LineShaftBlockEntity;
 
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
@@ -73,7 +73,7 @@ public class Manager {
 		int offset = 1;
 		BlockEntity scannedBlockEntity = level.getBlockEntity(blockEntityIn.getBlockPos().relative(direction1, offset));
 
-		while ((scannedBlockEntity instanceof LineShaftTileEntity || scannedBlockEntity instanceof LineShaftHangerTileEntity) && scannedBlockEntity.getBlockState().getValue(BlockStateProperties.AXIS) == blockEntityIn.getBlockState().getValue(BlockStateProperties.AXIS)) {
+		while ((scannedBlockEntity instanceof LineShaftBlockEntity || scannedBlockEntity instanceof LineShaftHangerTileEntity) && scannedBlockEntity.getBlockState().getValue(BlockStateProperties.AXIS) == blockEntityIn.getBlockState().getValue(BlockStateProperties.AXIS)) {
 			tempAllShaftBlocks.add(scannedBlockEntity);
 			allShaftBlockEntities.add(scannedBlockEntity);
 			offset++;
@@ -83,7 +83,7 @@ public class Manager {
 		offset = 1;
 		scannedBlockEntity = level.getBlockEntity(blockEntityIn.getBlockPos().relative(direction2, offset));
 
-		while ((scannedBlockEntity instanceof LineShaftTileEntity || scannedBlockEntity instanceof LineShaftHangerTileEntity) && scannedBlockEntity.getBlockState().getValue(BlockStateProperties.AXIS) == blockEntityIn.getBlockState().getValue(BlockStateProperties.AXIS)) {
+		while ((scannedBlockEntity instanceof LineShaftBlockEntity || scannedBlockEntity instanceof LineShaftHangerTileEntity) && scannedBlockEntity.getBlockState().getValue(BlockStateProperties.AXIS) == blockEntityIn.getBlockState().getValue(BlockStateProperties.AXIS)) {
 			tempAllShaftBlocks.add(scannedBlockEntity);
 			allShaftBlockEntities.add(scannedBlockEntity);
 			offset++;
@@ -96,16 +96,16 @@ public class Manager {
 
 		// Now check the above LineShaft object for pulley connections and loop back to top. Be sure to check if they are already a part of the allShafts list.
 		for (BlockEntity shaftBlock : lineShaft.shaftList) {
-			if (shaftBlock instanceof LineShaftTileEntity) {
-				if (((LineShaftTileEntity) shaftBlock).getBeltPos() != null) {
-					if (!allShaftBlockEntities.contains(level.getBlockEntity(((LineShaftTileEntity) shaftBlock).getBeltPos()))) {
-						addEdge(lineShaft.getIndex(), shaftIndex, shaftBlock.getBlockState().getValue(LineShaftBlock.RADIUS).getRadius() / level.getBlockEntity(((LineShaftTileEntity) shaftBlock).getBeltPos()).getBlockState().getValue(LineShaftBlock.RADIUS).getRadius());
-						reGroup(level.getBlockEntity(((LineShaftTileEntity) shaftBlock).getBeltPos()));
+			if (shaftBlock instanceof LineShaftBlockEntity) {
+				if (((LineShaftBlockEntity) shaftBlock).getBeltPos() != null) {
+					if (!allShaftBlockEntities.contains(level.getBlockEntity(((LineShaftBlockEntity) shaftBlock).getBeltPos()))) {
+						addEdge(lineShaft.getIndex(), shaftIndex, shaftBlock.getBlockState().getValue(LineShaftBlock.RADIUS).getRadius() / level.getBlockEntity(((LineShaftBlockEntity) shaftBlock).getBeltPos()).getBlockState().getValue(LineShaftBlock.RADIUS).getRadius());
+						reGroup(level.getBlockEntity(((LineShaftBlockEntity) shaftBlock).getBeltPos()));
 					} else {
 						for (LineShaft shaft2 : allShafts) {
-							if (shaft2.shaftList.contains(level.getBlockEntity(((LineShaftTileEntity) shaftBlock).getBeltPos())) && blockEntityIn instanceof LineShaftTileEntity) {
-								if (level.getBlockEntity(((LineShaftTileEntity) shaftBlock).getBeltPos()) != level.getBlockEntity(((LineShaftTileEntity) blockEntityIn).getBeltPos())) {
-									addEdge(lineShaft.getIndex(), shaft2.getIndex(), shaftBlock.getBlockState().getValue(LineShaftBlock.RADIUS).getRadius() / level.getBlockEntity(((LineShaftTileEntity) shaftBlock).getBeltPos()).getBlockState().getValue(LineShaftBlock.RADIUS).getRadius());
+							if (shaft2.shaftList.contains(level.getBlockEntity(((LineShaftBlockEntity) shaftBlock).getBeltPos())) && blockEntityIn instanceof LineShaftBlockEntity) {
+								if (level.getBlockEntity(((LineShaftBlockEntity) shaftBlock).getBeltPos()) != level.getBlockEntity(((LineShaftBlockEntity) blockEntityIn).getBeltPos())) {
+									addEdge(lineShaft.getIndex(), shaft2.getIndex(), shaftBlock.getBlockState().getValue(LineShaftBlock.RADIUS).getRadius() / level.getBlockEntity(((LineShaftBlockEntity) shaftBlock).getBeltPos()).getBlockState().getValue(LineShaftBlock.RADIUS).getRadius());
 									break;
 								}
 							}
@@ -165,9 +165,9 @@ public class Manager {
 				shaft.setRPM(0.0F);
 			}
 			for (BlockEntity shaftBlock : shaft.shaftList) {
-				if (shaftBlock instanceof LineShaftTileEntity) {
-					((LineShaftTileEntity) shaftBlock).setRPM(shaft.getRPM());
-					((LineShaftTileEntity) shaftBlock).setTorque(shaft.getTorque());
+				if (shaftBlock instanceof LineShaftBlockEntity) {
+					((LineShaftBlockEntity) shaftBlock).setRPM(shaft.getRPM());
+					((LineShaftBlockEntity) shaftBlock).setTorque(shaft.getTorque());
 				} else if (shaftBlock instanceof LineShaftHangerTileEntity) {
 					((LineShaftHangerTileEntity) shaftBlock).setRPM(shaft.getRPM());
 					((LineShaftHangerTileEntity) shaftBlock).setTorque(shaft.getTorque());

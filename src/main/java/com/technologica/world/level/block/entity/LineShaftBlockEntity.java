@@ -9,20 +9,17 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 
-public class LineShaftTileEntity extends BlockEntity {
+public class LineShaftBlockEntity extends BlockEntity {
 	private BlockPos beltPos = null;
 	private float rpm = 0;
 	private float torque = 0;
-	// Add variable for Manager
-	// Load & save manager? Probably not...
 
-	public LineShaftTileEntity(BlockPos p_155700_, BlockState p_155701_) {
+	public LineShaftBlockEntity(BlockPos p_155700_, BlockState p_155701_) {
 		super(TechnologicaBlockEntityType.LINE_SHAFT_TILE.get(), p_155700_, p_155701_);
 	}
 
 	@Override
 	public AABB getRenderBoundingBox() {
-
 		AABB mbb = new AABB(getBlockPos());
 		if (this.getBeltPos() != null) {
 			AABB mbb2 = new AABB(getBeltPos());

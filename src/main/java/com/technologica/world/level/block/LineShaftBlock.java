@@ -2,7 +2,7 @@ package com.technologica.world.level.block;
 
 import com.technologica.util.Radius;
 import com.technologica.world.item.TechnologicaItems;
-import com.technologica.world.level.block.entity.LineShaftTileEntity;
+import com.technologica.world.level.block.entity.LineShaftBlockEntity;
 import com.technologica.world.level.block.state.properties.TechnologicaBlockStateProperties;
 
 import net.minecraft.core.BlockPos;
@@ -46,8 +46,8 @@ public class LineShaftBlock extends RotatedPillarBlock implements EntityBlock {
 	 * Technologica Methods
 	 */
 
-	public LineShaftTileEntity getTileEntity(Level worldIn, BlockPos posIn) {
-		return (LineShaftTileEntity) worldIn.getBlockEntity(posIn);
+	public LineShaftBlockEntity getTileEntity(Level worldIn, BlockPos posIn) {
+		return (LineShaftBlockEntity) worldIn.getBlockEntity(posIn);
 	}
 
 	/*
@@ -65,7 +65,7 @@ public class LineShaftBlock extends RotatedPillarBlock implements EntityBlock {
 
 	@Override
 	public InteractionResult use(BlockState stateIn, Level worldIn, BlockPos posIn, Player playerIn, InteractionHand handIn, BlockHitResult hitIn) {
-		LineShaftTileEntity tile = getTileEntity(worldIn, posIn);
+		LineShaftBlockEntity tile = getTileEntity(worldIn, posIn);
 		Item tool = playerIn.getItemInHand(handIn).getItem();
 
 		if (tool == TechnologicaItems.PIPE_WRENCH.get()) {
@@ -113,9 +113,9 @@ public class LineShaftBlock extends RotatedPillarBlock implements EntityBlock {
 	@Override
 	public void tick(BlockState stateIn, ServerLevel worldIn, BlockPos posIn, RandomSource randomIn) {
 		if (!canSurvive(stateIn, worldIn, posIn)) {
-			LineShaftTileEntity tile = getTileEntity(worldIn, posIn);
+			LineShaftBlockEntity tile = getTileEntity(worldIn, posIn);
 			if (tile.getBeltPos() != null) {
-				LineShaftTileEntity tile2 = getTileEntity(worldIn, tile.getBeltPos());
+				LineShaftBlockEntity tile2 = getTileEntity(worldIn, tile.getBeltPos());
 				if (tile2 != null) {
 					tile2.setBeltPos(null);
 				}
@@ -127,9 +127,9 @@ public class LineShaftBlock extends RotatedPillarBlock implements EntityBlock {
 
 	@Override
 	public void playerWillDestroy(Level worldIn, BlockPos posIn, BlockState stateIn, Player playerIn) {
-		LineShaftTileEntity tile = getTileEntity(worldIn, posIn);
+		LineShaftBlockEntity tile = getTileEntity(worldIn, posIn);
 		if (tile.getBeltPos() != null) {
-			LineShaftTileEntity tile2 = getTileEntity(worldIn, tile.getBeltPos());
+			LineShaftBlockEntity tile2 = getTileEntity(worldIn, tile.getBeltPos());
 			if (tile2 != null) {
 				tile2.setBeltPos(null);
 			}
@@ -145,6 +145,6 @@ public class LineShaftBlock extends RotatedPillarBlock implements EntityBlock {
 
 	@Override
 	public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
-		return new LineShaftTileEntity(p_153215_, p_153216_);
+		return new LineShaftBlockEntity(p_153215_, p_153216_);
 	}
 }

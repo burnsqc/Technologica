@@ -3,7 +3,7 @@ package com.technologica.world.level.block;
 import com.technologica.util.lineshaftsystem.Manager;
 import com.technologica.world.item.TechnologicaItems;
 import com.technologica.world.level.block.entity.LineShaftHangerTileEntity;
-import com.technologica.world.level.block.entity.LineShaftTileEntity;
+import com.technologica.world.level.block.entity.LineShaftBlockEntity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -51,7 +51,7 @@ public class MotorBlock extends TwentyFourDirectionBlock {
 			worldIn.setBlock(posIn, stateIn.cycle(POWERED), 3);
 			BlockEntity tile;
 
-			if (worldIn.getBlockEntity(posIn.relative(stateIn.getValue(SUB_FACING))) instanceof LineShaftTileEntity && worldIn.getBlockState(posIn.relative(stateIn.getValue(SUB_FACING))).getValue(RotatedPillarBlock.AXIS) == stateIn.getValue(SUB_FACING).getAxis()) {
+			if (worldIn.getBlockEntity(posIn.relative(stateIn.getValue(SUB_FACING))) instanceof LineShaftBlockEntity && worldIn.getBlockState(posIn.relative(stateIn.getValue(SUB_FACING))).getValue(RotatedPillarBlock.AXIS) == stateIn.getValue(SUB_FACING).getAxis()) {
 				tile = worldIn.getBlockEntity(posIn.relative(stateIn.getValue(SUB_FACING)));
 				if (worldIn.hasNeighborSignal(posIn)) {
 					Manager lssManager = new Manager();

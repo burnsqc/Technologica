@@ -388,7 +388,7 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> LIVERMORIUM_INGOT = ITEMS.register("livermorium_ingot", () -> new RadioactiveItem(new Item.Properties(), "livermorium_ingot"));
 	public static final RegistryObject<Item> TENNESSINE_INGOT = ITEMS.register("tennessine_ingot", () -> new RadioactiveItem(new Item.Properties(), "tennessine_ingot"));
 	public static final RegistryObject<Item> OGANESSON_INGOT = ITEMS.register("oganesson_ingot", () -> new RadioactiveItem(new Item.Properties(), "oganesson_ingot"));
-	
+
 	public static final RegistryObject<Item> BRONZE_INGOT = ITEMS.register("bronze_ingot", () -> new Item(new Item.Properties()));
 
 	public static final RegistryObject<Item> LITHIUM_CLAY_BALL = ITEMS.register("lithium_clay_ball", () -> new Item(new Item.Properties()));
@@ -407,7 +407,7 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> RUBY = ITEMS.register("ruby", () -> new Item(new Properties()));
 	public static final RegistryObject<Item> SAPPHIRE = ITEMS.register("sapphire", () -> new Item(new Properties()));
 	public static final RegistryObject<Item> TOPAZ = ITEMS.register("topaz", () -> new Item(new Properties()));
-	
+
 	public static final RegistryObject<Item> BLOCK_OF_RUBY = ITEMS.register("block_of_ruby", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_RUBY.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_SAPPHIRE = ITEMS.register("block_of_sapphire", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_SAPPHIRE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_TOPAZ = ITEMS.register("block_of_topaz", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_TOPAZ.get(), new Item.Properties()));
@@ -1102,8 +1102,8 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> OVERLAY_WARN_ITEM = ITEMS.register("overlay_warn", () -> new Item(new Properties()));
 	public static final RegistryObject<Item> OVERLAY_FAIL_ITEM = ITEMS.register("overlay_fail", () -> new Item(new Properties()));
 
-	public static final RegistryObject<Item> SAWMILL_BLUEPRINT = ITEMS.register("sawmill_blueprint", () -> new Item(new Properties()));
-	
+	public static final RegistryObject<Item> SAWMILL_BLUEPRINT = ITEMS.register("sawmill_blueprint", () -> new BlueprintItem(new Properties()));
+
 	public static final RegistryObject<Item> FAST_HOPPER = ITEMS.register("fast_hopper", () -> new BlockItem(TechnologicaBlocks.FAST_HOPPER.get(), new Item.Properties()));
 
 	/**
@@ -1191,13 +1191,13 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> PRIMITIVE_HOE = ITEMS.register("primitive_hoe", () -> new HoeItem(TechnologicaItemTier.FLINT, 6, -3.2F, (new Item.Properties())));
 	public static final RegistryObject<Item> PRIMITIVE_SHOVEL = ITEMS.register("primitive_shovel", () -> new ShovelItem(TechnologicaItemTier.FLINT, 6.0F, -3.2F, (new Item.Properties())));
 	public static final RegistryObject<Item> PRIMITIVE_HATCHET = ITEMS.register("primitive_hatchet", () -> new AxeItem(TechnologicaItemTier.FLINT, 6.0F, -3.2F, (new Item.Properties())));
-	
+
 	public static final RegistryObject<Item> BRONZE_SWORD = ITEMS.register("bronze_sword", () -> new SwordItem(TechnologicaItemTier.BRONZE, 6, -3.2F, (new Item.Properties())));
 	public static final RegistryObject<Item> BRONZE_PICKAXE = ITEMS.register("bronze_pickaxe", () -> new PickaxeItem(TechnologicaItemTier.BRONZE, 6, -3.2F, (new Item.Properties())));
 	public static final RegistryObject<Item> BRONZE_HOE = ITEMS.register("bronze_hoe", () -> new HoeItem(TechnologicaItemTier.BRONZE, 6, -3.2F, (new Item.Properties())));
 	public static final RegistryObject<Item> BRONZE_SHOVEL = ITEMS.register("bronze_shovel", () -> new ShovelItem(TechnologicaItemTier.BRONZE, 6.0F, -3.2F, (new Item.Properties())));
 	public static final RegistryObject<Item> BRONZE_AXE = ITEMS.register("bronze_axe", () -> new AxeItem(TechnologicaItemTier.BRONZE, 6.0F, -3.2F, (new Item.Properties())));
-	
+
 	public static final RegistryObject<Item> BRONZE_HELMET = ITEMS.register("bronze_helmet", () -> new ArmorItem(TechnologicaArmorMaterial.BRONZE, EquipmentSlot.HEAD, (new Item.Properties())));
 	public static final RegistryObject<Item> BRONZE_CHESTPLATE = ITEMS.register("bronze_chestplate", () -> new ArmorItem(TechnologicaArmorMaterial.BRONZE, EquipmentSlot.CHEST, (new Item.Properties())));
 	public static final RegistryObject<Item> BRONZE_LEGGINGS = ITEMS.register("bronze_leggings", () -> new ArmorItem(TechnologicaArmorMaterial.BRONZE, EquipmentSlot.LEGS, (new Item.Properties())));
@@ -1232,14 +1232,14 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> HAZMAT_SUIT = ITEMS.register("hazmat_suit", () -> new ArmorItem(TechnologicaArmorMaterial.HAZMAT, EquipmentSlot.CHEST, (new Item.Properties())));
 	public static final RegistryObject<Item> HAZMAT_PANTS = ITEMS.register("hazmat_pants", () -> new ArmorItem(TechnologicaArmorMaterial.HAZMAT, EquipmentSlot.LEGS, (new Item.Properties())));
 	public static final RegistryObject<Item> HAZMAT_BOOTS = ITEMS.register("hazmat_boots", () -> new ArmorItem(TechnologicaArmorMaterial.HAZMAT, EquipmentSlot.FEET, (new Item.Properties())));
-	
+
 	public static final RegistryObject<Item> MINING_HELMET = ITEMS.register("mining_helmet", () -> new MiningHelmetItem(TechnologicaArmorMaterial.MINING, EquipmentSlot.HEAD, (new Item.Properties())));
-	
+
 	public static final RegistryObject<Item> LAND_MINE = ITEMS.register("land_mine", () -> new LandMineItem(new Item.Properties()));
 	public static final RegistryObject<Item> NITROGLYCERIN_ITEM = ITEMS.register("nitroglycerin", () -> new BlockItem(TechnologicaBlocks.NITROGLYCERIN.get(), new Item.Properties()));
 	public static final RegistryObject<Item> NAVAL_MINE = ITEMS.register("naval_mine", () -> new NavalMineItem(new Item.Properties()));
 	public static final RegistryObject<Item> ROCKET = ITEMS.register("rocket", () -> new RocketItem(Rocket.Type.MALEVOLENT, (new Item.Properties()).stacksTo(1)));
-	
+
 	public static final RegistryObject<Item> SLEEPING_BAG = ITEMS.register("sleeping_bag", () -> new SleepingBagItem(TechnologicaBlocks.SLEEPING_BAG.get(), (new Item.Properties()).stacksTo(1)));
 
 	/**

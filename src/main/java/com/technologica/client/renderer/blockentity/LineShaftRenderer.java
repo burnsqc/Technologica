@@ -11,7 +11,7 @@ import com.technologica.Technologica;
 import com.technologica.util.Radius;
 import com.technologica.util.math.MathHelper;
 import com.technologica.world.level.block.LineShaftBlock;
-import com.technologica.world.level.block.entity.LineShaftTileEntity;
+import com.technologica.world.level.block.entity.LineShaftBlockEntity;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -25,7 +25,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
-public class LineShaftRenderer implements BlockEntityRenderer<LineShaftTileEntity> {
+public class LineShaftRenderer implements BlockEntityRenderer<LineShaftBlockEntity> {
 	public static final ResourceLocation PULLEY_BELT_TEXTURE = new ResourceLocation(Technologica.MODID, "block/pulley_belt");
 
 	public LineShaftRenderer(BlockEntityRendererProvider.Context rendererDispatcherIn) {
@@ -66,7 +66,7 @@ public class LineShaftRenderer implements BlockEntityRenderer<LineShaftTileEntit
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public void render(LineShaftTileEntity tileEntity, float partialTicks, PoseStack matrixStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
+	public void render(LineShaftBlockEntity tileEntity, float partialTicks, PoseStack matrixStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
 		BlockRenderDispatcher blockrendererdispatcher = Minecraft.getInstance().getBlockRenderer();
 		ModelBlockRenderer blockModelRenderer = blockrendererdispatcher.getModelRenderer();
 
@@ -77,7 +77,7 @@ public class LineShaftRenderer implements BlockEntityRenderer<LineShaftTileEntit
 			Radius radius1 = tileEntity.getBlockState().getValue(LineShaftBlock.RADIUS);
 			Radius radius2;
 
-			if (tileEntity.getLevel().getBlockEntity(tileEntity.getBeltPos()) instanceof LineShaftTileEntity) {
+			if (tileEntity.getLevel().getBlockEntity(tileEntity.getBeltPos()) instanceof LineShaftBlockEntity) {
 				radius2 = tileEntity.getLevel().getBlockState(tileEntity.getBeltPos()).getValue(LineShaftBlock.RADIUS);
 			} else {
 				radius2 = Radius.NONE;
@@ -154,7 +154,7 @@ public class LineShaftRenderer implements BlockEntityRenderer<LineShaftTileEntit
 	}
 
 	private Quaternionf angle(BlockEntity tileEntityIn) {
-		long time = System.currentTimeMillis() * 6 * (int) ((LineShaftTileEntity) tileEntityIn).getRPM() / 1000;
+		long time = System.currentTimeMillis() * 6 * (int) ((LineShaftBlockEntity) tileEntityIn).getRPM() / 1000;
 		float angle = time % 360;
 		Axis vector = Axis.XP;
 
@@ -174,7 +174,7 @@ public class LineShaftRenderer implements BlockEntityRenderer<LineShaftTileEntit
 	}
 
 	@Override
-	public boolean shouldRenderOffScreen(LineShaftTileEntity te) {
+	public boolean shouldRenderOffScreen(LineShaftBlockEntity te) {
 		return true;
 	}
 }

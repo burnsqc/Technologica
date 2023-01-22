@@ -4,7 +4,7 @@ import com.technologica.world.item.TechnologicaItems;
 import com.technologica.world.level.block.TechnologicaBlocks;
 import com.technologica.world.level.block.TwelveDirectionBlock;
 import com.technologica.world.level.block.entity.LineShaftHangerTileEntity;
-import com.technologica.world.level.block.entity.LineShaftTileEntity;
+import com.technologica.world.level.block.entity.LineShaftBlockEntity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -208,8 +208,8 @@ public class Link implements ILink, INBTSerializable<CompoundTag> {
 	public void createBelt() {
 		this.linkTile1 = this.world.getBlockEntity(this.linkPos1);
 		this.linkTile2 = this.world.getBlockEntity(this.linkPos2);
-		((LineShaftTileEntity) this.linkTile1).setBeltPos(this.linkPos2);
-		((LineShaftTileEntity) this.linkTile2).setBeltPos(this.linkPos1);
+		((LineShaftBlockEntity) this.linkTile1).setBeltPos(this.linkPos2);
+		((LineShaftBlockEntity) this.linkTile2).setBeltPos(this.linkPos1);
 		this.world.sendBlockUpdated(this.linkPos1, this.linkState1, this.linkState1, 3);
 		this.world.sendBlockUpdated(this.linkPos2, this.linkState2, this.linkState2, 3);
 		this.message = "LINK SUCCESS";
