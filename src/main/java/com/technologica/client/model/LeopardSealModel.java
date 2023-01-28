@@ -19,17 +19,13 @@ public class LeopardSealModel<T extends Entity> extends ListModel<T> {
 	private final ModelPart neck;
 	private final ModelPart head;
 	private final ModelPart jaw;
-	private final ModelPart flipperLeft;
-	private final ModelPart flipperRight;
 	private final ModelPart tail;
 	private final ModelPart tailFlipperLeft;
 	private final ModelPart tailFlipperRight;
-	
+
 	public LeopardSealModel(ModelPart modelPartIn) {
 		this.body = modelPartIn.getChild("body");
 		this.neck = body.getChild("neck");
-		this.flipperLeft = body.getChild("flipper_left");
-		this.flipperRight = body.getChild("flipper_right");
 		this.head = neck.getChild("head");
 		this.jaw = head.getChild("jaw");
 		this.tail = body.getChild("tail");
@@ -52,7 +48,7 @@ public class LeopardSealModel<T extends Entity> extends ListModel<T> {
 		tail.addOrReplaceChild("tail_flipper_right", CubeListBuilder.create().texOffs(0, 46).addBox(-1.0F, -3.0F, 0.0F, 1.0F, 6.0F, 8.0F), PartPose.offset(-2.0F, 0.0F, 10.0F));
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
-	
+
 	@Override
 	public Iterable<ModelPart> parts() {
 		return ImmutableList.of(this.body);
@@ -60,9 +56,9 @@ public class LeopardSealModel<T extends Entity> extends ListModel<T> {
 
 	@Override
 	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.jaw.xRot = (Mth.sin(ageInTicks / 10) * Mth.sin(ageInTicks / 10))/2;
-		this.neck.xRot = -(float) (Math.PI/4);
-		this.head.xRot = (float) (Math.PI/4);
+		this.jaw.xRot = (Mth.sin(ageInTicks / 10) * Mth.sin(ageInTicks / 10)) / 2;
+		this.neck.xRot = -(float) (Math.PI / 4);
+		this.head.xRot = (float) (Math.PI / 4);
 		this.tailFlipperLeft.yRot = (float) Math.PI / 8;
 		this.tailFlipperRight.yRot = -(float) Math.PI / 8;
 		this.body.xRot = headPitch * ((float) Math.PI / 180F);

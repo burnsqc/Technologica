@@ -427,7 +427,7 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> BLOCK_OF_RUBY = BLOCKS.register("block_of_ruby", () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_RED).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
 	public static final RegistryObject<Block> BLOCK_OF_SAPPHIRE = BLOCKS.register("block_of_sapphire", () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_BLUE).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
 	public static final RegistryObject<Block> BLOCK_OF_TOPAZ = BLOCKS.register("block_of_topaz", () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_YELLOW).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
-	
+
 	public static final RegistryObject<LiquidBlock> HYDROGEN = BLOCKS.register("hydrogen", () -> new LiquidBlock(TechnologicaFluids.HYDROGEN, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F).noLootTable()));
 	public static final RegistryObject<LiquidBlock> HELIUM = BLOCKS.register("helium", () -> new LiquidBlock(TechnologicaFluids.HELIUM, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F).noLootTable()));
 	public static final RegistryObject<LiquidBlock> NITROGEN = BLOCKS.register("nitrogen", () -> new LiquidBlock(TechnologicaFluids.NITROGEN, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F).noLootTable()));
@@ -1022,10 +1022,11 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> MOTOR_5HP = BLOCKS.register("motor_5hp", () -> new MotorBlock(200.0F, 120.0F));
 	public static final RegistryObject<Block> MOTOR_20HP = BLOCKS.register("motor_20hp", () -> new MotorBlock(400.0F, 240.0F));
 	public static final RegistryObject<Block> TREE_TAP = BLOCKS.register("tree_tap", TreeTapBlock::new);
+	public static final RegistryObject<Block> SAWMILL_CORE = BLOCKS.register("sawmill_core", SawmillCoreBlock::new);
 	public static final RegistryObject<Block> SAWMILL = BLOCKS.register("sawmill", SawmillBlock::new);
 	public static final RegistryObject<Block> GLUE = BLOCKS.register("glue", () -> new GlueBlock(BlockBehaviour.Properties.of(Material.WEB).noCollission().randomTicks().strength(0.2F).sound(SoundType.SLIME_BLOCK)));
 	public static final RegistryObject<Block> FAST_HOPPER = BLOCKS.register("fast_hopper", () -> new FastHopper(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.STONE).requiresCorrectToolForDrops().strength(3.0F, 4.8F).sound(SoundType.METAL).noOcclusion()));
-	
+
 	/*
 	 * DECORATIVE
 	 */
@@ -1124,14 +1125,14 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> LAND_MINE = BLOCKS.register("land_mine", LandMineBlock::new);
 	public static final RegistryObject<Block> NITROGLYCERIN = BLOCKS.register("nitroglycerin", () -> new NitroBlock(BlockBehaviour.Properties.of(Material.EXPLOSIVE).noCollission().instabreak().sound(SoundType.GRASS)));
 	public static final RegistryObject<Block> NAVAL_MINE_CHAIN = BLOCKS.register("naval_mine_chain", NavalMineChainBlock::new);
-	
+
 	public static final RegistryObject<Block> LIGHT = BLOCKS.register("light", () -> new LightBlock(BlockBehaviour.Properties.of(Material.AIR).noCollission().noLootTable().air().lightLevel((p_50874_) -> {
 		return 15;
 	})));
-	
-	public static final RegistryObject<Block> SLEEPING_BAG = BLOCKS.register("sleeping_bag", ()-> new SleepingBagBlock(DyeColor.RED, BlockBehaviour.Properties.of(Material.WOOL, (p_152613_) -> {
-        return p_152613_.getValue(BedBlock.PART) == BedPart.FOOT ? DyeColor.RED.getMaterialColor() : MaterialColor.WOOL;
-     }).sound(SoundType.WOOD).strength(0.2F).noOcclusion()));
+
+	public static final RegistryObject<Block> SLEEPING_BAG = BLOCKS.register("sleeping_bag", () -> new SleepingBagBlock(DyeColor.RED, BlockBehaviour.Properties.of(Material.WOOL, (p_152613_) -> {
+		return p_152613_.getValue(BedBlock.PART) == BedPart.FOOT ? DyeColor.RED.getMaterialColor() : MaterialColor.WOOL;
+	}).sound(SoundType.WOOD).strength(0.2F).noOcclusion()));
 
 	/*
 	 * VANILLA REPLICATORS

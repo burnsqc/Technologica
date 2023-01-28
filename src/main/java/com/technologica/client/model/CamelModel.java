@@ -28,7 +28,7 @@ public class CamelModel<T extends Camel> extends AgeableListModel<T> {
 	protected final ModelPart head;
 	protected final ModelPart earLeft;
 	protected final ModelPart earRight;
-	
+
 	public CamelModel(ModelPart modelPartIn) {
 		super(true, 21.0F, 1.36F, 2.7272F, 2.0F, 24.0F);
 		this.body = modelPartIn.getChild("body");
@@ -65,27 +65,23 @@ public class CamelModel<T extends Camel> extends AgeableListModel<T> {
 		body.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(56, 0).addBox(-1.0F, -1.0F, 1.0F, 2.0F, 12.0F, 2.0F), PartPose.offset(0.0F, -7.0F, 2.0F));
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
-	
+
 	@Override
 	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.humpFront.xRot = ((float) Math.PI / 4F);
 		this.humpRear.xRot = -((float) Math.PI / 4F);
 		this.tail.xRot = ((float) Math.PI / 6F);
-		boolean flag = entityIn.isSaddled();
-		boolean flag1 = entityIn.isVehicle();
-		
-		//for (ModelPart modelrenderer : this.saddleParts) {
-		//	modelrenderer.visible = flag;
-		//}
-		
 
-		//for (ModelPart modelrenderer1 : this.ridingParts) {
-		//	modelrenderer1.visible = flag1 && flag;
-		//}
+		// for (ModelPart modelrenderer : this.saddleParts) {
+		// modelrenderer.visible = flag;
+		// }
+
+		// for (ModelPart modelrenderer1 : this.ridingParts) {
+		// modelrenderer1.visible = flag1 && flag;
+		// }
 
 		this.body.y = 11.0F;
 	}
-
 
 	@Override
 	public Iterable<ModelPart> headParts() {
@@ -101,9 +97,9 @@ public class CamelModel<T extends Camel> extends AgeableListModel<T> {
 	public void prepareMobModel(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
 		float f = Mth.lerp(partialTick, entityIn.yBodyRotO, entityIn.yBodyRot);
 		float f1 = Mth.lerp(partialTick, entityIn.yHeadRotO, entityIn.yHeadRot);
-		
+
 		float f3 = f1 - f;
-		
+
 		if (f3 > 20.0F) {
 			f3 = 20.0F;
 		}
@@ -122,10 +118,10 @@ public class CamelModel<T extends Camel> extends AgeableListModel<T> {
 		this.leftHindLeg.xRot = f11 * 0.5F * limbSwingAmount;
 		this.rightFrontLeg.xRot = f12;
 		this.leftFrontLeg.xRot = -f12;
-		
+
 		this.neck.xRot = 0.25F + Mth.sin(f10 * limbSwing * 0.5F) / 4;
 		this.head.xRot = -0.25F - Mth.sin(f10 * limbSwing * 0.5F) / 4;
-		
+
 		boolean flag = entityIn.tailCounter != 0;
 		if (flag) {
 			this.tail.yRot = Mth.cos(f9 * 0.7F);

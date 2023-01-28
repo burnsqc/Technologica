@@ -57,15 +57,15 @@ public class MooseModel<T extends AbstractHorse> extends AgeableListModel<T> {
 	private final ModelPart legLowerFrontLeft;
 	private final ModelPart legLowerFrontRight;
 	protected final ModelPart tail;
-	//private final ModelPart saddle;
-	//private final ModelPart leftBit;
-	//private final ModelPart rightBit;
-	//private final ModelPart headBridle;
-	//private final ModelPart noseBridle;
-	//private final ModelPart leftReign;
-	//private final ModelPart rightReign;
-	//private final ModelPart[] saddles;
-	//private final ModelPart[] reigns;
+	// private final ModelPart saddle;
+	// private final ModelPart leftBit;
+	// private final ModelPart rightBit;
+	// private final ModelPart headBridle;
+	// private final ModelPart noseBridle;
+	// private final ModelPart leftReign;
+	// private final ModelPart rightReign;
+	// private final ModelPart[] saddles;
+	// private final ModelPart[] reigns;
 
 	public MooseModel(ModelPart modelPartIn) {
 		super(true, 24.0F, 1.36F, 2.7272F, 2.0F, 24.0F);
@@ -158,64 +158,44 @@ public class MooseModel<T extends AbstractHorse> extends AgeableListModel<T> {
 		legUpperFrontLeft.addOrReplaceChild("legLowerFrontLeft", CubeListBuilder.create().texOffs(48, 48).mirror().addBox(-2.0F, 0.0F, 0.0F, 4.0F, 8.0F, 4.0F), PartPose.offset(0.0F, 8.0F, 0.0F));
 		body.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(22, 16).addBox(-1.0F, 0.0F, -2.0F, 2.0F, 4.0F, 2.0F), PartPose.offset(0.0F, -5.0F, 16.0F));
 		/*
-		this.saddle = new ModelPart(this, 72, 0);
-		this.saddle.addBox(-5.0F, -31.0F, -9.0F, 10.0F, 9.0F, 9.0F, 0.5F);
-		this.body.addChild(saddle);
-		
-		this.headBridle = new ModelPart(this, 72, 18);
-		this.headBridle.addBox(-3.0F, -5.0F, -8.9F, 6.0F, 5.0F, 8.0F, 0.2F);
-		this.head.addChild(this.headBridle);
-		
-		this.noseBridle = new ModelPart(this, 69, 0);
-		this.noseBridle.addBox(-1.5F, -4.0F, -11.0F, 3.0F, 4.0F, 2.0F, 0.2F);
-		this.head.addChild(this.noseBridle);
-		
-		this.leftBit = new ModelPart(this, 101, 0);
-		this.leftBit.addBox(1.5F, -3.0F, -13.0F, 1.0F, 2.0F, 2.0F);
-		this.head.addChild(this.leftBit);
-		
-		this.rightBit = new ModelPart(this, 101, 0);
-		this.rightBit.addBox(-2.5F, -3.0F, -13.0F, 1.0F, 2.0F, 2.0F);
-		this.head.addChild(this.rightBit);
-		
-		this.leftReign = new ModelPart(this, 42, 19);
-		this.leftReign.addBox(3.1F, -6.0F, -8.0F, 0.0F, 3.0F, 16.0F);
-		this.leftReign.xRot = (-(float) Math.PI / 6F);
-		this.neck.addChild(this.leftReign);
-		
-		this.rightReign = new ModelPart(this, 42, 19);
-		this.rightReign.addBox(-3.1F, -6.0F, -8.0F, 0.0F, 3.0F, 16.0F);
-		this.rightReign.xRot = (-(float) Math.PI / 6F);
-		this.neck.addChild(this.rightReign);
-		
-		this.saddles = new ModelPart[] { this.saddle, this.headBridle, this.noseBridle, this.leftBit, this.rightBit };
-		this.reigns = new ModelPart[] { leftReign, rightReign };
-		*/
+		 * this.saddle = new ModelPart(this, 72, 0); this.saddle.addBox(-5.0F, -31.0F, -9.0F, 10.0F, 9.0F, 9.0F, 0.5F); this.body.addChild(saddle);
+		 * 
+		 * this.headBridle = new ModelPart(this, 72, 18); this.headBridle.addBox(-3.0F, -5.0F, -8.9F, 6.0F, 5.0F, 8.0F, 0.2F); this.head.addChild(this.headBridle);
+		 * 
+		 * this.noseBridle = new ModelPart(this, 69, 0); this.noseBridle.addBox(-1.5F, -4.0F, -11.0F, 3.0F, 4.0F, 2.0F, 0.2F); this.head.addChild(this.noseBridle);
+		 * 
+		 * this.leftBit = new ModelPart(this, 101, 0); this.leftBit.addBox(1.5F, -3.0F, -13.0F, 1.0F, 2.0F, 2.0F); this.head.addChild(this.leftBit);
+		 * 
+		 * this.rightBit = new ModelPart(this, 101, 0); this.rightBit.addBox(-2.5F, -3.0F, -13.0F, 1.0F, 2.0F, 2.0F); this.head.addChild(this.rightBit);
+		 * 
+		 * this.leftReign = new ModelPart(this, 42, 19); this.leftReign.addBox(3.1F, -6.0F, -8.0F, 0.0F, 3.0F, 16.0F); this.leftReign.xRot = (-(float) Math.PI / 6F); this.neck.addChild(this.leftReign);
+		 * 
+		 * this.rightReign = new ModelPart(this, 42, 19); this.rightReign.addBox(-3.1F, -6.0F, -8.0F, 0.0F, 3.0F, 16.0F); this.rightReign.xRot = (-(float) Math.PI / 6F); this.neck.addChild(this.rightReign);
+		 * 
+		 * this.saddles = new ModelPart[] { this.saddle, this.headBridle, this.noseBridle, this.leftBit, this.rightBit }; this.reigns = new ModelPart[] { leftReign, rightReign };
+		 */
 		return LayerDefinition.create(meshdefinition, 128, 64);
 	}
-	
+
 	@Override
 	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		boolean flag = entityIn.isSaddled();
-		boolean flag1 = entityIn.isVehicle();
-
 		this.nose.xRot = (float) Math.PI / 10;
 		this.earLeft.zRot = 0F;
 		this.earRight.zRot = 0F;
 
-		//for (ModelPart modelrenderer : this.saddles) {
-		//	modelrenderer.visible = flag;
-		//}
+		// for (ModelPart modelrenderer : this.saddles) {
+		// modelrenderer.visible = flag;
+		// }
 
-		//for (ModelPart modelrenderer1 : this.reigns) {
-		//	modelrenderer1.visible = flag1 && flag;
-		//}
-		
-		this.antlerLeft1.zRot = (float) Math.PI/2;
-		this.antlerRight1.zRot = -(float) Math.PI/2;
-		this.antlerLeft1.yRot = -(float) Math.PI/8;
-		this.antlerRight1.yRot = (float) Math.PI/8;
-		
+		// for (ModelPart modelrenderer1 : this.reigns) {
+		// modelrenderer1.visible = flag1 && flag;
+		// }
+
+		this.antlerLeft1.zRot = (float) Math.PI / 2;
+		this.antlerRight1.zRot = -(float) Math.PI / 2;
+		this.antlerLeft1.yRot = -(float) Math.PI / 8;
+		this.antlerRight1.yRot = (float) Math.PI / 8;
+
 		this.antlerLeft2.xRot = -1.25F;
 		this.antlerRight2.xRot = -1.25F;
 		this.antlerLeft2.zRot = -0.5F;
@@ -224,28 +204,27 @@ public class MooseModel<T extends AbstractHorse> extends AgeableListModel<T> {
 		this.antlerRight3.xRot = 1.0F;
 		this.antlerLeft3a.xRot = 1.0F;
 		this.antlerRight3a.xRot = 1.0F;
-		this.antlerLeft4.yRot = (float) (Math.PI/6);
-		this.antlerRight4.yRot= -(float) (Math.PI/6);
-		this.antlerLeft5.yRot = (float) (Math.PI/6);
-		this.antlerRight5.yRot = -(float) (Math.PI/6);
-		this.antlerLeft6.yRot = (float) (Math.PI/6);
-		this.antlerRight6.yRot = -(float) (Math.PI/6);
-		this.antlerLeft7.yRot = (float) (Math.PI/6);
-		this.antlerRight7.yRot = -(float) (Math.PI/6);
-		this.antlerLeft8.yRot = (float) (Math.PI/6);
-		this.antlerRight8.yRot = -(float) (Math.PI/6);
-		this.antlerLeft9.yRot = (float) (Math.PI/6);
-		this.antlerRight9.yRot = -(float) (Math.PI/6);
-		this.antlerLeft10.zRot = -(float) (Math.PI/6);
-		this.antlerRight10.zRot = (float) (Math.PI/6);
-		this.antlerLeft11.zRot = -(float) (Math.PI/6);
-		this.antlerRight11.zRot = (float) (Math.PI/6);
-		this.antlerLeft12.zRot = -(float) (Math.PI/6);
-		this.antlerRight12.zRot = (float) (Math.PI/6);
-		
-		
+		this.antlerLeft4.yRot = (float) (Math.PI / 6);
+		this.antlerRight4.yRot = -(float) (Math.PI / 6);
+		this.antlerLeft5.yRot = (float) (Math.PI / 6);
+		this.antlerRight5.yRot = -(float) (Math.PI / 6);
+		this.antlerLeft6.yRot = (float) (Math.PI / 6);
+		this.antlerRight6.yRot = -(float) (Math.PI / 6);
+		this.antlerLeft7.yRot = (float) (Math.PI / 6);
+		this.antlerRight7.yRot = -(float) (Math.PI / 6);
+		this.antlerLeft8.yRot = (float) (Math.PI / 6);
+		this.antlerRight8.yRot = -(float) (Math.PI / 6);
+		this.antlerLeft9.yRot = (float) (Math.PI / 6);
+		this.antlerRight9.yRot = -(float) (Math.PI / 6);
+		this.antlerLeft10.zRot = -(float) (Math.PI / 6);
+		this.antlerRight10.zRot = (float) (Math.PI / 6);
+		this.antlerLeft11.zRot = -(float) (Math.PI / 6);
+		this.antlerRight11.zRot = (float) (Math.PI / 6);
+		this.antlerLeft12.zRot = -(float) (Math.PI / 6);
+		this.antlerRight12.zRot = (float) (Math.PI / 6);
+
 		this.tail.xRot = ((float) Math.PI / 8F);
-		
+
 	}
 
 	@Override
@@ -262,9 +241,9 @@ public class MooseModel<T extends AbstractHorse> extends AgeableListModel<T> {
 	public void prepareMobModel(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
 		float f = Mth.lerp(partialTick, entityIn.yBodyRotO, entityIn.yBodyRot);
 		float f1 = Mth.lerp(partialTick, entityIn.yHeadRotO, entityIn.yHeadRot);
-		
+
 		float f3 = f1 - f;
-		
+
 		if (f3 > 20.0F) {
 			f3 = 20.0F;
 		}
@@ -273,20 +252,19 @@ public class MooseModel<T extends AbstractHorse> extends AgeableListModel<T> {
 			f3 = -20.0F;
 		}
 
-	    float f6 = entityIn.getStandAnim(partialTick);
-	    //float f7 = 1.0F - f6;
-	    float f9 = entityIn.tickCount + partialTick;
+		float f6 = entityIn.getStandAnim(partialTick);
+		// float f7 = 1.0F - f6;
+		float f9 = entityIn.tickCount + partialTick;
 		float f10 = entityIn.isInWater() ? 0.2F : 1.0F;
-		
+
 		boolean earsFlapping = ((Moose) entityIn).earCounter != 0;
 
 		this.body.xRot = 0.0F;
 		this.neck.xRot = (float) Math.PI / 3 + Mth.sin(f10 * limbSwing * 0.5F) / 10;
 		this.head.xRot = -(float) Math.PI / 3 + Mth.cos(f10 * limbSwing * 0.5F) / 10;
 		this.neck.yRot = f3 * (float) Math.PI / 180;
-		
-		
-	    this.body.xRot = f6 * (-(float) Math.PI / 4F) + this.body.xRot;
+
+		this.body.xRot = f6 * (-(float) Math.PI / 4F) + this.body.xRot;
 
 		this.legUpperFrontRight.xRot = -((Mth.sin(f10 * limbSwing * 0.25F) * Mth.sin(f10 * limbSwing * 0.25F)) * limbSwingAmount * 1.5F) - f6 / 2 * Mth.sin(f9 * 0.25F) * f6 * Mth.sin(f9 * 0.25F);
 		this.legLowerFrontRight.xRot = (Mth.cos(f10 * limbSwing * 0.25F + (float) Math.PI / 4F) * Mth.cos(f10 * limbSwing * 0.25F + (float) Math.PI / 4F)) * limbSwingAmount * 1.5F + f6 * Mth.cos(f9 * 0.25F - (float) Math.PI / 4) * f6 * Mth.cos(f9 * 0.25F - (float) Math.PI / 4);
@@ -299,8 +277,7 @@ public class MooseModel<T extends AbstractHorse> extends AgeableListModel<T> {
 
 		this.legUpperBackRight.xRot = (Mth.sin(f10 * limbSwing * 0.25F + (float) Math.PI / 4F) * Mth.sin(f10 * limbSwing * 0.25F + (float) Math.PI / 4F)) * limbSwingAmount * 1.5F + f6 / 2;
 		this.legLowerBackRight.xRot = -((Mth.sin(f10 * limbSwing * 0.25F) * Mth.sin(f10 * limbSwing * 0.25F)) * limbSwingAmount * 1.5F) - f6 / 2;
-		
-		
+
 		if (earsFlapping) {
 			this.earLeft.yRot = Mth.cos(entityIn.tickCount + partialTick);
 			this.earRight.yRot = -Mth.cos(entityIn.tickCount + partialTick);
