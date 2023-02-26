@@ -53,9 +53,9 @@ public class TechnologicaBlockTagsProvider extends BlockTagsProvider {
 		this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(TechnologicaBlocks.RUBY_ORE.get(), TechnologicaBlocks.DEEPSLATE_RUBY_ORE.get(), TechnologicaBlocks.SAPPHIRE_ORE.get(), TechnologicaBlocks.DEEPSLATE_SAPPHIRE_ORE.get(), TechnologicaBlocks.TOPAZ_ORE.get(), TechnologicaBlocks.DEEPSLATE_TOPAZ_ORE.get(), TechnologicaBlocks.BLOCK_OF_RUBY.get(), TechnologicaBlocks.BLOCK_OF_SAPPHIRE.get(), TechnologicaBlocks.BLOCK_OF_TOPAZ.get());
 		this.tag(BlockTags.NEEDS_IRON_TOOL).add(TechnologicaBlocks.RUBY_ORE.get(), TechnologicaBlocks.DEEPSLATE_RUBY_ORE.get(), TechnologicaBlocks.SAPPHIRE_ORE.get(), TechnologicaBlocks.DEEPSLATE_SAPPHIRE_ORE.get(), TechnologicaBlocks.TOPAZ_ORE.get(), TechnologicaBlocks.DEEPSLATE_TOPAZ_ORE.get(), TechnologicaBlocks.BLOCK_OF_RUBY.get(), TechnologicaBlocks.BLOCK_OF_SAPPHIRE.get(), TechnologicaBlocks.BLOCK_OF_TOPAZ.get());
 		this.tag(BlockTags.SNAPS_GOAT_HORN).add(TechnologicaBlocks.RUBY_ORE.get(), TechnologicaBlocks.DEEPSLATE_RUBY_ORE.get(), TechnologicaBlocks.SAPPHIRE_ORE.get(), TechnologicaBlocks.DEEPSLATE_SAPPHIRE_ORE.get(), TechnologicaBlocks.TOPAZ_ORE.get(), TechnologicaBlocks.DEEPSLATE_TOPAZ_ORE.get());
-		
+
 		this.tag(BlockTags.BEACON_BASE_BLOCKS).add(TechnologicaBlocks.BLOCK_OF_RUBY.get(), TechnologicaBlocks.BLOCK_OF_SAPPHIRE.get(), TechnologicaBlocks.BLOCK_OF_TOPAZ.get());
-		
+		this.tag(BlockTags.OVERWORLD_CARVER_REPLACEABLES).addTag(TechnologicaBlockTags.CRYSTAL_ORES);
 		/*
 		 * Technologica Tags
 		 */
@@ -92,9 +92,11 @@ public class TechnologicaBlockTagsProvider extends BlockTagsProvider {
 		tag(TechnologicaBlockTags.FRUITFUL_LOGS).add(TechnologicaBlocks.FRUITFUL_LOG.get(), TechnologicaBlocks.FRUITFUL_WOOD.get(), TechnologicaBlocks.STRIPPED_FRUITFUL_LOG.get(), TechnologicaBlocks.STRIPPED_FRUITFUL_WOOD.get());
 		tag(TechnologicaBlockTags.INFERNAL_LOGS).add(TechnologicaBlocks.INFERNAL_LOG.get(), TechnologicaBlocks.INFERNAL_WOOD.get(), TechnologicaBlocks.STRIPPED_INFERNAL_LOG.get(), TechnologicaBlocks.STRIPPED_INFERNAL_WOOD.get());
 		tag(TechnologicaBlockTags.MALEVOLENT_LOGS).add(TechnologicaBlocks.MALEVOLENT_LOG.get(), TechnologicaBlocks.MALEVOLENT_WOOD.get(), TechnologicaBlocks.STRIPPED_MALEVOLENT_LOG.get(), TechnologicaBlocks.STRIPPED_MALEVOLENT_WOOD.get());
-		
+
 		this.tag(TechnologicaBlockTags.RUBY_ORES).add(TechnologicaBlocks.RUBY_ORE.get(), TechnologicaBlocks.DEEPSLATE_RUBY_ORE.get());
 		this.tag(TechnologicaBlockTags.SAPPHIRE_ORES).add(TechnologicaBlocks.SAPPHIRE_ORE.get(), TechnologicaBlocks.DEEPSLATE_SAPPHIRE_ORE.get());
 		this.tag(TechnologicaBlockTags.TOPAZ_ORES).add(TechnologicaBlocks.TOPAZ_ORE.get(), TechnologicaBlocks.DEEPSLATE_TOPAZ_ORE.get());
+
+		tag(TechnologicaBlockTags.CRYSTAL_ORES).add(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get(), TechnologicaBlocks.AUTUNITE_CRYSTAL.get(), TechnologicaBlocks.BARYTE_CRYSTAL.get(), TechnologicaBlocks.BISMITHUNITE_CRYSTAL.get(), TechnologicaBlocks.CELESTINE_CRYSTAL.get(), TechnologicaBlocks.COLUMBITE_CRYSTAL.get(), TechnologicaBlocks.DOLOMITE_CRYSTAL.get(), TechnologicaBlocks.FLUORITE_CRYSTAL.get(), TechnologicaBlocks.HUTCHINSONITE_CRYSTAL.get(), TechnologicaBlocks.MONAZITE_CRYSTAL.get(), TechnologicaBlocks.POLLUCITE_CRYSTAL.get(), TechnologicaBlocks.RUTILE_CRYSTAL.get(), TechnologicaBlocks.SCHEELITE_CRYSTAL.get(), TechnologicaBlocks.SPHALERITE_CRYSTAL.get(), TechnologicaBlocks.STIBNITE_CRYSTAL.get(), TechnologicaBlocks.STRONTIANITE_CRYSTAL.get(), TechnologicaBlocks.TELLURITE_CRYSTAL.get(), TechnologicaBlocks.ULEXITE_CRYSTAL.get(), TechnologicaBlocks.VANADINITE_CRYSTAL.get(), TechnologicaBlocks.WULFENITE_CRYSTAL.get(), TechnologicaBlocks.XENOTIME_CRYSTAL.get(), TechnologicaBlocks.ZIRCON_CRYSTAL.get());
 	}
 }

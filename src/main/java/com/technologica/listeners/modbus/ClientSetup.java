@@ -3,7 +3,6 @@ package com.technologica.listeners.modbus;
 import com.technologica.client.gui.screens.inventory.AnnunciatorScreen;
 import com.technologica.client.gui.screens.inventory.SawmillScreen;
 import com.technologica.world.inventory.TechnologicaMenuType;
-import com.technologica.world.level.block.TechnologicaBlocks;
 import com.technologica.world.level.block.state.properties.TechnologicaWoodType;
 import com.technologica.world.level.material.TechnologicaFluids;
 
@@ -26,7 +25,6 @@ public class ClientSetup {
 	}
 
 	private static void setTechnologicaFluidRenderTypes() {
-		ItemBlockRenderTypes.setRenderLayer(TechnologicaBlocks.GLUE.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.HYDROGEN.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_HYDROGEN.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.HELIUM.get(), RenderType.translucent());

@@ -37,7 +37,7 @@ public class BlueprintItem extends Item {
 				return InteractionResult.SUCCESS;
 			}
 		}
-		return InteractionResult.PASS;
+		return InteractionResult.CONSUME;
 	}
 
 	public boolean tryCreateSawmill(Level level, BlockPos posIn, BlockState stateIn, Direction direction) {

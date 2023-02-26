@@ -1,5 +1,6 @@
 {
     "ambientocclusion": false,
+    "render_type": "minecraft:cutout_mipped",
     "textures": {
         "particle": "technologica:block/glue",
         "vine": "technologica:block/glue"

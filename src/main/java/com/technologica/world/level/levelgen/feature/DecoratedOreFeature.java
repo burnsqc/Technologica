@@ -108,9 +108,7 @@ public class DecoratedOreFeature extends Feature<OreConfiguration> {
 			}
 		}
 
-		BulkSectionAccess bulksectionaccess = new BulkSectionAccess(p_225172_);
-
-		try {
+		try (BulkSectionAccess bulksectionaccess = new BulkSectionAccess(p_225172_)) {
 			for (int j4 = 0; j4 < j; ++j4) {
 				double d9 = adouble[j4 * 4 + 3];
 				if (!(d9 < 0.0D)) {
@@ -154,6 +152,9 @@ public class DecoratedOreFeature extends Feature<OreConfiguration> {
 
 																Function<BlockPos, BlockState> fun = bulksectionaccess::getBlockState;
 																for (Direction direction : Direction.values()) {
+																	if ((direction == Direction.WEST && i3 == 0) || (direction == Direction.EAST && i3 == 15) || (direction == Direction.DOWN && j3 == 0) || (direction == Direction.UP && j3 == 15) || (direction == Direction.NORTH && k3 == 0) || (direction == Direction.SOUTH && k3 == 15)) {
+																		break;
+																	}
 																	blockpos$mutableblockpos2.setWithOffset(blockpos$mutableblockpos, direction);
 																	if (airPredicate.test(fun.apply(blockpos$mutableblockpos2))) {
 																		if (isAdjacentToAir(fun, blockpos$mutableblockpos2) && p_225173_.nextInt(5) == 0) {
@@ -179,17 +180,7 @@ public class DecoratedOreFeature extends Feature<OreConfiguration> {
 					}
 				}
 			}
-		} catch (Throwable throwable1) {
-			try {
-				bulksectionaccess.close();
-			} catch (Throwable throwable) {
-				throwable1.addSuppressed(throwable);
-			}
-
-			throw throwable1;
 		}
-
-		bulksectionaccess.close();
 		return i > 0;
 	}
 
