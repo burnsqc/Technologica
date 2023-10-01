@@ -150,7 +150,7 @@ public class TallBushCropBlock extends CropBlock {
 			int j = 1 + p_57276_.random.nextInt(2);
 			popResource(p_57276_, p_57277_, new ItemStack(seeds.get(), j + (flag ? 1 : 0)));
 			p_57276_.playSound((Player) null, p_57277_, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + p_57276_.random.nextFloat() * 0.4F);
-			BlockState blockstate = p_57275_.setValue(AGE, Integer.valueOf(6));
+			BlockState blockstate = p_57275_.setValue(AGE, Integer.valueOf(5));
 			p_57276_.setBlock(p_57277_, blockstate, 2);
 			p_57276_.gameEvent(GameEvent.BLOCK_CHANGE, p_57277_, GameEvent.Context.of(p_57278_, blockstate));
 			return InteractionResult.sidedSuccess(p_57276_.isClientSide);

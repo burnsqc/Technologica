@@ -134,6 +134,7 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.HEMOTOXIN_SAC.get());
 		simpleItem(TechnologicaItems.NECROTOXIN_SAC.get());
 		simpleItem(TechnologicaItems.NEUROTOXIN_SAC.get());
+		simpleItem(TechnologicaItems.TETRODOTOXIN_SAC.get());
 
 		simpleItem(TechnologicaItems.LITHIUM_INGOT.get());
 		simpleItem(TechnologicaItems.BERYLLIUM_INGOT.get());

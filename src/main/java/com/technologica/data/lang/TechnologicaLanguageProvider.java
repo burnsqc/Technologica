@@ -33,10 +33,20 @@ public class TechnologicaLanguageProvider extends LanguageProvider {
 		add("item_group." + Technologica.MODID + ".decorative", "Decorative");
 		add("item_group." + Technologica.MODID + ".armory", "Armory");
 		add("item_group." + Technologica.MODID + ".cryptica", "Cryptica");
-		
+
 		add("death.attack.jostled_the_nitro", "%1$s jostled the nitro");
 		add("death.attack.jostled_the_nitro.player", "%1$s jostled the nitro whilst fighting %2$s");
+
+		add("effect.technologica.hallucination", "Hallucination");
+		add("effect.technologica.hemorrhage", "Hemorrhage");
+		add("effect.technologica.necrosis", "Necrosis");
+		add("effect.technologica.paralysis", "Paralysis");
 		add("effect.technologica.radiation", "Radiation");
+
+		add("advancements.tribulation.root.title", "Tribulation");
+		add("advancements.tribulation.root.description", "May you maintain your resolve in the face of great adversity");
+		add("advancements.tribulation.a_sign_of_things_to_come.title", "A Sign of Things to Come");
+		add("advancements.tribulation.a_sign_of_things_to_come.description", "This first lesson is to set your expectations.");
 	}
 
 	/**

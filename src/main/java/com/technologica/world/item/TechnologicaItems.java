@@ -188,10 +188,11 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> FUR = ITEMS.register("fur", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> IVORY = ITEMS.register("ivory", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> NARWHAL_TUSK = ITEMS.register("narwhal_tusk", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> BATRACHOTOXIN_SAC = ITEMS.register("batrachotoxin_sac", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> HEMOTOXIN_SAC = ITEMS.register("hemotoxin_sac", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> NECROTOXIN_SAC = ITEMS.register("necrotoxin_sac", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> NEUROTOXIN_SAC = ITEMS.register("neurotoxin_sac", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> BATRACHOTOXIN_SAC = ITEMS.register("batrachotoxin_sac", () -> new Item(new Item.Properties().food(TechnologicaFoods.BATRACHOTOXIN_SAC)));
+	public static final RegistryObject<Item> HEMOTOXIN_SAC = ITEMS.register("hemotoxin_sac", () -> new Item(new Item.Properties().food(TechnologicaFoods.HEMOTOXIN_SAC)));
+	public static final RegistryObject<Item> NECROTOXIN_SAC = ITEMS.register("necrotoxin_sac", () -> new Item(new Item.Properties().food(TechnologicaFoods.NECROTOXIN_SAC)));
+	public static final RegistryObject<Item> NEUROTOXIN_SAC = ITEMS.register("neurotoxin_sac", () -> new Item(new Item.Properties().food(TechnologicaFoods.NEUROTOXIN_SAC)));
+	public static final RegistryObject<Item> TETRODOTOXIN_SAC = ITEMS.register("tetrodotoxin_sac", () -> new Item(new Item.Properties().food(TechnologicaFoods.TETRODOTOXIN_SAC)));
 
 	/**
 	 * MINERAL

@@ -3,13 +3,7 @@ package com.technologica.world.level.block;
 import static com.technologica.Technologica.LOGGER;
 import static com.technologica.Technologica.MODID;
 
-import java.util.function.Supplier;
-
-import org.jetbrains.annotations.Nullable;
-
 import com.technologica.world.item.TechnologicaItems;
-import com.technologica.world.level.block.entity.TechnologicaSignBlockEntity;
-import com.technologica.world.level.block.entity.VanillaSignBlockEntity;
 import com.technologica.world.level.block.grower.AncientAmbrosiaTreeGrower;
 import com.technologica.world.level.block.grower.ApricotTreeGrower;
 import com.technologica.world.level.block.grower.AspenTreeGrower;
@@ -46,39 +40,18 @@ import com.technologica.world.level.block.grower.ZebrawoodTreeGrower;
 import com.technologica.world.level.block.state.properties.TechnologicaWoodType;
 import com.technologica.world.level.material.TechnologicaFluids;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AttachedStemBlock;
 import net.minecraft.world.level.block.BedBlock;
-import net.minecraft.world.level.block.BeetrootBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.ButtonBlock;
-import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.DropExperienceBlock;
-import net.minecraft.world.level.block.FenceBlock;
-import net.minecraft.world.level.block.FenceGateBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.LiquidBlock;
-import net.minecraft.world.level.block.PotatoBlock;
 import net.minecraft.world.level.block.PressurePlateBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SandBlock;
@@ -86,20 +59,12 @@ import net.minecraft.world.level.block.SaplingBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.StairBlock;
-import net.minecraft.world.level.block.StandingSignBlock;
 import net.minecraft.world.level.block.StemGrownBlock;
-import net.minecraft.world.level.block.SweetBerryBushBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
-import net.minecraft.world.level.block.WallSignBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BedPart;
-import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -117,30 +82,30 @@ public class TechnologicaBlocks {
 	 * FLORA
 	 */
 
-	public static final RegistryObject<Block> BARLEY = BLOCKS.register("barley", () -> grainCropBlock(TechnologicaItems.BARLEY_SEEDS));
-	public static final RegistryObject<Block> OATS = BLOCKS.register("oats", () -> grainCropBlock(TechnologicaItems.OATS_SEEDS));
-	public static final RegistryObject<Block> RYE = BLOCKS.register("rye", () -> grainCropBlock(TechnologicaItems.RYE_SEEDS));
+	public static final RegistryObject<Block> BARLEY = BLOCKS.register("barley", () -> VanillaBlocks.grainCropBlock(TechnologicaItems.BARLEY_SEEDS));
+	public static final RegistryObject<Block> OATS = BLOCKS.register("oats", () -> VanillaBlocks.grainCropBlock(TechnologicaItems.OATS_SEEDS));
+	public static final RegistryObject<Block> RYE = BLOCKS.register("rye", () -> VanillaBlocks.grainCropBlock(TechnologicaItems.RYE_SEEDS));
 	public static final RegistryObject<Block> CORN = BLOCKS.register("corn", () -> new TallCropBlock(TechnologicaItems.CORN_SEEDS));
-	public static final RegistryObject<Block> ASPARAGUS = BLOCKS.register("asparagus", () -> replantableCropBlock(TechnologicaItems.ASPARAGUS));
-	public static final RegistryObject<Block> CHILI_PEPPERS = BLOCKS.register("chili_peppers", () -> replantableCropBlock(TechnologicaItems.CHILI_PEPPER));
-	public static final RegistryObject<Block> COFFEE = BLOCKS.register("coffee", () -> replantableCropBlock(TechnologicaItems.COFFEE_BEANS));
-	public static final RegistryObject<Block> GARLIC = BLOCKS.register("garlic", () -> replantableCropBlock(TechnologicaItems.GARLIC));
-	public static final RegistryObject<Block> GINGER = BLOCKS.register("ginger", () -> replantableCropBlock(TechnologicaItems.GINGER));
-	public static final RegistryObject<Block> PEAS = BLOCKS.register("peas", () -> replantableCropBlock(TechnologicaItems.PEAS));
-	public static final RegistryObject<Block> PEANUTS = BLOCKS.register("peanuts", () -> replantableCropBlock(TechnologicaItems.PEANUT));
-	public static final RegistryObject<Block> RED_BEANS = BLOCKS.register("red_beans", () -> replantableCropBlock(TechnologicaItems.RED_BEANS));
-	public static final RegistryObject<Block> SOY_BEANS = BLOCKS.register("soy_beans", () -> replantableCropBlock(TechnologicaItems.SOY_BEANS));
-	public static final RegistryObject<Block> SWEET_POTATOES = BLOCKS.register("sweet_potatoes", () -> replantableCropBlock(TechnologicaItems.SWEET_POTATO));
-	public static final RegistryObject<Block> BROCCOLI = BLOCKS.register("broccoli", () -> seededCropBlock(TechnologicaItems.BROCCOLI_SEEDS));
-	public static final RegistryObject<Block> CELERY = BLOCKS.register("celery", () -> seededCropBlock(TechnologicaItems.CELERY_SEEDS));
-	public static final RegistryObject<Block> LETTUCE = BLOCKS.register("lettuce", () -> seededCropBlock(TechnologicaItems.LETTUCE_SEEDS));
-	public static final RegistryObject<Block> MUSTARD_GREENS = BLOCKS.register("mustard_greens", () -> seededCropBlock(TechnologicaItems.MUSTARD_SEEDS));
-	public static final RegistryObject<Block> ONIONS = BLOCKS.register("onions", () -> seededCropBlock(TechnologicaItems.ONION_SEEDS));
-	public static final RegistryObject<Block> PINEAPPLES = BLOCKS.register("pineapples", () -> seededCropBlock(TechnologicaItems.PINEAPPLE_SEEDS));
-	public static final RegistryObject<Block> PURPLE_CABBAGE = BLOCKS.register("purple_cabbage", () -> seededCropBlock(TechnologicaItems.PURPLE_CABBAGE_SEEDS));
-	public static final RegistryObject<Block> RADISHES = BLOCKS.register("radishes", () -> seededCropBlock(TechnologicaItems.RADISH_SEEDS));
-	public static final RegistryObject<Block> TEA = BLOCKS.register("tea", () -> seededCropBlock(TechnologicaItems.TEA_SEEDS));
-	public static final RegistryObject<Block> TURNIPS = BLOCKS.register("turnips", () -> seededCropBlock(TechnologicaItems.TURNIP_SEEDS));
+	public static final RegistryObject<Block> ASPARAGUS = BLOCKS.register("asparagus", () -> VanillaBlocks.replantableCropBlock(TechnologicaItems.ASPARAGUS));
+	public static final RegistryObject<Block> CHILI_PEPPERS = BLOCKS.register("chili_peppers", () -> VanillaBlocks.replantableCropBlock(TechnologicaItems.CHILI_PEPPER));
+	public static final RegistryObject<Block> COFFEE = BLOCKS.register("coffee", () -> VanillaBlocks.replantableCropBlock(TechnologicaItems.COFFEE_BEANS));
+	public static final RegistryObject<Block> GARLIC = BLOCKS.register("garlic", () -> VanillaBlocks.replantableCropBlock(TechnologicaItems.GARLIC));
+	public static final RegistryObject<Block> GINGER = BLOCKS.register("ginger", () -> VanillaBlocks.replantableCropBlock(TechnologicaItems.GINGER));
+	public static final RegistryObject<Block> PEAS = BLOCKS.register("peas", () -> VanillaBlocks.replantableCropBlock(TechnologicaItems.PEAS));
+	public static final RegistryObject<Block> PEANUTS = BLOCKS.register("peanuts", () -> VanillaBlocks.replantableCropBlock(TechnologicaItems.PEANUT));
+	public static final RegistryObject<Block> RED_BEANS = BLOCKS.register("red_beans", () -> VanillaBlocks.replantableCropBlock(TechnologicaItems.RED_BEANS));
+	public static final RegistryObject<Block> SOY_BEANS = BLOCKS.register("soy_beans", () -> VanillaBlocks.replantableCropBlock(TechnologicaItems.SOY_BEANS));
+	public static final RegistryObject<Block> SWEET_POTATOES = BLOCKS.register("sweet_potatoes", () -> VanillaBlocks.replantableCropBlock(TechnologicaItems.SWEET_POTATO));
+	public static final RegistryObject<Block> BROCCOLI = BLOCKS.register("broccoli", () -> VanillaBlocks.seededCropBlock(TechnologicaItems.BROCCOLI_SEEDS));
+	public static final RegistryObject<Block> CELERY = BLOCKS.register("celery", () -> VanillaBlocks.seededCropBlock(TechnologicaItems.CELERY_SEEDS));
+	public static final RegistryObject<Block> LETTUCE = BLOCKS.register("lettuce", () -> VanillaBlocks.seededCropBlock(TechnologicaItems.LETTUCE_SEEDS));
+	public static final RegistryObject<Block> MUSTARD_GREENS = BLOCKS.register("mustard_greens", () -> VanillaBlocks.seededCropBlock(TechnologicaItems.MUSTARD_SEEDS));
+	public static final RegistryObject<Block> ONIONS = BLOCKS.register("onions", () -> VanillaBlocks.seededCropBlock(TechnologicaItems.ONION_SEEDS));
+	public static final RegistryObject<Block> PINEAPPLES = BLOCKS.register("pineapples", () -> VanillaBlocks.seededCropBlock(TechnologicaItems.PINEAPPLE_SEEDS));
+	public static final RegistryObject<Block> PURPLE_CABBAGE = BLOCKS.register("purple_cabbage", () -> VanillaBlocks.seededCropBlock(TechnologicaItems.PURPLE_CABBAGE_SEEDS));
+	public static final RegistryObject<Block> RADISHES = BLOCKS.register("radishes", () -> VanillaBlocks.seededCropBlock(TechnologicaItems.RADISH_SEEDS));
+	public static final RegistryObject<Block> TEA = BLOCKS.register("tea", () -> VanillaBlocks.seededCropBlock(TechnologicaItems.TEA_SEEDS));
+	public static final RegistryObject<Block> TURNIPS = BLOCKS.register("turnips", () -> VanillaBlocks.seededCropBlock(TechnologicaItems.TURNIP_SEEDS));
 	public static final RegistryObject<Block> CUCUMBERS = BLOCKS.register("cucumbers", () -> new GourdCropBlock(BlockBehaviour.Properties.of(Material.VEGETABLE, MaterialColor.WARPED_WART_BLOCK).strength(1.0F).sound(SoundType.WOOD).noOcclusion(), 0));
 	public static final RegistryObject<Block> ATTACHED_CUCUMBER_STEM = BLOCKS.register("attached_cucumber_stem", () -> new AttachedStemBlock((StemGrownBlock) CUCUMBERS.get(), () -> {
 		return TechnologicaItems.CUCUMBER_SEEDS.get();
@@ -162,16 +127,16 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> ZUCCHINI_STEM = BLOCKS.register("zucchini_stem", () -> new GourdStemBlock((StemGrownBlock) ZUCCHINI.get(), () -> {
 		return TechnologicaItems.ZUCCHINI_SEEDS.get();
 	}, BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.HARD_CROP)));
-	public static final RegistryObject<Block> BLACKBERRY_BUSH = BLOCKS.register("blackberry_bush", () -> bushCropBlock(TechnologicaItems.BLACKBERRY));
-	public static final RegistryObject<Block> BLUEBERRY_BUSH = BLOCKS.register("blueberry_bush", () -> bushCropBlock(TechnologicaItems.BLUEBERRY));
-	public static final RegistryObject<Block> RASPBERRY_BUSH = BLOCKS.register("raspberry_bush", () -> bushCropBlock(TechnologicaItems.RASPBERRY));
-	public static final RegistryObject<Block> STRAWBERRY_BUSH = BLOCKS.register("strawberry_bush", () -> bushCropBlock(TechnologicaItems.STRAWBERRY));
-	public static final RegistryObject<Block> COTTON_BUSH = BLOCKS.register("cotton_bush", () -> bushCropBlock(TechnologicaItems.COTTON));
+	public static final RegistryObject<Block> BLACKBERRY_BUSH = BLOCKS.register("blackberry_bush", () -> VanillaBlocks.bushCropBlock(TechnologicaItems.BLACKBERRY));
+	public static final RegistryObject<Block> BLUEBERRY_BUSH = BLOCKS.register("blueberry_bush", () -> VanillaBlocks.bushCropBlock(TechnologicaItems.BLUEBERRY));
+	public static final RegistryObject<Block> RASPBERRY_BUSH = BLOCKS.register("raspberry_bush", () -> VanillaBlocks.bushCropBlock(TechnologicaItems.RASPBERRY));
+	public static final RegistryObject<Block> STRAWBERRY_BUSH = BLOCKS.register("strawberry_bush", () -> VanillaBlocks.bushCropBlock(TechnologicaItems.STRAWBERRY));
+	public static final RegistryObject<Block> COTTON_BUSH = BLOCKS.register("cotton_bush", () -> VanillaBlocks.bushCropBlock(TechnologicaItems.COTTON));
 	public static final RegistryObject<Block> PEPPERCORNS = BLOCKS.register("peppercorns", () -> new TallBushCropBlock(TechnologicaItems.PEPPERCORNS));
 	public static final RegistryObject<Block> GRAPES = BLOCKS.register("grapes", () -> new VineCropBlock(TechnologicaItems.GRAPE_SEEDS, TechnologicaItems.GRAPE));
 	public static final RegistryObject<Block> TOMATOES = BLOCKS.register("tomatoes", () -> new VineCropBlock(TechnologicaItems.TOMATO_SEEDS, TechnologicaItems.TOMATO));
-	public static final RegistryObject<Block> CRANBERRY_CROP = BLOCKS.register("cranberry", () -> new WaterCropBlock(TechnologicaItems.CRANBERRY_SEEDS));
-	public static final RegistryObject<Block> RICE = BLOCKS.register("rice", () -> new WaterCropBlock(TechnologicaItems.RICE_SEEDS));
+	public static final RegistryObject<Block> CRANBERRY_CROP = BLOCKS.register("cranberry", () -> new AquaticCropBlock(TechnologicaItems.CRANBERRY_SEEDS));
+	public static final RegistryObject<Block> RICE = BLOCKS.register("rice", () -> new AquaticCropBlock(TechnologicaItems.RICE_SEEDS));
 
 	public static final RegistryObject<Block> APRICOT_SAPLING = BLOCKS.register("apricot_sapling", () -> new SaplingBlock(new ApricotTreeGrower(), BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
 	public static final RegistryObject<Block> ASPEN_SAPLING = BLOCKS.register("aspen_sapling", () -> new SaplingBlock(new AspenTreeGrower(), BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
@@ -242,34 +207,34 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> POTTED_CRYOGENIC_SPIRE_SAPLING = BLOCKS.register("potted_cryogenic_spire_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, CRYOGENIC_SPIRE_SAPLING, BlockBehaviour.Properties.of(Material.DECORATION).instabreak().noOcclusion()));
 
 	public static final RegistryObject<Block> APRICOT_LEAVES = BLOCKS.register("apricot_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.APRICOT));
-	public static final RegistryObject<Block> ASPEN_LEAVES = BLOCKS.register("aspen_leaves", () -> leavesBlock());
+	public static final RegistryObject<Block> ASPEN_LEAVES = BLOCKS.register("aspen_leaves", () -> VanillaBlocks.leavesBlock());
 	public static final RegistryObject<Block> AVOCADO_LEAVES = BLOCKS.register("avocado_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.AVOCADO));
 	public static final RegistryObject<Block> BANANA_LEAVES = BLOCKS.register("banana_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.BANANA));
 	public static final RegistryObject<Block> CHERRY_LEAVES = BLOCKS.register("cherry_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.CHERRY));
 	public static final RegistryObject<Block> CHESTNUT_LEAVES = BLOCKS.register("chestnut_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.CHESTNUT));
-	public static final RegistryObject<Block> CINNAMON_LEAVES = BLOCKS.register("cinnamon_leaves", () -> leavesBlock());
+	public static final RegistryObject<Block> CINNAMON_LEAVES = BLOCKS.register("cinnamon_leaves", () -> VanillaBlocks.leavesBlock());
 	public static final RegistryObject<Block> COCONUT_LEAVES = BLOCKS.register("coconut_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.COCONUT));
-	public static final RegistryObject<Block> EBONY_LEAVES = BLOCKS.register("ebony_leaves", () -> leavesBlock());
+	public static final RegistryObject<Block> EBONY_LEAVES = BLOCKS.register("ebony_leaves", () -> VanillaBlocks.leavesBlock());
 	public static final RegistryObject<Block> KIWI_LEAVES = BLOCKS.register("kiwi_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.KIWI));
 	public static final RegistryObject<Block> LEMON_LEAVES = BLOCKS.register("lemon_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.LEMON));
 	public static final RegistryObject<Block> LIME_LEAVES = BLOCKS.register("lime_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.LIME));
-	public static final RegistryObject<Block> MAHOGANY_LEAVES = BLOCKS.register("mahogany_leaves", () -> leavesBlock());
-	public static final RegistryObject<Block> MAPLE_LEAVES = BLOCKS.register("maple_leaves", () -> leavesBlock());
+	public static final RegistryObject<Block> MAHOGANY_LEAVES = BLOCKS.register("mahogany_leaves", () -> VanillaBlocks.leavesBlock());
+	public static final RegistryObject<Block> MAPLE_LEAVES = BLOCKS.register("maple_leaves", () -> VanillaBlocks.leavesBlock());
 	public static final RegistryObject<Block> OLIVE_LEAVES = BLOCKS.register("olive_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.OLIVE));
 	public static final RegistryObject<Block> ORANGE_LEAVES = BLOCKS.register("orange_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.ORANGE));
 	public static final RegistryObject<Block> PEACH_LEAVES = BLOCKS.register("peach_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.PEACH));
 	public static final RegistryObject<Block> PEAR_LEAVES = BLOCKS.register("pear_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.PEAR));
 	public static final RegistryObject<Block> PLUM_LEAVES = BLOCKS.register("plum_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.PLUM));
-	public static final RegistryObject<Block> REDWOOD_LEAVES = BLOCKS.register("redwood_leaves", () -> leavesBlock());
-	public static final RegistryObject<Block> ROSEWOOD_LEAVES = BLOCKS.register("rosewood_leaves", () -> leavesBlock());
-	public static final RegistryObject<Block> RUBBER_LEAVES = BLOCKS.register("rubber_leaves", () -> leavesBlock());
-	public static final RegistryObject<Block> TEAK_LEAVES = BLOCKS.register("teak_leaves", () -> leavesBlock());
+	public static final RegistryObject<Block> REDWOOD_LEAVES = BLOCKS.register("redwood_leaves", () -> VanillaBlocks.leavesBlock());
+	public static final RegistryObject<Block> ROSEWOOD_LEAVES = BLOCKS.register("rosewood_leaves", () -> VanillaBlocks.leavesBlock());
+	public static final RegistryObject<Block> RUBBER_LEAVES = BLOCKS.register("rubber_leaves", () -> VanillaBlocks.leavesBlock());
+	public static final RegistryObject<Block> TEAK_LEAVES = BLOCKS.register("teak_leaves", () -> VanillaBlocks.leavesBlock());
 	public static final RegistryObject<Block> WALNUT_LEAVES = BLOCKS.register("walnut_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.WALNUT));
-	public static final RegistryObject<Block> ZEBRAWOOD_LEAVES = BLOCKS.register("zebrawood_leaves", () -> leavesBlock());
+	public static final RegistryObject<Block> ZEBRAWOOD_LEAVES = BLOCKS.register("zebrawood_leaves", () -> VanillaBlocks.leavesBlock());
 	public static final RegistryObject<Block> FRUITFUL_LEAVES = BLOCKS.register("fruitful_leaves", () -> new FruitingLeavesBlock(TechnologicaItems.BANANA, TechnologicaItems.CHERRY, TechnologicaItems.COCONUT, TechnologicaItems.KIWI, TechnologicaItems.LEMON, TechnologicaItems.LIME, TechnologicaItems.ORANGE, TechnologicaItems.PEACH, TechnologicaItems.PEAR));
 	public static final RegistryObject<Block> ALCHEMICAL_LEAVES = BLOCKS.register("alchemical_leaves", () -> new FruitingLeavesBlock(() -> Items.POTION));
 	public static final RegistryObject<Block> BENEVOLENT_LEAVES = BLOCKS.register("benevolent_leaves", () -> new PotionLeavesBlock(1));
-	public static final RegistryObject<Block> CURSED_LEAVES = BLOCKS.register("cursed_leaves", () -> leavesBlock());
+	public static final RegistryObject<Block> CURSED_LEAVES = BLOCKS.register("cursed_leaves", () -> VanillaBlocks.leavesBlock());
 	public static final RegistryObject<Block> MALEVOLENT_LEAVES = BLOCKS.register("malevolent_leaves", () -> new PotionLeavesBlock(2));
 	public static final RegistryObject<Block> CONDUCTIVE_LEAVES = BLOCKS.register("conductive_leaves", () -> new MagicLeavesBlock(1));
 	public static final RegistryObject<Block> FROSTBITTEN_LEAVES = BLOCKS.register("frostbitten_leaves", () -> new MagicLeavesBlock(2));
@@ -459,351 +424,351 @@ public class TechnologicaBlocks {
 	 */
 
 	public static final RegistryObject<Block> APRICOT_LOG = BLOCKS.register("apricot_log", FruitingLogBlock::new);
-	public static final RegistryObject<Block> ASPEN_LOG = BLOCKS.register("aspen_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> ASPEN_LOG = BLOCKS.register("aspen_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
 	public static final RegistryObject<Block> AVOCADO_LOG = BLOCKS.register("avocado_log", FruitingLogBlock::new);
 	public static final RegistryObject<Block> BANANA_LOG = BLOCKS.register("banana_log", FruitingLogBlock::new);
 	public static final RegistryObject<Block> CHERRY_LOG = BLOCKS.register("cherry_log", FruitingLogBlock::new);
 	public static final RegistryObject<Block> CHESTNUT_LOG = BLOCKS.register("chestnut_log", FruitingLogBlock::new);
-	public static final RegistryObject<Block> CINNAMON_LOG = BLOCKS.register("cinnamon_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> CINNAMON_LOG = BLOCKS.register("cinnamon_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
 	public static final RegistryObject<Block> COCONUT_LOG = BLOCKS.register("coconut_log", FruitingLogBlock::new);
-	public static final RegistryObject<Block> EBONY_LOG = BLOCKS.register("ebony_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> EBONY_LOG = BLOCKS.register("ebony_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
 	public static final RegistryObject<Block> KIWI_LOG = BLOCKS.register("kiwi_log", FruitingLogBlock::new);
 	public static final RegistryObject<Block> LEMON_LOG = BLOCKS.register("lemon_log", FruitingLogBlock::new);
 	public static final RegistryObject<Block> LIME_LOG = BLOCKS.register("lime_log", FruitingLogBlock::new);
-	public static final RegistryObject<Block> MAHOGANY_LOG = BLOCKS.register("mahogany_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> MAHOGANY_LOG = BLOCKS.register("mahogany_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
 	public static final RegistryObject<Block> MAPLE_LOG = BLOCKS.register("maple_log", SapLogBlock::new);
 	public static final RegistryObject<Block> OLIVE_LOG = BLOCKS.register("olive_log", FruitingLogBlock::new);
 	public static final RegistryObject<Block> ORANGE_LOG = BLOCKS.register("orange_log", FruitingLogBlock::new);
 	public static final RegistryObject<Block> PEACH_LOG = BLOCKS.register("peach_log", FruitingLogBlock::new);
 	public static final RegistryObject<Block> PEAR_LOG = BLOCKS.register("pear_log", FruitingLogBlock::new);
 	public static final RegistryObject<Block> PLUM_LOG = BLOCKS.register("plum_log", FruitingLogBlock::new);
-	public static final RegistryObject<Block> REDWOOD_LOG = BLOCKS.register("redwood_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> ROSEWOOD_LOG = BLOCKS.register("rosewood_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> REDWOOD_LOG = BLOCKS.register("redwood_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> ROSEWOOD_LOG = BLOCKS.register("rosewood_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
 	public static final RegistryObject<Block> RUBBER_LOG = BLOCKS.register("rubber_log", SapLogBlock::new);
-	public static final RegistryObject<Block> TEAK_LOG = BLOCKS.register("teak_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> TEAK_LOG = BLOCKS.register("teak_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
 	public static final RegistryObject<Block> WALNUT_LOG = BLOCKS.register("walnut_log", FruitingLogBlock::new);
-	public static final RegistryObject<Block> ZEBRAWOOD_LOG = BLOCKS.register("zebrawood_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> ALCHEMICAL_LOG = BLOCKS.register("alchemical_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> BENEVOLENT_LOG = BLOCKS.register("benevolent_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> CONDUCTIVE_LOG = BLOCKS.register("conductive_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> ZEBRAWOOD_LOG = BLOCKS.register("zebrawood_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> ALCHEMICAL_LOG = BLOCKS.register("alchemical_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> BENEVOLENT_LOG = BLOCKS.register("benevolent_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> CONDUCTIVE_LOG = BLOCKS.register("conductive_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
 	public static final RegistryObject<Block> FROSTBITTEN_LOG = BLOCKS.register("frostbitten_log", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.ICE).strength(0.5F).sound(SoundType.GLASS).noOcclusion()));
-	public static final RegistryObject<Block> FRUITFUL_LOG = BLOCKS.register("fruitful_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> INFERNAL_LOG = BLOCKS.register("infernal_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> MALEVOLENT_LOG = BLOCKS.register("malevolent_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> NECROTIC_LOG = BLOCKS.register("necrotic_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> FRUITFUL_LOG = BLOCKS.register("fruitful_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> INFERNAL_LOG = BLOCKS.register("infernal_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> MALEVOLENT_LOG = BLOCKS.register("malevolent_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> NECROTIC_LOG = BLOCKS.register("necrotic_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
 
-	public static final RegistryObject<Block> STRIPPED_APRICOT_LOG = BLOCKS.register("stripped_apricot_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_ASPEN_LOG = BLOCKS.register("stripped_aspen_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_AVOCADO_LOG = BLOCKS.register("stripped_avocado_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_BANANA_LOG = BLOCKS.register("stripped_banana_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_CHERRY_LOG = BLOCKS.register("stripped_cherry_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_CHESTNUT_LOG = BLOCKS.register("stripped_chestnut_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_CINNAMON_LOG = BLOCKS.register("stripped_cinnamon_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_COCONUT_LOG = BLOCKS.register("stripped_coconut_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_EBONY_LOG = BLOCKS.register("stripped_ebony_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_KIWI_LOG = BLOCKS.register("stripped_kiwi_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_LEMON_LOG = BLOCKS.register("stripped_lemon_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_LIME_LOG = BLOCKS.register("stripped_lime_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_MAHOGANY_LOG = BLOCKS.register("stripped_mahogany_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_MAPLE_LOG = BLOCKS.register("stripped_maple_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_OLIVE_LOG = BLOCKS.register("stripped_olive_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_ORANGE_LOG = BLOCKS.register("stripped_orange_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_PEACH_LOG = BLOCKS.register("stripped_peach_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_PEAR_LOG = BLOCKS.register("stripped_pear_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_PLUM_LOG = BLOCKS.register("stripped_plum_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_REDWOOD_LOG = BLOCKS.register("stripped_redwood_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_ROSEWOOD_LOG = BLOCKS.register("stripped_rosewood_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_RUBBER_LOG = BLOCKS.register("stripped_rubber_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_TEAK_LOG = BLOCKS.register("stripped_teak_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_WALNUT_LOG = BLOCKS.register("stripped_walnut_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_ZEBRAWOOD_LOG = BLOCKS.register("stripped_zebrawood_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_ALCHEMICAL_LOG = BLOCKS.register("stripped_alchemical_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_BENEVOLENT_LOG = BLOCKS.register("stripped_benevolent_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_CONDUCTIVE_LOG = BLOCKS.register("stripped_conductive_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_APRICOT_LOG = BLOCKS.register("stripped_apricot_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_ASPEN_LOG = BLOCKS.register("stripped_aspen_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_AVOCADO_LOG = BLOCKS.register("stripped_avocado_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_BANANA_LOG = BLOCKS.register("stripped_banana_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_CHERRY_LOG = BLOCKS.register("stripped_cherry_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_CHESTNUT_LOG = BLOCKS.register("stripped_chestnut_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_CINNAMON_LOG = BLOCKS.register("stripped_cinnamon_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_COCONUT_LOG = BLOCKS.register("stripped_coconut_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_EBONY_LOG = BLOCKS.register("stripped_ebony_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_KIWI_LOG = BLOCKS.register("stripped_kiwi_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_LEMON_LOG = BLOCKS.register("stripped_lemon_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_LIME_LOG = BLOCKS.register("stripped_lime_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_MAHOGANY_LOG = BLOCKS.register("stripped_mahogany_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_MAPLE_LOG = BLOCKS.register("stripped_maple_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_OLIVE_LOG = BLOCKS.register("stripped_olive_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_ORANGE_LOG = BLOCKS.register("stripped_orange_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_PEACH_LOG = BLOCKS.register("stripped_peach_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_PEAR_LOG = BLOCKS.register("stripped_pear_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_PLUM_LOG = BLOCKS.register("stripped_plum_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_REDWOOD_LOG = BLOCKS.register("stripped_redwood_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_ROSEWOOD_LOG = BLOCKS.register("stripped_rosewood_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_RUBBER_LOG = BLOCKS.register("stripped_rubber_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_TEAK_LOG = BLOCKS.register("stripped_teak_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_WALNUT_LOG = BLOCKS.register("stripped_walnut_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_ZEBRAWOOD_LOG = BLOCKS.register("stripped_zebrawood_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_ALCHEMICAL_LOG = BLOCKS.register("stripped_alchemical_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_BENEVOLENT_LOG = BLOCKS.register("stripped_benevolent_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_CONDUCTIVE_LOG = BLOCKS.register("stripped_conductive_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
 	public static final RegistryObject<Block> STRIPPED_FROSTBITTEN_LOG = BLOCKS.register("stripped_frostbitten_log", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.ICE).friction(0.98F).strength(0.5F).sound(SoundType.GLASS).noOcclusion()));;
-	public static final RegistryObject<Block> STRIPPED_FRUITFUL_LOG = BLOCKS.register("stripped_fruitful_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_INFERNAL_LOG = BLOCKS.register("stripped_infernal_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_MALEVOLENT_LOG = BLOCKS.register("stripped_malevolent_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_NECROTIC_LOG = BLOCKS.register("stripped_necrotic_log", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_FRUITFUL_LOG = BLOCKS.register("stripped_fruitful_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_INFERNAL_LOG = BLOCKS.register("stripped_infernal_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_MALEVOLENT_LOG = BLOCKS.register("stripped_malevolent_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_NECROTIC_LOG = BLOCKS.register("stripped_necrotic_log", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
 
-	public static final RegistryObject<Block> APRICOT_WOOD = BLOCKS.register("apricot_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> ASPEN_WOOD = BLOCKS.register("aspen_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> AVOCADO_WOOD = BLOCKS.register("avocado_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> BANANA_WOOD = BLOCKS.register("banana_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> CHERRY_WOOD = BLOCKS.register("cherry_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> CHESTNUT_WOOD = BLOCKS.register("chestnut_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> CINNAMON_WOOD = BLOCKS.register("cinnamon_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> COCONUT_WOOD = BLOCKS.register("coconut_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> EBONY_WOOD = BLOCKS.register("ebony_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> KIWI_WOOD = BLOCKS.register("kiwi_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> LEMON_WOOD = BLOCKS.register("lemon_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> LIME_WOOD = BLOCKS.register("lime_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> MAHOGANY_WOOD = BLOCKS.register("mahogany_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> MAPLE_WOOD = BLOCKS.register("maple_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> OLIVE_WOOD = BLOCKS.register("olive_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> ORANGE_WOOD = BLOCKS.register("orange_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> PEACH_WOOD = BLOCKS.register("peach_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> PEAR_WOOD = BLOCKS.register("pear_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> PLUM_WOOD = BLOCKS.register("plum_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> REDWOOD_WOOD = BLOCKS.register("redwood_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> ROSEWOOD_WOOD = BLOCKS.register("rosewood_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> RUBBER_WOOD = BLOCKS.register("rubber_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> TEAK_WOOD = BLOCKS.register("teak_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> WALNUT_WOOD = BLOCKS.register("walnut_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> ZEBRAWOOD_WOOD = BLOCKS.register("zebrawood_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> FRUITFUL_WOOD = BLOCKS.register("fruitful_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> ALCHEMICAL_WOOD = BLOCKS.register("alchemical_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> BENEVOLENT_WOOD = BLOCKS.register("benevolent_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> MALEVOLENT_WOOD = BLOCKS.register("malevolent_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> NECROTIC_WOOD = BLOCKS.register("necrotic_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> CONDUCTIVE_WOOD = BLOCKS.register("conductive_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> FROSTBITTEN_WOOD = BLOCKS.register("frostbitten_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> INFERNAL_WOOD = BLOCKS.register("infernal_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> APRICOT_WOOD = BLOCKS.register("apricot_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> ASPEN_WOOD = BLOCKS.register("aspen_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> AVOCADO_WOOD = BLOCKS.register("avocado_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> BANANA_WOOD = BLOCKS.register("banana_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> CHERRY_WOOD = BLOCKS.register("cherry_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> CHESTNUT_WOOD = BLOCKS.register("chestnut_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> CINNAMON_WOOD = BLOCKS.register("cinnamon_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> COCONUT_WOOD = BLOCKS.register("coconut_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> EBONY_WOOD = BLOCKS.register("ebony_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> KIWI_WOOD = BLOCKS.register("kiwi_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> LEMON_WOOD = BLOCKS.register("lemon_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> LIME_WOOD = BLOCKS.register("lime_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> MAHOGANY_WOOD = BLOCKS.register("mahogany_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> MAPLE_WOOD = BLOCKS.register("maple_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> OLIVE_WOOD = BLOCKS.register("olive_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> ORANGE_WOOD = BLOCKS.register("orange_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> PEACH_WOOD = BLOCKS.register("peach_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> PEAR_WOOD = BLOCKS.register("pear_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> PLUM_WOOD = BLOCKS.register("plum_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> REDWOOD_WOOD = BLOCKS.register("redwood_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> ROSEWOOD_WOOD = BLOCKS.register("rosewood_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> RUBBER_WOOD = BLOCKS.register("rubber_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> TEAK_WOOD = BLOCKS.register("teak_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> WALNUT_WOOD = BLOCKS.register("walnut_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> ZEBRAWOOD_WOOD = BLOCKS.register("zebrawood_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> FRUITFUL_WOOD = BLOCKS.register("fruitful_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> ALCHEMICAL_WOOD = BLOCKS.register("alchemical_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> BENEVOLENT_WOOD = BLOCKS.register("benevolent_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> MALEVOLENT_WOOD = BLOCKS.register("malevolent_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> NECROTIC_WOOD = BLOCKS.register("necrotic_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> CONDUCTIVE_WOOD = BLOCKS.register("conductive_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> FROSTBITTEN_WOOD = BLOCKS.register("frostbitten_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> INFERNAL_WOOD = BLOCKS.register("infernal_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
 
-	public static final RegistryObject<Block> STRIPPED_APRICOT_WOOD = BLOCKS.register("stripped_apricot_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_ASPEN_WOOD = BLOCKS.register("stripped_aspen_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_AVOCADO_WOOD = BLOCKS.register("stripped_avocado_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_BANANA_WOOD = BLOCKS.register("stripped_banana_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_CHERRY_WOOD = BLOCKS.register("stripped_cherry_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_CHESTNUT_WOOD = BLOCKS.register("stripped_chestnut_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_CINNAMON_WOOD = BLOCKS.register("stripped_cinnamon_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_COCONUT_WOOD = BLOCKS.register("stripped_coconut_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_EBONY_WOOD = BLOCKS.register("stripped_ebony_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_KIWI_WOOD = BLOCKS.register("stripped_kiwi_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_LEMON_WOOD = BLOCKS.register("stripped_lemon_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_LIME_WOOD = BLOCKS.register("stripped_lime_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_MAHOGANY_WOOD = BLOCKS.register("stripped_mahogany_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_MAPLE_WOOD = BLOCKS.register("stripped_maple_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_OLIVE_WOOD = BLOCKS.register("stripped_olive_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_ORANGE_WOOD = BLOCKS.register("stripped_orange_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_PEACH_WOOD = BLOCKS.register("stripped_peach_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_PEAR_WOOD = BLOCKS.register("stripped_pear_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_PLUM_WOOD = BLOCKS.register("stripped_plum_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_REDWOOD_WOOD = BLOCKS.register("stripped_redwood_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_ROSEWOOD_WOOD = BLOCKS.register("stripped_rosewood_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_RUBBER_WOOD = BLOCKS.register("stripped_rubber_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_TEAK_WOOD = BLOCKS.register("stripped_teak_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_WALNUT_WOOD = BLOCKS.register("stripped_walnut_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_ZEBRAWOOD_WOOD = BLOCKS.register("stripped_zebrawood_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_FRUITFUL_WOOD = BLOCKS.register("stripped_fruitful_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_ALCHEMICAL_WOOD = BLOCKS.register("stripped_alchemical_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_BENEVOLENT_WOOD = BLOCKS.register("stripped_benevolent_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_MALEVOLENT_WOOD = BLOCKS.register("stripped_malevolent_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_NECROTIC_WOOD = BLOCKS.register("stripped_necrotic_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
-	public static final RegistryObject<Block> STRIPPED_CONDUCTIVE_WOOD = BLOCKS.register("stripped_conductive_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_APRICOT_WOOD = BLOCKS.register("stripped_apricot_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_ASPEN_WOOD = BLOCKS.register("stripped_aspen_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_AVOCADO_WOOD = BLOCKS.register("stripped_avocado_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_BANANA_WOOD = BLOCKS.register("stripped_banana_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_CHERRY_WOOD = BLOCKS.register("stripped_cherry_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_CHESTNUT_WOOD = BLOCKS.register("stripped_chestnut_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_CINNAMON_WOOD = BLOCKS.register("stripped_cinnamon_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_COCONUT_WOOD = BLOCKS.register("stripped_coconut_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_EBONY_WOOD = BLOCKS.register("stripped_ebony_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_KIWI_WOOD = BLOCKS.register("stripped_kiwi_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_LEMON_WOOD = BLOCKS.register("stripped_lemon_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_LIME_WOOD = BLOCKS.register("stripped_lime_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_MAHOGANY_WOOD = BLOCKS.register("stripped_mahogany_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_MAPLE_WOOD = BLOCKS.register("stripped_maple_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_OLIVE_WOOD = BLOCKS.register("stripped_olive_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_ORANGE_WOOD = BLOCKS.register("stripped_orange_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_PEACH_WOOD = BLOCKS.register("stripped_peach_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_PEAR_WOOD = BLOCKS.register("stripped_pear_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_PLUM_WOOD = BLOCKS.register("stripped_plum_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_REDWOOD_WOOD = BLOCKS.register("stripped_redwood_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_ROSEWOOD_WOOD = BLOCKS.register("stripped_rosewood_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_RUBBER_WOOD = BLOCKS.register("stripped_rubber_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_TEAK_WOOD = BLOCKS.register("stripped_teak_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_WALNUT_WOOD = BLOCKS.register("stripped_walnut_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_ZEBRAWOOD_WOOD = BLOCKS.register("stripped_zebrawood_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_FRUITFUL_WOOD = BLOCKS.register("stripped_fruitful_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_ALCHEMICAL_WOOD = BLOCKS.register("stripped_alchemical_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_BENEVOLENT_WOOD = BLOCKS.register("stripped_benevolent_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_MALEVOLENT_WOOD = BLOCKS.register("stripped_malevolent_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_NECROTIC_WOOD = BLOCKS.register("stripped_necrotic_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_CONDUCTIVE_WOOD = BLOCKS.register("stripped_conductive_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
 	public static final RegistryObject<Block> STRIPPED_FROSTBITTEN_WOOD = BLOCKS.register("stripped_frostbitten_wood", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.ICE).friction(0.98F).strength(0.5F).sound(SoundType.GLASS).noOcclusion()));
-	public static final RegistryObject<Block> STRIPPED_INFERNAL_WOOD = BLOCKS.register("stripped_infernal_wood", () -> logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
+	public static final RegistryObject<Block> STRIPPED_INFERNAL_WOOD = BLOCKS.register("stripped_infernal_wood", () -> VanillaBlocks.logBlock(MaterialColor.COLOR_ORANGE, MaterialColor.STONE));
 
-	public static final RegistryObject<Block> APRICOT_PLANKS = BLOCKS.register("apricot_planks", () -> planksBlock());
-	public static final RegistryObject<Block> ASPEN_PLANKS = BLOCKS.register("aspen_planks", () -> planksBlock());
-	public static final RegistryObject<Block> AVOCADO_PLANKS = BLOCKS.register("avocado_planks", () -> planksBlock());
-	public static final RegistryObject<Block> BANANA_PLANKS = BLOCKS.register("banana_planks", () -> planksBlock());
-	public static final RegistryObject<Block> CHERRY_PLANKS = BLOCKS.register("cherry_planks", () -> planksBlock());
-	public static final RegistryObject<Block> CHESTNUT_PLANKS = BLOCKS.register("chestnut_planks", () -> planksBlock());
-	public static final RegistryObject<Block> CINNAMON_PLANKS = BLOCKS.register("cinnamon_planks", () -> planksBlock());
-	public static final RegistryObject<Block> COCONUT_PLANKS = BLOCKS.register("coconut_planks", () -> planksBlock());
-	public static final RegistryObject<Block> EBONY_PLANKS = BLOCKS.register("ebony_planks", () -> planksBlock());
-	public static final RegistryObject<Block> KIWI_PLANKS = BLOCKS.register("kiwi_planks", () -> planksBlock());
-	public static final RegistryObject<Block> LEMON_PLANKS = BLOCKS.register("lemon_planks", () -> planksBlock());
-	public static final RegistryObject<Block> LIME_PLANKS = BLOCKS.register("lime_planks", () -> planksBlock());
-	public static final RegistryObject<Block> MAHOGANY_PLANKS = BLOCKS.register("mahogany_planks", () -> planksBlock());
-	public static final RegistryObject<Block> MAPLE_PLANKS = BLOCKS.register("maple_planks", () -> planksBlock());
-	public static final RegistryObject<Block> OLIVE_PLANKS = BLOCKS.register("olive_planks", () -> planksBlock());
-	public static final RegistryObject<Block> ORANGE_PLANKS = BLOCKS.register("orange_planks", () -> planksBlock());
-	public static final RegistryObject<Block> PEACH_PLANKS = BLOCKS.register("peach_planks", () -> planksBlock());
-	public static final RegistryObject<Block> PEAR_PLANKS = BLOCKS.register("pear_planks", () -> planksBlock());
-	public static final RegistryObject<Block> PLUM_PLANKS = BLOCKS.register("plum_planks", () -> planksBlock());
-	public static final RegistryObject<Block> REDWOOD_PLANKS = BLOCKS.register("redwood_planks", () -> planksBlock());
-	public static final RegistryObject<Block> ROSEWOOD_PLANKS = BLOCKS.register("rosewood_planks", () -> planksBlock());
-	public static final RegistryObject<Block> RUBBER_PLANKS = BLOCKS.register("rubber_planks", () -> planksBlock());
-	public static final RegistryObject<Block> TEAK_PLANKS = BLOCKS.register("teak_planks", () -> planksBlock());
-	public static final RegistryObject<Block> WALNUT_PLANKS = BLOCKS.register("walnut_planks", () -> planksBlock());
-	public static final RegistryObject<Block> ZEBRAWOOD_PLANKS = BLOCKS.register("zebrawood_planks", () -> planksBlock());
-	public static final RegistryObject<Block> ALCHEMICAL_PLANKS = BLOCKS.register("alchemical_planks", () -> planksBlock());
-	public static final RegistryObject<Block> BENEVOLENT_PLANKS = BLOCKS.register("benevolent_planks", () -> planksBlock());
-	public static final RegistryObject<Block> CONDUCTIVE_PLANKS = BLOCKS.register("conductive_planks", () -> planksBlock());
+	public static final RegistryObject<Block> APRICOT_PLANKS = BLOCKS.register("apricot_planks", () -> VanillaBlocks.planksBlock());
+	public static final RegistryObject<Block> ASPEN_PLANKS = BLOCKS.register("aspen_planks", () -> VanillaBlocks.planksBlock());
+	public static final RegistryObject<Block> AVOCADO_PLANKS = BLOCKS.register("avocado_planks", () -> VanillaBlocks.planksBlock());
+	public static final RegistryObject<Block> BANANA_PLANKS = BLOCKS.register("banana_planks", () -> VanillaBlocks.planksBlock());
+	public static final RegistryObject<Block> CHERRY_PLANKS = BLOCKS.register("cherry_planks", () -> VanillaBlocks.planksBlock());
+	public static final RegistryObject<Block> CHESTNUT_PLANKS = BLOCKS.register("chestnut_planks", () -> VanillaBlocks.planksBlock());
+	public static final RegistryObject<Block> CINNAMON_PLANKS = BLOCKS.register("cinnamon_planks", () -> VanillaBlocks.planksBlock());
+	public static final RegistryObject<Block> COCONUT_PLANKS = BLOCKS.register("coconut_planks", () -> VanillaBlocks.planksBlock());
+	public static final RegistryObject<Block> EBONY_PLANKS = BLOCKS.register("ebony_planks", () -> VanillaBlocks.planksBlock());
+	public static final RegistryObject<Block> KIWI_PLANKS = BLOCKS.register("kiwi_planks", () -> VanillaBlocks.planksBlock());
+	public static final RegistryObject<Block> LEMON_PLANKS = BLOCKS.register("lemon_planks", () -> VanillaBlocks.planksBlock());
+	public static final RegistryObject<Block> LIME_PLANKS = BLOCKS.register("lime_planks", () -> VanillaBlocks.planksBlock());
+	public static final RegistryObject<Block> MAHOGANY_PLANKS = BLOCKS.register("mahogany_planks", () -> VanillaBlocks.planksBlock());
+	public static final RegistryObject<Block> MAPLE_PLANKS = BLOCKS.register("maple_planks", () -> VanillaBlocks.planksBlock());
+	public static final RegistryObject<Block> OLIVE_PLANKS = BLOCKS.register("olive_planks", () -> VanillaBlocks.planksBlock());
+	public static final RegistryObject<Block> ORANGE_PLANKS = BLOCKS.register("orange_planks", () -> VanillaBlocks.planksBlock());
+	public static final RegistryObject<Block> PEACH_PLANKS = BLOCKS.register("peach_planks", () -> VanillaBlocks.planksBlock());
+	public static final RegistryObject<Block> PEAR_PLANKS = BLOCKS.register("pear_planks", () -> VanillaBlocks.planksBlock());
+	public static final RegistryObject<Block> PLUM_PLANKS = BLOCKS.register("plum_planks", () -> VanillaBlocks.planksBlock());
+	public static final RegistryObject<Block> REDWOOD_PLANKS = BLOCKS.register("redwood_planks", () -> VanillaBlocks.planksBlock());
+	public static final RegistryObject<Block> ROSEWOOD_PLANKS = BLOCKS.register("rosewood_planks", () -> VanillaBlocks.planksBlock());
+	public static final RegistryObject<Block> RUBBER_PLANKS = BLOCKS.register("rubber_planks", () -> VanillaBlocks.planksBlock());
+	public static final RegistryObject<Block> TEAK_PLANKS = BLOCKS.register("teak_planks", () -> VanillaBlocks.planksBlock());
+	public static final RegistryObject<Block> WALNUT_PLANKS = BLOCKS.register("walnut_planks", () -> VanillaBlocks.planksBlock());
+	public static final RegistryObject<Block> ZEBRAWOOD_PLANKS = BLOCKS.register("zebrawood_planks", () -> VanillaBlocks.planksBlock());
+	public static final RegistryObject<Block> ALCHEMICAL_PLANKS = BLOCKS.register("alchemical_planks", () -> VanillaBlocks.planksBlock());
+	public static final RegistryObject<Block> BENEVOLENT_PLANKS = BLOCKS.register("benevolent_planks", () -> VanillaBlocks.planksBlock());
+	public static final RegistryObject<Block> CONDUCTIVE_PLANKS = BLOCKS.register("conductive_planks", () -> VanillaBlocks.planksBlock());
 	public static final RegistryObject<Block> FROSTBITTEN_PLANKS = BLOCKS.register("frostbitten_planks", () -> new Block(BlockBehaviour.Properties.of(Material.ICE).friction(0.98F).randomTicks().strength(0.5F).sound(SoundType.GLASS).noOcclusion()));
-	public static final RegistryObject<Block> FRUITFUL_PLANKS = BLOCKS.register("fruitful_planks", () -> planksBlock());
-	public static final RegistryObject<Block> INFERNAL_PLANKS = BLOCKS.register("infernal_planks", () -> planksBlock());
-	public static final RegistryObject<Block> MALEVOLENT_PLANKS = BLOCKS.register("malevolent_planks", () -> planksBlock());
-	public static final RegistryObject<Block> NECROTIC_PLANKS = BLOCKS.register("necrotic_planks", () -> planksBlock());
+	public static final RegistryObject<Block> FRUITFUL_PLANKS = BLOCKS.register("fruitful_planks", () -> VanillaBlocks.planksBlock());
+	public static final RegistryObject<Block> INFERNAL_PLANKS = BLOCKS.register("infernal_planks", () -> VanillaBlocks.planksBlock());
+	public static final RegistryObject<Block> MALEVOLENT_PLANKS = BLOCKS.register("malevolent_planks", () -> VanillaBlocks.planksBlock());
+	public static final RegistryObject<Block> NECROTIC_PLANKS = BLOCKS.register("necrotic_planks", () -> VanillaBlocks.planksBlock());
 
-	public static final RegistryObject<Block> APRICOT_SLAB = BLOCKS.register("apricot_slab", () -> slabBlock());
-	public static final RegistryObject<Block> ASPEN_SLAB = BLOCKS.register("aspen_slab", () -> slabBlock());
-	public static final RegistryObject<Block> AVOCADO_SLAB = BLOCKS.register("avocado_slab", () -> slabBlock());
-	public static final RegistryObject<Block> BANANA_SLAB = BLOCKS.register("banana_slab", () -> slabBlock());
-	public static final RegistryObject<Block> CHERRY_SLAB = BLOCKS.register("cherry_slab", () -> slabBlock());
-	public static final RegistryObject<Block> CHESTNUT_SLAB = BLOCKS.register("chestnut_slab", () -> slabBlock());
-	public static final RegistryObject<Block> CINNAMON_SLAB = BLOCKS.register("cinnamon_slab", () -> slabBlock());
-	public static final RegistryObject<Block> COCONUT_SLAB = BLOCKS.register("coconut_slab", () -> slabBlock());
-	public static final RegistryObject<Block> EBONY_SLAB = BLOCKS.register("ebony_slab", () -> slabBlock());
-	public static final RegistryObject<Block> KIWI_SLAB = BLOCKS.register("kiwi_slab", () -> slabBlock());
-	public static final RegistryObject<Block> LEMON_SLAB = BLOCKS.register("lemon_slab", () -> slabBlock());
-	public static final RegistryObject<Block> LIME_SLAB = BLOCKS.register("lime_slab", () -> slabBlock());
-	public static final RegistryObject<Block> MAHOGANY_SLAB = BLOCKS.register("mahogany_slab", () -> slabBlock());
-	public static final RegistryObject<Block> MAPLE_SLAB = BLOCKS.register("maple_slab", () -> slabBlock());
-	public static final RegistryObject<Block> OLIVE_SLAB = BLOCKS.register("olive_slab", () -> slabBlock());
-	public static final RegistryObject<Block> ORANGE_SLAB = BLOCKS.register("orange_slab", () -> slabBlock());
-	public static final RegistryObject<Block> PEACH_SLAB = BLOCKS.register("peach_slab", () -> slabBlock());
-	public static final RegistryObject<Block> PEAR_SLAB = BLOCKS.register("pear_slab", () -> slabBlock());
-	public static final RegistryObject<Block> PLUM_SLAB = BLOCKS.register("plum_slab", () -> slabBlock());
-	public static final RegistryObject<Block> REDWOOD_SLAB = BLOCKS.register("redwood_slab", () -> slabBlock());
-	public static final RegistryObject<Block> ROSEWOOD_SLAB = BLOCKS.register("rosewood_slab", () -> slabBlock());
-	public static final RegistryObject<Block> RUBBER_SLAB = BLOCKS.register("rubber_slab", () -> slabBlock());
-	public static final RegistryObject<Block> TEAK_SLAB = BLOCKS.register("teak_slab", () -> slabBlock());
-	public static final RegistryObject<Block> WALNUT_SLAB = BLOCKS.register("walnut_slab", () -> slabBlock());
-	public static final RegistryObject<Block> ZEBRAWOOD_SLAB = BLOCKS.register("zebrawood_slab", () -> slabBlock());
-	public static final RegistryObject<Block> ALCHEMICAL_SLAB = BLOCKS.register("alchemical_slab", () -> slabBlock());
-	public static final RegistryObject<Block> BENEVOLENT_SLAB = BLOCKS.register("benevolent_slab", () -> slabBlock());
-	public static final RegistryObject<Block> CONDUCTIVE_SLAB = BLOCKS.register("conductive_slab", () -> slabBlock());
+	public static final RegistryObject<Block> APRICOT_SLAB = BLOCKS.register("apricot_slab", () -> VanillaBlocks.slabBlock());
+	public static final RegistryObject<Block> ASPEN_SLAB = BLOCKS.register("aspen_slab", () -> VanillaBlocks.slabBlock());
+	public static final RegistryObject<Block> AVOCADO_SLAB = BLOCKS.register("avocado_slab", () -> VanillaBlocks.slabBlock());
+	public static final RegistryObject<Block> BANANA_SLAB = BLOCKS.register("banana_slab", () -> VanillaBlocks.slabBlock());
+	public static final RegistryObject<Block> CHERRY_SLAB = BLOCKS.register("cherry_slab", () -> VanillaBlocks.slabBlock());
+	public static final RegistryObject<Block> CHESTNUT_SLAB = BLOCKS.register("chestnut_slab", () -> VanillaBlocks.slabBlock());
+	public static final RegistryObject<Block> CINNAMON_SLAB = BLOCKS.register("cinnamon_slab", () -> VanillaBlocks.slabBlock());
+	public static final RegistryObject<Block> COCONUT_SLAB = BLOCKS.register("coconut_slab", () -> VanillaBlocks.slabBlock());
+	public static final RegistryObject<Block> EBONY_SLAB = BLOCKS.register("ebony_slab", () -> VanillaBlocks.slabBlock());
+	public static final RegistryObject<Block> KIWI_SLAB = BLOCKS.register("kiwi_slab", () -> VanillaBlocks.slabBlock());
+	public static final RegistryObject<Block> LEMON_SLAB = BLOCKS.register("lemon_slab", () -> VanillaBlocks.slabBlock());
+	public static final RegistryObject<Block> LIME_SLAB = BLOCKS.register("lime_slab", () -> VanillaBlocks.slabBlock());
+	public static final RegistryObject<Block> MAHOGANY_SLAB = BLOCKS.register("mahogany_slab", () -> VanillaBlocks.slabBlock());
+	public static final RegistryObject<Block> MAPLE_SLAB = BLOCKS.register("maple_slab", () -> VanillaBlocks.slabBlock());
+	public static final RegistryObject<Block> OLIVE_SLAB = BLOCKS.register("olive_slab", () -> VanillaBlocks.slabBlock());
+	public static final RegistryObject<Block> ORANGE_SLAB = BLOCKS.register("orange_slab", () -> VanillaBlocks.slabBlock());
+	public static final RegistryObject<Block> PEACH_SLAB = BLOCKS.register("peach_slab", () -> VanillaBlocks.slabBlock());
+	public static final RegistryObject<Block> PEAR_SLAB = BLOCKS.register("pear_slab", () -> VanillaBlocks.slabBlock());
+	public static final RegistryObject<Block> PLUM_SLAB = BLOCKS.register("plum_slab", () -> VanillaBlocks.slabBlock());
+	public static final RegistryObject<Block> REDWOOD_SLAB = BLOCKS.register("redwood_slab", () -> VanillaBlocks.slabBlock());
+	public static final RegistryObject<Block> ROSEWOOD_SLAB = BLOCKS.register("rosewood_slab", () -> VanillaBlocks.slabBlock());
+	public static final RegistryObject<Block> RUBBER_SLAB = BLOCKS.register("rubber_slab", () -> VanillaBlocks.slabBlock());
+	public static final RegistryObject<Block> TEAK_SLAB = BLOCKS.register("teak_slab", () -> VanillaBlocks.slabBlock());
+	public static final RegistryObject<Block> WALNUT_SLAB = BLOCKS.register("walnut_slab", () -> VanillaBlocks.slabBlock());
+	public static final RegistryObject<Block> ZEBRAWOOD_SLAB = BLOCKS.register("zebrawood_slab", () -> VanillaBlocks.slabBlock());
+	public static final RegistryObject<Block> ALCHEMICAL_SLAB = BLOCKS.register("alchemical_slab", () -> VanillaBlocks.slabBlock());
+	public static final RegistryObject<Block> BENEVOLENT_SLAB = BLOCKS.register("benevolent_slab", () -> VanillaBlocks.slabBlock());
+	public static final RegistryObject<Block> CONDUCTIVE_SLAB = BLOCKS.register("conductive_slab", () -> VanillaBlocks.slabBlock());
 	public static final RegistryObject<Block> FROSTBITTEN_SLAB = BLOCKS.register("frostbitten_slab", () -> new SlabBlock(BlockBehaviour.Properties.of(Material.ICE).friction(0.98F).randomTicks().strength(0.5F).sound(SoundType.GLASS).noOcclusion()));
-	public static final RegistryObject<Block> FRUITFUL_SLAB = BLOCKS.register("fruitful_slab", () -> slabBlock());
-	public static final RegistryObject<Block> INFERNAL_SLAB = BLOCKS.register("infernal_slab", () -> slabBlock());
-	public static final RegistryObject<Block> MALEVOLENT_SLAB = BLOCKS.register("malevolent_slab", () -> slabBlock());
-	public static final RegistryObject<Block> NECROTIC_SLAB = BLOCKS.register("necrotic_slab", () -> slabBlock());
+	public static final RegistryObject<Block> FRUITFUL_SLAB = BLOCKS.register("fruitful_slab", () -> VanillaBlocks.slabBlock());
+	public static final RegistryObject<Block> INFERNAL_SLAB = BLOCKS.register("infernal_slab", () -> VanillaBlocks.slabBlock());
+	public static final RegistryObject<Block> MALEVOLENT_SLAB = BLOCKS.register("malevolent_slab", () -> VanillaBlocks.slabBlock());
+	public static final RegistryObject<Block> NECROTIC_SLAB = BLOCKS.register("necrotic_slab", () -> VanillaBlocks.slabBlock());
 
-	public static final RegistryObject<Block> APRICOT_STAIRS = BLOCKS.register("apricot_stairs", () -> stairBlock(() -> APRICOT_PLANKS.get().defaultBlockState()));
-	public static final RegistryObject<Block> ASPEN_STAIRS = BLOCKS.register("aspen_stairs", () -> stairBlock(() -> ASPEN_PLANKS.get().defaultBlockState()));
-	public static final RegistryObject<Block> AVOCADO_STAIRS = BLOCKS.register("avocado_stairs", () -> stairBlock(() -> AVOCADO_PLANKS.get().defaultBlockState()));
-	public static final RegistryObject<Block> BANANA_STAIRS = BLOCKS.register("banana_stairs", () -> stairBlock(() -> BANANA_PLANKS.get().defaultBlockState()));
-	public static final RegistryObject<Block> CHERRY_STAIRS = BLOCKS.register("cherry_stairs", () -> stairBlock(() -> CHERRY_PLANKS.get().defaultBlockState()));
-	public static final RegistryObject<Block> CHESTNUT_STAIRS = BLOCKS.register("chestnut_stairs", () -> stairBlock(() -> CHESTNUT_PLANKS.get().defaultBlockState()));
-	public static final RegistryObject<Block> CINNAMON_STAIRS = BLOCKS.register("cinnamon_stairs", () -> stairBlock(() -> CINNAMON_PLANKS.get().defaultBlockState()));
-	public static final RegistryObject<Block> COCONUT_STAIRS = BLOCKS.register("coconut_stairs", () -> stairBlock(() -> COCONUT_PLANKS.get().defaultBlockState()));
-	public static final RegistryObject<Block> EBONY_STAIRS = BLOCKS.register("ebony_stairs", () -> stairBlock(() -> EBONY_PLANKS.get().defaultBlockState()));
-	public static final RegistryObject<Block> KIWI_STAIRS = BLOCKS.register("kiwi_stairs", () -> stairBlock(() -> KIWI_PLANKS.get().defaultBlockState()));
-	public static final RegistryObject<Block> LEMON_STAIRS = BLOCKS.register("lemon_stairs", () -> stairBlock(() -> LEMON_PLANKS.get().defaultBlockState()));
-	public static final RegistryObject<Block> LIME_STAIRS = BLOCKS.register("lime_stairs", () -> stairBlock(() -> LIME_PLANKS.get().defaultBlockState()));
-	public static final RegistryObject<Block> MAHOGANY_STAIRS = BLOCKS.register("mahogany_stairs", () -> stairBlock(() -> MAHOGANY_PLANKS.get().defaultBlockState()));
-	public static final RegistryObject<Block> MAPLE_STAIRS = BLOCKS.register("maple_stairs", () -> stairBlock(() -> MAPLE_PLANKS.get().defaultBlockState()));
-	public static final RegistryObject<Block> OLIVE_STAIRS = BLOCKS.register("olive_stairs", () -> stairBlock(() -> OLIVE_PLANKS.get().defaultBlockState()));
-	public static final RegistryObject<Block> ORANGE_STAIRS = BLOCKS.register("orange_stairs", () -> stairBlock(() -> ORANGE_PLANKS.get().defaultBlockState()));
-	public static final RegistryObject<Block> PEACH_STAIRS = BLOCKS.register("peach_stairs", () -> stairBlock(() -> PEACH_PLANKS.get().defaultBlockState()));
-	public static final RegistryObject<Block> PEAR_STAIRS = BLOCKS.register("pear_stairs", () -> stairBlock(() -> PEAR_PLANKS.get().defaultBlockState()));
-	public static final RegistryObject<Block> PLUM_STAIRS = BLOCKS.register("plum_stairs", () -> stairBlock(() -> PLUM_PLANKS.get().defaultBlockState()));
-	public static final RegistryObject<Block> REDWOOD_STAIRS = BLOCKS.register("redwood_stairs", () -> stairBlock(() -> REDWOOD_PLANKS.get().defaultBlockState()));
-	public static final RegistryObject<Block> ROSEWOOD_STAIRS = BLOCKS.register("rosewood_stairs", () -> stairBlock(() -> ROSEWOOD_PLANKS.get().defaultBlockState()));
-	public static final RegistryObject<Block> RUBBER_STAIRS = BLOCKS.register("rubber_stairs", () -> stairBlock(() -> RUBBER_PLANKS.get().defaultBlockState()));
-	public static final RegistryObject<Block> TEAK_STAIRS = BLOCKS.register("teak_stairs", () -> stairBlock(() -> TEAK_PLANKS.get().defaultBlockState()));
-	public static final RegistryObject<Block> WALNUT_STAIRS = BLOCKS.register("walnut_stairs", () -> stairBlock(() -> WALNUT_PLANKS.get().defaultBlockState()));
-	public static final RegistryObject<Block> ZEBRAWOOD_STAIRS = BLOCKS.register("zebrawood_stairs", () -> stairBlock(() -> ZEBRAWOOD_PLANKS.get().defaultBlockState()));
-	public static final RegistryObject<Block> ALCHEMICAL_STAIRS = BLOCKS.register("alchemical_stairs", () -> stairBlock(() -> ALCHEMICAL_PLANKS.get().defaultBlockState()));
-	public static final RegistryObject<Block> BENEVOLENT_STAIRS = BLOCKS.register("benevolent_stairs", () -> stairBlock(() -> BENEVOLENT_PLANKS.get().defaultBlockState()));
-	public static final RegistryObject<Block> CONDUCTIVE_STAIRS = BLOCKS.register("conductive_stairs", () -> stairBlock(() -> CONDUCTIVE_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> APRICOT_STAIRS = BLOCKS.register("apricot_stairs", () -> VanillaBlocks.stairBlock(() -> APRICOT_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> ASPEN_STAIRS = BLOCKS.register("aspen_stairs", () -> VanillaBlocks.stairBlock(() -> ASPEN_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> AVOCADO_STAIRS = BLOCKS.register("avocado_stairs", () -> VanillaBlocks.stairBlock(() -> AVOCADO_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> BANANA_STAIRS = BLOCKS.register("banana_stairs", () -> VanillaBlocks.stairBlock(() -> BANANA_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> CHERRY_STAIRS = BLOCKS.register("cherry_stairs", () -> VanillaBlocks.stairBlock(() -> CHERRY_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> CHESTNUT_STAIRS = BLOCKS.register("chestnut_stairs", () -> VanillaBlocks.stairBlock(() -> CHESTNUT_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> CINNAMON_STAIRS = BLOCKS.register("cinnamon_stairs", () -> VanillaBlocks.stairBlock(() -> CINNAMON_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> COCONUT_STAIRS = BLOCKS.register("coconut_stairs", () -> VanillaBlocks.stairBlock(() -> COCONUT_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> EBONY_STAIRS = BLOCKS.register("ebony_stairs", () -> VanillaBlocks.stairBlock(() -> EBONY_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> KIWI_STAIRS = BLOCKS.register("kiwi_stairs", () -> VanillaBlocks.stairBlock(() -> KIWI_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> LEMON_STAIRS = BLOCKS.register("lemon_stairs", () -> VanillaBlocks.stairBlock(() -> LEMON_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> LIME_STAIRS = BLOCKS.register("lime_stairs", () -> VanillaBlocks.stairBlock(() -> LIME_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> MAHOGANY_STAIRS = BLOCKS.register("mahogany_stairs", () -> VanillaBlocks.stairBlock(() -> MAHOGANY_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> MAPLE_STAIRS = BLOCKS.register("maple_stairs", () -> VanillaBlocks.stairBlock(() -> MAPLE_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> OLIVE_STAIRS = BLOCKS.register("olive_stairs", () -> VanillaBlocks.stairBlock(() -> OLIVE_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> ORANGE_STAIRS = BLOCKS.register("orange_stairs", () -> VanillaBlocks.stairBlock(() -> ORANGE_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> PEACH_STAIRS = BLOCKS.register("peach_stairs", () -> VanillaBlocks.stairBlock(() -> PEACH_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> PEAR_STAIRS = BLOCKS.register("pear_stairs", () -> VanillaBlocks.stairBlock(() -> PEAR_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> PLUM_STAIRS = BLOCKS.register("plum_stairs", () -> VanillaBlocks.stairBlock(() -> PLUM_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> REDWOOD_STAIRS = BLOCKS.register("redwood_stairs", () -> VanillaBlocks.stairBlock(() -> REDWOOD_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> ROSEWOOD_STAIRS = BLOCKS.register("rosewood_stairs", () -> VanillaBlocks.stairBlock(() -> ROSEWOOD_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> RUBBER_STAIRS = BLOCKS.register("rubber_stairs", () -> VanillaBlocks.stairBlock(() -> RUBBER_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> TEAK_STAIRS = BLOCKS.register("teak_stairs", () -> VanillaBlocks.stairBlock(() -> TEAK_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> WALNUT_STAIRS = BLOCKS.register("walnut_stairs", () -> VanillaBlocks.stairBlock(() -> WALNUT_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> ZEBRAWOOD_STAIRS = BLOCKS.register("zebrawood_stairs", () -> VanillaBlocks.stairBlock(() -> ZEBRAWOOD_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> ALCHEMICAL_STAIRS = BLOCKS.register("alchemical_stairs", () -> VanillaBlocks.stairBlock(() -> ALCHEMICAL_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> BENEVOLENT_STAIRS = BLOCKS.register("benevolent_stairs", () -> VanillaBlocks.stairBlock(() -> BENEVOLENT_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> CONDUCTIVE_STAIRS = BLOCKS.register("conductive_stairs", () -> VanillaBlocks.stairBlock(() -> CONDUCTIVE_PLANKS.get().defaultBlockState()));
 	public static final RegistryObject<Block> FROSTBITTEN_STAIRS = BLOCKS.register("frostbitten_stairs", () -> new StairBlock(() -> FROSTBITTEN_PLANKS.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.ICE).friction(0.98F).randomTicks().strength(0.5F).sound(SoundType.GLASS).noOcclusion()));
-	public static final RegistryObject<Block> FRUITFUL_STAIRS = BLOCKS.register("fruitful_stairs", () -> stairBlock(() -> FRUITFUL_PLANKS.get().defaultBlockState()));
-	public static final RegistryObject<Block> INFERNAL_STAIRS = BLOCKS.register("infernal_stairs", () -> stairBlock(() -> INFERNAL_PLANKS.get().defaultBlockState()));
-	public static final RegistryObject<Block> MALEVOLENT_STAIRS = BLOCKS.register("malevolent_stairs", () -> stairBlock(() -> MALEVOLENT_PLANKS.get().defaultBlockState()));
-	public static final RegistryObject<Block> NECROTIC_STAIRS = BLOCKS.register("necrotic_stairs", () -> stairBlock(() -> NECROTIC_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> FRUITFUL_STAIRS = BLOCKS.register("fruitful_stairs", () -> VanillaBlocks.stairBlock(() -> FRUITFUL_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> INFERNAL_STAIRS = BLOCKS.register("infernal_stairs", () -> VanillaBlocks.stairBlock(() -> INFERNAL_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> MALEVOLENT_STAIRS = BLOCKS.register("malevolent_stairs", () -> VanillaBlocks.stairBlock(() -> MALEVOLENT_PLANKS.get().defaultBlockState()));
+	public static final RegistryObject<Block> NECROTIC_STAIRS = BLOCKS.register("necrotic_stairs", () -> VanillaBlocks.stairBlock(() -> NECROTIC_PLANKS.get().defaultBlockState()));
 
-	public static final RegistryObject<Block> SPRUCE_BOOKSHELF = BLOCKS.register("spruce_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> BIRCH_BOOKSHELF = BLOCKS.register("birch_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> JUNGLE_BOOKSHELF = BLOCKS.register("jungle_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> ACACIA_BOOKSHELF = BLOCKS.register("acacia_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> DARK_OAK_BOOKSHELF = BLOCKS.register("dark_oak_bookshelf", () -> bookshelfBlock());
+	public static final RegistryObject<Block> SPRUCE_BOOKSHELF = BLOCKS.register("spruce_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> BIRCH_BOOKSHELF = BLOCKS.register("birch_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> JUNGLE_BOOKSHELF = BLOCKS.register("jungle_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> ACACIA_BOOKSHELF = BLOCKS.register("acacia_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> DARK_OAK_BOOKSHELF = BLOCKS.register("dark_oak_bookshelf", () -> VanillaBlocks.bookshelfBlock());
 	public static final RegistryObject<Block> CRIMSON_BOOKSHELF = BLOCKS.register("crimson_bookshelf", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(1.5F).sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> WARPED_BOOKSHELF = BLOCKS.register("warped_bookshelf", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(1.5F).sound(SoundType.WOOD)));
-	public static final RegistryObject<Block> APRICOT_BOOKSHELF = BLOCKS.register("apricot_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> ASPEN_BOOKSHELF = BLOCKS.register("aspen_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> AVOCADO_BOOKSHELF = BLOCKS.register("avocado_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> BANANA_BOOKSHELF = BLOCKS.register("banana_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> CHERRY_BOOKSHELF = BLOCKS.register("cherry_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> CHESTNUT_BOOKSHELF = BLOCKS.register("chestnut_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> CINNAMON_BOOKSHELF = BLOCKS.register("cinnamon_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> COCONUT_BOOKSHELF = BLOCKS.register("coconut_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> EBONY_BOOKSHELF = BLOCKS.register("ebony_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> KIWI_BOOKSHELF = BLOCKS.register("kiwi_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> LEMON_BOOKSHELF = BLOCKS.register("lemon_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> LIME_BOOKSHELF = BLOCKS.register("lime_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> MAHOGANY_BOOKSHELF = BLOCKS.register("mahogany_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> MAPLE_BOOKSHELF = BLOCKS.register("maple_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> OLIVE_BOOKSHELF = BLOCKS.register("olive_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> ORANGE_BOOKSHELF = BLOCKS.register("orange_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> PEACH_BOOKSHELF = BLOCKS.register("peach_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> PEAR_BOOKSHELF = BLOCKS.register("pear_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> PLUM_BOOKSHELF = BLOCKS.register("plum_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> REDWOOD_BOOKSHELF = BLOCKS.register("redwood_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> ROSEWOOD_BOOKSHELF = BLOCKS.register("rosewood_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> RUBBER_BOOKSHELF = BLOCKS.register("rubber_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> TEAK_BOOKSHELF = BLOCKS.register("teak_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> WALNUT_BOOKSHELF = BLOCKS.register("walnut_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> ZEBRAWOOD_BOOKSHELF = BLOCKS.register("zebrawood_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> ALCHEMICAL_BOOKSHELF = BLOCKS.register("alchemical_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> BENEVOLENT_BOOKSHELF = BLOCKS.register("benevolent_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> CONDUCTIVE_BOOKSHELF = BLOCKS.register("conductive_bookshelf", () -> bookshelfBlock());
+	public static final RegistryObject<Block> APRICOT_BOOKSHELF = BLOCKS.register("apricot_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> ASPEN_BOOKSHELF = BLOCKS.register("aspen_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> AVOCADO_BOOKSHELF = BLOCKS.register("avocado_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> BANANA_BOOKSHELF = BLOCKS.register("banana_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> CHERRY_BOOKSHELF = BLOCKS.register("cherry_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> CHESTNUT_BOOKSHELF = BLOCKS.register("chestnut_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> CINNAMON_BOOKSHELF = BLOCKS.register("cinnamon_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> COCONUT_BOOKSHELF = BLOCKS.register("coconut_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> EBONY_BOOKSHELF = BLOCKS.register("ebony_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> KIWI_BOOKSHELF = BLOCKS.register("kiwi_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> LEMON_BOOKSHELF = BLOCKS.register("lemon_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> LIME_BOOKSHELF = BLOCKS.register("lime_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> MAHOGANY_BOOKSHELF = BLOCKS.register("mahogany_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> MAPLE_BOOKSHELF = BLOCKS.register("maple_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> OLIVE_BOOKSHELF = BLOCKS.register("olive_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> ORANGE_BOOKSHELF = BLOCKS.register("orange_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> PEACH_BOOKSHELF = BLOCKS.register("peach_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> PEAR_BOOKSHELF = BLOCKS.register("pear_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> PLUM_BOOKSHELF = BLOCKS.register("plum_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> REDWOOD_BOOKSHELF = BLOCKS.register("redwood_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> ROSEWOOD_BOOKSHELF = BLOCKS.register("rosewood_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> RUBBER_BOOKSHELF = BLOCKS.register("rubber_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> TEAK_BOOKSHELF = BLOCKS.register("teak_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> WALNUT_BOOKSHELF = BLOCKS.register("walnut_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> ZEBRAWOOD_BOOKSHELF = BLOCKS.register("zebrawood_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> ALCHEMICAL_BOOKSHELF = BLOCKS.register("alchemical_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> BENEVOLENT_BOOKSHELF = BLOCKS.register("benevolent_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> CONDUCTIVE_BOOKSHELF = BLOCKS.register("conductive_bookshelf", () -> VanillaBlocks.bookshelfBlock());
 	public static final RegistryObject<Block> FROSTBITTEN_BOOKSHELF = BLOCKS.register("frostbitten_bookshelf", () -> new Block(BlockBehaviour.Properties.of(Material.ICE).friction(0.98F).randomTicks().strength(0.5F).sound(SoundType.GLASS).noOcclusion()));
-	public static final RegistryObject<Block> FRUITFUL_BOOKSHELF = BLOCKS.register("fruitful_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> INFERNAL_BOOKSHELF = BLOCKS.register("infernal_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> MALEVOLENT_BOOKSHELF = BLOCKS.register("malevolent_bookshelf", () -> bookshelfBlock());
-	public static final RegistryObject<Block> NECROTIC_BOOKSHELF = BLOCKS.register("necrotic_bookshelf", () -> bookshelfBlock());
+	public static final RegistryObject<Block> FRUITFUL_BOOKSHELF = BLOCKS.register("fruitful_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> INFERNAL_BOOKSHELF = BLOCKS.register("infernal_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> MALEVOLENT_BOOKSHELF = BLOCKS.register("malevolent_bookshelf", () -> VanillaBlocks.bookshelfBlock());
+	public static final RegistryObject<Block> NECROTIC_BOOKSHELF = BLOCKS.register("necrotic_bookshelf", () -> VanillaBlocks.bookshelfBlock());
 
-	public static final RegistryObject<Block> APRICOT_FENCE = BLOCKS.register("apricot_fence", () -> fenceBlock());
-	public static final RegistryObject<Block> ASPEN_FENCE = BLOCKS.register("aspen_fence", () -> fenceBlock());
-	public static final RegistryObject<Block> AVOCADO_FENCE = BLOCKS.register("avocado_fence", () -> fenceBlock());
-	public static final RegistryObject<Block> BANANA_FENCE = BLOCKS.register("banana_fence", () -> fenceBlock());
-	public static final RegistryObject<Block> CHERRY_FENCE = BLOCKS.register("cherry_fence", () -> fenceBlock());
-	public static final RegistryObject<Block> CHESTNUT_FENCE = BLOCKS.register("chestnut_fence", () -> fenceBlock());
-	public static final RegistryObject<Block> CINNAMON_FENCE = BLOCKS.register("cinnamon_fence", () -> fenceBlock());
-	public static final RegistryObject<Block> COCONUT_FENCE = BLOCKS.register("coconut_fence", () -> fenceBlock());
-	public static final RegistryObject<Block> EBONY_FENCE = BLOCKS.register("ebony_fence", () -> fenceBlock());
-	public static final RegistryObject<Block> KIWI_FENCE = BLOCKS.register("kiwi_fence", () -> fenceBlock());
-	public static final RegistryObject<Block> LEMON_FENCE = BLOCKS.register("lemon_fence", () -> fenceBlock());
-	public static final RegistryObject<Block> LIME_FENCE = BLOCKS.register("lime_fence", () -> fenceBlock());
-	public static final RegistryObject<Block> MAHOGANY_FENCE = BLOCKS.register("mahogany_fence", () -> fenceBlock());
-	public static final RegistryObject<Block> MAPLE_FENCE = BLOCKS.register("maple_fence", () -> fenceBlock());
-	public static final RegistryObject<Block> OLIVE_FENCE = BLOCKS.register("olive_fence", () -> fenceBlock());
-	public static final RegistryObject<Block> ORANGE_FENCE = BLOCKS.register("orange_fence", () -> fenceBlock());;
-	public static final RegistryObject<Block> PEACH_FENCE = BLOCKS.register("peach_fence", () -> fenceBlock());
-	public static final RegistryObject<Block> PEAR_FENCE = BLOCKS.register("pear_fence", () -> fenceBlock());
-	public static final RegistryObject<Block> PLUM_FENCE = BLOCKS.register("plum_fence", () -> fenceBlock());
-	public static final RegistryObject<Block> REDWOOD_FENCE = BLOCKS.register("redwood_fence", () -> fenceBlock());
-	public static final RegistryObject<Block> ROSEWOOD_FENCE = BLOCKS.register("rosewood_fence", () -> fenceBlock());
-	public static final RegistryObject<Block> RUBBER_FENCE = BLOCKS.register("rubber_fence", () -> fenceBlock());
-	public static final RegistryObject<Block> TEAK_FENCE = BLOCKS.register("teak_fence", () -> fenceBlock());
-	public static final RegistryObject<Block> WALNUT_FENCE = BLOCKS.register("walnut_fence", () -> fenceBlock());
-	public static final RegistryObject<Block> ZEBRAWOOD_FENCE = BLOCKS.register("zebrawood_fence", () -> fenceBlock());
-	public static final RegistryObject<Block> ALCHEMICAL_FENCE = BLOCKS.register("alchemical_fence", () -> fenceBlock());
-	public static final RegistryObject<Block> BENEVOLENT_FENCE = BLOCKS.register("benevolent_fence", () -> fenceBlock());
-	public static final RegistryObject<Block> CONDUCTIVE_FENCE = BLOCKS.register("conductive_fence", () -> fenceBlock());
-	public static final RegistryObject<Block> FROSTBITTEN_FENCE = BLOCKS.register("frostbitten_fence", () -> fenceBlock());
-	public static final RegistryObject<Block> FRUITFUL_FENCE = BLOCKS.register("fruitful_fence", () -> fenceBlock());
-	public static final RegistryObject<Block> INFERNAL_FENCE = BLOCKS.register("infernal_fence", () -> fenceBlock());
-	public static final RegistryObject<Block> MALEVOLENT_FENCE = BLOCKS.register("malevolent_fence", () -> fenceBlock());
-	public static final RegistryObject<Block> NECROTIC_FENCE = BLOCKS.register("necrotic_fence", () -> fenceBlock());
+	public static final RegistryObject<Block> APRICOT_FENCE = BLOCKS.register("apricot_fence", () -> VanillaBlocks.fenceBlock());
+	public static final RegistryObject<Block> ASPEN_FENCE = BLOCKS.register("aspen_fence", () -> VanillaBlocks.fenceBlock());
+	public static final RegistryObject<Block> AVOCADO_FENCE = BLOCKS.register("avocado_fence", () -> VanillaBlocks.fenceBlock());
+	public static final RegistryObject<Block> BANANA_FENCE = BLOCKS.register("banana_fence", () -> VanillaBlocks.fenceBlock());
+	public static final RegistryObject<Block> CHERRY_FENCE = BLOCKS.register("cherry_fence", () -> VanillaBlocks.fenceBlock());
+	public static final RegistryObject<Block> CHESTNUT_FENCE = BLOCKS.register("chestnut_fence", () -> VanillaBlocks.fenceBlock());
+	public static final RegistryObject<Block> CINNAMON_FENCE = BLOCKS.register("cinnamon_fence", () -> VanillaBlocks.fenceBlock());
+	public static final RegistryObject<Block> COCONUT_FENCE = BLOCKS.register("coconut_fence", () -> VanillaBlocks.fenceBlock());
+	public static final RegistryObject<Block> EBONY_FENCE = BLOCKS.register("ebony_fence", () -> VanillaBlocks.fenceBlock());
+	public static final RegistryObject<Block> KIWI_FENCE = BLOCKS.register("kiwi_fence", () -> VanillaBlocks.fenceBlock());
+	public static final RegistryObject<Block> LEMON_FENCE = BLOCKS.register("lemon_fence", () -> VanillaBlocks.fenceBlock());
+	public static final RegistryObject<Block> LIME_FENCE = BLOCKS.register("lime_fence", () -> VanillaBlocks.fenceBlock());
+	public static final RegistryObject<Block> MAHOGANY_FENCE = BLOCKS.register("mahogany_fence", () -> VanillaBlocks.fenceBlock());
+	public static final RegistryObject<Block> MAPLE_FENCE = BLOCKS.register("maple_fence", () -> VanillaBlocks.fenceBlock());
+	public static final RegistryObject<Block> OLIVE_FENCE = BLOCKS.register("olive_fence", () -> VanillaBlocks.fenceBlock());
+	public static final RegistryObject<Block> ORANGE_FENCE = BLOCKS.register("orange_fence", () -> VanillaBlocks.fenceBlock());;
+	public static final RegistryObject<Block> PEACH_FENCE = BLOCKS.register("peach_fence", () -> VanillaBlocks.fenceBlock());
+	public static final RegistryObject<Block> PEAR_FENCE = BLOCKS.register("pear_fence", () -> VanillaBlocks.fenceBlock());
+	public static final RegistryObject<Block> PLUM_FENCE = BLOCKS.register("plum_fence", () -> VanillaBlocks.fenceBlock());
+	public static final RegistryObject<Block> REDWOOD_FENCE = BLOCKS.register("redwood_fence", () -> VanillaBlocks.fenceBlock());
+	public static final RegistryObject<Block> ROSEWOOD_FENCE = BLOCKS.register("rosewood_fence", () -> VanillaBlocks.fenceBlock());
+	public static final RegistryObject<Block> RUBBER_FENCE = BLOCKS.register("rubber_fence", () -> VanillaBlocks.fenceBlock());
+	public static final RegistryObject<Block> TEAK_FENCE = BLOCKS.register("teak_fence", () -> VanillaBlocks.fenceBlock());
+	public static final RegistryObject<Block> WALNUT_FENCE = BLOCKS.register("walnut_fence", () -> VanillaBlocks.fenceBlock());
+	public static final RegistryObject<Block> ZEBRAWOOD_FENCE = BLOCKS.register("zebrawood_fence", () -> VanillaBlocks.fenceBlock());
+	public static final RegistryObject<Block> ALCHEMICAL_FENCE = BLOCKS.register("alchemical_fence", () -> VanillaBlocks.fenceBlock());
+	public static final RegistryObject<Block> BENEVOLENT_FENCE = BLOCKS.register("benevolent_fence", () -> VanillaBlocks.fenceBlock());
+	public static final RegistryObject<Block> CONDUCTIVE_FENCE = BLOCKS.register("conductive_fence", () -> VanillaBlocks.fenceBlock());
+	public static final RegistryObject<Block> FROSTBITTEN_FENCE = BLOCKS.register("frostbitten_fence", () -> VanillaBlocks.fenceBlock());
+	public static final RegistryObject<Block> FRUITFUL_FENCE = BLOCKS.register("fruitful_fence", () -> VanillaBlocks.fenceBlock());
+	public static final RegistryObject<Block> INFERNAL_FENCE = BLOCKS.register("infernal_fence", () -> VanillaBlocks.fenceBlock());
+	public static final RegistryObject<Block> MALEVOLENT_FENCE = BLOCKS.register("malevolent_fence", () -> VanillaBlocks.fenceBlock());
+	public static final RegistryObject<Block> NECROTIC_FENCE = BLOCKS.register("necrotic_fence", () -> VanillaBlocks.fenceBlock());
 
-	public static final RegistryObject<Block> APRICOT_FENCE_GATE = BLOCKS.register("apricot_fence_gate", () -> fenceGateBlock());
-	public static final RegistryObject<Block> ASPEN_FENCE_GATE = BLOCKS.register("aspen_fence_gate", () -> fenceGateBlock());
-	public static final RegistryObject<Block> AVOCADO_FENCE_GATE = BLOCKS.register("avocado_fence_gate", () -> fenceGateBlock());
-	public static final RegistryObject<Block> BANANA_FENCE_GATE = BLOCKS.register("banana_fence_gate", () -> fenceGateBlock());
-	public static final RegistryObject<Block> CHERRY_FENCE_GATE = BLOCKS.register("cherry_fence_gate", () -> fenceGateBlock());
-	public static final RegistryObject<Block> CHESTNUT_FENCE_GATE = BLOCKS.register("chestnut_fence_gate", () -> fenceGateBlock());
-	public static final RegistryObject<Block> CINNAMON_FENCE_GATE = BLOCKS.register("cinnamon_fence_gate", () -> fenceGateBlock());
-	public static final RegistryObject<Block> COCONUT_FENCE_GATE = BLOCKS.register("coconut_fence_gate", () -> fenceGateBlock());
-	public static final RegistryObject<Block> EBONY_FENCE_GATE = BLOCKS.register("ebony_fence_gate", () -> fenceGateBlock());
-	public static final RegistryObject<Block> KIWI_FENCE_GATE = BLOCKS.register("kiwi_fence_gate", () -> fenceGateBlock());
-	public static final RegistryObject<Block> LEMON_FENCE_GATE = BLOCKS.register("lemon_fence_gate", () -> fenceGateBlock());
-	public static final RegistryObject<Block> LIME_FENCE_GATE = BLOCKS.register("lime_fence_gate", () -> fenceGateBlock());
-	public static final RegistryObject<Block> MAHOGANY_FENCE_GATE = BLOCKS.register("mahogany_fence_gate", () -> fenceGateBlock());
-	public static final RegistryObject<Block> MAPLE_FENCE_GATE = BLOCKS.register("maple_fence_gate", () -> fenceGateBlock());
-	public static final RegistryObject<Block> OLIVE_FENCE_GATE = BLOCKS.register("olive_fence_gate", () -> fenceGateBlock());
-	public static final RegistryObject<Block> ORANGE_FENCE_GATE = BLOCKS.register("orange_fence_gate", () -> fenceGateBlock());
-	public static final RegistryObject<Block> PEACH_FENCE_GATE = BLOCKS.register("peach_fence_gate", () -> fenceGateBlock());
-	public static final RegistryObject<Block> PEAR_FENCE_GATE = BLOCKS.register("pear_fence_gate", () -> fenceGateBlock());
-	public static final RegistryObject<Block> PLUM_FENCE_GATE = BLOCKS.register("plum_fence_gate", () -> fenceGateBlock());
-	public static final RegistryObject<Block> REDWOOD_FENCE_GATE = BLOCKS.register("redwood_fence_gate", () -> fenceGateBlock());
-	public static final RegistryObject<Block> ROSEWOOD_FENCE_GATE = BLOCKS.register("rosewood_fence_gate", () -> fenceGateBlock());
-	public static final RegistryObject<Block> RUBBER_FENCE_GATE = BLOCKS.register("rubber_fence_gate", () -> fenceGateBlock());
-	public static final RegistryObject<Block> TEAK_FENCE_GATE = BLOCKS.register("teak_fence_gate", () -> fenceGateBlock());
-	public static final RegistryObject<Block> WALNUT_FENCE_GATE = BLOCKS.register("walnut_fence_gate", () -> fenceGateBlock());
-	public static final RegistryObject<Block> ZEBRAWOOD_FENCE_GATE = BLOCKS.register("zebrawood_fence_gate", () -> fenceGateBlock());
-	public static final RegistryObject<Block> ALCHEMICAL_FENCE_GATE = BLOCKS.register("alchemical_fence_gate", () -> fenceGateBlock());
-	public static final RegistryObject<Block> BENEVOLENT_FENCE_GATE = BLOCKS.register("benevolent_fence_gate", () -> fenceGateBlock());
-	public static final RegistryObject<Block> CONDUCTIVE_FENCE_GATE = BLOCKS.register("conductive_fence_gate", () -> fenceGateBlock());
-	public static final RegistryObject<Block> FROSTBITTEN_FENCE_GATE = BLOCKS.register("frostbitten_fence_gate", () -> fenceGateBlock());
-	public static final RegistryObject<Block> FRUITFUL_FENCE_GATE = BLOCKS.register("fruitful_fence_gate", () -> fenceGateBlock());
-	public static final RegistryObject<Block> INFERNAL_FENCE_GATE = BLOCKS.register("infernal_fence_gate", () -> fenceGateBlock());
-	public static final RegistryObject<Block> MALEVOLENT_FENCE_GATE = BLOCKS.register("malevolent_fence_gate", () -> fenceGateBlock());
-	public static final RegistryObject<Block> NECROTIC_FENCE_GATE = BLOCKS.register("necrotic_fence_gate", () -> fenceGateBlock());
+	public static final RegistryObject<Block> APRICOT_FENCE_GATE = BLOCKS.register("apricot_fence_gate", () -> VanillaBlocks.fenceGateBlock());
+	public static final RegistryObject<Block> ASPEN_FENCE_GATE = BLOCKS.register("aspen_fence_gate", () -> VanillaBlocks.fenceGateBlock());
+	public static final RegistryObject<Block> AVOCADO_FENCE_GATE = BLOCKS.register("avocado_fence_gate", () -> VanillaBlocks.fenceGateBlock());
+	public static final RegistryObject<Block> BANANA_FENCE_GATE = BLOCKS.register("banana_fence_gate", () -> VanillaBlocks.fenceGateBlock());
+	public static final RegistryObject<Block> CHERRY_FENCE_GATE = BLOCKS.register("cherry_fence_gate", () -> VanillaBlocks.fenceGateBlock());
+	public static final RegistryObject<Block> CHESTNUT_FENCE_GATE = BLOCKS.register("chestnut_fence_gate", () -> VanillaBlocks.fenceGateBlock());
+	public static final RegistryObject<Block> CINNAMON_FENCE_GATE = BLOCKS.register("cinnamon_fence_gate", () -> VanillaBlocks.fenceGateBlock());
+	public static final RegistryObject<Block> COCONUT_FENCE_GATE = BLOCKS.register("coconut_fence_gate", () -> VanillaBlocks.fenceGateBlock());
+	public static final RegistryObject<Block> EBONY_FENCE_GATE = BLOCKS.register("ebony_fence_gate", () -> VanillaBlocks.fenceGateBlock());
+	public static final RegistryObject<Block> KIWI_FENCE_GATE = BLOCKS.register("kiwi_fence_gate", () -> VanillaBlocks.fenceGateBlock());
+	public static final RegistryObject<Block> LEMON_FENCE_GATE = BLOCKS.register("lemon_fence_gate", () -> VanillaBlocks.fenceGateBlock());
+	public static final RegistryObject<Block> LIME_FENCE_GATE = BLOCKS.register("lime_fence_gate", () -> VanillaBlocks.fenceGateBlock());
+	public static final RegistryObject<Block> MAHOGANY_FENCE_GATE = BLOCKS.register("mahogany_fence_gate", () -> VanillaBlocks.fenceGateBlock());
+	public static final RegistryObject<Block> MAPLE_FENCE_GATE = BLOCKS.register("maple_fence_gate", () -> VanillaBlocks.fenceGateBlock());
+	public static final RegistryObject<Block> OLIVE_FENCE_GATE = BLOCKS.register("olive_fence_gate", () -> VanillaBlocks.fenceGateBlock());
+	public static final RegistryObject<Block> ORANGE_FENCE_GATE = BLOCKS.register("orange_fence_gate", () -> VanillaBlocks.fenceGateBlock());
+	public static final RegistryObject<Block> PEACH_FENCE_GATE = BLOCKS.register("peach_fence_gate", () -> VanillaBlocks.fenceGateBlock());
+	public static final RegistryObject<Block> PEAR_FENCE_GATE = BLOCKS.register("pear_fence_gate", () -> VanillaBlocks.fenceGateBlock());
+	public static final RegistryObject<Block> PLUM_FENCE_GATE = BLOCKS.register("plum_fence_gate", () -> VanillaBlocks.fenceGateBlock());
+	public static final RegistryObject<Block> REDWOOD_FENCE_GATE = BLOCKS.register("redwood_fence_gate", () -> VanillaBlocks.fenceGateBlock());
+	public static final RegistryObject<Block> ROSEWOOD_FENCE_GATE = BLOCKS.register("rosewood_fence_gate", () -> VanillaBlocks.fenceGateBlock());
+	public static final RegistryObject<Block> RUBBER_FENCE_GATE = BLOCKS.register("rubber_fence_gate", () -> VanillaBlocks.fenceGateBlock());
+	public static final RegistryObject<Block> TEAK_FENCE_GATE = BLOCKS.register("teak_fence_gate", () -> VanillaBlocks.fenceGateBlock());
+	public static final RegistryObject<Block> WALNUT_FENCE_GATE = BLOCKS.register("walnut_fence_gate", () -> VanillaBlocks.fenceGateBlock());
+	public static final RegistryObject<Block> ZEBRAWOOD_FENCE_GATE = BLOCKS.register("zebrawood_fence_gate", () -> VanillaBlocks.fenceGateBlock());
+	public static final RegistryObject<Block> ALCHEMICAL_FENCE_GATE = BLOCKS.register("alchemical_fence_gate", () -> VanillaBlocks.fenceGateBlock());
+	public static final RegistryObject<Block> BENEVOLENT_FENCE_GATE = BLOCKS.register("benevolent_fence_gate", () -> VanillaBlocks.fenceGateBlock());
+	public static final RegistryObject<Block> CONDUCTIVE_FENCE_GATE = BLOCKS.register("conductive_fence_gate", () -> VanillaBlocks.fenceGateBlock());
+	public static final RegistryObject<Block> FROSTBITTEN_FENCE_GATE = BLOCKS.register("frostbitten_fence_gate", () -> VanillaBlocks.fenceGateBlock());
+	public static final RegistryObject<Block> FRUITFUL_FENCE_GATE = BLOCKS.register("fruitful_fence_gate", () -> VanillaBlocks.fenceGateBlock());
+	public static final RegistryObject<Block> INFERNAL_FENCE_GATE = BLOCKS.register("infernal_fence_gate", () -> VanillaBlocks.fenceGateBlock());
+	public static final RegistryObject<Block> MALEVOLENT_FENCE_GATE = BLOCKS.register("malevolent_fence_gate", () -> VanillaBlocks.fenceGateBlock());
+	public static final RegistryObject<Block> NECROTIC_FENCE_GATE = BLOCKS.register("necrotic_fence_gate", () -> VanillaBlocks.fenceGateBlock());
 
 	public static final RegistryObject<Block> APRICOT_DOOR = BLOCKS.register("apricot_door", () -> new DoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion(), SoundEvents.WOODEN_DOOR_CLOSE, SoundEvents.WOODEN_DOOR_OPEN));
 	public static final RegistryObject<Block> ASPEN_DOOR = BLOCKS.register("aspen_door", () -> new DoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion(), SoundEvents.WOODEN_DOOR_CLOSE, SoundEvents.WOODEN_DOOR_OPEN));
@@ -839,39 +804,39 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> MALEVOLENT_DOOR = BLOCKS.register("malevolent_door", () -> new DoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion(), SoundEvents.WOODEN_DOOR_CLOSE, SoundEvents.WOODEN_DOOR_OPEN));
 	public static final RegistryObject<Block> NECROTIC_DOOR = BLOCKS.register("necrotic_door", () -> new DoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion(), SoundEvents.WOODEN_DOOR_CLOSE, SoundEvents.WOODEN_DOOR_OPEN));
 
-	public static final RegistryObject<Block> APRICOT_TRAPDOOR = BLOCKS.register("apricot_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
-	public static final RegistryObject<Block> ASPEN_TRAPDOOR = BLOCKS.register("aspen_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
-	public static final RegistryObject<Block> AVOCADO_TRAPDOOR = BLOCKS.register("avocado_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
-	public static final RegistryObject<Block> BANANA_TRAPDOOR = BLOCKS.register("banana_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
-	public static final RegistryObject<Block> CHERRY_TRAPDOOR = BLOCKS.register("cherry_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
-	public static final RegistryObject<Block> CHESTNUT_TRAPDOOR = BLOCKS.register("chestnut_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
-	public static final RegistryObject<Block> CINNAMON_TRAPDOOR = BLOCKS.register("cinnamon_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
-	public static final RegistryObject<Block> COCONUT_TRAPDOOR = BLOCKS.register("coconut_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
-	public static final RegistryObject<Block> EBONY_TRAPDOOR = BLOCKS.register("ebony_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
-	public static final RegistryObject<Block> KIWI_TRAPDOOR = BLOCKS.register("kiwi_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
-	public static final RegistryObject<Block> LEMON_TRAPDOOR = BLOCKS.register("lemon_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
-	public static final RegistryObject<Block> LIME_TRAPDOOR = BLOCKS.register("lime_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
-	public static final RegistryObject<Block> MAHOGANY_TRAPDOOR = BLOCKS.register("mahogany_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
-	public static final RegistryObject<Block> MAPLE_TRAPDOOR = BLOCKS.register("maple_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
-	public static final RegistryObject<Block> OLIVE_TRAPDOOR = BLOCKS.register("olive_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
-	public static final RegistryObject<Block> ORANGE_TRAPDOOR = BLOCKS.register("orange_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
-	public static final RegistryObject<Block> PEACH_TRAPDOOR = BLOCKS.register("peach_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
-	public static final RegistryObject<Block> PEAR_TRAPDOOR = BLOCKS.register("pear_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
-	public static final RegistryObject<Block> PLUM_TRAPDOOR = BLOCKS.register("plum_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
-	public static final RegistryObject<Block> REDWOOD_TRAPDOOR = BLOCKS.register("redwood_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
-	public static final RegistryObject<Block> ROSEWOOD_TRAPDOOR = BLOCKS.register("rosewood_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
-	public static final RegistryObject<Block> RUBBER_TRAPDOOR = BLOCKS.register("rubber_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
-	public static final RegistryObject<Block> TEAK_TRAPDOOR = BLOCKS.register("teak_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
-	public static final RegistryObject<Block> WALNUT_TRAPDOOR = BLOCKS.register("walnut_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
-	public static final RegistryObject<Block> ZEBRAWOOD_TRAPDOOR = BLOCKS.register("zebrawood_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
-	public static final RegistryObject<Block> ALCHEMICAL_TRAPDOOR = BLOCKS.register("alchemical_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
-	public static final RegistryObject<Block> BENEVOLENT_TRAPDOOR = BLOCKS.register("benevolent_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
-	public static final RegistryObject<Block> CONDUCTIVE_TRAPDOOR = BLOCKS.register("conductive_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
-	public static final RegistryObject<Block> FROSTBITTEN_TRAPDOOR = BLOCKS.register("frostbitten_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
-	public static final RegistryObject<Block> FRUITFUL_TRAPDOOR = BLOCKS.register("fruitful_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
-	public static final RegistryObject<Block> INFERNAL_TRAPDOOR = BLOCKS.register("infernal_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
-	public static final RegistryObject<Block> MALEVOLENT_TRAPDOOR = BLOCKS.register("malevolent_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
-	public static final RegistryObject<Block> NECROTIC_TRAPDOOR = BLOCKS.register("necrotic_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TechnologicaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> APRICOT_TRAPDOOR = BLOCKS.register("apricot_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> ASPEN_TRAPDOOR = BLOCKS.register("aspen_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> AVOCADO_TRAPDOOR = BLOCKS.register("avocado_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> BANANA_TRAPDOOR = BLOCKS.register("banana_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> CHERRY_TRAPDOOR = BLOCKS.register("cherry_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> CHESTNUT_TRAPDOOR = BLOCKS.register("chestnut_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> CINNAMON_TRAPDOOR = BLOCKS.register("cinnamon_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> COCONUT_TRAPDOOR = BLOCKS.register("coconut_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> EBONY_TRAPDOOR = BLOCKS.register("ebony_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> KIWI_TRAPDOOR = BLOCKS.register("kiwi_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> LEMON_TRAPDOOR = BLOCKS.register("lemon_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> LIME_TRAPDOOR = BLOCKS.register("lime_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> MAHOGANY_TRAPDOOR = BLOCKS.register("mahogany_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> MAPLE_TRAPDOOR = BLOCKS.register("maple_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> OLIVE_TRAPDOOR = BLOCKS.register("olive_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> ORANGE_TRAPDOOR = BLOCKS.register("orange_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> PEACH_TRAPDOOR = BLOCKS.register("peach_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> PEAR_TRAPDOOR = BLOCKS.register("pear_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> PLUM_TRAPDOOR = BLOCKS.register("plum_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> REDWOOD_TRAPDOOR = BLOCKS.register("redwood_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> ROSEWOOD_TRAPDOOR = BLOCKS.register("rosewood_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> RUBBER_TRAPDOOR = BLOCKS.register("rubber_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> TEAK_TRAPDOOR = BLOCKS.register("teak_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> WALNUT_TRAPDOOR = BLOCKS.register("walnut_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> ZEBRAWOOD_TRAPDOOR = BLOCKS.register("zebrawood_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> ALCHEMICAL_TRAPDOOR = BLOCKS.register("alchemical_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> BENEVOLENT_TRAPDOOR = BLOCKS.register("benevolent_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> CONDUCTIVE_TRAPDOOR = BLOCKS.register("conductive_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> FROSTBITTEN_TRAPDOOR = BLOCKS.register("frostbitten_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> FRUITFUL_TRAPDOOR = BLOCKS.register("fruitful_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> INFERNAL_TRAPDOOR = BLOCKS.register("infernal_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> MALEVOLENT_TRAPDOOR = BLOCKS.register("malevolent_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+	public static final RegistryObject<Block> NECROTIC_TRAPDOOR = BLOCKS.register("necrotic_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(VanillaBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
 
 	public static final RegistryObject<Block> APRICOT_PRESSURE_PLATE = BLOCKS.register("apricot_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(0.5F).sound(SoundType.WOOD), SoundEvents.WOODEN_PRESSURE_PLATE_CLICK_OFF, SoundEvents.WOODEN_PRESSURE_PLATE_CLICK_ON));
 	public static final RegistryObject<Block> ASPEN_PRESSURE_PLATE = BLOCKS.register("aspen_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(0.5F).sound(SoundType.WOOD), SoundEvents.WOODEN_PRESSURE_PLATE_CLICK_OFF, SoundEvents.WOODEN_PRESSURE_PLATE_CLICK_ON));
@@ -907,107 +872,107 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> MALEVOLENT_PRESSURE_PLATE = BLOCKS.register("malevolent_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(0.5F).sound(SoundType.WOOD), SoundEvents.WOODEN_PRESSURE_PLATE_CLICK_OFF, SoundEvents.WOODEN_PRESSURE_PLATE_CLICK_ON));
 	public static final RegistryObject<Block> NECROTIC_PRESSURE_PLATE = BLOCKS.register("necrotic_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(0.5F).sound(SoundType.WOOD), SoundEvents.WOODEN_PRESSURE_PLATE_CLICK_OFF, SoundEvents.WOODEN_PRESSURE_PLATE_CLICK_ON));
 
-	public static final RegistryObject<Block> APRICOT_BUTTON = BLOCKS.register("apricot_button", () -> woodenButton());
-	public static final RegistryObject<Block> ASPEN_BUTTON = BLOCKS.register("aspen_button", () -> woodenButton());
-	public static final RegistryObject<Block> AVOCADO_BUTTON = BLOCKS.register("avocado_button", () -> woodenButton());
-	public static final RegistryObject<Block> BANANA_BUTTON = BLOCKS.register("banana_button", () -> woodenButton());
-	public static final RegistryObject<Block> CHERRY_BUTTON = BLOCKS.register("cherry_button", () -> woodenButton());
-	public static final RegistryObject<Block> CHESTNUT_BUTTON = BLOCKS.register("chestnut_button", () -> woodenButton());
-	public static final RegistryObject<Block> CINNAMON_BUTTON = BLOCKS.register("cinnamon_button", () -> woodenButton());
-	public static final RegistryObject<Block> COCONUT_BUTTON = BLOCKS.register("coconut_button", () -> woodenButton());
-	public static final RegistryObject<Block> EBONY_BUTTON = BLOCKS.register("ebony_button", () -> woodenButton());
-	public static final RegistryObject<Block> KIWI_BUTTON = BLOCKS.register("kiwi_button", () -> woodenButton());
-	public static final RegistryObject<Block> LEMON_BUTTON = BLOCKS.register("lemon_button", () -> woodenButton());
-	public static final RegistryObject<Block> LIME_BUTTON = BLOCKS.register("lime_button", () -> woodenButton());
-	public static final RegistryObject<Block> MAHOGANY_BUTTON = BLOCKS.register("mahogany_button", () -> woodenButton());
-	public static final RegistryObject<Block> MAPLE_BUTTON = BLOCKS.register("maple_button", () -> woodenButton());
-	public static final RegistryObject<Block> OLIVE_BUTTON = BLOCKS.register("olive_button", () -> woodenButton());
-	public static final RegistryObject<Block> ORANGE_BUTTON = BLOCKS.register("orange_button", () -> woodenButton());
-	public static final RegistryObject<Block> PEACH_BUTTON = BLOCKS.register("peach_button", () -> woodenButton());
-	public static final RegistryObject<Block> PEAR_BUTTON = BLOCKS.register("pear_button", () -> woodenButton());
-	public static final RegistryObject<Block> PLUM_BUTTON = BLOCKS.register("plum_button", () -> woodenButton());
-	public static final RegistryObject<Block> REDWOOD_BUTTON = BLOCKS.register("redwood_button", () -> woodenButton());
-	public static final RegistryObject<Block> ROSEWOOD_BUTTON = BLOCKS.register("rosewood_button", () -> woodenButton());
-	public static final RegistryObject<Block> RUBBER_BUTTON = BLOCKS.register("rubber_button", () -> woodenButton());
-	public static final RegistryObject<Block> TEAK_BUTTON = BLOCKS.register("teak_button", () -> woodenButton());
-	public static final RegistryObject<Block> WALNUT_BUTTON = BLOCKS.register("walnut_button", () -> woodenButton());
-	public static final RegistryObject<Block> ZEBRAWOOD_BUTTON = BLOCKS.register("zebrawood_button", () -> woodenButton());
-	public static final RegistryObject<Block> ALCHEMICAL_BUTTON = BLOCKS.register("alchemical_button", () -> woodenButton());
-	public static final RegistryObject<Block> BENEVOLENT_BUTTON = BLOCKS.register("benevolent_button", () -> woodenButton());
-	public static final RegistryObject<Block> CONDUCTIVE_BUTTON = BLOCKS.register("conductive_button", () -> woodenButton());
-	public static final RegistryObject<Block> FROSTBITTEN_BUTTON = BLOCKS.register("frostbitten_button", () -> woodenButton());
-	public static final RegistryObject<Block> FRUITFUL_BUTTON = BLOCKS.register("fruitful_button", () -> woodenButton());
-	public static final RegistryObject<Block> INFERNAL_BUTTON = BLOCKS.register("infernal_button", () -> woodenButton());
-	public static final RegistryObject<Block> MALEVOLENT_BUTTON = BLOCKS.register("malevolent_button", () -> woodenButton());
-	public static final RegistryObject<Block> NECROTIC_BUTTON = BLOCKS.register("necrotic_button", () -> woodenButton());
+	public static final RegistryObject<Block> APRICOT_BUTTON = BLOCKS.register("apricot_button", () -> VanillaBlocks.woodenButton());
+	public static final RegistryObject<Block> ASPEN_BUTTON = BLOCKS.register("aspen_button", () -> VanillaBlocks.woodenButton());
+	public static final RegistryObject<Block> AVOCADO_BUTTON = BLOCKS.register("avocado_button", () -> VanillaBlocks.woodenButton());
+	public static final RegistryObject<Block> BANANA_BUTTON = BLOCKS.register("banana_button", () -> VanillaBlocks.woodenButton());
+	public static final RegistryObject<Block> CHERRY_BUTTON = BLOCKS.register("cherry_button", () -> VanillaBlocks.woodenButton());
+	public static final RegistryObject<Block> CHESTNUT_BUTTON = BLOCKS.register("chestnut_button", () -> VanillaBlocks.woodenButton());
+	public static final RegistryObject<Block> CINNAMON_BUTTON = BLOCKS.register("cinnamon_button", () -> VanillaBlocks.woodenButton());
+	public static final RegistryObject<Block> COCONUT_BUTTON = BLOCKS.register("coconut_button", () -> VanillaBlocks.woodenButton());
+	public static final RegistryObject<Block> EBONY_BUTTON = BLOCKS.register("ebony_button", () -> VanillaBlocks.woodenButton());
+	public static final RegistryObject<Block> KIWI_BUTTON = BLOCKS.register("kiwi_button", () -> VanillaBlocks.woodenButton());
+	public static final RegistryObject<Block> LEMON_BUTTON = BLOCKS.register("lemon_button", () -> VanillaBlocks.woodenButton());
+	public static final RegistryObject<Block> LIME_BUTTON = BLOCKS.register("lime_button", () -> VanillaBlocks.woodenButton());
+	public static final RegistryObject<Block> MAHOGANY_BUTTON = BLOCKS.register("mahogany_button", () -> VanillaBlocks.woodenButton());
+	public static final RegistryObject<Block> MAPLE_BUTTON = BLOCKS.register("maple_button", () -> VanillaBlocks.woodenButton());
+	public static final RegistryObject<Block> OLIVE_BUTTON = BLOCKS.register("olive_button", () -> VanillaBlocks.woodenButton());
+	public static final RegistryObject<Block> ORANGE_BUTTON = BLOCKS.register("orange_button", () -> VanillaBlocks.woodenButton());
+	public static final RegistryObject<Block> PEACH_BUTTON = BLOCKS.register("peach_button", () -> VanillaBlocks.woodenButton());
+	public static final RegistryObject<Block> PEAR_BUTTON = BLOCKS.register("pear_button", () -> VanillaBlocks.woodenButton());
+	public static final RegistryObject<Block> PLUM_BUTTON = BLOCKS.register("plum_button", () -> VanillaBlocks.woodenButton());
+	public static final RegistryObject<Block> REDWOOD_BUTTON = BLOCKS.register("redwood_button", () -> VanillaBlocks.woodenButton());
+	public static final RegistryObject<Block> ROSEWOOD_BUTTON = BLOCKS.register("rosewood_button", () -> VanillaBlocks.woodenButton());
+	public static final RegistryObject<Block> RUBBER_BUTTON = BLOCKS.register("rubber_button", () -> VanillaBlocks.woodenButton());
+	public static final RegistryObject<Block> TEAK_BUTTON = BLOCKS.register("teak_button", () -> VanillaBlocks.woodenButton());
+	public static final RegistryObject<Block> WALNUT_BUTTON = BLOCKS.register("walnut_button", () -> VanillaBlocks.woodenButton());
+	public static final RegistryObject<Block> ZEBRAWOOD_BUTTON = BLOCKS.register("zebrawood_button", () -> VanillaBlocks.woodenButton());
+	public static final RegistryObject<Block> ALCHEMICAL_BUTTON = BLOCKS.register("alchemical_button", () -> VanillaBlocks.woodenButton());
+	public static final RegistryObject<Block> BENEVOLENT_BUTTON = BLOCKS.register("benevolent_button", () -> VanillaBlocks.woodenButton());
+	public static final RegistryObject<Block> CONDUCTIVE_BUTTON = BLOCKS.register("conductive_button", () -> VanillaBlocks.woodenButton());
+	public static final RegistryObject<Block> FROSTBITTEN_BUTTON = BLOCKS.register("frostbitten_button", () -> VanillaBlocks.woodenButton());
+	public static final RegistryObject<Block> FRUITFUL_BUTTON = BLOCKS.register("fruitful_button", () -> VanillaBlocks.woodenButton());
+	public static final RegistryObject<Block> INFERNAL_BUTTON = BLOCKS.register("infernal_button", () -> VanillaBlocks.woodenButton());
+	public static final RegistryObject<Block> MALEVOLENT_BUTTON = BLOCKS.register("malevolent_button", () -> VanillaBlocks.woodenButton());
+	public static final RegistryObject<Block> NECROTIC_BUTTON = BLOCKS.register("necrotic_button", () -> VanillaBlocks.woodenButton());
 
-	public static final RegistryObject<Block> APRICOT_SIGN = BLOCKS.register("apricot_sign", () -> standingSignBlock(TechnologicaWoodType.APRICOT));
-	public static final RegistryObject<Block> ASPEN_SIGN = BLOCKS.register("aspen_sign", () -> standingSignBlock(TechnologicaWoodType.ASPEN));
-	public static final RegistryObject<Block> AVOCADO_SIGN = BLOCKS.register("avocado_sign", () -> standingSignBlock(TechnologicaWoodType.AVOCADO));
-	public static final RegistryObject<Block> BANANA_SIGN = BLOCKS.register("banana_sign", () -> standingSignBlock(TechnologicaWoodType.BANANA));
-	public static final RegistryObject<Block> CHERRY_SIGN = BLOCKS.register("cherry_sign", () -> standingSignBlock(TechnologicaWoodType.CHERRY));
-	public static final RegistryObject<Block> CHESTNUT_SIGN = BLOCKS.register("chestnut_sign", () -> standingSignBlock(TechnologicaWoodType.CHESTNUT));
-	public static final RegistryObject<Block> CINNAMON_SIGN = BLOCKS.register("cinnamon_sign", () -> standingSignBlock(TechnologicaWoodType.CINNAMON));
-	public static final RegistryObject<Block> COCONUT_SIGN = BLOCKS.register("coconut_sign", () -> standingSignBlock(TechnologicaWoodType.COCONUT));
-	public static final RegistryObject<Block> EBONY_SIGN = BLOCKS.register("ebony_sign", () -> standingSignBlock(TechnologicaWoodType.EBONY));
-	public static final RegistryObject<Block> KIWI_SIGN = BLOCKS.register("kiwi_sign", () -> standingSignBlock(TechnologicaWoodType.KIWI));
-	public static final RegistryObject<Block> LEMON_SIGN = BLOCKS.register("lemon_sign", () -> standingSignBlock(TechnologicaWoodType.LEMON));
-	public static final RegistryObject<Block> LIME_SIGN = BLOCKS.register("lime_sign", () -> standingSignBlock(TechnologicaWoodType.LIME));
-	public static final RegistryObject<Block> MAHOGANY_SIGN = BLOCKS.register("mahogany_sign", () -> standingSignBlock(TechnologicaWoodType.MAHOGANY));
-	public static final RegistryObject<Block> MAPLE_SIGN = BLOCKS.register("maple_sign", () -> standingSignBlock(TechnologicaWoodType.MAPLE));
-	public static final RegistryObject<Block> OLIVE_SIGN = BLOCKS.register("olive_sign", () -> standingSignBlock(TechnologicaWoodType.OLIVE));
-	public static final RegistryObject<Block> ORANGE_SIGN = BLOCKS.register("orange_sign", () -> standingSignBlock(TechnologicaWoodType.ORANGE));
-	public static final RegistryObject<Block> PEACH_SIGN = BLOCKS.register("peach_sign", () -> standingSignBlock(TechnologicaWoodType.PEACH));
-	public static final RegistryObject<Block> PEAR_SIGN = BLOCKS.register("pear_sign", () -> standingSignBlock(TechnologicaWoodType.PEAR));
-	public static final RegistryObject<Block> PLUM_SIGN = BLOCKS.register("plum_sign", () -> standingSignBlock(TechnologicaWoodType.PLUM));
-	public static final RegistryObject<Block> REDWOOD_SIGN = BLOCKS.register("redwood_sign", () -> standingSignBlock(TechnologicaWoodType.REDWOOD));
-	public static final RegistryObject<Block> ROSEWOOD_SIGN = BLOCKS.register("rosewood_sign", () -> standingSignBlock(TechnologicaWoodType.ROSEWOOD));
-	public static final RegistryObject<Block> RUBBER_SIGN = BLOCKS.register("rubber_sign", () -> standingSignBlock(TechnologicaWoodType.RUBBER));
-	public static final RegistryObject<Block> TEAK_SIGN = BLOCKS.register("teak_sign", () -> standingSignBlock(TechnologicaWoodType.TEAK));
-	public static final RegistryObject<Block> WALNUT_SIGN = BLOCKS.register("walnut_sign", () -> standingSignBlock(TechnologicaWoodType.WALNUT));
-	public static final RegistryObject<Block> ZEBRAWOOD_SIGN = BLOCKS.register("zebrawood_sign", () -> standingSignBlock(TechnologicaWoodType.ZEBRAWOOD));
-	public static final RegistryObject<Block> ALCHEMICAL_SIGN = BLOCKS.register("alchemical_sign", () -> standingSignBlock(TechnologicaWoodType.ALCHEMICAL));
-	public static final RegistryObject<Block> BENEVOLENT_SIGN = BLOCKS.register("benevolent_sign", () -> standingSignBlock(TechnologicaWoodType.BENEVOLENT));
-	public static final RegistryObject<Block> CONDUCTIVE_SIGN = BLOCKS.register("conductive_sign", () -> standingSignBlock(TechnologicaWoodType.CONDUCTIVE));
-	public static final RegistryObject<Block> FROSTBITTEN_SIGN = BLOCKS.register("frostbitten_sign", () -> technologicaStandingSignBlock(TechnologicaWoodType.FROSTBITTEN));
-	public static final RegistryObject<Block> FRUITFUL_SIGN = BLOCKS.register("fruitful_sign", () -> standingSignBlock(TechnologicaWoodType.FRUITFUL));
-	public static final RegistryObject<Block> INFERNAL_SIGN = BLOCKS.register("infernal_sign", () -> standingSignBlock(TechnologicaWoodType.INFERNAL));
-	public static final RegistryObject<Block> MALEVOLENT_SIGN = BLOCKS.register("malevolent_sign", () -> standingSignBlock(TechnologicaWoodType.MALEVOLENT));
-	public static final RegistryObject<Block> NECROTIC_SIGN = BLOCKS.register("necrotic_sign", () -> standingSignBlock(TechnologicaWoodType.NECROTIC));
+	public static final RegistryObject<Block> APRICOT_SIGN = BLOCKS.register("apricot_sign", () -> VanillaBlocks.standingSignBlock(TechnologicaWoodType.APRICOT));
+	public static final RegistryObject<Block> ASPEN_SIGN = BLOCKS.register("aspen_sign", () -> VanillaBlocks.standingSignBlock(TechnologicaWoodType.ASPEN));
+	public static final RegistryObject<Block> AVOCADO_SIGN = BLOCKS.register("avocado_sign", () -> VanillaBlocks.standingSignBlock(TechnologicaWoodType.AVOCADO));
+	public static final RegistryObject<Block> BANANA_SIGN = BLOCKS.register("banana_sign", () -> VanillaBlocks.standingSignBlock(TechnologicaWoodType.BANANA));
+	public static final RegistryObject<Block> CHERRY_SIGN = BLOCKS.register("cherry_sign", () -> VanillaBlocks.standingSignBlock(TechnologicaWoodType.CHERRY));
+	public static final RegistryObject<Block> CHESTNUT_SIGN = BLOCKS.register("chestnut_sign", () -> VanillaBlocks.standingSignBlock(TechnologicaWoodType.CHESTNUT));
+	public static final RegistryObject<Block> CINNAMON_SIGN = BLOCKS.register("cinnamon_sign", () -> VanillaBlocks.standingSignBlock(TechnologicaWoodType.CINNAMON));
+	public static final RegistryObject<Block> COCONUT_SIGN = BLOCKS.register("coconut_sign", () -> VanillaBlocks.standingSignBlock(TechnologicaWoodType.COCONUT));
+	public static final RegistryObject<Block> EBONY_SIGN = BLOCKS.register("ebony_sign", () -> VanillaBlocks.standingSignBlock(TechnologicaWoodType.EBONY));
+	public static final RegistryObject<Block> KIWI_SIGN = BLOCKS.register("kiwi_sign", () -> VanillaBlocks.standingSignBlock(TechnologicaWoodType.KIWI));
+	public static final RegistryObject<Block> LEMON_SIGN = BLOCKS.register("lemon_sign", () -> VanillaBlocks.standingSignBlock(TechnologicaWoodType.LEMON));
+	public static final RegistryObject<Block> LIME_SIGN = BLOCKS.register("lime_sign", () -> VanillaBlocks.standingSignBlock(TechnologicaWoodType.LIME));
+	public static final RegistryObject<Block> MAHOGANY_SIGN = BLOCKS.register("mahogany_sign", () -> VanillaBlocks.standingSignBlock(TechnologicaWoodType.MAHOGANY));
+	public static final RegistryObject<Block> MAPLE_SIGN = BLOCKS.register("maple_sign", () -> VanillaBlocks.standingSignBlock(TechnologicaWoodType.MAPLE));
+	public static final RegistryObject<Block> OLIVE_SIGN = BLOCKS.register("olive_sign", () -> VanillaBlocks.standingSignBlock(TechnologicaWoodType.OLIVE));
+	public static final RegistryObject<Block> ORANGE_SIGN = BLOCKS.register("orange_sign", () -> VanillaBlocks.standingSignBlock(TechnologicaWoodType.ORANGE));
+	public static final RegistryObject<Block> PEACH_SIGN = BLOCKS.register("peach_sign", () -> VanillaBlocks.standingSignBlock(TechnologicaWoodType.PEACH));
+	public static final RegistryObject<Block> PEAR_SIGN = BLOCKS.register("pear_sign", () -> VanillaBlocks.standingSignBlock(TechnologicaWoodType.PEAR));
+	public static final RegistryObject<Block> PLUM_SIGN = BLOCKS.register("plum_sign", () -> VanillaBlocks.standingSignBlock(TechnologicaWoodType.PLUM));
+	public static final RegistryObject<Block> REDWOOD_SIGN = BLOCKS.register("redwood_sign", () -> VanillaBlocks.standingSignBlock(TechnologicaWoodType.REDWOOD));
+	public static final RegistryObject<Block> ROSEWOOD_SIGN = BLOCKS.register("rosewood_sign", () -> VanillaBlocks.standingSignBlock(TechnologicaWoodType.ROSEWOOD));
+	public static final RegistryObject<Block> RUBBER_SIGN = BLOCKS.register("rubber_sign", () -> VanillaBlocks.standingSignBlock(TechnologicaWoodType.RUBBER));
+	public static final RegistryObject<Block> TEAK_SIGN = BLOCKS.register("teak_sign", () -> VanillaBlocks.standingSignBlock(TechnologicaWoodType.TEAK));
+	public static final RegistryObject<Block> WALNUT_SIGN = BLOCKS.register("walnut_sign", () -> VanillaBlocks.standingSignBlock(TechnologicaWoodType.WALNUT));
+	public static final RegistryObject<Block> ZEBRAWOOD_SIGN = BLOCKS.register("zebrawood_sign", () -> VanillaBlocks.standingSignBlock(TechnologicaWoodType.ZEBRAWOOD));
+	public static final RegistryObject<Block> ALCHEMICAL_SIGN = BLOCKS.register("alchemical_sign", () -> VanillaBlocks.standingSignBlock(TechnologicaWoodType.ALCHEMICAL));
+	public static final RegistryObject<Block> BENEVOLENT_SIGN = BLOCKS.register("benevolent_sign", () -> VanillaBlocks.standingSignBlock(TechnologicaWoodType.BENEVOLENT));
+	public static final RegistryObject<Block> CONDUCTIVE_SIGN = BLOCKS.register("conductive_sign", () -> VanillaBlocks.standingSignBlock(TechnologicaWoodType.CONDUCTIVE));
+	public static final RegistryObject<Block> FROSTBITTEN_SIGN = BLOCKS.register("frostbitten_sign", () -> VanillaBlocks.technologicaStandingSignBlock(TechnologicaWoodType.FROSTBITTEN));
+	public static final RegistryObject<Block> FRUITFUL_SIGN = BLOCKS.register("fruitful_sign", () -> VanillaBlocks.standingSignBlock(TechnologicaWoodType.FRUITFUL));
+	public static final RegistryObject<Block> INFERNAL_SIGN = BLOCKS.register("infernal_sign", () -> VanillaBlocks.standingSignBlock(TechnologicaWoodType.INFERNAL));
+	public static final RegistryObject<Block> MALEVOLENT_SIGN = BLOCKS.register("malevolent_sign", () -> VanillaBlocks.standingSignBlock(TechnologicaWoodType.MALEVOLENT));
+	public static final RegistryObject<Block> NECROTIC_SIGN = BLOCKS.register("necrotic_sign", () -> VanillaBlocks.standingSignBlock(TechnologicaWoodType.NECROTIC));
 
-	public static final RegistryObject<Block> APRICOT_WALL_SIGN = BLOCKS.register("apricot_wall_sign", () -> wallSignBlock(TechnologicaWoodType.APRICOT));
-	public static final RegistryObject<Block> ASPEN_WALL_SIGN = BLOCKS.register("aspen_wall_sign", () -> wallSignBlock(TechnologicaWoodType.ASPEN));
-	public static final RegistryObject<Block> AVOCADO_WALL_SIGN = BLOCKS.register("avocado_wall_sign", () -> wallSignBlock(TechnologicaWoodType.AVOCADO));
-	public static final RegistryObject<Block> BANANA_WALL_SIGN = BLOCKS.register("banana_wall_sign", () -> wallSignBlock(TechnologicaWoodType.BANANA));
-	public static final RegistryObject<Block> CHERRY_WALL_SIGN = BLOCKS.register("cherry_wall_sign", () -> wallSignBlock(TechnologicaWoodType.CHERRY));
-	public static final RegistryObject<Block> CHESTNUT_WALL_SIGN = BLOCKS.register("chestnut_wall_sign", () -> wallSignBlock(TechnologicaWoodType.CHESTNUT));
-	public static final RegistryObject<Block> CINNAMON_WALL_SIGN = BLOCKS.register("cinnamon_wall_sign", () -> wallSignBlock(TechnologicaWoodType.CINNAMON));
-	public static final RegistryObject<Block> COCONUT_WALL_SIGN = BLOCKS.register("coconut_wall_sign", () -> wallSignBlock(TechnologicaWoodType.COCONUT));
-	public static final RegistryObject<Block> EBONY_WALL_SIGN = BLOCKS.register("ebony_wall_sign", () -> wallSignBlock(TechnologicaWoodType.EBONY));
-	public static final RegistryObject<Block> KIWI_WALL_SIGN = BLOCKS.register("kiwi_wall_sign", () -> wallSignBlock(TechnologicaWoodType.KIWI));
-	public static final RegistryObject<Block> LEMON_WALL_SIGN = BLOCKS.register("lemon_wall_sign", () -> wallSignBlock(TechnologicaWoodType.LEMON));
-	public static final RegistryObject<Block> LIME_WALL_SIGN = BLOCKS.register("lime_wall_sign", () -> wallSignBlock(TechnologicaWoodType.LIME));
-	public static final RegistryObject<Block> MAHOGANY_WALL_SIGN = BLOCKS.register("mahogany_wall_sign", () -> wallSignBlock(TechnologicaWoodType.MAHOGANY));
-	public static final RegistryObject<Block> MAPLE_WALL_SIGN = BLOCKS.register("maple_wall_sign", () -> wallSignBlock(TechnologicaWoodType.MAPLE));
-	public static final RegistryObject<Block> OLIVE_WALL_SIGN = BLOCKS.register("olive_wall_sign", () -> wallSignBlock(TechnologicaWoodType.OLIVE));
-	public static final RegistryObject<Block> ORANGE_WALL_SIGN = BLOCKS.register("orange_wall_sign", () -> wallSignBlock(TechnologicaWoodType.ORANGE));
-	public static final RegistryObject<Block> PEACH_WALL_SIGN = BLOCKS.register("peach_wall_sign", () -> wallSignBlock(TechnologicaWoodType.PEACH));
-	public static final RegistryObject<Block> PEAR_WALL_SIGN = BLOCKS.register("pear_wall_sign", () -> wallSignBlock(TechnologicaWoodType.PEAR));
-	public static final RegistryObject<Block> PLUM_WALL_SIGN = BLOCKS.register("plum_wall_sign", () -> wallSignBlock(TechnologicaWoodType.PLUM));
-	public static final RegistryObject<Block> REDWOOD_WALL_SIGN = BLOCKS.register("redwood_wall_sign", () -> wallSignBlock(TechnologicaWoodType.REDWOOD));
-	public static final RegistryObject<Block> ROSEWOOD_WALL_SIGN = BLOCKS.register("rosewood_wall_sign", () -> wallSignBlock(TechnologicaWoodType.ROSEWOOD));
-	public static final RegistryObject<Block> RUBBER_WALL_SIGN = BLOCKS.register("rubber_wall_sign", () -> wallSignBlock(TechnologicaWoodType.RUBBER));
-	public static final RegistryObject<Block> TEAK_WALL_SIGN = BLOCKS.register("teak_wall_sign", () -> wallSignBlock(TechnologicaWoodType.TEAK));
-	public static final RegistryObject<Block> WALNUT_WALL_SIGN = BLOCKS.register("walnut_wall_sign", () -> wallSignBlock(TechnologicaWoodType.WALNUT));
-	public static final RegistryObject<Block> ZEBRAWOOD_WALL_SIGN = BLOCKS.register("zebrawood_wall_sign", () -> wallSignBlock(TechnologicaWoodType.ZEBRAWOOD));
-	public static final RegistryObject<Block> ALCHEMICAL_WALL_SIGN = BLOCKS.register("alchemical_wall_sign", () -> wallSignBlock(TechnologicaWoodType.ALCHEMICAL));
-	public static final RegistryObject<Block> BENEVOLENT_WALL_SIGN = BLOCKS.register("benevolent_wall_sign", () -> wallSignBlock(TechnologicaWoodType.BENEVOLENT));
-	public static final RegistryObject<Block> CONDUCTIVE_WALL_SIGN = BLOCKS.register("conductive_wall_sign", () -> wallSignBlock(TechnologicaWoodType.CONDUCTIVE));
-	public static final RegistryObject<Block> FROSTBITTEN_WALL_SIGN = BLOCKS.register("frostbitten_wall_sign", () -> technologicaWallSignBlock(TechnologicaWoodType.FROSTBITTEN));
-	public static final RegistryObject<Block> FRUITFUL_WALL_SIGN = BLOCKS.register("fruitful_wall_sign", () -> wallSignBlock(TechnologicaWoodType.FRUITFUL));
-	public static final RegistryObject<Block> INFERNAL_WALL_SIGN = BLOCKS.register("infernal_wall_sign", () -> wallSignBlock(TechnologicaWoodType.INFERNAL));
-	public static final RegistryObject<Block> MALEVOLENT_WALL_SIGN = BLOCKS.register("malevolent_wall_sign", () -> wallSignBlock(TechnologicaWoodType.MALEVOLENT));
-	public static final RegistryObject<Block> NECROTIC_WALL_SIGN = BLOCKS.register("necrotic_wall_sign", () -> wallSignBlock(TechnologicaWoodType.MALEVOLENT));
+	public static final RegistryObject<Block> APRICOT_WALL_SIGN = BLOCKS.register("apricot_wall_sign", () -> VanillaBlocks.wallSignBlock(TechnologicaWoodType.APRICOT));
+	public static final RegistryObject<Block> ASPEN_WALL_SIGN = BLOCKS.register("aspen_wall_sign", () -> VanillaBlocks.wallSignBlock(TechnologicaWoodType.ASPEN));
+	public static final RegistryObject<Block> AVOCADO_WALL_SIGN = BLOCKS.register("avocado_wall_sign", () -> VanillaBlocks.wallSignBlock(TechnologicaWoodType.AVOCADO));
+	public static final RegistryObject<Block> BANANA_WALL_SIGN = BLOCKS.register("banana_wall_sign", () -> VanillaBlocks.wallSignBlock(TechnologicaWoodType.BANANA));
+	public static final RegistryObject<Block> CHERRY_WALL_SIGN = BLOCKS.register("cherry_wall_sign", () -> VanillaBlocks.wallSignBlock(TechnologicaWoodType.CHERRY));
+	public static final RegistryObject<Block> CHESTNUT_WALL_SIGN = BLOCKS.register("chestnut_wall_sign", () -> VanillaBlocks.wallSignBlock(TechnologicaWoodType.CHESTNUT));
+	public static final RegistryObject<Block> CINNAMON_WALL_SIGN = BLOCKS.register("cinnamon_wall_sign", () -> VanillaBlocks.wallSignBlock(TechnologicaWoodType.CINNAMON));
+	public static final RegistryObject<Block> COCONUT_WALL_SIGN = BLOCKS.register("coconut_wall_sign", () -> VanillaBlocks.wallSignBlock(TechnologicaWoodType.COCONUT));
+	public static final RegistryObject<Block> EBONY_WALL_SIGN = BLOCKS.register("ebony_wall_sign", () -> VanillaBlocks.wallSignBlock(TechnologicaWoodType.EBONY));
+	public static final RegistryObject<Block> KIWI_WALL_SIGN = BLOCKS.register("kiwi_wall_sign", () -> VanillaBlocks.wallSignBlock(TechnologicaWoodType.KIWI));
+	public static final RegistryObject<Block> LEMON_WALL_SIGN = BLOCKS.register("lemon_wall_sign", () -> VanillaBlocks.wallSignBlock(TechnologicaWoodType.LEMON));
+	public static final RegistryObject<Block> LIME_WALL_SIGN = BLOCKS.register("lime_wall_sign", () -> VanillaBlocks.wallSignBlock(TechnologicaWoodType.LIME));
+	public static final RegistryObject<Block> MAHOGANY_WALL_SIGN = BLOCKS.register("mahogany_wall_sign", () -> VanillaBlocks.wallSignBlock(TechnologicaWoodType.MAHOGANY));
+	public static final RegistryObject<Block> MAPLE_WALL_SIGN = BLOCKS.register("maple_wall_sign", () -> VanillaBlocks.wallSignBlock(TechnologicaWoodType.MAPLE));
+	public static final RegistryObject<Block> OLIVE_WALL_SIGN = BLOCKS.register("olive_wall_sign", () -> VanillaBlocks.wallSignBlock(TechnologicaWoodType.OLIVE));
+	public static final RegistryObject<Block> ORANGE_WALL_SIGN = BLOCKS.register("orange_wall_sign", () -> VanillaBlocks.wallSignBlock(TechnologicaWoodType.ORANGE));
+	public static final RegistryObject<Block> PEACH_WALL_SIGN = BLOCKS.register("peach_wall_sign", () -> VanillaBlocks.wallSignBlock(TechnologicaWoodType.PEACH));
+	public static final RegistryObject<Block> PEAR_WALL_SIGN = BLOCKS.register("pear_wall_sign", () -> VanillaBlocks.wallSignBlock(TechnologicaWoodType.PEAR));
+	public static final RegistryObject<Block> PLUM_WALL_SIGN = BLOCKS.register("plum_wall_sign", () -> VanillaBlocks.wallSignBlock(TechnologicaWoodType.PLUM));
+	public static final RegistryObject<Block> REDWOOD_WALL_SIGN = BLOCKS.register("redwood_wall_sign", () -> VanillaBlocks.wallSignBlock(TechnologicaWoodType.REDWOOD));
+	public static final RegistryObject<Block> ROSEWOOD_WALL_SIGN = BLOCKS.register("rosewood_wall_sign", () -> VanillaBlocks.wallSignBlock(TechnologicaWoodType.ROSEWOOD));
+	public static final RegistryObject<Block> RUBBER_WALL_SIGN = BLOCKS.register("rubber_wall_sign", () -> VanillaBlocks.wallSignBlock(TechnologicaWoodType.RUBBER));
+	public static final RegistryObject<Block> TEAK_WALL_SIGN = BLOCKS.register("teak_wall_sign", () -> VanillaBlocks.wallSignBlock(TechnologicaWoodType.TEAK));
+	public static final RegistryObject<Block> WALNUT_WALL_SIGN = BLOCKS.register("walnut_wall_sign", () -> VanillaBlocks.wallSignBlock(TechnologicaWoodType.WALNUT));
+	public static final RegistryObject<Block> ZEBRAWOOD_WALL_SIGN = BLOCKS.register("zebrawood_wall_sign", () -> VanillaBlocks.wallSignBlock(TechnologicaWoodType.ZEBRAWOOD));
+	public static final RegistryObject<Block> ALCHEMICAL_WALL_SIGN = BLOCKS.register("alchemical_wall_sign", () -> VanillaBlocks.wallSignBlock(TechnologicaWoodType.ALCHEMICAL));
+	public static final RegistryObject<Block> BENEVOLENT_WALL_SIGN = BLOCKS.register("benevolent_wall_sign", () -> VanillaBlocks.wallSignBlock(TechnologicaWoodType.BENEVOLENT));
+	public static final RegistryObject<Block> CONDUCTIVE_WALL_SIGN = BLOCKS.register("conductive_wall_sign", () -> VanillaBlocks.wallSignBlock(TechnologicaWoodType.CONDUCTIVE));
+	public static final RegistryObject<Block> FROSTBITTEN_WALL_SIGN = BLOCKS.register("frostbitten_wall_sign", () -> VanillaBlocks.technologicaWallSignBlock(TechnologicaWoodType.FROSTBITTEN));
+	public static final RegistryObject<Block> FRUITFUL_WALL_SIGN = BLOCKS.register("fruitful_wall_sign", () -> VanillaBlocks.wallSignBlock(TechnologicaWoodType.FRUITFUL));
+	public static final RegistryObject<Block> INFERNAL_WALL_SIGN = BLOCKS.register("infernal_wall_sign", () -> VanillaBlocks.wallSignBlock(TechnologicaWoodType.INFERNAL));
+	public static final RegistryObject<Block> MALEVOLENT_WALL_SIGN = BLOCKS.register("malevolent_wall_sign", () -> VanillaBlocks.wallSignBlock(TechnologicaWoodType.MALEVOLENT));
+	public static final RegistryObject<Block> NECROTIC_WALL_SIGN = BLOCKS.register("necrotic_wall_sign", () -> VanillaBlocks.wallSignBlock(TechnologicaWoodType.MALEVOLENT));
 
 	/*
 	 * MACHINERY
@@ -1134,242 +1099,4 @@ public class TechnologicaBlocks {
 		return p_152613_.getValue(BedBlock.PART) == BedPart.FOOT ? DyeColor.RED.getMaterialColor() : MaterialColor.WOOL;
 	}).sound(SoundType.WOOD).strength(0.2F).noOcclusion()));
 
-	/*
-	 * VANILLA REPLICATORS
-	 */
-
-	private static CropBlock grainCropBlock(Supplier<Item> seeds) {
-		return new CropBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP)) {
-			@Override
-			protected ItemLike getBaseSeedId() {
-				return seeds.get();
-			}
-		};
-	}
-
-	private static PotatoBlock replantableCropBlock(Supplier<Item> seeds) {
-		return new PotatoBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP)) {
-			@Override
-			protected ItemLike getBaseSeedId() {
-				return seeds.get();
-			}
-		};
-	}
-
-	private static BeetrootBlock seededCropBlock(Supplier<Item> seeds) {
-		return new BeetrootBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP)) {
-			@Override
-			protected ItemLike getBaseSeedId() {
-				return seeds.get();
-			}
-		};
-	}
-
-	private static SweetBerryBushBlock bushCropBlock(Supplier<Item> clone) {
-		return new SweetBerryBushBlock(BlockBehaviour.Properties.of(Material.PLANT).randomTicks().noCollission().sound(SoundType.SWEET_BERRY_BUSH)) {
-			@Override
-			public ItemStack getCloneItemStack(BlockGetter p_57256_, BlockPos p_57257_, BlockState p_57258_) {
-				return new ItemStack(clone.get());
-			}
-
-			@Override
-			public InteractionResult use(BlockState p_57275_, Level p_57276_, BlockPos p_57277_, Player p_57278_, InteractionHand p_57279_, BlockHitResult p_57280_) {
-				int i = p_57275_.getValue(AGE);
-				boolean flag = i == 3;
-				if (!flag && p_57278_.getItemInHand(p_57279_).is(Items.BONE_MEAL)) {
-					return InteractionResult.PASS;
-				} else if (i > 1) {
-					int j = 1 + p_57276_.random.nextInt(2);
-					popResource(p_57276_, p_57277_, new ItemStack(clone.get(), j + (flag ? 1 : 0)));
-					p_57276_.playSound((Player) null, p_57277_, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + p_57276_.random.nextFloat() * 0.4F);
-					p_57276_.setBlock(p_57277_, p_57275_.setValue(AGE, Integer.valueOf(1)), 2);
-					return InteractionResult.sidedSuccess(p_57276_.isClientSide);
-				} else {
-					return super.use(p_57275_, p_57276_, p_57277_, p_57278_, p_57279_, p_57280_);
-				}
-			}
-
-			@Override
-			public BlockPathTypes getBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob) {
-				return BlockPathTypes.DAMAGE_OTHER;
-			}
-
-			@Override
-			public BlockPathTypes getAdjacentBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob, BlockPathTypes originalType) {
-				return BlockPathTypes.DANGER_OTHER;
-			}
-
-			@Override
-			public int getFlammability(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
-				return 60;
-			}
-
-			@Override
-			public int getFireSpreadSpeed(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
-				return 100;
-			}
-		};
-	}
-
-	private static LeavesBlock leavesBlock() {
-		return new LeavesBlock(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion()) {
-			@Override
-			public int getFlammability(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
-				return 30;
-			}
-
-			@Override
-			public int getFireSpreadSpeed(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
-				return 60;
-			}
-		};
-	}
-
-	private static RotatedPillarBlock logBlock(MaterialColor p_50789_, MaterialColor p_50790_) {
-		return new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD, (p_152624_) -> {
-			return p_152624_.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? p_50789_ : p_50790_;
-		}).strength(2.0F).sound(SoundType.WOOD)) {
-			@Override
-			public int getFlammability(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
-				return 5;
-			}
-
-			@Override
-			public int getFireSpreadSpeed(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
-				return 5;
-			}
-		};
-	}
-
-	private static Block planksBlock() {
-		return new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)) {
-			@Override
-			public int getFlammability(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
-				return 5;
-			}
-
-			@Override
-			public int getFireSpreadSpeed(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
-				return 20;
-			}
-		};
-	}
-
-	private static SlabBlock slabBlock() {
-		return new SlabBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)) {
-			@Override
-			public int getFlammability(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
-				return 5;
-			}
-
-			@Override
-			public int getFireSpreadSpeed(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
-				return 20;
-			}
-		};
-	}
-
-	private static StairBlock stairBlock(Supplier<BlockState> state) {
-		return new StairBlock(state, BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)) {
-			@Override
-			public int getFlammability(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
-				return 5;
-			}
-
-			@Override
-			public int getFireSpreadSpeed(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
-				return 20;
-			}
-		};
-	}
-
-	private static Block bookshelfBlock() {
-		return new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(1.5F).sound(SoundType.WOOD)) {
-			@Override
-			public int getFlammability(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
-				return 30;
-			}
-
-			@Override
-			public int getFireSpreadSpeed(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
-				return 20;
-			}
-		};
-	}
-
-	private static FenceBlock fenceBlock() {
-		return new FenceBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)) {
-			@Override
-			public int getFlammability(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
-				return 5;
-			}
-
-			@Override
-			public int getFireSpreadSpeed(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
-				return 20;
-			}
-		};
-	}
-
-	private static FenceGateBlock fenceGateBlock() {
-		return new FenceGateBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD), SoundEvents.FENCE_GATE_CLOSE, SoundEvents.FENCE_GATE_OPEN) {
-			@Override
-			public int getFlammability(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
-				return 5;
-			}
-
-			@Override
-			public int getFireSpreadSpeed(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
-				return 20;
-			}
-		};
-	}
-
-	private static StandingSignBlock standingSignBlock(WoodType typeIn) {
-		return new StandingSignBlock(BlockBehaviour.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD), typeIn) {
-			@Override
-			public BlockEntity newBlockEntity(BlockPos p_154556_, BlockState p_154557_) {
-				return new VanillaSignBlockEntity(p_154556_, p_154557_);
-			}
-		};
-	}
-
-	private static WallSignBlock wallSignBlock(WoodType typeIn) {
-		return new WallSignBlock(BlockBehaviour.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD), typeIn) {
-			@Override
-			public BlockEntity newBlockEntity(BlockPos p_154556_, BlockState p_154557_) {
-				return new VanillaSignBlockEntity(p_154556_, p_154557_);
-			}
-		};
-	}
-
-	private static StandingSignBlock technologicaStandingSignBlock(WoodType typeIn) {
-		return new StandingSignBlock(BlockBehaviour.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD), typeIn) {
-			@Override
-			public BlockEntity newBlockEntity(BlockPos p_154556_, BlockState p_154557_) {
-				return new TechnologicaSignBlockEntity(p_154556_, p_154557_);
-			}
-		};
-	}
-
-	private static WallSignBlock technologicaWallSignBlock(WoodType typeIn) {
-		return new WallSignBlock(BlockBehaviour.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD), typeIn) {
-			@Override
-			public BlockEntity newBlockEntity(BlockPos p_154556_, BlockState p_154557_) {
-				return new TechnologicaSignBlockEntity(p_154556_, p_154557_);
-			}
-		};
-	}
-
-	private static Boolean never(BlockState p_50779_, BlockGetter p_50780_, BlockPos p_50781_, EntityType<?> p_50782_) {
-		return (boolean) false;
-	}
-
-	private static ButtonBlock woodenButton() {
-		return woodenButton(SoundType.WOOD, SoundEvents.WOODEN_BUTTON_CLICK_OFF, SoundEvents.WOODEN_BUTTON_CLICK_ON);
-	}
-
-	private static ButtonBlock woodenButton(SoundType p_249282_, SoundEvent p_251988_, SoundEvent p_251887_) {
-		return new ButtonBlock(BlockBehaviour.Properties.of(Material.DECORATION).noCollission().strength(0.5F).sound(p_249282_), 30, true, p_251988_, p_251887_);
-	}
 }

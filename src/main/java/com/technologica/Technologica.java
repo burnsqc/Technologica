@@ -11,7 +11,9 @@ import com.technologica.listeners.forgebus.DropBarkOnLogStrip;
 import com.technologica.listeners.forgebus.ExtraAirMeter;
 import com.technologica.listeners.forgebus.LunarLowGrav;
 import com.technologica.listeners.forgebus.MiningLight;
+import com.technologica.listeners.forgebus.NeuropathyMovementInvert;
 import com.technologica.listeners.forgebus.NitroPocket;
+import com.technologica.listeners.forgebus.RadiationHealingCancel;
 import com.technologica.listeners.forgebus.RegisterCapabilities;
 import com.technologica.listeners.forgebus.ReplaceFarmerBrain;
 import com.technologica.listeners.forgebus.TechnologicaVillagerTrades;
@@ -112,6 +114,8 @@ public class Technologica {
 		MinecraftForge.EVENT_BUS.register(new LunarLowGrav());
 		MinecraftForge.EVENT_BUS.register(new MiningLight());
 		MinecraftForge.EVENT_BUS.register(new NitroPocket());
+		MinecraftForge.EVENT_BUS.register(new NeuropathyMovementInvert());
+		MinecraftForge.EVENT_BUS.register(new RadiationHealingCancel());
 		MinecraftForge.EVENT_BUS.register(new RegisterCapabilities());
 		// MinecraftForge.EVENT_BUS.register(new RegisterModels());
 		MinecraftForge.EVENT_BUS.register(new ReplaceFarmerBrain());

@@ -1,5 +1,7 @@
 package com.technologica.world.food;
 
+import com.technologica.world.effect.TechnologicaMobEffects;
+
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
@@ -83,4 +85,10 @@ public class TechnologicaFoods {
 	public static final FoodProperties OLIVE_OIL = (new FoodProperties.Builder().build());
 
 	public static final FoodProperties IODINE_PILL = (new FoodProperties.Builder().alwaysEat().fast().build());
+
+	public static final FoodProperties BATRACHOTOXIN_SAC = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.0F).effect(() -> new MobEffectInstance(TechnologicaMobEffects.HALLUCINIATION.get(), 1200, 0), 1.0F).alwaysEat().build();
+	public static final FoodProperties HEMOTOXIN_SAC = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.0F).effect(() -> new MobEffectInstance(TechnologicaMobEffects.HEMORRHAGE.get(), 1200, 9), 1.0F).alwaysEat().build();
+	public static final FoodProperties NECROTOXIN_SAC = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.0F).effect(() -> new MobEffectInstance(TechnologicaMobEffects.NECROSIS.get(), 1200, 0), 1.0F).alwaysEat().build();
+	public static final FoodProperties NEUROTOXIN_SAC = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.0F).effect(() -> new MobEffectInstance(TechnologicaMobEffects.NEUROPATHY.get(), 1200, 0), 1.0F).alwaysEat().build();
+	public static final FoodProperties TETRODOTOXIN_SAC = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.0F).effect(() -> new MobEffectInstance(TechnologicaMobEffects.PARALYSIS.get(), 1200, 0), 1.0F).alwaysEat().build();
 }
