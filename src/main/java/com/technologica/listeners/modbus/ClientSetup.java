@@ -1,6 +1,7 @@
 package com.technologica.listeners.modbus;
 
 import com.technologica.client.gui.screens.inventory.AnnunciatorScreen;
+import com.technologica.client.gui.screens.inventory.MonitorScreen;
 import com.technologica.client.gui.screens.inventory.SawmillScreen;
 import com.technologica.world.inventory.TechnologicaMenuType;
 import com.technologica.world.level.block.state.properties.TechnologicaWoodType;
@@ -16,6 +17,7 @@ public class ClientSetup {
 
 	public static void onFMLClientSetupEvent(final FMLClientSetupEvent event) {
 		MenuScreens.register(TechnologicaMenuType.ANNUNCIATOR.get(), AnnunciatorScreen::new);
+		MenuScreens.register(TechnologicaMenuType.MONITOR.get(), MonitorScreen::new);
 		MenuScreens.register(TechnologicaMenuType.SAWMILL.get(), SawmillScreen::new);
 
 		event.enqueueWork(() -> {

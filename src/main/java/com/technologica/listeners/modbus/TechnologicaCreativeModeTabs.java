@@ -97,6 +97,10 @@ public class TechnologicaCreativeModeTabs {
 			populator.accept(TechnologicaItems.TEAK_LEAVES_ITEM.get());
 			populator.accept(TechnologicaItems.WALNUT_LEAVES_ITEM.get());
 			populator.accept(TechnologicaItems.ZEBRAWOOD_LEAVES_ITEM.get());
+			populator.accept(TechnologicaItems.FERTILIZER.get());
+			populator.accept(TechnologicaItems.TRELLIS.get());
+			populator.accept(TechnologicaItems.MULCH.get());
+			populator.accept(TechnologicaItems.BASIN.get());
 		}));
 
 		FAUNA = event.registerCreativeModeTab(new ResourceLocation(Technologica.MODID, "fauna"), List.of(), List.of(FLORA), builder -> builder.title(Component.translatable("item_group." + Technologica.MODID + ".fauna")).icon(() -> new ItemStack(TechnologicaItems.FUR.get())).withBackgroundLocation(new ResourceLocation(Technologica.MODID, "textures/gui/container/creative_inventory/tab_fauna.png")).withTabsImage(new ResourceLocation(Technologica.MODID, "textures/gui/container/creative_inventory/technologica_tabs.png")).withLabelColor(0).displayItems((enabledFlags, populator, hasPermissions) -> {
@@ -361,9 +365,6 @@ public class TechnologicaCreativeModeTabs {
 			populator.accept(TechnologicaItems.BLOCK_OF_RUBY.get());
 			populator.accept(TechnologicaItems.BLOCK_OF_SAPPHIRE.get());
 			populator.accept(TechnologicaItems.BLOCK_OF_TOPAZ.get());
-			populator.accept(TechnologicaItems.MULCH.get());
-			populator.accept(TechnologicaItems.FERTILIZER.get());
-			populator.accept(TechnologicaItems.TRELLIS.get());
 			populator.accept(TechnologicaItems.SAWDUST.get());
 			populator.accept(TechnologicaItems.RUBBER.get());
 			populator.accept(TechnologicaItems.HYDROGEN_BUCKET.get());
@@ -1020,6 +1021,9 @@ public class TechnologicaCreativeModeTabs {
 			populator.accept(TechnologicaItems.PIPE_WRENCH.get());
 			populator.accept(TechnologicaItems.WRENCH.get());
 			populator.accept(TechnologicaItems.FAST_HOPPER.get());
+			populator.accept(TechnologicaItems.TAPE_DRIVE.get());
+			populator.accept(TechnologicaItems.MONITOR.get());
+			populator.accept(TechnologicaItems.KEYBOARD.get());
 		}));
 
 		DECORATIVE = event.registerCreativeModeTab(new ResourceLocation(Technologica.MODID, "decorative"), List.of(), List.of(MACHINERY), builder -> builder.title(Component.translatable("item_group." + Technologica.MODID + ".decorative")).icon(() -> new ItemStack(TechnologicaItems.DISPLAY_CASE_ITEM.get())).withBackgroundLocation(new ResourceLocation(Technologica.MODID, "textures/gui/container/creative_inventory/tab_decorative.png")).withTabsImage(new ResourceLocation(Technologica.MODID, "textures/gui/container/creative_inventory/technologica_tabs.png")).withLabelColor(0).displayItems((enabledFlags, populator, hasPermissions) -> {

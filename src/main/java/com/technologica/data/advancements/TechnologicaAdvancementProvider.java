@@ -14,9 +14,9 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.common.data.ForgeAdvancementProvider;
 
 public class TechnologicaAdvancementProvider extends ForgeAdvancementProvider {
-	private final static List<AdvancementGenerator> subProviders = List.of(new TechnologicaHusbandryAdvancements(), new TechnologyAdvancements(), new DominionAdvancements(), new TribulationAdvancements());
+	private final static List<AdvancementGenerator> SUB_PROVIDERS = List.of(new TechnologicaHusbandryAdvancements(), new TechnologyAdvancements(), new DominionAdvancements(), new TribulationAdvancements());
 
 	public TechnologicaAdvancementProvider(PackOutput packOutputIn, CompletableFuture<Provider> lookupProviderIn, ExistingFileHelper existingFileHelper) {
-		super(packOutputIn, lookupProviderIn, existingFileHelper, subProviders);
+		super(packOutputIn, lookupProviderIn, existingFileHelper, SUB_PROVIDERS);
 	}
 }

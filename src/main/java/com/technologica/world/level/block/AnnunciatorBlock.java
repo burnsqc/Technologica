@@ -56,14 +56,14 @@ public class AnnunciatorBlock extends BaseEntityBlock {
 	}
 
 	@Override
-	public void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
-		if (!worldIn.isClientSide) {
-			boolean flag = state.getValue(LIT);
-			if (flag != worldIn.hasNeighborSignal(pos)) {
+	public void neighborChanged(BlockState p_55666_, Level p_55667_, BlockPos p_55668_, Block p_55669_, BlockPos p_55670_, boolean p_55671_) {
+		if (!p_55667_.isClientSide) {
+			boolean flag = p_55666_.getValue(LIT);
+			if (flag != p_55667_.hasNeighborSignal(p_55668_)) {
 				if (flag) {
-					worldIn.getBlockTicks().willTickThisTick(pos, this);
+					p_55667_.scheduleTick(p_55668_, this, 4);
 				} else {
-					worldIn.setBlock(pos, state.cycle(LIT), 2);
+					p_55667_.setBlock(p_55668_, p_55666_.cycle(LIT), 2);
 				}
 			}
 

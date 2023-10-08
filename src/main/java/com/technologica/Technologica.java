@@ -24,6 +24,7 @@ import com.technologica.listeners.lootmodifiers.TechnologicaLootModifiers;
 import com.technologica.listeners.modbus.ClientSetup;
 import com.technologica.listeners.modbus.CommonSetup;
 import com.technologica.listeners.modbus.GatherData;
+import com.technologica.listeners.modbus.RegisterColorHandlers;
 import com.technologica.listeners.modbus.RegisterDimensionSpecialEffects;
 import com.technologica.listeners.modbus.RegisterEntityAttributes;
 import com.technologica.listeners.modbus.RegisterEntityRenderers;
@@ -98,6 +99,7 @@ public class Technologica {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(CommonSetup::onFMLCommonSetupEvent); // 1st event during mod lifecycle startup
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientSetup::onFMLClientSetupEvent); // 2nd event during mod lifecycle startup
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(TechnologicaCreativeModeTabs::onRegisterCreativeModeTabs);
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(RegisterColorHandlers::onRegisterColorHandlers);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(RegisterEntityRenderers::onRegisterEntityRenderers);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(TechnologicaLayerDefinitions::onRegisterLayerDefinitions);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(RegisterModels::onRegisterModelsEvent);

@@ -241,6 +241,9 @@ public class TechnologicaBlocks {
 
 	public static final RegistryObject<Block> MULCH = BLOCKS.register("mulch", MulchBlock::new);
 	public static final RegistryObject<Block> TRELLIS = BLOCKS.register("trellis", TrellisBlock::new);
+	public static final RegistryObject<Block> BASIN = BLOCKS.register("basin", () -> new BasinEmptyBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.STONE).requiresCorrectToolForDrops().strength(2.0F).noOcclusion()));
+	public static final RegistryObject<Block> MAPLE_SYRUP_BASIN = BLOCKS.register("maple_syrup_basin", () -> new BasinFilledBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.STONE).requiresCorrectToolForDrops().strength(2.0F).noOcclusion(), TechnologicaFluids.MAPLE_SYRUP.get()));
+	public static final RegistryObject<Block> RUBBER_RESIN_BASIN = BLOCKS.register("rubber_resin_basin", () -> new BasinFilledBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.STONE).requiresCorrectToolForDrops().strength(2.0F).noOcclusion(), TechnologicaFluids.RUBBER_RESIN.get()));
 
 	/*
 	 * MINERAL
@@ -1082,6 +1085,10 @@ public class TechnologicaBlocks {
 
 	public static final RegistryObject<Block> DISPLAY_CASE = BLOCKS.register("display_case", DisplayCaseBlock::new);
 	public static final RegistryObject<Block> ANNUNCIATOR = BLOCKS.register("annunciator", AnnunciatorBlock::new);
+
+	public static final RegistryObject<Block> TAPE_DRIVE = BLOCKS.register("tape_drive", () -> new TapeDriveBlock());
+	public static final RegistryObject<Block> MONITOR = BLOCKS.register("monitor", () -> new MonitorBlock());
+	public static final RegistryObject<Block> KEYBOARD = BLOCKS.register("keyboard", () -> new FourDirectionBlock(BlockBehaviour.Properties.of(Material.METAL).strength(1.0F).sound(SoundType.METAL).noOcclusion()));
 
 	/*
 	 * ARMORY

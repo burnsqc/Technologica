@@ -28,10 +28,11 @@ public class TechnologicaBlockEntityType {
 	public static final RegistryObject<BlockEntityType<LineShaftHangerTileEntity>> LINE_SHAFT_HANGER_TILE = BLOCK_ENTITY_TYPES.register("line_shaft_hanger_tile", () -> BlockEntityType.Builder.of(LineShaftHangerTileEntity::new, TechnologicaBlocks.LINE_SHAFT_HANGER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<SawmillBlockEntity>> SAWMILL_TILE = BLOCK_ENTITY_TYPES.register("sawmill_tile", () -> BlockEntityType.Builder.of(SawmillBlockEntity::new, TechnologicaBlocks.SAWMILL_CORE.get()).build(null));
 	public static final RegistryObject<BlockEntityType<AnnunciatorBlockEntity>> ANNUNCIATOR_TILE = BLOCK_ENTITY_TYPES.register("annunciator_tile", () -> BlockEntityType.Builder.of(AnnunciatorBlockEntity::new, TechnologicaBlocks.ANNUNCIATOR.get()).build(null));
+	public static final RegistryObject<BlockEntityType<MonitorBlockEntity>> MONITOR_TILE = BLOCK_ENTITY_TYPES.register("monitor_tile", () -> BlockEntityType.Builder.of(MonitorBlockEntity::new, TechnologicaBlocks.MONITOR.get()).build(null));
 	public static final RegistryObject<BlockEntityType<MulchTileEntity>> MULCH_TILE = BLOCK_ENTITY_TYPES.register("mulch_tile", () -> BlockEntityType.Builder.of(MulchTileEntity::new, TechnologicaBlocks.MULCH.get()).build(null));
 	public static final RegistryObject<BlockEntityType<LandMineBlockEntity>> LAND_MINE_TILE = BLOCK_ENTITY_TYPES.register("land_mine_tile", () -> BlockEntityType.Builder.of(LandMineBlockEntity::new, TechnologicaBlocks.LAND_MINE.get()).build(null));
 	public static final RegistryObject<BlockEntityType<RadioactiveOreBlockEntity>> RADIOACTIVE_ORE_BLOCK_ENTITY = BLOCK_ENTITY_TYPES.register("radioactive_ore_block_entity", () -> BlockEntityType.Builder.of(RadioactiveOreBlockEntity::new, TechnologicaBlocks.THORIANITE_ORE.get(), TechnologicaBlocks.DEEPSLATE_THORIANITE_ORE.get(), TechnologicaBlocks.URANINITE_ORE.get(), TechnologicaBlocks.DEEPSLATE_URANINITE_ORE.get()).build(null));
-	
+
 	public static final RegistryObject<BlockEntityType<FastHopperBlockEntity>> FAST_HOPPER_BLOCK_ENTITY = BLOCK_ENTITY_TYPES.register("fast_hopper_block_entity", () -> BlockEntityType.Builder.of(FastHopperBlockEntity::new, TechnologicaBlocks.FAST_HOPPER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<LightBlockEntity>> LIGHT_BLOCK_ENTITY = BLOCK_ENTITY_TYPES.register("light_block_entity", () -> BlockEntityType.Builder.of(LightBlockEntity::new, TechnologicaBlocks.LIGHT.get()).build(null));
 }

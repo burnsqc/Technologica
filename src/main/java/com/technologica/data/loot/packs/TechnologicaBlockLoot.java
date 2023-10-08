@@ -1126,6 +1126,14 @@ public class TechnologicaBlockLoot extends BlockLootSubProvider {
 		this.add(TechnologicaBlocks.SLEEPING_BAG.get(), (p_251275_) -> {
 			return this.createSinglePropConditionTable(p_251275_, BedBlock.PART, BedPart.HEAD);
 		});
+
+		dropSelf(TechnologicaBlocks.TAPE_DRIVE.get());
+		dropSelf(TechnologicaBlocks.MONITOR.get());
+		dropSelf(TechnologicaBlocks.KEYBOARD.get());
+		dropSelf(TechnologicaBlocks.BASIN.get());
+		dropSelf(TechnologicaBlocks.MAPLE_SYRUP_BASIN.get());
+		dropSelf(TechnologicaBlocks.RUBBER_RESIN_BASIN.get());
+
 	}
 
 	@Override

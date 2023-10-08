@@ -416,6 +416,7 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> MULCH = ITEMS.register("mulch", () -> new MulchItem(new Properties()));
 	public static final RegistryObject<Item> FERTILIZER = ITEMS.register("fertilizer", () -> new FertilizerItem(new Properties()));
 	public static final RegistryObject<Item> TRELLIS = ITEMS.register("trellis", () -> new BlockItem(TechnologicaBlocks.TRELLIS.get(), new Properties()));
+	public static final RegistryObject<Item> BASIN = ITEMS.register("basin", () -> new BlockItem(TechnologicaBlocks.BASIN.get(), new Properties()));
 	public static final RegistryObject<Item> SAWDUST = ITEMS.register("sawdust", () -> new Item(new Properties()));
 	public static final RegistryObject<Item> RUBBER = ITEMS.register("rubber", () -> new Item(new Properties()));
 
@@ -1242,6 +1243,10 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> ROCKET = ITEMS.register("rocket", () -> new RocketItem(Rocket.Type.MALEVOLENT, (new Item.Properties()).stacksTo(1)));
 
 	public static final RegistryObject<Item> SLEEPING_BAG = ITEMS.register("sleeping_bag", () -> new SleepingBagItem(TechnologicaBlocks.SLEEPING_BAG.get(), (new Item.Properties()).stacksTo(1)));
+
+	public static final RegistryObject<Item> TAPE_DRIVE = ITEMS.register("tape_drive", () -> new BlockItem(TechnologicaBlocks.TAPE_DRIVE.get(), (new Item.Properties())));
+	public static final RegistryObject<Item> MONITOR = ITEMS.register("monitor", () -> new BlockItem(TechnologicaBlocks.MONITOR.get(), (new Item.Properties())));
+	public static final RegistryObject<Item> KEYBOARD = ITEMS.register("keyboard", () -> new BlockItem(TechnologicaBlocks.KEYBOARD.get(), (new Item.Properties())));
 
 	/**
 	 * CRYPTICA

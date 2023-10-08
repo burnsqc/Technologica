@@ -76,8 +76,9 @@ public class VineCropBlock extends CropBlock {
 			} else {
 				if (worldIn.getBlockState(posIn.below()).getBlock() == this) {
 					isContinuous = worldIn.getBlockState(posIn.below()).getValue(HALF) == DoubleBlockHalf.LOWER;
+					return worldIn.getBlockState(posIn.below()).getValue(AGE) >= 4 && isContinuous || worldIn.getBlockState(posIn.below()).getValue(TRELLIS);
 				}
-				return worldIn.getBlockState(posIn.below()).getValue(AGE) >= 4 && isContinuous || worldIn.getBlockState(posIn.below()).getValue(TRELLIS);
+				return false;
 			}
 		} else {
 			return false;
