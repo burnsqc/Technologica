@@ -20,8 +20,7 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 
 /**
- * Special one-off class for the line shaft hanger. Created to add the handle
- * player interaction and associated tile entity.
+ * Special one-off class for the line shaft hanger. Created to add the handle player interaction and associated tile entity.
  */
 public class LineShaftHangerBlock extends TwelveDirectionBlock implements EntityBlock {
 
@@ -32,7 +31,7 @@ public class LineShaftHangerBlock extends TwelveDirectionBlock implements Entity
 	/*
 	 * Technologica Methods
 	 */
-	
+
 	public static LineShaftHangerTileEntity getTileEntity(Level worldIn, BlockPos posIn) {
 		return (LineShaftHangerTileEntity) worldIn.getBlockEntity(posIn);
 	}
@@ -40,7 +39,7 @@ public class LineShaftHangerBlock extends TwelveDirectionBlock implements Entity
 	/*
 	 * Minecraft Methods
 	 */
-	
+
 	@Override
 	public InteractionResult use(BlockState stateIn, Level worldIn, BlockPos posIn, Player playerIn, InteractionHand handIn, BlockHitResult hitIn) {
 		LineShaftHangerTileEntity tile = getTileEntity(worldIn, posIn);
@@ -65,9 +64,7 @@ public class LineShaftHangerBlock extends TwelveDirectionBlock implements Entity
 			if (!playerIn.isCrouching() && !tile.getShaft()) {
 				tile.setShaft(true);
 			} else if (!playerIn.isCrouching() && tile.getShaft() && hitIn.getDirection().getAxis() == stateIn.getValue(AXIS)) {
-				worldIn.setBlock(hitIn.getBlockPos().relative(hitIn.getDirection()),
-						TechnologicaBlocks.LINE_SHAFT.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, stateIn.getValue(AXIS)),
-						3);
+				worldIn.setBlock(hitIn.getBlockPos().relative(hitIn.getDirection()), TechnologicaBlocks.LINE_SHAFT.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, stateIn.getValue(AXIS)), 3);
 			}
 		}
 		return InteractionResult.sidedSuccess(worldIn.isClientSide);

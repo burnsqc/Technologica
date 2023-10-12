@@ -399,6 +399,9 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.PIPE_WRENCH.get());
 		simpleItem(TechnologicaItems.WRENCH.get());
 		simpleItem(TechnologicaItems.SAWBLADE.get());
+		simpleItem(TechnologicaItems.PUNCH_CARD.get());
+		simpleItem(TechnologicaItems.PUNCHED_CARD.get());
+		simpleItem(TechnologicaItems.DECK_OF_PUNCHED_CARDS.get());
 
 		simpleItem(TechnologicaItems.OVERLAY_PASS_ITEM.get());
 		simpleItem(TechnologicaItems.OVERLAY_WARN_ITEM.get());

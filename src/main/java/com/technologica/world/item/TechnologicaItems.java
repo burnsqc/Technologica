@@ -1247,6 +1247,9 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> TAPE_DRIVE = ITEMS.register("tape_drive", () -> new BlockItem(TechnologicaBlocks.TAPE_DRIVE.get(), (new Item.Properties())));
 	public static final RegistryObject<Item> MONITOR = ITEMS.register("monitor", () -> new BlockItem(TechnologicaBlocks.MONITOR.get(), (new Item.Properties())));
 	public static final RegistryObject<Item> KEYBOARD = ITEMS.register("keyboard", () -> new BlockItem(TechnologicaBlocks.KEYBOARD.get(), (new Item.Properties())));
+	public static final RegistryObject<Item> PUNCH_CARD = ITEMS.register("punch_card", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> PUNCHED_CARD = ITEMS.register("punched_card", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> DECK_OF_PUNCHED_CARDS = ITEMS.register("deck_of_punched_cards", () -> new Item(new Item.Properties()));
 
 	/**
 	 * CRYPTICA

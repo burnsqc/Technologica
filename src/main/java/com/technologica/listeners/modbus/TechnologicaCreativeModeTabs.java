@@ -1024,6 +1024,9 @@ public class TechnologicaCreativeModeTabs {
 			populator.accept(TechnologicaItems.TAPE_DRIVE.get());
 			populator.accept(TechnologicaItems.MONITOR.get());
 			populator.accept(TechnologicaItems.KEYBOARD.get());
+			populator.accept(TechnologicaItems.PUNCH_CARD.get());
+			populator.accept(TechnologicaItems.PUNCHED_CARD.get());
+			populator.accept(TechnologicaItems.DECK_OF_PUNCHED_CARDS.get());
 		}));
 
 		DECORATIVE = event.registerCreativeModeTab(new ResourceLocation(Technologica.MODID, "decorative"), List.of(), List.of(MACHINERY), builder -> builder.title(Component.translatable("item_group." + Technologica.MODID + ".decorative")).icon(() -> new ItemStack(TechnologicaItems.DISPLAY_CASE_ITEM.get())).withBackgroundLocation(new ResourceLocation(Technologica.MODID, "textures/gui/container/creative_inventory/tab_decorative.png")).withTabsImage(new ResourceLocation(Technologica.MODID, "textures/gui/container/creative_inventory/technologica_tabs.png")).withLabelColor(0).displayItems((enabledFlags, populator, hasPermissions) -> {
