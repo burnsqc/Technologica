@@ -1,5 +1,7 @@
 package com.technologica.listeners.modbus;
 
+import static com.technologica.Technologica.LOGGER;
+
 import com.technologica.client.gui.screens.inventory.AnnunciatorScreen;
 import com.technologica.client.gui.screens.inventory.MonitorScreen;
 import com.technologica.client.gui.screens.inventory.SawmillScreen;
@@ -16,14 +18,19 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 public class ClientSetup {
 
 	public static void onFMLClientSetupEvent(final FMLClientSetupEvent event) {
-		MenuScreens.register(TechnologicaMenuType.ANNUNCIATOR.get(), AnnunciatorScreen::new);
-		MenuScreens.register(TechnologicaMenuType.MONITOR.get(), MonitorScreen::new);
-		MenuScreens.register(TechnologicaMenuType.SAWMILL.get(), SawmillScreen::new);
+		registerMenuScreens();
 
 		event.enqueueWork(() -> {
 			setTechnologicaFluidRenderTypes();
 			addTechnologicaWoodTypes();
 		});
+	}
+
+	private static void registerMenuScreens() {
+		MenuScreens.register(TechnologicaMenuType.ANNUNCIATOR.get(), AnnunciatorScreen::new);
+		MenuScreens.register(TechnologicaMenuType.MONITOR.get(), MonitorScreen::new);
+		MenuScreens.register(TechnologicaMenuType.SAWMILL.get(), SawmillScreen::new);
+		LOGGER.info("MENU SCREENS REGISTERED: 3 OF 3");
 	}
 
 	private static void setTechnologicaFluidRenderTypes() {
@@ -65,6 +72,7 @@ public class ClientSetup {
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_MACHINE_OIL.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.COOLANT.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_COOLANT.get(), RenderType.translucent());
+		LOGGER.info("FLUID RENDER TYPES SET: 38 OF 38");
 	}
 
 	private static void addTechnologicaWoodTypes() {
@@ -101,5 +109,6 @@ public class ClientSetup {
 		Sheets.addWoodType(TechnologicaWoodType.TEAK);
 		Sheets.addWoodType(TechnologicaWoodType.WALNUT);
 		Sheets.addWoodType(TechnologicaWoodType.ZEBRAWOOD);
+		LOGGER.info("WOOD TYPES ADDED TO SHEET: 33 OF 33");
 	}
 }

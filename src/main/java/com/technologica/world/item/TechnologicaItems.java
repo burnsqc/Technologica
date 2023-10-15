@@ -1250,6 +1250,8 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> PUNCH_CARD = ITEMS.register("punch_card", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> PUNCHED_CARD = ITEMS.register("punched_card", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> DECK_OF_PUNCHED_CARDS = ITEMS.register("deck_of_punched_cards", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> MAGNETIC_TAPE_BLANK = ITEMS.register("magnetic_tape_blank", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> MAGNETIC_TAPE_WRITTEN = ITEMS.register("magnetic_tape_written", () -> new Item(new Item.Properties()));
 
 	/**
 	 * CRYPTICA

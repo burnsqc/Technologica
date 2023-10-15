@@ -1,5 +1,7 @@
 package com.technologica.listeners.modbus;
 
+import static com.technologica.Technologica.LOGGER;
+
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -26,14 +28,14 @@ public class CommonSetup {
 
 		event.enqueueWork(() -> {
 			TechnologicaTrunkPlacerType.register();
-			//TechnologicaTreeFeatures.register();
-			//TechnologicaTreePlacements.register();
-			//TechnologicaVegetationFeatures.register();
-			//TechnologicaVegetationPlacements.register();
-			//TechnologicaVillagePlacements.register();
-			//TechnologicaMiscOverworldPlacements.register();
-			//TechnologicaOreFeatures.register();
-			//TechnologicaOrePlacements.register();
+			// TechnologicaTreeFeatures.register();
+			// TechnologicaTreePlacements.register();
+			// TechnologicaVegetationFeatures.register();
+			// TechnologicaVegetationPlacements.register();
+			// TechnologicaVillagePlacements.register();
+			// TechnologicaMiscOverworldPlacements.register();
+			// TechnologicaOreFeatures.register();
+			// TechnologicaOrePlacements.register();
 
 			addToFlowerPot();
 			addToComposter();
@@ -76,6 +78,7 @@ public class CommonSetup {
 		WoodType.register(TechnologicaWoodType.TEAK);
 		WoodType.register(TechnologicaWoodType.WALNUT);
 		WoodType.register(TechnologicaWoodType.ZEBRAWOOD);
+		LOGGER.info("WOOD TYPES REGISTERED: 33 OF 33");
 	}
 
 	private static void addToFlowerPot() {

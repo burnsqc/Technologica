@@ -66,13 +66,19 @@ import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraftforge.client.event.EntityRenderersEvent.RegisterRenderers;
 
+/**
+ * <p>
+ * This class listens for the RegisterRenderersEvent which is fired on the mod-specific event bus.
+ * When the event is intercepted, Technologica Entity Renderers and Block Entity Renderers are registered.
+ * This is currently the approved way to register Entity Renderers and Block Entity Renderers.
+ * </p>
+ */
+
 public class RegisterEntityRenderers {
 
-	public static void onRegisterEntityRenderers(final RegisterRenderers event) {
+	public static void onRegisterRenderers(final RegisterRenderers event) {
 		event.registerEntityRenderer(TechnologicaEntityType.MOD_BOAT.get(), VanillaBoatRenderer::new);
-
 		event.registerEntityRenderer(TechnologicaEntityType.INVISIBLE_SEAT.get(), InvisibleRenderer::new);
-
 		event.registerEntityRenderer(TechnologicaEntityType.COCONUT.get(), (renderManager) -> {
 			return new ThrownItemRenderer<>(renderManager, 1.0F, true);
 		});
@@ -80,7 +86,6 @@ public class RegisterEntityRenderers {
 			return new ThrownItemRenderer<>(renderManager, 1.0F, true);
 		});
 		event.registerEntityRenderer(TechnologicaEntityType.HARPOON.get(), HarpoonRenderer::new);
-
 		event.registerEntityRenderer(TechnologicaEntityType.ALLIGATOR.get(), AlligatorRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityType.BEAVER.get(), BeaverRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityType.BUFFALO.get(), BuffaloRenderer::new);
@@ -119,15 +124,16 @@ public class RegisterEntityRenderers {
 		event.registerEntityRenderer(TechnologicaEntityType.VULTURE.get(), VultureRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityType.WALRUS.get(), WalrusRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityType.ZEBRA.get(), ZebraRenderer::new);
-
 		event.registerEntityRenderer(TechnologicaEntityType.ATOMIC_CREEPER.get(), AtomicCreeperRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityType.MUMMY.get(), MummyRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityType.PEEPER.get(), PeeperRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityType.SWEEPER.get(), SweeperRenderer::new);
-
 		event.registerEntityRenderer(TechnologicaEntityType.NAVAL_MINE.get(), NavalMineRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityType.ROCKET.get(), RocketRenderer::new);
-
+		/**
+		 * TODO: Determine how to count how many Technologica Entity Renderers actually got registered and replace the hard-coded value in the logger message. Trying to avoid Access Transformers, but could open up private final Map {@link EntityRenderers} PROVIDERS.
+		 */
+		LOGGER.info("ENTITY RENDERERS REGISTERED: 49 OF 49");
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.ANNUNCIATOR_TILE.get(), AnnunciatorRenderer::new);
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.MONITOR_TILE.get(), MonitorRenderer::new);
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.VANILLA_SIGN.get(), SignRenderer::new);
@@ -139,6 +145,9 @@ public class RegisterEntityRenderers {
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.LINE_SHAFT_HANGER_TILE.get(), LineShaftHangerRenderer::new);
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.SAWMILL_TILE.get(), SawmillRenderer::new);
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.LAND_MINE_TILE.get(), LandMineRenderer::new);
-		LOGGER.info("ENTITY RENDERERS REGISTERED: 57 OF 57");
+		/**
+		 * TODO: Determine how to count how many Technologica Block Entity Renderers actually got registered and replace the hard-coded value in the logger message. Trying to avoid Access Transformers, but could open up private final Map {@link BlockEntityRenderers} PROVIDERS.
+		 */
+		LOGGER.info("BLOCK ENTITY RENDERERS REGISTERED: 11 OF 11");
 	}
 }

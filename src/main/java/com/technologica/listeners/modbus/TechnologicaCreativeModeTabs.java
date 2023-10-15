@@ -1,5 +1,7 @@
 package com.technologica.listeners.modbus;
 
+import static com.technologica.Technologica.LOGGER;
+
 import java.util.List;
 
 import com.technologica.Technologica;
@@ -1027,6 +1029,8 @@ public class TechnologicaCreativeModeTabs {
 			populator.accept(TechnologicaItems.PUNCH_CARD.get());
 			populator.accept(TechnologicaItems.PUNCHED_CARD.get());
 			populator.accept(TechnologicaItems.DECK_OF_PUNCHED_CARDS.get());
+			populator.accept(TechnologicaItems.MAGNETIC_TAPE_BLANK.get());
+			populator.accept(TechnologicaItems.MAGNETIC_TAPE_WRITTEN.get());
 		}));
 
 		DECORATIVE = event.registerCreativeModeTab(new ResourceLocation(Technologica.MODID, "decorative"), List.of(), List.of(MACHINERY), builder -> builder.title(Component.translatable("item_group." + Technologica.MODID + ".decorative")).icon(() -> new ItemStack(TechnologicaItems.DISPLAY_CASE_ITEM.get())).withBackgroundLocation(new ResourceLocation(Technologica.MODID, "textures/gui/container/creative_inventory/tab_decorative.png")).withTabsImage(new ResourceLocation(Technologica.MODID, "textures/gui/container/creative_inventory/technologica_tabs.png")).withLabelColor(0).displayItems((enabledFlags, populator, hasPermissions) -> {
@@ -1160,5 +1164,6 @@ public class TechnologicaCreativeModeTabs {
 			populator.accept(TechnologicaItems.MALEVOLENT_APOTHECARY_SAPLING_ITEM.get());
 			populator.accept(TechnologicaItems.NECROTIC_SAPLING_ITEM.get());
 		}));
+		LOGGER.info("CREATIVE MODE TABS REGISTERTED: 9 OF 9");
 	}
 }

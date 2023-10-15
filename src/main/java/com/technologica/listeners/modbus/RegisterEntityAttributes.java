@@ -48,6 +48,14 @@ import com.technologica.world.entity.monster.Sweeper;
 
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 
+/**
+ * <p>
+ * This class listens for the EntityAttributeCreationEvent which is fired on the mod-specific event bus.
+ * When the event is intercepted, Technologica Entity Attributes are registered.
+ * This is currently the approved way to register Entity Attributes.
+ * </p>
+ */
+
 public class RegisterEntityAttributes {
 
 	public static void onEntityAttributeCreationEvent(final EntityAttributeCreationEvent event) {
@@ -93,6 +101,9 @@ public class RegisterEntityAttributes {
 		event.put(TechnologicaEntityType.MUMMY.get(), Mummy.registerAttributes().build());
 		event.put(TechnologicaEntityType.PEEPER.get(), Peeper.registerAttributes().build());
 		event.put(TechnologicaEntityType.SWEEPER.get(), Sweeper.registerAttributes().build());
+		/**
+		 * TODO: Determine how to count how many Technologica Entity Attributes actually got registered and replace the hard-coded value in the logger message.
+		 */
 		LOGGER.info("ENTITY ATTRIBUTES REGISTERED: 40 OF 40");
 	}
 }

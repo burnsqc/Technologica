@@ -7,9 +7,17 @@ import com.technologica.Technologica;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.event.ModelEvent;
 
+/**
+ * <p>
+ * This class listens for the ModelEvent.RegisterAdditional event which is fired on the mod-specific event bus.
+ * When the event is intercepted, Technologica Models are registered.
+ * This is currently the approved way to register Models.
+ * </p>
+ */
+
 public class RegisterModels {
 
-	public static void onRegisterModelsEvent(ModelEvent.RegisterAdditional event) {
+	public static void onRegisterAdditional(final ModelEvent.RegisterAdditional event) {
 		event.register(new ResourceLocation(Technologica.MODID, "item/technetium_ingot_base"));
 		event.register(new ResourceLocation(Technologica.MODID, "item/promethium_ingot_base"));
 		event.register(new ResourceLocation(Technologica.MODID, "item/polonium_ingot_base"));
@@ -46,6 +54,9 @@ public class RegisterModels {
 		event.register(new ResourceLocation(Technologica.MODID, "item/tennessine_ingot_base"));
 		event.register(new ResourceLocation(Technologica.MODID, "item/oganesson_ingot_base"));
 		event.register(new ResourceLocation(Technologica.MODID, "item/astatine_chunk_base"));
-		LOGGER.info("MODELS REGISTERED: 1 OF 1");
+		/**
+		 * TODO: Determine how to count how many Technologica Models actually got registered and replace the hard-coded value in the logger message.
+		 */
+		LOGGER.info("MODELS REGISTERED: 36 OF 36");
 	}
 }

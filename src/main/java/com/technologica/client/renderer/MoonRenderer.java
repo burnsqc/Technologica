@@ -16,12 +16,21 @@ import com.mojang.math.Axis;
 import com.technologica.Technologica;
 
 import net.minecraft.client.Camera;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.DimensionSpecialEffects;
 import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.LightTexture;
+import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.LightLayer;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.extensions.IForgeDimensionSpecialEffects;
 
@@ -33,6 +42,9 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 	private VertexBuffer skyBuffer;
 	private static final ResourceLocation SUN_TEXTURES = new ResourceLocation(Technologica.MODID, "textures/environment/sun.png");
 	private static final ResourceLocation EARTH_TEXTURES = new ResourceLocation(Technologica.MODID, "textures/environment/earth.png");
+	private final float[] rainSizeX = new float[1024];
+	private final float[] rainSizeZ = new float[1024];
+	private static final ResourceLocation RAIN_LOCATION = new ResourceLocation(Technologica.MODID, "textures/environment/meteor_shower.png");
 
 	public MoonRenderer() {
 		super(Float.NaN, true, DimensionSpecialEffects.SkyType.NORMAL, false, false);
@@ -51,9 +63,12 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 
 		matrixStackIn.pushPose();
-		matrixStackIn.mulPose(Axis.YP.rotationDegrees(-90.0F));
+		matrixStackIn.mulPose(Axis.XP.rotationDegrees(-90.0F));
 		matrixStackIn.mulPose(Axis.XP.rotationDegrees(45.0F));
 		Matrix4f matrix4f1 = matrixStackIn.last().pose();
+		matrixStackIn.popPose();
+
+		matrixStackIn.pushPose();
 		matrixStackIn.mulPose(Axis.XP.rotationDegrees(-45.0F));
 		matrixStackIn.mulPose(Axis.XP.rotationDegrees(level.getTimeOfDay(partialTicks) * 360.0F));
 		Matrix4f matrix4f2 = matrixStackIn.last().pose();
@@ -162,5 +177,145 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 	@Override
 	public boolean isFoggyAt(int p_108874_, int p_108875_) {
 		return false;
+	}
+
+	@Override
+	public boolean renderSnowAndRain(ClientLevel level, int ticks, float partialTick, LightTexture lightTexture, double camX, double camY, double camZ) {
+		float f = 0.1F; // level.getRainLevel(partialTick);
+		if (!(f <= 0.0F)) {
+			lightTexture.turnOnLightLayer();
+			int i = Mth.floor(camX);
+			int j = Mth.floor(camY);
+			int k = Mth.floor(camZ);
+			Tesselator tesselator = Tesselator.getInstance();
+			BufferBuilder bufferbuilder = tesselator.getBuilder();
+			RenderSystem.disableCull();
+			RenderSystem.enableBlend();
+			RenderSystem.defaultBlendFunc();
+			RenderSystem.enableDepthTest();
+			int l = 5;
+			if (Minecraft.useFancyGraphics()) {
+				l = 10;
+			}
+
+			RenderSystem.depthMask(Minecraft.useShaderTransparency());
+			int i1 = -1;
+			float f1 = ticks + partialTick;
+			RenderSystem.setShader(GameRenderer::getParticleShader);
+			RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+			BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+
+			for (int j1 = k - l; j1 <= k + l; ++j1) {
+				for (int k1 = i - l; k1 <= i + l; ++k1) {
+					int l1 = (j1 - k + 16) * 32 + k1 - i + 16;
+					double d0 = this.rainSizeX[l1] * 0.5D;
+					double d1 = this.rainSizeZ[l1] * 0.5D;
+					blockpos$mutableblockpos.set(k1, camY, j1);
+					Biome biome = level.getBiome(blockpos$mutableblockpos).value();
+					if (biome.getPrecipitation() != Biome.Precipitation.NONE) {
+						int i2 = level.getHeight(Heightmap.Types.MOTION_BLOCKING, k1, j1);
+						int j2 = j - l;
+						int k2 = j + l;
+						if (j2 < i2) {
+							j2 = i2;
+						}
+
+						if (k2 < i2) {
+							k2 = i2;
+						}
+
+						int l2 = i2;
+						if (i2 < j) {
+							l2 = j;
+						}
+
+						if (j2 != k2) {
+							RandomSource randomsource = RandomSource.create(k1 * k1 * 3121 + k1 * 45238971 ^ j1 * j1 * 418711 + j1 * 13761);
+							blockpos$mutableblockpos.set(k1, j2, j1);
+							if (biome.warmEnoughToRain(blockpos$mutableblockpos)) {
+								if (i1 != 0) {
+									if (i1 >= 0) {
+										tesselator.end();
+									}
+
+									i1 = 0;
+									RenderSystem.setShaderTexture(0, RAIN_LOCATION);
+									bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.PARTICLE);
+								}
+
+								int i3 = ticks + k1 * k1 * 3121 + k1 * 45238971 + j1 * j1 * 418711 + j1 * 13761 & 31;
+								float f2 = -(i3 + partialTick) / 32.0F * (3.0F + randomsource.nextFloat());
+								double d2 = k1 + 0.5D - camX;
+								double d4 = j1 + 0.5D - camZ;
+								float f3 = (float) Math.sqrt(d2 * d2 + d4 * d4) / l;
+								float f4 = ((1.0F - f3 * f3) * 0.5F + 0.5F) * f;
+								blockpos$mutableblockpos.set(k1, l2, j1);
+								int j3 = getLightColor(level, blockpos$mutableblockpos);
+								bufferbuilder.vertex(k1 - camX - d0 + 0.5D, k2 - camY, j1 - camZ - d1 + 0.5D).uv(0.0F, j2 * 0.25F + f2).color(1.0F, 1.0F, 1.0F, f4).uv2(j3).endVertex();
+								bufferbuilder.vertex(k1 - camX + d0 + 0.5D, k2 - camY, j1 - camZ + d1 + 0.5D).uv(1.0F, j2 * 0.25F + f2).color(1.0F, 1.0F, 1.0F, f4).uv2(j3).endVertex();
+								bufferbuilder.vertex(k1 - camX + d0 + 0.5D, j2 - camY, j1 - camZ + d1 + 0.5D).uv(1.0F, k2 * 0.25F + f2).color(1.0F, 1.0F, 1.0F, f4).uv2(j3).endVertex();
+								bufferbuilder.vertex(k1 - camX - d0 + 0.5D, j2 - camY, j1 - camZ - d1 + 0.5D).uv(0.0F, k2 * 0.25F + f2).color(1.0F, 1.0F, 1.0F, f4).uv2(j3).endVertex();
+							} else {
+								if (i1 != 1) {
+									if (i1 >= 0) {
+										tesselator.end();
+									}
+
+									i1 = 1;
+									RenderSystem.setShaderTexture(0, RAIN_LOCATION);
+									bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.PARTICLE);
+								}
+
+								float f5 = -((ticks & 511) + partialTick) / 512.0F;
+								float f6 = (float) (randomsource.nextDouble() + f1 * 0.01D * ((float) randomsource.nextGaussian()));
+								float f7 = (float) (randomsource.nextDouble() + f1 * (float) randomsource.nextGaussian() * 0.001D);
+								double d3 = k1 + 0.5D - camX;
+								double d5 = j1 + 0.5D - camZ;
+								float f8 = (float) Math.sqrt(d3 * d3 + d5 * d5) / l;
+								float f9 = ((1.0F - f8 * f8) * 0.3F + 0.5F) * f;
+								blockpos$mutableblockpos.set(k1, l2, j1);
+								int k3 = getLightColor(level, blockpos$mutableblockpos);
+								int l3 = k3 >> 16 & '\uffff';
+								int i4 = k3 & '\uffff';
+								int j4 = (l3 * 3 + 240) / 4;
+								int k4 = (i4 * 3 + 240) / 4;
+								bufferbuilder.vertex(k1 - camX - d0 + 0.5D, k2 - camY, j1 - camZ - d1 + 0.5D).uv(0.0F + f6, j2 * 0.25F + f5 + f7).color(1.0F, 1.0F, 1.0F, f9).uv2(k4, j4).endVertex();
+								bufferbuilder.vertex(k1 - camX + d0 + 0.5D, k2 - camY, j1 - camZ + d1 + 0.5D).uv(1.0F + f6, j2 * 0.25F + f5 + f7).color(1.0F, 1.0F, 1.0F, f9).uv2(k4, j4).endVertex();
+								bufferbuilder.vertex(k1 - camX + d0 + 0.5D, j2 - camY, j1 - camZ + d1 + 0.5D).uv(1.0F + f6, k2 * 0.25F + f5 + f7).color(1.0F, 1.0F, 1.0F, f9).uv2(k4, j4).endVertex();
+								bufferbuilder.vertex(k1 - camX - d0 + 0.5D, j2 - camY, j1 - camZ - d1 + 0.5D).uv(0.0F + f6, k2 * 0.25F + f5 + f7).color(1.0F, 1.0F, 1.0F, f9).uv2(k4, j4).endVertex();
+							}
+						}
+					}
+				}
+			}
+
+			if (i1 >= 0) {
+				tesselator.end();
+			}
+
+			RenderSystem.enableCull();
+			RenderSystem.disableBlend();
+			lightTexture.turnOffLightLayer();
+		}
+		return false;
+	}
+
+	public static int getLightColor(BlockAndTintGetter p_109542_, BlockPos p_109543_) {
+		return getLightColor(p_109542_, p_109542_.getBlockState(p_109543_), p_109543_);
+	}
+
+	public static int getLightColor(BlockAndTintGetter p_109538_, BlockState p_109539_, BlockPos p_109540_) {
+		if (p_109539_.emissiveRendering(p_109538_, p_109540_)) {
+			return 15728880;
+		} else {
+			int i = p_109538_.getBrightness(LightLayer.SKY, p_109540_);
+			int j = p_109538_.getBrightness(LightLayer.BLOCK, p_109540_);
+			int k = p_109539_.getLightEmission(p_109538_, p_109540_);
+			if (j < k) {
+				j = k;
+			}
+
+			return i << 20 | j << 4;
+		}
 	}
 }

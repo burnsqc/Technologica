@@ -49,9 +49,9 @@
     "misc": []
   },
   "spawn_costs": {},
-  "precipitation": "none",
-  "temperature": 1.0,
-  "downfall": 0.0,
-  "category": "mesa",
+  "precipitation": "rain",
+  "temperature": 0.6,
+  "downfall": 0.6,
+  "category": "forest",
   "depth": 0.1
 }

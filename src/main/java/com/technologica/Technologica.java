@@ -5,21 +5,21 @@ import org.apache.logging.log4j.Logger;
 
 import com.technologica.client.model.geom.TechnologicaLayerDefinitions;
 import com.technologica.core.particles.TechnologicaParticleTypes;
-import com.technologica.listeners.forgebus.BadLuckBananaWhenFishing;
-import com.technologica.listeners.forgebus.DisableLogDrops;
-import com.technologica.listeners.forgebus.DropBarkOnLogStrip;
-import com.technologica.listeners.forgebus.ExtraAirMeter;
-import com.technologica.listeners.forgebus.LunarLowGrav;
-import com.technologica.listeners.forgebus.MiningLight;
-import com.technologica.listeners.forgebus.NeuropathyMovementInvert;
-import com.technologica.listeners.forgebus.NitroPocket;
-import com.technologica.listeners.forgebus.RadiationHealingCancel;
-import com.technologica.listeners.forgebus.RegisterCapabilities;
-import com.technologica.listeners.forgebus.ReplaceFarmerBrain;
-import com.technologica.listeners.forgebus.TechnologicaVillagerTrades;
-import com.technologica.listeners.forgebus.TechnologicaWanderingTraderTrades;
-import com.technologica.listeners.forgebus.VanillaEntityModifier;
-import com.technologica.listeners.forgebus.WaterWalk;
+import com.technologica.listeners.forgebus.EntityJoinLevelEventListener;
+import com.technologica.listeners.forgebus.HarvestCheckListener;
+import com.technologica.listeners.forgebus.ItemFishedEventListener;
+import com.technologica.listeners.forgebus.LivingAttackEventListener;
+import com.technologica.listeners.forgebus.LivingEquipmentChangeEventListener;
+import com.technologica.listeners.forgebus.LivingFallEventListener;
+import com.technologica.listeners.forgebus.LivingHealEventListener;
+import com.technologica.listeners.forgebus.LivingJumpEventListener;
+import com.technologica.listeners.forgebus.MovementInputUpdateEventListener;
+import com.technologica.listeners.forgebus.PlayerTickEventListener;
+import com.technologica.listeners.forgebus.RegisterCapabilitiesEventListener;
+import com.technologica.listeners.forgebus.RenderGuiOverlayEventListener;
+import com.technologica.listeners.forgebus.RightClickBlockListener;
+import com.technologica.listeners.forgebus.VillagerTradesEventListener;
+import com.technologica.listeners.forgebus.WandererTradesEventListener;
 import com.technologica.listeners.lootmodifiers.TechnologicaLootModifiers;
 import com.technologica.listeners.modbus.ClientSetup;
 import com.technologica.listeners.modbus.CommonSetup;
@@ -49,6 +49,7 @@ import com.technologica.world.level.material.TechnologicaFluids;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.crafting.CraftingHelper;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig.Type;
@@ -58,6 +59,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 public class Technologica {
 	public static final String MODID = "technologica";
 	public static final Logger LOGGER = LogManager.getLogger();
+	private static final IEventBus MOD_EVENT_BUS = FMLJavaModLoadingContext.get().getModEventBus();
 
 	public Technologica() {
 		ModLoadingContext.get().registerConfig(Type.COMMON, Config.SPEC, "technologica-common.toml");
@@ -78,6 +80,8 @@ public class Technologica {
 		TechnologicaLootModifiers.init();
 		TechnologicaMobEffects.init();
 
+		addModEventBusListeners();
+		addForgeEventBusListeners();
 		// FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(Block.class, RegistrationListener::onRegisterBlocks);
 		// FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(Item.class, RegistrationListener::onRegisterItems);
 		// FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(BlockEntityType.class, RegistrationListener::onRegisterTileEntities);
@@ -94,36 +98,38 @@ public class Technologica {
 		CraftingHelper.register(DisablePlankConditionFactory.Serializer.INSTANCE);
 		CraftingHelper.register(EnablePlankConditionFactory.Serializer.INSTANCE);
 
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(RegisterEntityAttributes::onEntityAttributeCreationEvent); // Called after registration, but before common setup
+	}
 
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(CommonSetup::onFMLCommonSetupEvent); // 1st event during mod lifecycle startup
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientSetup::onFMLClientSetupEvent); // 2nd event during mod lifecycle startup
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(TechnologicaCreativeModeTabs::onRegisterCreativeModeTabs);
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(RegisterColorHandlers::onRegisterColorHandlers);
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(RegisterEntityRenderers::onRegisterEntityRenderers);
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(TechnologicaLayerDefinitions::onRegisterLayerDefinitions);
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(RegisterModels::onRegisterModelsEvent);
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(RegisterParticleProviders::onRegisterParticleProvidersEvent);
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(RegisterDimensionSpecialEffects::onRegisterDimensionSpecialEffectsEvent);
-		// FMLJavaModLoadingContext.get().getModEventBus().addListener(TextureStitchPre::onTextureStitchPre);
+	private void addModEventBusListeners() {
+		MOD_EVENT_BUS.addListener(RegisterEntityAttributes::onEntityAttributeCreationEvent);
+		MOD_EVENT_BUS.addListener(TechnologicaCreativeModeTabs::onRegisterCreativeModeTabs);
+		MOD_EVENT_BUS.addListener(RegisterColorHandlers::onRegisterColorHandlersBlock);
+		MOD_EVENT_BUS.addListener(RegisterParticleProviders::onRegisterParticleProvidersEvent);
+		MOD_EVENT_BUS.addListener(TechnologicaLayerDefinitions::onRegisterLayerDefinitions);
+		MOD_EVENT_BUS.addListener(RegisterEntityRenderers::onRegisterRenderers);
+		MOD_EVENT_BUS.addListener(RegisterDimensionSpecialEffects::onRegisterDimensionSpecialEffectsEvent);
+		MOD_EVENT_BUS.addListener(CommonSetup::onFMLCommonSetupEvent);
+		MOD_EVENT_BUS.addListener(ClientSetup::onFMLClientSetupEvent);
+		MOD_EVENT_BUS.addListener(RegisterModels::onRegisterAdditional);
 
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(GatherData::onGatherDataEvent);
+		MOD_EVENT_BUS.addListener(GatherData::onGatherDataEvent);
+	}
 
-		MinecraftForge.EVENT_BUS.register(new BadLuckBananaWhenFishing());
-		MinecraftForge.EVENT_BUS.register(new DisableLogDrops());
-		MinecraftForge.EVENT_BUS.register(new DropBarkOnLogStrip());
-		MinecraftForge.EVENT_BUS.register(new ExtraAirMeter());
-		MinecraftForge.EVENT_BUS.register(new LunarLowGrav());
-		MinecraftForge.EVENT_BUS.register(new MiningLight());
-		MinecraftForge.EVENT_BUS.register(new NitroPocket());
-		MinecraftForge.EVENT_BUS.register(new NeuropathyMovementInvert());
-		MinecraftForge.EVENT_BUS.register(new RadiationHealingCancel());
-		MinecraftForge.EVENT_BUS.register(new RegisterCapabilities());
-		// MinecraftForge.EVENT_BUS.register(new RegisterModels());
-		MinecraftForge.EVENT_BUS.register(new ReplaceFarmerBrain());
-		MinecraftForge.EVENT_BUS.register(new TechnologicaVillagerTrades());
-		MinecraftForge.EVENT_BUS.register(new TechnologicaWanderingTraderTrades());
-		MinecraftForge.EVENT_BUS.register(new VanillaEntityModifier());
-		MinecraftForge.EVENT_BUS.register(new WaterWalk());
+	private void addForgeEventBusListeners() {
+		MinecraftForge.EVENT_BUS.register(new EntityJoinLevelEventListener());
+		MinecraftForge.EVENT_BUS.register(new HarvestCheckListener());
+		MinecraftForge.EVENT_BUS.register(new ItemFishedEventListener());
+		MinecraftForge.EVENT_BUS.register(new LivingAttackEventListener());
+		MinecraftForge.EVENT_BUS.register(new LivingEquipmentChangeEventListener());
+		MinecraftForge.EVENT_BUS.register(new LivingFallEventListener());
+		MinecraftForge.EVENT_BUS.register(new LivingHealEventListener());
+		MinecraftForge.EVENT_BUS.register(new LivingJumpEventListener());
+		MinecraftForge.EVENT_BUS.register(new MovementInputUpdateEventListener());
+		MinecraftForge.EVENT_BUS.register(new PlayerTickEventListener());
+		MinecraftForge.EVENT_BUS.register(new RegisterCapabilitiesEventListener());
+		MinecraftForge.EVENT_BUS.register(new RenderGuiOverlayEventListener());
+		MinecraftForge.EVENT_BUS.register(new RightClickBlockListener());
+		MinecraftForge.EVENT_BUS.register(new VillagerTradesEventListener());
+		MinecraftForge.EVENT_BUS.register(new WandererTradesEventListener());
 	}
 }

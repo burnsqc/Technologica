@@ -402,6 +402,8 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.PUNCH_CARD.get());
 		simpleItem(TechnologicaItems.PUNCHED_CARD.get());
 		simpleItem(TechnologicaItems.DECK_OF_PUNCHED_CARDS.get());
+		simpleItem(TechnologicaItems.MAGNETIC_TAPE_BLANK.get());
+		simpleItem(TechnologicaItems.MAGNETIC_TAPE_WRITTEN.get());
 
 		simpleItem(TechnologicaItems.OVERLAY_PASS_ITEM.get());
 		simpleItem(TechnologicaItems.OVERLAY_WARN_ITEM.get());
