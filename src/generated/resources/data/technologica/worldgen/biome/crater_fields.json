@@ -1,20 +1,21 @@
 {
+  "carvers": {
+    "air": "minecraft:cave"
+  },
+  "downfall": 0.0,
   "effects": {
+    "fog_color": 0,
+    "foliage_color": 10387789,
+    "grass_color": 9470285,
     "mood_sound": {
-      "sound": "minecraft:ambient.cave",
-      "tick_delay": 6000,
       "block_search_extent": 8,
-      "offset": 2.0
+      "offset": 2.0,
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000
     },
     "sky_color": 0,
-    "fog_color": 0,
     "water_color": 4159204,
     "water_fog_color": 329011
-  },
-  "carvers": {
-    "air": [
-      "minecraft:cave"
-    ]
   },
   "features": [
     [],
@@ -31,27 +32,24 @@
       "minecraft:freeze_top_layer"
     ]
   ],
+  "precipitation": "none",
+  "spawn_costs": {},
   "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [],
+    "misc": [],
     "monster": [
       {
         "type": "technologica:sweeper",
-        "weight": 1,
+        "maxCount": 1,
         "minCount": 0,
-        "maxCount": 1
+        "weight": 1
       }
     ],
-    "creature": [],
-    "ambient": [],
-    "axolotls": [],
     "underground_water_creature": [],
-    "water_creature": [],
     "water_ambient": [],
-    "misc": []
+    "water_creature": []
   },
-  "spawn_costs": {},
-  "precipitation": "rain",
-  "temperature": 0.6,
-  "downfall": 0.6,
-  "category": "forest",
-  "depth": 0.1
+  "temperature": 2.0
 }

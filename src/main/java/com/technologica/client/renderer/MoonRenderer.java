@@ -49,6 +49,15 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 	public MoonRenderer() {
 		super(Float.NaN, true, DimensionSpecialEffects.SkyType.NORMAL, false, false);
 		this.createStars();
+		for (int i = 0; i < 32; ++i) {
+			for (int j = 0; j < 32; ++j) {
+				float f = j - 16;
+				float f1 = i - 16;
+				float f2 = Mth.sqrt(f * f + f1 * f1);
+				this.rainSizeX[i << 5 | j] = -f1 / f2;
+				this.rainSizeZ[i << 5 | j] = f / f2;
+			}
+		}
 	}
 
 	@Override
@@ -181,7 +190,7 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 
 	@Override
 	public boolean renderSnowAndRain(ClientLevel level, int ticks, float partialTick, LightTexture lightTexture, double camX, double camY, double camZ) {
-		float f = 0.1F; // level.getRainLevel(partialTick);
+		float f = 0.5F; // level.getRainLevel(partialTick);
 		if (!(f <= 0.0F)) {
 			lightTexture.turnOnLightLayer();
 			int i = Mth.floor(camX);
@@ -200,7 +209,6 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 
 			RenderSystem.depthMask(Minecraft.useShaderTransparency());
 			int i1 = -1;
-			float f1 = ticks + partialTick;
 			RenderSystem.setShader(GameRenderer::getParticleShader);
 			RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 			BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
@@ -208,8 +216,8 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 			for (int j1 = k - l; j1 <= k + l; ++j1) {
 				for (int k1 = i - l; k1 <= i + l; ++k1) {
 					int l1 = (j1 - k + 16) * 32 + k1 - i + 16;
-					double d0 = this.rainSizeX[l1] * 0.5D;
-					double d1 = this.rainSizeZ[l1] * 0.5D;
+					double d0 = this.rainSizeX[l1] * 0.2D;
+					double d1 = this.rainSizeZ[l1] * 0.2D;
 					blockpos$mutableblockpos.set(k1, camY, j1);
 					Biome biome = level.getBiome(blockpos$mutableblockpos).value();
 					if (biome.getPrecipitation() != Biome.Precipitation.NONE) {
@@ -244,45 +252,17 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 								}
 
 								int i3 = ticks + k1 * k1 * 3121 + k1 * 45238971 + j1 * j1 * 418711 + j1 * 13761 & 31;
-								float f2 = -(i3 + partialTick) / 32.0F * (3.0F + randomsource.nextFloat());
+								float f2 = -(i3 + partialTick) / 32.0F * (2.0F + randomsource.nextFloat());
 								double d2 = k1 + 0.5D - camX;
 								double d4 = j1 + 0.5D - camZ;
 								float f3 = (float) Math.sqrt(d2 * d2 + d4 * d4) / l;
 								float f4 = ((1.0F - f3 * f3) * 0.5F + 0.5F) * f;
 								blockpos$mutableblockpos.set(k1, l2, j1);
 								int j3 = getLightColor(level, blockpos$mutableblockpos);
-								bufferbuilder.vertex(k1 - camX - d0 + 0.5D, k2 - camY, j1 - camZ - d1 + 0.5D).uv(0.0F, j2 * 0.25F + f2).color(1.0F, 1.0F, 1.0F, f4).uv2(j3).endVertex();
-								bufferbuilder.vertex(k1 - camX + d0 + 0.5D, k2 - camY, j1 - camZ + d1 + 0.5D).uv(1.0F, j2 * 0.25F + f2).color(1.0F, 1.0F, 1.0F, f4).uv2(j3).endVertex();
-								bufferbuilder.vertex(k1 - camX + d0 + 0.5D, j2 - camY, j1 - camZ + d1 + 0.5D).uv(1.0F, k2 * 0.25F + f2).color(1.0F, 1.0F, 1.0F, f4).uv2(j3).endVertex();
-								bufferbuilder.vertex(k1 - camX - d0 + 0.5D, j2 - camY, j1 - camZ - d1 + 0.5D).uv(0.0F, k2 * 0.25F + f2).color(1.0F, 1.0F, 1.0F, f4).uv2(j3).endVertex();
-							} else {
-								if (i1 != 1) {
-									if (i1 >= 0) {
-										tesselator.end();
-									}
-
-									i1 = 1;
-									RenderSystem.setShaderTexture(0, RAIN_LOCATION);
-									bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.PARTICLE);
-								}
-
-								float f5 = -((ticks & 511) + partialTick) / 512.0F;
-								float f6 = (float) (randomsource.nextDouble() + f1 * 0.01D * ((float) randomsource.nextGaussian()));
-								float f7 = (float) (randomsource.nextDouble() + f1 * (float) randomsource.nextGaussian() * 0.001D);
-								double d3 = k1 + 0.5D - camX;
-								double d5 = j1 + 0.5D - camZ;
-								float f8 = (float) Math.sqrt(d3 * d3 + d5 * d5) / l;
-								float f9 = ((1.0F - f8 * f8) * 0.3F + 0.5F) * f;
-								blockpos$mutableblockpos.set(k1, l2, j1);
-								int k3 = getLightColor(level, blockpos$mutableblockpos);
-								int l3 = k3 >> 16 & '\uffff';
-								int i4 = k3 & '\uffff';
-								int j4 = (l3 * 3 + 240) / 4;
-								int k4 = (i4 * 3 + 240) / 4;
-								bufferbuilder.vertex(k1 - camX - d0 + 0.5D, k2 - camY, j1 - camZ - d1 + 0.5D).uv(0.0F + f6, j2 * 0.25F + f5 + f7).color(1.0F, 1.0F, 1.0F, f9).uv2(k4, j4).endVertex();
-								bufferbuilder.vertex(k1 - camX + d0 + 0.5D, k2 - camY, j1 - camZ + d1 + 0.5D).uv(1.0F + f6, j2 * 0.25F + f5 + f7).color(1.0F, 1.0F, 1.0F, f9).uv2(k4, j4).endVertex();
-								bufferbuilder.vertex(k1 - camX + d0 + 0.5D, j2 - camY, j1 - camZ + d1 + 0.5D).uv(1.0F + f6, k2 * 0.25F + f5 + f7).color(1.0F, 1.0F, 1.0F, f9).uv2(k4, j4).endVertex();
-								bufferbuilder.vertex(k1 - camX - d0 + 0.5D, j2 - camY, j1 - camZ - d1 + 0.5D).uv(0.0F + f6, k2 * 0.25F + f5 + f7).color(1.0F, 1.0F, 1.0F, f9).uv2(k4, j4).endVertex();
+								bufferbuilder.vertex(k1 - camX - d0 + 0.5D, k2 - camY, j1 - camZ - d1 + 0.5D).uv(0.0F, j2 * 0.1F + f2).color(1.0F, 1.0F, 1.0F, f4).uv2(j3).endVertex();
+								bufferbuilder.vertex(k1 - camX + d0 + 0.5D, k2 - camY, j1 - camZ + d1 + 0.5D).uv(1.0F, j2 * 0.1F + f2).color(1.0F, 1.0F, 1.0F, f4).uv2(j3).endVertex();
+								bufferbuilder.vertex(k1 - camX + d0 + 0.5D, j2 - camY, j1 - camZ + d1 + 0.5D).uv(1.0F, k2 * 0.1F + f2).color(1.0F, 1.0F, 1.0F, f4).uv2(j3).endVertex();
+								bufferbuilder.vertex(k1 - camX - d0 + 0.5D, j2 - camY, j1 - camZ - d1 + 0.5D).uv(0.0F, k2 * 0.1F + f2).color(1.0F, 1.0F, 1.0F, f4).uv2(j3).endVertex();
 							}
 						}
 					}
@@ -297,7 +277,12 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 			RenderSystem.disableBlend();
 			lightTexture.turnOffLightLayer();
 		}
-		return false;
+		return true;
+	}
+
+	@Override
+	public boolean tickRain(ClientLevel level, int ticks, Camera camera) {
+		return true;
 	}
 
 	public static int getLightColor(BlockAndTintGetter p_109542_, BlockPos p_109543_) {
