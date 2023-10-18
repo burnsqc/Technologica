@@ -23,6 +23,10 @@ public record TechnologicaNoiseGeneratorSettings(NoiseSettings noiseSettings, Bl
 
 	public static final ResourceKey<NoiseGeneratorSettings> MOON = ResourceKey.create(Registries.NOISE_SETTINGS, new ResourceLocation(Technologica.MODID, "moon"));
 
+	public static void bootstrap(BootstapContext<NoiseGeneratorSettings> p_256365_) {
+		p_256365_.register(MOON, moon(p_256365_, false, false));
+	}
+
 	public static NoiseGeneratorSettings moon(BootstapContext<?> p_256460_, boolean p_256427_, boolean p_256318_) {
 		return new NoiseGeneratorSettings(TechnologicaNoiseSettings.MOON_NOISE_SETTINGS, TechnologicaBlocks.MOON_ROCK.get().defaultBlockState(), Blocks.WATER.defaultBlockState(), TechnologicaNoiseRouterData.moon(p_256460_.lookup(Registries.DENSITY_FUNCTION), p_256460_.lookup(Registries.NOISE), false, false), TechnologicaSurfaceRuleData.moon(), (new OverworldBiomeBuilder()).spawnTarget(), 0, false, false, false, false);
 	}

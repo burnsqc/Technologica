@@ -1,6 +1,6 @@
 package com.technologica.world.level.block.grower;
 
-import com.technologica.data.worldgen.placement.TechnologicaMiscOverworldPlacements;
+import com.technologica.data.worldgen.features.TechnologicaTreeFeatures;
 
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.RandomSource;
@@ -10,6 +10,6 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 public class OliveTreeGrower extends AbstractTreeGrower {
 	@Override
 	protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(RandomSource randomIn, boolean largeHiveIn) {
-		return TechnologicaMiscOverworldPlacements.OLIVE;
+		return TechnologicaTreeFeatures.OLIVE;
 	}
 }

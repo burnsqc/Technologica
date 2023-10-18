@@ -6,8 +6,8 @@ import java.util.List;
 
 import com.mojang.datafixers.util.Pair;
 import com.technologica.world.level.block.LineShaftBlock;
-import com.technologica.world.level.block.entity.LineShaftHangerTileEntity;
 import com.technologica.world.level.block.entity.LineShaftBlockEntity;
+import com.technologica.world.level.block.entity.LineShaftHangerTileEntity;
 
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
