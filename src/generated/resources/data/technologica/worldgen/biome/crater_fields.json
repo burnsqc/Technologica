@@ -2,7 +2,7 @@
   "carvers": {
     "air": "minecraft:cave"
   },
-  "downfall": 0.0,
+  "downfall": 0.6,
   "effects": {
     "fog_color": 0,
     "foliage_color": 10387789,
@@ -32,7 +32,7 @@
       "minecraft:freeze_top_layer"
     ]
   ],
-  "precipitation": "none",
+  "precipitation": "rain",
   "spawn_costs": {},
   "spawners": {
     "ambient": [],
@@ -41,7 +41,7 @@
     "misc": [],
     "monster": [
       {
-        "type": "technologica:sweeper",
+        "type": "minecraft:creeper",
         "maxCount": 1,
         "minCount": 0,
         "weight": 1
@@ -51,5 +51,5 @@
     "water_ambient": [],
     "water_creature": []
   },
-  "temperature": 2.0
+  "temperature": 0.6
 }

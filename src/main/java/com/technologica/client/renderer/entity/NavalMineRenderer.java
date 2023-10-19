@@ -24,7 +24,6 @@ public final class NavalMineRenderer extends EntityRenderer<NavalMine> {
 	@Override
 	public void render(NavalMine entityIn, float entityYaw, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn) {
 		matrixStackIn.pushPose();
-
 		this.modelMine.setupAnim(entityIn, partialTicks, 0.0F, -0.1F, 0.0F, 0.0F);
 		VertexConsumer ivertexbuilder = bufferIn.getBuffer(this.modelMine.renderType(this.getTextureLocation(entityIn)));
 		this.modelMine.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);

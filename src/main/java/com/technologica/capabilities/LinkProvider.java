@@ -10,7 +10,6 @@ import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.LazyOptional;
 
 public class LinkProvider implements ICapabilitySerializable<Tag> {
-
 	public static final Capability<ILink> LINK_CAP = null;
 	private static final LazyOptional<ILink> instance = LazyOptional.of(Link::new);
 
@@ -29,7 +28,6 @@ public class LinkProvider implements ICapabilitySerializable<Tag> {
 	@Override
 	public Tag serializeNBT() {
 		CompoundTag nbt = new CompoundTag();
-		// nbt.putBoolean("linking", ((ILink) instance).getLinking());
 		return nbt;
 	}
 

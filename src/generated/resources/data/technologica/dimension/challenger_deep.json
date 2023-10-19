@@ -1,0 +1,11 @@
+{
+  "type": "technologica:challenger_deep",
+  "generator": {
+    "type": "minecraft:noise",
+    "biome_source": {
+      "type": "minecraft:fixed",
+      "biome": "technologica:silent_expanses"
+    },
+    "settings": "technologica:challenger_deep"
+  }
+}

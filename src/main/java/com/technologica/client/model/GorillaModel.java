@@ -16,7 +16,7 @@ public class GorillaModel<T extends Gorilla> extends QuadrupedModel<T> {
 	private final ModelPart rightFrontLeg;
 	private final ModelPart leftFrontLegLower;
 	private final ModelPart rightFrontLegLower;
-	
+
 	public GorillaModel(ModelPart modelPartIn) {
 		super(modelPartIn, true, 10.0F, 4.0F, 2.0F, 2.0F, 24);
 		this.leftFrontLeg = modelPartIn.getChild("left_front_leg");
@@ -40,14 +40,14 @@ public class GorillaModel<T extends Gorilla> extends QuadrupedModel<T> {
 		leftFrontLeg.addOrReplaceChild("left_front_leg_lower", CubeListBuilder.create().texOffs(16, 38).addBox(-4.0F, 0.0F, 0.0F, 4.0F, 8.0F, 4.0F), PartPose.offset(2.0F, 10.0F, -2.0F));
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
-	
+
 	@Override
 	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.body.xRot = -((float) Math.PI / 8F);
 		this.head.xRot = 0;
-		leftFrontLeg.xRot = -(float) (Math.PI/8);
-		rightFrontLeg.xRot = -(float) (Math.PI/8);
-		leftFrontLegLower.xRot = (float) (Math.PI/8);
-		rightFrontLegLower.xRot = (float) (Math.PI/8);
+		leftFrontLeg.xRot = -(float) (Math.PI / 8);
+		rightFrontLeg.xRot = -(float) (Math.PI / 8);
+		leftFrontLegLower.xRot = (float) (Math.PI / 8);
+		rightFrontLegLower.xRot = (float) (Math.PI / 8);
 	}
 }

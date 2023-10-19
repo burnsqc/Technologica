@@ -14,6 +14,9 @@ import net.minecraft.network.FriendlyByteBuf;
 
 public class FlyingRadiationParticleData implements ParticleOptions {
 	public static final FlyingRadiationParticleData RADIATION = new FlyingRadiationParticleData(0.0F, 0.75F, 1.0F);
+	private final float red;
+	private final float green;
+	private final float blue;
 
 	public static final Codec<FlyingRadiationParticleData> CODEC = RecordCodecBuilder.create((p_239803_0_) -> {
 		return p_239803_0_.group(Codec.FLOAT.fieldOf("r").forGetter((p_239807_0_) -> {
@@ -24,10 +27,6 @@ public class FlyingRadiationParticleData implements ParticleOptions {
 			return p_239805_0_.blue;
 		})).apply(p_239803_0_, FlyingRadiationParticleData::new);
 	});
-
-	private final float red;
-	private final float green;
-	private final float blue;
 
 	public FlyingRadiationParticleData(float red, float green, float blue) {
 		this.red = red;
@@ -84,5 +83,4 @@ public class FlyingRadiationParticleData implements ParticleOptions {
 	public float getBlue() {
 		return blue;
 	}
-
 }

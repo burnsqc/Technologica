@@ -13,10 +13,11 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
 
 public class BeaverModel<T extends Beaver> extends QuadrupedModel<T> {
+
 	public BeaverModel(ModelPart modelPartIn) {
 		super(modelPartIn, true, 10.0F, 4.0F, 2.0F, 2.0F, 24);
 	}
-	
+
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
@@ -37,9 +38,9 @@ public class BeaverModel<T extends Beaver> extends QuadrupedModel<T> {
 		}
 		this.head.xRot = headPitch * ((float) Math.PI / 180F) * 0.5F;
 		this.head.yRot = netHeadYaw * ((float) Math.PI / 180F) * 0.5F;
-		this.leftHindLeg.xRot = -3.0F * Mth.square(Mth.cos(limbSwing * 0.6662F + (float) Math.PI/2) * 1.4F * limbSwingAmount);
+		this.leftHindLeg.xRot = -3.0F * Mth.square(Mth.cos(limbSwing * 0.6662F + (float) Math.PI / 2) * 1.4F * limbSwingAmount);
 		this.rightHindLeg.xRot = -3.0F * Mth.square(Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount);
-		this.leftFrontLeg.xRot =  -3.0F * Mth.square(Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount);
-		this.rightFrontLeg.xRot = -3.0F * Mth.square(Mth.cos(limbSwing * 0.6662F + (float) Math.PI/2) * 1.4F * limbSwingAmount);
+		this.leftFrontLeg.xRot = -3.0F * Mth.square(Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount);
+		this.rightFrontLeg.xRot = -3.0F * Mth.square(Mth.cos(limbSwing * 0.6662F + (float) Math.PI / 2) * 1.4F * limbSwingAmount);
 	}
 }

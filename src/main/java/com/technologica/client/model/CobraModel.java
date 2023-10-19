@@ -14,7 +14,6 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.world.entity.Entity;
 
 public class CobraModel<T extends Entity> extends ListModel<T> {
-
 	private final ModelPart headUpper;
 	private final ModelPart headLower;
 	private final ModelPart fangs;
@@ -111,5 +110,4 @@ public class CobraModel<T extends Entity> extends ListModel<T> {
 		modelRenderer.yRot = y;
 		modelRenderer.zRot = z;
 	}
-
 }

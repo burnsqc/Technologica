@@ -44,16 +44,13 @@ public class RocketRenderer extends EntityRenderer<Rocket> {
 		if (f1 < 0.0F) {
 			f1 = 0.0F;
 		}
-
 		if (f > 0.0F) {
 			poseStackIn.mulPose(Axis.XP.rotationDegrees(Mth.sin(f) * f * f1 / 10.0F * entityIn.getHurtDir()));
 		}
-
 		float f2 = entityIn.getBubbleAngle(partialTicks);
 		if (!Mth.equal(f2, 0.0F)) {
-			poseStackIn.mulPose((new Quaternionf()).setAngleAxis(entityIn.getBubbleAngle(partialTicks) * ((float)Math.PI / 180F), 1.0F, 0.0F, 1.0F));
+			poseStackIn.mulPose((new Quaternionf()).setAngleAxis(entityIn.getBubbleAngle(partialTicks) * ((float) Math.PI / 180F), 1.0F, 0.0F, 1.0F));
 		}
-
 		poseStackIn.scale(-1.0F, -1.0F, 1.0F);
 		poseStackIn.mulPose(Axis.YP.rotationDegrees(90.0F));
 		poseStackIn.popPose();
@@ -65,6 +62,7 @@ public class RocketRenderer extends EntityRenderer<Rocket> {
 		return getModelWithLocation(entity).getFirst();
 	}
 
+	@SuppressWarnings("unlikely-arg-type")
 	public Pair<ResourceLocation, VanillaBoatModel> getModelWithLocation(Rocket entity) {
 		return this.boatResources.get(entity.getVanillaBoatType());
 	}

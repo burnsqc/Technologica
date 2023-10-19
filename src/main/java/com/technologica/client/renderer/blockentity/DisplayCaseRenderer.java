@@ -14,23 +14,22 @@ import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.world.item.ItemStack;
 
 public class DisplayCaseRenderer implements BlockEntityRenderer<DisplayCaseBlockEntity> {
-    public DisplayCaseRenderer(BlockEntityRendererProvider.Context rendererDispatcherIn) {
-        
-    }
+	public DisplayCaseRenderer(BlockEntityRendererProvider.Context rendererDispatcherIn) {
+	}
 
-    @Override
-    public void render(DisplayCaseBlockEntity tileEntity, float partialTicks, PoseStack matrixStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {       
-    	ItemStack stack = tileEntity.getDisplayStack();
-    	long time = System.currentTimeMillis();
-    	float angle = (time / 25) % 360;
-    	if (!stack.isEmpty()) {
-        	matrixStack.pushPose();       	
-        	matrixStack.translate(0.5, 0.3, 0.5);
-        	matrixStack.mulPose(Axis.YN.rotationDegrees(angle));
-        	ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
-        	BakedModel ibakedmodel = itemRenderer.getModel(stack, tileEntity.getLevel(), null, combinedOverlay);
-        	itemRenderer.render(stack, ItemTransforms.TransformType.GROUND, true, matrixStack, buffer, combinedLight, combinedOverlay, ibakedmodel);       	
-        	matrixStack.popPose();
-        }
-    }
+	@Override
+	public void render(DisplayCaseBlockEntity tileEntity, float partialTicks, PoseStack matrixStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
+		ItemStack stack = tileEntity.getDisplayStack();
+		long time = System.currentTimeMillis();
+		float angle = (time / 25) % 360;
+		if (!stack.isEmpty()) {
+			matrixStack.pushPose();
+			matrixStack.translate(0.5, 0.3, 0.5);
+			matrixStack.mulPose(Axis.YN.rotationDegrees(angle));
+			ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
+			BakedModel ibakedmodel = itemRenderer.getModel(stack, tileEntity.getLevel(), null, combinedOverlay);
+			itemRenderer.render(stack, ItemTransforms.TransformType.GROUND, true, matrixStack, buffer, combinedLight, combinedOverlay, ibakedmodel);
+			matrixStack.popPose();
+		}
+	}
 }

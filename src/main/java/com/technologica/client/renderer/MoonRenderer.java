@@ -35,7 +35,6 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.extensions.IForgeDimensionSpecialEffects;
 
 public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimensionSpecialEffects {
-
 	@Nullable
 	private VertexBuffer starBuffer;
 	@Nullable

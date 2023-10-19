@@ -75,7 +75,6 @@ public class TechnologicaSignRenderer implements BlockEntityRenderer<SignBlockEn
 			p_112499_.translate(0.0D, -0.3125D, -0.4375D);
 			signrenderer$signmodel.stick.visible = false;
 		}
-
 		p_112499_.pushPose();
 		p_112499_.scale(0.6666667F, -0.6666667F, -0.6666667F);
 		Material material = Sheets.getSignMaterial(woodtype);
@@ -101,7 +100,6 @@ public class TechnologicaSignRenderer implements BlockEntityRenderer<SignBlockEn
 			flag = false;
 			l = p_112501_;
 		}
-
 		for (int i1 = 0; i1 < 4; ++i1) {
 			FormattedCharSequence formattedcharsequence = aformattedcharsequence[i1];
 			float f3 = -this.font.width(formattedcharsequence) / 2;
@@ -111,7 +109,6 @@ public class TechnologicaSignRenderer implements BlockEntityRenderer<SignBlockEn
 				this.font.drawInBatch(formattedcharsequence, f3, i1 * 10 - 20, k, false, p_112499_.last().pose(), p_112500_, false, 0, l);
 			}
 		}
-
 		p_112499_.popPose();
 	}
 
@@ -145,7 +142,6 @@ public class TechnologicaSignRenderer implements BlockEntityRenderer<SignBlockEn
 		} else {
 			woodtype = WoodType.OAK;
 		}
-
 		return woodtype;
 	}
 

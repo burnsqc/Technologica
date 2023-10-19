@@ -22,6 +22,9 @@ public class DrippingLiquidParticleData implements ParticleOptions {
 	public static final DrippingLiquidParticleData GASOLINE = new DrippingLiquidParticleData(0.83137F, 0.76078F, 0.41176F);
 	public static final DrippingLiquidParticleData MACHINE_OIL = new DrippingLiquidParticleData(1.00000F, 1.00000F, 0.58823F);
 	public static final DrippingLiquidParticleData COOLANT = new DrippingLiquidParticleData(0.74901F, 0.96862F, 0.32941F);
+	private final float red;
+	private final float green;
+	private final float blue;
 
 	public static final Codec<DrippingLiquidParticleData> CODEC = RecordCodecBuilder.create((p_239803_0_) -> {
 		return p_239803_0_.group(Codec.FLOAT.fieldOf("r").forGetter((p_239807_0_) -> {
@@ -33,10 +36,6 @@ public class DrippingLiquidParticleData implements ParticleOptions {
 		})).apply(p_239803_0_, DrippingLiquidParticleData::new);
 	});
 
-	private final float red;
-	private final float green;
-	private final float blue;
-
 	public DrippingLiquidParticleData(float red, float green, float blue) {
 		this.red = red;
 		this.green = green;
@@ -45,6 +44,7 @@ public class DrippingLiquidParticleData implements ParticleOptions {
 
 	@SuppressWarnings("deprecation")
 	public static final ParticleOptions.Deserializer<DrippingLiquidParticleData> DESERIALIZER = new ParticleOptions.Deserializer<DrippingLiquidParticleData>() {
+		@Override
 		public DrippingLiquidParticleData fromCommand(ParticleType<DrippingLiquidParticleData> particleTypeIn, StringReader reader) throws CommandSyntaxException {
 			reader.expect(' ');
 			float f = (float) reader.readDouble();
@@ -56,6 +56,7 @@ public class DrippingLiquidParticleData implements ParticleOptions {
 			return new DrippingLiquidParticleData(f, f1, f2);
 		}
 
+		@Override
 		public DrippingLiquidParticleData fromNetwork(ParticleType<DrippingLiquidParticleData> particleTypeIn, FriendlyByteBuf buffer) {
 			return new DrippingLiquidParticleData(buffer.readFloat(), buffer.readFloat(), buffer.readFloat());
 		}
@@ -65,7 +66,7 @@ public class DrippingLiquidParticleData implements ParticleOptions {
 	public ParticleType<?> getType() {
 		return TechnologicaParticleTypes.DRIPPING_FLUID.get();
 	}
-	
+
 	@Override
 	public void writeToNetwork(FriendlyByteBuf buffer) {
 		buffer.writeFloat(this.red);
@@ -78,17 +79,16 @@ public class DrippingLiquidParticleData implements ParticleOptions {
 	public String writeToString() {
 		return String.format(Locale.ROOT, "%s %.2f %.2f %.2f", BuiltInRegistries.PARTICLE_TYPE.getKey(this.getType()), this.red, this.green, this.blue);
 	}
-	
+
 	public float getRed() {
 		return red;
 	}
-	
+
 	public float getGreen() {
 		return green;
 	}
-	
+
 	public float getBlue() {
 		return blue;
 	}
-
 }

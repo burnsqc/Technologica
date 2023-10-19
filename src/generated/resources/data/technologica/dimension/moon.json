@@ -3,8 +3,8 @@
   "generator": {
     "type": "minecraft:noise",
     "biome_source": {
-      "type": "minecraft:fixed",
-      "biome": "technologica:silent_expanse"
+      "type": "minecraft:multi_noise",
+      "preset": "technologica:moon"
     },
     "settings": "technologica:moon"
   }

@@ -191,5 +191,4 @@ public class GiraffeModel<T extends AbstractHorse> extends AgeableListModel<T> {
 			this.earRight.yRot = 0.0F;
 		}
 	}
-
 }

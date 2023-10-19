@@ -12,7 +12,6 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
 
 public class AlligatorModel<T extends Alligator> extends QuadrupedModel<T> {
-
 	protected final ModelPart tail;
 	protected final ModelPart tail2;
 	protected final ModelPart tail3;

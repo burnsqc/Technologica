@@ -9,10 +9,10 @@ import com.technologica.data.loot.TechnologicaLootTableProvider;
 import com.technologica.data.models.blockstates.TechnologicaBlockStateProvider;
 import com.technologica.data.models.model.TechnologicaItemModelProvider;
 import com.technologica.data.recipes.packs.TechnologicaRecipeProvider;
+import com.technologica.data.registries.TechnologicaDatapackBuiltinEntriesProvider;
 import com.technologica.data.tags.TechnologicaBlockTagsProvider;
 import com.technologica.data.tags.TechnologicaFluidTagsProvider;
 import com.technologica.data.tags.TechnologicaItemTagsProvider;
-import com.technologica.data.worldgen.TechnologicaBiomeModifierProvider;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -39,7 +39,7 @@ public class GatherData {
 		 * Data
 		 */
 		generator.addProvider(event.includeServer(), new TechnologicaAdvancementProvider(packOutput, lookupProvider, helper));
-		generator.addProvider(event.includeServer(), new TechnologicaBiomeModifierProvider(packOutput, lookupProvider));
+		generator.addProvider(event.includeServer(), new TechnologicaDatapackBuiltinEntriesProvider(packOutput, lookupProvider));
 		generator.addProvider(event.includeServer(), new TechnologicaLootTableProvider(packOutput));
 		generator.addProvider(event.includeServer(), new TechnologicaGlobalLootModifierProvider(packOutput));
 		generator.addProvider(event.includeServer(), new TechnologicaRecipeProvider(packOutput));

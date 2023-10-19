@@ -55,18 +55,15 @@ public class NavalMineModel extends ListModel<NavalMine> {
 	public static LayerDefinition createBodyModel() {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
-
 		partdefinition.addOrReplaceChild("body1", CubeListBuilder.create().texOffs(0, 0).addBox(-12.0F, -8.0F, -12.0F, 24.0F, 16.0F, 24.0F), PartPose.offset(0.0F, 16.0F, 0.0F));
 		partdefinition.addOrReplaceChild("body2", CubeListBuilder.create().texOffs(0, 0).addBox(-8.0F, -12.0F, -12.0F, 16.0F, 24.0F, 24.0F), PartPose.offset(0.0F, 16.0F, 0.0F));
 		partdefinition.addOrReplaceChild("body3", CubeListBuilder.create().texOffs(0, 0).addBox(-12.0F, -12.0F, -8.0F, 24.0F, 24.0F, 16.0F), PartPose.offset(0.0F, 16.0F, 0.0F));
-
 		partdefinition.addOrReplaceChild("faceUD1", CubeListBuilder.create().texOffs(0, 0).addBox(-8.0F, -16.0F, -4.0F, 16.0F, 32.0F, 8.0F), PartPose.offset(0.0F, 16.0F, 0.0F));
 		partdefinition.addOrReplaceChild("faceUD2", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -16.0F, -8.0F, 8.0F, 32.0F, 16.0F), PartPose.offset(0.0F, 16.0F, 0.0F));
 		partdefinition.addOrReplaceChild("faceNS1", CubeListBuilder.create().texOffs(0, 0).addBox(-8.0F, -4.0F, -16.0F, 16.0F, 8.0F, 32.0F), PartPose.offset(0.0F, 16.0F, 0.0F));
 		partdefinition.addOrReplaceChild("faceNS2", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -8.0F, -16.0F, 8.0F, 16.0F, 32.0F), PartPose.offset(0.0F, 16.0F, 0.0F));
 		partdefinition.addOrReplaceChild("faceEW1", CubeListBuilder.create().texOffs(0, 0).addBox(-16.0F, -4.0F, -8.0F, 32.0F, 8.0F, 16.0F), PartPose.offset(0.0F, 16.0F, 0.0F));
 		partdefinition.addOrReplaceChild("faceEW2", CubeListBuilder.create().texOffs(0, 0).addBox(-16.0F, -8.0F, -4.0F, 32.0F, 16.0F, 8.0F), PartPose.offset(0.0F, 16.0F, 0.0F));
-
 		partdefinition.addOrReplaceChild("spike1", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, -24.0F, -2.0F, 4.0F, 48.0F, 4.0F), PartPose.offset(0.0F, 16.0F, 0.0F));
 		partdefinition.addOrReplaceChild("spike2", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, -24.0F, -2.0F, 4.0F, 48.0F, 4.0F), PartPose.offset(0.0F, 16.0F, 0.0F));
 		partdefinition.addOrReplaceChild("spike3", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, -24.0F, -2.0F, 4.0F, 48.0F, 4.0F), PartPose.offset(0.0F, 16.0F, 0.0F));
@@ -76,7 +73,6 @@ public class NavalMineModel extends ListModel<NavalMine> {
 		partdefinition.addOrReplaceChild("spike7", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, -24.0F, -2.0F, 4.0F, 48.0F, 4.0F), PartPose.offset(0.0F, 16.0F, 0.0F));
 		partdefinition.addOrReplaceChild("spike8", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, -24.0F, -2.0F, 4.0F, 48.0F, 4.0F), PartPose.offset(0.0F, 16.0F, 0.0F));
 		partdefinition.addOrReplaceChild("spike9", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, -24.0F, -2.0F, 4.0F, 48.0F, 4.0F), PartPose.offset(0.0F, 16.0F, 0.0F));
-
 		return LayerDefinition.create(meshdefinition, 16, 16);
 	}
 
@@ -90,18 +86,15 @@ public class NavalMineModel extends ListModel<NavalMine> {
 		this.spike2.xRot = (float) Math.PI / 4;
 		this.spike3.xRot = (float) Math.PI / 2;
 		this.spike4.xRot = -(float) Math.PI / 4;
-
 		this.spike5.yRot = (float) Math.PI / 2;
 		this.spike6.yRot = (float) Math.PI / 2;
 		this.spike7.yRot = (float) Math.PI / 2;
 		this.spike5.xRot = (float) Math.PI / 4;
 		this.spike6.xRot = (float) Math.PI / 2;
 		this.spike7.xRot = -(float) Math.PI / 4;
-
 		this.spike8.yRot = (float) Math.PI / 4;
 		this.spike9.yRot = -(float) Math.PI / 4;
 		this.spike8.xRot = (float) Math.PI / 2;
 		this.spike9.xRot = (float) Math.PI / 2;
-
 	}
 }

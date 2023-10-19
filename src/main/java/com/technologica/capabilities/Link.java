@@ -3,8 +3,8 @@ package com.technologica.capabilities;
 import com.technologica.world.item.TechnologicaItems;
 import com.technologica.world.level.block.TechnologicaBlocks;
 import com.technologica.world.level.block.TwelveDirectionBlock;
-import com.technologica.world.level.block.entity.LineShaftHangerTileEntity;
 import com.technologica.world.level.block.entity.LineShaftBlockEntity;
+import com.technologica.world.level.block.entity.LineShaftHangerTileEntity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

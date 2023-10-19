@@ -22,12 +22,18 @@ import net.minecraft.world.level.levelgen.SurfaceRules;
 public record TechnologicaNoiseGeneratorSettings(NoiseSettings noiseSettings, BlockState defaultBlock, BlockState defaultFluid, NoiseRouter noiseRouter, SurfaceRules.RuleSource surfaceRule, List<Climate.ParameterPoint> spawnTarget, int seaLevel, boolean disableMobGeneration, boolean aquifersEnabled, boolean oreVeinsEnabled, boolean useLegacyRandomSource) {
 
 	public static final ResourceKey<NoiseGeneratorSettings> MOON = ResourceKey.create(Registries.NOISE_SETTINGS, new ResourceLocation(Technologica.MODID, "moon"));
+	public static final ResourceKey<NoiseGeneratorSettings> CHALLENGER_DEEP = ResourceKey.create(Registries.NOISE_SETTINGS, new ResourceLocation(Technologica.MODID, "challenger_deep"));
 
 	public static void bootstrap(BootstapContext<NoiseGeneratorSettings> p_256365_) {
 		p_256365_.register(MOON, moon(p_256365_, false, false));
+		p_256365_.register(CHALLENGER_DEEP, moon(p_256365_, false, false));
 	}
 
 	public static NoiseGeneratorSettings moon(BootstapContext<?> p_256460_, boolean p_256427_, boolean p_256318_) {
 		return new NoiseGeneratorSettings(TechnologicaNoiseSettings.MOON_NOISE_SETTINGS, TechnologicaBlocks.MOON_ROCK.get().defaultBlockState(), Blocks.WATER.defaultBlockState(), TechnologicaNoiseRouterData.moon(p_256460_.lookup(Registries.DENSITY_FUNCTION), p_256460_.lookup(Registries.NOISE), false, false), TechnologicaSurfaceRuleData.moon(), (new OverworldBiomeBuilder()).spawnTarget(), 0, false, false, false, false);
+	}
+
+	public static NoiseGeneratorSettings challengerDeep(BootstapContext<?> p_256460_, boolean p_256427_, boolean p_256318_) {
+		return new NoiseGeneratorSettings(TechnologicaNoiseSettings.CHALLENGER_DEEP_NOISE_SETTINGS, Blocks.STONE.defaultBlockState(), Blocks.WATER.defaultBlockState(), TechnologicaNoiseRouterData.challengerDeep(p_256460_.lookup(Registries.DENSITY_FUNCTION), p_256460_.lookup(Registries.NOISE), false, false), TechnologicaSurfaceRuleData.challengerDeep(), (new OverworldBiomeBuilder()).spawnTarget(), 0, false, false, false, false);
 	}
 }

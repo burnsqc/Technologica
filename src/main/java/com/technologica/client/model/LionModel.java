@@ -73,7 +73,6 @@ public class LionModel<T extends Lion> extends QuadrupedModel<T> {
 				this.rightFrontLeg.xRot = Mth.cos(limbSwing * 0.6662F) * limbSwingAmount;
 			}
 		}
-
 		this.earLeft.zRot = -3 * (float) Math.PI / 4;
 		this.earRight.zRot = 3 * (float) Math.PI / 4;
 	}
@@ -94,5 +93,4 @@ public class LionModel<T extends Lion> extends QuadrupedModel<T> {
 			this.state = 1;
 		}
 	}
-
 }

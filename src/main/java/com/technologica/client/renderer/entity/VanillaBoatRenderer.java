@@ -46,16 +46,13 @@ public class VanillaBoatRenderer extends EntityRenderer<VanillaBoat> {
 		if (f1 < 0.0F) {
 			f1 = 0.0F;
 		}
-
 		if (f > 0.0F) {
 			poseStackIn.mulPose(Axis.XP.rotationDegrees(Mth.sin(f) * f * f1 / 10.0F * entityIn.getHurtDir()));
 		}
-
 		float f2 = entityIn.getBubbleAngle(partialTicks);
 		if (!Mth.equal(f2, 0.0F)) {
-			poseStackIn.mulPose((new Quaternionf()).setAngleAxis(entityIn.getBubbleAngle(partialTicks) * ((float)Math.PI / 180F), 1.0F, 0.0F, 1.0F));
+			poseStackIn.mulPose((new Quaternionf()).setAngleAxis(entityIn.getBubbleAngle(partialTicks) * ((float) Math.PI / 180F), 1.0F, 0.0F, 1.0F));
 		}
-
 		Pair<ResourceLocation, VanillaBoatModel> pair = getModelWithLocation(entityIn);
 		ResourceLocation resourcelocation = pair.getFirst();
 		VanillaBoatModel boatmodel = pair.getSecond();
@@ -68,7 +65,6 @@ public class VanillaBoatRenderer extends EntityRenderer<VanillaBoat> {
 			VertexConsumer ivertexbuilder1 = bufferIn.getBuffer(RenderType.waterMask());
 			boatmodel.waterPatch().render(poseStackIn, ivertexbuilder1, packedLightIn, OverlayTexture.NO_OVERLAY);
 		}
-
 		poseStackIn.popPose();
 		super.render(entityIn, entityYaw, partialTicks, poseStackIn, bufferIn, packedLightIn);
 	}

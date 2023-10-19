@@ -48,7 +48,7 @@ public class OwlModel<T extends Owl> extends ListModel<T> {
 		root.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(20, 10).addBox(-1.5F, -1.0F, -1.0F, 3.0F, 4.0F, 1.0F), PartPose.offset(0.0F, 21.07F, 1.16F));
 		return LayerDefinition.create(meshdefinition, 32, 32);
 	}
-	
+
 	@Override
 	public Iterable<ModelPart> parts() {
 		return ImmutableList.of(this.body, this.wing_left, this.wing_right, this.tail, this.head, this.leg_left, this.leg_right);
@@ -67,22 +67,21 @@ public class OwlModel<T extends Owl> extends ListModel<T> {
 	public void renderOnShoulder(PoseStack matrixStackIn, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, float p_228284_5_, float p_228284_6_, float p_228284_7_, float p_228284_8_, int p_228284_9_) {
 		this.setLivingAnimations(OwlModel.State.ON_SHOULDER);
 		this.setRotationAngles(OwlModel.State.ON_SHOULDER, p_228284_9_, p_228284_5_, p_228284_6_, 0.0F, p_228284_7_, p_228284_8_);
-		this.parts().forEach((p_228285_4_) -> {p_228285_4_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn);});
+		this.parts().forEach((p_228285_4_) -> {
+			p_228285_4_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn);
+		});
 	}
 
 	private void setRotationAngles(OwlModel.State stateIn, int ticksExistedIn, float limbSwingIn, float limbSwingAmountIn, float ageInTicksIn, float netHeadYawIn, float headPitchIn) {
-		this.beak.yRot = (float) Math.PI/4;
+		this.beak.yRot = (float) Math.PI / 4;
 		this.head.xRot = headPitchIn * ((float) Math.PI / 180F);
 		this.head.yRot = netHeadYawIn * ((float) Math.PI / 180F);
 		this.head.zRot = 0.0F;
-		
 		this.head.x = 0.0F;
 		this.body.x = 0.0F;
 		this.tail.x = 0.0F;
-		
 		this.wing_right.x = -2.5F;
 		this.wing_left.x = 2.5F;
-		
 		switch (stateIn) {
 		case SITTING:
 			break;
@@ -91,22 +90,17 @@ public class OwlModel<T extends Owl> extends ListModel<T> {
 			float f1 = Mth.sin(ticksExistedIn);
 			this.head.x = f;
 			this.head.y = 14.69F + f1;
-			
 			this.head.xRot = 0.0F;
 			this.head.yRot = 0.0F;
 			this.head.zRot = Mth.sin(ticksExistedIn) * 0.4F;
-			
 			this.body.x = f;
 			this.body.y = 16.5F + f1;
-			
 			this.wing_left.zRot = -0.0873F - ageInTicksIn;
 			this.wing_left.x = 2.0F + f;
 			this.wing_left.y = 15.94F + f1;
-			
 			this.wing_right.zRot = 0.0873F + ageInTicksIn;
 			this.wing_right.x = -2.0F + f;
 			this.wing_right.y = 15.94F + f1;
-			
 			this.tail.x = f;
 			this.tail.y = 21.07F + f1;
 			break;
@@ -118,18 +112,13 @@ public class OwlModel<T extends Owl> extends ListModel<T> {
 		default:
 			float f2 = ageInTicksIn * 0.3F;
 			this.head.y = 14.69F + f2;
-			
 			this.tail.xRot = 1.015F + Mth.cos(limbSwingIn * 0.6662F) * 0.3F * limbSwingAmountIn;
 			this.tail.y = 21.07F + f2;
-			
 			this.body.y = 16.5F + f2;
-			
 			this.wing_left.zRot = -0.0873F - ageInTicksIn;
 			this.wing_left.y = 15.94F + f2;
-			
 			this.wing_right.zRot = 0.0873F + ageInTicksIn;
 			this.wing_right.y = 15.94F + f2;
-			
 			this.leg_left.y = 22.0F + f2;
 			this.leg_right.y = 22.0F + f2;
 		}
@@ -137,35 +126,26 @@ public class OwlModel<T extends Owl> extends ListModel<T> {
 
 	private void setLivingAnimations(OwlModel.State p_217160_1_) {
 		this.body.xRot = 0.25F;
-		
 		this.wing_left.xRot = -0.5F;
 		this.wing_left.yRot = -(float) Math.PI;
-		
 		this.wing_right.xRot = -0.5F;
 		this.wing_right.yRot = -(float) Math.PI;
-		
 		this.leg_left.xRot = -0.0299F;
 		this.leg_right.xRot = -0.0299F;
-		
 		this.leg_left.y = 22.0F;
 		this.leg_right.y = 22.0F;
-		
 		this.leg_left.zRot = 0.0F;
 		this.leg_right.zRot = 0.0F;
-		
 		switch (p_217160_1_) {
 		case SITTING:
 			this.head.y = 17.59F;
 			this.tail.xRot = 1.5388988F;
 			this.tail.y = 22.97F;
 			this.body.y = 18.4F;
-			
 			this.wing_left.zRot = -0.0873F;
 			this.wing_left.y = 18.84F;
-			
 			this.wing_right.zRot = 0.0873F;
 			this.wing_right.y = 18.84F;
-			
 			++this.leg_left.y;
 			++this.leg_right.y;
 			++this.leg_left.xRot;

@@ -30,7 +30,7 @@ public class OstrichModel<T extends AbstractHorse> extends AgeableListModel<T> {
 	private final ModelPart talonOuterLeft;
 	private final ModelPart talonOuterRight;
 	private final ModelPart saddle;
-	
+
 	public OstrichModel(ModelPart modelPartIn) {
 		super(true, 24.0F, 1.36F, 2.7272F, 2.0F, 24.0F);
 		this.body = modelPartIn.getChild("body");
@@ -71,7 +71,7 @@ public class OstrichModel<T extends AbstractHorse> extends AgeableListModel<T> {
 		body.addOrReplaceChild("saddle", CubeListBuilder.create().texOffs(26, 26).mirror().addBox(-5.0F, -5.0F, -5.0F, 10.0F, 10.0F, 9.0F, new CubeDeformation(0.5F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
-	
+
 	@Override
 	protected Iterable<ModelPart> headParts() {
 		return ImmutableList.of(this.neckLower);
@@ -82,7 +82,6 @@ public class OstrichModel<T extends AbstractHorse> extends AgeableListModel<T> {
 		return ImmutableList.of(this.body);
 	}
 
-	
 	@Override
 	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netneckYaw, float neckPitch) {
 		this.talonOuterLeft.yRot = -((float) Math.PI / 6F);
@@ -90,14 +89,13 @@ public class OstrichModel<T extends AbstractHorse> extends AgeableListModel<T> {
 		boolean flag = entityIn.isSaddled();
 		saddle.visible = flag;
 	}
-	
+
 	@Override
 	public void prepareMobModel(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
 		float f = Mth.lerp(partialTick, entityIn.yBodyRotO, entityIn.yBodyRot);
 		float f1 = Mth.lerp(partialTick, entityIn.yHeadRotO, entityIn.yHeadRot);
-		
 		float f3 = f1 - f;
-		
+
 		if (f3 > 20.0F) {
 			f3 = 20.0F;
 		}
@@ -106,43 +104,35 @@ public class OstrichModel<T extends AbstractHorse> extends AgeableListModel<T> {
 			f3 = -20.0F;
 		}
 
-	    float f6 = entityIn.getStandAnim(partialTick);
-	    float f7 = 1.0F - f6;
-	    float f9 = entityIn.tickCount + partialTick;
+		float f6 = entityIn.getStandAnim(partialTick);
+		float f7 = 1.0F - f6;
+		float f9 = entityIn.tickCount + partialTick;
 		float f10 = entityIn.isInWater() ? 0.2F : 1.0F;
-		
 		boolean tailWagging = entityIn.tailCounter != 0;
 		boolean wingsFlapping = ((Ostrich) entityIn).wingCounter != 0;
-		
 		this.neckLower.y = 2.0F;
 		this.neckLower.z = -8.0F;
-		
 		this.neckLower.y = f7 * this.neckLower.y - f6;
-	    this.neckLower.z = f7 * this.neckLower.z - 3*f6;
+		this.neckLower.z = f7 * this.neckLower.z - 3 * f6;
 		this.neckLower.xRot = -((float) Math.PI / 4F) + Mth.sin(f10 * limbSwing) / 5;
 		this.neck.xRot = ((float) Math.PI / 4F) - Mth.sin(f10 * limbSwing) / 10;
-
 		this.body.xRot = 0.0F;
-		
 		this.neckLower.yRot = f3 * ((float) Math.PI / 180F);
-		
-	    this.body.xRot = f6 * (-(float) Math.PI / 4F) + this.body.xRot;
-
+		this.body.xRot = f6 * (-(float) Math.PI / 4F) + this.body.xRot;
 		this.legUpperRight.xRot = ((Mth.sin(f10 * limbSwing * 0.25F) * Mth.sin(f10 * limbSwing * 0.25F)) * limbSwingAmount * 1.5F) + f6 / 2 * Mth.sin(f9 * 0.25F) * f6 * Mth.sin(f9 * 0.25F);
 		this.legLowerRight.xRot = -(Mth.cos(f10 * limbSwing * 0.25F + (float) Math.PI / 4F) * Mth.cos(f10 * limbSwing * 0.25F + (float) Math.PI / 4F)) * limbSwingAmount * 1.5F - f6 * Mth.cos(f9 * 0.5F - (float) Math.PI / 4) * f6 * Mth.cos(f9 * 0.5F - (float) Math.PI / 4);
-
 		this.legUpperLeft.xRot = ((Mth.cos(f10 * limbSwing * 0.25F) * Mth.cos(f10 * limbSwing * 0.25F)) * limbSwingAmount * 1.5F) + f6 / 2 * Mth.cos(f9 * 0.25F) * f6 * Mth.cos(f9 * 0.25F);
 		this.legLowerLeft.xRot = -(Mth.sin(f10 * limbSwing * 0.25F + (float) Math.PI / 4F) * Mth.sin(f10 * limbSwing * 0.25F + (float) Math.PI / 4F)) * limbSwingAmount * 1.5F - f6 * Mth.sin(f9 * 0.5F - (float) Math.PI / 4) * f6 * Mth.sin(f9 * 0.5F - (float) Math.PI / 4);
 
 		if (tailWagging) {
-			this.tail.yRot = Mth.cos(f9/2)/2;
+			this.tail.yRot = Mth.cos(f9 / 2) / 2;
 		} else {
 			this.tail.yRot = 0.0F;
 		}
-		
+
 		if (wingsFlapping) {
-			this.wingLeft.yRot = Mth.cos((float) entityIn.tickCount/2 + partialTick)*Mth.cos((float) entityIn.tickCount/2 + partialTick);
-			this.wingRight.yRot = -(Mth.cos((float) entityIn.tickCount/2 + partialTick)*Mth.cos((float) entityIn.tickCount/2 + partialTick));
+			this.wingLeft.yRot = Mth.cos((float) entityIn.tickCount / 2 + partialTick) * Mth.cos((float) entityIn.tickCount / 2 + partialTick);
+			this.wingRight.yRot = -(Mth.cos((float) entityIn.tickCount / 2 + partialTick) * Mth.cos((float) entityIn.tickCount / 2 + partialTick));
 		} else {
 			this.wingLeft.yRot = 0.0F;
 			this.wingRight.yRot = 0.0F;

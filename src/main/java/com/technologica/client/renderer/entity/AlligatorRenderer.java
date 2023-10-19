@@ -11,7 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public final class AlligatorRenderer extends MobRenderer<Alligator, AlligatorModel<Alligator>> {
 	private static final ResourceLocation ALLIGATOR_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/alligator.png");
-	
+
 	public AlligatorRenderer(Context contextIn) {
 		super(contextIn, new AlligatorModel<>(contextIn.bakeLayer(TechnologicaModelLayers.ALLIGATOR)), 0.6F);
 	}

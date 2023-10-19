@@ -18,6 +18,7 @@ import com.technologica.listeners.forgebus.PlayerTickEventListener;
 import com.technologica.listeners.forgebus.RegisterCapabilitiesEventListener;
 import com.technologica.listeners.forgebus.RenderGuiOverlayEventListener;
 import com.technologica.listeners.forgebus.RightClickBlockListener;
+import com.technologica.listeners.forgebus.ServerAboutToStartListener;
 import com.technologica.listeners.forgebus.VillagerTradesEventListener;
 import com.technologica.listeners.forgebus.WandererTradesEventListener;
 import com.technologica.listeners.lootmodifiers.TechnologicaLootModifiers;
@@ -111,7 +112,6 @@ public class Technologica {
 		MOD_EVENT_BUS.addListener(CommonSetup::onFMLCommonSetupEvent);
 		MOD_EVENT_BUS.addListener(ClientSetup::onFMLClientSetupEvent);
 		MOD_EVENT_BUS.addListener(RegisterModels::onRegisterAdditional);
-
 		MOD_EVENT_BUS.addListener(GatherData::onGatherDataEvent);
 	}
 
@@ -129,6 +129,7 @@ public class Technologica {
 		MinecraftForge.EVENT_BUS.register(new RegisterCapabilitiesEventListener());
 		MinecraftForge.EVENT_BUS.register(new RenderGuiOverlayEventListener());
 		MinecraftForge.EVENT_BUS.register(new RightClickBlockListener());
+		MinecraftForge.EVENT_BUS.register(new ServerAboutToStartListener());
 		MinecraftForge.EVENT_BUS.register(new VillagerTradesEventListener());
 		MinecraftForge.EVENT_BUS.register(new WandererTradesEventListener());
 	}

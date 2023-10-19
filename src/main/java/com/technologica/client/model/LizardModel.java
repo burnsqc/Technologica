@@ -17,7 +17,7 @@ public class LizardModel<T extends Lizard> extends QuadrupedModel<T> {
 	private final ModelPart tongue;
 	private final ModelPart frillLeft;
 	private final ModelPart frillRight;
-	
+
 	public LizardModel(ModelPart modelPartIn) {
 		super(modelPartIn, true, 10.0F, 4.0F, 2.0F, 2.0F, 24);
 		this.body = modelPartIn.getChild("body");
@@ -43,7 +43,7 @@ public class LizardModel<T extends Lizard> extends QuadrupedModel<T> {
 		tail.addOrReplaceChild("tail2", CubeListBuilder.create().texOffs(22, 10).addBox(-0.5F, 0.0F, 0.0F, 1.0F, 1.0F, 4.0F), PartPose.offset(0.0F, 0.0F, 4.0F));
 		return LayerDefinition.create(meshdefinition, 32, 16);
 	}
-	
+
 	@Override
 	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.head.yRot = (float) Math.PI / 4;

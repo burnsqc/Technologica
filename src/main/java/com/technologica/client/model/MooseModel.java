@@ -182,20 +182,16 @@ public class MooseModel<T extends AbstractHorse> extends AgeableListModel<T> {
 		this.nose.xRot = (float) Math.PI / 10;
 		this.earLeft.zRot = 0F;
 		this.earRight.zRot = 0F;
-
 		// for (ModelPart modelrenderer : this.saddles) {
 		// modelrenderer.visible = flag;
 		// }
-
 		// for (ModelPart modelrenderer1 : this.reigns) {
 		// modelrenderer1.visible = flag1 && flag;
 		// }
-
 		this.antlerLeft1.zRot = (float) Math.PI / 2;
 		this.antlerRight1.zRot = -(float) Math.PI / 2;
 		this.antlerLeft1.yRot = -(float) Math.PI / 8;
 		this.antlerRight1.yRot = (float) Math.PI / 8;
-
 		this.antlerLeft2.xRot = -1.25F;
 		this.antlerRight2.xRot = -1.25F;
 		this.antlerLeft2.zRot = -0.5F;
@@ -222,9 +218,7 @@ public class MooseModel<T extends AbstractHorse> extends AgeableListModel<T> {
 		this.antlerRight11.zRot = (float) (Math.PI / 6);
 		this.antlerLeft12.zRot = -(float) (Math.PI / 6);
 		this.antlerRight12.zRot = (float) (Math.PI / 6);
-
 		this.tail.xRot = ((float) Math.PI / 8F);
-
 	}
 
 	@Override
@@ -241,7 +235,6 @@ public class MooseModel<T extends AbstractHorse> extends AgeableListModel<T> {
 	public void prepareMobModel(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
 		float f = Mth.lerp(partialTick, entityIn.yBodyRotO, entityIn.yBodyRot);
 		float f1 = Mth.lerp(partialTick, entityIn.yHeadRotO, entityIn.yHeadRot);
-
 		float f3 = f1 - f;
 
 		if (f3 > 20.0F) {
@@ -263,21 +256,15 @@ public class MooseModel<T extends AbstractHorse> extends AgeableListModel<T> {
 		this.neck.xRot = (float) Math.PI / 3 + Mth.sin(f10 * limbSwing * 0.5F) / 10;
 		this.head.xRot = -(float) Math.PI / 3 + Mth.cos(f10 * limbSwing * 0.5F) / 10;
 		this.neck.yRot = f3 * (float) Math.PI / 180;
-
 		this.body.xRot = f6 * (-(float) Math.PI / 4F) + this.body.xRot;
-
 		this.legUpperFrontRight.xRot = -((Mth.sin(f10 * limbSwing * 0.25F) * Mth.sin(f10 * limbSwing * 0.25F)) * limbSwingAmount * 1.5F) - f6 / 2 * Mth.sin(f9 * 0.25F) * f6 * Mth.sin(f9 * 0.25F);
 		this.legLowerFrontRight.xRot = (Mth.cos(f10 * limbSwing * 0.25F + (float) Math.PI / 4F) * Mth.cos(f10 * limbSwing * 0.25F + (float) Math.PI / 4F)) * limbSwingAmount * 1.5F + f6 * Mth.cos(f9 * 0.25F - (float) Math.PI / 4) * f6 * Mth.cos(f9 * 0.25F - (float) Math.PI / 4);
-
 		this.legUpperBackLeft.xRot = (Mth.cos(f10 * limbSwing * 0.25F + (float) Math.PI / 4F) * Mth.cos(f10 * limbSwing * 0.25F + (float) Math.PI / 4F)) * limbSwingAmount * 1.5F + f6 / 2;
 		this.legLowerBackLeft.xRot = -((Mth.cos(f10 * limbSwing * 0.25F) * Mth.cos(f10 * limbSwing * 0.25F)) * limbSwingAmount * 1.5F) - f6 / 2;
-
 		this.legUpperFrontLeft.xRot = -((Mth.cos(f10 * limbSwing * 0.25F) * Mth.cos(f10 * limbSwing * 0.25F)) * limbSwingAmount * 1.5F) - f6 / 2 * Mth.cos(f9 * 0.25F) * f6 * Mth.cos(f9 * 0.25F);
 		this.legLowerFrontLeft.xRot = (Mth.sin(f10 * limbSwing * 0.25F + (float) Math.PI / 4F) * Mth.sin(f10 * limbSwing * 0.25F + (float) Math.PI / 4F)) * limbSwingAmount * 1.5F + f6 * Mth.sin(f9 * 0.25F - (float) Math.PI / 4) * f6 * Mth.sin(f9 * 0.25F - (float) Math.PI / 4);
-
 		this.legUpperBackRight.xRot = (Mth.sin(f10 * limbSwing * 0.25F + (float) Math.PI / 4F) * Mth.sin(f10 * limbSwing * 0.25F + (float) Math.PI / 4F)) * limbSwingAmount * 1.5F + f6 / 2;
 		this.legLowerBackRight.xRot = -((Mth.sin(f10 * limbSwing * 0.25F) * Mth.sin(f10 * limbSwing * 0.25F)) * limbSwingAmount * 1.5F) - f6 / 2;
-
 		if (earsFlapping) {
 			this.earLeft.yRot = Mth.cos(entityIn.tickCount + partialTick);
 			this.earRight.yRot = -Mth.cos(entityIn.tickCount + partialTick);

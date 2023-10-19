@@ -13,6 +13,9 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.FriendlyByteBuf;
 
 public class FallingLiquidParticleData implements ParticleOptions {
+	private final float red;
+	private final float green;
+	private final float blue;
 
 	public static final Codec<FallingLiquidParticleData> CODEC = RecordCodecBuilder.create((p_239803_0_) -> {
 		return p_239803_0_.group(Codec.FLOAT.fieldOf("r").forGetter((p_239807_0_) -> {
@@ -24,10 +27,6 @@ public class FallingLiquidParticleData implements ParticleOptions {
 		})).apply(p_239803_0_, FallingLiquidParticleData::new);
 	});
 
-	private final float red;
-	private final float green;
-	private final float blue;
-
 	public FallingLiquidParticleData(float red, float green, float blue) {
 		this.red = red;
 		this.green = green;
@@ -36,6 +35,7 @@ public class FallingLiquidParticleData implements ParticleOptions {
 
 	@SuppressWarnings("deprecation")
 	public static final ParticleOptions.Deserializer<FallingLiquidParticleData> DESERIALIZER = new ParticleOptions.Deserializer<FallingLiquidParticleData>() {
+		@Override
 		public FallingLiquidParticleData fromCommand(ParticleType<FallingLiquidParticleData> particleTypeIn, StringReader reader) throws CommandSyntaxException {
 			reader.expect(' ');
 			float f = (float) reader.readDouble();
@@ -47,6 +47,7 @@ public class FallingLiquidParticleData implements ParticleOptions {
 			return new FallingLiquidParticleData(f, f1, f2);
 		}
 
+		@Override
 		public FallingLiquidParticleData fromNetwork(ParticleType<FallingLiquidParticleData> particleTypeIn, FriendlyByteBuf buffer) {
 			return new FallingLiquidParticleData(buffer.readFloat(), buffer.readFloat(), buffer.readFloat());
 		}
@@ -69,17 +70,16 @@ public class FallingLiquidParticleData implements ParticleOptions {
 	public String writeToString() {
 		return String.format(Locale.ROOT, "%s %.2f %.2f %.2f", BuiltInRegistries.PARTICLE_TYPE.getKey(this.getType()), this.red, this.green, this.blue);
 	}
-	
+
 	public float getRed() {
 		return red;
 	}
-	
+
 	public float getGreen() {
 		return green;
 	}
-	
+
 	public float getBlue() {
 		return blue;
 	}
-
 }

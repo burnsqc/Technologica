@@ -14,7 +14,6 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.world.entity.Entity;
 
 public class CrabModel<T extends Entity> extends ListModel<T> {
-
 	private final ModelPart body;
 	private final ModelPart leg1;
 	private final ModelPart leg2;
@@ -32,7 +31,6 @@ public class CrabModel<T extends Entity> extends ListModel<T> {
 	private final ModelPart pincherLeftInner;
 
 	public CrabModel(ModelPart modelPartIn) {
-
 		this.body = modelPartIn.getChild("body");
 		this.leg1 = modelPartIn.getChild("leg1");
 		this.leg2 = modelPartIn.getChild("leg2");
@@ -48,18 +46,14 @@ public class CrabModel<T extends Entity> extends ListModel<T> {
 		this.armRight = body.getChild("armRight");
 		this.clawRight = armRight.getChild("clawRight");
 		this.pincherRightInner = armRight.getChild("pincherRightInner");
-
 	}
 
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = QuadrupedModel.createBodyMesh(6, CubeDeformation.NONE);
 		PartDefinition partdefinition = meshdefinition.getRoot();
-
 		PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-3.0F, 16.0F, 0.0F, 6.0F, 2.0F, 5.0F), PartPose.offset(0.0F, 4.0F, -3.0F));
-
 		body.addOrReplaceChild("eyeLeft", CubeListBuilder.create().texOffs(0, 0).addBox(1.0F, 15.0F, 0.0F, 1.0F, 1.0F, 1.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
 		body.addOrReplaceChild("eyeRight", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, 15.0F, 0.0F, 1.0F, 1.0F, 1.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
-
 		partdefinition.addOrReplaceChild("leg1", CubeListBuilder.create().texOffs(0, 7).addBox(-3.0F, -1.0F, -1.0F, 4.0F, 1.0F, 1.0F), PartPose.offset(-3.0F, 22.0F, 1.0F));
 		partdefinition.addOrReplaceChild("leg2", CubeListBuilder.create().texOffs(0, 7).addBox(-1.0F, -1.0F, -1.0F, 4.0F, 1.0F, 1.0F), PartPose.offset(3.0F, 22.0F, 1.0F));
 		partdefinition.addOrReplaceChild("leg3", CubeListBuilder.create().texOffs(0, 7).addBox(-3.0F, -1.0F, -1.0F, 4.0F, 1.0F, 1.0F), PartPose.offset(-3.0F, 22.0F, 0.0F));
@@ -68,15 +62,12 @@ public class CrabModel<T extends Entity> extends ListModel<T> {
 		partdefinition.addOrReplaceChild("leg6", CubeListBuilder.create().texOffs(0, 7).addBox(-1.0F, -1.0F, 0.0F, 4.0F, 1.0F, 1.0F), PartPose.offset(3.0F, 22.0F, -1.0F));
 		partdefinition.addOrReplaceChild("leg7", CubeListBuilder.create().texOffs(0, 7).addBox(-3.0F, -1.0F, 0.0F, 4.0F, 1.0F, 1.0F), PartPose.offset(-3.0F, 22.0F, -2.0F));
 		partdefinition.addOrReplaceChild("leg8", CubeListBuilder.create().texOffs(0, 7).addBox(-1.0F, -1.0F, 0.0F, 4.0F, 1.0F, 1.0F), PartPose.offset(3.0F, 22.0F, -2.0F));
-
 		PartDefinition armLeft = body.addOrReplaceChild("armLeft", CubeListBuilder.create().texOffs(0, 9).addBox(0.0F, 16.0F, 0.0F, 3.0F, 1.0F, 1.0F), PartPose.offset(2.0F, 1.0F, 0.0F));
 		armLeft.addOrReplaceChild("clawLeft", CubeListBuilder.create().texOffs(0, 11).addBox(-2.0F, 16.0F, 0.0F, 2.0F, 1.0F, 1.0F), PartPose.offset(3.0F, 0.0F, 1.0F));
 		armLeft.addOrReplaceChild("pincherLeftInner", CubeListBuilder.create().texOffs(0, 11).addBox(-2.0F, 16.0F, 0.0F, 2.0F, 1.0F, 1.0F), PartPose.offset(3.0F, 0.0F, 1.0F));
-
 		PartDefinition armRight = body.addOrReplaceChild("armRight", CubeListBuilder.create().texOffs(0, 9).addBox(-3.0F, 16.0F, 0.0F, 3.0F, 1.0F, 1.0F), PartPose.offset(-2.0F, 1.0F, 0.0F));
 		armRight.addOrReplaceChild("clawRight", CubeListBuilder.create().texOffs(0, 11).addBox(-2.0F, 16.0F, -1.0F, 2.0F, 1.0F, 1.0F), PartPose.offset(-3.0F, 0.0F, 1.0F));
 		armRight.addOrReplaceChild("pincherRightInner", CubeListBuilder.create().texOffs(0, 11).addBox(-2.0F, 16.0F, -1.0F, 2.0F, 1.0F, 1.0F), PartPose.offset(-3.0F, 0.0F, 1.0F));
-
 		return LayerDefinition.create(meshdefinition, 32, 16);
 	}
 
@@ -140,5 +131,4 @@ public class CrabModel<T extends Entity> extends ListModel<T> {
 		modelRenderer.yRot = y;
 		modelRenderer.zRot = z;
 	}
-
 }

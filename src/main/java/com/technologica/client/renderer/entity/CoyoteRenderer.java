@@ -13,7 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public class CoyoteRenderer extends MobRenderer<Coyote, CoyoteModel<Coyote>> {
 	private static final ResourceLocation COYOTE_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/coyote.png");
-	
+
 	public CoyoteRenderer(Context contextIn) {
 		super(contextIn, new CoyoteModel<>(contextIn.bakeLayer(TechnologicaModelLayers.COYOTE)), 0.5F);
 	}
@@ -22,7 +22,7 @@ public class CoyoteRenderer extends MobRenderer<Coyote, CoyoteModel<Coyote>> {
 	public ResourceLocation getTextureLocation(Coyote coyoteIn) {
 		return COYOTE_TEXTURE;
 	}
-	
+
 	@Override
 	protected float getBob(Coyote coyoteIn, float partialTicksIn) {
 		return coyoteIn.getTailAngle();

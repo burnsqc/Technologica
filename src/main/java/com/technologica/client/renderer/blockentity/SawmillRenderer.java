@@ -25,6 +25,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.client.model.data.ModelData;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class SawmillRenderer implements BlockEntityRenderer<SawmillBlockEntity> {
@@ -36,12 +37,10 @@ public class SawmillRenderer implements BlockEntityRenderer<SawmillBlockEntity> 
 	private void addBox(PoseStack matrixStack, MultiBufferSource buffer) {
 		TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(SAW_TEXTURE);
 		VertexConsumer builder = buffer.getBuffer(RenderType.cutoutMipped());
-
 		add(builder, matrixStack, 0.0F, 2.0F, 2.0F, sprite.getU1(), sprite.getV1());
 		add(builder, matrixStack, 0.0F, -2.0F, 2.0F, sprite.getU0(), sprite.getV1());
 		add(builder, matrixStack, 0.0F, -2.0F, -2.0F, sprite.getU0(), sprite.getV0());
 		add(builder, matrixStack, 0.0F, 2.0F, -2.0F, sprite.getU1(), sprite.getV0());
-
 		add(builder, matrixStack, 0.0F, 2.0F, -2.0F, sprite.getU1(), sprite.getV0());
 		add(builder, matrixStack, 0.0F, -2.0F, -2.0F, sprite.getU0(), sprite.getV0());
 		add(builder, matrixStack, 0.0F, -2.0F, 2.0F, sprite.getU0(), sprite.getV1());
@@ -52,20 +51,16 @@ public class SawmillRenderer implements BlockEntityRenderer<SawmillBlockEntity> 
 		renderer.vertex(stack.last().pose(), x, y, z).color(1.0f, 1.0f, 1.0f, 1.0f).uv(u, v).uv2(0, 240).normal(1, 0, 0).endVertex();
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void render(SawmillBlockEntity sawmillBlockEntityIn, float partialTicks, PoseStack matrixStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
 		Boolean blade = sawmillBlockEntityIn.getBlade();
 		ItemStack stack = sawmillBlockEntityIn.getLog();
-
 		Block log = Block.byItem(stack.getItem());
 		BlockRenderDispatcher blockrendererdispatcher = Minecraft.getInstance().getBlockRenderer();
 		ModelBlockRenderer blockModelRenderer = blockrendererdispatcher.getModelRenderer();
-
 		if (blade) {
 			matrixStack.pushPose();
 			matrixStack.translate(0.5, 0.75, 0.5);
-
 			switch (sawmillBlockEntityIn.getBlockState().getValue(SawmillBlock.NESW_FACING)) {
 			case NORTH:
 				break;
@@ -81,13 +76,11 @@ public class SawmillRenderer implements BlockEntityRenderer<SawmillBlockEntity> 
 			default:
 				break;
 			}
-
 			long i = sawmillBlockEntityIn.getLevel().getGameTime();
 			matrixStack.mulPose(this.angle(i, partialTicks));
 			addBox(matrixStack, buffer);
 			matrixStack.popPose();
 		}
-
 		if (!stack.isEmpty()) {
 			matrixStack.pushPose();
 			BlockState state = log.defaultBlockState();
@@ -116,7 +109,7 @@ public class SawmillRenderer implements BlockEntityRenderer<SawmillBlockEntity> 
 			default:
 				break;
 			}
-			blockModelRenderer.renderModel(matrixStack.last(), buffer.getBuffer(RenderType.translucentMovingBlock()), state, blockrendererdispatcher.getBlockModel(state), 0.0F, 0.0F, 0.0F, combinedLight, combinedOverlay);
+			blockModelRenderer.renderModel(matrixStack.last(), buffer.getBuffer(RenderType.translucentMovingBlock()), state, blockrendererdispatcher.getBlockModel(state), 0.0F, 0.0F, 0.0F, combinedLight, combinedOverlay, ModelData.EMPTY, RenderType.cutoutMipped());
 			matrixStack.popPose();
 		}
 	}

@@ -24,6 +24,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraftforge.client.model.data.ModelData;
 
 public class LineShaftRenderer implements BlockEntityRenderer<LineShaftBlockEntity> {
 	public static final ResourceLocation PULLEY_BELT_TEXTURE = new ResourceLocation(Technologica.MODID, "block/pulley_belt");
@@ -34,26 +35,18 @@ public class LineShaftRenderer implements BlockEntityRenderer<LineShaftBlockEnti
 	private void addBox(PoseStack matrixStack, MultiBufferSource buffer, float x1, float y1, float z1, float x2, float y2, float z2, float y3, float z3, float y4, float z4) {
 		TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(PULLEY_BELT_TEXTURE);
 		VertexConsumer builder = buffer.getBuffer(RenderType.solid());
-
-		// EAST
 		add(builder, matrixStack, x2, y4, z4, sprite.getU(1), sprite.getV0());
 		add(builder, matrixStack, x2, y3, z3, sprite.getU0(), sprite.getV0());
 		add(builder, matrixStack, x2, y2, z2, sprite.getU0(), sprite.getV1());
 		add(builder, matrixStack, x2, y1, z1, sprite.getU(1), sprite.getV1());
-
-		// WEST
 		add(builder, matrixStack, x1, y1, z1, sprite.getU(15), sprite.getV0());
 		add(builder, matrixStack, x1, y2, z2, sprite.getU1(), sprite.getV0());
 		add(builder, matrixStack, x1, y3, z3, sprite.getU1(), sprite.getV1());
 		add(builder, matrixStack, x1, y4, z4, sprite.getU(15), sprite.getV1());
-
-		// UP
 		add(builder, matrixStack, x1, y3, z3, sprite.getU0(), sprite.getV0());
 		add(builder, matrixStack, x2, y3, z3, sprite.getU(4), sprite.getV0());
 		add(builder, matrixStack, x2, y4, z4, sprite.getU(4), sprite.getV1());
 		add(builder, matrixStack, x1, y4, z4, sprite.getU0(), sprite.getV1());
-
-		// DOWN
 		add(builder, matrixStack, x1, y1, z1, sprite.getU0(), sprite.getV0());
 		add(builder, matrixStack, x2, y1, z1, sprite.getU(4), sprite.getV0());
 		add(builder, matrixStack, x2, y2, z2, sprite.getU(4), sprite.getV1());
@@ -64,29 +57,22 @@ public class LineShaftRenderer implements BlockEntityRenderer<LineShaftBlockEnti
 		renderer.vertex(stack.last().pose(), x, y, z).color(1.0f, 1.0f, 1.0f, 1.0f).uv(u, v).uv2(0, 240).normal(1, 0, 0).endVertex();
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void render(LineShaftBlockEntity tileEntity, float partialTicks, PoseStack matrixStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
 		BlockRenderDispatcher blockrendererdispatcher = Minecraft.getInstance().getBlockRenderer();
 		ModelBlockRenderer blockModelRenderer = blockrendererdispatcher.getModelRenderer();
-
 		matrixStack.pushPose();
-
 		if (tileEntity.getBeltPos() != null) {
-
 			Radius radius1 = tileEntity.getBlockState().getValue(LineShaftBlock.RADIUS);
 			Radius radius2;
-
 			if (tileEntity.getLevel().getBlockEntity(tileEntity.getBeltPos()) instanceof LineShaftBlockEntity) {
 				radius2 = tileEntity.getLevel().getBlockState(tileEntity.getBeltPos()).getValue(LineShaftBlock.RADIUS);
 			} else {
 				radius2 = Radius.NONE;
 			}
-
 			if (radius2 != Radius.NONE) {
 				float[] coords;
 				float[][] coords2;
-
 				switch (tileEntity.getBlockState().getValue(LineShaftBlock.AXIS)) {
 				case X:
 					matrixStack.translate(0, 0.5d, 0.5d);
@@ -120,24 +106,19 @@ public class LineShaftRenderer implements BlockEntityRenderer<LineShaftBlockEnti
 					break;
 				}
 			}
-
 		}
 		matrixStack.popPose();
-
 		matrixStack.pushPose();
-
 		matrixStack.translate(offset(tileEntity)[0], offset(tileEntity)[1], offset(tileEntity)[2]);
 		matrixStack.mulPose(angle(tileEntity));
 		matrixStack.translate(-offset(tileEntity)[0], -offset(tileEntity)[1], -offset(tileEntity)[2]);
-
-		blockModelRenderer.renderModel(matrixStack.last(), buffer.getBuffer(RenderType.solid()), tileEntity.getBlockState(), blockrendererdispatcher.getBlockModel(tileEntity.getBlockState()), 0.0F, 0.0F, 0.0F, combinedLight, combinedOverlay);
+		blockModelRenderer.renderModel(matrixStack.last(), buffer.getBuffer(RenderType.solid()), tileEntity.getBlockState(), blockrendererdispatcher.getBlockModel(tileEntity.getBlockState()), 0.0F, 0.0F, 0.0F, combinedLight, combinedOverlay, ModelData.EMPTY, RenderType.cutoutMipped());
 		matrixStack.popPose();
 	}
 
 	private double[] offset(BlockEntity tileEntityIn) {
 		double[] offset = new double[3];
 		Arrays.fill(offset, 0.5f);
-
 		switch (tileEntityIn.getBlockState().getValue(LineShaftBlock.AXIS)) {
 		case X:
 			offset[0] = 0.0d;
@@ -149,7 +130,6 @@ public class LineShaftRenderer implements BlockEntityRenderer<LineShaftBlockEnti
 			offset[2] = 0.0d;
 			break;
 		}
-
 		return offset;
 	}
 
@@ -157,7 +137,6 @@ public class LineShaftRenderer implements BlockEntityRenderer<LineShaftBlockEnti
 		long time = System.currentTimeMillis() * 6 * (int) ((LineShaftBlockEntity) tileEntityIn).getRPM() / 1000;
 		float angle = time % 360;
 		Axis vector = Axis.XP;
-
 		switch (tileEntityIn.getBlockState().getValue(LineShaftBlock.AXIS)) {
 		case X:
 			vector = Axis.XP;
@@ -169,7 +148,6 @@ public class LineShaftRenderer implements BlockEntityRenderer<LineShaftBlockEnti
 			vector = Axis.ZP;
 			break;
 		}
-
 		return vector.rotationDegrees(angle);
 	}
 

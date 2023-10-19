@@ -71,15 +71,6 @@ public class CamelModel<T extends Camel> extends AgeableListModel<T> {
 		this.humpFront.xRot = ((float) Math.PI / 4F);
 		this.humpRear.xRot = -((float) Math.PI / 4F);
 		this.tail.xRot = ((float) Math.PI / 6F);
-
-		// for (ModelPart modelrenderer : this.saddleParts) {
-		// modelrenderer.visible = flag;
-		// }
-
-		// for (ModelPart modelrenderer1 : this.ridingParts) {
-		// modelrenderer1.visible = flag1 && flag;
-		// }
-
 		this.body.y = 11.0F;
 	}
 

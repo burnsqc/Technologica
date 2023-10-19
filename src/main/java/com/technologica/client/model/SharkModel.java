@@ -58,7 +58,7 @@ public class SharkModel<T extends Entity> extends ListModel<T> {
 		tail2.addOrReplaceChild("tailFinBottom", CubeListBuilder.create().texOffs(0, 0).addBox(-0.5F, 0.0F, 0.0F, 1.0F, 4.0F, 8.0F), PartPose.offset(0.0F, 0.0F, 12.0F));
 		return LayerDefinition.create(meshdefinition, 128, 64);
 	}
-	
+
 	@Override
 	public Iterable<ModelPart> parts() {
 		return ImmutableList.of(this.body);

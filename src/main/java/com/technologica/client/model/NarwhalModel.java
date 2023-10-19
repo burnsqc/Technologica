@@ -45,20 +45,18 @@ public class NarwhalModel<T extends Entity> extends ListModel<T> {
 		tail.addOrReplaceChild("tail_fin_right", CubeListBuilder.create().texOffs(0, 49).addBox(0.0F, 0.0F, -4.0F, 8.0F, 1.0F, 4.0F), PartPose.offset(0.0F, 0.0F, 12.0F));
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
-	
+
 	@Override
 	public Iterable<ModelPart> parts() {
 		return ImmutableList.of(this.body);
 	}
 
 	@Override
-	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {	
+	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.flipperLeft.yRot = -(float) Math.PI / 4;
 		this.flipperLeft.zRot = (float) Math.PI / 8;
-		
 		this.flipperRight.yRot = (float) Math.PI / 4;
 		this.flipperRight.zRot = -(float) Math.PI / 8;
-
 		this.body.xRot = headPitch * ((float) Math.PI / 180F);
 		this.body.yRot = netHeadYaw * ((float) Math.PI / 180F);
 		if (entityIn.getDeltaMovement().horizontalDistanceSqr() > 1.0E-7D) {

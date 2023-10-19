@@ -15,14 +15,13 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.client.model.data.ModelData;
 
 public class LineShaftHangerRenderer implements BlockEntityRenderer<LineShaftHangerTileEntity> {
 
 	public LineShaftHangerRenderer(BlockEntityRendererProvider.Context rendererDispatcherIn) {
-
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void render(LineShaftHangerTileEntity tileEntity, float partialTicks, PoseStack matrixStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
 		if (tileEntity.getShaft()) {
@@ -31,9 +30,7 @@ public class LineShaftHangerRenderer implements BlockEntityRenderer<LineShaftHan
 			BlockRenderDispatcher blockrendererdispatcher = Minecraft.getInstance().getBlockRenderer();
 			ModelBlockRenderer blockModelRenderer = blockrendererdispatcher.getModelRenderer();
 			BlockState state;
-
 			matrixStack.pushPose();
-
 			if (tileEntity.getBlockState().getValue(TwelveDirectionBlock.AXIS) == Direction.Axis.X) {
 				state = TechnologicaBlocks.LINE_SHAFT.get().defaultBlockState().setValue(TwelveDirectionBlock.AXIS, Direction.Axis.X);
 				matrixStack.translate(0.0, 0.5, 0.5);
@@ -50,7 +47,7 @@ public class LineShaftHangerRenderer implements BlockEntityRenderer<LineShaftHan
 				matrixStack.mulPose(Axis.ZP.rotationDegrees(angle));
 				matrixStack.translate(-0.5, -0.5, 0.0);
 			}
-			blockModelRenderer.renderModel(matrixStack.last(), buffer.getBuffer(RenderType.solid()), state, blockrendererdispatcher.getBlockModel(state), 0.0F, 0.0F, 0.0F, combinedLight, combinedOverlay);
+			blockModelRenderer.renderModel(matrixStack.last(), buffer.getBuffer(RenderType.solid()), state, blockrendererdispatcher.getBlockModel(state), 0.0F, 0.0F, 0.0F, combinedLight, combinedOverlay, ModelData.EMPTY, RenderType.cutoutMipped());
 			matrixStack.popPose();
 		}
 	}

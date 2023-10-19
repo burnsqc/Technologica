@@ -62,7 +62,7 @@ public class WalrusModel<T extends Entity> extends ListModel<T> {
 		tail3.addOrReplaceChild("flipper_back_right", CubeListBuilder.create().texOffs(0, 76).addBox(-10.0F, -1.0F, -5.0F, 15.0F, 2.0F, 5.0F), PartPose.offset(0.0F, 2.0F, 6.0F));
 		return LayerDefinition.create(meshdefinition, 128, 128);
 	}
-	
+
 	@Override
 	public Iterable<ModelPart> parts() {
 		return ImmutableList.of(this.body);
@@ -70,11 +70,11 @@ public class WalrusModel<T extends Entity> extends ListModel<T> {
 
 	@Override
 	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.neck.xRot = -(float) (Math.PI/3.0F);
-		this.head.xRot = (float) (Math.PI/3.0F);
-		this.flipperBackLeft.yRot = -(float) (Math.PI/4.0F);
-		this.flipperBackRight.yRot = (float) (Math.PI/4.0F);
-		this.flipperFrontLeft.yRot = -(float) (Math.PI/4.0F);
-		this.flipperFrontRight.yRot = (float) (Math.PI/4.0F);
+		this.neck.xRot = -(float) (Math.PI / 3.0F);
+		this.head.xRot = (float) (Math.PI / 3.0F);
+		this.flipperBackLeft.yRot = -(float) (Math.PI / 4.0F);
+		this.flipperBackRight.yRot = (float) (Math.PI / 4.0F);
+		this.flipperFrontLeft.yRot = -(float) (Math.PI / 4.0F);
+		this.flipperFrontRight.yRot = (float) (Math.PI / 4.0F);
 	}
 }

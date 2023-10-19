@@ -79,7 +79,7 @@ public class OctopusModel<T extends Entity> extends ListModel<T> {
 		legFrontFrontRightUpper.addOrReplaceChild("legFrontFrontRightLower", CubeListBuilder.create().texOffs(12, 14).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 9.0F, 2.0F), PartPose.offset(0.0F, 8.0F, 2.5F));
 		return LayerDefinition.create(meshdefinition, 64, 32);
 	}
-	
+
 	@Override
 	public Iterable<ModelPart> parts() {
 		return ImmutableList.of(this.body, this.legBackBackRightUpper, this.legBackBackLeftUpper, this.legBackRightUpper, this.legBackLeftUpper, this.legFrontRightUpper, this.legFrontLeftUpper, this.legFrontFrontRightUpper, this.legFrontFrontLeftUpper);
@@ -89,7 +89,6 @@ public class OctopusModel<T extends Entity> extends ListModel<T> {
 	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.body.xRot = -(float) Math.PI / 4;
 		this.head.xRot = -(float) Math.PI / 4;
-		
 		this.legBackBackLeftUpper.yRot = -(float) Math.PI / 8;
 		this.legBackBackRightUpper.yRot = (float) Math.PI / 8;
 		this.legBackLeftUpper.yRot = -3 * (float) Math.PI / 8;
@@ -98,7 +97,6 @@ public class OctopusModel<T extends Entity> extends ListModel<T> {
 		this.legFrontRightUpper.yRot = 5 * (float) Math.PI / 8;
 		this.legFrontFrontLeftUpper.yRot = -7 * (float) Math.PI / 8;
 		this.legFrontFrontRightUpper.yRot = 7 * (float) Math.PI / 8;
-		
 		this.legBackBackLeftUpper.xRot = (float) Math.PI / 4;
 		this.legBackBackRightUpper.xRot = (float) Math.PI / 4;
 		this.legBackLeftUpper.xRot = (float) Math.PI / 4;
@@ -107,7 +105,6 @@ public class OctopusModel<T extends Entity> extends ListModel<T> {
 		this.legFrontRightUpper.xRot = (float) Math.PI / 4;
 		this.legFrontFrontLeftUpper.xRot = (float) Math.PI / 4;
 		this.legFrontFrontRightUpper.xRot = (float) Math.PI / 4;
-		
 		this.legBackBackLeftLower.xRot = (float) Math.PI / 4;
 		this.legBackBackRightLower.xRot = (float) Math.PI / 4;
 		this.legBackLeftLower.xRot = (float) Math.PI / 4;
@@ -116,17 +113,15 @@ public class OctopusModel<T extends Entity> extends ListModel<T> {
 		this.legFrontRightLower.xRot = (float) Math.PI / 4;
 		this.legFrontFrontLeftLower.xRot = (float) Math.PI / 4;
 		this.legFrontFrontRightLower.xRot = (float) Math.PI / 4;
-		
-		this.legBackBackLeftLower.zRot = 0;//-(float) Math.PI / 4;
-		this.legBackBackRightLower.zRot = 0;//-(float) Math.PI / 4;
-		this.legBackLeftLower.zRot = 0;//-(float) Math.PI / 4;
-		this.legBackRightLower.zRot = 0;//-(float) Math.PI / 4;
-		this.legFrontLeftLower.zRot = 0;//-(float) Math.PI / 4;
-		this.legFrontRightLower.zRot = 0;//-(float) Math.PI / 4;
-		this.legFrontFrontLeftLower.zRot = 0;//-(float) Math.PI / 4;
-		this.legFrontFrontRightLower.zRot = 0;//-(float) Math.PI / 4;
+		this.legBackBackLeftLower.zRot = 0;// -(float) Math.PI / 4;
+		this.legBackBackRightLower.zRot = 0;// -(float) Math.PI / 4;
+		this.legBackLeftLower.zRot = 0;// -(float) Math.PI / 4;
+		this.legBackRightLower.zRot = 0;// -(float) Math.PI / 4;
+		this.legFrontLeftLower.zRot = 0;// -(float) Math.PI / 4;
+		this.legFrontRightLower.zRot = 0;// -(float) Math.PI / 4;
+		this.legFrontFrontLeftLower.zRot = 0;// -(float) Math.PI / 4;
+		this.legFrontFrontRightLower.zRot = 0;// -(float) Math.PI / 4;
 	}
-
 
 	public void setRotationAngle(ModelPart modelRenderer, float x, float y, float z) {
 		modelRenderer.xRot = x;

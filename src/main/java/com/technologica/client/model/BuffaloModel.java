@@ -14,12 +14,12 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 public class BuffaloModel<T extends Buffalo> extends QuadrupedModel<T> {
 	protected ModelPart mane;
 	protected ModelPart tail;
-	
+
 	public BuffaloModel(ModelPart modelPartIn) {
 		super(modelPartIn, false, 10.0F, 4.0F, 2.0F, 2.0F, 24);
 		this.tail = body.getChild("tail");
 	}
-	
+
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = QuadrupedModel.createBodyMesh(6, CubeDeformation.NONE);
 		PartDefinition root = meshdefinition.getRoot();
@@ -34,9 +34,9 @@ public class BuffaloModel<T extends Buffalo> extends QuadrupedModel<T> {
 		body.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(0, 32).addBox(-1.0F, -2.0F, 14.0F, 2.0F, 14.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
 		return LayerDefinition.create(meshdefinition, 128, 128);
 	}
-	
+
 	@Override
 	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		tail.xRot = (float) (Math.PI/8);
+		tail.xRot = (float) (Math.PI / 8);
 	}
 }

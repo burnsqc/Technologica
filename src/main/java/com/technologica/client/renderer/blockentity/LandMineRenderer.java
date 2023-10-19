@@ -20,7 +20,6 @@ public class LandMineRenderer implements BlockEntityRenderer<LandMineBlockEntity
 	public void render(LandMineBlockEntity tileEntity, float partialTicks, PoseStack matrixStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
 		BlockState state = tileEntity.getPreviousBlockState();
 		BlockRenderDispatcher blockrendererdispatcher = Minecraft.getInstance().getBlockRenderer();
-
 		matrixStack.pushPose();
 		blockrendererdispatcher.renderSingleBlock(state, matrixStack, buffer, combinedLight, combinedOverlay, ModelData.EMPTY, RenderType.cutoutMipped());
 		matrixStack.popPose();

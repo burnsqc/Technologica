@@ -17,40 +17,36 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class AnnunciatorRenderer implements BlockEntityRenderer<AnnunciatorBlockEntity> {
 	private final Font font;
-	
+
 	public AnnunciatorRenderer(BlockEntityRendererProvider.Context rendererDispatcherIn) {
 		this.font = rendererDispatcherIn.getFont();
 	}
 
+	@Override
 	public void render(AnnunciatorBlockEntity tileEntityIn, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
 		BlockState blockstate = tileEntityIn.getBlockState();
 		float f1 = -blockstate.getValue(AnnunciatorBlock.FACING).toYRot();
-		
 		matrixStackIn.pushPose();
 		matrixStackIn.translate(0.5D, 0.5D, 0.5D);
 		matrixStackIn.mulPose(Axis.YP.rotationDegrees(f1));
 		matrixStackIn.translate(0.0D, 0.18D, 0.51D);
 		matrixStackIn.scale(0.009F, -0.009F, 0.009F);
-		
 		int i = 0;
 		int alpha = blockstate.getValue(AnnunciatorBlock.LIT) ? 0 : 50;
-
-		int j = (int) ((double) NativeImage.getR(i) * 0.4D);
-		int k = (int) ((double) NativeImage.getG(i) * 0.4D);
-		int l = (int) ((double) NativeImage.getB(i) * 0.4D);
+		int j = (int) (NativeImage.getR(i) * 0.4D);
+		int k = (int) (NativeImage.getG(i) * 0.4D);
+		int l = (int) (NativeImage.getB(i) * 0.4D);
 		int i1 = NativeImage.combine(alpha, l, k, j);
-
 		for (int k1 = 0; k1 < 8; ++k1) {
 			FormattedCharSequence ireorderingprocessor = tileEntityIn.reorderText(k1, (p_243502_1_) -> {
 				List<FormattedCharSequence> list = font.split(p_243502_1_, 90);
 				return list.isEmpty() ? FormattedCharSequence.EMPTY : list.get(0);
 			});
 			if (ireorderingprocessor != null) {
-				float f3 = (float) (-font.width(ireorderingprocessor) / 2);
-				font.drawInBatch(ireorderingprocessor, f3, (float) (k1 * 10 - 20), i1, false, matrixStackIn.last().pose(), bufferIn, false, 0, combinedLightIn);
+				float f3 = -font.width(ireorderingprocessor) / 2;
+				font.drawInBatch(ireorderingprocessor, f3, k1 * 10 - 20, i1, false, matrixStackIn.last().pose(), bufferIn, false, 0, combinedLightIn);
 			}
 		}
-
 		matrixStackIn.popPose();
 	}
 }

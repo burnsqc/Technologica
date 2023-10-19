@@ -22,7 +22,7 @@ public class AtomicCreeperRenderer extends MobRenderer<AtomicCreeper, CreeperMod
 	public ResourceLocation getTextureLocation(AtomicCreeper atomicCreeperIn) {
 		return ATOMIC_CREEPER_TEXTURE;
 	}
-	
+
 	@Override
 	protected void scale(AtomicCreeper atomicCreeperIn, PoseStack poseStackIn, float floatIn) {
 		float f = atomicCreeperIn.getSwelling(floatIn);

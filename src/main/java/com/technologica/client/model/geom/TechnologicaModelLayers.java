@@ -11,7 +11,6 @@ import net.minecraft.resources.ResourceLocation;
 
 public class TechnologicaModelLayers {
 	private static final Set<ModelLayerLocation> ALL_MODELS = Sets.newHashSet();
-
 	public static final ModelLayerLocation ALLIGATOR = register("alligator");
 	public static final ModelLayerLocation BEAVER = register("beaver");
 	public static final ModelLayerLocation BUFFALO = register("buffalo");
@@ -63,7 +62,7 @@ public class TechnologicaModelLayers {
 
 	public static final ModelLayerLocation COCONUT_BAZOOKA = register("coconut_bazooka");
 	public static final ModelLayerLocation SPEAR_GUN = register("spear_gun");
-	
+
 	public static final ModelLayerLocation MINING_HELMET = register("mining_helmet");
 
 	private static ModelLayerLocation register(String p_171294_) {

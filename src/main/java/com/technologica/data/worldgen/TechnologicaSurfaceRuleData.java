@@ -44,6 +44,10 @@ public class TechnologicaSurfaceRuleData {
 		return overworldLike(true, false, true);
 	}
 
+	public static SurfaceRules.RuleSource challengerDeep() {
+		return overworldLike(true, false, true);
+	}
+
 	public static SurfaceRules.RuleSource overworldLike(boolean p_198381_, boolean p_198382_, boolean p_198383_) {
 		SurfaceRules.ConditionSource surfacerules$conditionsource = SurfaceRules.yBlockCheck(VerticalAnchor.absolute(97), 2);
 		SurfaceRules.ConditionSource surfacerules$conditionsource1 = SurfaceRules.yBlockCheck(VerticalAnchor.absolute(256), 0);

@@ -22,5 +22,4 @@ public class InvisibleRenderer extends EntityRenderer<InvisibleSeat> {
 	public ResourceLocation getTextureLocation(InvisibleSeat entity) {
 		return null;
 	}
-
 }

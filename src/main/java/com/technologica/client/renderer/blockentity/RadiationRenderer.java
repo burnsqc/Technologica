@@ -45,11 +45,9 @@ public class RadiationRenderer extends BlockEntityWithoutLevelRenderer {
 	public void renderByItem(ItemStack stack, ItemTransforms.TransformType transformType, PoseStack poseStack, MultiBufferSource buffer, int packedLight, int packedOverlay) {
 		poseStack.popPose();
 		poseStack.pushPose();
-
 		BakedModel mainModel = Minecraft.getInstance().getModelManager().getModel(BASE_MODEL_LOCATION);
 		mainModel = mainModel.applyTransform(transformType, poseStack, isLeftHand(transformType));
 		poseStack.translate(-.5, -.5, -.5);
-
 		boolean glint = stack.hasFoil();
 		for (BakedModel model : mainModel.getRenderPasses(stack, true)) {
 			for (RenderType type : model.getRenderTypes(stack, true)) {
@@ -74,10 +72,8 @@ public class RadiationRenderer extends BlockEntityWithoutLevelRenderer {
 	public static final class CustomRenderType extends RenderStateShard {
 		public static final Function<ResourceLocation, RenderType> CUSTOM_GLINT_DIRECT = Util.memoize(texture -> {
 			RenderType type = RenderType.create("custom_glint_direct", DefaultVertexFormat.POSITION_TEX, VertexFormat.Mode.QUADS, 256, false, false, RenderType.CompositeState.builder().setShaderState(RENDERTYPE_GLINT_DIRECT_SHADER).setTextureState(new RenderStateShard.TextureStateShard(texture, true, false)).setWriteMaskState(COLOR_WRITE).setCullState(NO_CULL).setDepthTestState(EQUAL_DEPTH_TEST).setTransparencyState(TRANSLUCENT_TRANSPARENCY).setTexturingState(GLINT_TEXTURING).createCompositeState(false));
-
 			SortedMap<RenderType, BufferBuilder> fixedBuffers = ObfuscationReflectionHelper.getPrivateValue(RenderBuffers.class, Minecraft.getInstance().renderBuffers(), "f_110093_");
 			fixedBuffers.put(type, new BufferBuilder(type.bufferSize()));
-
 			return type;
 		});
 

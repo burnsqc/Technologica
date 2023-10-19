@@ -21,7 +21,7 @@ public class ElephantModel<T extends Elephant> extends QuadrupedModel<T> {
 	protected ModelPart trunk2;
 	protected ModelPart trunk3;
 	protected ModelPart tail;
-	
+
 	public ElephantModel(ModelPart modelPartIn) {
 		super(modelPartIn, true, 10.0F, 4.0F, 2.0F, 2.0F, 24);
 		this.forehead = this.head.getChild("forehead");
@@ -56,7 +56,7 @@ public class ElephantModel<T extends Elephant> extends QuadrupedModel<T> {
 		body.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(40, 78).addBox(-1.5F, 0.0F, -3.0F, 3.0F, 24.0F, 3.0F), PartPose.offset(0.0F, -8.0F, 24.0F));
 		return LayerDefinition.create(meshdefinition, 256, 128);
 	}
-	
+
 	@Override
 	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.tuskLeft.xRot = -(float) Math.PI / 10.0F;

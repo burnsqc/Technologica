@@ -15,23 +15,22 @@ import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.world.item.ItemStack;
 
 public class FruitRenderer implements BlockEntityRenderer<FruitBlockEntity> {
-    public FruitRenderer(BlockEntityRendererProvider.Context rendererDispatcherIn) {
-        
-    }
+	public FruitRenderer(BlockEntityRendererProvider.Context rendererDispatcherIn) {
+	}
 
-    @Override
-    public void render(FruitBlockEntity tileEntity, float partialTicks, PoseStack matrixStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {       
-    	ItemStack stack = tileEntity.getFruitStack();
-    	Minecraft minecraft = Minecraft.getInstance();
-    	LocalPlayer clientplayerentity = minecraft.player;
-    	if (!stack.isEmpty()) {
-        	matrixStack.pushPose();       	
-        	matrixStack.translate(0.5, -0.3, 0.5);
-        	matrixStack.mulPose(Axis.YN.rotationDegrees(clientplayerentity.getYRot()));
-        	ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
-        	BakedModel ibakedmodel = itemRenderer.getModel(stack, tileEntity.getLevel(), null, combinedOverlay);
-        	itemRenderer.render(stack, ItemTransforms.TransformType.GROUND, true, matrixStack, buffer, combinedLight, combinedOverlay, ibakedmodel);       	
-        	matrixStack.popPose();
-        }
-    }
+	@Override
+	public void render(FruitBlockEntity tileEntity, float partialTicks, PoseStack matrixStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
+		ItemStack stack = tileEntity.getFruitStack();
+		Minecraft minecraft = Minecraft.getInstance();
+		LocalPlayer clientplayerentity = minecraft.player;
+		if (!stack.isEmpty()) {
+			matrixStack.pushPose();
+			matrixStack.translate(0.5, -0.3, 0.5);
+			matrixStack.mulPose(Axis.YN.rotationDegrees(clientplayerentity.getYRot()));
+			ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
+			BakedModel ibakedmodel = itemRenderer.getModel(stack, tileEntity.getLevel(), null, combinedOverlay);
+			itemRenderer.render(stack, ItemTransforms.TransformType.GROUND, true, matrixStack, buffer, combinedLight, combinedOverlay, ibakedmodel);
+			matrixStack.popPose();
+		}
+	}
 }
