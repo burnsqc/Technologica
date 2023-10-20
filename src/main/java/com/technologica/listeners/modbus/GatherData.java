@@ -10,6 +10,7 @@ import com.technologica.data.models.blockstates.TechnologicaBlockStateProvider;
 import com.technologica.data.models.model.TechnologicaItemModelProvider;
 import com.technologica.data.recipes.packs.TechnologicaRecipeProvider;
 import com.technologica.data.registries.TechnologicaDatapackBuiltinEntriesProvider;
+import com.technologica.data.registries.TechnologicaDatapackBuiltinEntriesProvider2;
 import com.technologica.data.tags.TechnologicaBlockTagsProvider;
 import com.technologica.data.tags.TechnologicaFluidTagsProvider;
 import com.technologica.data.tags.TechnologicaItemTagsProvider;
@@ -21,20 +22,20 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 
 public class GatherData {
-	
+
 	public static void onGatherDataEvent(final GatherDataEvent event) {
 		DataGenerator generator = event.getGenerator();
 		PackOutput packOutput = generator.getPackOutput();
 		ExistingFileHelper helper = event.getExistingFileHelper();
 		CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
-		
+
 		/*
 		 * Assets
 		 */
 		generator.addProvider(event.includeClient(), new TechnologicaBlockStateProvider(packOutput, helper));
 		generator.addProvider(event.includeClient(), new TechnologicaLanguageProvider(packOutput));
 		generator.addProvider(event.includeClient(), new TechnologicaItemModelProvider(packOutput, helper));
-		
+
 		/*
 		 * Data
 		 */
@@ -47,5 +48,7 @@ public class GatherData {
 		generator.addProvider(event.includeServer(), technologicaBlockTagsProvider);
 		generator.addProvider(event.includeServer(), new TechnologicaItemTagsProvider(packOutput, lookupProvider, technologicaBlockTagsProvider, helper));
 		generator.addProvider(event.includeServer(), new TechnologicaFluidTagsProvider(packOutput, lookupProvider, helper));
+
+		generator.addProvider(event.includeReports(), new TechnologicaDatapackBuiltinEntriesProvider2(packOutput, lookupProvider));
 	}
 }
