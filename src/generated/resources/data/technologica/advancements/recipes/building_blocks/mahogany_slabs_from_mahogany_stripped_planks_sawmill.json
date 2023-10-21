@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:mahogany_slabs_from_mahogany_stripped_planks_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

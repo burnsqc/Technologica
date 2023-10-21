@@ -24,7 +24,8 @@
         "result": {
           "count": 4,
           "item": "technologica:conductive_stairs"
-        }
+        },
+        "show_notification": true
       }
     }
   ]

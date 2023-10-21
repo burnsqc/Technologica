@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:lime_slabs_from_lime_stripped_planks_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

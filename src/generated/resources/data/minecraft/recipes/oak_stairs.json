@@ -24,7 +24,8 @@
         "result": {
           "count": 4,
           "item": "minecraft:oak_stairs"
-        }
+        },
+        "show_notification": true
       }
     }
   ]

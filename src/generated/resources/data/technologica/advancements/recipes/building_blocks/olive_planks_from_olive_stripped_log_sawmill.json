@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:olive_planks_from_olive_stripped_log_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

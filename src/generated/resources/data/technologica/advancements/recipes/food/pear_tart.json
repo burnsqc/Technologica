@@ -30,5 +30,6 @@
     "recipes": [
       "technologica:pear_tart"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

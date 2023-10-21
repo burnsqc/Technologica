@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:stripped_banana_log_from_banana_log_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

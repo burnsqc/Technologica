@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:stripped_warped_stem_from_warped_stem_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

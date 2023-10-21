@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:oak_slabs_from_oak_stripped_planks_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

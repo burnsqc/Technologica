@@ -19,5 +19,6 @@
   ],
   "result": {
     "item": "technologica:primitive_dagger"
-  }
+  },
+  "show_notification": true
 }

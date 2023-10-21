@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:stripped_maple_log_from_maple_log_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

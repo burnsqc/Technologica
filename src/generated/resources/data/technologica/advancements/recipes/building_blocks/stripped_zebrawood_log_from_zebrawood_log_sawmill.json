@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:stripped_zebrawood_log_from_zebrawood_log_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:acacia_slabs_from_acacia_stripped_planks_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

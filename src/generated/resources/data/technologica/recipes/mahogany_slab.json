@@ -22,7 +22,8 @@
         "result": {
           "count": 6,
           "item": "technologica:mahogany_slab"
-        }
+        },
+        "show_notification": true
       }
     }
   ]

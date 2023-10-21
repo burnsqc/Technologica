@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:jungle_planks_from_jungle_stripped_log_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

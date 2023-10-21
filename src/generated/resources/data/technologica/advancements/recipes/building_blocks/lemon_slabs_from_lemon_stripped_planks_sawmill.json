@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:lemon_slabs_from_lemon_stripped_planks_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

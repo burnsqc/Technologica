@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:plum_planks_from_plum_stripped_log_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

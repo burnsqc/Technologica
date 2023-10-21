@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:stripped_peach_log_from_peach_log_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

@@ -19,5 +19,6 @@
   ],
   "result": {
     "item": "technologica:primitive_hatchet"
-  }
+  },
+  "show_notification": true
 }

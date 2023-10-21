@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:stripped_coconut_log_from_coconut_log_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

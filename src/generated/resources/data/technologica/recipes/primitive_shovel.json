@@ -19,5 +19,6 @@
   ],
   "result": {
     "item": "technologica:primitive_shovel"
-  }
+  },
+  "show_notification": true
 }

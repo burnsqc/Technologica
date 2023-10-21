@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:stripped_crimson_stem_from_crimson_stem_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

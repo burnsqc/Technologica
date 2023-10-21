@@ -22,7 +22,8 @@
         "result": {
           "count": 6,
           "item": "technologica:walnut_slab"
-        }
+        },
+        "show_notification": true
       }
     }
   ]

@@ -30,5 +30,6 @@
     "recipes": [
       "technologica:strawberry_shortcake"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

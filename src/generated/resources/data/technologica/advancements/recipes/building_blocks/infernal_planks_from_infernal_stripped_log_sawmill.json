@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:infernal_planks_from_infernal_stripped_log_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

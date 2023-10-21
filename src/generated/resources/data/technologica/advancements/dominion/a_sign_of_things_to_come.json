@@ -35,5 +35,6 @@
     [
       "failed_harvest"
     ]
-  ]
+  ],
+  "sends_telemetry_event": true
 }

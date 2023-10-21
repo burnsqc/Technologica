@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:teak_planks_from_teak_stripped_log_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

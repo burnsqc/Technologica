@@ -30,5 +30,6 @@
     "recipes": [
       "technologica:orange_dreamsicle"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

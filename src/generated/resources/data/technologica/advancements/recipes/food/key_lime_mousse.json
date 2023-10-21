@@ -30,5 +30,6 @@
     "recipes": [
       "technologica:key_lime_mousse"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

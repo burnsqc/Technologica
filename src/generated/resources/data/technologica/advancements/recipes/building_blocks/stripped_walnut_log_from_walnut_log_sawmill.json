@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:stripped_walnut_log_from_walnut_log_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

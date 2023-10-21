@@ -3,61 +3,111 @@
   "criteria": {
     "barley": {
       "conditions": {
-        "block": "technologica:barley"
+        "location": [
+          {
+            "block": "technologica:barley",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
       },
       "trigger": "minecraft:placed_block"
     },
     "beetroots": {
       "conditions": {
-        "block": "minecraft:beetroots"
+        "location": [
+          {
+            "block": "minecraft:beetroots",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
       },
       "trigger": "minecraft:placed_block"
     },
     "corn": {
       "conditions": {
-        "block": "technologica:corn"
+        "location": [
+          {
+            "block": "technologica:corn",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
       },
       "trigger": "minecraft:placed_block"
     },
     "melon_stem": {
       "conditions": {
-        "block": "minecraft:melon_stem"
+        "location": [
+          {
+            "block": "minecraft:melon_stem",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
       },
       "trigger": "minecraft:placed_block"
     },
     "nether_wart": {
       "conditions": {
-        "block": "minecraft:nether_wart"
+        "location": [
+          {
+            "block": "minecraft:nether_wart",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
       },
       "trigger": "minecraft:placed_block"
     },
     "oats": {
       "conditions": {
-        "block": "technologica:oats"
+        "location": [
+          {
+            "block": "technologica:oats",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
       },
       "trigger": "minecraft:placed_block"
     },
     "pumpkin_stem": {
       "conditions": {
-        "block": "minecraft:pumpkin_stem"
+        "location": [
+          {
+            "block": "minecraft:pumpkin_stem",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
       },
       "trigger": "minecraft:placed_block"
     },
     "rice": {
       "conditions": {
-        "block": "technologica:rice"
+        "location": [
+          {
+            "block": "technologica:rice",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
       },
       "trigger": "minecraft:placed_block"
     },
     "rye": {
       "conditions": {
-        "block": "technologica:rye"
+        "location": [
+          {
+            "block": "technologica:rye",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
       },
       "trigger": "minecraft:placed_block"
     },
     "wheat": {
       "conditions": {
-        "block": "minecraft:wheat"
+        "location": [
+          {
+            "block": "minecraft:wheat",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
       },
       "trigger": "minecraft:placed_block"
     }
@@ -90,5 +140,6 @@
       "corn",
       "rice"
     ]
-  ]
+  ],
+  "sends_telemetry_event": true
 }

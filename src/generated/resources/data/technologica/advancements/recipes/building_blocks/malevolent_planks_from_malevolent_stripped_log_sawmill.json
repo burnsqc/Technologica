@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:malevolent_planks_from_malevolent_stripped_log_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

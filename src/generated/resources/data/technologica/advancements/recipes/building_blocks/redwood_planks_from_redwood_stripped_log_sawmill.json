@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:redwood_planks_from_redwood_stripped_log_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

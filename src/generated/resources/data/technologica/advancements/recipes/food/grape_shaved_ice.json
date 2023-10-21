@@ -30,5 +30,6 @@
     "recipes": [
       "technologica:grape_shaved_ice"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -24,7 +24,8 @@
         "result": {
           "count": 4,
           "item": "technologica:pear_stairs"
-        }
+        },
+        "show_notification": true
       }
     }
   ]

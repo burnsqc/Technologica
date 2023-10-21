@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:dark_oak_planks_from_dark_oak_stripped_log_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

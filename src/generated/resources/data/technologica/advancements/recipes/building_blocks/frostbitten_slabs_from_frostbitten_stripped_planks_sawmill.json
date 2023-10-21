@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:frostbitten_slabs_from_frostbitten_stripped_planks_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

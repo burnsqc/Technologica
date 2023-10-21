@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:stripped_rubber_log_from_rubber_log_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

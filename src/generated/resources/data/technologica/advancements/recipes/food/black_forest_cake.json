@@ -30,5 +30,6 @@
     "recipes": [
       "technologica:black_forest_cake"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

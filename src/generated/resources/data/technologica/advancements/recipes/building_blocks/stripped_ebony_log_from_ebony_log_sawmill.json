@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:stripped_ebony_log_from_ebony_log_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

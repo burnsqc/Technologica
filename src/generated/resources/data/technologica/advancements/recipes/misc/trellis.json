@@ -30,5 +30,6 @@
     "recipes": [
       "technologica:trellis"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

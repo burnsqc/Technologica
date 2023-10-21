@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:kiwi_slabs_from_kiwi_stripped_planks_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

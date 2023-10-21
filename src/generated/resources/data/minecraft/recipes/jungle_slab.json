@@ -22,7 +22,8 @@
         "result": {
           "count": 6,
           "item": "minecraft:jungle_slab"
-        }
+        },
+        "show_notification": true
       }
     }
   ]

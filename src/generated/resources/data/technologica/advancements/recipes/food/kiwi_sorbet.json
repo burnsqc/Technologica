@@ -30,5 +30,6 @@
     "recipes": [
       "technologica:kiwi_sorbet"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

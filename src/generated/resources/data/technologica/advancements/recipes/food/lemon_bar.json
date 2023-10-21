@@ -30,5 +30,6 @@
     "recipes": [
       "technologica:lemon_bar"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

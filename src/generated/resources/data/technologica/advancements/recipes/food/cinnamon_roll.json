@@ -30,5 +30,6 @@
     "recipes": [
       "technologica:cinnamon_roll"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

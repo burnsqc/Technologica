@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:stripped_malevolent_log_from_malevolent_log_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

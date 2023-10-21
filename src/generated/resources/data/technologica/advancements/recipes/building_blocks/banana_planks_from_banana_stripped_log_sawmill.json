@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:banana_planks_from_banana_stripped_log_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

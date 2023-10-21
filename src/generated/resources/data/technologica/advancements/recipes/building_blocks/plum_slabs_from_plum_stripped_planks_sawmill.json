@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:plum_slabs_from_plum_stripped_planks_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

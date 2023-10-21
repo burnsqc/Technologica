@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:stripped_chestnut_log_from_chestnut_log_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

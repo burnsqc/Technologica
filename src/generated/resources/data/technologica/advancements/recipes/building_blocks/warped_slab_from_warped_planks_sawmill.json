@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:warped_slab_from_warped_planks_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

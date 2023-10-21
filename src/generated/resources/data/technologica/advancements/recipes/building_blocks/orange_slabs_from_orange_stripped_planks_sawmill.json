@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:orange_slabs_from_orange_stripped_planks_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

@@ -15,5 +15,6 @@
   ],
   "result": {
     "item": "technologica:trellis"
-  }
+  },
+  "show_notification": true
 }

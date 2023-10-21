@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:stripped_frostbitten_log_from_frostbitten_log_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

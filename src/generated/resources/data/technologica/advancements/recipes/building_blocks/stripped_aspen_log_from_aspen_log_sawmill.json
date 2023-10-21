@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:stripped_aspen_log_from_aspen_log_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

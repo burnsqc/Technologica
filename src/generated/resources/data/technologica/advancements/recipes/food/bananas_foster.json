@@ -30,5 +30,6 @@
     "recipes": [
       "technologica:bananas_foster"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

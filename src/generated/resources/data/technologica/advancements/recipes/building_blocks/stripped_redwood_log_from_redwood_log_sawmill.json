@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:stripped_redwood_log_from_redwood_log_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

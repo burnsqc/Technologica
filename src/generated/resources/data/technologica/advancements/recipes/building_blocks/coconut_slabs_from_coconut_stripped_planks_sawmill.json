@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:coconut_slabs_from_coconut_stripped_planks_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

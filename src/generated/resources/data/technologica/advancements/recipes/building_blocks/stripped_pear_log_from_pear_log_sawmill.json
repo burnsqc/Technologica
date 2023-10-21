@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:stripped_pear_log_from_pear_log_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

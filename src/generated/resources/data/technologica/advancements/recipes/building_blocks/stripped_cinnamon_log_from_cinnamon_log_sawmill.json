@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:stripped_cinnamon_log_from_cinnamon_log_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:walnut_slabs_from_walnut_stripped_planks_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

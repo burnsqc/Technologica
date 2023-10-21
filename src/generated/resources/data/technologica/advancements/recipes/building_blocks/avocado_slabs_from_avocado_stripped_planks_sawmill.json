@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:avocado_slabs_from_avocado_stripped_planks_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

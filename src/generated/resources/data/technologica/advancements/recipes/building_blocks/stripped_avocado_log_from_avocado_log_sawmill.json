@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:stripped_avocado_log_from_avocado_log_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

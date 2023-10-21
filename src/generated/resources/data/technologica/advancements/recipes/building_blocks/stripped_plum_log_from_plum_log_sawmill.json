@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:stripped_plum_log_from_plum_log_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

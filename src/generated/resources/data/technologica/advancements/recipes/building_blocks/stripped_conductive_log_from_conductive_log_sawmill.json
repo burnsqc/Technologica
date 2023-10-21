@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:stripped_conductive_log_from_conductive_log_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

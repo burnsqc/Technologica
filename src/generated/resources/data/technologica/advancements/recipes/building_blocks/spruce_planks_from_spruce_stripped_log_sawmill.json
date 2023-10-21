@@ -28,5 +28,6 @@
     "recipes": [
       "technologica:spruce_planks_from_spruce_stripped_log_sawmill"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

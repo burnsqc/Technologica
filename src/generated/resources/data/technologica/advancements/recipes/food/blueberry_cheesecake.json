@@ -30,5 +30,6 @@
     "recipes": [
       "technologica:blueberry_cheesecake"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

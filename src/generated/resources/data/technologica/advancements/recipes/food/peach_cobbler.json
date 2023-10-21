@@ -30,5 +30,6 @@
     "recipes": [
       "technologica:peach_cobbler"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }
