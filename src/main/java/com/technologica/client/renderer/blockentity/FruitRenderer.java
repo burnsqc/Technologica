@@ -7,11 +7,11 @@ import com.technologica.world.level.block.entity.FruitBlockEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 
 public class FruitRenderer implements BlockEntityRenderer<FruitBlockEntity> {
@@ -29,7 +29,7 @@ public class FruitRenderer implements BlockEntityRenderer<FruitBlockEntity> {
 			matrixStack.mulPose(Axis.YN.rotationDegrees(clientplayerentity.getYRot()));
 			ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
 			BakedModel ibakedmodel = itemRenderer.getModel(stack, tileEntity.getLevel(), null, combinedOverlay);
-			itemRenderer.render(stack, ItemTransforms.TransformType.GROUND, true, matrixStack, buffer, combinedLight, combinedOverlay, ibakedmodel);
+			itemRenderer.render(stack, ItemDisplayContext.GROUND, true, matrixStack, buffer, combinedLight, combinedOverlay, ibakedmodel);
 			matrixStack.popPose();
 		}
 	}

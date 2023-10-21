@@ -29,8 +29,8 @@ public class PlayerTickEventListener {
 	@SubscribeEvent
 	public void onPlayerTickEvent(PlayerTickEvent event) {
 		Player player = event.player;
-		Level level = player.getLevel();
-		BlockPos pos = new BlockPos(player.getEyePosition());
+		Level level = player.level();
+		BlockPos pos = BlockPos.containing(player.getEyePosition());
 		if (level.getBlockState(pos).getBlock() instanceof AirBlock && level instanceof ServerLevel) {
 			Iterable<ItemStack> armor = player.getArmorSlots();
 			for (ItemStack piece : armor) {
@@ -63,7 +63,7 @@ public class PlayerTickEventListener {
 		maxAir = fullDiveSet ? 6000 : maxAir;
 		maxAir = fullScubaSet ? 12000 : maxAir;
 
-		if (!player.isEyeInFluidType(ForgeMod.WATER_TYPE.get()) || player.level.getBlockState(new BlockPos(player.getX(), player.getEyeY(), player.getZ())).is(Blocks.BUBBLE_COLUMN)) {
+		if (!player.isEyeInFluidType(ForgeMod.WATER_TYPE.get()) || player.level().getBlockState(BlockPos.containing(player.getX(), player.getEyeY(), player.getZ())).is(Blocks.BUBBLE_COLUMN)) {
 			if (air >= 300 && air < maxAir && event.phase == Phase.END) {
 				player.setAirSupply(Math.min(air + 4, maxAir));
 			}
@@ -79,7 +79,7 @@ public class PlayerTickEventListener {
 			if (event.phase == TickEvent.Phase.START) {
 				unHandleWaterAcceleration(player);
 				if (player.isInWater()) {
-					if (!player.isOnGround()) {
+					if (!player.onGround()) {
 						player.setDeltaMovement(player.getDeltaMovement().x, player.getDeltaMovement().y - 0.12, player.getDeltaMovement().z);
 						player.hurtMarked = true;
 					} else {
@@ -108,7 +108,7 @@ public class PlayerTickEventListener {
 		int l = Mth.ceil(axisalignedbb.maxY);
 		int i1 = Mth.floor(axisalignedbb.minZ);
 		int j1 = Mth.ceil(axisalignedbb.maxZ);
-		if (!player.level.hasChunksAt(i, k, i1, j, l, j1)) {
+		if (!player.level().hasChunksAt(i, k, i1, j, l, j1)) {
 			return false;
 		} else {
 			double d0 = 0.0D;
@@ -122,14 +122,14 @@ public class PlayerTickEventListener {
 				for (int i2 = k; i2 < l; ++i2) {
 					for (int j2 = i1; j2 < j1; ++j2) {
 						blockpos$mutable.set(l1, i2, j2);
-						FluidState fluidstate = player.level.getFluidState(blockpos$mutable);
+						FluidState fluidstate = player.level().getFluidState(blockpos$mutable);
 						if (fluidstate.is(FluidTags.WATER)) {
-							double d1 = i2 + fluidstate.getHeight(player.level, blockpos$mutable);
+							double d1 = i2 + fluidstate.getHeight(player.level(), blockpos$mutable);
 							if (d1 >= axisalignedbb.minY) {
 								flag1 = true;
 								d0 = Math.max(d1 - axisalignedbb.minY, d0);
 								if (flag) {
-									Vec3 vector3d1 = fluidstate.getFlow(player.level, blockpos$mutable);
+									Vec3 vector3d1 = fluidstate.getFlow(player.level(), blockpos$mutable);
 									if (d0 < 0.4D) {
 										vector3d1 = vector3d1.scale(d0);
 									}

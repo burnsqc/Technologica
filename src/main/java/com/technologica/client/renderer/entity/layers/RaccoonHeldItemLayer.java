@@ -7,10 +7,10 @@ import com.technologica.world.entity.animal.Raccoon;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 
 public class RaccoonHeldItemLayer extends RenderLayer<Raccoon, RaccoonModel<Raccoon>> {
@@ -37,7 +37,7 @@ public class RaccoonHeldItemLayer extends RenderLayer<Raccoon, RaccoonModel<Racc
 		}
 		matrixStackIn.mulPose(Axis.XP.rotationDegrees(90.0F));
 		ItemStack itemstack = entitylivingbaseIn.getItemBySlot(EquipmentSlot.MAINHAND);
-		Minecraft.getInstance().getEntityRenderDispatcher().getItemInHandRenderer().renderItem(entitylivingbaseIn, itemstack, ItemTransforms.TransformType.GROUND, false, matrixStackIn, bufferIn, packedLightIn);
+		Minecraft.getInstance().getEntityRenderDispatcher().getItemInHandRenderer().renderItem(entitylivingbaseIn, itemstack, ItemDisplayContext.GROUND, false, matrixStackIn, bufferIn, packedLightIn);
 		matrixStackIn.popPose();
 	}
 }

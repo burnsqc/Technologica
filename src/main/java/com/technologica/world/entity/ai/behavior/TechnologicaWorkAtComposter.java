@@ -40,7 +40,7 @@ public class TechnologicaWorkAtComposter extends WorkAtPoi {
 	private void compostItems(ServerLevel p_24793_, Villager p_24794_, GlobalPos p_24795_, BlockState p_24796_) {
 		BlockPos blockpos = p_24795_.pos();
 		if (p_24796_.getValue(ComposterBlock.LEVEL) == 8) {
-			p_24796_ = ComposterBlock.extractProduce(p_24796_, p_24793_, blockpos);
+			p_24796_ = ComposterBlock.extractProduce(p_24794_, p_24796_, p_24793_, blockpos);
 		}
 
 		int i = 20;
@@ -61,7 +61,7 @@ public class TechnologicaWorkAtComposter extends WorkAtPoi {
 					i -= l1;
 
 					for (int i2 = 0; i2 < l1; ++i2) {
-						blockstate = ComposterBlock.insertItem(blockstate, p_24793_, itemstack, blockpos);
+						blockstate = ComposterBlock.insertItem(p_24794_, blockstate, p_24793_, itemstack, blockpos);
 						if (blockstate.getValue(ComposterBlock.LEVEL) == 7) {
 							this.spawnComposterFillEffects(p_24793_, p_24796_, blockpos, blockstate);
 							return;

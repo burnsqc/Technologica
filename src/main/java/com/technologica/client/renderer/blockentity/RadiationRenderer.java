@@ -19,11 +19,11 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderBuffers;
 import net.minecraft.client.renderer.RenderStateShard;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.RenderTypeHelper;
 import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
@@ -42,7 +42,7 @@ public class RadiationRenderer extends BlockEntityWithoutLevelRenderer {
 	}
 
 	@Override
-	public void renderByItem(ItemStack stack, ItemTransforms.TransformType transformType, PoseStack poseStack, MultiBufferSource buffer, int packedLight, int packedOverlay) {
+	public void renderByItem(ItemStack stack, ItemDisplayContext transformType, PoseStack poseStack, MultiBufferSource buffer, int packedLight, int packedOverlay) {
 		poseStack.popPose();
 		poseStack.pushPose();
 		BakedModel mainModel = Minecraft.getInstance().getModelManager().getModel(BASE_MODEL_LOCATION);
@@ -58,8 +58,8 @@ public class RadiationRenderer extends BlockEntityWithoutLevelRenderer {
 		}
 	}
 
-	private static boolean isLeftHand(ItemTransforms.TransformType type) {
-		return type == ItemTransforms.TransformType.FIRST_PERSON_LEFT_HAND || type == ItemTransforms.TransformType.THIRD_PERSON_LEFT_HAND;
+	private static boolean isLeftHand(ItemDisplayContext type) {
+		return type == ItemDisplayContext.FIRST_PERSON_LEFT_HAND || type == ItemDisplayContext.THIRD_PERSON_LEFT_HAND;
 	}
 
 	private static VertexConsumer getFoilBuffer(MultiBufferSource buffer, RenderType type, boolean glint) {

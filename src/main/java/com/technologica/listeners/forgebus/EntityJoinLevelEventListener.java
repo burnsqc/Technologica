@@ -65,13 +65,13 @@ public class EntityJoinLevelEventListener {
 
 		if (entity instanceof LivingEntity) {
 			LivingEntity livingEntity = (LivingEntity) entity;
-			if (entity.level.dimension().toString().contains("technologica:moon")) {
+			if (entity.level().dimension().toString().contains("technologica:moon")) {
 				if (!livingEntity.getAttribute(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get()).hasModifier(LUNAR_GRAVITY)) {
 					livingEntity.getAttribute(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get()).addTransientModifier(LUNAR_GRAVITY);
 				}
 			} else {
 				if (livingEntity.getAttribute(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get()).hasModifier(LUNAR_GRAVITY)) {
-					livingEntity.getAttribute(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get()).removeModifier(LUNAR_GRAVITY);
+					livingEntity.getAttribute(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get()).removeModifier(LUNAR_GRAVITY_ID);
 				}
 			}
 

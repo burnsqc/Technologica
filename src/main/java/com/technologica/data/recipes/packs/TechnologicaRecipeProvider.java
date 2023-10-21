@@ -349,8 +349,8 @@ public class TechnologicaRecipeProvider extends RecipeProvider {
 		sawmillRecipe(Ingredient.of(TechnologicaItems.CONDUCTIVE_LOG_ITEM.get()), TechnologicaItems.STRIPPED_CONDUCTIVE_LOG_ITEM.get(), 1, TechnologicaItems.MULCH.get(), 1).save(consumer, new ResourceLocation(Technologica.MODID, "stripped_conductive_log_from_conductive_log_sawmill"));
 		sawmillRecipe(Ingredient.of(TechnologicaItems.FROSTBITTEN_LOG_ITEM.get()), TechnologicaItems.STRIPPED_FROSTBITTEN_LOG_ITEM.get(), 1, TechnologicaItems.MULCH.get(), 1).save(consumer, new ResourceLocation(Technologica.MODID, "stripped_frostbitten_log_from_frostbitten_log_sawmill"));
 		sawmillRecipe(Ingredient.of(TechnologicaItems.INFERNAL_LOG_ITEM.get()), TechnologicaItems.STRIPPED_INFERNAL_LOG_ITEM.get(), 1, TechnologicaItems.MULCH.get(), 1).save(consumer, new ResourceLocation(Technologica.MODID, "stripped_infernal_log_from_infernal_log_sawmill"));
-		//sawmillRecipe(Ingredient.of(TechnologicaItems.NECROTIC_LOG_ITEM.get()), TechnologicaItems.STRIPPED_NECROTIC_LOG_ITEM.get(), 1, TechnologicaItems.MULCH.get(), 1).save(consumer, new ResourceLocation(Technologica.MODID, "stripped_necrotic_log_from_necrotic_log_sawmill"));
-		
+		// sawmillRecipe(Ingredient.of(TechnologicaItems.NECROTIC_LOG_ITEM.get()), TechnologicaItems.STRIPPED_NECROTIC_LOG_ITEM.get(), 1, TechnologicaItems.MULCH.get(), 1).save(consumer, new ResourceLocation(Technologica.MODID, "stripped_necrotic_log_from_necrotic_log_sawmill"));
+
 		sawmillRecipe(Ingredient.of(Items.STRIPPED_OAK_LOG), Items.OAK_PLANKS, 1, TechnologicaItems.SAWDUST.get(), 1).save(consumer, new ResourceLocation(Technologica.MODID, "oak_planks_from_oak_stripped_log_sawmill"));
 		sawmillRecipe(Ingredient.of(Items.STRIPPED_SPRUCE_LOG), Items.SPRUCE_PLANKS, 1, TechnologicaItems.SAWDUST.get(), 1).save(consumer, new ResourceLocation(Technologica.MODID, "spruce_planks_from_spruce_stripped_log_sawmill"));
 		sawmillRecipe(Ingredient.of(Items.STRIPPED_BIRCH_LOG), Items.BIRCH_PLANKS, 1, TechnologicaItems.SAWDUST.get(), 1).save(consumer, new ResourceLocation(Technologica.MODID, "birch_planks_from_birch_stripped_log_sawmill"));
@@ -391,8 +391,8 @@ public class TechnologicaRecipeProvider extends RecipeProvider {
 		sawmillRecipe(Ingredient.of(TechnologicaItems.STRIPPED_CONDUCTIVE_LOG_ITEM.get()), TechnologicaItems.CONDUCTIVE_PLANKS_ITEM.get(), 1, TechnologicaItems.SAWDUST.get(), 1).save(consumer, new ResourceLocation(Technologica.MODID, "conductive_planks_from_conductive_stripped_log_sawmill"));
 		sawmillRecipe(Ingredient.of(TechnologicaItems.STRIPPED_FROSTBITTEN_LOG_ITEM.get()), TechnologicaItems.FROSTBITTEN_PLANKS_ITEM.get(), 1, TechnologicaItems.SAWDUST.get(), 1).save(consumer, new ResourceLocation(Technologica.MODID, "frostbitten_planks_from_frostbitten_stripped_log_sawmill"));
 		sawmillRecipe(Ingredient.of(TechnologicaItems.STRIPPED_INFERNAL_LOG_ITEM.get()), TechnologicaItems.INFERNAL_PLANKS_ITEM.get(), 1, TechnologicaItems.SAWDUST.get(), 1).save(consumer, new ResourceLocation(Technologica.MODID, "infernal_planks_from_infernal_stripped_log_sawmill"));
-		//sawmillRecipe(Ingredient.of(TechnologicaItems.STRIPPED_NECROTIC_LOG_ITEM.get()), TechnologicaItems.NECROTIC_PLANKS_ITEM.get(), 1, TechnologicaItems.SAWDUST.get(), 1).save(consumer, new ResourceLocation(Technologica.MODID, "necrotic_planks_from_necrotic_stripped_log_sawmill"));
-		
+		// sawmillRecipe(Ingredient.of(TechnologicaItems.STRIPPED_NECROTIC_LOG_ITEM.get()), TechnologicaItems.NECROTIC_PLANKS_ITEM.get(), 1, TechnologicaItems.SAWDUST.get(), 1).save(consumer, new ResourceLocation(Technologica.MODID, "necrotic_planks_from_necrotic_stripped_log_sawmill"));
+
 		sawmillRecipe(Ingredient.of(Items.OAK_PLANKS), Items.OAK_SLAB, 2, TechnologicaItems.SAWDUST.get(), 1).save(consumer, new ResourceLocation(Technologica.MODID, "oak_slabs_from_oak_stripped_planks_sawmill"));
 		sawmillRecipe(Ingredient.of(Items.SPRUCE_PLANKS), Items.SPRUCE_SLAB, 2, TechnologicaItems.SAWDUST.get(), 1).save(consumer, new ResourceLocation(Technologica.MODID, "spruce_slabs_from_spruce_stripped_planks_sawmill"));
 		sawmillRecipe(Ingredient.of(Items.BIRCH_PLANKS), Items.BIRCH_SLAB, 2, TechnologicaItems.SAWDUST.get(), 1).save(consumer, new ResourceLocation(Technologica.MODID, "birch_slabs_from_birch_stripped_planks_sawmill"));
@@ -433,8 +433,7 @@ public class TechnologicaRecipeProvider extends RecipeProvider {
 		sawmillRecipe(Ingredient.of(TechnologicaItems.CONDUCTIVE_PLANKS_ITEM.get()), TechnologicaItems.CONDUCTIVE_SLAB_ITEM.get(), 2, TechnologicaItems.SAWDUST.get(), 1).save(consumer, new ResourceLocation(Technologica.MODID, "conductive_slabs_from_conductive_stripped_planks_sawmill"));
 		sawmillRecipe(Ingredient.of(TechnologicaItems.FROSTBITTEN_PLANKS_ITEM.get()), TechnologicaItems.FROSTBITTEN_SLAB_ITEM.get(), 2, TechnologicaItems.SAWDUST.get(), 1).save(consumer, new ResourceLocation(Technologica.MODID, "frostbitten_slabs_from_frostbitten_stripped_planks_sawmill"));
 		sawmillRecipe(Ingredient.of(TechnologicaItems.INFERNAL_PLANKS_ITEM.get()), TechnologicaItems.INFERNAL_SLAB_ITEM.get(), 2, TechnologicaItems.SAWDUST.get(), 1).save(consumer, new ResourceLocation(Technologica.MODID, "infernal_slabs_from_infernal_stripped_planks_sawmill"));
-		//sawmillRecipe(Ingredient.of(TechnologicaItems.NECROTIC_PLANKS_ITEM.get()), TechnologicaItems.NECROTIC_SLAB_ITEM.get(), 2, TechnologicaItems.SAWDUST.get(), 1).save(consumer, new ResourceLocation(Technologica.MODID, "necrotic_slabs_from_necrotic_stripped_planks_sawmill"));
-		
+		// sawmillRecipe(Ingredient.of(TechnologicaItems.NECROTIC_PLANKS_ITEM.get()), TechnologicaItems.NECROTIC_SLAB_ITEM.get(), 2, TechnologicaItems.SAWDUST.get(), 1).save(consumer, new ResourceLocation(Technologica.MODID, "necrotic_slabs_from_necrotic_stripped_planks_sawmill"));
 	}
 
 	private static void vanillaPlanks(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, TagKey<Item> input) {

@@ -149,7 +149,7 @@ public class Coyote extends TamableAnimal implements NeutralMob {
 			this.setCollarColor(DyeColor.byId(p_30402_.getInt("CollarColor")));
 		}
 
-		this.readPersistentAngerSaveData(this.level, p_30402_);
+		this.readPersistentAngerSaveData(this.level(), p_30402_);
 	}
 
 	@Override
@@ -181,15 +181,15 @@ public class Coyote extends TamableAnimal implements NeutralMob {
 	@Override
 	public void aiStep() {
 		super.aiStep();
-		if (!this.level.isClientSide && this.isWet && !this.isShaking && !this.isPathFinding() && this.onGround) {
+		if (!this.level().isClientSide && this.isWet && !this.isShaking && !this.isPathFinding() && this.onGround()) {
 			this.isShaking = true;
 			this.shakeAnim = 0.0F;
 			this.shakeAnimO = 0.0F;
-			this.level.broadcastEntityEvent(this, (byte) 8);
+			this.level().broadcastEntityEvent(this, (byte) 8);
 		}
 
-		if (!this.level.isClientSide) {
-			this.updatePersistentAnger((ServerLevel) this.level, true);
+		if (!this.level().isClientSide) {
+			this.updatePersistentAnger((ServerLevel) this.level(), true);
 		}
 
 	}
@@ -207,8 +207,8 @@ public class Coyote extends TamableAnimal implements NeutralMob {
 
 			if (this.isInWaterRainOrBubble()) {
 				this.isWet = true;
-				if (this.isShaking && !this.level.isClientSide) {
-					this.level.broadcastEntityEvent(this, (byte) 56);
+				if (this.isShaking && !this.level().isClientSide) {
+					this.level().broadcastEntityEvent(this, (byte) 56);
 					this.cancelShake();
 				}
 			} else if ((this.isWet || this.isShaking) && this.isShaking) {
@@ -234,7 +234,7 @@ public class Coyote extends TamableAnimal implements NeutralMob {
 					for (int j = 0; j < i; ++j) {
 						float f1 = (this.random.nextFloat() * 2.0F - 1.0F) * this.getBbWidth() * 0.5F;
 						float f2 = (this.random.nextFloat() * 2.0F - 1.0F) * this.getBbWidth() * 0.5F;
-						this.level.addParticle(ParticleTypes.SPLASH, this.getX() + f1, f + 0.8F, this.getZ() + f2, vec3.x, vec3.y, vec3.z);
+						this.level().addParticle(ParticleTypes.SPLASH, this.getX() + f1, f + 0.8F, this.getZ() + f2, vec3.x, vec3.y, vec3.z);
 					}
 				}
 			}
@@ -296,7 +296,7 @@ public class Coyote extends TamableAnimal implements NeutralMob {
 			return false;
 		} else {
 			Entity entity = p_30386_.getEntity();
-			if (!this.level.isClientSide) {
+			if (!this.level().isClientSide) {
 				this.setOrderedToSit(false);
 			}
 
@@ -310,7 +310,7 @@ public class Coyote extends TamableAnimal implements NeutralMob {
 
 	@Override
 	public boolean doHurtTarget(Entity p_30372_) {
-		boolean flag = p_30372_.hurt(DamageSource.mobAttack(this), ((int) this.getAttributeValue(Attributes.ATTACK_DAMAGE)));
+		boolean flag = p_30372_.hurt(this.damageSources().mobAttack(this), ((int) this.getAttributeValue(Attributes.ATTACK_DAMAGE)));
 		if (flag) {
 			this.doEnchantDamageEffects(this, p_30372_);
 		}
@@ -335,7 +335,7 @@ public class Coyote extends TamableAnimal implements NeutralMob {
 	public InteractionResult mobInteract(Player p_30412_, InteractionHand p_30413_) {
 		ItemStack itemstack = p_30412_.getItemInHand(p_30413_);
 		Item item = itemstack.getItem();
-		if (this.level.isClientSide) {
+		if (this.level().isClientSide) {
 			boolean flag = this.isOwnedBy(p_30412_) || this.isTame() || itemstack.is(Items.BONE) && !this.isTame() && !this.isAngry();
 			return flag ? InteractionResult.CONSUME : InteractionResult.PASS;
 		} else {
@@ -382,9 +382,9 @@ public class Coyote extends TamableAnimal implements NeutralMob {
 					this.navigation.stop();
 					this.setTarget((LivingEntity) null);
 					this.setOrderedToSit(true);
-					this.level.broadcastEntityEvent(this, (byte) 7);
+					this.level().broadcastEntityEvent(this, (byte) 7);
 				} else {
-					this.level.broadcastEntityEvent(this, (byte) 6);
+					this.level().broadcastEntityEvent(this, (byte) 6);
 				}
 
 				return InteractionResult.SUCCESS;

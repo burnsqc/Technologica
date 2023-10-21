@@ -18,22 +18,22 @@ import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 
 public class MiningHelmetItem extends ArmorItem {
 
-	public MiningHelmetItem(ArmorMaterial p_40386_, EquipmentSlot p_40387_, Properties p_40388_) {
-		super(p_40386_, p_40387_, p_40388_);
+	public MiningHelmetItem(ArmorMaterial p_40386_, Type helmet, Properties p_40388_) {
+		super(p_40386_, helmet, p_40388_);
 	}
-	
+
 	@Override
-    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
-        consumer.accept(new IClientItemExtensions() {
-            @Override
-            public Model getGenericArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, HumanoidModel<?> original) {  
-            	if(armorSlot == EquipmentSlot.HEAD) {
-            		MiningHelmetModel<LivingEntity> miningHelmetModel = new MiningHelmetModel<LivingEntity>(Minecraft.getInstance().getEntityModels().bakeLayer(TechnologicaModelLayers.MINING_HELMET));
-            		ForgeHooksClient.copyModelProperties(original, miningHelmetModel);
-            		return miningHelmetModel;
-            	}
-            	return null;
-            }
-        });
-    }
+	public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+		consumer.accept(new IClientItemExtensions() {
+			@Override
+			public Model getGenericArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, HumanoidModel<?> original) {
+				if (armorSlot == EquipmentSlot.HEAD) {
+					MiningHelmetModel<LivingEntity> miningHelmetModel = new MiningHelmetModel<LivingEntity>(Minecraft.getInstance().getEntityModels().bakeLayer(TechnologicaModelLayers.MINING_HELMET));
+					ForgeHooksClient.copyModelProperties(original, miningHelmetModel);
+					return miningHelmetModel;
+				}
+				return null;
+			}
+		});
+	}
 }

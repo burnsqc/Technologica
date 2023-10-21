@@ -21,9 +21,4 @@ public class ParalysisEffect extends MobEffect {
 			mc.mouseHandler.releaseMouse();
 		}
 	}
-
-	@Override
-	public boolean isDurationEffectTick(int pDuration, int pAmplifier) {
-		return true;
-	}
 }

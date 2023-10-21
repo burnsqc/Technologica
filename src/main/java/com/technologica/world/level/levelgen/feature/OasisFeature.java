@@ -9,7 +9,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
-import net.minecraft.world.level.material.Material;
 
 public class OasisFeature extends Feature<BlockStateConfiguration> {
 
@@ -54,11 +53,11 @@ public class OasisFeature extends Feature<BlockStateConfiguration> {
 					for (int k = 0; k < 8; ++k) {
 						boolean flag = !aboolean[(k1 * 16 + l2) * 8 + k] && (k1 < 15 && aboolean[((k1 + 1) * 16 + l2) * 8 + k] || k1 > 0 && aboolean[((k1 - 1) * 16 + l2) * 8 + k] || l2 < 15 && aboolean[(k1 * 16 + l2 + 1) * 8 + k] || l2 > 0 && aboolean[(k1 * 16 + (l2 - 1)) * 8 + k] || k < 7 && aboolean[(k1 * 16 + l2) * 8 + k + 1] || k > 0 && aboolean[(k1 * 16 + l2) * 8 + (k - 1)]);
 						if (flag) {
-							Material material = worldgenlevel.getBlockState(blockpos.offset(k1, k, l2)).getMaterial();
-							if (k >= 4 && material.isLiquid()) {
+							// Material material = worldgenlevel.getBlockState(blockpos.offset(k1, k, l2)).liquid();
+							if (k >= 4) {
 								return false;
 							}
-							if (k < 4 && !material.isSolid() && worldgenlevel.getBlockState(blockpos.offset(k1, k, l2)) != lakefeature$configuration.state) {
+							if (k < 4 && worldgenlevel.getBlockState(blockpos.offset(k1, k, l2)) != lakefeature$configuration.state) {
 								return false;
 							}
 						}
@@ -87,12 +86,12 @@ public class OasisFeature extends Feature<BlockStateConfiguration> {
 					if (worldgenlevel.getBlockState(blockpos.offset(relativeX, 4, relativeZ)).is(Blocks.GRASS_BLOCK)) {
 						if (RandomSource.nextInt(30) == 0) {
 							if (RandomSource.nextBoolean()) {
-								//TechnologicaTreeFeatures.LEMON.value().place(worldgenlevel, p_159958_.chunkGenerator(), RandomSource, blockpos.offset(relativeX, 5, relativeZ));
+								// TechnologicaTreeFeatures.LEMON.value().place(worldgenlevel, p_159958_.chunkGenerator(), RandomSource, blockpos.offset(relativeX, 5, relativeZ));
 							} else {
-								//TechnologicaTreeFeatures.LIME.value().place(worldgenlevel, p_159958_.chunkGenerator(), RandomSource, blockpos.offset(relativeX, 5, relativeZ));
+								// TechnologicaTreeFeatures.LIME.value().place(worldgenlevel, p_159958_.chunkGenerator(), RandomSource, blockpos.offset(relativeX, 5, relativeZ));
 							}
 						} else if (worldgenlevel.getBlockState(blockpos.offset(relativeX + 1, 4, relativeZ)).is(Blocks.WATER) || worldgenlevel.getBlockState(blockpos.offset(relativeX - 1, 4, relativeZ)).is(Blocks.WATER) || worldgenlevel.getBlockState(blockpos.offset(relativeX, 4, relativeZ + 1)).is(Blocks.WATER) || worldgenlevel.getBlockState(blockpos.offset(relativeX, 4, relativeZ - 1)).is(Blocks.WATER)) {
-							//VegetationFeatures.PATCH_SUGAR_CANE.value().place(worldgenlevel, p_159958_.chunkGenerator(), RandomSource, blockpos.offset(relativeX, 5, relativeZ));
+							// VegetationFeatures.PATCH_SUGAR_CANE.value().place(worldgenlevel, p_159958_.chunkGenerator(), RandomSource, blockpos.offset(relativeX, 5, relativeZ));
 						} else if (worldgenlevel.getBlockState(blockpos.offset(relativeX + 1, 5, relativeZ)).is(Blocks.AIR)) {
 							if (RandomSource.nextInt(4) == 0) {
 								worldgenlevel.setBlock(blockpos.offset(relativeX, 5, relativeZ), Blocks.GRASS.defaultBlockState(), 2);

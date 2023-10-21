@@ -58,24 +58,15 @@ public class Vulture extends FlyingMob {
 	}
 
 	public static AttributeSupplier.Builder registerAttributes() {
-		return AttributeSupplier.builder()
-				.add(Attributes.MAX_HEALTH, 10.0D)
-				.add(Attributes.MOVEMENT_SPEED, 0.25D)
-				.add(Attributes.FOLLOW_RANGE, 16.0D)
-				.add(Attributes.ATTACK_KNOCKBACK)
-				.add(Attributes.KNOCKBACK_RESISTANCE)
-				.add(Attributes.ARMOR)
-				.add(Attributes.ARMOR_TOUGHNESS)
-				.add(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get())
-				.add(net.minecraftforge.common.ForgeMod.NAMETAG_DISTANCE.get())
-				.add(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get())
-				.add(Attributes.ATTACK_DAMAGE, 4.0D);
+		return AttributeSupplier.builder().add(Attributes.MAX_HEALTH, 10.0D).add(Attributes.MOVEMENT_SPEED, 0.25D).add(Attributes.FOLLOW_RANGE, 16.0D).add(Attributes.ATTACK_KNOCKBACK).add(Attributes.KNOCKBACK_RESISTANCE).add(Attributes.ARMOR).add(Attributes.ARMOR_TOUGHNESS).add(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get()).add(net.minecraftforge.common.ForgeMod.NAMETAG_DISTANCE.get()).add(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get()).add(Attributes.ATTACK_DAMAGE, 4.0D);
 	}
-	
+
+	@Override
 	protected BodyRotationControl createBodyControl() {
 		return new Vulture.BodyHelperController(this);
 	}
 
+	@Override
 	protected void registerGoals() {
 		this.goalSelector.addGoal(1, new Vulture.PickAttackGoal());
 		this.goalSelector.addGoal(2, new Vulture.SweepAttackGoal());
@@ -83,6 +74,7 @@ public class Vulture extends FlyingMob {
 		this.targetSelector.addGoal(1, new Vulture.AttackPlayerGoal());
 	}
 
+	@Override
 	protected void defineSynchedData() {
 		super.defineSynchedData();
 		this.entityData.define(SIZE, 0);
@@ -94,17 +86,19 @@ public class Vulture extends FlyingMob {
 
 	private void updateVultureSize() {
 		this.refreshDimensions();
-		this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue((double) (6 + this.getVultureSize()));
+		this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(6 + this.getVultureSize());
 	}
 
 	public int getVultureSize() {
 		return this.entityData.get(SIZE);
 	}
 
+	@Override
 	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
 		return sizeIn.height * 0.35F;
 	}
 
+	@Override
 	public void onSyncedDataUpdated(EntityDataAccessor<?> key) {
 		if (SIZE.equals(key)) {
 			this.updateVultureSize();
@@ -113,29 +107,34 @@ public class Vulture extends FlyingMob {
 		super.onSyncedDataUpdated(key);
 	}
 
+	@Override
 	protected boolean shouldDespawnInPeaceful() {
 		return false;
 	}
 
+	@Override
 	public void tick() {
 		super.tick();
-		if (this.level.isClientSide) {
-			float f = Mth.cos((float) (this.getId() * 3 + this.tickCount) * 0.13F + (float) Math.PI);
-			float f1 = Mth.cos((float) (this.getId() * 3 + this.tickCount + 1) * 0.13F + (float) Math.PI);
+		if (this.level().isClientSide) {
+			float f = Mth.cos((this.getId() * 3 + this.tickCount) * 0.13F + (float) Math.PI);
+			float f1 = Mth.cos((this.getId() * 3 + this.tickCount + 1) * 0.13F + (float) Math.PI);
 			if (f > 0.0F && f1 <= 0.0F) {
-				this.level.playLocalSound(this.getX(), this.getY(), this.getZ(), SoundEvents.PHANTOM_FLAP, this.getSoundSource(), 0.95F + this.random.nextFloat() * 0.05F, 0.95F + this.random.nextFloat() * 0.05F, false);
+				this.level().playLocalSound(this.getX(), this.getY(), this.getZ(), SoundEvents.PHANTOM_FLAP, this.getSoundSource(), 0.95F + this.random.nextFloat() * 0.05F, 0.95F + this.random.nextFloat() * 0.05F, false);
 			}
 		}
 	}
 
+	@Override
 	public void aiStep() {
 		super.aiStep();
 	}
 
+	@Override
 	protected void customServerAiStep() {
 		super.customServerAiStep();
 	}
 
+	@Override
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
 		this.orbitPosition = this.blockPosition().above(5);
 		this.setVultureSize(0);
@@ -145,6 +144,7 @@ public class Vulture extends FlyingMob {
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
 		if (compound.contains("AX")) {
@@ -154,6 +154,7 @@ public class Vulture extends FlyingMob {
 		this.setVultureSize(compound.getInt("Size"));
 	}
 
+	@Override
 	public void addAdditionalSaveData(CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
 		compound.putInt("AX", this.orbitPosition.getX());
@@ -165,27 +166,33 @@ public class Vulture extends FlyingMob {
 	/**
 	 * Checks if the entity is in range to render.
 	 */
+	@Override
 	@OnlyIn(Dist.CLIENT)
 	public boolean shouldRenderAtSqrDistance(double distance) {
 		return true;
 	}
 
+	@Override
 	public SoundSource getSoundSource() {
 		return SoundSource.HOSTILE;
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound() {
 		return SoundEvents.PHANTOM_AMBIENT;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
 		return SoundEvents.PHANTOM_HURT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound() {
 		return SoundEvents.PHANTOM_DEATH;
 	}
 
+	@Override
 	public MobType getMobType() {
 		return MobType.UNDEFINED;
 	}
@@ -193,18 +200,21 @@ public class Vulture extends FlyingMob {
 	/**
 	 * Returns the volume for the sounds this mob makes.
 	 */
+	@Override
 	protected float getSoundVolume() {
 		return 1.0F;
 	}
 
+	@Override
 	public boolean canAttackType(EntityType<?> typeIn) {
 		return true;
 	}
 
+	@Override
 	public EntityDimensions getDimensions(Pose poseIn) {
 		int i = this.getVultureSize();
 		EntityDimensions entitysize = super.getDimensions(poseIn);
-		float f = (entitysize.width + 0.2F * (float) i) / entitysize.width;
+		float f = (entitysize.width + 0.2F * i) / entitysize.width;
 		return entitysize.scale(f);
 	}
 
@@ -216,14 +226,14 @@ public class Vulture extends FlyingMob {
 		private final TargetingConditions attackTargeting = TargetingConditions.forCombat().range(64.0D);
 		private int tickDelay = 20;
 
+		@Override
 		public boolean canUse() {
 			if (this.tickDelay > 0) {
 				--this.tickDelay;
 				return false;
 			} else {
 				this.tickDelay = 60;
-				List<Player> list = Vulture.this.level.getNearbyPlayers(this.attackTargeting,
-						Vulture.this, Vulture.this.getBoundingBox().inflate(16.0D, 64.0D, 16.0D));
+				List<Player> list = Vulture.this.level().getNearbyPlayers(this.attackTargeting, Vulture.this, Vulture.this.getBoundingBox().inflate(16.0D, 64.0D, 16.0D));
 				if (!list.isEmpty()) {
 					list.sort(Comparator.<Entity, Double>comparing(Entity::getY).reversed());
 
@@ -239,6 +249,7 @@ public class Vulture extends FlyingMob {
 			}
 		}
 
+		@Override
 		public boolean canContinueToUse() {
 			LivingEntity livingentity = Vulture.this.getTarget();
 			return livingentity != null ? Vulture.this.canAttack(livingentity, TargetingConditions.DEFAULT) : false;
@@ -250,6 +261,7 @@ public class Vulture extends FlyingMob {
 			super(mob);
 		}
 
+		@Override
 		public void clientTick() {
 			Vulture.this.yHeadRot = Vulture.this.yBodyRot;
 			Vulture.this.yBodyRot = Vulture.this.getYRot();
@@ -264,6 +276,7 @@ public class Vulture extends FlyingMob {
 		/**
 		 * Updates look
 		 */
+		@Override
 		public void tick() {
 		}
 	}
@@ -274,8 +287,7 @@ public class Vulture extends FlyingMob {
 		}
 
 		protected boolean touchingTarget() {
-			return Vulture.this.orbitOffset.distanceToSqr(Vulture.this.getX(),
-					Vulture.this.getY(), Vulture.this.getZ()) < 4.0D;
+			return Vulture.this.orbitOffset.distanceToSqr(Vulture.this.getX(), Vulture.this.getY(), Vulture.this.getZ()) < 4.0D;
 		}
 	}
 
@@ -286,6 +298,7 @@ public class Vulture extends FlyingMob {
 			super(entityIn);
 		}
 
+		@Override
 		public void tick() {
 			if (Vulture.this.horizontalCollision) {
 				Vulture.this.setYRot(Vulture.this.getYRot() + 180.0F);
@@ -295,14 +308,14 @@ public class Vulture extends FlyingMob {
 			float f = (float) (Vulture.this.orbitOffset.x - Vulture.this.getX());
 			float f1 = (float) (Vulture.this.orbitOffset.y - Vulture.this.getY());
 			float f2 = (float) (Vulture.this.orbitOffset.z - Vulture.this.getZ());
-			double d0 = (double) Mth.sqrt(f * f + f2 * f2);
-			double d1 = 1.0D - (double) Mth.abs(f1 * 0.7F) / d0;
-			f = (float) ((double) f * d1);
-			f2 = (float) ((double) f2 * d1);
-			d0 = (double) Mth.sqrt(f * f + f2 * f2);
-			double d2 = (double) Mth.sqrt(f * f + f2 * f2 + f1 * f1);
+			double d0 = Mth.sqrt(f * f + f2 * f2);
+			double d1 = 1.0D - Mth.abs(f1 * 0.7F) / d0;
+			f = (float) (f * d1);
+			f2 = (float) (f2 * d1);
+			d0 = Mth.sqrt(f * f + f2 * f2);
+			double d2 = Mth.sqrt(f * f + f2 * f2 + f1 * f1);
 			float f3 = Vulture.this.getYRot();
-			float f4 = (float) Mth.atan2((double) f2, (double) f);
+			float f4 = (float) Mth.atan2(f2, f);
 			float f5 = Mth.wrapDegrees(Vulture.this.getYRot() + 90.0F);
 			float f6 = Mth.wrapDegrees(f4 * (180F / (float) Math.PI));
 			Vulture.this.setYRot(Mth.approachDegrees(f5, f6, 4.0F) - 90.0F);
@@ -313,12 +326,12 @@ public class Vulture extends FlyingMob {
 				this.speedFactor = Mth.approach(this.speedFactor, 0.2F, 0.025F);
 			}
 
-			float f7 = (float) (-(Mth.atan2((double) (-f1), d0) * (double) (180F / (float) Math.PI)));
+			float f7 = (float) (-(Mth.atan2((-f1), d0) * (180F / (float) Math.PI)));
 			Vulture.this.setXRot(f7);
 			float f8 = Vulture.this.getYRot() + 90.0F;
-			double d3 = (double) (this.speedFactor * Mth.cos(f8 * ((float) Math.PI / 180F))) * Math.abs((double) f / d2);
-			double d4 = (double) (this.speedFactor * Mth.sin(f8 * ((float) Math.PI / 180F))) * Math.abs((double) f2 / d2);
-			double d5 = (double) (this.speedFactor * Mth.sin(f7 * ((float) Math.PI / 180F))) * Math.abs((double) f1 / d2);
+			double d3 = this.speedFactor * Mth.cos(f8 * ((float) Math.PI / 180F)) * Math.abs(f / d2);
+			double d4 = this.speedFactor * Mth.sin(f8 * ((float) Math.PI / 180F)) * Math.abs(f2 / d2);
+			double d5 = this.speedFactor * Mth.sin(f7 * ((float) Math.PI / 180F)) * Math.abs(f1 / d2);
 			Vec3 vector3d = Vulture.this.getDeltaMovement();
 			Vulture.this.setDeltaMovement(vector3d.add((new Vec3(d3, d5, d4)).subtract(vector3d).scale(0.2D)));
 		}
@@ -337,14 +350,15 @@ public class Vulture extends FlyingMob {
 		 * Returns whether execution should begin. You can also read and cache any state
 		 * necessary for execution in this method as well.
 		 */
+		@Override
 		public boolean canUse() {
-			return Vulture.this.getTarget() == null
-					|| Vulture.this.attackPhase == Vulture.AttackPhase.CIRCLE;
+			return Vulture.this.getTarget() == null || Vulture.this.attackPhase == Vulture.AttackPhase.CIRCLE;
 		}
 
 		/**
 		 * Execute a one shot task or start executing a continuous task
 		 */
+		@Override
 		public void start() {
 			this.distance = 5.0F + Vulture.this.random.nextFloat() * 10.0F;
 			this.height = -4.0F + Vulture.this.random.nextFloat() * 9.0F;
@@ -355,6 +369,7 @@ public class Vulture extends FlyingMob {
 		/**
 		 * Keep ticking a continuous task that has already been started
 		 */
+		@Override
 		public void tick() {
 			if (Vulture.this.random.nextInt(350) == 0) {
 				this.height = -4.0F + Vulture.this.random.nextFloat() * 9.0F;
@@ -377,14 +392,12 @@ public class Vulture extends FlyingMob {
 				this.selectNext();
 			}
 
-			if (Vulture.this.orbitOffset.y < Vulture.this.getY()
-					&& !Vulture.this.level.isEmptyBlock(Vulture.this.blockPosition().below(1))) {
+			if (Vulture.this.orbitOffset.y < Vulture.this.getY() && !Vulture.this.level().isEmptyBlock(Vulture.this.blockPosition().below(1))) {
 				this.height = Math.max(1.0F, this.height);
 				this.selectNext();
 			}
 
-			if (Vulture.this.orbitOffset.y > Vulture.this.getY()
-					&& !Vulture.this.level.isEmptyBlock(Vulture.this.blockPosition().above(1))) {
+			if (Vulture.this.orbitOffset.y > Vulture.this.getY() && !Vulture.this.level().isEmptyBlock(Vulture.this.blockPosition().above(1))) {
 				this.height = Math.min(-1.0F, this.height);
 				this.selectNext();
 			}
@@ -397,10 +410,7 @@ public class Vulture extends FlyingMob {
 			}
 
 			this.angle += this.clockwise * 15.0F * ((float) Math.PI / 180F);
-			Vulture.this.orbitOffset = Vec3.atLowerCornerOf(Vulture.this.orbitPosition).add(
-					(double) (this.distance * Mth.cos(this.angle)),
-					(double) (-4.0F + this.height),
-					(double) (this.distance * Mth.sin(this.angle)));
+			Vulture.this.orbitOffset = Vec3.atLowerCornerOf(Vulture.this.orbitPosition).add(this.distance * Mth.cos(this.angle), -4.0F + this.height, this.distance * Mth.sin(this.angle));
 		}
 	}
 
@@ -414,16 +424,16 @@ public class Vulture extends FlyingMob {
 		 * Returns whether execution should begin. You can also read and cache any state
 		 * necessary for execution in this method as well.
 		 */
+		@Override
 		public boolean canUse() {
 			LivingEntity livingentity = Vulture.this.getTarget();
-			return livingentity != null
-					? Vulture.this.canAttack(Vulture.this.getTarget(), TargetingConditions.DEFAULT)
-					: false;
+			return livingentity != null ? Vulture.this.canAttack(Vulture.this.getTarget(), TargetingConditions.DEFAULT) : false;
 		}
 
 		/**
 		 * Execute a one shot task or start executing a continuous task
 		 */
+		@Override
 		public void start() {
 			this.tickDelay = 10;
 			Vulture.this.attackPhase = Vulture.AttackPhase.CIRCLE;
@@ -434,15 +444,15 @@ public class Vulture extends FlyingMob {
 		 * Reset the task's internal state. Called when this task is interrupted by
 		 * another one
 		 */
+		@Override
 		public void stop() {
-			Vulture.this.orbitPosition = Vulture.this.level
-					.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, Vulture.this.orbitPosition)
-					.above(10 + Vulture.this.random.nextInt(20));
+			Vulture.this.orbitPosition = Vulture.this.level().getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, Vulture.this.orbitPosition).above(10 + Vulture.this.random.nextInt(20));
 		}
 
 		/**
 		 * Keep ticking a continuous task that has already been started
 		 */
+		@Override
 		public void tick() {
 			if (Vulture.this.attackPhase == Vulture.AttackPhase.CIRCLE) {
 				--this.tickDelay;
@@ -450,19 +460,16 @@ public class Vulture extends FlyingMob {
 					Vulture.this.attackPhase = Vulture.AttackPhase.SWOOP;
 					this.setAnchorAboveTarget();
 					this.tickDelay = (8 + Vulture.this.random.nextInt(4)) * 20;
-					Vulture.this.playSound(SoundEvents.PHANTOM_SWOOP, 10.0F,
-							0.95F + Vulture.this.random.nextFloat() * 0.1F);
+					Vulture.this.playSound(SoundEvents.PHANTOM_SWOOP, 10.0F, 0.95F + Vulture.this.random.nextFloat() * 0.1F);
 				}
 			}
 
 		}
 
 		private void setAnchorAboveTarget() {
-			Vulture.this.orbitPosition = Vulture.this.getTarget().blockPosition()
-					.above(20 + Vulture.this.random.nextInt(20));
-			if (Vulture.this.orbitPosition.getY() < Vulture.this.level.getSeaLevel()) {
-				Vulture.this.orbitPosition = new BlockPos(Vulture.this.orbitPosition.getX(),
-						Vulture.this.level.getSeaLevel() + 1, Vulture.this.orbitPosition.getZ());
+			Vulture.this.orbitPosition = Vulture.this.getTarget().blockPosition().above(20 + Vulture.this.random.nextInt(20));
+			if (Vulture.this.orbitPosition.getY() < Vulture.this.level().getSeaLevel()) {
+				Vulture.this.orbitPosition = new BlockPos(Vulture.this.orbitPosition.getX(), Vulture.this.level().getSeaLevel() + 1, Vulture.this.orbitPosition.getZ());
 			}
 
 		}
@@ -476,28 +483,27 @@ public class Vulture extends FlyingMob {
 		 * Returns whether execution should begin. You can also read and cache any state
 		 * necessary for execution in this method as well.
 		 */
+		@Override
 		public boolean canUse() {
-			return Vulture.this.getTarget() != null
-					&& Vulture.this.attackPhase == Vulture.AttackPhase.SWOOP;
+			return Vulture.this.getTarget() != null && Vulture.this.attackPhase == Vulture.AttackPhase.SWOOP;
 		}
 
 		/**
 		 * Returns whether an in-progress EntityAIBase should continue executing
 		 */
+		@Override
 		public boolean canContinueToUse() {
 			LivingEntity livingentity = Vulture.this.getTarget();
 			if (livingentity == null) {
 				return false;
 			} else if (!livingentity.isAlive()) {
 				return false;
-			} else if (!(livingentity instanceof Player)
-					|| !((Player) livingentity).isSpectator() && !((Player) livingentity).isCreative()) {
+			} else if (!(livingentity instanceof Player) || !((Player) livingentity).isSpectator() && !((Player) livingentity).isCreative()) {
 				if (!this.canUse()) {
 					return false;
 				} else {
 					if (Vulture.this.tickCount % 20 == 0) {
-						List<Cat> list = Vulture.this.level.getEntitiesOfClass(Cat.class,
-								Vulture.this.getBoundingBox().inflate(16.0D), EntitySelector.ENTITY_STILL_ALIVE);
+						List<Cat> list = Vulture.this.level().getEntitiesOfClass(Cat.class, Vulture.this.getBoundingBox().inflate(16.0D), EntitySelector.ENTITY_STILL_ALIVE);
 						if (!list.isEmpty()) {
 							for (Cat catentity : list) {
 								catentity.hiss();
@@ -517,6 +523,7 @@ public class Vulture extends FlyingMob {
 		/**
 		 * Execute a one shot task or start executing a continuous task
 		 */
+		@Override
 		public void start() {
 		}
 
@@ -524,6 +531,7 @@ public class Vulture extends FlyingMob {
 		 * Reset the task's internal state. Called when this task is interrupted by
 		 * another one
 		 */
+		@Override
 		public void stop() {
 			Vulture.this.setTarget((LivingEntity) null);
 			Vulture.this.attackPhase = Vulture.AttackPhase.CIRCLE;
@@ -532,15 +540,15 @@ public class Vulture extends FlyingMob {
 		/**
 		 * Keep ticking a continuous task that has already been started
 		 */
+		@Override
 		public void tick() {
 			LivingEntity livingentity = Vulture.this.getTarget();
-			Vulture.this.orbitOffset = new Vec3(livingentity.getX(), livingentity.getY(0.5D),
-					livingentity.getZ());
-			if (Vulture.this.getBoundingBox().inflate((double) 0.2F).intersects(livingentity.getBoundingBox())) {
+			Vulture.this.orbitOffset = new Vec3(livingentity.getX(), livingentity.getY(0.5D), livingentity.getZ());
+			if (Vulture.this.getBoundingBox().inflate(0.2F).intersects(livingentity.getBoundingBox())) {
 				Vulture.this.doHurtTarget(livingentity);
 				Vulture.this.attackPhase = Vulture.AttackPhase.CIRCLE;
 				if (!Vulture.this.isSilent()) {
-					Vulture.this.level.levelEvent(1039, Vulture.this.blockPosition(), 0);
+					Vulture.this.level().levelEvent(1039, Vulture.this.blockPosition(), 0);
 				}
 			} else if (Vulture.this.horizontalCollision || Vulture.this.hurtTime > 0) {
 				Vulture.this.attackPhase = Vulture.AttackPhase.CIRCLE;

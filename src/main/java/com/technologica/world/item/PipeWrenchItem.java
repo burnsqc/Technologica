@@ -18,7 +18,6 @@ import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 public class PipeWrenchItem extends DiggerItem {
@@ -28,14 +27,12 @@ public class PipeWrenchItem extends DiggerItem {
 
 	@Override
 	public boolean isCorrectToolForDrops(BlockState blockIn) {
-		Material material = blockIn.getMaterial();
-		return material == Material.STONE || material == Material.METAL || material == Material.HEAVY_METAL;
+		return true;
 	}
 
 	@Override
 	public float getDestroySpeed(ItemStack stack, BlockState state) {
-		Material material = state.getMaterial();
-		return material != Material.METAL && material != Material.HEAVY_METAL && material != Material.STONE ? super.getDestroySpeed(stack, state) : this.speed;
+		return this.speed;
 	}
 
 	@Override

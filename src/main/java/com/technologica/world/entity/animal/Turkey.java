@@ -10,10 +10,8 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -84,20 +82,20 @@ public class Turkey extends Animal {
 		super.aiStep();
 		this.oFlap = this.wingRotation;
 		this.oFlapSpeed = this.destPos;
-		this.destPos = (float) (this.destPos + (this.onGround ? -1 : 4) * 0.3D);
+		this.destPos = (float) (this.destPos + (this.onGround() ? -1 : 4) * 0.3D);
 		this.destPos = Mth.clamp(this.destPos, 0.0F, 1.0F);
-		if (!this.onGround && this.wingRotDelta < 1.0F) {
+		if (!this.onGround() && this.wingRotDelta < 1.0F) {
 			this.wingRotDelta = 1.0F;
 		}
 
 		this.wingRotDelta = (float) (this.wingRotDelta * 0.9D);
 		Vec3 vector3d = this.getDeltaMovement();
-		if (!this.onGround && vector3d.y < 0.0D) {
+		if (!this.onGround() && vector3d.y < 0.0D) {
 			this.setDeltaMovement(vector3d.multiply(1.0D, 0.6D, 1.0D));
 		}
 
 		this.wingRotation += this.wingRotDelta * 2.0F;
-		if (!this.level.isClientSide && this.isAlive() && !this.isBaby() && !this.isChickenJockey() && --this.timeUntilNextEgg <= 0) {
+		if (!this.level().isClientSide && this.isAlive() && !this.isBaby() && !this.isChickenJockey() && --this.timeUntilNextEgg <= 0) {
 			this.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 			this.spawnAtLocation(Items.EGG);
 			this.timeUntilNextEgg = this.random.nextInt(6000) + 6000;
@@ -171,17 +169,6 @@ public class Turkey extends Animal {
 	@Override
 	public boolean removeWhenFarAway(double distanceToClosestPlayer) {
 		return this.isChickenJockey();
-	}
-
-	@Override
-	public void positionRider(Entity passenger) {
-		super.positionRider(passenger);
-		float f = Mth.sin(this.yBodyRot * ((float) Math.PI / 180F));
-		float f1 = Mth.cos(this.yBodyRot * ((float) Math.PI / 180F));
-		passenger.setPos(this.getX() + 0.1F * f, this.getY(0.5D) + passenger.getMyRidingOffset() + 0.0D, this.getZ() - 0.1F * f1);
-		if (passenger instanceof LivingEntity) {
-			((LivingEntity) passenger).yBodyRot = this.yBodyRot;
-		}
 	}
 
 	/**

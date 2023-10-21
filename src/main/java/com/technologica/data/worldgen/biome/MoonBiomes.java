@@ -28,7 +28,7 @@ public class MoonBiomes {
 		silentExpansesSpawns(mobspawnsettings$builder);
 		BiomeGenerationSettings.Builder biomegenerationsettings$builder = new BiomeGenerationSettings.Builder(p_256309_, p_256430_);
 		globalOverworldGeneration(biomegenerationsettings$builder);
-		return (new Biome.BiomeBuilder()).precipitation(Biome.Precipitation.NONE).temperature(2.0F).downfall(0.0F).specialEffects((new BiomeSpecialEffects.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(0).skyColor(0).foliageColorOverride(10387789).grassColorOverride(9470285).ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS).build()).mobSpawnSettings(mobspawnsettings$builder.build()).generationSettings(biomegenerationsettings$builder.build()).build();
+		return (new Biome.BiomeBuilder()).hasPrecipitation(false).temperature(2.0F).downfall(0.0F).specialEffects((new BiomeSpecialEffects.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(0).skyColor(0).foliageColorOverride(10387789).grassColorOverride(9470285).ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS).build()).mobSpawnSettings(mobspawnsettings$builder.build()).generationSettings(biomegenerationsettings$builder.build()).build();
 	}
 
 	public static Biome craterFields(HolderGetter<PlacedFeature> p_256309_, HolderGetter<ConfiguredWorldCarver<?>> p_256430_, boolean p_194897_) {
@@ -36,7 +36,7 @@ public class MoonBiomes {
 		craterFieldsSpawns(mobspawnsettings$builder);
 		BiomeGenerationSettings.Builder biomegenerationsettings$builder = new BiomeGenerationSettings.Builder(p_256309_, p_256430_);
 		globalOverworldGeneration(biomegenerationsettings$builder);
-		return (new Biome.BiomeBuilder()).precipitation(Biome.Precipitation.RAIN).temperature(0.6F).downfall(0.6F).specialEffects((new BiomeSpecialEffects.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(0).skyColor(0).foliageColorOverride(10387789).grassColorOverride(9470285).ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS).build()).mobSpawnSettings(mobspawnsettings$builder.build()).generationSettings(biomegenerationsettings$builder.build()).build();
+		return (new Biome.BiomeBuilder()).hasPrecipitation(true).temperature(0.6F).downfall(0.6F).specialEffects((new BiomeSpecialEffects.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(0).skyColor(0).foliageColorOverride(10387789).grassColorOverride(9470285).ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS).build()).mobSpawnSettings(mobspawnsettings$builder.build()).generationSettings(biomegenerationsettings$builder.build()).build();
 	}
 
 	public static Biome shatteredCorridors(HolderGetter<PlacedFeature> p_256309_, HolderGetter<ConfiguredWorldCarver<?>> p_256430_, boolean p_194897_) {
@@ -44,7 +44,7 @@ public class MoonBiomes {
 		shatteredCorridorsSpawns(mobspawnsettings$builder);
 		BiomeGenerationSettings.Builder biomegenerationsettings$builder = new BiomeGenerationSettings.Builder(p_256309_, p_256430_);
 		globalOverworldGeneration(biomegenerationsettings$builder);
-		return (new Biome.BiomeBuilder()).precipitation(Biome.Precipitation.NONE).temperature(2.0F).downfall(0.0F).specialEffects((new BiomeSpecialEffects.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(0).skyColor(0).foliageColorOverride(10387789).grassColorOverride(9470285).ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS).build()).mobSpawnSettings(mobspawnsettings$builder.build()).generationSettings(biomegenerationsettings$builder.build()).build();
+		return (new Biome.BiomeBuilder()).hasPrecipitation(false).temperature(2.0F).downfall(0.0F).specialEffects((new BiomeSpecialEffects.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(0).skyColor(0).foliageColorOverride(10387789).grassColorOverride(9470285).ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS).build()).mobSpawnSettings(mobspawnsettings$builder.build()).generationSettings(biomegenerationsettings$builder.build()).build();
 	}
 
 	public static void silentExpansesSpawns(MobSpawnSettings.Builder p_126789_) {
@@ -60,14 +60,14 @@ public class MoonBiomes {
 	}
 
 	public static void sweepers(MobSpawnSettings.Builder p_194726_, int p_194727_, int p_194728_, int p_194729_, boolean p_194730_) {
-		p_194726_.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(TechnologicaEntityType.SWEEPER.get(), 1, 0, 1));
+		p_194726_.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(TechnologicaEntityType.SWEEPER.get(), 1, 1, 1));
 	}
 
 	public static void creepers(MobSpawnSettings.Builder p_194726_, int p_194727_, int p_194728_, int p_194729_, boolean p_194730_) {
-		p_194726_.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityType.CREEPER, 1, 0, 1));
+		p_194726_.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityType.CREEPER, 1, 1, 1));
 	}
 
 	public static void peepers(MobSpawnSettings.Builder p_194726_, int p_194727_, int p_194728_, int p_194729_, boolean p_194730_) {
-		p_194726_.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(TechnologicaEntityType.PEEPER.get(), 1, 0, 1));
+		p_194726_.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(TechnologicaEntityType.PEEPER.get(), 1, 1, 1));
 	}
 }

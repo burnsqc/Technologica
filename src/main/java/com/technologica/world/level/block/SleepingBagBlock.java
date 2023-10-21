@@ -81,10 +81,10 @@ public class SleepingBagBlock extends BedBlock {
 			return Either.left(Player.BedSleepingProblem.OTHER_PROBLEM);
 		}
 
-		if (!player.level.dimensionType().natural()) {
+		if (!player.level().dimensionType().natural()) {
 			return Either.left(Player.BedSleepingProblem.NOT_POSSIBLE_HERE);
 		}
-		if (player.level.isDay()) {
+		if (player.level().isDay()) {
 			return Either.left(Player.BedSleepingProblem.NOT_POSSIBLE_NOW);
 		}
 
@@ -106,7 +106,7 @@ public class SleepingBagBlock extends BedBlock {
 		player.awardStat(Stats.SLEEP_IN_BED);
 		CriteriaTriggers.SLEPT_IN_BED.trigger(player);
 
-		((ServerLevel) player.level).updateSleepingPlayerList();
+		((ServerLevel) player.level()).updateSleepingPlayerList();
 		return Either.right(Unit.INSTANCE);
 	}
 }

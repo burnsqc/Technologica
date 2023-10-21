@@ -7,7 +7,7 @@ public class LivingFallEventListener {
 
 	@SubscribeEvent
 	public void onLivingFallEvent(LivingFallEvent event) {
-		if (event.getEntity().level.dimension().toString().contains("technologica:moon")) {
+		if (event.getEntity().level().dimension().toString().contains("technologica:moon")) {
 			event.setDamageMultiplier(0F);
 		}
 	}

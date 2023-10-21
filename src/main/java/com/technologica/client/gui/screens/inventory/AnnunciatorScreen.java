@@ -10,7 +10,6 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.BufferUploader;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import com.technologica.Technologica;
@@ -19,11 +18,13 @@ import com.technologica.network.play.server.Packets;
 import com.technologica.world.inventory.AnnunciatorMenu;
 import com.technologica.world.level.block.entity.AnnunciatorBlockEntity;
 
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.font.TextFieldHelper;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -38,7 +39,6 @@ public class AnnunciatorScreen extends AbstractContainerScreen<AnnunciatorMenu> 
 
 	public AnnunciatorScreen(AnnunciatorMenu screenContainerIn, Inventory playerInventoryIn, Component titleIn) {
 		super(screenContainerIn, playerInventoryIn, Component.literal("Annunciator"));
-		this.passEvents = false;
 		this.imageHeight = 231;
 		this.inventoryLabelY = 137;
 		this.tileEntity = (AnnunciatorBlockEntity) screenContainerIn.getTileEntity();
@@ -63,7 +63,7 @@ public class AnnunciatorScreen extends AbstractContainerScreen<AnnunciatorMenu> 
 
 	@Override
 	public void removed() {
-		ClientPacketListener clientplaynethandler = this.minecraft.getConnection();
+		Connection clientplaynethandler = this.minecraft.getConnection().getConnection();
 
 		if (clientplaynethandler != null) {
 			Packets.INSTANCE.sendToServer(new CUpdateAnnunciatorPacket(this.tileEntity.getBlockPos(), this.multiLineText[0], this.multiLineText[1], this.multiLineText[2], this.multiLineText[3], this.multiLineText[4], this.multiLineText[5], this.multiLineText[6], this.multiLineText[7]));
@@ -107,10 +107,6 @@ public class AnnunciatorScreen extends AbstractContainerScreen<AnnunciatorMenu> 
 					this.onClose();
 					return true;
 				} else if (keyCodeIn == 258) {
-					boolean flag = !hasShiftDown();
-					if (!this.changeFocus(flag)) {
-						this.changeFocus(flag);
-					}
 					return false;
 				} else {
 					return this.getFocused() != null && this.getFocused().keyPressed(keyCodeIn, scanCodeIn, modifiersIn);
@@ -124,25 +120,25 @@ public class AnnunciatorScreen extends AbstractContainerScreen<AnnunciatorMenu> 
 	}
 
 	@Override
-	public void render(PoseStack matrixStack, int mouseX, int mouseY, float partialTicks) {
-		this.renderBackground(matrixStack);
-		super.render(matrixStack, mouseX, mouseY, partialTicks);
+	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+		this.renderBackground(guiGraphics);
+		super.render(guiGraphics, mouseX, mouseY, partialTicks);
 		Lighting.setupForFlatItems();
 
-		matrixStack.pushPose();
+		guiGraphics.pose().pushPose();
 		boolean flag1 = this.updateCounter / 6 % 2 == 0;
 
-		matrixStack.pushPose();
+		guiGraphics.pose().pushPose();
 		MultiBufferSource.BufferSource irendertypebuffer$impl = this.minecraft.renderBuffers().bufferSource();
-		matrixStack.popPose();
+		guiGraphics.pose().popPose();
 
-		matrixStack.translate(256.0D, 96.0D, 0.0D);
+		guiGraphics.pose().translate(256.0D, 96.0D, 0.0D);
 
 		int i = 16383998;
 		int j = this.textInputUtil.getCursorPos();
 		int k = this.textInputUtil.getSelectionPos();
 		int l = this.editLine * 10 - this.multiLineText.length * 5;
-		Matrix4f matrix4f = matrixStack.last().pose();
+		Matrix4f matrix4f = guiGraphics.pose().last().pose();
 
 		for (int i1 = 0; i1 < this.multiLineText.length; ++i1) {
 			String s = this.multiLineText[i1];
@@ -153,14 +149,14 @@ public class AnnunciatorScreen extends AbstractContainerScreen<AnnunciatorMenu> 
 				}
 
 				float f3 = -this.minecraft.font.width(s) / 2;
-				this.minecraft.font.drawInBatch(s, f3, i1 * 10 - this.multiLineText.length * 5, i, false, matrix4f, irendertypebuffer$impl, false, 0, 15728880, false);
+				this.minecraft.font.drawInBatch(s, f3, i1 * 10.0F - this.multiLineText.length * 5.0F, i, false, matrix4f, irendertypebuffer$impl, Font.DisplayMode.POLYGON_OFFSET, 0, 15728880, false);
 
 				if (i1 == this.editLine && j >= 0 && flag1) {
 					int j1 = this.minecraft.font.width(s.substring(0, Math.max(Math.min(j, s.length()), 0)));
 					int k1 = j1 - this.minecraft.font.width(s) / 2;
 
 					if (j >= s.length()) {
-						this.minecraft.font.drawInBatch("_", k1, l, i, false, matrix4f, irendertypebuffer$impl, false, 0, 15728880, false);
+						this.minecraft.font.drawInBatch("_", k1, l, i, false, matrix4f, irendertypebuffer$impl, Font.DisplayMode.POLYGON_OFFSET, 0, 15728880, false);
 					}
 				}
 			}
@@ -176,7 +172,7 @@ public class AnnunciatorScreen extends AbstractContainerScreen<AnnunciatorMenu> 
 				int k3 = j3 - this.minecraft.font.width(s1) / 2;
 
 				if (flag1 && j < s1.length()) {
-					fill(matrixStack, k3, l - 1, k3 + 1, l + 9, -16777216 | i);
+					// fill(guiGraphics, k3, l - 1, k3 + 1, l + 9, -16777216 | i);
 				}
 
 				if (k != j) {
@@ -188,7 +184,6 @@ public class AnnunciatorScreen extends AbstractContainerScreen<AnnunciatorMenu> 
 					int l2 = Math.max(i2, j2);
 					Tesselator tessellator = Tesselator.getInstance();
 					BufferBuilder bufferbuilder = tessellator.getBuilder();
-					RenderSystem.disableTexture();
 					RenderSystem.enableColorLogicOp();
 					RenderSystem.logicOp(GlStateManager.LogicOp.OR_REVERSE);
 					bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
@@ -198,23 +193,22 @@ public class AnnunciatorScreen extends AbstractContainerScreen<AnnunciatorMenu> 
 					bufferbuilder.vertex(matrix4f, k2, l, 0.0F).color(0, 0, 255, 255).endVertex();
 					BufferUploader.drawWithShader(bufferbuilder.end());
 					RenderSystem.disableColorLogicOp();
-					RenderSystem.enableTexture();
 				}
 			}
 		}
 
-		matrixStack.popPose();
+		guiGraphics.pose().popPose();
 		Lighting.setupFor3DItems();
-		this.renderTooltip(matrixStack, mouseX, mouseY);
+		this.renderTooltip(guiGraphics, mouseX, mouseY);
 	}
 
 	@Override
-	protected void renderBg(PoseStack matrixStack, float partialTicks, int x, int y) {
+	protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int x, int y) {
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
 		int i = (this.width - this.imageWidth) / 2;
 		int j = (this.height - this.imageHeight) / 2;
-		this.blit(matrixStack, i, j, 0, 0, this.imageWidth, 125);
-		this.blit(matrixStack, i, j + 125, 0, 126, this.imageWidth, 105);
+		guiGraphics.blit(BACKGROUND_TEXTURE, i, j, 0, 0, this.imageWidth, 125);
+		guiGraphics.blit(BACKGROUND_TEXTURE, i, j + 125, 0, 126, this.imageWidth, 105);
 	}
 }

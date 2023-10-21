@@ -18,11 +18,10 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
 
 public class LandMineBlock extends BaseEntityBlock {
 	public LandMineBlock() {
-		super(BlockBehaviour.Properties.of(Material.GRASS).randomTicks().strength(0.6F).sound(SoundType.GRASS).noOcclusion());
+		super(BlockBehaviour.Properties.of().randomTicks().strength(0.6F).sound(SoundType.GRASS).noOcclusion());
 	}
 
 	public LandMineBlockEntity getTileEntity(Level worldIn, BlockPos posIn) {

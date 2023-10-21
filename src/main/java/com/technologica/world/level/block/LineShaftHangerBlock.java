@@ -16,7 +16,6 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 
 /**
@@ -25,7 +24,7 @@ import net.minecraft.world.phys.BlockHitResult;
 public class LineShaftHangerBlock extends TwelveDirectionBlock implements EntityBlock {
 
 	public LineShaftHangerBlock() {
-		super(BlockBehaviour.Properties.of(Material.METAL).strength(2.0F).sound(SoundType.ANVIL).noOcclusion());
+		super(BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.ANVIL).noOcclusion());
 	}
 
 	/*

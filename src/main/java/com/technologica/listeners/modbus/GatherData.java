@@ -46,7 +46,7 @@ public class GatherData {
 		generator.addProvider(event.includeServer(), new TechnologicaRecipeProvider(packOutput));
 		TechnologicaBlockTagsProvider technologicaBlockTagsProvider = new TechnologicaBlockTagsProvider(packOutput, lookupProvider, helper);
 		generator.addProvider(event.includeServer(), technologicaBlockTagsProvider);
-		generator.addProvider(event.includeServer(), new TechnologicaItemTagsProvider(packOutput, lookupProvider, technologicaBlockTagsProvider, helper));
+		generator.addProvider(event.includeServer(), new TechnologicaItemTagsProvider(packOutput, lookupProvider, technologicaBlockTagsProvider.contentsGetter(), helper));
 		generator.addProvider(event.includeServer(), new TechnologicaFluidTagsProvider(packOutput, lookupProvider, helper));
 
 		generator.addProvider(event.includeReports(), new TechnologicaDatapackBuiltinEntriesProvider2(packOutput, lookupProvider));

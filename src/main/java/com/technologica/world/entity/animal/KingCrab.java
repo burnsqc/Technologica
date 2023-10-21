@@ -71,11 +71,6 @@ public class KingCrab extends Animal {
 	}
 
 	@Override
-	public double getPassengersRidingOffset() {
-		return this.getBbHeight() * 0.5F;
-	}
-
-	@Override
 	protected void defineSynchedData() {
 		super.defineSynchedData();
 	}
@@ -185,11 +180,6 @@ public class KingCrab extends Animal {
 			} else {
 				return super.canContinueToUse();
 			}
-		}
-
-		@Override
-		protected double getAttackReachSqr(LivingEntity attackTarget) {
-			return 4.0F + attackTarget.getBbWidth();
 		}
 	}
 

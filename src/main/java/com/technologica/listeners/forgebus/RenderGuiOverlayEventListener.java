@@ -4,7 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.technologica.Technologica;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiComponent;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
@@ -16,17 +16,19 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class RenderGuiOverlayEventListener {
+	protected static final ResourceLocation AIR_SPRITE = new ResourceLocation("hud/air");
 	public static final ResourceLocation GUI_ICONS_LOCATION = new ResourceLocation(Technologica.MODID, "textures/gui/technologica_icons.png");
 
 	@SubscribeEvent
 	public void onRenderGameOverlayEventPre(RenderGuiOverlayEvent.Pre event) {
 		if (event.getOverlay() == GuiOverlayManager.findOverlay(GUI_ICONS_LOCATION)) {
-			Minecraft mc = Minecraft.getInstance();
-			Player player = (Player) mc.getCameraEntity();
+			Minecraft minecraft = Minecraft.getInstance();
+			Player player = (Player) minecraft.getCameraEntity();
 			Iterable<ItemStack> armor = player.getArmorSlots();
 			boolean fullSnorkelSet = true;
 			boolean fullDiveSet = true;
 			boolean fullScubaSet = true;
+			GuiGraphics guiGraphics = event.getGuiGraphics();
 
 			for (ItemStack piece : armor) {
 				if (!ForgeRegistries.ITEMS.getKey(piece.getItem()).getPath().contains("snorkel")) {
@@ -43,10 +45,10 @@ public class RenderGuiOverlayEventListener {
 			event.setCanceled(fullSnorkelSet || fullDiveSet);
 
 			if (fullSnorkelSet) {
-				mc.getProfiler().push("air");
+				minecraft.getProfiler().push("air");
 				RenderSystem.enableBlend();
-				int left = mc.getWindow().getGuiScaledWidth() / 2 + 91;
-				int top = mc.getWindow().getGuiScaledHeight() - 49;
+				int left = minecraft.getWindow().getGuiScaledWidth() / 2 + 91;
+				int top = minecraft.getWindow().getGuiScaledHeight() - 49;
 
 				int air = player.getAirSupply();
 
@@ -57,52 +59,52 @@ public class RenderGuiOverlayEventListener {
 					for (int i = 0; i < full + partial; ++i) {
 						int horizontal = i > 9 ? 71 : -9;
 						int vertical = i > 9 ? -10 : 0;
-						GuiComponent.blit(event.getPoseStack(), left - i * 8 + horizontal, top + vertical, -90, i < full ? 16.0F : 25.0F, 18.0F, 9, 9, 256, 256);
+						guiGraphics.blit(AIR_SPRITE, left - i * 8 + horizontal, top + vertical, -90, i < full ? 16 : 25, 18, 9, 9, 256, 256);
 					}
 				}
 
 				RenderSystem.disableBlend();
-				mc.getProfiler().pop();
+				minecraft.getProfiler().pop();
 
 			} else if (fullDiveSet) {
-				mc.getProfiler().push("air");
-				bind(mc, GUI_ICONS_LOCATION);
+				minecraft.getProfiler().push("air");
+				bind(minecraft, GUI_ICONS_LOCATION);
 				RenderSystem.enableBlend();
-				int left = mc.getWindow().getGuiScaledWidth() / 2 + 91;
-				int top = mc.getWindow().getGuiScaledHeight() - 49;
+				int left = minecraft.getWindow().getGuiScaledWidth() / 2 + 91;
+				int top = minecraft.getWindow().getGuiScaledHeight() - 49;
 
 				int air = player.getAirSupply();
 
 				if (player.isEyeInFluidType(ForgeMod.WATER_TYPE.get()) || air < 6000) {
 					float remaining = air / 6000.0F * 81;
-					GuiComponent.blit(event.getPoseStack(), left - 81, top, -90, 0.0F, 9.0F, (int) (remaining), 9, 256, 256);
-					GuiComponent.blit(event.getPoseStack(), left - 81, top, -90, 0.0F, 0.0F, 81, 9, 256, 256);
+					guiGraphics.blit(GUI_ICONS_LOCATION, left - 81, top, -90, 0, 9, (int) (remaining), 9, 256, 256);
+					guiGraphics.blit(GUI_ICONS_LOCATION, left - 81, top, -90, 0, 0, 81, 9, 256, 256);
 				}
 
 				RenderSystem.disableBlend();
-				mc.getProfiler().pop();
+				minecraft.getProfiler().pop();
 			} else if (fullScubaSet) {
-				mc.getProfiler().push("air");
-				bind(mc, GUI_ICONS_LOCATION);
+				minecraft.getProfiler().push("air");
+				bind(minecraft, GUI_ICONS_LOCATION);
 				RenderSystem.enableBlend();
-				int left = mc.getWindow().getGuiScaledWidth() / 2 + 91;
-				int top = mc.getWindow().getGuiScaledHeight() - 49;
+				int left = minecraft.getWindow().getGuiScaledWidth() / 2 + 91;
+				int top = minecraft.getWindow().getGuiScaledHeight() - 49;
 
 				int air = player.getAirSupply();
 
 				if (player.isEyeInFluidType(ForgeMod.WATER_TYPE.get()) || air < 12000) {
 					float remaining = air / 12000.0F * 81;
-					GuiComponent.blit(event.getPoseStack(), left - 81, top, -90, 0.0F, 9.0F, (int) (remaining), 9, 256, 256);
-					GuiComponent.blit(event.getPoseStack(), left - 81, top, -90, 0.0F, 0.0F, 81, 9, 256, 256);
+					guiGraphics.blit(GUI_ICONS_LOCATION, left - 81, top, -90, 0, 9, (int) (remaining), 9, 256, 256);
+					guiGraphics.blit(GUI_ICONS_LOCATION, left - 81, top, -90, 0, 0, 81, 9, 256, 256);
 				}
 
 				RenderSystem.disableBlend();
-				mc.getProfiler().pop();
+				minecraft.getProfiler().pop();
 			}
 		}
 	}
 
-	private void bind(Minecraft mc, ResourceLocation res) {
-		mc.getTextureManager().bindForSetup(res);
+	private void bind(Minecraft minecraft, ResourceLocation res) {
+		minecraft.getTextureManager().bindForSetup(res);
 	}
 }

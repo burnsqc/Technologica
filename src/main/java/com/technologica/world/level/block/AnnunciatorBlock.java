@@ -13,7 +13,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -36,9 +35,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.network.NetworkHooks;
 
 public class AnnunciatorBlock extends BaseEntityBlock {
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
@@ -46,7 +43,7 @@ public class AnnunciatorBlock extends BaseEntityBlock {
 	public static final EnumProperty<AnnunciatorOverlay> OVERLAY = TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY;
 
 	public AnnunciatorBlock() {
-		super(BlockBehaviour.Properties.of(Material.METAL).lightLevel(getLightValueLit(15)).strength(1.0F).sound(SoundType.METAL));
+		super(BlockBehaviour.Properties.of().lightLevel(getLightValueLit(15)).strength(1.0F).sound(SoundType.METAL));
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, false).setValue(OVERLAY, AnnunciatorOverlay.INFO));
 	}
 
@@ -77,7 +74,7 @@ public class AnnunciatorBlock extends BaseEntityBlock {
 
 			if (tileEntity instanceof AnnunciatorBlockEntity) {
 				MenuProvider containerProvider = createContainerProvider(worldIn, pos);
-				NetworkHooks.openScreen(((ServerPlayer) player), containerProvider, tileEntity.getBlockPos());
+				// NetworkHooks.openScreen(((ServerPlayer) player), containerProvider, tileEntity.getBlockPos());
 			}
 		}
 		return InteractionResult.SUCCESS;

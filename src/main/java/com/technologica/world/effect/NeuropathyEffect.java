@@ -13,9 +13,4 @@ public class NeuropathyEffect extends MobEffect {
 	public void applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
 		super.applyEffectTick(pLivingEntity, pAmplifier);
 	}
-
-	@Override
-	public boolean isDurationEffectTick(int pDuration, int pAmplifier) {
-		return true;
-	}
 }

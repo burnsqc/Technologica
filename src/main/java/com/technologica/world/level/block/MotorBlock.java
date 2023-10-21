@@ -2,8 +2,8 @@ package com.technologica.world.level.block;
 
 import com.technologica.util.lineshaftsystem.Manager;
 import com.technologica.world.item.TechnologicaItems;
-import com.technologica.world.level.block.entity.LineShaftHangerTileEntity;
 import com.technologica.world.level.block.entity.LineShaftBlockEntity;
+import com.technologica.world.level.block.entity.LineShaftHangerTileEntity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -21,7 +21,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 
 /**
@@ -33,7 +32,7 @@ public class MotorBlock extends TwentyFourDirectionBlock {
 	public float maxTorque = 0;
 
 	public MotorBlock(float maxTorqueIn, float maxRPMIn) {
-		super(BlockBehaviour.Properties.of(Material.METAL).strength(0.3F).sound(SoundType.ANVIL).noOcclusion());
+		super(BlockBehaviour.Properties.of().strength(0.3F).sound(SoundType.ANVIL).noOcclusion());
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.DOWN).setValue(SUB_FACING, Direction.NORTH).setValue(POWERED, false));
 		maxTorque = maxTorqueIn;
 		maxRPM = maxRPMIn;

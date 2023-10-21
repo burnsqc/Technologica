@@ -11,7 +11,6 @@ import com.technologica.world.level.block.TechnologicaBlocks;
 import com.technologica.world.level.material.TechnologicaFluids;
 
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.BlockItem;
@@ -1200,42 +1199,42 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> BRONZE_SHOVEL = ITEMS.register("bronze_shovel", () -> new ShovelItem(TechnologicaItemTier.BRONZE, 6.0F, -3.2F, (new Item.Properties())));
 	public static final RegistryObject<Item> BRONZE_AXE = ITEMS.register("bronze_axe", () -> new AxeItem(TechnologicaItemTier.BRONZE, 6.0F, -3.2F, (new Item.Properties())));
 
-	public static final RegistryObject<Item> BRONZE_HELMET = ITEMS.register("bronze_helmet", () -> new ArmorItem(TechnologicaArmorMaterial.BRONZE, EquipmentSlot.HEAD, (new Item.Properties())));
-	public static final RegistryObject<Item> BRONZE_CHESTPLATE = ITEMS.register("bronze_chestplate", () -> new ArmorItem(TechnologicaArmorMaterial.BRONZE, EquipmentSlot.CHEST, (new Item.Properties())));
-	public static final RegistryObject<Item> BRONZE_LEGGINGS = ITEMS.register("bronze_leggings", () -> new ArmorItem(TechnologicaArmorMaterial.BRONZE, EquipmentSlot.LEGS, (new Item.Properties())));
-	public static final RegistryObject<Item> BRONZE_BOOTS = ITEMS.register("bronze_boots", () -> new ArmorItem(TechnologicaArmorMaterial.BRONZE, EquipmentSlot.FEET, (new Item.Properties())));
+	public static final RegistryObject<Item> BRONZE_HELMET = ITEMS.register("bronze_helmet", () -> new ArmorItem(TechnologicaArmorMaterial.BRONZE, ArmorItem.Type.HELMET, (new Item.Properties())));
+	public static final RegistryObject<Item> BRONZE_CHESTPLATE = ITEMS.register("bronze_chestplate", () -> new ArmorItem(TechnologicaArmorMaterial.BRONZE, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
+	public static final RegistryObject<Item> BRONZE_LEGGINGS = ITEMS.register("bronze_leggings", () -> new ArmorItem(TechnologicaArmorMaterial.BRONZE, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
+	public static final RegistryObject<Item> BRONZE_BOOTS = ITEMS.register("bronze_boots", () -> new ArmorItem(TechnologicaArmorMaterial.BRONZE, ArmorItem.Type.BOOTS, (new Item.Properties())));
 
 	public static final RegistryObject<Item> COCONUT_BAZOOKA_ITEM = ITEMS.register("coconut_bazooka", () -> new CoconutBazookaItem((new Item.Properties()).durability(384)));
 	public static final RegistryObject<Item> DODGEBALL_ITEM = ITEMS.register("dodgeball", () -> new DodgeballItem((new Item.Properties()).stacksTo(1)));
 	public static final RegistryObject<Item> SPEAR_GUN_ITEM = ITEMS.register("spear_gun", () -> new SpearGunItem((new Item.Properties()).durability(384)));
 	public static final RegistryObject<Item> HARPOON = ITEMS.register("harpoon", () -> new Item(new Properties()));
 
-	public static final RegistryObject<Item> SPACE_HELMET = ITEMS.register("space_helmet", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, EquipmentSlot.HEAD, (new Item.Properties())));
-	public static final RegistryObject<Item> SPACE_SUIT = ITEMS.register("space_suit", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, EquipmentSlot.CHEST, (new Item.Properties())));
-	public static final RegistryObject<Item> SPACE_PANTS = ITEMS.register("space_pants", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, EquipmentSlot.LEGS, (new Item.Properties())));
-	public static final RegistryObject<Item> SPACE_BOOTS = ITEMS.register("space_boots", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, EquipmentSlot.FEET, (new Item.Properties())));
+	public static final RegistryObject<Item> SPACE_HELMET = ITEMS.register("space_helmet", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, ArmorItem.Type.HELMET, (new Item.Properties())));
+	public static final RegistryObject<Item> SPACE_SUIT = ITEMS.register("space_suit", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
+	public static final RegistryObject<Item> SPACE_PANTS = ITEMS.register("space_pants", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
+	public static final RegistryObject<Item> SPACE_BOOTS = ITEMS.register("space_boots", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, ArmorItem.Type.BOOTS, (new Item.Properties())));
 
-	public static final RegistryObject<Item> SNORKEL_HELMET = ITEMS.register("snorkel_helmet", () -> new ArmorItem(TechnologicaArmorMaterial.SNORKEL, EquipmentSlot.HEAD, (new Item.Properties())));
-	public static final RegistryObject<Item> SNORKEL_SUIT = ITEMS.register("snorkel_suit", () -> new ArmorItem(TechnologicaArmorMaterial.SNORKEL, EquipmentSlot.CHEST, (new Item.Properties())));
-	public static final RegistryObject<Item> SNORKEL_PANTS = ITEMS.register("snorkel_pants", () -> new ArmorItem(TechnologicaArmorMaterial.SNORKEL, EquipmentSlot.LEGS, (new Item.Properties())));
-	public static final RegistryObject<Item> SNORKEL_BOOTS = ITEMS.register("snorkel_boots", () -> new ArmorItem(TechnologicaArmorMaterial.SNORKEL, EquipmentSlot.FEET, (new Item.Properties())));
+	public static final RegistryObject<Item> SNORKEL_HELMET = ITEMS.register("snorkel_helmet", () -> new ArmorItem(TechnologicaArmorMaterial.SNORKEL, ArmorItem.Type.HELMET, (new Item.Properties())));
+	public static final RegistryObject<Item> SNORKEL_SUIT = ITEMS.register("snorkel_suit", () -> new ArmorItem(TechnologicaArmorMaterial.SNORKEL, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
+	public static final RegistryObject<Item> SNORKEL_PANTS = ITEMS.register("snorkel_pants", () -> new ArmorItem(TechnologicaArmorMaterial.SNORKEL, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
+	public static final RegistryObject<Item> SNORKEL_BOOTS = ITEMS.register("snorkel_boots", () -> new ArmorItem(TechnologicaArmorMaterial.SNORKEL, ArmorItem.Type.BOOTS, (new Item.Properties())));
 
-	public static final RegistryObject<Item> DIVE_HELMET = ITEMS.register("dive_helmet", () -> new ArmorItem(TechnologicaArmorMaterial.DIVE, EquipmentSlot.HEAD, (new Item.Properties())));
-	public static final RegistryObject<Item> DIVE_SUIT = ITEMS.register("dive_suit", () -> new ArmorItem(TechnologicaArmorMaterial.DIVE, EquipmentSlot.CHEST, (new Item.Properties())));
-	public static final RegistryObject<Item> DIVE_PANTS = ITEMS.register("dive_pants", () -> new ArmorItem(TechnologicaArmorMaterial.DIVE, EquipmentSlot.LEGS, (new Item.Properties())));
-	public static final RegistryObject<Item> DIVE_BOOTS = ITEMS.register("dive_boots", () -> new ArmorItem(TechnologicaArmorMaterial.DIVE, EquipmentSlot.FEET, (new Item.Properties())));
+	public static final RegistryObject<Item> DIVE_HELMET = ITEMS.register("dive_helmet", () -> new ArmorItem(TechnologicaArmorMaterial.DIVE, ArmorItem.Type.HELMET, (new Item.Properties())));
+	public static final RegistryObject<Item> DIVE_SUIT = ITEMS.register("dive_suit", () -> new ArmorItem(TechnologicaArmorMaterial.DIVE, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
+	public static final RegistryObject<Item> DIVE_PANTS = ITEMS.register("dive_pants", () -> new ArmorItem(TechnologicaArmorMaterial.DIVE, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
+	public static final RegistryObject<Item> DIVE_BOOTS = ITEMS.register("dive_boots", () -> new ArmorItem(TechnologicaArmorMaterial.DIVE, ArmorItem.Type.BOOTS, (new Item.Properties())));
 
-	public static final RegistryObject<Item> SCUBA_HELMET = ITEMS.register("scuba_helmet", () -> new ArmorItem(TechnologicaArmorMaterial.SCUBA, EquipmentSlot.HEAD, (new Item.Properties())));
-	public static final RegistryObject<Item> SCUBA_SUIT = ITEMS.register("scuba_suit", () -> new ArmorItem(TechnologicaArmorMaterial.SCUBA, EquipmentSlot.CHEST, (new Item.Properties())));
-	public static final RegistryObject<Item> SCUBA_PANTS = ITEMS.register("scuba_pants", () -> new ArmorItem(TechnologicaArmorMaterial.SCUBA, EquipmentSlot.LEGS, (new Item.Properties())));
-	public static final RegistryObject<Item> SCUBA_BOOTS = ITEMS.register("scuba_boots", () -> new ArmorItem(TechnologicaArmorMaterial.SCUBA, EquipmentSlot.FEET, (new Item.Properties())));
+	public static final RegistryObject<Item> SCUBA_HELMET = ITEMS.register("scuba_helmet", () -> new ArmorItem(TechnologicaArmorMaterial.SCUBA, ArmorItem.Type.HELMET, (new Item.Properties())));
+	public static final RegistryObject<Item> SCUBA_SUIT = ITEMS.register("scuba_suit", () -> new ArmorItem(TechnologicaArmorMaterial.SCUBA, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
+	public static final RegistryObject<Item> SCUBA_PANTS = ITEMS.register("scuba_pants", () -> new ArmorItem(TechnologicaArmorMaterial.SCUBA, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
+	public static final RegistryObject<Item> SCUBA_BOOTS = ITEMS.register("scuba_boots", () -> new ArmorItem(TechnologicaArmorMaterial.SCUBA, ArmorItem.Type.BOOTS, (new Item.Properties())));
 
-	public static final RegistryObject<Item> HAZMAT_HOOD = ITEMS.register("hazmat_hood", () -> new ArmorItem(TechnologicaArmorMaterial.HAZMAT, EquipmentSlot.HEAD, (new Item.Properties())));
-	public static final RegistryObject<Item> HAZMAT_SUIT = ITEMS.register("hazmat_suit", () -> new ArmorItem(TechnologicaArmorMaterial.HAZMAT, EquipmentSlot.CHEST, (new Item.Properties())));
-	public static final RegistryObject<Item> HAZMAT_PANTS = ITEMS.register("hazmat_pants", () -> new ArmorItem(TechnologicaArmorMaterial.HAZMAT, EquipmentSlot.LEGS, (new Item.Properties())));
-	public static final RegistryObject<Item> HAZMAT_BOOTS = ITEMS.register("hazmat_boots", () -> new ArmorItem(TechnologicaArmorMaterial.HAZMAT, EquipmentSlot.FEET, (new Item.Properties())));
+	public static final RegistryObject<Item> HAZMAT_HOOD = ITEMS.register("hazmat_hood", () -> new ArmorItem(TechnologicaArmorMaterial.HAZMAT, ArmorItem.Type.HELMET, (new Item.Properties())));
+	public static final RegistryObject<Item> HAZMAT_SUIT = ITEMS.register("hazmat_suit", () -> new ArmorItem(TechnologicaArmorMaterial.HAZMAT, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
+	public static final RegistryObject<Item> HAZMAT_PANTS = ITEMS.register("hazmat_pants", () -> new ArmorItem(TechnologicaArmorMaterial.HAZMAT, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
+	public static final RegistryObject<Item> HAZMAT_BOOTS = ITEMS.register("hazmat_boots", () -> new ArmorItem(TechnologicaArmorMaterial.HAZMAT, ArmorItem.Type.BOOTS, (new Item.Properties())));
 
-	public static final RegistryObject<Item> MINING_HELMET = ITEMS.register("mining_helmet", () -> new MiningHelmetItem(TechnologicaArmorMaterial.MINING, EquipmentSlot.HEAD, (new Item.Properties())));
+	public static final RegistryObject<Item> MINING_HELMET = ITEMS.register("mining_helmet", () -> new MiningHelmetItem(TechnologicaArmorMaterial.MINING, ArmorItem.Type.HELMET, (new Item.Properties())));
 
 	public static final RegistryObject<Item> LAND_MINE = ITEMS.register("land_mine", () -> new LandMineItem(new Item.Properties()));
 	public static final RegistryObject<Item> NITROGLYCERIN_ITEM = ITEMS.register("nitroglycerin", () -> new BlockItem(TechnologicaBlocks.NITROGLYCERIN.get(), new Item.Properties()));

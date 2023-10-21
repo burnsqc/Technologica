@@ -1,15 +1,11 @@
 package com.technologica.world.level.levelgen.feature.foliageplacers;
 
-import java.util.function.BiConsumer;
-
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.LevelSimulatedReader;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
@@ -29,7 +25,7 @@ public class RedwoodFoliagePlacer extends FoliagePlacer {
 	}
 
 	@Override
-	protected void createFoliage(LevelSimulatedReader p_161422_, BiConsumer<BlockPos, BlockState> p_161423_, RandomSource p_161424_, TreeConfiguration p_161425_, int p_161426_, FoliageAttachment p_161427_, int p_161428_, int diameter, int topLayer) {
+	protected void createFoliage(LevelSimulatedReader p_161422_, FoliagePlacer.FoliageSetter p_161423_, RandomSource p_161424_, TreeConfiguration p_161425_, int p_161426_, FoliageAttachment p_161427_, int p_161428_, int diameter, int topLayer) {
 		int i = p_161424_.nextInt(2);
 		int j = 0;
 		int k = 0;
@@ -46,6 +42,7 @@ public class RedwoodFoliagePlacer extends FoliagePlacer {
 		}
 	}
 
+	@Override
 	public int foliageHeight(RandomSource RandomSourceIn, int i, TreeConfiguration configIn) {
 		int trim;
 		if (i == 2) {
@@ -58,6 +55,7 @@ public class RedwoodFoliagePlacer extends FoliagePlacer {
 		return trim;
 	}
 
+	@Override
 	protected boolean shouldSkipLocation(RandomSource RandomSourceIn, int relativeZ, int relativeY, int relativeX, int p_230373_5_, boolean p_230373_6_) {
 		if (relativeY >= 2) {
 			return (relativeX + relativeZ >= 0);

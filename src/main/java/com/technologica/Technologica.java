@@ -31,7 +31,7 @@ import com.technologica.listeners.modbus.RegisterEntityAttributes;
 import com.technologica.listeners.modbus.RegisterEntityRenderers;
 import com.technologica.listeners.modbus.RegisterModels;
 import com.technologica.listeners.modbus.RegisterParticleProviders;
-import com.technologica.listeners.modbus.TechnologicaCreativeModeTabs;
+import com.technologica.listeners.modbus.TechnologicaCreativeModeTabs2;
 import com.technologica.setup.Config;
 import com.technologica.util.DisablePlankConditionFactory;
 import com.technologica.util.EnablePlankConditionFactory;
@@ -39,6 +39,7 @@ import com.technologica.util.TechnologicaSoundEvents;
 import com.technologica.world.effect.TechnologicaMobEffects;
 import com.technologica.world.entity.TechnologicaEntityType;
 import com.technologica.world.inventory.TechnologicaMenuType;
+import com.technologica.world.item.TechnologicaCreativeModeTabs;
 import com.technologica.world.item.TechnologicaItems;
 import com.technologica.world.item.crafting.TechnologicaRecipeSerializer;
 import com.technologica.world.item.crafting.TechnologicaRecipeType;
@@ -80,6 +81,7 @@ public class Technologica {
 		TechnologicaFoliagePlacers.init();
 		TechnologicaLootModifiers.init();
 		TechnologicaMobEffects.init();
+		TechnologicaCreativeModeTabs.init();
 
 		addModEventBusListeners();
 		addForgeEventBusListeners();
@@ -103,7 +105,7 @@ public class Technologica {
 
 	private void addModEventBusListeners() {
 		MOD_EVENT_BUS.addListener(RegisterEntityAttributes::onEntityAttributeCreationEvent);
-		MOD_EVENT_BUS.addListener(TechnologicaCreativeModeTabs::onRegisterCreativeModeTabs);
+		MOD_EVENT_BUS.addListener(TechnologicaCreativeModeTabs2::onRegisterCreativeModeTabs);
 		MOD_EVENT_BUS.addListener(RegisterColorHandlers::onRegisterColorHandlersBlock);
 		MOD_EVENT_BUS.addListener(RegisterParticleProviders::onRegisterParticleProvidersEvent);
 		MOD_EVENT_BUS.addListener(TechnologicaLayerDefinitions::onRegisterLayerDefinitions);

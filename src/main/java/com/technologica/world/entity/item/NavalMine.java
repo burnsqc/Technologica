@@ -70,14 +70,14 @@ public class NavalMine extends Entity {
 	public void tick() {
 		if (this.getDetonate()) {
 			this.discard();
-			if (!this.level.isClientSide) {
+			if (!this.level().isClientSide) {
 				this.explode();
 			}
 		} else {
 			if (this.getFuse() > 0) {
 				--this.armingFuse;
 			} else {
-				List<Entity> list = this.level.getEntities(this, this.getBoundingBox().inflate(0.2F, -0.01F, 0.2F));
+				List<Entity> list = this.level().getEntities(this, this.getBoundingBox().inflate(0.2F, -0.01F, 0.2F));
 				for (Entity entry : list) {
 					if (!(entry instanceof ItemEntity)) {
 						this.setDetonate(true);
@@ -86,18 +86,18 @@ public class NavalMine extends Entity {
 			}
 		}
 
-		if (this.getChains() == 0 && !(this.level.getBlockState(this.blockPosition()).getBlock() instanceof NavalMineChainBlock) && this.level.getBlockState(this.blockPosition().above()).getFluidState().is(FluidTags.WATER)) {
+		if (this.getChains() == 0 && !(this.level().getBlockState(this.blockPosition()).getBlock() instanceof NavalMineChainBlock) && this.level().getBlockState(this.blockPosition().above()).getFluidState().is(FluidTags.WATER)) {
 			Vec3 vector3d = this.getDeltaMovement().add(0.0D, 0.1D, 0.0D);
 			this.move(MoverType.SELF, vector3d);
 		}
 
-		if (this.getChains() > 0 && this.level.getBlockState(this.blockPosition().above()).getFluidState().is(FluidTags.WATER)) {
+		if (this.getChains() > 0 && this.level().getBlockState(this.blockPosition().above()).getFluidState().is(FluidTags.WATER)) {
 			Vec3 vector3d = this.getDeltaMovement().add(0.0D, 0.1D, 0.0D);
 			this.move(MoverType.SELF, vector3d);
 
-			if (!(this.level.getBlockState(this.blockPosition()).getBlock() instanceof NavalMineChainBlock)) {
-				this.level.setBlockAndUpdate(this.blockPosition(), TechnologicaBlocks.NAVAL_MINE_CHAIN.get().defaultBlockState());
-				this.level.sendBlockUpdated(this.blockPosition(), this.level.getBlockState(this.blockPosition()), TechnologicaBlocks.NAVAL_MINE_CHAIN.get().defaultBlockState(), 3);
+			if (!(this.level().getBlockState(this.blockPosition()).getBlock() instanceof NavalMineChainBlock)) {
+				this.level().setBlockAndUpdate(this.blockPosition(), TechnologicaBlocks.NAVAL_MINE_CHAIN.get().defaultBlockState());
+				this.level().sendBlockUpdated(this.blockPosition(), this.level().getBlockState(this.blockPosition()), TechnologicaBlocks.NAVAL_MINE_CHAIN.get().defaultBlockState(), 3);
 				this.setChains(this.getChains() - 1);
 			}
 		}
@@ -111,7 +111,7 @@ public class NavalMine extends Entity {
 	}
 
 	protected void explode() {
-		this.level.explode(this, this.getX(), this.getY(), this.getZ(), 8.0F, Level.ExplosionInteraction.TNT);
+		this.level().explode(this, this.getX(), this.getY(), this.getZ(), 8.0F, Level.ExplosionInteraction.TNT);
 	}
 
 	@Override

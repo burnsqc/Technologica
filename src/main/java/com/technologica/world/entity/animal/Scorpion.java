@@ -50,9 +50,9 @@ public class Scorpion extends Monster {
 		if (super.doHurtTarget(entityIn)) {
 			if (entityIn instanceof LivingEntity) {
 				int i = 0;
-				if (this.level.getDifficulty() == Difficulty.NORMAL) {
+				if (this.level().getDifficulty() == Difficulty.NORMAL) {
 					i = 7;
-				} else if (this.level.getDifficulty() == Difficulty.HARD) {
+				} else if (this.level().getDifficulty() == Difficulty.HARD) {
 					i = 15;
 				}
 				if (i > 0) {
@@ -76,11 +76,6 @@ public class Scorpion extends Monster {
 		this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
 		this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
 		this.targetSelector.addGoal(2, new Scorpion.TargetGoal<>(this, Player.class));
-	}
-
-	@Override
-	public double getPassengersRidingOffset() {
-		return this.getBbHeight() * 0.5F;
 	}
 
 	@Override
@@ -195,11 +190,6 @@ public class Scorpion extends Monster {
 			} else {
 				return super.canContinueToUse();
 			}
-		}
-
-		@Override
-		protected double getAttackReachSqr(LivingEntity attackTarget) {
-			return 4.0F + attackTarget.getBbWidth();
 		}
 	}
 

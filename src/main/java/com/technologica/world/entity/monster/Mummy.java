@@ -178,9 +178,9 @@ public class Mummy extends Zombie {
 	@Override
 	public void setBaby(boolean p_34309_) {
 		this.getEntityData().set(DATA_BABY_ID, p_34309_);
-		if (this.level != null && !this.level.isClientSide) {
+		if (this.level() != null && !this.level().isClientSide) {
 			AttributeInstance attributeinstance = this.getAttribute(Attributes.MOVEMENT_SPEED);
-			attributeinstance.removeModifier(SPEED_MODIFIER_BABY);
+			attributeinstance.removeModifier(SPEED_MODIFIER_BABY_UUID);
 			if (p_34309_) {
 				attributeinstance.addTransientModifier(SPEED_MODIFIER_BABY);
 			}
@@ -248,7 +248,7 @@ public class Mummy extends Zombie {
 	public boolean hurt(DamageSource p_34288_, float p_34289_) {
 		if (!super.hurt(p_34288_, p_34289_)) {
 			return false;
-		} else if (!(this.level instanceof ServerLevel)) {
+		} else if (!(this.level() instanceof ServerLevel)) {
 			return false;
 		} else {
 			LivingEntity livingentity = this.getTarget();
@@ -263,7 +263,7 @@ public class Mummy extends Zombie {
 	public boolean doHurtTarget(Entity p_34276_) {
 		boolean flag = super.doHurtTarget(p_34276_);
 		if (flag) {
-			float f = this.level.getCurrentDifficultyAt(this.blockPosition()).getEffectiveDifficulty();
+			float f = this.level().getCurrentDifficultyAt(this.blockPosition()).getEffectiveDifficulty();
 			if (this.getMainHandItem().isEmpty() && this.isOnFire() && this.random.nextFloat() < f * 0.3F) {
 				p_34276_.setSecondsOnFire(2 * (int) f);
 			}
@@ -305,7 +305,7 @@ public class Mummy extends Zombie {
 	@Override
 	protected void populateDefaultEquipmentSlots(RandomSource p_219165_, DifficultyInstance p_219166_) {
 		super.populateDefaultEquipmentSlots(p_219165_, p_219166_);
-		if (p_219165_.nextFloat() < (this.level.getDifficulty() == Difficulty.HARD ? 0.05F : 0.01F)) {
+		if (p_219165_.nextFloat() < (this.level().getDifficulty() == Difficulty.HARD ? 0.05F : 0.01F)) {
 			int i = p_219165_.nextInt(3);
 			if (i == 0) {
 				this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.IRON_SWORD));
@@ -338,8 +338,8 @@ public class Mummy extends Zombie {
 	}
 
 	@Override
-	public boolean wasKilled(ServerLevel p_219160_, LivingEntity p_219161_) {
-		boolean flag = super.wasKilled(p_219160_, p_219161_);
+	public boolean killedEntity(ServerLevel p_219160_, LivingEntity p_219161_) {
+		boolean flag = super.killedEntity(p_219160_, p_219161_);
 		if ((p_219160_.getDifficulty() == Difficulty.NORMAL || p_219160_.getDifficulty() == Difficulty.HARD) && p_219161_ instanceof Villager villager && net.minecraftforge.event.ForgeEventFactory.canLivingConvert(p_219161_, EntityType.ZOMBIE_VILLAGER, (timer) -> {
 		})) {
 			if (p_219160_.getDifficulty() != Difficulty.HARD && this.random.nextBoolean()) {
@@ -403,7 +403,7 @@ public class Mummy extends Zombie {
 							this.startRiding(chicken);
 						}
 					} else if (randomsource.nextFloat() < 0.05D) {
-						Chicken chicken1 = EntityType.CHICKEN.create(this.level);
+						Chicken chicken1 = EntityType.CHICKEN.create(this.level());
 						chicken1.moveTo(this.getX(), this.getY(), this.getZ(), this.getYRot(), 0.0F);
 						chicken1.finalizeSpawn(p_34297_, p_34298_, MobSpawnType.JOCKEY, (SpawnGroupData) null, (CompoundTag) null);
 						chicken1.setChickenJockey(true);
@@ -456,11 +456,6 @@ public class Mummy extends Zombie {
 	@Override
 	protected void randomizeReinforcementsChance() {
 		this.getAttribute(Attributes.SPAWN_REINFORCEMENTS_CHANCE).setBaseValue(this.random.nextDouble() * net.minecraftforge.common.ForgeConfig.SERVER.zombieBaseSummonChance.get());
-	}
-
-	@Override
-	public double getMyRidingOffset() {
-		return this.isBaby() ? 0.0D : -0.45D;
 	}
 
 	@Override

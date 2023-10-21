@@ -32,7 +32,7 @@
       "minecraft:freeze_top_layer"
     ]
   ],
-  "precipitation": "rain",
+  "has_precipitation": true,
   "spawn_costs": {},
   "spawners": {
     "ambient": [],
@@ -43,7 +43,7 @@
       {
         "type": "minecraft:creeper",
         "maxCount": 1,
-        "minCount": 0,
+        "minCount": 1,
         "weight": 1
       }
     ],

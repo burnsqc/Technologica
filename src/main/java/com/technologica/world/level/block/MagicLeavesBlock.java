@@ -10,7 +10,6 @@ import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.Vec3;
 
 /**
@@ -20,7 +19,7 @@ public class MagicLeavesBlock extends LeavesBlock {
 	private int leavesType;
 
 	public MagicLeavesBlock(int leavesTypeIn) {
-		super(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion());
+		super(BlockBehaviour.Properties.of().strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion());
 		leavesType = leavesTypeIn;
 	}
 

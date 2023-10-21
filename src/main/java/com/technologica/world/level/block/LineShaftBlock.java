@@ -28,7 +28,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 
 /**
@@ -38,7 +37,7 @@ public class LineShaftBlock extends RotatedPillarBlock implements EntityBlock {
 	public static final EnumProperty<Radius> RADIUS = TechnologicaBlockStateProperties.RADIUS;
 
 	public LineShaftBlock() {
-		super(BlockBehaviour.Properties.of(Material.METAL).strength(0.3F).sound(SoundType.ANVIL).noOcclusion());
+		super(BlockBehaviour.Properties.of().strength(0.3F).sound(SoundType.ANVIL).noOcclusion());
 		this.registerDefaultState(this.stateDefinition.any().setValue(RADIUS, Radius.NONE));
 	}
 

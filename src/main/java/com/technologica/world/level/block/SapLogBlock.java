@@ -14,8 +14,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
 
 /**
  * Special one-off class for sap logs. Created to add age and persistent properties similar to leaves.
@@ -25,7 +23,7 @@ public class SapLogBlock extends RotatedPillarBlock {
 	public static final IntegerProperty AGE = BlockStateProperties.AGE_15;
 
 	public SapLogBlock() {
-		super(Properties.of(Material.WOOD, state -> state.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? MaterialColor.WOOD : MaterialColor.PODZOL).strength(2.0F).sound(SoundType.WOOD));
+		super(Properties.of().strength(2.0F).sound(SoundType.WOOD));
 		this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0).setValue(PERSISTENT, false).setValue(AXIS, Direction.Axis.Y));
 	}
 

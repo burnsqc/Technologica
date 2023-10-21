@@ -102,8 +102,7 @@ public class Stingray extends WaterAnimal implements NeutralMob {
 		this.goalSelector.addGoal(5, new LookAtPlayerGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(8, new FollowBoatGoal(this));
 		this.targetSelector.addGoal(1, (new HurtByTargetGoal(this, Guardian.class)).setAlertOthers());
-		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, TropicalFish.class, 10, true, true,
-				(Predicate<LivingEntity>) null));
+		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, TropicalFish.class, 10, true, true, (Predicate<LivingEntity>) null));
 	}
 
 	@Override
@@ -119,8 +118,7 @@ public class Stingray extends WaterAnimal implements NeutralMob {
 
 	@Override
 	public boolean doHurtTarget(Entity entityIn) {
-		boolean flag = entityIn.hurt(DamageSource.mobAttack(this),
-				((int) this.getAttributeValue(Attributes.ATTACK_DAMAGE)));
+		boolean flag = entityIn.hurt(this.level().damageSources().mobAttack(this), ((int) this.getAttributeValue(Attributes.ATTACK_DAMAGE)));
 		if (flag) {
 			this.doEnchantDamageEffects(this, entityIn);
 			this.playSound(SoundEvents.DOLPHIN_ATTACK, 1.0F, 1.0F);
@@ -167,28 +165,28 @@ public class Stingray extends WaterAnimal implements NeutralMob {
 			} else {
 				this.setMoistness(this.getMoistness() - 1);
 				if (this.getMoistness() <= 0) {
-					this.hurt(DamageSource.DRY_OUT, 1.0F);
+					this.hurt(this.level().damageSources().dryOut(), 1.0F);
 				}
 
-				if (this.onGround) {
+				if (this.onGround()) {
 					this.setDeltaMovement(this.getDeltaMovement().add((this.random.nextFloat() * 2.0F - 1.0F) * 0.2F, 0.5D, (this.random.nextFloat() * 2.0F - 1.0F) * 0.2F));
 					this.setYRot(this.random.nextFloat() * 360.0F);
-					this.onGround = false;
+					this.setOnGround(false);
 					this.hasImpulse = true;
 				}
 			}
 
-			if (this.level.isClientSide && this.isInWater() && this.getDeltaMovement().lengthSqr() > 0.03D) {
-	            Vec3 vec3 = this.getViewVector(0.0F);
-	            float f = Mth.cos(this.getYRot() * ((float)Math.PI / 180F)) * 0.3F;
-	            float f1 = Mth.sin(this.getYRot() * ((float)Math.PI / 180F)) * 0.3F;
-	            float f2 = 1.2F - this.random.nextFloat() * 0.7F;
+			if (this.level().isClientSide && this.isInWater() && this.getDeltaMovement().lengthSqr() > 0.03D) {
+				Vec3 vec3 = this.getViewVector(0.0F);
+				float f = Mth.cos(this.getYRot() * ((float) Math.PI / 180F)) * 0.3F;
+				float f1 = Mth.sin(this.getYRot() * ((float) Math.PI / 180F)) * 0.3F;
+				float f2 = 1.2F - this.random.nextFloat() * 0.7F;
 
-	            for(int i = 0; i < 2; ++i) {
-	               this.level.addParticle(ParticleTypes.DOLPHIN, this.getX() - vec3.x * f2 + f, this.getY() - vec3.y, this.getZ() - vec3.z * f2 + f1, 0.0D, 0.0D, 0.0D);
-	               this.level.addParticle(ParticleTypes.DOLPHIN, this.getX() - vec3.x * f2 - f, this.getY() - vec3.y, this.getZ() - vec3.z * f2 - f1, 0.0D, 0.0D, 0.0D);
-	            }
-	         }
+				for (int i = 0; i < 2; ++i) {
+					this.level().addParticle(ParticleTypes.DOLPHIN, this.getX() - vec3.x * f2 + f, this.getY() - vec3.y, this.getZ() - vec3.z * f2 + f1, 0.0D, 0.0D, 0.0D);
+					this.level().addParticle(ParticleTypes.DOLPHIN, this.getX() - vec3.x * f2 - f, this.getY() - vec3.y, this.getZ() - vec3.z * f2 - f1, 0.0D, 0.0D, 0.0D);
+				}
+			}
 		}
 	}
 
@@ -196,14 +194,14 @@ public class Stingray extends WaterAnimal implements NeutralMob {
 	protected InteractionResult mobInteract(Player playerIn, InteractionHand hand) {
 		ItemStack itemstack = playerIn.getItemInHand(hand);
 		if (!itemstack.isEmpty() && itemstack.is(ItemTags.FISHES)) {
-			if (!this.level.isClientSide) {
+			if (!this.level().isClientSide) {
 				this.playSound(SoundEvents.DOLPHIN_EAT, 1.0F, 1.0F);
 			}
 			if (!playerIn.getAbilities().instabuild) {
 				itemstack.shrink(1);
 			}
 
-			return InteractionResult.sidedSuccess(this.level.isClientSide);
+			return InteractionResult.sidedSuccess(this.level().isClientSide);
 		} else {
 			return super.mobInteract(playerIn, hand);
 		}
@@ -215,13 +213,13 @@ public class Stingray extends WaterAnimal implements NeutralMob {
 		}
 
 		@Override
-		protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
+		protected void checkAndPerformAttack(LivingEntity enemy, double p_29590_) {
 			double d0 = this.getAttackReachSqr(enemy);
-			if (distToEnemySqr <= d0 && this.isTimeToAttack()) {
+			if (p_29590_ <= d0 && this.isTimeToAttack()) {
 				this.resetAttackCooldown();
 				this.mob.doHurtTarget(enemy);
 
-			} else if (distToEnemySqr <= d0 * 2.0D) {
+			} else if (this.mob.distanceToSqr(enemy) < (enemy.getBbWidth() + 3.0F) * (enemy.getBbWidth() + 3.0F)) {
 				if (this.isTimeToAttack()) {
 
 					this.resetAttackCooldown();
@@ -236,17 +234,12 @@ public class Stingray extends WaterAnimal implements NeutralMob {
 			}
 
 		}
-
-		@Override
-		protected double getAttackReachSqr(LivingEntity attackTarget) {
-			return 4.0F + attackTarget.getBbWidth();
-		}
 	}
 
 	// Anger
 	@Override
 	public void startPersistentAngerTimer() {
-	      this.setRemainingPersistentAngerTime(PERSISTENT_ANGER_TIME.sample(this.random));
+		this.setRemainingPersistentAngerTime(PERSISTENT_ANGER_TIME.sample(this.random));
 	}
 
 	@Override

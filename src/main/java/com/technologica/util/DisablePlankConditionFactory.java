@@ -37,7 +37,5 @@ public class DisablePlankConditionFactory implements ICondition {
 		public ResourceLocation getID() {
 			return DisablePlankConditionFactory.ID;
 		}
-
 	}
-
 }

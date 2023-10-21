@@ -11,7 +11,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -33,16 +32,14 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.network.NetworkHooks;
 
 public class MonitorBlock extends BaseEntityBlock {
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
 	public MonitorBlock() {
-		super(BlockBehaviour.Properties.of(Material.METAL).lightLevel(getLightValueLit(15)).strength(1.0F).sound(SoundType.METAL).noOcclusion());
+		super(BlockBehaviour.Properties.of().lightLevel(getLightValueLit(15)).strength(1.0F).sound(SoundType.METAL).noOcclusion());
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, false));
 	}
 
@@ -73,7 +70,7 @@ public class MonitorBlock extends BaseEntityBlock {
 
 			if (tileEntity instanceof MonitorBlockEntity) {
 				MenuProvider containerProvider = createContainerProvider(worldIn, pos);
-				NetworkHooks.openScreen(((ServerPlayer) player), containerProvider, tileEntity.getBlockPos());
+				// ForgeHooks.openScreen(((ServerPlayer) player), containerProvider, tileEntity.getBlockPos());
 			}
 		}
 		return InteractionResult.SUCCESS;

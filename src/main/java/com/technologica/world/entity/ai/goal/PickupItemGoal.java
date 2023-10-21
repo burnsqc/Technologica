@@ -16,24 +16,27 @@ public class PickupItemGoal extends Goal {
 		pickupCooldown = 0;
 	}
 
+	@Override
 	public boolean canUse() {
-		List<ItemEntity> list = entity.level.getEntitiesOfClass(ItemEntity.class, entity.getBoundingBox().inflate(8.0D, 8.0D, 8.0D));
+		List<ItemEntity> list = entity.level().getEntitiesOfClass(ItemEntity.class, entity.getBoundingBox().inflate(8.0D, 8.0D, 8.0D));
 		return !list.isEmpty();
 	}
 
+	@Override
 	public void start() {
-		List<ItemEntity> list = entity.level.getEntitiesOfClass(ItemEntity.class, entity.getBoundingBox().inflate(8.0D, 8.0D, 8.0D));
+		List<ItemEntity> list = entity.level().getEntitiesOfClass(ItemEntity.class, entity.getBoundingBox().inflate(8.0D, 8.0D, 8.0D));
 		if (!list.isEmpty()) {
-			entity.getNavigation().moveTo(list.get(0), (double) 1.2F);
+			entity.getNavigation().moveTo(list.get(0), 1.2F);
 		}
 	}
 
+	@Override
 	public void tick() {
-		List<ItemEntity> list = entity.level.getEntitiesOfClass(ItemEntity.class, entity.getBoundingBox().inflate(8.0D, 8.0D, 8.0D));
+		List<ItemEntity> list = entity.level().getEntitiesOfClass(ItemEntity.class, entity.getBoundingBox().inflate(8.0D, 8.0D, 8.0D));
 		if (!list.isEmpty()) {
 			entity.playSound(SoundEvents.PLAYER_BREATH, 0.2F, 2.0F);
-			entity.getNavigation().moveTo(list.get(0), (double) 1.2F);
-			List<ItemEntity> list2 = entity.level.getEntitiesOfClass(ItemEntity.class, entity.getBoundingBox().inflate(1.5D, 0.0D, 1.5D));
+			entity.getNavigation().moveTo(list.get(0), 1.2F);
+			List<ItemEntity> list2 = entity.level().getEntitiesOfClass(ItemEntity.class, entity.getBoundingBox().inflate(1.5D, 0.0D, 1.5D));
 			if (!list2.isEmpty()) {
 				if (pickupCooldown > 0) {
 					pickupCooldown--;

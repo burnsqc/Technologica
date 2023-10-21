@@ -42,7 +42,7 @@ public class InvisibleSeat extends Entity {
 
 	public void remove() {
 		super.discard();
-		EntityUtil.removeInvisibleSeatEntity(level, blockPosition());
+		EntityUtil.removeInvisibleSeatEntity(level(), blockPosition());
 	}
 
 	@Override

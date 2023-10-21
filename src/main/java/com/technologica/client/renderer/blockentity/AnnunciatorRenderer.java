@@ -2,7 +2,6 @@ package com.technologica.client.renderer.blockentity;
 
 import java.util.List;
 
-import com.mojang.blaze3d.platform.NativeImage;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import com.technologica.world.level.block.AnnunciatorBlock;
@@ -31,12 +30,6 @@ public class AnnunciatorRenderer implements BlockEntityRenderer<AnnunciatorBlock
 		matrixStackIn.mulPose(Axis.YP.rotationDegrees(f1));
 		matrixStackIn.translate(0.0D, 0.18D, 0.51D);
 		matrixStackIn.scale(0.009F, -0.009F, 0.009F);
-		int i = 0;
-		int alpha = blockstate.getValue(AnnunciatorBlock.LIT) ? 0 : 50;
-		int j = (int) (NativeImage.getR(i) * 0.4D);
-		int k = (int) (NativeImage.getG(i) * 0.4D);
-		int l = (int) (NativeImage.getB(i) * 0.4D);
-		int i1 = NativeImage.combine(alpha, l, k, j);
 		for (int k1 = 0; k1 < 8; ++k1) {
 			FormattedCharSequence ireorderingprocessor = tileEntityIn.reorderText(k1, (p_243502_1_) -> {
 				List<FormattedCharSequence> list = font.split(p_243502_1_, 90);
@@ -44,7 +37,7 @@ public class AnnunciatorRenderer implements BlockEntityRenderer<AnnunciatorBlock
 			});
 			if (ireorderingprocessor != null) {
 				float f3 = -font.width(ireorderingprocessor) / 2;
-				font.drawInBatch(ireorderingprocessor, f3, k1 * 10 - 20, i1, false, matrixStackIn.last().pose(), bufferIn, false, 0, combinedLightIn);
+				font.drawInBatch(ireorderingprocessor, f3, k1 * 10 - 20, 0, false, matrixStackIn.last().pose(), bufferIn, Font.DisplayMode.POLYGON_OFFSET, 0, combinedLightIn);
 			}
 		}
 		matrixStackIn.popPose();

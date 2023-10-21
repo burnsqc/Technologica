@@ -21,13 +21,12 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.level.material.Material;
 
 public class TapeDriveBlock extends FourDirectionBlock {
 	public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 
 	protected TapeDriveBlock() {
-		super(BlockBehaviour.Properties.of(Material.METAL).strength(2.0F).sound(SoundType.ANVIL).noOcclusion());
+		super(BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.ANVIL).noOcclusion());
 	}
 
 	@SuppressWarnings("deprecation")

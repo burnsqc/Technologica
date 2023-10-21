@@ -7,7 +7,7 @@ import com.technologica.world.level.block.entity.MonitorBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.network.NetworkEvent;
@@ -23,7 +23,6 @@ public class CUpdateMonitorPacket {
 
 	public static void encode(CUpdateMonitorPacket msg, FriendlyByteBuf buf) {
 		buf.writeBlockPos(msg.pos);
-
 		for (int i = 0; i < 16; ++i) {
 			buf.writeUtf(msg.lines[i]);
 		}
@@ -31,21 +30,18 @@ public class CUpdateMonitorPacket {
 
 	public static CUpdateMonitorPacket decode(FriendlyByteBuf buf) {
 		BlockPos pos2 = buf.readBlockPos();
-
 		String[] lines2 = new String[16];
 		for (int i = 0; i < 16; ++i) {
 			lines2[i] = buf.readUtf(384);
 		}
-
 		return new CUpdateMonitorPacket(pos2, lines2[0], lines2[1], lines2[2], lines2[3], lines2[4], lines2[5], lines2[6], lines2[7], lines2[8], lines2[9], lines2[10], lines2[11], lines2[12], lines2[13], lines2[14], lines2[15]);
 	}
 
 	public static void handle(CUpdateMonitorPacket msg, final Supplier<NetworkEvent.Context> ctx) {
 		ctx.get().enqueueWork(() -> {
-			ServerLevel world = ctx.get().getSender().getLevel();
+			Level world = ctx.get().getSender().level();
 			BlockEntity tileentity = world.getBlockEntity(msg.pos);
 			BlockState blockstate = world.getBlockState(msg.pos);
-
 			if (tileentity instanceof MonitorBlockEntity) {
 				for (int i = 0; i < 16; ++i) {
 					((MonitorBlockEntity) tileentity).setText(i, Component.nullToEmpty(msg.lines[i]));
@@ -56,5 +52,4 @@ public class CUpdateMonitorPacket {
 		});
 		ctx.get().setPacketHandled(true);
 	}
-
 }

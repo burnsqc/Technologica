@@ -15,13 +15,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.material.Material;
 
 public class MulchBlock extends Block implements EntityBlock {
 	public static final IntegerProperty MULCH_AGE = BlockStateProperties.AGE_3;
 
 	public MulchBlock() {
-		super(BlockBehaviour.Properties.of(Material.GRASS).randomTicks().strength(0.6F).sound(SoundType.GRASS));
+		super(BlockBehaviour.Properties.of().randomTicks().strength(0.6F).sound(SoundType.GRASS));
 		this.registerDefaultState(this.stateDefinition.any().setValue(MULCH_AGE, 0));
 
 	}

@@ -187,13 +187,13 @@ public class Owl extends ShoulderRidingEntity implements FlyingAnimal {
 	 */
 	@Override
 	public void aiStep() {
-		if (this.jukeboxPosition == null || !this.jukeboxPosition.closerToCenterThan(this.position(), 3.46D) || !this.level.getBlockState(this.jukeboxPosition).is(Blocks.JUKEBOX)) {
+		if (this.jukeboxPosition == null || !this.jukeboxPosition.closerToCenterThan(this.position(), 3.46D) || !this.level().getBlockState(this.jukeboxPosition).is(Blocks.JUKEBOX)) {
 			this.partyParrot = false;
 			this.jukeboxPosition = null;
 		}
 
-		if (this.level.random.nextInt(400) == 0) {
-			playMimicSound(this.level, this);
+		if (this.level().random.nextInt(400) == 0) {
+			playMimicSound(this.level(), this);
 		}
 
 		super.aiStep();
@@ -218,15 +218,15 @@ public class Owl extends ShoulderRidingEntity implements FlyingAnimal {
 	private void calculateFlapping() {
 		this.oFlap = this.flap;
 		this.oFlapSpeed = this.flapSpeed;
-		this.flapSpeed = (float) (this.flapSpeed + (!this.onGround && !this.isPassenger() ? 4 : -1) * 0.3D);
+		this.flapSpeed = (float) (this.flapSpeed + (!this.onGround() && !this.isPassenger() ? 4 : -1) * 0.3D);
 		this.flapSpeed = Mth.clamp(this.flapSpeed, 0.0F, 1.0F);
-		if (!this.onGround && this.flapping < 1.0F) {
+		if (!this.onGround() && this.flapping < 1.0F) {
 			this.flapping = 1.0F;
 		}
 
 		this.flapping = (float) (this.flapping * 0.9D);
 		Vec3 vector3d = this.getDeltaMovement();
-		if (!this.onGround && vector3d.y < 0.0D) {
+		if (!this.onGround() && vector3d.y < 0.0D) {
 			this.setDeltaMovement(vector3d.multiply(1.0D, 0.6D, 1.0D));
 		}
 
@@ -260,19 +260,19 @@ public class Owl extends ShoulderRidingEntity implements FlyingAnimal {
 			}
 
 			if (!this.isSilent()) {
-				this.level.playSound((Player) null, this.getX(), this.getY(), this.getZ(), SoundEvents.PARROT_EAT, this.getSoundSource(), 1.0F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
+				this.level().playSound((Player) null, this.getX(), this.getY(), this.getZ(), SoundEvents.PARROT_EAT, this.getSoundSource(), 1.0F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
 			}
 
-			if (!this.level.isClientSide) {
+			if (!this.level().isClientSide) {
 				if (this.random.nextInt(10) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, playerIn)) {
 					this.tame(playerIn);
-					this.level.broadcastEntityEvent(this, (byte) 7);
+					this.level().broadcastEntityEvent(this, (byte) 7);
 				} else {
-					this.level.broadcastEntityEvent(this, (byte) 6);
+					this.level().broadcastEntityEvent(this, (byte) 6);
 				}
 			}
 
-			return InteractionResult.sidedSuccess(this.level.isClientSide);
+			return InteractionResult.sidedSuccess(this.level().isClientSide);
 		} else if (itemstack.getItem() == DEADLY_ITEM) {
 			if (!playerIn.getAbilities().instabuild) {
 				itemstack.shrink(1);
@@ -280,16 +280,16 @@ public class Owl extends ShoulderRidingEntity implements FlyingAnimal {
 
 			this.addEffect(new MobEffectInstance(MobEffects.POISON, 900));
 			if (playerIn.isCreative() || !this.isInvulnerable()) {
-				this.hurt(DamageSource.playerAttack(playerIn), Float.MAX_VALUE);
+				this.hurt(this.level().damageSources().playerAttack(playerIn), Float.MAX_VALUE);
 			}
 
-			return InteractionResult.sidedSuccess(this.level.isClientSide);
+			return InteractionResult.sidedSuccess(this.level().isClientSide);
 		} else if (!this.isFlying() && this.isTame() && this.isOwnedBy(playerIn)) {
-			if (!this.level.isClientSide) {
+			if (!this.level().isClientSide) {
 				this.setOrderedToSit(!this.isOrderedToSit());
 			}
 
-			return InteractionResult.sidedSuccess(this.level.isClientSide);
+			return InteractionResult.sidedSuccess(this.level().isClientSide);
 		} else {
 			return super.mobInteract(playerIn, hand);
 		}
@@ -332,13 +332,13 @@ public class Owl extends ShoulderRidingEntity implements FlyingAnimal {
 
 	@Override
 	public boolean doHurtTarget(Entity entityIn) {
-		return entityIn.hurt(DamageSource.mobAttack(this), 3.0F);
+		return entityIn.hurt(this.level().damageSources().mobAttack(this), 3.0F);
 	}
 
 	@Override
 	@Nullable
 	public SoundEvent getAmbientSound() {
-		return getAmbient(this.level, this.level.random);
+		return getAmbient(this.level(), this.level().random);
 	}
 
 	public static SoundEvent getAmbient(Level p_234212_0_, RandomSource random) {
@@ -454,7 +454,7 @@ public class Owl extends ShoulderRidingEntity implements FlyingAnimal {
 
 	@Override
 	public boolean isFlying() {
-		return !this.onGround;
+		return !this.onGround();
 	}
 
 	@Override

@@ -62,12 +62,10 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 	@Override
 	public boolean renderSky(ClientLevel level, int ticks, float partialTicks, PoseStack matrixStackIn, Camera camera, Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog) {
 		FogRenderer.setupNoFog();
-		RenderSystem.disableTexture();
 		BufferBuilder bufferbuilder = Tesselator.getInstance().getBuilder();
 		RenderSystem.depthMask(false);
 		RenderSystem.enableBlend();
 		RenderSystem.defaultBlendFunc();
-		RenderSystem.enableTexture();
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 
 		matrixStackIn.pushPose();
@@ -105,9 +103,7 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 		matrixStackIn.popPose();
 
 		RenderSystem.disableBlend();
-		RenderSystem.disableTexture();
 		RenderSystem.setShaderColor(0.0F, 0.0F, 0.0F, 1.0F);
-		RenderSystem.enableTexture();
 		RenderSystem.depthMask(true);
 		return true;
 	}
@@ -125,7 +121,7 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 			this.starBuffer.close();
 		}
 
-		this.starBuffer = new VertexBuffer();
+		this.starBuffer = new VertexBuffer(VertexBuffer.Usage.STATIC);
 		BufferBuilder.RenderedBuffer bufferbuilder$renderedbuffer = this.drawStars(bufferbuilder);
 		this.starBuffer.bind();
 		this.starBuffer.upload(bufferbuilder$renderedbuffer);
@@ -219,7 +215,7 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 					double d1 = this.rainSizeZ[l1] * 0.2D;
 					blockpos$mutableblockpos.set(k1, camY, j1);
 					Biome biome = level.getBiome(blockpos$mutableblockpos).value();
-					if (biome.getPrecipitation() != Biome.Precipitation.NONE) {
+					if (biome.hasPrecipitation()) {
 						int i2 = level.getHeight(Heightmap.Types.MOTION_BLOCKING, k1, j1);
 						int j2 = j - l;
 						int k2 = j + l;

@@ -9,7 +9,6 @@ import com.technologica.world.level.block.entity.VanillaSignBlockEntity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -17,6 +16,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.flag.FeatureFlag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -41,16 +41,16 @@ import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.BlockHitResult;
 
 public class VanillaBlocks {
 
 	static CropBlock grainCropBlock(Supplier<Item> seeds) {
-		return new CropBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP)) {
+		return new CropBlock(BlockBehaviour.Properties.of().noCollission().randomTicks().instabreak().sound(SoundType.CROP)) {
 			@Override
 			protected ItemLike getBaseSeedId() {
 				return seeds.get();
@@ -59,7 +59,7 @@ public class VanillaBlocks {
 	}
 
 	static PotatoBlock replantableCropBlock(Supplier<Item> seeds) {
-		return new PotatoBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP)) {
+		return new PotatoBlock(BlockBehaviour.Properties.of().noCollission().randomTicks().instabreak().sound(SoundType.CROP)) {
 			@Override
 			protected ItemLike getBaseSeedId() {
 				return seeds.get();
@@ -68,7 +68,7 @@ public class VanillaBlocks {
 	}
 
 	static BeetrootBlock seededCropBlock(Supplier<Item> seeds) {
-		return new BeetrootBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP)) {
+		return new BeetrootBlock(BlockBehaviour.Properties.of().noCollission().randomTicks().instabreak().sound(SoundType.CROP)) {
 			@Override
 			protected ItemLike getBaseSeedId() {
 				return seeds.get();
@@ -77,7 +77,7 @@ public class VanillaBlocks {
 	}
 
 	static SweetBerryBushBlock bushCropBlock(Supplier<Item> clone) {
-		return new SweetBerryBushBlock(BlockBehaviour.Properties.of(Material.PLANT).randomTicks().noCollission().sound(SoundType.SWEET_BERRY_BUSH)) {
+		return new SweetBerryBushBlock(BlockBehaviour.Properties.of().randomTicks().noCollission().sound(SoundType.SWEET_BERRY_BUSH)) {
 			@Override
 			public ItemStack getCloneItemStack(BlockGetter p_57256_, BlockPos p_57257_, BlockState p_57258_) {
 				return new ItemStack(clone.get());
@@ -123,7 +123,7 @@ public class VanillaBlocks {
 	}
 
 	static LeavesBlock leavesBlock() {
-		return new LeavesBlock(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion()) {
+		return new LeavesBlock(BlockBehaviour.Properties.of().strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion()) {
 			@Override
 			public int getFlammability(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
 				return 30;
@@ -136,10 +136,8 @@ public class VanillaBlocks {
 		};
 	}
 
-	static RotatedPillarBlock logBlock(MaterialColor p_50789_, MaterialColor p_50790_) {
-		return new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD, (p_152624_) -> {
-			return p_152624_.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? p_50789_ : p_50790_;
-		}).strength(2.0F).sound(SoundType.WOOD)) {
+	static RotatedPillarBlock logBlock() {
+		return new RotatedPillarBlock(BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.WOOD)) {
 			@Override
 			public int getFlammability(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
 				return 5;
@@ -153,7 +151,7 @@ public class VanillaBlocks {
 	}
 
 	static Block planksBlock() {
-		return new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)) {
+		return new Block(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD)) {
 			@Override
 			public int getFlammability(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
 				return 5;
@@ -167,7 +165,7 @@ public class VanillaBlocks {
 	}
 
 	static SlabBlock slabBlock() {
-		return new SlabBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)) {
+		return new SlabBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD)) {
 			@Override
 			public int getFlammability(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
 				return 5;
@@ -181,7 +179,7 @@ public class VanillaBlocks {
 	}
 
 	static StairBlock stairBlock(Supplier<BlockState> state) {
-		return new StairBlock(state, BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)) {
+		return new StairBlock(state, BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD)) {
 			@Override
 			public int getFlammability(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
 				return 5;
@@ -195,7 +193,7 @@ public class VanillaBlocks {
 	}
 
 	static Block bookshelfBlock() {
-		return new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(1.5F).sound(SoundType.WOOD)) {
+		return new Block(BlockBehaviour.Properties.of().strength(1.5F).sound(SoundType.WOOD)) {
 			@Override
 			public int getFlammability(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
 				return 30;
@@ -209,7 +207,7 @@ public class VanillaBlocks {
 	}
 
 	static FenceBlock fenceBlock() {
-		return new FenceBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)) {
+		return new FenceBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD)) {
 			@Override
 			public int getFlammability(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
 				return 5;
@@ -223,7 +221,7 @@ public class VanillaBlocks {
 	}
 
 	static FenceGateBlock fenceGateBlock() {
-		return new FenceGateBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD), SoundEvents.FENCE_GATE_CLOSE, SoundEvents.FENCE_GATE_OPEN) {
+		return new FenceGateBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD), SoundEvents.FENCE_GATE_CLOSE, SoundEvents.FENCE_GATE_OPEN) {
 			@Override
 			public int getFlammability(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
 				return 5;
@@ -237,7 +235,7 @@ public class VanillaBlocks {
 	}
 
 	static StandingSignBlock standingSignBlock(WoodType typeIn) {
-		return new StandingSignBlock(BlockBehaviour.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD), typeIn) {
+		return new StandingSignBlock(BlockBehaviour.Properties.of().noCollission().strength(1.0F).sound(SoundType.WOOD), typeIn) {
 			@Override
 			public BlockEntity newBlockEntity(BlockPos p_154556_, BlockState p_154557_) {
 				return new VanillaSignBlockEntity(p_154556_, p_154557_);
@@ -246,7 +244,7 @@ public class VanillaBlocks {
 	}
 
 	static WallSignBlock wallSignBlock(WoodType typeIn) {
-		return new WallSignBlock(BlockBehaviour.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD), typeIn) {
+		return new WallSignBlock(BlockBehaviour.Properties.of().noCollission().strength(1.0F).sound(SoundType.WOOD), typeIn) {
 			@Override
 			public BlockEntity newBlockEntity(BlockPos p_154556_, BlockState p_154557_) {
 				return new VanillaSignBlockEntity(p_154556_, p_154557_);
@@ -255,7 +253,7 @@ public class VanillaBlocks {
 	}
 
 	static StandingSignBlock technologicaStandingSignBlock(WoodType typeIn) {
-		return new StandingSignBlock(BlockBehaviour.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD), typeIn) {
+		return new StandingSignBlock(BlockBehaviour.Properties.of().noCollission().strength(1.0F).sound(SoundType.WOOD), typeIn) {
 			@Override
 			public BlockEntity newBlockEntity(BlockPos p_154556_, BlockState p_154557_) {
 				return new TechnologicaSignBlockEntity(p_154556_, p_154557_);
@@ -264,7 +262,7 @@ public class VanillaBlocks {
 	}
 
 	static WallSignBlock technologicaWallSignBlock(WoodType typeIn) {
-		return new WallSignBlock(BlockBehaviour.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD), typeIn) {
+		return new WallSignBlock(BlockBehaviour.Properties.of().noCollission().strength(1.0F).sound(SoundType.WOOD), typeIn) {
 			@Override
 			public BlockEntity newBlockEntity(BlockPos p_154556_, BlockState p_154557_) {
 				return new TechnologicaSignBlockEntity(p_154556_, p_154557_);
@@ -272,12 +270,13 @@ public class VanillaBlocks {
 		};
 	}
 
-	static ButtonBlock woodenButton() {
-		return woodenButton(SoundType.WOOD, SoundEvents.WOODEN_BUTTON_CLICK_OFF, SoundEvents.WOODEN_BUTTON_CLICK_ON);
-	}
+	static ButtonBlock woodenButton(BlockSetType p_278239_, FeatureFlag... p_278229_) {
+		BlockBehaviour.Properties blockbehaviour$properties = BlockBehaviour.Properties.of().noCollission().strength(0.5F).pushReaction(PushReaction.DESTROY);
+		if (p_278229_.length > 0) {
+			blockbehaviour$properties = blockbehaviour$properties.requiredFeatures(p_278229_);
+		}
 
-	private static ButtonBlock woodenButton(SoundType p_249282_, SoundEvent p_251988_, SoundEvent p_251887_) {
-		return new ButtonBlock(BlockBehaviour.Properties.of(Material.DECORATION).noCollission().strength(0.5F).sound(p_249282_), 30, true, p_251988_, p_251887_);
+		return new ButtonBlock(blockbehaviour$properties, p_278239_, 30, true);
 	}
 
 	static Boolean never(BlockState p_50779_, BlockGetter p_50780_, BlockPos p_50781_, EntityType<?> p_50782_) {

@@ -135,14 +135,14 @@ public class Beaver extends Animal {
 			}
 		}
 
-		if (this.onGround) {
+		if (this.onGround()) {
 			if (!this.wasOnGround) {
 				this.setJumping(false);
 				this.checkLandingDelay();
 			}
 		}
 
-		this.wasOnGround = this.onGround;
+		this.wasOnGround = this.onGround();
 	}
 
 	@Override
@@ -211,9 +211,9 @@ public class Beaver extends Animal {
 	public boolean doHurtTarget(Entity entityIn) {
 		if (this.getRabbitType() == 99) {
 			this.playSound(SoundEvents.RABBIT_ATTACK, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
-			return entityIn.hurt(DamageSource.mobAttack(this), 8.0F);
+			return entityIn.hurt(this.damageSources().mobAttack(this), 8.0F);
 		} else {
-			return entityIn.hurt(DamageSource.mobAttack(this), 3.0F);
+			return entityIn.hurt(this.damageSources().mobAttack(this), 3.0F);
 		}
 	}
 
@@ -329,11 +329,6 @@ public class Beaver extends Animal {
 		public EvilAttackGoal(Beaver rabbit) {
 			super(rabbit, 1.4D, true);
 		}
-
-		@Override
-		protected double getAttackReachSqr(LivingEntity attackTarget) {
-			return 4.0F + attackTarget.getBbWidth();
-		}
 	}
 
 	static class MoveHelperController extends MoveControl {
@@ -409,7 +404,7 @@ public class Beaver extends Animal {
 		@Override
 		public boolean canUse() {
 			if (this.nextStartTick <= 0) {
-				if (!net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.rabbit.level, this.rabbit)) {
+				if (!net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.rabbit.level(), this.rabbit)) {
 					return false;
 				}
 
@@ -437,7 +432,7 @@ public class Beaver extends Animal {
 			super.tick();
 			this.rabbit.getLookControl().setLookAt(this.blockPos.getX() + 0.5D, this.blockPos.getY() + 1, this.blockPos.getZ() + 0.5D, 10.0F, this.rabbit.getMaxHeadXRot());
 			if (this.isReachedTarget()) {
-				Level world = this.rabbit.level;
+				Level world = this.rabbit.level();
 				BlockPos blockpos = this.blockPos.above();
 				BlockState blockstate = world.getBlockState(blockpos);
 				Block block = blockstate.getBlock();

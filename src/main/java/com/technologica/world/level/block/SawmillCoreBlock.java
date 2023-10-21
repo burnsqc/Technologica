@@ -12,7 +12,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -33,10 +32,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.network.NetworkHooks;
 
 /**
  * Special one-off class for the sawmill. Created to handle player interaction and associated tile entity.
@@ -46,7 +42,7 @@ public class SawmillCoreBlock extends FourDirectionBlock implements EntityBlock 
 	public static final EnumProperty<MiddleEnd> MIDDLE_END = TechnologicaBlockStateProperties.MIDDLE_END;
 
 	protected SawmillCoreBlock() {
-		super(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.METAL).requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.ANVIL).noOcclusion());
+		super(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.ANVIL).noOcclusion());
 		this.registerDefaultState(this.stateDefinition.any().setValue(NESW_FACING, Direction.NORTH).setValue(BOTTOM, false).setValue(MIDDLE_END, MiddleEnd.MIDDLE));
 	}
 
@@ -68,7 +64,7 @@ public class SawmillCoreBlock extends FourDirectionBlock implements EntityBlock 
 			BlockEntity tileEntity = worldIn.getBlockEntity(posIn);
 			if (tileEntity instanceof SawmillBlockEntity) {
 				MenuProvider containerProvider = createContainerProvider(worldIn, posIn);
-				NetworkHooks.openScreen(((ServerPlayer) playerIn), containerProvider, tileEntity.getBlockPos());
+				// NetworkHooks.openScreen(((ServerPlayer) playerIn), containerProvider, tileEntity.getBlockPos());
 			}
 		}
 		return InteractionResult.SUCCESS;

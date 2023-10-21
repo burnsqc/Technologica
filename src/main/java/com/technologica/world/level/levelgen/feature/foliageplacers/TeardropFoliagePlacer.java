@@ -1,18 +1,14 @@
 package com.technologica.world.level.levelgen.feature.foliageplacers;
 
-import java.util.function.BiConsumer;
-
 import com.mojang.datafixers.Products.P3;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.mojang.serialization.codecs.RecordCodecBuilder.Instance;
 import com.mojang.serialization.codecs.RecordCodecBuilder.Mu;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.LevelSimulatedReader;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
@@ -39,7 +35,7 @@ public class TeardropFoliagePlacer extends FoliagePlacer {
 	}
 
 	@Override
-	protected void createFoliage(LevelSimulatedReader readerIn, BiConsumer<BlockPos, BlockState> biConsumerIn, RandomSource RandomSourceIn, TreeConfiguration configIn, int p_161426_, FoliageAttachment attachmentIn, int p_161428_, int diameter, int topLayer) {
+	protected void createFoliage(LevelSimulatedReader readerIn, FoliagePlacer.FoliageSetter biConsumerIn, RandomSource RandomSourceIn, TreeConfiguration configIn, int p_161426_, FoliageAttachment attachmentIn, int p_161428_, int diameter, int topLayer) {
 		for (int layer = topLayer + 3; layer >= topLayer + 3 - p_161428_; --layer) {
 			int j = Math.max(diameter + 1 + attachmentIn.radiusOffset(), 0);
 			this.placeLeavesRow(readerIn, biConsumerIn, RandomSourceIn, configIn, attachmentIn.pos(), j, layer, attachmentIn.doubleTrunk());

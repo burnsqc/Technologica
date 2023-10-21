@@ -22,7 +22,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.material.Material;
 
 /**
  * Special one-off class for potion leaves. Created to spawn splash potions when player is nearby.
@@ -32,7 +31,7 @@ public class PotionLeavesBlock extends LeavesBlock implements EntityBlock {
 	private int potionType;
 
 	public PotionLeavesBlock(int potionIn) {
-		super(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion());
+		super(BlockBehaviour.Properties.of().strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion());
 		this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0).setValue(DISTANCE, 7).setValue(PERSISTENT, false));
 		potionType = potionIn;
 	}

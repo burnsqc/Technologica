@@ -1,15 +1,11 @@
 package com.technologica.world.level.levelgen.feature.foliageplacers;
 
-import java.util.function.BiConsumer;
-
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.LevelSimulatedReader;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
@@ -29,7 +25,7 @@ public class ConicalFoliagePlacer extends FoliagePlacer {
 	}
 
 	@Override
-	protected void createFoliage(LevelSimulatedReader p_161414_, BiConsumer<BlockPos, BlockState> p_161415_, RandomSource p_161416_, TreeConfiguration p_161417_, int p_230372_4_, FoliagePlacer.FoliageAttachment p_161419_, int layersBelowTop, int diameter, int topLayer) {
+	protected void createFoliage(LevelSimulatedReader p_161414_, FoliagePlacer.FoliageSetter p_161415_, RandomSource p_161416_, TreeConfiguration p_161417_, int p_230372_4_, FoliagePlacer.FoliageAttachment p_161419_, int layersBelowTop, int diameter, int topLayer) {
 		for (int layer = topLayer + 1; layer >= topLayer - layersBelowTop + 1; --layer) {
 			int j = Math.max(diameter + p_161419_.radiusOffset() - layer + 1, 0);
 			this.placeLeavesRow(p_161414_, p_161415_, p_161416_, p_161417_, p_161419_.pos(), j, layer, p_161419_.doubleTrunk());

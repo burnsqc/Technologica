@@ -13,6 +13,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -219,35 +220,34 @@ public class AtomicCreeper extends Monster implements PowerableMob {
 	@Override
 	protected InteractionResult mobInteract(Player p_32301_, InteractionHand p_32302_) {
 		ItemStack itemstack = p_32301_.getItemInHand(p_32302_);
-		if (itemstack.is(Items.FLINT_AND_STEEL)) {
-			this.level.playSound(p_32301_, this.getX(), this.getY(), this.getZ(), SoundEvents.FLINTANDSTEEL_USE, this.getSoundSource(), 1.0F, this.random.nextFloat() * 0.4F + 0.8F);
-			if (!this.level.isClientSide) {
+		if (itemstack.is(ItemTags.CREEPER_IGNITERS)) {
+			this.level().playSound(p_32301_, this.getX(), this.getY(), this.getZ(), SoundEvents.FLINTANDSTEEL_USE, this.getSoundSource(), 1.0F, this.random.nextFloat() * 0.4F + 0.8F);
+			if (!this.level().isClientSide) {
 				this.ignite();
 				itemstack.hurtAndBreak(1, p_32301_, (p_32290_) -> {
 					p_32290_.broadcastBreakEvent(p_32302_);
 				});
 			}
 
-			return InteractionResult.sidedSuccess(this.level.isClientSide);
+			return InteractionResult.sidedSuccess(this.level().isClientSide);
 		} else {
 			return super.mobInteract(p_32301_, p_32302_);
 		}
 	}
 
 	private void explodeCreeper() {
-		if (!this.level.isClientSide) {
+		if (!this.level().isClientSide) {
 			this.dead = true;
-			this.level.explode(this, this.getX(), this.getY(), this.getZ(), this.explosionRadius * 5.0F, Level.ExplosionInteraction.MOB);
+			this.level().explode(this, this.getX(), this.getY(), this.getZ(), this.explosionRadius * 5.0F, Level.ExplosionInteraction.MOB);
 			this.discard();
 			this.spawnLingeringCloud();
 		}
-
 	}
 
 	private void spawnLingeringCloud() {
 		Collection<MobEffectInstance> collection = this.getActiveEffects();
 		if (!collection.isEmpty()) {
-			AreaEffectCloud areaeffectcloud = new AreaEffectCloud(this.level, this.getX(), this.getY(), this.getZ());
+			AreaEffectCloud areaeffectcloud = new AreaEffectCloud(this.level(), this.getX(), this.getY(), this.getZ());
 			areaeffectcloud.setRadius(2.5F);
 			areaeffectcloud.setRadiusOnUse(-0.5F);
 			areaeffectcloud.setWaitTime(10);
@@ -258,7 +258,7 @@ public class AtomicCreeper extends Monster implements PowerableMob {
 				areaeffectcloud.addEffect(new MobEffectInstance(mobeffectinstance));
 			}
 
-			this.level.addFreshEntity(areaeffectcloud);
+			this.level().addFreshEntity(areaeffectcloud);
 		}
 
 	}

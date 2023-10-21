@@ -47,9 +47,9 @@ public class Zebra extends AbstractHorse {
 
 	@Override
 	public void randomizeAttributes(RandomSource p_218815_) {
-		this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(this.generateRandomMaxHealth(p_218815_));
-		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(this.generateRandomSpeed(p_218815_));
-		this.getAttribute(Attributes.JUMP_STRENGTH).setBaseValue(this.generateRandomJumpStrength(p_218815_));
+		this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(generateMaxHealth(p_218815_::nextInt));
+		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(generateSpeed(p_218815_::nextDouble));
+		this.getAttribute(Attributes.JUMP_STRENGTH).setBaseValue(generateJumpStrength(p_218815_::nextDouble));
 	}
 
 	// Register Attributes, Goals, and Data
@@ -91,7 +91,7 @@ public class Zebra extends AbstractHorse {
 
 	@Override
 	protected void updateContainerEquipment() {
-		if (!this.level.isClientSide) {
+		if (!this.level().isClientSide) {
 			super.updateContainerEquipment();
 			this.setArmorEquipment(this.inventory.getItem(1));
 			this.setDropChance(EquipmentSlot.CHEST, 0.0F);
@@ -100,7 +100,7 @@ public class Zebra extends AbstractHorse {
 
 	private void setArmorEquipment(ItemStack p_213804_1_) {
 		this.setArmor(p_213804_1_);
-		if (!this.level.isClientSide) {
+		if (!this.level().isClientSide) {
 			this.getAttribute(Attributes.ARMOR).removeModifier(ARMOR_MODIFIER_UUID);
 			if (this.isArmor(p_213804_1_)) {
 				int i = ((HorseArmorItem) p_213804_1_.getItem()).getProtection();
@@ -135,7 +135,7 @@ public class Zebra extends AbstractHorse {
 
 		ItemStack stack = this.inventory.getItem(1);
 		if (isArmor(stack))
-			stack.onHorseArmorTick(level, this);
+			stack.onHorseArmorTick(level(), this);
 	}
 
 	@Override
@@ -174,7 +174,7 @@ public class Zebra extends AbstractHorse {
 		if (!this.isBaby()) {
 			if (this.isTamed() && playerIn.isSecondaryUseActive()) {
 				this.openCustomInventoryScreen(playerIn);
-				return InteractionResult.sidedSuccess(this.level.isClientSide);
+				return InteractionResult.sidedSuccess(this.level().isClientSide);
 			}
 
 			if (this.isVehicle()) {
@@ -194,13 +194,13 @@ public class Zebra extends AbstractHorse {
 
 			if (!this.isTamed()) {
 				this.makeMad();
-				return InteractionResult.sidedSuccess(this.level.isClientSide);
+				return InteractionResult.sidedSuccess(this.level().isClientSide);
 			}
 
 			boolean flag = !this.isBaby() && !this.isSaddled() && itemstack.getItem() == Items.SADDLE;
 			if (this.isArmor(itemstack) || flag) {
 				this.openCustomInventoryScreen(playerIn);
-				return InteractionResult.sidedSuccess(this.level.isClientSide);
+				return InteractionResult.sidedSuccess(this.level().isClientSide);
 			}
 		}
 
@@ -208,18 +208,18 @@ public class Zebra extends AbstractHorse {
 			return super.mobInteract(playerIn, hand);
 		} else {
 			this.doPlayerRide(playerIn);
-			return InteractionResult.sidedSuccess(this.level.isClientSide);
+			return InteractionResult.sidedSuccess(this.level().isClientSide);
 		}
 	}
 
-//   public boolean canMateWith(AnimalEntity otherAnimal) {
-//      if (otherAnimal == this) {
-//         return false;
-//      } else if (!(otherAnimal instanceof DonkeyEntity) && !(otherAnimal instanceof ZebraEntity)) {
-//         return false;
-//         return this.canMate() && ((AbstractHorseEntity)otherAnimal).canMate();
-//      }
-//   }
+	// public boolean canMateWith(AnimalEntity otherAnimal) {
+	// if (otherAnimal == this) {
+	// return false;
+	// } else if (!(otherAnimal instanceof DonkeyEntity) && !(otherAnimal instanceof ZebraEntity)) {
+	// return false;
+	// return this.canMate() && ((AbstractHorseEntity)otherAnimal).canMate();
+	// }
+	// }
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob mate) {

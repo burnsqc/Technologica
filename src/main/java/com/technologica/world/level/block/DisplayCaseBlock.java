@@ -16,23 +16,22 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 
 /**
- * Special one-off class for the display case.    
+ * Special one-off class for the display case.
  * Created to handle player interaction and associated tile entity.
  */
 public class DisplayCaseBlock extends GlassBlock implements EntityBlock {
 
 	public DisplayCaseBlock() {
-		super(BlockBehaviour.Properties.of(Material.GLASS).strength(0.3F).sound(SoundType.GLASS).noOcclusion());
+		super(BlockBehaviour.Properties.of().strength(0.3F).sound(SoundType.GLASS).noOcclusion());
 	}
 
 	/*
 	 * Technologica Methods
 	 */
-	
+
 	public DisplayCaseBlockEntity getTileEntity(Level worldIn, BlockPos posIn) {
 		return (DisplayCaseBlockEntity) worldIn.getBlockEntity(posIn);
 	}
@@ -49,7 +48,7 @@ public class DisplayCaseBlock extends GlassBlock implements EntityBlock {
 			tile.setDisplayStack(ItemStack.EMPTY);
 		}
 	}
-	
+
 	@Override
 	public InteractionResult use(BlockState stateIn, Level worldIn, BlockPos posIn, Player playerIn, InteractionHand handIn, BlockHitResult hitIn) {
 		DisplayCaseBlockEntity tile = getTileEntity(worldIn, posIn);

@@ -44,9 +44,9 @@ public class Ostrich extends AbstractHorse {
 
 	@Override
 	public void randomizeAttributes(RandomSource p_218815_) {
-		this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(this.generateRandomMaxHealth(p_218815_));
-		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(this.generateRandomSpeed(p_218815_));
-		this.getAttribute(Attributes.JUMP_STRENGTH).setBaseValue(this.generateRandomJumpStrength(p_218815_));
+		this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(generateMaxHealth(p_218815_::nextInt));
+		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(generateSpeed(p_218815_::nextDouble));
+		this.getAttribute(Attributes.JUMP_STRENGTH).setBaseValue(generateJumpStrength(p_218815_::nextDouble));
 	}
 
 	// Register Attributes, Goals, and Data
@@ -100,7 +100,7 @@ public class Ostrich extends AbstractHorse {
 
 	@Override
 	protected void updateContainerEquipment() {
-		if (!this.level.isClientSide) {
+		if (!this.level().isClientSide) {
 			super.updateContainerEquipment();
 			this.setArmorEquipment(this.inventory.getItem(1));
 			this.setDropChance(EquipmentSlot.CHEST, 0.0F);
@@ -109,7 +109,7 @@ public class Ostrich extends AbstractHorse {
 
 	private void setArmorEquipment(ItemStack p_213804_1_) {
 		this.setArmor(p_213804_1_);
-		if (!this.level.isClientSide) {
+		if (!this.level().isClientSide) {
 			this.getAttribute(Attributes.ARMOR).removeModifier(ARMOR_MODIFIER_UUID);
 			if (this.isArmor(p_213804_1_)) {
 				int i = ((HorseArmorItem) p_213804_1_.getItem()).getProtection();
@@ -143,7 +143,7 @@ public class Ostrich extends AbstractHorse {
 		ItemStack stack = this.inventory.getItem(1);
 
 		if (isArmor(stack)) {
-			stack.onHorseArmorTick(level, this);
+			stack.onHorseArmorTick(level(), this);
 		}
 	}
 
@@ -183,7 +183,7 @@ public class Ostrich extends AbstractHorse {
 		if (!this.isBaby()) {
 			if (this.isTamed() && playerIn.isSecondaryUseActive()) {
 				this.openCustomInventoryScreen(playerIn);
-				return InteractionResult.sidedSuccess(this.level.isClientSide);
+				return InteractionResult.sidedSuccess(this.level().isClientSide);
 			}
 
 			if (this.isVehicle()) {
@@ -204,14 +204,14 @@ public class Ostrich extends AbstractHorse {
 
 			if (!this.isTamed()) {
 				this.makeMad();
-				return InteractionResult.sidedSuccess(this.level.isClientSide);
+				return InteractionResult.sidedSuccess(this.level().isClientSide);
 			}
 
 			boolean flag = !this.isBaby() && !this.isSaddled() && itemstack.getItem() == Items.SADDLE;
 
 			if (this.isArmor(itemstack) || flag) {
 				this.openCustomInventoryScreen(playerIn);
-				return InteractionResult.sidedSuccess(this.level.isClientSide);
+				return InteractionResult.sidedSuccess(this.level().isClientSide);
 			}
 		}
 
@@ -219,7 +219,7 @@ public class Ostrich extends AbstractHorse {
 			return super.mobInteract(playerIn, hand);
 		} else {
 			this.doPlayerRide(playerIn);
-			return InteractionResult.sidedSuccess(this.level.isClientSide);
+			return InteractionResult.sidedSuccess(this.level().isClientSide);
 		}
 	}
 
@@ -239,7 +239,7 @@ public class Ostrich extends AbstractHorse {
 			f = 2.0F;
 			i = 20;
 			j = 3;
-			if (!this.level.isClientSide && this.isTamed() && this.getAge() == 0 && !this.isInLove()) {
+			if (!this.level().isClientSide && this.isTamed() && this.getAge() == 0 && !this.isInLove()) {
 				flag = true;
 				this.setInLove(player);
 			}
@@ -251,8 +251,8 @@ public class Ostrich extends AbstractHorse {
 		}
 
 		if (this.isBaby() && i > 0) {
-			this.level.addParticle(ParticleTypes.HAPPY_VILLAGER, this.getRandomX(1.0D), this.getRandomY() + 0.5D, this.getRandomZ(1.0D), 0.0D, 0.0D, 0.0D);
-			if (!this.level.isClientSide) {
+			this.level().addParticle(ParticleTypes.HAPPY_VILLAGER, this.getRandomX(1.0D), this.getRandomY() + 0.5D, this.getRandomZ(1.0D), 0.0D, 0.0D, 0.0D);
+			if (!this.level().isClientSide) {
 				this.ageUp(i);
 			}
 
@@ -261,7 +261,7 @@ public class Ostrich extends AbstractHorse {
 
 		if (j > 0 && (flag || !this.isTamed()) && this.getTemper() < this.getMaxTemper()) {
 			flag = true;
-			if (!this.level.isClientSide) {
+			if (!this.level().isClientSide) {
 				this.modifyTemper(j);
 			}
 		}
@@ -277,7 +277,7 @@ public class Ostrich extends AbstractHorse {
 		if (!this.isSilent()) {
 			SoundEvent soundevent = this.getEatingSound();
 			if (soundevent != null) {
-				this.level.playSound((Player) null, this.getX(), this.getY(), this.getZ(), soundevent, this.getSoundSource(), 1.0F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
+				this.level().playSound((Player) null, this.getX(), this.getY(), this.getZ(), soundevent, this.getSoundSource(), 1.0F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
 			}
 		}
 

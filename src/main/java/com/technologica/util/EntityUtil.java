@@ -7,9 +7,9 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import com.technologica.world.entity.decoration.InvisibleSeat;
 
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
 public class EntityUtil {
@@ -29,8 +29,9 @@ public class EntityUtil {
 	}
 
 	public static BlockPos getPreviousPlayerPosition(Player player, InvisibleSeat sitEntity) {
-		if (!player.level.isClientSide) {
-			ResourceLocation id = getDimensionTypeId(player.level);
+		Level level = player.level();
+		if (!level.isClientSide) {
+			ResourceLocation id = getDimensionTypeId(level);
 
 			if (OCCUPIED.containsKey(id)) {
 				for (Pair<InvisibleSeat, BlockPos> pair : OCCUPIED.get(id).values()) {

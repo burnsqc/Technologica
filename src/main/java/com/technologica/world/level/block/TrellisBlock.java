@@ -25,14 +25,13 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 
 public class TrellisBlock extends Block {
 	public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 
 	public TrellisBlock() {
-		super(BlockBehaviour.Properties.of(Material.REPLACEABLE_PLANT).noCollission().instabreak().instabreak().sound(SoundType.METAL));
+		super(BlockBehaviour.Properties.of().noCollission().instabreak().instabreak().sound(SoundType.METAL));
 		this.registerDefaultState(this.stateDefinition.any().setValue(HALF, DoubleBlockHalf.LOWER));
 	}
 

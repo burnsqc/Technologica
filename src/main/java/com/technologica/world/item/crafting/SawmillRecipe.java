@@ -52,7 +52,6 @@ public class SawmillRecipe extends SingleItemRecipe {
 	}
 
 	public static class Serializer implements RecipeSerializer<SawmillRecipe> {
-
 		@Override
 		public SawmillRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
 			String s = GsonHelper.getAsString(json, "group", "");
@@ -62,12 +61,10 @@ public class SawmillRecipe extends SingleItemRecipe {
 			} else {
 				ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "ingredient"));
 			}
-
 			String s1 = GsonHelper.getAsString(json, "result");
 			String s2 = GsonHelper.getAsString(json, "result2");
 			int i = GsonHelper.getAsInt(json, "count");
 			int i2 = GsonHelper.getAsInt(json, "count2");
-
 			ItemStack itemstack = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(s1)), i);
 			ItemStack itemstack2 = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(s2)), i2);
 			return new SawmillRecipe(recipeId, s, ingredient, itemstack, itemstack2);

@@ -1,6 +1,5 @@
 package com.technologica.client.renderer.blockentity;
 
-import com.mojang.blaze3d.platform.NativeImage;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import com.technologica.Technologica;
@@ -34,16 +33,10 @@ public class MonitorRenderer implements BlockEntityRenderer<MonitorBlockEntity> 
 		matrixStackIn.mulPose(Axis.YP.rotationDegrees(f1));
 		matrixStackIn.translate(0.0D, 0.24D, 0.376D);
 		matrixStackIn.scale(0.003F, -0.003F, 0.003F);
-		int i = 200;
-		int alpha = blockstate.getValue(MonitorBlock.LIT) ? 0 : 50;
-		int j = (int) (NativeImage.getR(i) * 1.0D);
-		int k = (int) (NativeImage.getG(i) * 1.0D);
-		int l = (int) (NativeImage.getB(i) * 1.0D);
-		int i1 = NativeImage.combine(alpha, k, j, l);
+		int i1 = 0;
 		for (int k1 = 0; k1 < 16; ++k1) {
 			Component text = Component.literal(tileEntityIn.getText(k1).getString()).setStyle(FULLSPACE_FONT_STYLE);
-			font.drawInBatch(text, -96.0F, k1 * 10 - 20, i1, false, matrixStackIn.last().pose(), bufferIn, false, 0, combinedLightIn);
-
+			font.drawInBatch(text, -96.0F, k1 * 10.0F - 20.0F, i1, false, matrixStackIn.last().pose(), bufferIn, Font.DisplayMode.POLYGON_OFFSET, 0, combinedLightIn);
 		}
 		matrixStackIn.popPose();
 	}
