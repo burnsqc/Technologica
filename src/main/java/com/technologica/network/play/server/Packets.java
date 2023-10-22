@@ -25,5 +25,7 @@ public class Packets {
 	public static void register() {
 		INSTANCE.registerMessage(nextID(), CUpdateAnnunciatorPacket.class, CUpdateAnnunciatorPacket::encode, CUpdateAnnunciatorPacket::decode, CUpdateAnnunciatorPacket::handle);
 		INSTANCE.registerMessage(nextID(), CUpdateMonitorPacket.class, CUpdateMonitorPacket::encode, CUpdateMonitorPacket::decode, CUpdateMonitorPacket::handle);
+
+		INSTANCE.registerMessage(nextID(), SUpdateAirCapabilityPacket.class, SUpdateAirCapabilityPacket::encode, SUpdateAirCapabilityPacket::decode, SUpdateAirCapabilityPacket::handle);
 	}
 }

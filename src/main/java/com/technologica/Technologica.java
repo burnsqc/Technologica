@@ -11,6 +11,7 @@ import com.technologica.listeners.forgebus.EntityJoinLevelEventListener;
 import com.technologica.listeners.forgebus.HarvestCheckListener;
 import com.technologica.listeners.forgebus.ItemFishedEventListener;
 import com.technologica.listeners.forgebus.LivingAttackEventListener;
+import com.technologica.listeners.forgebus.LivingBreatheEventListener;
 import com.technologica.listeners.forgebus.LivingEquipmentChangeEventListener;
 import com.technologica.listeners.forgebus.LivingFallEventListener;
 import com.technologica.listeners.forgebus.LivingHealEventListener;
@@ -126,6 +127,7 @@ public class Technologica {
 		MinecraftForge.EVENT_BUS.register(new HarvestCheckListener());
 		MinecraftForge.EVENT_BUS.register(new ItemFishedEventListener());
 		MinecraftForge.EVENT_BUS.register(new LivingAttackEventListener());
+		MinecraftForge.EVENT_BUS.register(new LivingBreatheEventListener());
 		MinecraftForge.EVENT_BUS.register(new LivingEquipmentChangeEventListener());
 		MinecraftForge.EVENT_BUS.register(new LivingFallEventListener());
 		MinecraftForge.EVENT_BUS.register(new LivingHealEventListener());

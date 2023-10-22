@@ -2,11 +2,15 @@ package com.technologica.listeners.forgebus;
 
 import com.technologica.capabilities.TechnologicaCapabilities;
 import com.technologica.capabilities.air.IAir;
+import com.technologica.network.play.server.Packets;
+import com.technologica.network.play.server.SUpdateAirCapabilityPacket;
 
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class LivingEquipmentChangeEventListener {
@@ -14,7 +18,7 @@ public class LivingEquipmentChangeEventListener {
 	@SubscribeEvent
 	public void onLivingEquipmentChangeEvent(LivingEquipmentChangeEvent event) {
 		if (event.getEntity() instanceof Player) {
-			Player player = (Player) event.getEntity();
+			ServerPlayer player = (ServerPlayer) event.getEntity();
 			boolean fullDiveSet = true;
 			Iterable<ItemStack> armor = player.getArmorSlots();
 
@@ -27,6 +31,9 @@ public class LivingEquipmentChangeEventListener {
 			if (fullDiveSet) {
 				IAir airCapability = player.getCapability(TechnologicaCapabilities.INSTANCE).orElseThrow(NullPointerException::new);
 				airCapability.setNewMaxAir(6000);
+				Packets.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), new SUpdateAirCapabilityPacket(6000));
+			} else {
+				Packets.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), new SUpdateAirCapabilityPacket(300));
 			}
 		}
 
