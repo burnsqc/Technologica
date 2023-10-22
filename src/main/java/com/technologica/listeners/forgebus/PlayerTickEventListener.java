@@ -7,6 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
@@ -19,7 +20,6 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -40,60 +40,62 @@ public class PlayerTickEventListener {
 			}
 		}
 
-		int air = player.getAirSupply();
-		int maxAir = 300;
-		boolean fullSnorkelSet = true;
-		boolean fullDiveSet = true;
-		boolean fullScubaSet = true;
-		Iterable<ItemStack> armor = player.getArmorSlots();
+		if (player instanceof ServerPlayer) {
+			int air = player.getAirSupply();
+			int maxAir = 300;
+			boolean fullSnorkelSet = true;
+			boolean fullDiveSet = true;
+			boolean fullScubaSet = true;
+			Iterable<ItemStack> armor = player.getArmorSlots();
 
-		for (ItemStack piece : armor) {
-			if (!ForgeRegistries.ITEMS.getKey(piece.getItem()).getPath().contains("snorkel")) {
-				fullSnorkelSet = false;
+			for (ItemStack piece : armor) {
+				if (!ForgeRegistries.ITEMS.getKey(piece.getItem()).getPath().contains("snorkel")) {
+					fullSnorkelSet = false;
+				}
+				if (!ForgeRegistries.ITEMS.getKey(piece.getItem()).getPath().contains("dive")) {
+					fullDiveSet = false;
+				}
+				if (!ForgeRegistries.ITEMS.getKey(piece.getItem()).getPath().contains("scuba")) {
+					fullScubaSet = false;
+				}
 			}
-			if (!ForgeRegistries.ITEMS.getKey(piece.getItem()).getPath().contains("dive")) {
-				fullDiveSet = false;
+
+			maxAir = fullSnorkelSet ? 600 : 300;
+			maxAir = fullDiveSet ? 6000 : maxAir;
+			maxAir = fullScubaSet ? 12000 : maxAir;
+
+			if (!player.isEyeInFluidType(ForgeMod.WATER_TYPE.get()) || player.level().getBlockState(BlockPos.containing(player.getX(), player.getEyeY(), player.getZ())).is(Blocks.BUBBLE_COLUMN)) {
+				if (air >= 300 && air < maxAir) {
+					player.setAirSupply(Math.min(air + 4, maxAir));
+				}
 			}
-			if (!ForgeRegistries.ITEMS.getKey(piece.getItem()).getPath().contains("scuba")) {
-				fullScubaSet = false;
+
+			if (air > maxAir) {
+				player.setAirSupply(300);
 			}
-		}
 
-		maxAir = fullSnorkelSet ? 600 : 300;
-		maxAir = fullDiveSet ? 6000 : maxAir;
-		maxAir = fullScubaSet ? 12000 : maxAir;
+			Minecraft mc = Minecraft.getInstance();
 
-		if (!player.isEyeInFluidType(ForgeMod.WATER_TYPE.get()) || player.level().getBlockState(BlockPos.containing(player.getX(), player.getEyeY(), player.getZ())).is(Blocks.BUBBLE_COLUMN)) {
-			if (air >= 300 && air < maxAir && event.phase == Phase.END) {
-				player.setAirSupply(Math.min(air + 4, maxAir));
-			}
-		}
-
-		if (air > maxAir) {
-			player.setAirSupply(300);
-		}
-
-		Minecraft mc = Minecraft.getInstance();
-
-		if (player instanceof LocalPlayer && fullDiveSet && !player.getAbilities().flying) {
-			if (event.phase == TickEvent.Phase.START) {
-				unHandleWaterAcceleration(player);
-				if (player.isInWater()) {
-					if (!player.onGround()) {
-						player.setDeltaMovement(player.getDeltaMovement().x, player.getDeltaMovement().y - 0.12, player.getDeltaMovement().z);
-						player.hurtMarked = true;
-					} else {
-						if (mc.options.keyJump.isDown()) {
-							player.jumpFromGround();
+			if (player instanceof LocalPlayer && fullDiveSet && !player.getAbilities().flying) {
+				if (event.phase == TickEvent.Phase.START) {
+					unHandleWaterAcceleration(player);
+					if (player.isInWater()) {
+						if (!player.onGround()) {
+							player.setDeltaMovement(player.getDeltaMovement().x, player.getDeltaMovement().y - 0.12, player.getDeltaMovement().z);
+							player.hurtMarked = true;
+						} else {
+							if (mc.options.keyJump.isDown()) {
+								player.jumpFromGround();
+							}
 						}
 					}
 				}
-			}
-		} else if (player instanceof LocalPlayer && fullScubaSet && !player.getAbilities().flying) {
-			if (event.phase == TickEvent.Phase.START) {
-				if (player.isInWater()) {
-					player.setDeltaMovement(player.getDeltaMovement().x, 0.0F, player.getDeltaMovement().z);
-					player.hurtMarked = true;
+			} else if (player instanceof LocalPlayer && fullScubaSet && !player.getAbilities().flying) {
+				if (event.phase == TickEvent.Phase.START) {
+					if (player.isInWater()) {
+						player.setDeltaMovement(player.getDeltaMovement().x, 0.0F, player.getDeltaMovement().z);
+						player.hurtMarked = true;
+					}
 				}
 			}
 		}

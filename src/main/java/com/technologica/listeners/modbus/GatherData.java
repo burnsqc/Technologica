@@ -21,6 +21,15 @@ import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 
+/**
+ * <p>
+ * This class listens for GatherDataEvent which is fired on the mod-specific event bus.
+ * When the event is intercepted, Technologica assets and data are generated.
+ * </p>
+ * 
+ * @tl.status ORANGE
+ */
+
 public class GatherData {
 
 	public static void onGatherDataEvent(final GatherDataEvent event) {

@@ -10,10 +10,11 @@ import net.minecraftforge.client.event.RegisterDimensionSpecialEffectsEvent;
 
 /**
  * <p>
- * This class listens for the RegisterDimensionSpecialEffectsEvent which is fired on the mod-specific event bus.
+ * This class listens for RegisterDimensionSpecialEffectsEvent which is fired on the mod-specific event bus.
  * When the event is intercepted, Technologica Dimension Special Effects are registered.
- * This is currently the approved way to register Dimension Special Effects.
  * </p>
+ * 
+ * @tl.status YELLOW
  */
 
 public class RegisterDimensionSpecialEffects {

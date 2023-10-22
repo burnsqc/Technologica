@@ -10,10 +10,11 @@ import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 
 /**
  * <p>
- * This class listens for the RegisterParticleProvidersEvent which is fired on the mod-specific event bus.
+ * This class listens for RegisterParticleProvidersEvent which is fired on the mod-specific event bus.
  * When the event is intercepted, Technologica Particle Providers are registered.
- * This is currently the approved way to register Particle Providers.
  * </p>
+ * 
+ * @tl.status YELLOW
  */
 
 public class RegisterParticleProviders {

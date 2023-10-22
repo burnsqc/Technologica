@@ -15,6 +15,15 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
+/**
+ * <p>
+ * This class listens for FMLClientSetupEvent which is fired on the mod-specific event bus.
+ * When the event is intercepted, various client setup tasks are performed.
+ * </p>
+ * 
+ * @tl.status ORANGE
+ */
+
 public class ClientSetup {
 
 	public static void onFMLClientSetupEvent(final FMLClientSetupEvent event) {
@@ -76,39 +85,46 @@ public class ClientSetup {
 	}
 
 	private static void addTechnologicaWoodTypes() {
-		Sheets.addWoodType(TechnologicaWoodType.ALCHEMICAL);
-		Sheets.addWoodType(TechnologicaWoodType.APRICOT);
-		Sheets.addWoodType(TechnologicaWoodType.ASPEN);
-		Sheets.addWoodType(TechnologicaWoodType.AVOCADO);
-		Sheets.addWoodType(TechnologicaWoodType.BANANA);
-		Sheets.addWoodType(TechnologicaWoodType.BENEVOLENT);
-		Sheets.addWoodType(TechnologicaWoodType.CHERRY);
-		Sheets.addWoodType(TechnologicaWoodType.CHESTNUT);
-		Sheets.addWoodType(TechnologicaWoodType.CINNAMON);
-		Sheets.addWoodType(TechnologicaWoodType.COCONUT);
-		Sheets.addWoodType(TechnologicaWoodType.CONDUCTIVE);
-		Sheets.addWoodType(TechnologicaWoodType.EBONY);
-		Sheets.addWoodType(TechnologicaWoodType.FROSTBITTEN);
-		Sheets.addWoodType(TechnologicaWoodType.FRUITFUL);
-		Sheets.addWoodType(TechnologicaWoodType.INFERNAL);
-		Sheets.addWoodType(TechnologicaWoodType.KIWI);
-		Sheets.addWoodType(TechnologicaWoodType.LEMON);
-		Sheets.addWoodType(TechnologicaWoodType.LIME);
-		Sheets.addWoodType(TechnologicaWoodType.MAHOGANY);
-		Sheets.addWoodType(TechnologicaWoodType.MALEVOLENT);
-		Sheets.addWoodType(TechnologicaWoodType.MAPLE);
-		Sheets.addWoodType(TechnologicaWoodType.NECROTIC);
-		Sheets.addWoodType(TechnologicaWoodType.OLIVE);
-		Sheets.addWoodType(TechnologicaWoodType.ORANGE);
-		Sheets.addWoodType(TechnologicaWoodType.PEACH);
-		Sheets.addWoodType(TechnologicaWoodType.PEAR);
-		Sheets.addWoodType(TechnologicaWoodType.PLUM);
-		Sheets.addWoodType(TechnologicaWoodType.REDWOOD);
-		Sheets.addWoodType(TechnologicaWoodType.ROSEWOOD);
-		Sheets.addWoodType(TechnologicaWoodType.RUBBER);
-		Sheets.addWoodType(TechnologicaWoodType.TEAK);
-		Sheets.addWoodType(TechnologicaWoodType.WALNUT);
-		Sheets.addWoodType(TechnologicaWoodType.ZEBRAWOOD);
-		LOGGER.info("WOOD TYPES ADDED TO SHEET: 33 OF 33");
+		long required = TechnologicaWoodType.values().filter((wood) -> {
+			return Sheets.SIGN_MATERIALS.get(wood) == null;
+		}).count();
+		LOGGER.info("WOOD TYPES ADD TO SHEETS STARTING: " + required + " REQUIRED");
+		/*
+		 * Sheets.addWoodType(TechnologicaWoodType.ALCHEMICAL);
+		 * Sheets.addWoodType(TechnologicaWoodType.APRICOT);
+		 * Sheets.addWoodType(TechnologicaWoodType.ASPEN);
+		 * Sheets.addWoodType(TechnologicaWoodType.AVOCADO);
+		 * Sheets.addWoodType(TechnologicaWoodType.BANANA);
+		 * Sheets.addWoodType(TechnologicaWoodType.BENEVOLENT);
+		 * Sheets.addWoodType(TechnologicaWoodType.CHERRY);
+		 * Sheets.addWoodType(TechnologicaWoodType.CHESTNUT);
+		 * Sheets.addWoodType(TechnologicaWoodType.CINNAMON);
+		 * Sheets.addWoodType(TechnologicaWoodType.COCONUT);
+		 * Sheets.addWoodType(TechnologicaWoodType.CONDUCTIVE);
+		 * Sheets.addWoodType(TechnologicaWoodType.EBONY);
+		 * Sheets.addWoodType(TechnologicaWoodType.FROSTBITTEN);
+		 * Sheets.addWoodType(TechnologicaWoodType.FRUITFUL);
+		 * Sheets.addWoodType(TechnologicaWoodType.INFERNAL);
+		 * Sheets.addWoodType(TechnologicaWoodType.KIWI);
+		 * Sheets.addWoodType(TechnologicaWoodType.LEMON);
+		 * Sheets.addWoodType(TechnologicaWoodType.LIME);
+		 * Sheets.addWoodType(TechnologicaWoodType.MAHOGANY);
+		 * Sheets.addWoodType(TechnologicaWoodType.MALEVOLENT);
+		 * Sheets.addWoodType(TechnologicaWoodType.MAPLE);
+		 * Sheets.addWoodType(TechnologicaWoodType.NECROTIC);
+		 * Sheets.addWoodType(TechnologicaWoodType.OLIVE);
+		 * Sheets.addWoodType(TechnologicaWoodType.ORANGE);
+		 * Sheets.addWoodType(TechnologicaWoodType.PEACH);
+		 * Sheets.addWoodType(TechnologicaWoodType.PEAR);
+		 * Sheets.addWoodType(TechnologicaWoodType.PLUM);
+		 * Sheets.addWoodType(TechnologicaWoodType.REDWOOD);
+		 * Sheets.addWoodType(TechnologicaWoodType.ROSEWOOD);
+		 * Sheets.addWoodType(TechnologicaWoodType.RUBBER);
+		 * Sheets.addWoodType(TechnologicaWoodType.TEAK);
+		 * Sheets.addWoodType(TechnologicaWoodType.WALNUT);
+		 * Sheets.addWoodType(TechnologicaWoodType.ZEBRAWOOD);
+		 */
+		long completed = Sheets.SIGN_MATERIALS.size();
+		LOGGER.info("WOOD TYPES ADD TO SHEETS FINISHED: " + completed + " ADDED");
 	}
 }

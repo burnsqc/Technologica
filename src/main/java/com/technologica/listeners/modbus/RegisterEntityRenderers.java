@@ -68,10 +68,11 @@ import net.minecraftforge.client.event.EntityRenderersEvent.RegisterRenderers;
 
 /**
  * <p>
- * This class listens for the RegisterRenderersEvent which is fired on the mod-specific event bus.
+ * This class listens for RegisterRenderersEvent which is fired on the mod-specific event bus.
  * When the event is intercepted, Technologica Entity Renderers and Block Entity Renderers are registered.
- * This is currently the approved way to register Entity Renderers and Block Entity Renderers.
  * </p>
+ * 
+ * @tl.status YELLOW
  */
 
 public class RegisterEntityRenderers {

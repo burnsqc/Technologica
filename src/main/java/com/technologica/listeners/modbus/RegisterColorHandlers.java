@@ -8,10 +8,11 @@ import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 
 /**
  * <p>
- * This class listens for the RegisterColorHandlersEvent.Block which is fired on the mod-specific event bus.
+ * This class listens for RegisterColorHandlersEvent.Block which is fired on the mod-specific event bus.
  * When the event is intercepted, Technologica Block Color Handlers are registered.
- * This is currently the approved way to register Block Color Handlers.
  * </p>
+ * 
+ * @tl.status YELLOW
  */
 
 public class RegisterColorHandlers {

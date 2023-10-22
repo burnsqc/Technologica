@@ -3,8 +3,10 @@ package com.technologica;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.technologica.capabilities.TechnologicaCapabilities;
 import com.technologica.client.model.geom.TechnologicaLayerDefinitions;
 import com.technologica.core.particles.TechnologicaParticleTypes;
+import com.technologica.listeners.forgebus.AttachCapabilities;
 import com.technologica.listeners.forgebus.EntityJoinLevelEventListener;
 import com.technologica.listeners.forgebus.HarvestCheckListener;
 import com.technologica.listeners.forgebus.ItemFishedEventListener;
@@ -24,14 +26,14 @@ import com.technologica.listeners.forgebus.WandererTradesEventListener;
 import com.technologica.listeners.lootmodifiers.TechnologicaLootModifiers;
 import com.technologica.listeners.modbus.ClientSetup;
 import com.technologica.listeners.modbus.CommonSetup;
+import com.technologica.listeners.modbus.CreateEntityAttributes;
 import com.technologica.listeners.modbus.GatherData;
+import com.technologica.listeners.modbus.Register;
 import com.technologica.listeners.modbus.RegisterColorHandlers;
 import com.technologica.listeners.modbus.RegisterDimensionSpecialEffects;
-import com.technologica.listeners.modbus.RegisterEntityAttributes;
 import com.technologica.listeners.modbus.RegisterEntityRenderers;
 import com.technologica.listeners.modbus.RegisterModels;
 import com.technologica.listeners.modbus.RegisterParticleProviders;
-import com.technologica.listeners.modbus.TechnologicaCreativeModeTabs2;
 import com.technologica.setup.Config;
 import com.technologica.util.DisablePlankConditionFactory;
 import com.technologica.util.EnablePlankConditionFactory;
@@ -104,8 +106,8 @@ public class Technologica {
 	}
 
 	private void addModEventBusListeners() {
-		MOD_EVENT_BUS.addListener(RegisterEntityAttributes::onEntityAttributeCreationEvent);
-		MOD_EVENT_BUS.addListener(TechnologicaCreativeModeTabs2::onRegisterCreativeModeTabs);
+		MOD_EVENT_BUS.addListener(Register::onRegister);
+		MOD_EVENT_BUS.addListener(CreateEntityAttributes::onEntityAttributeCreationEvent);
 		MOD_EVENT_BUS.addListener(RegisterColorHandlers::onRegisterColorHandlersBlock);
 		MOD_EVENT_BUS.addListener(RegisterParticleProviders::onRegisterParticleProvidersEvent);
 		MOD_EVENT_BUS.addListener(TechnologicaLayerDefinitions::onRegisterLayerDefinitions);
@@ -114,10 +116,12 @@ public class Technologica {
 		MOD_EVENT_BUS.addListener(CommonSetup::onFMLCommonSetupEvent);
 		MOD_EVENT_BUS.addListener(ClientSetup::onFMLClientSetupEvent);
 		MOD_EVENT_BUS.addListener(RegisterModels::onRegisterAdditional);
+		MOD_EVENT_BUS.addListener(TechnologicaCapabilities::register);
 		MOD_EVENT_BUS.addListener(GatherData::onGatherDataEvent);
 	}
 
 	private void addForgeEventBusListeners() {
+		MinecraftForge.EVENT_BUS.register(new AttachCapabilities());
 		MinecraftForge.EVENT_BUS.register(new EntityJoinLevelEventListener());
 		MinecraftForge.EVENT_BUS.register(new HarvestCheckListener());
 		MinecraftForge.EVENT_BUS.register(new ItemFishedEventListener());

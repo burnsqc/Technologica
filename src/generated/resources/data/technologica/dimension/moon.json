@@ -18,7 +18,7 @@
           }
         },
         {
-          "biome": "technologica:silent_expanses",
+          "biome": "technologica:crater_fields",
           "parameters": {
             "continentalness": 0.0,
             "depth": 0.0,
@@ -30,7 +30,7 @@
           }
         },
         {
-          "biome": "technologica:silent_expanses",
+          "biome": "technologica:shattered_corridors",
           "parameters": {
             "continentalness": 0.0,
             "depth": 0.0,

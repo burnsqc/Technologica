@@ -21,6 +21,15 @@ import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
+/**
+ * <p>
+ * This class listens for FMLCommonSetupEvent which is fired on the mod-specific event bus.
+ * When the event is intercepted, various common setup tasks are performed.
+ * </p>
+ * 
+ * @tl.status ORANGE
+ */
+
 public class CommonSetup {
 
 	public static void onFMLCommonSetupEvent(final FMLCommonSetupEvent event) {
@@ -45,39 +54,52 @@ public class CommonSetup {
 	}
 
 	private static void registerWoodTypes() {
-		WoodType.register(TechnologicaWoodType.ALCHEMICAL);
-		WoodType.register(TechnologicaWoodType.APRICOT);
-		WoodType.register(TechnologicaWoodType.ASPEN);
-		WoodType.register(TechnologicaWoodType.AVOCADO);
-		WoodType.register(TechnologicaWoodType.BANANA);
-		WoodType.register(TechnologicaWoodType.BENEVOLENT);
-		WoodType.register(TechnologicaWoodType.CHERRY);
-		WoodType.register(TechnologicaWoodType.CHESTNUT);
-		WoodType.register(TechnologicaWoodType.CINNAMON);
-		WoodType.register(TechnologicaWoodType.COCONUT);
-		WoodType.register(TechnologicaWoodType.CONDUCTIVE);
-		WoodType.register(TechnologicaWoodType.EBONY);
-		WoodType.register(TechnologicaWoodType.FROSTBITTEN);
-		WoodType.register(TechnologicaWoodType.FRUITFUL);
-		WoodType.register(TechnologicaWoodType.INFERNAL);
-		WoodType.register(TechnologicaWoodType.KIWI);
-		WoodType.register(TechnologicaWoodType.LEMON);
-		WoodType.register(TechnologicaWoodType.LIME);
-		WoodType.register(TechnologicaWoodType.MAHOGANY);
-		WoodType.register(TechnologicaWoodType.MALEVOLENT);
-		WoodType.register(TechnologicaWoodType.MAPLE);
-		WoodType.register(TechnologicaWoodType.NECROTIC);
-		WoodType.register(TechnologicaWoodType.OLIVE);
-		WoodType.register(TechnologicaWoodType.ORANGE);
-		WoodType.register(TechnologicaWoodType.PEACH);
-		WoodType.register(TechnologicaWoodType.PEAR);
-		WoodType.register(TechnologicaWoodType.PLUM);
-		WoodType.register(TechnologicaWoodType.REDWOOD);
-		WoodType.register(TechnologicaWoodType.ROSEWOOD);
-		WoodType.register(TechnologicaWoodType.RUBBER);
-		WoodType.register(TechnologicaWoodType.TEAK);
-		WoodType.register(TechnologicaWoodType.WALNUT);
-		WoodType.register(TechnologicaWoodType.ZEBRAWOOD);
+		long existing = WoodType.values().filter((wood) -> {
+			return wood.name().contains("technologica");
+		}).count();
+		long required = TechnologicaWoodType.values().count() - WoodType.values().filter((wood) -> {
+			return wood.name().contains("technologica");
+		}).count();
+		LOGGER.info("WOOD TYPES REGISTRATION STARTING: " + required + " REQUIRED");
+		/*
+		 * WoodType.register(TechnologicaWoodType.ALCHEMICAL);
+		 * WoodType.register(TechnologicaWoodType.APRICOT);
+		 * WoodType.register(TechnologicaWoodType.ASPEN);
+		 * WoodType.register(TechnologicaWoodType.AVOCADO);
+		 * WoodType.register(TechnologicaWoodType.BANANA);
+		 * WoodType.register(TechnologicaWoodType.BENEVOLENT);
+		 * WoodType.register(TechnologicaWoodType.CHERRY);
+		 * WoodType.register(TechnologicaWoodType.CHESTNUT);
+		 * WoodType.register(TechnologicaWoodType.CINNAMON);
+		 * WoodType.register(TechnologicaWoodType.COCONUT);
+		 * WoodType.register(TechnologicaWoodType.CONDUCTIVE);
+		 * WoodType.register(TechnologicaWoodType.EBONY);
+		 * WoodType.register(TechnologicaWoodType.FROSTBITTEN);
+		 * WoodType.register(TechnologicaWoodType.FRUITFUL);
+		 * WoodType.register(TechnologicaWoodType.INFERNAL);
+		 * WoodType.register(TechnologicaWoodType.KIWI);
+		 * WoodType.register(TechnologicaWoodType.LEMON);
+		 * WoodType.register(TechnologicaWoodType.LIME);
+		 * WoodType.register(TechnologicaWoodType.MAHOGANY);
+		 * WoodType.register(TechnologicaWoodType.MALEVOLENT);
+		 * WoodType.register(TechnologicaWoodType.MAPLE);
+		 * WoodType.register(TechnologicaWoodType.NECROTIC);
+		 * WoodType.register(TechnologicaWoodType.OLIVE);
+		 * WoodType.register(TechnologicaWoodType.ORANGE);
+		 * WoodType.register(TechnologicaWoodType.PEACH);
+		 * WoodType.register(TechnologicaWoodType.PEAR);
+		 * WoodType.register(TechnologicaWoodType.PLUM);
+		 * WoodType.register(TechnologicaWoodType.REDWOOD);
+		 * WoodType.register(TechnologicaWoodType.ROSEWOOD);
+		 * WoodType.register(TechnologicaWoodType.RUBBER);
+		 * WoodType.register(TechnologicaWoodType.TEAK);
+		 * WoodType.register(TechnologicaWoodType.WALNUT);
+		 * WoodType.register(TechnologicaWoodType.ZEBRAWOOD);
+		 */
+		long completed = WoodType.values().filter((wood) -> {
+			return wood.name().contains("technologica");
+		}).count();
+
 		LOGGER.info("WOOD TYPES REGISTERED: 33 OF 33");
 	}
 
