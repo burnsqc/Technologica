@@ -42,6 +42,7 @@ import com.technologica.client.model.StingrayModel;
 import com.technologica.client.model.TurkeyModel;
 import com.technologica.client.model.VultureModel;
 import com.technologica.client.model.WalrusModel;
+import com.technologica.client.model.armor.DivingHelmetModel;
 import com.technologica.client.model.armor.MiningHelmetModel;
 import com.technologica.world.entity.vehicle.VanillaBoat;
 
@@ -112,6 +113,7 @@ public class TechnologicaLayerDefinitions {
 		event.registerLayerDefinition(TechnologicaModelLayers.SPEAR_GUN, SpearGunModel::createLayer);
 
 		event.registerLayerDefinition(TechnologicaModelLayers.MINING_HELMET, () -> LayerDefinition.create(MiningHelmetModel.createMesh(LayerDefinitions.OUTER_ARMOR_DEFORMATION, 0.0F), 64, 32));
+		event.registerLayerDefinition(TechnologicaModelLayers.DIVING_HELMET, () -> LayerDefinition.create(DivingHelmetModel.createMesh(LayerDefinitions.OUTER_ARMOR_DEFORMATION, 0.0F), 64, 32));
 
 		for (VanillaBoat.Type boat$type : VanillaBoat.Type.values()) {
 			event.registerLayerDefinition(TechnologicaModelLayers.createBoatModelName(boat$type), () -> BoatModel.createBodyModel());

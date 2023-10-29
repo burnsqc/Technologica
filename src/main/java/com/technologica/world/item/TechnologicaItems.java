@@ -390,6 +390,7 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> OGANESSON_INGOT = ITEMS.register("oganesson_ingot", () -> new RadioactiveItem(new Item.Properties(), "oganesson_ingot"));
 
 	public static final RegistryObject<Item> BRONZE_INGOT = ITEMS.register("bronze_ingot", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> BRASS_INGOT = ITEMS.register("brass_ingot", () -> new Item(new Item.Properties()));
 
 	public static final RegistryObject<Item> LITHIUM_CLAY_BALL = ITEMS.register("lithium_clay_ball", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> BORON_CHUNK = ITEMS.register("boron_chunk", () -> new Item(new Item.Properties()));
@@ -1204,6 +1205,11 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> BRONZE_LEGGINGS = ITEMS.register("bronze_leggings", () -> new ArmorItem(TechnologicaArmorMaterial.BRONZE, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
 	public static final RegistryObject<Item> BRONZE_BOOTS = ITEMS.register("bronze_boots", () -> new ArmorItem(TechnologicaArmorMaterial.BRONZE, ArmorItem.Type.BOOTS, (new Item.Properties())));
 
+	public static final RegistryObject<Item> BRASS_HELMET = ITEMS.register("brass_helmet", () -> new ArmorItem(TechnologicaArmorMaterial.BRASS, ArmorItem.Type.HELMET, (new Item.Properties())));
+	public static final RegistryObject<Item> BRASS_CHESTPLATE = ITEMS.register("brass_chestplate", () -> new ArmorItem(TechnologicaArmorMaterial.BRASS, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
+	public static final RegistryObject<Item> BRASS_LEGGINGS = ITEMS.register("brass_leggings", () -> new ArmorItem(TechnologicaArmorMaterial.BRASS, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
+	public static final RegistryObject<Item> BRASS_BOOTS = ITEMS.register("brass_boots", () -> new ArmorItem(TechnologicaArmorMaterial.BRASS, ArmorItem.Type.BOOTS, (new Item.Properties())));
+
 	public static final RegistryObject<Item> COCONUT_BAZOOKA_ITEM = ITEMS.register("coconut_bazooka", () -> new CoconutBazookaItem((new Item.Properties()).durability(384)));
 	public static final RegistryObject<Item> DODGEBALL_ITEM = ITEMS.register("dodgeball", () -> new DodgeballItem((new Item.Properties()).stacksTo(1)));
 	public static final RegistryObject<Item> SPEAR_GUN_ITEM = ITEMS.register("spear_gun", () -> new SpearGunItem((new Item.Properties()).durability(384)));
@@ -1219,7 +1225,7 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> SNORKEL_PANTS = ITEMS.register("snorkel_pants", () -> new ArmorItem(TechnologicaArmorMaterial.SNORKEL, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
 	public static final RegistryObject<Item> SNORKEL_BOOTS = ITEMS.register("snorkel_boots", () -> new ArmorItem(TechnologicaArmorMaterial.SNORKEL, ArmorItem.Type.BOOTS, (new Item.Properties())));
 
-	public static final RegistryObject<Item> DIVE_HELMET = ITEMS.register("dive_helmet", () -> new ArmorItem(TechnologicaArmorMaterial.DIVE, ArmorItem.Type.HELMET, (new Item.Properties())));
+	public static final RegistryObject<Item> DIVE_HELMET = ITEMS.register("dive_helmet", () -> new DivingHelmetItem(TechnologicaArmorMaterial.DIVE, ArmorItem.Type.HELMET, (new Item.Properties())));
 	public static final RegistryObject<Item> DIVE_SUIT = ITEMS.register("dive_suit", () -> new ArmorItem(TechnologicaArmorMaterial.DIVE, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
 	public static final RegistryObject<Item> DIVE_PANTS = ITEMS.register("dive_pants", () -> new ArmorItem(TechnologicaArmorMaterial.DIVE, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
 	public static final RegistryObject<Item> DIVE_BOOTS = ITEMS.register("dive_boots", () -> new ArmorItem(TechnologicaArmorMaterial.DIVE, ArmorItem.Type.BOOTS, (new Item.Properties())));

@@ -25,6 +25,15 @@ public enum TechnologicaArmorMaterial implements ArmorMaterial {
 		return Ingredient.of(TechnologicaItems.BRONZE_INGOT.get());
 	}),
 
+	BRASS("brass", 15, Util.make(new EnumMap<>(ArmorItem.Type.class), (p_266654_) -> {
+		p_266654_.put(ArmorItem.Type.BOOTS, 2);
+		p_266654_.put(ArmorItem.Type.LEGGINGS, 5);
+		p_266654_.put(ArmorItem.Type.CHESTPLATE, 6);
+		p_266654_.put(ArmorItem.Type.HELMET, 2);
+	}), 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+		return Ingredient.of(TechnologicaItems.BRASS_INGOT.get());
+	}),
+
 	SPACE("space", 15, Util.make(new EnumMap<>(ArmorItem.Type.class), (p_266654_) -> {
 		p_266654_.put(ArmorItem.Type.BOOTS, 2);
 		p_266654_.put(ArmorItem.Type.LEGGINGS, 5);

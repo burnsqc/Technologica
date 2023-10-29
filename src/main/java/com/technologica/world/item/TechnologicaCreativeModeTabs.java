@@ -342,6 +342,7 @@ public class TechnologicaCreativeModeTabs {
 		p_260158_.accept(TechnologicaItems.TENNESSINE_INGOT.get());
 		p_260158_.accept(TechnologicaItems.OGANESSON_INGOT.get());
 		p_260158_.accept(TechnologicaItems.BRONZE_INGOT.get());
+		p_260158_.accept(TechnologicaItems.BRASS_INGOT.get());
 		p_260158_.accept(TechnologicaItems.LITHIUM_CLAY_BALL.get());
 		p_260158_.accept(TechnologicaItems.BORON_CHUNK.get());
 		p_260158_.accept(TechnologicaItems.CARBON_CHUNK.get());
@@ -1117,6 +1118,10 @@ public class TechnologicaCreativeModeTabs {
 		p_260158_.accept(TechnologicaItems.BRONZE_CHESTPLATE.get());
 		p_260158_.accept(TechnologicaItems.BRONZE_LEGGINGS.get());
 		p_260158_.accept(TechnologicaItems.BRONZE_BOOTS.get());
+		p_260158_.accept(TechnologicaItems.BRASS_HELMET.get());
+		p_260158_.accept(TechnologicaItems.BRASS_CHESTPLATE.get());
+		p_260158_.accept(TechnologicaItems.BRASS_LEGGINGS.get());
+		p_260158_.accept(TechnologicaItems.BRASS_BOOTS.get());
 		p_260158_.accept(TechnologicaItems.MINING_HELMET.get());
 		p_260158_.accept(TechnologicaItems.SNORKEL_HELMET.get());
 		p_260158_.accept(TechnologicaItems.SNORKEL_SUIT.get());

@@ -228,6 +228,7 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		radioactiveItem(TechnologicaItems.TENNESSINE_INGOT.get());
 		radioactiveItem(TechnologicaItems.OGANESSON_INGOT.get());
 		simpleItem(TechnologicaItems.BRONZE_INGOT.get());
+		simpleItem(TechnologicaItems.BRASS_INGOT.get());
 
 		simpleItem(TechnologicaItems.LITHIUM_CLAY_BALL.get());
 		simpleItem(TechnologicaItems.BORON_CHUNK.get());
@@ -429,6 +430,11 @@ public class TechnologicaItemModelProvider extends ItemModelProvider {
 		simpleItem(TechnologicaItems.BRONZE_CHESTPLATE.get());
 		simpleItem(TechnologicaItems.BRONZE_LEGGINGS.get());
 		simpleItem(TechnologicaItems.BRONZE_BOOTS.get());
+
+		simpleItem(TechnologicaItems.BRASS_HELMET.get());
+		simpleItem(TechnologicaItems.BRASS_CHESTPLATE.get());
+		simpleItem(TechnologicaItems.BRASS_LEGGINGS.get());
+		simpleItem(TechnologicaItems.BRASS_BOOTS.get());
 
 		simpleItem(TechnologicaItems.SPACE_HELMET.get());
 		simpleItem(TechnologicaItems.SPACE_SUIT.get());
