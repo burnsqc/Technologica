@@ -49,7 +49,7 @@ public class RenderGuiOverlayEventListener {
 				RenderSystem.disableBlend();
 				minecraft.getProfiler().pop();
 
-			} else if (newMaxAir == 6000) {
+			} else if (newMaxAir >= 3000) {
 				event.setCanceled(true);
 				GuiGraphics guiGraphics = event.getGuiGraphics();
 				minecraft.getProfiler().push("air");
@@ -58,8 +58,8 @@ public class RenderGuiOverlayEventListener {
 				int left = minecraft.getWindow().getGuiScaledWidth() / 2 + 91;
 				int top = minecraft.getWindow().getGuiScaledHeight() - 49;
 				int air = player.getAirSupply();
-				if (player.isEyeInFluidType(ForgeMod.WATER_TYPE.get()) || air < 6000) {
-					float remaining = air / 6000.0F * 81;
+				if (player.isEyeInFluidType(ForgeMod.WATER_TYPE.get()) || air < newMaxAir) {
+					float remaining = air / (float) newMaxAir * 81;
 					guiGraphics.blit(GUI_ICONS_LOCATION, left - 81, top, -90, 0, 9, (int) (remaining), 9, 256, 256);
 					guiGraphics.blit(GUI_ICONS_LOCATION, left - 81, top, -90, 0, 0, 81, 9, 256, 256);
 				}
@@ -67,26 +67,6 @@ public class RenderGuiOverlayEventListener {
 				minecraft.getProfiler().pop();
 
 			}
-
-			/*
-			 * else if (fullScubaSet) {
-			 * minecraft.getProfiler().push("air");
-			 * bind(minecraft, GUI_ICONS_LOCATION);
-			 * RenderSystem.enableBlend();
-			 * int left = minecraft.getWindow().getGuiScaledWidth() / 2 + 91;
-			 * int top = minecraft.getWindow().getGuiScaledHeight() - 49;
-			 * 
-			 * int air = player.getAirSupply();
-			 * 
-			 * if (player.isEyeInFluidType(ForgeMod.WATER_TYPE.get()) || air < 12000) {
-			 * float remaining = air / 12000.0F * 81;
-			 * guiGraphics.blit(GUI_ICONS_LOCATION, left - 81, top, -90, 0, 9, (int) (remaining), 9, 256, 256);
-			 * guiGraphics.blit(GUI_ICONS_LOCATION, left - 81, top, -90, 0, 0, 81, 9, 256, 256);
-			 * }
-			 * 
-			 * RenderSystem.disableBlend();
-			 * minecraft.getProfiler().pop();
-			 */
 		}
 	}
 

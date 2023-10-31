@@ -1,24 +1,34 @@
 package com.technologica.listeners.forgebus;
 
+import com.technologica.setup.Config;
+import com.technologica.util.InventoryUtil;
 import com.technologica.world.item.TechnologicaItems;
 
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.player.ItemFishedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
+/**
+ * <p>
+ * This class listens for ItemFishedEvent which is fired on the Forge event bus.
+ * When the event is intercepted, the Naughty Nautical Nanners feature is invoked.
+ * </p>
+ * 
+ * @tl.status GREEN
+ */
+
 public class ItemFishedEventListener {
 
+	/**
+	 * <p>
+	 * Effectively disabled fishing by canceling this event if the player has a banana in their inventory and this feature is enabled in the common config.
+	 * </p>
+	 * 
+	 * @param event ItemFishedEvent
+	 */
 	@SubscribeEvent
-	public void onItemFishedEvent(ItemFishedEvent event) {
-		Player player = event.getEntity();
-		boolean cancel = false;
-		for (int i = 0; i < player.getInventory().getContainerSize(); ++i) {
-			ItemStack testStack = player.getInventory().getItem(i);
-			if (testStack.getItem() == TechnologicaItems.BANANA.get()) {
-				cancel = true;
-			}
+	public void naughtyNauticalNanners(final ItemFishedEvent event) {
+		if (Config.naughty_nautical_nanners.get()) {
+			event.setCanceled(InventoryUtil.playerHas(event.getEntity(), TechnologicaItems.BANANA.get()));
 		}
-		event.setCanceled(cancel);
 	}
 }

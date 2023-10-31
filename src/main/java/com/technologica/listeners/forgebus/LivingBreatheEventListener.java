@@ -24,7 +24,7 @@ public class LivingBreatheEventListener {
 						event.setCanRefillAir(false);
 					}
 				}
-			} else if (newMaxAir == 6000) {
+			} else if (newMaxAir >= 3000) {
 				if (event.canBreathe()) {
 					if (event.canRefillAir()) {
 						event.setRefillAirAmount(Math.min(player.getAirSupply() + 4, newMaxAir) - player.getAirSupply());
