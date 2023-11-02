@@ -1,6 +1,5 @@
 package com.technologica.world.item;
 
-import static com.technologica.Technologica.LOGGER;
 import static com.technologica.Technologica.MODID;
 
 import com.technologica.world.entity.TechnologicaEntityType;
@@ -35,9 +34,9 @@ import net.minecraftforge.registries.RegistryObject;
 public class TechnologicaItems {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.Keys.ITEMS, MODID);
 
-	public static void init() {
+	public static int init() {
 		ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
-		LOGGER.info("ITEMS INITIALIZED: " + ITEMS.getEntries().size() + " OF 993");
+		return ITEMS.getEntries().size();
 	}
 
 	/*

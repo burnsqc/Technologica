@@ -1,6 +1,5 @@
 package com.technologica.world.item;
 
-import static com.technologica.Technologica.LOGGER;
 import static com.technologica.Technologica.MODID;
 
 import com.technologica.Technologica;
@@ -17,9 +16,9 @@ import net.minecraftforge.registries.RegistryObject;
 public class TechnologicaCreativeModeTabs {
 	public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
-	public static void init() {
+	public static int init() {
 		CREATIVE_MODE_TABS.register(FMLJavaModLoadingContext.get().getModEventBus());
-		LOGGER.info("CREATIVE MODE TABS INITIALIZED: " + CREATIVE_MODE_TABS.getEntries().size() + " OF 9");
+		return CREATIVE_MODE_TABS.getEntries().size();
 	}
 
 	public static final RegistryObject<CreativeModeTab> FLORA = CREATIVE_MODE_TABS.register("flora", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.ASPEN_SAPLING_ITEM.get())).withBackgroundLocation(new ResourceLocation(Technologica.MODID, "textures/gui/container/creative_inventory/tab_flora.png")).withLabelColor(0).title(Component.literal("Flora")).displayItems((p_270425_, p_260158_) -> {

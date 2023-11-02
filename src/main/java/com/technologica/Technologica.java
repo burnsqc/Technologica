@@ -66,48 +66,88 @@ public class Technologica {
 	public static final Logger LOGGER = LogManager.getLogger();
 	private static final IEventBus MOD_EVENT_BUS = FMLJavaModLoadingContext.get().getModEventBus();
 
+	public static int soundEvents;
+	public static int fluids;
+	public static int blocks;
+	public static int mobEffects;
+	public static int particleTypes;
+	public static int items;
+	public static int entityTypes;
+	public static int blockEntityTypes;
+	public static int menuTypes;
+	public static int recipeTypes;
+	public static int recipeSerializers;
+	public static int features;
+	public static int foliagePlacerTypes;
+	public static int fluidTypes;
+	public static int globalLootModifierTypes;
+
+	public static int creativeModeTabs;
+
 	public Technologica() {
 		ModLoadingContext.get().registerConfig(Type.COMMON, Config.SPEC, "technologica-common.toml");
 
-		TechnologicaBlocks.init();
-		TechnologicaFluids.init();
-		TechnologicaFluids.init2();
-		TechnologicaItems.init();
-		TechnologicaSoundEvents.init();
-		TechnologicaEntityType.init();
-		TechnologicaParticleTypes.init();
-		TechnologicaMenuType.init();
-		TechnologicaBlockEntityType.init();
-		TechnologicaRecipeType.init();
-		TechnologicaRecipeSerializer.init();
-		TechnologicaFeature.init();
-		TechnologicaFoliagePlacers.init();
-		TechnologicaLootModifiers.init();
-		TechnologicaMobEffects.init();
-		TechnologicaCreativeModeTabs.init();
+		init();
 
 		addModEventBusListeners();
 		addForgeEventBusListeners();
-		// FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(Block.class, RegistrationListener::onRegisterBlocks);
-		// FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(Item.class, RegistrationListener::onRegisterItems);
-		// FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(BlockEntityType.class, RegistrationListener::onRegisterTileEntities);
-		// FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(EntityType.class, RegistrationListener::onRegisterEntities);
-		// FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(Fluid.class, RegistrationListener::onRegisterFluids);
-		// FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(MenuType.class, RegistrationListener::onRegisterContainers);
-		// FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(ParticleType.class, RegistrationListener::onRegisterParticles);
-		// FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(RecipeSerializer.class, RegistrationListener::onRegisterRecipeSerializers);
-		// FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(SoundEvent.class, RegistrationListener::onRegisterSoundEvents);
-		// FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(Biome.class, RegistrationListener::onRegisterBiomes);
-		// FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(Feature.class, RegistrationListener::onRegisterFeatures);
-		// FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(FoliagePlacerType.class, RegistrationListener::onRegisterFoliagePlacers);
 
 		CraftingHelper.register(DisablePlankConditionFactory.Serializer.INSTANCE);
 		CraftingHelper.register(EnablePlankConditionFactory.Serializer.INSTANCE);
+	}
 
+	private void init() {
+		soundEvents = TechnologicaSoundEvents.init();
+		LOGGER.info("INITIALIZATION - SOUND EVENTS - " + soundEvents);
+
+		fluids = TechnologicaFluids.init2();
+		LOGGER.info("INITIALIZATION - FLUIDS - " + fluids);
+
+		blocks = TechnologicaBlocks.init();
+		LOGGER.info("INITIALIZATION - BLOCKS - " + blocks);
+
+		mobEffects = TechnologicaMobEffects.init();
+		LOGGER.info("INITIALIZATION - MOB EFFECTS - " + mobEffects);
+
+		particleTypes = TechnologicaParticleTypes.init();
+		LOGGER.info("INITIALIZATION - PARTICLE TYPES - " + particleTypes);
+
+		items = TechnologicaItems.init();
+		LOGGER.info("INITIALIZATION - ITEMS - " + items);
+
+		entityTypes = TechnologicaEntityType.init();
+		LOGGER.info("INITIALIZATION - ENTITY TYPES - " + entityTypes);
+
+		blockEntityTypes = TechnologicaBlockEntityType.init();
+		LOGGER.info("INITIALIZATION - BLOCK ENTITY TYPES - " + blockEntityTypes);
+
+		menuTypes = TechnologicaMenuType.init();
+		LOGGER.info("INITIALIZATION - MENU TYPES - " + menuTypes);
+
+		recipeTypes = TechnologicaRecipeType.init();
+		LOGGER.info("INITIALIZATION - RECIPE TYPES - " + recipeTypes);
+
+		recipeSerializers = TechnologicaRecipeSerializer.init();
+		LOGGER.info("INITIALIZATION - RECIPE SERIALIZERS - " + recipeSerializers);
+
+		features = TechnologicaFeature.init();
+		LOGGER.info("INITIALIZATION - FEATURES - " + features);
+
+		foliagePlacerTypes = TechnologicaFoliagePlacers.init();
+		LOGGER.info("INITIALIZATION - FOLIAGE PLACERS - " + foliagePlacerTypes);
+
+		creativeModeTabs = TechnologicaCreativeModeTabs.init();
+		LOGGER.info("INITIALIZATION - CREATIVE MODE TABS - " + creativeModeTabs);
+
+		fluidTypes = TechnologicaFluids.init();
+		LOGGER.info("INITIALIZATION - FLUID TYPES - " + fluidTypes);
+
+		globalLootModifierTypes = TechnologicaLootModifiers.init();
+		LOGGER.info("INITIALIZATION - LOOT MODIFIERS - " + globalLootModifierTypes);
 	}
 
 	private void addModEventBusListeners() {
-		MOD_EVENT_BUS.addListener(Register::onRegister);
+		MOD_EVENT_BUS.addListener(Register::onRegisterEvent);
 		MOD_EVENT_BUS.addListener(CreateEntityAttributes::onEntityAttributeCreationEvent);
 		MOD_EVENT_BUS.addListener(RegisterColorHandlers::onRegisterColorHandlersBlock);
 		MOD_EVENT_BUS.addListener(RegisterParticleProviders::onRegisterParticleProvidersEvent);

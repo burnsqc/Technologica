@@ -1,6 +1,5 @@
 package com.technologica.world.level.block;
 
-import static com.technologica.Technologica.LOGGER;
 import static com.technologica.Technologica.MODID;
 
 import com.technologica.world.item.TechnologicaItems;
@@ -69,9 +68,9 @@ import net.minecraftforge.registries.RegistryObject;
 public class TechnologicaBlocks {
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.Keys.BLOCKS, MODID);
 
-	public static void init() {
+	public static int init() {
 		BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-		LOGGER.info("BLOCKS INITIALIZED: " + BLOCKS.getEntries().size() + " OF 827");
+		return BLOCKS.getEntries().size();
 	}
 
 	/*

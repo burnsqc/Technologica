@@ -1,6 +1,5 @@
 package com.technologica.world.level.material;
 
-import static com.technologica.Technologica.LOGGER;
 import static com.technologica.Technologica.MODID;
 
 import net.minecraft.world.level.material.FlowingFluid;
@@ -15,14 +14,14 @@ public final class TechnologicaFluids {
 	public static final DeferredRegister<FluidType> FLUID_TYPES = DeferredRegister.create(ForgeRegistries.Keys.FLUID_TYPES, MODID);
 	public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.Keys.FLUIDS, MODID);
 
-	public static void init() {
+	public static int init() {
 		FLUID_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
-		LOGGER.info("FLUID TYPES INITIALIZED: " + FLUID_TYPES.getEntries().size() + " OF 1");
+		return FLUID_TYPES.getEntries().size();
 	}
 
-	public static void init2() {
+	public static int init2() {
 		FLUIDS.register(FMLJavaModLoadingContext.get().getModEventBus());
-		LOGGER.info("FLUIDS INITIALIZED: " + FLUIDS.getEntries().size() + " OF 42");
+		return FLUIDS.getEntries().size();
 	}
 
 	public static final RegistryObject<FlowingFluid> FLOWING_HYDROGEN = FLUIDS.register("flowing_hydrogen", HydrogenFluid.Flowing::new);

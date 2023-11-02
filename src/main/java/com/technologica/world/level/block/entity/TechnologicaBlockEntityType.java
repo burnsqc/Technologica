@@ -1,6 +1,5 @@
 package com.technologica.world.level.block.entity;
 
-import static com.technologica.Technologica.LOGGER;
 import static com.technologica.Technologica.MODID;
 
 import com.technologica.world.level.block.TechnologicaBlocks;
@@ -14,9 +13,9 @@ import net.minecraftforge.registries.RegistryObject;
 public class TechnologicaBlockEntityType {
 	private static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.Keys.BLOCK_ENTITY_TYPES, MODID);
 
-	public static void init() {
+	public static int init() {
 		BLOCK_ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
-		LOGGER.info("BLOCK ENTITY TYPES INITIALIZED: " + BLOCK_ENTITY_TYPES.getEntries().size() + " OF 11");
+		return +BLOCK_ENTITY_TYPES.getEntries().size();
 	}
 
 	public static final RegistryObject<BlockEntityType<VanillaSignBlockEntity>> VANILLA_SIGN = BLOCK_ENTITY_TYPES.register("mod_sign", () -> BlockEntityType.Builder.of(VanillaSignBlockEntity::new, TechnologicaBlocks.APRICOT_SIGN.get(), TechnologicaBlocks.ASPEN_SIGN.get(), TechnologicaBlocks.AVOCADO_SIGN.get(), TechnologicaBlocks.BANANA_SIGN.get(), TechnologicaBlocks.CHERRY_SIGN.get(), TechnologicaBlocks.CHESTNUT_SIGN.get(), TechnologicaBlocks.CINNAMON_SIGN.get(), TechnologicaBlocks.COCONUT_SIGN.get(), TechnologicaBlocks.EBONY_SIGN.get(), TechnologicaBlocks.KIWI_SIGN.get(), TechnologicaBlocks.LEMON_SIGN.get(), TechnologicaBlocks.LIME_SIGN.get(), TechnologicaBlocks.MAHOGANY_SIGN.get(), TechnologicaBlocks.MAPLE_SIGN.get(), TechnologicaBlocks.OLIVE_SIGN.get(), TechnologicaBlocks.ORANGE_SIGN.get(), TechnologicaBlocks.PEACH_SIGN.get(), TechnologicaBlocks.PEAR_SIGN.get(), TechnologicaBlocks.PLUM_SIGN.get(), TechnologicaBlocks.REDWOOD_SIGN.get(), TechnologicaBlocks.ROSEWOOD_SIGN.get(), TechnologicaBlocks.RUBBER_SIGN.get(), TechnologicaBlocks.TEAK_SIGN.get(), TechnologicaBlocks.WALNUT_SIGN.get(), TechnologicaBlocks.ZEBRAWOOD_SIGN.get(), TechnologicaBlocks.ALCHEMICAL_SIGN.get(), TechnologicaBlocks.BENEVOLENT_SIGN.get(), TechnologicaBlocks.CONDUCTIVE_SIGN.get(), TechnologicaBlocks.FRUITFUL_SIGN.get(), TechnologicaBlocks.INFERNAL_SIGN.get(), TechnologicaBlocks.MALEVOLENT_SIGN.get(), TechnologicaBlocks.APRICOT_WALL_SIGN.get(), TechnologicaBlocks.ASPEN_WALL_SIGN.get(), TechnologicaBlocks.AVOCADO_WALL_SIGN.get(), TechnologicaBlocks.BANANA_WALL_SIGN.get(), TechnologicaBlocks.CHERRY_WALL_SIGN.get(), TechnologicaBlocks.CHESTNUT_WALL_SIGN.get(), TechnologicaBlocks.CINNAMON_WALL_SIGN.get(), TechnologicaBlocks.COCONUT_WALL_SIGN.get(), TechnologicaBlocks.EBONY_WALL_SIGN.get(), TechnologicaBlocks.KIWI_WALL_SIGN.get(), TechnologicaBlocks.LEMON_WALL_SIGN.get(), TechnologicaBlocks.LIME_WALL_SIGN.get(), TechnologicaBlocks.MAHOGANY_WALL_SIGN.get(), TechnologicaBlocks.MAPLE_WALL_SIGN.get(), TechnologicaBlocks.OLIVE_WALL_SIGN.get(), TechnologicaBlocks.ORANGE_WALL_SIGN.get(), TechnologicaBlocks.PEACH_WALL_SIGN.get(), TechnologicaBlocks.PEAR_WALL_SIGN.get(), TechnologicaBlocks.PLUM_WALL_SIGN.get(), TechnologicaBlocks.REDWOOD_WALL_SIGN.get(), TechnologicaBlocks.ROSEWOOD_WALL_SIGN.get(), TechnologicaBlocks.RUBBER_WALL_SIGN.get(), TechnologicaBlocks.TEAK_WALL_SIGN.get(), TechnologicaBlocks.WALNUT_WALL_SIGN.get(), TechnologicaBlocks.ZEBRAWOOD_WALL_SIGN.get(), TechnologicaBlocks.ALCHEMICAL_WALL_SIGN.get(), TechnologicaBlocks.BENEVOLENT_WALL_SIGN.get(), TechnologicaBlocks.CONDUCTIVE_WALL_SIGN.get(), TechnologicaBlocks.FRUITFUL_WALL_SIGN.get(), TechnologicaBlocks.INFERNAL_WALL_SIGN.get(), TechnologicaBlocks.MALEVOLENT_WALL_SIGN.get()).build(null));

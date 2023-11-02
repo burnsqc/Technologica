@@ -27,7 +27,7 @@ public class ItemFishedEventListener {
 	 */
 	@SubscribeEvent
 	public void naughtyNauticalNanners(final ItemFishedEvent event) {
-		if (Config.naughty_nautical_nanners.get()) {
+		if (Config.NAUGHTY_NAUTICAL_NANNERS.get()) {
 			event.setCanceled(InventoryUtil.playerHas(event.getEntity(), TechnologicaItems.BANANA.get()));
 		}
 	}

@@ -1,6 +1,5 @@
 package com.technologica.world.entity;
 
-import static com.technologica.Technologica.LOGGER;
 import static com.technologica.Technologica.MODID;
 
 import com.technologica.world.entity.animal.Alligator;
@@ -63,9 +62,9 @@ import net.minecraftforge.registries.RegistryObject;
 public class TechnologicaEntityType {
 	public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.Keys.ENTITY_TYPES, MODID);
 
-	public static void init() {
+	public static int init() {
 		ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
-		LOGGER.info("ENTITY TYPES INITIALIZED: " + ENTITY_TYPES.getEntries().size() + " OF 46");
+		return ENTITY_TYPES.getEntries().size();
 	}
 
 	/*

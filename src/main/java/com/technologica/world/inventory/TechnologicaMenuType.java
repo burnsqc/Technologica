@@ -1,7 +1,5 @@
 package com.technologica.world.inventory;
 
-import static com.technologica.Technologica.LOGGER;
-
 import com.technologica.Technologica;
 
 import net.minecraft.core.BlockPos;
@@ -16,9 +14,9 @@ import net.minecraftforge.registries.RegistryObject;
 public class TechnologicaMenuType {
 	public static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(ForgeRegistries.MENU_TYPES, Technologica.MODID);
 
-	public static void init() {
+	public static int init() {
 		MENU_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
-		LOGGER.info("MENU TYPES INITIALIZED: " + MENU_TYPES.getEntries().size() + " OF 2");
+		return MENU_TYPES.getEntries().size();
 	}
 
 	public static final RegistryObject<MenuType<AnnunciatorMenu>> ANNUNCIATOR = MENU_TYPES.register("annunciator_container", () -> IForgeMenuType.create((windowId, inv, data) -> {

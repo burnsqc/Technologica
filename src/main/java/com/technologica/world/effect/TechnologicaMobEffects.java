@@ -1,6 +1,5 @@
 package com.technologica.world.effect;
 
-import static com.technologica.Technologica.LOGGER;
 import static com.technologica.Technologica.MODID;
 
 import net.minecraft.world.effect.MobEffect;
@@ -13,9 +12,9 @@ import net.minecraftforge.registries.RegistryObject;
 public class TechnologicaMobEffects {
 	public static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(ForgeRegistries.Keys.MOB_EFFECTS, MODID);
 
-	public static void init() {
+	public static int init() {
 		MOB_EFFECTS.register(FMLJavaModLoadingContext.get().getModEventBus());
-		LOGGER.info("MOB EFFECTS INITIALIZED: " + MOB_EFFECTS.getEntries().size() + " OF 5");
+		return MOB_EFFECTS.getEntries().size();
 	}
 
 	public static final RegistryObject<MobEffect> HALLUCINIATION = MOB_EFFECTS.register("hallucination", () -> new HallucinationEffect(MobEffectCategory.HARMFUL, 0));

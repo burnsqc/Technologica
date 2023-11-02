@@ -1,6 +1,5 @@
 package com.technologica.core.particles;
 
-import static com.technologica.Technologica.LOGGER;
 import static com.technologica.Technologica.MODID;
 
 import java.util.function.Function;
@@ -17,9 +16,9 @@ import net.minecraftforge.registries.RegistryObject;
 public class TechnologicaParticleTypes {
 	public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = DeferredRegister.create(ForgeRegistries.Keys.PARTICLE_TYPES, MODID);
 
-	public static void init() {
+	public static int init() {
 		PARTICLE_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
-		LOGGER.info("PARTICLE TYPES INITIALIZED: " + PARTICLE_TYPES.getEntries().size() + " OF 5");
+		return PARTICLE_TYPES.getEntries().size();
 	}
 
 	public static final RegistryObject<ParticleType<DrippingLiquidParticleData>> DRIPPING_FLUID = PARTICLE_TYPES.register("dripping_fluid", () -> create(DrippingLiquidParticleData.DESERIALIZER, (p_239822_0_) -> {

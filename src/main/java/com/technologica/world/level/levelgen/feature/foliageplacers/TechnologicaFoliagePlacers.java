@@ -1,6 +1,5 @@
 package com.technologica.world.level.levelgen.feature.foliageplacers;
 
-import static com.technologica.Technologica.LOGGER;
 import static com.technologica.Technologica.MODID;
 
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
@@ -12,9 +11,9 @@ import net.minecraftforge.registries.RegistryObject;
 public class TechnologicaFoliagePlacers {
 	private static final DeferredRegister<FoliagePlacerType<?>> FOLIAGE_PLACER_TYPES = DeferredRegister.create(ForgeRegistries.Keys.FOLIAGE_PLACER_TYPES, MODID);
 
-	public static void init() {
+	public static int init() {
 		FOLIAGE_PLACER_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
-		LOGGER.info("FOLIAGE PLACER TYPES INITIALIZED: " + FOLIAGE_PLACER_TYPES.getEntries().size() + " OF 6");
+		return FOLIAGE_PLACER_TYPES.getEntries().size();
 	}
 
 	public static final RegistryObject<FoliagePlacerType<?>> CONICAL = FOLIAGE_PLACER_TYPES.register("conical_foliage_placer", () -> new FoliagePlacerType<>(ConicalFoliagePlacer.conicalCodec));

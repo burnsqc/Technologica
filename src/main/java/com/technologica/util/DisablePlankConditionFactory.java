@@ -18,7 +18,7 @@ public class DisablePlankConditionFactory implements ICondition {
 
 	@Override
 	public boolean test(IContext context) {
-		return Config.disable_vanilla_plank_recipes.get();
+		return Config.DISABLE_VANILLA_PLANK_RECIPES.get();
 	}
 
 	public static class Serializer implements IConditionSerializer<DisablePlankConditionFactory> {

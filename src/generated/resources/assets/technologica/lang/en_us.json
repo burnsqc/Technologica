@@ -738,6 +738,8 @@
   "block.technologica.zebrawood_trapdoor": "Zebrawood Trapdoor",
   "block.technologica.zebrawood_wood": "Zebrawood Wood",
   "block.technologica.zircon_crystal": "Zircon Crystal",
+  "death.attack.bled_out": "%1$s bled out",
+  "death.attack.bled_out.player": "%1$s bled out whilst fighting %2$s",
   "death.attack.jostled_the_nitro": "%1$s jostled the nitro",
   "death.attack.jostled_the_nitro.player": "%1$s jostled the nitro whilst fighting %2$s",
   "effect.technologica.hallucination": "Hallucination",

@@ -10,14 +10,14 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 public class MovementInputUpdateEventListener {
 
 	@SubscribeEvent
-	public void onLivingJumpEvent(MovementInputUpdateEvent event) {
+	public void onMovementInputUpdateEvent(MovementInputUpdateEvent event) {
 		if (event.getEntity().hasEffect(TechnologicaMobEffects.NEUROPATHY.get())) {
-			Input input = event.getInput();
-			Input input2 = event.getInput();
-			input2.leftImpulse = -input.leftImpulse;
-			input2.forwardImpulse = -input.forwardImpulse;
+			Input originalInput = event.getInput();
+			Input invertedInput = event.getInput();
+			invertedInput.leftImpulse = -originalInput.leftImpulse;
+			invertedInput.forwardImpulse = -originalInput.forwardImpulse;
 			LocalPlayer lp = (LocalPlayer) event.getEntity();
-			lp.input = input2;
+			lp.input = invertedInput;
 		}
 	}
 }

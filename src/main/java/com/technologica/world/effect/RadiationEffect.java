@@ -13,4 +13,9 @@ public class RadiationEffect extends MobEffect {
 	public void applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
 		super.applyEffectTick(pLivingEntity, pAmplifier);
 	}
+
+	@Override
+	public boolean isDurationEffectTick(int p_19631_, int p_19632_) {
+		return true;
+	}
 }

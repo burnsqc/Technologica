@@ -36,6 +36,8 @@ public class TechnologicaLanguageProvider extends LanguageProvider {
 
 		add("death.attack.jostled_the_nitro", "%1$s jostled the nitro");
 		add("death.attack.jostled_the_nitro.player", "%1$s jostled the nitro whilst fighting %2$s");
+		add("death.attack.bled_out", "%1$s bled out");
+		add("death.attack.bled_out.player", "%1$s bled out whilst fighting %2$s");
 
 		add("effect.technologica.hallucination", "Hallucination");
 		add("effect.technologica.hemorrhage", "Hemorrhage");

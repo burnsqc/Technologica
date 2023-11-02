@@ -1,5 +1,7 @@
 package com.technologica.world.effect;
 
+import com.technologica.world.damagesource.TechnologicaDamageTypes;
+
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -11,7 +13,12 @@ public class HemorrhageEffect extends MobEffect {
 	}
 
 	@Override
-	public void applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
-		// pLivingEntity.hurt(TechnologicaDamageSource.BLEED, 0.1F * (1 + pAmplifier));
+	public void applyEffectTick(LivingEntity livingEntity, int amplifier) {
+		livingEntity.hurt(livingEntity.level().damageSources().source(TechnologicaDamageTypes.BLEED), 0.1F * (1 + amplifier));
+	}
+
+	@Override
+	public boolean isDurationEffectTick(int p_19631_, int p_19632_) {
+		return true;
 	}
 }

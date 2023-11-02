@@ -11,6 +11,7 @@ import com.technologica.data.worldgen.biome.TechnologicaBiomeModifiers;
 import com.technologica.data.worldgen.biome.TechnologicaBiomes;
 import com.technologica.data.worldgen.features.TechnologicaFeatureUtils;
 import com.technologica.data.worldgen.placement.TechnologicaPlacementUtils;
+import com.technologica.world.damagesource.TechnologicaDamageTypes;
 import com.technologica.world.level.dimension.TechnologicaBuiltinDimensionTypes;
 import com.technologica.world.level.levelgen.TechnologicaNoiseGeneratorSettings;
 
@@ -36,7 +37,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class TechnologicaDatapackBuiltinEntriesProvider extends DatapackBuiltinEntriesProvider {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private static final RegistrySetBuilder BUILDER = new RegistrySetBuilder().add(Registries.DIMENSION_TYPE, TechnologicaDimensionTypes::bootstrap).add(Registries.CONFIGURED_FEATURE, (RegistrySetBuilder.RegistryBootstrap) TechnologicaFeatureUtils::bootstrap).add(Registries.PLACED_FEATURE, TechnologicaPlacementUtils::bootstrap).add(Registries.BIOME, TechnologicaBiomes::bootstrap).add(Registries.NOISE_SETTINGS, TechnologicaNoiseGeneratorSettings::bootstrap);
+	private static final RegistrySetBuilder BUILDER = new RegistrySetBuilder().add(Registries.DIMENSION_TYPE, TechnologicaDimensionTypes::bootstrap).add(Registries.CONFIGURED_FEATURE, (RegistrySetBuilder.RegistryBootstrap) TechnologicaFeatureUtils::bootstrap).add(Registries.PLACED_FEATURE, TechnologicaPlacementUtils::bootstrap).add(Registries.BIOME, TechnologicaBiomes::bootstrap).add(Registries.NOISE_SETTINGS, TechnologicaNoiseGeneratorSettings::bootstrap).add(Registries.DAMAGE_TYPE, TechnologicaDamageTypes::bootstrap);
 
 	private static final ResourceKey<LevelStem> MOON_STEM = ResourceKey.create(Registries.LEVEL_STEM, new ResourceLocation(Technologica.MODID, "moon"));
 	private static final ResourceKey<LevelStem> CHALLENGER_DEEP_STEM = ResourceKey.create(Registries.LEVEL_STEM, new ResourceLocation(Technologica.MODID, "challenger_deep"));

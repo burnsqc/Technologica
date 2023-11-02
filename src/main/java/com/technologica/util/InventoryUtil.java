@@ -19,6 +19,16 @@ public class InventoryUtil {
 		return false;
 	}
 
+	public static void shrinkStack(Player player, Item item) {
+		Inventory inventory = player.getInventory();
+		for (int i = 0; i < inventory.getContainerSize(); ++i) {
+			if (inventory.getItem(i).getItem() == item) {
+				inventory.getItem(i).shrink(1);
+				return;
+			}
+		}
+	}
+
 	public static boolean fullArmorSet(Player player, ArmorMaterial armorMaterial) {
 		Iterable<ItemStack> armorPieces = player.getArmorSlots();
 		for (ItemStack armorPiece : armorPieces) {

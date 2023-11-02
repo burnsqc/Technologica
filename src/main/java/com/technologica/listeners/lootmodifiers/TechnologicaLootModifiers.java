@@ -1,7 +1,5 @@
 package com.technologica.listeners.lootmodifiers;
 
-import static com.technologica.Technologica.LOGGER;
-
 import com.mojang.serialization.Codec;
 import com.technologica.Technologica;
 
@@ -14,11 +12,11 @@ import net.minecraftforge.registries.RegistryObject;
 public class TechnologicaLootModifiers {
 	public static final DeferredRegister<Codec<? extends IGlobalLootModifier>> GLOBAL_LOOT_MODIFIER_SERIALIZERS = DeferredRegister.create(ForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, Technologica.MODID);
 
-	public static void init() {
+	public static int init() {
 		GLOBAL_LOOT_MODIFIER_SERIALIZERS.register(FMLJavaModLoadingContext.get().getModEventBus());
-		LOGGER.info("GLOBAL LOOT MODIFIER SERIALIZERS INITIALIZED: " + GLOBAL_LOOT_MODIFIER_SERIALIZERS.getEntries().size() + " OUT OF 24");
+		return GLOBAL_LOOT_MODIFIER_SERIALIZERS.getEntries().size();
 	}
-	
+
 	/*
 	 * BLOCKS
 	 */
@@ -26,7 +24,7 @@ public class TechnologicaLootModifiers {
 	public static final RegistryObject<Codec<GrassLootModifier>> GRASS_LOOT_MODIFIER = GLOBAL_LOOT_MODIFIER_SERIALIZERS.register("blocks/grass", GrassLootModifier.CODEC);
 	public static final RegistryObject<Codec<LargeFernLootModifier>> LARGE_FERN_LOOT_MODIFIER = GLOBAL_LOOT_MODIFIER_SERIALIZERS.register("blocks/large_fern", LargeFernLootModifier.CODEC);
 	public static final RegistryObject<Codec<TallGrassLootModifier>> TALL_GRASS_LOOT_MODIFIER = GLOBAL_LOOT_MODIFIER_SERIALIZERS.register("blocks/tall_grass", TallGrassLootModifier.CODEC);
-	
+
 	/*
 	 * CHESTS
 	 */
@@ -39,9 +37,9 @@ public class TechnologicaLootModifiers {
 	public static final RegistryObject<Codec<UnderwaterRuinBigLootModifier>> UNDERWATER_RUIN_BIG_LOOT_MODIFIER = GLOBAL_LOOT_MODIFIER_SERIALIZERS.register("chests/underwater_ruin_big", UnderwaterRuinBigLootModifier.CODEC);
 	public static final RegistryObject<Codec<UnderwaterRuinSmallLootModifier>> UNDERWATER_RUIN_SMALL_LOOT_MODIFIER = GLOBAL_LOOT_MODIFIER_SERIALIZERS.register("chests/underwater_ruin_small", UnderwaterRuinSmallLootModifier.CODEC);
 	public static final RegistryObject<Codec<WoodlandMansionLootModifier>> WOODLAND_MANSION_LOOT_MODIFIER = GLOBAL_LOOT_MODIFIER_SERIALIZERS.register("chests/woodland_mansion", WoodlandMansionLootModifier.CODEC);
-	
+
 	/*
-	 * VILLAGE CHESTS	
+	 * VILLAGE CHESTS
 	 */
 	public static final RegistryObject<Codec<VillageButcherLootModifier>> VILLAGE_BUTCHER_LOOT_MODIFIER = GLOBAL_LOOT_MODIFIER_SERIALIZERS.register("chests/village/village_butcher", VillageButcherLootModifier.CODEC);
 	public static final RegistryObject<Codec<VillageFisherLootModifier>> VILLAGE_FISHER_LOOT_MODIFIER = GLOBAL_LOOT_MODIFIER_SERIALIZERS.register("chests/village/village_fisher", VillageFisherLootModifier.CODEC);
@@ -51,7 +49,7 @@ public class TechnologicaLootModifiers {
 	public static final RegistryObject<Codec<VillageSavannaHouseLootModifier>> VILLAGE_SAVANNA_HOUSE_LOOT_MODIFIER = GLOBAL_LOOT_MODIFIER_SERIALIZERS.register("chests/village/village_savanna_house", VillageSavannaHouseLootModifier.CODEC);
 	public static final RegistryObject<Codec<VillageSnowyHouseLootModifier>> VILLAGE_SNOWY_HOUSE_LOOT_MODIFIER = GLOBAL_LOOT_MODIFIER_SERIALIZERS.register("chests/village/village_snowy_house", VillageSnowyHouseLootModifier.CODEC);
 	public static final RegistryObject<Codec<VillageTaigaHouseLootModifier>> VILLAGE_TAIGA_HOUSE_LOOT_MODIFIER = GLOBAL_LOOT_MODIFIER_SERIALIZERS.register("chests/village/village_taiga_house", VillageTaigaHouseLootModifier.CODEC);
-	
+
 	/*
 	 * ENTITIES
 	 */
