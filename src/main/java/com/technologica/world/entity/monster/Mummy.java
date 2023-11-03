@@ -2,12 +2,14 @@ package com.technologica.world.entity.monster;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoField;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.UUID;
 import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
 
+import com.technologica.world.effect.TechnologicaMobEffects;
 import com.technologica.world.entity.TechnologicaEntityType;
 import com.technologica.world.entity.ai.goal.MummyAttackGoal;
 
@@ -25,6 +27,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntitySelector;
@@ -41,6 +44,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.BreakDoorGoal;
+import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.MoveThroughVillageGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
@@ -68,6 +72,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 
 public class Mummy extends Zombie {
 	private static final UUID SPEED_MODIFIER_BABY_UUID = UUID.fromString("B9766B59-9566-4402-BC1F-2EE2A276D836");
@@ -75,6 +80,7 @@ public class Mummy extends Zombie {
 	private static final EntityDataAccessor<Boolean> DATA_BABY_ID = SynchedEntityData.defineId(Mummy.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Integer> DATA_SPECIAL_TYPE_ID = SynchedEntityData.defineId(Mummy.class, EntityDataSerializers.INT);
 	private static final EntityDataAccessor<Boolean> DATA_DROWNED_CONVERSION_ID = SynchedEntityData.defineId(Mummy.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Integer> DATA_PARALYZE_COOLDOWN = SynchedEntityData.defineId(Mummy.class, EntityDataSerializers.INT);
 	public static final float ZOMBIE_LEADER_CHANCE = 0.05F;
 	public static final int REINFORCEMENT_ATTEMPTS = 50;
 	public static final int REINFORCEMENT_RANGE_MAX = 40;
@@ -97,6 +103,7 @@ public class Mummy extends Zombie {
 
 	@Override
 	protected void registerGoals() {
+		this.goalSelector.addGoal(1, new MummyParalyzeWhenLookedAt(this));
 		this.goalSelector.addGoal(4, new Mummy.ZombieAttackTurtleEggGoal(this, 1.0D, 3));
 		this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
 		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
@@ -125,6 +132,7 @@ public class Mummy extends Zombie {
 		this.getEntityData().define(DATA_BABY_ID, false);
 		this.getEntityData().define(DATA_SPECIAL_TYPE_ID, 0);
 		this.getEntityData().define(DATA_DROWNED_CONVERSION_ID, false);
+		this.getEntityData().define(DATA_PARALYZE_COOLDOWN, 0);
 	}
 
 	@Override
@@ -135,6 +143,14 @@ public class Mummy extends Zombie {
 	@Override
 	public boolean canBreakDoors() {
 		return this.canBreakDoors;
+	}
+
+	public void setParalyzeCooldown(int cooldown) {
+		this.getEntityData().set(DATA_PARALYZE_COOLDOWN, cooldown);
+	}
+
+	public int getParalyzeCooldown() {
+		return this.getEntityData().get(DATA_PARALYZE_COOLDOWN);
 	}
 
 	@Override
@@ -205,6 +221,8 @@ public class Mummy extends Zombie {
 	@Override
 	public void tick() {
 		super.tick();
+		int cooldown = this.getEntityData().get(DATA_PARALYZE_COOLDOWN);
+		this.getEntityData().set(DATA_PARALYZE_COOLDOWN, Math.max(0, --cooldown));
 	}
 
 	@Override
@@ -323,6 +341,7 @@ public class Mummy extends Zombie {
 		p_34319_.putBoolean("CanBreakDoors", this.canBreakDoors());
 		p_34319_.putInt("InWaterTime", this.isInWater() ? this.inWaterTime : -1);
 		p_34319_.putInt("DrownedConversionTime", this.isUnderWaterConverting() ? this.conversionTime : -1);
+		p_34319_.putInt("ParalyzeCooldown", this.getParalyzeCooldown());
 	}
 
 	@Override
@@ -334,7 +353,9 @@ public class Mummy extends Zombie {
 		if (p_34305_.contains("DrownedConversionTime", 99) && p_34305_.getInt("DrownedConversionTime") > -1) {
 			this.startUnderWaterConversion(p_34305_.getInt("DrownedConversionTime"));
 		}
-
+		if (p_34305_.contains("ParalyzeCooldown", 99) && p_34305_.getInt("ParalyzeCooldown") > -1) {
+			this.setParalyzeCooldown(p_34305_.getInt("ParalyzeCooldown"));
+		}
 	}
 
 	@Override
@@ -508,5 +529,52 @@ public class Mummy extends Zombie {
 			this.isBaby = p_34357_;
 			this.canSpawnJockey = p_34358_;
 		}
+	}
+
+	static class MummyParalyzeWhenLookedAt extends Goal {
+		private final Mummy enderman;
+		@Nullable
+		private LivingEntity target;
+
+		public MummyParalyzeWhenLookedAt(Mummy p_32550_) {
+			this.enderman = p_32550_;
+			this.setFlags(EnumSet.of(Goal.Flag.JUMP, Goal.Flag.MOVE));
+		}
+
+		@Override
+		public boolean canUse() {
+			this.target = this.enderman.getTarget();
+			if (!(this.target instanceof Player)) {
+				return false;
+			} else {
+				double d0 = this.target.distanceToSqr(this.enderman);
+				boolean stare = this.enderman.isLookingAtMe((Player) this.target);
+				if (stare && enderman.getParalyzeCooldown() == 0) {
+					this.target.addEffect(new MobEffectInstance(TechnologicaMobEffects.PARALYSIS.get(), 100, 0));
+					enderman.setParalyzeCooldown(200);
+				}
+				return d0 > 256.0D ? false : this.enderman.isLookingAtMe((Player) this.target);
+			}
+		}
+
+		@Override
+		public void start() {
+			this.enderman.getNavigation().stop();
+		}
+
+		@Override
+		public void tick() {
+			this.enderman.getLookControl().setLookAt(this.target.getX(), this.target.getEyeY(), this.target.getZ());
+		}
+	}
+
+	boolean isLookingAtMe(Player p_32535_) {
+		Vec3 vec3 = p_32535_.getViewVector(1.0F).normalize();
+		Vec3 vec31 = new Vec3(this.getX() - p_32535_.getX(), this.getEyeY() - p_32535_.getEyeY(), this.getZ() - p_32535_.getZ());
+		double d0 = vec31.length();
+		vec31 = vec31.normalize();
+		double d1 = vec3.dot(vec31);
+		return d1 > 1.0D - 0.025D / d0 ? p_32535_.hasLineOfSight(this) : false;
+
 	}
 }
