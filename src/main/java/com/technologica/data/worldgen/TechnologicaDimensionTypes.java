@@ -2,11 +2,9 @@ package com.technologica.data.worldgen;
 
 import java.util.OptionalLong;
 
-import com.technologica.Technologica;
+import com.technologica.world.level.dimension.TechnologicaBuiltinDimensionTypes;
 
-import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
@@ -17,25 +15,19 @@ import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 import net.minecraft.world.level.dimension.DimensionType;
 
 public class TechnologicaDimensionTypes {
-	public static final ResourceKey<DimensionType> MOON = ResourceKey.create(Registries.DIMENSION_TYPE, new ResourceLocation(Technologica.MODID, "moon"));
-	public static final ResourceKey<DimensionType> CHALLENGER_DEEP = ResourceKey.create(Registries.DIMENSION_TYPE, new ResourceLocation(Technologica.MODID, "challenger_deep"));
-	public static final ResourceKey<DimensionType> OVERGROWTH = ResourceKey.create(Registries.DIMENSION_TYPE, new ResourceLocation(Technologica.MODID, "overgrowth"));
-
-	public static final ResourceLocation MOON_EFFECTS = new ResourceLocation(Technologica.MODID, "moon");
-	public static final ResourceLocation CHALLENGER_DEEP_EFFECTS = new ResourceLocation(Technologica.MODID, "challenger_deep");
-	public static final ResourceLocation OVERGROWTH_EFFECTS = new ResourceLocation(Technologica.MODID, "overgrowth");
-
+	
+	
 	public static void bootstrap(BootstapContext<DimensionType> bootstrapContextIn) {
-		bootstrapContextIn.register(MOON, moon());
-		bootstrapContextIn.register(CHALLENGER_DEEP, challengerDeep());
-		bootstrapContextIn.register(OVERGROWTH, overgrowth());
+		bootstrapContextIn.register(TechnologicaBuiltinDimensionTypes.MOON, moon());
+		bootstrapContextIn.register(TechnologicaBuiltinDimensionTypes.CHALLENGER_DEEP, challengerDeep());
+		bootstrapContextIn.register(TechnologicaBuiltinDimensionTypes.OVERGROWTH, overgrowth());
 	}
 
 	private static DimensionType moon() {
 		float ambientLight = 0.0F;
 		boolean bedWorks = true;
 		double coordinateScale = 1.0D;
-		ResourceLocation effects = MOON_EFFECTS;
+		ResourceLocation effects = TechnologicaBuiltinDimensionTypes.MOON_EFFECTS;
 		boolean hasCeiling = false;
 		boolean hasRaids = false;
 		boolean hasSkylight = true;
@@ -57,7 +49,7 @@ public class TechnologicaDimensionTypes {
 		float ambientLight = 0.0F;
 		boolean bedWorks = true;
 		double coordinateScale = 1.0D;
-		ResourceLocation effects = MOON_EFFECTS;
+		ResourceLocation effects = TechnologicaBuiltinDimensionTypes.MOON_EFFECTS;
 		boolean hasCeiling = true;
 		boolean hasRaids = false;
 		boolean hasSkylight = false;
