@@ -61,6 +61,7 @@ public class VillagerTradesEventListener {
 	}
 
 	static class EmeraldForItems implements VillagerTrades.ItemListing {
+		private final List<Item> gems = List.of(Items.EMERALD, TechnologicaItems.RUBY.get(), TechnologicaItems.SAPPHIRE.get(), TechnologicaItems.TOPAZ.get());
 		private final Item item;
 		private final int cost;
 		private final int maxUses;
@@ -76,9 +77,9 @@ public class VillagerTradesEventListener {
 		}
 
 		@Override
-		public MerchantOffer getOffer(Entity p_35662_, RandomSource p_35663_) {
+		public MerchantOffer getOffer(Entity p_35662_, RandomSource randomSource) {
 			ItemStack itemstack = new ItemStack(this.item, this.cost);
-			return new MerchantOffer(itemstack, new ItemStack(Items.EMERALD), this.maxUses, this.villagerXp, this.priceMultiplier);
+			return new MerchantOffer(itemstack, new ItemStack(gems.get(randomSource.nextInt(gems.size()))), this.maxUses, this.villagerXp, this.priceMultiplier);
 		}
 	}
 }

@@ -1,4 +1,4 @@
-package com.technologica.listeners.lootmodifiers;
+package com.technologica.listeners.lootmodifiers.blocks;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -19,12 +19,12 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraftforge.common.loot.IGlobalLootModifier;
 import net.minecraftforge.common.loot.LootModifier;
 
-public class FernLootModifier extends LootModifier {
+public class GrassLootModifier extends LootModifier {
 	private final List<Item> grainSeeds = List.of(Items.WHEAT_SEEDS, TechnologicaItems.BARLEY_SEEDS.get(), TechnologicaItems.OATS_SEEDS.get(), TechnologicaItems.RYE_SEEDS.get());
 
-	public static final Supplier<Codec<FernLootModifier>> CODEC = Suppliers.memoize(() -> RecordCodecBuilder.create(inst -> codecStart(inst).apply(inst, FernLootModifier::new)));
+	public static final Supplier<Codec<GrassLootModifier>> CODEC = Suppliers.memoize(() -> RecordCodecBuilder.create(inst -> codecStart(inst).apply(inst, GrassLootModifier::new)));
 
-	public FernLootModifier(LootItemCondition[] conditionsIn) {
+	public GrassLootModifier(LootItemCondition[] conditionsIn) {
 		super(conditionsIn);
 	}
 

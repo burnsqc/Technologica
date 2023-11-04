@@ -65,6 +65,7 @@ public class Technologica {
 	public static final String MODID = "technologica";
 	public static final Logger LOGGER = LogManager.getLogger();
 	private static final IEventBus MOD_EVENT_BUS = FMLJavaModLoadingContext.get().getModEventBus();
+	private static final IEventBus FORGE_EVENT_BUS = MinecraftForge.EVENT_BUS;
 
 	public static int soundEvents;
 	public static int fluids;
@@ -79,10 +80,9 @@ public class Technologica {
 	public static int recipeSerializers;
 	public static int features;
 	public static int foliagePlacerTypes;
+	public static int creativeModeTabs;
 	public static int fluidTypes;
 	public static int globalLootModifierTypes;
-
-	public static int creativeModeTabs;
 
 	public Technologica() {
 		ModLoadingContext.get().registerConfig(Type.COMMON, Config.SPEC, "technologica-common.toml");
@@ -162,23 +162,23 @@ public class Technologica {
 	}
 
 	private void addForgeEventBusListeners() {
-		MinecraftForge.EVENT_BUS.register(new AttachCapabilities());
-		MinecraftForge.EVENT_BUS.register(new EntityJoinLevelEventListener());
-		MinecraftForge.EVENT_BUS.register(new HarvestCheckListener());
-		MinecraftForge.EVENT_BUS.register(new ItemFishedEventListener());
-		MinecraftForge.EVENT_BUS.register(new LivingAttackEventListener());
-		MinecraftForge.EVENT_BUS.register(new LivingBreatheEventListener());
-		MinecraftForge.EVENT_BUS.register(new LivingEquipmentChangeEventListener());
-		MinecraftForge.EVENT_BUS.register(new LivingFallEventListener());
-		MinecraftForge.EVENT_BUS.register(new LivingHealEventListener());
-		MinecraftForge.EVENT_BUS.register(new LivingJumpEventListener());
-		MinecraftForge.EVENT_BUS.register(new MovementInputUpdateEventListener());
-		MinecraftForge.EVENT_BUS.register(new PlayerTickEventListener());
-		MinecraftForge.EVENT_BUS.register(new RegisterCapabilitiesEventListener());
-		MinecraftForge.EVENT_BUS.register(new RenderGuiOverlayEventListener());
-		MinecraftForge.EVENT_BUS.register(new RightClickBlockListener());
-		MinecraftForge.EVENT_BUS.register(new ServerAboutToStartListener());
-		MinecraftForge.EVENT_BUS.register(new VillagerTradesEventListener());
-		MinecraftForge.EVENT_BUS.register(new WandererTradesEventListener());
+		FORGE_EVENT_BUS.register(new AttachCapabilities());
+		FORGE_EVENT_BUS.register(new EntityJoinLevelEventListener());
+		FORGE_EVENT_BUS.register(new HarvestCheckListener());
+		FORGE_EVENT_BUS.register(new ItemFishedEventListener());
+		FORGE_EVENT_BUS.register(new LivingAttackEventListener());
+		FORGE_EVENT_BUS.register(new LivingBreatheEventListener());
+		FORGE_EVENT_BUS.register(new LivingEquipmentChangeEventListener());
+		FORGE_EVENT_BUS.register(new LivingFallEventListener());
+		FORGE_EVENT_BUS.register(new LivingHealEventListener());
+		FORGE_EVENT_BUS.register(new LivingJumpEventListener());
+		FORGE_EVENT_BUS.register(new MovementInputUpdateEventListener());
+		FORGE_EVENT_BUS.register(new PlayerTickEventListener());
+		FORGE_EVENT_BUS.register(new RegisterCapabilitiesEventListener());
+		FORGE_EVENT_BUS.register(new RenderGuiOverlayEventListener());
+		FORGE_EVENT_BUS.register(new RightClickBlockListener());
+		FORGE_EVENT_BUS.register(new ServerAboutToStartListener());
+		FORGE_EVENT_BUS.register(new VillagerTradesEventListener());
+		FORGE_EVENT_BUS.register(new WandererTradesEventListener());
 	}
 }

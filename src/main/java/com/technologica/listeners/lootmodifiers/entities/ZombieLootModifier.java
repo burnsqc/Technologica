@@ -1,4 +1,4 @@
-package com.technologica.listeners.lootmodifiers;
+package com.technologica.listeners.lootmodifiers.entities;
 
 import java.util.List;
 import java.util.function.Supplier;

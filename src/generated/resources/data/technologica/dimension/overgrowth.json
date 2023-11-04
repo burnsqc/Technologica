@@ -1,11 +1,11 @@
 {
-  "type": "technologica:challenger_deep",
+  "type": "technologica:overgrowth",
   "generator": {
     "type": "minecraft:noise",
     "biome_source": {
       "type": "minecraft:fixed",
       "biome": "technologica:misty_mire"
     },
-    "settings": "technologica:challenger_deep"
+    "settings": "technologica:overgrowth"
   }
 }

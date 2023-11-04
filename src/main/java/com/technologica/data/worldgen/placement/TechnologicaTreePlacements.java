@@ -8,10 +8,12 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.features.TreeFeatures;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.placement.BiomeFilter;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 public class TechnologicaTreePlacements {
@@ -48,6 +50,7 @@ public class TechnologicaTreePlacements {
 	public static final ResourceKey<PlacedFeature> SERENDIPITOUS_APOTHECARY_CHECKED = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Technologica.MODID, "serendipitous_apothecary_checked"));
 	public static final ResourceKey<PlacedFeature> THUNDEROUS_CONDUCTOR_CHECKED = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Technologica.MODID, "thunderous_conductor_checked"));
 	public static final ResourceKey<PlacedFeature> TOWERING_INFERNO_CHECKED = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Technologica.MODID, "towering_inferno_checked"));
+	public static final ResourceKey<PlacedFeature> OVERGROWTH_CHECKED = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Technologica.MODID, "overgrowth_checked"));
 
 	public static void bootstrap(BootstapContext<PlacedFeature> p_255688_) {
 		HolderGetter<ConfiguredFeature<?, ?>> holdergetter = p_255688_.lookup(Registries.CONFIGURED_FEATURE);
@@ -84,6 +87,7 @@ public class TechnologicaTreePlacements {
 		Holder<ConfiguredFeature<?, ?>> holder30 = holdergetter.getOrThrow(TechnologicaTreeFeatures.SERENDIPITOUS_APOTHECARY);
 		Holder<ConfiguredFeature<?, ?>> holder31 = holdergetter.getOrThrow(TechnologicaTreeFeatures.THUNDEROUS_CONDUCTOR);
 		Holder<ConfiguredFeature<?, ?>> holder32 = holdergetter.getOrThrow(TechnologicaTreeFeatures.TOWERING_INFERNO);
+		Holder<ConfiguredFeature<?, ?>> holder33 = holdergetter.getOrThrow(TreeFeatures.TALL_MANGROVE);
 		PlacementUtils.register(p_255688_, APRICOT_CHECKED, holder, PlacementUtils.filteredByBlockSurvival(TechnologicaBlocks.APRICOT_SAPLING.get()));
 		PlacementUtils.register(p_255688_, ASPEN_CHECKED, holder1, PlacementUtils.filteredByBlockSurvival(TechnologicaBlocks.ASPEN_SAPLING.get()));
 		PlacementUtils.register(p_255688_, AVOCADO_CHECKED, holder2, PlacementUtils.filteredByBlockSurvival(TechnologicaBlocks.AVOCADO_SAPLING.get()));
@@ -117,5 +121,6 @@ public class TechnologicaTreePlacements {
 		PlacementUtils.register(p_255688_, SERENDIPITOUS_APOTHECARY_CHECKED, holder30, PlacementUtils.filteredByBlockSurvival(TechnologicaBlocks.SERENDIPITOUS_APOTHECARY_SAPLING.get()));
 		PlacementUtils.register(p_255688_, THUNDEROUS_CONDUCTOR_CHECKED, holder31, PlacementUtils.filteredByBlockSurvival(TechnologicaBlocks.THUNDEROUS_CONDUCTOR_SAPLING.get()));
 		PlacementUtils.register(p_255688_, TOWERING_INFERNO_CHECKED, holder32, PlacementUtils.filteredByBlockSurvival(TechnologicaBlocks.TOWERING_INFERNO_SAPLING.get()));
+		PlacementUtils.register(p_255688_, OVERGROWTH_CHECKED, holder33);
 	}
 }

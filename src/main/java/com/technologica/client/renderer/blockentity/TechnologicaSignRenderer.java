@@ -105,8 +105,8 @@ public class TechnologicaSignRenderer implements BlockEntityRenderer<SignBlockEn
 	}
 
 	void renderSignModel(PoseStack p_250252_, int p_249399_, int p_249042_, Model p_250082_, VertexConsumer p_251093_) {
-		SignRenderer.SignModel signrenderer$signmodel = (SignRenderer.SignModel) p_250082_;
-		signrenderer$signmodel.root.render(p_250252_, p_251093_, p_249399_, p_249042_);
+		// SignRenderer.SignModel signrenderer$signmodel = (SignRenderer.SignModel) p_250082_;
+		// signrenderer$signmodel.root.render(p_250252_, p_251093_, p_249399_, p_249042_);
 	}
 
 	Material getSignMaterial(WoodType p_251961_) {

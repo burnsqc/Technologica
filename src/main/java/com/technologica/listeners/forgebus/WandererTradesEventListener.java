@@ -12,7 +12,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
-import net.minecraft.world.level.block.Block;
 import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -42,20 +41,13 @@ public class WandererTradesEventListener {
 	}
 
 	static class ItemsForEmeralds implements VillagerTrades.ItemListing {
+		private final List<Item> gems = List.of(Items.EMERALD, TechnologicaItems.RUBY.get(), TechnologicaItems.SAPPHIRE.get(), TechnologicaItems.TOPAZ.get());
 		private final ItemStack itemStack;
-		private final int emeraldCost;
+		private final int gemCost;
 		private final int numberOfItems;
 		private final int maxUses;
 		private final int villagerXp;
 		private final float priceMultiplier;
-
-		public ItemsForEmeralds(Block p_35765_, int p_35766_, int p_35767_, int p_35768_, int p_35769_) {
-			this(new ItemStack(p_35765_), p_35766_, p_35767_, p_35768_, p_35769_);
-		}
-
-		public ItemsForEmeralds(Item p_35741_, int p_35742_, int p_35743_, int p_35744_) {
-			this(new ItemStack(p_35741_), p_35742_, p_35743_, 12, p_35744_);
-		}
 
 		public ItemsForEmeralds(Item p_35746_, int p_35747_, int p_35748_, int p_35749_, int p_35750_) {
 			this(new ItemStack(p_35746_), p_35747_, p_35748_, p_35749_, p_35750_);
@@ -67,7 +59,7 @@ public class WandererTradesEventListener {
 
 		public ItemsForEmeralds(ItemStack p_35758_, int p_35759_, int p_35760_, int p_35761_, int p_35762_, float p_35763_) {
 			this.itemStack = p_35758_;
-			this.emeraldCost = p_35759_;
+			this.gemCost = p_35759_;
 			this.numberOfItems = p_35760_;
 			this.maxUses = p_35761_;
 			this.villagerXp = p_35762_;
@@ -75,8 +67,8 @@ public class WandererTradesEventListener {
 		}
 
 		@Override
-		public MerchantOffer getOffer(Entity p_35771_, RandomSource p_35772_) {
-			return new MerchantOffer(new ItemStack(Items.EMERALD, this.emeraldCost), new ItemStack(this.itemStack.getItem(), this.numberOfItems), this.maxUses, this.villagerXp, this.priceMultiplier);
+		public MerchantOffer getOffer(Entity p_35771_, RandomSource randomSource) {
+			return new MerchantOffer(new ItemStack(gems.get(randomSource.nextInt(gems.size())), this.gemCost), new ItemStack(this.itemStack.getItem(), this.numberOfItems), this.maxUses, this.villagerXp, this.priceMultiplier);
 		}
 	}
 }

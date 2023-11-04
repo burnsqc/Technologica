@@ -1,29 +1,13 @@
 {
   "entries": [
+    "technologica:entities/zombie",
     "technologica:blocks/fern",
-    "technologica:chests/igloo_chest",
-    "technologica:chests/underwater_ruin_small",
+    "technologica:blocks/large_fern",
+    "technologica:blocks/tall_grass",
     "technologica:entities/zombie_villager",
     "technologica:blocks/grass",
-    "technologica:chests/village/village_plains_house",
-    "technologica:chests/village/village_desert_house",
-    "technologica:chests/woodland_mansion",
-    "technologica:entities/husk",
-    "technologica:chests/shipwreck_supply",
-    "technologica:chests/village/village_snowy_house",
-    "technologica:entities/zombie",
-    "technologica:chests/village/village_savanna_house",
-    "technologica:chests/end_city_treasure",
-    "technologica:chests/pillager_outpost",
-    "technologica:blocks/large_fern",
-    "technologica:chests/abandoned_mineshaft",
-    "technologica:blocks/tall_grass",
-    "technologica:chests/simple_dungeon",
-    "technologica:chests/village/village_taiga_house",
-    "technologica:chests/village/village_butcher",
-    "technologica:chests/village/village_fisher",
-    "technologica:chests/underwater_ruin_big",
-    "technologica:chests/village/village_shepherd"
+    "technologica:chests/technologica_modifier",
+    "technologica:entities/husk"
   ],
   "replace": false
 }

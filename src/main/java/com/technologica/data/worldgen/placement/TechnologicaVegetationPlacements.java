@@ -10,11 +10,13 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.features.VegetationFeatures;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.BiomeFilter;
+import net.minecraft.world.level.levelgen.placement.CountOnEveryLayerPlacement;
 import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.placement.PlacementModifier;
@@ -43,6 +45,7 @@ public class TechnologicaVegetationPlacements {
 	public static final ResourceKey<PlacedFeature> PATCH_STRAWBERRY_RARE_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Technologica.MODID, "patch_strawberry_rare"));
 	public static final ResourceKey<PlacedFeature> PATCH_COTTON_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Technologica.MODID, "patch_cotton"));
 	public static final ResourceKey<PlacedFeature> PATCH_PEPPERCORNS_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Technologica.MODID, "patch_peppercorns"));
+	public static final ResourceKey<PlacedFeature> OVERGROWTH_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Technologica.MODID, "overgrowth_placed"));
 	public static final PlacementModifier TREE_THRESHOLD = SurfaceWaterDepthFilter.forMaxDepth(0);
 
 	private static ImmutableList.Builder<PlacementModifier> treePlacementBase(PlacementModifier p_195485_) {
@@ -72,6 +75,7 @@ public class TechnologicaVegetationPlacements {
 		Holder<ConfiguredFeature<?, ?>> holder14 = holdergetter.getOrThrow(TechnologicaVegetationFeatures.PATCH_STRAWBERRY_BUSH);
 		Holder<ConfiguredFeature<?, ?>> holder15 = holdergetter.getOrThrow(TechnologicaVegetationFeatures.PATCH_COTTON_BUSH);
 		Holder<ConfiguredFeature<?, ?>> holder16 = holdergetter.getOrThrow(TechnologicaVegetationFeatures.PATCH_PEPPERCORN_BUSH);
+		Holder<ConfiguredFeature<?, ?>> holder17 = holdergetter.getOrThrow(VegetationFeatures.MANGROVE_VEGETATION);
 		PlacementUtils.register(p_255657_, TREES_MODIFIED_SAVANNA_PLACED, holder, treePlacement(PlacementUtils.countExtra(1, 0.1F, 1)));
 		PlacementUtils.register(p_255657_, TREES_MODIFIED_JUNGLE_PLACED, holder1, treePlacement(PlacementUtils.countExtra(1, 0.1F, 1)));
 		PlacementUtils.register(p_255657_, TREES_MODIFIED_JUNGLE_EDGE_PLACED, holder2, treePlacement(PlacementUtils.countExtra(1, 0.1F, 1)));
@@ -93,5 +97,6 @@ public class TechnologicaVegetationPlacements {
 		PlacementUtils.register(p_255657_, PATCH_STRAWBERRY_RARE_PLACED, holder14, List.of(RarityFilter.onAverageOnceEvery(384), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
 		PlacementUtils.register(p_255657_, PATCH_COTTON_PLACED, holder15, List.of(RarityFilter.onAverageOnceEvery(32), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
 		PlacementUtils.register(p_255657_, PATCH_PEPPERCORNS_PLACED, holder16, List.of(RarityFilter.onAverageOnceEvery(5), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+		PlacementUtils.register(p_255657_, OVERGROWTH_PLACED, holder17, CountOnEveryLayerPlacement.of(6), BiomeFilter.biome());
 	}
 }

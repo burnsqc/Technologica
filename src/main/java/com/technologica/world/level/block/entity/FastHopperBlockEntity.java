@@ -146,7 +146,6 @@ public class FastHopperBlockEntity extends RandomizableContainerBlockEntity impl
 	}
 
 	private static boolean ejectItems(Level p_155563_, BlockPos p_155564_, BlockState p_155565_, FastHopperBlockEntity p_155566_) {
-		// if (net.minecraftforge.items.VanillaInventoryCodeHooks.insertHook(p_155566_)) return true;
 		Container container = getAttachedContainer(p_155563_, p_155564_, p_155565_);
 		if (container == null) {
 			return false;
@@ -213,7 +212,7 @@ public class FastHopperBlockEntity extends RandomizableContainerBlockEntity impl
 
 	private static boolean tryTakeInItemFromSlot(Hopper p_59355_, Container p_59356_, int p_59357_, Direction p_59358_) {
 		ItemStack itemstack = p_59356_.getItem(p_59357_);
-		if (!itemstack.isEmpty() && canTakeItemFromContainer(p_59356_, itemstack, p_59357_, p_59358_)) {
+		if (!itemstack.isEmpty() && canTakeItemFromContainer(p_59355_, p_59356_, itemstack, p_59357_, p_59358_)) {
 			ItemStack itemstack1 = itemstack.copy();
 			ItemStack itemstack2 = addItem(p_59356_, p_59355_, p_59356_.removeItem(p_59357_, 1), (Direction) null);
 			if (itemstack2.isEmpty()) {
@@ -242,18 +241,22 @@ public class FastHopperBlockEntity extends RandomizableContainerBlockEntity impl
 	}
 
 	public static ItemStack addItem(@Nullable Container p_59327_, Container p_59328_, ItemStack p_59329_, @Nullable Direction p_59330_) {
-		if (p_59328_ instanceof WorldlyContainer worldlycontainer && p_59330_ != null) {
-			int[] aint = worldlycontainer.getSlotsForFace(p_59330_);
+		if (p_59328_ instanceof WorldlyContainer worldlycontainer) {
+			if (p_59330_ != null) {
+				int[] aint = worldlycontainer.getSlotsForFace(p_59330_);
 
-			for (int k = 0; k < aint.length && !p_59329_.isEmpty(); ++k) {
-				p_59329_ = tryMoveInItem(p_59327_, p_59328_, p_59329_, aint[k], p_59330_);
-			}
-		} else {
-			int i = p_59328_.getContainerSize();
+				for (int k = 0; k < aint.length && !p_59329_.isEmpty(); ++k) {
+					p_59329_ = tryMoveInItem(p_59327_, p_59328_, p_59329_, aint[k], p_59330_);
+				}
 
-			for (int j = 0; j < i && !p_59329_.isEmpty(); ++j) {
-				p_59329_ = tryMoveInItem(p_59327_, p_59328_, p_59329_, j, p_59330_);
+				return p_59329_;
 			}
+		}
+
+		int i = p_59328_.getContainerSize();
+
+		for (int j = 0; j < i && !p_59329_.isEmpty(); ++j) {
+			p_59329_ = tryMoveInItem(p_59327_, p_59328_, p_59329_, j, p_59330_);
 		}
 
 		return p_59329_;
@@ -263,12 +266,30 @@ public class FastHopperBlockEntity extends RandomizableContainerBlockEntity impl
 		if (!p_59335_.canPlaceItem(p_59337_, p_59336_)) {
 			return false;
 		} else {
-			return !(p_59335_ instanceof WorldlyContainer) || ((WorldlyContainer) p_59335_).canPlaceItemThroughFace(p_59337_, p_59336_, p_59338_);
+			if (p_59335_ instanceof WorldlyContainer) {
+				WorldlyContainer worldlycontainer = (WorldlyContainer) p_59335_;
+				if (!worldlycontainer.canPlaceItemThroughFace(p_59337_, p_59336_, p_59338_)) {
+					return false;
+				}
+			}
+
+			return true;
 		}
 	}
 
-	private static boolean canTakeItemFromContainer(Container p_59381_, ItemStack p_59382_, int p_59383_, Direction p_59384_) {
-		return !(p_59381_ instanceof WorldlyContainer) || ((WorldlyContainer) p_59381_).canTakeItemThroughFace(p_59383_, p_59382_, p_59384_);
+	private static boolean canTakeItemFromContainer(Container p_273433_, Container p_273542_, ItemStack p_273400_, int p_273519_, Direction p_273088_) {
+		if (!p_273542_.canTakeItem(p_273433_, p_273519_, p_273400_)) {
+			return false;
+		} else {
+			if (p_273542_ instanceof WorldlyContainer) {
+				WorldlyContainer worldlycontainer = (WorldlyContainer) p_273542_;
+				if (!worldlycontainer.canTakeItemThroughFace(p_273519_, p_273400_, p_273088_)) {
+					return false;
+				}
+			}
+
+			return true;
+		}
 	}
 
 	private static ItemStack tryMoveInItem(@Nullable Container p_59321_, Container p_59322_, ItemStack p_59323_, int p_59324_, @Nullable Direction p_59325_) {
@@ -362,15 +383,7 @@ public class FastHopperBlockEntity extends RandomizableContainerBlockEntity impl
 	}
 
 	private static boolean canMergeItems(ItemStack p_59345_, ItemStack p_59346_) {
-		if (!p_59345_.is(p_59346_.getItem())) {
-			return false;
-		} else if (p_59345_.getDamageValue() != p_59346_.getDamageValue()) {
-			return false;
-		} else if (p_59345_.getCount() > p_59345_.getMaxStackSize()) {
-			return false;
-		} else {
-			return ItemStack.matches(p_59345_, p_59346_);
-		}
+		return p_59345_.getCount() <= p_59345_.getMaxStackSize() && ItemStack.isSameItemSameTags(p_59345_, p_59346_);
 	}
 
 	@Override

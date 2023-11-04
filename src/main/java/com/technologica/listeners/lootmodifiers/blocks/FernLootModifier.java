@@ -1,4 +1,4 @@
-package com.technologica.listeners.lootmodifiers;
+package com.technologica.listeners.lootmodifiers.blocks;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -19,24 +19,20 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraftforge.common.loot.IGlobalLootModifier;
 import net.minecraftforge.common.loot.LootModifier;
 
-public class UnderwaterRuinBigLootModifier extends LootModifier {
-	private final List<Item> grain = List.of(Items.WHEAT, TechnologicaItems.BARLEY.get(), TechnologicaItems.CORN.get(), TechnologicaItems.OATS.get(), TechnologicaItems.RICE.get(), TechnologicaItems.RYE.get());
+public class FernLootModifier extends LootModifier {
+	private final List<Item> grainSeeds = List.of(Items.WHEAT_SEEDS, TechnologicaItems.BARLEY_SEEDS.get(), TechnologicaItems.OATS_SEEDS.get(), TechnologicaItems.RYE_SEEDS.get());
 
-	public static final Supplier<Codec<UnderwaterRuinBigLootModifier>> CODEC = Suppliers.memoize(() -> RecordCodecBuilder.create(inst -> codecStart(inst).apply(inst, UnderwaterRuinBigLootModifier::new)));
+	public static final Supplier<Codec<FernLootModifier>> CODEC = Suppliers.memoize(() -> RecordCodecBuilder.create(inst -> codecStart(inst).apply(inst, FernLootModifier::new)));
 
-	public UnderwaterRuinBigLootModifier(LootItemCondition[] conditionsIn) {
+	public FernLootModifier(LootItemCondition[] conditionsIn) {
 		super(conditionsIn);
 	}
 
 	@Nonnull
 	@Override
 	protected ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
-		int count = 0;
-		for (int i = 0; i < generatedLoot.size(); i++) {
-			if (generatedLoot.get(i).getItem().equals(Items.WHEAT)) {
-				count = generatedLoot.get(i).getCount();
-				generatedLoot.set(i, new ItemStack(grain.get(context.getRandom().nextInt(grain.size())), count));
-			}
+		if (generatedLoot.removeIf((itemStack) -> itemStack.getItem().equals(Items.WHEAT_SEEDS))) {
+			generatedLoot.add(new ItemStack(grainSeeds.get(context.getRandom().nextInt(grainSeeds.size()))));
 		}
 		return generatedLoot;
 	}

@@ -1,4 +1,4 @@
-package com.technologica.listeners.lootmodifiers;
+package com.technologica.listeners.lootmodifiers.entities;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -19,13 +19,13 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraftforge.common.loot.IGlobalLootModifier;
 import net.minecraftforge.common.loot.LootModifier;
 
-public class HuskLootModifier extends LootModifier {
+public class ZombieVillagerLootModifier extends LootModifier {
 	private final List<Item> root_vegetables = List.of(Items.CARROT, TechnologicaItems.GARLIC.get(), TechnologicaItems.ONION.get(), TechnologicaItems.RADISH.get(), TechnologicaItems.TURNIP.get());
 	private final List<Item> tubers = List.of(Items.POTATO, TechnologicaItems.SWEET_POTATO.get());
 
-	public static final Supplier<Codec<HuskLootModifier>> CODEC = Suppliers.memoize(() -> RecordCodecBuilder.create(inst -> codecStart(inst).apply(inst, HuskLootModifier::new)));
+	public static final Supplier<Codec<ZombieVillagerLootModifier>> CODEC = Suppliers.memoize(() -> RecordCodecBuilder.create(inst -> codecStart(inst).apply(inst, ZombieVillagerLootModifier::new)));
 
-	public HuskLootModifier(LootItemCondition[] conditionsIn) {
+	public ZombieVillagerLootModifier(LootItemCondition[] conditionsIn) {
 		super(conditionsIn);
 	}
 
