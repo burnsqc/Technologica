@@ -7,6 +7,8 @@ import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import com.technologica.Technologica;
 import com.technologica.data.worldgen.TechnologicaDimensionTypes;
+import com.technologica.data.worldgen.TechnologicaStructureSets;
+import com.technologica.data.worldgen.TechnologicaStructures;
 import com.technologica.data.worldgen.biome.TechnologicaBiomeData;
 import com.technologica.data.worldgen.biome.TechnologicaBiomeModifiers;
 import com.technologica.data.worldgen.features.TechnologicaFeatureUtils;
@@ -37,7 +39,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class TechnologicaDatapackBuiltinEntriesProvider extends DatapackBuiltinEntriesProvider {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private static final RegistrySetBuilder BUILDER = new RegistrySetBuilder().add(Registries.DIMENSION_TYPE, TechnologicaDimensionTypes::bootstrap).add(Registries.CONFIGURED_FEATURE, (RegistrySetBuilder.RegistryBootstrap) TechnologicaFeatureUtils::bootstrap).add(Registries.PLACED_FEATURE, TechnologicaPlacementUtils::bootstrap).add(Registries.BIOME, TechnologicaBiomeData::bootstrap).add(Registries.NOISE_SETTINGS, TechnologicaNoiseGeneratorSettings::bootstrap).add(Registries.DAMAGE_TYPE, TechnologicaDamageTypes::bootstrap);
+	private static final RegistrySetBuilder BUILDER = new RegistrySetBuilder().add(Registries.DIMENSION_TYPE, TechnologicaDimensionTypes::bootstrap).add(Registries.CONFIGURED_FEATURE, (RegistrySetBuilder.RegistryBootstrap) TechnologicaFeatureUtils::bootstrap).add(Registries.PLACED_FEATURE, TechnologicaPlacementUtils::bootstrap).add(Registries.STRUCTURE, TechnologicaStructures::bootstrap).add(Registries.STRUCTURE_SET, TechnologicaStructureSets::bootstrap).add(Registries.BIOME, TechnologicaBiomeData::bootstrap).add(Registries.NOISE_SETTINGS, TechnologicaNoiseGeneratorSettings::bootstrap).add(Registries.DAMAGE_TYPE, TechnologicaDamageTypes::bootstrap);
 
 	public TechnologicaDatapackBuiltinEntriesProvider(PackOutput output, CompletableFuture<Provider> registries) {
 		super(output, registries, BUILDER.add(ForgeRegistries.Keys.BIOME_MODIFIERS, context -> {

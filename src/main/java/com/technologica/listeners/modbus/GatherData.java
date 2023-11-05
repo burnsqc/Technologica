@@ -10,6 +10,7 @@ import com.technologica.data.models.blockstates.TechnologicaBlockStateProvider;
 import com.technologica.data.models.model.TechnologicaItemModelProvider;
 import com.technologica.data.recipes.packs.TechnologicaRecipeProvider;
 import com.technologica.data.registries.TechnologicaDatapackBuiltinEntriesProvider;
+import com.technologica.data.tags.TechnologicaBiomeTagsProvider;
 import com.technologica.data.tags.TechnologicaBlockTagsProvider;
 import com.technologica.data.tags.TechnologicaFluidTagsProvider;
 import com.technologica.data.tags.TechnologicaItemTagsProvider;
@@ -52,6 +53,7 @@ public class GatherData {
 		generator.addProvider(event.includeServer(), new TechnologicaLootTableProvider(packOutput));
 		generator.addProvider(event.includeServer(), new TechnologicaGlobalLootModifierProvider(packOutput));
 		generator.addProvider(event.includeServer(), new TechnologicaRecipeProvider(packOutput));
+		generator.addProvider(event.includeServer(), new TechnologicaBiomeTagsProvider(packOutput, lookupProvider, helper));
 		TechnologicaBlockTagsProvider technologicaBlockTagsProvider = new TechnologicaBlockTagsProvider(packOutput, lookupProvider, helper);
 		generator.addProvider(event.includeServer(), technologicaBlockTagsProvider);
 		generator.addProvider(event.includeServer(), new TechnologicaItemTagsProvider(packOutput, lookupProvider, technologicaBlockTagsProvider.contentsGetter(), helper));
