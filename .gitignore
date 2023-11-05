@@ -25,4 +25,4 @@ run
 javadoc
 
 # Files from Forge MDK
-forge*changelog.txt
+changelog.txt
