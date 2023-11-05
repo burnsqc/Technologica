@@ -88,4 +88,9 @@ public class TechnologicaLanguageProvider extends LanguageProvider {
 		}
 		return name.trim();
 	}
+
+	@Override
+	public String getName() {
+		return "Technologica Language";
+	}
 }

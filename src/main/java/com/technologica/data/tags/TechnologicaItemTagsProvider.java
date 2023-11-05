@@ -68,4 +68,9 @@ public class TechnologicaItemTagsProvider extends ItemTagsProvider {
 		copy(TechnologicaBlockTags.INFERNAL_LOGS, TechnologicaItemTags.INFERNAL_LOGS);
 		copy(TechnologicaBlockTags.MALEVOLENT_LOGS, TechnologicaItemTags.MALEVOLENT_LOGS);
 	}
+
+	@Override
+	public String getName() {
+		return "Technologica Item Tags";
+	}
 }

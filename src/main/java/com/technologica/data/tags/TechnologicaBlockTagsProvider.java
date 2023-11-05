@@ -99,4 +99,9 @@ public class TechnologicaBlockTagsProvider extends BlockTagsProvider {
 
 		tag(TechnologicaBlockTags.CRYSTAL_ORES).add(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get(), TechnologicaBlocks.AUTUNITE_CRYSTAL.get(), TechnologicaBlocks.BARYTE_CRYSTAL.get(), TechnologicaBlocks.BISMITHUNITE_CRYSTAL.get(), TechnologicaBlocks.CELESTINE_CRYSTAL.get(), TechnologicaBlocks.COLUMBITE_CRYSTAL.get(), TechnologicaBlocks.DOLOMITE_CRYSTAL.get(), TechnologicaBlocks.FLUORITE_CRYSTAL.get(), TechnologicaBlocks.HUTCHINSONITE_CRYSTAL.get(), TechnologicaBlocks.MONAZITE_CRYSTAL.get(), TechnologicaBlocks.POLLUCITE_CRYSTAL.get(), TechnologicaBlocks.RUTILE_CRYSTAL.get(), TechnologicaBlocks.SCHEELITE_CRYSTAL.get(), TechnologicaBlocks.SPHALERITE_CRYSTAL.get(), TechnologicaBlocks.STIBNITE_CRYSTAL.get(), TechnologicaBlocks.STRONTIANITE_CRYSTAL.get(), TechnologicaBlocks.TELLURITE_CRYSTAL.get(), TechnologicaBlocks.ULEXITE_CRYSTAL.get(), TechnologicaBlocks.VANADINITE_CRYSTAL.get(), TechnologicaBlocks.WULFENITE_CRYSTAL.get(), TechnologicaBlocks.XENOTIME_CRYSTAL.get(), TechnologicaBlocks.ZIRCON_CRYSTAL.get());
 	}
+
+	@Override
+	public String getName() {
+		return "Technologica Block Tags";
+	}
 }
