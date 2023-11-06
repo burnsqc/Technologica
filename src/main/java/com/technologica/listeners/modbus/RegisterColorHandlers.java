@@ -12,7 +12,7 @@ import net.minecraftforge.client.event.RegisterColorHandlersEvent;
  * When the event is intercepted, Technologica Block Color Handlers are registered.
  * </p>
  * 
- * @tl.status YELLOW
+ * @status YELLOW
  */
 
 public class RegisterColorHandlers {

@@ -14,6 +14,7 @@ import net.minecraftforge.client.event.RegisterDimensionSpecialEffectsEvent;
  * </p>
  * 
  * @tl.status YELLOW
+ * @author Jonathan
  */
 
 public class RegisterDimensionSpecialEffects {

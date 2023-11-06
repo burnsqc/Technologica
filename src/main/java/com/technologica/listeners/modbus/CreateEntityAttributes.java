@@ -58,7 +58,6 @@ import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
  * 
  * @tl.status GREEN
  */
-
 public class CreateEntityAttributes {
 
 	/**
