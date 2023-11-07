@@ -50,6 +50,7 @@ import com.technologica.world.level.block.TechnologicaBlocks;
 import com.technologica.world.level.block.entity.TechnologicaBlockEntityType;
 import com.technologica.world.level.levelgen.feature.TechnologicaFeature;
 import com.technologica.world.level.levelgen.feature.foliageplacers.TechnologicaFoliagePlacers;
+import com.technologica.world.level.levelgen.structure.TechnologicaStructureType;
 import com.technologica.world.level.material.TechnologicaFluids;
 
 import net.minecraftforge.common.MinecraftForge;
@@ -83,6 +84,7 @@ public class Technologica {
 	public static int creativeModeTabs;
 	public static int fluidTypes;
 	public static int globalLootModifierTypes;
+	public static int structureTypes;
 
 	public Technologica() {
 		ModLoadingContext.get().registerConfig(Type.COMMON, Config.SPEC, "technologica-common.toml");
@@ -144,6 +146,9 @@ public class Technologica {
 
 		globalLootModifierTypes = TechnologicaLootModifiers.init();
 		LOGGER.info("INITIALIZATION - LOOT MODIFIERS - " + globalLootModifierTypes);
+
+		structureTypes = TechnologicaStructureType.init();
+		LOGGER.info("INITIALIZATION - STRUCTURE TYPES - " + structureTypes);
 	}
 
 	private void addModEventBusListeners() {

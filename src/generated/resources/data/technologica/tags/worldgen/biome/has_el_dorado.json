@@ -1,5 +1,8 @@
 {
   "values": [
-    "minecraft:badlands"
+    {
+      "id": "technologica:misty_mire",
+      "required": false
+    }
   ]
 }

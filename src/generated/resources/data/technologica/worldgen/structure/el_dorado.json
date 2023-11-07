@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:fortress",
+  "type": "technologica:el_dorado",
   "biomes": "#technologica:has_el_dorado",
   "spawn_overrides": {
     "monster": {
