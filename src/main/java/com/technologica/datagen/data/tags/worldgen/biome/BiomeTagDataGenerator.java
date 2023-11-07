@@ -20,6 +20,7 @@ public final class BiomeTagDataGenerator extends BiomeTagsProvider {
 	@Override
 	protected void addTags(HolderLookup.Provider providerIn) {
 		tag(TechnologicaBiomeTags.HAS_EL_DORADO).addOptional(TechnologicaBiomes.MISTY_MIRE.location());
+		tag(TechnologicaBiomeTags.HAS_DOME).addOptional(TechnologicaBiomes.SILENT_EXPANSES.location());
 	}
 
 	@Override

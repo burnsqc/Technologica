@@ -14,6 +14,7 @@ import com.technologica.datagen.data.worldgen.noisesettings.NoiseSettingsDataGen
 import com.technologica.datagen.data.worldgen.placedfeature.TechnologicaPlacementUtils;
 import com.technologica.datagen.data.worldgen.structure.StructureDataGenerator;
 import com.technologica.datagen.data.worldgen.structuresets.StructureSetDataGenerator;
+import com.technologica.datagen.data.worldgen.templatepool.TemplatePoolDataGenerator;
 
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.core.RegistrySetBuilder;
@@ -25,7 +26,17 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class TechnologicaDatapackBuiltinEntriesProvider extends DatapackBuiltinEntriesProvider {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private static final RegistrySetBuilder BUILDER = new RegistrySetBuilder().add(Registries.DIMENSION_TYPE, DimensionTypeDataGenerator::bootstrap).add(Registries.CONFIGURED_FEATURE, (RegistrySetBuilder.RegistryBootstrap) TechnologicaFeatureUtils::bootstrap).add(Registries.PLACED_FEATURE, TechnologicaPlacementUtils::bootstrap).add(Registries.STRUCTURE, StructureDataGenerator::bootstrap).add(Registries.STRUCTURE_SET, StructureSetDataGenerator::bootstrap).add(Registries.BIOME, BiomeDataGenerator::bootstrap).add(Registries.NOISE_SETTINGS, NoiseSettingsDataGenerator::bootstrap).add(Registries.LEVEL_STEM, DimensionDataGenerator::bootstrap).add(Registries.DAMAGE_TYPE, DamageTypeDataGenerator::bootstrap);
+	private static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
+	.add(Registries.DIMENSION_TYPE, DimensionTypeDataGenerator::bootstrap)
+	.add(Registries.CONFIGURED_FEATURE, (RegistrySetBuilder.RegistryBootstrap) TechnologicaFeatureUtils::bootstrap)
+	.add(Registries.PLACED_FEATURE, TechnologicaPlacementUtils::bootstrap)
+	.add(Registries.STRUCTURE, StructureDataGenerator::bootstrap)
+	.add(Registries.STRUCTURE_SET, StructureSetDataGenerator::bootstrap)
+	.add(Registries.TEMPLATE_POOL, TemplatePoolDataGenerator::bootstrap)
+	.add(Registries.BIOME, BiomeDataGenerator::bootstrap)
+	.add(Registries.NOISE_SETTINGS, NoiseSettingsDataGenerator::bootstrap)
+	.add(Registries.LEVEL_STEM, DimensionDataGenerator::bootstrap)
+	.add(Registries.DAMAGE_TYPE, DamageTypeDataGenerator::bootstrap);
 
 	public TechnologicaDatapackBuiltinEntriesProvider(PackOutput output, CompletableFuture<Provider> registries) {
 		super(output, registries, BUILDER.add(ForgeRegistries.Keys.BIOME_MODIFIERS, context -> {

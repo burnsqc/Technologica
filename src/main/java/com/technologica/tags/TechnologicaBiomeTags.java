@@ -9,4 +9,5 @@ import net.minecraft.world.level.biome.Biome;
 
 public class TechnologicaBiomeTags {
 	public static final TagKey<Biome> HAS_EL_DORADO = TagKey.create(Registries.BIOME, new ResourceLocation(Technologica.MODID, "has_el_dorado"));
+	public static final TagKey<Biome> HAS_DOME = TagKey.create(Registries.BIOME, new ResourceLocation(Technologica.MODID, "has_dome"));
 }
