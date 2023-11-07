@@ -336,6 +336,68 @@ public class BlockLootDataGenerator extends BlockLootSubProvider {
 		dropSelf(TechnologicaBlocks.BLOCK_OF_SAPPHIRE.get());
 		dropSelf(TechnologicaBlocks.BLOCK_OF_TOPAZ.get());
 
+		dropSelf(TechnologicaBlocks.BLOCK_OF_LITHIUM.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_BERYLLIUM.get());
+
+		dropSelf(TechnologicaBlocks.BLOCK_OF_ALUMINUM.get());
+
+		dropSelf(TechnologicaBlocks.BLOCK_OF_TITANIUM.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_VANADIUM.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_CHROMIUM.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_MANGANESE.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_COBALT.get());
+
+		dropSelf(TechnologicaBlocks.BLOCK_OF_NICKEL.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_ZINC.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_GALLIUM.get());
+
+		dropSelf(TechnologicaBlocks.BLOCK_OF_ZIRCONIUM.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_NIOBIUM.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_MOLYBDENUM.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_TECHNETIUM.get());
+
+		dropSelf(TechnologicaBlocks.BLOCK_OF_RUTHENIUM.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_RHODIUM.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_PALLADIUM.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_SILVER.get());
+
+		dropSelf(TechnologicaBlocks.BLOCK_OF_CADMIUM.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_INDIUM.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_TIN.get());
+
+		dropSelf(TechnologicaBlocks.BLOCK_OF_HAFNIUM.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_TANTALUM.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_TUNGSTEN.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_RHENIUM.get());
+
+		dropSelf(TechnologicaBlocks.BLOCK_OF_OSMIUM.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_IRIDIUM.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_PLATINUM.get());
+
+		dropSelf(TechnologicaBlocks.BLOCK_OF_THALLUIM.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_LEAD.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_BISMUTH.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_POLONIUM.get());
+
+		dropSelf(TechnologicaBlocks.BLOCK_OF_THORIUM.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_URANIUM.get());
+
+		dropSelf(TechnologicaBlocks.BLOCK_OF_BRONZE.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_BRASS.get());
+
+		dropSelf(TechnologicaBlocks.BLOCK_OF_BORON.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_CARBON.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_SILICON.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_PHOSPHORUS.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_SULFUR.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_GERMANIUM.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_ARSENIC.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_SELENIUM.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_ANTIMONY.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_TELLURIUM.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_IODINE.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_ASTATINE.get());
+
 		dropSelf(TechnologicaBlocks.APRICOT_LOG.get());
 		dropSelf(TechnologicaBlocks.ASPEN_LOG.get());
 		dropSelf(TechnologicaBlocks.AVOCADO_LOG.get());

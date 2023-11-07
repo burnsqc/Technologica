@@ -361,6 +361,69 @@ public class TechnologicaCreativeModeTabs {
 		p_260158_.accept(TechnologicaItems.BLOCK_OF_RUBY.get());
 		p_260158_.accept(TechnologicaItems.BLOCK_OF_SAPPHIRE.get());
 		p_260158_.accept(TechnologicaItems.BLOCK_OF_TOPAZ.get());
+
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_LITHIUM.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_BERYLLIUM.get());
+
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_ALUMINUM.get());
+
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_TITANIUM.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_VANADIUM.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_CHROMIUM.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_MANGANESE.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_COBALT.get());
+
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_NICKEL.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_ZINC.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_GALLIUM.get());
+
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_ZIRCONIUM.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_NIOBIUM.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_MOLYBDENUM.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_TECHNETIUM.get());
+
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_RUTHENIUM.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_RHODIUM.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_PALLADIUM.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_SILVER.get());
+
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_CADMIUM.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_INDIUM.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_TIN.get());
+
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_HAFNIUM.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_TANTALUM.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_TUNGSTEN.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_RHENIUM.get());
+
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_OSMIUM.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_IRIDIUM.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_PLATINUM.get());
+
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_THALLUIM.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_LEAD.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_BISMUTH.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_POLONIUM.get());
+
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_THORIUM.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_URANIUM.get());
+
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_BRONZE.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_BRASS.get());
+
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_BORON.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_CARBON.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_SILICON.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_PHOSPHORUS.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_SULFUR.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_GERMANIUM.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_ARSENIC.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_SELENIUM.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_ANTIMONY.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_TELLURIUM.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_IODINE.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_ASTATINE.get());
+
 		p_260158_.accept(TechnologicaItems.SAWDUST.get());
 		p_260158_.accept(TechnologicaItems.RUBBER.get());
 		p_260158_.accept(TechnologicaItems.HYDROGEN_BUCKET.get());

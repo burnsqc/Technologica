@@ -2,6 +2,7 @@
   "type": "minecraft:jigsaw",
   "biomes": "#technologica:has_dome",
   "max_distance_from_center": 80,
+  "project_start_to_heightmap": "WORLD_SURFACE_WG",
   "size": 6,
   "spawn_overrides": {
     "monster": {
@@ -41,9 +42,10 @@
     }
   },
   "start_height": {
-    "absolute": 33
+    "absolute": 0
   },
   "start_pool": "technologica:dome",
   "step": "surface_structures",
+  "terrain_adaptation": "beard_thin",
   "use_expansion_hack": false
 }

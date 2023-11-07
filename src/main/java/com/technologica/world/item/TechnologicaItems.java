@@ -412,6 +412,68 @@ public class TechnologicaItems {
 	public static final RegistryObject<Item> BLOCK_OF_SAPPHIRE = ITEMS.register("block_of_sapphire", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_SAPPHIRE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_TOPAZ = ITEMS.register("block_of_topaz", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_TOPAZ.get(), new Item.Properties()));
 
+	public static final RegistryObject<Item> BLOCK_OF_LITHIUM = ITEMS.register("block_of_lithium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_LITHIUM.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_BERYLLIUM = ITEMS.register("block_of_beryllium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_BERYLLIUM.get(), new Item.Properties()));
+
+	public static final RegistryObject<Item> BLOCK_OF_ALUMINUM = ITEMS.register("block_of_aluminum", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_ALUMINUM.get(), new Item.Properties()));
+
+	public static final RegistryObject<Item> BLOCK_OF_TITANIUM = ITEMS.register("block_of_titanium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_TITANIUM.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_VANADIUM = ITEMS.register("block_of_vanadium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_VANADIUM.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_CHROMIUM = ITEMS.register("block_of_chromium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_CHROMIUM.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_MANGANESE = ITEMS.register("block_of_manganese", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_MANGANESE.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_COBALT = ITEMS.register("block_of_cobalt", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_COBALT.get(), new Item.Properties()));
+
+	public static final RegistryObject<Item> BLOCK_OF_NICKEL = ITEMS.register("block_of_nickel", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_NICKEL.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_ZINC = ITEMS.register("block_of_zinc", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_ZINC.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_GALLIUM = ITEMS.register("block_of_gallium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_GALLIUM.get(), new Item.Properties()));
+
+	public static final RegistryObject<Item> BLOCK_OF_ZIRCONIUM = ITEMS.register("block_of_zirconium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_ZIRCONIUM.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_NIOBIUM = ITEMS.register("block_of_niobium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_NIOBIUM.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_MOLYBDENUM = ITEMS.register("block_of_molybdenum", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_MOLYBDENUM.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_TECHNETIUM = ITEMS.register("block_of_technetium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_TECHNETIUM.get(), new Item.Properties()));
+
+	public static final RegistryObject<Item> BLOCK_OF_RUTHENIUM = ITEMS.register("block_of_ruthenium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_RUTHENIUM.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_RHODIUM = ITEMS.register("block_of_rhodium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_RHODIUM.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_PALLADIUM = ITEMS.register("block_of_palladium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_PALLADIUM.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_SILVER = ITEMS.register("block_of_silver", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_SILVER.get(), new Item.Properties()));
+
+	public static final RegistryObject<Item> BLOCK_OF_CADMIUM = ITEMS.register("block_of_cadmium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_CADMIUM.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_INDIUM = ITEMS.register("block_of_indium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_INDIUM.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_TIN = ITEMS.register("block_of_tin", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_TIN.get(), new Item.Properties()));
+
+	public static final RegistryObject<Item> BLOCK_OF_HAFNIUM = ITEMS.register("block_of_hafnium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_HAFNIUM.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_TANTALUM = ITEMS.register("block_of_tantalum", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_TANTALUM.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_TUNGSTEN = ITEMS.register("block_of_tungsten", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_TUNGSTEN.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_RHENIUM = ITEMS.register("block_of_rhenium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_RHENIUM.get(), new Item.Properties()));
+
+	public static final RegistryObject<Item> BLOCK_OF_OSMIUM = ITEMS.register("block_of_osmium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_OSMIUM.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_IRIDIUM = ITEMS.register("block_of_iridium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_IRIDIUM.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_PLATINUM = ITEMS.register("block_of_platinum", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_PLATINUM.get(), new Item.Properties()));
+
+	public static final RegistryObject<Item> BLOCK_OF_THALLUIM = ITEMS.register("block_of_thallium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_THALLUIM.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_LEAD = ITEMS.register("block_of_lead", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_LEAD.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_BISMUTH = ITEMS.register("block_of_bismuth", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_BISMUTH.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_POLONIUM = ITEMS.register("block_of_polonium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_POLONIUM.get(), new Item.Properties()));
+
+	public static final RegistryObject<Item> BLOCK_OF_THORIUM = ITEMS.register("block_of_thorium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_THORIUM.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_URANIUM = ITEMS.register("block_of_uranium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_URANIUM.get(), new Item.Properties()));
+
+	public static final RegistryObject<Item> BLOCK_OF_BRONZE = ITEMS.register("block_of_bronze", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_BRONZE.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_BRASS = ITEMS.register("block_of_brass", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_BRASS.get(), new Item.Properties()));
+
+	public static final RegistryObject<Item> BLOCK_OF_BORON = ITEMS.register("block_of_boron", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_BORON.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_CARBON = ITEMS.register("block_of_carbon", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_CARBON.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_SILICON = ITEMS.register("block_of_silicon", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_SILICON.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_PHOSPHORUS = ITEMS.register("block_of_phosphorus", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_PHOSPHORUS.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_SULFUR = ITEMS.register("block_of_sulfur", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_SULFUR.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_GERMANIUM = ITEMS.register("block_of_germanium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_GERMANIUM.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_ARSENIC = ITEMS.register("block_of_arsenic", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_ARSENIC.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_SELENIUM = ITEMS.register("block_of_selenium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_SELENIUM.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_ANTIMONY = ITEMS.register("block_of_antimony", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_ANTIMONY.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_TELLURIUM = ITEMS.register("block_of_tellurium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_TELLURIUM.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_IODINE = ITEMS.register("block_of_iodine", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_IODINE.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_ASTATINE = ITEMS.register("block_of_astatine", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_ASTATINE.get(), new Item.Properties()));
+
 	public static final RegistryObject<Item> MULCH = ITEMS.register("mulch", () -> new MulchItem(new Properties()));
 	public static final RegistryObject<Item> FERTILIZER = ITEMS.register("fertilizer", () -> new FertilizerItem(new Properties()));
 	public static final RegistryObject<Item> TRELLIS = ITEMS.register("trellis", () -> new BlockItem(TechnologicaBlocks.TRELLIS.get(), new Properties()));

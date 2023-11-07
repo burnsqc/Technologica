@@ -219,6 +219,68 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_SAPPHIRE.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_SAPPHIRE.get()));
 		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_TOPAZ.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_TOPAZ.get()));
 
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_LITHIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_LITHIUM.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_BERYLLIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_BERYLLIUM.get()));
+
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_ALUMINUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_ALUMINUM.get()));
+
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_TITANIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_TITANIUM.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_VANADIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_VANADIUM.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_CHROMIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_CHROMIUM.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_MANGANESE.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_MANGANESE.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_COBALT.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_COBALT.get()));
+
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_NICKEL.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_NICKEL.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_ZINC.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_ZINC.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_GALLIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_GALLIUM.get()));
+
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_ZIRCONIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_ZIRCONIUM.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_NIOBIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_NIOBIUM.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_MOLYBDENUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_MOLYBDENUM.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_TECHNETIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_TECHNETIUM.get()));
+
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_RUTHENIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_RUTHENIUM.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_RHODIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_RHODIUM.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_PALLADIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_PALLADIUM.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_SILVER.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_SILVER.get()));
+
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_CADMIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_CADMIUM.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_INDIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_INDIUM.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_TIN.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_TIN.get()));
+
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_HAFNIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_HAFNIUM.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_TANTALUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_TANTALUM.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_TUNGSTEN.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_TUNGSTEN.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_RHENIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_RHENIUM.get()));
+
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_OSMIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_OSMIUM.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_IRIDIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_IRIDIUM.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_PLATINUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_PLATINUM.get()));
+
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_THALLUIM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_THALLUIM.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_LEAD.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_LEAD.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_BISMUTH.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_BISMUTH.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_POLONIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_POLONIUM.get()));
+
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_THORIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_THORIUM.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_URANIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_URANIUM.get()));
+
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_BRONZE.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_BRONZE.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_BRASS.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_BRASS.get()));
+
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_BORON.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_BORON.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_CARBON.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_CARBON.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_SILICON.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_SILICON.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_PHOSPHORUS.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_PHOSPHORUS.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_SULFUR.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_SULFUR.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_GERMANIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_GERMANIUM.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_ARSENIC.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_ARSENIC.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_SELENIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_SELENIUM.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_ANTIMONY.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_ANTIMONY.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_TELLURIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_TELLURIUM.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_IODINE.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_IODINE.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_ASTATINE.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_ASTATINE.get()));
+
 		simpleBlockItem(TechnologicaBlocks.APRICOT_LOG.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.APRICOT_LOG.get()), blockTexture(TechnologicaBlocks.APRICOT_LOG.get()), new ResourceLocation(blockTexture(TechnologicaBlocks.APRICOT_LOG.get()) + "_top")));
 		simpleBlockItem(TechnologicaBlocks.ASPEN_LOG.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.ASPEN_LOG.get()), blockTexture(TechnologicaBlocks.ASPEN_LOG.get()), new ResourceLocation(blockTexture(TechnologicaBlocks.ASPEN_LOG.get()) + "_top")));
 		simpleBlockItem(TechnologicaBlocks.AVOCADO_LOG.get(), models().cubeColumn(ResourceLocationHelper.getPath(TechnologicaBlocks.AVOCADO_LOG.get()), blockTexture(TechnologicaBlocks.AVOCADO_LOG.get()), new ResourceLocation(blockTexture(TechnologicaBlocks.AVOCADO_LOG.get()) + "_top")));
@@ -1586,6 +1648,68 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 		simpleBlock(TechnologicaBlocks.BLOCK_OF_RUBY.get());
 		simpleBlock(TechnologicaBlocks.BLOCK_OF_SAPPHIRE.get());
 		simpleBlock(TechnologicaBlocks.BLOCK_OF_TOPAZ.get());
+
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_LITHIUM.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_BERYLLIUM.get());
+
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_ALUMINUM.get());
+
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_TITANIUM.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_VANADIUM.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_CHROMIUM.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_MANGANESE.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_COBALT.get());
+
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_NICKEL.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_ZINC.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_GALLIUM.get());
+
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_ZIRCONIUM.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_NIOBIUM.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_MOLYBDENUM.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_TECHNETIUM.get());
+
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_RUTHENIUM.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_RHODIUM.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_PALLADIUM.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_SILVER.get());
+
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_CADMIUM.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_INDIUM.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_TIN.get());
+
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_HAFNIUM.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_TANTALUM.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_TUNGSTEN.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_RHENIUM.get());
+
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_OSMIUM.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_IRIDIUM.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_PLATINUM.get());
+
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_THALLUIM.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_LEAD.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_BISMUTH.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_POLONIUM.get());
+
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_THORIUM.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_URANIUM.get());
+
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_BRONZE.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_BRASS.get());
+
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_BORON.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_CARBON.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_SILICON.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_PHOSPHORUS.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_SULFUR.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_GERMANIUM.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_ARSENIC.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_SELENIUM.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_ANTIMONY.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_TELLURIUM.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_IODINE.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_ASTATINE.get());
 	}
 
 	private void crystalBlocks() {
