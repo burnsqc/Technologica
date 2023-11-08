@@ -262,8 +262,19 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_BISMUTH.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_BISMUTH.get()));
 		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_POLONIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_POLONIUM.get()));
 
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_ACTINIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_ACTINIUM.get()));
 		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_THORIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_THORIUM.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_PROTACTINIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_PROTACTINIUM.get()));
 		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_URANIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_URANIUM.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_NEPTUNIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_NEPTUNIUM.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_PLUTONIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_PLUTONIUM.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_AMERICIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_AMERICIUM.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_CURIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_CURIUM.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_BERKELLIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_BERKELLIUM.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_CALIFORNIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_CALIFORNIUM.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_EINSTEINIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_EINSTEINIUM.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_FERMIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_FERMIUM.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_LAWRENCIUM.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_LAWRENCIUM.get()));
 
 		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_BRONZE.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_BRONZE.get()));
 		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_BRASS.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_BRASS.get()));
@@ -1692,8 +1703,19 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 		simpleBlock(TechnologicaBlocks.BLOCK_OF_BISMUTH.get());
 		simpleBlock(TechnologicaBlocks.BLOCK_OF_POLONIUM.get());
 
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_ACTINIUM.get());
 		simpleBlock(TechnologicaBlocks.BLOCK_OF_THORIUM.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_PROTACTINIUM.get());
 		simpleBlock(TechnologicaBlocks.BLOCK_OF_URANIUM.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_NEPTUNIUM.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_PLUTONIUM.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_AMERICIUM.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_CURIUM.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_BERKELLIUM.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_CALIFORNIUM.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_EINSTEINIUM.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_FERMIUM.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_LAWRENCIUM.get());
 
 		simpleBlock(TechnologicaBlocks.BLOCK_OF_BRONZE.get());
 		simpleBlock(TechnologicaBlocks.BLOCK_OF_BRASS.get());

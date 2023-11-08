@@ -434,8 +434,19 @@ public class TechnologicaBlocks {
 	public static final RegistryObject<Block> BLOCK_OF_BISMUTH = BLOCKS.register("block_of_bismuth", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
 	public static final RegistryObject<Block> BLOCK_OF_POLONIUM = BLOCKS.register("block_of_polonium", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
 
+	public static final RegistryObject<Block> BLOCK_OF_ACTINIUM = BLOCKS.register("block_of_actinium", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
 	public static final RegistryObject<Block> BLOCK_OF_THORIUM = BLOCKS.register("block_of_thorium", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
+	public static final RegistryObject<Block> BLOCK_OF_PROTACTINIUM = BLOCKS.register("block_of_protactinium", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
 	public static final RegistryObject<Block> BLOCK_OF_URANIUM = BLOCKS.register("block_of_uranium", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
+	public static final RegistryObject<Block> BLOCK_OF_NEPTUNIUM = BLOCKS.register("block_of_neptunium", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
+	public static final RegistryObject<Block> BLOCK_OF_PLUTONIUM = BLOCKS.register("block_of_plutonium", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
+	public static final RegistryObject<Block> BLOCK_OF_AMERICIUM = BLOCKS.register("block_of_americium", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
+	public static final RegistryObject<Block> BLOCK_OF_CURIUM = BLOCKS.register("block_of_curium", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
+	public static final RegistryObject<Block> BLOCK_OF_BERKELLIUM = BLOCKS.register("block_of_berkellium", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
+	public static final RegistryObject<Block> BLOCK_OF_CALIFORNIUM = BLOCKS.register("block_of_californium", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
+	public static final RegistryObject<Block> BLOCK_OF_EINSTEINIUM = BLOCKS.register("block_of_einsteinium", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
+	public static final RegistryObject<Block> BLOCK_OF_FERMIUM = BLOCKS.register("block_of_fermium", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
+	public static final RegistryObject<Block> BLOCK_OF_LAWRENCIUM = BLOCKS.register("block_of_lawrencium", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
 
 	public static final RegistryObject<Block> BLOCK_OF_BRONZE = BLOCKS.register("block_of_bronze", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
 	public static final RegistryObject<Block> BLOCK_OF_BRASS = BLOCKS.register("block_of_brass", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));

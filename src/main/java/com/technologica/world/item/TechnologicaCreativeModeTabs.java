@@ -405,8 +405,19 @@ public class TechnologicaCreativeModeTabs {
 		p_260158_.accept(TechnologicaItems.BLOCK_OF_BISMUTH.get());
 		p_260158_.accept(TechnologicaItems.BLOCK_OF_POLONIUM.get());
 
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_ACTINIUM.get());
 		p_260158_.accept(TechnologicaItems.BLOCK_OF_THORIUM.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_PROTACTINIUM.get());
 		p_260158_.accept(TechnologicaItems.BLOCK_OF_URANIUM.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_NEPTUNIUM.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_PLUTONIUM.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_AMERICIUM.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_CURIUM.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_BERKELLIUM.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_CALIFORNIUM.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_EINSTEINIUM.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_FERMIUM.get());
+		p_260158_.accept(TechnologicaItems.BLOCK_OF_LAWRENCIUM.get());
 
 		p_260158_.accept(TechnologicaItems.BLOCK_OF_BRONZE.get());
 		p_260158_.accept(TechnologicaItems.BLOCK_OF_BRASS.get());

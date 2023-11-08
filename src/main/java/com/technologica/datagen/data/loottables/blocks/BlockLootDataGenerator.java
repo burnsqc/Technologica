@@ -379,8 +379,19 @@ public class BlockLootDataGenerator extends BlockLootSubProvider {
 		dropSelf(TechnologicaBlocks.BLOCK_OF_BISMUTH.get());
 		dropSelf(TechnologicaBlocks.BLOCK_OF_POLONIUM.get());
 
+		dropSelf(TechnologicaBlocks.BLOCK_OF_ACTINIUM.get());
 		dropSelf(TechnologicaBlocks.BLOCK_OF_THORIUM.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_PROTACTINIUM.get());
 		dropSelf(TechnologicaBlocks.BLOCK_OF_URANIUM.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_NEPTUNIUM.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_PLUTONIUM.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_AMERICIUM.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_CURIUM.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_BERKELLIUM.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_CALIFORNIUM.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_EINSTEINIUM.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_FERMIUM.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_LAWRENCIUM.get());
 
 		dropSelf(TechnologicaBlocks.BLOCK_OF_BRONZE.get());
 		dropSelf(TechnologicaBlocks.BLOCK_OF_BRASS.get());
