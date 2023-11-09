@@ -56,7 +56,7 @@ public class NoiseSettingsDataGenerator {
 		boolean disabledMobGeneration = false;
 		boolean legacyRandomSource = false;
 		NoiseSettings noise = TechnologicaNoiseSettings.MOON_NOISE_SETTINGS;
-		NoiseRouter noiseRouter = NoiseRouterData.moon(bootstrapContextIn.lookup(Registries.DENSITY_FUNCTION), bootstrapContextIn.lookup(Registries.NOISE), false, false);
+		NoiseRouter noiseRouter = NoiseRouterData.moon(bootstrapContextIn.lookup(Registries.DENSITY_FUNCTION), bootstrapContextIn.lookup(Registries.NOISE), true, true);
 		boolean oreVeinsEnabled = false;
 		int seaLevel = -64;
 		List<Climate.ParameterPoint> spawnTarget = List.of();

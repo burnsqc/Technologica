@@ -1194,7 +1194,7 @@ public class BlockLootDataGenerator extends BlockLootSubProvider {
 		dropSelf(TechnologicaBlocks.ANNUNCIATOR.get());
 
 		dropSelf(TechnologicaBlocks.NITROGLYCERIN.get());
-		dropOther(TechnologicaBlocks.NAVAL_MINE_CHAIN.get(), Items.CHAIN);
+		this.add(TechnologicaBlocks.NAVAL_MINE_CHAIN.get(), noDrop());
 
 		this.add(TechnologicaBlocks.SLEEPING_BAG.get(), (p_251275_) -> {
 			return this.createSinglePropConditionTable(p_251275_, BedBlock.PART, BedPart.HEAD);
