@@ -16,6 +16,7 @@ build
 # other
 eclipse
 run
+run-data
 javadoc
 
 # Files from Forge MDK

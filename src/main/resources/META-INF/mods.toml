@@ -1,23 +1,24 @@
 modLoader="javafml"
-loaderVersion="[35,)"
+loaderVersion="[47,)"
 logoFile="technologica.png"
-license="All rights reserved"
+license="All Rights Reserved"
 
 [[mods]]
 	modId="technologica"
 	version="1.0.0"
 	displayName="Technologica"
-	
-	credits="Special thanks to the generous help of the Forge Discord community!"
+	credits="Special thanks to the generous help of the Forge/NeoForge Discord community!"
 	authors="burnsqc, NecroticPlague1, QueenSeeker"
 	description='''
     An ambitious mod aiming to provide a primarily technical progression with considerable breadth and depth.  Technologica adds new trees, crops, minerals, and creatures both fantastical and real to the overworld.'''
+
 [[dependencies.technologica]] 
     modId="forge" 
     mandatory=true
-    versionRange="[39.0.0,)"
+    versionRange="[47,)"
     ordering="NONE"
     side="BOTH"
+
 [[dependencies.technologica]]
     modId="minecraft"
     mandatory=true
