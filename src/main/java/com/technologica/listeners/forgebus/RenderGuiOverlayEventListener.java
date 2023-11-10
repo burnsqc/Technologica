@@ -20,7 +20,7 @@ public class RenderGuiOverlayEventListener {
 	protected static final ResourceLocation AIR_SPRITE = new ResourceLocation("textures/gui/icons.png");
 
 	@SubscribeEvent
-	public void onRenderGameOverlayEventPre(RenderGuiOverlayEvent.Pre event) {
+	public void onRenderGameOverlayEventPre(RenderGuiOverlayEvent.Pre event) { // NO_UCD (unused code)
 		if (event.getOverlay() == VanillaGuiOverlay.AIR_LEVEL.type()) {
 			Minecraft minecraft = Minecraft.getInstance();
 			Player player = (Player) minecraft.getCameraEntity();

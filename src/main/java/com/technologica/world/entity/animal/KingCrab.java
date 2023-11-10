@@ -9,7 +9,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
@@ -19,7 +18,6 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.Pose;
@@ -27,11 +25,9 @@ import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
-import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
@@ -152,68 +148,5 @@ public class KingCrab extends Animal {
 	@Override
 	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
 		return 0.65F;
-	}
-
-	static class AttackGoal extends MeleeAttackGoal {
-		public AttackGoal(Scorpion spider) {
-			super(spider, 1.0D, true);
-		}
-
-		/**
-		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		 */
-		@Override
-		public boolean canUse() {
-			return super.canUse() && !this.mob.isVehicle();
-		}
-
-		/**
-		 * Returns whether an in-progress EntityAIBase should continue executing
-		 */
-		@Override
-		@SuppressWarnings("deprecation")
-		public boolean canContinueToUse() {
-			float f = this.mob.getLightLevelDependentMagicValue();
-			if (f >= 0.5F && this.mob.getRandom().nextInt(100) == 0) {
-				this.mob.setTarget((LivingEntity) null);
-				return false;
-			} else {
-				return super.canContinueToUse();
-			}
-		}
-	}
-
-	public static class GroupData implements SpawnGroupData {
-		public MobEffect effect;
-
-		public void setRandomEffect(RandomSource rand) {
-			int i = rand.nextInt(5);
-			if (i <= 1) {
-				this.effect = MobEffects.MOVEMENT_SPEED;
-			} else if (i <= 2) {
-				this.effect = MobEffects.DAMAGE_BOOST;
-			} else if (i <= 3) {
-				this.effect = MobEffects.REGENERATION;
-			} else if (i <= 4) {
-				this.effect = MobEffects.INVISIBILITY;
-			}
-
-		}
-	}
-
-	static class TargetGoal<T extends LivingEntity> extends NearestAttackableTargetGoal<T> {
-		public TargetGoal(Scorpion spider, Class<T> classTarget) {
-			super(spider, classTarget, true);
-		}
-
-		/**
-		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		 */
-		@SuppressWarnings("deprecation")
-		@Override
-		public boolean canUse() {
-			float f = this.mob.getLightLevelDependentMagicValue();
-			return f >= 0.5F ? false : super.canUse();
-		}
 	}
 }

@@ -56,7 +56,7 @@ import net.minecraft.world.phys.Vec3;
 
 public class Shark extends WaterAnimal implements NeutralMob {
 	private static final EntityDataAccessor<Integer> MOISTNESS = SynchedEntityData.defineId(Shark.class, EntityDataSerializers.INT);
-	public static final Predicate<ItemEntity> ITEM_SELECTOR = p_205023_0_ -> !p_205023_0_.hasPickUpDelay() && p_205023_0_.isAlive() && p_205023_0_.isInWater();
+	
 	private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
 	private int angerTime;
 	private UUID angerTarget;

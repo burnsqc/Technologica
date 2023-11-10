@@ -52,9 +52,7 @@ public class NavalMine extends Entity {
 		this.entityData.define(CHAINS, 10);
 	}
 
-	protected boolean isMovementNoisy() {
-		return false;
-	}
+	
 
 	@Override
 	public boolean canCollideWith(Entity entity) {

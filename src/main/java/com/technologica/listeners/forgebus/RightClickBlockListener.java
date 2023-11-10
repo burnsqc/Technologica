@@ -14,7 +14,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class RightClickBlockListener {
 
 	@SubscribeEvent
-	public void onRightClickBlock(RightClickBlock event) {
+	public void onRightClickBlock(RightClickBlock event) { // NO_UCD (unused code)
 		if (event.getItemStack().getItem() instanceof AxeItem && event.getLevel().getBlockState(event.getPos()).is(BlockTags.LOGS) && !ForgeRegistries.BLOCKS.getKey(event.getLevel().getBlockState(event.getPos()).getBlock()).getPath().contains("stripped")) {
 			ItemStack bark;
 

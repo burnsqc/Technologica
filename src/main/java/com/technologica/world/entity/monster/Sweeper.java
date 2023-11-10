@@ -166,9 +166,7 @@ public class Sweeper extends Monster {
 		}
 	}
 
-	public boolean hasIgnited() {
-		return this.entityData.get(IGNITED);
-	}
+	
 
 	public void ignite() {
 		this.entityData.set(IGNITED, true);

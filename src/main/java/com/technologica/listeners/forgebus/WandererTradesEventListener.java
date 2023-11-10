@@ -18,7 +18,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 public class WandererTradesEventListener {
 
 	@SubscribeEvent
-	public void onVillagerTradesEvent(WandererTradesEvent event) {
+	public void onVillagerTradesEvent(WandererTradesEvent event) { // NO_UCD (unused code)
 		List<ItemListing> trades = event.getGenericTrades();
 		trades.add(new ItemsForEmeralds(TechnologicaItems.BARLEY_SEEDS.get(), 1, 1, 12, 1));
 		trades.add(new ItemsForEmeralds(TechnologicaItems.OATS_SEEDS.get(), 1, 1, 12, 1));

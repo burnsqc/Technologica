@@ -70,7 +70,7 @@ public class Turkey extends Animal {
 		return this.isBaby() ? sizeIn.height * 0.85F : sizeIn.height * 0.92F;
 	}
 
-	public static AttributeSupplier.Builder createAttributes() {
+	public static AttributeSupplier.Builder createAttributes() { // NO_UCD (unused code)
 		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 4.0D).add(Attributes.MOVEMENT_SPEED, 0.25D);
 	}
 
@@ -103,9 +103,7 @@ public class Turkey extends Animal {
 
 	}
 
-	public boolean causeFallDamage(float distance, float damageMultiplier) {
-		return false;
-	}
+	
 
 	@Override
 	protected SoundEvent getAmbientSound() {
@@ -140,12 +138,7 @@ public class Turkey extends Animal {
 		return TEMPTATION_ITEMS.test(stack);
 	}
 
-	/**
-	 * Get the experience points the entity currently has.
-	 */
-	protected int getExperienceReward(Player player) {
-		return this.isChickenJockey() ? 10 : super.getExperienceReward();
-	}
+	
 
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.

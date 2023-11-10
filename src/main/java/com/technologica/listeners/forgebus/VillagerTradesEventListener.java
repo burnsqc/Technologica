@@ -20,7 +20,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 public class VillagerTradesEventListener {
 
 	@SubscribeEvent
-	public void onVillagerTradesEvent(final VillagerTradesEvent event) {
+	public void onVillagerTradesEvent(final VillagerTradesEvent event) { // NO_UCD (unused code)
 		if (event.getType() == VillagerProfession.FARMER) {
 			Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
 			trades.get(1).add(new EmeraldForItems(TechnologicaItems.BARLEY.get(), 20, 16, 2));

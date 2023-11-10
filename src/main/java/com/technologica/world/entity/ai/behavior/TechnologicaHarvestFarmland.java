@@ -29,7 +29,7 @@ import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class TechnologicaHarvestFarmland extends Behavior<Villager> {
-	public static final float SPEED_MODIFIER = 0.5F;
+	
 	@Nullable
 	private BlockPos aboveFarmlandPos;
 	private long nextOkStartTime;

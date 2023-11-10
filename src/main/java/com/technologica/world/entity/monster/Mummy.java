@@ -81,10 +81,10 @@ public class Mummy extends Zombie {
 	private static final EntityDataAccessor<Integer> DATA_SPECIAL_TYPE_ID = SynchedEntityData.defineId(Mummy.class, EntityDataSerializers.INT);
 	private static final EntityDataAccessor<Boolean> DATA_DROWNED_CONVERSION_ID = SynchedEntityData.defineId(Mummy.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Integer> DATA_PARALYZE_COOLDOWN = SynchedEntityData.defineId(Mummy.class, EntityDataSerializers.INT);
-	public static final float ZOMBIE_LEADER_CHANCE = 0.05F;
-	public static final int REINFORCEMENT_ATTEMPTS = 50;
-	public static final int REINFORCEMENT_RANGE_MAX = 40;
-	public static final int REINFORCEMENT_RANGE_MIN = 7;
+	
+	
+	
+	
 	private static final Predicate<Difficulty> DOOR_BREAKING_PREDICATE = (p_34284_) -> {
 		return p_34284_ == Difficulty.HARD;
 	};

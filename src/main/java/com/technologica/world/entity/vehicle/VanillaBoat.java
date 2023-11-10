@@ -63,10 +63,10 @@ public class VanillaBoat extends Boat {
 	private static final EntityDataAccessor<Boolean> DATA_ID_PADDLE_LEFT = SynchedEntityData.defineId(VanillaBoat.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> DATA_ID_PADDLE_RIGHT = SynchedEntityData.defineId(VanillaBoat.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Integer> DATA_ID_BUBBLE_TIME = SynchedEntityData.defineId(VanillaBoat.class, EntityDataSerializers.INT);
-	public static final int PADDLE_LEFT = 0;
-	public static final int PADDLE_RIGHT = 1;
-	public static final double PADDLE_SOUND_TIME = (float) Math.PI / 4F;
-	public static final int BUBBLE_TIME = 60;
+	
+	
+	
+	
 	private final float[] paddlePositions = new float[2];
 	private float invFriction;
 	private float outOfControlTicks;
@@ -881,20 +881,15 @@ public class VanillaBoat extends Boat {
 		APRICOT(TechnologicaBlocks.APRICOT_PLANKS.get(), "apricot"), ASPEN(TechnologicaBlocks.ASPEN_PLANKS.get(), "aspen"), AVOCADO(TechnologicaBlocks.AVOCADO_PLANKS.get(), "avocado"), BANANA(TechnologicaBlocks.BANANA_PLANKS.get(), "banana"), CHERRY(TechnologicaBlocks.CHERRY_PLANKS.get(), "cherry"), CHESTNUT(TechnologicaBlocks.CHESTNUT_PLANKS.get(), "chestnut"), CINNAMON(TechnologicaBlocks.CINNAMON_PLANKS.get(), "cinnamon"), COCONUT(TechnologicaBlocks.COCONUT_PLANKS.get(), "coconut"), EBONY(TechnologicaBlocks.EBONY_PLANKS.get(), "ebony"), KIWI(TechnologicaBlocks.KIWI_PLANKS.get(), "kiwi"), LEMON(TechnologicaBlocks.LEMON_PLANKS.get(), "lemon"), LIME(TechnologicaBlocks.LIME_PLANKS.get(), "lime"), MAHOGANY(TechnologicaBlocks.MAHOGANY_PLANKS.get(), "mahogany"), MAPLE(TechnologicaBlocks.MAPLE_PLANKS.get(), "maple"), OLIVE(TechnologicaBlocks.OLIVE_PLANKS.get(), "olive"), ORANGE(TechnologicaBlocks.ORANGE_PLANKS.get(), "orange"), PEACH(TechnologicaBlocks.PEACH_PLANKS.get(), "peach"), PEAR(TechnologicaBlocks.PEAR_PLANKS.get(), "pear"), PLUM(TechnologicaBlocks.PLUM_PLANKS.get(), "plum"), REDWOOD(TechnologicaBlocks.REDWOOD_PLANKS.get(), "redwood"), ROSEWOOD(TechnologicaBlocks.ROSEWOOD_PLANKS.get(), "rosewood"), RUBBER(TechnologicaBlocks.RUBBER_PLANKS.get(), "rubber"), TEAK(TechnologicaBlocks.TEAK_PLANKS.get(), "teak"), WALNUT(TechnologicaBlocks.WALNUT_PLANKS.get(), "walnut"), ZEBRAWOOD(TechnologicaBlocks.ZEBRAWOOD_PLANKS.get(), "zebrawood"), ALCHEMICAL(TechnologicaBlocks.ALCHEMICAL_PLANKS.get(), "alchemical"), BENEVOLENT(TechnologicaBlocks.BENEVOLENT_PLANKS.get(), "benevolent"), CONDUCTIVE(TechnologicaBlocks.CONDUCTIVE_PLANKS.get(), "conductive"), FROSTBITTEN(TechnologicaBlocks.FROSTBITTEN_PLANKS.get(), "frostbitten"), FRUITFUL(TechnologicaBlocks.FRUITFUL_PLANKS.get(), "fruitful"), INFERNAL(TechnologicaBlocks.INFERNAL_PLANKS.get(), "infernal"), MALEVOLENT(TechnologicaBlocks.MALEVOLENT_PLANKS.get(), "malevolent");
 
 		private final String name;
-		private final Block planks;
-
 		private Type(Block block, String name) {
 			this.name = name;
-			this.planks = block;
 		}
 
 		public String getName() {
 			return this.name;
 		}
 
-		public Block asPlank() {
-			return this.planks;
-		}
+		
 
 		@Override
 		public String toString() {
