@@ -5,6 +5,7 @@ import com.technologica.network.play.client.CUpdateAnnunciatorPacket;
 import com.technologica.network.play.client.CUpdateMonitorPacket;
 
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
 
@@ -18,14 +19,15 @@ public class Packets {
 		register();
 	}
 
-	private static int nextID() {
+	public static int nextID() {
 		return ID++;
 	}
 
 	public static void register() {
 		INSTANCE.registerMessage(nextID(), CUpdateAnnunciatorPacket.class, CUpdateAnnunciatorPacket::encode, CUpdateAnnunciatorPacket::decode, CUpdateAnnunciatorPacket::handle);
 		INSTANCE.registerMessage(nextID(), CUpdateMonitorPacket.class, CUpdateMonitorPacket::encode, CUpdateMonitorPacket::decode, CUpdateMonitorPacket::handle);
-
-		INSTANCE.registerMessage(nextID(), SUpdateAirCapabilityPacket.class, SUpdateAirCapabilityPacket::encode, SUpdateAirCapabilityPacket::decode, SUpdateAirCapabilityPacket::handle);
+		if (FMLEnvironment.dist.isClient()) {
+			INSTANCE.registerMessage(nextID(), SUpdateAirCapabilityPacket.class, SUpdateAirCapabilityPacket::encode, SUpdateAirCapabilityPacket::decode, SUpdateAirCapabilityPacket::handle);
+		}
 	}
 }

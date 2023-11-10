@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.technologica.capabilities.TechnologicaCapabilities;
-import com.technologica.client.model.geom.TechnologicaLayerDefinitions;
 import com.technologica.core.particles.TechnologicaParticleTypes;
 import com.technologica.datagen.GatherData;
 import com.technologica.listeners.forgebus.AttachCapabilities;
@@ -17,24 +16,17 @@ import com.technologica.listeners.forgebus.LivingEquipmentChangeEventListener;
 import com.technologica.listeners.forgebus.LivingFallEventListener;
 import com.technologica.listeners.forgebus.LivingHealEventListener;
 import com.technologica.listeners.forgebus.LivingJumpEventListener;
-import com.technologica.listeners.forgebus.MovementInputUpdateEventListener;
 import com.technologica.listeners.forgebus.PlayerTickEventListener;
 import com.technologica.listeners.forgebus.RegisterCapabilitiesEventListener;
-import com.technologica.listeners.forgebus.RenderGuiOverlayEventListener;
 import com.technologica.listeners.forgebus.RightClickBlockListener;
 import com.technologica.listeners.forgebus.ServerAboutToStartListener;
 import com.technologica.listeners.forgebus.VillagerTradesEventListener;
 import com.technologica.listeners.forgebus.WandererTradesEventListener;
 import com.technologica.listeners.lootmodifiers.TechnologicaLootModifiers;
-import com.technologica.listeners.modbus.ClientSetup;
 import com.technologica.listeners.modbus.CommonSetup;
 import com.technologica.listeners.modbus.CreateEntityAttributes;
 import com.technologica.listeners.modbus.Register;
-import com.technologica.listeners.modbus.RegisterColorHandlers;
-import com.technologica.listeners.modbus.RegisterDimensionSpecialEffects;
-import com.technologica.listeners.modbus.RegisterEntityRenderers;
-import com.technologica.listeners.modbus.RegisterModels;
-import com.technologica.listeners.modbus.RegisterParticleProviders;
+import com.technologica.setup.ClientInit;
 import com.technologica.setup.Config;
 import com.technologica.util.DisablePlankConditionFactory;
 import com.technologica.util.EnablePlankConditionFactory;
@@ -60,13 +52,14 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig.Type;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 
 @Mod(Technologica.MODID)
 public class Technologica {
 	public static final String MODID = "technologica";
 	public static final Logger LOGGER = LogManager.getLogger();
-	private static final IEventBus MOD_EVENT_BUS = FMLJavaModLoadingContext.get().getModEventBus();
-	private static final IEventBus FORGE_EVENT_BUS = MinecraftForge.EVENT_BUS;
+	public static final IEventBus MOD_EVENT_BUS = FMLJavaModLoadingContext.get().getModEventBus();
+	public static final IEventBus FORGE_EVENT_BUS = MinecraftForge.EVENT_BUS;
 
 	public static int soundEvents;
 	public static int fluids;
@@ -87,6 +80,10 @@ public class Technologica {
 	public static int structureTypes;
 
 	public Technologica() {
+		if (FMLEnvironment.dist.isClient()) {
+			ClientInit.init();
+		}
+		
 		ModLoadingContext.get().registerConfig(Type.COMMON, Config.SPEC, "technologica-common.toml");
 
 		init();
@@ -154,14 +151,7 @@ public class Technologica {
 	private void addModEventBusListeners() {
 		MOD_EVENT_BUS.addListener(Register::onRegisterEvent);
 		MOD_EVENT_BUS.addListener(CreateEntityAttributes::onEntityAttributeCreationEvent);
-		MOD_EVENT_BUS.addListener(RegisterColorHandlers::onRegisterColorHandlersBlock);
-		MOD_EVENT_BUS.addListener(RegisterParticleProviders::onRegisterParticleProvidersEvent);
-		MOD_EVENT_BUS.addListener(TechnologicaLayerDefinitions::onRegisterLayerDefinitions);
-		MOD_EVENT_BUS.addListener(RegisterEntityRenderers::onRegisterRenderers);
-		MOD_EVENT_BUS.addListener(RegisterDimensionSpecialEffects::onRegisterDimensionSpecialEffectsEvent);
 		MOD_EVENT_BUS.addListener(CommonSetup::onFMLCommonSetupEvent);
-		MOD_EVENT_BUS.addListener(ClientSetup::onFMLClientSetupEvent);
-		MOD_EVENT_BUS.addListener(RegisterModels::onRegisterAdditional);
 		MOD_EVENT_BUS.addListener(TechnologicaCapabilities::register);
 		MOD_EVENT_BUS.addListener(GatherData::onGatherDataEvent);
 	}
@@ -177,10 +167,8 @@ public class Technologica {
 		FORGE_EVENT_BUS.register(new LivingFallEventListener());
 		FORGE_EVENT_BUS.register(new LivingHealEventListener());
 		FORGE_EVENT_BUS.register(new LivingJumpEventListener());
-		FORGE_EVENT_BUS.register(new MovementInputUpdateEventListener());
 		FORGE_EVENT_BUS.register(new PlayerTickEventListener());
 		FORGE_EVENT_BUS.register(new RegisterCapabilitiesEventListener());
-		FORGE_EVENT_BUS.register(new RenderGuiOverlayEventListener());
 		FORGE_EVENT_BUS.register(new RightClickBlockListener());
 		FORGE_EVENT_BUS.register(new ServerAboutToStartListener());
 		FORGE_EVENT_BUS.register(new VillagerTradesEventListener());
