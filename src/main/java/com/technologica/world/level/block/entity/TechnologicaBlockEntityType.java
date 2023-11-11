@@ -1,7 +1,6 @@
 package com.technologica.world.level.block.entity;
 
-import static com.technologica.Technologica.MOD_ID;
-
+import com.technologica.Technologica;
 import com.technologica.world.level.block.TechnologicaBlocks;
 
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -11,7 +10,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class TechnologicaBlockEntityType {
-	private static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.Keys.BLOCK_ENTITY_TYPES, MOD_ID);
+	private static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.Keys.BLOCK_ENTITY_TYPES, Technologica.MOD_ID);
 
 	public static int init() {
 		BLOCK_ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());

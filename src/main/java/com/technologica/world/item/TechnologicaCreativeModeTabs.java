@@ -1,7 +1,6 @@
 package com.technologica.world.item;
 
-import static com.technologica.Technologica.MOD_ID;
-
+import com.technologica.Technologica;
 import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.core.registries.Registries;
@@ -13,7 +12,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
 public class TechnologicaCreativeModeTabs {
-	public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MOD_ID);
+	public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Technologica.MOD_ID);
 
 	public static int init() {
 		CREATIVE_MODE_TABS.register(FMLJavaModLoadingContext.get().getModEventBus());

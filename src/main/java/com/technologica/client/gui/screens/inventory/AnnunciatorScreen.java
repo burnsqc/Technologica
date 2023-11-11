@@ -13,7 +13,7 @@ import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import com.technologica.Technologica;
-import com.technologica.network.play.client.CUpdateAnnunciatorPacket;
+import com.technologica.network.packets.ServerboundUpdateAnnunciatorPacket;
 import com.technologica.util.text.TechnologicaLocation;
 import com.technologica.world.inventory.AnnunciatorMenu;
 import com.technologica.world.level.block.entity.AnnunciatorBlockEntity;
@@ -66,7 +66,7 @@ public class AnnunciatorScreen extends AbstractContainerScreen<AnnunciatorMenu> 
 		Connection clientplaynethandler = this.minecraft.getConnection().getConnection();
 
 		if (clientplaynethandler != null) {
-			Technologica.CHANNEL.sendToServer(new CUpdateAnnunciatorPacket(this.tileEntity.getBlockPos(), this.multiLineText[0], this.multiLineText[1], this.multiLineText[2], this.multiLineText[3], this.multiLineText[4], this.multiLineText[5], this.multiLineText[6], this.multiLineText[7]));
+			Technologica.CHANNEL.sendToServer(new ServerboundUpdateAnnunciatorPacket(this.tileEntity.getBlockPos(), this.multiLineText[0], this.multiLineText[1], this.multiLineText[2], this.multiLineText[3], this.multiLineText[4], this.multiLineText[5], this.multiLineText[6], this.multiLineText[7]));
 		}
 
 		this.tileEntity.setEditable(true);

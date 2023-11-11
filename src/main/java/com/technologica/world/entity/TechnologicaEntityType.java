@@ -1,7 +1,6 @@
 package com.technologica.world.entity;
 
-import static com.technologica.Technologica.MOD_ID;
-
+import com.technologica.Technologica;
 import com.technologica.world.entity.animal.Alligator;
 import com.technologica.world.entity.animal.Beaver;
 import com.technologica.world.entity.animal.Buffalo;
@@ -60,7 +59,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class TechnologicaEntityType {
-	public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.Keys.ENTITY_TYPES, MOD_ID);
+	public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.Keys.ENTITY_TYPES, Technologica.MOD_ID);
 
 	public static int init() {
 		ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
