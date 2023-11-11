@@ -1,8 +1,8 @@
 package com.technologica.client.renderer.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.technologica.Technologica;
 import com.technologica.client.model.geom.TechnologicaModelLayers;
+import com.technologica.util.text.TechnologicaLocation;
 import com.technologica.world.entity.monster.AtomicCreeper;
 
 import net.minecraft.client.model.CreeperModel;
@@ -12,7 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
 public class AtomicCreeperRenderer extends MobRenderer<AtomicCreeper, CreeperModel<AtomicCreeper>> {
-	private static final ResourceLocation ATOMIC_CREEPER_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/atomic_creeper.png");
+	private static final ResourceLocation ATOMIC_CREEPER_TEXTURE = new TechnologicaLocation("textures/entity/atomic_creeper.png");
 
 	public AtomicCreeperRenderer(Context contextIn) {
 		super(contextIn, new CreeperModel<>(contextIn.bakeLayer(TechnologicaModelLayers.ATOMIC_CREEPER)), 0.5F);

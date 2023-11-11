@@ -1,6 +1,6 @@
 package com.technologica.world.level.levelgen.feature;
 
-import static com.technologica.Technologica.MODID;
+import static com.technologica.Technologica.MOD_ID;
 
 import com.technologica.world.level.block.TechnologicaBlocks;
 
@@ -15,7 +15,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 @SuppressWarnings("deprecation")
 public class TechnologicaFeature {
-	private static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.Keys.FEATURES, MODID);
+	private static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.Keys.FEATURES, MOD_ID);
 
 	public static int init() {
 		FEATURES.register(FMLJavaModLoadingContext.get().getModEventBus());

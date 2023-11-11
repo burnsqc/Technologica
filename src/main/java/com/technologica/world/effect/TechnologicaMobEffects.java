@@ -1,6 +1,6 @@
 package com.technologica.world.effect;
 
-import static com.technologica.Technologica.MODID;
+import static com.technologica.Technologica.MOD_ID;
 
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -10,7 +10,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class TechnologicaMobEffects {
-	public static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(ForgeRegistries.Keys.MOB_EFFECTS, MODID);
+	public static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(ForgeRegistries.Keys.MOB_EFFECTS, MOD_ID);
 
 	public static int init() {
 		MOB_EFFECTS.register(FMLJavaModLoadingContext.get().getModEventBus());

@@ -1,5 +1,7 @@
 package com.technologica.network.play.client;
 
+import static com.technologica.Technologica.LOGGER;
+
 import java.util.function.Supplier;
 
 import com.technologica.world.level.block.entity.MonitorBlockEntity;
@@ -39,6 +41,7 @@ public class CUpdateMonitorPacket {
 
 	public static void handle(CUpdateMonitorPacket msg, final Supplier<NetworkEvent.Context> ctx) {
 		ctx.get().enqueueWork(() -> {
+			LOGGER.debug("TECHNOLOGICA HANDLING PACKET - UPDATE MONITOR");
 			Level world = ctx.get().getSender().level();
 			BlockEntity tileentity = world.getBlockEntity(msg.pos);
 			BlockState blockstate = world.getBlockState(msg.pos);

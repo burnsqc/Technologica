@@ -17,7 +17,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 public class BlockTagDataGenerator extends BlockTagsProvider {
 
 	public BlockTagDataGenerator(PackOutput packOutputIn, CompletableFuture<Provider> lookupProviderIn, @Nullable ExistingFileHelper existingFileHelperIn) {
-		super(packOutputIn, lookupProviderIn, Technologica.MODID, existingFileHelperIn);
+		super(packOutputIn, lookupProviderIn, Technologica.MOD_ID, existingFileHelperIn);
 	}
 
 	@Override

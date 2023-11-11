@@ -2,7 +2,7 @@ package com.technologica.datagen.data.advancements.tribulation;
 
 import java.util.function.Consumer;
 
-import com.technologica.Technologica;
+import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
@@ -24,10 +24,10 @@ public class TribulationAdvancementDataGenerator implements AdvancementGenerator
 	@Override
 	public void generate(Provider providerIn, Consumer<Advancement> consumerIn, ExistingFileHelper fileHelper) {
 		Advancement advancement = this.createRoot(consumerIn);
-		Advancement.Builder.advancement().parent(advancement).display(Items.OAK_LOG, Component.translatable("advancements.tribulation.a_sign_of_things_to_come.title"), Component.translatable("advancements.tribulation.a_sign_of_things_to_come.description"), (ResourceLocation) null, FrameType.TASK, true, true, false).requirements(RequirementsStrategy.OR).addCriterion("failed_harvest", InventoryChangeTrigger.TriggerInstance.hasItems(Items.OAK_LOG)).save(consumerIn, new ResourceLocation(Technologica.MODID, "tribulation/a_sign_of_things_to_come"), fileHelper);
+		Advancement.Builder.advancement().parent(advancement).display(Items.OAK_LOG, Component.translatable("advancements.tribulation.a_sign_of_things_to_come.title"), Component.translatable("advancements.tribulation.a_sign_of_things_to_come.description"), (ResourceLocation) null, FrameType.TASK, true, true, false).requirements(RequirementsStrategy.OR).addCriterion("failed_harvest", InventoryChangeTrigger.TriggerInstance.hasItems(Items.OAK_LOG)).save(consumerIn, new TechnologicaLocation("tribulation/a_sign_of_things_to_come"), fileHelper);
 	}
 
 	Advancement createRoot(Consumer<Advancement> consumerIn) {
-		return Advancement.Builder.advancement().display(Blocks.BARRIER, Component.translatable("advancements.tribulation.root.title"), Component.translatable("advancements.tribulation.root.description"), new ResourceLocation(Technologica.MODID, "textures/block/salt.png"), FrameType.TASK, false, false, false).addCriterion("consumed_item", ConsumeItemTrigger.TriggerInstance.usedItem()).save(consumerIn, "tribulation/root");
+		return Advancement.Builder.advancement().display(Blocks.BARRIER, Component.translatable("advancements.tribulation.root.title"), Component.translatable("advancements.tribulation.root.description"), new TechnologicaLocation("textures/block/salt.png"), FrameType.TASK, false, false, false).addCriterion("consumed_item", ConsumeItemTrigger.TriggerInstance.usedItem()).save(consumerIn, "tribulation/root");
 	}
 }

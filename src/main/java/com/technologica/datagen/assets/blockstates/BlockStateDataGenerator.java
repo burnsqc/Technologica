@@ -5,6 +5,7 @@ import com.technologica.util.AnnunciatorOverlay;
 import com.technologica.util.MiddleEnd;
 import com.technologica.util.Radius;
 import com.technologica.util.text.ResourceLocationHelper;
+import com.technologica.util.text.TechnologicaLocation;
 import com.technologica.world.level.block.GlueBlock;
 import com.technologica.world.level.block.TallCropBlock;
 import com.technologica.world.level.block.TechnologicaBlocks;
@@ -44,7 +45,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class BlockStateDataGenerator extends BlockStateProvider {
 	public BlockStateDataGenerator(PackOutput generatorIn, ExistingFileHelper helperIn) {
-		super(generatorIn, Technologica.MODID, helperIn);
+		super(generatorIn, Technologica.MOD_ID, helperIn);
 	}
 
 	@Override
@@ -79,9 +80,9 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 		simpleBlock(TechnologicaBlocks.DISPLAY_CASE.get(), displayModel(TechnologicaBlocks.DISPLAY_CASE.get()));
 		twelveDirectionBlockState(TechnologicaBlocks.LINE_SHAFT_HANGER.get(), lineShaftHangerModel(TechnologicaBlocks.LINE_SHAFT_HANGER.get()), lineShaftHangerModel2(TechnologicaBlocks.LINE_SHAFT_HANGER.get()));
 		lineShaftBlockState(TechnologicaBlocks.LINE_SHAFT.get(), lineShaftNoPulleyModel(TechnologicaBlocks.LINE_SHAFT.get()), lineShaftSmallPulleyModel(TechnologicaBlocks.LINE_SHAFT.get()), lineShaftMediumPulleyModel(TechnologicaBlocks.LINE_SHAFT.get()), lineShaftLargePulleyModel(TechnologicaBlocks.LINE_SHAFT.get()));
-		getVariantBuilder(TechnologicaBlocks.SMALL_PULLEY.get()).partialState().setModels(new ConfiguredModel(models().withExistingParent(ResourceLocationHelper.getPath(TechnologicaBlocks.SMALL_PULLEY.get()), ResourceLocationHelper.technologicaLocation(ResourceLocationHelper.getPath(TechnologicaBlocks.SMALL_PULLEY.get()) + "_model")).texture("pulley", ResourceLocationHelper.technologicaLocation("block/pulley"))));
-		getVariantBuilder(TechnologicaBlocks.MEDIUM_PULLEY.get()).partialState().setModels(new ConfiguredModel(models().withExistingParent(ResourceLocationHelper.getPath(TechnologicaBlocks.MEDIUM_PULLEY.get()), ResourceLocationHelper.technologicaLocation(ResourceLocationHelper.getPath(TechnologicaBlocks.MEDIUM_PULLEY.get()) + "_model")).texture("pulley", ResourceLocationHelper.technologicaLocation("block/pulley"))));
-		getVariantBuilder(TechnologicaBlocks.LARGE_PULLEY.get()).partialState().setModels(new ConfiguredModel(models().withExistingParent(ResourceLocationHelper.getPath(TechnologicaBlocks.LARGE_PULLEY.get()), ResourceLocationHelper.technologicaLocation(ResourceLocationHelper.getPath(TechnologicaBlocks.LARGE_PULLEY.get()) + "_model")).texture("pulley", ResourceLocationHelper.technologicaLocation("block/pulley"))));
+		getVariantBuilder(TechnologicaBlocks.SMALL_PULLEY.get()).partialState().setModels(new ConfiguredModel(models().withExistingParent(ResourceLocationHelper.getPath(TechnologicaBlocks.SMALL_PULLEY.get()), new TechnologicaLocation(ResourceLocationHelper.getPath(TechnologicaBlocks.SMALL_PULLEY.get()) + "_model")).texture("pulley", new TechnologicaLocation("block/pulley"))));
+		getVariantBuilder(TechnologicaBlocks.MEDIUM_PULLEY.get()).partialState().setModels(new ConfiguredModel(models().withExistingParent(ResourceLocationHelper.getPath(TechnologicaBlocks.MEDIUM_PULLEY.get()), new TechnologicaLocation(ResourceLocationHelper.getPath(TechnologicaBlocks.MEDIUM_PULLEY.get()) + "_model")).texture("pulley", new TechnologicaLocation("block/pulley"))));
+		getVariantBuilder(TechnologicaBlocks.LARGE_PULLEY.get()).partialState().setModels(new ConfiguredModel(models().withExistingParent(ResourceLocationHelper.getPath(TechnologicaBlocks.LARGE_PULLEY.get()), new TechnologicaLocation(ResourceLocationHelper.getPath(TechnologicaBlocks.LARGE_PULLEY.get()) + "_model")).texture("pulley", new TechnologicaLocation("block/pulley"))));
 		twentyFourDirectionBlockState(TechnologicaBlocks.MOTOR_1HP.get(), motorModel(TechnologicaBlocks.MOTOR_1HP.get()), motor2Model(TechnologicaBlocks.MOTOR_1HP.get()));
 		twentyFourDirectionBlockState(TechnologicaBlocks.MOTOR_5HP.get(), motorModel(TechnologicaBlocks.MOTOR_5HP.get()), motor2Model(TechnologicaBlocks.MOTOR_5HP.get()));
 		twentyFourDirectionBlockState(TechnologicaBlocks.MOTOR_20HP.get(), motorModel(TechnologicaBlocks.MOTOR_20HP.get()), motor2Model(TechnologicaBlocks.MOTOR_20HP.get()));
@@ -1872,23 +1873,23 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 	}
 
 	public ModelFile smallPulleyModel(Block block) {
-		return models().withExistingParent(ResourceLocationHelper.getPath(block), modLoc(ResourceLocationHelper.getPath(block))).texture("0", ResourceLocationHelper.technologicaLocation("block/" + ResourceLocationHelper.getPath(block)));
+		return models().withExistingParent(ResourceLocationHelper.getPath(block), modLoc(ResourceLocationHelper.getPath(block))).texture("0", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(block)));
 	}
 
 	public ModelFile lineShaftNoPulleyModel(Block block) {
-		return models().withExistingParent(ResourceLocationHelper.getPath(block) + "_no_pulley", modLoc("line_shaft_no_pulley_model")).texture("0", new ResourceLocation(Technologica.MODID, "block/pulley"));
+		return models().withExistingParent(ResourceLocationHelper.getPath(block) + "_no_pulley", modLoc("line_shaft_no_pulley_model")).texture("0", new TechnologicaLocation("block/pulley"));
 	}
 
 	public ModelFile lineShaftSmallPulleyModel(Block block) {
-		return models().withExistingParent(ResourceLocationHelper.getPath(block) + "_small_pulley", modLoc("line_shaft_small_pulley_model")).texture("0", new ResourceLocation(Technologica.MODID, "block/pulley"));
+		return models().withExistingParent(ResourceLocationHelper.getPath(block) + "_small_pulley", modLoc("line_shaft_small_pulley_model")).texture("0", new TechnologicaLocation("block/pulley"));
 	}
 
 	public ModelFile lineShaftMediumPulleyModel(Block block) {
-		return models().withExistingParent(ResourceLocationHelper.getPath(block) + "_medium_pulley", modLoc("line_shaft_medium_pulley_model")).texture("0", new ResourceLocation(Technologica.MODID, "block/pulley"));
+		return models().withExistingParent(ResourceLocationHelper.getPath(block) + "_medium_pulley", modLoc("line_shaft_medium_pulley_model")).texture("0", new TechnologicaLocation("block/pulley"));
 	}
 
 	public ModelFile lineShaftLargePulleyModel(Block block) {
-		return models().withExistingParent(ResourceLocationHelper.getPath(block) + "_large_pulley", modLoc("line_shaft_large_pulley_model")).texture("0", new ResourceLocation(Technologica.MODID, "block/pulley"));
+		return models().withExistingParent(ResourceLocationHelper.getPath(block) + "_large_pulley", modLoc("line_shaft_large_pulley_model")).texture("0", new TechnologicaLocation("block/pulley"));
 	}
 
 	public ModelFile lineShaftHangerModel(Block block) {
@@ -2062,17 +2063,17 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 	}
 
 	public void sawmillBlockState(Block block) {
-		ResourceLocation lower_side_left = new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lower_side_left");
-		ResourceLocation lower_side_middle = new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lower_side_middle");
-		ResourceLocation lower_side_right = new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lower_side_right");
-		ResourceLocation lower_side_end = new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lower_side_end");
-		ResourceLocation upper_side_left = new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_upper_side_left");
-		ResourceLocation upper_side_middle = new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_upper_side_middle");
-		ResourceLocation upper_side_right = new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_upper_side_right");
-		ResourceLocation upper_side_end = new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_upper_side_end");
-		ResourceLocation top_left = new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_top_left");
-		ResourceLocation top_middle = new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_top_middle");
-		ResourceLocation top_right = new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_top_right");
+		ResourceLocation lower_side_left = new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lower_side_left");
+		ResourceLocation lower_side_middle = new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lower_side_middle");
+		ResourceLocation lower_side_right = new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lower_side_right");
+		ResourceLocation lower_side_end = new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lower_side_end");
+		ResourceLocation upper_side_left = new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_upper_side_left");
+		ResourceLocation upper_side_middle = new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_upper_side_middle");
+		ResourceLocation upper_side_right = new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_upper_side_right");
+		ResourceLocation upper_side_end = new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_upper_side_end");
+		ResourceLocation top_left = new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_top_left");
+		ResourceLocation top_middle = new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_top_middle");
+		ResourceLocation top_right = new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_top_right");
 
 		getVariantBuilder(block).partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.LEFT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).modelForState().modelFile(cubeEachFace(name(block) + "lower_left_north", lower_side_left, lower_side_left, lower_side_right, lower_side_end, lower_side_left, lower_side_end)).rotationY(270).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.MIDDLE).with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).modelForState().modelFile(cubeEachFace(name(block) + "lower_middle_north", lower_side_middle, lower_side_middle, lower_side_middle, lower_side_end, lower_side_middle, lower_side_end)).rotationY(270).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.RIGHT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).modelForState().modelFile(cubeEachFace(name(block) + "lower_right_north", lower_side_right, lower_side_right, lower_side_left, lower_side_end, lower_side_right, lower_side_end)).rotationY(270).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.LEFT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).modelForState().modelFile(cubeEachFace(name(block) + "lower_left_east", lower_side_left, lower_side_left, lower_side_right, lower_side_end, lower_side_left, lower_side_end)).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.MIDDLE).with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).modelForState().modelFile(cubeEachFace(name(block) + "lower_middle_east", lower_side_middle, lower_side_middle, lower_side_middle, lower_side_end, lower_side_middle, lower_side_end)).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.RIGHT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).modelForState().modelFile(cubeEachFace(name(block) + "lower_right_east", lower_side_right, lower_side_right, lower_side_left, lower_side_end, lower_side_right, lower_side_end)).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.LEFT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).modelForState().modelFile(cubeEachFace(name(block) + "lower_left_south", lower_side_left, lower_side_left, lower_side_right, lower_side_end, lower_side_left, lower_side_end)).rotationY(90).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.MIDDLE).with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).modelForState().modelFile(cubeEachFace(name(block) + "lower_middle_south", lower_side_middle, lower_side_middle, lower_side_middle, lower_side_end, lower_side_middle, lower_side_end)).rotationY(90).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.RIGHT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).modelForState().modelFile(cubeEachFace(name(block) + "lower_right_south", lower_side_right, lower_side_right, lower_side_left, lower_side_end, lower_side_right, lower_side_end)).rotationY(90).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.LEFT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).modelForState().modelFile(cubeEachFace(name(block) + "lower_left_west", lower_side_left, lower_side_left, lower_side_right, lower_side_end, lower_side_left, lower_side_end)).rotationY(180).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.MIDDLE).with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).modelForState().modelFile(cubeEachFace(name(block) + "lower_middle_west", lower_side_middle, lower_side_middle, lower_side_middle, lower_side_end, lower_side_middle, lower_side_end)).rotationY(180).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.RIGHT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).modelForState().modelFile(cubeEachFace(name(block) + "lower_right_west", lower_side_right, lower_side_right, lower_side_left, lower_side_end, lower_side_right, lower_side_end)).rotationY(180).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.LEFT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).modelForState().modelFile(cubeEachFace(name(block) + "upper_left_north", lower_side_left, top_left, upper_side_right, upper_side_end, upper_side_left, upper_side_end)).rotationY(270).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.MIDDLE).with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).modelForState().modelFile(cubeEachFace(name(block) + "upper_middle_north", lower_side_middle, top_middle, upper_side_middle, upper_side_end, upper_side_middle, upper_side_end)).rotationY(270).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.RIGHT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).modelForState().modelFile(cubeEachFace(name(block) + "upper_right_north", lower_side_right, top_right, upper_side_left, upper_side_end, upper_side_right, upper_side_end)).rotationY(270).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.LEFT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).modelForState().modelFile(cubeEachFace(name(block) + "upper_left_east", lower_side_left, top_left, upper_side_right, upper_side_end, upper_side_left, upper_side_end)).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.MIDDLE).with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).modelForState().modelFile(cubeEachFace(name(block) + "upper_middle_east", lower_side_middle, top_middle, upper_side_middle, upper_side_end, upper_side_middle, upper_side_end)).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.RIGHT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).modelForState().modelFile(cubeEachFace(name(block) + "upper_right_east", lower_side_right, top_right, upper_side_left, upper_side_end, upper_side_right, upper_side_end)).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.LEFT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).modelForState().modelFile(cubeEachFace(name(block) + "upper_left_south", lower_side_left, top_left, upper_side_right, upper_side_end, upper_side_left, upper_side_end)).rotationY(90).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.MIDDLE).with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).modelForState().modelFile(cubeEachFace(name(block) + "upper_middle_south", lower_side_middle, top_middle, upper_side_middle, upper_side_end, upper_side_middle, upper_side_end)).rotationY(90).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.RIGHT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).modelForState().modelFile(cubeEachFace(name(block) + "upper_right_south", lower_side_right, top_right, upper_side_left, upper_side_end, upper_side_right, upper_side_end)).rotationY(90).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.LEFT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).modelForState().modelFile(cubeEachFace(name(block) + "upper_left_west", lower_side_left, top_left, upper_side_right, upper_side_end, upper_side_left, upper_side_end)).rotationY(180).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.MIDDLE).with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).modelForState().modelFile(cubeEachFace(name(block) + "upper_middle_west", lower_side_middle, top_middle, upper_side_middle, upper_side_end, upper_side_middle, upper_side_end)).rotationY(180).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.RIGHT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).modelForState().modelFile(cubeEachFace(name(block) + "upper_right_west", lower_side_right, top_right, upper_side_left, upper_side_end, upper_side_right, upper_side_end)).rotationY(180).addModel();
 
@@ -2080,17 +2081,17 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 	}
 
 	public void sawmillBlockState2(Block block) {
-		ResourceLocation lower_side_left = new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath().replace("_core", "") + "_lower_side_left");
-		ResourceLocation lower_side_middle = new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath().replace("_core", "") + "_lower_side_middle");
-		ResourceLocation lower_side_right = new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath().replace("_core", "") + "_lower_side_right");
-		ResourceLocation lower_side_end = new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath().replace("_core", "") + "_lower_side_end");
-		ResourceLocation upper_side_left = new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath().replace("_core", "") + "_upper_side_left");
-		ResourceLocation upper_side_middle = new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath().replace("_core", "") + "_upper_side_middle");
-		ResourceLocation upper_side_right = new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath().replace("_core", "") + "_upper_side_right");
-		ResourceLocation upper_side_end = new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath().replace("_core", "") + "_upper_side_end");
-		ResourceLocation top_left = new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath().replace("_core", "") + "_top_left");
-		ResourceLocation top_middle = new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath().replace("_core", "") + "_top_middle");
-		ResourceLocation top_right = new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath().replace("_core", "") + "_top_right");
+		ResourceLocation lower_side_left = new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath().replace("_core", "") + "_lower_side_left");
+		ResourceLocation lower_side_middle = new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath().replace("_core", "") + "_lower_side_middle");
+		ResourceLocation lower_side_right = new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath().replace("_core", "") + "_lower_side_right");
+		ResourceLocation lower_side_end = new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath().replace("_core", "") + "_lower_side_end");
+		ResourceLocation upper_side_left = new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath().replace("_core", "") + "_upper_side_left");
+		ResourceLocation upper_side_middle = new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath().replace("_core", "") + "_upper_side_middle");
+		ResourceLocation upper_side_right = new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath().replace("_core", "") + "_upper_side_right");
+		ResourceLocation upper_side_end = new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath().replace("_core", "") + "_upper_side_end");
+		ResourceLocation top_left = new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath().replace("_core", "") + "_top_left");
+		ResourceLocation top_middle = new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath().replace("_core", "") + "_top_middle");
+		ResourceLocation top_right = new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath().replace("_core", "") + "_top_right");
 
 		getVariantBuilder(block).partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.LEFT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).modelForState().modelFile(cubeEachFace(name(block) + "lower_left_north", lower_side_left, lower_side_left, lower_side_right, lower_side_end, lower_side_left, lower_side_end)).rotationY(270).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.MIDDLE).with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).modelForState().modelFile(cubeEachFace(name(block) + "lower_middle_north", lower_side_middle, lower_side_middle, lower_side_middle, lower_side_end, lower_side_middle, lower_side_end)).rotationY(270).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.RIGHT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).modelForState().modelFile(cubeEachFace(name(block) + "lower_right_north", lower_side_right, lower_side_right, lower_side_left, lower_side_end, lower_side_right, lower_side_end)).rotationY(270).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.LEFT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).modelForState().modelFile(cubeEachFace(name(block) + "lower_left_east", lower_side_left, lower_side_left, lower_side_right, lower_side_end, lower_side_left, lower_side_end)).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.MIDDLE).with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).modelForState().modelFile(cubeEachFace(name(block) + "lower_middle_east", lower_side_middle, lower_side_middle, lower_side_middle, lower_side_end, lower_side_middle, lower_side_end)).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.RIGHT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).modelForState().modelFile(cubeEachFace(name(block) + "lower_right_east", lower_side_right, lower_side_right, lower_side_left, lower_side_end, lower_side_right, lower_side_end)).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.LEFT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).modelForState().modelFile(cubeEachFace(name(block) + "lower_left_south", lower_side_left, lower_side_left, lower_side_right, lower_side_end, lower_side_left, lower_side_end)).rotationY(90).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.MIDDLE).with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).modelForState().modelFile(cubeEachFace(name(block) + "lower_middle_south", lower_side_middle, lower_side_middle, lower_side_middle, lower_side_end, lower_side_middle, lower_side_end)).rotationY(90).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.RIGHT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).modelForState().modelFile(cubeEachFace(name(block) + "lower_right_south", lower_side_right, lower_side_right, lower_side_left, lower_side_end, lower_side_right, lower_side_end)).rotationY(90).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.LEFT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).modelForState().modelFile(cubeEachFace(name(block) + "lower_left_west", lower_side_left, lower_side_left, lower_side_right, lower_side_end, lower_side_left, lower_side_end)).rotationY(180).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.MIDDLE).with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).modelForState().modelFile(cubeEachFace(name(block) + "lower_middle_west", lower_side_middle, lower_side_middle, lower_side_middle, lower_side_end, lower_side_middle, lower_side_end)).rotationY(180).addModel().partialState().with(BlockStateProperties.BOTTOM, true).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.RIGHT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).modelForState().modelFile(cubeEachFace(name(block) + "lower_right_west", lower_side_right, lower_side_right, lower_side_left, lower_side_end, lower_side_right, lower_side_end)).rotationY(180).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.LEFT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).modelForState().modelFile(cubeEachFace(name(block) + "upper_left_north", lower_side_left, top_left, upper_side_right, upper_side_end, upper_side_left, upper_side_end)).rotationY(270).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.MIDDLE).with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).modelForState().modelFile(cubeEachFace(name(block) + "upper_middle_north", lower_side_middle, top_middle, upper_side_middle, upper_side_end, upper_side_middle, upper_side_end)).rotationY(270).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.RIGHT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).modelForState().modelFile(cubeEachFace(name(block) + "upper_right_north", lower_side_right, top_right, upper_side_left, upper_side_end, upper_side_right, upper_side_end)).rotationY(270).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.LEFT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).modelForState().modelFile(cubeEachFace(name(block) + "upper_left_east", lower_side_left, top_left, upper_side_right, upper_side_end, upper_side_left, upper_side_end)).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.MIDDLE).with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).modelForState().modelFile(cubeEachFace(name(block) + "upper_middle_east", lower_side_middle, top_middle, upper_side_middle, upper_side_end, upper_side_middle, upper_side_end)).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.RIGHT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).modelForState().modelFile(cubeEachFace(name(block) + "upper_right_east", lower_side_right, top_right, upper_side_left, upper_side_end, upper_side_right, upper_side_end)).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.LEFT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).modelForState().modelFile(cubeEachFace(name(block) + "upper_left_south", lower_side_left, top_left, upper_side_right, upper_side_end, upper_side_left, upper_side_end)).rotationY(90).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.MIDDLE).with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).modelForState().modelFile(cubeEachFace(name(block) + "upper_middle_south", lower_side_middle, top_middle, upper_side_middle, upper_side_end, upper_side_middle, upper_side_end)).rotationY(90).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.RIGHT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).modelForState().modelFile(cubeEachFace(name(block) + "upper_right_south", lower_side_right, top_right, upper_side_left, upper_side_end, upper_side_right, upper_side_end)).rotationY(90).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.LEFT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).modelForState().modelFile(cubeEachFace(name(block) + "upper_left_west", lower_side_left, top_left, upper_side_right, upper_side_end, upper_side_left, upper_side_end)).rotationY(180).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.MIDDLE).with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).modelForState().modelFile(cubeEachFace(name(block) + "upper_middle_west", lower_side_middle, top_middle, upper_side_middle, upper_side_end, upper_side_middle, upper_side_end)).rotationY(180).addModel().partialState().with(BlockStateProperties.BOTTOM, false).with(TechnologicaBlockStateProperties.MIDDLE_END, MiddleEnd.RIGHT).with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).modelForState().modelFile(cubeEachFace(name(block) + "upper_right_west", lower_side_right, top_right, upper_side_left, upper_side_end, upper_side_right, upper_side_end)).rotationY(180).addModel();
 
@@ -2098,70 +2099,70 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 	}
 
 	public void annunciatorBlockState(Block block) {
-		ResourceLocation sides = new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_side");
+		ResourceLocation sides = new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_side");
 		getVariantBuilder(block)
 				.partialState()
 				.with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH)
 				.with(BlockStateProperties.LIT, false)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.INFO)
 				.modelForState()
-				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_info", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_info"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_info", sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_info"), sides))
 				.addModel()
 				.partialState()
 				.with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH)
 				.with(BlockStateProperties.LIT, false)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.FAIL)
 				.modelForState()
-				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_fail", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_fail"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_fail", sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_fail"), sides))
 				.addModel()
 				.partialState()
 				.with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH)
 				.with(BlockStateProperties.LIT, false)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.PASS)
 				.modelForState()
-				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_pass", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_pass"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_pass", sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_pass"), sides))
 				.addModel()
 				.partialState()
 				.with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH)
 				.with(BlockStateProperties.LIT, false)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.WARN)
 				.modelForState()
-				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_warn", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_warn"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_warn", sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_warn"), sides))
 				.addModel()
 				.partialState()
 				.with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH)
 				.with(BlockStateProperties.LIT, true)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.INFO)
 				.modelForState()
-				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_info", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_info"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_info", sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_info"), sides))
 				.addModel()
 				.partialState()
 				.with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH)
 				.with(BlockStateProperties.LIT, true)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.FAIL)
 				.modelForState()
-				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_fail", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_fail"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_fail", sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_fail"), sides))
 				.addModel()
 				.partialState()
 				.with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH)
 				.with(BlockStateProperties.LIT, true)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.PASS)
 				.modelForState()
-				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_pass", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_pass"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_pass", sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_pass"), sides))
 				.addModel()
 				.partialState()
 				.with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH)
 				.with(BlockStateProperties.LIT, true)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.WARN)
 				.modelForState()
-				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_warn", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_warn"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_warn", sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_warn"), sides))
 				.addModel()
 				.partialState()
 				.with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST)
 				.with(BlockStateProperties.LIT, false)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.INFO)
 				.modelForState()
-				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_info", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_info"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_info", sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_info"), sides))
 				.rotationY(90)
 				.addModel()
 				.partialState()
@@ -2169,7 +2170,7 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, false)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.FAIL)
 				.modelForState()
-				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_fail", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_fail"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_fail", sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_fail"), sides))
 				.rotationY(90)
 				.addModel()
 				.partialState()
@@ -2177,7 +2178,7 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, false)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.PASS)
 				.modelForState()
-				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_pass", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_pass"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_pass", sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_pass"), sides))
 				.rotationY(90)
 				.addModel()
 				.partialState()
@@ -2185,7 +2186,7 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, false)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.WARN)
 				.modelForState()
-				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_warn", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_warn"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_warn", sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_warn"), sides))
 				.rotationY(90)
 				.addModel()
 				.partialState()
@@ -2193,7 +2194,7 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, true)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.INFO)
 				.modelForState()
-				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_info", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_info"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_info", sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_info"), sides))
 				.rotationY(90)
 				.addModel()
 				.partialState()
@@ -2201,7 +2202,7 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, true)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.FAIL)
 				.modelForState()
-				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_fail", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_fail"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_fail", sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_fail"), sides))
 				.rotationY(90)
 				.addModel()
 				.partialState()
@@ -2209,7 +2210,7 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, true)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.PASS)
 				.modelForState()
-				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_pass", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_pass"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_pass", sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_pass"), sides))
 				.rotationY(90)
 				.addModel()
 				.partialState()
@@ -2217,7 +2218,7 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, true)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.WARN)
 				.modelForState()
-				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_warn", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_warn"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_warn", sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_warn"), sides))
 				.rotationY(90)
 				.addModel()
 				.partialState()
@@ -2225,7 +2226,7 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, false)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.INFO)
 				.modelForState()
-				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_info", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_info"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_info", sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_info"), sides))
 				.rotationY(180)
 				.addModel()
 				.partialState()
@@ -2233,7 +2234,7 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, false)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.FAIL)
 				.modelForState()
-				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_fail", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_fail"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_fail", sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_fail"), sides))
 				.rotationY(180)
 				.addModel()
 				.partialState()
@@ -2241,7 +2242,7 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, false)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.PASS)
 				.modelForState()
-				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_pass", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_pass"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_pass", sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_pass"), sides))
 				.rotationY(180)
 				.addModel()
 				.partialState()
@@ -2249,7 +2250,7 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, false)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.WARN)
 				.modelForState()
-				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_warn", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_warn"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_warn", sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_warn"), sides))
 				.rotationY(180)
 				.addModel()
 				.partialState()
@@ -2257,7 +2258,7 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, true)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.INFO)
 				.modelForState()
-				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_info", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_info"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_info", sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_info"), sides))
 				.rotationY(180)
 				.addModel()
 				.partialState()
@@ -2265,7 +2266,7 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, true)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.FAIL)
 				.modelForState()
-				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_fail", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_fail"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_fail", sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_fail"), sides))
 				.rotationY(180)
 				.addModel()
 				.partialState()
@@ -2273,7 +2274,7 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, true)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.PASS)
 				.modelForState()
-				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_pass", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_pass"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_pass", sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_pass"), sides))
 				.rotationY(180)
 				.addModel()
 				.partialState()
@@ -2281,7 +2282,7 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, true)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.WARN)
 				.modelForState()
-				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_warn", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_warn"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_warn", sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_warn"), sides))
 				.rotationY(180)
 				.addModel()
 				.partialState()
@@ -2289,7 +2290,7 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, false)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.INFO)
 				.modelForState()
-				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_info", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_info"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_info", sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_info"), sides))
 				.rotationY(270)
 				.addModel()
 				.partialState()
@@ -2297,7 +2298,7 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, false)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.FAIL)
 				.modelForState()
-				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_fail", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_fail"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_fail", sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_fail"), sides))
 				.rotationY(270)
 				.addModel()
 				.partialState()
@@ -2305,7 +2306,7 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, false)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.PASS)
 				.modelForState()
-				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_pass", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_pass"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_pass", sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_pass"), sides))
 				.rotationY(270)
 				.addModel()
 				.partialState()
@@ -2313,7 +2314,7 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, false)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.WARN)
 				.modelForState()
-				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_warn", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_warn"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_warn", sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_warn"), sides))
 				.rotationY(270)
 				.addModel()
 				.partialState()
@@ -2321,7 +2322,7 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, true)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.INFO)
 				.modelForState()
-				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_info", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_info"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_info", sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_info"), sides))
 				.rotationY(270)
 				.addModel()
 				.partialState()
@@ -2329,7 +2330,7 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, true)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.FAIL)
 				.modelForState()
-				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_fail", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_fail"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_fail", sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_fail"), sides))
 				.rotationY(270)
 				.addModel()
 				.partialState()
@@ -2337,7 +2338,7 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, true)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.PASS)
 				.modelForState()
-				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_pass", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_pass"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_pass", sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_pass"), sides))
 				.rotationY(270)
 				.addModel()
 				.partialState()
@@ -2345,10 +2346,10 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 				.with(BlockStateProperties.LIT, true)
 				.with(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.WARN)
 				.modelForState()
-				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_warn", sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_warn"), sides))
+				.modelFile(models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_warn", sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_warn"), sides))
 				.rotationY(270)
 				.addModel();
-		this.simpleBlockItem(block, models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath(), sides, new ResourceLocation(Technologica.MODID, "block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_info"), sides));
+		this.simpleBlockItem(block, models().orientable(ForgeRegistries.BLOCKS.getKey(block).getPath(), sides, new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_lit_info"), sides));
 	}
 
 	private void createHopper(Block block) {

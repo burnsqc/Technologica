@@ -1,6 +1,11 @@
 package com.technologica.setup;
 
-import com.technologica.Technologica;
+import static com.technologica.Technologica.CHANNEL;
+import static com.technologica.Technologica.FORGE_EVENT_BUS;
+import static com.technologica.Technologica.LOGGER;
+import static com.technologica.Technologica.MOD_EVENT_BUS;
+import static com.technologica.Technologica.PACKET_ID;
+
 import com.technologica.client.model.geom.TechnologicaLayerDefinitions;
 import com.technologica.listeners.forgebus.MovementInputUpdateEventListener;
 import com.technologica.listeners.forgebus.RenderGuiOverlayEventListener;
@@ -10,22 +15,32 @@ import com.technologica.listeners.modbus.RegisterDimensionSpecialEffects;
 import com.technologica.listeners.modbus.RegisterEntityRenderers;
 import com.technologica.listeners.modbus.RegisterModels;
 import com.technologica.listeners.modbus.RegisterParticleProviders;
-import com.technologica.network.play.server.Packets;
 import com.technologica.network.play.server.SUpdateAirCapabilityPacket;
 
 public class ClientInit {
 	public static void init() {
-		Technologica.MOD_EVENT_BUS.addListener(RegisterColorHandlers::onRegisterColorHandlersBlock);
-		Technologica.MOD_EVENT_BUS.addListener(RegisterParticleProviders::onRegisterParticleProvidersEvent);
-		Technologica.MOD_EVENT_BUS.addListener(RegisterEntityRenderers::onRegisterRenderers);
-		Technologica.MOD_EVENT_BUS.addListener(RegisterDimensionSpecialEffects::onRegisterDimensionSpecialEffectsEvent);
-		Technologica.MOD_EVENT_BUS.addListener(ClientSetup::onFMLClientSetupEvent);
-		Technologica.MOD_EVENT_BUS.addListener(RegisterModels::onRegisterAdditional);
-		Technologica.MOD_EVENT_BUS.addListener(TechnologicaLayerDefinitions::onRegisterLayerDefinitions);
-		
-		Technologica.FORGE_EVENT_BUS.register(new MovementInputUpdateEventListener());
-		Technologica.FORGE_EVENT_BUS.register(new RenderGuiOverlayEventListener());
-		
-		Packets.INSTANCE.registerMessage(Packets.nextID(), SUpdateAirCapabilityPacket.class, SUpdateAirCapabilityPacket::encode, SUpdateAirCapabilityPacket::decode, SUpdateAirCapabilityPacket::handle);
+		LOGGER.info("INIT - CLIENT");
+		registerPackets();
+		addModEventBusListeners();
+		addForgeEventBusListeners();
+	}
+	
+	private static void registerPackets() {
+		CHANNEL.registerMessage(PACKET_ID++, SUpdateAirCapabilityPacket.class, SUpdateAirCapabilityPacket::encode, SUpdateAirCapabilityPacket::decode, SUpdateAirCapabilityPacket::handle);
+	}
+	
+	private static void addModEventBusListeners() {
+		MOD_EVENT_BUS.addListener(RegisterColorHandlers::onRegisterColorHandlersBlock);
+		MOD_EVENT_BUS.addListener(RegisterParticleProviders::onRegisterParticleProvidersEvent);
+		MOD_EVENT_BUS.addListener(RegisterEntityRenderers::onRegisterRenderers);
+		MOD_EVENT_BUS.addListener(RegisterDimensionSpecialEffects::onRegisterDimensionSpecialEffectsEvent);
+		MOD_EVENT_BUS.addListener(ClientSetup::onFMLClientSetupEvent);
+		MOD_EVENT_BUS.addListener(RegisterModels::onRegisterAdditional);
+		MOD_EVENT_BUS.addListener(TechnologicaLayerDefinitions::onRegisterLayerDefinitions);
+	}
+	
+	private static void addForgeEventBusListeners() {
+		FORGE_EVENT_BUS.register(new MovementInputUpdateEventListener());
+		FORGE_EVENT_BUS.register(new RenderGuiOverlayEventListener());
 	}
 }

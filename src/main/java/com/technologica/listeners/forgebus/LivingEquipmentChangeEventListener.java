@@ -2,9 +2,9 @@ package com.technologica.listeners.forgebus;
 
 import java.util.UUID;
 
+import com.technologica.Technologica;
 import com.technologica.capabilities.TechnologicaCapabilities;
 import com.technologica.capabilities.air.IAir;
-import com.technologica.network.play.server.Packets;
 import com.technologica.network.play.server.SUpdateAirCapabilityPacket;
 import com.technologica.util.InventoryUtil;
 import com.technologica.world.item.TechnologicaArmorMaterial;
@@ -39,25 +39,25 @@ public class LivingEquipmentChangeEventListener {
 			if (InventoryUtil.fullArmorSet(serverPlayer, TechnologicaArmorMaterial.SNORKEL)) {
 				IAir airCapability = serverPlayer.getCapability(TechnologicaCapabilities.INSTANCE).orElseThrow(NullPointerException::new);
 				airCapability.setNewMaxAir(600);
-				Packets.INSTANCE.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new SUpdateAirCapabilityPacket(600));
+				Technologica.CHANNEL.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new SUpdateAirCapabilityPacket(600));
 				if (!serverPlayer.getAttribute(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get()).hasModifier(SNORKEL_SPEED)) {
 					serverPlayer.getAttribute(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get()).addPermanentModifier(SNORKEL_SPEED);
 				}
 			} else if (InventoryUtil.fullArmorSet(serverPlayer, TechnologicaArmorMaterial.DIVE)) {
 				IAir airCapability = serverPlayer.getCapability(TechnologicaCapabilities.INSTANCE).orElseThrow(NullPointerException::new);
 				airCapability.setNewMaxAir(6000);
-				Packets.INSTANCE.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new SUpdateAirCapabilityPacket(6000));
+				Technologica.CHANNEL.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new SUpdateAirCapabilityPacket(6000));
 			} else if (InventoryUtil.fullArmorSet(serverPlayer, TechnologicaArmorMaterial.SCUBA)) {
 				IAir airCapability = serverPlayer.getCapability(TechnologicaCapabilities.INSTANCE).orElseThrow(NullPointerException::new);
 				airCapability.setNewMaxAir(3000);
-				Packets.INSTANCE.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new SUpdateAirCapabilityPacket(3000));
+				Technologica.CHANNEL.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new SUpdateAirCapabilityPacket(3000));
 				if (!serverPlayer.getAttribute(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get()).hasModifier(SCUBA_SPEED)) {
 					serverPlayer.getAttribute(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get()).addPermanentModifier(SCUBA_SPEED);
 				}
 			} else {
 				IAir airCapability = serverPlayer.getCapability(TechnologicaCapabilities.INSTANCE).orElseThrow(NullPointerException::new);
 				airCapability.setNewMaxAir(300);
-				Packets.INSTANCE.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new SUpdateAirCapabilityPacket(300));
+				Technologica.CHANNEL.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new SUpdateAirCapabilityPacket(300));
 			}
 		}
 	}

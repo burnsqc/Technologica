@@ -1,11 +1,10 @@
 package com.technologica.world.level.biome;
 
-import com.technologica.Technologica;
 import com.technologica.datagen.data.worldgen.biome.BiomeDataGenerator;
+import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 
 /**
@@ -17,9 +16,9 @@ import net.minecraft.world.level.biome.Biome;
  * @tl.status GREEN
  */
 public class TechnologicaBiomes {
-	public static final ResourceKey<Biome> SILENT_EXPANSES = ResourceKey.create(Registries.BIOME, new ResourceLocation(Technologica.MODID, "silent_expanses"));
-	public static final ResourceKey<Biome> CRATER_FIELDS = ResourceKey.create(Registries.BIOME, new ResourceLocation(Technologica.MODID, "crater_fields"));
-	public static final ResourceKey<Biome> SHATTERED_CORRIDORS = ResourceKey.create(Registries.BIOME, new ResourceLocation(Technologica.MODID, "shattered_corridors"));
-	public static final ResourceKey<Biome> MISTY_MIRE = ResourceKey.create(Registries.BIOME, new ResourceLocation(Technologica.MODID, "misty_mire"));
-	public static final ResourceKey<Biome> BRAMBLE = ResourceKey.create(Registries.BIOME, new ResourceLocation(Technologica.MODID, "bramble"));
+	public static final ResourceKey<Biome> SILENT_EXPANSES = ResourceKey.create(Registries.BIOME, new TechnologicaLocation("silent_expanses"));
+	public static final ResourceKey<Biome> CRATER_FIELDS = ResourceKey.create(Registries.BIOME, new TechnologicaLocation("crater_fields"));
+	public static final ResourceKey<Biome> SHATTERED_CORRIDORS = ResourceKey.create(Registries.BIOME, new TechnologicaLocation("shattered_corridors"));
+	public static final ResourceKey<Biome> MISTY_MIRE = ResourceKey.create(Registries.BIOME, new TechnologicaLocation("misty_mire"));
+	public static final ResourceKey<Biome> BRAMBLE = ResourceKey.create(Registries.BIOME, new TechnologicaLocation("bramble"));
 }

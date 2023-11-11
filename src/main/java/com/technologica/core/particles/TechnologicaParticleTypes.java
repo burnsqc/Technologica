@@ -1,6 +1,6 @@
 package com.technologica.core.particles;
 
-import static com.technologica.Technologica.MODID;
+import static com.technologica.Technologica.MOD_ID;
 
 import java.util.function.Function;
 
@@ -14,7 +14,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class TechnologicaParticleTypes {
-	public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = DeferredRegister.create(ForgeRegistries.Keys.PARTICLE_TYPES, MODID);
+	public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = DeferredRegister.create(ForgeRegistries.Keys.PARTICLE_TYPES, MOD_ID);
 
 	public static int init() {
 		PARTICLE_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());

@@ -41,6 +41,6 @@ public class TechnologicaDatapackBuiltinEntriesProvider extends DatapackBuiltinE
 	public TechnologicaDatapackBuiltinEntriesProvider(PackOutput output, CompletableFuture<Provider> registries) {
 		super(output, registries, BUILDER.add(ForgeRegistries.Keys.BIOME_MODIFIERS, context -> {
 			TechnologicaBiomeModifiers.bootstrap(context);
-		}), Set.of(Technologica.MODID));
+		}), Set.of(Technologica.MOD_ID));
 	}
 }

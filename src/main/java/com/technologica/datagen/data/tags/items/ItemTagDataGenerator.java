@@ -16,7 +16,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class ItemTagDataGenerator extends ItemTagsProvider {
 	public ItemTagDataGenerator(PackOutput output, CompletableFuture<Provider> lookupProvider, CompletableFuture<TagLookup<Block>> blockTagProvider, ExistingFileHelper existingFileHelper) {
-		super(output, lookupProvider, blockTagProvider, Technologica.MODID, existingFileHelper);
+		super(output, lookupProvider, blockTagProvider, Technologica.MOD_ID, existingFileHelper);
 	}
 
 	@Override

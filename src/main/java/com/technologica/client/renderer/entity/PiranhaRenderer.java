@@ -2,9 +2,9 @@ package com.technologica.client.renderer.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import com.technologica.Technologica;
 import com.technologica.client.model.PiranhaModel;
 import com.technologica.client.model.geom.TechnologicaModelLayers;
+import com.technologica.util.text.TechnologicaLocation;
 import com.technologica.world.entity.animal.Piranha;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
@@ -13,7 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
 public final class PiranhaRenderer extends MobRenderer<Piranha, PiranhaModel<Piranha>> {
-	private static final ResourceLocation PIRANHA_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/piranha.png");
+	private static final ResourceLocation PIRANHA_TEXTURE = new TechnologicaLocation("textures/entity/piranha.png");
 
 	public PiranhaRenderer(Context contextIn) {
 		super(contextIn, new PiranhaModel<>(contextIn.bakeLayer(TechnologicaModelLayers.PIRANHA)), 0.2F);

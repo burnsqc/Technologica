@@ -3,8 +3,8 @@ package com.technologica.datagen.data.worldgen.placedfeature;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
-import com.technologica.Technologica;
 import com.technologica.datagen.data.worldgen.configuredfeature.TechnologicaVegetationFeatures;
+import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
@@ -13,7 +13,6 @@ import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.features.VegetationFeatures;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.BiomeFilter;
 import net.minecraft.world.level.levelgen.placement.CountOnEveryLayerPlacement;
@@ -24,28 +23,28 @@ import net.minecraft.world.level.levelgen.placement.RarityFilter;
 import net.minecraft.world.level.levelgen.placement.SurfaceWaterDepthFilter;
 
 public class TechnologicaVegetationPlacements {
-	public static final ResourceKey<PlacedFeature> TREES_MODIFIED_SAVANNA_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Technologica.MODID, "trees_zebrawood"));
-	public static final ResourceKey<PlacedFeature> TREES_MODIFIED_JUNGLE_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Technologica.MODID, "trees_modified_jungle"));
-	public static final ResourceKey<PlacedFeature> TREES_MODIFIED_JUNGLE_EDGE_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Technologica.MODID, "trees_teak"));
-	public static final ResourceKey<PlacedFeature> TREES_MODIFIED_BAMBOO_JUNGLE_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Technologica.MODID, "trees_bamboo_jungle"));
-	public static final ResourceKey<PlacedFeature> TREES_MODIFIED_FOREST_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Technologica.MODID, "trees_chestnut"));
-	public static final ResourceKey<PlacedFeature> TREES_MODIFIED_BIRCH_FOREST_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Technologica.MODID, "trees_peach"));
-	public static final ResourceKey<PlacedFeature> TREES_MODIFIED_WOODED_HILLS_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Technologica.MODID, "trees_aspen"));
-	public static final ResourceKey<PlacedFeature> TREES_MODIFIED_BEACH_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Technologica.MODID, "trees_coconut"));
-	public static final ResourceKey<PlacedFeature> TREES_MODIFIED_TAIGA_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Technologica.MODID, "trees_modified_taiga"));
-	public static final ResourceKey<PlacedFeature> TREES_MODIFIED_SNOWY_TAIGA_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Technologica.MODID, "trees_snowy_taiga"));
-	public static final ResourceKey<PlacedFeature> TREES_MODIFIED_SWAMP_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Technologica.MODID, "trees_orange"));
-	public static final ResourceKey<PlacedFeature> PATCH_BLACKBERRY_COMMON_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Technologica.MODID, "patch_blackberry_common"));
-	public static final ResourceKey<PlacedFeature> PATCH_BLACKBERRY_RARE_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Technologica.MODID, "patch_blackberry_rare"));
-	public static final ResourceKey<PlacedFeature> PATCH_BLUEBERRY_COMMON_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Technologica.MODID, "patch_blueberry_common"));
-	public static final ResourceKey<PlacedFeature> PATCH_BLUEBERRY_RARE_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Technologica.MODID, "patch_blueberry_rare"));
-	public static final ResourceKey<PlacedFeature> PATCH_RASPBERRY_COMMON_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Technologica.MODID, "patch_raspberry_common"));
-	public static final ResourceKey<PlacedFeature> PATCH_RASPBERRY_RARE_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Technologica.MODID, "patch_raspberry_rare"));
-	public static final ResourceKey<PlacedFeature> PATCH_STRAWBERRY_COMMON_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Technologica.MODID, "patch_strawberry_common"));
-	public static final ResourceKey<PlacedFeature> PATCH_STRAWBERRY_RARE_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Technologica.MODID, "patch_strawberry_rare"));
-	public static final ResourceKey<PlacedFeature> PATCH_COTTON_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Technologica.MODID, "patch_cotton"));
-	public static final ResourceKey<PlacedFeature> PATCH_PEPPERCORNS_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Technologica.MODID, "patch_peppercorns"));
-	public static final ResourceKey<PlacedFeature> OVERGROWTH_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Technologica.MODID, "overgrowth_placed"));
+	public static final ResourceKey<PlacedFeature> TREES_MODIFIED_SAVANNA_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new TechnologicaLocation("trees_zebrawood"));
+	public static final ResourceKey<PlacedFeature> TREES_MODIFIED_JUNGLE_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new TechnologicaLocation("trees_modified_jungle"));
+	public static final ResourceKey<PlacedFeature> TREES_MODIFIED_JUNGLE_EDGE_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new TechnologicaLocation("trees_teak"));
+	public static final ResourceKey<PlacedFeature> TREES_MODIFIED_BAMBOO_JUNGLE_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new TechnologicaLocation("trees_bamboo_jungle"));
+	public static final ResourceKey<PlacedFeature> TREES_MODIFIED_FOREST_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new TechnologicaLocation("trees_chestnut"));
+	public static final ResourceKey<PlacedFeature> TREES_MODIFIED_BIRCH_FOREST_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new TechnologicaLocation("trees_peach"));
+	public static final ResourceKey<PlacedFeature> TREES_MODIFIED_WOODED_HILLS_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new TechnologicaLocation("trees_aspen"));
+	public static final ResourceKey<PlacedFeature> TREES_MODIFIED_BEACH_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new TechnologicaLocation("trees_coconut"));
+	public static final ResourceKey<PlacedFeature> TREES_MODIFIED_TAIGA_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new TechnologicaLocation("trees_modified_taiga"));
+	public static final ResourceKey<PlacedFeature> TREES_MODIFIED_SNOWY_TAIGA_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new TechnologicaLocation("trees_snowy_taiga"));
+	public static final ResourceKey<PlacedFeature> TREES_MODIFIED_SWAMP_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new TechnologicaLocation("trees_orange"));
+	public static final ResourceKey<PlacedFeature> PATCH_BLACKBERRY_COMMON_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new TechnologicaLocation("patch_blackberry_common"));
+	public static final ResourceKey<PlacedFeature> PATCH_BLACKBERRY_RARE_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new TechnologicaLocation("patch_blackberry_rare"));
+	public static final ResourceKey<PlacedFeature> PATCH_BLUEBERRY_COMMON_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new TechnologicaLocation("patch_blueberry_common"));
+	public static final ResourceKey<PlacedFeature> PATCH_BLUEBERRY_RARE_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new TechnologicaLocation("patch_blueberry_rare"));
+	public static final ResourceKey<PlacedFeature> PATCH_RASPBERRY_COMMON_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new TechnologicaLocation("patch_raspberry_common"));
+	public static final ResourceKey<PlacedFeature> PATCH_RASPBERRY_RARE_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new TechnologicaLocation("patch_raspberry_rare"));
+	public static final ResourceKey<PlacedFeature> PATCH_STRAWBERRY_COMMON_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new TechnologicaLocation("patch_strawberry_common"));
+	public static final ResourceKey<PlacedFeature> PATCH_STRAWBERRY_RARE_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new TechnologicaLocation("patch_strawberry_rare"));
+	public static final ResourceKey<PlacedFeature> PATCH_COTTON_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new TechnologicaLocation("patch_cotton"));
+	public static final ResourceKey<PlacedFeature> PATCH_PEPPERCORNS_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new TechnologicaLocation("patch_peppercorns"));
+	public static final ResourceKey<PlacedFeature> OVERGROWTH_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, new TechnologicaLocation("overgrowth_placed"));
 	public static final PlacementModifier TREE_THRESHOLD = SurfaceWaterDepthFilter.forMaxDepth(0);
 
 	private static ImmutableList.Builder<PlacementModifier> treePlacementBase(PlacementModifier p_195485_) {

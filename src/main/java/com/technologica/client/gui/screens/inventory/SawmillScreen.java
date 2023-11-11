@@ -2,7 +2,7 @@ package com.technologica.client.gui.screens.inventory;
 
 import com.mojang.blaze3d.platform.Lighting;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.technologica.Technologica;
+import com.technologica.util.text.TechnologicaLocation;
 import com.technologica.world.inventory.SawmillMenu;
 
 import net.minecraft.client.gui.GuiGraphics;
@@ -12,7 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
 public class SawmillScreen extends AbstractContainerScreen<SawmillMenu> {
-	private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/gui/container/sawmill.png");
+	private static final ResourceLocation BACKGROUND_TEXTURE = new TechnologicaLocation("textures/gui/container/sawmill.png");
 
 	public SawmillScreen(SawmillMenu screenContainerIn, Inventory playerInventoryIn, Component titleIn) {
 		super(screenContainerIn, playerInventoryIn, Component.literal("Sawmill"));

@@ -1,15 +1,15 @@
 package com.technologica.util;
 
 import com.google.gson.JsonObject;
-import com.technologica.Technologica;
 import com.technologica.setup.Config;
+import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.IConditionSerializer;
 
 public class DisablePlankConditionFactory implements ICondition {
-	private static final ResourceLocation ID = new ResourceLocation(Technologica.MODID, "disable_vanilla_plank_crafting");
+	private static final ResourceLocation ID = new TechnologicaLocation("disable_vanilla_plank_crafting");
 
 	@Override
 	public ResourceLocation getID() {

@@ -1,6 +1,6 @@
 package com.technologica.world.level.block;
 
-import static com.technologica.Technologica.MODID;
+import static com.technologica.Technologica.MOD_ID;
 
 import com.technologica.world.item.TechnologicaItems;
 import com.technologica.world.level.block.grower.AncientAmbrosiaTreeGrower;
@@ -66,7 +66,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class TechnologicaBlocks {
-	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.Keys.BLOCKS, MODID);
+	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.Keys.BLOCKS, MOD_ID);
 
 	public static int init() {
 		BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());

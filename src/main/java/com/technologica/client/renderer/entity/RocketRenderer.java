@@ -9,9 +9,9 @@ import com.google.common.collect.ImmutableMap;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.math.Axis;
-import com.technologica.Technologica;
 import com.technologica.client.model.VanillaBoatModel;
 import com.technologica.client.model.geom.TechnologicaModelLayers;
+import com.technologica.util.text.TechnologicaLocation;
 import com.technologica.world.entity.vehicle.Rocket;
 import com.technologica.world.entity.vehicle.VanillaBoat;
 
@@ -30,7 +30,7 @@ public class RocketRenderer extends EntityRenderer<Rocket> {
 		this.boatResources = Stream.of(VanillaBoat.Type.values()).collect(ImmutableMap.toImmutableMap((p_173938_) -> {
 			return p_173938_;
 		}, (p_173941_) -> {
-			return Pair.of(new ResourceLocation(Technologica.MODID, "textures/entity/boat/" + p_173941_.getName() + ".png"), new VanillaBoatModel(contextIn.bakeLayer(TechnologicaModelLayers.createBoatModelName(p_173941_))));
+			return Pair.of(new TechnologicaLocation("textures/entity/boat/" + p_173941_.getName() + ".png"), new VanillaBoatModel(contextIn.bakeLayer(TechnologicaModelLayers.createBoatModelName(p_173941_))));
 		}));
 	}
 

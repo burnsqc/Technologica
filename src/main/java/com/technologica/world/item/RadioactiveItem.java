@@ -2,8 +2,8 @@ package com.technologica.world.item;
 
 import java.util.function.Consumer;
 
-import com.technologica.Technologica;
 import com.technologica.client.renderer.blockentity.RadiationRenderer;
+import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
@@ -17,7 +17,7 @@ public class RadioactiveItem extends Item {
 
 	public RadioactiveItem(Item.Properties p_43136_, String name) {
 		super(p_43136_);
-		BASE_MODEL_LOCATION = new ResourceLocation(Technologica.MODID, "item/" + name + "_base");
+		BASE_MODEL_LOCATION = new TechnologicaLocation("item/" + name + "_base");
 	}
 
 	@Override

@@ -5,8 +5,8 @@ import javax.annotation.Nonnull;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.technologica.Technologica;
 import com.technologica.capabilities.TechnologicaCapabilities;
+import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -17,7 +17,7 @@ import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
 
 public class AirProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
-	public static final ResourceLocation IDENTIFIER = new ResourceLocation(Technologica.MODID, "air");
+	public static final ResourceLocation IDENTIFIER = new TechnologicaLocation("air");
 	private final IAir backend = new Air();
 	private final LazyOptional<IAir> optionalData = LazyOptional.of(() -> backend);
 

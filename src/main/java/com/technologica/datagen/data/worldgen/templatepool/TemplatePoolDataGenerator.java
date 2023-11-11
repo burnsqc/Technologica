@@ -23,6 +23,6 @@ public class TemplatePoolDataGenerator {
 		HolderGetter<StructureProcessorList> processors = boostrapContextIn.lookup(Registries.PROCESSOR_LIST);
 		Holder<StructureProcessorList> empty = processors.getOrThrow(ProcessorLists.EMPTY);
 
-		boostrapContextIn.register(TechnologicaStructureTemplatePools.DOME, new StructureTemplatePool(holder1, ImmutableList.of(Pair.of(StructurePoolElement.single(Technologica.MODID + ":dome", empty), 1)), StructureTemplatePool.Projection.RIGID));
+		boostrapContextIn.register(TechnologicaStructureTemplatePools.DOME, new StructureTemplatePool(holder1, ImmutableList.of(Pair.of(StructurePoolElement.single(Technologica.MOD_ID + ":dome", empty), 1)), StructureTemplatePool.Projection.RIGID));
 	}
 }

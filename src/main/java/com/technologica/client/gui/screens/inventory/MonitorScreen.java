@@ -14,7 +14,7 @@ import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import com.technologica.Technologica;
 import com.technologica.network.play.client.CUpdateMonitorPacket;
-import com.technologica.network.play.server.Packets;
+import com.technologica.util.text.TechnologicaLocation;
 import com.technologica.world.inventory.MonitorMenu;
 import com.technologica.world.level.block.entity.MonitorBlockEntity;
 
@@ -31,11 +31,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
 public class MonitorScreen extends AbstractContainerScreen<MonitorMenu> {
-	private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/gui/container/annunciator_screen.png");
+	private static final ResourceLocation BACKGROUND_TEXTURE = new TechnologicaLocation("textures/gui/container/annunciator_screen.png");
 	private MonitorBlockEntity tileEntity;
 	private TextFieldHelper textInputUtil;
 	private String[] multiLineText;
-	private static final ResourceLocation FULLSPACE_FONT = new ResourceLocation(Technologica.MODID, "full_space");
+	private static final ResourceLocation FULLSPACE_FONT = new TechnologicaLocation("full_space");
 	private static final Style FULLSPACE_FONT_STYLE = Style.EMPTY.withFont(FULLSPACE_FONT);
 	private int editLine;
 	private int updateCounter;
@@ -69,7 +69,7 @@ public class MonitorScreen extends AbstractContainerScreen<MonitorMenu> {
 		Connection clientplaynethandler = this.minecraft.getConnection().getConnection();
 
 		if (clientplaynethandler != null) {
-			Packets.INSTANCE.sendToServer(new CUpdateMonitorPacket(this.tileEntity.getBlockPos(), this.multiLineText[0], this.multiLineText[1], this.multiLineText[2], this.multiLineText[3], this.multiLineText[4], this.multiLineText[5], this.multiLineText[6], this.multiLineText[7], this.multiLineText[8], this.multiLineText[9], this.multiLineText[10], this.multiLineText[11], this.multiLineText[12], this.multiLineText[13], this.multiLineText[14], this.multiLineText[15]));
+			Technologica.CHANNEL.sendToServer(new CUpdateMonitorPacket(this.tileEntity.getBlockPos(), this.multiLineText[0], this.multiLineText[1], this.multiLineText[2], this.multiLineText[3], this.multiLineText[4], this.multiLineText[5], this.multiLineText[6], this.multiLineText[7], this.multiLineText[8], this.multiLineText[9], this.multiLineText[10], this.multiLineText[11], this.multiLineText[12], this.multiLineText[13], this.multiLineText[14], this.multiLineText[15]));
 		}
 
 		this.tileEntity.setEditable(true);

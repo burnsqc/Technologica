@@ -2,9 +2,8 @@ package com.technologica.listeners.modbus;
 
 import static com.technologica.Technologica.LOGGER;
 
-import com.technologica.Technologica;
+import com.technologica.util.text.TechnologicaLocation;
 
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.event.ModelEvent;
 
 /**
@@ -19,42 +18,42 @@ import net.minecraftforge.client.event.ModelEvent;
 public class RegisterModels {
 
 	public static void onRegisterAdditional(final ModelEvent.RegisterAdditional event) {
-		event.register(new ResourceLocation(Technologica.MODID, "item/technetium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/promethium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/polonium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/francium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/radium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/actinium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/thorium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/protactinium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/uranium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/neptunium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/plutonium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/americium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/curium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/berkelium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/californium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/einsteinium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/fermium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/mendelevium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/nobelium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/lawrencium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/rutherfordium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/dubnium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/seaborgium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/bohrium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/hassium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/meitnerium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/darmstadtium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/roentgenium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/copernicium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/nihonium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/flevorium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/moscovium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/livermorium_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/tennessine_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/oganesson_ingot_base"));
-		event.register(new ResourceLocation(Technologica.MODID, "item/astatine_chunk_base"));
+		event.register(new TechnologicaLocation("item/technetium_ingot_base"));
+		event.register(new TechnologicaLocation("item/promethium_ingot_base"));
+		event.register(new TechnologicaLocation("item/polonium_ingot_base"));
+		event.register(new TechnologicaLocation("item/francium_ingot_base"));
+		event.register(new TechnologicaLocation("item/radium_ingot_base"));
+		event.register(new TechnologicaLocation("item/actinium_ingot_base"));
+		event.register(new TechnologicaLocation("item/thorium_ingot_base"));
+		event.register(new TechnologicaLocation("item/protactinium_ingot_base"));
+		event.register(new TechnologicaLocation("item/uranium_ingot_base"));
+		event.register(new TechnologicaLocation("item/neptunium_ingot_base"));
+		event.register(new TechnologicaLocation("item/plutonium_ingot_base"));
+		event.register(new TechnologicaLocation("item/americium_ingot_base"));
+		event.register(new TechnologicaLocation("item/curium_ingot_base"));
+		event.register(new TechnologicaLocation("item/berkelium_ingot_base"));
+		event.register(new TechnologicaLocation("item/californium_ingot_base"));
+		event.register(new TechnologicaLocation("item/einsteinium_ingot_base"));
+		event.register(new TechnologicaLocation("item/fermium_ingot_base"));
+		event.register(new TechnologicaLocation("item/mendelevium_ingot_base"));
+		event.register(new TechnologicaLocation("item/nobelium_ingot_base"));
+		event.register(new TechnologicaLocation("item/lawrencium_ingot_base"));
+		event.register(new TechnologicaLocation("item/rutherfordium_ingot_base"));
+		event.register(new TechnologicaLocation("item/dubnium_ingot_base"));
+		event.register(new TechnologicaLocation("item/seaborgium_ingot_base"));
+		event.register(new TechnologicaLocation("item/bohrium_ingot_base"));
+		event.register(new TechnologicaLocation("item/hassium_ingot_base"));
+		event.register(new TechnologicaLocation("item/meitnerium_ingot_base"));
+		event.register(new TechnologicaLocation("item/darmstadtium_ingot_base"));
+		event.register(new TechnologicaLocation("item/roentgenium_ingot_base"));
+		event.register(new TechnologicaLocation("item/copernicium_ingot_base"));
+		event.register(new TechnologicaLocation("item/nihonium_ingot_base"));
+		event.register(new TechnologicaLocation("item/flevorium_ingot_base"));
+		event.register(new TechnologicaLocation("item/moscovium_ingot_base"));
+		event.register(new TechnologicaLocation("item/livermorium_ingot_base"));
+		event.register(new TechnologicaLocation("item/tennessine_ingot_base"));
+		event.register(new TechnologicaLocation("item/oganesson_ingot_base"));
+		event.register(new TechnologicaLocation("item/astatine_chunk_base"));
 		/**
 		 * TODO: Determine how to count how many Technologica Models actually got registered and replace the hard-coded value in the logger message.
 		 */

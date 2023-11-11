@@ -2,7 +2,7 @@ package com.technologica.client.model;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.technologica.Technologica;
+import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.ModelPart;
@@ -15,7 +15,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 
 public class CoconutBazookaModel extends Model {
-	public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(Technologica.MODID, "textures/entity/coconut_bazooka.png");
+	public static final ResourceLocation TEXTURE_LOCATION = new TechnologicaLocation("textures/entity/coconut_bazooka.png");
 	private final ModelPart tubeBottom;
 
 	public CoconutBazookaModel(ModelPart p_171016_) {

@@ -1,12 +1,11 @@
 package com.technologica.world.item;
 
-import static com.technologica.Technologica.MODID;
+import static com.technologica.Technologica.MOD_ID;
 
-import com.technologica.Technologica;
+import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -14,14 +13,14 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
 public class TechnologicaCreativeModeTabs {
-	public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
+	public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MOD_ID);
 
 	public static int init() {
 		CREATIVE_MODE_TABS.register(FMLJavaModLoadingContext.get().getModEventBus());
 		return CREATIVE_MODE_TABS.getEntries().size();
 	}
 
-	public static final RegistryObject<CreativeModeTab> FLORA = CREATIVE_MODE_TABS.register("flora", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.ASPEN_SAPLING_ITEM.get())).withBackgroundLocation(new ResourceLocation(Technologica.MODID, "textures/gui/container/creative_inventory/tab_flora.png")).withLabelColor(0).title(Component.literal("Flora")).displayItems((p_270425_, p_260158_) -> {
+	public static final RegistryObject<CreativeModeTab> FLORA = CREATIVE_MODE_TABS.register("flora", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.ASPEN_SAPLING_ITEM.get())).withBackgroundLocation(new TechnologicaLocation("textures/gui/container/creative_inventory/tab_flora.png")).withLabelColor(0).title(Component.literal("Flora")).displayItems((p_270425_, p_260158_) -> {
 		p_260158_.accept(TechnologicaItems.BARLEY_SEEDS.get());
 		p_260158_.accept(TechnologicaItems.OATS_SEEDS.get());
 		p_260158_.accept(TechnologicaItems.RYE_SEEDS.get());
@@ -99,7 +98,7 @@ public class TechnologicaCreativeModeTabs {
 		p_260158_.accept(TechnologicaItems.MULCH.get());
 		p_260158_.accept(TechnologicaItems.BASIN.get());
 	}).build());
-	public static final RegistryObject<CreativeModeTab> FAUNA = CREATIVE_MODE_TABS.register("fauna", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.FUR.get())).withBackgroundLocation(new ResourceLocation(Technologica.MODID, "textures/gui/container/creative_inventory/tab_fauna.png")).withLabelColor(0).title(Component.literal("Fauna")).displayItems((p_270425_, p_260158_) -> {
+	public static final RegistryObject<CreativeModeTab> FAUNA = CREATIVE_MODE_TABS.register("fauna", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.FUR.get())).withBackgroundLocation(new TechnologicaLocation("textures/gui/container/creative_inventory/tab_fauna.png")).withLabelColor(0).title(Component.literal("Fauna")).displayItems((p_270425_, p_260158_) -> {
 		p_260158_.accept(TechnologicaItems.FUR.get());
 		p_260158_.accept(TechnologicaItems.IVORY.get());
 		p_260158_.accept(TechnologicaItems.NARWHAL_TUSK.get());
@@ -152,7 +151,7 @@ public class TechnologicaCreativeModeTabs {
 		p_260158_.accept(TechnologicaItems.PEEPER_SPAWN_EGG.get());
 		p_260158_.accept(TechnologicaItems.SWEEPER_SPAWN_EGG.get());
 	}).build());
-	public static final RegistryObject<CreativeModeTab> MINERAL = CREATIVE_MODE_TABS.register("mineral", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.GERMANIUM_CHUNK.get())).withBackgroundLocation(new ResourceLocation(Technologica.MODID, "textures/gui/container/creative_inventory/tab_mineral.png")).withLabelColor(0).title(Component.literal("Mineral")).displayItems((p_270425_, p_260158_) -> {
+	public static final RegistryObject<CreativeModeTab> MINERAL = CREATIVE_MODE_TABS.register("mineral", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.GERMANIUM_CHUNK.get())).withBackgroundLocation(new TechnologicaLocation("textures/gui/container/creative_inventory/tab_mineral.png")).withLabelColor(0).title(Component.literal("Mineral")).displayItems((p_270425_, p_260158_) -> {
 		p_260158_.accept(TechnologicaItems.SALT_ITEM.get());
 		p_260158_.accept(TechnologicaItems.LITHIUM_CLAY_ITEM.get());
 		p_260158_.accept(TechnologicaItems.MOON_ROCK_ITEM.get());
@@ -459,7 +458,7 @@ public class TechnologicaCreativeModeTabs {
 		p_260158_.accept(TechnologicaItems.MACHINE_OIL_BUCKET.get());
 		p_260158_.accept(TechnologicaItems.COOLANT_BUCKET.get());
 	}).build());
-	public static final RegistryObject<CreativeModeTab> FOOD = CREATIVE_MODE_TABS.register("food", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.BANANA.get())).withBackgroundLocation(new ResourceLocation(Technologica.MODID, "textures/gui/container/creative_inventory/tab_food.png")).withLabelColor(0).title(Component.literal("Food")).displayItems((p_270425_, p_260158_) -> {
+	public static final RegistryObject<CreativeModeTab> FOOD = CREATIVE_MODE_TABS.register("food", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.BANANA.get())).withBackgroundLocation(new TechnologicaLocation("textures/gui/container/creative_inventory/tab_food.png")).withLabelColor(0).title(Component.literal("Food")).displayItems((p_270425_, p_260158_) -> {
 		p_260158_.accept(TechnologicaItems.BARLEY.get());
 		p_260158_.accept(TechnologicaItems.OATS.get());
 		p_260158_.accept(TechnologicaItems.RYE.get());
@@ -542,7 +541,7 @@ public class TechnologicaCreativeModeTabs {
 		p_260158_.accept(TechnologicaItems.OLIVE_OIL.get());
 		p_260158_.accept(TechnologicaItems.IODINE_PILL.get());
 	}).build());
-	public static final RegistryObject<CreativeModeTab> CONSTRUCTION = CREATIVE_MODE_TABS.register("construction", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.GLUE_BOTTLE.get())).withBackgroundLocation(new ResourceLocation(Technologica.MODID, "textures/gui/container/creative_inventory/tab_construction.png")).title(Component.literal("Construction")).withLabelColor(0).displayItems((p_270425_, p_260158_) -> {
+	public static final RegistryObject<CreativeModeTab> CONSTRUCTION = CREATIVE_MODE_TABS.register("construction", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.GLUE_BOTTLE.get())).withBackgroundLocation(new TechnologicaLocation("textures/gui/container/creative_inventory/tab_construction.png")).title(Component.literal("Construction")).withLabelColor(0).displayItems((p_270425_, p_260158_) -> {
 		p_260158_.accept(TechnologicaItems.APRICOT_LOG_ITEM.get());
 		p_260158_.accept(TechnologicaItems.ASPEN_LOG_ITEM.get());
 		p_260158_.accept(TechnologicaItems.AVOCADO_LOG_ITEM.get());
@@ -1065,7 +1064,7 @@ public class TechnologicaCreativeModeTabs {
 		p_260158_.accept(TechnologicaItems.MALEVOLENT_BOAT.get());
 		p_260158_.accept(TechnologicaItems.GLUE_BOTTLE.get());
 	}).build());
-	public static final RegistryObject<CreativeModeTab> MACHINERY = CREATIVE_MODE_TABS.register("machinery", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.PIPE_WRENCH.get())).withBackgroundLocation(new ResourceLocation(Technologica.MODID, "textures/gui/container/creative_inventory/tab_machinery.png")).title(Component.literal("Machinery")).withLabelColor(0).displayItems((p_270425_, p_260158_) -> {
+	public static final RegistryObject<CreativeModeTab> MACHINERY = CREATIVE_MODE_TABS.register("machinery", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.PIPE_WRENCH.get())).withBackgroundLocation(new TechnologicaLocation("textures/gui/container/creative_inventory/tab_machinery.png")).title(Component.literal("Machinery")).withLabelColor(0).displayItems((p_270425_, p_260158_) -> {
 		p_260158_.accept(TechnologicaItems.LINE_SHAFT_HANGER_ITEM.get());
 		p_260158_.accept(TechnologicaItems.MOTOR_1HP_ITEM.get());
 		p_260158_.accept(TechnologicaItems.MOTOR_5HP_ITEM.get());
@@ -1097,7 +1096,7 @@ public class TechnologicaCreativeModeTabs {
 		p_260158_.accept(TechnologicaItems.MAGNETIC_TAPE_BLANK.get());
 		p_260158_.accept(TechnologicaItems.MAGNETIC_TAPE_WRITTEN.get());
 	}).build());
-	public static final RegistryObject<CreativeModeTab> DECORATIVE = CREATIVE_MODE_TABS.register("decorative", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.DISPLAY_CASE_ITEM.get())).withBackgroundLocation(new ResourceLocation(Technologica.MODID, "textures/gui/container/creative_inventory/tab_decorative.png")).title(Component.literal("Decorative")).withLabelColor(0).displayItems((p_270425_, p_260158_) -> {
+	public static final RegistryObject<CreativeModeTab> DECORATIVE = CREATIVE_MODE_TABS.register("decorative", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.DISPLAY_CASE_ITEM.get())).withBackgroundLocation(new TechnologicaLocation("textures/gui/container/creative_inventory/tab_decorative.png")).title(Component.literal("Decorative")).withLabelColor(0).displayItems((p_270425_, p_260158_) -> {
 		p_260158_.accept(TechnologicaItems.DISPLAY_CASE_ITEM.get());
 		p_260158_.accept(TechnologicaItems.ACACIA_CHAIR_ITEM.get());
 		p_260158_.accept(TechnologicaItems.APRICOT_CHAIR_ITEM.get());
@@ -1168,7 +1167,7 @@ public class TechnologicaCreativeModeTabs {
 		p_260158_.accept(TechnologicaItems.ZEBRAWOOD_TABLE_ITEM.get());
 		p_260158_.accept(TechnologicaItems.FROSTBITTEN_TABLE_ITEM.get());
 	}).build());
-	public static final RegistryObject<CreativeModeTab> ARMORY = CREATIVE_MODE_TABS.register("armory", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.NAVAL_MINE.get())).withBackgroundLocation(new ResourceLocation(Technologica.MODID, "textures/gui/container/creative_inventory/tab_armory.png")).title(Component.literal("Armory")).withLabelColor(0).displayItems((p_270425_, p_260158_) -> {
+	public static final RegistryObject<CreativeModeTab> ARMORY = CREATIVE_MODE_TABS.register("armory", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.NAVAL_MINE.get())).withBackgroundLocation(new TechnologicaLocation("textures/gui/container/creative_inventory/tab_armory.png")).title(Component.literal("Armory")).withLabelColor(0).displayItems((p_270425_, p_260158_) -> {
 		p_260158_.accept(TechnologicaItems.PRIMITIVE_DAGGER.get());
 		p_260158_.accept(TechnologicaItems.PRIMITIVE_PICKAXE.get());
 		p_260158_.accept(TechnologicaItems.PRIMITIVE_HOE.get());
@@ -1218,7 +1217,7 @@ public class TechnologicaCreativeModeTabs {
 		p_260158_.accept(TechnologicaItems.SPACE_BOOTS.get());
 		p_260158_.accept(TechnologicaItems.SLEEPING_BAG.get());
 	}).build());
-	public static final RegistryObject<CreativeModeTab> CRYPTICA = CREATIVE_MODE_TABS.register("cryptica", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.PERSISTENT_GLARE.get())).withBackgroundLocation(new ResourceLocation(Technologica.MODID, "textures/gui/container/creative_inventory/tab_cryptica.png")).withLabelColor(0).title(Component.literal("Cryptica")).displayItems((p_270425_, p_260158_) -> {
+	public static final RegistryObject<CreativeModeTab> CRYPTICA = CREATIVE_MODE_TABS.register("cryptica", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.PERSISTENT_GLARE.get())).withBackgroundLocation(new TechnologicaLocation("textures/gui/container/creative_inventory/tab_cryptica.png")).withLabelColor(0).title(Component.literal("Cryptica")).displayItems((p_270425_, p_260158_) -> {
 		p_260158_.accept(TechnologicaItems.PERSISTENT_GLARE.get());
 		p_260158_.accept(TechnologicaItems.SINGULARITY_GRANULE.get());
 		p_260158_.accept(TechnologicaItems.ANCIENT_AMBROSIA_SAPLING_ITEM.get());

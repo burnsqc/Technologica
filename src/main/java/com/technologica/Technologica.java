@@ -3,34 +3,15 @@ package com.technologica;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.technologica.capabilities.TechnologicaCapabilities;
 import com.technologica.core.particles.TechnologicaParticleTypes;
-import com.technologica.datagen.GatherData;
-import com.technologica.listeners.forgebus.AttachCapabilities;
-import com.technologica.listeners.forgebus.EntityJoinLevelEventListener;
-import com.technologica.listeners.forgebus.HarvestCheckListener;
-import com.technologica.listeners.forgebus.ItemFishedEventListener;
-import com.technologica.listeners.forgebus.LivingAttackEventListener;
-import com.technologica.listeners.forgebus.LivingBreatheEventListener;
-import com.technologica.listeners.forgebus.LivingEquipmentChangeEventListener;
-import com.technologica.listeners.forgebus.LivingFallEventListener;
-import com.technologica.listeners.forgebus.LivingHealEventListener;
-import com.technologica.listeners.forgebus.LivingJumpEventListener;
-import com.technologica.listeners.forgebus.PlayerTickEventListener;
-import com.technologica.listeners.forgebus.RegisterCapabilitiesEventListener;
-import com.technologica.listeners.forgebus.RightClickBlockListener;
-import com.technologica.listeners.forgebus.ServerAboutToStartListener;
-import com.technologica.listeners.forgebus.VillagerTradesEventListener;
-import com.technologica.listeners.forgebus.WandererTradesEventListener;
 import com.technologica.listeners.lootmodifiers.TechnologicaLootModifiers;
-import com.technologica.listeners.modbus.CommonSetup;
-import com.technologica.listeners.modbus.CreateEntityAttributes;
-import com.technologica.listeners.modbus.Register;
 import com.technologica.setup.ClientInit;
+import com.technologica.setup.CommonInit;
 import com.technologica.setup.Config;
 import com.technologica.util.DisablePlankConditionFactory;
 import com.technologica.util.EnablePlankConditionFactory;
 import com.technologica.util.TechnologicaSoundEvents;
+import com.technologica.util.text.TechnologicaLocation;
 import com.technologica.world.effect.TechnologicaMobEffects;
 import com.technologica.world.entity.TechnologicaEntityType;
 import com.technologica.world.inventory.TechnologicaMenuType;
@@ -53,14 +34,21 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig.Type;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
+import net.minecraftforge.network.NetworkRegistry;
+import net.minecraftforge.network.simple.SimpleChannel;
 
-@Mod(Technologica.MODID)
+@Mod(Technologica.MOD_ID)
 public class Technologica {
-	public static final String MODID = "technologica";
+	public static final String MOD_ID = "technologica";
 	public static final Logger LOGGER = LogManager.getLogger();
+	
 	public static final IEventBus MOD_EVENT_BUS = FMLJavaModLoadingContext.get().getModEventBus();
 	public static final IEventBus FORGE_EVENT_BUS = MinecraftForge.EVENT_BUS;
-
+	
+	public static final String PROTOCOL_VERSION = "1";
+	public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(new TechnologicaLocation("main"), () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
+	public static int PACKET_ID = 0;
+	
 	public static int soundEvents;
 	public static int fluids;
 	public static int blocks;
@@ -80,16 +68,14 @@ public class Technologica {
 	public static int structureTypes;
 
 	public Technologica() {
-		if (FMLEnvironment.dist.isClient()) {
-			ClientInit.init();
-		}
+		LOGGER.info("TECHNOLOGICA NOW LOADING FOR DIST "+ FMLEnvironment.dist.toString());
+		
+		CommonInit.init();
+		if (FMLEnvironment.dist.isClient()) ClientInit.init();
 		
 		ModLoadingContext.get().registerConfig(Type.COMMON, Config.SPEC, "technologica-common.toml");
 
 		init();
-
-		addModEventBusListeners();
-		addForgeEventBusListeners();
 
 		CraftingHelper.register(DisablePlankConditionFactory.Serializer.INSTANCE);
 		CraftingHelper.register(EnablePlankConditionFactory.Serializer.INSTANCE);
@@ -146,32 +132,5 @@ public class Technologica {
 
 		structureTypes = TechnologicaStructureType.init();
 		LOGGER.info("INITIALIZATION - STRUCTURE TYPES - " + structureTypes);
-	}
-
-	private void addModEventBusListeners() {
-		MOD_EVENT_BUS.addListener(Register::onRegisterEvent);
-		MOD_EVENT_BUS.addListener(CreateEntityAttributes::onEntityAttributeCreationEvent);
-		MOD_EVENT_BUS.addListener(CommonSetup::onFMLCommonSetupEvent);
-		MOD_EVENT_BUS.addListener(TechnologicaCapabilities::register);
-		MOD_EVENT_BUS.addListener(GatherData::onGatherDataEvent);
-	}
-
-	private void addForgeEventBusListeners() {
-		FORGE_EVENT_BUS.register(new AttachCapabilities());
-		FORGE_EVENT_BUS.register(new EntityJoinLevelEventListener());
-		FORGE_EVENT_BUS.register(new HarvestCheckListener());
-		FORGE_EVENT_BUS.register(new ItemFishedEventListener());
-		FORGE_EVENT_BUS.register(new LivingAttackEventListener());
-		FORGE_EVENT_BUS.register(new LivingBreatheEventListener());
-		FORGE_EVENT_BUS.register(new LivingEquipmentChangeEventListener());
-		FORGE_EVENT_BUS.register(new LivingFallEventListener());
-		FORGE_EVENT_BUS.register(new LivingHealEventListener());
-		FORGE_EVENT_BUS.register(new LivingJumpEventListener());
-		FORGE_EVENT_BUS.register(new PlayerTickEventListener());
-		FORGE_EVENT_BUS.register(new RegisterCapabilitiesEventListener());
-		FORGE_EVENT_BUS.register(new RightClickBlockListener());
-		FORGE_EVENT_BUS.register(new ServerAboutToStartListener());
-		FORGE_EVENT_BUS.register(new VillagerTradesEventListener());
-		FORGE_EVENT_BUS.register(new WandererTradesEventListener());
 	}
 }

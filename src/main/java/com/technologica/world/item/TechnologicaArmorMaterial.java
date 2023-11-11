@@ -139,7 +139,7 @@ public enum TechnologicaArmorMaterial implements ArmorMaterial {
 
 	@Override
 	public String getName() {
-		return Technologica.MODID + ":" + name;
+		return Technologica.MOD_ID + ":" + name;
 	}
 
 	@Override

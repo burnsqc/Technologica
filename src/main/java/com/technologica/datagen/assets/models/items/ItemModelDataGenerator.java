@@ -15,7 +15,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class ItemModelDataGenerator extends ItemModelProvider {
 
 	public ItemModelDataGenerator(PackOutput generatorIn, ExistingFileHelper helperIn) {
-		super(generatorIn, Technologica.MODID, helperIn);
+		super(generatorIn, Technologica.MOD_ID, helperIn);
 	}
 
 	@Override

@@ -15,7 +15,7 @@ import net.minecraftforge.common.loot.LootTableIdCondition;
 public class BlockLootModifierDataGenerator extends GlobalLootModifierProvider {
 
 	public BlockLootModifierDataGenerator(PackOutput output) {
-		super(output, Technologica.MODID);
+		super(output, Technologica.MOD_ID);
 	}
 
 	@Override

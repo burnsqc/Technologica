@@ -1,9 +1,9 @@
 package com.technologica.client.renderer.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.technologica.Technologica;
 import com.technologica.client.model.CoyoteModel;
 import com.technologica.client.model.geom.TechnologicaModelLayers;
+import com.technologica.util.text.TechnologicaLocation;
 import com.technologica.world.entity.animal.Coyote;
 
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -12,7 +12,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
 public class CoyoteRenderer extends MobRenderer<Coyote, CoyoteModel<Coyote>> {
-	private static final ResourceLocation COYOTE_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/coyote.png");
+	private static final ResourceLocation COYOTE_TEXTURE = new TechnologicaLocation("textures/entity/coyote.png");
 
 	public CoyoteRenderer(Context contextIn) {
 		super(contextIn, new CoyoteModel<>(contextIn.bakeLayer(TechnologicaModelLayers.COYOTE)), 0.5F);

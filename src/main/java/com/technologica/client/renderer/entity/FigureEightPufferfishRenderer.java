@@ -1,11 +1,11 @@
 package com.technologica.client.renderer.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.technologica.Technologica;
 import com.technologica.client.model.FigureEightPufferfishBigModel;
 import com.technologica.client.model.FigureEightPufferfishMidModel;
 import com.technologica.client.model.FigureEightPufferfishSmallModel;
 import com.technologica.client.model.geom.TechnologicaModelLayers;
+import com.technologica.util.text.TechnologicaLocation;
 import com.technologica.world.entity.animal.FigureEightPufferfish;
 
 import net.minecraft.client.model.EntityModel;
@@ -16,7 +16,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
 public class FigureEightPufferfishRenderer extends MobRenderer<FigureEightPufferfish, EntityModel<FigureEightPufferfish>> {
-	private static final ResourceLocation FIGURE_EIGHT_PUFFERFISH_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/fish/figure_eight_pufferfish.png");
+	private static final ResourceLocation FIGURE_EIGHT_PUFFERFISH_TEXTURE = new TechnologicaLocation("textures/entity/fish/figure_eight_pufferfish.png");
 	private int puffStateO = 3;
 	private final EntityModel<FigureEightPufferfish> small;
 	private final EntityModel<FigureEightPufferfish> mid;

@@ -9,7 +9,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import com.mojang.blaze3d.vertex.VertexMultiConsumer;
-import com.technologica.Technologica;
+import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
@@ -30,7 +30,7 @@ import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 
 public class RadiationRenderer extends BlockEntityWithoutLevelRenderer {
 	private ResourceLocation BASE_MODEL_LOCATION;
-	private static final ResourceLocation RADIATION_TEXTURE_LOCATION = new ResourceLocation(Technologica.MODID, "textures/misc/radioactive_item_glint.png");
+	private static final ResourceLocation RADIATION_TEXTURE_LOCATION = new TechnologicaLocation("textures/misc/radioactive_item_glint.png");
 	private static ItemRenderer renderer = null;
 
 	public RadiationRenderer(BlockEntityRenderDispatcher dispatcher, EntityModelSet modelSet, ResourceLocation baseModelLocation) {

@@ -19,7 +19,7 @@ import net.minecraftforge.common.loot.LootTableIdCondition;
 public class LootModifierDataGenerator extends GlobalLootModifierProvider {
 
 	public LootModifierDataGenerator(PackOutput output) {
-		super(output, Technologica.MODID);
+		super(output, Technologica.MOD_ID);
 	}
 
 	@Override

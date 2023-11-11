@@ -12,7 +12,7 @@ import net.minecraftforge.common.loot.LootTableIdCondition;
 public class ChestLootModifierDataGenerator extends GlobalLootModifierProvider {
 
 	public ChestLootModifierDataGenerator(PackOutput output) {
-		super(output, Technologica.MODID);
+		super(output, Technologica.MOD_ID);
 	}
 
 	@Override

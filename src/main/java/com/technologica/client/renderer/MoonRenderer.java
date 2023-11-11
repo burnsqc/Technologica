@@ -13,7 +13,7 @@ import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexBuffer;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import com.mojang.math.Axis;
-import com.technologica.Technologica;
+import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
@@ -39,11 +39,11 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 	private VertexBuffer starBuffer;
 	@Nullable
 	private VertexBuffer skyBuffer;
-	private static final ResourceLocation SUN_TEXTURES = new ResourceLocation(Technologica.MODID, "textures/environment/sun.png");
-	private static final ResourceLocation EARTH_TEXTURES = new ResourceLocation(Technologica.MODID, "textures/environment/earth.png");
+	private static final ResourceLocation SUN_TEXTURES = new TechnologicaLocation("textures/environment/sun.png");
+	private static final ResourceLocation EARTH_TEXTURES = new TechnologicaLocation("textures/environment/earth.png");
 	private final float[] rainSizeX = new float[1024];
 	private final float[] rainSizeZ = new float[1024];
-	private static final ResourceLocation RAIN_LOCATION = new ResourceLocation(Technologica.MODID, "textures/environment/meteor_shower.png");
+	private static final ResourceLocation RAIN_LOCATION = new TechnologicaLocation("textures/environment/meteor_shower.png");
 
 	public MoonRenderer() {
 		super(Float.NaN, true, DimensionSpecialEffects.SkyType.NORMAL, false, false);

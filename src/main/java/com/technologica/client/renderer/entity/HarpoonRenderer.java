@@ -6,7 +6,7 @@ import org.joml.Matrix4f;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-import com.technologica.Technologica;
+import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -18,7 +18,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 
 public class HarpoonRenderer<T extends AbstractArrow> extends EntityRenderer<T> {
-	public static final ResourceLocation HARPOON = new ResourceLocation(Technologica.MODID, "textures/entity/projectiles/harpoon.png");
+	public static final ResourceLocation HARPOON = new TechnologicaLocation("textures/entity/projectiles/harpoon.png");
 
 	public HarpoonRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn);

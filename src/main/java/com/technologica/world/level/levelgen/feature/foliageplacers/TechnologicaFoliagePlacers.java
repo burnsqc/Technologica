@@ -1,6 +1,6 @@
 package com.technologica.world.level.levelgen.feature.foliageplacers;
 
-import static com.technologica.Technologica.MODID;
+import static com.technologica.Technologica.MOD_ID;
 
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -9,7 +9,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class TechnologicaFoliagePlacers {
-	private static final DeferredRegister<FoliagePlacerType<?>> FOLIAGE_PLACER_TYPES = DeferredRegister.create(ForgeRegistries.Keys.FOLIAGE_PLACER_TYPES, MODID);
+	private static final DeferredRegister<FoliagePlacerType<?>> FOLIAGE_PLACER_TYPES = DeferredRegister.create(ForgeRegistries.Keys.FOLIAGE_PLACER_TYPES, MOD_ID);
 
 	public static int init() {
 		FOLIAGE_PLACER_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());

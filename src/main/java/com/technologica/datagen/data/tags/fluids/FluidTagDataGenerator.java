@@ -14,7 +14,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class FluidTagDataGenerator extends FluidTagsProvider {
 	public FluidTagDataGenerator(PackOutput output, CompletableFuture<Provider> lookupProvider, ExistingFileHelper existingFileHelper) {
-		super(output, lookupProvider, Technologica.MODID, existingFileHelper);
+		super(output, lookupProvider, Technologica.MOD_ID, existingFileHelper);
 	}
 
 	@Override

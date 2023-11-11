@@ -2,7 +2,7 @@ package com.technologica.client.renderer.blockentity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import com.technologica.Technologica;
+import com.technologica.util.text.TechnologicaLocation;
 import com.technologica.world.level.block.MonitorBlock;
 import com.technologica.world.level.block.entity.MonitorBlockEntity;
 
@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class MonitorRenderer implements BlockEntityRenderer<MonitorBlockEntity> {
 	private final Font font;
-	private static final ResourceLocation FULLSPACE_FONT = new ResourceLocation(Technologica.MODID, "full_space");
+	private static final ResourceLocation FULLSPACE_FONT = new TechnologicaLocation("full_space");
 	private static final Style FULLSPACE_FONT_STYLE = Style.EMPTY.withFont(FULLSPACE_FONT);
 
 	public MonitorRenderer(BlockEntityRendererProvider.Context rendererDispatcherIn) {

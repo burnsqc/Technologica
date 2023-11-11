@@ -13,6 +13,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -36,6 +37,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.network.NetworkHooks;
 
 public class AnnunciatorBlock extends BaseEntityBlock {
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
@@ -74,7 +76,7 @@ public class AnnunciatorBlock extends BaseEntityBlock {
 
 			if (tileEntity instanceof AnnunciatorBlockEntity) {
 				MenuProvider containerProvider = createContainerProvider(worldIn, pos);
-				// NetworkHooks.openScreen(((ServerPlayer) player), containerProvider, tileEntity.getBlockPos());
+				NetworkHooks.openScreen(((ServerPlayer) player), containerProvider, tileEntity.getBlockPos());
 			}
 		}
 		return InteractionResult.SUCCESS;

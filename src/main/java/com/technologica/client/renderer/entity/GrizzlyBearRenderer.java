@@ -1,8 +1,8 @@
 package com.technologica.client.renderer.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.technologica.Technologica;
 import com.technologica.client.model.geom.TechnologicaModelLayers;
+import com.technologica.util.text.TechnologicaLocation;
 import com.technologica.world.entity.animal.GrizzlyBear;
 
 import net.minecraft.client.model.PolarBearModel;
@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
 public class GrizzlyBearRenderer extends MobRenderer<GrizzlyBear, PolarBearModel<GrizzlyBear>> {
-	private static final ResourceLocation GRIZZLY_BEAR_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/grizzly_bear.png");
+	private static final ResourceLocation GRIZZLY_BEAR_TEXTURE = new TechnologicaLocation("textures/entity/grizzly_bear.png");
 
 	public GrizzlyBearRenderer(Context contextIn) {
 		super(contextIn, new PolarBearModel<>(contextIn.bakeLayer(TechnologicaModelLayers.GRIZZLY_BEAR)), 0.9F);

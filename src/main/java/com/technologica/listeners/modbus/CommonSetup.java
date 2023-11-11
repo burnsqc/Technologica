@@ -6,11 +6,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.google.common.collect.ImmutableSet;
-import com.technologica.network.play.server.Packets;
 import com.technologica.world.item.TechnologicaItems;
 import com.technologica.world.level.block.TechnologicaBlocks;
 import com.technologica.world.level.block.state.properties.TechnologicaWoodType;
-import com.technologica.world.level.levelgen.feature.trunkplacers.TechnologicaTrunkPlacerType;
 
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.item.Item;
@@ -33,26 +31,14 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class CommonSetup {
 
 	public static void onFMLCommonSetupEvent(final FMLCommonSetupEvent event) {
-		Packets.onCommonSetupEvent();
-
 		event.enqueueWork(() -> {
-			TechnologicaTrunkPlacerType.register();
-			// TechnologicaTreeFeatures.register();
-			// TechnologicaTreePlacements.register();
-			// TechnologicaVegetationFeatures.register();
-			// TechnologicaVegetationPlacements.register();
-			// TechnologicaVillagePlacements.register();
-			// TechnologicaMiscOverworldPlacements.register();
-			// TechnologicaOreFeatures.register();
-			// TechnologicaOrePlacements.register();
-
 			addToFlowerPot();
 			addToComposter();
 			addToVillagerWantedItems();
 			registerWoodTypes();
 		});
 	}
-
+	
 	private static void registerWoodTypes() {
 		long existing = WoodType.values().filter((wood) -> {
 			return wood.name().contains("technologica");

@@ -7,9 +7,9 @@ import org.joml.Quaternionf;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-import com.technologica.Technologica;
 import com.technologica.util.Radius;
 import com.technologica.util.math.MathHelper;
+import com.technologica.util.text.TechnologicaLocation;
 import com.technologica.world.level.block.LineShaftBlock;
 import com.technologica.world.level.block.entity.LineShaftBlockEntity;
 
@@ -27,7 +27,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.client.model.data.ModelData;
 
 public class LineShaftRenderer implements BlockEntityRenderer<LineShaftBlockEntity> {
-	public static final ResourceLocation PULLEY_BELT_TEXTURE = new ResourceLocation(Technologica.MODID, "block/pulley_belt");
+	public static final ResourceLocation PULLEY_BELT_TEXTURE = new TechnologicaLocation("block/pulley_belt");
 
 	public LineShaftRenderer(BlockEntityRendererProvider.Context rendererDispatcherIn) {
 	}

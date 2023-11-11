@@ -1,6 +1,6 @@
 package com.technologica.world.item;
 
-import static com.technologica.Technologica.MODID;
+import static com.technologica.Technologica.MOD_ID;
 
 import com.technologica.world.entity.TechnologicaEntityType;
 import com.technologica.world.entity.vehicle.Rocket;
@@ -32,7 +32,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class TechnologicaItems {
-	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.Keys.ITEMS, MODID);
+	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.Keys.ITEMS, MOD_ID);
 
 	public static int init() {
 		ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());

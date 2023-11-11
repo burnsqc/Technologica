@@ -1,8 +1,8 @@
 package com.technologica.world.level.material;
 
-import static com.technologica.Technologica.MODID;
-
 import java.util.function.Consumer;
+
+import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
@@ -19,7 +19,7 @@ public class MetalFluidType extends FluidType {
 	@Override
 	public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
 		consumer.accept(new IClientFluidTypeExtensions() {
-			private static final ResourceLocation METAL_STILL = new ResourceLocation(MODID, "block/metal_still"), METAL_FLOW = new ResourceLocation(MODID, "block/metal_flow");
+			private static final ResourceLocation METAL_STILL = new TechnologicaLocation("block/metal_still"), METAL_FLOW = new TechnologicaLocation("block/metal_flow");
 
 			@Override
 			public int getTintColor() {

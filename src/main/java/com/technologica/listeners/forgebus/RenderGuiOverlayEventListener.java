@@ -1,9 +1,9 @@
 package com.technologica.listeners.forgebus;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.technologica.Technologica;
 import com.technologica.capabilities.TechnologicaCapabilities;
 import com.technologica.capabilities.air.IAir;
+import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -16,7 +16,7 @@ import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class RenderGuiOverlayEventListener {
-	public static final ResourceLocation GUI_ICONS_LOCATION = new ResourceLocation(Technologica.MODID, "textures/gui/technologica_icons.png");
+	public static final ResourceLocation GUI_ICONS_LOCATION = new TechnologicaLocation("textures/gui/technologica_icons.png");
 	protected static final ResourceLocation AIR_SPRITE = new ResourceLocation("textures/gui/icons.png");
 
 	@SubscribeEvent

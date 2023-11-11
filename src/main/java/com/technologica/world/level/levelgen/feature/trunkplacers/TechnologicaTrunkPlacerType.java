@@ -1,11 +1,10 @@
 package com.technologica.world.level.levelgen.feature.trunkplacers;
 
 import com.mojang.serialization.Codec;
-import com.technologica.Technologica;
+import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 
@@ -18,6 +17,6 @@ public final class TechnologicaTrunkPlacerType {
 	}
 
 	private static <P extends TrunkPlacer> TrunkPlacerType<P> register(String stringIn, Codec<P> codec) {
-		return Registry.register(BuiltInRegistries.TRUNK_PLACER_TYPE, new ResourceLocation(Technologica.MODID, stringIn), new TrunkPlacerType<>(codec));
+		return Registry.register(BuiltInRegistries.TRUNK_PLACER_TYPE, new TechnologicaLocation(stringIn), new TrunkPlacerType<>(codec));
 	}
 }

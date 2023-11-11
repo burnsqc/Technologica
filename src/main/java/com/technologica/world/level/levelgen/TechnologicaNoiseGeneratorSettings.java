@@ -1,11 +1,10 @@
 package com.technologica.world.level.levelgen;
 
-import com.technologica.Technologica;
 import com.technologica.datagen.registries.TechnologicaDatapackBuiltinEntriesProvider;
+import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
 
 /**
@@ -18,7 +17,7 @@ import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
  * @tl.status GREEN
  */
 public class TechnologicaNoiseGeneratorSettings {
-	public static final ResourceKey<NoiseGeneratorSettings> MOON = ResourceKey.create(Registries.NOISE_SETTINGS, new ResourceLocation(Technologica.MODID, "moon"));
-	public static final ResourceKey<NoiseGeneratorSettings> CHALLENGER_DEEP = ResourceKey.create(Registries.NOISE_SETTINGS, new ResourceLocation(Technologica.MODID, "challenger_deep"));
-	public static final ResourceKey<NoiseGeneratorSettings> OVERGROWTH = ResourceKey.create(Registries.NOISE_SETTINGS, new ResourceLocation(Technologica.MODID, "overgrowth"));
+	public static final ResourceKey<NoiseGeneratorSettings> MOON = ResourceKey.create(Registries.NOISE_SETTINGS, new TechnologicaLocation("moon"));
+	public static final ResourceKey<NoiseGeneratorSettings> CHALLENGER_DEEP = ResourceKey.create(Registries.NOISE_SETTINGS, new TechnologicaLocation("challenger_deep"));
+	public static final ResourceKey<NoiseGeneratorSettings> OVERGROWTH = ResourceKey.create(Registries.NOISE_SETTINGS, new TechnologicaLocation("overgrowth"));
 }

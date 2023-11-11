@@ -16,7 +16,7 @@ import net.minecraftforge.registries.RegistryObject;
 public class LangDataGenerator extends LanguageProvider {
 
 	public LangDataGenerator(PackOutput generatorIn) {
-		super(generatorIn, Technologica.MODID, "en_us");
+		super(generatorIn, Technologica.MOD_ID, "en_us");
 	}
 
 	@Override
@@ -24,15 +24,15 @@ public class LangDataGenerator extends LanguageProvider {
 		addItems(TechnologicaItems.ITEMS.getEntries());
 		addEntities(TechnologicaEntityType.ENTITY_TYPES.getEntries());
 
-		add("item_group." + Technologica.MODID + ".flora", "Flora");
-		add("item_group." + Technologica.MODID + ".fauna", "Fauna");
-		add("item_group." + Technologica.MODID + ".mineral", "Mineral");
-		add("item_group." + Technologica.MODID + ".food", "Food");
-		add("item_group." + Technologica.MODID + ".construction", "Construction");
-		add("item_group." + Technologica.MODID + ".machinery", "Machinery");
-		add("item_group." + Technologica.MODID + ".decorative", "Decorative");
-		add("item_group." + Technologica.MODID + ".armory", "Armory");
-		add("item_group." + Technologica.MODID + ".cryptica", "Cryptica");
+		add("item_group." + Technologica.MOD_ID + ".flora", "Flora");
+		add("item_group." + Technologica.MOD_ID + ".fauna", "Fauna");
+		add("item_group." + Technologica.MOD_ID + ".mineral", "Mineral");
+		add("item_group." + Technologica.MOD_ID + ".food", "Food");
+		add("item_group." + Technologica.MOD_ID + ".construction", "Construction");
+		add("item_group." + Technologica.MOD_ID + ".machinery", "Machinery");
+		add("item_group." + Technologica.MOD_ID + ".decorative", "Decorative");
+		add("item_group." + Technologica.MOD_ID + ".armory", "Armory");
+		add("item_group." + Technologica.MOD_ID + ".cryptica", "Cryptica");
 
 		add("death.attack.jostled_the_nitro", "%1$s jostled the nitro");
 		add("death.attack.jostled_the_nitro.player", "%1$s jostled the nitro whilst fighting %2$s");
@@ -79,7 +79,7 @@ public class LangDataGenerator extends LanguageProvider {
 	 */
 
 	private String keyToValue(String key) {
-		String words[] = key.replaceAll("item." + Technologica.MODID + ".", "").replaceAll("block." + Technologica.MODID + ".", "").replaceAll("entity." + Technologica.MODID + ".", "").split("_");
+		String words[] = key.replaceAll("item." + Technologica.MOD_ID + ".", "").replaceAll("block." + Technologica.MOD_ID + ".", "").replaceAll("entity." + Technologica.MOD_ID + ".", "").split("_");
 		String name = "";
 		for (String word : words) {
 			String first = word.substring(0, 1);

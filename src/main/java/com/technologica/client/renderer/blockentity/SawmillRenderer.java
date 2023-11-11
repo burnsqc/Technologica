@@ -5,7 +5,7 @@ import org.joml.Quaternionf;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-import com.technologica.Technologica;
+import com.technologica.util.text.TechnologicaLocation;
 import com.technologica.world.level.block.SawmillBlock;
 import com.technologica.world.level.block.entity.SawmillBlockEntity;
 
@@ -29,7 +29,7 @@ import net.minecraftforge.client.model.data.ModelData;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class SawmillRenderer implements BlockEntityRenderer<SawmillBlockEntity> {
-	public static final ResourceLocation SAW_TEXTURE = new ResourceLocation(Technologica.MODID, "block/sawblade");
+	public static final ResourceLocation SAW_TEXTURE = new TechnologicaLocation("block/sawblade");
 
 	public SawmillRenderer(BlockEntityRendererProvider.Context rendererDispatcherIn) {
 	}

@@ -3,11 +3,10 @@ package com.technologica.client.model.geom;
 import java.util.Set;
 
 import com.google.common.collect.Sets;
-import com.technologica.Technologica;
+import com.technologica.util.text.TechnologicaLocation;
 import com.technologica.world.entity.vehicle.VanillaBoat;
 
 import net.minecraft.client.model.geom.ModelLayerLocation;
-import net.minecraft.resources.ResourceLocation;
 
 public class TechnologicaModelLayers {
 	private static final Set<ModelLayerLocation> ALL_MODELS = Sets.newHashSet();
@@ -80,7 +79,7 @@ public class TechnologicaModelLayers {
 	}
 
 	private static ModelLayerLocation createLocation(String p_171301_, String p_171302_) {
-		return new ModelLayerLocation(new ResourceLocation(Technologica.MODID, p_171301_), p_171302_);
+		return new ModelLayerLocation(new TechnologicaLocation(p_171301_), p_171302_);
 	}
 
 	public static ModelLayerLocation createBoatModelName(VanillaBoat.Type p_171290_) {

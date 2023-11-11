@@ -1,5 +1,7 @@
 package com.technologica.network.play.client;
 
+import static com.technologica.Technologica.LOGGER;
+
 import java.util.function.Supplier;
 
 import com.technologica.world.level.block.entity.AnnunciatorBlockEntity;
@@ -41,6 +43,7 @@ public class CUpdateAnnunciatorPacket {
 
 	public static void handle(CUpdateAnnunciatorPacket msg, final Supplier<NetworkEvent.Context> ctx) {
 		ctx.get().enqueueWork(() -> {
+			LOGGER.debug("TECHNOLOGICA HANDLING PACKET - UPDATE ANNUNCIATOR");
 			Level world = ctx.get().getSender().level();
 			BlockEntity tileentity = world.getBlockEntity(msg.pos);
 			BlockState blockstate = world.getBlockState(msg.pos);

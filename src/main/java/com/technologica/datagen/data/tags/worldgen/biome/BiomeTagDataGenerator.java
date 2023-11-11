@@ -14,7 +14,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 public final class BiomeTagDataGenerator extends BiomeTagsProvider {
 
 	public BiomeTagDataGenerator(PackOutput packOutputIn, CompletableFuture<HolderLookup.Provider> lookupProviderIn, ExistingFileHelper existingFileHelperIn) {
-		super(packOutputIn, lookupProviderIn, Technologica.MODID, existingFileHelperIn);
+		super(packOutputIn, lookupProviderIn, Technologica.MOD_ID, existingFileHelperIn);
 	}
 
 	@Override
@@ -25,6 +25,6 @@ public final class BiomeTagDataGenerator extends BiomeTagsProvider {
 
 	@Override
 	public String getName() {
-		return "Biome Tags: " + Technologica.MODID;
+		return "Biome Tags: " + Technologica.MOD_ID;
 	}
 }
