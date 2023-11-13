@@ -31,8 +31,6 @@ import com.technologica.network.packets.ServerboundUpdateAnnunciatorPacket;
 import com.technologica.network.packets.ServerboundUpdateMonitorPacket;
 import com.technologica.setup.ClientInit;
 import com.technologica.setup.Config;
-import com.technologica.util.DisablePlankConditionFactory;
-import com.technologica.util.EnablePlankConditionFactory;
 import com.technologica.util.TechnologicaSoundEvents;
 import com.technologica.util.text.TechnologicaLocation;
 import com.technologica.world.effect.TechnologicaMobEffects;
@@ -50,7 +48,6 @@ import com.technologica.world.level.levelgen.structure.TechnologicaStructureType
 import com.technologica.world.level.material.TechnologicaFluids;
 
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -104,10 +101,8 @@ public class Technologica {
 			ClientInit.init();
 		}
 
-		// TODO: Determine best place for these. Maybe it's right here but that's unconfirmed.
+		// TODO: Determine best place for this. Maybe it's right here but that's unconfirmed.
 		ModLoadingContext.get().registerConfig(Type.COMMON, Config.SPEC, "technologica-common.toml");
-		CraftingHelper.register(DisablePlankConditionFactory.Serializer.INSTANCE);
-		CraftingHelper.register(EnablePlankConditionFactory.Serializer.INSTANCE);
 	}
 
 	private static void initDeferredRegisters() {

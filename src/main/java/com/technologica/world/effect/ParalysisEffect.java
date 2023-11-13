@@ -1,11 +1,9 @@
 package com.technologica.world.effect;
 
-import net.minecraft.client.KeyMapping;
-import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 
 public class ParalysisEffect extends MobEffect {
 
@@ -15,10 +13,8 @@ public class ParalysisEffect extends MobEffect {
 
 	@Override
 	public void applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
-		if (pLivingEntity instanceof Player) {
-			KeyMapping.releaseAll();
-			Minecraft mc = Minecraft.getInstance();
-			mc.mouseHandler.releaseMouse();
+		if (pLivingEntity instanceof LocalPlayer) {
+			ClientEffectHandler.handleParlysis();
 		}
 	}
 

@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.google.common.collect.ImmutableSet;
+import com.technologica.util.DisablePlankConditionFactory;
+import com.technologica.util.EnablePlankConditionFactory;
 import com.technologica.world.item.TechnologicaItems;
 import com.technologica.world.level.block.TechnologicaBlocks;
 import com.technologica.world.level.block.state.properties.TechnologicaWoodType;
@@ -16,6 +18,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.properties.WoodType;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -36,9 +39,11 @@ public class CommonSetup {
 			addToComposter();
 			addToVillagerWantedItems();
 			registerWoodTypes();
+			CraftingHelper.register(DisablePlankConditionFactory.Serializer.INSTANCE);
+			CraftingHelper.register(EnablePlankConditionFactory.Serializer.INSTANCE);
 		});
 	}
-	
+
 	private static void registerWoodTypes() {
 		long existing = WoodType.values().filter((wood) -> {
 			return wood.name().contains("technologica");
