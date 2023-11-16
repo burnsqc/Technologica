@@ -1,9 +1,10 @@
 package com.technologica.world.effect;
 
-import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 
 public class ParalysisEffect extends MobEffect {
 
@@ -13,8 +14,10 @@ public class ParalysisEffect extends MobEffect {
 
 	@Override
 	public void applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
-		if (pLivingEntity instanceof LocalPlayer) {
-			ClientEffectHandler.handleParlysis();
+		if (pLivingEntity instanceof Player) {
+			if (FMLEnvironment.dist.isClient()) {
+				ClientEffectHandler.handleParlysis();
+			}
 		}
 	}
 
