@@ -1,6 +1,5 @@
 # eclipse
 bin
-doc
 gradle
 *.launch
 .settings
