@@ -56,16 +56,20 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.registries.RegistryObject;
 
+/**
+ * <p>
+ * This class contains Registry Objects for Entity Types.
+ * The {@link #init} method is called by {@link Technologica#initDeferredRegisters} and returns a head-count to later be checked during registration and other setup activities.
+ * </p>
+ * 
+ * @tl.status GREEN
+ */
 public final class TechnologicaEntityTypes extends MasterDeferredRegistrar {
 	
 	public static int init() {
 		ENTITY_TYPES.register(Technologica.MOD_EVENT_BUS);
 		return ENTITY_TYPES.getEntries().size();
 	}
-
-	/*
-	 * ANIMALS
-	 */
 
 	public static final RegistryObject<EntityType<Alligator>> ALLIGATOR = ENTITY_TYPES.register("alligator", () -> EntityType.Builder.<Alligator>of(Alligator::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("alligator"));
 	public static final RegistryObject<EntityType<Beaver>> BEAVER = ENTITY_TYPES.register("beaver", () -> EntityType.Builder.<Beaver>of(Beaver::new, MobCategory.CREATURE).sized(0.6F, 0.5F).clientTrackingRange(10).build("beaver"));
@@ -105,35 +109,15 @@ public final class TechnologicaEntityTypes extends MasterDeferredRegistrar {
 	public static final RegistryObject<EntityType<Vulture>> VULTURE = ENTITY_TYPES.register("vulture", () -> EntityType.Builder.<Vulture>of(Vulture::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build("vulture"));
 	public static final RegistryObject<EntityType<Walrus>> WALRUS = ENTITY_TYPES.register("walrus", () -> EntityType.Builder.<Walrus>of(Walrus::new, MobCategory.CREATURE).sized(1.4F, 1.4F).clientTrackingRange(10).build("walrus"));
 	public static final RegistryObject<EntityType<Zebra>> ZEBRA = ENTITY_TYPES.register("zebra", () -> EntityType.Builder.<Zebra>of(Zebra::new, MobCategory.CREATURE).sized(1.3964844F, 1.6F).clientTrackingRange(10).build("zebra"));
-
-	/*
-	 * MONSTERS
-	 */
-
 	public static final RegistryObject<EntityType<AtomicCreeper>> ATOMIC_CREEPER = ENTITY_TYPES.register("atomic_creeper", () -> EntityType.Builder.<AtomicCreeper>of(AtomicCreeper::new, MobCategory.MONSTER).sized(0.6F, 1.7F).clientTrackingRange(16).build("atomic_creeper"));
 	public static final RegistryObject<EntityType<Mummy>> MUMMY = ENTITY_TYPES.register("mummy", () -> EntityType.Builder.<Mummy>of(Mummy::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8).build("mummy"));
 	public static final RegistryObject<EntityType<Peeper>> PEEPER = ENTITY_TYPES.register("peeper", () -> EntityType.Builder.<Peeper>of(Peeper::new, MobCategory.MONSTER).sized(0.6F, 1.7F).clientTrackingRange(16).build("peeper"));
 	public static final RegistryObject<EntityType<Sweeper>> SWEEPER = ENTITY_TYPES.register("sweeper", () -> EntityType.Builder.<Sweeper>of(Sweeper::new, MobCategory.MONSTER).sized(0.6F, 1.7F).clientTrackingRange(8).build("sweeper"));
-
-	/*
-	 * VEHICLES
-	 */
-
 	public static final RegistryObject<EntityType<VanillaBoat>> MOD_BOAT = ENTITY_TYPES.register("mod_boat", () -> EntityType.Builder.<VanillaBoat>of(VanillaBoat::new, MobCategory.MISC).sized(1.375F, 0.5625F).setCustomClientFactory((spawnEntity, world) -> new VanillaBoat(world, 0, 0, 0)).clientTrackingRange(10).build("mod_boat"));
 	public static final RegistryObject<EntityType<Rocket>> ROCKET = ENTITY_TYPES.register("rocket", () -> EntityType.Builder.<Rocket>of(Rocket::new, MobCategory.MISC).sized(1.375F, 0.5625F).setCustomClientFactory((spawnEntity, world) -> new Rocket(world, 0, 0, 0)).clientTrackingRange(10).build("rocket"));
-
-	/*
-	 * PROJECTILES
-	 */
-
 	public static final RegistryObject<EntityType<Coconut>> COCONUT = ENTITY_TYPES.register("coconut", () -> EntityType.Builder.<Coconut>of(Coconut::new, MobCategory.MISC).sized(0.25F, 0.25F).setCustomClientFactory((spawnEntity, world) -> new Coconut(world, 0, 0, 0)).clientTrackingRange(4).updateInterval(10).build("coconut"));
 	public static final RegistryObject<EntityType<Dodgeball>> DODGEBALL = ENTITY_TYPES.register("dodgeball", () -> EntityType.Builder.<Dodgeball>of(Dodgeball::new, MobCategory.MISC).sized(0.25F, 0.25F).setCustomClientFactory((spawnEntity, world) -> new Dodgeball(world, 0, 0, 0)).clientTrackingRange(4).updateInterval(10).build("dodgeball"));
 	public static final RegistryObject<EntityType<Harpoon>> HARPOON = ENTITY_TYPES.register("harpoon", () -> EntityType.Builder.<Harpoon>of(Harpoon::new, MobCategory.MISC).sized(0.5F, 0.5F).setCustomClientFactory((spawnEntity, world) -> new Harpoon(world, 0, 0, 0)).clientTrackingRange(4).updateInterval(20).build("harpoon"));
-
-	/*
-	 * OTHER
-	 */
-
 	public static final RegistryObject<EntityType<InvisibleSeat>> INVISIBLE_SEAT = ENTITY_TYPES.register("invisible_seat", () -> EntityType.Builder.<InvisibleSeat>of(InvisibleSeat::new, MobCategory.MISC).sized(0.1F, 0.1F).setCustomClientFactory((spawnEntity, world) -> new InvisibleSeat(world, 0, 0, 0)).clientTrackingRange(10).build("invisible_seat_entity"));
 	public static final RegistryObject<EntityType<NavalMine>> NAVAL_MINE = ENTITY_TYPES.register("naval_mine", () -> EntityType.Builder.<NavalMine>of(NavalMine::new, MobCategory.MISC).sized(2.0F, 2.0F).setCustomClientFactory((spawnEntity, world) -> new NavalMine(world, 0, 0, 0)).clientTrackingRange(10).build("naval_mine_entity"));
 }

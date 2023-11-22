@@ -18,7 +18,15 @@ import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureSet;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 
-public class MasterKeyCreator {
+/**
+ * <p>
+ * This class contains "cheater" methods for Resource Keys and Tag Keys.  
+ * This class is to be extended by any subclasses that solely define keys for use by dynamic registries.
+ * </p>
+ * 
+ * @tl.status GREEN
+ */
+public abstract class MasterKeyCreator {
 	protected static ResourceKey<Biome> biome(String path) {
 		return ResourceKey.create(Registries.BIOME, new TechnologicaLocation(path));
 	}

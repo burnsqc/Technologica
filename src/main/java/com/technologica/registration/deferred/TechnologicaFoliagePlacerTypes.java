@@ -12,6 +12,14 @@ import com.technologica.world.level.levelgen.feature.foliageplacers.TeardropFoli
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 import net.minecraftforge.registries.RegistryObject;
 
+/**
+ * <p>
+ * This class contains Registry Objects for Foliage Placer Types.
+ * The {@link #init} method is called by {@link Technologica#initDeferredRegisters} and returns a head-count to later be checked during registration and other setup activities.
+ * </p>
+ * 
+ * @tl.status GREEN
+ */
 public final class TechnologicaFoliagePlacerTypes extends MasterDeferredRegistrar {
 	
 	public static int init() {

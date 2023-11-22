@@ -21,6 +21,14 @@ import com.technologica.world.level.block.entity.VanillaSignBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.RegistryObject;
 
+/**
+ * <p>
+ * This class contains Registry Objects for Block Entity Types.
+ * The {@link #init} method is called by {@link Technologica#initDeferredRegisters} and returns a head-count to later be checked during registration and other setup activities.
+ * </p>
+ * 
+ * @tl.status GREEN
+ */
 public final class TechnologicaBlockEntityTypes extends MasterDeferredRegistrar {
 	
 	public static int init() {
@@ -41,7 +49,6 @@ public final class TechnologicaBlockEntityTypes extends MasterDeferredRegistrar 
 	public static final RegistryObject<BlockEntityType<MulchTileEntity>> MULCH_TILE = BLOCK_ENTITY_TYPES.register("mulch_tile", () -> BlockEntityType.Builder.of(MulchTileEntity::new, TechnologicaBlocks.MULCH.get()).build(null));
 	public static final RegistryObject<BlockEntityType<LandMineBlockEntity>> LAND_MINE_TILE = BLOCK_ENTITY_TYPES.register("land_mine_tile", () -> BlockEntityType.Builder.of(LandMineBlockEntity::new, TechnologicaBlocks.LAND_MINE.get()).build(null));
 	public static final RegistryObject<BlockEntityType<RadioactiveOreBlockEntity>> RADIOACTIVE_ORE_BLOCK_ENTITY = BLOCK_ENTITY_TYPES.register("radioactive_ore_block_entity", () -> BlockEntityType.Builder.of(RadioactiveOreBlockEntity::new, TechnologicaBlocks.THORIANITE_ORE.get(), TechnologicaBlocks.DEEPSLATE_THORIANITE_ORE.get(), TechnologicaBlocks.URANINITE_ORE.get(), TechnologicaBlocks.DEEPSLATE_URANINITE_ORE.get()).build(null));
-
 	public static final RegistryObject<BlockEntityType<FastHopperBlockEntity>> FAST_HOPPER_BLOCK_ENTITY = BLOCK_ENTITY_TYPES.register("fast_hopper_block_entity", () -> BlockEntityType.Builder.of(FastHopperBlockEntity::new, TechnologicaBlocks.FAST_HOPPER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<LightBlockEntity>> LIGHT_BLOCK_ENTITY = BLOCK_ENTITY_TYPES.register("light_block_entity", () -> BlockEntityType.Builder.of(LightBlockEntity::new, TechnologicaBlocks.LIGHT.get()).build(null));
 }

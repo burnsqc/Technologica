@@ -7,6 +7,14 @@ import com.technologica.world.level.levelgen.feature.trunkplacers.HugeTrunkPlace
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 import net.minecraftforge.registries.RegistryObject;
 
+/**
+ * <p>
+ * This class contains Registry Objects for Trunk Placer Types.
+ * The {@link #init} method is called by {@link Technologica#initDeferredRegisters} and returns a head-count to later be checked during registration and other setup activities.
+ * </p>
+ * 
+ * @tl.status GREEN
+ */
 public final class TechnologicaTrunkPlacerTypes extends MasterDeferredRegistrar {
 
 	public static int init() {

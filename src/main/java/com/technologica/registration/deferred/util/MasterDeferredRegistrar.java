@@ -25,7 +25,15 @@ import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class MasterDeferredRegistrar {
+/**
+ * <p>
+ * This class contains definitions of Deferred Registers.  
+ * This class is to be extended by any subclasses that solely define Registry Objects.
+ * </p>
+ * 
+ * @tl.status GREEN
+ */
+public abstract class MasterDeferredRegistrar {
 	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.Keys.BLOCK_ENTITY_TYPES, Technologica.MOD_ID);
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.Keys.BLOCKS, Technologica.MOD_ID);
 	public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Technologica.MOD_ID);

@@ -9,6 +9,14 @@ import com.technologica.world.level.material.OpaqueFluidType;
 import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.registries.RegistryObject;
 
+/**
+ * <p>
+ * This class contains Registry Objects for Fluid Types.
+ * The {@link #init} method is called by {@link Technologica#initDeferredRegisters} and returns a head-count to later be checked during registration and other setup activities.
+ * </p>
+ * 
+ * @tl.status GREEN
+ */
 public final class TechnologicaFluidTypes extends MasterDeferredRegistrar {
 	
 	public static int init() {
@@ -27,17 +35,13 @@ public final class TechnologicaFluidTypes extends MasterDeferredRegistrar {
 	public static final RegistryObject<FluidType> KRYPTON_TYPE = FLUID_TYPES.register("krypton", () -> new GasFluidType(FluidType.Properties.create(), 1686484447));
 	public static final RegistryObject<FluidType> XENON_TYPE = FLUID_TYPES.register("xenon", () -> new GasFluidType(FluidType.Properties.create(), 1683921300));
 	public static final RegistryObject<FluidType> RADON_TYPE = FLUID_TYPES.register("radon", () -> new GasFluidType(FluidType.Properties.create(), 1691357474));
-
 	public static final RegistryObject<FluidType> BROMINE_TYPE = FLUID_TYPES.register("bromine", () -> new GasFluidType(FluidType.Properties.create(), -5621741));
 	public static final RegistryObject<FluidType> MERCURY_TYPE = FLUID_TYPES.register("mercury", () -> new MetalFluidType(FluidType.Properties.create(), -1973791));
-
 	public static final RegistryObject<FluidType> BRINE_TYPE = FLUID_TYPES.register("brine", () -> new OpaqueFluidType(FluidType.Properties.create(), -5579521));
 	public static final RegistryObject<FluidType> OIL_TYPE = FLUID_TYPES.register("oil", () -> new GasFluidType(FluidType.Properties.create(), 1681011250));
 	public static final RegistryObject<FluidType> NATURAL_GAS_TYPE = FLUID_TYPES.register("natural_gas", () -> new GasFluidType(FluidType.Properties.create(), 1684340580));
-
 	public static final RegistryObject<FluidType> MAPLE_SYRUP_TYPE = FLUID_TYPES.register("maple_syrup", () -> new OpaqueFluidType(FluidType.Properties.create(), -10867944));
 	public static final RegistryObject<FluidType> RUBBER_RESIN_TYPE = FLUID_TYPES.register("rubber_resin", () -> new OpaqueFluidType(FluidType.Properties.create(), -986928));
-
 	public static final RegistryObject<FluidType> GASOLINE_TYPE = FLUID_TYPES.register("gasoline", () -> new GasFluidType(FluidType.Properties.create(), -2833815));
 	public static final RegistryObject<FluidType> MACHINE_OIL_TYPE = FLUID_TYPES.register("machine_oil", () -> new OpaqueFluidType(FluidType.Properties.create(), -106));
 	public static final RegistryObject<FluidType> COOLANT_TYPE = FLUID_TYPES.register("coolant", () -> new OpaqueFluidType(FluidType.Properties.create(), -4196524));

@@ -48,16 +48,20 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.registries.RegistryObject;
 
+/**
+ * <p>
+ * This class contains Registry Objects for Items.
+ * The {@link #init} method is called by {@link Technologica#initDeferredRegisters} and returns a head-count to later be checked during registration and other setup activities.
+ * </p>
+ * 
+ * @tl.status GREEN
+ */
 public final class TechnologicaItems extends MasterDeferredRegistrar {
 	
 	public static int init() {
 		ITEMS.register(Technologica.MOD_EVENT_BUS);
 		return ITEMS.getEntries().size();
 	}
-
-	/*
-	 * FLORA
-	 */
 
 	public static final RegistryObject<Item> BARLEY_SEEDS = ITEMS.register("barley_seeds", () -> new CropSeedItem(TechnologicaBlocks.BARLEY.get(), new Item.Properties()));
 	public static final RegistryObject<Item> OATS_SEEDS = ITEMS.register("oats_seeds", () -> new CropSeedItem(TechnologicaBlocks.OATS.get(), new Item.Properties()));
@@ -81,7 +85,6 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> TOMATO_SEEDS = ITEMS.register("tomato_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.TOMATOES.get(), new Item.Properties()));
 	public static final RegistryObject<Item> CRANBERRY_SEEDS = ITEMS.register("cranberry_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.CRANBERRY_CROP.get(), new Item.Properties()));
 	public static final RegistryObject<Item> RICE_SEEDS = ITEMS.register("rice_seeds", () -> new CropSeedItem(TechnologicaBlocks.RICE.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> APRICOT_SAPLING_ITEM = ITEMS.register("apricot_sapling", () -> new BlockItem(TechnologicaBlocks.APRICOT_SAPLING.get(), new Item.Properties()));
 	public static final RegistryObject<Item> ASPEN_SAPLING_ITEM = ITEMS.register("aspen_sapling", () -> new BlockItem(TechnologicaBlocks.ASPEN_SAPLING.get(), new Item.Properties()));
 	public static final RegistryObject<Item> AVOCADO_SAPLING_ITEM = ITEMS.register("avocado_sapling", () -> new BlockItem(TechnologicaBlocks.AVOCADO_SAPLING.get(), new Item.Properties()));
@@ -115,7 +118,6 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> BENEVOLENT_APOTHECARY_SAPLING_ITEM = ITEMS.register("benevolent_apothecary_sapling", () -> new BlockItem(TechnologicaBlocks.BENEVOLENT_APOTHECARY_SAPLING.get(), new Item.Properties()));
 	public static final RegistryObject<Item> MALEVOLENT_APOTHECARY_SAPLING_ITEM = ITEMS.register("malevolent_apothecary_sapling", () -> new BlockItem(TechnologicaBlocks.MALEVOLENT_APOTHECARY_SAPLING.get(), new Item.Properties()));
 	public static final RegistryObject<Item> NECROTIC_SAPLING_ITEM = ITEMS.register("necrotic_sapling", () -> new BlockItem(TechnologicaBlocks.NECROTIC_SAPLING.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> APRICOT_LEAVES_ITEM = ITEMS.register("apricot_leaves", () -> new BlockItem(TechnologicaBlocks.APRICOT_LEAVES.get(), new Item.Properties()));
 	public static final RegistryObject<Item> ASPEN_LEAVES_ITEM = ITEMS.register("aspen_leaves", () -> new BlockItem(TechnologicaBlocks.ASPEN_LEAVES.get(), new Item.Properties()));
 	public static final RegistryObject<Item> AVOCADO_LEAVES_ITEM = ITEMS.register("avocado_leaves", () -> new BlockItem(TechnologicaBlocks.AVOCADO_LEAVES.get(), new Item.Properties()));
@@ -148,11 +150,6 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> CONDUCTIVE_LEAVES_ITEM = ITEMS.register("conductive_leaves", () -> new BlockItem(TechnologicaBlocks.CONDUCTIVE_LEAVES.get(), new Item.Properties()));
 	public static final RegistryObject<Item> FROSTBITTEN_LEAVES_ITEM = ITEMS.register("frostbitten_leaves", () -> new BlockItem(TechnologicaBlocks.FROSTBITTEN_LEAVES.get(), new Item.Properties()));
 	public static final RegistryObject<Item> CURSED_LEAVES_ITEM = ITEMS.register("cursed_leaves", () -> new BlockItem(TechnologicaBlocks.CURSED_LEAVES.get(), new Item.Properties()));
-
-	/**
-	 * FAUNA
-	 */
-
 	public static final RegistryObject<Item> ALLIGATOR_SPAWN_EGG = ITEMS.register("alligator_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.ALLIGATOR, 0x2b4536, 0xbccf8a, new Item.Properties()));
 	public static final RegistryObject<Item> BEAVER_SPAWN_EGG = ITEMS.register("beaver_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.BEAVER, 0x5d420c, 0x2c1f04, new Item.Properties()));
 	public static final RegistryObject<Item> BUFFALO_SPAWN_EGG = ITEMS.register("buffalo_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.BUFFALO, 0x5d4a3a, 0x735338, new Item.Properties()));
@@ -191,14 +188,11 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> VULTURE_SPAWN_EGG = ITEMS.register("vulture_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.VULTURE, 0x412e17, 0xef636b, new Item.Properties()));
 	public static final RegistryObject<Item> WALRUS_SPAWN_EGG = ITEMS.register("walrus_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.WALRUS, 0x655a48, 0xf6f2e2, new Item.Properties()));
 	public static final RegistryObject<Item> ZEBRA_SPAWN_EGG = ITEMS.register("zebra_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.ZEBRA, 0xffffff, 0x000000, new Item.Properties()));
-
 	public static final RegistryObject<Item> ATOMIC_CREEPER_SPAWN_EGG = ITEMS.register("atomic_creeper_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.ATOMIC_CREEPER, 0x00FF00, 0x000000, new Item.Properties()));
 	public static final RegistryObject<Item> MUMMY_SPAWN_EGG = ITEMS.register("mummy_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.MUMMY, 0xefdec4, 0xc2b79c, new Item.Properties()));
 	public static final RegistryObject<Item> PEEPER_SPAWN_EGG = ITEMS.register("peeper_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.PEEPER, 0xb38dff, 0x000000, new Item.Properties()));
 	public static final RegistryObject<Item> SWEEPER_SPAWN_EGG = ITEMS.register("sweeper_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.SWEEPER, 0xd3be2b, 0x000000, new Item.Properties()));
-
 	public static final RegistryObject<Item> PIRANHA_BUCKET = ITEMS.register("bucket_of_piranha", () -> new MobBucketItem(TechnologicaEntityTypes.PIRANHA, () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_FISH, (new Item.Properties()).stacksTo(1)));
-
 	public static final RegistryObject<Item> FUR = ITEMS.register("fur", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> IVORY = ITEMS.register("ivory", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> NARWHAL_TUSK = ITEMS.register("narwhal_tusk", () -> new Item(new Item.Properties()));
@@ -207,17 +201,10 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> NECROTOXIN_SAC = ITEMS.register("necrotoxin_sac", () -> new Item(new Item.Properties().food(TechnologicaFoods.NECROTOXIN_SAC)));
 	public static final RegistryObject<Item> NEUROTOXIN_SAC = ITEMS.register("neurotoxin_sac", () -> new Item(new Item.Properties().food(TechnologicaFoods.NEUROTOXIN_SAC)));
 	public static final RegistryObject<Item> TETRODOTOXIN_SAC = ITEMS.register("tetrodotoxin_sac", () -> new Item(new Item.Properties().food(TechnologicaFoods.TETRODOTOXIN_SAC)));
-
-	/**
-	 * MINERAL
-	 */
-
 	public static final RegistryObject<Item> SALT_ITEM = ITEMS.register("salt", () -> new BlockItem(TechnologicaBlocks.SALT.get(), new Item.Properties()));
 	public static final RegistryObject<Item> LITHIUM_CLAY_ITEM = ITEMS.register("lithium_clay", () -> new BlockItem(TechnologicaBlocks.LITHIUM_CLAY.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> MOON_ROCK_ITEM = ITEMS.register("moon_rock", () -> new BlockItem(TechnologicaBlocks.MOON_ROCK.get(), new Item.Properties()));
 	public static final RegistryObject<Item> MOON_DUST_ITEM = ITEMS.register("moon_dust", () -> new BlockItem(TechnologicaBlocks.MOON_DUST.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> APATITE_ORE_ITEM = ITEMS.register("apatite_ore", () -> new BlockItem(TechnologicaBlocks.APATITE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> DEEPSLATE_APATITE_ORE_ITEM = ITEMS.register("deepslate_apatite_ore", () -> new BlockItem(TechnologicaBlocks.DEEPSLATE_APATITE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> ARGENTITE_ORE_ITEM = ITEMS.register("argentite_ore", () -> new BlockItem(TechnologicaBlocks.ARGENTITE_ORE.get(), new Item.Properties()));
@@ -288,7 +275,6 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> DEEPSLATE_URANINITE_ORE_ITEM = ITEMS.register("deepslate_uraninite_ore", () -> new BlockItem(TechnologicaBlocks.DEEPSLATE_URANINITE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> WOLFRAMITE_ORE_ITEM = ITEMS.register("wolframite_ore", () -> new BlockItem(TechnologicaBlocks.WOLFRAMITE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> DEEPSLATE_WOLFRAMITE_ORE_ITEM = ITEMS.register("deepslate_wolframite_ore", () -> new BlockItem(TechnologicaBlocks.DEEPSLATE_WOLFRAMITE_ORE.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> AUTUNITE_CRYSTAL_ITEM = ITEMS.register("autunite_crystal", () -> new BlockItem(TechnologicaBlocks.AUTUNITE_CRYSTAL.get(), new Item.Properties()));
 	public static final RegistryObject<Item> AQUAMARINE_CRYSTAL_ITEM = ITEMS.register("aquamarine_crystal", () -> new BlockItem(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BARYTE_CRYSTAL_ITEM = ITEMS.register("baryte_crystal", () -> new BlockItem(TechnologicaBlocks.BARYTE_CRYSTAL.get(), new Item.Properties()));
@@ -311,7 +297,6 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> WULFENITE_CRYSTAL_ITEM = ITEMS.register("wulfenite_crystal", () -> new BlockItem(TechnologicaBlocks.WULFENITE_CRYSTAL.get(), new Item.Properties()));
 	public static final RegistryObject<Item> XENOTIME_CRYSTAL_ITEM = ITEMS.register("xenotime_crystal", () -> new BlockItem(TechnologicaBlocks.XENOTIME_CRYSTAL.get(), new Item.Properties()));
 	public static final RegistryObject<Item> ZIRCON_CRYSTAL_ITEM = ITEMS.register("zircon_crystal", () -> new BlockItem(TechnologicaBlocks.ZIRCON_CRYSTAL.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> LITHIUM_INGOT = ITEMS.register("lithium_ingot", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> BERYLLIUM_INGOT = ITEMS.register("beryllium_ingot", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> SODIUM_INGOT = ITEMS.register("sodium_ingot", () -> new Item(new Item.Properties()));
@@ -403,10 +388,8 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> LIVERMORIUM_INGOT = ITEMS.register("livermorium_ingot", () -> new RadioactiveItem(new Item.Properties(), "livermorium_ingot"));
 	public static final RegistryObject<Item> TENNESSINE_INGOT = ITEMS.register("tennessine_ingot", () -> new RadioactiveItem(new Item.Properties(), "tennessine_ingot"));
 	public static final RegistryObject<Item> OGANESSON_INGOT = ITEMS.register("oganesson_ingot", () -> new RadioactiveItem(new Item.Properties(), "oganesson_ingot"));
-
 	public static final RegistryObject<Item> BRONZE_INGOT = ITEMS.register("bronze_ingot", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> BRASS_INGOT = ITEMS.register("brass_ingot", () -> new Item(new Item.Properties()));
-
 	public static final RegistryObject<Item> LITHIUM_CLAY_BALL = ITEMS.register("lithium_clay_ball", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> BORON_CHUNK = ITEMS.register("boron_chunk", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> CARBON_CHUNK = ITEMS.register("carbon_chunk", () -> new Item(new Item.Properties()));
@@ -423,54 +406,42 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> RUBY = ITEMS.register("ruby", () -> new Item(new Properties()));
 	public static final RegistryObject<Item> SAPPHIRE = ITEMS.register("sapphire", () -> new Item(new Properties()));
 	public static final RegistryObject<Item> TOPAZ = ITEMS.register("topaz", () -> new Item(new Properties()));
-
 	public static final RegistryObject<Item> BLOCK_OF_RUBY = ITEMS.register("block_of_ruby", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_RUBY.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_SAPPHIRE = ITEMS.register("block_of_sapphire", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_SAPPHIRE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_TOPAZ = ITEMS.register("block_of_topaz", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_TOPAZ.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> BLOCK_OF_LITHIUM = ITEMS.register("block_of_lithium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_LITHIUM.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_BERYLLIUM = ITEMS.register("block_of_beryllium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_BERYLLIUM.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> BLOCK_OF_ALUMINUM = ITEMS.register("block_of_aluminum", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_ALUMINUM.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> BLOCK_OF_TITANIUM = ITEMS.register("block_of_titanium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_TITANIUM.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_VANADIUM = ITEMS.register("block_of_vanadium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_VANADIUM.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_CHROMIUM = ITEMS.register("block_of_chromium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_CHROMIUM.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_MANGANESE = ITEMS.register("block_of_manganese", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_MANGANESE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_COBALT = ITEMS.register("block_of_cobalt", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_COBALT.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> BLOCK_OF_NICKEL = ITEMS.register("block_of_nickel", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_NICKEL.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_ZINC = ITEMS.register("block_of_zinc", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_ZINC.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_GALLIUM = ITEMS.register("block_of_gallium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_GALLIUM.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> BLOCK_OF_ZIRCONIUM = ITEMS.register("block_of_zirconium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_ZIRCONIUM.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_NIOBIUM = ITEMS.register("block_of_niobium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_NIOBIUM.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_MOLYBDENUM = ITEMS.register("block_of_molybdenum", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_MOLYBDENUM.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_TECHNETIUM = ITEMS.register("block_of_technetium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_TECHNETIUM.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> BLOCK_OF_RUTHENIUM = ITEMS.register("block_of_ruthenium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_RUTHENIUM.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_RHODIUM = ITEMS.register("block_of_rhodium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_RHODIUM.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_PALLADIUM = ITEMS.register("block_of_palladium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_PALLADIUM.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_SILVER = ITEMS.register("block_of_silver", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_SILVER.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> BLOCK_OF_CADMIUM = ITEMS.register("block_of_cadmium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_CADMIUM.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_INDIUM = ITEMS.register("block_of_indium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_INDIUM.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_TIN = ITEMS.register("block_of_tin", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_TIN.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> BLOCK_OF_HAFNIUM = ITEMS.register("block_of_hafnium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_HAFNIUM.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_TANTALUM = ITEMS.register("block_of_tantalum", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_TANTALUM.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_TUNGSTEN = ITEMS.register("block_of_tungsten", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_TUNGSTEN.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_RHENIUM = ITEMS.register("block_of_rhenium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_RHENIUM.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> BLOCK_OF_OSMIUM = ITEMS.register("block_of_osmium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_OSMIUM.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_IRIDIUM = ITEMS.register("block_of_iridium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_IRIDIUM.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_PLATINUM = ITEMS.register("block_of_platinum", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_PLATINUM.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> BLOCK_OF_THALLUIM = ITEMS.register("block_of_thallium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_THALLUIM.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_LEAD = ITEMS.register("block_of_lead", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_LEAD.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_BISMUTH = ITEMS.register("block_of_bismuth", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_BISMUTH.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_POLONIUM = ITEMS.register("block_of_polonium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_POLONIUM.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> BLOCK_OF_ACTINIUM = ITEMS.register("block_of_actinium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_ACTINIUM.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_THORIUM = ITEMS.register("block_of_thorium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_THORIUM.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_PROTACTINIUM = ITEMS.register("block_of_protactinium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_PROTACTINIUM.get(), new Item.Properties()));
@@ -484,10 +455,8 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> BLOCK_OF_EINSTEINIUM = ITEMS.register("block_of_einsteinium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_EINSTEINIUM.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_FERMIUM = ITEMS.register("block_of_fermium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_FERMIUM.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_LAWRENCIUM = ITEMS.register("block_of_lawrencium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_LAWRENCIUM.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> BLOCK_OF_BRONZE = ITEMS.register("block_of_bronze", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_BRONZE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_BRASS = ITEMS.register("block_of_brass", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_BRASS.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> BLOCK_OF_BORON = ITEMS.register("block_of_boron", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_BORON.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_CARBON = ITEMS.register("block_of_carbon", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_CARBON.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_SILICON = ITEMS.register("block_of_silicon", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_SILICON.get(), new Item.Properties()));
@@ -500,14 +469,12 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> BLOCK_OF_TELLURIUM = ITEMS.register("block_of_tellurium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_TELLURIUM.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_IODINE = ITEMS.register("block_of_iodine", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_IODINE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_ASTATINE = ITEMS.register("block_of_astatine", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_ASTATINE.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> MULCH = ITEMS.register("mulch", () -> new MulchItem(new Properties()));
 	public static final RegistryObject<Item> FERTILIZER = ITEMS.register("fertilizer", () -> new FertilizerItem(new Properties()));
 	public static final RegistryObject<Item> TRELLIS = ITEMS.register("trellis", () -> new BlockItem(TechnologicaBlocks.TRELLIS.get(), new Properties()));
 	public static final RegistryObject<Item> BASIN = ITEMS.register("basin", () -> new BlockItem(TechnologicaBlocks.BASIN.get(), new Properties()));
 	public static final RegistryObject<Item> SAWDUST = ITEMS.register("sawdust", () -> new Item(new Properties()));
 	public static final RegistryObject<Item> RUBBER = ITEMS.register("rubber", () -> new Item(new Properties()));
-
 	public static final RegistryObject<Item> HYDROGEN_BUCKET = ITEMS.register("hydrogen_bucket", () -> new BucketItem(TechnologicaFluids.HYDROGEN, new Properties().stacksTo(1)));
 	public static final RegistryObject<Item> HELIUM_BUCKET = ITEMS.register("helium_bucket", () -> new BucketItem(TechnologicaFluids.HELIUM, new Properties().stacksTo(1)));
 	public static final RegistryObject<Item> NITROGEN_BUCKET = ITEMS.register("nitrogen_bucket", () -> new BucketItem(TechnologicaFluids.NITROGEN, new Properties().stacksTo(1)));
@@ -519,25 +486,16 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> KRYPTON_BUCKET = ITEMS.register("krypton_bucket", () -> new BucketItem(TechnologicaFluids.KRYPTON, new Properties().stacksTo(1)));
 	public static final RegistryObject<Item> XENON_BUCKET = ITEMS.register("xenon_bucket", () -> new BucketItem(TechnologicaFluids.XENON, new Properties().stacksTo(1)));
 	public static final RegistryObject<Item> RADON_BUCKET = ITEMS.register("radon_bucket", () -> new BucketItem(TechnologicaFluids.RADON, new Properties().stacksTo(1)));
-
 	public static final RegistryObject<Item> BROMINE_BUCKET = ITEMS.register("bromine_bucket", () -> new BucketItem(TechnologicaFluids.BROMINE, new Properties().stacksTo(1)));
 	public static final RegistryObject<Item> MERCURY_BUCKET = ITEMS.register("mercury_bucket", () -> new BucketItem(TechnologicaFluids.MERCURY, new Properties().stacksTo(1)));
-
 	public static final RegistryObject<Item> BRINE_BUCKET = ITEMS.register("brine_bucket", () -> new BucketItem(TechnologicaFluids.BRINE, new Properties().stacksTo(1)));
 	public static final RegistryObject<Item> OIL_BUCKET = ITEMS.register("oil_bucket", () -> new BucketItem(TechnologicaFluids.OIL, new Properties().stacksTo(1)));
 	public static final RegistryObject<Item> NATURAL_GAS_BUCKET = ITEMS.register("natural_gas_bucket", () -> new BucketItem(TechnologicaFluids.NATURAL_GAS, new Properties().stacksTo(1)));
-
 	public static final RegistryObject<Item> MAPLE_SYRUP_BUCKET = ITEMS.register("maple_syrup_bucket", () -> new BucketItem(TechnologicaFluids.MAPLE_SYRUP, new Properties().stacksTo(1)));
 	public static final RegistryObject<Item> RUBBER_RESIN_BUCKET = ITEMS.register("rubber_resin_bucket", () -> new BucketItem(TechnologicaFluids.RUBBER_RESIN, new Properties().stacksTo(1)));
-
 	public static final RegistryObject<Item> GASOLINE_BUCKET = ITEMS.register("gasoline_bucket", () -> new BucketItem(TechnologicaFluids.GASOLINE, new Properties().stacksTo(1)));
 	public static final RegistryObject<Item> MACHINE_OIL_BUCKET = ITEMS.register("machine_oil_bucket", () -> new BucketItem(TechnologicaFluids.MACHINE_OIL, new Properties().stacksTo(1)));
 	public static final RegistryObject<Item> COOLANT_BUCKET = ITEMS.register("coolant_bucket", () -> new BucketItem(TechnologicaFluids.COOLANT, new Properties().stacksTo(1)));
-
-	/**
-	 * FOOD
-	 */
-
 	public static final RegistryObject<Item> BARLEY = ITEMS.register("barley", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> OATS = ITEMS.register("oats", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> RYE = ITEMS.register("rye", () -> new Item(new Item.Properties()));
@@ -568,7 +526,6 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> RASPBERRY = ITEMS.register("raspberry", () -> new ItemNameBlockItem(TechnologicaBlocks.RASPBERRY_BUSH.get(), new Item.Properties().food(TechnologicaFoods.RASPBERRY)));
 	public static final RegistryObject<Item> STRAWBERRY = ITEMS.register("strawberry", () -> new ItemNameBlockItem(TechnologicaBlocks.STRAWBERRY_BUSH.get(), new Item.Properties().food(TechnologicaFoods.STRAWBERRY)));
 	public static final RegistryObject<Item> PEPPERCORNS = ITEMS.register("peppercorns", () -> new ItemNameBlockItem(TechnologicaBlocks.PEPPERCORNS.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> APRICOT = ITEMS.register("apricot", () -> new Item(new Item.Properties().food(TechnologicaFoods.APRICOT)));
 	public static final RegistryObject<Item> AVOCADO = ITEMS.register("avocado", () -> new Item(new Item.Properties().food(TechnologicaFoods.AVOCADO)));
 	public static final RegistryObject<Item> BANANA = ITEMS.register("banana", () -> new Item(new Item.Properties().food(TechnologicaFoods.BANANA)));
@@ -591,7 +548,6 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> TOMATO = ITEMS.register("tomato", () -> new Item(new Item.Properties().food(TechnologicaFoods.TOMATO)));
 	public static final RegistryObject<Item> WALNUT = ITEMS.register("walnut", () -> new Item(new Item.Properties().food(TechnologicaFoods.WALNUT)));
 	public static final RegistryObject<Item> ZUCCHINI = ITEMS.register("zucchini", () -> new Item(new Item.Properties().food(TechnologicaFoods.ZUCCHINI)));
-
 	public static final RegistryObject<Item> RAW_ALLIGATOR = ITEMS.register("raw_alligator", () -> new Item(new Item.Properties().food(TechnologicaFoods.RAW_ALLIGATOR)));
 	public static final RegistryObject<Item> RAW_BEAR = ITEMS.register("raw_bear", () -> new Item(new Item.Properties().food(TechnologicaFoods.RAW_BEAR)));
 	public static final RegistryObject<Item> RAW_BISON = ITEMS.register("raw_bison", () -> new Item(new Item.Properties().food(TechnologicaFoods.RAW_BISON)));
@@ -605,7 +561,6 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> RAW_TURKEY = ITEMS.register("raw_turkey", () -> new Item(new Item.Properties().food(TechnologicaFoods.RAW_TURKEY)));
 	public static final RegistryObject<Item> RAW_VENISON = ITEMS.register("raw_venison", () -> new Item(new Item.Properties().food(TechnologicaFoods.RAW_VENISON)));
 	public static final RegistryObject<Item> BLUBBER = ITEMS.register("blubber", () -> new Item(new Item.Properties().food(TechnologicaFoods.BLUBBER)));
-
 	public static final RegistryObject<Item> BANANAS_FOSTER = ITEMS.register("bananas_foster", () -> new Item(new Item.Properties().food(TechnologicaFoods.BANANAS_FOSTER)));
 	public static final RegistryObject<Item> BLACK_FOREST_CAKE = ITEMS.register("black_forest_cake", () -> new Item(new Item.Properties().food(TechnologicaFoods.BLACK_FOREST_CAKE)));
 	public static final RegistryObject<Item> BLUEBERRY_CHEESECAKE = ITEMS.register("blueberry_cheesecake", () -> new Item(new Item.Properties().food(TechnologicaFoods.BLUEBERRY_CHEESECAKE)));
@@ -621,13 +576,7 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> TAPENADE = ITEMS.register("tapenade", () -> new Item(new Item.Properties().food(TechnologicaFoods.TAPENADE)));
 	public static final RegistryObject<Item> CINNAMON_ROLL = ITEMS.register("cinnamon_roll", () -> new Item(new Item.Properties().food(TechnologicaFoods.CINNAMON_ROLL)));
 	public static final RegistryObject<Item> OLIVE_OIL = ITEMS.register("olive_oil", () -> new Item(new Item.Properties().food(TechnologicaFoods.OLIVE_OIL)));
-
 	public static final RegistryObject<Item> IODINE_PILL = ITEMS.register("iodine_pill", () -> new IodinePillItem(new Item.Properties().food(TechnologicaFoods.IODINE_PILL)));
-
-	/**
-	 * CONSTRUCTION
-	 */
-
 	public static final RegistryObject<Item> APRICOT_LOG_ITEM = ITEMS.register("apricot_log", () -> new BlockItem(TechnologicaBlocks.APRICOT_LOG.get(), new Item.Properties()));
 	public static final RegistryObject<Item> ASPEN_LOG_ITEM = ITEMS.register("aspen_log", () -> new BlockItem(TechnologicaBlocks.ASPEN_LOG.get(), new Item.Properties()));
 	public static final RegistryObject<Item> AVOCADO_LOG_ITEM = ITEMS.register("avocado_log", () -> new BlockItem(TechnologicaBlocks.AVOCADO_LOG.get(), new Item.Properties()));
@@ -661,7 +610,6 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> FROSTBITTEN_LOG_ITEM = ITEMS.register("frostbitten_log", () -> new BlockItem(TechnologicaBlocks.FROSTBITTEN_LOG.get(), new Item.Properties()));
 	public static final RegistryObject<Item> INFERNAL_LOG_ITEM = ITEMS.register("infernal_log", () -> new BlockItem(TechnologicaBlocks.INFERNAL_LOG.get(), new Item.Properties()));
 	public static final RegistryObject<Item> NECROTIC_LOG_ITEM = ITEMS.register("necrotic_log", () -> new BlockItem(TechnologicaBlocks.NECROTIC_LOG.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> STRIPPED_APRICOT_LOG_ITEM = ITEMS.register("stripped_apricot_log", () -> new BlockItem(TechnologicaBlocks.STRIPPED_APRICOT_LOG.get(), new Item.Properties()));
 	public static final RegistryObject<Item> STRIPPED_ASPEN_LOG_ITEM = ITEMS.register("stripped_aspen_log", () -> new BlockItem(TechnologicaBlocks.STRIPPED_ASPEN_LOG.get(), new Item.Properties()));
 	public static final RegistryObject<Item> STRIPPED_AVOCADO_LOG_ITEM = ITEMS.register("stripped_avocado_log", () -> new BlockItem(TechnologicaBlocks.STRIPPED_AVOCADO_LOG.get(), new Item.Properties()));
@@ -694,7 +642,6 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> STRIPPED_CONDUCTIVE_LOG_ITEM = ITEMS.register("stripped_conductive_log", () -> new BlockItem(TechnologicaBlocks.STRIPPED_CONDUCTIVE_LOG.get(), new Item.Properties()));
 	public static final RegistryObject<Item> STRIPPED_FROSTBITTEN_LOG_ITEM = ITEMS.register("stripped_frostbitten_log", () -> new BlockItem(TechnologicaBlocks.STRIPPED_FROSTBITTEN_LOG.get(), new Item.Properties()));
 	public static final RegistryObject<Item> STRIPPED_INFERNAL_LOG_ITEM = ITEMS.register("stripped_infernal_log", () -> new BlockItem(TechnologicaBlocks.STRIPPED_INFERNAL_LOG.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> APRICOT_WOOD_ITEM = ITEMS.register("apricot_wood", () -> new BlockItem(TechnologicaBlocks.APRICOT_WOOD.get(), new Item.Properties()));
 	public static final RegistryObject<Item> ASPEN_WOOD_ITEM = ITEMS.register("aspen_wood", () -> new BlockItem(TechnologicaBlocks.ASPEN_WOOD.get(), new Item.Properties()));
 	public static final RegistryObject<Item> AVOCADO_WOOD_ITEM = ITEMS.register("avocado_wood", () -> new BlockItem(TechnologicaBlocks.AVOCADO_WOOD.get(), new Item.Properties()));
@@ -727,7 +674,6 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> CONDUCTIVE_WOOD_ITEM = ITEMS.register("conductive_wood", () -> new BlockItem(TechnologicaBlocks.CONDUCTIVE_WOOD.get(), new Item.Properties()));
 	public static final RegistryObject<Item> FROSTBITTEN_WOOD_ITEM = ITEMS.register("frostbitten_wood", () -> new BlockItem(TechnologicaBlocks.FROSTBITTEN_WOOD.get(), new Item.Properties()));
 	public static final RegistryObject<Item> INFERNAL_WOOD_ITEM = ITEMS.register("infernal_wood", () -> new BlockItem(TechnologicaBlocks.INFERNAL_WOOD.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> STRIPPED_APRICOT_WOOD_ITEM = ITEMS.register("stripped_apricot_wood", () -> new BlockItem(TechnologicaBlocks.STRIPPED_APRICOT_WOOD.get(), new Item.Properties()));
 	public static final RegistryObject<Item> STRIPPED_ASPEN_WOOD_ITEM = ITEMS.register("stripped_aspen_wood", () -> new BlockItem(TechnologicaBlocks.STRIPPED_ASPEN_WOOD.get(), new Item.Properties()));
 	public static final RegistryObject<Item> STRIPPED_AVOCADO_WOOD_ITEM = ITEMS.register("stripped_avocado_wood", () -> new BlockItem(TechnologicaBlocks.STRIPPED_AVOCADO_WOOD.get(), new Item.Properties()));
@@ -760,7 +706,6 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> STRIPPED_CONDUCTIVE_WOOD_ITEM = ITEMS.register("stripped_conductive_wood", () -> new BlockItem(TechnologicaBlocks.STRIPPED_CONDUCTIVE_WOOD.get(), new Item.Properties()));
 	public static final RegistryObject<Item> STRIPPED_FROSTBITTEN_WOOD_ITEM = ITEMS.register("stripped_frostbitten_wood", () -> new BlockItem(TechnologicaBlocks.STRIPPED_FROSTBITTEN_WOOD.get(), new Item.Properties()));
 	public static final RegistryObject<Item> STRIPPED_INFERNAL_WOOD_ITEM = ITEMS.register("stripped_infernal_wood", () -> new BlockItem(TechnologicaBlocks.STRIPPED_INFERNAL_WOOD.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> APRICOT_PLANKS_ITEM = ITEMS.register("apricot_planks", () -> new BlockItem(TechnologicaBlocks.APRICOT_PLANKS.get(), new Item.Properties()));
 	public static final RegistryObject<Item> ASPEN_PLANKS_ITEM = ITEMS.register("aspen_planks", () -> new BlockItem(TechnologicaBlocks.ASPEN_PLANKS.get(), new Item.Properties()));
 	public static final RegistryObject<Item> AVOCADO_PLANKS_ITEM = ITEMS.register("avocado_planks", () -> new BlockItem(TechnologicaBlocks.AVOCADO_PLANKS.get(), new Item.Properties()));
@@ -793,7 +738,6 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> FRUITFUL_PLANKS_ITEM = ITEMS.register("fruitful_planks", () -> new BlockItem(TechnologicaBlocks.FRUITFUL_PLANKS.get(), new Item.Properties()));
 	public static final RegistryObject<Item> INFERNAL_PLANKS_ITEM = ITEMS.register("infernal_planks", () -> new BlockItem(TechnologicaBlocks.INFERNAL_PLANKS.get(), new Item.Properties()));
 	public static final RegistryObject<Item> MALEVOLENT_PLANKS_ITEM = ITEMS.register("malevolent_planks", () -> new BlockItem(TechnologicaBlocks.MALEVOLENT_PLANKS.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> APRICOT_SLAB_ITEM = ITEMS.register("apricot_slab", () -> new BlockItem(TechnologicaBlocks.APRICOT_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<Item> ASPEN_SLAB_ITEM = ITEMS.register("aspen_slab", () -> new BlockItem(TechnologicaBlocks.ASPEN_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<Item> AVOCADO_SLAB_ITEM = ITEMS.register("avocado_slab", () -> new BlockItem(TechnologicaBlocks.AVOCADO_SLAB.get(), new Item.Properties()));
@@ -826,7 +770,6 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> FRUITFUL_SLAB_ITEM = ITEMS.register("fruitful_slab", () -> new BlockItem(TechnologicaBlocks.FRUITFUL_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<Item> INFERNAL_SLAB_ITEM = ITEMS.register("infernal_slab", () -> new BlockItem(TechnologicaBlocks.INFERNAL_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<Item> MALEVOLENT_SLAB_ITEM = ITEMS.register("malevolent_slab", () -> new BlockItem(TechnologicaBlocks.MALEVOLENT_SLAB.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> APRICOT_STAIRS_ITEM = ITEMS.register("apricot_stairs", () -> new BlockItem(TechnologicaBlocks.APRICOT_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<Item> ASPEN_STAIRS_ITEM = ITEMS.register("aspen_stairs", () -> new BlockItem(TechnologicaBlocks.ASPEN_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<Item> AVOCADO_STAIRS_ITEM = ITEMS.register("avocado_stairs", () -> new BlockItem(TechnologicaBlocks.AVOCADO_STAIRS.get(), new Item.Properties()));
@@ -859,7 +802,6 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> FRUITFUL_STAIRS_ITEM = ITEMS.register("fruitful_stairs", () -> new BlockItem(TechnologicaBlocks.FRUITFUL_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<Item> INFERNAL_STAIRS_ITEM = ITEMS.register("infernal_stairs", () -> new BlockItem(TechnologicaBlocks.INFERNAL_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<Item> MALEVOLENT_STAIRS_ITEM = ITEMS.register("malevolent_stairs", () -> new BlockItem(TechnologicaBlocks.MALEVOLENT_STAIRS.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> SPRUCE_BOOKSHELF_ITEM = ITEMS.register("spruce_bookshelf", () -> new BlockItem(TechnologicaBlocks.SPRUCE_BOOKSHELF.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BIRCH_BOOKSHELF_ITEM = ITEMS.register("birch_bookshelf", () -> new BlockItem(TechnologicaBlocks.BIRCH_BOOKSHELF.get(), new Item.Properties()));
 	public static final RegistryObject<Item> JUNGLE_BOOKSHELF_ITEM = ITEMS.register("jungle_bookshelf", () -> new BlockItem(TechnologicaBlocks.JUNGLE_BOOKSHELF.get(), new Item.Properties()));
@@ -899,7 +841,6 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> FRUITFUL_BOOKSHELF_ITEM = ITEMS.register("fruitful_bookshelf", () -> new BlockItem(TechnologicaBlocks.FRUITFUL_BOOKSHELF.get(), new Item.Properties()));
 	public static final RegistryObject<Item> INFERNAL_BOOKSHELF_ITEM = ITEMS.register("infernal_bookshelf", () -> new BlockItem(TechnologicaBlocks.INFERNAL_BOOKSHELF.get(), new Item.Properties()));
 	public static final RegistryObject<Item> MALEVOLENT_BOOKSHELF_ITEM = ITEMS.register("malevolent_bookshelf", () -> new BlockItem(TechnologicaBlocks.MALEVOLENT_BOOKSHELF.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> APRICOT_FENCE_ITEM = ITEMS.register("apricot_fence", () -> new BlockItem(TechnologicaBlocks.APRICOT_FENCE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> ASPEN_FENCE_ITEM = ITEMS.register("aspen_fence", () -> new BlockItem(TechnologicaBlocks.ASPEN_FENCE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> AVOCADO_FENCE_ITEM = ITEMS.register("avocado_fence", () -> new BlockItem(TechnologicaBlocks.AVOCADO_FENCE.get(), new Item.Properties()));
@@ -932,7 +873,6 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> FRUITFUL_FENCE_ITEM = ITEMS.register("fruitful_fence", () -> new BlockItem(TechnologicaBlocks.FRUITFUL_FENCE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> INFERNAL_FENCE_ITEM = ITEMS.register("infernal_fence", () -> new BlockItem(TechnologicaBlocks.INFERNAL_FENCE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> MALEVOLENT_FENCE_ITEM = ITEMS.register("malevolent_fence", () -> new BlockItem(TechnologicaBlocks.MALEVOLENT_FENCE.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> APRICOT_FENCE_GATE_ITEM = ITEMS.register("apricot_fence_gate", () -> new BlockItem(TechnologicaBlocks.APRICOT_FENCE_GATE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> ASPEN_FENCE_GATE_ITEM = ITEMS.register("aspen_fence_gate", () -> new BlockItem(TechnologicaBlocks.ASPEN_FENCE_GATE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> AVOCADO_FENCE_GATE_ITEM = ITEMS.register("avocado_fence_gate", () -> new BlockItem(TechnologicaBlocks.AVOCADO_FENCE_GATE.get(), new Item.Properties()));
@@ -965,7 +905,6 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> FRUITFUL_FENCE_GATE_ITEM = ITEMS.register("fruitful_fence_gate", () -> new BlockItem(TechnologicaBlocks.FRUITFUL_FENCE_GATE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> INFERNAL_FENCE_GATE_ITEM = ITEMS.register("infernal_fence_gate", () -> new BlockItem(TechnologicaBlocks.INFERNAL_FENCE_GATE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> MALEVOLENT_FENCE_GATE_ITEM = ITEMS.register("malevolent_fence_gate", () -> new BlockItem(TechnologicaBlocks.MALEVOLENT_FENCE_GATE.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> APRICOT_DOOR_ITEM = ITEMS.register("apricot_door", () -> new BlockItem(TechnologicaBlocks.APRICOT_DOOR.get(), new Item.Properties()));
 	public static final RegistryObject<Item> ASPEN_DOOR_ITEM = ITEMS.register("aspen_door", () -> new BlockItem(TechnologicaBlocks.ASPEN_DOOR.get(), new Item.Properties()));
 	public static final RegistryObject<Item> AVOCADO_DOOR_ITEM = ITEMS.register("avocado_door", () -> new BlockItem(TechnologicaBlocks.AVOCADO_DOOR.get(), new Item.Properties()));
@@ -998,7 +937,6 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> FRUITFUL_DOOR_ITEM = ITEMS.register("fruitful_door", () -> new BlockItem(TechnologicaBlocks.FRUITFUL_DOOR.get(), new Item.Properties()));
 	public static final RegistryObject<Item> INFERNAL_DOOR_ITEM = ITEMS.register("infernal_door", () -> new BlockItem(TechnologicaBlocks.INFERNAL_DOOR.get(), new Item.Properties()));
 	public static final RegistryObject<Item> MALEVOLENT_DOOR_ITEM = ITEMS.register("malevolent_door", () -> new BlockItem(TechnologicaBlocks.MALEVOLENT_DOOR.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> APRICOT_TRAPDOOR_ITEM = ITEMS.register("apricot_trapdoor", () -> new BlockItem(TechnologicaBlocks.APRICOT_TRAPDOOR.get(), new Item.Properties()));
 	public static final RegistryObject<Item> ASPEN_TRAPDOOR_ITEM = ITEMS.register("aspen_trapdoor", () -> new BlockItem(TechnologicaBlocks.ASPEN_TRAPDOOR.get(), new Item.Properties()));
 	public static final RegistryObject<Item> AVOCADO_TRAPDOOR_ITEM = ITEMS.register("avocado_trapdoor", () -> new BlockItem(TechnologicaBlocks.AVOCADO_TRAPDOOR.get(), new Item.Properties()));
@@ -1031,7 +969,6 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> FRUITFUL_TRAPDOOR_ITEM = ITEMS.register("fruitful_trapdoor", () -> new BlockItem(TechnologicaBlocks.FRUITFUL_TRAPDOOR.get(), new Item.Properties()));
 	public static final RegistryObject<Item> INFERNAL_TRAPDOOR_ITEM = ITEMS.register("infernal_trapdoor", () -> new BlockItem(TechnologicaBlocks.INFERNAL_TRAPDOOR.get(), new Item.Properties()));
 	public static final RegistryObject<Item> MALEVOLENT_TRAPDOOR_ITEM = ITEMS.register("malevolent_trapdoor", () -> new BlockItem(TechnologicaBlocks.MALEVOLENT_TRAPDOOR.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> APRICOT_PRESSURE_PLATE_ITEM = ITEMS.register("apricot_pressure_plate", () -> new BlockItem(TechnologicaBlocks.APRICOT_PRESSURE_PLATE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> ASPEN_PRESSURE_PLATE_ITEM = ITEMS.register("aspen_pressure_plate", () -> new BlockItem(TechnologicaBlocks.ASPEN_PRESSURE_PLATE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> AVOCADO_PRESSURE_PLATE_ITEM = ITEMS.register("avocado_pressure_plate", () -> new BlockItem(TechnologicaBlocks.AVOCADO_PRESSURE_PLATE.get(), new Item.Properties()));
@@ -1064,7 +1001,6 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> FRUITFUL_PRESSURE_PLATE_ITEM = ITEMS.register("fruitful_pressure_plate", () -> new BlockItem(TechnologicaBlocks.FRUITFUL_PRESSURE_PLATE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> INFERNAL_PRESSURE_PLATE_ITEM = ITEMS.register("infernal_pressure_plate", () -> new BlockItem(TechnologicaBlocks.INFERNAL_PRESSURE_PLATE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> MALEVOLENT_PRESSURE_PLATE_ITEM = ITEMS.register("malevolent_pressure_plate", () -> new BlockItem(TechnologicaBlocks.MALEVOLENT_PRESSURE_PLATE.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> APRICOT_BUTTON_ITEM = ITEMS.register("apricot_button", () -> new BlockItem(TechnologicaBlocks.APRICOT_BUTTON.get(), new Item.Properties()));
 	public static final RegistryObject<Item> ASPEN_BUTTON_ITEM = ITEMS.register("aspen_button", () -> new BlockItem(TechnologicaBlocks.ASPEN_BUTTON.get(), new Item.Properties()));
 	public static final RegistryObject<Item> AVOCADO_BUTTON_ITEM = ITEMS.register("avocado_button", () -> new BlockItem(TechnologicaBlocks.AVOCADO_BUTTON.get(), new Item.Properties()));
@@ -1097,7 +1033,6 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> FRUITFUL_BUTTON_ITEM = ITEMS.register("fruitful_button", () -> new BlockItem(TechnologicaBlocks.FRUITFUL_BUTTON.get(), new Item.Properties()));
 	public static final RegistryObject<Item> INFERNAL_BUTTON_ITEM = ITEMS.register("infernal_button", () -> new BlockItem(TechnologicaBlocks.INFERNAL_BUTTON.get(), new Item.Properties()));
 	public static final RegistryObject<Item> MALEVOLENT_BUTTON_ITEM = ITEMS.register("malevolent_button", () -> new BlockItem(TechnologicaBlocks.MALEVOLENT_BUTTON.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> APRICOT_SIGN_ITEM = ITEMS.register("apricot_sign", () -> new SignItem(new Item.Properties().stacksTo(16), TechnologicaBlocks.APRICOT_SIGN.get(), TechnologicaBlocks.APRICOT_WALL_SIGN.get()));
 	public static final RegistryObject<Item> ASPEN_SIGN_ITEM = ITEMS.register("aspen_sign", () -> new SignItem(new Item.Properties().stacksTo(16), TechnologicaBlocks.ASPEN_SIGN.get(), TechnologicaBlocks.ASPEN_WALL_SIGN.get()));
 	public static final RegistryObject<Item> AVOCADO_SIGN_ITEM = ITEMS.register("avocado_sign", () -> new SignItem(new Item.Properties().stacksTo(16), TechnologicaBlocks.AVOCADO_SIGN.get(), TechnologicaBlocks.AVOCADO_WALL_SIGN.get()));
@@ -1130,7 +1065,6 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> FRUITFUL_SIGN_ITEM = ITEMS.register("fruitful_sign", () -> new SignItem(new Item.Properties().stacksTo(16), TechnologicaBlocks.FRUITFUL_SIGN.get(), TechnologicaBlocks.FRUITFUL_WALL_SIGN.get()));
 	public static final RegistryObject<Item> INFERNAL_SIGN_ITEM = ITEMS.register("infernal_sign", () -> new SignItem(new Item.Properties().stacksTo(16), TechnologicaBlocks.INFERNAL_SIGN.get(), TechnologicaBlocks.INFERNAL_WALL_SIGN.get()));
 	public static final RegistryObject<Item> MALEVOLENT_SIGN_ITEM = ITEMS.register("malevolent_sign", () -> new SignItem(new Item.Properties().stacksTo(16), TechnologicaBlocks.MALEVOLENT_SIGN.get(), TechnologicaBlocks.MALEVOLENT_WALL_SIGN.get()));
-
 	public static final RegistryObject<Item> APRICOT_BOAT = ITEMS.register("apricot_boat", () -> new VanillaBoatItem(VanillaBoat.Type.APRICOT, (new Item.Properties()).stacksTo(1)));
 	public static final RegistryObject<Item> ASPEN_BOAT = ITEMS.register("aspen_boat", () -> new VanillaBoatItem(VanillaBoat.Type.ASPEN, (new Item.Properties()).stacksTo(1)));
 	public static final RegistryObject<Item> AVOCADO_BOAT = ITEMS.register("avocado_boat", () -> new VanillaBoatItem(VanillaBoat.Type.AVOCADO, (new Item.Properties()).stacksTo(1)));
@@ -1163,13 +1097,7 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> FRUITFUL_BOAT = ITEMS.register("fruitful_boat", () -> new VanillaBoatItem(VanillaBoat.Type.FRUITFUL, (new Item.Properties()).stacksTo(1)));
 	public static final RegistryObject<Item> INFERNAL_BOAT = ITEMS.register("infernal_boat", () -> new VanillaBoatItem(VanillaBoat.Type.INFERNAL, (new Item.Properties()).stacksTo(1)));
 	public static final RegistryObject<Item> MALEVOLENT_BOAT = ITEMS.register("malevolent_boat", () -> new VanillaBoatItem(VanillaBoat.Type.MALEVOLENT, (new Item.Properties()).stacksTo(1)));
-
 	public static final RegistryObject<Item> GLUE_BOTTLE = ITEMS.register("glue_bottle", () -> new GlueBottleItem(new Item.Properties()));
-
-	/**
-	 * MACHINERY
-	 */
-
 	public static final RegistryObject<Item> LINE_SHAFT_HANGER_ITEM = ITEMS.register("line_shaft_hanger", () -> new BlockItem(TechnologicaBlocks.LINE_SHAFT_HANGER.get(), new Item.Properties()));
 	public static final RegistryObject<Item> STEEL_SHAFT = ITEMS.register("steel_shaft", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> SMALL_PULLEY_ITEM = ITEMS.register("small_pulley", () -> new ItemNameBlockItem(TechnologicaBlocks.SMALL_PULLEY.get(), new Item.Properties()));
@@ -1186,22 +1114,13 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> MOTOR_20HP_ITEM = ITEMS.register("motor_20hp", () -> new BlockItem(TechnologicaBlocks.MOTOR_20HP.get(), new Item.Properties()));
 	public static final RegistryObject<Item> SAWBLADE = ITEMS.register("sawblade", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> SAWMILL_ITEM = ITEMS.register("sawmill", () -> new BlockItem(TechnologicaBlocks.SAWMILL.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> ANNUNCIATOR_ITEM = ITEMS.register("annunciator", () -> new BlockItem(TechnologicaBlocks.ANNUNCIATOR.get(), new Item.Properties()));
 	public static final RegistryObject<Item> OVERLAY_PASS_ITEM = ITEMS.register("overlay_pass", () -> new Item(new Properties()));
 	public static final RegistryObject<Item> OVERLAY_WARN_ITEM = ITEMS.register("overlay_warn", () -> new Item(new Properties()));
 	public static final RegistryObject<Item> OVERLAY_FAIL_ITEM = ITEMS.register("overlay_fail", () -> new Item(new Properties()));
-
 	public static final RegistryObject<Item> SAWMILL_BLUEPRINT = ITEMS.register("sawmill_blueprint", () -> new BlueprintItem(new Properties()));
-
 	public static final RegistryObject<Item> FAST_HOPPER = ITEMS.register("fast_hopper", () -> new BlockItem(TechnologicaBlocks.FAST_HOPPER.get(), new Item.Properties()));
-
-	/**
-	 * DECORATIVE
-	 */
-
 	public static final RegistryObject<Item> DISPLAY_CASE_ITEM = ITEMS.register("display_case", () -> new BlockItem(TechnologicaBlocks.DISPLAY_CASE.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> ACACIA_CHAIR_ITEM = ITEMS.register("acacia_chair", () -> new BlockItem(TechnologicaBlocks.ACACIA_CHAIR.get(), new Item.Properties()));
 	public static final RegistryObject<Item> APRICOT_CHAIR_ITEM = ITEMS.register("apricot_chair", () -> new BlockItem(TechnologicaBlocks.APRICOT_CHAIR.get(), new Item.Properties()));
 	public static final RegistryObject<Item> ASPEN_CHAIR_ITEM = ITEMS.register("aspen_chair", () -> new BlockItem(TechnologicaBlocks.ASPEN_CHAIR.get(), new Item.Properties()));
@@ -1236,7 +1155,6 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> WARPED_CHAIR_ITEM = ITEMS.register("warped_chair", () -> new BlockItem(TechnologicaBlocks.WARPED_CHAIR.get(), new Item.Properties()));
 	public static final RegistryObject<Item> ZEBRAWOOD_CHAIR_ITEM = ITEMS.register("zebrawood_chair", () -> new BlockItem(TechnologicaBlocks.ZEBRAWOOD_CHAIR.get(), new Item.Properties()));
 	public static final RegistryObject<Item> FROSTBITTEN_CHAIR_ITEM = ITEMS.register("frostbitten_chair", () -> new BlockItem(TechnologicaBlocks.FROSTBITTEN_CHAIR.get(), new Item.Properties()));
-
 	public static final RegistryObject<Item> ACACIA_TABLE_ITEM = ITEMS.register("acacia_table", () -> new BlockItem(TechnologicaBlocks.ACACIA_TABLE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> APRICOT_TABLE_ITEM = ITEMS.register("apricot_table", () -> new BlockItem(TechnologicaBlocks.APRICOT_TABLE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> ASPEN_TABLE_ITEM = ITEMS.register("aspen_table", () -> new BlockItem(TechnologicaBlocks.ASPEN_TABLE.get(), new Item.Properties()));
@@ -1271,72 +1189,54 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> WARPED_TABLE_ITEM = ITEMS.register("warped_table", () -> new BlockItem(TechnologicaBlocks.WARPED_TABLE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> ZEBRAWOOD_TABLE_ITEM = ITEMS.register("zebrawood_table", () -> new BlockItem(TechnologicaBlocks.ZEBRAWOOD_TABLE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> FROSTBITTEN_TABLE_ITEM = ITEMS.register("frostbitten_table", () -> new BlockItem(TechnologicaBlocks.FROSTBITTEN_TABLE.get(), new Item.Properties()));
-
-	/**
-	 * ARMORY
-	 */
-
 	public static final RegistryObject<Item> PRIMITIVE_DAGGER = ITEMS.register("primitive_dagger", () -> new SwordItem(TechnologicaItemTier.FLINT, 6, -3.2F, (new Item.Properties())));
 	public static final RegistryObject<Item> PRIMITIVE_PICKAXE = ITEMS.register("primitive_pickaxe", () -> new PickaxeItem(TechnologicaItemTier.FLINT, 6, -3.2F, (new Item.Properties())));
 	public static final RegistryObject<Item> PRIMITIVE_HOE = ITEMS.register("primitive_hoe", () -> new HoeItem(TechnologicaItemTier.FLINT, 6, -3.2F, (new Item.Properties())));
 	public static final RegistryObject<Item> PRIMITIVE_SHOVEL = ITEMS.register("primitive_shovel", () -> new ShovelItem(TechnologicaItemTier.FLINT, 6.0F, -3.2F, (new Item.Properties())));
 	public static final RegistryObject<Item> PRIMITIVE_HATCHET = ITEMS.register("primitive_hatchet", () -> new AxeItem(TechnologicaItemTier.FLINT, 6.0F, -3.2F, (new Item.Properties())));
-
 	public static final RegistryObject<Item> BRONZE_SWORD = ITEMS.register("bronze_sword", () -> new SwordItem(TechnologicaItemTier.BRONZE, 6, -3.2F, (new Item.Properties())));
 	public static final RegistryObject<Item> BRONZE_PICKAXE = ITEMS.register("bronze_pickaxe", () -> new PickaxeItem(TechnologicaItemTier.BRONZE, 6, -3.2F, (new Item.Properties())));
 	public static final RegistryObject<Item> BRONZE_HOE = ITEMS.register("bronze_hoe", () -> new HoeItem(TechnologicaItemTier.BRONZE, 6, -3.2F, (new Item.Properties())));
 	public static final RegistryObject<Item> BRONZE_SHOVEL = ITEMS.register("bronze_shovel", () -> new ShovelItem(TechnologicaItemTier.BRONZE, 6.0F, -3.2F, (new Item.Properties())));
 	public static final RegistryObject<Item> BRONZE_AXE = ITEMS.register("bronze_axe", () -> new AxeItem(TechnologicaItemTier.BRONZE, 6.0F, -3.2F, (new Item.Properties())));
-
 	public static final RegistryObject<Item> BRONZE_HELMET = ITEMS.register("bronze_helmet", () -> new ArmorItem(TechnologicaArmorMaterial.BRONZE, ArmorItem.Type.HELMET, (new Item.Properties())));
 	public static final RegistryObject<Item> BRONZE_CHESTPLATE = ITEMS.register("bronze_chestplate", () -> new ArmorItem(TechnologicaArmorMaterial.BRONZE, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
 	public static final RegistryObject<Item> BRONZE_LEGGINGS = ITEMS.register("bronze_leggings", () -> new ArmorItem(TechnologicaArmorMaterial.BRONZE, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
 	public static final RegistryObject<Item> BRONZE_BOOTS = ITEMS.register("bronze_boots", () -> new ArmorItem(TechnologicaArmorMaterial.BRONZE, ArmorItem.Type.BOOTS, (new Item.Properties())));
-
 	public static final RegistryObject<Item> BRASS_HELMET = ITEMS.register("brass_helmet", () -> new ArmorItem(TechnologicaArmorMaterial.BRASS, ArmorItem.Type.HELMET, (new Item.Properties())));
 	public static final RegistryObject<Item> BRASS_CHESTPLATE = ITEMS.register("brass_chestplate", () -> new ArmorItem(TechnologicaArmorMaterial.BRASS, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
 	public static final RegistryObject<Item> BRASS_LEGGINGS = ITEMS.register("brass_leggings", () -> new ArmorItem(TechnologicaArmorMaterial.BRASS, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
 	public static final RegistryObject<Item> BRASS_BOOTS = ITEMS.register("brass_boots", () -> new ArmorItem(TechnologicaArmorMaterial.BRASS, ArmorItem.Type.BOOTS, (new Item.Properties())));
-
 	public static final RegistryObject<Item> COCONUT_BAZOOKA_ITEM = ITEMS.register("coconut_bazooka", () -> new CoconutBazookaItem((new Item.Properties()).durability(384)));
 	public static final RegistryObject<Item> DODGEBALL_ITEM = ITEMS.register("dodgeball", () -> new DodgeballItem((new Item.Properties()).stacksTo(1)));
 	public static final RegistryObject<Item> SPEAR_GUN_ITEM = ITEMS.register("spear_gun", () -> new SpearGunItem((new Item.Properties()).durability(384)));
 	public static final RegistryObject<Item> HARPOON = ITEMS.register("harpoon", () -> new Item(new Properties()));
-
 	public static final RegistryObject<Item> SPACE_HELMET = ITEMS.register("space_helmet", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, ArmorItem.Type.HELMET, (new Item.Properties())));
 	public static final RegistryObject<Item> SPACE_SUIT = ITEMS.register("space_suit", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
 	public static final RegistryObject<Item> SPACE_PANTS = ITEMS.register("space_pants", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
 	public static final RegistryObject<Item> SPACE_BOOTS = ITEMS.register("space_boots", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, ArmorItem.Type.BOOTS, (new Item.Properties())));
-
 	public static final RegistryObject<Item> SNORKEL_HELMET = ITEMS.register("snorkel_helmet", () -> new ArmorItem(TechnologicaArmorMaterial.SNORKEL, ArmorItem.Type.HELMET, (new Item.Properties())));
 	public static final RegistryObject<Item> SNORKEL_SUIT = ITEMS.register("snorkel_suit", () -> new ArmorItem(TechnologicaArmorMaterial.SNORKEL, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
 	public static final RegistryObject<Item> SNORKEL_PANTS = ITEMS.register("snorkel_pants", () -> new ArmorItem(TechnologicaArmorMaterial.SNORKEL, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
 	public static final RegistryObject<Item> SNORKEL_BOOTS = ITEMS.register("snorkel_boots", () -> new ArmorItem(TechnologicaArmorMaterial.SNORKEL, ArmorItem.Type.BOOTS, (new Item.Properties())));
-
 	public static final RegistryObject<Item> DIVE_HELMET = ITEMS.register("dive_helmet", () -> new DivingHelmetItem(TechnologicaArmorMaterial.DIVE, ArmorItem.Type.HELMET, (new Item.Properties())));
 	public static final RegistryObject<Item> DIVE_SUIT = ITEMS.register("dive_suit", () -> new ArmorItem(TechnologicaArmorMaterial.DIVE, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
 	public static final RegistryObject<Item> DIVE_PANTS = ITEMS.register("dive_pants", () -> new ArmorItem(TechnologicaArmorMaterial.DIVE, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
 	public static final RegistryObject<Item> DIVE_BOOTS = ITEMS.register("dive_boots", () -> new ArmorItem(TechnologicaArmorMaterial.DIVE, ArmorItem.Type.BOOTS, (new Item.Properties())));
-
 	public static final RegistryObject<Item> SCUBA_HELMET = ITEMS.register("scuba_helmet", () -> new ArmorItem(TechnologicaArmorMaterial.SCUBA, ArmorItem.Type.HELMET, (new Item.Properties())));
 	public static final RegistryObject<Item> SCUBA_SUIT = ITEMS.register("scuba_suit", () -> new ArmorItem(TechnologicaArmorMaterial.SCUBA, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
 	public static final RegistryObject<Item> SCUBA_PANTS = ITEMS.register("scuba_pants", () -> new ArmorItem(TechnologicaArmorMaterial.SCUBA, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
 	public static final RegistryObject<Item> SCUBA_BOOTS = ITEMS.register("scuba_boots", () -> new ArmorItem(TechnologicaArmorMaterial.SCUBA, ArmorItem.Type.BOOTS, (new Item.Properties())));
-
 	public static final RegistryObject<Item> HAZMAT_HOOD = ITEMS.register("hazmat_hood", () -> new ArmorItem(TechnologicaArmorMaterial.HAZMAT, ArmorItem.Type.HELMET, (new Item.Properties())));
 	public static final RegistryObject<Item> HAZMAT_SUIT = ITEMS.register("hazmat_suit", () -> new ArmorItem(TechnologicaArmorMaterial.HAZMAT, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
 	public static final RegistryObject<Item> HAZMAT_PANTS = ITEMS.register("hazmat_pants", () -> new ArmorItem(TechnologicaArmorMaterial.HAZMAT, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
 	public static final RegistryObject<Item> HAZMAT_BOOTS = ITEMS.register("hazmat_boots", () -> new ArmorItem(TechnologicaArmorMaterial.HAZMAT, ArmorItem.Type.BOOTS, (new Item.Properties())));
-
 	public static final RegistryObject<Item> MINING_HELMET = ITEMS.register("mining_helmet", () -> new MiningHelmetItem(TechnologicaArmorMaterial.MINING, ArmorItem.Type.HELMET, (new Item.Properties())));
-
 	public static final RegistryObject<Item> LAND_MINE = ITEMS.register("land_mine", () -> new LandMineItem(new Item.Properties()));
 	public static final RegistryObject<Item> NITROGLYCERIN_ITEM = ITEMS.register("nitroglycerin", () -> new BlockItem(TechnologicaBlocks.NITROGLYCERIN.get(), new Item.Properties()));
 	public static final RegistryObject<Item> NAVAL_MINE = ITEMS.register("naval_mine", () -> new NavalMineItem(new Item.Properties()));
 	public static final RegistryObject<Item> ROCKET = ITEMS.register("rocket", () -> new RocketItem(Rocket.Type.MALEVOLENT, (new Item.Properties()).stacksTo(1)));
-
 	public static final RegistryObject<Item> SLEEPING_BAG = ITEMS.register("sleeping_bag", () -> new SleepingBagItem(TechnologicaBlocks.SLEEPING_BAG.get(), (new Item.Properties()).stacksTo(1)));
-
 	public static final RegistryObject<Item> TAPE_DRIVE = ITEMS.register("tape_drive", () -> new BlockItem(TechnologicaBlocks.TAPE_DRIVE.get(), (new Item.Properties())));
 	public static final RegistryObject<Item> MONITOR = ITEMS.register("monitor", () -> new BlockItem(TechnologicaBlocks.MONITOR.get(), (new Item.Properties())));
 	public static final RegistryObject<Item> KEYBOARD = ITEMS.register("keyboard", () -> new BlockItem(TechnologicaBlocks.KEYBOARD.get(), (new Item.Properties())));
@@ -1345,11 +1245,6 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> DECK_OF_PUNCHED_CARDS = ITEMS.register("deck_of_punched_cards", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> MAGNETIC_TAPE_BLANK = ITEMS.register("magnetic_tape_blank", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> MAGNETIC_TAPE_WRITTEN = ITEMS.register("magnetic_tape_written", () -> new Item(new Item.Properties()));
-
-	/**
-	 * CRYPTICA
-	 */
-
 	public static final RegistryObject<Item> PERSISTENT_GLARE = ITEMS.register("persistent_glare", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> SINGULARITY_GRANULE = ITEMS.register("singularity_granule", () -> new Item(new Item.Properties()));
 }

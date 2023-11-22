@@ -47,10 +47,8 @@ public final class TechnologicaBlockTags extends MasterKeyCreator {
 	public static final TagKey<Block> FRUITFUL_LOGS = blockTag("fruitful_logs");
 	public static final TagKey<Block> INFERNAL_LOGS = blockTag("infernal_logs");
 	public static final TagKey<Block> MALEVOLENT_LOGS = blockTag("malevolent_logs");
-
 	public static final TagKey<Block> RUBY_ORES = blockTag("ruby_ores");
 	public static final TagKey<Block> SAPPHIRE_ORES = blockTag("sapphire_ores");
 	public static final TagKey<Block> TOPAZ_ORES = blockTag("topaz_ores");
-
 	public static final TagKey<Block> CRYSTAL_ORES = blockTag("crystal_ores");
 }

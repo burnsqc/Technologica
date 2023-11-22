@@ -15,18 +15,8 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
  * @tl.status GREEN
  */
 public final class TechnologicaConfiguredFeatures extends MasterKeyCreator {
-	
-	/*
-	 * MISC
-	 */
-	
 	public static final ResourceKey<ConfiguredFeature<?, ?>> BRINE_POOL_CONFIGURED = configuredFeature("brine_pool");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> OASIS_CONFIGURED = configuredFeature("oasis");
-	
-	/*
-	 * ORE
-	 */
-	
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_SPODUMENE = configuredFeature("ore_spodumene");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_BORAX = configuredFeature("ore_borax");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_MAGNESITE = configuredFeature("ore_magnesite");
@@ -61,11 +51,6 @@ public final class TechnologicaConfiguredFeatures extends MasterKeyCreator {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_RUBY = configuredFeature("ore_ruby");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_SAPPHIRE = configuredFeature("ore_sapphire");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_TOPAZ = configuredFeature("ore_topaz");
-	
-	/*
-	 * TREE
-	 */
-	
 	public static final ResourceKey<ConfiguredFeature<?, ?>> APRICOT = configuredFeature("apricot");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ASPEN = configuredFeature("aspen");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> AVOCADO = configuredFeature("avocado");
@@ -99,11 +84,6 @@ public final class TechnologicaConfiguredFeatures extends MasterKeyCreator {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SERENDIPITOUS_APOTHECARY = configuredFeature("serendipitous_apothecary");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> THUNDEROUS_CONDUCTOR = configuredFeature("thunderous_conductor");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> TOWERING_INFERNO = configuredFeature("towering_inferno");
-	
-	/*
-	 * VEGETATION
-	 */
-	
 	public static final ResourceKey<ConfiguredFeature<?, ?>> TREES_MODIFIED_JUNGLE = configuredFeature("trees_modified_savanna");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> TREES_MODIFIED_SAVANNA = configuredFeature("trees_modified_jungle");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> TREES_MODIFIED_JUNGLE_EDGE = configuredFeature("trees_modified_jungle_edge");

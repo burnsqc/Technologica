@@ -14,6 +14,14 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraftforge.registries.RegistryObject;
 
+/**
+ * <p>
+ * This class contains Registry Objects for Particle Types.
+ * The {@link #init} method is called by {@link Technologica#initDeferredRegisters} and returns a head-count to later be checked during registration and other setup activities.
+ * </p>
+ * 
+ * @tl.status YELLOW
+ */
 public final class TechnologicaParticleTypes extends MasterDeferredRegistrar {
 	
 	public static int init() {
@@ -21,23 +29,21 @@ public final class TechnologicaParticleTypes extends MasterDeferredRegistrar {
 		return PARTICLE_TYPES.getEntries().size();
 	}
 
-	public static final RegistryObject<ParticleType<DrippingLiquidParticleData>> DRIPPING_FLUID = PARTICLE_TYPES.register("dripping_fluid", () -> create(DrippingLiquidParticleData.DESERIALIZER, (p_239822_0_) -> {
+	public static final RegistryObject<ParticleType<DrippingLiquidParticleData>> DRIPPING_FLUID = PARTICLE_TYPES.register("dripping_fluid", () -> create(DrippingLiquidParticleData.DESERIALIZER, (drippingLiquidParticleData) -> {
 		return DrippingLiquidParticleData.CODEC;
 	}));
-
-	public static final RegistryObject<ParticleType<FallingLiquidParticleData>> FALLING_FLUID = PARTICLE_TYPES.register("falling_fluid", () -> create(FallingLiquidParticleData.DESERIALIZER, (p_239822_0_) -> {
+	public static final RegistryObject<ParticleType<FallingLiquidParticleData>> FALLING_FLUID = PARTICLE_TYPES.register("falling_fluid", () -> create(FallingLiquidParticleData.DESERIALIZER, (fallingLiquidParticleData) -> {
 		return FallingLiquidParticleData.CODEC;
 	}));
-
-	public static final RegistryObject<ParticleType<LandingLiquidParticleData>> LANDING_FLUID = PARTICLE_TYPES.register("landing_fluid", () -> create(LandingLiquidParticleData.DESERIALIZER, (p_239822_0_) -> {
+	public static final RegistryObject<ParticleType<LandingLiquidParticleData>> LANDING_FLUID = PARTICLE_TYPES.register("landing_fluid", () -> create(LandingLiquidParticleData.DESERIALIZER, (landingLiquidParticleData) -> {
 		return LandingLiquidParticleData.CODEC;
 	}));
-
-	public static final RegistryObject<ParticleType<FlyingRadiationParticleData>> FLYING_RADIATION = PARTICLE_TYPES.register("flying_radiation", () -> create(FlyingRadiationParticleData.DESERIALIZER, (p_239822_0_) -> {
+	public static final RegistryObject<ParticleType<FlyingRadiationParticleData>> FLYING_RADIATION = PARTICLE_TYPES.register("flying_radiation", () -> create(FlyingRadiationParticleData.DESERIALIZER, (flyingRadiationParticleData) -> {
 		return FlyingRadiationParticleData.CODEC;
 	}));
-
-	private static <T extends ParticleOptions> ParticleType<T> create(@SuppressWarnings("deprecation") ParticleOptions.Deserializer<T> deserializer, final Function<ParticleType<T>, Codec<T>> p_218416_2_) {
+	//TODO: Really need to get rid of the call to {@link ParticleOptions.Deserializer} before the rug gets pulled out from under me.  Maybe just clone it to my own interface.
+	@SuppressWarnings("deprecation")
+	private static <T extends ParticleOptions> ParticleType<T> create(ParticleOptions.Deserializer<T> deserializer, final Function<ParticleType<T>, Codec<T>> p_218416_2_) {
 		return new ParticleType<T>(false, deserializer) {
 			@Override
 			public Codec<T> codec() {

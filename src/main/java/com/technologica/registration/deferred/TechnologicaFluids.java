@@ -27,6 +27,14 @@ import com.technologica.world.level.material.XenonFluid;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraftforge.registries.RegistryObject;
 
+/**
+ * <p>
+ * This class contains Registry Objects for Fluids.
+ * The {@link #init} method is called by {@link Technologica#initDeferredRegisters} and returns a head-count to later be checked during registration and other setup activities.
+ * </p>
+ * 
+ * @tl.status GREEN
+ */
 public final class TechnologicaFluids extends MasterDeferredRegistrar {
 	
 	public static int init() {
@@ -56,29 +64,24 @@ public final class TechnologicaFluids extends MasterDeferredRegistrar {
 	public static final RegistryObject<FlowingFluid> XENON = FLUIDS.register("xenon", XenonFluid.Source::new);
 	public static final RegistryObject<FlowingFluid> FLOWING_RADON = FLUIDS.register("flowing_radon", RadonFluid.Flowing::new);
 	public static final RegistryObject<FlowingFluid> RADON = FLUIDS.register("radon", RadonFluid.Source::new);
-
 	public static final RegistryObject<FlowingFluid> FLOWING_BROMINE = FLUIDS.register("flowing_bromine", BromineFluid.Flowing::new);
 	public static final RegistryObject<FlowingFluid> BROMINE = FLUIDS.register("bromine", BromineFluid.Source::new);
 	public static final RegistryObject<FlowingFluid> FLOWING_MERCURY = FLUIDS.register("flowing_mercury", MercuryFluid.Flowing::new);
 	public static final RegistryObject<FlowingFluid> MERCURY = FLUIDS.register("mercury", MercuryFluid.Source::new);
-
 	public static final RegistryObject<FlowingFluid> FLOWING_BRINE = FLUIDS.register("flowing_brine", BrineFluid.Flowing::new);
 	public static final RegistryObject<FlowingFluid> BRINE = FLUIDS.register("brine", BrineFluid.Source::new);
 	public static final RegistryObject<FlowingFluid> FLOWING_OIL = FLUIDS.register("flowing_oil", OilFluid.Flowing::new);
 	public static final RegistryObject<FlowingFluid> OIL = FLUIDS.register("oil", OilFluid.Source::new);
 	public static final RegistryObject<FlowingFluid> FLOWING_NATURAL_GAS = FLUIDS.register("flowing_natural_gas", NaturalGasFluid.Flowing::new);
 	public static final RegistryObject<FlowingFluid> NATURAL_GAS = FLUIDS.register("natural_gas", NaturalGasFluid.Source::new);
-
 	public static final RegistryObject<FlowingFluid> FLOWING_MAPLE_SYRUP = FLUIDS.register("flowing_maple_syrup", MapleSyrupFluid.Flowing::new);
 	public static final RegistryObject<FlowingFluid> MAPLE_SYRUP = FLUIDS.register("maple_syrup", MapleSyrupFluid.Source::new);
 	public static final RegistryObject<FlowingFluid> FLOWING_RUBBER_RESIN = FLUIDS.register("flowing_rubber_resin", RubberResinFluid.Flowing::new);
 	public static final RegistryObject<FlowingFluid> RUBBER_RESIN = FLUIDS.register("rubber_resin", RubberResinFluid.Source::new);
-
 	public static final RegistryObject<FlowingFluid> FLOWING_GASOLINE = FLUIDS.register("flowing_gasoline", GasolineFluid.Flowing::new);
 	public static final RegistryObject<FlowingFluid> GASOLINE = FLUIDS.register("gasoline", GasolineFluid.Source::new);
 	public static final RegistryObject<FlowingFluid> FLOWING_MACHINE_OIL = FLUIDS.register("flowing_machine_oil", MachineOilFluid.Flowing::new);
 	public static final RegistryObject<FlowingFluid> MACHINE_OIL = FLUIDS.register("machine_oil", MachineOilFluid.Source::new);
 	public static final RegistryObject<FlowingFluid> FLOWING_COOLANT = FLUIDS.register("flowing_coolant", CoolantFluid.Flowing::new);
 	public static final RegistryObject<FlowingFluid> COOLANT = FLUIDS.register("coolant", CoolantFluid.Source::new);
-
 }

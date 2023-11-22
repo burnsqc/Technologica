@@ -7,6 +7,14 @@ import com.technologica.util.text.TechnologicaLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraftforge.registries.RegistryObject;
 
+/**
+ * <p>
+ * This class contains Registry Objects for Sound Events.
+ * The {@link #init} method is called by {@link Technologica#initDeferredRegisters} and returns a head-count to later be checked during registration and other setup activities.
+ * </p>
+ * 
+ * @tl.status GREEN
+ */
 public final class TechnologicaSoundEvents extends MasterDeferredRegistrar {
 	
 	public static int init() {

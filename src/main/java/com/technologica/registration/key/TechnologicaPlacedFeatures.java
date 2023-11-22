@@ -15,24 +15,13 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
  * @tl.status YELLOW
  */
 public final class TechnologicaPlacedFeatures extends MasterKeyCreator {
-	
-	/*
-	 * MISC
-	 */
-	
 	public static final ResourceKey<PlacedFeature> BRINE_POOL_PLACED = placedFeature("brine_pool");
 	public static final ResourceKey<PlacedFeature> OASIS_PLACED = placedFeature("oasis");
-	
 	//TODO: Can't remember why I left these here.  Surely I had a reason for keeping them.
 	// public static final ResourceKey<PlacedFeature> PATCH_BLACKBERRY_BUSH_VILLAGE = placedFeature("patch_blackberry_bush");
 	// public static final ResourceKey<PlacedFeature> PATCH_BLUEBERRY_BUSH_VILLAGE = placedFeature("patch_blueberry_bush");
 	// public static final ResourceKey<PlacedFeature> PATCH_RASPBERRY_BUSH_VILLAGE = placedFeature("patch_raspberry_bush");
 	// public static final ResourceKey<PlacedFeature> PATCH_STRAWBERRY_BUSH_VILLAGE = placedFeature("patch_strawberry_bush");
-	
-	/*
-	 * ORE
-	 */
-	
 	public static final ResourceKey<PlacedFeature> ORE_SPODUMENE_PLACED = placedFeature("ore_spodumene");
 	public static final ResourceKey<PlacedFeature> ORE_BORAX_PLACED = placedFeature("ore_borax");
 	public static final ResourceKey<PlacedFeature> ORE_MAGNESITE_PLACED = placedFeature("ore_magnesite");
@@ -67,11 +56,6 @@ public final class TechnologicaPlacedFeatures extends MasterKeyCreator {
 	public static final ResourceKey<PlacedFeature> ORE_RUBY_PLACED = placedFeature("ore_ruby");
 	public static final ResourceKey<PlacedFeature> ORE_SAPPHIRE_PLACED = placedFeature("ore_sapphire");
 	public static final ResourceKey<PlacedFeature> ORE_TOPAZ_PLACED = placedFeature("ore_topaz");
-	
-	/*
-	 * TREE
-	 */
-	
 	public static final ResourceKey<PlacedFeature> APRICOT_CHECKED = placedFeature("apricot_checked");
 	public static final ResourceKey<PlacedFeature> ASPEN_CHECKED = placedFeature("aspen_checked");
 	public static final ResourceKey<PlacedFeature> AVOCADO_CHECKED = placedFeature("avocado_checked");
@@ -106,11 +90,6 @@ public final class TechnologicaPlacedFeatures extends MasterKeyCreator {
 	public static final ResourceKey<PlacedFeature> THUNDEROUS_CONDUCTOR_CHECKED = placedFeature("thunderous_conductor_checked");
 	public static final ResourceKey<PlacedFeature> TOWERING_INFERNO_CHECKED = placedFeature("towering_inferno_checked");
 	public static final ResourceKey<PlacedFeature> OVERGROWTH_CHECKED = placedFeature("overgrowth_checked");
-	
-	/*
-	 * VEGETATION
-	 */
-	
 	public static final ResourceKey<PlacedFeature> TREES_MODIFIED_SAVANNA_PLACED = placedFeature("trees_zebrawood");
 	public static final ResourceKey<PlacedFeature> TREES_MODIFIED_JUNGLE_PLACED = placedFeature("trees_modified_jungle");
 	public static final ResourceKey<PlacedFeature> TREES_MODIFIED_JUNGLE_EDGE_PLACED = placedFeature("trees_teak");
