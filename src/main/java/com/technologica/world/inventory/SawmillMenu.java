@@ -1,5 +1,6 @@
 package com.technologica.world.inventory;
 
+import com.technologica.registration.deferred.TechnologicaMenuTypes;
 import com.technologica.world.level.block.entity.SawmillBlockEntity;
 
 import net.minecraft.core.BlockPos;
@@ -18,7 +19,7 @@ public class SawmillMenu extends AbstractContainerMenu {
 	private final SawmillBlockEntity sawmillBlockEntity;
 
 	public SawmillMenu(int windowIdIn, Level worldIn, BlockPos posIn, Inventory playerInventoryIn) {
-		super(TechnologicaMenuType.SAWMILL.get(), windowIdIn);
+		super(TechnologicaMenuTypes.SAWMILL.get(), windowIdIn);
 		this.sawmillBlockEntity = (SawmillBlockEntity) worldIn.getBlockEntity(posIn);
 		if (sawmillBlockEntity != null) {
 			sawmillBlockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
@@ -71,7 +72,7 @@ public class SawmillMenu extends AbstractContainerMenu {
 
 	@Override
 	public MenuType<?> getType() {
-		return TechnologicaMenuType.SAWMILL.get();
+		return TechnologicaMenuTypes.SAWMILL.get();
 	}
 
 	public BlockEntity getTileEntity() {

@@ -1,8 +1,8 @@
 package com.technologica.listeners.forgebus;
 
+import com.technologica.registration.deferred.TechnologicaItems;
 import com.technologica.setup.Config;
 import com.technologica.util.InventoryUtil;
-import com.technologica.world.item.TechnologicaItems;
 
 import net.minecraftforge.event.entity.player.ItemFishedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

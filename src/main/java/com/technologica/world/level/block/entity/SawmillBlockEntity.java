@@ -5,9 +5,10 @@ import javax.annotation.Nullable;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.technologica.world.item.TechnologicaItems;
+import com.technologica.registration.deferred.TechnologicaBlockEntityTypes;
+import com.technologica.registration.deferred.TechnologicaItems;
+import com.technologica.registration.deferred.TechnologicaRecipeTypes;
 import com.technologica.world.item.crafting.SawmillRecipe;
-import com.technologica.world.item.crafting.TechnologicaRecipeType;
 
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
@@ -43,7 +44,7 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 	private final Object2IntOpenHashMap<ResourceLocation> recipes = new Object2IntOpenHashMap<>();
 
 	public SawmillBlockEntity(BlockPos p_155700_, BlockState p_155701_) {
-		super(TechnologicaBlockEntityType.SAWMILL_TILE.get(), p_155700_, p_155701_);
+		super(TechnologicaBlockEntityTypes.SAWMILL_TILE.get(), p_155700_, p_155701_);
 	}
 
 	@Override
@@ -172,7 +173,7 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 				this.sawingTicks++;
 				level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
 			} else {
-				Recipe<Container> recipe = this.level.getRecipeManager().getRecipeFor(TechnologicaRecipeType.SAWMILL.get(), this, this.level).orElse(null);
+				Recipe<Container> recipe = this.level.getRecipeManager().getRecipeFor(TechnologicaRecipeTypes.SAWMILL.get(), this, this.level).orElse(null);
 				if (recipe != null) {
 					ItemStack output = ((SawmillRecipe) recipe).getResultItem1();
 					ItemStack output2 = ((SawmillRecipe) recipe).getResultItem2();
@@ -199,7 +200,7 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 		if (!this.getBlade() || itemHandler.getStackInSlot(2).getCount() >= 64 || itemHandler.getStackInSlot(3).getCount() >= 64 || itemHandler.getStackInSlot(4).getCount() >= 64) {
 			return false;
 		}
-		Recipe<Container> recipe = this.level.getRecipeManager().getRecipeFor(TechnologicaRecipeType.SAWMILL.get(), this, this.level).orElse(null);
+		Recipe<Container> recipe = this.level.getRecipeManager().getRecipeFor(TechnologicaRecipeTypes.SAWMILL.get(), this, this.level).orElse(null);
 		if (recipe != null) {
 			ItemStack output = ((SawmillRecipe) recipe).getResultItem1();
 			if (ItemStack.isSameItem(itemHandler.getStackInSlot(2), output) || itemHandler.getStackInSlot(2).isEmpty()) {

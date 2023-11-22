@@ -1,6 +1,6 @@
 package com.technologica.world.item;
 
-import com.technologica.world.level.block.TechnologicaBlocks;
+import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.world.level.block.entity.MulchTileEntity;
 
 import net.minecraft.core.BlockPos;

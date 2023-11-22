@@ -2,7 +2,7 @@ package com.technologica.listeners.forgebus;
 
 import java.util.List;
 
-import com.technologica.world.item.TechnologicaItems;
+import com.technologica.registration.deferred.TechnologicaItems;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.util.RandomSource;

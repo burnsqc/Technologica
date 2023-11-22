@@ -7,6 +7,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.technologica.registration.deferred.TechnologicaTrunkPlacerTypes;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
@@ -29,7 +30,7 @@ public class ThreeWideTrunkPlacer extends GiantTrunkPlacer {
 
 	@Override
 	protected TrunkPlacerType<?> type() {
-		return TechnologicaTrunkPlacerType.THREE_WIDE_TRUNK_PLACER;
+		return TechnologicaTrunkPlacerTypes.THREE_WIDE_TRUNK_PLACER;
 	}
 
 	public List<FoliagePlacer.FoliageAttachment> placeTrunk(LevelSimulatedRW p_161835_, BiConsumer<BlockPos, BlockState> p_161836_, RandomSource rand, int treeHeight, BlockPos p_230382_4_, TreeConfiguration p_161840_) {

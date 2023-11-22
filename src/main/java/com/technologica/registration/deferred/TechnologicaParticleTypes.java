@@ -1,0 +1,48 @@
+package com.technologica.registration.deferred;
+
+import java.util.function.Function;
+
+import com.mojang.serialization.Codec;
+import com.technologica.Technologica;
+import com.technologica.core.particles.DrippingLiquidParticleData;
+import com.technologica.core.particles.FallingLiquidParticleData;
+import com.technologica.core.particles.FlyingRadiationParticleData;
+import com.technologica.core.particles.LandingLiquidParticleData;
+import com.technologica.registration.deferred.util.MasterDeferredRegistrar;
+
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleType;
+import net.minecraftforge.registries.RegistryObject;
+
+public final class TechnologicaParticleTypes extends MasterDeferredRegistrar {
+	
+	public static int init() {
+		PARTICLE_TYPES.register(Technologica.MOD_EVENT_BUS);
+		return PARTICLE_TYPES.getEntries().size();
+	}
+
+	public static final RegistryObject<ParticleType<DrippingLiquidParticleData>> DRIPPING_FLUID = PARTICLE_TYPES.register("dripping_fluid", () -> create(DrippingLiquidParticleData.DESERIALIZER, (p_239822_0_) -> {
+		return DrippingLiquidParticleData.CODEC;
+	}));
+
+	public static final RegistryObject<ParticleType<FallingLiquidParticleData>> FALLING_FLUID = PARTICLE_TYPES.register("falling_fluid", () -> create(FallingLiquidParticleData.DESERIALIZER, (p_239822_0_) -> {
+		return FallingLiquidParticleData.CODEC;
+	}));
+
+	public static final RegistryObject<ParticleType<LandingLiquidParticleData>> LANDING_FLUID = PARTICLE_TYPES.register("landing_fluid", () -> create(LandingLiquidParticleData.DESERIALIZER, (p_239822_0_) -> {
+		return LandingLiquidParticleData.CODEC;
+	}));
+
+	public static final RegistryObject<ParticleType<FlyingRadiationParticleData>> FLYING_RADIATION = PARTICLE_TYPES.register("flying_radiation", () -> create(FlyingRadiationParticleData.DESERIALIZER, (p_239822_0_) -> {
+		return FlyingRadiationParticleData.CODEC;
+	}));
+
+	private static <T extends ParticleOptions> ParticleType<T> create(@SuppressWarnings("deprecation") ParticleOptions.Deserializer<T> deserializer, final Function<ParticleType<T>, Codec<T>> p_218416_2_) {
+		return new ParticleType<T>(false, deserializer) {
+			@Override
+			public Codec<T> codec() {
+				return p_218416_2_.apply(this);
+			}
+		};
+	}
+}

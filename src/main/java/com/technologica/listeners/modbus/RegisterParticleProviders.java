@@ -4,7 +4,7 @@ import static com.technologica.Technologica.LOGGER;
 
 import com.technologica.client.particle.RadiationParticle;
 import com.technologica.client.particle.TechnologicaDripParticle;
-import com.technologica.core.particles.TechnologicaParticleTypes;
+import com.technologica.registration.deferred.TechnologicaParticleTypes;
 
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 

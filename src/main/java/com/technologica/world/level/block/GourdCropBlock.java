@@ -1,5 +1,7 @@
 package com.technologica.world.level.block;
 
+import com.technologica.registration.deferred.TechnologicaBlocks;
+
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.AttachedStemBlock;
 import net.minecraft.world.level.block.Block;

@@ -1,5 +1,6 @@
 package com.technologica.world.level.block;
 
+import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.world.level.block.state.properties.TechnologicaBlockStateProperties;
 
 import net.minecraft.core.BlockPos;

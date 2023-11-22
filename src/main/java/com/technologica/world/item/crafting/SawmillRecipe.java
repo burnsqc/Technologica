@@ -1,7 +1,9 @@
 package com.technologica.world.item.crafting;
 
 import com.google.gson.JsonObject;
-import com.technologica.world.item.TechnologicaItems;
+import com.technologica.registration.deferred.TechnologicaItems;
+import com.technologica.registration.deferred.TechnologicaRecipeSerializers;
+import com.technologica.registration.deferred.TechnologicaRecipeTypes;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -19,7 +21,7 @@ public class SawmillRecipe extends SingleItemRecipe {
 	protected final ItemStack result2;
 
 	public SawmillRecipe(ResourceLocation id, String group, Ingredient ingredient, ItemStack result, ItemStack result2) {
-		super(TechnologicaRecipeType.SAWMILL.get(), TechnologicaRecipeSerializer.SAWMILL.get(), id, group, ingredient, result);
+		super(TechnologicaRecipeTypes.SAWMILL.get(), TechnologicaRecipeSerializers.SAWMILL.get(), id, group, ingredient, result);
 		this.result2 = result2;
 	}
 
@@ -35,7 +37,7 @@ public class SawmillRecipe extends SingleItemRecipe {
 
 	@Override
 	public RecipeType<?> getType() {
-		return TechnologicaRecipeType.SAWMILL.get();
+		return TechnologicaRecipeTypes.SAWMILL.get();
 	}
 
 	public ItemStack getResultItem1() {

@@ -2,7 +2,7 @@ package com.technologica.listeners.modbus;
 
 import static com.technologica.Technologica.LOGGER;
 
-import com.technologica.world.entity.TechnologicaEntityType;
+import com.technologica.registration.deferred.TechnologicaEntityTypes;
 import com.technologica.world.entity.animal.Alligator;
 import com.technologica.world.entity.animal.Beaver;
 import com.technologica.world.entity.animal.Buffalo;
@@ -74,57 +74,57 @@ public class CreateEntityAttributes {
 	 * @param event EntityAttributeCreationEvent
 	 */
 	public static void onEntityAttributeCreationEvent(final EntityAttributeCreationEvent event) {
-		long required = TechnologicaEntityType.ENTITY_TYPES.getEntries().stream().filter((entity) -> {
+		long required = TechnologicaEntityTypes.ENTITY_TYPES.getEntries().stream().filter((entity) -> {
 			return entity.get().getCategory() != MobCategory.MISC;
 		}).filter((entity) -> {
 			return !DefaultAttributes.hasSupplier(entity.get());
 		}).count();
 		LOGGER.info("ENTITY ATTRIBUTE CREATION STARTING: " + required + " REQUIRED");
 
-		event.put(TechnologicaEntityType.ALLIGATOR.get(), Alligator.registerAttributes().build());
-		event.put(TechnologicaEntityType.BEAVER.get(), Beaver.registerAttributes().build());
-		event.put(TechnologicaEntityType.BUFFALO.get(), Buffalo.registerAttributes().build());
-		event.put(TechnologicaEntityType.CAMEL.get(), Camel.registerAttributes().build());
-		event.put(TechnologicaEntityType.COBRA.get(), Cobra.registerAttributes().build());
-		event.put(TechnologicaEntityType.COTTONMOUTH.get(), Cottonmouth.registerAttributes().build());
-		event.put(TechnologicaEntityType.COYOTE.get(), Coyote.createAttributes().build());
-		event.put(TechnologicaEntityType.CRAB.get(), Crab.registerAttributes().build());
-		event.put(TechnologicaEntityType.DEER.get(), Deer.registerAttributes().build());
-		event.put(TechnologicaEntityType.DUCK.get(), Duck.registerAttributes().build());
-		event.put(TechnologicaEntityType.ELEPHANT.get(), Elephant.registerAttributes().build());
-		event.put(TechnologicaEntityType.FLAMINGO.get(), Flamingo.registerAttributes().build());
-		event.put(TechnologicaEntityType.FIGURE_EIGHT_PUFFERFISH.get(), Frog.registerAttributes().build());
-		event.put(TechnologicaEntityType.GIRAFFE.get(), Giraffe.createBaseHorseAttributes().build());
-		event.put(TechnologicaEntityType.GORILLA.get(), Gorilla.registerAttributes().build());
-		event.put(TechnologicaEntityType.GRIZZLY_BEAR.get(), GrizzlyBear.registerAttributes().build());
-		event.put(TechnologicaEntityType.JAGUAR.get(), Jaguar.registerAttributes().build());
-		event.put(TechnologicaEntityType.KING_CRAB.get(), KingCrab.registerAttributes().build());
-		event.put(TechnologicaEntityType.LEOPARD_SEAL.get(), LeopardSeal.registerAttributes().build());
-		event.put(TechnologicaEntityType.LION.get(), Lion.registerAttributes().build());
-		event.put(TechnologicaEntityType.LIZARD.get(), Lizard.registerAttributes().build());
-		event.put(TechnologicaEntityType.MOOSE.get(), Moose.registerAttributes().build());
-		event.put(TechnologicaEntityType.NARWHAL.get(), Narwhal.registerAttributes().build());
-		event.put(TechnologicaEntityType.OCTOPUS.get(), Octopus.registerAttributes().build());
-		event.put(TechnologicaEntityType.OSTRICH.get(), Ostrich.createBaseHorseAttributes().build());
-		event.put(TechnologicaEntityType.OWL.get(), Owl.registerAttributes().build());
-		event.put(TechnologicaEntityType.PENGUIN.get(), Penguin.registerAttributes().build());
-		event.put(TechnologicaEntityType.PIRANHA.get(), Piranha.registerAttributes().build());
-		event.put(TechnologicaEntityType.POISON_DART_FROG.get(), PoisonDartFrog.registerAttributes().build());
-		event.put(TechnologicaEntityType.RACCOON.get(), Raccoon.registerAttributes().build());
-		event.put(TechnologicaEntityType.SCORPION.get(), Scorpion.createAttributes().build());
-		event.put(TechnologicaEntityType.SHARK.get(), Shark.registerAttributes().build());
-		event.put(TechnologicaEntityType.SLOTH.get(), Sloth.registerAttributes().build());
-		event.put(TechnologicaEntityType.STINGRAY.get(), Stingray.registerAttributes().build());
-		event.put(TechnologicaEntityType.TURKEY.get(), Turkey.registerAttributes().build());
-		event.put(TechnologicaEntityType.VULTURE.get(), Vulture.registerAttributes().build());
-		event.put(TechnologicaEntityType.WALRUS.get(), Walrus.registerAttributes().build());
-		event.put(TechnologicaEntityType.ZEBRA.get(), Zebra.createBaseHorseAttributes().build());
-		event.put(TechnologicaEntityType.ATOMIC_CREEPER.get(), AtomicCreeper.registerAttributes().build());
-		event.put(TechnologicaEntityType.MUMMY.get(), Mummy.registerAttributes().build());
-		event.put(TechnologicaEntityType.PEEPER.get(), Peeper.registerAttributes().build());
-		event.put(TechnologicaEntityType.SWEEPER.get(), Sweeper.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.ALLIGATOR.get(), Alligator.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.BEAVER.get(), Beaver.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.BUFFALO.get(), Buffalo.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.CAMEL.get(), Camel.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.COBRA.get(), Cobra.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.COTTONMOUTH.get(), Cottonmouth.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.COYOTE.get(), Coyote.createAttributes().build());
+		event.put(TechnologicaEntityTypes.CRAB.get(), Crab.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.DEER.get(), Deer.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.DUCK.get(), Duck.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.ELEPHANT.get(), Elephant.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.FLAMINGO.get(), Flamingo.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.FIGURE_EIGHT_PUFFERFISH.get(), Frog.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.GIRAFFE.get(), Giraffe.createBaseHorseAttributes().build());
+		event.put(TechnologicaEntityTypes.GORILLA.get(), Gorilla.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.GRIZZLY_BEAR.get(), GrizzlyBear.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.JAGUAR.get(), Jaguar.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.KING_CRAB.get(), KingCrab.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.LEOPARD_SEAL.get(), LeopardSeal.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.LION.get(), Lion.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.LIZARD.get(), Lizard.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.MOOSE.get(), Moose.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.NARWHAL.get(), Narwhal.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.OCTOPUS.get(), Octopus.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.OSTRICH.get(), Ostrich.createBaseHorseAttributes().build());
+		event.put(TechnologicaEntityTypes.OWL.get(), Owl.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.PENGUIN.get(), Penguin.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.PIRANHA.get(), Piranha.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.POISON_DART_FROG.get(), PoisonDartFrog.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.RACCOON.get(), Raccoon.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.SCORPION.get(), Scorpion.createAttributes().build());
+		event.put(TechnologicaEntityTypes.SHARK.get(), Shark.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.SLOTH.get(), Sloth.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.STINGRAY.get(), Stingray.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.TURKEY.get(), Turkey.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.VULTURE.get(), Vulture.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.WALRUS.get(), Walrus.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.ZEBRA.get(), Zebra.createBaseHorseAttributes().build());
+		event.put(TechnologicaEntityTypes.ATOMIC_CREEPER.get(), AtomicCreeper.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.MUMMY.get(), Mummy.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.PEEPER.get(), Peeper.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.SWEEPER.get(), Sweeper.registerAttributes().build());
 
-		long completed = TechnologicaEntityType.ENTITY_TYPES.getEntries().stream().filter((entity) -> {
+		long completed = TechnologicaEntityTypes.ENTITY_TYPES.getEntries().stream().filter((entity) -> {
 			return entity.get().getCategory() != MobCategory.MISC;
 		}).filter((entity) -> {
 			return DefaultAttributes.hasSupplier(entity.get());

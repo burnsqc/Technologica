@@ -1,6 +1,6 @@
 package com.technologica.world.item;
 
-import com.technologica.world.level.block.TechnologicaBlocks;
+import com.technologica.registration.deferred.TechnologicaBlocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;

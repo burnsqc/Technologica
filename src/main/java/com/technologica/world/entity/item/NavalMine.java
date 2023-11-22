@@ -2,9 +2,9 @@ package com.technologica.world.entity.item;
 
 import java.util.List;
 
-import com.technologica.world.entity.TechnologicaEntityType;
+import com.technologica.registration.deferred.TechnologicaBlocks;
+import com.technologica.registration.deferred.TechnologicaEntityTypes;
 import com.technologica.world.level.block.NavalMineChainBlock;
-import com.technologica.world.level.block.TechnologicaBlocks;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
@@ -36,7 +36,7 @@ public class NavalMine extends Entity {
 	}
 
 	public NavalMine(Level worldIn, double x, double y, double z) {
-		this(TechnologicaEntityType.NAVAL_MINE.get(), worldIn);
+		this(TechnologicaEntityTypes.NAVAL_MINE.get(), worldIn);
 		this.setPos(x, y, z);
 		this.setFuse(100);
 		this.setChains(10);

@@ -4,7 +4,7 @@ import javax.annotation.Nullable;
 
 import com.technologica.capabilities.ILink;
 import com.technologica.capabilities.LinkProvider;
-import com.technologica.world.level.block.TechnologicaBlocks;
+import com.technologica.registration.deferred.TechnologicaBlocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;

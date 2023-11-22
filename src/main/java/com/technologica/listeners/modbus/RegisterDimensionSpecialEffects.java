@@ -3,7 +3,7 @@ package com.technologica.listeners.modbus;
 import static com.technologica.Technologica.LOGGER;
 
 import com.technologica.client.renderer.MoonRenderer;
-import com.technologica.world.level.dimension.TechnologicaBuiltinDimensionTypes;
+import com.technologica.registration.key.TechnologicaDimensionTypes;
 
 import net.minecraftforge.client.event.RegisterDimensionSpecialEffectsEvent;
 
@@ -20,7 +20,7 @@ import net.minecraftforge.client.event.RegisterDimensionSpecialEffectsEvent;
 public class RegisterDimensionSpecialEffects {
 
 	public static void onRegisterDimensionSpecialEffectsEvent(final RegisterDimensionSpecialEffectsEvent event) {
-		event.register(TechnologicaBuiltinDimensionTypes.MOON_EFFECTS, new MoonRenderer());
+		event.register(TechnologicaDimensionTypes.MOON_EFFECTS, new MoonRenderer());
 		/**
 		 * TODO: Determine how to count how many Technologica Dimension Special Effects actually got registered and replace the hard-coded value in the logger message.
 		 */

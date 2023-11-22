@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
-import com.technologica.world.entity.TechnologicaEntityType;
+import com.technologica.registration.deferred.TechnologicaEntityTypes;
 
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -285,7 +285,7 @@ public class Ostrich extends AbstractHorse {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob mate) {
-		return TechnologicaEntityType.OSTRICH.get().create(world);
+		return TechnologicaEntityTypes.OSTRICH.get().create(world);
 	}
 
 	@Override

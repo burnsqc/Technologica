@@ -2,6 +2,8 @@ package com.technologica.world.item;
 
 import java.util.function.Supplier;
 
+import com.technologica.registration.deferred.TechnologicaItems;
+
 import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tier;

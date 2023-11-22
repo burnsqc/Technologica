@@ -2,9 +2,9 @@ package com.technologica.world.entity.animal;
 
 import java.util.function.Predicate;
 
+import com.technologica.registration.deferred.TechnologicaItems;
 import com.technologica.world.entity.ai.goal.AttackIfSwimmingGoal;
 import com.technologica.world.entity.ai.goal.SwimGoal;
-import com.technologica.world.item.TechnologicaItems;
 
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;

@@ -5,6 +5,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.technologica.registration.deferred.TechnologicaBlockEntityTypes;
 
 import net.minecraft.commands.CommandSource;
 import net.minecraft.commands.CommandSourceStack;
@@ -29,12 +30,12 @@ public class MonitorBlockEntity extends BlockEntity {
 	private final FormattedCharSequence[] renderText = new FormattedCharSequence[16];
 
 	public MonitorBlockEntity(BlockPos p_155700_, BlockState p_155701_) {
-		super(TechnologicaBlockEntityType.MONITOR_TILE.get(), p_155700_, p_155701_);
+		super(TechnologicaBlockEntityTypes.MONITOR_TILE.get(), p_155700_, p_155701_);
 	}
 
 	@Override
 	public BlockEntityType<?> getType() {
-		return TechnologicaBlockEntityType.MONITOR_TILE.get();
+		return TechnologicaBlockEntityTypes.MONITOR_TILE.get();
 	}
 
 	public void setEditable(boolean isEditableIn) {

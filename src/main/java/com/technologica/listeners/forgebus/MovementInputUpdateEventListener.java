@@ -1,6 +1,6 @@
 package com.technologica.listeners.forgebus;
 
-import com.technologica.world.effect.TechnologicaMobEffects;
+import com.technologica.registration.deferred.TechnologicaMobEffects;
 
 import net.minecraft.client.player.Input;
 import net.minecraft.client.player.LocalPlayer;

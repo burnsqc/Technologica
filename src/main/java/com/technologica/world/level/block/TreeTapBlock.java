@@ -10,7 +10,7 @@ import javax.annotation.Nullable;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.technologica.core.particles.DrippingLiquidParticleData;
-import com.technologica.world.level.material.TechnologicaFluids;
+import com.technologica.registration.deferred.TechnologicaFluids;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

@@ -1,6 +1,6 @@
 package com.technologica.world.entity.animal;
 
-import com.technologica.world.entity.TechnologicaEntityType;
+import com.technologica.registration.deferred.TechnologicaEntityTypes;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -127,7 +127,7 @@ public class Turkey extends Animal {
 
 	@Override
 	public Turkey getBreedOffspring(ServerLevel world, AgeableMob mate) {
-		return TechnologicaEntityType.TURKEY.get().create(world);
+		return TechnologicaEntityTypes.TURKEY.get().create(world);
 	}
 
 	/**

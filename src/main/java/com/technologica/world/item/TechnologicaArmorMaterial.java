@@ -4,6 +4,7 @@ import java.util.EnumMap;
 import java.util.function.Supplier;
 
 import com.technologica.Technologica;
+import com.technologica.registration.deferred.TechnologicaItems;
 
 import net.minecraft.Util;
 import net.minecraft.sounds.SoundEvent;

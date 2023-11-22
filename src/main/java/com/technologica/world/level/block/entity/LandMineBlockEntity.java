@@ -1,5 +1,7 @@
 package com.technologica.world.level.block.entity;
 
+import com.technologica.registration.deferred.TechnologicaBlockEntityTypes;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
@@ -16,7 +18,7 @@ public class LandMineBlockEntity extends BlockEntity {
 	private boolean isArmed = false;
 
 	public LandMineBlockEntity(BlockPos p_155700_, BlockState p_155701_) {
-		super(TechnologicaBlockEntityType.LAND_MINE_TILE.get(), p_155700_, p_155701_);
+		super(TechnologicaBlockEntityTypes.LAND_MINE_TILE.get(), p_155700_, p_155701_);
 	}
 
 	public BlockState getPreviousBlockState() {

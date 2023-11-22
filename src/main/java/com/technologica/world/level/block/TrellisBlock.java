@@ -2,7 +2,8 @@ package com.technologica.world.level.block;
 
 import javax.annotation.Nullable;
 
-import com.technologica.world.item.TechnologicaItems;
+import com.technologica.registration.deferred.TechnologicaBlocks;
+import com.technologica.registration.deferred.TechnologicaItems;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

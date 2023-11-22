@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
 
-import com.technologica.world.entity.TechnologicaEntityType;
+import com.technologica.registration.deferred.TechnologicaEntityTypes;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -69,7 +69,7 @@ public class GrizzlyBear extends PolarBear implements NeutralMob {
 	// Spawning
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel serverWorldIn, AgeableMob mate) {
-		return TechnologicaEntityType.GRIZZLY_BEAR.get().create(serverWorldIn);
+		return TechnologicaEntityTypes.GRIZZLY_BEAR.get().create(serverWorldIn);
 	}
 
 	// Breeding

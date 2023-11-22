@@ -1,6 +1,7 @@
 package com.technologica.world.level.block;
 
-import com.technologica.world.level.material.TechnologicaFluids;
+import com.technologica.registration.deferred.TechnologicaBlocks;
+import com.technologica.registration.deferred.TechnologicaFluids;
 
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;

@@ -25,7 +25,7 @@ import net.minecraft.world.level.material.Fluids;
 public class TapeDriveBlock extends FourDirectionBlock {
 	public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 
-	protected TapeDriveBlock() {
+	public TapeDriveBlock() {
 		super(BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.ANVIL).noOcclusion());
 	}
 

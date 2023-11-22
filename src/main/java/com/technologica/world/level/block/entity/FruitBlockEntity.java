@@ -1,5 +1,7 @@
 package com.technologica.world.level.block.entity;
 
+import com.technologica.registration.deferred.TechnologicaBlockEntityTypes;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -14,12 +16,12 @@ public class FruitBlockEntity extends BlockEntity {
 	private ItemStack stack = ItemStack.EMPTY;
 	
 	public FruitBlockEntity(BlockPos p_155700_, BlockState p_155701_) {
-		super(TechnologicaBlockEntityType.FRUIT_CROP.get(), p_155700_, p_155701_);
+		super(TechnologicaBlockEntityTypes.FRUIT_CROP.get(), p_155700_, p_155701_);
 	}
 	
 	@Override
 	public BlockEntityType<?> getType() {
-		return TechnologicaBlockEntityType.FRUIT_CROP.get();
+		return TechnologicaBlockEntityTypes.FRUIT_CROP.get();
 	}
 
 	@Override

@@ -2,7 +2,7 @@ package com.technologica.listeners.modbus;
 
 import static com.technologica.Technologica.LOGGER;
 
-import com.technologica.world.level.block.TechnologicaBlocks;
+import com.technologica.registration.deferred.TechnologicaBlocks;
 
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 

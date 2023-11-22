@@ -1,8 +1,8 @@
 package com.technologica.world.entity.projectile;
 
-import com.technologica.util.TechnologicaSoundEvents;
-import com.technologica.world.entity.TechnologicaEntityType;
-import com.technologica.world.item.TechnologicaItems;
+import com.technologica.registration.deferred.TechnologicaEntityTypes;
+import com.technologica.registration.deferred.TechnologicaItems;
+import com.technologica.registration.deferred.TechnologicaSoundEvents;
 
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
@@ -30,11 +30,11 @@ public class Coconut extends ThrowableItemProjectile {
 	}
 
 	public Coconut(Level worldIn, LivingEntity throwerIn) {
-		super(TechnologicaEntityType.COCONUT.get(), throwerIn, worldIn);
+		super(TechnologicaEntityTypes.COCONUT.get(), throwerIn, worldIn);
 	}
 
 	public Coconut(Level worldIn, double x, double y, double z) {
-		super(TechnologicaEntityType.COCONUT.get(), x, y, z, worldIn);
+		super(TechnologicaEntityTypes.COCONUT.get(), x, y, z, worldIn);
 	}
 
 	@Override

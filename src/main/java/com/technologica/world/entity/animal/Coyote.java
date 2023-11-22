@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
 
-import com.technologica.world.entity.TechnologicaEntityType;
+import com.technologica.registration.deferred.TechnologicaEntityTypes;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -463,7 +463,7 @@ public class Coyote extends TamableAnimal implements NeutralMob {
 
 	@Override
 	public Coyote getBreedOffspring(ServerLevel p_149088_, AgeableMob p_149089_) {
-		Coyote coyote = TechnologicaEntityType.COYOTE.get().create(p_149088_);
+		Coyote coyote = TechnologicaEntityTypes.COYOTE.get().create(p_149088_);
 		UUID uuid = this.getOwnerUUID();
 		if (uuid != null) {
 			coyote.setOwnerUUID(uuid);

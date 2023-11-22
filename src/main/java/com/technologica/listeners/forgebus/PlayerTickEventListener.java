@@ -2,8 +2,8 @@ package com.technologica.listeners.forgebus;
 
 import com.technologica.capabilities.TechnologicaCapabilities;
 import com.technologica.capabilities.air.IAir;
-import com.technologica.world.item.TechnologicaItems;
-import com.technologica.world.level.block.TechnologicaBlocks;
+import com.technologica.registration.deferred.TechnologicaBlocks;
+import com.technologica.registration.deferred.TechnologicaItems;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;

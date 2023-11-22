@@ -2,7 +2,7 @@ package com.technologica.client.renderer.blockentity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import com.technologica.world.level.block.TechnologicaBlocks;
+import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.world.level.block.TwelveDirectionBlock;
 import com.technologica.world.level.block.entity.LineShaftHangerTileEntity;
 

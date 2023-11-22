@@ -59,8 +59,8 @@ import com.technologica.client.renderer.entity.VanillaBoatRenderer;
 import com.technologica.client.renderer.entity.VultureRenderer;
 import com.technologica.client.renderer.entity.WalrusRenderer;
 import com.technologica.client.renderer.entity.ZebraRenderer;
-import com.technologica.world.entity.TechnologicaEntityType;
-import com.technologica.world.level.block.entity.TechnologicaBlockEntityType;
+import com.technologica.registration.deferred.TechnologicaBlockEntityTypes;
+import com.technologica.registration.deferred.TechnologicaEntityTypes;
 
 import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
@@ -78,74 +78,74 @@ import net.minecraftforge.client.event.EntityRenderersEvent.RegisterRenderers;
 public class RegisterEntityRenderers {
 
 	public static void onRegisterRenderers(final RegisterRenderers event) {
-		event.registerEntityRenderer(TechnologicaEntityType.MOD_BOAT.get(), VanillaBoatRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.INVISIBLE_SEAT.get(), InvisibleRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.COCONUT.get(), (renderManager) -> {
+		event.registerEntityRenderer(TechnologicaEntityTypes.MOD_BOAT.get(), VanillaBoatRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.INVISIBLE_SEAT.get(), InvisibleRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.COCONUT.get(), (renderManager) -> {
 			return new ThrownItemRenderer<>(renderManager, 1.0F, true);
 		});
-		event.registerEntityRenderer(TechnologicaEntityType.DODGEBALL.get(), (renderManager) -> {
+		event.registerEntityRenderer(TechnologicaEntityTypes.DODGEBALL.get(), (renderManager) -> {
 			return new ThrownItemRenderer<>(renderManager, 1.0F, true);
 		});
-		event.registerEntityRenderer(TechnologicaEntityType.HARPOON.get(), HarpoonRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.ALLIGATOR.get(), AlligatorRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.BEAVER.get(), BeaverRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.BUFFALO.get(), BuffaloRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.CAMEL.get(), CamelRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.COBRA.get(), CobraRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.COTTONMOUTH.get(), CottonmouthRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.COYOTE.get(), CoyoteRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.CRAB.get(), CrabRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.DEER.get(), DeerRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.DUCK.get(), DuckRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.ELEPHANT.get(), ElephantRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.FLAMINGO.get(), FlamingoRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.FIGURE_EIGHT_PUFFERFISH.get(), FigureEightPufferfishRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.GIRAFFE.get(), GiraffeRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.GORILLA.get(), GorillaRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.GRIZZLY_BEAR.get(), GrizzlyBearRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.JAGUAR.get(), JaguarRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.KING_CRAB.get(), KingCrabRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.LEOPARD_SEAL.get(), LeopardSealRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.LION.get(), LionRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.LIZARD.get(), LizardRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.MOOSE.get(), MooseRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.NARWHAL.get(), NarwhalRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.OCTOPUS.get(), OctopusRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.OSTRICH.get(), OstrichRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.OWL.get(), OwlRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.PENGUIN.get(), PenguinRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.PIRANHA.get(), PiranhaRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.POISON_DART_FROG.get(), PoisonDartFrogRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.RACCOON.get(), RaccoonRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.SCORPION.get(), ScorpionRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.SHARK.get(), SharkRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.SLOTH.get(), SlothRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.STINGRAY.get(), StingrayRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.TURKEY.get(), TurkeyRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.VULTURE.get(), VultureRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.WALRUS.get(), WalrusRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.ZEBRA.get(), ZebraRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.ATOMIC_CREEPER.get(), AtomicCreeperRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.MUMMY.get(), MummyRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.PEEPER.get(), PeeperRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.SWEEPER.get(), SweeperRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.NAVAL_MINE.get(), NavalMineRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityType.ROCKET.get(), RocketRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.HARPOON.get(), HarpoonRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.ALLIGATOR.get(), AlligatorRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.BEAVER.get(), BeaverRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.BUFFALO.get(), BuffaloRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.CAMEL.get(), CamelRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.COBRA.get(), CobraRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.COTTONMOUTH.get(), CottonmouthRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.COYOTE.get(), CoyoteRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.CRAB.get(), CrabRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.DEER.get(), DeerRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.DUCK.get(), DuckRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.ELEPHANT.get(), ElephantRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.FLAMINGO.get(), FlamingoRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.FIGURE_EIGHT_PUFFERFISH.get(), FigureEightPufferfishRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.GIRAFFE.get(), GiraffeRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.GORILLA.get(), GorillaRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.GRIZZLY_BEAR.get(), GrizzlyBearRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.JAGUAR.get(), JaguarRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.KING_CRAB.get(), KingCrabRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.LEOPARD_SEAL.get(), LeopardSealRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.LION.get(), LionRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.LIZARD.get(), LizardRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.MOOSE.get(), MooseRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.NARWHAL.get(), NarwhalRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.OCTOPUS.get(), OctopusRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.OSTRICH.get(), OstrichRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.OWL.get(), OwlRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.PENGUIN.get(), PenguinRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.PIRANHA.get(), PiranhaRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.POISON_DART_FROG.get(), PoisonDartFrogRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.RACCOON.get(), RaccoonRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.SCORPION.get(), ScorpionRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.SHARK.get(), SharkRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.SLOTH.get(), SlothRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.STINGRAY.get(), StingrayRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.TURKEY.get(), TurkeyRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.VULTURE.get(), VultureRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.WALRUS.get(), WalrusRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.ZEBRA.get(), ZebraRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.ATOMIC_CREEPER.get(), AtomicCreeperRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.MUMMY.get(), MummyRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.PEEPER.get(), PeeperRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.SWEEPER.get(), SweeperRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.NAVAL_MINE.get(), NavalMineRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.ROCKET.get(), RocketRenderer::new);
 		/**
 		 * TODO: Determine how to count how many Technologica Entity Renderers actually got registered and replace the hard-coded value in the logger message. Trying to avoid Access Transformers, but could open up private final Map {@link EntityRenderers} PROVIDERS.
 		 */
 		LOGGER.info("ENTITY RENDERERS REGISTERED: 49 OF 49");
-		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.ANNUNCIATOR_TILE.get(), AnnunciatorRenderer::new);
-		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.MONITOR_TILE.get(), MonitorRenderer::new);
-		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.VANILLA_SIGN.get(), SignRenderer::new);
-		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.TECHNOLOGICA_SIGN.get(), TechnologicaSignRenderer::new);
-		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.FRUIT_CROP.get(), FruitRenderer::new);
-		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.POTION_CROP.get(), PotionRenderer::new);
-		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.DISPLAY_TILE.get(), DisplayCaseRenderer::new);
-		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.LINE_SHAFT_TILE.get(), LineShaftRenderer::new);
-		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.LINE_SHAFT_HANGER_TILE.get(), LineShaftHangerRenderer::new);
-		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.SAWMILL_TILE.get(), SawmillRenderer::new);
-		event.registerBlockEntityRenderer(TechnologicaBlockEntityType.LAND_MINE_TILE.get(), LandMineRenderer::new);
+		event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.ANNUNCIATOR_TILE.get(), AnnunciatorRenderer::new);
+		event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.MONITOR_TILE.get(), MonitorRenderer::new);
+		event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.VANILLA_SIGN.get(), SignRenderer::new);
+		event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.TECHNOLOGICA_SIGN.get(), TechnologicaSignRenderer::new);
+		event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.FRUIT_CROP.get(), FruitRenderer::new);
+		event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.POTION_CROP.get(), PotionRenderer::new);
+		event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.DISPLAY_TILE.get(), DisplayCaseRenderer::new);
+		event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.LINE_SHAFT_TILE.get(), LineShaftRenderer::new);
+		event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.LINE_SHAFT_HANGER_TILE.get(), LineShaftHangerRenderer::new);
+		event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.SAWMILL_TILE.get(), SawmillRenderer::new);
+		event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.LAND_MINE_TILE.get(), LandMineRenderer::new);
 		/**
 		 * TODO: Determine how to count how many Technologica Block Entity Renderers actually got registered and replace the hard-coded value in the logger message. Trying to avoid Access Transformers, but could open up private final Map {@link BlockEntityRenderers} PROVIDERS.
 		 */

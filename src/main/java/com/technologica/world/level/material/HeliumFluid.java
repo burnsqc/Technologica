@@ -4,8 +4,10 @@ import java.util.Optional;
 
 import javax.annotation.Nullable;
 
-import com.technologica.world.item.TechnologicaItems;
-import com.technologica.world.level.block.TechnologicaBlocks;
+import com.technologica.registration.deferred.TechnologicaBlocks;
+import com.technologica.registration.deferred.TechnologicaFluidTypes;
+import com.technologica.registration.deferred.TechnologicaFluids;
+import com.technologica.registration.deferred.TechnologicaItems;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -176,6 +178,6 @@ public abstract class HeliumFluid extends FlowingFluid {
 
 	@Override
 	public FluidType getFluidType() {
-		return TechnologicaFluids.HELIUM_TYPE.get();
+		return TechnologicaFluidTypes.HELIUM_TYPE.get();
 	}
 }

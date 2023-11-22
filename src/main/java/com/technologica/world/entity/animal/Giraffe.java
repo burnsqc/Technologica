@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
-import com.technologica.world.entity.TechnologicaEntityType;
+import com.technologica.registration.deferred.TechnologicaEntityTypes;
 
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -286,7 +286,7 @@ public class Giraffe extends AbstractHorse {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob mate) {
-		return TechnologicaEntityType.GIRAFFE.get().create(world);
+		return TechnologicaEntityTypes.GIRAFFE.get().create(world);
 	}
 
 	@Override

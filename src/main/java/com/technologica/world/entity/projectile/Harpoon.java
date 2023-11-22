@@ -1,7 +1,7 @@
 package com.technologica.world.entity.projectile;
 
-import com.technologica.world.entity.TechnologicaEntityType;
-import com.technologica.world.item.TechnologicaItems;
+import com.technologica.registration.deferred.TechnologicaEntityTypes;
+import com.technologica.registration.deferred.TechnologicaItems;
 
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -22,11 +22,11 @@ public class Harpoon extends AbstractArrow {
 	}
 
 	public Harpoon(Level worldIn, double x, double y, double z) {
-		super(TechnologicaEntityType.HARPOON.get(), x, y, z, worldIn);
+		super(TechnologicaEntityTypes.HARPOON.get(), x, y, z, worldIn);
 	}
 
 	public Harpoon(Level worldIn, LivingEntity shooter) {
-		super(TechnologicaEntityType.HARPOON.get(), shooter, worldIn);
+		super(TechnologicaEntityTypes.HARPOON.get(), shooter, worldIn);
 	}
 
 	@Override

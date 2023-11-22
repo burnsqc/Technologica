@@ -5,10 +5,10 @@ import java.util.function.Predicate;
 
 import com.google.common.collect.ImmutableSet;
 import com.mojang.datafixers.util.Pair;
+import com.technologica.registration.deferred.TechnologicaItems;
 import com.technologica.world.entity.ai.behavior.TechnologicaVillagerGoalPackages;
 import com.technologica.world.entity.animal.GrizzlyBear;
 import com.technologica.world.entity.animal.Shark;
-import com.technologica.world.item.TechnologicaItems;
 
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;

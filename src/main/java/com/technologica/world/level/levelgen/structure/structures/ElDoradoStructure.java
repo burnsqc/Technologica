@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.mojang.serialization.Codec;
-import com.technologica.world.level.levelgen.structure.TechnologicaStructureType;
+import com.technologica.registration.deferred.TechnologicaStructureTypes;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.random.WeightedRandomList;
@@ -50,6 +50,6 @@ public class ElDoradoStructure extends Structure {
 
 	@Override
 	public StructureType<?> type() {
-		return TechnologicaStructureType.EL_DORADO.get();
+		return TechnologicaStructureTypes.EL_DORADO.get();
 	}
 }

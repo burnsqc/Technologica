@@ -1,7 +1,8 @@
 package com.technologica.world.level.block;
 
+import com.technologica.registration.deferred.TechnologicaBlocks;
+import com.technologica.registration.deferred.TechnologicaItems;
 import com.technologica.util.Radius;
-import com.technologica.world.item.TechnologicaItems;
 import com.technologica.world.level.block.entity.LineShaftBlockEntity;
 import com.technologica.world.level.block.state.properties.TechnologicaBlockStateProperties;
 

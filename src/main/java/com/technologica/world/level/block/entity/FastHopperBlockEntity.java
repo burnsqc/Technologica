@@ -7,6 +7,7 @@ import java.util.stream.IntStream;
 
 import javax.annotation.Nullable;
 
+import com.technologica.registration.deferred.TechnologicaBlockEntityTypes;
 import com.technologica.util.TechnologicaHopperItemHandler;
 import com.technologica.world.level.block.FastHopper;
 
@@ -48,7 +49,7 @@ public class FastHopperBlockEntity extends RandomizableContainerBlockEntity impl
 	private long tickedGameTime;
 
 	public FastHopperBlockEntity(BlockPos p_155550_, BlockState p_155551_) {
-		super(TechnologicaBlockEntityType.FAST_HOPPER_BLOCK_ENTITY.get(), p_155550_, p_155551_);
+		super(TechnologicaBlockEntityTypes.FAST_HOPPER_BLOCK_ENTITY.get(), p_155550_, p_155551_);
 	}
 
 	@Override

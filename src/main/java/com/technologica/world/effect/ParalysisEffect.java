@@ -16,7 +16,7 @@ public class ParalysisEffect extends MobEffect {
 	public void applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
 		if (pLivingEntity instanceof Player) {
 			if (FMLEnvironment.dist.isClient()) {
-				ClientEffectHandler.handleParlysis();
+				ClientEffectHandler.handleParalysis();
 			}
 		}
 	}

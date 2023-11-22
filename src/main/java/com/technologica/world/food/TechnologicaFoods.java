@@ -1,6 +1,6 @@
 package com.technologica.world.food;
 
-import com.technologica.world.effect.TechnologicaMobEffects;
+import com.technologica.registration.deferred.TechnologicaMobEffects;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;

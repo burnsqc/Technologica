@@ -20,7 +20,7 @@ public class SawmillBlock extends FourDirectionBlock {
 	public static final BooleanProperty BOTTOM = BlockStateProperties.BOTTOM;
 	public static final EnumProperty<MiddleEnd> MIDDLE_END = TechnologicaBlockStateProperties.MIDDLE_END;
 
-	protected SawmillBlock() {
+	public SawmillBlock() {
 		super(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.ANVIL).noOcclusion());
 		this.registerDefaultState(this.stateDefinition.any().setValue(NESW_FACING, Direction.NORTH).setValue(BOTTOM, false).setValue(MIDDLE_END, MiddleEnd.MIDDLE));
 	}

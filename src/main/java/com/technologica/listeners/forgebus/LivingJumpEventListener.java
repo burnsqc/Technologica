@@ -1,9 +1,9 @@
 package com.technologica.listeners.forgebus;
 
+import com.technologica.registration.deferred.TechnologicaItems;
+import com.technologica.registration.key.TechnologicaDamageTypes;
 import com.technologica.setup.Config;
 import com.technologica.util.InventoryUtil;
-import com.technologica.world.damagesource.TechnologicaDamageTypes;
-import com.technologica.world.item.TechnologicaItems;
 
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;

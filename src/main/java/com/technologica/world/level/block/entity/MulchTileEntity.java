@@ -2,6 +2,9 @@ package com.technologica.world.level.block.entity;
 
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
+
+import com.technologica.registration.deferred.TechnologicaBlockEntityTypes;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
@@ -11,7 +14,7 @@ public class MulchTileEntity extends BlockEntity {
 	private BlockState previousBlockState = Blocks.AIR.defaultBlockState();
 	
 	public MulchTileEntity(BlockPos p_155700_, BlockState p_155701_) {
-		super(TechnologicaBlockEntityType.MULCH_TILE.get(), p_155700_, p_155701_);
+		super(TechnologicaBlockEntityTypes.MULCH_TILE.get(), p_155700_, p_155701_);
 	}
 
 	public BlockState getPreviousBlockState() {

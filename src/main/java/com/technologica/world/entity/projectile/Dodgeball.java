@@ -1,8 +1,8 @@
 package com.technologica.world.entity.projectile;
 
-import com.technologica.util.TechnologicaSoundEvents;
-import com.technologica.world.entity.TechnologicaEntityType;
-import com.technologica.world.item.TechnologicaItems;
+import com.technologica.registration.deferred.TechnologicaEntityTypes;
+import com.technologica.registration.deferred.TechnologicaItems;
+import com.technologica.registration.deferred.TechnologicaSoundEvents;
 
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
@@ -33,11 +33,11 @@ public class Dodgeball extends ThrowableItemProjectile {
 	}
 
 	public Dodgeball(Level worldIn, LivingEntity throwerIn) {
-		super(TechnologicaEntityType.DODGEBALL.get(), throwerIn, worldIn);
+		super(TechnologicaEntityTypes.DODGEBALL.get(), throwerIn, worldIn);
 	}
 
 	public Dodgeball(Level worldIn, double x, double y, double z) {
-		super(TechnologicaEntityType.DODGEBALL.get(), x, y, z, worldIn);
+		super(TechnologicaEntityTypes.DODGEBALL.get(), x, y, z, worldIn);
 	}
 
 	@Override

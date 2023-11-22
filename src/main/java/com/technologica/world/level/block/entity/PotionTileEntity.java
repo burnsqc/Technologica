@@ -1,5 +1,7 @@
 package com.technologica.world.level.block.entity;
 
+import com.technologica.registration.deferred.TechnologicaBlockEntityTypes;
+
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -19,7 +21,7 @@ public class PotionTileEntity extends BlockEntity {
 	public static final IntegerProperty AGE = BlockStateProperties.AGE_7;
 	
 	public PotionTileEntity(BlockPos p_155700_, BlockState p_155701_) {
-		super(TechnologicaBlockEntityType.POTION_CROP.get(), p_155700_, p_155701_);
+		super(TechnologicaBlockEntityTypes.POTION_CROP.get(), p_155700_, p_155701_);
 	}
 
 	@Override

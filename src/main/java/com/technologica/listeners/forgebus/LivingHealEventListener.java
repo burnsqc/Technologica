@@ -1,6 +1,6 @@
 package com.technologica.listeners.forgebus;
 
-import com.technologica.world.effect.TechnologicaMobEffects;
+import com.technologica.registration.deferred.TechnologicaMobEffects;
 
 import net.minecraftforge.event.entity.living.LivingHealEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

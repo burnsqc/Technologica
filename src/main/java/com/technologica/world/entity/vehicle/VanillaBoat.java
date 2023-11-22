@@ -5,9 +5,9 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.google.common.collect.Lists;
-import com.technologica.world.entity.TechnologicaEntityType;
-import com.technologica.world.item.TechnologicaItems;
-import com.technologica.world.level.block.TechnologicaBlocks;
+import com.technologica.registration.deferred.TechnologicaBlocks;
+import com.technologica.registration.deferred.TechnologicaEntityTypes;
+import com.technologica.registration.deferred.TechnologicaItems;
 
 import net.minecraft.BlockUtil;
 import net.minecraft.core.BlockPos;
@@ -98,7 +98,7 @@ public class VanillaBoat extends Boat {
 	}
 
 	public VanillaBoat(Level worldIn, double x, double y, double z) {
-		this(TechnologicaEntityType.MOD_BOAT.get(), worldIn);
+		this(TechnologicaEntityTypes.MOD_BOAT.get(), worldIn);
 		this.setPos(x, y, z);
 		this.setDeltaMovement(Vec3.ZERO);
 		this.xo = x;

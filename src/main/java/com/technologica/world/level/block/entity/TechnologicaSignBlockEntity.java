@@ -1,5 +1,7 @@
 package com.technologica.world.level.block.entity;
 
+import com.technologica.registration.deferred.TechnologicaBlockEntityTypes;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.SignBlockEntity;
@@ -13,6 +15,6 @@ public class TechnologicaSignBlockEntity extends SignBlockEntity {
 
 	@Override
 	public BlockEntityType<?> getType() {
-		return TechnologicaBlockEntityType.TECHNOLOGICA_SIGN.get();
+		return TechnologicaBlockEntityTypes.TECHNOLOGICA_SIGN.get();
 	}
 }

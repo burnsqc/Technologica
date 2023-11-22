@@ -5,7 +5,7 @@ import net.minecraft.client.Minecraft;
 
 public class ClientEffectHandler {
 
-	public static void handleParlysis() {
+	public static void handleParalysis() {
 		KeyMapping.releaseAll();
 		Minecraft mc = Minecraft.getInstance();
 		mc.mouseHandler.releaseMouse();

@@ -1,6 +1,6 @@
 package com.technologica.listeners.forgebus;
 
-import com.technologica.world.item.TechnologicaItems;
+import com.technologica.registration.deferred.TechnologicaItems;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;

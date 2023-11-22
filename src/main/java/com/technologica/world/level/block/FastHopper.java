@@ -2,8 +2,8 @@ package com.technologica.world.level.block;
 
 import javax.annotation.Nullable;
 
+import com.technologica.registration.deferred.TechnologicaBlockEntityTypes;
 import com.technologica.world.level.block.entity.FastHopperBlockEntity;
-import com.technologica.world.level.block.entity.TechnologicaBlockEntityType;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.stats.Stats;
@@ -47,6 +47,6 @@ public class FastHopper extends HopperBlock {
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level p_153378_, BlockState p_153379_, BlockEntityType<T> p_153380_) {
-		return p_153378_.isClientSide ? null : createTickerHelper(p_153380_, TechnologicaBlockEntityType.FAST_HOPPER_BLOCK_ENTITY.get(), FastHopperBlockEntity::pushItemsTick);
+		return p_153378_.isClientSide ? null : createTickerHelper(p_153380_, TechnologicaBlockEntityTypes.FAST_HOPPER_BLOCK_ENTITY.get(), FastHopperBlockEntity::pushItemsTick);
 	}
 }

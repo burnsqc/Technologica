@@ -4,8 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.technologica.capabilities.TechnologicaCapabilities;
-import com.technologica.core.particles.TechnologicaParticleTypes;
-import com.technologica.datagen.GatherData;
 import com.technologica.listeners.forgebus.AttachCapabilities;
 import com.technologica.listeners.forgebus.EntityJoinLevelEventListener;
 import com.technologica.listeners.forgebus.HarvestCheckListener;
@@ -22,32 +20,37 @@ import com.technologica.listeners.forgebus.RightClickBlockListener;
 import com.technologica.listeners.forgebus.ServerAboutToStartListener;
 import com.technologica.listeners.forgebus.VillagerTradesEventListener;
 import com.technologica.listeners.forgebus.WandererTradesEventListener;
-import com.technologica.listeners.lootmodifiers.TechnologicaLootModifiers;
 import com.technologica.listeners.modbus.CommonSetup;
 import com.technologica.listeners.modbus.CreateEntityAttributes;
 import com.technologica.listeners.modbus.Register;
 import com.technologica.network.packets.ClientboundUpdateAirCapabilityPacket;
 import com.technologica.network.packets.ServerboundUpdateAnnunciatorPacket;
 import com.technologica.network.packets.ServerboundUpdateMonitorPacket;
+import com.technologica.registration.deferred.TechnologicaBlockEntityTypes;
+import com.technologica.registration.deferred.TechnologicaBlocks;
+import com.technologica.registration.deferred.TechnologicaCreativeModeTabs;
+import com.technologica.registration.deferred.TechnologicaEntityTypes;
+import com.technologica.registration.deferred.TechnologicaFeatures;
+import com.technologica.registration.deferred.TechnologicaFluidTypes;
+import com.technologica.registration.deferred.TechnologicaFluids;
+import com.technologica.registration.deferred.TechnologicaFoliagePlacers;
+import com.technologica.registration.deferred.TechnologicaGlobalLootModifierSerializers;
+import com.technologica.registration.deferred.TechnologicaItems;
+import com.technologica.registration.deferred.TechnologicaMenuTypes;
+import com.technologica.registration.deferred.TechnologicaMobEffects;
+import com.technologica.registration.deferred.TechnologicaParticleTypes;
+import com.technologica.registration.deferred.TechnologicaRecipeSerializers;
+import com.technologica.registration.deferred.TechnologicaRecipeTypes;
+import com.technologica.registration.deferred.TechnologicaSoundEvents;
+import com.technologica.registration.deferred.TechnologicaStructureTypes;
 import com.technologica.setup.ClientInit;
 import com.technologica.setup.Config;
-import com.technologica.util.TechnologicaSoundEvents;
+import com.technologica.util.DisablePlankConditionFactory;
+import com.technologica.util.EnablePlankConditionFactory;
 import com.technologica.util.text.TechnologicaLocation;
-import com.technologica.world.effect.TechnologicaMobEffects;
-import com.technologica.world.entity.TechnologicaEntityType;
-import com.technologica.world.inventory.TechnologicaMenuType;
-import com.technologica.world.item.TechnologicaCreativeModeTabs;
-import com.technologica.world.item.TechnologicaItems;
-import com.technologica.world.item.crafting.TechnologicaRecipeSerializer;
-import com.technologica.world.item.crafting.TechnologicaRecipeType;
-import com.technologica.world.level.block.TechnologicaBlocks;
-import com.technologica.world.level.block.entity.TechnologicaBlockEntityType;
-import com.technologica.world.level.levelgen.feature.TechnologicaFeature;
-import com.technologica.world.level.levelgen.feature.foliageplacers.TechnologicaFoliagePlacers;
-import com.technologica.world.level.levelgen.structure.TechnologicaStructureType;
-import com.technologica.world.level.material.TechnologicaFluids;
 
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -103,13 +106,15 @@ public class Technologica {
 
 		// TODO: Determine best place for this. Maybe it's right here but that's unconfirmed.
 		ModLoadingContext.get().registerConfig(Type.COMMON, Config.SPEC, "technologica-common.toml");
+		CraftingHelper.register(DisablePlankConditionFactory.Serializer.INSTANCE);
+		CraftingHelper.register(EnablePlankConditionFactory.Serializer.INSTANCE);
 	}
 
 	private static void initDeferredRegisters() {
 		soundEvents = TechnologicaSoundEvents.init();
 		LOGGER.info("INITIALIZATION - SOUND EVENTS - " + soundEvents);
 
-		fluids = TechnologicaFluids.init2();
+		fluids = TechnologicaFluids.init();
 		LOGGER.info("INITIALIZATION - FLUIDS - " + fluids);
 
 		blocks = TechnologicaBlocks.init();
@@ -124,22 +129,22 @@ public class Technologica {
 		items = TechnologicaItems.init();
 		LOGGER.info("INITIALIZATION - ITEMS - " + items);
 
-		entityTypes = TechnologicaEntityType.init();
+		entityTypes = TechnologicaEntityTypes.init();
 		LOGGER.info("INITIALIZATION - ENTITY TYPES - " + entityTypes);
 
-		blockEntityTypes = TechnologicaBlockEntityType.init();
+		blockEntityTypes = TechnologicaBlockEntityTypes.init();
 		LOGGER.info("INITIALIZATION - BLOCK ENTITY TYPES - " + blockEntityTypes);
 
-		menuTypes = TechnologicaMenuType.init();
+		menuTypes = TechnologicaMenuTypes.init();
 		LOGGER.info("INITIALIZATION - MENU TYPES - " + menuTypes);
 
-		recipeTypes = TechnologicaRecipeType.init();
+		recipeTypes = TechnologicaRecipeTypes.init();
 		LOGGER.info("INITIALIZATION - RECIPE TYPES - " + recipeTypes);
 
-		recipeSerializers = TechnologicaRecipeSerializer.init();
+		recipeSerializers = TechnologicaRecipeSerializers.init();
 		LOGGER.info("INITIALIZATION - RECIPE SERIALIZERS - " + recipeSerializers);
 
-		features = TechnologicaFeature.init();
+		features = TechnologicaFeatures.init();
 		LOGGER.info("INITIALIZATION - FEATURES - " + features);
 
 		foliagePlacerTypes = TechnologicaFoliagePlacers.init();
@@ -148,13 +153,13 @@ public class Technologica {
 		creativeModeTabs = TechnologicaCreativeModeTabs.init();
 		LOGGER.info("INITIALIZATION - CREATIVE MODE TABS - " + creativeModeTabs);
 
-		fluidTypes = TechnologicaFluids.init();
+		fluidTypes = TechnologicaFluidTypes.init();
 		LOGGER.info("INITIALIZATION - FLUID TYPES - " + fluidTypes);
 
-		globalLootModifierTypes = TechnologicaLootModifiers.init();
+		globalLootModifierTypes = TechnologicaGlobalLootModifierSerializers.init();
 		LOGGER.info("INITIALIZATION - LOOT MODIFIERS - " + globalLootModifierTypes);
 
-		structureTypes = TechnologicaStructureType.init();
+		structureTypes = TechnologicaStructureTypes.init();
 		LOGGER.info("INITIALIZATION - STRUCTURE TYPES - " + structureTypes);
 	}
 
@@ -169,7 +174,6 @@ public class Technologica {
 		Technologica.MOD_EVENT_BUS.addListener(CreateEntityAttributes::onEntityAttributeCreationEvent);
 		Technologica.MOD_EVENT_BUS.addListener(CommonSetup::onFMLCommonSetupEvent);
 		Technologica.MOD_EVENT_BUS.addListener(TechnologicaCapabilities::register);
-		Technologica.MOD_EVENT_BUS.addListener(GatherData::onGatherDataEvent);
 	}
 
 	private static void addForgeEventBusListeners() {

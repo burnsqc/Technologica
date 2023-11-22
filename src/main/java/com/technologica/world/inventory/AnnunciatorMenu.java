@@ -1,5 +1,7 @@
 package com.technologica.world.inventory;
 
+import com.technologica.registration.deferred.TechnologicaMenuTypes;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -16,7 +18,7 @@ public class AnnunciatorMenu extends AbstractContainerMenu {
 	private final BlockEntity tileEntity;
 
 	public AnnunciatorMenu(int windowIdIn, Level worldIn, BlockPos posIn, Inventory playerInventoryIn) {
-		super(TechnologicaMenuType.ANNUNCIATOR.get(), windowIdIn);
+		super(TechnologicaMenuTypes.ANNUNCIATOR.get(), windowIdIn);
 		this.tileEntity = worldIn.getBlockEntity(posIn);
 
 		for (int l = 0; l < 3; ++l) {
@@ -69,7 +71,7 @@ public class AnnunciatorMenu extends AbstractContainerMenu {
 
 	@Override
 	public MenuType<?> getType() {
-		return TechnologicaMenuType.ANNUNCIATOR.get();
+		return TechnologicaMenuTypes.ANNUNCIATOR.get();
 	}
 
 	public BlockEntity getTileEntity() {

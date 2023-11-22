@@ -4,6 +4,7 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 import com.technologica.client.renderer.blockentity.CoconutBazookaRenderer;
+import com.technologica.registration.deferred.TechnologicaItems;
 import com.technologica.world.entity.projectile.Coconut;
 
 import net.minecraft.client.Minecraft;

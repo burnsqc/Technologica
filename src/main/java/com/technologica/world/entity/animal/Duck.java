@@ -1,6 +1,6 @@
 package com.technologica.world.entity.animal;
 
-import com.technologica.world.entity.TechnologicaEntityType;
+import com.technologica.registration.deferred.TechnologicaEntityTypes;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -73,7 +73,7 @@ public class Duck extends Animal {
 	// Spawning
 	@Override
 	public Duck getBreedOffspring(ServerLevel serverWorldIn, AgeableMob ageableEntityIn) {
-		return TechnologicaEntityType.DUCK.get().create(serverWorldIn);
+		return TechnologicaEntityTypes.DUCK.get().create(serverWorldIn);
 	}
 
 	// Animation

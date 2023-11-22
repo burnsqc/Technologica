@@ -4,9 +4,9 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.technologica.world.entity.TechnologicaEntityType;
-import com.technologica.world.item.TechnologicaItems;
-import com.technologica.world.level.block.TechnologicaBlocks;
+import com.technologica.registration.deferred.TechnologicaBlocks;
+import com.technologica.registration.deferred.TechnologicaEntityTypes;
+import com.technologica.registration.deferred.TechnologicaItems;
 
 import net.minecraft.BlockUtil;
 import net.minecraft.core.BlockPos;
@@ -96,7 +96,7 @@ public class Rocket extends Boat {
 	}
 
 	public Rocket(Level worldIn, double x, double y, double z) {
-		this(TechnologicaEntityType.ROCKET.get(), worldIn);
+		this(TechnologicaEntityTypes.ROCKET.get(), worldIn);
 		this.setPos(x, y, z);
 		this.setDeltaMovement(Vec3.ZERO);
 		this.xo = x;

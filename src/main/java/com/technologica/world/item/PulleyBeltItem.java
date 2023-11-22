@@ -4,9 +4,9 @@ import javax.annotation.Nullable;
 
 import com.technologica.capabilities.ILink;
 import com.technologica.capabilities.LinkProvider;
+import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.util.Radius;
 import com.technologica.world.level.block.LineShaftBlock;
-import com.technologica.world.level.block.TechnologicaBlocks;
 
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.player.Player;

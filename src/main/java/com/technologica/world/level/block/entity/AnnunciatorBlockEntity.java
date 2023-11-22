@@ -6,6 +6,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.technologica.registration.deferred.TechnologicaBlockEntityTypes;
 import com.technologica.util.AnnunciatorOverlay;
 import com.technologica.world.level.block.state.properties.TechnologicaBlockStateProperties;
 
@@ -42,7 +43,7 @@ public class AnnunciatorBlockEntity extends BlockEntity {
 	private final FormattedCharSequence[] renderText = new FormattedCharSequence[8];
 
 	public AnnunciatorBlockEntity(BlockPos p_155700_, BlockState p_155701_) {
-		super(TechnologicaBlockEntityType.ANNUNCIATOR_TILE.get(), p_155700_, p_155701_);
+		super(TechnologicaBlockEntityTypes.ANNUNCIATOR_TILE.get(), p_155700_, p_155701_);
 	}
 
 	private ItemStackHandler createHandler() {
@@ -96,7 +97,7 @@ public class AnnunciatorBlockEntity extends BlockEntity {
 
 	@Override
 	public BlockEntityType<?> getType() {
-		return TechnologicaBlockEntityType.ANNUNCIATOR_TILE.get();
+		return TechnologicaBlockEntityTypes.ANNUNCIATOR_TILE.get();
 	}
 
 	public void setEditable(boolean isEditableIn) {

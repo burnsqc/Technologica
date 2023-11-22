@@ -2,7 +2,7 @@ package com.technologica.world.item;
 
 import java.util.Objects;
 
-import com.technologica.world.entity.TechnologicaEntityType;
+import com.technologica.registration.deferred.TechnologicaEntityTypes;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -49,7 +49,7 @@ public class NavalMineItem extends Item {
 				blockpos1 = blockpos.relative(direction);
 			}
 
-			EntityType<?> entitytype = TechnologicaEntityType.NAVAL_MINE.get();
+			EntityType<?> entitytype = TechnologicaEntityTypes.NAVAL_MINE.get();
 			if (entitytype.spawn((ServerLevel) level, itemstack, p_43223_.getPlayer(), blockpos1, MobSpawnType.SPAWN_EGG, true, !Objects.equals(blockpos, blockpos1) && direction == Direction.UP) != null) {
 				itemstack.shrink(1);
 				level.gameEvent(p_43223_.getPlayer(), GameEvent.ENTITY_PLACE, blockpos);
@@ -73,7 +73,7 @@ public class NavalMineItem extends Item {
 			if (!(worldIn.getBlockState(blockpos).getBlock() instanceof LiquidBlock)) {
 				return InteractionResultHolder.pass(itemstack);
 			} else if (worldIn.mayInteract(playerIn, blockpos) && playerIn.mayUseItemAt(blockpos, blockhitresult.getDirection(), itemstack)) {
-				EntityType<?> entitytype = TechnologicaEntityType.NAVAL_MINE.get();
+				EntityType<?> entitytype = TechnologicaEntityTypes.NAVAL_MINE.get();
 				Entity entity = entitytype.spawn((ServerLevel) worldIn, itemstack, playerIn, blockpos, MobSpawnType.SPAWN_EGG, false, false);
 
 				if (entity == null) {

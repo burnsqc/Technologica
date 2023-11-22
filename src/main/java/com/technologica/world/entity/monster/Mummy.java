@@ -9,8 +9,8 @@ import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
 
-import com.technologica.world.effect.TechnologicaMobEffects;
-import com.technologica.world.entity.TechnologicaEntityType;
+import com.technologica.registration.deferred.TechnologicaEntityTypes;
+import com.technologica.registration.deferred.TechnologicaMobEffects;
 import com.technologica.world.entity.ai.goal.MummyAttackGoal;
 
 import net.minecraft.core.BlockPos;
@@ -98,7 +98,7 @@ public class Mummy extends Zombie {
 	}
 
 	public Mummy(Level p_34274_) {
-		this(TechnologicaEntityType.MUMMY.get(), p_34274_);
+		this(TechnologicaEntityTypes.MUMMY.get(), p_34274_);
 	}
 
 	@Override

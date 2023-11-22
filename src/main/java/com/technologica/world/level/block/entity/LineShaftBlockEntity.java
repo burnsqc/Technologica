@@ -1,5 +1,7 @@
 package com.technologica.world.level.block.entity;
 
+import com.technologica.registration.deferred.TechnologicaBlockEntityTypes;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
@@ -15,7 +17,7 @@ public class LineShaftBlockEntity extends BlockEntity {
 	private float torque = 0;
 
 	public LineShaftBlockEntity(BlockPos p_155700_, BlockState p_155701_) {
-		super(TechnologicaBlockEntityType.LINE_SHAFT_TILE.get(), p_155700_, p_155701_);
+		super(TechnologicaBlockEntityTypes.LINE_SHAFT_TILE.get(), p_155700_, p_155701_);
 	}
 
 	@Override

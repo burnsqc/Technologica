@@ -5,9 +5,9 @@ import static com.technologica.Technologica.LOGGER;
 import com.technologica.client.gui.screens.inventory.AnnunciatorScreen;
 import com.technologica.client.gui.screens.inventory.MonitorScreen;
 import com.technologica.client.gui.screens.inventory.SawmillScreen;
-import com.technologica.world.inventory.TechnologicaMenuType;
+import com.technologica.registration.deferred.TechnologicaFluids;
+import com.technologica.registration.deferred.TechnologicaMenuTypes;
 import com.technologica.world.level.block.state.properties.TechnologicaWoodType;
-import com.technologica.world.level.material.TechnologicaFluids;
 
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -36,9 +36,9 @@ public class ClientSetup {
 	}
 
 	private static void registerMenuScreens() {
-		MenuScreens.register(TechnologicaMenuType.ANNUNCIATOR.get(), AnnunciatorScreen::new);
-		MenuScreens.register(TechnologicaMenuType.MONITOR.get(), MonitorScreen::new);
-		MenuScreens.register(TechnologicaMenuType.SAWMILL.get(), SawmillScreen::new);
+		MenuScreens.register(TechnologicaMenuTypes.ANNUNCIATOR.get(), AnnunciatorScreen::new);
+		MenuScreens.register(TechnologicaMenuTypes.MONITOR.get(), MonitorScreen::new);
+		MenuScreens.register(TechnologicaMenuTypes.SAWMILL.get(), SawmillScreen::new);
 		LOGGER.info("MENU SCREENS REGISTERED: 3 OF 3");
 	}
 

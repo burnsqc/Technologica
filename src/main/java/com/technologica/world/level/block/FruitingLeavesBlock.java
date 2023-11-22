@@ -2,7 +2,7 @@ package com.technologica.world.level.block;
 
 import java.util.function.Supplier;
 
-import com.technologica.world.item.TechnologicaItems;
+import com.technologica.registration.deferred.TechnologicaItems;
 import com.technologica.world.level.block.entity.FruitBlockEntity;
 
 import net.minecraft.core.BlockPos;

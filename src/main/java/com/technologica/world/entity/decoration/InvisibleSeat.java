@@ -1,7 +1,7 @@
 package com.technologica.world.entity.decoration;
 
+import com.technologica.registration.deferred.TechnologicaEntityTypes;
 import com.technologica.util.EntityUtil;
-import com.technologica.world.entity.TechnologicaEntityType;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -22,7 +22,7 @@ public class InvisibleSeat extends Entity {
 	}
 
 	public InvisibleSeat(Level worldIn, double x, double y, double z) {
-		super(TechnologicaEntityType.INVISIBLE_SEAT.get(), worldIn);
+		super(TechnologicaEntityTypes.INVISIBLE_SEAT.get(), worldIn);
 		setPos(x, y, z);
 		noPhysics = true;
 	}

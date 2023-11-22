@@ -1,6 +1,6 @@
 package com.technologica.world.entity.animal;
 
-import com.technologica.world.entity.TechnologicaEntityType;
+import com.technologica.registration.deferred.TechnologicaEntityTypes;
 import com.technologica.world.entity.ai.goal.BegGoal;
 
 import net.minecraft.world.entity.AgeableMob;
@@ -34,7 +34,7 @@ public class Raccoon extends Animal {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob mate) {
-		return TechnologicaEntityType.RACCOON.get().create(world);
+		return TechnologicaEntityTypes.RACCOON.get().create(world);
 	}
 
 	@Override

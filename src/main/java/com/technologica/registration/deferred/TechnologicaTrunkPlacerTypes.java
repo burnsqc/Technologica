@@ -1,0 +1,23 @@
+package com.technologica.registration.deferred;
+
+import com.mojang.serialization.Codec;
+import com.technologica.util.text.TechnologicaLocation;
+import com.technologica.world.level.levelgen.feature.trunkplacers.ThreeWideTrunkPlacer;
+
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
+
+public final class TechnologicaTrunkPlacerTypes {
+
+	public static TrunkPlacerType<ThreeWideTrunkPlacer> THREE_WIDE_TRUNK_PLACER;
+
+	public static void register() {
+		THREE_WIDE_TRUNK_PLACER = register("three_wide_trunk_placer", ThreeWideTrunkPlacer.CODEC);
+	}
+
+	private static <P extends TrunkPlacer> TrunkPlacerType<P> register(String stringIn, Codec<P> codec) {
+		return Registry.register(BuiltInRegistries.TRUNK_PLACER_TYPE, new TechnologicaLocation(stringIn), new TrunkPlacerType<>(codec));
+	}
+}

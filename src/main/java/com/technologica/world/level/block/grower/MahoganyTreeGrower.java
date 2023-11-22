@@ -1,6 +1,6 @@
 package com.technologica.world.level.block.grower;
 
-import com.technologica.datagen.data.worldgen.configuredfeature.TechnologicaTreeFeatures;
+import com.technologica.registration.key.TechnologicaConfiguredFeatures;
 
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.RandomSource;
@@ -10,6 +10,6 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 public class MahoganyTreeGrower extends AbstractTreeGrower {
 	@Override
 	protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(RandomSource randomIn, boolean largeHiveIn) {
-		return TechnologicaTreeFeatures.MAHOGANY;
+		return TechnologicaConfiguredFeatures.MAHOGANY;
 	}
 }

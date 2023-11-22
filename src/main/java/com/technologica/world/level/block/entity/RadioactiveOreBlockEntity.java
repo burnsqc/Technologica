@@ -2,10 +2,11 @@ package com.technologica.world.level.block.entity;
 
 import java.util.List;
 
-import com.technologica.world.effect.TechnologicaMobEffects;
-import com.technologica.world.entity.TechnologicaEntityType;
+import com.technologica.registration.deferred.TechnologicaBlockEntityTypes;
+import com.technologica.registration.deferred.TechnologicaEntityTypes;
+import com.technologica.registration.deferred.TechnologicaItems;
+import com.technologica.registration.deferred.TechnologicaMobEffects;
 import com.technologica.world.entity.monster.AtomicCreeper;
-import com.technologica.world.item.TechnologicaItems;
 import com.technologica.world.level.block.RadioactiveOreBlock;
 
 import net.minecraft.core.BlockPos;
@@ -25,7 +26,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class RadioactiveOreBlockEntity extends BlockEntity {
 
 	public RadioactiveOreBlockEntity(BlockPos p_155700_, BlockState p_155701_) {
-		super(TechnologicaBlockEntityType.RADIOACTIVE_ORE_BLOCK_ENTITY.get(), p_155700_, p_155701_);
+		super(TechnologicaBlockEntityTypes.RADIOACTIVE_ORE_BLOCK_ENTITY.get(), p_155700_, p_155701_);
 	}
 
 	public void serverTick(Level level, BlockState blockStateIn) {
@@ -45,7 +46,7 @@ public class RadioactiveOreBlockEntity extends BlockEntity {
 			for (LivingEntity livingentity : list) {
 				if (!(livingentity instanceof AtomicCreeper)) {
 					if (livingentity instanceof Creeper) {
-						AtomicCreeper atomicCreeper = new AtomicCreeper(TechnologicaEntityType.ATOMIC_CREEPER.get(), p_221914_);
+						AtomicCreeper atomicCreeper = new AtomicCreeper(TechnologicaEntityTypes.ATOMIC_CREEPER.get(), p_221914_);
 						atomicCreeper.moveTo(livingentity.getX(), livingentity.getY(), livingentity.getZ());
 						livingentity.setRemoved(Entity.RemovalReason.DISCARDED);
 						p_221914_.addFreshEntity(atomicCreeper);

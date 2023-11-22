@@ -11,6 +11,7 @@ import org.joml.Vector3f;
 
 import com.google.common.collect.Lists;
 import com.technologica.client.renderer.blockentity.SpearGunRenderer;
+import com.technologica.registration.deferred.TechnologicaItems;
 import com.technologica.world.entity.projectile.Harpoon;
 
 import net.minecraft.advancements.CriteriaTriggers;
