@@ -33,7 +33,7 @@ import com.technologica.registration.deferred.TechnologicaEntityTypes;
 import com.technologica.registration.deferred.TechnologicaFeatures;
 import com.technologica.registration.deferred.TechnologicaFluidTypes;
 import com.technologica.registration.deferred.TechnologicaFluids;
-import com.technologica.registration.deferred.TechnologicaFoliagePlacers;
+import com.technologica.registration.deferred.TechnologicaFoliagePlacerTypes;
 import com.technologica.registration.deferred.TechnologicaGlobalLootModifierSerializers;
 import com.technologica.registration.deferred.TechnologicaItems;
 import com.technologica.registration.deferred.TechnologicaMenuTypes;
@@ -43,6 +43,7 @@ import com.technologica.registration.deferred.TechnologicaRecipeSerializers;
 import com.technologica.registration.deferred.TechnologicaRecipeTypes;
 import com.technologica.registration.deferred.TechnologicaSoundEvents;
 import com.technologica.registration.deferred.TechnologicaStructureTypes;
+import com.technologica.registration.deferred.TechnologicaTrunkPlacerTypes;
 import com.technologica.setup.ClientInit;
 import com.technologica.setup.Config;
 import com.technologica.util.DisablePlankConditionFactory;
@@ -89,6 +90,7 @@ public class Technologica {
 	public static int fluidTypes;
 	public static int globalLootModifierTypes;
 	public static int structureTypes;
+	public static int trunkPlacerTypes;
 
 	public Technologica() {
 		LOGGER.info("TECHNOLOGICA NOW LOADING FOR DIST " + FMLEnvironment.dist.toString());
@@ -147,8 +149,11 @@ public class Technologica {
 		features = TechnologicaFeatures.init();
 		LOGGER.info("INITIALIZATION - FEATURES - " + features);
 
-		foliagePlacerTypes = TechnologicaFoliagePlacers.init();
-		LOGGER.info("INITIALIZATION - FOLIAGE PLACERS - " + foliagePlacerTypes);
+		foliagePlacerTypes = TechnologicaFoliagePlacerTypes.init();
+		LOGGER.info("INITIALIZATION - FOLIAGE PLACER TYPES - " + foliagePlacerTypes);
+		
+		trunkPlacerTypes = TechnologicaTrunkPlacerTypes.init();
+		LOGGER.info("INITIALIZATION - TRUNK PLACER TYPES - " + trunkPlacerTypes);
 
 		creativeModeTabs = TechnologicaCreativeModeTabs.init();
 		LOGGER.info("INITIALIZATION - CREATIVE MODE TABS - " + creativeModeTabs);

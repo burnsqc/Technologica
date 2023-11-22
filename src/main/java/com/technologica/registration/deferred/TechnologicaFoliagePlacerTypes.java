@@ -12,7 +12,7 @@ import com.technologica.world.level.levelgen.feature.foliageplacers.TeardropFoli
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 import net.minecraftforge.registries.RegistryObject;
 
-public final class TechnologicaFoliagePlacers extends MasterDeferredRegistrar {
+public final class TechnologicaFoliagePlacerTypes extends MasterDeferredRegistrar {
 	
 	public static int init() {
 		FOLIAGE_PLACER_TYPES.register(Technologica.MOD_EVENT_BUS);

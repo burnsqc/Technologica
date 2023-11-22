@@ -2,7 +2,7 @@ package com.technologica.world.level.levelgen.feature.foliageplacers;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.technologica.registration.deferred.TechnologicaFoliagePlacers;
+import com.technologica.registration.deferred.TechnologicaFoliagePlacerTypes;
 
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.IntProvider;
@@ -22,7 +22,7 @@ public class ConicalFoliagePlacer extends FoliagePlacer {
 
 	@Override
 	protected FoliagePlacerType<?> type() {
-		return TechnologicaFoliagePlacers.CONICAL.get();
+		return TechnologicaFoliagePlacerTypes.CONICAL.get();
 	}
 
 	@Override

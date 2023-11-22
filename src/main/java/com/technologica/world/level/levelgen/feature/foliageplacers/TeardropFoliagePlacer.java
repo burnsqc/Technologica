@@ -5,7 +5,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.mojang.serialization.codecs.RecordCodecBuilder.Instance;
 import com.mojang.serialization.codecs.RecordCodecBuilder.Mu;
-import com.technologica.registration.deferred.TechnologicaFoliagePlacers;
+import com.technologica.registration.deferred.TechnologicaFoliagePlacerTypes;
 
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.IntProvider;
@@ -32,7 +32,7 @@ public class TeardropFoliagePlacer extends FoliagePlacer {
 
 	@Override
 	protected FoliagePlacerType<?> type() {
-		return TechnologicaFoliagePlacers.TEARDROP.get();
+		return TechnologicaFoliagePlacerTypes.TEARDROP.get();
 	}
 
 	@Override

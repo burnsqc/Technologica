@@ -1,23 +1,18 @@
 package com.technologica.registration.deferred;
 
-import com.mojang.serialization.Codec;
-import com.technologica.util.text.TechnologicaLocation;
-import com.technologica.world.level.levelgen.feature.trunkplacers.ThreeWideTrunkPlacer;
+import com.technologica.Technologica;
+import com.technologica.registration.deferred.util.MasterDeferredRegistrar;
+import com.technologica.world.level.levelgen.feature.trunkplacers.HugeTrunkPlacer;
 
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
+import net.minecraftforge.registries.RegistryObject;
 
-public final class TechnologicaTrunkPlacerTypes {
+public final class TechnologicaTrunkPlacerTypes extends MasterDeferredRegistrar {
 
-	public static TrunkPlacerType<ThreeWideTrunkPlacer> THREE_WIDE_TRUNK_PLACER;
-
-	public static void register() {
-		THREE_WIDE_TRUNK_PLACER = register("three_wide_trunk_placer", ThreeWideTrunkPlacer.CODEC);
+	public static int init() {
+		TRUNK_PLACER_TYPES.register(Technologica.MOD_EVENT_BUS);
+		return TRUNK_PLACER_TYPES.getEntries().size();
 	}
-
-	private static <P extends TrunkPlacer> TrunkPlacerType<P> register(String stringIn, Codec<P> codec) {
-		return Registry.register(BuiltInRegistries.TRUNK_PLACER_TYPE, new TechnologicaLocation(stringIn), new TrunkPlacerType<>(codec));
-	}
+	
+	public static final RegistryObject<TrunkPlacerType<?>> HUGE_TRUNK_PLACER = TRUNK_PLACER_TYPES.register("huge", () -> new TrunkPlacerType<>(HugeTrunkPlacer.CODEC));;
 }

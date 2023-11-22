@@ -89,7 +89,13 @@ public class Register {
 			}).count();
 			LOGGER.info("REGISTRATION - FOLIAGE PLACER TYPES - " + count + " OF " + Technologica.foliagePlacerTypes);
 
-		} else if (event.getRegistryKey() == Registries.CREATIVE_MODE_TAB) {
+		} else if (event.getRegistryKey() == Registries.TRUNK_PLACER_TYPE) {
+			long count = BuiltInRegistries.TRUNK_PLACER_TYPE.entrySet().stream().filter((entry) -> {
+				return entry.getKey().location().getNamespace() == Technologica.MOD_ID;
+			}).count();
+			LOGGER.info("REGISTRATION - TRUNK PLACER TYPES - " + count + " OF " + Technologica.trunkPlacerTypes);
+
+		}else if (event.getRegistryKey() == Registries.CREATIVE_MODE_TAB) {
 			long count = BuiltInRegistries.CREATIVE_MODE_TAB.entrySet().stream().filter((entry) -> {
 				return entry.getKey().location().getNamespace() == Technologica.MOD_ID;
 			}).count();

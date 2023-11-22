@@ -11,7 +11,6 @@ import com.technologica.registration.deferred.TechnologicaTrunkPlacerTypes;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.LevelSimulatedRW;
 import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
@@ -19,21 +18,22 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.GiantTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 
-public class ThreeWideTrunkPlacer extends GiantTrunkPlacer {
-	public static final Codec<ThreeWideTrunkPlacer> CODEC = RecordCodecBuilder.create((p_236902_0_) -> {
-		return trunkPlacerParts(p_236902_0_).apply(p_236902_0_, ThreeWideTrunkPlacer::new);
+public class HugeTrunkPlacer extends GiantTrunkPlacer {
+	public static final Codec<HugeTrunkPlacer> CODEC = RecordCodecBuilder.create((p_236902_0_) -> {
+		return trunkPlacerParts(p_236902_0_).apply(p_236902_0_, HugeTrunkPlacer::new);
 	});
 
-	public ThreeWideTrunkPlacer(int baseHeight, int heightRandA, int heightRandB) {
+	public HugeTrunkPlacer(int baseHeight, int heightRandA, int heightRandB) {
 		super(baseHeight, heightRandA, heightRandB);
 	}
 
 	@Override
 	protected TrunkPlacerType<?> type() {
-		return TechnologicaTrunkPlacerTypes.THREE_WIDE_TRUNK_PLACER;
+		return TechnologicaTrunkPlacerTypes.HUGE_TRUNK_PLACER.get();
 	}
 
-	public List<FoliagePlacer.FoliageAttachment> placeTrunk(LevelSimulatedRW p_161835_, BiConsumer<BlockPos, BlockState> p_161836_, RandomSource rand, int treeHeight, BlockPos p_230382_4_, TreeConfiguration p_161840_) {
+	@Override
+	public List<FoliagePlacer.FoliageAttachment> placeTrunk(LevelSimulatedReader p_161835_, BiConsumer<BlockPos, BlockState> p_161836_, RandomSource rand, int treeHeight, BlockPos p_230382_4_, TreeConfiguration p_161840_) {
 		List<FoliagePlacer.FoliageAttachment> list = Lists.newArrayList();
 		BlockPos blockpos = p_230382_4_.below();
 		setDirtAt(p_161835_, p_161836_, rand, blockpos.east(), p_161840_);
