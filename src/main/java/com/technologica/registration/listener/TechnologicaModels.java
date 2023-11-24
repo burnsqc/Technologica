@@ -1,7 +1,6 @@
-package com.technologica.listeners.modbus;
+package com.technologica.registration.listener;
 
-import static com.technologica.Technologica.LOGGER;
-
+import com.technologica.Technologica;
 import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraftforge.client.event.ModelEvent;
@@ -14,8 +13,7 @@ import net.minecraftforge.client.event.ModelEvent;
  * 
  * @tl.status YELLOW
  */
-
-public class RegisterModels {
+public final class TechnologicaModels {
 
 	public static void onRegisterAdditional(final ModelEvent.RegisterAdditional event) {
 		event.register(new TechnologicaLocation("item/technetium_ingot_base"));
@@ -57,6 +55,6 @@ public class RegisterModels {
 		/**
 		 * TODO: Determine how to count how many Technologica Models actually got registered and replace the hard-coded value in the logger message.
 		 */
-		LOGGER.info("MODELS REGISTERED: 36 OF 36");
+		Technologica.LOGGER.info("MODELS REGISTERED: 36 OF 36");
 	}
 }

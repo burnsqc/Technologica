@@ -4,7 +4,7 @@ import com.technologica.resourcegen.assets.SoundsDataGenerator;
 import com.technologica.resourcegen.assets.blockstates.BlockStateDataGenerator;
 import com.technologica.resourcegen.assets.lang.LanguageDataGenerator;
 import com.technologica.resourcegen.assets.models.items.ItemModelDataGenerator;
-import com.technologica.resourcegen.assets.particles.ParticleDataGenerator;
+import com.technologica.resourcegen.assets.particles.ParticleProvider;
 import com.technologica.resourcegen.data.advancements.AdvancementDataGenerator;
 import com.technologica.resourcegen.data.damagetype.DamageTypeProvider;
 import com.technologica.resourcegen.data.lootmodifiers.blocks.BlockLootModifierDataGenerator;
@@ -43,7 +43,7 @@ public class GatherData extends MasterResourceProvider {
 		BlockStateDataGenerator blockStateProvider = new BlockStateDataGenerator(packOutput, helper);
 		LanguageDataGenerator languageProvider = new LanguageDataGenerator(packOutput);
 		ItemModelDataGenerator itemModelProvider = new ItemModelDataGenerator(packOutput, helper);
-		ParticleDataGenerator particleProvider = new ParticleDataGenerator(packOutput, helper);
+		ParticleProvider particleProvider = new ParticleProvider(packOutput, helper);
 		SoundsDataGenerator soundProvider = new SoundsDataGenerator(packOutput, helper);
 		
 		//addAssetProvider(atlasProvider);

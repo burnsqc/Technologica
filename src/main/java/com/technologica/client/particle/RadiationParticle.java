@@ -2,14 +2,13 @@ package com.technologica.client.particle;
 
 import java.util.List;
 
-import com.technologica.core.particles.FlyingRadiationParticleData;
-
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.particle.TextureSheetParticle;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
@@ -88,11 +87,11 @@ public class RadiationParticle extends TextureSheetParticle {
 	}
 
 	static class Flying extends RadiationParticle {
-		protected final FlyingRadiationParticleData particleData;
+		protected final SimpleParticleType particleData;
 
-		private Flying(ClientLevel world, double x, double y, double z, Fluid fluid, FlyingRadiationParticleData particleData) {
+		private Flying(ClientLevel world, double x, double y, double z, Fluid fluid, SimpleParticleType typeIn) {
 			super(world, x, y, z, fluid);
-			this.particleData = particleData;
+			this.particleData = typeIn;
 		}
 
 		@Override
@@ -115,7 +114,7 @@ public class RadiationParticle extends TextureSheetParticle {
 		}
 	}
 
-	public static class FlyingFactory implements ParticleProvider<FlyingRadiationParticleData> {
+	public static class FlyingFactory implements ParticleProvider<SimpleParticleType> {
 		protected final SpriteSet spriteSet;
 
 		public FlyingFactory(SpriteSet spriteSet) {
@@ -123,14 +122,14 @@ public class RadiationParticle extends TextureSheetParticle {
 		}
 
 		@Override
-		public Particle createParticle(FlyingRadiationParticleData typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+		public Particle createParticle(SimpleParticleType typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
 			RadiationParticle dripparticle = new RadiationParticle.Flying(worldIn, x, y, z, Fluids.EMPTY, typeIn);
 			dripparticle.gravity = 0.00F;
 			dripparticle.xd = xSpeed;
 			dripparticle.yd = ySpeed;
 			dripparticle.zd = zSpeed;
 			dripparticle.setAlpha(0.25F);
-			dripparticle.setColor(typeIn.getRed(), typeIn.getGreen(), typeIn.getBlue());
+			dripparticle.setColor(0.0F, 0.75F, 1.0F);
 			dripparticle.pickSprite(this.spriteSet);
 			return dripparticle;
 		}

@@ -9,8 +9,8 @@ import javax.annotation.Nullable;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
-import com.technologica.core.particles.DrippingLiquidParticleData;
 import com.technologica.registration.deferred.TechnologicaFluids;
+import com.technologica.registration.deferred.TechnologicaParticleTypes;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -130,9 +130,9 @@ public class TreeTapBlock extends FourDirectionBlock {
 			}
 
 			if (ForgeRegistries.BLOCKS.getKey(logState.getBlock()).getPath().contains("maple")) {
-				levelIn.addParticle(DrippingLiquidParticleData.MAPLE_SYRUP, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+				levelIn.addParticle(TechnologicaParticleTypes.DRIPPING_MAPLE_SYRUP.get(), d0, d1, d2, 0.0D, 0.0D, 0.0D);
 			} else {
-				levelIn.addParticle(DrippingLiquidParticleData.RUBBER_RESIN, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+				levelIn.addParticle(TechnologicaParticleTypes.DRIPPING_RUBBER_RESIN.get(), d0, d1, d2, 0.0D, 0.0D, 0.0D);
 			}
 
 			dripping = false;

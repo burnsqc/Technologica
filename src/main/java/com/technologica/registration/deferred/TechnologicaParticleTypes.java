@@ -1,17 +1,9 @@
 package com.technologica.registration.deferred;
 
-import java.util.function.Function;
-
-import com.mojang.serialization.Codec;
 import com.technologica.Technologica;
-import com.technologica.core.particles.DrippingLiquidParticleData;
-import com.technologica.core.particles.FallingLiquidParticleData;
-import com.technologica.core.particles.FlyingRadiationParticleData;
-import com.technologica.core.particles.LandingLiquidParticleData;
 import com.technologica.registration.deferred.util.MasterDeferredRegistrar;
 
-import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.core.particles.ParticleType;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraftforge.registries.RegistryObject;
 
 /**
@@ -20,7 +12,7 @@ import net.minecraftforge.registries.RegistryObject;
  * The {@link #init} method is called by {@link Technologica#initDeferredRegisters} and returns a head-count to later be checked during registration and other setup activities.
  * </p>
  * 
- * @tl.status YELLOW
+ * @tl.status GREEN
  */
 public final class TechnologicaParticleTypes extends MasterDeferredRegistrar {
 	
@@ -29,26 +21,32 @@ public final class TechnologicaParticleTypes extends MasterDeferredRegistrar {
 		return PARTICLE_TYPES.getEntries().size();
 	}
 
-	public static final RegistryObject<ParticleType<DrippingLiquidParticleData>> DRIPPING_FLUID = PARTICLE_TYPES.register("dripping_fluid", () -> create(DrippingLiquidParticleData.DESERIALIZER, (drippingLiquidParticleData) -> {
-		return DrippingLiquidParticleData.CODEC;
-	}));
-	public static final RegistryObject<ParticleType<FallingLiquidParticleData>> FALLING_FLUID = PARTICLE_TYPES.register("falling_fluid", () -> create(FallingLiquidParticleData.DESERIALIZER, (fallingLiquidParticleData) -> {
-		return FallingLiquidParticleData.CODEC;
-	}));
-	public static final RegistryObject<ParticleType<LandingLiquidParticleData>> LANDING_FLUID = PARTICLE_TYPES.register("landing_fluid", () -> create(LandingLiquidParticleData.DESERIALIZER, (landingLiquidParticleData) -> {
-		return LandingLiquidParticleData.CODEC;
-	}));
-	public static final RegistryObject<ParticleType<FlyingRadiationParticleData>> FLYING_RADIATION = PARTICLE_TYPES.register("flying_radiation", () -> create(FlyingRadiationParticleData.DESERIALIZER, (flyingRadiationParticleData) -> {
-		return FlyingRadiationParticleData.CODEC;
-	}));
-	//TODO: Really need to get rid of the call to {@link ParticleOptions.Deserializer} before the rug gets pulled out from under me.  Maybe just clone it to my own interface.
-	@SuppressWarnings("deprecation")
-	private static <T extends ParticleOptions> ParticleType<T> create(ParticleOptions.Deserializer<T> deserializer, final Function<ParticleType<T>, Codec<T>> p_218416_2_) {
-		return new ParticleType<T>(false, deserializer) {
-			@Override
-			public Codec<T> codec() {
-				return p_218416_2_.apply(this);
-			}
-		};
-	}
+	public static final RegistryObject<SimpleParticleType> DRIPPING_BRINE = PARTICLE_TYPES.register("dripping_brine", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> FALLING_BRINE = PARTICLE_TYPES.register("falling_brine", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> SPLASHING_BRINE = PARTICLE_TYPES.register("splashing_brine", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> DRIPPING_BROMINE = PARTICLE_TYPES.register("dripping_bromine", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> FALLING_BROMINE = PARTICLE_TYPES.register("falling_bromine", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> SPLASHING_BROMINE = PARTICLE_TYPES.register("splashing_bromine", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> DRIPPING_COOLANT = PARTICLE_TYPES.register("dripping_coolant", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> FALLING_COOLANT = PARTICLE_TYPES.register("falling_coolant", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> SPLASHING_COOLANT = PARTICLE_TYPES.register("splashing_coolant", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> DRIPPING_GASOLINE = PARTICLE_TYPES.register("dripping_gasoline", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> FALLING_GASOLINE = PARTICLE_TYPES.register("falling_gasoline", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> SPLASHING_GASOLINE = PARTICLE_TYPES.register("splashing_gasoline", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> DRIPPING_MACHINE_OIL = PARTICLE_TYPES.register("dripping_machine_oil", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> FALLING_MACHINE_OIL = PARTICLE_TYPES.register("falling_machine_oil", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> SPLASHING_MACHINE_OIL = PARTICLE_TYPES.register("splashing_machine_oil", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> DRIPPING_MAPLE_SYRUP = PARTICLE_TYPES.register("dripping_maple_syrup", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> FALLING_MAPLE_SYRUP = PARTICLE_TYPES.register("falling_maple_syrup", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> STICKING_MAPLE_SYRUP = PARTICLE_TYPES.register("sticking_maple_syrup", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> DRIPPING_MERCURY = PARTICLE_TYPES.register("dripping_mercury", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> FALLING_MERCURY = PARTICLE_TYPES.register("falling_mercury", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> SPLASHING_MERCURY = PARTICLE_TYPES.register("splashing_mercury", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> DRIPPING_OIL = PARTICLE_TYPES.register("dripping_oil", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> FALLING_OIL = PARTICLE_TYPES.register("falling_oil", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> STICKING_OIL = PARTICLE_TYPES.register("sticking_oil", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> DRIPPING_RUBBER_RESIN = PARTICLE_TYPES.register("dripping_rubber_resin", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> FALLING_RUBBER_RESIN = PARTICLE_TYPES.register("falling_rubber_resin", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> STICKING_RUBBER_RESIN = PARTICLE_TYPES.register("sticking_rubber_resin", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> FLYING_RADIATION = PARTICLE_TYPES.register("flying_radiation", () -> new SimpleParticleType(false));
 }

@@ -1,7 +1,6 @@
-package com.technologica.listeners.modbus;
+package com.technologica.registration.listener;
 
-import static com.technologica.Technologica.LOGGER;
-
+import com.technologica.Technologica;
 import com.technologica.client.renderer.blockentity.AnnunciatorRenderer;
 import com.technologica.client.renderer.blockentity.DisplayCaseRenderer;
 import com.technologica.client.renderer.blockentity.FruitRenderer;
@@ -74,8 +73,7 @@ import net.minecraftforge.client.event.EntityRenderersEvent.RegisterRenderers;
  * 
  * @tl.status YELLOW
  */
-
-public class RegisterEntityRenderers {
+public final class TechnologicaEntityRenderers {
 
 	public static void onRegisterRenderers(final RegisterRenderers event) {
 		event.registerEntityRenderer(TechnologicaEntityTypes.MOD_BOAT.get(), VanillaBoatRenderer::new);
@@ -134,7 +132,7 @@ public class RegisterEntityRenderers {
 		/**
 		 * TODO: Determine how to count how many Technologica Entity Renderers actually got registered and replace the hard-coded value in the logger message. Trying to avoid Access Transformers, but could open up private final Map {@link EntityRenderers} PROVIDERS.
 		 */
-		LOGGER.info("ENTITY RENDERERS REGISTERED: 49 OF 49");
+		Technologica.LOGGER.info("ENTITY RENDERERS REGISTERED: 49 OF 49");
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.ANNUNCIATOR_TILE.get(), AnnunciatorRenderer::new);
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.MONITOR_TILE.get(), MonitorRenderer::new);
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.VANILLA_SIGN.get(), SignRenderer::new);
@@ -149,6 +147,6 @@ public class RegisterEntityRenderers {
 		/**
 		 * TODO: Determine how to count how many Technologica Block Entity Renderers actually got registered and replace the hard-coded value in the logger message. Trying to avoid Access Transformers, but could open up private final Map {@link BlockEntityRenderers} PROVIDERS.
 		 */
-		LOGGER.info("BLOCK ENTITY RENDERERS REGISTERED: 11 OF 11");
+		Technologica.LOGGER.info("BLOCK ENTITY RENDERERS REGISTERED: 11 OF 11");
 	}
 }

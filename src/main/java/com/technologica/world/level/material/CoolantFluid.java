@@ -4,11 +4,11 @@ import java.util.Optional;
 
 import javax.annotation.Nullable;
 
-import com.technologica.core.particles.DrippingLiquidParticleData;
 import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.registration.deferred.TechnologicaFluidTypes;
 import com.technologica.registration.deferred.TechnologicaFluids;
 import com.technologica.registration.deferred.TechnologicaItems;
+import com.technologica.registration.deferred.TechnologicaParticleTypes;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -66,7 +66,7 @@ public abstract class CoolantFluid extends FlowingFluid {
 	@Override
 	@Nullable
 	public ParticleOptions getDripParticle() {
-		return DrippingLiquidParticleData.COOLANT;
+		return TechnologicaParticleTypes.DRIPPING_COOLANT.get();
 	}
 
 	@Override

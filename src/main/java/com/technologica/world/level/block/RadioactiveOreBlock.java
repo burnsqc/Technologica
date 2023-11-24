@@ -4,7 +4,7 @@ import java.util.function.ToIntFunction;
 
 import javax.annotation.Nullable;
 
-import com.technologica.core.particles.FlyingRadiationParticleData;
+import com.technologica.registration.deferred.TechnologicaParticleTypes;
 import com.technologica.world.level.block.entity.RadioactiveOreBlockEntity;
 
 import net.minecraft.core.BlockPos;
@@ -124,7 +124,7 @@ public class RadioactiveOreBlock extends BaseEntityBlock {
 				double d1 = direction$axis == Direction.Axis.X ? 0.5D + 0.5625D * direction.getStepX() : (double) randomsource.nextFloat();
 				double d2 = direction$axis == Direction.Axis.Y ? 0.5D + 0.5625D * direction.getStepY() : (double) randomsource.nextFloat();
 				double d3 = direction$axis == Direction.Axis.Z ? 0.5D + 0.5625D * direction.getStepZ() : (double) randomsource.nextFloat();
-				p_55455_.addParticle(FlyingRadiationParticleData.RADIATION, p_55456_.getX() + d1, p_55456_.getY() + d2, p_55456_.getZ() + d3, 0.5D * (d1 - 0.5D), 0.5D * (d2 - 0.5D), 0.5D * (d3 - 0.5D));
+				p_55455_.addParticle(TechnologicaParticleTypes.FLYING_RADIATION.get(), p_55456_.getX() + d1, p_55456_.getY() + d2, p_55456_.getZ() + d3, 0.5D * (d1 - 0.5D), 0.5D * (d2 - 0.5D), 0.5D * (d3 - 0.5D));
 			}
 		}
 	}

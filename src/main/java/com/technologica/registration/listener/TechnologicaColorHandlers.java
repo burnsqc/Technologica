@@ -1,7 +1,6 @@
-package com.technologica.listeners.modbus;
+package com.technologica.registration.listener;
 
-import static com.technologica.Technologica.LOGGER;
-
+import com.technologica.Technologica;
 import com.technologica.registration.deferred.TechnologicaBlocks;
 
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
@@ -14,8 +13,7 @@ import net.minecraftforge.client.event.RegisterColorHandlersEvent;
  * 
  * @status YELLOW
  */
-
-public class RegisterColorHandlers {
+public final class TechnologicaColorHandlers {
 
 	public static void onRegisterColorHandlersBlock(final RegisterColorHandlersEvent.Block event) {
 		
@@ -28,7 +26,6 @@ public class RegisterColorHandlers {
 		/**
 		 * TODO: Determine how to count how many Technologica Block Color Handlers actually got registered and replace the hard-coded value in the logger message.
 		 */
-		LOGGER.info("BLOCK COLOR HANDLERS REGISTERED: 2 OF 2");
-		
+		Technologica.LOGGER.info("BLOCK COLOR HANDLERS REGISTERED: 2 OF 2");
 	}
 }
