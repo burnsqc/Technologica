@@ -7,7 +7,7 @@ import com.technologica.resourcegen.data.damagetype.DamageTypeProvider;
 import com.technologica.resourcegen.data.dimension.DimensionProvider;
 import com.technologica.resourcegen.data.dimensiontype.DimensionTypeProvider;
 import com.technologica.resourcegen.data.worldgen.biome.BiomeProvider;
-import com.technologica.resourcegen.data.worldgen.biome.TechnologicaBiomeModifiers;
+import com.technologica.resourcegen.data.worldgen.biome.BiomeModifierProvider;
 import com.technologica.resourcegen.data.worldgen.configuredfeature.ConfiguredFeatureProvider;
 import com.technologica.resourcegen.data.worldgen.noisesettings.NoiseSettingsProvider;
 import com.technologica.resourcegen.data.worldgen.placedfeature.PlacedFeatureProvider;
@@ -54,7 +54,7 @@ public abstract class MasterResourceProvider {
 			.add(Registries.NOISE_SETTINGS, NoiseSettingsProvider::bootstrap)
 			.add(Registries.LEVEL_STEM, DimensionProvider::bootstrap)
 			.add(Registries.DAMAGE_TYPE, DamageTypeProvider::bootstrap)
-			.add(ForgeRegistries.Keys.BIOME_MODIFIERS, TechnologicaBiomeModifiers::bootstrap);
+			.add(ForgeRegistries.Keys.BIOME_MODIFIERS, BiomeModifierProvider::bootstrap);
 	}
 	
 	protected static void addAssetProvider(DataProvider provider) {

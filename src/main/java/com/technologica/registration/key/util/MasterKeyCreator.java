@@ -17,6 +17,8 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureSet;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
+import net.minecraftforge.common.world.BiomeModifier;
+import net.minecraftforge.registries.ForgeRegistries;
 
 /**
  * <p>
@@ -29,6 +31,10 @@ import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 public abstract class MasterKeyCreator {
 	protected static ResourceKey<Biome> biome(String path) {
 		return ResourceKey.create(Registries.BIOME, new TechnologicaLocation(path));
+	}
+	
+	protected static ResourceKey<BiomeModifier> biomeModifier(String path) {
+		return ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new TechnologicaLocation(path));
 	}
 	
 	protected static ResourceKey<ConfiguredFeature<?, ?>> configuredFeature(String name) {

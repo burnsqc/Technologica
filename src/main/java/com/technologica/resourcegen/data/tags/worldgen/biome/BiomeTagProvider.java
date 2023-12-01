@@ -25,6 +25,6 @@ public final class BiomeTagProvider extends BiomeTagsProvider {
 
 	@Override
 	public String getName() {
-		return "Biome Tags: " + Technologica.MOD_ID;
+		return "Tags - Biomes:" + Technologica.MOD_ID;
 	}
 }

@@ -17,6 +17,7 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 public final class TechnologicaConfiguredFeatures extends MasterKeyCreator {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> BRINE_POOL_CONFIGURED = configuredFeature("brine_pool");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> OASIS_CONFIGURED = configuredFeature("oasis");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> OIL_WELL_CONFIGURED = configuredFeature("oil_well");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_SPODUMENE = configuredFeature("ore_spodumene");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_BORAX = configuredFeature("ore_borax");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_MAGNESITE = configuredFeature("ore_magnesite");

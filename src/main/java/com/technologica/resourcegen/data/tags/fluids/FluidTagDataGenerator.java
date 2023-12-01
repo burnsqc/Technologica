@@ -24,6 +24,6 @@ public class FluidTagDataGenerator extends FluidTagsProvider {
 
 	@Override
 	public String getName() {
-		return "Technologica Fluid Tags";
+		return "Tags - Fluids:" + Technologica.MOD_ID;
 	}
 }

@@ -27,6 +27,6 @@ public class RightClickBlockListener {
 			BlockPos freePos = event.getPos().relative(event.getFace());
 			ItemEntity drop = new ItemEntity(event.getLevel(), freePos.getX() + 0.5f, freePos.getY() + 0.5f, freePos.getZ() + 0.5f, bark);
 			event.getLevel().addFreshEntity(drop);
-		}
+		} 
 	}
 }

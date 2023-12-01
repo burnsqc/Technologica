@@ -71,6 +71,6 @@ public class ItemTagProvider extends ItemTagsProvider {
 
 	@Override
 	public String getName() {
-		return "Technologica Item Tags";
+		return "Tags - Items:" + Technologica.MOD_ID;
 	}
 }

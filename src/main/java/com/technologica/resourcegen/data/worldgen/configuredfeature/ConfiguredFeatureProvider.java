@@ -24,11 +24,15 @@ import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.SweetBerryBushBlock;
+import net.minecraft.world.level.levelgen.GeodeBlockSettings;
+import net.minecraft.world.level.levelgen.GeodeCrackSettings;
+import net.minecraft.world.level.levelgen.GeodeLayerSettings;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.LakeFeature;
 import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.GeodeConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
@@ -109,6 +113,7 @@ public class ConfiguredFeatureProvider {
 		
 		bootstrapContextIn.register(TechnologicaConfiguredFeatures.BRINE_POOL_CONFIGURED, new ConfiguredFeature<>(TechnologicaFeatures.BRINE_POOL.get(), new LakeFeature.Configuration(BlockStateProvider.simple(TechnologicaBlocks.BRINE.get().defaultBlockState()), BlockStateProvider.simple(TechnologicaBlocks.LITHIUM_CLAY.get().defaultBlockState()))));
 		bootstrapContextIn.register(TechnologicaConfiguredFeatures.OASIS_CONFIGURED, new ConfiguredFeature<>(TechnologicaFeatures.OASIS.get(), new BlockStateConfiguration(Blocks.WATER.defaultBlockState())));
+		bootstrapContextIn.register(TechnologicaConfiguredFeatures.OIL_WELL_CONFIGURED, new ConfiguredFeature<>(TechnologicaFeatures.OIL_WELL.get(), new GeodeConfiguration(new GeodeBlockSettings(BlockStateProvider.simple(TechnologicaBlocks.OIL.get()), BlockStateProvider.simple(TechnologicaBlocks.OIL.get()), BlockStateProvider.simple(TechnologicaBlocks.OIL.get()), BlockStateProvider.simple(TechnologicaBlocks.OIL.get()), BlockStateProvider.simple(TechnologicaBlocks.OIL.get()), List.of(Blocks.SMALL_AMETHYST_BUD.defaultBlockState(), Blocks.MEDIUM_AMETHYST_BUD.defaultBlockState(), Blocks.LARGE_AMETHYST_BUD.defaultBlockState(), Blocks.AMETHYST_CLUSTER.defaultBlockState()), BlockTags.FEATURES_CANNOT_REPLACE, BlockTags.GEODE_INVALID_BLOCKS), new GeodeLayerSettings(1.7D, 2.2D, 3.2D, 4.2D), new GeodeCrackSettings(0.95D, 2.0D, 2), 0.35D, 0.083D, true, UniformInt.of(4, 6), UniformInt.of(3, 4), UniformInt.of(1, 2), -16, 16, 0.05D, 1)));
 		
 		/*
 		 * ORE

@@ -35,6 +35,7 @@ public class PlacedFeatureProvider {
 		
 		Holder<ConfiguredFeature<?, ?>> brinePool = configuredFeatures.getOrThrow(TechnologicaConfiguredFeatures.BRINE_POOL_CONFIGURED);
 		Holder<ConfiguredFeature<?, ?>> oasis = configuredFeatures.getOrThrow(TechnologicaConfiguredFeatures.OASIS_CONFIGURED);
+		Holder<ConfiguredFeature<?, ?>> oil_well = configuredFeatures.getOrThrow(TechnologicaConfiguredFeatures.OIL_WELL_CONFIGURED);
 		
 		Holder<ConfiguredFeature<?, ?>> oreSpodumene = configuredFeatures.getOrThrow(TechnologicaConfiguredFeatures.ORE_SPODUMENE);
 		Holder<ConfiguredFeature<?, ?>> oreBorax = configuredFeatures.getOrThrow(TechnologicaConfiguredFeatures.ORE_BORAX);
@@ -131,6 +132,7 @@ public class PlacedFeatureProvider {
 		
 		bootstrapContextIn.register(TechnologicaPlacedFeatures.BRINE_POOL_PLACED, new PlacedFeature(brinePool, List.of(RarityFilter.onAverageOnceEvery(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
 		bootstrapContextIn.register(TechnologicaPlacedFeatures.OASIS_PLACED, new PlacedFeature(oasis, List.of(RarityFilter.onAverageOnceEvery(200), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(192)), BiomeFilter.biome())));
+		bootstrapContextIn.register(TechnologicaPlacedFeatures.OIL_WELL_PLACED, new PlacedFeature(oil_well, List.of(RarityFilter.onAverageOnceEvery(50), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(6), VerticalAnchor.absolute(30)), BiomeFilter.biome())));
 		// bootstrapContextIn.register(PATCH_BLACKBERRY_BUSH_VILLAGE, new PlacedFeature(context.lookup(Registries.CONFIGURED_FEATURE).getOrThrow(PATCH_BLACKBERRY_BUSH), null));
 		// bootstrapContextIn.register(PATCH_BLUEBERRY_BUSH_VILLAGE, new PlacedFeature(context.lookup(Registries.CONFIGURED_FEATURE).getOrThrow(PATCH_BLUEBERRY_BUSH)));
 		// bootstrapContextIn.register(PATCH_RASPBERRY_BUSH_VILLAGE, new PlacedFeature(context.lookup(Registries.CONFIGURED_FEATURE).getOrThrow(PATCH_RASPBERRY_BUSH)));

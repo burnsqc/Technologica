@@ -142,6 +142,10 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 
 		simpleBlockItem(TechnologicaBlocks.SALT.get(), cubeAll(TechnologicaBlocks.SALT.get()));
 		simpleBlockItem(TechnologicaBlocks.LITHIUM_CLAY.get(), cubeAll(TechnologicaBlocks.LITHIUM_CLAY.get()));
+		simpleBlockItem(TechnologicaBlocks.OILY_COARSE_DIRT.get(), cubeAll(TechnologicaBlocks.OILY_COARSE_DIRT.get()));
+		simpleBlockItem(TechnologicaBlocks.OILY_GRAVEL.get(), cubeAll(TechnologicaBlocks.OILY_GRAVEL.get()));
+		simpleBlockItem(TechnologicaBlocks.OILY_RED_SAND.get(), cubeAll(TechnologicaBlocks.OILY_RED_SAND.get()));
+		simpleBlockItem(TechnologicaBlocks.OILY_SAND.get(), cubeAll(TechnologicaBlocks.OILY_SAND.get()));
 		simpleBlockItem(TechnologicaBlocks.MOON_ROCK.get(), cubeAll(TechnologicaBlocks.MOON_ROCK.get()));
 		simpleBlockItem(TechnologicaBlocks.MOON_DUST.get(), cubeAll(TechnologicaBlocks.MOON_DUST.get()));
 
@@ -1585,6 +1589,10 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 	private void oreBlocks() {
 		simpleBlock(TechnologicaBlocks.SALT.get());
 		simpleBlock(TechnologicaBlocks.LITHIUM_CLAY.get());
+		simpleBlock(TechnologicaBlocks.OILY_COARSE_DIRT.get());
+		simpleBlock(TechnologicaBlocks.OILY_GRAVEL.get());
+		simpleBlock(TechnologicaBlocks.OILY_RED_SAND.get());
+		simpleBlock(TechnologicaBlocks.OILY_SAND.get());
 		simpleBlock(TechnologicaBlocks.MOON_ROCK.get());
 		simpleBlock(TechnologicaBlocks.MOON_DUST.get());
 		simpleBlock(TechnologicaBlocks.APATITE_ORE.get());

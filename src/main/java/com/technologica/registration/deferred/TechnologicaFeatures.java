@@ -5,10 +5,12 @@ import com.technologica.registration.deferred.util.MasterDeferredRegistrar;
 import com.technologica.world.level.levelgen.feature.CraterFeature;
 import com.technologica.world.level.levelgen.feature.DecoratedOreFeature;
 import com.technologica.world.level.levelgen.feature.OasisFeature;
+import com.technologica.world.level.levelgen.feature.OilWellFeature;
 
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.LakeFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.GeodeConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -31,6 +33,7 @@ public class TechnologicaFeatures extends MasterDeferredRegistrar {
 	//TODO: Really need to get rid of the call to {@link LakeFeature} before the rug gets pulled out from under me.  Maybe just clone it to my own class.
 	public static final RegistryObject<Feature<LakeFeature.Configuration>> BRINE_POOL = FEATURES.register("brine_pool", () -> new LakeFeature(LakeFeature.Configuration.CODEC));
 	public static final RegistryObject<Feature<BlockStateConfiguration>> OASIS = FEATURES.register("oasis", () -> new OasisFeature(BlockStateConfiguration.CODEC));
+	public static final RegistryObject<Feature<GeodeConfiguration>> OIL_WELL = FEATURES.register("oil_well", () -> new OilWellFeature(GeodeConfiguration.CODEC));
 	public static final RegistryObject<Feature<BlockStateConfiguration>> CRATER = FEATURES.register("crater", () -> new CraterFeature(BlockStateConfiguration.CODEC));
 	public static final RegistryObject<Feature<OreConfiguration>> AQUAMARINE_DECORATED_ORE = FEATURES.register("aquamarine_decorated_ore", () -> new DecoratedOreFeature(OreConfiguration.CODEC, TechnologicaBlocks.AQUAMARINE_CRYSTAL));
 	public static final RegistryObject<Feature<OreConfiguration>> CELESTINE_DECORATED_ORE = FEATURES.register("celestine_decorated_ore", () -> new DecoratedOreFeature(OreConfiguration.CODEC, TechnologicaBlocks.CELESTINE_CRYSTAL));

@@ -222,6 +222,10 @@ public class BlockLootDataGenerator extends BlockLootSubProvider {
 
 		dropSelf(TechnologicaBlocks.SALT.get());
 		add(TechnologicaBlocks.LITHIUM_CLAY.get(), (clay) -> createSingleItemTableWithSilkTouch(clay, TechnologicaItems.LITHIUM_CLAY_BALL.get(), ConstantValue.exactly(4)));
+		add(TechnologicaBlocks.OILY_COARSE_DIRT.get(), (clay) -> createSingleItemTableWithSilkTouch(clay, Items.COARSE_DIRT, ConstantValue.exactly(1)));
+		add(TechnologicaBlocks.OILY_GRAVEL.get(), (clay) -> createSingleItemTableWithSilkTouch(clay, Items.GRAVEL, ConstantValue.exactly(1)));
+		add(TechnologicaBlocks.OILY_RED_SAND.get(), (clay) -> createSingleItemTableWithSilkTouch(clay, Items.RED_SAND, ConstantValue.exactly(1)));
+		add(TechnologicaBlocks.OILY_SAND.get(), (clay) -> createSingleItemTableWithSilkTouch(clay, Items.SAND, ConstantValue.exactly(1)));
 
 		dropSelf(TechnologicaBlocks.MOON_ROCK.get());
 		dropSelf(TechnologicaBlocks.MOON_DUST.get());

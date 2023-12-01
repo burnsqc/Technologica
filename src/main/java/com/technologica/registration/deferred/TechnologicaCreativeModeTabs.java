@@ -158,6 +158,10 @@ public final class TechnologicaCreativeModeTabs extends MasterDeferredRegistrar 
 	public static final RegistryObject<CreativeModeTab> MINERAL = CREATIVE_MODE_TABS.register("mineral", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.GERMANIUM_CHUNK.get())).withBackgroundLocation(new TechnologicaLocation("textures/gui/container/creative_inventory/tab_mineral.png")).withLabelColor(0).title(Component.literal("Mineral")).displayItems((p_270425_, items) -> {
 		items.accept(TechnologicaItems.SALT_ITEM.get());
 		items.accept(TechnologicaItems.LITHIUM_CLAY_ITEM.get());
+		items.accept(TechnologicaItems.OILY_COARSE_DIRT_ITEM.get());
+		items.accept(TechnologicaItems.OILY_GRAVEL_ITEM.get());
+		items.accept(TechnologicaItems.OILY_RED_SAND_ITEM.get());
+		items.accept(TechnologicaItems.OILY_SAND_ITEM.get());
 		items.accept(TechnologicaItems.MOON_ROCK_ITEM.get());
 		items.accept(TechnologicaItems.MOON_DUST_ITEM.get());
 		items.accept(TechnologicaItems.APATITE_ORE_ITEM.get());

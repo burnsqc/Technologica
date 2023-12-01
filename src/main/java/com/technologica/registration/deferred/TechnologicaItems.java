@@ -18,6 +18,7 @@ import com.technologica.world.item.LandMineItem;
 import com.technologica.world.item.MiningHelmetItem;
 import com.technologica.world.item.MulchItem;
 import com.technologica.world.item.NavalMineItem;
+import com.technologica.world.item.OilBucketItem;
 import com.technologica.world.item.PipeWrenchItem;
 import com.technologica.world.item.PulleyBeltItem;
 import com.technologica.world.item.RadioactiveItem;
@@ -203,6 +204,10 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> TETRODOTOXIN_SAC = ITEMS.register("tetrodotoxin_sac", () -> new Item(new Item.Properties().food(TechnologicaFoods.TETRODOTOXIN_SAC)));
 	public static final RegistryObject<Item> SALT_ITEM = ITEMS.register("salt", () -> new BlockItem(TechnologicaBlocks.SALT.get(), new Item.Properties()));
 	public static final RegistryObject<Item> LITHIUM_CLAY_ITEM = ITEMS.register("lithium_clay", () -> new BlockItem(TechnologicaBlocks.LITHIUM_CLAY.get(), new Item.Properties()));
+	public static final RegistryObject<Item> OILY_COARSE_DIRT_ITEM = ITEMS.register("oily_coarse_dirt", () -> new BlockItem(TechnologicaBlocks.OILY_COARSE_DIRT.get(), new Item.Properties()));
+	public static final RegistryObject<Item> OILY_GRAVEL_ITEM = ITEMS.register("oily_gravel", () -> new BlockItem(TechnologicaBlocks.OILY_GRAVEL.get(), new Item.Properties()));
+	public static final RegistryObject<Item> OILY_RED_SAND_ITEM = ITEMS.register("oily_red_sand", () -> new BlockItem(TechnologicaBlocks.OILY_RED_SAND.get(), new Item.Properties()));
+	public static final RegistryObject<Item> OILY_SAND_ITEM = ITEMS.register("oily_sand", () -> new BlockItem(TechnologicaBlocks.OILY_SAND.get(), new Item.Properties()));
 	public static final RegistryObject<Item> MOON_ROCK_ITEM = ITEMS.register("moon_rock", () -> new BlockItem(TechnologicaBlocks.MOON_ROCK.get(), new Item.Properties()));
 	public static final RegistryObject<Item> MOON_DUST_ITEM = ITEMS.register("moon_dust", () -> new BlockItem(TechnologicaBlocks.MOON_DUST.get(), new Item.Properties()));
 	public static final RegistryObject<Item> APATITE_ORE_ITEM = ITEMS.register("apatite_ore", () -> new BlockItem(TechnologicaBlocks.APATITE_ORE.get(), new Item.Properties()));
@@ -489,7 +494,7 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> BROMINE_BUCKET = ITEMS.register("bromine_bucket", () -> new BucketItem(TechnologicaFluids.BROMINE, new Properties().stacksTo(1)));
 	public static final RegistryObject<Item> MERCURY_BUCKET = ITEMS.register("mercury_bucket", () -> new BucketItem(TechnologicaFluids.MERCURY, new Properties().stacksTo(1)));
 	public static final RegistryObject<Item> BRINE_BUCKET = ITEMS.register("brine_bucket", () -> new BucketItem(TechnologicaFluids.BRINE, new Properties().stacksTo(1)));
-	public static final RegistryObject<Item> OIL_BUCKET = ITEMS.register("oil_bucket", () -> new BucketItem(TechnologicaFluids.OIL, new Properties().stacksTo(1)));
+	public static final RegistryObject<Item> OIL_BUCKET = ITEMS.register("oil_bucket", () -> new OilBucketItem(TechnologicaFluids.OIL, new Properties().stacksTo(1)));
 	public static final RegistryObject<Item> NATURAL_GAS_BUCKET = ITEMS.register("natural_gas_bucket", () -> new BucketItem(TechnologicaFluids.NATURAL_GAS, new Properties().stacksTo(1)));
 	public static final RegistryObject<Item> MAPLE_SYRUP_BUCKET = ITEMS.register("maple_syrup_bucket", () -> new BucketItem(TechnologicaFluids.MAPLE_SYRUP, new Properties().stacksTo(1)));
 	public static final RegistryObject<Item> RUBBER_RESIN_BUCKET = ITEMS.register("rubber_resin_bucket", () -> new BucketItem(TechnologicaFluids.RUBBER_RESIN, new Properties().stacksTo(1)));
