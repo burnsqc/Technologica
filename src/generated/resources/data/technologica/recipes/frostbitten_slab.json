@@ -25,6 +25,30 @@
         },
         "show_notification": true
       }
+    },
+    {
+      "conditions": [
+        {
+          "type": "technologica:disable_vanilla_plank_crafting"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "category": "building",
+        "group": "wooden_slab",
+        "ingredients": [
+          {
+            "item": "technologica:frostbitten_planks"
+          },
+          {
+            "item": "technologica:saw"
+          }
+        ],
+        "result": {
+          "count": 2,
+          "item": "technologica:frostbitten_slab"
+        }
+      }
     }
   ]
 }

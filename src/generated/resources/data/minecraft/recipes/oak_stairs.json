@@ -27,6 +27,29 @@
         },
         "show_notification": true
       }
+    },
+    {
+      "conditions": [
+        {
+          "type": "technologica:disable_vanilla_plank_crafting"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "category": "building",
+        "group": "wooden_slab",
+        "ingredients": [
+          {
+            "item": "minecraft:oak_planks"
+          },
+          {
+            "item": "technologica:chisel"
+          }
+        ],
+        "result": {
+          "item": "minecraft:oak_stairs"
+        }
+      }
     }
   ]
 }

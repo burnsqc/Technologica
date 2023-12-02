@@ -18,7 +18,7 @@ public final class Config {
 		DISABLE_VANILLA_LOG_HARVESTING = BUILDER.comment("true disables log drops when broken without appropriate tool, false retains vanilla mechanics.").define("Disable Vanilla Log Harvesting", true);
 		DISABLE_VANILLA_PLANK_RECIPES = BUILDER.comment("true replaces all plank recipes with sawmill crafting, false retains vanilla mechanics.").define("Disable Vanilla Plank Recipes", true);
 		NAUGHTY_NAUTICAL_NANNERS = BUILDER.comment("true yields no fish when fishing if the player has bananas in their inventory.").define("Naughty Nautical Nanners", true);
-		NITRO_JOSTLE = BUILDER.comment("true yields no fish when fishing if the player has bananas in their inventory.").define("Naughty Nautical Nanners", true);
+		NITRO_JOSTLE = BUILDER.comment("true yields no fish when fishing if the player has bananas in their inventory.").define("Nitro Jostle", true);
 
 		BUILDER.pop();
 		SPEC = BUILDER.build();

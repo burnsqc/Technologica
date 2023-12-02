@@ -21,7 +21,6 @@ import com.technologica.listeners.forgebus.ServerAboutToStartListener;
 import com.technologica.listeners.forgebus.VillagerTradesEventListener;
 import com.technologica.listeners.forgebus.WandererTradesEventListener;
 import com.technologica.listeners.modbus.CommonSetup;
-import com.technologica.listeners.modbus.CreateEntityAttributes;
 import com.technologica.listeners.modbus.Register;
 import com.technologica.network.packets.ClientboundUpdateAirCapabilityPacket;
 import com.technologica.network.packets.ServerboundUpdateAnnunciatorPacket;
@@ -46,6 +45,7 @@ import com.technologica.registration.deferred.TechnologicaStructureTypes;
 import com.technologica.registration.deferred.TechnologicaTrunkPlacerTypes;
 import com.technologica.setup.ClientInit;
 import com.technologica.setup.Config;
+import com.technologica.setup.listeners.TechnologicaEntityAttributes;
 import com.technologica.util.DisablePlankConditionFactory;
 import com.technologica.util.EnablePlankConditionFactory;
 import com.technologica.util.text.TechnologicaLocation;
@@ -176,7 +176,7 @@ public class Technologica {
 
 	private static void addModEventBusListeners() {
 		Technologica.MOD_EVENT_BUS.addListener(Register::onRegisterEvent);
-		Technologica.MOD_EVENT_BUS.addListener(CreateEntityAttributes::onEntityAttributeCreationEvent);
+		Technologica.MOD_EVENT_BUS.addListener(TechnologicaEntityAttributes::onEntityAttributeCreationEvent);
 		Technologica.MOD_EVENT_BUS.addListener(CommonSetup::onFMLCommonSetupEvent);
 		Technologica.MOD_EVENT_BUS.addListener(TechnologicaCapabilities::register);
 	}

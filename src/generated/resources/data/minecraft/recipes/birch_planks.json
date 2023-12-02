@@ -21,6 +21,29 @@
           "item": "minecraft:birch_planks"
         }
       }
+    },
+    {
+      "conditions": [
+        {
+          "type": "technologica:disable_vanilla_plank_crafting"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "category": "building",
+        "group": "planks",
+        "ingredients": [
+          {
+            "tag": "minecraft:birch_logs"
+          },
+          {
+            "item": "technologica:saw"
+          }
+        ],
+        "result": {
+          "item": "minecraft:birch_planks"
+        }
+      }
     }
   ]
 }
