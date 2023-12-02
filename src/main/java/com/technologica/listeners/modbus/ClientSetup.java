@@ -5,14 +5,17 @@ import static com.technologica.Technologica.LOGGER;
 import com.technologica.client.gui.screens.inventory.AnnunciatorScreen;
 import com.technologica.client.gui.screens.inventory.MonitorScreen;
 import com.technologica.client.gui.screens.inventory.SawmillScreen;
+import com.technologica.client.renderer.block.TechnologicaLiquidBlockRenderer;
 import com.technologica.registration.deferred.TechnologicaFluids;
 import com.technologica.registration.deferred.TechnologicaMenuTypes;
 import com.technologica.world.level.block.state.properties.TechnologicaWoodType;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 /**
@@ -32,6 +35,10 @@ public class ClientSetup {
 		event.enqueueWork(() -> {
 			setTechnologicaFluidRenderTypes();
 			addTechnologicaWoodTypes();
+			
+			Minecraft mc = Minecraft.getInstance();
+			BlockRenderDispatcher blockRenderDispatcher = mc.getBlockRenderer();
+			blockRenderDispatcher.liquidBlockRenderer = new TechnologicaLiquidBlockRenderer(); 
 		});
 	}
 
