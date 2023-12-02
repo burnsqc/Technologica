@@ -256,7 +256,7 @@ public class TechnologicaLiquidBlockRenderer extends LiquidBlockRenderer {
 					double sectionZShimmed1;
 					double sectionXShimmed2;
 					double sectionZShimmed2;
-					boolean flag7;
+					boolean shouldRenderHorizontal;
 
 					switch (direction) {
 					case NORTH:
@@ -266,7 +266,7 @@ public class TechnologicaLiquidBlockRenderer extends LiquidBlockRenderer {
 						sectionXShimmed2 = sectionX + 1.0D;
 						sectionZShimmed1 = sectionZ + 0.001F;
 						sectionZShimmed2 = sectionZ + 0.001F;
-						flag7 = shouldRenderNorth;
+						shouldRenderHorizontal = shouldRenderNorth;
 						break;
 					case SOUTH:
 						heightCorner1 = heightSouthEast;
@@ -275,7 +275,7 @@ public class TechnologicaLiquidBlockRenderer extends LiquidBlockRenderer {
 						sectionXShimmed2 = sectionX;
 						sectionZShimmed1 = sectionZ + 1.0D - 0.001F;
 						sectionZShimmed2 = sectionZ + 1.0D - 0.001F;
-						flag7 = shouldRenderSouth;
+						shouldRenderHorizontal = shouldRenderSouth;
 						break;
 					case WEST:
 						heightCorner1 = heightSouthWest;
@@ -284,7 +284,7 @@ public class TechnologicaLiquidBlockRenderer extends LiquidBlockRenderer {
 						sectionXShimmed2 = sectionX + 0.001F;
 						sectionZShimmed1 = sectionZ + 1.0D;
 						sectionZShimmed2 = sectionZ;
-						flag7 = shouldRenderWest;
+						shouldRenderHorizontal = shouldRenderWest;
 						break;
 					default:
 						heightCorner1 = heightNorthEast;
@@ -293,10 +293,10 @@ public class TechnologicaLiquidBlockRenderer extends LiquidBlockRenderer {
 						sectionXShimmed2 = sectionX + 1.0D - 0.001F;
 						sectionZShimmed1 = sectionZ;
 						sectionZShimmed2 = sectionZ + 1.0D;
-						flag7 = shouldRenderEast;
+						shouldRenderHorizontal = shouldRenderEast;
 					}
 
-					if (flag7 && !isFaceOccludedByNeighbor(blockAndTintGetter, blockPos, direction, Math.max(heightCorner1, heightCorner2), blockAndTintGetter.getBlockState(blockPos.relative(direction)))) {
+					if (shouldRenderHorizontal && !isFaceOccludedByNeighbor(blockAndTintGetter, blockPos, direction, Math.max(heightCorner1, heightCorner2), blockAndTintGetter.getBlockState(blockPos.relative(direction)))) {
 						BlockPos blockpos = blockPos.relative(direction);
 						TextureAtlasSprite textureatlassprite2 = textureAtlasSprites[1];
 
@@ -371,7 +371,7 @@ public class TechnologicaLiquidBlockRenderer extends LiquidBlockRenderer {
 
 	private float getHeight(BlockAndTintGetter blockAndTintGetter, Fluid fluid, BlockPos blockPos, BlockState blockState, FluidState fluidState) {
 		if (fluid.isSame(fluidState.getType())) {
-			BlockState blockstate = blockAndTintGetter.getBlockState(blockPos.above());
+			BlockState blockstate = blockAndTintGetter.getBlockState(blockPos.below());
 			return fluid.isSame(blockstate.getFluidState().getType()) ? 1.0F : fluidState.getOwnHeight();
 		} else {
 			return !blockState.isSolid() ? 0.0F : -1.0F;
