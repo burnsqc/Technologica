@@ -98,6 +98,7 @@ import net.minecraft.world.level.block.StemGrownBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.registries.RegistryObject;
 
 /**
@@ -109,7 +110,7 @@ import net.minecraftforge.registries.RegistryObject;
  * @tl.status GREEN
  */
 public final class TechnologicaBlocks extends MasterDeferredRegistrar {
-	
+
 	public static int init() {
 		BLOCKS.register(Technologica.MOD_EVENT_BUS);
 		return BLOCKS.getEntries().size();
@@ -480,27 +481,27 @@ public final class TechnologicaBlocks extends MasterDeferredRegistrar {
 	public static final RegistryObject<Block> BLOCK_OF_TELLURIUM = BLOCKS.register("block_of_tellurium", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
 	public static final RegistryObject<Block> BLOCK_OF_IODINE = BLOCKS.register("block_of_iodine", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
 	public static final RegistryObject<Block> BLOCK_OF_ASTATINE = BLOCKS.register("block_of_astatine", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
-	public static final RegistryObject<LiquidBlock> HYDROGEN = BLOCKS.register("hydrogen", () -> new LiquidBlock(TechnologicaFluids.HYDROGEN, BlockBehaviour.Properties.of().noCollission().replaceable().strength(100.0F).noLootTable()));
-	public static final RegistryObject<LiquidBlock> HELIUM = BLOCKS.register("helium", () -> new LiquidBlock(TechnologicaFluids.HELIUM, BlockBehaviour.Properties.of().noCollission().replaceable().strength(100.0F).noLootTable()));
-	public static final RegistryObject<LiquidBlock> NITROGEN = BLOCKS.register("nitrogen", () -> new LiquidBlock(TechnologicaFluids.NITROGEN, BlockBehaviour.Properties.of().noCollission().replaceable().strength(100.0F).noLootTable()));
-	public static final RegistryObject<LiquidBlock> OXYGEN = BLOCKS.register("oxygen", () -> new LiquidBlock(TechnologicaFluids.OXYGEN, BlockBehaviour.Properties.of().noCollission().replaceable().strength(100.0F).noLootTable()));
-	public static final RegistryObject<LiquidBlock> FLUORINE = BLOCKS.register("fluorine", () -> new LiquidBlock(TechnologicaFluids.FLUORINE, BlockBehaviour.Properties.of().noCollission().replaceable().strength(100.0F).noLootTable()));
-	public static final RegistryObject<LiquidBlock> NEON = BLOCKS.register("neon", () -> new LiquidBlock(TechnologicaFluids.NEON, BlockBehaviour.Properties.of().noCollission().replaceable().strength(100.0F).noLootTable()));
-	public static final RegistryObject<LiquidBlock> CHLORINE = BLOCKS.register("chlorine", () -> new LiquidBlock(TechnologicaFluids.CHLORINE, BlockBehaviour.Properties.of().noCollission().replaceable().strength(100.0F).noLootTable()));
-	public static final RegistryObject<LiquidBlock> ARGON = BLOCKS.register("argon", () -> new LiquidBlock(TechnologicaFluids.ARGON, BlockBehaviour.Properties.of().noCollission().replaceable().strength(100.0F).noLootTable()));
-	public static final RegistryObject<LiquidBlock> KRYPTON = BLOCKS.register("krypton", () -> new LiquidBlock(TechnologicaFluids.KRYPTON, BlockBehaviour.Properties.of().noCollission().replaceable().strength(100.0F).noLootTable()));
-	public static final RegistryObject<LiquidBlock> XENON = BLOCKS.register("xenon", () -> new LiquidBlock(TechnologicaFluids.XENON, BlockBehaviour.Properties.of().noCollission().replaceable().strength(100.0F).noLootTable()));
-	public static final RegistryObject<LiquidBlock> RADON = BLOCKS.register("radon", () -> new LiquidBlock(TechnologicaFluids.RADON, BlockBehaviour.Properties.of().noCollission().replaceable().strength(100.0F).noLootTable()));
-	public static final RegistryObject<LiquidBlock> BROMINE = BLOCKS.register("bromine", () -> new LiquidBlock(TechnologicaFluids.BROMINE, BlockBehaviour.Properties.of().noCollission().replaceable().strength(100.0F).noLootTable()));
-	public static final RegistryObject<LiquidBlock> MERCURY = BLOCKS.register("mercury", () -> new LiquidBlock(TechnologicaFluids.MERCURY, BlockBehaviour.Properties.of().noCollission().replaceable().strength(100.0F).noLootTable()));
-	public static final RegistryObject<LiquidBlock> BRINE = BLOCKS.register("brine", () -> new LiquidBlock(TechnologicaFluids.BRINE, BlockBehaviour.Properties.of().noCollission().replaceable().strength(100.0F).noLootTable()));
-	public static final RegistryObject<LiquidBlock> OIL = BLOCKS.register("oil", () -> new FlammableLiquidBlock(TechnologicaFluids.OIL, BlockBehaviour.Properties.of().noCollission().replaceable().strength(100.0F).noLootTable()));
-	public static final RegistryObject<LiquidBlock> NATURAL_GAS = BLOCKS.register("natural_gas", () -> new LiquidBlock(TechnologicaFluids.NATURAL_GAS, BlockBehaviour.Properties.of().noCollission().replaceable().strength(100.0F).noLootTable()));
-	public static final RegistryObject<LiquidBlock> MAPLE_SYRUP = BLOCKS.register("maple_syrup", () -> new LiquidBlock(TechnologicaFluids.MAPLE_SYRUP, BlockBehaviour.Properties.of().noCollission().replaceable().strength(100.0F).noLootTable()));
-	public static final RegistryObject<LiquidBlock> RUBBER_RESIN = BLOCKS.register("rubber_resin", () -> new LiquidBlock(TechnologicaFluids.RUBBER_RESIN, BlockBehaviour.Properties.of().noCollission().replaceable().strength(100.0F).noLootTable()));
-	public static final RegistryObject<LiquidBlock> GASOLINE = BLOCKS.register("gasoline", () -> new LiquidBlock(TechnologicaFluids.GASOLINE, BlockBehaviour.Properties.of().noCollission().replaceable().strength(100.0F).noLootTable()));
-	public static final RegistryObject<LiquidBlock> MACHINE_OIL = BLOCKS.register("machine_oil", () -> new LiquidBlock(TechnologicaFluids.MACHINE_OIL, BlockBehaviour.Properties.of().noCollission().replaceable().strength(100.0F).noLootTable()));
-	public static final RegistryObject<LiquidBlock> COOLANT = BLOCKS.register("coolant", () -> new LiquidBlock(TechnologicaFluids.COOLANT, BlockBehaviour.Properties.of().noCollission().replaceable().strength(100.0F).noLootTable()));
+	public static final RegistryObject<LiquidBlock> HYDROGEN = BLOCKS.register("hydrogen", () -> new LiquidBlock(TechnologicaFluids.HYDROGEN, BlockBehaviour.Properties.of().noCollission().replaceable().pushReaction(PushReaction.DESTROY).strength(100.0F).noLootTable()));
+	public static final RegistryObject<LiquidBlock> HELIUM = BLOCKS.register("helium", () -> new LiquidBlock(TechnologicaFluids.HELIUM, BlockBehaviour.Properties.of().noCollission().replaceable().pushReaction(PushReaction.DESTROY).strength(100.0F).noLootTable()));
+	public static final RegistryObject<LiquidBlock> NITROGEN = BLOCKS.register("nitrogen", () -> new LiquidBlock(TechnologicaFluids.NITROGEN, BlockBehaviour.Properties.of().noCollission().replaceable().pushReaction(PushReaction.DESTROY).strength(100.0F).noLootTable()));
+	public static final RegistryObject<LiquidBlock> OXYGEN = BLOCKS.register("oxygen", () -> new LiquidBlock(TechnologicaFluids.OXYGEN, BlockBehaviour.Properties.of().noCollission().replaceable().pushReaction(PushReaction.DESTROY).strength(100.0F).noLootTable()));
+	public static final RegistryObject<LiquidBlock> FLUORINE = BLOCKS.register("fluorine", () -> new LiquidBlock(TechnologicaFluids.FLUORINE, BlockBehaviour.Properties.of().noCollission().replaceable().pushReaction(PushReaction.DESTROY).strength(100.0F).noLootTable()));
+	public static final RegistryObject<LiquidBlock> NEON = BLOCKS.register("neon", () -> new LiquidBlock(TechnologicaFluids.NEON, BlockBehaviour.Properties.of().noCollission().replaceable().pushReaction(PushReaction.DESTROY).strength(100.0F).noLootTable()));
+	public static final RegistryObject<LiquidBlock> CHLORINE = BLOCKS.register("chlorine", () -> new LiquidBlock(TechnologicaFluids.CHLORINE, BlockBehaviour.Properties.of().noCollission().replaceable().pushReaction(PushReaction.DESTROY).strength(100.0F).noLootTable()));
+	public static final RegistryObject<LiquidBlock> ARGON = BLOCKS.register("argon", () -> new LiquidBlock(TechnologicaFluids.ARGON, BlockBehaviour.Properties.of().noCollission().replaceable().pushReaction(PushReaction.DESTROY).strength(100.0F).noLootTable()));
+	public static final RegistryObject<LiquidBlock> KRYPTON = BLOCKS.register("krypton", () -> new LiquidBlock(TechnologicaFluids.KRYPTON, BlockBehaviour.Properties.of().noCollission().replaceable().pushReaction(PushReaction.DESTROY).strength(100.0F).noLootTable()));
+	public static final RegistryObject<LiquidBlock> XENON = BLOCKS.register("xenon", () -> new LiquidBlock(TechnologicaFluids.XENON, BlockBehaviour.Properties.of().noCollission().replaceable().pushReaction(PushReaction.DESTROY).strength(100.0F).noLootTable()));
+	public static final RegistryObject<LiquidBlock> RADON = BLOCKS.register("radon", () -> new LiquidBlock(TechnologicaFluids.RADON, BlockBehaviour.Properties.of().noCollission().replaceable().pushReaction(PushReaction.DESTROY).strength(100.0F).noLootTable()));
+	public static final RegistryObject<LiquidBlock> BROMINE = BLOCKS.register("bromine", () -> new LiquidBlock(TechnologicaFluids.BROMINE, BlockBehaviour.Properties.of().noCollission().replaceable().pushReaction(PushReaction.DESTROY).strength(100.0F).noLootTable()));
+	public static final RegistryObject<LiquidBlock> MERCURY = BLOCKS.register("mercury", () -> new LiquidBlock(TechnologicaFluids.MERCURY, BlockBehaviour.Properties.of().noCollission().replaceable().pushReaction(PushReaction.DESTROY).strength(100.0F).noLootTable()));
+	public static final RegistryObject<LiquidBlock> BRINE = BLOCKS.register("brine", () -> new LiquidBlock(TechnologicaFluids.BRINE, BlockBehaviour.Properties.of().noCollission().replaceable().pushReaction(PushReaction.DESTROY).strength(100.0F).noLootTable()));
+	public static final RegistryObject<LiquidBlock> OIL = BLOCKS.register("oil", () -> new FlammableLiquidBlock(TechnologicaFluids.OIL, BlockBehaviour.Properties.of().noCollission().replaceable().pushReaction(PushReaction.DESTROY).strength(100.0F).noLootTable()));
+	public static final RegistryObject<LiquidBlock> NATURAL_GAS = BLOCKS.register("natural_gas", () -> new LiquidBlock(TechnologicaFluids.NATURAL_GAS, BlockBehaviour.Properties.of().noCollission().replaceable().pushReaction(PushReaction.DESTROY).strength(100.0F).noLootTable()));
+	public static final RegistryObject<LiquidBlock> MAPLE_SYRUP = BLOCKS.register("maple_syrup", () -> new LiquidBlock(TechnologicaFluids.MAPLE_SYRUP, BlockBehaviour.Properties.of().noCollission().replaceable().pushReaction(PushReaction.DESTROY).strength(100.0F).noLootTable()));
+	public static final RegistryObject<LiquidBlock> RUBBER_RESIN = BLOCKS.register("rubber_resin", () -> new LiquidBlock(TechnologicaFluids.RUBBER_RESIN, BlockBehaviour.Properties.of().noCollission().replaceable().pushReaction(PushReaction.DESTROY).strength(100.0F).noLootTable()));
+	public static final RegistryObject<LiquidBlock> GASOLINE = BLOCKS.register("gasoline", () -> new LiquidBlock(TechnologicaFluids.GASOLINE, BlockBehaviour.Properties.of().noCollission().replaceable().pushReaction(PushReaction.DESTROY).strength(100.0F).noLootTable()));
+	public static final RegistryObject<LiquidBlock> MACHINE_OIL = BLOCKS.register("machine_oil", () -> new LiquidBlock(TechnologicaFluids.MACHINE_OIL, BlockBehaviour.Properties.of().noCollission().replaceable().pushReaction(PushReaction.DESTROY).strength(100.0F).noLootTable()));
+	public static final RegistryObject<LiquidBlock> COOLANT = BLOCKS.register("coolant", () -> new LiquidBlock(TechnologicaFluids.COOLANT, BlockBehaviour.Properties.of().noCollission().replaceable().pushReaction(PushReaction.DESTROY).strength(100.0F).noLootTable()));
 	public static final RegistryObject<Block> APRICOT_LOG = BLOCKS.register("apricot_log", FruitingLogBlock::new);
 	public static final RegistryObject<Block> ASPEN_LOG = BLOCKS.register("aspen_log", () -> VanillaLikeBlocks.logBlock());
 	public static final RegistryObject<Block> AVOCADO_LOG = BLOCKS.register("avocado_log", FruitingLogBlock::new);

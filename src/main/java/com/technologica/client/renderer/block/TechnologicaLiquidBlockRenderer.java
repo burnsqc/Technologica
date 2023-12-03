@@ -43,7 +43,7 @@ public class TechnologicaLiquidBlockRenderer extends LiquidBlockRenderer {
 
 	private static boolean isFaceOccludedByState(BlockGetter p_110979_, Direction p_110980_, float p_110981_, BlockPos p_110982_, BlockState p_110983_) {
 		if (p_110983_.canOcclude()) {
-			VoxelShape voxelshape = Shapes.box(0.0D, 0.0D, 0.0D, 1.0D, p_110981_, 1.0D);
+			VoxelShape voxelshape = Shapes.box(0.0D, 1.0D - p_110981_, 0.0D, 1.0D, 1.0D, 1.0D);
 			VoxelShape voxelshape1 = p_110983_.getOcclusionShape(p_110979_, p_110982_);
 			return Shapes.blockOccudes(voxelshape, voxelshape1, p_110980_);
 		} else {
@@ -99,13 +99,13 @@ public class TechnologicaLiquidBlockRenderer extends LiquidBlockRenderer {
 			 * FACE RENDER FLAGS
 			 */
 			boolean shouldRenderUp = !isNeighborSameFluid(fluidState, fluidStateDown);
-			boolean shouldRenderDown = shouldRenderFace(blockAndTintGetter, blockPos, fluidState, blockState, Direction.UP, fluidStateUp) && !isFaceOccludedByNeighbor(blockAndTintGetter, blockPos, Direction.UP, 0.8888889F, blockStateUp);
+			boolean shouldRenderTop = shouldRenderFace(blockAndTintGetter, blockPos, fluidState, blockState, Direction.UP, fluidStateUp) && !isFaceOccludedByNeighbor(blockAndTintGetter, blockPos, Direction.UP, 0.8888889F, blockStateUp);
 			boolean shouldRenderNorth = shouldRenderFace(blockAndTintGetter, blockPos, fluidState, blockState, Direction.NORTH, fluidStateNorth);
 			boolean shouldRenderSouth = shouldRenderFace(blockAndTintGetter, blockPos, fluidState, blockState, Direction.SOUTH, fluidStateSouth);
 			boolean shouldRenderWest = shouldRenderFace(blockAndTintGetter, blockPos, fluidState, blockState, Direction.WEST, fluidStateWest);
 			boolean shouldRenderEast = shouldRenderFace(blockAndTintGetter, blockPos, fluidState, blockState, Direction.EAST, fluidStateEast);
 
-			if (shouldRenderUp || shouldRenderDown || shouldRenderNorth || shouldRenderSouth || shouldRenderWest || shouldRenderEast) {
+			if (shouldRenderUp || shouldRenderTop || shouldRenderNorth || shouldRenderSouth || shouldRenderWest || shouldRenderEast) {
 
 				/*
 				 * SHADING
@@ -152,7 +152,7 @@ public class TechnologicaLiquidBlockRenderer extends LiquidBlockRenderer {
 				/*
 				 * BOTTOM-UP
 				 */
-				if (shouldRenderUp && !isFaceOccludedByNeighbor(blockAndTintGetter, blockPos, Direction.UP, Math.min(Math.min(heightNorthWest, heightSouthWest), Math.min(heightSouthEast, heightNorthEast)), blockStateUp)) {
+				if (shouldRenderUp && !isFaceOccludedByNeighbor(blockAndTintGetter, blockPos, Direction.DOWN, Math.min(Math.min(heightNorthWest, heightSouthWest), Math.min(heightSouthEast, heightNorthEast)), blockStateUp)) {
 					Vec3 flowDirection = fluidState.getFlow(blockAndTintGetter, blockPos);
 
 					heightNorthWest -= 0.001F;
@@ -210,25 +210,28 @@ public class TechnologicaLiquidBlockRenderer extends LiquidBlockRenderer {
 					float shadeBelowRed = shadeBelow * red;
 					float shadeBelowGreen = shadeBelow * green;
 					float shadeBelowBlue = shadeBelow * blue;
-					int lightColorBelow = this.getLightColor(blockAndTintGetter, blockPos.above());
+					int lightColorBelow = this.getLightColor(blockAndTintGetter, blockPos);
 
-					this.vertex(vertexConsumer, sectionX + 0.0D, sectionY - heightNorthWest + 1.0D, sectionZ + 0.0D, shadeBelowRed, shadeBelowGreen, shadeBelowBlue, alpha, f18, f22, lightColorBelow);
-					this.vertex(vertexConsumer, sectionX + 0.0D, sectionY - heightSouthWest + 1.0D, sectionZ + 1.0D, shadeBelowRed, shadeBelowGreen, shadeBelowBlue, alpha, f19, f23, lightColorBelow);
-					this.vertex(vertexConsumer, sectionX + 1.0D, sectionY - heightSouthEast + 1.0D, sectionZ + 1.0D, shadeBelowRed, shadeBelowGreen, shadeBelowBlue, alpha, f20, f24, lightColorBelow);
 					this.vertex(vertexConsumer, sectionX + 1.0D, sectionY - heightNorthEast + 1.0D, sectionZ + 0.0D, shadeBelowRed, shadeBelowGreen, shadeBelowBlue, alpha, f21, f25, lightColorBelow);
+					this.vertex(vertexConsumer, sectionX + 1.0D, sectionY - heightSouthEast + 1.0D, sectionZ + 1.0D, shadeBelowRed, shadeBelowGreen, shadeBelowBlue, alpha, f20, f24, lightColorBelow);
+					this.vertex(vertexConsumer, sectionX + 0.0D, sectionY - heightSouthWest + 1.0D, sectionZ + 1.0D, shadeBelowRed, shadeBelowGreen, shadeBelowBlue, alpha, f19, f23, lightColorBelow);
+					this.vertex(vertexConsumer, sectionX + 0.0D, sectionY - heightNorthWest + 1.0D, sectionZ + 0.0D, shadeBelowRed, shadeBelowGreen, shadeBelowBlue, alpha, f18, f22, lightColorBelow);
 
+					/*
+					 * TOP SIDE OF BOTTOM FACE, INSIDE LOOKING DOWN
+					 */
 					if (fluidState.shouldRenderBackwardUpFace(blockAndTintGetter, blockPos.above())) {
-						this.vertex(vertexConsumer, sectionX + 0.0D, sectionY - heightNorthWest + 1.0D, sectionZ + 0.0D, shadeBelowRed, shadeBelowGreen, shadeBelowBlue, alpha, f18, f22, lightColorBelow);
 						this.vertex(vertexConsumer, sectionX + 1.0D, sectionY - heightNorthEast + 1.0D, sectionZ + 0.0D, shadeBelowRed, shadeBelowGreen, shadeBelowBlue, alpha, f21, f25, lightColorBelow);
-						this.vertex(vertexConsumer, sectionX + 1.0D, sectionY - heightSouthEast + 1.0D, sectionZ + 1.0D, shadeBelowRed, shadeBelowGreen, shadeBelowBlue, alpha, f20, f24, lightColorBelow);
+						this.vertex(vertexConsumer, sectionX + 0.0D, sectionY - heightNorthWest + 1.0D, sectionZ + 0.0D, shadeBelowRed, shadeBelowGreen, shadeBelowBlue, alpha, f18, f22, lightColorBelow);
 						this.vertex(vertexConsumer, sectionX + 0.0D, sectionY - heightSouthWest + 1.0D, sectionZ + 1.0D, shadeBelowRed, shadeBelowGreen, shadeBelowBlue, alpha, f19, f23, lightColorBelow);
+						this.vertex(vertexConsumer, sectionX + 1.0D, sectionY - heightSouthEast + 1.0D, sectionZ + 1.0D, shadeBelowRed, shadeBelowGreen, shadeBelowBlue, alpha, f20, f24, lightColorBelow);
 					}
 				}
 
 				/*
-				 * TOP-DOWN
+				 * TOP FACE
 				 */
-				if (shouldRenderDown) {
+				if (shouldRenderTop) {
 					float u0 = textureAtlasSprites[0].getU0();
 					float u1 = textureAtlasSprites[0].getU1();
 					float v0 = textureAtlasSprites[0].getV0();
@@ -298,35 +301,35 @@ public class TechnologicaLiquidBlockRenderer extends LiquidBlockRenderer {
 
 					if (shouldRenderHorizontal && !isFaceOccludedByNeighbor(blockAndTintGetter, blockPos, direction, Math.max(heightCorner1, heightCorner2), blockAndTintGetter.getBlockState(blockPos.relative(direction)))) {
 						BlockPos blockpos = blockPos.relative(direction);
-						TextureAtlasSprite textureatlassprite2 = textureAtlasSprites[1];
+						TextureAtlasSprite texture2 = textureAtlasSprites[1];
 
 						if (textureAtlasSprites[2] != null) {
 							if (blockAndTintGetter.getBlockState(blockpos).shouldDisplayFluidOverlay(blockAndTintGetter, blockpos, fluidState)) {
-								textureatlassprite2 = textureAtlasSprites[2];
+								texture2 = textureAtlasSprites[2];
 							}
 						}
 
-						float f53 = textureatlassprite2.getU(0.0D);
-						float f32 = textureatlassprite2.getU(8.0D);
-						float f33 = textureatlassprite2.getV((1.0F - heightCorner1) * 16.0F * 0.5F);
-						float f34 = textureatlassprite2.getV((1.0F - heightCorner2) * 16.0F * 0.5F);
-						float f35 = textureatlassprite2.getV(8.0D);
+						float f53 = texture2.getU(0.0D);
+						float f32 = texture2.getU(8.0D);
+						float f33 = texture2.getV((1.0F - heightCorner1) * 16.0F * 0.5F);
+						float f34 = texture2.getV((1.0F - heightCorner2) * 16.0F * 0.5F);
+						float f35 = texture2.getV(8.0D);
 
 						float shadeHorizontal = direction.getAxis() == Direction.Axis.Z ? shadeZAxis : shadeXAxis;
 						float shadeHorizontalRed = shadeAbove * shadeHorizontal * red;
 						float shadeHorizontalGreen = shadeAbove * shadeHorizontal * green;
 						float shadeHorizontalBlue = shadeAbove * shadeHorizontal * blue;
 
-						this.vertex(vertexConsumer, sectionXShimmed1, sectionY - heightCorner1 + 1.0D, sectionZShimmed1, shadeHorizontalRed, shadeHorizontalGreen, shadeHorizontalBlue, alpha, f53, f33, lightColor);
-						this.vertex(vertexConsumer, sectionXShimmed2, sectionY - heightCorner2 + 1.0D, sectionZShimmed2, shadeHorizontalRed, shadeHorizontalGreen, shadeHorizontalBlue, alpha, f32, f34, lightColor);
-						this.vertex(vertexConsumer, sectionXShimmed2, sectionY - antiZFightShim + 1.0D, sectionZShimmed2, shadeHorizontalRed, shadeHorizontalGreen, shadeHorizontalBlue, alpha, f32, f35, lightColor);
 						this.vertex(vertexConsumer, sectionXShimmed1, sectionY - antiZFightShim + 1.0D, sectionZShimmed1, shadeHorizontalRed, shadeHorizontalGreen, shadeHorizontalBlue, alpha, f53, f35, lightColor);
+						this.vertex(vertexConsumer, sectionXShimmed2, sectionY - antiZFightShim + 1.0D, sectionZShimmed2, shadeHorizontalRed, shadeHorizontalGreen, shadeHorizontalBlue, alpha, f32, f35, lightColor);
+						this.vertex(vertexConsumer, sectionXShimmed2, sectionY - heightCorner2 + 1.0D, sectionZShimmed2, shadeHorizontalRed, shadeHorizontalGreen, shadeHorizontalBlue, alpha, f32, f34, lightColor);
+						this.vertex(vertexConsumer, sectionXShimmed1, sectionY - heightCorner1 + 1.0D, sectionZShimmed1, shadeHorizontalRed, shadeHorizontalGreen, shadeHorizontalBlue, alpha, f53, f33, lightColor);
 
-						if (textureatlassprite2 != this.waterOverlay) {
-							this.vertex(vertexConsumer, sectionXShimmed1, sectionY - antiZFightShim + 1.0D, sectionZShimmed1, shadeHorizontalRed, shadeHorizontalGreen, shadeHorizontalBlue, alpha, f53, f35, lightColor);
-							this.vertex(vertexConsumer, sectionXShimmed2, sectionY - antiZFightShim + 1.0D, sectionZShimmed2, shadeHorizontalRed, shadeHorizontalGreen, shadeHorizontalBlue, alpha, f32, f35, lightColor);
-							this.vertex(vertexConsumer, sectionXShimmed2, sectionY - heightCorner2 + 1.0D, sectionZShimmed2, shadeHorizontalRed, shadeHorizontalGreen, shadeHorizontalBlue, alpha, f32, f34, lightColor);
+						if (texture2 != this.waterOverlay) {
 							this.vertex(vertexConsumer, sectionXShimmed1, sectionY - heightCorner1 + 1.0D, sectionZShimmed1, shadeHorizontalRed, shadeHorizontalGreen, shadeHorizontalBlue, alpha, f53, f33, lightColor);
+							this.vertex(vertexConsumer, sectionXShimmed2, sectionY - heightCorner2 + 1.0D, sectionZShimmed2, shadeHorizontalRed, shadeHorizontalGreen, shadeHorizontalBlue, alpha, f32, f34, lightColor);
+							this.vertex(vertexConsumer, sectionXShimmed2, sectionY - antiZFightShim + 1.0D, sectionZShimmed2, shadeHorizontalRed, shadeHorizontalGreen, shadeHorizontalBlue, alpha, f32, f35, lightColor);
+							this.vertex(vertexConsumer, sectionXShimmed1, sectionY - antiZFightShim + 1.0D, sectionZShimmed1, shadeHorizontalRed, shadeHorizontalGreen, shadeHorizontalBlue, alpha, f53, f35, lightColor);
 						}
 					}
 				}

@@ -24,7 +24,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -49,31 +48,6 @@ public abstract class OxygenFluid extends FlowingFluid {
 	@Override
 	public Item getBucket() {
 		return TechnologicaItems.OXYGEN_BUCKET.get();
-	}
-
-	@Override
-	public void tick(Level worldIn, BlockPos pos, FluidState state) {
-		if (state.isSource() && worldIn.isEmptyBlock(pos.above())) {
-			worldIn.setBlock(pos.above(), state.createLegacyBlock(), 3);
-			worldIn.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
-		}
-		if (!state.isSource()) {
-			FluidState fluidstate = this.getNewLiquid(worldIn, pos, worldIn.getBlockState(pos));
-			int i = this.getSpreadDelay(worldIn, pos, state, fluidstate);
-
-			if (fluidstate.isEmpty()) {
-				state = fluidstate;
-//	            worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
-			} else if (!fluidstate.equals(state)) {
-				state = fluidstate;
-				BlockState blockstate = fluidstate.createLegacyBlock();
-				worldIn.setBlock(pos, blockstate, 2);
-				((LevelAccessor) worldIn.getFluidTicks()).scheduleTick(pos, fluidstate.getType(), i);
-				worldIn.updateNeighborsAt(pos, blockstate.getBlock());
-			}
-		}
-
-		this.spread(worldIn, pos, state);
 	}
 
 	@Override
@@ -128,7 +102,7 @@ public abstract class OxygenFluid extends FlowingFluid {
 
 	@Override
 	public int getTickDelay(LevelReader p_205569_1_) {
-		return 3;
+		return 1;
 	}
 
 	@Override

@@ -101,7 +101,7 @@ public abstract class FluorineFluid extends FlowingFluid {
 
 	@Override
 	public int getTickDelay(LevelReader p_205569_1_) {
-		return 3;
+		return 1;
 	}
 
 	@Override
