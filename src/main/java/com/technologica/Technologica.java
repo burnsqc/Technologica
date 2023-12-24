@@ -18,6 +18,7 @@ import com.technologica.listeners.forgebus.PlayerTickEventListener;
 import com.technologica.listeners.forgebus.RegisterCapabilitiesEventListener;
 import com.technologica.listeners.forgebus.RightClickBlockListener;
 import com.technologica.listeners.forgebus.ServerAboutToStartListener;
+import com.technologica.listeners.forgebus.ServerTickEventListener;
 import com.technologica.listeners.forgebus.VillagerTradesEventListener;
 import com.technologica.listeners.forgebus.WandererTradesEventListener;
 import com.technologica.listeners.modbus.CommonSetup;
@@ -25,6 +26,7 @@ import com.technologica.listeners.modbus.Register;
 import com.technologica.network.packets.ClientboundUpdateAirCapabilityPacket;
 import com.technologica.network.packets.ServerboundUpdateAnnunciatorPacket;
 import com.technologica.network.packets.ServerboundUpdateMonitorPacket;
+import com.technologica.registration.deferred.TechnologicaAttributes;
 import com.technologica.registration.deferred.TechnologicaBlockEntityTypes;
 import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.registration.deferred.TechnologicaCreativeModeTabs;
@@ -91,6 +93,7 @@ public class Technologica {
 	public static int globalLootModifierTypes;
 	public static int structureTypes;
 	public static int trunkPlacerTypes;
+	public static int attributes;
 
 	public Technologica() {
 		LOGGER.info("TECHNOLOGICA NOW LOADING FOR DIST " + FMLEnvironment.dist.toString());
@@ -151,7 +154,7 @@ public class Technologica {
 
 		foliagePlacerTypes = TechnologicaFoliagePlacerTypes.init();
 		LOGGER.info("INITIALIZATION - FOLIAGE PLACER TYPES - " + foliagePlacerTypes);
-		
+
 		trunkPlacerTypes = TechnologicaTrunkPlacerTypes.init();
 		LOGGER.info("INITIALIZATION - TRUNK PLACER TYPES - " + trunkPlacerTypes);
 
@@ -166,6 +169,9 @@ public class Technologica {
 
 		structureTypes = TechnologicaStructureTypes.init();
 		LOGGER.info("INITIALIZATION - STRUCTURE TYPES - " + structureTypes);
+
+		attributes = TechnologicaAttributes.init();
+		LOGGER.info("INITIALIZATION - ATTRIBUTES - " + attributes);
 	}
 
 	private static void registerPackets() {
@@ -196,6 +202,7 @@ public class Technologica {
 		Technologica.FORGE_EVENT_BUS.register(new RegisterCapabilitiesEventListener());
 		Technologica.FORGE_EVENT_BUS.register(new RightClickBlockListener());
 		Technologica.FORGE_EVENT_BUS.register(new ServerAboutToStartListener());
+		Technologica.FORGE_EVENT_BUS.addListener(ServerTickEventListener::onServerTickEvent);
 		Technologica.FORGE_EVENT_BUS.register(new VillagerTradesEventListener());
 		Technologica.FORGE_EVENT_BUS.register(new WandererTradesEventListener());
 	}

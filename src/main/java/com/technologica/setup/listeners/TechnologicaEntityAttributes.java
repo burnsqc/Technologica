@@ -42,9 +42,13 @@ import com.technologica.world.entity.animal.Vulture;
 import com.technologica.world.entity.animal.Walrus;
 import com.technologica.world.entity.animal.Zebra;
 import com.technologica.world.entity.monster.AtomicCreeper;
+import com.technologica.world.entity.monster.Beeper;
+import com.technologica.world.entity.monster.DustDevil;
 import com.technologica.world.entity.monster.Mummy;
 import com.technologica.world.entity.monster.Peeper;
+import com.technologica.world.entity.monster.Sleeper;
 import com.technologica.world.entity.monster.Sweeper;
+import com.technologica.world.entity.monster.Weeper;
 
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.ai.attributes.DefaultAttributes;
@@ -121,7 +125,11 @@ public class TechnologicaEntityAttributes {
 		event.put(TechnologicaEntityTypes.ATOMIC_CREEPER.get(), AtomicCreeper.registerAttributes().build());
 		event.put(TechnologicaEntityTypes.MUMMY.get(), Mummy.registerAttributes().build());
 		event.put(TechnologicaEntityTypes.PEEPER.get(), Peeper.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.BEEPER.get(), Beeper.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.SLEEPER.get(), Sleeper.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.WEEPER.get(), Weeper.registerAttributes().build());
 		event.put(TechnologicaEntityTypes.SWEEPER.get(), Sweeper.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.DUST_DEVIL.get(), DustDevil.registerAttributes().build());
 
 		long completed = TechnologicaEntityTypes.ENTITY_TYPES.getEntries().stream().filter((entity) -> {
 			return entity.get().getCategory() != MobCategory.MISC;

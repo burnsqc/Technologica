@@ -43,9 +43,13 @@ import com.technologica.world.entity.animal.Zebra;
 import com.technologica.world.entity.decoration.InvisibleSeat;
 import com.technologica.world.entity.item.NavalMine;
 import com.technologica.world.entity.monster.AtomicCreeper;
+import com.technologica.world.entity.monster.Beeper;
+import com.technologica.world.entity.monster.DustDevil;
 import com.technologica.world.entity.monster.Mummy;
 import com.technologica.world.entity.monster.Peeper;
+import com.technologica.world.entity.monster.Sleeper;
 import com.technologica.world.entity.monster.Sweeper;
+import com.technologica.world.entity.monster.Weeper;
 import com.technologica.world.entity.projectile.Coconut;
 import com.technologica.world.entity.projectile.Dodgeball;
 import com.technologica.world.entity.projectile.Harpoon;
@@ -65,7 +69,7 @@ import net.minecraftforge.registries.RegistryObject;
  * @tl.status GREEN
  */
 public final class TechnologicaEntityTypes extends MasterDeferredRegistrar {
-	
+
 	public static int init() {
 		ENTITY_TYPES.register(Technologica.MOD_EVENT_BUS);
 		return ENTITY_TYPES.getEntries().size();
@@ -112,7 +116,11 @@ public final class TechnologicaEntityTypes extends MasterDeferredRegistrar {
 	public static final RegistryObject<EntityType<AtomicCreeper>> ATOMIC_CREEPER = ENTITY_TYPES.register("atomic_creeper", () -> EntityType.Builder.<AtomicCreeper>of(AtomicCreeper::new, MobCategory.MONSTER).sized(0.6F, 1.7F).clientTrackingRange(16).build("atomic_creeper"));
 	public static final RegistryObject<EntityType<Mummy>> MUMMY = ENTITY_TYPES.register("mummy", () -> EntityType.Builder.<Mummy>of(Mummy::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8).build("mummy"));
 	public static final RegistryObject<EntityType<Peeper>> PEEPER = ENTITY_TYPES.register("peeper", () -> EntityType.Builder.<Peeper>of(Peeper::new, MobCategory.MONSTER).sized(0.6F, 1.7F).clientTrackingRange(16).build("peeper"));
+	public static final RegistryObject<EntityType<Beeper>> BEEPER = ENTITY_TYPES.register("beeper", () -> EntityType.Builder.<Beeper>of(Beeper::new, MobCategory.MONSTER).sized(0.6F, 1.7F).clientTrackingRange(16).build("beeper"));
+	public static final RegistryObject<EntityType<Sleeper>> SLEEPER = ENTITY_TYPES.register("sleeper", () -> EntityType.Builder.<Sleeper>of(Sleeper::new, MobCategory.MONSTER).sized(0.6F, 1.7F).clientTrackingRange(16).build("sleeper"));
+	public static final RegistryObject<EntityType<Weeper>> WEEPER = ENTITY_TYPES.register("weeper", () -> EntityType.Builder.<Weeper>of(Weeper::new, MobCategory.MONSTER).sized(0.6F, 1.7F).clientTrackingRange(16).build("weeper"));
 	public static final RegistryObject<EntityType<Sweeper>> SWEEPER = ENTITY_TYPES.register("sweeper", () -> EntityType.Builder.<Sweeper>of(Sweeper::new, MobCategory.MONSTER).sized(0.6F, 1.7F).clientTrackingRange(8).build("sweeper"));
+	public static final RegistryObject<EntityType<DustDevil>> DUST_DEVIL = ENTITY_TYPES.register("dust_devil", () -> EntityType.Builder.<DustDevil>of(DustDevil::new, MobCategory.MONSTER).sized(1.0F, 1.0F).clientTrackingRange(8).build("dust_devil"));
 	public static final RegistryObject<EntityType<VanillaBoat>> MOD_BOAT = ENTITY_TYPES.register("mod_boat", () -> EntityType.Builder.<VanillaBoat>of(VanillaBoat::new, MobCategory.MISC).sized(1.375F, 0.5625F).setCustomClientFactory((spawnEntity, world) -> new VanillaBoat(world, 0, 0, 0)).clientTrackingRange(10).build("mod_boat"));
 	public static final RegistryObject<EntityType<Rocket>> ROCKET = ENTITY_TYPES.register("rocket", () -> EntityType.Builder.<Rocket>of(Rocket::new, MobCategory.MISC).sized(1.375F, 0.5625F).setCustomClientFactory((spawnEntity, world) -> new Rocket(world, 0, 0, 0)).clientTrackingRange(10).build("rocket"));
 	public static final RegistryObject<EntityType<Coconut>> COCONUT = ENTITY_TYPES.register("coconut", () -> EntityType.Builder.<Coconut>of(Coconut::new, MobCategory.MISC).sized(0.25F, 0.25F).setCustomClientFactory((spawnEntity, world) -> new Coconut(world, 0, 0, 0)).clientTrackingRange(4).updateInterval(10).build("coconut"));

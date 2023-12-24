@@ -53,8 +53,8 @@ public class OstrichModel<T extends AbstractHorse> extends AgeableListModel<T> {
 		MeshDefinition meshdefinition = QuadrupedModel.createBodyMesh(6, CubeDeformation.NONE);
 		PartDefinition root = meshdefinition.getRoot();
 		PartDefinition body = root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-5.0F, -5.0F, -8.0F, 10.0F, 10.0F, 16.0F), PartPose.offset(0.0F, 3.0F, 0.0F));
-		body.addOrReplaceChild("wingLeft", CubeListBuilder.create().texOffs(0, 26).mirror().addBox(0.0F, -5.0F, 0.0F, 1.0F, 10.0F, 12.0F), PartPose.offset(5.0F, 0.0F, -7.0F));
-		body.addOrReplaceChild("wingRight", CubeListBuilder.create().texOffs(0, 26).addBox(-1.0F, -5.0F, 0.0F, 1.0F, 10.0F, 12.0F), PartPose.offset(-5.0F, 0.0F, -7.0F));
+		body.addOrReplaceChild("wingLeft", CubeListBuilder.create().texOffs(0, 26).mirror().addBox(0.0F, -5.0F, 0.0F, 1.0F, 10.0F, 12.0F), PartPose.offset(5.01F, 0.0F, -7.0F));
+		body.addOrReplaceChild("wingRight", CubeListBuilder.create().texOffs(0, 26).addBox(-1.0F, -5.0F, 0.0F, 1.0F, 10.0F, 12.0F), PartPose.offset(-5.01F, 0.0F, -7.0F));
 		PartDefinition legUpperLeft = body.addOrReplaceChild("legUpperLeft", CubeListBuilder.create().mirror().texOffs(0, 26).addBox(-1.0F, 0.0F, 0.0F, 2.0F, 6.0F, 2.0F), PartPose.offset(3.0F, 5.0F, 0.0F));
 		PartDefinition legUpperRight = body.addOrReplaceChild("legUpperRight", CubeListBuilder.create().texOffs(0, 26).addBox(-1.0F, 0.0F, 0.0F, 2.0F, 6.0F, 2.0F), PartPose.offset(-3.0F, 5.0F, 0.0F));
 		PartDefinition legLowerLeft = legUpperLeft.addOrReplaceChild("legLowerLeft", CubeListBuilder.create().texOffs(18, 26).mirror().addBox(-1.0F, 0.0F, -2.0F, 2.0F, 10.0F, 2.0F), PartPose.offset(0.0F, 6.0F, 2.0F));
@@ -67,7 +67,7 @@ public class OstrichModel<T extends AbstractHorse> extends AgeableListModel<T> {
 		PartDefinition neck = neckLower.addOrReplaceChild("neck", CubeListBuilder.create().texOffs(50, 0).addBox(-1.0F, -10.0F, 0.0F, 2.0F, 10.0F, 2.0F), PartPose.offset(0.0F, 0.0F, -5.0F));
 		PartDefinition head = neck.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, -13.0F, -2.0F, 4.0F, 3.0F, 4.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
 		head.addOrReplaceChild("beak", CubeListBuilder.create().texOffs(0, 7).addBox(-1.0F, -11.0F, -4.0F, 2.0F, 1.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
-		body.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(36, 0).addBox(-2.0F, -2.0F, 0.0F, 4.0F, 4.0F, 3.0F), PartPose.offset(0.0F, -2.0F, 8.0F));
+		body.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(36, 0).addBox(-2.0F, -2.0F, 0.0F, 4.0F, 4.0F, 3.0F), PartPose.offset(0.0F, -2.0F, 8.01F));
 		body.addOrReplaceChild("saddle", CubeListBuilder.create().texOffs(26, 26).mirror().addBox(-5.0F, -5.0F, -5.0F, 10.0F, 10.0F, 9.0F, new CubeDeformation(0.5F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}

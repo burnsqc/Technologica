@@ -54,7 +54,11 @@ public class TechnologicaModelLayers {
 	public static final ModelLayerLocation ATOMIC_CREEPER = register("atomic_creeper");
 	public static final ModelLayerLocation MUMMY = register("mummy");
 	public static final ModelLayerLocation PEEPER = register("peeper");
+	public static final ModelLayerLocation BEEPER = register("beeper");
+	public static final ModelLayerLocation SLEEPER = register("sleeper");
+	public static final ModelLayerLocation WEEPER = register("weeper");
 	public static final ModelLayerLocation SWEEPER = register("sweeper");
+	public static final ModelLayerLocation DUST_DEVIL = register("dust_devil");
 
 	public static final ModelLayerLocation NAVAL_MINE = register("naval_mine");
 	public static final ModelLayerLocation ROCKET = register("rocket");

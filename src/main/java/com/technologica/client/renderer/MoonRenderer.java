@@ -185,7 +185,7 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 
 	@Override
 	public boolean renderSnowAndRain(ClientLevel level, int ticks, float partialTick, LightTexture lightTexture, double camX, double camY, double camZ) {
-		float f = 0.5F; // level.getRainLevel(partialTick);
+		float f = level.getRainLevel(partialTick);
 		if (!(f <= 0.0F)) {
 			lightTexture.turnOnLightLayer();
 			int i = Mth.floor(camX);
@@ -254,8 +254,8 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 								float f4 = ((1.0F - f3 * f3) * 0.5F + 0.5F) * f;
 								blockpos$mutableblockpos.set(k1, l2, j1);
 								int j3 = getLightColor(level, blockpos$mutableblockpos);
-								bufferbuilder.vertex(k1 - camX - d0 + 0.5D, k2 - camY, j1 - camZ - d1 + 10.5D).uv(0.0F, j2 * 0.1F + f2).color(1.0F, 1.0F, 1.0F, f4).uv2(j3).endVertex();
-								bufferbuilder.vertex(k1 - camX + d0 + 0.5D, k2 - camY, j1 - camZ + d1 + 10.5D).uv(1.0F, j2 * 0.1F + f2).color(1.0F, 1.0F, 1.0F, f4).uv2(j3).endVertex();
+								bufferbuilder.vertex(k1 - camX - d0 + 0.5D, k2 - camY, j1 - camZ - d1 + 0.5D).uv(0.0F, j2 * 0.1F + f2).color(1.0F, 1.0F, 1.0F, f4).uv2(j3).endVertex();
+								bufferbuilder.vertex(k1 - camX + d0 + 0.5D, k2 - camY, j1 - camZ + d1 + 0.5D).uv(1.0F, j2 * 0.1F + f2).color(1.0F, 1.0F, 1.0F, f4).uv2(j3).endVertex();
 								bufferbuilder.vertex(k1 - camX + d0 + 0.5D, j2 - camY, j1 - camZ + d1 + 0.5D).uv(1.0F, k2 * 0.1F + f2).color(1.0F, 1.0F, 1.0F, f4).uv2(j3).endVertex();
 								bufferbuilder.vertex(k1 - camX - d0 + 0.5D, j2 - camY, j1 - camZ - d1 + 0.5D).uv(0.0F, k2 * 0.1F + f2).color(1.0F, 1.0F, 1.0F, f4).uv2(j3).endVertex();
 							}

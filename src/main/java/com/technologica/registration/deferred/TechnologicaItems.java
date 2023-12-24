@@ -58,7 +58,7 @@ import net.minecraftforge.registries.RegistryObject;
  * @tl.status GREEN
  */
 public final class TechnologicaItems extends MasterDeferredRegistrar {
-	
+
 	public static int init() {
 		ITEMS.register(Technologica.MOD_EVENT_BUS);
 		return ITEMS.getEntries().size();
@@ -163,7 +163,7 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> DUCK_SPAWN_EGG = ITEMS.register("duck_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.DUCK, 0x7e4200, 0x0f7812, new Item.Properties()));
 	public static final RegistryObject<Item> ELEPHANT_SPAWN_EGG = ITEMS.register("elephant_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.ELEPHANT, 0xa3a3a3, 0x6b6b6b, new Item.Properties()));
 	public static final RegistryObject<Item> FLAMINGO_SPAWN_EGG = ITEMS.register("flamingo_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.FLAMINGO, 0xffa9ca, 0x000000, new Item.Properties()));
-	public static final RegistryObject<Item> FIGURE_EIGHT_PUFFERFISH_SPAWN_EGG = ITEMS.register("figure_eight_pufferfish_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.FIGURE_EIGHT_PUFFERFISH, 0x4c9c40, 0xe3efe1, new Item.Properties()));
+	public static final RegistryObject<Item> FIGURE_EIGHT_PUFFERFISH_SPAWN_EGG = ITEMS.register("figure_eight_pufferfish_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.FIGURE_EIGHT_PUFFERFISH, 0x272727, 0xffe800, new Item.Properties()));
 	public static final RegistryObject<Item> GIRAFFE_SPAWN_EGG = ITEMS.register("giraffe_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.GIRAFFE, 0xa57e3f, 0xcaa973, new Item.Properties()));
 	public static final RegistryObject<Item> GORILLA_SPAWN_EGG = ITEMS.register("gorilla_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.GORILLA, 0x4e4e4e, 0x909090, new Item.Properties()));
 	public static final RegistryObject<Item> GRIZZLY_BEAR_SPAWN_EGG = ITEMS.register("grizzly_bear_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.GRIZZLY_BEAR, 0x543700, 0x6f4800, new Item.Properties()));
@@ -192,7 +192,11 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> ATOMIC_CREEPER_SPAWN_EGG = ITEMS.register("atomic_creeper_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.ATOMIC_CREEPER, 0x00FF00, 0x000000, new Item.Properties()));
 	public static final RegistryObject<Item> MUMMY_SPAWN_EGG = ITEMS.register("mummy_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.MUMMY, 0xefdec4, 0xc2b79c, new Item.Properties()));
 	public static final RegistryObject<Item> PEEPER_SPAWN_EGG = ITEMS.register("peeper_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.PEEPER, 0xb38dff, 0x000000, new Item.Properties()));
+	public static final RegistryObject<Item> BEEPER_SPAWN_EGG = ITEMS.register("beeper_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.BEEPER, 0xb01e1f, 0x000000, new Item.Properties()));
+	public static final RegistryObject<Item> SLEEPER_SPAWN_EGG = ITEMS.register("sleeper_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.SLEEPER, 0xb01e87, 0x000000, new Item.Properties()));
+	public static final RegistryObject<Item> WEEPER_SPAWN_EGG = ITEMS.register("weeper_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.WEEPER, 0x193bab, 0x000000, new Item.Properties()));
 	public static final RegistryObject<Item> SWEEPER_SPAWN_EGG = ITEMS.register("sweeper_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.SWEEPER, 0xd3be2b, 0x000000, new Item.Properties()));
+	public static final RegistryObject<Item> DUST_DEVIL_SPAWN_EGG = ITEMS.register("dust_devil_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.DUST_DEVIL, 0x9b9b9b, 0x9b9b9b, new Item.Properties()));
 	public static final RegistryObject<Item> PIRANHA_BUCKET = ITEMS.register("bucket_of_piranha", () -> new MobBucketItem(TechnologicaEntityTypes.PIRANHA, () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_FISH, (new Item.Properties()).stacksTo(1)));
 	public static final RegistryObject<Item> FUR = ITEMS.register("fur", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> IVORY = ITEMS.register("ivory", () -> new Item(new Item.Properties()));

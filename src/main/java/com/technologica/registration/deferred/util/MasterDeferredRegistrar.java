@@ -8,6 +8,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -27,7 +28,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 /**
  * <p>
- * This class contains definitions of Deferred Registers.  
+ * This class contains definitions of Deferred Registers.
  * This class is to be extended by any subclasses that solely define Registry Objects.
  * </p>
  * 
@@ -52,4 +53,6 @@ public abstract class MasterDeferredRegistrar {
 	public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(ForgeRegistries.Keys.SOUND_EVENTS, Technologica.MOD_ID);
 	public static final DeferredRegister<StructureType<?>> STRUCTURE_TYPES = DeferredRegister.create(Registries.STRUCTURE_TYPE, Technologica.MOD_ID);
 	public static final DeferredRegister<TrunkPlacerType<?>> TRUNK_PLACER_TYPES = DeferredRegister.create(Registries.TRUNK_PLACER_TYPE, Technologica.MOD_ID);
+
+	public static final DeferredRegister<Attribute> ATTRIBUTES = DeferredRegister.create(ForgeRegistries.Keys.ATTRIBUTES, Technologica.MOD_ID);
 }

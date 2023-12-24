@@ -1,12 +1,17 @@
 package com.technologica.listeners.forgebus;
 
+import org.joml.Matrix4f;
+
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.technologica.capabilities.TechnologicaCapabilities;
 import com.technologica.capabilities.air.IAir;
 import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
@@ -20,7 +25,7 @@ public class RenderGuiOverlayEventListener {
 	protected static final ResourceLocation AIR_SPRITE = new ResourceLocation("textures/gui/icons.png");
 
 	@SubscribeEvent
-	public void onRenderGameOverlayEventPre(RenderGuiOverlayEvent.Pre event) { // NO_UCD (unused code)
+	public void onRenderGameOverlayEventPre(RenderGuiOverlayEvent.Pre event) {
 		if (event.getOverlay() == VanillaGuiOverlay.AIR_LEVEL.type()) {
 			Minecraft minecraft = Minecraft.getInstance();
 			Player player = (Player) minecraft.getCameraEntity();
@@ -68,6 +73,30 @@ public class RenderGuiOverlayEventListener {
 
 			}
 		}
+
+		// TESTING OVERLAY FOR BIOMES
+		Minecraft minecraft = Minecraft.getInstance();
+		Matrix4f matrix4f = event.getGuiGraphics().pose().last().pose();
+		MultiBufferSource.BufferSource irendertypebuffer$impl = minecraft.renderBuffers().bufferSource();
+		Player player = (Player) minecraft.getCameraEntity();
+		BlockPos blockpos = BlockPos.containing(player.getEyePosition().x, player.getEyePosition().y, player.getEyePosition().z);
+		String dimension = keyToValue(player.level().dimension().location().getPath().toString());
+		String biome = keyToValue(player.level().getBiome(blockpos).unwrapKey().get().location().getPath().toString());
+
+		minecraft.font.drawInBatch(dimension, minecraft.getWindow().getGuiScaledWidth() - 10 - minecraft.font.width(dimension), 10, 16777215, true, matrix4f, irendertypebuffer$impl, Font.DisplayMode.POLYGON_OFFSET, 0, 15728880, false);
+
+		minecraft.font.drawInBatch(biome, minecraft.getWindow().getGuiScaledWidth() - 10 - minecraft.font.width(biome), 20, 16777215, true, matrix4f, irendertypebuffer$impl, Font.DisplayMode.POLYGON_OFFSET, 0, 15728880, false);
+	}
+
+	private String keyToValue(String key) {
+		String words[] = key.split("_");
+		String name = "";
+		for (String word : words) {
+			String first = word.substring(0, 1);
+			String afterFirst = word.substring(1);
+			name += first.toUpperCase() + afterFirst + " ";
+		}
+		return name.trim();
 	}
 
 	private void bind(Minecraft minecraft, ResourceLocation res) {

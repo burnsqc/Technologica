@@ -18,7 +18,7 @@ import net.minecraftforge.registries.RegistryObject;
  * @tl.status GREEN
  */
 public final class TechnologicaCreativeModeTabs extends MasterDeferredRegistrar {
-	
+
 	public static int init() {
 		CREATIVE_MODE_TABS.register(Technologica.MOD_EVENT_BUS);
 		return CREATIVE_MODE_TABS.getEntries().size();
@@ -153,7 +153,11 @@ public final class TechnologicaCreativeModeTabs extends MasterDeferredRegistrar 
 		items.accept(TechnologicaItems.ATOMIC_CREEPER_SPAWN_EGG.get());
 		items.accept(TechnologicaItems.MUMMY_SPAWN_EGG.get());
 		items.accept(TechnologicaItems.PEEPER_SPAWN_EGG.get());
+		items.accept(TechnologicaItems.BEEPER_SPAWN_EGG.get());
+		items.accept(TechnologicaItems.SLEEPER_SPAWN_EGG.get());
+		items.accept(TechnologicaItems.WEEPER_SPAWN_EGG.get());
 		items.accept(TechnologicaItems.SWEEPER_SPAWN_EGG.get());
+		items.accept(TechnologicaItems.DUST_DEVIL_SPAWN_EGG.get());
 	}).build());
 	public static final RegistryObject<CreativeModeTab> MINERAL = CREATIVE_MODE_TABS.register("mineral", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.GERMANIUM_CHUNK.get())).withBackgroundLocation(new TechnologicaLocation("textures/gui/container/creative_inventory/tab_mineral.png")).withLabelColor(0).title(Component.literal("Mineral")).displayItems((p_270425_, items) -> {
 		items.accept(TechnologicaItems.SALT_ITEM.get());

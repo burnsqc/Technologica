@@ -12,6 +12,7 @@ import com.technologica.client.model.CottonmouthModel;
 import com.technologica.client.model.CoyoteModel;
 import com.technologica.client.model.CrabModel;
 import com.technologica.client.model.DeerModel;
+import com.technologica.client.model.DustDevilModel;
 import com.technologica.client.model.ElephantModel;
 import com.technologica.client.model.FigureEightPufferfishBigModel;
 import com.technologica.client.model.FigureEightPufferfishMidModel;
@@ -105,7 +106,11 @@ public class TechnologicaLayerDefinitions {
 		event.registerLayerDefinition(TechnologicaModelLayers.ATOMIC_CREEPER, () -> CreeperModel.createBodyLayer(CubeDeformation.NONE));
 		event.registerLayerDefinition(TechnologicaModelLayers.MUMMY, () -> LayerDefinition.create(ZombieModel.createMesh(CubeDeformation.NONE, 0.0F), 64, 64));
 		event.registerLayerDefinition(TechnologicaModelLayers.PEEPER, () -> CreeperModel.createBodyLayer(CubeDeformation.NONE));
+		event.registerLayerDefinition(TechnologicaModelLayers.BEEPER, () -> CreeperModel.createBodyLayer(CubeDeformation.NONE));
+		event.registerLayerDefinition(TechnologicaModelLayers.SLEEPER, () -> CreeperModel.createBodyLayer(CubeDeformation.NONE));
+		event.registerLayerDefinition(TechnologicaModelLayers.WEEPER, () -> CreeperModel.createBodyLayer(CubeDeformation.NONE));
 		event.registerLayerDefinition(TechnologicaModelLayers.SWEEPER, () -> CreeperModel.createBodyLayer(CubeDeformation.NONE));
+		event.registerLayerDefinition(TechnologicaModelLayers.DUST_DEVIL, () -> DustDevilModel.createBodyLayer(CubeDeformation.NONE));
 
 		event.registerLayerDefinition(TechnologicaModelLayers.NAVAL_MINE, NavalMineModel::createBodyModel);
 		event.registerLayerDefinition(TechnologicaModelLayers.ROCKET, () -> BoatModel.createBodyModel());

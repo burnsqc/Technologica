@@ -148,10 +148,10 @@ public class MooseModel<T extends AbstractHorse> extends AgeableListModel<T> {
 		antlerRight2.addOrReplaceChild("antler_right_11", CubeListBuilder.create().texOffs(0, 0).addBox(0.0F, -2.0F, -2.0F, 1.0F, 2.0F, 1.0F), PartPose.offset(0.0F, -12.0F, -1.0F));
 		antlerLeft2.addOrReplaceChild("antler_left_12", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, -2.0F, 1.0F, 2.0F, 1.0F), PartPose.offset(0.0F, -12.0F, 1.0F));
 		antlerRight2.addOrReplaceChild("antler_right_12", CubeListBuilder.create().texOffs(0, 0).addBox(0.0F, -2.0F, -2.0F, 1.0F, 2.0F, 1.0F), PartPose.offset(0.0F, -12.0F, 1.0F));
-		PartDefinition legUpperBackRight = body.addOrReplaceChild("legUpperBackRight", CubeListBuilder.create().texOffs(0, 48).addBox(-2.0F, -4.0F, -4.0F, 4.0F, 8.0F, 4.0F), PartPose.offset(4.0F, 8.0F, 16.0F));
-		PartDefinition legUpperBackLeft = body.addOrReplaceChild("legUpperBackLeft", CubeListBuilder.create().texOffs(0, 48).mirror().addBox(-2.0F, -4.0F, -4.0F, 4.0F, 8.0F, 4.0F), PartPose.offset(-4.0F, 8.0F, 16.0F));
-		PartDefinition legUpperFrontRight = body.addOrReplaceChild("legUpperFrontRight", CubeListBuilder.create().texOffs(16, 48).addBox(-2.0F, -4.0F, 0.0F, 4.0F, 12.0F, 4.0F), PartPose.offset(4.0F, 8.0F, -16.0F));
-		PartDefinition legUpperFrontLeft = body.addOrReplaceChild("legUpperFrontLeft", CubeListBuilder.create().texOffs(16, 48).mirror().addBox(-2.0F, -4.0F, 0.0F, 4.0F, 12.0F, 4.0F), PartPose.offset(-4.0F, 8.0F, -16.0F));
+		PartDefinition legUpperBackRight = body.addOrReplaceChild("legUpperBackRight", CubeListBuilder.create().texOffs(0, 48).addBox(-1.99F, -4.0F, -3.99F, 3.98F, 8.0F, 3.98F), PartPose.offset(4.0F, 8.0F, 16.0F));
+		PartDefinition legUpperBackLeft = body.addOrReplaceChild("legUpperBackLeft", CubeListBuilder.create().texOffs(0, 48).mirror().addBox(-1.99F, -4.0F, -3.99F, 3.98F, 8.0F, 3.98F), PartPose.offset(-4.0F, 8.0F, 16.0F));
+		PartDefinition legUpperFrontRight = body.addOrReplaceChild("legUpperFrontRight", CubeListBuilder.create().texOffs(16, 48).addBox(-1.99F, -4.0F, 0.01F, 3.98F, 12.0F, 3.98F), PartPose.offset(4.0F, 8.0F, -16.0F));
+		PartDefinition legUpperFrontLeft = body.addOrReplaceChild("legUpperFrontLeft", CubeListBuilder.create().texOffs(16, 48).mirror().addBox(-1.99F, -4.0F, 0.01F, 3.98F, 12.0F, 3.98F), PartPose.offset(-4.0F, 8.0F, -16.0F));
 		legUpperBackRight.addOrReplaceChild("legLowerBackRight", CubeListBuilder.create().texOffs(32, 48).addBox(-2.0F, 0.0F, -4.0F, 4.0F, 12.0F, 4.0F), PartPose.offset(0.0F, 4.0F, 0.0F));
 		legUpperBackLeft.addOrReplaceChild("legLowerBackLeft", CubeListBuilder.create().texOffs(32, 48).mirror().addBox(-2.0F, 0.0F, -4.0F, 4.0F, 12.0F, 4.0F), PartPose.offset(0.0F, 4.0F, 0.0F));
 		legUpperFrontRight.addOrReplaceChild("legLowerFrontRight", CubeListBuilder.create().texOffs(48, 48).addBox(-2.0F, 0.0F, 0.0F, 4.0F, 8.0F, 4.0F), PartPose.offset(0.0F, 8.0F, 0.0F));

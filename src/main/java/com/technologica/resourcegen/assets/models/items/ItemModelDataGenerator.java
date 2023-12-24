@@ -123,7 +123,11 @@ public class ItemModelDataGenerator extends ItemModelProvider {
 		simpleSpawnEggItem(TechnologicaItems.ATOMIC_CREEPER_SPAWN_EGG.get());
 		simpleSpawnEggItem(TechnologicaItems.MUMMY_SPAWN_EGG.get());
 		simpleSpawnEggItem(TechnologicaItems.PEEPER_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.BEEPER_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.SLEEPER_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.WEEPER_SPAWN_EGG.get());
 		simpleSpawnEggItem(TechnologicaItems.SWEEPER_SPAWN_EGG.get());
+		simpleSpawnEggItem(TechnologicaItems.DUST_DEVIL_SPAWN_EGG.get());
 
 		simpleItem(TechnologicaItems.PIRANHA_BUCKET.get());
 
@@ -492,10 +496,9 @@ public class ItemModelDataGenerator extends ItemModelProvider {
 		this.getBuilder(location.getPath()).parent(new ModelFile.UncheckedModelFile("builtin/entity")).guiLight(GuiLight.FRONT).texture("layer0", new ResourceLocation(location.getNamespace(), ITEM_FOLDER + "/" + location.getPath()));
 		this.getBuilder(location.getPath() + "_base").parent(new ModelFile.UncheckedModelFile("item/generated")).texture("layer0", new ResourceLocation(location.getNamespace(), ITEM_FOLDER + "/" + location.getPath()));
 	}
-	
+
 	@Override
-    public String getName()
-    {
-        return "Models - Items: " + Technologica.MOD_ID;
-    }
+	public String getName() {
+		return "Models - Items: " + Technologica.MOD_ID;
+	}
 }
