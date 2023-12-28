@@ -1,6 +1,7 @@
 package com.technologica.listeners.forgebus;
 
 import org.joml.Matrix4f;
+import org.lwjgl.opengl.GL11;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.technologica.capabilities.TechnologicaCapabilities;
@@ -8,24 +9,26 @@ import com.technologica.capabilities.air.IAir;
 import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class RenderGuiOverlayEventListener {
-	public static final ResourceLocation GUI_ICONS_LOCATION = new TechnologicaLocation("textures/gui/technologica_icons.png");
-	protected static final ResourceLocation AIR_SPRITE = new ResourceLocation("textures/gui/icons.png");
+	private static final ResourceLocation GUI_ICONS_LOCATION = new TechnologicaLocation("textures/gui/technologica_icons.png");
+	private static final ResourceLocation AIR_SPRITE = new ResourceLocation("textures/gui/icons.png");
+	private static Biome biome;
+	private static int fade;
 
 	@SubscribeEvent
-	public void onRenderGameOverlayEventPre(RenderGuiOverlayEvent.Pre event) {
+	public static void onRenderGameOverlayEventPre(RenderGuiOverlayEvent.Pre event) {
 		if (event.getOverlay() == VanillaGuiOverlay.AIR_LEVEL.type()) {
 			Minecraft minecraft = Minecraft.getInstance();
 			Player player = (Player) minecraft.getCameraEntity();
@@ -81,14 +84,40 @@ public class RenderGuiOverlayEventListener {
 		Player player = (Player) minecraft.getCameraEntity();
 		BlockPos blockpos = BlockPos.containing(player.getEyePosition().x, player.getEyePosition().y, player.getEyePosition().z);
 		String dimension = keyToValue(player.level().dimension().location().getPath().toString());
-		String biome = keyToValue(player.level().getBiome(blockpos).unwrapKey().get().location().getPath().toString());
 
-		minecraft.font.drawInBatch(dimension, minecraft.getWindow().getGuiScaledWidth() - 10 - minecraft.font.width(dimension), 10, 16777215, true, matrix4f, irendertypebuffer$impl, Font.DisplayMode.POLYGON_OFFSET, 0, 15728880, false);
+		Biome newBiome = player.level().getBiome(blockpos).get();
 
-		minecraft.font.drawInBatch(biome, minecraft.getWindow().getGuiScaledWidth() - 10 - minecraft.font.width(biome), 20, 16777215, true, matrix4f, irendertypebuffer$impl, Font.DisplayMode.POLYGON_OFFSET, 0, 15728880, false);
+		if (fade > 0) {
+			fade--;
+		}
+
+		if (biome != newBiome) {
+			biome = newBiome;
+			fade = 5000;
+		}
+
+		String biomeName = keyToValue(player.level().getBiome(blockpos).unwrapKey().get().location().getPath().toString());
+		float dimensionNameX = minecraft.getWindow().getGuiScaledWidth() - minecraft.font.width(dimension) - 10;
+		int biomeNameX = minecraft.getWindow().getGuiScaledWidth() - minecraft.font.width(biomeName) - 10;
+
+		RenderSystem.enableBlend();
+		RenderSystem.blendFuncSeparate(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
+
+		double d0 = minecraft.options.chatOpacity().get() * 0.9F + 0.1F;
+		double d3 = false ? 1.0D : getTimeFactor(500 - fade);
+		int j3 = (int) (255.0D * d3 * d0);
+		if (j3 > 3) {
+			GuiGraphics guiGraphics = event.getGuiGraphics();
+			guiGraphics.fill(-4, j3, -2, j3, j3 << 24);
+			guiGraphics.drawString(minecraft.font, biomeName, biomeNameX, 20, 16777215 + (j3 << 24));
+		}
+		// minecraft.font.drawInBatch(dimension, dimensionNameX, 10.0F, 0xFFFFFF, true, matrix4f, irendertypebuffer$impl, Font.DisplayMode.SEE_THROUGH, 0, 0, false);
+
+		// minecraft.font.drawInBatch(dimension, dimensionNameX, 10.0F, 0xFFFFFFFF, true, matrix4f, irendertypebuffer$impl, Font.DisplayMode.SEE_THROUGH, 0, 15728880, false);
+		// minecraft.font.drawInBatch(biomeName, biomeNameX, 20.0F, 0x01FFFFFF, true, matrix4f, irendertypebuffer$impl, Font.DisplayMode.SEE_THROUGH, 0, 15728880, false);
 	}
 
-	private String keyToValue(String key) {
+	private static String keyToValue(String key) {
 		String words[] = key.split("_");
 		String name = "";
 		for (String word : words) {
@@ -99,7 +128,15 @@ public class RenderGuiOverlayEventListener {
 		return name.trim();
 	}
 
-	private void bind(Minecraft minecraft, ResourceLocation res) {
+	private static void bind(Minecraft minecraft, ResourceLocation res) {
 		minecraft.getTextureManager().bindForSetup(res);
+	}
+
+	private static double getTimeFactor(int p_93776_) {
+		double d0 = p_93776_ / 200.0D;
+		d0 = 1.0D - d0;
+		d0 *= 10.0D;
+		d0 = Mth.clamp(d0, 0.0D, 1.0D);
+		return d0 * d0;
 	}
 }

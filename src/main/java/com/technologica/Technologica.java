@@ -22,30 +22,10 @@ import com.technologica.listeners.forgebus.ServerTickEventListener;
 import com.technologica.listeners.forgebus.VillagerTradesEventListener;
 import com.technologica.listeners.forgebus.WandererTradesEventListener;
 import com.technologica.listeners.modbus.CommonSetup;
-import com.technologica.listeners.modbus.Register;
 import com.technologica.network.packets.ClientboundUpdateAirCapabilityPacket;
 import com.technologica.network.packets.ServerboundUpdateAnnunciatorPacket;
 import com.technologica.network.packets.ServerboundUpdateMonitorPacket;
-import com.technologica.registration.deferred.TechnologicaAttributes;
-import com.technologica.registration.deferred.TechnologicaBlockEntityTypes;
-import com.technologica.registration.deferred.TechnologicaBlocks;
-import com.technologica.registration.deferred.TechnologicaCreativeModeTabs;
-import com.technologica.registration.deferred.TechnologicaEntityTypes;
-import com.technologica.registration.deferred.TechnologicaFeatures;
-import com.technologica.registration.deferred.TechnologicaFluidTypes;
-import com.technologica.registration.deferred.TechnologicaFluids;
-import com.technologica.registration.deferred.TechnologicaFoliagePlacerTypes;
-import com.technologica.registration.deferred.TechnologicaGlobalLootModifierSerializers;
-import com.technologica.registration.deferred.TechnologicaItems;
-import com.technologica.registration.deferred.TechnologicaMenuTypes;
-import com.technologica.registration.deferred.TechnologicaMobEffects;
-import com.technologica.registration.deferred.TechnologicaPaintingVariant;
-import com.technologica.registration.deferred.TechnologicaParticleTypes;
-import com.technologica.registration.deferred.TechnologicaRecipeSerializers;
-import com.technologica.registration.deferred.TechnologicaRecipeTypes;
-import com.technologica.registration.deferred.TechnologicaSoundEvents;
-import com.technologica.registration.deferred.TechnologicaStructureTypes;
-import com.technologica.registration.deferred.TechnologicaTrunkPlacerTypes;
+import com.technologica.registration.deferred.util.MasterDeferredRegistrar;
 import com.technologica.setup.ClientInit;
 import com.technologica.setup.Config;
 import com.technologica.setup.listeners.TechnologicaEntityAttributes;
@@ -76,32 +56,11 @@ public class Technologica {
 	public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(new TechnologicaLocation("main"), () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
 	public static int PACKET_ID = 0;
 
-	public static int soundEvents;
-	public static int fluids;
-	public static int blocks;
-	public static int mobEffects;
-	public static int particleTypes;
-	public static int items;
-	public static int entityTypes;
-	public static int blockEntityTypes;
-	public static int menuTypes;
-	public static int recipeTypes;
-	public static int recipeSerializers;
-	public static int features;
-	public static int foliagePlacerTypes;
-	public static int creativeModeTabs;
-	public static int fluidTypes;
-	public static int globalLootModifierTypes;
-	public static int structureTypes;
-	public static int trunkPlacerTypes;
-	public static int attributes;
-	public static int paintingVariants;
-
 	public Technologica() {
 		LOGGER.info("TECHNOLOGICA NOW LOADING FOR DIST " + FMLEnvironment.dist.toString());
 
 		LOGGER.info("INIT - COMMON");
-		initDeferredRegisters();
+		MasterDeferredRegistrar.initDeferredRegisters();
 		registerPackets();
 		addModEventBusListeners();
 		addForgeEventBusListeners();
@@ -117,68 +76,6 @@ public class Technologica {
 		CraftingHelper.register(EnablePlankConditionFactory.Serializer.INSTANCE);
 	}
 
-	private static void initDeferredRegisters() {
-		soundEvents = TechnologicaSoundEvents.init();
-		LOGGER.info("INITIALIZATION - SOUND EVENTS - " + soundEvents);
-
-		fluids = TechnologicaFluids.init();
-		LOGGER.info("INITIALIZATION - FLUIDS - " + fluids);
-
-		blocks = TechnologicaBlocks.init();
-		LOGGER.info("INITIALIZATION - BLOCKS - " + blocks);
-
-		mobEffects = TechnologicaMobEffects.init();
-		LOGGER.info("INITIALIZATION - MOB EFFECTS - " + mobEffects);
-
-		particleTypes = TechnologicaParticleTypes.init();
-		LOGGER.info("INITIALIZATION - PARTICLE TYPES - " + particleTypes);
-
-		items = TechnologicaItems.init();
-		LOGGER.info("INITIALIZATION - ITEMS - " + items);
-
-		entityTypes = TechnologicaEntityTypes.init();
-		LOGGER.info("INITIALIZATION - ENTITY TYPES - " + entityTypes);
-
-		blockEntityTypes = TechnologicaBlockEntityTypes.init();
-		LOGGER.info("INITIALIZATION - BLOCK ENTITY TYPES - " + blockEntityTypes);
-
-		menuTypes = TechnologicaMenuTypes.init();
-		LOGGER.info("INITIALIZATION - MENU TYPES - " + menuTypes);
-
-		recipeTypes = TechnologicaRecipeTypes.init();
-		LOGGER.info("INITIALIZATION - RECIPE TYPES - " + recipeTypes);
-
-		recipeSerializers = TechnologicaRecipeSerializers.init();
-		LOGGER.info("INITIALIZATION - RECIPE SERIALIZERS - " + recipeSerializers);
-
-		features = TechnologicaFeatures.init();
-		LOGGER.info("INITIALIZATION - FEATURES - " + features);
-
-		foliagePlacerTypes = TechnologicaFoliagePlacerTypes.init();
-		LOGGER.info("INITIALIZATION - FOLIAGE PLACER TYPES - " + foliagePlacerTypes);
-
-		trunkPlacerTypes = TechnologicaTrunkPlacerTypes.init();
-		LOGGER.info("INITIALIZATION - TRUNK PLACER TYPES - " + trunkPlacerTypes);
-
-		creativeModeTabs = TechnologicaCreativeModeTabs.init();
-		LOGGER.info("INITIALIZATION - CREATIVE MODE TABS - " + creativeModeTabs);
-
-		fluidTypes = TechnologicaFluidTypes.init();
-		LOGGER.info("INITIALIZATION - FLUID TYPES - " + fluidTypes);
-
-		globalLootModifierTypes = TechnologicaGlobalLootModifierSerializers.init();
-		LOGGER.info("INITIALIZATION - LOOT MODIFIERS - " + globalLootModifierTypes);
-
-		structureTypes = TechnologicaStructureTypes.init();
-		LOGGER.info("INITIALIZATION - STRUCTURE TYPES - " + structureTypes);
-
-		attributes = TechnologicaAttributes.init();
-		LOGGER.info("INITIALIZATION - ATTRIBUTES - " + attributes);
-
-		paintingVariants = TechnologicaPaintingVariant.init();
-		LOGGER.info("INITIALIZATION - PAINTING VARIANTS - " + paintingVariants);
-	}
-
 	private static void registerPackets() {
 		CHANNEL.registerMessage(Technologica.PACKET_ID++, ServerboundUpdateAnnunciatorPacket.class, ServerboundUpdateAnnunciatorPacket::encode, ServerboundUpdateAnnunciatorPacket::decode, ServerboundUpdateAnnunciatorPacket::handle);
 		CHANNEL.registerMessage(Technologica.PACKET_ID++, ServerboundUpdateMonitorPacket.class, ServerboundUpdateMonitorPacket::encode, ServerboundUpdateMonitorPacket::decode, ServerboundUpdateMonitorPacket::handle);
@@ -186,7 +83,7 @@ public class Technologica {
 	}
 
 	private static void addModEventBusListeners() {
-		Technologica.MOD_EVENT_BUS.addListener(Register::onRegisterEvent);
+		Technologica.MOD_EVENT_BUS.addListener(MasterDeferredRegistrar::onRegisterEvent);
 		Technologica.MOD_EVENT_BUS.addListener(TechnologicaEntityAttributes::onEntityAttributeCreationEvent);
 		Technologica.MOD_EVENT_BUS.addListener(CommonSetup::onFMLCommonSetupEvent);
 		Technologica.MOD_EVENT_BUS.addListener(TechnologicaCapabilities::register);

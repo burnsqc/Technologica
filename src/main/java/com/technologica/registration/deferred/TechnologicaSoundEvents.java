@@ -16,7 +16,7 @@ import net.minecraftforge.registries.RegistryObject;
  * @tl.status GREEN
  */
 public final class TechnologicaSoundEvents extends MasterDeferredRegistrar {
-	
+
 	public static int init() {
 		SOUND_EVENTS.register(Technologica.MOD_EVENT_BUS);
 		return SOUND_EVENTS.getEntries().size();

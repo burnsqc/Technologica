@@ -29,6 +29,6 @@ public class ClientInit {
 
 	private static void addForgeEventBusListeners() {
 		Technologica.FORGE_EVENT_BUS.register(new MovementInputUpdateEventListener());
-		Technologica.FORGE_EVENT_BUS.register(new RenderGuiOverlayEventListener());
+		Technologica.FORGE_EVENT_BUS.addListener(RenderGuiOverlayEventListener::onRenderGameOverlayEventPre);
 	}
 }
