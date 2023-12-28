@@ -29,25 +29,26 @@ public class RenderGuiOverlayEventListener {
 
 	@SubscribeEvent
 	public static void onRenderGameOverlayEventPre(RenderGuiOverlayEvent.Pre event) {
+		Minecraft minecraft = Minecraft.getInstance();
+		Player player = (Player) minecraft.getCameraEntity();
+
 		if (event.getOverlay() == VanillaGuiOverlay.AIR_LEVEL.type()) {
-			Minecraft minecraft = Minecraft.getInstance();
-			Player player = (Player) minecraft.getCameraEntity();
+			GuiGraphics guiGraphics = event.getGuiGraphics();
 
 			IAir airCapability = player.getCapability(TechnologicaCapabilities.INSTANCE).orElseThrow(NullPointerException::new);
 			int newMaxAir = airCapability.getNewMaxAir();
 
 			if (newMaxAir == 600) {
 				event.setCanceled(true);
-				GuiGraphics guiGraphics = event.getGuiGraphics();
-				minecraft.getProfiler().push("air");
+
 				int left = minecraft.getWindow().getGuiScaledWidth() / 2 + 91;
 				int top = minecraft.getWindow().getGuiScaledHeight() - 49;
 				int air = player.getAirSupply();
+
 				RenderSystem.enableBlend();
 				if (player.isEyeInFluidType(ForgeMod.WATER_TYPE.get()) || air < 600) {
 					int full = Mth.ceil((air - 2) * 10.0D / 300.0D);
 					int partial = Mth.ceil(air * 10.0D / 300.0D) - full;
-
 					for (int i = 0; i < full + partial; ++i) {
 						int horizontal = i > 9 ? 71 : -9;
 						int vertical = i > 9 ? -10 : 0;
@@ -55,57 +56,55 @@ public class RenderGuiOverlayEventListener {
 					}
 				}
 				RenderSystem.disableBlend();
-				minecraft.getProfiler().pop();
 
 			} else if (newMaxAir >= 3000) {
 				event.setCanceled(true);
-				GuiGraphics guiGraphics = event.getGuiGraphics();
-				minecraft.getProfiler().push("air");
-				bind(minecraft, GUI_ICONS_LOCATION);
-				RenderSystem.enableBlend();
+				minecraft.getTextureManager().bindForSetup(GUI_ICONS_LOCATION);
+
 				int left = minecraft.getWindow().getGuiScaledWidth() / 2 + 91;
 				int top = minecraft.getWindow().getGuiScaledHeight() - 49;
 				int air = player.getAirSupply();
+
+				RenderSystem.enableBlend();
 				if (player.isEyeInFluidType(ForgeMod.WATER_TYPE.get()) || air < newMaxAir) {
 					float remaining = air / (float) newMaxAir * 81;
 					guiGraphics.blit(GUI_ICONS_LOCATION, left - 81, top, -90, 0, 9, (int) (remaining), 9, 256, 256);
 					guiGraphics.blit(GUI_ICONS_LOCATION, left - 81, top, -90, 0, 0, 81, 9, 256, 256);
 				}
 				RenderSystem.disableBlend();
-				minecraft.getProfiler().pop();
-
 			}
 		}
 
-		// TESTING OVERLAY FOR BIOMES
-		Minecraft minecraft = Minecraft.getInstance();
-		Matrix4f matrix4f = event.getGuiGraphics().pose().last().pose();
-		MultiBufferSource.BufferSource irendertypebuffer$impl = minecraft.renderBuffers().bufferSource();
-		Player player = (Player) minecraft.getCameraEntity();
-		BlockPos blockpos = BlockPos.containing(player.getEyePosition().x, player.getEyePosition().y, player.getEyePosition().z);
+		if (event.getOverlay() == VanillaGuiOverlay.VIGNETTE.type()) {
+			// TESTING OVERLAY FOR BIOMES
+			Matrix4f matrix4f = event.getGuiGraphics().pose().last().pose();
+			MultiBufferSource.BufferSource irendertypebuffer$impl = minecraft.renderBuffers().bufferSource();
+			BlockPos blockpos = BlockPos.containing(player.getEyePosition().x, player.getEyePosition().y, player.getEyePosition().z);
+			Biome newBiome = player.level().getBiome(blockpos).get();
 
-		Biome newBiome = player.level().getBiome(blockpos).get();
+			if (fade > 0) {
+				fade--;
+			}
 
-		if (fade > 0) {
-			fade--;
+			if (biome != newBiome) {
+				biome = newBiome;
+				fade = 700;
+			}
+
+			String dimensionName = stringToProperName(player.level().dimension().location().getPath().toString());
+			String biomeName = stringToProperName(player.level().getBiome(blockpos).unwrapKey().get().location().getPath().toString());
+
+			int dimensionNamePosX = minecraft.getWindow().getGuiScaledWidth() - minecraft.font.width(dimensionName) - 10;
+			int biomeNamePosX = minecraft.getWindow().getGuiScaledWidth() - minecraft.font.width(biomeName) - 10;
+
+			float f1 = minecraft.options.getBackgroundOpacity((float) Math.sin(fade * Math.PI / 700F));
+			int j = (int) (f1 * 255.0F) << 24;
+
+			minecraft.font.drawInBatch(dimensionName, dimensionNamePosX, 10, 0xFFFFFF, true, matrix4f, irendertypebuffer$impl, Font.DisplayMode.SEE_THROUGH, 0, 0);
+			if (f1 > 0.05) {
+				minecraft.font.drawInBatch(biomeName, biomeNamePosX, 20, 0xFFFFFF + j, true, matrix4f, irendertypebuffer$impl, Font.DisplayMode.SEE_THROUGH, 0, 0);
+			}
 		}
-
-		if (biome != newBiome) {
-			biome = newBiome;
-			fade = 5000;
-		}
-
-		String dimensionName = stringToProperName(player.level().dimension().location().getPath().toString());
-		String biomeName = stringToProperName(player.level().getBiome(blockpos).unwrapKey().get().location().getPath().toString());
-
-		int dimensionNamePosX = minecraft.getWindow().getGuiScaledWidth() - minecraft.font.width(dimensionName) - 10;
-		int biomeNamePosX = minecraft.getWindow().getGuiScaledWidth() - minecraft.font.width(biomeName) - 10;
-
-		// ATTEMPTING TO RIP OFF NAMETAG RENDERING FOR THIS
-		float f1 = minecraft.options.getBackgroundOpacity(0.25F);
-		int j = (int) (f1 * 255.0F) << 24;
-
-		minecraft.font.drawInBatch(dimensionName, dimensionNamePosX, 10, 553648127, false, matrix4f, irendertypebuffer$impl, Font.DisplayMode.SEE_THROUGH, j, 553648127);
 	}
 
 	private static String stringToProperName(String string) {
@@ -117,9 +116,5 @@ public class RenderGuiOverlayEventListener {
 			name += first.toUpperCase() + afterFirst + " ";
 		}
 		return name.trim();
-	}
-
-	private static void bind(Minecraft minecraft, ResourceLocation res) {
-		minecraft.getTextureManager().bindForSetup(res);
 	}
 }
