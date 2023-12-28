@@ -45,7 +45,7 @@ public class VultureModel<T extends Entity> extends ListModel<T> {
 		PartDefinition neck = neck_lower.addOrReplaceChild("neck", CubeListBuilder.create().texOffs(33, 0).addBox(-1.0F, -2.0F, -5.0F, 2.0F, 2.0F, 5.0F), PartPose.offset(0.0F, 2.0F, -5.0F));
 		PartDefinition head = neck.addOrReplaceChild("head", CubeListBuilder.create().texOffs(47, 0).addBox(-1.5F, 0.0F, -3.0F, 3.0F, 3.0F, 3.0F), PartPose.offset(0.0F, -2.0F, -5.0F));
 		head.addOrReplaceChild("beak", CubeListBuilder.create().texOffs(0, 0).addBox(-0.5F, 1.0F, -5.0F, 1.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
-		body.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(0, 12).addBox(-8.0F, -1.0F, -8.0F, 16.0F, 2.0F, 16.0F), PartPose.offset(0.0F, -1.0F, 9.0F));
+		body.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(0, 12).addBox(-8.0F, -0.99F, -8.0F, 16.0F, 1.98F, 16.0F), PartPose.offset(0.0F, -1.0F, 9.0F));
 		body.addOrReplaceChild("leg_left", CubeListBuilder.create().texOffs(0, 12).addBox(-1.5F, 0.0F, -1.5F, 3.0F, 4.0F, 3.0F), PartPose.offset(-2.0F, 0.0F, -1.0F));
 		body.addOrReplaceChild("leg_right", CubeListBuilder.create().texOffs(0, 12).addBox(-1.5F, 0.0F, -1.5F, 3.0F, 4.0F, 3.0F), PartPose.offset(2.0F, 0.0F, -1.0F));
 		PartDefinition wing_inner_left = body.addOrReplaceChild("wing_inner_left", CubeListBuilder.create().texOffs(0, 30).addBox(0.0F, 0.0F, 0.0F, 6.0F, 2.0F, 9.0F), PartPose.offset(2.5F, -2.0F, -8.0F));
@@ -54,7 +54,7 @@ public class VultureModel<T extends Entity> extends ListModel<T> {
 		wing_inner_right.addOrReplaceChild("wing_outer_right", CubeListBuilder.create().texOffs(0, 41).mirror().addBox(-13.0F, 0.0F, 0.0F, 13.0F, 1.0F, 9.0F), PartPose.offset(-6.0F, 0.0F, 0.0F));
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
-	
+
 	@Override
 	public Iterable<ModelPart> parts() {
 		return ImmutableList.of(this.body);
@@ -66,7 +66,7 @@ public class VultureModel<T extends Entity> extends ListModel<T> {
 		this.wing_inner_left.zRot = 0.1F;
 		this.wing_outer_left.zRot = 0.1F;
 		this.wing_inner_right.zRot = -0.1F;
-		this.wing_outer_right.zRot = -0.1F;	
+		this.wing_outer_right.zRot = -0.1F;
 		this.body.xRot = -0.1F;
 		this.wing_inner_left.zRot = Mth.cos(ageTicker) * 16.0F * ((float) Math.PI / 180F);
 		this.wing_outer_left.zRot = Mth.cos(ageTicker) * 16.0F * ((float) Math.PI / 180F);

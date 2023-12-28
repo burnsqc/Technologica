@@ -46,23 +46,23 @@ public class FlamingoModel<T extends Animal> extends AgeableListModel<T> {
 		MeshDefinition meshdefinition = QuadrupedModel.createBodyMesh(6, CubeDeformation.NONE);
 		PartDefinition root = meshdefinition.getRoot();
 		root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-3.0F, -2.0F, -4.0F, 6.0F, 5.0F, 6.0F), PartPose.offset(0.0F, 9.0F, 0.0F));
-		root.addOrReplaceChild("wing_right", CubeListBuilder.create().texOffs(0, 11).mirror().addBox(0.0F, 0.0F, -3.0F, 1.0F, 4.0F, 8.0F), PartPose.offset(-4.0F, 7.0F, 0.0F));
-		root.addOrReplaceChild("wing_left", CubeListBuilder.create().texOffs(0, 11).addBox(-1.0F, 0.0F, -3.0F, 1.0F, 4.0F, 8.0F), PartPose.offset(4.0F, 7.0F, 0.0F));
+		root.addOrReplaceChild("wing_right", CubeListBuilder.create().texOffs(0, 11).mirror().addBox(0.0F, 0.0F, -3.0F, 1.0F, 4.0F, 8.0F), PartPose.offset(-4.01F, 7.0F, 0.0F));
+		root.addOrReplaceChild("wing_left", CubeListBuilder.create().texOffs(0, 11).addBox(-1.0F, 0.0F, -3.0F, 1.0F, 4.0F, 8.0F), PartPose.offset(4.01F, 7.0F, 0.0F));
 		root.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(0, 23).addBox(-3.0F, -1.0F, -4.0F, 6.0F, 1.0F, 4.0F), PartPose.offset(0.0F, 7.0F, 2.0F));
 		PartDefinition rightLeg = root.addOrReplaceChild("leg_right", CubeListBuilder.create().texOffs(18, 11).addBox(-1.0F, 0.0F, -3.0F, 3.0F, 6.0F, 3.0F), PartPose.offset(-2.0F, 12.0F, 0.0F));
 		PartDefinition leftLeg = root.addOrReplaceChild("leg_left", CubeListBuilder.create().texOffs(18, 11).addBox(-1.0F, 0.0F, -3.0F, 3.0F, 6.0F, 3.0F), PartPose.offset(1.0F, 12.0F, 0.0F));
 		rightLeg.addOrReplaceChild("right_leg_lower", CubeListBuilder.create().texOffs(30, 11).addBox(-1.0F, 0.0F, -3.0F, 3.0F, 6.0F, 3.0F), PartPose.offset(0.0F, 6.0F, 0.0F));
 		leftLeg.addOrReplaceChild("left_leg_lower", CubeListBuilder.create().texOffs(30, 11).addBox(-1.0F, 0.0F, -3.0F, 3.0F, 6.0F, 3.0F), PartPose.offset(0.0F, 6.0F, 0.0F));
 		PartDefinition neck1 = root.addOrReplaceChild("neck1", CubeListBuilder.create().texOffs(42, 0).addBox(-1.0F, -2.0F, -4.0F, 2.0F, 2.0F, 4.0F), PartPose.offset(0.0F, 12.0F, -4.0F));
-		PartDefinition neck2 = neck1.addOrReplaceChild("neck2", CubeListBuilder.create().texOffs(42, 6).addBox(-1.0F, -2.0F, -4.0F, 2.0F, 2.0F, 4.0F), PartPose.offset(0.0F, 0.0F, -4.0F));
+		PartDefinition neck2 = neck1.addOrReplaceChild("neck2", CubeListBuilder.create().texOffs(42, 6).addBox(-0.99F, -1.99F, -4.0F, 1.98F, 1.98F, 4.0F), PartPose.offset(0.0F, 0.0F, -4.0F));
 		PartDefinition neck3 = neck2.addOrReplaceChild("neck3", CubeListBuilder.create().texOffs(42, 12).addBox(-1.0F, -2.0F, -4.0F, 2.0F, 2.0F, 4.0F), PartPose.offset(0.0F, 0.0F, -4.0F));
-		PartDefinition neck4 = neck3.addOrReplaceChild("neck4", CubeListBuilder.create().texOffs(42, 18).addBox(-1.0F, 0.0F, -4.0F, 2.0F, 2.0F, 4.0F), PartPose.offset(0.0F, -2.0F, -4.0F));
+		PartDefinition neck4 = neck3.addOrReplaceChild("neck4", CubeListBuilder.create().texOffs(42, 18).addBox(-0.99F, 0.01F, -4.0F, 1.98F, 1.98F, 4.0F), PartPose.offset(0.0F, -2.0F, -4.0F));
 		PartDefinition neck5 = neck4.addOrReplaceChild("neck5", CubeListBuilder.create().texOffs(42, 24).addBox(-1.0F, 0.0F, -4.0F, 2.0F, 2.0F, 4.0F), PartPose.offset(0.0F, 0.0F, -4.0F));
 		PartDefinition head = neck5.addOrReplaceChild("head", CubeListBuilder.create().texOffs(18, 0).addBox(-1.5F, 0.0F, -3.0F, 3.0F, 3.0F, 3.0F), PartPose.offset(0.0F, 0.0F, -4.0F));
 		head.addOrReplaceChild("bill", CubeListBuilder.create().texOffs(0, 11).addBox(-0.5F, 1.0F, -6.0F, 1.0F, 2.0F, 3.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
 		return LayerDefinition.create(meshdefinition, 64, 32);
 	}
-	
+
 	@Override
 	protected Iterable<ModelPart> headParts() {
 		return ImmutableList.of(this.neck1);
@@ -75,12 +75,12 @@ public class FlamingoModel<T extends Animal> extends AgeableListModel<T> {
 
 	@Override
 	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.neck1.xRot = -(float)Math.PI/4;
-		this.neck2.xRot = -(float)Math.PI/4;
-		this.neck3.xRot = -(float)Math.PI/4;
-		this.neck4.xRot = (float)Math.PI/4;
-		this.neck5.xRot = (float)Math.PI/4;
-		this.head.xRot = (float)Math.PI/4;
-		this.tail.xRot = 6*(float)Math.PI/8;
+		this.neck1.xRot = -(float) Math.PI / 4;
+		this.neck2.xRot = -(float) Math.PI / 4;
+		this.neck3.xRot = -(float) Math.PI / 4;
+		this.neck4.xRot = (float) Math.PI / 4;
+		this.neck5.xRot = (float) Math.PI / 4;
+		this.head.xRot = (float) Math.PI / 4;
+		this.tail.xRot = 6 * (float) Math.PI / 8;
 	}
 }

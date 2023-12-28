@@ -49,17 +49,17 @@ public class WalrusModel<T extends Entity> extends ListModel<T> {
 		PartDefinition tail = body.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(0, 30).addBox(-8.0F, -8.0F, 0.0F, 16.0F, 16.0F, 12.0F), PartPose.offset(0.0F, 1.0F, 6.0F));
 		PartDefinition tail2 = tail.addOrReplaceChild("tail2", CubeListBuilder.create().texOffs(60, 0).addBox(-6.0F, -6.0F, 0.0F, 12.0F, 12.0F, 12.0F), PartPose.offset(0.0F, 2.0F, 12.0F));
 		PartDefinition tail3 = tail2.addOrReplaceChild("tail3", CubeListBuilder.create().texOffs(48, 0).addBox(-3.0F, -3.0F, 0.0F, 6.0F, 6.0F, 6.0F), PartPose.offset(0.0F, 3.0F, 12.0F));
-		PartDefinition neck = body.addOrReplaceChild("neck", CubeListBuilder.create().texOffs(56, 24).addBox(-5.0F, -10.0F, -15.0F, 10.0F, 10.0F, 15.0F), PartPose.offset(0.0F, 5.0F, -6.0F));
+		PartDefinition neck = body.addOrReplaceChild("neck", CubeListBuilder.create().texOffs(56, 24).addBox(-4.99F, -10.0F, -15.0F, 9.98F, 10.0F, 15.0F), PartPose.offset(0.0F, 5.0F, -6.0F));
 		PartDefinition head = neck.addOrReplaceChild("head", CubeListBuilder.create().texOffs(46, 49).addBox(-5.0F, 0.0F, -10.0F, 10.0F, 10.0F, 10.0F), PartPose.offset(0.0F, -10.0F, -15.0F));
 		head.addOrReplaceChild("nose", CubeListBuilder.create().texOffs(0, 58).addBox(-4.0F, 5.0F, -12.0F, 8.0F, 4.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
 		head.addOrReplaceChild("tusk_left", CubeListBuilder.create().texOffs(0, 0).addBox(-3.0F, 9.0F, -11.0F, 1.0F, 6.0F, 1.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
 		head.addOrReplaceChild("tusk_right", CubeListBuilder.create().texOffs(0, 0).addBox(2.0F, 9.0F, -11.0F, 1.0F, 6.0F, 1.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
-		PartDefinition legLeft = body.addOrReplaceChild("leg_left", CubeListBuilder.create().texOffs(20, 58).mirror().addBox(-3.0F, 0.0F, 0.0F, 5.0F, 6.0F, 5.0F), PartPose.offset(9.0F, 3.0F, -4.0F));
-		PartDefinition legRight = body.addOrReplaceChild("leg_right", CubeListBuilder.create().texOffs(20, 58).mirror().addBox(-2.0F, 0.0F, 0.0F, 5.0F, 6.0F, 5.0F), PartPose.offset(-9.0F, 3.0F, -4.0F));
-		legLeft.addOrReplaceChild("flipper_front_left", CubeListBuilder.create().texOffs(0, 69).mirror().addBox(0.0F, -2.0F, 0.0F, 8.0F, 2.0F, 5.0F), PartPose.offset(2.0F, 6.0F, 0.0F));
-		legRight.addOrReplaceChild("flipper_front_right", CubeListBuilder.create().texOffs(0, 69).addBox(-8.0F, -2.0F, 0.0F, 8.0F, 2.0F, 5.0F), PartPose.offset(-2.0F, 6.0F, 0.0F));
-		tail3.addOrReplaceChild("flipper_back_left", CubeListBuilder.create().texOffs(0, 76).mirror().addBox(-5.0F, -1.0F, -5.0F, 15.0F, 2.0F, 5.0F), PartPose.offset(0.0F, 2.0F, 6.0F));
-		tail3.addOrReplaceChild("flipper_back_right", CubeListBuilder.create().texOffs(0, 76).addBox(-10.0F, -1.0F, -5.0F, 15.0F, 2.0F, 5.0F), PartPose.offset(0.0F, 2.0F, 6.0F));
+		PartDefinition legLeft = body.addOrReplaceChild("leg_left", CubeListBuilder.create().texOffs(20, 58).mirror().addBox(-3.0F, -0.02F, 0.0F, 5.0F, 5.98F, 5.0F), PartPose.offset(9.0F, 3.0F, -4.0F));
+		PartDefinition legRight = body.addOrReplaceChild("leg_right", CubeListBuilder.create().texOffs(20, 58).mirror().addBox(-2.0F, -0.02F, 0.0F, 5.0F, 5.98F, 5.0F), PartPose.offset(-9.0F, 3.0F, -4.0F));
+		legLeft.addOrReplaceChild("flipper_front_left", CubeListBuilder.create().texOffs(0, 69).mirror().addBox(0.0F, -2.01F, 0.0F, 8.0F, 1.99F, 5.0F), PartPose.offset(2.0F, 6.0F, 0.0F));
+		legRight.addOrReplaceChild("flipper_front_right", CubeListBuilder.create().texOffs(0, 69).addBox(-8.0F, -2.01F, 0.0F, 8.0F, 1.99F, 5.0F), PartPose.offset(-2.0F, 6.0F, 0.0F));
+		tail3.addOrReplaceChild("flipper_back_left", CubeListBuilder.create().texOffs(0, 76).mirror().addBox(-5.0F, -1.01F, -5.0F, 15.0F, 1.99F, 5.0F), PartPose.offset(0.0F, 2.0F, 6.0F));
+		tail3.addOrReplaceChild("flipper_back_right", CubeListBuilder.create().texOffs(0, 76).addBox(-10.0F, -1.01F, -5.0F, 15.0F, 1.99F, 5.0F), PartPose.offset(0.0F, 2.0F, 6.0F));
 		return LayerDefinition.create(meshdefinition, 128, 128);
 	}
 

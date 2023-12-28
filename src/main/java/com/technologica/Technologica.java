@@ -39,6 +39,7 @@ import com.technologica.registration.deferred.TechnologicaGlobalLootModifierSeri
 import com.technologica.registration.deferred.TechnologicaItems;
 import com.technologica.registration.deferred.TechnologicaMenuTypes;
 import com.technologica.registration.deferred.TechnologicaMobEffects;
+import com.technologica.registration.deferred.TechnologicaPaintingVariant;
 import com.technologica.registration.deferred.TechnologicaParticleTypes;
 import com.technologica.registration.deferred.TechnologicaRecipeSerializers;
 import com.technologica.registration.deferred.TechnologicaRecipeTypes;
@@ -94,6 +95,7 @@ public class Technologica {
 	public static int structureTypes;
 	public static int trunkPlacerTypes;
 	public static int attributes;
+	public static int paintingVariants;
 
 	public Technologica() {
 		LOGGER.info("TECHNOLOGICA NOW LOADING FOR DIST " + FMLEnvironment.dist.toString());
@@ -172,6 +174,9 @@ public class Technologica {
 
 		attributes = TechnologicaAttributes.init();
 		LOGGER.info("INITIALIZATION - ATTRIBUTES - " + attributes);
+
+		paintingVariants = TechnologicaPaintingVariant.init();
+		LOGGER.info("INITIALIZATION - PAINTING VARIANTS - " + paintingVariants);
 	}
 
 	private static void registerPackets() {

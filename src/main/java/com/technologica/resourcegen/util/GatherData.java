@@ -14,6 +14,7 @@ import com.technologica.resourcegen.data.recipes.RecipeDataGenerator;
 import com.technologica.resourcegen.data.tags.blocks.BlockTagProvider;
 import com.technologica.resourcegen.data.tags.fluids.FluidTagDataGenerator;
 import com.technologica.resourcegen.data.tags.items.ItemTagProvider;
+import com.technologica.resourcegen.data.tags.paintingvariant.PaintingVariantTagProvider;
 import com.technologica.resourcegen.data.tags.worldgen.biome.BiomeTagProvider;
 
 import net.minecraftforge.data.event.GatherDataEvent;
@@ -31,58 +32,55 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
  */
 @Mod.EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
 public class GatherData extends MasterResourceProvider {
-	
+
 	@SubscribeEvent
 	public static void addProviders(final GatherDataEvent eventIn) {
 		MasterResourceProvider.setup(eventIn);
-		
+
 		/*
 		 * ASSETS
 		 */
-		
+
 		BlockStateDataGenerator blockStateProvider = new BlockStateDataGenerator(packOutput, helper);
 		LanguageDataGenerator languageProvider = new LanguageDataGenerator(packOutput);
 		ItemModelDataGenerator itemModelProvider = new ItemModelDataGenerator(packOutput, helper);
 		ParticleProvider particleProvider = new ParticleProvider(packOutput, helper);
 		SoundsDataGenerator soundProvider = new SoundsDataGenerator(packOutput, helper);
-		
-		//addAssetProvider(atlasProvider);
+
+		// addAssetProvider(atlasProvider);
 		addAssetProvider(blockStateProvider);
-		//addAssetProvider(new FontDataGenerator(packOutput, helper));
+		// addAssetProvider(new FontDataGenerator(packOutput, helper));
 		addAssetProvider(languageProvider);
-			addAssetProvider(itemModelProvider);
+		addAssetProvider(itemModelProvider);
 		addAssetProvider(particleProvider);
-		//addAssetProvider(new ShaderDataGenerator(packOutput, helper));
-		//addAssetProvider(new TextsDataGenerator(packOutput, helper));
+		// addAssetProvider(new ShaderDataGenerator(packOutput, helper));
+		// addAssetProvider(new TextsDataGenerator(packOutput, helper));
 		addAssetProvider(soundProvider);
-		
+
 		/*
 		 * DATA
 		 */
-		
+
 		AdvancementDataGenerator advancementProvider = new AdvancementDataGenerator(packOutput, lookupProvider, helper);
 		DamageTypeProvider damageTypeProvider = new DamageTypeProvider(packOutput, lookupProvider, registrySetBuilder);
-		
+
 		BlockTagProvider blockTagProvider = new BlockTagProvider(packOutput, lookupProvider, helper);
 		FluidTagDataGenerator fluidTagProvider = new FluidTagDataGenerator(packOutput, lookupProvider, helper);
 		ItemTagProvider itemTagProvider = new ItemTagProvider(packOutput, lookupProvider, blockTagProvider.contentsGetter(), helper);
 		BiomeTagProvider biomeTagProvider = new BiomeTagProvider(packOutput, lookupProvider, helper);
-		
-		//addDataProvider(new DimensionTypeDataGenerator(packOutput, lookupProvider, registrySetBuilder));
+		PaintingVariantTagProvider paintingVariantTagProvider = new PaintingVariantTagProvider(packOutput, lookupProvider, helper);
+
+		// addDataProvider(new DimensionTypeDataGenerator(packOutput, lookupProvider, registrySetBuilder));
 		addDataProvider(new BlockLootModifierDataGenerator(packOutput));
 		addDataProvider(new ChestLootModifierDataGenerator(packOutput));
-		//addDataProvider(new EntityLootModifierDataGenerator(packOutput));
+		// addDataProvider(new EntityLootModifierDataGenerator(packOutput));
 		addDataProvider(new LootTableDataGenerator(packOutput));
-		//addDataProvider(new TechnologicaDatapackBuiltinEntriesProvider(packOutput, lookupProvider));
+		// addDataProvider(new TechnologicaDatapackBuiltinEntriesProvider(packOutput, lookupProvider));
 		addDataProvider(new RecipeDataGenerator(packOutput));
-		addIntermediateDataProvider(new TagIntermediateDataGenerator(
-			blockTagProvider, 
-			fluidTagProvider, 
-			itemTagProvider, 
-			biomeTagProvider));
-		
+		addIntermediateDataProvider(new TagIntermediateDataGenerator(blockTagProvider, fluidTagProvider, itemTagProvider, biomeTagProvider, paintingVariantTagProvider));
+
 		addDataProvider(advancementProvider);
-		//addDataProvider(chatTypeProvider);
+		// addDataProvider(chatTypeProvider);
 		addDataProvider(damageTypeProvider);
 	}
 }

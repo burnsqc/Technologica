@@ -37,7 +37,7 @@ public class LeopardSealModel<T extends Entity> extends ListModel<T> {
 		MeshDefinition meshdefinition = QuadrupedModel.createBodyMesh(6, CubeDeformation.NONE);
 		PartDefinition root = meshdefinition.getRoot();
 		PartDefinition body = root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -4.0F, -7.0F, 8.0F, 8.0F, 14.0F), PartPose.offset(0.0F, 20.0F, 0.0F));
-		PartDefinition neck = body.addOrReplaceChild("neck", CubeListBuilder.create().texOffs(0, 22).addBox(-3.0F, -6.0F, -8.0F, 6.0F, 6.0F, 8.0F), PartPose.offset(0.0F, 3.0F, -7.0F));
+		PartDefinition neck = body.addOrReplaceChild("neck", CubeListBuilder.create().texOffs(0, 22).addBox(-2.99F, -6.0F, -8.0F, 5.98F, 6.0F, 8.0F), PartPose.offset(0.0F, 3.0F, -7.0F));
 		PartDefinition head = neck.addOrReplaceChild("head", CubeListBuilder.create().texOffs(30, 0).addBox(-3.0F, 0.0F, -6.0F, 6.0F, 6.0F, 6.0F), PartPose.offset(0.0F, -6.0F, -8.0F));
 		head.addOrReplaceChild("nose", CubeListBuilder.create().texOffs(48, 12).addBox(-2.0F, -1.0F, -4.0F, 4.0F, 3.0F, 4.0F).texOffs(0, 0).addBox(-1.5F, 2.0F, -3.0F, 3.0F, 1.0F, 3.0F), PartPose.offset(0.0F, 2.0F, -6.0F));
 		head.addOrReplaceChild("jaw", CubeListBuilder.create().texOffs(48, 0).addBox(-2.0F, 0.0F, -4.0F, 4.0F, 1.0F, 4.0F), PartPose.offset(0.0F, 4.0F, -6.0F));
