@@ -1,4 +1,4 @@
-package com.technologica.capabilities.environmentTracker;
+package com.technologica.capabilities.entity.environmentTracker;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -19,17 +19,15 @@ public class EnvironmentTracker implements INBTSerializable<CompoundTag> {
 
 	@Override
 	public CompoundTag serializeNBT() {
-		CompoundTag nbt = new CompoundTag();
-
+		CompoundTag compundTag = new CompoundTag();
 		for (String string : biomes) {
-			nbt.putString(string, string);
+			compundTag.putString(string, string);
 		}
-
-		return nbt;
+		return compundTag;
 	}
 
 	@Override
-	public void deserializeNBT(CompoundTag nbt) {
-		this.biomes = nbt.getAllKeys();
+	public void deserializeNBT(CompoundTag compundTag) {
+		biomes = compundTag.getAllKeys();
 	}
 }

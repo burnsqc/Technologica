@@ -2,8 +2,8 @@ package com.technologica.world.item;
 
 import javax.annotation.Nullable;
 
-import com.technologica.capabilities.ILink;
-import com.technologica.capabilities.LinkProvider;
+import com.technologica.capabilities.item.link.ILink;
+import com.technologica.capabilities.item.link.LinkProvider;
 import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.util.Radius;
 import com.technologica.world.level.block.LineShaftBlock;

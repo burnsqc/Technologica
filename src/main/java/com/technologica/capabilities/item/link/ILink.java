@@ -1,4 +1,4 @@
-package com.technologica.capabilities;
+package com.technologica.capabilities.item.link;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;

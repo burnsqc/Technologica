@@ -1,4 +1,4 @@
-package com.technologica.capabilities;
+package com.technologica.capabilities.item.link;
 
 import javax.annotation.Nonnull;
 

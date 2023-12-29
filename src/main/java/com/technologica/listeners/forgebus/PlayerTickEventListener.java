@@ -1,9 +1,9 @@
 package com.technologica.listeners.forgebus;
 
-import com.technologica.capabilities.TechnologicaCapabilities;
-import com.technologica.capabilities.air.IAir;
+import com.technologica.capabilities.entity.airMeter.IAir;
 import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.registration.deferred.TechnologicaItems;
+import com.technologica.setup.listeners.TechnologicaCapabilities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -32,7 +32,7 @@ public class PlayerTickEventListener {
 			}
 		}
 
-		IAir airCapability = player.getCapability(TechnologicaCapabilities.INSTANCE).orElse(null);
+		IAir airCapability = player.getCapability(TechnologicaCapabilities.AIR_METER_INSTANCE).orElse(null);
 		if (airCapability == null) {
 
 		} else {

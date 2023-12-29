@@ -1,7 +1,7 @@
 package com.technologica.listeners.forgebus;
 
-import com.technologica.capabilities.TechnologicaCapabilities;
-import com.technologica.capabilities.air.IAir;
+import com.technologica.capabilities.entity.airMeter.IAir;
+import com.technologica.setup.listeners.TechnologicaCapabilities;
 
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingBreatheEvent;
@@ -13,7 +13,7 @@ public class LivingBreatheEventListener {
 	public void onLivingBreatheEvent(LivingBreatheEvent event) {
 		if (event.getEntity() instanceof Player) {
 			Player player = (Player) event.getEntity();
-			IAir airCapability = player.getCapability(TechnologicaCapabilities.INSTANCE).orElseThrow(NullPointerException::new);
+			IAir airCapability = player.getCapability(TechnologicaCapabilities.AIR_METER_INSTANCE).orElseThrow(NullPointerException::new);
 			int newMaxAir = airCapability.getNewMaxAir();
 
 			if (newMaxAir == 600) {

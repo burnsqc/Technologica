@@ -1,4 +1,4 @@
-package com.technologica.capabilities.air;
+package com.technologica.capabilities.entity.airMeter;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.common.util.INBTSerializable;

@@ -16,7 +16,7 @@ import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 public final class TechnologicaColorHandlers {
 
 	public static void onRegisterColorHandlersBlock(final RegisterColorHandlersEvent.Block event) {
-		
+
 		event.register((p_92621_, p_92622_, p_92623_, p_92624_) -> {
 			return p_92622_ != null && p_92623_ != null ? -10867944 : -1;
 		}, TechnologicaBlocks.MAPLE_SYRUP_BASIN.get());
@@ -26,6 +26,6 @@ public final class TechnologicaColorHandlers {
 		/**
 		 * TODO: Determine how to count how many Technologica Block Color Handlers actually got registered and replace the hard-coded value in the logger message.
 		 */
-		Technologica.LOGGER.info("STEUP - BLOCK COLOR HANDLERS - 2 OF 2");
+		Technologica.LOGGER.info("SETUP - BLOCK COLOR HANDLERS - 2 OF 2");
 	}
 }

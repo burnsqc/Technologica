@@ -3,10 +3,10 @@ package com.technologica.listeners.forgebus;
 import org.joml.Matrix4f;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.technologica.capabilities.TechnologicaCapabilities;
-import com.technologica.capabilities.air.IAir;
-import com.technologica.capabilities.environmentTracker.EnvironmentTracker;
+import com.technologica.capabilities.entity.airMeter.IAir;
+import com.technologica.capabilities.entity.environmentTracker.EnvironmentTracker;
 import com.technologica.setup.config.TechnologicaConfigClient;
+import com.technologica.setup.listeners.TechnologicaCapabilities;
 import com.technologica.util.text.TechnologicaLocation;
 import com.technologica.util.text.TextUtil;
 
@@ -38,7 +38,7 @@ public class RenderGuiOverlayEventListener {
 		if (event.getOverlay() == VanillaGuiOverlay.AIR_LEVEL.type()) {
 			GuiGraphics guiGraphics = event.getGuiGraphics();
 
-			IAir airCapability = player.getCapability(TechnologicaCapabilities.INSTANCE).orElseThrow(NullPointerException::new);
+			IAir airCapability = player.getCapability(TechnologicaCapabilities.AIR_METER_INSTANCE).orElseThrow(NullPointerException::new);
 			int newMaxAir = airCapability.getNewMaxAir();
 
 			if (newMaxAir == 600) {

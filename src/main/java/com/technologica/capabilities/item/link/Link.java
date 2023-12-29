@@ -1,4 +1,4 @@
-package com.technologica.capabilities;
+package com.technologica.capabilities.item.link;
 
 import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.registration.deferred.TechnologicaItems;
