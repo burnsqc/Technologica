@@ -1,7 +1,7 @@
 package com.technologica.util;
 
 import com.google.gson.JsonObject;
-import com.technologica.setup.Config;
+import com.technologica.setup.config.TechnologicaConfigCommon;
 import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.resources.ResourceLocation;
@@ -18,7 +18,7 @@ public class DisablePlankConditionFactory implements ICondition {
 
 	@Override
 	public boolean test(IContext context) {
-		return Config.DISABLE_VANILLA_PLANK_RECIPES.get();
+		return TechnologicaConfigCommon.DISABLE_VANILLA_PLANK_RECIPES.get();
 	}
 
 	public static class Serializer implements IConditionSerializer<DisablePlankConditionFactory> {

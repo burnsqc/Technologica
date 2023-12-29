@@ -51,6 +51,7 @@ import net.minecraftforge.common.loot.IGlobalLootModifier;
 import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.RegisterEvent;
 
 /**
@@ -63,7 +64,7 @@ import net.minecraftforge.registries.RegisterEvent;
  */
 public abstract class MasterDeferredRegistrar {
 
-	private static Map<String, Integer[]> counts = new HashMap<>();
+	private static Map<String, Integer[]> registries = new HashMap<>();
 
 	private static int soundEvents;
 	private static int fluids;
@@ -107,11 +108,16 @@ public abstract class MasterDeferredRegistrar {
 	public static final DeferredRegister<TrunkPlacerType<?>> TRUNK_PLACER_TYPES = DeferredRegister.create(Registries.TRUNK_PLACER_TYPE, Technologica.MOD_ID);
 	public static final DeferredRegister<PaintingVariant> PAINTING_VARIANTS = DeferredRegister.create(ForgeRegistries.Keys.PAINTING_VARIANTS, Technologica.MOD_ID);
 
+	public static <B> DeferredRegister<B> addRegister(IForgeRegistry<B> reg, String modid) {
+
+		return DeferredRegister.create(reg, modid);
+	}
+
 	public static void initDeferredRegisters() {
 
-		counts.put(SOUND_EVENTS.getRegistryName().getPath(), new Integer[] { TechnologicaSoundEvents.init(), 0 });
+		registries.put(SOUND_EVENTS.getRegistryName().getPath(), new Integer[] { TechnologicaSoundEvents.init(), 0 });
 		// soundEvents = TechnologicaSoundEvents.init();
-		Technologica.LOGGER.info("INITIALIZATION - " + SOUND_EVENTS.getRegistryName().getPath() + " - " + Array.get(counts.get(SOUND_EVENTS.getRegistryName().getPath()), 0));
+		Technologica.LOGGER.info("INITIALIZATION - " + SOUND_EVENTS.getRegistryName().getPath() + " - " + Array.get(registries.get(SOUND_EVENTS.getRegistryName().getPath()), 0));
 
 		fluids = TechnologicaFluids.init();
 		Technologica.LOGGER.info("INITIALIZATION - FLUIDS - " + fluids);
@@ -172,7 +178,7 @@ public abstract class MasterDeferredRegistrar {
 	}
 
 	public static void onRegisterEvent(final RegisterEvent event) {
-		if (event.getRegistryKey() == ForgeRegistries.Keys.SOUND_EVENTS) {
+		if (event.getRegistryKey() == Registries.SOUND_EVENT) {
 			long count = ForgeRegistries.SOUND_EVENTS.getEntries().stream().filter((entry) -> {
 				return entry.getKey().location().getNamespace() == Technologica.MOD_ID;
 			}).count();

@@ -2,7 +2,7 @@ package com.technologica.listeners.forgebus;
 
 import com.technologica.registration.deferred.TechnologicaItems;
 import com.technologica.registration.key.TechnologicaDamageTypes;
-import com.technologica.setup.Config;
+import com.technologica.setup.config.TechnologicaConfigCommon;
 import com.technologica.util.InventoryUtil;
 
 import net.minecraft.server.level.ServerPlayer;
@@ -31,7 +31,7 @@ public class LivingJumpEventListener {
 	 */
 	@SubscribeEvent
 	public void onLivingJumpEvent(final LivingJumpEvent event) {
-		if (Config.NITRO_JOSTLE.get()) {
+		if (TechnologicaConfigCommon.NITRO_JOSTLE.get()) {
 			if (event.getEntity() instanceof ServerPlayer) {
 				Player player = (Player) event.getEntity();
 				if (!player.getAbilities().instabuild) {

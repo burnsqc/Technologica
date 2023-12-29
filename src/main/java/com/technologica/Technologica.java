@@ -26,8 +26,8 @@ import com.technologica.network.packets.ClientboundUpdateAirCapabilityPacket;
 import com.technologica.network.packets.ServerboundUpdateAnnunciatorPacket;
 import com.technologica.network.packets.ServerboundUpdateMonitorPacket;
 import com.technologica.registration.deferred.util.MasterDeferredRegistrar;
-import com.technologica.setup.ClientInit;
-import com.technologica.setup.Config;
+import com.technologica.setup.SetupClient;
+import com.technologica.setup.config.TechnologicaConfigCommon;
 import com.technologica.setup.listeners.TechnologicaEntityAttributes;
 import com.technologica.util.DisablePlankConditionFactory;
 import com.technologica.util.EnablePlankConditionFactory;
@@ -48,10 +48,8 @@ import net.minecraftforge.network.simple.SimpleChannel;
 public class Technologica {
 	public static final String MOD_ID = "technologica";
 	public static final Logger LOGGER = LogManager.getLogger();
-
 	public static final IEventBus MOD_EVENT_BUS = FMLJavaModLoadingContext.get().getModEventBus();
 	public static final IEventBus FORGE_EVENT_BUS = MinecraftForge.EVENT_BUS;
-
 	public static final String PROTOCOL_VERSION = "1";
 	public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(new TechnologicaLocation("main"), () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
 	public static int PACKET_ID = 0;
@@ -59,53 +57,45 @@ public class Technologica {
 	public Technologica() {
 		LOGGER.info("TECHNOLOGICA NOW LOADING FOR DIST " + FMLEnvironment.dist.toString());
 
-		LOGGER.info("INIT - COMMON");
 		MasterDeferredRegistrar.initDeferredRegisters();
-		registerPackets();
-		addModEventBusListeners();
-		addForgeEventBusListeners();
 
-		if (FMLEnvironment.dist.isClient()) {
-			LOGGER.info("INIT - CLIENT");
-			ClientInit.init();
-		}
+		LOGGER.info("SETUP - COMMON");
+		ModLoadingContext.get().registerConfig(Type.COMMON, TechnologicaConfigCommon.COMMON_SPEC, "technologica-common.toml");
+
+		CHANNEL.registerMessage(PACKET_ID++, ServerboundUpdateAnnunciatorPacket.class, ServerboundUpdateAnnunciatorPacket::encode, ServerboundUpdateAnnunciatorPacket::decode, ServerboundUpdateAnnunciatorPacket::handle);
+		CHANNEL.registerMessage(PACKET_ID++, ServerboundUpdateMonitorPacket.class, ServerboundUpdateMonitorPacket::encode, ServerboundUpdateMonitorPacket::decode, ServerboundUpdateMonitorPacket::handle);
+		CHANNEL.registerMessage(PACKET_ID++, ClientboundUpdateAirCapabilityPacket.class, ClientboundUpdateAirCapabilityPacket::encode, ClientboundUpdateAirCapabilityPacket::decode, ClientboundUpdateAirCapabilityPacket::handle);
+
+		MOD_EVENT_BUS.addListener(MasterDeferredRegistrar::onRegisterEvent);
+		MOD_EVENT_BUS.addListener(TechnologicaEntityAttributes::onEntityAttributeCreationEvent);
+		MOD_EVENT_BUS.addListener(CommonSetup::onFMLCommonSetupEvent);
+		MOD_EVENT_BUS.addListener(TechnologicaCapabilities::register);
+
+		FORGE_EVENT_BUS.register(new AttachCapabilities());
+		FORGE_EVENT_BUS.register(new EntityJoinLevelEventListener());
+		FORGE_EVENT_BUS.register(new HarvestCheckListener());
+		FORGE_EVENT_BUS.register(new ItemFishedEventListener());
+		FORGE_EVENT_BUS.register(new LivingAttackEventListener());
+		FORGE_EVENT_BUS.register(new LivingBreatheEventListener());
+		FORGE_EVENT_BUS.register(new LivingEquipmentChangeEventListener());
+		FORGE_EVENT_BUS.register(new LivingFallEventListener());
+		FORGE_EVENT_BUS.register(new LivingHealEventListener());
+		FORGE_EVENT_BUS.register(new LivingJumpEventListener());
+		FORGE_EVENT_BUS.register(new PlayerTickEventListener());
+		FORGE_EVENT_BUS.register(new RegisterCapabilitiesEventListener());
+		FORGE_EVENT_BUS.register(new RightClickBlockListener());
+		FORGE_EVENT_BUS.register(new ServerAboutToStartListener());
+		FORGE_EVENT_BUS.addListener(ServerTickEventListener::onServerTickEvent);
+		FORGE_EVENT_BUS.register(new VillagerTradesEventListener());
+		FORGE_EVENT_BUS.register(new WandererTradesEventListener());
 
 		// TODO: Determine best place for this. Maybe it's right here but that's unconfirmed.
-		ModLoadingContext.get().registerConfig(Type.COMMON, Config.SPEC, "technologica-common.toml");
 		CraftingHelper.register(DisablePlankConditionFactory.Serializer.INSTANCE);
 		CraftingHelper.register(EnablePlankConditionFactory.Serializer.INSTANCE);
-	}
 
-	private static void registerPackets() {
-		CHANNEL.registerMessage(Technologica.PACKET_ID++, ServerboundUpdateAnnunciatorPacket.class, ServerboundUpdateAnnunciatorPacket::encode, ServerboundUpdateAnnunciatorPacket::decode, ServerboundUpdateAnnunciatorPacket::handle);
-		CHANNEL.registerMessage(Technologica.PACKET_ID++, ServerboundUpdateMonitorPacket.class, ServerboundUpdateMonitorPacket::encode, ServerboundUpdateMonitorPacket::decode, ServerboundUpdateMonitorPacket::handle);
-		CHANNEL.registerMessage(Technologica.PACKET_ID++, ClientboundUpdateAirCapabilityPacket.class, ClientboundUpdateAirCapabilityPacket::encode, ClientboundUpdateAirCapabilityPacket::decode, ClientboundUpdateAirCapabilityPacket::handle);
-	}
-
-	private static void addModEventBusListeners() {
-		Technologica.MOD_EVENT_BUS.addListener(MasterDeferredRegistrar::onRegisterEvent);
-		Technologica.MOD_EVENT_BUS.addListener(TechnologicaEntityAttributes::onEntityAttributeCreationEvent);
-		Technologica.MOD_EVENT_BUS.addListener(CommonSetup::onFMLCommonSetupEvent);
-		Technologica.MOD_EVENT_BUS.addListener(TechnologicaCapabilities::register);
-	}
-
-	private static void addForgeEventBusListeners() {
-		Technologica.FORGE_EVENT_BUS.register(new AttachCapabilities());
-		Technologica.FORGE_EVENT_BUS.register(new EntityJoinLevelEventListener());
-		Technologica.FORGE_EVENT_BUS.register(new HarvestCheckListener());
-		Technologica.FORGE_EVENT_BUS.register(new ItemFishedEventListener());
-		Technologica.FORGE_EVENT_BUS.register(new LivingAttackEventListener());
-		Technologica.FORGE_EVENT_BUS.register(new LivingBreatheEventListener());
-		Technologica.FORGE_EVENT_BUS.register(new LivingEquipmentChangeEventListener());
-		Technologica.FORGE_EVENT_BUS.register(new LivingFallEventListener());
-		Technologica.FORGE_EVENT_BUS.register(new LivingHealEventListener());
-		Technologica.FORGE_EVENT_BUS.register(new LivingJumpEventListener());
-		Technologica.FORGE_EVENT_BUS.register(new PlayerTickEventListener());
-		Technologica.FORGE_EVENT_BUS.register(new RegisterCapabilitiesEventListener());
-		Technologica.FORGE_EVENT_BUS.register(new RightClickBlockListener());
-		Technologica.FORGE_EVENT_BUS.register(new ServerAboutToStartListener());
-		Technologica.FORGE_EVENT_BUS.addListener(ServerTickEventListener::onServerTickEvent);
-		Technologica.FORGE_EVENT_BUS.register(new VillagerTradesEventListener());
-		Technologica.FORGE_EVENT_BUS.register(new WandererTradesEventListener());
+		if (FMLEnvironment.dist.isClient()) {
+			LOGGER.info("SETUP - CLIENT");
+			SetupClient.init();
+		}
 	}
 }

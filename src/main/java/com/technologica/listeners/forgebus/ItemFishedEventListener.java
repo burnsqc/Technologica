@@ -1,7 +1,7 @@
 package com.technologica.listeners.forgebus;
 
 import com.technologica.registration.deferred.TechnologicaItems;
-import com.technologica.setup.Config;
+import com.technologica.setup.config.TechnologicaConfigCommon;
 import com.technologica.util.InventoryUtil;
 
 import net.minecraftforge.event.entity.player.ItemFishedEvent;
@@ -27,7 +27,7 @@ public class ItemFishedEventListener {
 	 */
 	@SubscribeEvent
 	public void naughtyNauticalNanners(final ItemFishedEvent event) {
-		if (Config.NAUGHTY_NAUTICAL_NANNERS.get()) {
+		if (TechnologicaConfigCommon.NAUGHTY_NAUTICAL_NANNERS.get()) {
 			event.setCanceled(InventoryUtil.playerHas(event.getEntity(), TechnologicaItems.BANANA.get()));
 		}
 	}

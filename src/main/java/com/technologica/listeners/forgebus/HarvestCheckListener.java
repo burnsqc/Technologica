@@ -1,6 +1,6 @@
 package com.technologica.listeners.forgebus;
 
-import com.technologica.setup.Config;
+import com.technologica.setup.config.TechnologicaConfigCommon;
 
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.AxeItem;
@@ -27,7 +27,7 @@ public class HarvestCheckListener {
 	 */
 	@SubscribeEvent
 	public void disableVanillaLogHarvesting(final HarvestCheck event) {
-		if (Config.DISABLE_VANILLA_LOG_HARVESTING.get()) {
+		if (TechnologicaConfigCommon.DISABLE_VANILLA_LOG_HARVESTING.get()) {
 			if (event.getTargetBlock().is(BlockTags.LOGS) && !(event.getEntity().getMainHandItem().getItem() instanceof AxeItem)) {
 				event.setCanHarvest(false);
 			}

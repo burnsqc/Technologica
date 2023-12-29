@@ -1,4 +1,4 @@
-package com.technologica.capabilities.air;
+package com.technologica.capabilities.environmentTracker;
 
 import javax.annotation.Nonnull;
 
@@ -16,15 +16,15 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
 
-public class AirProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
-	public static final ResourceLocation IDENTIFIER = new TechnologicaLocation("air");
-	private final Air backend = new Air();
-	private final LazyOptional<Air> optionalData = LazyOptional.of(() -> backend);
+public class EnvironmentTrackerProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
+	public static final ResourceLocation IDENTIFIER = new TechnologicaLocation("environment_tracker");
+	private final EnvironmentTracker backend = new EnvironmentTracker();
+	private final LazyOptional<EnvironmentTracker> optionalData = LazyOptional.of(() -> backend);
 
 	@Nonnull
 	@Override
 	public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-		return TechnologicaCapabilities.INSTANCE.orEmpty(cap, this.optionalData);
+		return TechnologicaCapabilities.ENVIRONMENT_TRACKER_INSTANCE.orEmpty(cap, this.optionalData);
 	}
 
 	@Override

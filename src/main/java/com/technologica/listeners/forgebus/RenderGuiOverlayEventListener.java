@@ -5,7 +5,10 @@ import org.joml.Matrix4f;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.technologica.capabilities.TechnologicaCapabilities;
 import com.technologica.capabilities.air.IAir;
+import com.technologica.capabilities.environmentTracker.EnvironmentTracker;
+import com.technologica.setup.config.TechnologicaConfigClient;
 import com.technologica.util.text.TechnologicaLocation;
+import com.technologica.util.text.TextUtil;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -76,45 +79,65 @@ public class RenderGuiOverlayEventListener {
 		}
 
 		if (event.getOverlay() == VanillaGuiOverlay.VIGNETTE.type()) {
-			// TESTING OVERLAY FOR BIOMES
 			Matrix4f matrix4f = event.getGuiGraphics().pose().last().pose();
 			MultiBufferSource.BufferSource irendertypebuffer$impl = minecraft.renderBuffers().bufferSource();
-			BlockPos blockpos = BlockPos.containing(player.getEyePosition().x, player.getEyePosition().y, player.getEyePosition().z);
-			Biome newBiome = player.level().getBiome(blockpos).get();
 
-			if (fade > 0) {
-				fade--;
+			if (!TechnologicaConfigClient.BIOME_TITLE_CARDS.get().equals("never")) {
+				if (fade > 0) {
+					fade--;
+				}
+
+				// if (biome != newBiome) {
+				// biome = newBiome;
+				// fade = 600;
+				// }
+
+				String dimensionName = TextUtil.stringToProperName(player.level().dimension().location().getPath().toString());
+				int dimensionNamePosX = minecraft.getWindow().getGuiScaledWidth() - minecraft.font.width(dimensionName) - 10;
+				float f1 = minecraft.options.getBackgroundOpacity(-(fade / 300F - 1) * (fade / 300F - 1) + 1);
+				int j = (int) (f1 * 255.0F) << 24;
+
+				if (TechnologicaConfigClient.BIOME_TITLE_CARDS.get().equals("first")) {
+					if (f1 > 0.015) {
+						matrix4f.scale(2.0F, 2.0F, 2.0F);
+						minecraft.font.drawInBatch(dimensionName, dimensionNamePosX, 10, 0xAAFFAA + j, true, matrix4f, irendertypebuffer$impl, Font.DisplayMode.SEE_THROUGH, 0, 0);
+						matrix4f.scale(0.5F, 0.5F, 0.5F);
+					}
+				}
 			}
 
-			if (biome != newBiome) {
-				biome = newBiome;
-				fade = 700;
-			}
+			if (!TechnologicaConfigClient.BIOME_TITLE_CARDS.get().equals("never")) {
+				BlockPos blockpos = BlockPos.containing(player.getEyePosition().x, player.getEyePosition().y, player.getEyePosition().z);
+				Biome newBiome = player.level().getBiome(blockpos).get();
+				String biomeName = TextUtil.stringToCapsName(player.level().getBiome(blockpos).unwrapKey().get().location().getPath().toString());
+				EnvironmentTracker environmentTracker = player.getCapability(TechnologicaCapabilities.ENVIRONMENT_TRACKER_INSTANCE).orElseThrow(NullPointerException::new);
 
-			String dimensionName = stringToProperName(player.level().dimension().location().getPath().toString());
-			String biomeName = stringToProperName(player.level().getBiome(blockpos).unwrapKey().get().location().getPath().toString());
+				if (fade > 0) {
+					fade--;
+				}
 
-			int dimensionNamePosX = minecraft.getWindow().getGuiScaledWidth() - minecraft.font.width(dimensionName) - 10;
-			int biomeNamePosX = minecraft.getWindow().getGuiScaledWidth() - minecraft.font.width(biomeName) - 10;
+				if (biome != newBiome) {
+					biome = newBiome;
+					if (!environmentTracker.getBiomes().contains(biomeName) && TechnologicaConfigClient.BIOME_TITLE_CARDS.get().equals("first")) {
+						environmentTracker.addBiome(biomeName);
+						fade = 600;
+					} else if (TechnologicaConfigClient.BIOME_TITLE_CARDS.get().equals("always")) {
+						fade = 600;
+					}
 
-			float f1 = minecraft.options.getBackgroundOpacity((float) Math.sin(fade * Math.PI / 700F));
-			int j = (int) (f1 * 255.0F) << 24;
+				}
 
-			minecraft.font.drawInBatch(dimensionName, dimensionNamePosX, 10, 0xFFFFFF, true, matrix4f, irendertypebuffer$impl, Font.DisplayMode.SEE_THROUGH, 0, 0);
-			if (f1 > 0.05) {
-				minecraft.font.drawInBatch(biomeName, biomeNamePosX, 20, 0xFFFFFF + j, true, matrix4f, irendertypebuffer$impl, Font.DisplayMode.SEE_THROUGH, 0, 0);
+				int biomeNameCenterPosX = minecraft.getWindow().getGuiScaledWidth() / 4 - minecraft.font.width(biomeName) / 2;
+				float f1 = minecraft.options.getBackgroundOpacity(-(fade / 300F - 1) * (fade / 300F - 1) + 1);
+				int j = (int) (f1 * 255.0F) << 24;
+
+				if (f1 > 0.015) {
+					matrix4f.scale(2.0F, 2.0F, 2.0F);
+					minecraft.font.drawInBatch(biomeName, biomeNameCenterPosX, 20, 0xAAFFAA + j, true, matrix4f, irendertypebuffer$impl, Font.DisplayMode.SEE_THROUGH, 0, 0);
+					matrix4f.scale(0.5F, 0.5F, 0.5F);
+				}
+
 			}
 		}
-	}
-
-	private static String stringToProperName(String string) {
-		String words[] = string.split("_");
-		String name = "";
-		for (String word : words) {
-			String first = word.substring(0, 1);
-			String afterFirst = word.substring(1);
-			name += first.toUpperCase() + afterFirst + " ";
-		}
-		return name.trim();
 	}
 }
