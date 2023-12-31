@@ -13,6 +13,7 @@ import com.technologica.listeners.forgebus.LivingEquipmentChangeEventListener;
 import com.technologica.listeners.forgebus.LivingFallEventListener;
 import com.technologica.listeners.forgebus.LivingHealEventListener;
 import com.technologica.listeners.forgebus.LivingJumpEventListener;
+import com.technologica.listeners.forgebus.PlayerChangedDimensionEventListener;
 import com.technologica.listeners.forgebus.PlayerTickEventListener;
 import com.technologica.listeners.forgebus.RightClickBlockListener;
 import com.technologica.listeners.forgebus.ServerAboutToStartListener;
@@ -20,6 +21,7 @@ import com.technologica.listeners.forgebus.ServerTickEventListener;
 import com.technologica.listeners.forgebus.VillagerTradesEventListener;
 import com.technologica.listeners.forgebus.WandererTradesEventListener;
 import com.technologica.listeners.modbus.CommonSetup;
+import com.technologica.network.packets.ClientboundTriggerEnvironmentTitleCardPacket;
 import com.technologica.network.packets.ClientboundUpdateAirCapabilityPacket;
 import com.technologica.network.packets.ServerboundUpdateAnnunciatorPacket;
 import com.technologica.network.packets.ServerboundUpdateMonitorPacket;
@@ -32,6 +34,7 @@ import com.technologica.util.DisablePlankConditionFactory;
 import com.technologica.util.EnablePlankConditionFactory;
 import com.technologica.util.text.TechnologicaLocation;
 
+import net.minecraft.world.entity.Entity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -54,8 +57,8 @@ public class Technologica {
 	public static int PACKET_ID = 0;
 
 	public Technologica() {
-		LOGGER.info("TECHNOLOGICA NOW LOADING FOR DIST " + FMLEnvironment.dist.toString());
-
+		LOGGER.info("TECHNOLOGICA NOW LOADING FOR DISTRIBUTION - " + FMLEnvironment.dist.toString());
+		
 		MasterDeferredRegistrar.initDeferredRegisters();
 
 		LOGGER.info("SETUP - COMMON");
@@ -64,13 +67,14 @@ public class Technologica {
 		CHANNEL.registerMessage(PACKET_ID++, ServerboundUpdateAnnunciatorPacket.class, ServerboundUpdateAnnunciatorPacket::encode, ServerboundUpdateAnnunciatorPacket::decode, ServerboundUpdateAnnunciatorPacket::handle);
 		CHANNEL.registerMessage(PACKET_ID++, ServerboundUpdateMonitorPacket.class, ServerboundUpdateMonitorPacket::encode, ServerboundUpdateMonitorPacket::decode, ServerboundUpdateMonitorPacket::handle);
 		CHANNEL.registerMessage(PACKET_ID++, ClientboundUpdateAirCapabilityPacket.class, ClientboundUpdateAirCapabilityPacket::encode, ClientboundUpdateAirCapabilityPacket::decode, ClientboundUpdateAirCapabilityPacket::handle);
+		CHANNEL.registerMessage(PACKET_ID++, ClientboundTriggerEnvironmentTitleCardPacket.class, ClientboundTriggerEnvironmentTitleCardPacket::encode, ClientboundTriggerEnvironmentTitleCardPacket::decode, ClientboundTriggerEnvironmentTitleCardPacket::handle);
 
 		MOD_EVENT_BUS.addListener(MasterDeferredRegistrar::onRegisterEvent);
 		MOD_EVENT_BUS.addListener(TechnologicaEntityAttributes::onEntityAttributeCreationEvent);
 		MOD_EVENT_BUS.addListener(CommonSetup::onFMLCommonSetupEvent);
 		MOD_EVENT_BUS.addListener(TechnologicaCapabilities::register);
 
-		FORGE_EVENT_BUS.register(new AttachCapabilities());
+		FORGE_EVENT_BUS.addGenericListener(Entity.class, AttachCapabilities::onAttachCapabilitiesEvent);
 		FORGE_EVENT_BUS.register(new EntityJoinLevelEventListener());
 		FORGE_EVENT_BUS.register(new HarvestCheckListener());
 		FORGE_EVENT_BUS.register(new ItemFishedEventListener());
@@ -80,6 +84,7 @@ public class Technologica {
 		FORGE_EVENT_BUS.register(new LivingFallEventListener());
 		FORGE_EVENT_BUS.register(new LivingHealEventListener());
 		FORGE_EVENT_BUS.register(new LivingJumpEventListener());
+		FORGE_EVENT_BUS.register(new PlayerChangedDimensionEventListener());
 		FORGE_EVENT_BUS.register(new PlayerTickEventListener());
 		FORGE_EVENT_BUS.register(new RightClickBlockListener());
 		FORGE_EVENT_BUS.register(new ServerAboutToStartListener());

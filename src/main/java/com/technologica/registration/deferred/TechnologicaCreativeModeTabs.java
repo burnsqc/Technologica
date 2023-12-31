@@ -115,7 +115,6 @@ public final class TechnologicaCreativeModeTabs extends MasterDeferredRegistrar 
 		items.accept(TechnologicaItems.ALLIGATOR_SPAWN_EGG.get());
 		items.accept(TechnologicaItems.BEAVER_SPAWN_EGG.get());
 		items.accept(TechnologicaItems.BUFFALO_SPAWN_EGG.get());
-		items.accept(TechnologicaItems.CAMEL_SPAWN_EGG.get());
 		items.accept(TechnologicaItems.COBRA_SPAWN_EGG.get());
 		items.accept(TechnologicaItems.COTTONMOUTH_SPAWN_EGG.get());
 		items.accept(TechnologicaItems.COYOTE_SPAWN_EGG.get());

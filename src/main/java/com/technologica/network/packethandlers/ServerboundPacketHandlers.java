@@ -44,5 +44,4 @@ public class ServerboundPacketHandlers {
 			world.sendBlockUpdated(packet.getPos(), blockstate, blockstate, 3);
 		}
 	}
-
 }

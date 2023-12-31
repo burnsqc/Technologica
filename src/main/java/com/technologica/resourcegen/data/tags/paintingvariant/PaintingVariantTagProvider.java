@@ -19,7 +19,7 @@ public final class PaintingVariantTagProvider extends PaintingVariantTagsProvide
 
 	@Override
 	protected void addTags(Provider p_256380_) {
-		this.tag(PaintingVariantTags.PLACEABLE).addOptional(TechnologicaPaintingVariants.AMNESIA.location());
+		this.tag(PaintingVariantTags.PLACEABLE).add(TechnologicaPaintingVariants.AMNESIA);
 	}
 
 	@Override

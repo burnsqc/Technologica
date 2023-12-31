@@ -5,7 +5,6 @@ import static com.technologica.Technologica.LOGGER;
 import com.technologica.client.model.AlligatorModel;
 import com.technologica.client.model.BeaverModel;
 import com.technologica.client.model.BuffaloModel;
-import com.technologica.client.model.CamelModel;
 import com.technologica.client.model.CobraModel;
 import com.technologica.client.model.CoconutBazookaModel;
 import com.technologica.client.model.CottonmouthModel;
@@ -46,7 +45,7 @@ import com.technologica.client.model.WalrusModel;
 import com.technologica.client.model.armor.DivingHelmetModel;
 import com.technologica.client.model.armor.MiningHelmetModel;
 import com.technologica.client.model.geom.TechnologicaModelLayers;
-import com.technologica.world.entity.vehicle.VanillaBoat;
+import com.technologica.world.entity.vehicle.TechnologicaBoat;
 
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChickenModel;
@@ -65,7 +64,6 @@ public class TechnologicaLayerDefinitions {
 		event.registerLayerDefinition(TechnologicaModelLayers.ALLIGATOR, AlligatorModel::createBodyLayer);
 		event.registerLayerDefinition(TechnologicaModelLayers.BEAVER, BeaverModel::createBodyLayer);
 		event.registerLayerDefinition(TechnologicaModelLayers.BUFFALO, BuffaloModel::createBodyLayer);
-		event.registerLayerDefinition(TechnologicaModelLayers.CAMEL, CamelModel::createBodyLayer);
 		event.registerLayerDefinition(TechnologicaModelLayers.COBRA, CobraModel::createBodyLayer);
 		event.registerLayerDefinition(TechnologicaModelLayers.COTTONMOUTH, CottonmouthModel::createBodyLayer);
 		event.registerLayerDefinition(TechnologicaModelLayers.COYOTE, CoyoteModel::createBodyLayer);
@@ -121,7 +119,7 @@ public class TechnologicaLayerDefinitions {
 		event.registerLayerDefinition(TechnologicaModelLayers.MINING_HELMET, () -> LayerDefinition.create(MiningHelmetModel.createMesh(LayerDefinitions.OUTER_ARMOR_DEFORMATION, 0.0F), 64, 32));
 		event.registerLayerDefinition(TechnologicaModelLayers.DIVING_HELMET, () -> LayerDefinition.create(DivingHelmetModel.createMesh(LayerDefinitions.OUTER_ARMOR_DEFORMATION, 0.0F), 64, 32));
 
-		for (VanillaBoat.Type boat$type : VanillaBoat.Type.values()) {
+		for (TechnologicaBoat.Type boat$type : TechnologicaBoat.Type.values()) {
 			event.registerLayerDefinition(TechnologicaModelLayers.createBoatModelName(boat$type), () -> BoatModel.createBodyModel());
 		}
 		LOGGER.info("SETUP - LAYER DEFINITIONS - 43 OF 43");

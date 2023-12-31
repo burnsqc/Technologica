@@ -16,7 +16,6 @@ import com.technologica.client.renderer.entity.AtomicCreeperRenderer;
 import com.technologica.client.renderer.entity.BeaverRenderer;
 import com.technologica.client.renderer.entity.BeeperRenderer;
 import com.technologica.client.renderer.entity.BuffaloRenderer;
-import com.technologica.client.renderer.entity.CamelRenderer;
 import com.technologica.client.renderer.entity.CobraRenderer;
 import com.technologica.client.renderer.entity.CottonmouthRenderer;
 import com.technologica.client.renderer.entity.CoyoteRenderer;
@@ -49,15 +48,14 @@ import com.technologica.client.renderer.entity.PenguinRenderer;
 import com.technologica.client.renderer.entity.PiranhaRenderer;
 import com.technologica.client.renderer.entity.PoisonDartFrogRenderer;
 import com.technologica.client.renderer.entity.RaccoonRenderer;
-import com.technologica.client.renderer.entity.RocketRenderer;
 import com.technologica.client.renderer.entity.ScorpionRenderer;
 import com.technologica.client.renderer.entity.SharkRenderer;
 import com.technologica.client.renderer.entity.SleeperRenderer;
 import com.technologica.client.renderer.entity.SlothRenderer;
 import com.technologica.client.renderer.entity.StingrayRenderer;
 import com.technologica.client.renderer.entity.SweeperRenderer;
+import com.technologica.client.renderer.entity.TechnologicaBoatRenderer;
 import com.technologica.client.renderer.entity.TurkeyRenderer;
-import com.technologica.client.renderer.entity.VanillaBoatRenderer;
 import com.technologica.client.renderer.entity.VultureRenderer;
 import com.technologica.client.renderer.entity.WalrusRenderer;
 import com.technologica.client.renderer.entity.WeeperRenderer;
@@ -80,7 +78,7 @@ import net.minecraftforge.client.event.EntityRenderersEvent.RegisterRenderers;
 public final class TechnologicaEntityRenderers {
 
 	public static void onRegisterRenderers(final RegisterRenderers event) {
-		event.registerEntityRenderer(TechnologicaEntityTypes.MOD_BOAT.get(), VanillaBoatRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.TECHNOLOGICA_BOAT.get(), context -> new TechnologicaBoatRenderer(context, false));
 		event.registerEntityRenderer(TechnologicaEntityTypes.INVISIBLE_SEAT.get(), InvisibleRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityTypes.COCONUT.get(), (renderManager) -> {
 			return new ThrownItemRenderer<>(renderManager, 1.0F, true);
@@ -92,7 +90,6 @@ public final class TechnologicaEntityRenderers {
 		event.registerEntityRenderer(TechnologicaEntityTypes.ALLIGATOR.get(), AlligatorRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityTypes.BEAVER.get(), BeaverRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityTypes.BUFFALO.get(), BuffaloRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityTypes.CAMEL.get(), CamelRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityTypes.COBRA.get(), CobraRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityTypes.COTTONMOUTH.get(), CottonmouthRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityTypes.COYOTE.get(), CoyoteRenderer::new);
@@ -136,7 +133,7 @@ public final class TechnologicaEntityRenderers {
 		event.registerEntityRenderer(TechnologicaEntityTypes.SWEEPER.get(), SweeperRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityTypes.DUST_DEVIL.get(), DustDevilRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityTypes.NAVAL_MINE.get(), NavalMineRenderer::new);
-		event.registerEntityRenderer(TechnologicaEntityTypes.ROCKET.get(), RocketRenderer::new);
+		// event.registerEntityRenderer(TechnologicaEntityTypes.ROCKET.get(), RocketRenderer::new);
 		/**
 		 * TODO: Determine how to count how many Technologica Entity Renderers actually got registered and replace the hard-coded value in the logger message. Trying to avoid Access Transformers, but could open up private final Map {@link EntityRenderers} PROVIDERS.
 		 */

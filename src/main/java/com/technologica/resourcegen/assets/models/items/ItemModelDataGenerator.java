@@ -84,7 +84,6 @@ public class ItemModelDataGenerator extends ItemModelProvider {
 		simpleSpawnEggItem(TechnologicaItems.ALLIGATOR_SPAWN_EGG.get());
 		simpleSpawnEggItem(TechnologicaItems.BEAVER_SPAWN_EGG.get());
 		simpleSpawnEggItem(TechnologicaItems.BUFFALO_SPAWN_EGG.get());
-		simpleSpawnEggItem(TechnologicaItems.CAMEL_SPAWN_EGG.get());
 		simpleSpawnEggItem(TechnologicaItems.COBRA_SPAWN_EGG.get());
 		simpleSpawnEggItem(TechnologicaItems.COTTONMOUTH_SPAWN_EGG.get());
 		simpleSpawnEggItem(TechnologicaItems.COYOTE_SPAWN_EGG.get());

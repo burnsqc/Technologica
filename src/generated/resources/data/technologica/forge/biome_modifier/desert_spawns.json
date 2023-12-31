@@ -3,12 +3,6 @@
   "biomes": "minecraft:desert",
   "spawners": [
     {
-      "type": "technologica:camel",
-      "maxCount": 2,
-      "minCount": 1,
-      "weight": 100
-    },
-    {
       "type": "technologica:cobra",
       "maxCount": 2,
       "minCount": 1,

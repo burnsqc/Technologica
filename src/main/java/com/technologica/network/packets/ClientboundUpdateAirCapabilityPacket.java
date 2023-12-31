@@ -10,8 +10,8 @@ import net.minecraftforge.network.NetworkEvent;
 public class ClientboundUpdateAirCapabilityPacket {
 	private int air;
 
-	public ClientboundUpdateAirCapabilityPacket(int air) {
-		this.air = air;
+	public ClientboundUpdateAirCapabilityPacket(int airIn) {
+		air = airIn;
 	}
 
 	public static void encode(ClientboundUpdateAirCapabilityPacket msg, FriendlyByteBuf buf) {
@@ -20,7 +20,6 @@ public class ClientboundUpdateAirCapabilityPacket {
 
 	public static ClientboundUpdateAirCapabilityPacket decode(FriendlyByteBuf buf) {
 		int air2 = buf.readInt();
-
 		return new ClientboundUpdateAirCapabilityPacket(air2);
 	}
 
@@ -32,6 +31,6 @@ public class ClientboundUpdateAirCapabilityPacket {
 	}
 
 	public int getAir() {
-		return this.air;
+		return air;
 	}
 }

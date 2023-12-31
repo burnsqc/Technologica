@@ -6,7 +6,6 @@ import com.technologica.registration.deferred.TechnologicaEntityTypes;
 import com.technologica.world.entity.animal.Alligator;
 import com.technologica.world.entity.animal.Beaver;
 import com.technologica.world.entity.animal.Buffalo;
-import com.technologica.world.entity.animal.Camel;
 import com.technologica.world.entity.animal.Cobra;
 import com.technologica.world.entity.animal.Cottonmouth;
 import com.technologica.world.entity.animal.Coyote;
@@ -87,7 +86,6 @@ public class TechnologicaEntityAttributes {
 		event.put(TechnologicaEntityTypes.ALLIGATOR.get(), Alligator.registerAttributes().build());
 		event.put(TechnologicaEntityTypes.BEAVER.get(), Beaver.registerAttributes().build());
 		event.put(TechnologicaEntityTypes.BUFFALO.get(), Buffalo.registerAttributes().build());
-		event.put(TechnologicaEntityTypes.CAMEL.get(), Camel.registerAttributes().build());
 		event.put(TechnologicaEntityTypes.COBRA.get(), Cobra.registerAttributes().build());
 		event.put(TechnologicaEntityTypes.COTTONMOUTH.get(), Cottonmouth.registerAttributes().build());
 		event.put(TechnologicaEntityTypes.COYOTE.get(), Coyote.createAttributes().build());

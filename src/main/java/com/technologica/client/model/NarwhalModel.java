@@ -37,8 +37,8 @@ public class NarwhalModel<T extends Entity> extends ListModel<T> {
 		PartDefinition body = root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -4.0F, -7.0F, 8.0F, 8.0F, 14.0F), PartPose.offset(0.0F, 20.0F, 0.0F));
 		PartDefinition head = body.addOrReplaceChild("head", CubeListBuilder.create().texOffs(30, 0).addBox(-3.0F, -3.0F, -6.0F, 6.0F, 6.0F, 6.0F), PartPose.offset(0.0F, 0.0F, -7.0F));
 		head.addOrReplaceChild("spear", CubeListBuilder.create().texOffs(30, 12).addBox(-0.5F, 0.0F, -16.0F, 1.0F, 1.0F, 16.0F), PartPose.offset(0.0F, -1.0F, -6.0F));
-		body.addOrReplaceChild("flipper_left", CubeListBuilder.create().texOffs(0, 44).mirror().addBox(0.0F, 0.0F, 0.0F, 8.0F, 1.0F, 4.0F), PartPose.offset(4.0F, 2.0F, -4.0F));
-		body.addOrReplaceChild("flipper_right", CubeListBuilder.create().texOffs(0, 44).addBox(-8.0F, 0.0F, 0.0F, 8.0F, 1.0F, 4.0F), PartPose.offset(-4.0F, 2.0F, -4.0F));
+		body.addOrReplaceChild("flipper_left", CubeListBuilder.create().texOffs(0, 44).mirror().addBox(0.0F, 0.0F, 0.0F, 8.0F, 1.0F, 4.0F), PartPose.offset(4.0F, 1.0F, -4.0F));
+		body.addOrReplaceChild("flipper_right", CubeListBuilder.create().texOffs(0, 44).addBox(-8.0F, 0.0F, 0.0F, 8.0F, 1.0F, 4.0F), PartPose.offset(-4.0F, 1.0F, -4.0F));
 		PartDefinition tail = body.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(0, 22).addBox(-3.0F, -3.0F, 0.0F, 6.0F, 6.0F, 6.0F), PartPose.offset(0.0F, 0.0F, 7.0F));
 		tail.addOrReplaceChild("tail2", CubeListBuilder.create().texOffs(0, 34).addBox(-2.0F, -2.0F, 0.0F, 4.0F, 4.0F, 6.0F), PartPose.offset(0.0F, 0.0F, 6.0F));
 		tail.addOrReplaceChild("tail_fin_left", CubeListBuilder.create().texOffs(0, 44).addBox(-8.0F, 0.0F, -4.0F, 8.0F, 1.0F, 4.0F), PartPose.offset(0.0F, 0.0F, 12.0F));

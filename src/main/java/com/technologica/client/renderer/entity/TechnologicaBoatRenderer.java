@@ -19,10 +19,10 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.vehicle.Boat;
 
-public class RocketRenderer extends BoatRenderer {
+public class TechnologicaBoatRenderer extends BoatRenderer {
 	private final Map<TechnologicaBoat.Type, Pair<ResourceLocation, ListModel<Boat>>> boatResources;
 
-	public RocketRenderer(EntityRendererProvider.Context context, boolean isChestBoat) {
+	public TechnologicaBoatRenderer(EntityRendererProvider.Context context, boolean isChestBoat) {
 		super(context, isChestBoat);
 		this.boatResources = Stream.of(TechnologicaBoat.Type.values()).collect(ImmutableMap.toImmutableMap((p_173938_) -> {
 			return p_173938_;

@@ -4,7 +4,7 @@ import java.util.Set;
 
 import com.google.common.collect.Sets;
 import com.technologica.util.text.TechnologicaLocation;
-import com.technologica.world.entity.vehicle.VanillaBoat;
+import com.technologica.world.entity.vehicle.TechnologicaBoat;
 
 import net.minecraft.client.model.geom.ModelLayerLocation;
 
@@ -69,6 +69,18 @@ public class TechnologicaModelLayers {
 	public static final ModelLayerLocation MINING_HELMET = register("mining_helmet");
 	public static final ModelLayerLocation DIVING_HELMET = register("diving_helmet");
 
+	public static ModelLayerLocation createBoatModelName(TechnologicaBoat.Type type) {
+		return createLocation("boat/" + type.getName(), "main");
+	}
+
+	public static ModelLayerLocation createChestBoatModelName(TechnologicaBoat.Type type) {
+		return createLocation("chest_boat/" + type.getName(), "main");
+	}
+
+	private static ModelLayerLocation createLocation(String p_171301_, String p_171302_) {
+		return new ModelLayerLocation(new TechnologicaLocation(p_171301_), p_171302_);
+	}
+
 	private static ModelLayerLocation register(String p_171294_) {
 		return register(p_171294_, "main");
 	}
@@ -80,13 +92,5 @@ public class TechnologicaModelLayers {
 		} else {
 			return modellayerlocation;
 		}
-	}
-
-	private static ModelLayerLocation createLocation(String p_171301_, String p_171302_) {
-		return new ModelLayerLocation(new TechnologicaLocation(p_171301_), p_171302_);
-	}
-
-	public static ModelLayerLocation createBoatModelName(VanillaBoat.Type p_171290_) {
-		return createLocation("boat/" + p_171290_.getName(), "main");
 	}
 }

@@ -4,6 +4,8 @@ import java.util.function.Supplier;
 
 import com.technologica.Technologica;
 import com.technologica.capabilities.entity.airMeter.IAir;
+import com.technologica.listeners.forgebus.RenderGuiOverlayEventListener;
+import com.technologica.network.packets.ClientboundTriggerEnvironmentTitleCardPacket;
 import com.technologica.network.packets.ClientboundUpdateAirCapabilityPacket;
 import com.technologica.setup.listeners.TechnologicaCapabilities;
 
@@ -21,4 +23,12 @@ public class ClientboundPacketHandlers {
 		airCapability2.setNewMaxAir(packet.getAir());
 	}
 
+	public static void handleTriggerEnvironmentTitleCard(ClientboundTriggerEnvironmentTitleCardPacket packet, final Supplier<NetworkEvent.Context> context) {
+		Technologica.LOGGER.debug("HANDLING PACKET - CLIENTBOUND - TRIGGER ENVIRONMENT TITLE CARD");
+		if (packet.getDimensionOrBiome() == false) {
+			RenderGuiOverlayEventListener.triggerDimensionTitleCard();
+		} else {
+			RenderGuiOverlayEventListener.triggerBiomeTitleCard();
+		}
+	}
 }

@@ -19,6 +19,6 @@ public class TechnologicaCapabilities {
 		event.register(AirMeter.class);
 		event.register(EnvironmentTracker.class);
 		event.register(ILink.class);
-		Technologica.LOGGER.info("STEUP - CAPABILITIES - 3 OF 3");
+		Technologica.LOGGER.info("SETUP - CAPABILITIES - 3 OF 3");
 	}
 }

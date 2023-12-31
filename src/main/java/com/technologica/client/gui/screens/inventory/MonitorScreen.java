@@ -31,7 +31,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
 public class MonitorScreen extends AbstractContainerScreen<MonitorMenu> {
-	private static final ResourceLocation BACKGROUND_TEXTURE = new TechnologicaLocation("textures/gui/container/annunciator_screen.png");
+	private static final ResourceLocation BACKGROUND_TEXTURE = new TechnologicaLocation("textures/gui/container/monitor_screen.png");
 	private MonitorBlockEntity tileEntity;
 	private TextFieldHelper textInputUtil;
 	private String[] multiLineText;
@@ -39,6 +39,7 @@ public class MonitorScreen extends AbstractContainerScreen<MonitorMenu> {
 	private static final Style FULLSPACE_FONT_STYLE = Style.EMPTY.withFont(FULLSPACE_FONT);
 	private int editLine;
 	private int updateCounter;
+	protected int imageWidth = 224;
 
 	public MonitorScreen(MonitorMenu screenContainerIn, Inventory playerInventoryIn, Component titleIn) {
 		super(screenContainerIn, playerInventoryIn, Component.literal("Monitor"));
@@ -67,11 +68,9 @@ public class MonitorScreen extends AbstractContainerScreen<MonitorMenu> {
 	@Override
 	public void removed() {
 		Connection clientplaynethandler = this.minecraft.getConnection().getConnection();
-
 		if (clientplaynethandler != null) {
 			Technologica.CHANNEL.sendToServer(new ServerboundUpdateMonitorPacket(this.tileEntity.getBlockPos(), this.multiLineText[0], this.multiLineText[1], this.multiLineText[2], this.multiLineText[3], this.multiLineText[4], this.multiLineText[5], this.multiLineText[6], this.multiLineText[7], this.multiLineText[8], this.multiLineText[9], this.multiLineText[10], this.multiLineText[11], this.multiLineText[12], this.multiLineText[13], this.multiLineText[14], this.multiLineText[15]));
 		}
-
 		this.tileEntity.setEditable(true);
 	}
 
@@ -125,7 +124,7 @@ public class MonitorScreen extends AbstractContainerScreen<MonitorMenu> {
 	@Override
 	public void render(GuiGraphics matrixStack, int mouseX, int mouseY, float partialTicks) {
 		this.renderBackground(matrixStack);
-		super.render(matrixStack, mouseX, mouseY, partialTicks);
+		this.renderBg(matrixStack, partialTicks, mouseX, mouseY);
 		Lighting.setupForFlatItems();
 
 		matrixStack.pose().pushPose();
@@ -137,10 +136,10 @@ public class MonitorScreen extends AbstractContainerScreen<MonitorMenu> {
 
 		matrixStack.pose().translate(256.0D, 96.0D, 0.0D);
 
-		int color = 40284971;
+		int color = 0x00FF00;
 		int j = this.textInputUtil.getCursorPos();
 		int k = this.textInputUtil.getSelectionPos();
-		int l = this.editLine * 10 - this.multiLineText.length * 5;
+		int l = this.editLine * 9 - this.multiLineText.length * 5 + 24;
 		Matrix4f matrix4f = matrixStack.pose().last().pose();
 
 		for (int lineCount = 0; lineCount < this.multiLineText.length; ++lineCount) {
@@ -154,7 +153,7 @@ public class MonitorScreen extends AbstractContainerScreen<MonitorMenu> {
 				Component text = Component.literal(s).setStyle(FULLSPACE_FONT_STYLE);
 
 				float posHorizontal = -96;
-				this.minecraft.font.drawInBatch(text, posHorizontal, lineCount * 10 - this.multiLineText.length * 5, color, false, matrix4f, irendertypebuffer$impl, Font.DisplayMode.POLYGON_OFFSET, 0, 15728880);
+				this.minecraft.font.drawInBatch(text, posHorizontal, lineCount * 9 - this.multiLineText.length * 5 + 24, color, false, matrix4f, irendertypebuffer$impl, Font.DisplayMode.POLYGON_OFFSET, 0, 15728880);
 
 				if (lineCount == this.editLine && j >= 0 && flag1) {
 					int j1 = Math.max(Math.min(j, s.length()) * 6, 0);
@@ -170,13 +169,6 @@ public class MonitorScreen extends AbstractContainerScreen<MonitorMenu> {
 			String s1 = this.multiLineText[i3];
 
 			if (s1 != null && i3 == this.editLine && j >= 0) {
-				int j3 = this.minecraft.font.width(s1.substring(0, Math.max(Math.min(j, s1.length()), 0)));
-				int k3 = j3 - 9;
-
-				if (flag1 && j < s1.length()) {
-					// fill(matrixStack, k3, l - 1, k3 + 1, l + 9, -16777216 | color);
-				}
-
 				if (k != j) {
 					int l3 = Math.min(j, k);
 					int l1 = Math.max(j, k);
@@ -210,7 +202,7 @@ public class MonitorScreen extends AbstractContainerScreen<MonitorMenu> {
 		RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
 		int i = (this.width - this.imageWidth) / 2;
 		int j = (this.height - this.imageHeight) / 2;
-		guiGraphics.blit(BACKGROUND_TEXTURE, i, j, 0, 0, this.imageWidth, 125);
-		guiGraphics.blit(BACKGROUND_TEXTURE, i, j + 125, 0, 126, this.imageWidth, 105);
+		guiGraphics.blit(BACKGROUND_TEXTURE, i, j, 0, 0, this.imageWidth, this.imageHeight);
+		guiGraphics.blit(BACKGROUND_TEXTURE, i, j + 125, 0, 126, this.imageWidth, this.imageHeight);
 	}
 }
