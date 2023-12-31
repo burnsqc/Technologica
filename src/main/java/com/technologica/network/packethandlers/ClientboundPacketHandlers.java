@@ -5,6 +5,9 @@ import java.util.function.Supplier;
 import com.technologica.Technologica;
 import com.technologica.capabilities.entity.airMeter.IAir;
 import com.technologica.listeners.forgebus.RenderGuiOverlayEventListener;
+import com.technologica.listeners.forgebus.ServerTickEventListener;
+import com.technologica.network.packets.ClientboundSetMeteorStorm;
+import com.technologica.network.packets.ClientboundSetMeteorStormLevel;
 import com.technologica.network.packets.ClientboundTriggerEnvironmentTitleCardPacket;
 import com.technologica.network.packets.ClientboundUpdateAirCapabilityPacket;
 import com.technologica.setup.listeners.TechnologicaCapabilities;
@@ -30,5 +33,21 @@ public class ClientboundPacketHandlers {
 		} else {
 			RenderGuiOverlayEventListener.triggerBiomeTitleCard();
 		}
+	}
+
+	public static void handleSetMeteorStorm(ClientboundSetMeteorStorm packet, final Supplier<NetworkEvent.Context> context) {
+		Technologica.LOGGER.debug("HANDLING PACKET - CLIENTBOUND - SET METEOR STORM ");
+		if (packet.getStorm()) {
+			ServerTickEventListener.setStorming(true);
+			ServerTickEventListener.setStormLevel(0.0F);
+		} else {
+			ServerTickEventListener.setStorming(false);
+			ServerTickEventListener.setStormLevel(1.0F);
+		}
+	}
+
+	public static void handleSetMeteorStormLevel(ClientboundSetMeteorStormLevel packet, final Supplier<NetworkEvent.Context> context) {
+		Technologica.LOGGER.debug("HANDLING PACKET - CLIENTBOUND - SET METEOR STORM LEVEL");
+		ServerTickEventListener.setStormLevel(packet.getStormLevel());
 	}
 }

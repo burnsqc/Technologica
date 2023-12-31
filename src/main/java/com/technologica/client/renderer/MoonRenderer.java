@@ -13,6 +13,7 @@ import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexBuffer;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import com.mojang.math.Axis;
+import com.technologica.listeners.forgebus.ServerTickEventListener;
 import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.client.Camera;
@@ -185,7 +186,7 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 
 	@Override
 	public boolean renderSnowAndRain(ClientLevel level, int ticks, float partialTick, LightTexture lightTexture, double camX, double camY, double camZ) {
-		float f = level.getRainLevel(partialTick);
+		float f = ServerTickEventListener.getStormLevel(partialTick);
 		if (!(f <= 0.0F)) {
 			lightTexture.turnOnLightLayer();
 			int i = Mth.floor(camX);

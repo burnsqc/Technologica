@@ -49,6 +49,8 @@ public class LanguageDataGenerator extends LanguageProvider {
 		add("advancements.tribulation.root.description", "May you maintain your resolve in the face of great adversity");
 		add("advancements.tribulation.a_sign_of_things_to_come.title", "A Sign of Things to Come");
 		add("advancements.tribulation.a_sign_of_things_to_come.description", "This first lesson is to set your expectations.");
+
+		add("commands.weather.set.meteor_storm", "Set the weather to meteor storm");
 	}
 
 	/**
@@ -88,9 +90,9 @@ public class LanguageDataGenerator extends LanguageProvider {
 		}
 		return name.trim();
 	}
-	
+
 	@Override
-    public String getName() {
-        return "Languages - en_us: " + Technologica.MOD_ID;
-    }
+	public String getName() {
+		return "Languages - en_us: " + Technologica.MOD_ID;
+	}
 }

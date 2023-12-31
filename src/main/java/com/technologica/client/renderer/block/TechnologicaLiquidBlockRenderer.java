@@ -28,6 +28,7 @@ public class TechnologicaLiquidBlockRenderer extends LiquidBlockRenderer {
 	private final TextureAtlasSprite[] waterIcons = new TextureAtlasSprite[2];
 	private TextureAtlasSprite waterOverlay;
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void setupSprites() {
 		this.lavaIcons[0] = Minecraft.getInstance().getModelManager().getBlockModelShaper().getBlockModel(Blocks.LAVA.defaultBlockState()).getParticleIcon();
@@ -372,6 +373,7 @@ public class TechnologicaLiquidBlockRenderer extends LiquidBlockRenderer {
 		return this.getHeight(p_203157_, p_203158_, p_203159_, blockstate, blockstate.getFluidState());
 	}
 
+	@SuppressWarnings("deprecation")
 	private float getHeight(BlockAndTintGetter blockAndTintGetter, Fluid fluid, BlockPos blockPos, BlockState blockState, FluidState fluidState) {
 		if (fluid.isSame(fluidState.getType())) {
 			BlockState blockstate = blockAndTintGetter.getBlockState(blockPos.below());

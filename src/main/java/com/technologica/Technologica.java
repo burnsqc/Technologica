@@ -21,6 +21,8 @@ import com.technologica.listeners.forgebus.ServerTickEventListener;
 import com.technologica.listeners.forgebus.VillagerTradesEventListener;
 import com.technologica.listeners.forgebus.WandererTradesEventListener;
 import com.technologica.listeners.modbus.CommonSetup;
+import com.technologica.network.packets.ClientboundSetMeteorStorm;
+import com.technologica.network.packets.ClientboundSetMeteorStormLevel;
 import com.technologica.network.packets.ClientboundTriggerEnvironmentTitleCardPacket;
 import com.technologica.network.packets.ClientboundUpdateAirCapabilityPacket;
 import com.technologica.network.packets.ServerboundUpdateAnnunciatorPacket;
@@ -29,6 +31,7 @@ import com.technologica.registration.deferred.util.MasterDeferredRegistrar;
 import com.technologica.setup.SetupClient;
 import com.technologica.setup.config.TechnologicaConfigCommon;
 import com.technologica.setup.listeners.TechnologicaCapabilities;
+import com.technologica.setup.listeners.TechnologicaCommands;
 import com.technologica.setup.listeners.TechnologicaEntityAttributes;
 import com.technologica.util.DisablePlankConditionFactory;
 import com.technologica.util.EnablePlankConditionFactory;
@@ -58,7 +61,7 @@ public class Technologica {
 
 	public Technologica() {
 		LOGGER.info("TECHNOLOGICA NOW LOADING FOR DISTRIBUTION - " + FMLEnvironment.dist.toString());
-		
+
 		MasterDeferredRegistrar.initDeferredRegisters();
 
 		LOGGER.info("SETUP - COMMON");
@@ -68,12 +71,15 @@ public class Technologica {
 		CHANNEL.registerMessage(PACKET_ID++, ServerboundUpdateMonitorPacket.class, ServerboundUpdateMonitorPacket::encode, ServerboundUpdateMonitorPacket::decode, ServerboundUpdateMonitorPacket::handle);
 		CHANNEL.registerMessage(PACKET_ID++, ClientboundUpdateAirCapabilityPacket.class, ClientboundUpdateAirCapabilityPacket::encode, ClientboundUpdateAirCapabilityPacket::decode, ClientboundUpdateAirCapabilityPacket::handle);
 		CHANNEL.registerMessage(PACKET_ID++, ClientboundTriggerEnvironmentTitleCardPacket.class, ClientboundTriggerEnvironmentTitleCardPacket::encode, ClientboundTriggerEnvironmentTitleCardPacket::decode, ClientboundTriggerEnvironmentTitleCardPacket::handle);
+		CHANNEL.registerMessage(PACKET_ID++, ClientboundSetMeteorStorm.class, ClientboundSetMeteorStorm::encode, ClientboundSetMeteorStorm::decode, ClientboundSetMeteorStorm::handle);
+		CHANNEL.registerMessage(PACKET_ID++, ClientboundSetMeteorStormLevel.class, ClientboundSetMeteorStormLevel::encode, ClientboundSetMeteorStormLevel::decode, ClientboundSetMeteorStormLevel::handle);
 
 		MOD_EVENT_BUS.addListener(MasterDeferredRegistrar::onRegisterEvent);
 		MOD_EVENT_BUS.addListener(TechnologicaEntityAttributes::onEntityAttributeCreationEvent);
 		MOD_EVENT_BUS.addListener(CommonSetup::onFMLCommonSetupEvent);
 		MOD_EVENT_BUS.addListener(TechnologicaCapabilities::register);
 
+		FORGE_EVENT_BUS.addListener(TechnologicaCommands::register);
 		FORGE_EVENT_BUS.addGenericListener(Entity.class, AttachCapabilities::onAttachCapabilitiesEvent);
 		FORGE_EVENT_BUS.register(new EntityJoinLevelEventListener());
 		FORGE_EVENT_BUS.register(new HarvestCheckListener());
