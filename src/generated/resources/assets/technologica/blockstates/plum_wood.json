@@ -1,7 +1,7 @@
 {
   "variants": {
     "axis=x": {
-      "model": "technologica:block/plum_wood",
+      "model": "technologica:block/plum_wood_horizontal",
       "x": 90,
       "y": 90
     },
@@ -9,7 +9,7 @@
       "model": "technologica:block/plum_wood"
     },
     "axis=z": {
-      "model": "technologica:block/plum_wood",
+      "model": "technologica:block/plum_wood_horizontal",
       "x": 90
     }
   }

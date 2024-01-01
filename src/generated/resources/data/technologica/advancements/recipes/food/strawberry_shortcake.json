@@ -1,26 +1,23 @@
 {
   "parent": "minecraft:recipes/root",
-  "rewards": {
-    "recipes": [
-      "technologica:strawberry_shortcake"
-    ]
-  },
   "criteria": {
     "has_strawberry": {
-      "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "technologica:strawberry"
+            "items": [
+              "technologica:strawberry"
+            ]
           }
         ]
-      }
+      },
+      "trigger": "minecraft:inventory_changed"
     },
     "has_the_recipe": {
-      "trigger": "minecraft:recipe_unlocked",
       "conditions": {
         "recipe": "technologica:strawberry_shortcake"
-      }
+      },
+      "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
@@ -28,5 +25,11 @@
       "has_strawberry",
       "has_the_recipe"
     ]
-  ]
+  ],
+  "rewards": {
+    "recipes": [
+      "technologica:strawberry_shortcake"
+    ]
+  },
+  "sends_telemetry_event": false
 }

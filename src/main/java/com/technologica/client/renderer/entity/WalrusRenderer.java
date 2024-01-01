@@ -1,22 +1,23 @@
 package com.technologica.client.renderer.entity;
 
-import com.technologica.Technologica;
-import com.technologica.client.renderer.entity.model.WalrusModel;
-import com.technologica.entity.passive.WalrusEntity;
+import com.technologica.client.model.WalrusModel;
+import com.technologica.client.model.geom.TechnologicaModelLayers;
+import com.technologica.util.text.TechnologicaLocation;
+import com.technologica.world.entity.animal.Walrus;
 
-import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 
-public final class WalrusRenderer extends MobRenderer<WalrusEntity, WalrusModel<WalrusEntity>> {
-	private static final ResourceLocation WALRUS_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/walrus.png");
+public final class WalrusRenderer extends MobRenderer<Walrus, WalrusModel<Walrus>> {
+	private static final ResourceLocation WALRUS_TEXTURE = new TechnologicaLocation("textures/entity/walrus.png");
 
-	public WalrusRenderer(EntityRendererManager renderManagerIn) {
-		super(renderManagerIn, new WalrusModel<>(), 1.1F);
+	public WalrusRenderer(Context contextIn) {
+		super(contextIn, new WalrusModel<>(contextIn.bakeLayer(TechnologicaModelLayers.WALRUS)), 0.8F);
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(WalrusEntity entity) {
+	public ResourceLocation getTextureLocation(Walrus walrusIn) {
 		return WALRUS_TEXTURE;
 	}
 }

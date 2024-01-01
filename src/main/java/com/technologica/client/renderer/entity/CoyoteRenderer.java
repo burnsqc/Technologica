@@ -1,48 +1,42 @@
 package com.technologica.client.renderer.entity;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.technologica.Technologica;
-import com.technologica.client.renderer.entity.model.CoyoteModel;
-import com.technologica.entity.passive.CoyoteEntity;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.technologica.client.model.CoyoteModel;
+import com.technologica.client.model.geom.TechnologicaModelLayers;
+import com.technologica.util.text.TechnologicaLocation;
+import com.technologica.world.entity.animal.Coyote;
 
-import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 
-public class CoyoteRenderer extends MobRenderer<CoyoteEntity, CoyoteModel<CoyoteEntity>> {
-	private static final ResourceLocation COYOTE_TEXTURES = new ResourceLocation(Technologica.MODID, "textures/entity/coyote.png");
+public class CoyoteRenderer extends MobRenderer<Coyote, CoyoteModel<Coyote>> {
+	private static final ResourceLocation COYOTE_TEXTURE = new TechnologicaLocation("textures/entity/coyote.png");
 
-	public CoyoteRenderer(EntityRendererManager renderManagerIn) {
-		super(renderManagerIn, new CoyoteModel<>(), 0.5F);
+	public CoyoteRenderer(Context contextIn) {
+		super(contextIn, new CoyoteModel<>(contextIn.bakeLayer(TechnologicaModelLayers.COYOTE)), 0.5F);
 	}
 
-	/**
-	 * Defines what float the third param in setRotationAngles of ModelBase is
-	 */
-	protected float handleRotationFloat(CoyoteEntity livingBase, float partialTicks) {
-		return livingBase.getTailRotation();
+	@Override
+	public ResourceLocation getTextureLocation(Coyote coyoteIn) {
+		return COYOTE_TEXTURE;
 	}
 
-	public void render(CoyoteEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn,
-			IRenderTypeBuffer bufferIn, int packedLightIn) {
-		if (entityIn.isCoyoteWet()) {
-			float f = entityIn.getShadingWhileWet(partialTicks);
-			this.entityModel.setTint(f, f, f);
+	@Override
+	protected float getBob(Coyote coyoteIn, float partialTicksIn) {
+		return coyoteIn.getTailAngle();
+	}
+
+	@Override
+	public void render(Coyote coyoteIn, float yawIn, float partialTicksIn, PoseStack poseStackIn, MultiBufferSource bufferIn, int packedLightIn) {
+		if (coyoteIn.isWet()) {
+			float f = coyoteIn.getWetShade(partialTicksIn);
+			this.model.setColor(f, f, f);
 		}
-
-		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
-		if (entityIn.isCoyoteWet()) {
-			this.entityModel.setTint(1.0F, 1.0F, 1.0F);
+		super.render(coyoteIn, yawIn, partialTicksIn, poseStackIn, bufferIn, packedLightIn);
+		if (coyoteIn.isWet()) {
+			this.model.setColor(1.0F, 1.0F, 1.0F);
 		}
-
-	}
-
-	/**
-	 * Returns the location of an entity's texture.
-	 */
-	public ResourceLocation getEntityTexture(CoyoteEntity entity) {
-		return COYOTE_TEXTURES;
-
 	}
 }

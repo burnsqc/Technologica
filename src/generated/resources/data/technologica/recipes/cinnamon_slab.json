@@ -9,18 +9,44 @@
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
+        "category": "building",
         "group": "wooden_slab",
-        "pattern": [
-          "###"
-        ],
         "key": {
           "#": {
             "item": "technologica:cinnamon_planks"
           }
         },
+        "pattern": [
+          "###"
+        ],
         "result": {
-          "item": "technologica:cinnamon_slab",
-          "count": 6
+          "count": 6,
+          "item": "technologica:cinnamon_slab"
+        },
+        "show_notification": true
+      }
+    },
+    {
+      "conditions": [
+        {
+          "type": "technologica:disable_vanilla_plank_crafting"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "category": "building",
+        "group": "wooden_slab",
+        "ingredients": [
+          {
+            "item": "technologica:cinnamon_planks"
+          },
+          {
+            "item": "technologica:saw"
+          }
+        ],
+        "result": {
+          "count": 2,
+          "item": "technologica:cinnamon_slab"
         }
       }
     }

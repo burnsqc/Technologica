@@ -1,22 +1,23 @@
 package com.technologica.client.renderer.entity;
 
-import com.technologica.Technologica;
-import com.technologica.client.renderer.entity.model.BuffaloModel;
-import com.technologica.entity.passive.BuffaloEntity;
+import com.technologica.client.model.BuffaloModel;
+import com.technologica.client.model.geom.TechnologicaModelLayers;
+import com.technologica.util.text.TechnologicaLocation;
+import com.technologica.world.entity.animal.Buffalo;
 
-import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 
-public final class BuffaloRenderer extends MobRenderer<BuffaloEntity, BuffaloModel<BuffaloEntity>> {
-	private static final ResourceLocation BUFFALO_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/buffalo.png");
+public final class BuffaloRenderer extends MobRenderer<Buffalo, BuffaloModel<Buffalo>> {
+	private static final ResourceLocation BUFFALO_TEXTURE = new TechnologicaLocation("textures/entity/buffalo.png");
 
-	public BuffaloRenderer(EntityRendererManager renderManagerIn) {
-		super(renderManagerIn, new BuffaloModel<>(), 1.1F);
+	public BuffaloRenderer(Context contextIn) {
+		super(contextIn, new BuffaloModel<>(contextIn.bakeLayer(TechnologicaModelLayers.BUFFALO)), 0.9F);
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(BuffaloEntity entity) {
+	public ResourceLocation getTextureLocation(Buffalo buffaloIn) {
 		return BUFFALO_TEXTURE;
 	}
 }

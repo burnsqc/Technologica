@@ -1,29 +1,30 @@
 package com.technologica.client.renderer.entity;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.technologica.Technologica;
-import com.technologica.entity.passive.GrizzlyBearEntity;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.technologica.client.model.geom.TechnologicaModelLayers;
+import com.technologica.util.text.TechnologicaLocation;
+import com.technologica.world.entity.animal.GrizzlyBear;
 
-import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.model.PolarBearModel;
+import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.client.renderer.entity.model.PolarBearModel;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 
-public class GrizzlyBearRenderer extends MobRenderer<GrizzlyBearEntity, PolarBearModel<GrizzlyBearEntity>> {
-   private static final ResourceLocation GRIZZLY_BEAR_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/grizzly_bear.png");
+public class GrizzlyBearRenderer extends MobRenderer<GrizzlyBear, PolarBearModel<GrizzlyBear>> {
+	private static final ResourceLocation GRIZZLY_BEAR_TEXTURE = new TechnologicaLocation("textures/entity/grizzly_bear.png");
 
-   public GrizzlyBearRenderer(EntityRendererManager renderManagerIn) {
-      super(renderManagerIn, new PolarBearModel<>(), 0.9F);
-   }
+	public GrizzlyBearRenderer(Context contextIn) {
+		super(contextIn, new PolarBearModel<>(contextIn.bakeLayer(TechnologicaModelLayers.GRIZZLY_BEAR)), 0.9F);
+	}
 
-   @Override
-   public ResourceLocation getEntityTexture(GrizzlyBearEntity entity) {
-      return GRIZZLY_BEAR_TEXTURE;
-   }
+	@Override
+	public ResourceLocation getTextureLocation(GrizzlyBear grizzlyBearIn) {
+		return GRIZZLY_BEAR_TEXTURE;
+	}
 
-   @Override
-   protected void preRenderCallback(GrizzlyBearEntity entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
-      matrixStackIn.scale(1.2F, 1.2F, 1.2F);
-      super.preRenderCallback(entitylivingbaseIn, matrixStackIn, partialTickTime);
-   }
+	@Override
+	protected void scale(GrizzlyBear grizzlyBearIn, PoseStack poseStackIn, float partialTicksIn) {
+		poseStackIn.scale(1.2F, 1.2F, 1.2F);
+		super.scale(grizzlyBearIn, poseStackIn, partialTicksIn);
+	}
 }

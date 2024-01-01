@@ -1,5 +1,4 @@
 {
-  "replace": false,
   "values": [
     "technologica:apricot_sapling",
     "technologica:aspen_sapling",
@@ -30,6 +29,7 @@
     "technologica:serendipitous_apothecary_sapling",
     "technologica:benevolent_apothecary_sapling",
     "technologica:malevolent_apothecary_sapling",
+    "technologica:necrotic_sapling",
     "technologica:towering_inferno_sapling",
     "technologica:thunderous_conductor_sapling",
     "technologica:cryogenic_spire_sapling"

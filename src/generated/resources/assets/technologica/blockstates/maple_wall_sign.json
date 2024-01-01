@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "technologica:block/maple_wall_sign"
+      "model": "technologica:block/maple_sign"
     }
   }
 }

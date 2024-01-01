@@ -1,5 +1,5 @@
 {
-  "parent": "technologica:block/line_shaft_no_pulley",
+  "parent": "technologica:block/line_shaft_no_pulley_model",
   "textures": {
     "0": "technologica:block/pulley"
   }

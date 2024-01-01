@@ -1,13 +1,13 @@
 {
   "variants": {
-    "type=top": {
-      "model": "technologica:block/lime_slab_top"
-    },
     "type=bottom": {
       "model": "technologica:block/lime_slab"
     },
     "type=double": {
       "model": "technologica:block/lime_planks"
+    },
+    "type=top": {
+      "model": "technologica:block/lime_slab_top"
     }
   }
 }

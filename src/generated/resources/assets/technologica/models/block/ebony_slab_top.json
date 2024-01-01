@@ -1,8 +1,9 @@
 {
   "parent": "minecraft:block/slab_top",
+  "render_type": "minecraft:solid",
   "textures": {
-    "side": "technologica:block/ebony_planks",
     "bottom": "technologica:block/ebony_planks",
+    "side": "technologica:block/ebony_planks",
     "top": "technologica:block/ebony_planks"
   }
 }

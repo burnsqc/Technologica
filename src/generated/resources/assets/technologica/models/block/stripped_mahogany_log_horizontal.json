@@ -1,7 +1,8 @@
 {
   "parent": "minecraft:block/cube_column_horizontal",
+  "render_type": "minecraft:solid",
   "textures": {
-    "side": "technologica:block/stripped_mahogany_log",
-    "end": "technologica:block/stripped_mahogany_log_top"
+    "end": "technologica:block/stripped_mahogany_log_top",
+    "side": "technologica:block/stripped_mahogany_log"
   }
 }

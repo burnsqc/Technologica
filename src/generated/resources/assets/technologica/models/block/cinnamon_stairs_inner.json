@@ -1,8 +1,9 @@
 {
   "parent": "minecraft:block/inner_stairs",
+  "render_type": "minecraft:solid",
   "textures": {
-    "side": "technologica:block/cinnamon_planks",
     "bottom": "technologica:block/cinnamon_planks",
+    "side": "technologica:block/cinnamon_planks",
     "top": "technologica:block/cinnamon_planks"
   }
 }

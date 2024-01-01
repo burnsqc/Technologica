@@ -1,0 +1,7 @@
+{
+  "parent": "technologica:block/hexagonal_crystal",
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "crystal": "technologica:block/vanadinite_crystal"
+  }
+}

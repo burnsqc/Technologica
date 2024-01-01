@@ -1,22 +1,23 @@
 package com.technologica.client.renderer.entity;
 
-import com.technologica.Technologica;
-import com.technologica.client.renderer.entity.model.PoisonDartFrogModel;
-import com.technologica.entity.passive.PoisonDartFrogEntity;
+import com.technologica.client.model.PoisonDartFrogModel;
+import com.technologica.client.model.geom.TechnologicaModelLayers;
+import com.technologica.util.text.TechnologicaLocation;
+import com.technologica.world.entity.animal.PoisonDartFrog;
 
-import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 
-public final class PoisonDartFrogRenderer extends MobRenderer<PoisonDartFrogEntity, PoisonDartFrogModel<PoisonDartFrogEntity>> {
-	private static final ResourceLocation POISON_DART_FROG_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/poison_dart_frog.png");
+public final class PoisonDartFrogRenderer extends MobRenderer<PoisonDartFrog, PoisonDartFrogModel<PoisonDartFrog>> {
+	private static final ResourceLocation POISON_DART_FROG_TEXTURE = new TechnologicaLocation("textures/entity/poison_dart_frog.png");
 
-	public PoisonDartFrogRenderer(EntityRendererManager renderManagerIn) {
-		super(renderManagerIn, new PoisonDartFrogModel<>(), 1.1F);
+	public PoisonDartFrogRenderer(Context contextIn) {
+		super(contextIn, new PoisonDartFrogModel<>(contextIn.bakeLayer(TechnologicaModelLayers.POISON_DART_FROG)), 0.2F);
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(PoisonDartFrogEntity entity) {
+	public ResourceLocation getTextureLocation(PoisonDartFrog poisonDartFrogIn) {
 		return POISON_DART_FROG_TEXTURE;
 	}
 }

@@ -1,22 +1,23 @@
 package com.technologica.client.renderer.entity;
 
-import com.technologica.Technologica;
-import com.technologica.client.renderer.entity.model.CobraModel;
-import com.technologica.entity.passive.CobraEntity;
+import com.technologica.client.model.CobraModel;
+import com.technologica.client.model.geom.TechnologicaModelLayers;
+import com.technologica.util.text.TechnologicaLocation;
+import com.technologica.world.entity.animal.Cobra;
 
-import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 
-public final class CobraRenderer extends MobRenderer<CobraEntity, CobraModel<CobraEntity>> {
-	private static final ResourceLocation COBRA_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/cobra.png");
+public final class CobraRenderer extends MobRenderer<Cobra, CobraModel<Cobra>> {
+	private static final ResourceLocation COBRA_TEXTURE = new TechnologicaLocation("textures/entity/cobra.png");
 
-	public CobraRenderer(EntityRendererManager renderManagerIn) {
-		super(renderManagerIn, new CobraModel<>(), 1.1F);
+	public CobraRenderer(Context contextIn) {
+		super(contextIn, new CobraModel<>(contextIn.bakeLayer(TechnologicaModelLayers.COBRA)), 0.1F);
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(CobraEntity entity) {
+	public ResourceLocation getTextureLocation(Cobra cobraIn) {
 		return COBRA_TEXTURE;
 	}
 }

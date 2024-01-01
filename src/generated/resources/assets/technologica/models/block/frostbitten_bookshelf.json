@@ -1,7 +1,8 @@
 {
   "parent": "minecraft:block/cube_column",
+  "render_type": "minecraft:translucent",
   "textures": {
-    "side": "technologica:block/frostbitten_bookshelf",
-    "end": "technologica:block/frostbitten_planks"
+    "end": "technologica:block/frostbitten_planks",
+    "side": "technologica:block/frostbitten_bookshelf"
   }
 }

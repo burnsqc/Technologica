@@ -1,7 +1,9 @@
 {
-  "parent": "minecraft:block/cube_column",
+  "parent": "technologica:block/hollow_log",
+  "render_type": "minecraft:translucent",
   "textures": {
-    "side": "technologica:block/frostbitten_log",
-    "end": "technologica:block/frostbitten_log_top"
+    "end": "technologica:block/frostbitten_log_top",
+    "inside": "technologica:block/stripped_frostbitten_log_solid",
+    "side": "technologica:block/frostbitten_log"
   }
 }

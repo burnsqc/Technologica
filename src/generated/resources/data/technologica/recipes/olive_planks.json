@@ -9,6 +9,7 @@
       ],
       "recipe": {
         "type": "minecraft:crafting_shapeless",
+        "category": "building",
         "group": "planks",
         "ingredients": [
           {
@@ -16,8 +17,31 @@
           }
         ],
         "result": {
-          "item": "technologica:olive_planks",
-          "count": 4
+          "count": 4,
+          "item": "technologica:olive_planks"
+        }
+      }
+    },
+    {
+      "conditions": [
+        {
+          "type": "technologica:disable_vanilla_plank_crafting"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "category": "building",
+        "group": "planks",
+        "ingredients": [
+          {
+            "tag": "technologica:olive_logs"
+          },
+          {
+            "item": "technologica:saw"
+          }
+        ],
+        "result": {
+          "item": "technologica:olive_planks"
         }
       }
     }

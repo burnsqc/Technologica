@@ -1,5 +1,4 @@
 {
-  "replace": false,
   "values": [
     "technologica:apricot_door",
     "technologica:aspen_door",
@@ -32,6 +31,7 @@
     "technologica:frostbitten_door",
     "technologica:fruitful_door",
     "technologica:infernal_door",
-    "technologica:malevolent_door"
+    "technologica:malevolent_door",
+    "technologica:necrotic_door"
   ]
 }

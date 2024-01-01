@@ -1,7 +1,8 @@
 {
   "parent": "minecraft:block/cube_column",
+  "render_type": "minecraft:solid",
   "textures": {
-    "side": "technologica:block/pear_bookshelf",
-    "end": "technologica:block/pear_planks"
+    "end": "technologica:block/pear_planks",
+    "side": "technologica:block/pear_bookshelf"
   }
 }

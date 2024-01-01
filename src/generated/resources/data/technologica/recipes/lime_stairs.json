@@ -9,20 +9,45 @@
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
+        "category": "building",
         "group": "wooden_stairs",
-        "pattern": [
-          "#  ",
-          "## ",
-          "###"
-        ],
         "key": {
           "#": {
             "item": "technologica:lime_planks"
           }
         },
+        "pattern": [
+          "#  ",
+          "## ",
+          "###"
+        ],
         "result": {
-          "item": "technologica:lime_stairs",
-          "count": 4
+          "count": 4,
+          "item": "technologica:lime_stairs"
+        },
+        "show_notification": true
+      }
+    },
+    {
+      "conditions": [
+        {
+          "type": "technologica:disable_vanilla_plank_crafting"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "category": "building",
+        "group": "wooden_slab",
+        "ingredients": [
+          {
+            "item": "technologica:lime_planks"
+          },
+          {
+            "item": "technologica:chisel"
+          }
+        ],
+        "result": {
+          "item": "technologica:lime_stairs"
         }
       }
     }

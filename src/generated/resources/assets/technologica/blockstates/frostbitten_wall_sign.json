@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "technologica:block/frostbitten_wall_sign"
+      "model": "technologica:block/frostbitten_sign"
     }
   }
 }

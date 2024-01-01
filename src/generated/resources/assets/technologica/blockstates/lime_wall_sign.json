@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "technologica:block/lime_wall_sign"
+      "model": "technologica:block/lime_sign"
     }
   }
 }

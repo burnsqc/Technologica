@@ -1,5 +1,4 @@
 {
-  "replace": false,
   "values": [
     "technologica:apricot_fence",
     "technologica:aspen_fence",
@@ -32,6 +31,7 @@
     "technologica:frostbitten_fence",
     "technologica:fruitful_fence",
     "technologica:infernal_fence",
-    "technologica:malevolent_fence"
+    "technologica:malevolent_fence",
+    "technologica:necrotic_fence"
   ]
 }

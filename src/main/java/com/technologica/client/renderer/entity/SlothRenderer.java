@@ -1,22 +1,23 @@
 package com.technologica.client.renderer.entity;
 
-import com.technologica.Technologica;
-import com.technologica.client.renderer.entity.model.SlothModel;
-import com.technologica.entity.passive.SlothEntity;
+import com.technologica.client.model.SlothModel;
+import com.technologica.client.model.geom.TechnologicaModelLayers;
+import com.technologica.util.text.TechnologicaLocation;
+import com.technologica.world.entity.animal.Sloth;
 
-import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 
-public final class SlothRenderer extends MobRenderer<SlothEntity, SlothModel<SlothEntity>> {
-	private static final ResourceLocation SLOTH_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/sloth.png");
+public final class SlothRenderer extends MobRenderer<Sloth, SlothModel<Sloth>> {
+	private static final ResourceLocation SLOTH_TEXTURE = new TechnologicaLocation("textures/entity/sloth.png");
 
-	public SlothRenderer(EntityRendererManager renderManagerIn) {
-		super(renderManagerIn, new SlothModel<>(), 1.1F);
+	public SlothRenderer(Context contextIn) {
+		super(contextIn, new SlothModel<>(contextIn.bakeLayer(TechnologicaModelLayers.SLOTH)), 0.4F);
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(SlothEntity entity) {
+	public ResourceLocation getTextureLocation(Sloth slothIn) {
 		return SLOTH_TEXTURE;
 	}
 }

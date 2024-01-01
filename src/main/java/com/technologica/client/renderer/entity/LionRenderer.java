@@ -1,22 +1,23 @@
 package com.technologica.client.renderer.entity;
 
-import com.technologica.Technologica;
-import com.technologica.client.renderer.entity.model.LionModel;
-import com.technologica.entity.passive.LionEntity;
+import com.technologica.client.model.LionModel;
+import com.technologica.client.model.geom.TechnologicaModelLayers;
+import com.technologica.util.text.TechnologicaLocation;
+import com.technologica.world.entity.animal.Lion;
 
-import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 
-public final class LionRenderer extends MobRenderer<LionEntity, LionModel<LionEntity>> {
-	private static final ResourceLocation LION_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/lion.png");
+public final class LionRenderer extends MobRenderer<Lion, LionModel<Lion>> {
+	private static final ResourceLocation LION_TEXTURE = new TechnologicaLocation("textures/entity/lion.png");
 
-	public LionRenderer(EntityRendererManager renderManagerIn) {
-		super(renderManagerIn, new LionModel<>(), 1.1F);
+	public LionRenderer(Context contextIn) {
+		super(contextIn, new LionModel<>(contextIn.bakeLayer(TechnologicaModelLayers.LION)), 0.7F);
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(LionEntity entity) {
+	public ResourceLocation getTextureLocation(Lion lionIn) {
 		return LION_TEXTURE;
 	}
 }

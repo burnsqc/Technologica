@@ -1,8 +1,9 @@
 {
   "parent": "minecraft:block/slab_top",
+  "render_type": "minecraft:solid",
   "textures": {
-    "side": "technologica:block/olive_planks",
     "bottom": "technologica:block/olive_planks",
+    "side": "technologica:block/olive_planks",
     "top": "technologica:block/olive_planks"
   }
 }

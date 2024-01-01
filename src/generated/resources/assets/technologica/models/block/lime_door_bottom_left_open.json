@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/door_bottom_left_open",
+  "render_type": "minecraft:cutout_mipped",
+  "textures": {
+    "bottom": "technologica:block/lime_door_bottom",
+    "top": "technologica:block/lime_door_top"
+  }
+}

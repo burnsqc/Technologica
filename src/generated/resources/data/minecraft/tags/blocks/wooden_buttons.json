@@ -1,5 +1,4 @@
 {
-  "replace": false,
   "values": [
     "technologica:apricot_button",
     "technologica:aspen_button",
@@ -32,6 +31,7 @@
     "technologica:frostbitten_button",
     "technologica:fruitful_button",
     "technologica:infernal_button",
-    "technologica:malevolent_button"
+    "technologica:malevolent_button",
+    "technologica:necrotic_button"
   ]
 }

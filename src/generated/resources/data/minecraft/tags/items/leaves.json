@@ -1,6 +1,6 @@
 {
-  "replace": false,
   "values": [
+    "technologica:alchemical_leaves",
     "technologica:apricot_leaves",
     "technologica:aspen_leaves",
     "technologica:avocado_leaves",
@@ -27,10 +27,10 @@
     "technologica:walnut_leaves",
     "technologica:zebrawood_leaves",
     "technologica:fruitful_leaves",
-    "technologica:alchemical_leaves",
     "technologica:benevolent_leaves",
     "technologica:malevolent_leaves",
     "technologica:conductive_leaves",
-    "technologica:frostbitten_leaves"
+    "technologica:frostbitten_leaves",
+    "technologica:cursed_leaves"
   ]
 }

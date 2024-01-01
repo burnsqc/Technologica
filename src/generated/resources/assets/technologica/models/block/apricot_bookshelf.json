@@ -1,7 +1,8 @@
 {
   "parent": "minecraft:block/cube_column",
+  "render_type": "minecraft:solid",
   "textures": {
-    "side": "technologica:block/apricot_bookshelf",
-    "end": "technologica:block/apricot_planks"
+    "end": "technologica:block/apricot_planks",
+    "side": "technologica:block/apricot_bookshelf"
   }
 }

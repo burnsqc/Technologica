@@ -1,21 +1,23 @@
 package com.technologica.client.renderer.entity;
 
-import com.technologica.Technologica;
-import com.technologica.client.renderer.entity.model.OstrichModel;
-import com.technologica.entity.passive.OstrichEntity;
+import com.technologica.client.model.OstrichModel;
+import com.technologica.client.model.geom.TechnologicaModelLayers;
+import com.technologica.util.text.TechnologicaLocation;
+import com.technologica.world.entity.animal.Ostrich;
 
-import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 
-public final class OstrichRenderer extends MobRenderer<OstrichEntity, OstrichModel<OstrichEntity>> {
-	private static final ResourceLocation OSTRICH_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/ostrich.png");
+public final class OstrichRenderer extends MobRenderer<Ostrich, OstrichModel<Ostrich>> {
+	private static final ResourceLocation OSTRICH_TEXTURE = new TechnologicaLocation("textures/entity/ostrich.png");
 
-   public OstrichRenderer(EntityRendererManager renderManagerIn) {
-      super(renderManagerIn, new OstrichModel<>(), 1.0F);
-   }
+	public OstrichRenderer(Context contextIn) {
+		super(contextIn, new OstrichModel<>(contextIn.bakeLayer(TechnologicaModelLayers.OSTRICH)), 0.5F);
+	}
 
-   public ResourceLocation getEntityTexture(OstrichEntity entity) {
-	      return OSTRICH_TEXTURE;
-	   }
+	@Override
+	public ResourceLocation getTextureLocation(Ostrich ostrichIn) {
+		return OSTRICH_TEXTURE;
+	}
 }

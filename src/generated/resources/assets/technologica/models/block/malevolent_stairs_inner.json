@@ -1,8 +1,9 @@
 {
   "parent": "minecraft:block/inner_stairs",
+  "render_type": "minecraft:solid",
   "textures": {
-    "side": "technologica:block/malevolent_planks",
     "bottom": "technologica:block/malevolent_planks",
+    "side": "technologica:block/malevolent_planks",
     "top": "technologica:block/malevolent_planks"
   }
 }

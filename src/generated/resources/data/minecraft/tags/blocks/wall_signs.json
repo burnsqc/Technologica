@@ -1,5 +1,4 @@
 {
-  "replace": false,
   "values": [
     "technologica:apricot_wall_sign",
     "technologica:aspen_wall_sign",
@@ -32,6 +31,7 @@
     "technologica:frostbitten_wall_sign",
     "technologica:fruitful_wall_sign",
     "technologica:infernal_wall_sign",
-    "technologica:malevolent_wall_sign"
+    "technologica:malevolent_wall_sign",
+    "technologica:necrotic_wall_sign"
   ]
 }

@@ -1,5 +1,4 @@
 {
-  "replace": false,
   "values": [
     "technologica:apricot_slab",
     "technologica:aspen_slab",
@@ -32,6 +31,7 @@
     "technologica:frostbitten_slab",
     "technologica:fruitful_slab",
     "technologica:infernal_slab",
-    "technologica:malevolent_slab"
+    "technologica:malevolent_slab",
+    "technologica:necrotic_slab"
   ]
 }

@@ -1,7 +1,7 @@
 {
   "variants": {
     "axis=x": {
-      "model": "technologica:block/frostbitten_log_horizontal",
+      "model": "technologica:block/frostbitten_log",
       "x": 90,
       "y": 90
     },
@@ -9,7 +9,7 @@
       "model": "technologica:block/frostbitten_log"
     },
     "axis=z": {
-      "model": "technologica:block/frostbitten_log_horizontal",
+      "model": "technologica:block/frostbitten_log",
       "x": 90
     }
   }

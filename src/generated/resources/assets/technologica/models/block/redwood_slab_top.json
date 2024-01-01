@@ -1,8 +1,9 @@
 {
   "parent": "minecraft:block/slab_top",
+  "render_type": "minecraft:solid",
   "textures": {
-    "side": "technologica:block/redwood_planks",
     "bottom": "technologica:block/redwood_planks",
+    "side": "technologica:block/redwood_planks",
     "top": "technologica:block/redwood_planks"
   }
 }

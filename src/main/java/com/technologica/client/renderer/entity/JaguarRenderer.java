@@ -1,22 +1,23 @@
 package com.technologica.client.renderer.entity;
 
-import com.technologica.Technologica;
-import com.technologica.client.renderer.entity.model.JaguarModel;
-import com.technologica.entity.passive.JaguarEntity;
+import com.technologica.client.model.JaguarModel;
+import com.technologica.client.model.geom.TechnologicaModelLayers;
+import com.technologica.util.text.TechnologicaLocation;
+import com.technologica.world.entity.animal.Jaguar;
 
-import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 
-public final class JaguarRenderer extends MobRenderer<JaguarEntity, JaguarModel<JaguarEntity>> {
-	private static final ResourceLocation JAGUAR_TEXTURE = new ResourceLocation(Technologica.MODID, "textures/entity/jaguar.png");
+public final class JaguarRenderer extends MobRenderer<Jaguar, JaguarModel<Jaguar>> {
+	private static final ResourceLocation JAGUAR_TEXTURE = new TechnologicaLocation("textures/entity/jaguar.png");
 
-	public JaguarRenderer(EntityRendererManager renderManagerIn) {
-		super(renderManagerIn, new JaguarModel<>(), 1.1F);
+	public JaguarRenderer(Context contextIn) {
+		super(contextIn, new JaguarModel<>(contextIn.bakeLayer(TechnologicaModelLayers.JAGUAR)), 0.6F);
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(JaguarEntity entity) {
+	public ResourceLocation getTextureLocation(Jaguar jaguarIn) {
 		return JAGUAR_TEXTURE;
 	}
 }

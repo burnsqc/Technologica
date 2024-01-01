@@ -1,5 +1,9 @@
 {
   "variants": {
+    "facing=east": {
+      "model": "technologica:block/orange_chair",
+      "y": 90
+    },
     "facing=north": {
       "model": "technologica:block/orange_chair"
     },
@@ -10,10 +14,6 @@
     "facing=west": {
       "model": "technologica:block/orange_chair",
       "y": 270
-    },
-    "facing=east": {
-      "model": "technologica:block/orange_chair",
-      "y": 90
     }
   }
 }

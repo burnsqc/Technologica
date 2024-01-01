@@ -1,31 +1,27 @@
 modLoader="javafml"
-loaderVersion="[35,)"
-logoFile="modconfiggraphic.png"
-license="All rights reserved"
+loaderVersion="[47,)"
+logoFile="technologica.png"
+license="All Rights Reserved"
 
 [[mods]]
 	modId="technologica"
 	version="1.0.0"
 	displayName="Technologica"
-	
-	credits="Basically just us"
-	authors="The Phantom, Queen Seeker, Linehart1"
+	credits="Special thanks to the generous help of the Forge/NeoForge Discord community!"
+	authors="burnsqc, NecroticPlague1, QueenSeeker"
 	description='''
-    Anything and everything we want.
-    
-    But mostly just fruits right now.
-    
-    Fruits and some ingots.
-    '''
+    An ambitious mod aiming to provide a primarily technical progression with considerable breadth and depth.  Technologica adds new trees, crops, minerals, and creatures both fantastical and real to the overworld.'''
+
 [[dependencies.technologica]] 
     modId="forge" 
     mandatory=true
-    versionRange="[35.0.0,)"
+    versionRange="[47,)"
     ordering="NONE"
     side="BOTH"
+
 [[dependencies.technologica]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.4]"
+    versionRange="[1.20.1]"
     ordering="NONE"
     side="BOTH"

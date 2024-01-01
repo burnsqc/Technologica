@@ -5,18 +5,18 @@ import java.util.Map;
 
 import org.apache.commons.lang3.tuple.Pair;
 
-import com.technologica.entity.item.InvisibleSeatEntity;
+import com.technologica.world.entity.decoration.InvisibleSeat;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 
 public class EntityUtil {
-	private static final Map<ResourceLocation, Map<BlockPos, Pair<InvisibleSeatEntity, BlockPos>>> OCCUPIED = new HashMap<>();
+	private static final Map<ResourceLocation, Map<BlockPos, Pair<InvisibleSeat, BlockPos>>> OCCUPIED = new HashMap<>();
 
-	public static boolean removeInvisibleSeatEntity(World world, BlockPos pos) {
-		if (!world.isRemote) {
+	public static boolean removeInvisibleSeatEntity(Level world, BlockPos pos) {
+		if (!world.isClientSide) {
 			ResourceLocation id = getDimensionTypeId(world);
 
 			if (OCCUPIED.containsKey(id)) {
@@ -28,12 +28,13 @@ public class EntityUtil {
 		return false;
 	}
 
-	public static BlockPos getPreviousPlayerPosition(PlayerEntity player, InvisibleSeatEntity sitEntity) {
-		if (!player.world.isRemote) {
-			ResourceLocation id = getDimensionTypeId(player.world);
+	public static BlockPos getPreviousPlayerPosition(Player player, InvisibleSeat sitEntity) {
+		Level level = player.level();
+		if (!level.isClientSide) {
+			ResourceLocation id = getDimensionTypeId(level);
 
 			if (OCCUPIED.containsKey(id)) {
-				for (Pair<InvisibleSeatEntity, BlockPos> pair : OCCUPIED.get(id).values()) {
+				for (Pair<InvisibleSeat, BlockPos> pair : OCCUPIED.get(id).values()) {
 					if (pair.getLeft() == sitEntity)
 						return pair.getRight();
 				}
@@ -43,7 +44,7 @@ public class EntityUtil {
 		return null;
 	}
 
-	private static ResourceLocation getDimensionTypeId(World world) {
-		return world.getDimensionKey().getLocation();
+	private static ResourceLocation getDimensionTypeId(Level world) {
+		return world.dimension().location();
 	}
 }
