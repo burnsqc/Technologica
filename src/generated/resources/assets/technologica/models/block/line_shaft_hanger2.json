@@ -1,6 +1,3 @@
 {
-  "parent": "technologica:block/line_shaft_hanger2_model",
-  "textures": {
-    "0": "technologica:block/line_shaft_hanger"
-  }
+  "parent": "technologica:block/line_shaft_hanger2_model"
 }

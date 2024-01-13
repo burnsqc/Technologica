@@ -56,7 +56,7 @@ import net.minecraftforge.network.simple.SimpleChannel;
 
 @Mod(Technologica.MOD_ID)
 public class Technologica {
-	static Technologica instance;
+	public static Technologica instance;
 	public static final String MOD_ID = "technologica";
 	public static final Logger LOGGER = LogManager.getLogger();
 	public static final IEventBus MOD_EVENT_BUS = FMLJavaModLoadingContext.get().getModEventBus();
@@ -65,8 +65,9 @@ public class Technologica {
 	public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(new TechnologicaLocation("main"), () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
 	public static int PACKET_ID = 0;
 	@Nullable
-	public TechnologicaClientLevel level;
 	public TechnologicaServerLevel serverLevel;
+	@Nullable
+	public TechnologicaClientLevel clientLevel;
 
 	public Technologica() {
 		instance = this;
@@ -105,11 +106,6 @@ public class Technologica {
 		FORGE_EVENT_BUS.register(new RightClickBlockListener());
 		FORGE_EVENT_BUS.register(new ServerAboutToStartListener());
 		FORGE_EVENT_BUS.register(new LevelEventListener());
-
-		// TechnologicaServerLevelData technologicaServerLevelData = TechnologicaServerLevelData.getData(null);
-		// Minecraft mc = Minecraft.getInstance();
-		// mc.level.getServer();
-
 		FORGE_EVENT_BUS.register(new TickEventListener());
 		FORGE_EVENT_BUS.register(new VillagerTradesEventListener());
 		FORGE_EVENT_BUS.register(new WandererTradesEventListener());
@@ -128,11 +124,11 @@ public class Technologica {
 		return instance;
 	}
 
-	public void setLevel(TechnologicaClientLevel level) {
-		this.level = level;
+	public void setServerLevel(TechnologicaServerLevel level) {
+		this.serverLevel = level;
 	}
 
-	public void setServerLevel(TechnologicaServerLevel serverLevel) {
-		this.serverLevel = serverLevel;
+	public void setClientLevel(TechnologicaClientLevel level) {
+		this.clientLevel = level;
 	}
 }

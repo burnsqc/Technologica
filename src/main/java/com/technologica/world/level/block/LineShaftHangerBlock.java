@@ -5,27 +5,34 @@ import com.technologica.registration.deferred.TechnologicaItems;
 import com.technologica.world.level.block.entity.LineShaftHangerTileEntity;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
 /**
  * Special one-off class for the line shaft hanger. Created to add the handle player interaction and associated tile entity.
  */
 public class LineShaftHangerBlock extends TwelveDirectionBlock implements EntityBlock {
+	public static final BooleanProperty ATTACHED = BlockStateProperties.ATTACHED;
 
 	public LineShaftHangerBlock() {
 		super(BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.ANVIL).noOcclusion());
+		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.UP).setValue(AXIS, Direction.Axis.Y).setValue(ATTACHED, false));
 	}
 
 	/*
@@ -63,6 +70,8 @@ public class LineShaftHangerBlock extends TwelveDirectionBlock implements Entity
 		} else if (tool == TechnologicaItems.STEEL_SHAFT.get()) {
 			if (!playerIn.isCrouching() && !tile.getShaft()) {
 				tile.setShaft(true);
+				worldIn.setBlock(posIn, stateIn.setValue(ATTACHED, true), 0);
+
 			} else if (!playerIn.isCrouching() && tile.getShaft() && hitIn.getDirection().getAxis() == stateIn.getValue(AXIS)) {
 				worldIn.setBlock(hitIn.getBlockPos().relative(hitIn.getDirection()), TechnologicaBlocks.LINE_SHAFT.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, stateIn.getValue(AXIS)), 3);
 			}
@@ -77,5 +86,11 @@ public class LineShaftHangerBlock extends TwelveDirectionBlock implements Entity
 	@Override
 	public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
 		return new LineShaftHangerTileEntity(p_153215_, p_153216_);
+	}
+
+	@Override
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builderIn) {
+		builderIn.add(ATTACHED);
+		super.createBlockStateDefinition(builderIn);
 	}
 }

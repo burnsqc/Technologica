@@ -40,7 +40,7 @@ public class ClientboundPacketHandlers {
 	public static void handleSetMeteorStorm(ClientboundSetMeteorStorm packet, final Supplier<NetworkEvent.Context> context) {
 		// Technologica.LOGGER.debug("HANDLING PACKET - CLIENTBOUND - SET METEOR STORM ");
 
-		TechnologicaClientLevel level = Technologica.getInstance().level;
+		TechnologicaClientLevel level = Technologica.getInstance().clientLevel;
 
 		if (packet.getStorm()) {
 			level.getLevelData().setMeteorStorming(true);
@@ -54,7 +54,7 @@ public class ClientboundPacketHandlers {
 	public static void handleSetMeteorStormLevel(ClientboundSetMeteorStormLevel packet, final Supplier<NetworkEvent.Context> context) {
 		// Technologica.LOGGER.debug("HANDLING PACKET - CLIENTBOUND - SET METEOR STORM LEVEL");
 
-		TechnologicaClientLevel level = Technologica.getInstance().level;
+		TechnologicaClientLevel level = Technologica.getInstance().clientLevel;
 
 		level.setMeteorStormLevel(packet.getStormLevel());
 	}

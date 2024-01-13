@@ -14,7 +14,7 @@ public class ClientPlayerNetworkEventListener {
 		Technologica tl = Technologica.getInstance();
 		TechnologicaClientLevelData data = new TechnologicaClientLevel.TechnologicaClientLevelData();
 		TechnologicaClientLevel level = new TechnologicaClientLevel(event.getPlayer().clientLevel, data);
-		tl.setLevel(level);
+		tl.setClientLevel(level);
 	}
 
 	@SubscribeEvent
@@ -22,6 +22,6 @@ public class ClientPlayerNetworkEventListener {
 		Technologica tl = Technologica.getInstance();
 		TechnologicaClientLevelData data = new TechnologicaClientLevel.TechnologicaClientLevelData();
 		TechnologicaClientLevel level = new TechnologicaClientLevel(event.getPlayer().clientLevel, data);
-		tl.setLevel(level);
+		tl.setClientLevel(level);
 	}
 }

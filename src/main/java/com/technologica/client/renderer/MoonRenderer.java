@@ -195,7 +195,7 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 
 	@Override
 	public boolean renderSnowAndRain(ClientLevel level, int ticks, float partialTick, LightTexture lightTexture, double camX, double camY, double camZ) {
-		float f = this.technologica.level.getMeteorStormLevel(partialTick);
+		float f = this.technologica.clientLevel.getMeteorStormLevel(partialTick);
 		if (!(f <= 0.0F)) {
 			lightTexture.turnOnLightLayer();
 			int i = Mth.floor(camX);
