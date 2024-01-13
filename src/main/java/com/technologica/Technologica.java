@@ -1,12 +1,16 @@
 package com.technologica;
 
+import javax.annotation.Nullable;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.technologica.client.multiplayer.TechnologicaClientLevel;
 import com.technologica.listeners.forgebus.AttachCapabilities;
 import com.technologica.listeners.forgebus.EntityJoinLevelEventListener;
 import com.technologica.listeners.forgebus.HarvestCheckListener;
 import com.technologica.listeners.forgebus.ItemFishedEventListener;
+import com.technologica.listeners.forgebus.LevelEventListener;
 import com.technologica.listeners.forgebus.LivingAttackEventListener;
 import com.technologica.listeners.forgebus.LivingBreatheEventListener;
 import com.technologica.listeners.forgebus.LivingEquipmentChangeEventListener;
@@ -17,7 +21,7 @@ import com.technologica.listeners.forgebus.PlayerChangedDimensionEventListener;
 import com.technologica.listeners.forgebus.PlayerTickEventListener;
 import com.technologica.listeners.forgebus.RightClickBlockListener;
 import com.technologica.listeners.forgebus.ServerAboutToStartListener;
-import com.technologica.listeners.forgebus.ServerTickEventListener;
+import com.technologica.listeners.forgebus.TickEventListener;
 import com.technologica.listeners.forgebus.VillagerTradesEventListener;
 import com.technologica.listeners.forgebus.WandererTradesEventListener;
 import com.technologica.listeners.modbus.CommonSetup;
@@ -28,6 +32,7 @@ import com.technologica.network.packets.ClientboundUpdateAirCapabilityPacket;
 import com.technologica.network.packets.ServerboundUpdateAnnunciatorPacket;
 import com.technologica.network.packets.ServerboundUpdateMonitorPacket;
 import com.technologica.registration.deferred.util.MasterDeferredRegistrar;
+import com.technologica.server.level.TechnologicaServerLevel;
 import com.technologica.setup.SetupClient;
 import com.technologica.setup.config.TechnologicaConfigCommon;
 import com.technologica.setup.listeners.TechnologicaCapabilities;
@@ -51,6 +56,7 @@ import net.minecraftforge.network.simple.SimpleChannel;
 
 @Mod(Technologica.MOD_ID)
 public class Technologica {
+	static Technologica instance;
 	public static final String MOD_ID = "technologica";
 	public static final Logger LOGGER = LogManager.getLogger();
 	public static final IEventBus MOD_EVENT_BUS = FMLJavaModLoadingContext.get().getModEventBus();
@@ -58,8 +64,12 @@ public class Technologica {
 	public static final String PROTOCOL_VERSION = "1";
 	public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(new TechnologicaLocation("main"), () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
 	public static int PACKET_ID = 0;
+	@Nullable
+	public TechnologicaClientLevel level;
+	public TechnologicaServerLevel serverLevel;
 
 	public Technologica() {
+		instance = this;
 		LOGGER.info("TECHNOLOGICA NOW LOADING FOR DISTRIBUTION - " + FMLEnvironment.dist.toString());
 
 		MasterDeferredRegistrar.initDeferredRegisters();
@@ -94,7 +104,13 @@ public class Technologica {
 		FORGE_EVENT_BUS.register(new PlayerTickEventListener());
 		FORGE_EVENT_BUS.register(new RightClickBlockListener());
 		FORGE_EVENT_BUS.register(new ServerAboutToStartListener());
-		FORGE_EVENT_BUS.addListener(ServerTickEventListener::onServerTickEvent);
+		FORGE_EVENT_BUS.register(new LevelEventListener());
+
+		// TechnologicaServerLevelData technologicaServerLevelData = TechnologicaServerLevelData.getData(null);
+		// Minecraft mc = Minecraft.getInstance();
+		// mc.level.getServer();
+
+		FORGE_EVENT_BUS.register(new TickEventListener());
 		FORGE_EVENT_BUS.register(new VillagerTradesEventListener());
 		FORGE_EVENT_BUS.register(new WandererTradesEventListener());
 
@@ -106,5 +122,17 @@ public class Technologica {
 			LOGGER.info("SETUP - CLIENT");
 			SetupClient.init();
 		}
+	}
+
+	public static Technologica getInstance() {
+		return instance;
+	}
+
+	public void setLevel(TechnologicaClientLevel level) {
+		this.level = level;
+	}
+
+	public void setServerLevel(TechnologicaServerLevel serverLevel) {
+		this.serverLevel = serverLevel;
 	}
 }

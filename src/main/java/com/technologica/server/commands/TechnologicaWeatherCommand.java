@@ -2,7 +2,8 @@ package com.technologica.server.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
-import com.technologica.listeners.forgebus.ServerTickEventListener;
+import com.technologica.Technologica;
+import com.technologica.server.level.TechnologicaServerLevel;
 
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -31,21 +32,23 @@ public class TechnologicaWeatherCommand {
 		return duration == -1 ? intProvider.sample(stack.getLevel().getRandom()) : duration;
 	}
 
-	private static int setClear(CommandSourceStack p_139173_, int p_139174_) {
-		p_139173_.getLevel().setWeatherParameters(getDuration(p_139173_, p_139174_, ServerLevel.RAIN_DELAY), 0, false, false);
-		ServerTickEventListener.setStormTime(0);
-		ServerTickEventListener.setStorming(false);
-		p_139173_.sendSuccess(() -> {
+	private static int setClear(CommandSourceStack stack, int duration) {
+		stack.getLevel().setWeatherParameters(getDuration(stack, duration, ServerLevel.RAIN_DELAY), 0, false, false);
+		Technologica tc = Technologica.getInstance();
+		tc.serverLevel.setWeatherParameters(getDuration(stack, duration, TechnologicaServerLevel.METEOR_STORM_DELAY), 0, false);
+		stack.sendSuccess(() -> {
 			return Component.translatable("commands.weather.set.clear");
 		}, true);
-		return p_139174_;
+		return duration;
 	}
 
 	private static int setMeteorStorm(CommandSourceStack stack, int duration) {
-		stack.getLevel().setWeatherParameters(0, 0, true, false);
+		stack.getLevel().setWeatherParameters(0, 0, false, false);
 
-		ServerTickEventListener.setStormTime(getDuration(stack, duration, ServerTickEventListener.STORM_DURATION));
-		ServerTickEventListener.setStorming(true);
+		Technologica tc = Technologica.getInstance();
+		tc.serverLevel.setWeatherParameters(0, getDuration(stack, duration, TechnologicaServerLevel.METEOR_STORM_DURATION), true);
+
+		// ServerTickEventListener.setStormTime(getDuration(stack, duration, TechnologicaServerLevel.METEOR_STORM_DURATION));
 
 		stack.sendSuccess(() -> {
 			return Component.translatable("commands.weather.set.meteor_storm");

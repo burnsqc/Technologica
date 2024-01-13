@@ -133,6 +133,9 @@ public final class TechnologicaEntityRenderers {
 		event.registerEntityRenderer(TechnologicaEntityTypes.SWEEPER.get(), SweeperRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityTypes.DUST_DEVIL.get(), DustDevilRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityTypes.NAVAL_MINE.get(), NavalMineRenderer::new);
+		event.registerEntityRenderer(TechnologicaEntityTypes.METEOR.get(), (context) -> {
+			return new ThrownItemRenderer<>(context, 4.0F, true);
+		});
 		// event.registerEntityRenderer(TechnologicaEntityTypes.ROCKET.get(), RocketRenderer::new);
 		/**
 		 * TODO: Determine how to count how many Technologica Entity Renderers actually got registered and replace the hard-coded value in the logger message. Trying to avoid Access Transformers, but could open up private final Map {@link EntityRenderers} PROVIDERS.

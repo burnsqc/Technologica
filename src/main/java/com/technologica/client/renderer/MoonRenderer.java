@@ -3,6 +3,7 @@ package com.technologica.client.renderer;
 import javax.annotation.Nullable;
 
 import org.joml.Matrix4f;
+import org.joml.Vector3f;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.BufferBuilder;
@@ -13,7 +14,7 @@ import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexBuffer;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import com.mojang.math.Axis;
-import com.technologica.listeners.forgebus.ServerTickEventListener;
+import com.technologica.Technologica;
 import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.client.Camera;
@@ -36,6 +37,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.extensions.IForgeDimensionSpecialEffects;
 
 public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimensionSpecialEffects {
+	private final Technologica technologica;
 	@Nullable
 	private VertexBuffer starBuffer;
 	@Nullable
@@ -46,8 +48,9 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 	private final float[] rainSizeZ = new float[1024];
 	private static final ResourceLocation RAIN_LOCATION = new TechnologicaLocation("textures/environment/meteor_shower.png");
 
-	public MoonRenderer() {
+	public MoonRenderer(Technologica technologica) {
 		super(Float.NaN, true, DimensionSpecialEffects.SkyType.NORMAL, false, false);
+		this.technologica = technologica;
 		this.createStars();
 		for (int i = 0; i < 32; ++i) {
 			for (int j = 0; j < 32; ++j) {
@@ -70,42 +73,48 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 
 		matrixStackIn.pushPose();
-		matrixStackIn.mulPose(Axis.XP.rotationDegrees(-90.0F));
-		matrixStackIn.mulPose(Axis.XP.rotationDegrees(45.0F));
-		Matrix4f matrix4f1 = matrixStackIn.last().pose();
+		matrixStackIn.mulPose(Axis.YP.rotationDegrees(-90.0F));
+		matrixStackIn.mulPose(Axis.XP.rotationDegrees(-45.0F));
+		Matrix4f earthMatrix = matrixStackIn.last().pose();
 		matrixStackIn.popPose();
 
 		matrixStackIn.pushPose();
-		matrixStackIn.mulPose(Axis.XP.rotationDegrees(-45.0F));
+		matrixStackIn.mulPose(Axis.YP.rotationDegrees(-90.0F));
 		matrixStackIn.mulPose(Axis.XP.rotationDegrees(level.getTimeOfDay(partialTicks) * 360.0F));
-		Matrix4f matrix4f2 = matrixStackIn.last().pose();
+		Matrix4f sunMatrix = matrixStackIn.last().pose();
 
 		this.starBuffer.bind();
-		this.starBuffer.drawWithShader(matrix4f2, projectionMatrix, GameRenderer.getPositionShader());
+		this.starBuffer.drawWithShader(sunMatrix, projectionMatrix, GameRenderer.getPositionShader());
 		VertexBuffer.unbind();
 
 		RenderSystem.setShader(GameRenderer::getPositionTexShader);
+
 		RenderSystem.setShaderTexture(0, SUN_TEXTURES);
 		bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-		bufferbuilder.vertex(matrix4f2, -30.0F, 100.0F, -30.0F).uv(0.0F, 0.0F).endVertex();
-		bufferbuilder.vertex(matrix4f2, 30.0F, 100.0F, -30.0F).uv(1.0F, 0.0F).endVertex();
-		bufferbuilder.vertex(matrix4f2, 30.0F, 100.0F, 30.0F).uv(1.0F, 1.0F).endVertex();
-		bufferbuilder.vertex(matrix4f2, -30.0F, 100.0F, 30.0F).uv(0.0F, 1.0F).endVertex();
+		bufferbuilder.vertex(sunMatrix, -30.0F, 100.0F, -30.0F).uv(0.0F, 0.0F).endVertex();
+		bufferbuilder.vertex(sunMatrix, 30.0F, 100.0F, -30.0F).uv(1.0F, 0.0F).endVertex();
+		bufferbuilder.vertex(sunMatrix, 30.0F, 100.0F, 30.0F).uv(1.0F, 1.0F).endVertex();
+		bufferbuilder.vertex(sunMatrix, -30.0F, 100.0F, 30.0F).uv(0.0F, 1.0F).endVertex();
 		BufferUploader.drawWithShader(bufferbuilder.end());
 
 		RenderSystem.setShaderTexture(0, EARTH_TEXTURES);
+		long time = level.dayTime();
+		float eclipseDarken = Mth.clamp(time < 2230 ? 0.95F * (time - 1470) / 620F : 0.95F * -(time - 2990) / 620F, 0.0F, 0.95F);
+		RenderSystem.setShaderColor(1.0F - eclipseDarken, 1.0F - eclipseDarken, 1.0F - eclipseDarken, 1.0F);
 		bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-		bufferbuilder.vertex(matrix4f1, -30.0F, 70.0F, -30.0F).uv(0.0F, 0.0F).endVertex();
-		bufferbuilder.vertex(matrix4f1, 30.0F, 70.0F, -30.0F).uv(1.0F, 0.0F).endVertex();
-		bufferbuilder.vertex(matrix4f1, 30.0F, 70.0F, 30.0F).uv(1.0F, 1.0F).endVertex();
-		bufferbuilder.vertex(matrix4f1, -30.0F, 70.0F, 30.0F).uv(0.0F, 1.0F).endVertex();
+		bufferbuilder.vertex(earthMatrix, -30.0F, 70.0F, -30.0F).uv(0.0F, 0.0F).endVertex();
+		bufferbuilder.vertex(earthMatrix, 30.0F, 70.0F, -30.0F).uv(1.0F, 0.0F).endVertex();
+		bufferbuilder.vertex(earthMatrix, 30.0F, 70.0F, 30.0F).uv(1.0F, 1.0F).endVertex();
+		bufferbuilder.vertex(earthMatrix, -30.0F, 70.0F, 30.0F).uv(0.0F, 1.0F).endVertex();
+
 		BufferUploader.drawWithShader(bufferbuilder.end());
+		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 
 		matrixStackIn.popPose();
 
 		RenderSystem.disableBlend();
-		// RenderSystem.setShaderColor(0.0F, 0.0F, 0.0F, 1.0F);
 		RenderSystem.depthMask(true);
+
 		return true;
 	}
 
@@ -186,7 +195,7 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 
 	@Override
 	public boolean renderSnowAndRain(ClientLevel level, int ticks, float partialTick, LightTexture lightTexture, double camX, double camY, double camZ) {
-		float f = ServerTickEventListener.getStormLevel(partialTick);
+		float f = this.technologica.level.getMeteorStormLevel(partialTick);
 		if (!(f <= 0.0F)) {
 			lightTexture.turnOnLightLayer();
 			int i = Mth.floor(camX);
@@ -298,5 +307,13 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 
 			return i << 20 | j << 4;
 		}
+	}
+
+	@Override
+	public void adjustLightmapColors(ClientLevel level, float partialTicks, float skyDarken, float blockLightRedFlicker, float skyLight, int pixelX, int pixelY, Vector3f colors) {
+		long time = level.dayTime();
+		float eclipseDarken = Mth.clamp(time < 2230 ? 0.9F * (time - 1470) / 620F : 0.9F * -(time - 2990) / 620F, 0.0F, 0.9F);
+		colors.sub(eclipseDarken, eclipseDarken, eclipseDarken);
+
 	}
 }

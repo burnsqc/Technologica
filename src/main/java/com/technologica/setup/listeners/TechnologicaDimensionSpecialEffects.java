@@ -17,7 +17,7 @@ import net.minecraftforge.client.event.RegisterDimensionSpecialEffectsEvent;
 public final class TechnologicaDimensionSpecialEffects {
 
 	public static void onRegisterDimensionSpecialEffectsEvent(final RegisterDimensionSpecialEffectsEvent event) {
-		event.register(TechnologicaDimensionTypes.MOON_EFFECTS, new MoonRenderer());
+		event.register(TechnologicaDimensionTypes.MOON_EFFECTS, new MoonRenderer(Technologica.getInstance()));
 		/**
 		 * TODO: Determine how to count how many Technologica Dimension Special Effects actually got registered and replace the hard-coded value in the logger message.
 		 */

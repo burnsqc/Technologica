@@ -4,6 +4,7 @@ import com.technologica.registration.key.util.MasterKeyCreator;
 import com.technologica.resourcegen.data.dimension.DimensionProvider;
 
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.dimension.LevelStem;
 
 /**
@@ -15,7 +16,8 @@ import net.minecraft.world.level.dimension.LevelStem;
  * @tl.status GREEN
  */
 public final class TechnologicaDimensions extends MasterKeyCreator {
-	public static final ResourceKey<LevelStem> MOON_STEM = dimension("moon");
-	public static final ResourceKey<LevelStem> CHALLENGER_DEEP_STEM = dimension("challenger_deep");
-	public static final ResourceKey<LevelStem> OVERGROWTH_STEM = dimension("overgrowth");
+	public static final ResourceKey<Level> MOON = dimension("moon");
+	public static final ResourceKey<LevelStem> MOON_STEM = dimensionStem("moon");
+	public static final ResourceKey<LevelStem> CHALLENGER_DEEP_STEM = dimensionStem("challenger_deep");
+	public static final ResourceKey<LevelStem> OVERGROWTH_STEM = dimensionStem("overgrowth");
 }

@@ -8,6 +8,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.decoration.PaintingVariant;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.dimension.DimensionType;
@@ -46,7 +47,11 @@ public abstract class MasterKeyCreator {
 		return ResourceKey.create(Registries.DAMAGE_TYPE, new TechnologicaLocation(path));
 	}
 
-	protected static ResourceKey<LevelStem> dimension(String path) {
+	protected static ResourceKey<Level> dimension(String path) {
+		return ResourceKey.create(Registries.DIMENSION, new TechnologicaLocation(path));
+	}
+
+	protected static ResourceKey<LevelStem> dimensionStem(String path) {
 		return ResourceKey.create(Registries.LEVEL_STEM, new TechnologicaLocation(path));
 	}
 
