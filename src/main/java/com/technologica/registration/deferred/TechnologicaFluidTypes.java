@@ -44,5 +44,5 @@ public final class TechnologicaFluidTypes extends MasterDeferredRegistrar {
 	public static final RegistryObject<FluidType> RUBBER_RESIN_TYPE = FLUID_TYPES.register("rubber_resin", () -> new OpaqueFluidType(FluidType.Properties.create(), -986928));
 	public static final RegistryObject<FluidType> GASOLINE_TYPE = FLUID_TYPES.register("gasoline", () -> new GasFluidType(FluidType.Properties.create(), -2833815));
 	public static final RegistryObject<FluidType> MACHINE_OIL_TYPE = FLUID_TYPES.register("machine_oil", () -> new OpaqueFluidType(FluidType.Properties.create(), -106));
-	public static final RegistryObject<FluidType> COOLANT_TYPE = FLUID_TYPES.register("coolant", () -> new OpaqueFluidType(FluidType.Properties.create().density(0), -4196524));
+	public static final RegistryObject<FluidType> COOLANT_TYPE = FLUID_TYPES.register("coolant", () -> new OpaqueFluidType(FluidType.Properties.create(), -4196524));
 }

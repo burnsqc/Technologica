@@ -2,7 +2,8 @@
 	"parent": "block/block",
 	"textures": {
 		"1": "block/black_wool",
-		"2": "technologica:block/pulley"
+		"2": "technologica:block/pulley",
+		"particle": "technologica:block/pulley"
 	},
 	"elements": [
 		{
