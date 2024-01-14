@@ -153,7 +153,6 @@ public class ItemModelDataGenerator extends ItemModelProvider {
 		simpleItem(TechnologicaItems.MANGANESE_INGOT.get());
 		simpleItem(TechnologicaItems.COBALT_INGOT.get());
 		simpleItem(TechnologicaItems.NICKEL_INGOT.get());
-		simpleItem(TechnologicaItems.COPPER_INGOT.get());
 		simpleItem(TechnologicaItems.ZINC_INGOT.get());
 		simpleItem(TechnologicaItems.GALLIUM_INGOT.get());
 		simpleItem(TechnologicaItems.RUBIDIUM_INGOT.get());
@@ -232,6 +231,7 @@ public class ItemModelDataGenerator extends ItemModelProvider {
 		radioactiveItem(TechnologicaItems.OGANESSON_INGOT.get());
 		simpleItem(TechnologicaItems.BRONZE_INGOT.get());
 		simpleItem(TechnologicaItems.BRASS_INGOT.get());
+		simpleItem(TechnologicaItems.STEEL_INGOT.get());
 
 		simpleItem(TechnologicaItems.LITHIUM_CLAY_BALL.get());
 		simpleItem(TechnologicaItems.BORON_CHUNK.get());

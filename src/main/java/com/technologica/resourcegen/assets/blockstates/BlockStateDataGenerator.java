@@ -283,6 +283,7 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 
 		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_BRONZE.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_BRONZE.get()));
 		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_BRASS.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_BRASS.get()));
+		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_STEEL.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_STEEL.get()));
 
 		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_BORON.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_BORON.get()));
 		simpleBlockItem(TechnologicaBlocks.BLOCK_OF_CARBON.get(), cubeAll(TechnologicaBlocks.BLOCK_OF_CARBON.get()));
@@ -1728,6 +1729,7 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 
 		simpleBlock(TechnologicaBlocks.BLOCK_OF_BRONZE.get());
 		simpleBlock(TechnologicaBlocks.BLOCK_OF_BRASS.get());
+		simpleBlock(TechnologicaBlocks.BLOCK_OF_STEEL.get());
 
 		simpleBlock(TechnologicaBlocks.BLOCK_OF_BORON.get());
 		simpleBlock(TechnologicaBlocks.BLOCK_OF_CARBON.get());

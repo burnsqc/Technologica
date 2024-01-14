@@ -273,7 +273,6 @@ public final class TechnologicaCreativeModeTabs extends MasterDeferredRegistrar 
 		items.accept(TechnologicaItems.MANGANESE_INGOT.get());
 		items.accept(TechnologicaItems.COBALT_INGOT.get());
 		items.accept(TechnologicaItems.NICKEL_INGOT.get());
-		items.accept(TechnologicaItems.COPPER_INGOT.get());
 		items.accept(TechnologicaItems.ZINC_INGOT.get());
 		items.accept(TechnologicaItems.GALLIUM_INGOT.get());
 		items.accept(TechnologicaItems.RUBIDIUM_INGOT.get());
@@ -352,6 +351,7 @@ public final class TechnologicaCreativeModeTabs extends MasterDeferredRegistrar 
 		items.accept(TechnologicaItems.OGANESSON_INGOT.get());
 		items.accept(TechnologicaItems.BRONZE_INGOT.get());
 		items.accept(TechnologicaItems.BRASS_INGOT.get());
+		items.accept(TechnologicaItems.STEEL_INGOT.get());
 		items.accept(TechnologicaItems.LITHIUM_CLAY_BALL.get());
 		items.accept(TechnologicaItems.BORON_CHUNK.get());
 		items.accept(TechnologicaItems.CARBON_CHUNK.get());
@@ -419,6 +419,7 @@ public final class TechnologicaCreativeModeTabs extends MasterDeferredRegistrar 
 		items.accept(TechnologicaItems.BLOCK_OF_LAWRENCIUM.get());
 		items.accept(TechnologicaItems.BLOCK_OF_BRONZE.get());
 		items.accept(TechnologicaItems.BLOCK_OF_BRASS.get());
+		items.accept(TechnologicaItems.BLOCK_OF_STEEL.get());
 		items.accept(TechnologicaItems.BLOCK_OF_BORON.get());
 		items.accept(TechnologicaItems.BLOCK_OF_CARBON.get());
 		items.accept(TechnologicaItems.BLOCK_OF_SILICON.get());

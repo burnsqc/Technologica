@@ -319,7 +319,6 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> MANGANESE_INGOT = ITEMS.register("manganese_ingot", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> COBALT_INGOT = ITEMS.register("cobalt_ingot", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> NICKEL_INGOT = ITEMS.register("nickel_ingot", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> COPPER_INGOT = ITEMS.register("copper_ingot", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> ZINC_INGOT = ITEMS.register("zinc_ingot", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> GALLIUM_INGOT = ITEMS.register("gallium_ingot", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> RUBIDIUM_INGOT = ITEMS.register("rubidium_ingot", () -> new Item(new Item.Properties()));
@@ -398,6 +397,7 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> OGANESSON_INGOT = ITEMS.register("oganesson_ingot", () -> new RadioactiveItem(new Item.Properties(), "oganesson_ingot"));
 	public static final RegistryObject<Item> BRONZE_INGOT = ITEMS.register("bronze_ingot", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> BRASS_INGOT = ITEMS.register("brass_ingot", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> STEEL_INGOT = ITEMS.register("steel_ingot", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> LITHIUM_CLAY_BALL = ITEMS.register("lithium_clay_ball", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> BORON_CHUNK = ITEMS.register("boron_chunk", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> CARBON_CHUNK = ITEMS.register("carbon_chunk", () -> new Item(new Item.Properties()));
@@ -465,6 +465,7 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> BLOCK_OF_LAWRENCIUM = ITEMS.register("block_of_lawrencium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_LAWRENCIUM.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_BRONZE = ITEMS.register("block_of_bronze", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_BRONZE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_BRASS = ITEMS.register("block_of_brass", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_BRASS.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_STEEL = ITEMS.register("block_of_steel", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_STEEL.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_BORON = ITEMS.register("block_of_boron", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_BORON.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_CARBON = ITEMS.register("block_of_carbon", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_CARBON.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_SILICON = ITEMS.register("block_of_silicon", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_SILICON.get(), new Item.Properties()));

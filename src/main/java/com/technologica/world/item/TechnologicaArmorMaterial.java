@@ -59,7 +59,7 @@ public enum TechnologicaArmorMaterial implements ArmorMaterial {
 		p_266654_.put(ArmorItem.Type.CHESTPLATE, 6);
 		p_266654_.put(ArmorItem.Type.HELMET, 2);
 	}), 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
-		return Ingredient.of(TechnologicaItems.COPPER_INGOT.get());
+		return Ingredient.of(TechnologicaItems.BRASS_INGOT.get());
 	}),
 
 	SCUBA("scuba", 15, Util.make(new EnumMap<>(ArmorItem.Type.class), (p_266654_) -> {

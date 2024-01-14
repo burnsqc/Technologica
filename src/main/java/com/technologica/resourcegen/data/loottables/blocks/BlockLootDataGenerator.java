@@ -399,6 +399,7 @@ public class BlockLootDataGenerator extends BlockLootSubProvider {
 
 		dropSelf(TechnologicaBlocks.BLOCK_OF_BRONZE.get());
 		dropSelf(TechnologicaBlocks.BLOCK_OF_BRASS.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_STEEL.get());
 
 		dropSelf(TechnologicaBlocks.BLOCK_OF_BORON.get());
 		dropSelf(TechnologicaBlocks.BLOCK_OF_CARBON.get());
