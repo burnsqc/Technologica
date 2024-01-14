@@ -1891,15 +1891,15 @@ public class BlockStateDataGenerator extends BlockStateProvider {
 	}
 
 	public ModelFile lineShaftSmallPulleyModel(Block block) {
-		return models().withExistingParent(ResourceLocationHelper.getPath(block) + "_small_pulley", modLoc("line_shaft_small_pulley_model")).texture("0", new TechnologicaLocation("block/pulley"));
+		return models().withExistingParent(ResourceLocationHelper.getPath(block) + "_small_pulley", modLoc("line_shaft_small_pulley_model"));
 	}
 
 	public ModelFile lineShaftMediumPulleyModel(Block block) {
-		return models().withExistingParent(ResourceLocationHelper.getPath(block) + "_medium_pulley", modLoc("line_shaft_medium_pulley_model")).texture("0", new TechnologicaLocation("block/pulley"));
+		return models().withExistingParent(ResourceLocationHelper.getPath(block) + "_medium_pulley", modLoc("line_shaft_medium_pulley_model"));
 	}
 
 	public ModelFile lineShaftLargePulleyModel(Block block) {
-		return models().withExistingParent(ResourceLocationHelper.getPath(block) + "_large_pulley", modLoc("line_shaft_large_pulley_model")).texture("0", new TechnologicaLocation("block/pulley"));
+		return models().withExistingParent(ResourceLocationHelper.getPath(block) + "_large_pulley", modLoc("line_shaft_large_pulley_model"));
 	}
 
 	public ModelFile lineShaftHangerModel(Block block) {
