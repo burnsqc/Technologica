@@ -43,6 +43,7 @@ import com.technologica.world.level.block.TrellisBlock;
 import com.technologica.world.level.block.TwentyFourDirectionBlock;
 import com.technologica.world.level.block.VineCropBlock;
 import com.technologica.world.level.block.VoxelShapeBlock;
+import com.technologica.world.level.block.WindmillBlock;
 import com.technologica.world.level.block.grower.AncientAmbrosiaTreeGrower;
 import com.technologica.world.level.block.grower.ApricotTreeGrower;
 import com.technologica.world.level.block.grower.AspenTreeGrower;
@@ -1050,6 +1051,7 @@ public final class TechnologicaBlocks extends MasterDeferredRegistrar {
 	public static final RegistryObject<Block> TREE_TAP = BLOCKS.register("tree_tap", TreeTapBlock::new);
 	public static final RegistryObject<Block> SAWMILL_CORE = BLOCKS.register("sawmill_core", SawmillCoreBlock::new);
 	public static final RegistryObject<Block> SAWMILL = BLOCKS.register("sawmill", SawmillBlock::new);
+	public static final RegistryObject<Block> WINDMILL = BLOCKS.register("windmill", WindmillBlock::new);
 	public static final RegistryObject<Block> GLUE = BLOCKS.register("glue", () -> new GlueBlock(BlockBehaviour.Properties.of().noCollission().randomTicks().strength(0.2F).sound(SoundType.SLIME_BLOCK)));
 	public static final RegistryObject<Block> FAST_HOPPER = BLOCKS.register("fast_hopper", () -> new FastHopper(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(3.0F, 4.8F).sound(SoundType.METAL).noOcclusion()));
 	public static final RegistryObject<Block> ACACIA_CHAIR = BLOCKS.register("acacia_chair", ChairBlock::new);

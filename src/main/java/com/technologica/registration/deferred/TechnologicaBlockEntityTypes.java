@@ -17,6 +17,7 @@ import com.technologica.world.level.block.entity.RadioactiveOreBlockEntity;
 import com.technologica.world.level.block.entity.SawmillBlockEntity;
 import com.technologica.world.level.block.entity.TechnologicaSignBlockEntity;
 import com.technologica.world.level.block.entity.VanillaSignBlockEntity;
+import com.technologica.world.level.block.entity.WindmillBlockEntity;
 
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.RegistryObject;
@@ -30,7 +31,7 @@ import net.minecraftforge.registries.RegistryObject;
  * @tl.status GREEN
  */
 public final class TechnologicaBlockEntityTypes extends MasterDeferredRegistrar {
-	
+
 	public static int init() {
 		BLOCK_ENTITY_TYPES.register(Technologica.MOD_EVENT_BUS);
 		return BLOCK_ENTITY_TYPES.getEntries().size();
@@ -44,6 +45,7 @@ public final class TechnologicaBlockEntityTypes extends MasterDeferredRegistrar 
 	public static final RegistryObject<BlockEntityType<LineShaftBlockEntity>> LINE_SHAFT_TILE = BLOCK_ENTITY_TYPES.register("line_shaft_tile", () -> BlockEntityType.Builder.of(LineShaftBlockEntity::new, TechnologicaBlocks.LINE_SHAFT.get()).build(null));
 	public static final RegistryObject<BlockEntityType<LineShaftHangerTileEntity>> LINE_SHAFT_HANGER_TILE = BLOCK_ENTITY_TYPES.register("line_shaft_hanger_tile", () -> BlockEntityType.Builder.of(LineShaftHangerTileEntity::new, TechnologicaBlocks.LINE_SHAFT_HANGER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<SawmillBlockEntity>> SAWMILL_TILE = BLOCK_ENTITY_TYPES.register("sawmill_tile", () -> BlockEntityType.Builder.of(SawmillBlockEntity::new, TechnologicaBlocks.SAWMILL_CORE.get()).build(null));
+	public static final RegistryObject<BlockEntityType<WindmillBlockEntity>> WINDMILL = BLOCK_ENTITY_TYPES.register("windmill", () -> BlockEntityType.Builder.of(WindmillBlockEntity::new, TechnologicaBlocks.WINDMILL.get()).build(null));
 	public static final RegistryObject<BlockEntityType<AnnunciatorBlockEntity>> ANNUNCIATOR_TILE = BLOCK_ENTITY_TYPES.register("annunciator_tile", () -> BlockEntityType.Builder.of(AnnunciatorBlockEntity::new, TechnologicaBlocks.ANNUNCIATOR.get()).build(null));
 	public static final RegistryObject<BlockEntityType<MonitorBlockEntity>> MONITOR_TILE = BLOCK_ENTITY_TYPES.register("monitor_tile", () -> BlockEntityType.Builder.of(MonitorBlockEntity::new, TechnologicaBlocks.MONITOR.get()).build(null));
 	public static final RegistryObject<BlockEntityType<MulchTileEntity>> MULCH_TILE = BLOCK_ENTITY_TYPES.register("mulch_tile", () -> BlockEntityType.Builder.of(MulchTileEntity::new, TechnologicaBlocks.MULCH.get()).build(null));

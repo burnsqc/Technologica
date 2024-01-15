@@ -1123,6 +1123,7 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> MOTOR_20HP_ITEM = ITEMS.register("motor_20hp", () -> new BlockItem(TechnologicaBlocks.MOTOR_20HP.get(), new Item.Properties()));
 	public static final RegistryObject<Item> SAWBLADE = ITEMS.register("sawblade", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> SAWMILL_ITEM = ITEMS.register("sawmill", () -> new BlockItem(TechnologicaBlocks.SAWMILL.get(), new Item.Properties()));
+	public static final RegistryObject<Item> WINDMILL_ITEM = ITEMS.register("windmill", () -> new BlockItem(TechnologicaBlocks.WINDMILL.get(), new Item.Properties()));
 	public static final RegistryObject<Item> ANNUNCIATOR_ITEM = ITEMS.register("annunciator", () -> new BlockItem(TechnologicaBlocks.ANNUNCIATOR.get(), new Item.Properties()));
 	public static final RegistryObject<Item> OVERLAY_PASS_ITEM = ITEMS.register("overlay_pass", () -> new Item(new Properties()));
 	public static final RegistryObject<Item> OVERLAY_WARN_ITEM = ITEMS.register("overlay_warn", () -> new Item(new Properties()));

@@ -42,6 +42,7 @@ import com.technologica.client.model.StingrayModel;
 import com.technologica.client.model.TurkeyModel;
 import com.technologica.client.model.VultureModel;
 import com.technologica.client.model.WalrusModel;
+import com.technologica.client.model.WindmillModel;
 import com.technologica.client.model.armor.DivingHelmetModel;
 import com.technologica.client.model.armor.MiningHelmetModel;
 import com.technologica.client.model.geom.TechnologicaModelLayers;
@@ -111,6 +112,7 @@ public class TechnologicaLayerDefinitions {
 		event.registerLayerDefinition(TechnologicaModelLayers.DUST_DEVIL, () -> DustDevilModel.createBodyLayer(CubeDeformation.NONE));
 
 		event.registerLayerDefinition(TechnologicaModelLayers.NAVAL_MINE, NavalMineModel::createBodyModel);
+		event.registerLayerDefinition(TechnologicaModelLayers.WINDMILL, WindmillModel::createBodyModel);
 		event.registerLayerDefinition(TechnologicaModelLayers.ROCKET, () -> BoatModel.createBodyModel());
 
 		event.registerLayerDefinition(TechnologicaModelLayers.COCONUT_BAZOOKA, CoconutBazookaModel::createLayer);

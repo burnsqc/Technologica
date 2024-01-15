@@ -11,6 +11,7 @@ import com.technologica.client.renderer.blockentity.MonitorRenderer;
 import com.technologica.client.renderer.blockentity.PotionRenderer;
 import com.technologica.client.renderer.blockentity.SawmillRenderer;
 import com.technologica.client.renderer.blockentity.TechnologicaSignRenderer;
+import com.technologica.client.renderer.blockentity.WindmillRenderer;
 import com.technologica.client.renderer.entity.AlligatorRenderer;
 import com.technologica.client.renderer.entity.AtomicCreeperRenderer;
 import com.technologica.client.renderer.entity.BeaverRenderer;
@@ -151,6 +152,7 @@ public final class TechnologicaEntityRenderers {
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.LINE_SHAFT_TILE.get(), LineShaftRenderer::new);
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.LINE_SHAFT_HANGER_TILE.get(), LineShaftHangerRenderer::new);
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.SAWMILL_TILE.get(), SawmillRenderer::new);
+		event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.WINDMILL.get(), WindmillRenderer::new);
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.LAND_MINE_TILE.get(), LandMineRenderer::new);
 		/**
 		 * TODO: Determine how to count how many Technologica Block Entity Renderers actually got registered and replace the hard-coded value in the logger message. Trying to avoid Access Transformers, but could open up private final Map {@link BlockEntityRenderers} PROVIDERS.

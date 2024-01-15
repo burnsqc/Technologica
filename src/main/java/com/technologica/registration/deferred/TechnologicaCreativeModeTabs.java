@@ -1068,6 +1068,7 @@ public final class TechnologicaCreativeModeTabs extends MasterDeferredRegistrar 
 		items.accept(TechnologicaItems.MOTOR_5HP_ITEM.get());
 		items.accept(TechnologicaItems.MOTOR_20HP_ITEM.get());
 		items.accept(TechnologicaItems.SAWMILL_ITEM.get());
+		items.accept(TechnologicaItems.WINDMILL_ITEM.get());
 		items.accept(TechnologicaItems.ANNUNCIATOR_ITEM.get());
 		items.accept(TechnologicaItems.STEEL_SHAFT.get());
 		items.accept(TechnologicaItems.SMALL_PULLEY_ITEM.get());
