@@ -52,8 +52,6 @@ public class NavalMine extends Entity {
 		this.entityData.define(CHAINS, 10);
 	}
 
-	
-
 	@Override
 	public boolean canCollideWith(Entity entity) {
 		return true;
@@ -69,7 +67,7 @@ public class NavalMine extends Entity {
 		Level level = this.level();
 		if (this.getDetonate()) {
 			this.discard();
-			if (level.isClientSide) {
+			if (!level.isClientSide) {
 				this.explode();
 			}
 		} else {

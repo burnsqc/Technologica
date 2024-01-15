@@ -13,7 +13,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 /**
@@ -22,26 +21,25 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
  * When the event is intercepted, various client setup tasks are performed.
  * </p>
  * 
- * @tl.status ORANGE
+ * @tl.status YELLOW
  */
 
 public class ClientSetup {
 
 	public static void onFMLClientSetupEvent(final FMLClientSetupEvent event) {
 		event.enqueueWork(() -> {
+			addToMenuScreens();
 			setTechnologicaFluidRenderTypes();
-			registerMenuScreens();
 			Minecraft mc = Minecraft.getInstance();
-			BlockRenderDispatcher blockRenderDispatcher = mc.getBlockRenderer();
-			blockRenderDispatcher.liquidBlockRenderer = new TechnologicaLiquidBlockRenderer();
+			mc.getBlockRenderer().liquidBlockRenderer = new TechnologicaLiquidBlockRenderer();
 		});
 	}
 
-	private static void registerMenuScreens() {
+	private static void addToMenuScreens() {
 		MenuScreens.register(TechnologicaMenuTypes.ANNUNCIATOR.get(), AnnunciatorScreen::new);
 		MenuScreens.register(TechnologicaMenuTypes.MONITOR.get(), MonitorScreen::new);
 		MenuScreens.register(TechnologicaMenuTypes.SAWMILL.get(), SawmillScreen::new);
-		LOGGER.info("MENU SCREENS REGISTERED: 3 OF 3");
+		LOGGER.info("FML CLIENT SETUP - MENU SCREENS - 3");
 	}
 
 	private static void setTechnologicaFluidRenderTypes() {

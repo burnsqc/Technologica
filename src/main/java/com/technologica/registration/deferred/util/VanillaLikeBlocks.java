@@ -49,7 +49,7 @@ import net.minecraft.world.phys.BlockHitResult;
 
 /**
  * <p>
- * This class contains helper methods for mimicking vanilla blocks.  
+ * This class contains helper methods for mimicking vanilla blocks.
  * This class is primarily intended to avoid creation of new block classes to handle stuff like flammability, such as {@link #leavesBlock}.
  * In some cases these methods allow for minor flexibility of the subclass, including allowing overriding of methods that are hard-coded to return a specific value, such as {@link #grainCropBlock}.
  * </p>
@@ -289,6 +289,6 @@ public final class VanillaLikeBlocks {
 	}
 
 	public static final Boolean never(BlockState p_50779_, BlockGetter p_50780_, BlockPos p_50781_, EntityType<?> p_50782_) {
-		return (boolean) false;
+		return false;
 	}
 }

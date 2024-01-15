@@ -1,11 +1,7 @@
 package com.technologica.world.level.block.state.properties;
 
-import java.util.Set;
-import java.util.stream.Stream;
-
 import com.technologica.util.text.TechnologicaLocation;
 
-import it.unimi.dsi.fastutil.objects.ObjectArraySet;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 
@@ -13,7 +9,6 @@ import net.minecraft.world.level.block.state.properties.WoodType;
  * General class to add mod wood types to the vanilla WoodTypes, which are required for signs.
  */
 public class TechnologicaWoodType {
-	private static final Set<WoodType> VALUES = new ObjectArraySet<>();
 	public static final WoodType APRICOT = register(new WoodType(new TechnologicaLocation("apricot").toString(), BlockSetType.ACACIA));
 	public static final WoodType ASPEN = register(new WoodType(new TechnologicaLocation("aspen").toString(), BlockSetType.ACACIA));
 	public static final WoodType AVOCADO = register(new WoodType(new TechnologicaLocation("avocado").toString(), BlockSetType.ACACIA));
@@ -49,12 +44,7 @@ public class TechnologicaWoodType {
 	public static final WoodType NECROTIC = register(new WoodType(new TechnologicaLocation("necrotic").toString(), BlockSetType.ACACIA));
 
 	public static WoodType register(WoodType woodTypeIn) {
-		VALUES.add(woodTypeIn);
 		WoodType.register(woodTypeIn);
 		return woodTypeIn;
-	}
-
-	public static Stream<WoodType> values() {
-		return VALUES.stream();
 	}
 }

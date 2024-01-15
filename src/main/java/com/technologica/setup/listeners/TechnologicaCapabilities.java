@@ -15,7 +15,7 @@ public class TechnologicaCapabilities {
 	public static final Capability<EnvironmentTracker> ENVIRONMENT_TRACKER_INSTANCE = CapabilityManager.get(new CapabilityToken<>() {});
 	public static final Capability<ILink> LINK_INSTANCE = CapabilityManager.get(new CapabilityToken<>() {});
 
-	public static void register(RegisterCapabilitiesEvent event) {
+	public static void register(final RegisterCapabilitiesEvent event) {
 		event.register(AirMeter.class);
 		event.register(EnvironmentTracker.class);
 		event.register(ILink.class);

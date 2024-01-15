@@ -16,6 +16,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
@@ -30,12 +31,29 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 /**
  * Special one-off class for the line shaft. Created to add the radius property as well as handle player interaction, valid position checks, and associated tile entity.
  */
 public class LineShaftBlock extends RotatedPillarBlock implements EntityBlock {
 	public static final EnumProperty<Radius> RADIUS = TechnologicaBlockStateProperties.RADIUS;
+	private static final VoxelShape SHAPE_X = Block.box(0.0D, 6.0D, 6.0D, 16.0D, 10.0D, 10.0D);
+	private static final VoxelShape SHAPE_X_SMALL = Block.box(6.0D, 4.0D, 4.0D, 10.0D, 12.0D, 12.0D);
+	private static final VoxelShape SHAPE_X_MEDIUM = Block.box(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
+	private static final VoxelShape SHAPE_X_LARGE = Block.box(6.0D, -8.0D, -8.0D, 10.0D, 24.0D, 24.0D);
+
+	private static final VoxelShape SHAPE_Y = Block.box(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
+	private static final VoxelShape SHAPE_Y_SMALL = Block.box(4.0D, 6.0D, 4.0D, 12.0D, 10.0D, 12.0D);
+	private static final VoxelShape SHAPE_Y_MEDIUM = Block.box(0.0D, 6.0D, 0.0D, 16.0D, 10.0D, 16.0D);
+	private static final VoxelShape SHAPE_Y_LARGE = Block.box(-8.0D, 6.0D, -8.0D, 24.0D, 10.0D, 24.0D);
+
+	private static final VoxelShape SHAPE_Z = Block.box(6.0D, 6.0D, 0.0D, 10.0D, 10.0D, 16.0D);
+	private static final VoxelShape SHAPE_Z_SMALL = Block.box(4.0D, 4.0D, 6.0D, 12.0D, 12.0D, 10.0D);
+	private static final VoxelShape SHAPE_Z_MEDIUM = Block.box(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
+	private static final VoxelShape SHAPE_Z_LARGE = Block.box(-8.0D, -8.0D, 6.0D, 24.0D, 24.0D, 10.0D);
 
 	public LineShaftBlock() {
 		super(BlockBehaviour.Properties.of().strength(0.3F).sound(SoundType.ANVIL).noOcclusion());
@@ -53,6 +71,47 @@ public class LineShaftBlock extends RotatedPillarBlock implements EntityBlock {
 	/*
 	 * Minecraft Methods
 	 */
+
+	@Override
+	public VoxelShape getShape(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, CollisionContext contextIn) {
+		if (stateIn.getValue(AXIS) == Direction.Axis.X) {
+			VoxelShape voxelShape;
+			if (stateIn.getValue(RADIUS) == Radius.SMALL) {
+				voxelShape = Shapes.or(SHAPE_X, SHAPE_X_SMALL);
+			} else if (stateIn.getValue(RADIUS) == Radius.MEDIUM) {
+				voxelShape = Shapes.or(SHAPE_X, SHAPE_X_MEDIUM);
+			} else if (stateIn.getValue(RADIUS) == Radius.LARGE) {
+				voxelShape = Shapes.or(SHAPE_X, SHAPE_X_LARGE);
+			} else {
+				voxelShape = SHAPE_X;
+			}
+			return voxelShape;
+		} else if (stateIn.getValue(AXIS) == Direction.Axis.Y) {
+			VoxelShape voxelShape;
+			if (stateIn.getValue(RADIUS) == Radius.SMALL) {
+				voxelShape = Shapes.or(SHAPE_Y, SHAPE_Y_SMALL);
+			} else if (stateIn.getValue(RADIUS) == Radius.MEDIUM) {
+				voxelShape = Shapes.or(SHAPE_Y, SHAPE_Y_MEDIUM);
+			} else if (stateIn.getValue(RADIUS) == Radius.LARGE) {
+				voxelShape = Shapes.or(SHAPE_Y, SHAPE_Y_LARGE);
+			} else {
+				voxelShape = SHAPE_Y;
+			}
+			return voxelShape;
+		} else {
+			VoxelShape voxelShape;
+			if (stateIn.getValue(RADIUS) == Radius.SMALL) {
+				voxelShape = Shapes.or(SHAPE_Z, SHAPE_Z_SMALL);
+			} else if (stateIn.getValue(RADIUS) == Radius.MEDIUM) {
+				voxelShape = Shapes.or(SHAPE_Z, SHAPE_Z_MEDIUM);
+			} else if (stateIn.getValue(RADIUS) == Radius.LARGE) {
+				voxelShape = Shapes.or(SHAPE_Z, SHAPE_Z_LARGE);
+			} else {
+				voxelShape = SHAPE_Z;
+			}
+			return voxelShape;
+		}
+	}
 
 	@Override
 	@Deprecated
