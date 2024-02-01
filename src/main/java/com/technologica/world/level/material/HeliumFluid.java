@@ -79,9 +79,12 @@ public abstract class HeliumFluid extends GaseousFluid {
 		Block.dropResources(state, worldIn, pos, tileentity);
 	}
 
+	/**
+	 * Distance between source and a drop-off that will cause fluid to no longer spread evenly and instead aim directly for drop-off.
+	 */
 	@Override
 	public int getSlopeFindDistance(LevelReader worldIn) {
-		return 4;
+		return 0;
 	}
 
 	@Override
@@ -94,13 +97,19 @@ public abstract class HeliumFluid extends GaseousFluid {
 		return fluidIn == TechnologicaFluids.HELIUM.get() || fluidIn == TechnologicaFluids.FLOWING_HELIUM.get();
 	}
 
+	/**
+	 * Reduction in level fluidtstate property per distance traveled from source.
+	 */
 	@Override
 	public int getDropOff(LevelReader worldIn) {
 		return 1;
 	}
 
+	/**
+	 * Effectively the speed at which this fluid flows.
+	 */
 	@Override
-	public int getTickDelay(LevelReader p_205569_1_) {
+	public int getTickDelay(LevelReader worldIn) {
 		return 1;
 	}
 

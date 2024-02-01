@@ -86,6 +86,7 @@ public final class TechnologicaBiomeModifiers extends MasterKeyCreator {
 	public static final ResourceKey<BiomeModifier> TAIGA_VEGETATION = biomeModifier("taiga_vegetation");
 	public static final ResourceKey<BiomeModifier> WINDSWEPT_FOREST_VEGETATION = biomeModifier("windswept_forest_vegetation");
 	public static final ResourceKey<BiomeModifier> WINDSWEPT_HILLS_VEGETATION = biomeModifier("windswept_hills_vegetation");
+
 	public static final ResourceKey<BiomeModifier> BADLANDS_SPAWNS = biomeModifier("badlands_spawns");
 	public static final ResourceKey<BiomeModifier> BEACH_SPAWNS = biomeModifier("beach_spawns");
 	public static final ResourceKey<BiomeModifier> BIRCH_FOREST_SPAWNS = biomeModifier("birch_forest_spawns");
@@ -107,11 +108,17 @@ public final class TechnologicaBiomeModifiers extends MasterKeyCreator {
 	public static final ResourceKey<BiomeModifier> WARM_OCEAN_SPAWNS = biomeModifier("warm_ocean_spawns");
 	public static final ResourceKey<BiomeModifier> WINDSWEPT_FOREST_SPAWNS = biomeModifier("windswept_forest_spawns");
 	public static final ResourceKey<BiomeModifier> WINDSWEPT_HILLS_SPAWNS = biomeModifier("windswept_hills_spawns");
+
 	public static final ResourceKey<BiomeModifier> BADLANDS_LOCAL_MODIFICATIONS = biomeModifier("badlands_local_modifications");
-	public static final ResourceKey<BiomeModifier> ERODED_BADLANDS_LOCAL_MODIFICATIONS = biomeModifier("eroded_badlands_local_modifications");
-	public static final ResourceKey<BiomeModifier> WOODED_BADLANDS_LOCAL_MODIFICATIONS = biomeModifier("wooded_badlands_local_modifications");
+	public static final ResourceKey<BiomeModifier> BAMBOO_JUNGLE_LOCAL_MODIFICATIONS = biomeModifier("bamboo_jungle_local_modifications");
 	public static final ResourceKey<BiomeModifier> DESERT_LOCAL_MODIFICATIONS = biomeModifier("desert_local_modifications");
+	public static final ResourceKey<BiomeModifier> ERODED_BADLANDS_LOCAL_MODIFICATIONS = biomeModifier("eroded_badlands_local_modifications");
+	public static final ResourceKey<BiomeModifier> JUNGLE_LOCAL_MODIFICATIONS = biomeModifier("jungle_local_modifications");
+	public static final ResourceKey<BiomeModifier> MANGROVE_SWAMP_LOCAL_MODIFICATIONS = biomeModifier("mangrove_swamp_local_modifications");
 	public static final ResourceKey<BiomeModifier> OLD_GROWTH_PINE_TAIGA_LOCAL_MODIFICATIONS = biomeModifier("old_growth_pine_taiga_local_modifications");
 	public static final ResourceKey<BiomeModifier> OLD_GROWTH_SPRUCE_TAIGA_LOCAL_MODIFICATIONS = biomeModifier("old_growth_spruce_taiga_local_modifications");
+	public static final ResourceKey<BiomeModifier> SPARSE_JUNGLE_LOCAL_MODIFICATIONS = biomeModifier("sparse_jungle_local_modifications");
+	public static final ResourceKey<BiomeModifier> SWAMP_LOCAL_MODIFICATIONS = biomeModifier("swamp_local_modifications");
 	public static final ResourceKey<BiomeModifier> WINDSWEPT_GRAVELLY_HILLS_LOCAL_MODIFICATIONS = biomeModifier("windswept_gravelly_hills_local_modifications");
+	public static final ResourceKey<BiomeModifier> WOODED_BADLANDS_LOCAL_MODIFICATIONS = biomeModifier("wooded_badlands_local_modifications");
 }

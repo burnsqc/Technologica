@@ -80,7 +80,7 @@ public abstract class HydrogenFluid extends GaseousFluid {
 
 	@Override
 	public int getSlopeFindDistance(LevelReader worldIn) {
-		return 4;
+		return 0;
 	}
 
 	@Override

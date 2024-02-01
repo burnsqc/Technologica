@@ -38,13 +38,22 @@ public class WindmillRenderer implements BlockEntityRenderer<WindmillBlockEntity
 			matrixStack.mulPose(this.angle(i, partialTicks));
 			matrixStack.translate(0.0, -0.5, 0.0);
 		} else if (windmillBlockEntity.getBlockState().getValue(FourDirectionBlock.NESW_FACING) == Direction.EAST) {
-			matrixStack.translate(0.5, 0.0, 0.5);
+			matrixStack.translate(1.0, 0.5, 0.5);
+			matrixStack.mulPose(Axis.YP.rotationDegrees(270));
+			matrixStack.mulPose(Axis.XP.rotationDegrees(90));
 			matrixStack.mulPose(this.angle(i, partialTicks));
-			matrixStack.translate(-0.5, 0.0, -0.5);
+			matrixStack.translate(0.0, -0.5, 0.0);
+		} else if (windmillBlockEntity.getBlockState().getValue(FourDirectionBlock.NESW_FACING) == Direction.SOUTH) {
+			matrixStack.translate(0.5, 0.5, 1.0);
+			matrixStack.mulPose(Axis.XP.rotationDegrees(270));
+			matrixStack.mulPose(this.angle(i, partialTicks));
+			matrixStack.translate(0.0, -0.5, 0.0);
 		} else {
-			matrixStack.translate(0.5, 0.5, 0.0);
+			matrixStack.translate(0.0, 0.5, 0.5);
+			matrixStack.mulPose(Axis.YP.rotationDegrees(90));
+			matrixStack.mulPose(Axis.XP.rotationDegrees(90));
 			matrixStack.mulPose(this.angle(i, partialTicks));
-			matrixStack.translate(-0.5, -0.5, 0.0);
+			matrixStack.translate(0.0, -0.5, -0.0);
 		}
 
 		this.windmillModel.renderToBuffer(matrixStack, vertexconsumer, combinedLight, combinedOverlay, 1, 1, 1, 1);
@@ -52,8 +61,7 @@ public class WindmillRenderer implements BlockEntityRenderer<WindmillBlockEntity
 	}
 
 	private Quaternionf angle(long time, float partialTicks) {
-		float f = (Math.floorMod(time, 360) + partialTicks);
-		Axis vector = Axis.YP;
-		return vector.rotationDegrees(f);
+		float time2 = (time + partialTicks);
+		return Axis.YP.rotationDegrees(time2);
 	}
 }

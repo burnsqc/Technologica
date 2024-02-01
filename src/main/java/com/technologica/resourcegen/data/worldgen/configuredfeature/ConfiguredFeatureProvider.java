@@ -49,11 +49,11 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 
 @SuppressWarnings("deprecation")
 public class ConfiguredFeatureProvider {
-	
+
 	public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> bootstrapContextIn) {
 		RuleTest ruletest1 = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
 		RuleTest ruletest2 = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
-		
+
 		List<OreConfiguration.TargetBlockState> ORE_SPODUMENE_TARGET_LIST = List.of(OreConfiguration.target(ruletest1, TechnologicaBlocks.SPODUMENE_ORE.get().defaultBlockState()), OreConfiguration.target(ruletest2, TechnologicaBlocks.DEEPSLATE_SPODUMENE_ORE.get().defaultBlockState()));
 		List<OreConfiguration.TargetBlockState> ORE_BORAX_TARGET_LIST = List.of(OreConfiguration.target(ruletest1, TechnologicaBlocks.BORAX_ORE.get().defaultBlockState()), OreConfiguration.target(ruletest2, TechnologicaBlocks.DEEPSLATE_BORAX_ORE.get().defaultBlockState()));
 		List<OreConfiguration.TargetBlockState> ORE_MAGNESITE_TARGET_LIST = List.of(OreConfiguration.target(ruletest1, TechnologicaBlocks.MAGNESITE_ORE.get().defaultBlockState()), OreConfiguration.target(ruletest2, TechnologicaBlocks.DEEPSLATE_MAGNESITE_ORE.get().defaultBlockState()));
@@ -88,7 +88,7 @@ public class ConfiguredFeatureProvider {
 		List<OreConfiguration.TargetBlockState> ORE_RUBY_TARGET_LIST = List.of(OreConfiguration.target(ruletest1, TechnologicaBlocks.RUBY_ORE.get().defaultBlockState()), OreConfiguration.target(ruletest2, TechnologicaBlocks.DEEPSLATE_RUBY_ORE.get().defaultBlockState()));
 		List<OreConfiguration.TargetBlockState> ORE_SAPPHIRE_TARGET_LIST = List.of(OreConfiguration.target(ruletest1, TechnologicaBlocks.SAPPHIRE_ORE.get().defaultBlockState()), OreConfiguration.target(ruletest2, TechnologicaBlocks.DEEPSLATE_SAPPHIRE_ORE.get().defaultBlockState()));
 		List<OreConfiguration.TargetBlockState> ORE_TOPAZ_TARGET_LIST = List.of(OreConfiguration.target(ruletest1, TechnologicaBlocks.TOPAZ_ORE.get().defaultBlockState()), OreConfiguration.target(ruletest2, TechnologicaBlocks.DEEPSLATE_TOPAZ_ORE.get().defaultBlockState()));
-		
+
 		HolderGetter<PlacedFeature> placedFeatures = bootstrapContextIn.lookup(Registries.PLACED_FEATURE);
 		Holder<PlacedFeature> holder = placedFeatures.getOrThrow(TechnologicaPlacedFeatures.ZEBRAWOOD_CHECKED);
 		Holder<PlacedFeature> holder1 = placedFeatures.getOrThrow(TechnologicaPlacedFeatures.EBONY_CHECKED);
@@ -106,19 +106,20 @@ public class ConfiguredFeatureProvider {
 		Holder<PlacedFeature> holder13 = placedFeatures.getOrThrow(TechnologicaPlacedFeatures.MAPLE_CHECKED);
 		Holder<PlacedFeature> holder14 = placedFeatures.getOrThrow(TechnologicaPlacedFeatures.WALNUT_CHECKED);
 		Holder<PlacedFeature> holder15 = placedFeatures.getOrThrow(TechnologicaPlacedFeatures.ORANGE_CHECKED);
-		
+
 		/*
 		 * MISC
 		 */
-		
+
 		bootstrapContextIn.register(TechnologicaConfiguredFeatures.BRINE_POOL_CONFIGURED, new ConfiguredFeature<>(TechnologicaFeatures.BRINE_POOL.get(), new LakeFeature.Configuration(BlockStateProvider.simple(TechnologicaBlocks.BRINE.get().defaultBlockState()), BlockStateProvider.simple(TechnologicaBlocks.LITHIUM_CLAY.get().defaultBlockState()))));
+		bootstrapContextIn.register(TechnologicaConfiguredFeatures.NATURAL_GAS_DEPOSIT_CONFIGURED, new ConfiguredFeature<>(TechnologicaFeatures.NATURAL_GAS_DEPOSIT.get(), new GeodeConfiguration(new GeodeBlockSettings(BlockStateProvider.simple(TechnologicaBlocks.NATURAL_GAS.get()), BlockStateProvider.simple(TechnologicaBlocks.NATURAL_GAS.get()), BlockStateProvider.simple(TechnologicaBlocks.NATURAL_GAS.get()), BlockStateProvider.simple(TechnologicaBlocks.NATURAL_GAS.get()), BlockStateProvider.simple(TechnologicaBlocks.NATURAL_GAS.get()), List.of(Blocks.SMALL_AMETHYST_BUD.defaultBlockState(), Blocks.MEDIUM_AMETHYST_BUD.defaultBlockState(), Blocks.LARGE_AMETHYST_BUD.defaultBlockState(), Blocks.AMETHYST_CLUSTER.defaultBlockState()), BlockTags.FEATURES_CANNOT_REPLACE, BlockTags.GEODE_INVALID_BLOCKS), new GeodeLayerSettings(1.7D, 2.2D, 3.2D, 4.2D), new GeodeCrackSettings(0.95D, 2.0D, 2), 0.35D, 0.083D, true, UniformInt.of(4, 6), UniformInt.of(3, 4), UniformInt.of(1, 2), -16, 16, 0.05D, 1)));
 		bootstrapContextIn.register(TechnologicaConfiguredFeatures.OASIS_CONFIGURED, new ConfiguredFeature<>(TechnologicaFeatures.OASIS.get(), new BlockStateConfiguration(Blocks.WATER.defaultBlockState())));
 		bootstrapContextIn.register(TechnologicaConfiguredFeatures.OIL_WELL_CONFIGURED, new ConfiguredFeature<>(TechnologicaFeatures.OIL_WELL.get(), new GeodeConfiguration(new GeodeBlockSettings(BlockStateProvider.simple(TechnologicaBlocks.OIL.get()), BlockStateProvider.simple(TechnologicaBlocks.OIL.get()), BlockStateProvider.simple(TechnologicaBlocks.OIL.get()), BlockStateProvider.simple(TechnologicaBlocks.OIL.get()), BlockStateProvider.simple(TechnologicaBlocks.OIL.get()), List.of(Blocks.SMALL_AMETHYST_BUD.defaultBlockState(), Blocks.MEDIUM_AMETHYST_BUD.defaultBlockState(), Blocks.LARGE_AMETHYST_BUD.defaultBlockState(), Blocks.AMETHYST_CLUSTER.defaultBlockState()), BlockTags.FEATURES_CANNOT_REPLACE, BlockTags.GEODE_INVALID_BLOCKS), new GeodeLayerSettings(1.7D, 2.2D, 3.2D, 4.2D), new GeodeCrackSettings(0.95D, 2.0D, 2), 0.35D, 0.083D, true, UniformInt.of(4, 6), UniformInt.of(3, 4), UniformInt.of(1, 2), -16, 16, 0.05D, 1)));
-		
+
 		/*
 		 * ORE
 		 */
-		
+
 		bootstrapContextIn.register(TechnologicaConfiguredFeatures.ORE_SPODUMENE, new ConfiguredFeature<>(TechnologicaFeatures.POLLUCITE_DECORATED_ORE.get(), new OreConfiguration(ORE_SPODUMENE_TARGET_LIST, 8)));
 		bootstrapContextIn.register(TechnologicaConfiguredFeatures.ORE_BORAX, new ConfiguredFeature<>(TechnologicaFeatures.ULEXITE_DECORATED_ORE.get(), new OreConfiguration(ORE_BORAX_TARGET_LIST, 8)));
 		bootstrapContextIn.register(TechnologicaConfiguredFeatures.ORE_MAGNESITE, new ConfiguredFeature<>(TechnologicaFeatures.DOLOMITE_DECORATED_ORE.get(), new OreConfiguration(ORE_MAGNESITE_TARGET_LIST, 8)));
@@ -153,11 +154,11 @@ public class ConfiguredFeatureProvider {
 		bootstrapContextIn.register(TechnologicaConfiguredFeatures.ORE_RUBY, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(ORE_RUBY_TARGET_LIST, 3)));
 		bootstrapContextIn.register(TechnologicaConfiguredFeatures.ORE_SAPPHIRE, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(ORE_SAPPHIRE_TARGET_LIST, 3)));
 		bootstrapContextIn.register(TechnologicaConfiguredFeatures.ORE_TOPAZ, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(ORE_TOPAZ_TARGET_LIST, 3)));
-		
+
 		/*
 		 * TREE
 		 */
-		
+
 		bootstrapContextIn.register(TechnologicaConfiguredFeatures.APRICOT, new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(TechnologicaBlocks.APRICOT_LOG.get().defaultBlockState()), new StraightTrunkPlacer(4, 1, 0), BlockStateProvider.simple(TechnologicaBlocks.APRICOT_LEAVES.get().defaultBlockState()), new ConicalFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0)), new TwoLayersFeatureSize(1, 0, 2)).ignoreVines().build()));
 		bootstrapContextIn.register(TechnologicaConfiguredFeatures.ASPEN, new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(TechnologicaBlocks.ASPEN_LOG.get().defaultBlockState()), new StraightTrunkPlacer(6, 2, 0), BlockStateProvider.simple(TechnologicaBlocks.ASPEN_LEAVES.get().defaultBlockState()), new TeardropFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 6), new TwoLayersFeatureSize(1, 0, 1)).ignoreVines().build()));
 		bootstrapContextIn.register(TechnologicaConfiguredFeatures.AVOCADO, new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(TechnologicaBlocks.AVOCADO_LOG.get().defaultBlockState()), new StraightTrunkPlacer(4, 1, 0), BlockStateProvider.simple(TechnologicaBlocks.AVOCADO_LEAVES.get().defaultBlockState()), new ConicalFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0)), new TwoLayersFeatureSize(1, 0, 2)).ignoreVines().build()));
@@ -191,11 +192,11 @@ public class ConfiguredFeatureProvider {
 		bootstrapContextIn.register(TechnologicaConfiguredFeatures.SERENDIPITOUS_APOTHECARY, new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(TechnologicaBlocks.ALCHEMICAL_LOG.get().defaultBlockState()), new StraightTrunkPlacer(4, 1, 0), BlockStateProvider.simple(TechnologicaBlocks.ALCHEMICAL_LEAVES.get().defaultBlockState()), new ConicalFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0)), new TwoLayersFeatureSize(0, 0, 0)).ignoreVines().build()));
 		bootstrapContextIn.register(TechnologicaConfiguredFeatures.THUNDEROUS_CONDUCTOR, new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(TechnologicaBlocks.CONDUCTIVE_LOG.get().defaultBlockState()), new StraightTrunkPlacer(10, 10, 0), BlockStateProvider.simple(TechnologicaBlocks.CONDUCTIVE_LEAVES.get().defaultBlockState()), new DishFoliagePlacer(ConstantInt.of(9), ConstantInt.of(0), 3), new TwoLayersFeatureSize(0, 0, 0)).ignoreVines().build()));
 		bootstrapContextIn.register(TechnologicaConfiguredFeatures.TOWERING_INFERNO, new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(TechnologicaBlocks.INFERNAL_LOG.get().defaultBlockState()), new StraightTrunkPlacer(10, 10, 0), BlockStateProvider.simple(Blocks.FIRE.defaultBlockState()), new ConicalFoliagePlacer(ConstantInt.of(9), ConstantInt.of(0)), new TwoLayersFeatureSize(0, 0, 0)).ignoreVines().build()));
-		
+
 		/*
 		 * VEGETATION
 		 */
-		
+
 		bootstrapContextIn.register(TechnologicaConfiguredFeatures.TREES_MODIFIED_SAVANNA, new ConfiguredFeature<>(Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(holder, 0.8F)), holder)));
 		bootstrapContextIn.register(TechnologicaConfiguredFeatures.TREES_MODIFIED_JUNGLE, new ConfiguredFeature<>(Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(holder1, 0.33F), new WeightedPlacedFeature(holder2, 0.33F)), holder3)));
 		bootstrapContextIn.register(TechnologicaConfiguredFeatures.TREES_MODIFIED_JUNGLE_EDGE, new ConfiguredFeature<>(Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(holder4, 0.8F)), holder4)));

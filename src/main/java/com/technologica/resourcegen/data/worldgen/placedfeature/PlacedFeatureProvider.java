@@ -32,11 +32,12 @@ public class PlacedFeatureProvider {
 
 	public static void bootstrap(BootstapContext<PlacedFeature> bootstrapContextIn) {
 		HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = bootstrapContextIn.lookup(Registries.CONFIGURED_FEATURE);
-		
+
 		Holder<ConfiguredFeature<?, ?>> brinePool = configuredFeatures.getOrThrow(TechnologicaConfiguredFeatures.BRINE_POOL_CONFIGURED);
+		Holder<ConfiguredFeature<?, ?>> natural_gas_deposit = configuredFeatures.getOrThrow(TechnologicaConfiguredFeatures.NATURAL_GAS_DEPOSIT_CONFIGURED);
 		Holder<ConfiguredFeature<?, ?>> oasis = configuredFeatures.getOrThrow(TechnologicaConfiguredFeatures.OASIS_CONFIGURED);
 		Holder<ConfiguredFeature<?, ?>> oil_well = configuredFeatures.getOrThrow(TechnologicaConfiguredFeatures.OIL_WELL_CONFIGURED);
-		
+
 		Holder<ConfiguredFeature<?, ?>> oreSpodumene = configuredFeatures.getOrThrow(TechnologicaConfiguredFeatures.ORE_SPODUMENE);
 		Holder<ConfiguredFeature<?, ?>> oreBorax = configuredFeatures.getOrThrow(TechnologicaConfiguredFeatures.ORE_BORAX);
 		Holder<ConfiguredFeature<?, ?>> oreMagnesite = configuredFeatures.getOrThrow(TechnologicaConfiguredFeatures.ORE_MAGNESITE);
@@ -71,7 +72,7 @@ public class PlacedFeatureProvider {
 		Holder<ConfiguredFeature<?, ?>> oreRuby = configuredFeatures.getOrThrow(TechnologicaConfiguredFeatures.ORE_RUBY);
 		Holder<ConfiguredFeature<?, ?>> oreSapphire = configuredFeatures.getOrThrow(TechnologicaConfiguredFeatures.ORE_SAPPHIRE);
 		Holder<ConfiguredFeature<?, ?>> oreTopaz = configuredFeatures.getOrThrow(TechnologicaConfiguredFeatures.ORE_TOPAZ);
-		
+
 		Holder<ConfiguredFeature<?, ?>> holder = configuredFeatures.getOrThrow(TechnologicaConfiguredFeatures.APRICOT);
 		Holder<ConfiguredFeature<?, ?>> holder1 = configuredFeatures.getOrThrow(TechnologicaConfiguredFeatures.ASPEN);
 		Holder<ConfiguredFeature<?, ?>> holder2 = configuredFeatures.getOrThrow(TechnologicaConfiguredFeatures.AVOCADO);
@@ -106,7 +107,7 @@ public class PlacedFeatureProvider {
 		Holder<ConfiguredFeature<?, ?>> holder31 = configuredFeatures.getOrThrow(TechnologicaConfiguredFeatures.THUNDEROUS_CONDUCTOR);
 		Holder<ConfiguredFeature<?, ?>> holder32 = configuredFeatures.getOrThrow(TechnologicaConfiguredFeatures.TOWERING_INFERNO);
 		Holder<ConfiguredFeature<?, ?>> holder33 = configuredFeatures.getOrThrow(TreeFeatures.TALL_MANGROVE);
-		
+
 		Holder<ConfiguredFeature<?, ?>> treesModifiedSavanna = configuredFeatures.getOrThrow(TechnologicaConfiguredFeatures.TREES_MODIFIED_SAVANNA);
 		Holder<ConfiguredFeature<?, ?>> treesModifiedJungle = configuredFeatures.getOrThrow(TechnologicaConfiguredFeatures.TREES_MODIFIED_JUNGLE);
 		Holder<ConfiguredFeature<?, ?>> treesModifiedJungleEdge = configuredFeatures.getOrThrow(TechnologicaConfiguredFeatures.TREES_MODIFIED_JUNGLE_EDGE);
@@ -125,23 +126,24 @@ public class PlacedFeatureProvider {
 		Holder<ConfiguredFeature<?, ?>> patchCottonBush = configuredFeatures.getOrThrow(TechnologicaConfiguredFeatures.PATCH_COTTON_BUSH);
 		Holder<ConfiguredFeature<?, ?>> patchPeppercornBush = configuredFeatures.getOrThrow(TechnologicaConfiguredFeatures.PATCH_PEPPERCORN_BUSH);
 		Holder<ConfiguredFeature<?, ?>> mangroveVegetation = configuredFeatures.getOrThrow(VegetationFeatures.MANGROVE_VEGETATION);
-		
+
 		/*
 		 * MISC
 		 */
-		
+
 		bootstrapContextIn.register(TechnologicaPlacedFeatures.BRINE_POOL_PLACED, new PlacedFeature(brinePool, List.of(RarityFilter.onAverageOnceEvery(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
+		bootstrapContextIn.register(TechnologicaPlacedFeatures.NATURAL_GAS_DEPOSIT_PLACED, new PlacedFeature(natural_gas_deposit, List.of(RarityFilter.onAverageOnceEvery(50), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(6), VerticalAnchor.absolute(30)), BiomeFilter.biome())));
 		bootstrapContextIn.register(TechnologicaPlacedFeatures.OASIS_PLACED, new PlacedFeature(oasis, List.of(RarityFilter.onAverageOnceEvery(200), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(192)), BiomeFilter.biome())));
 		bootstrapContextIn.register(TechnologicaPlacedFeatures.OIL_WELL_PLACED, new PlacedFeature(oil_well, List.of(RarityFilter.onAverageOnceEvery(50), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(6), VerticalAnchor.absolute(30)), BiomeFilter.biome())));
 		// bootstrapContextIn.register(PATCH_BLACKBERRY_BUSH_VILLAGE, new PlacedFeature(context.lookup(Registries.CONFIGURED_FEATURE).getOrThrow(PATCH_BLACKBERRY_BUSH), null));
 		// bootstrapContextIn.register(PATCH_BLUEBERRY_BUSH_VILLAGE, new PlacedFeature(context.lookup(Registries.CONFIGURED_FEATURE).getOrThrow(PATCH_BLUEBERRY_BUSH)));
 		// bootstrapContextIn.register(PATCH_RASPBERRY_BUSH_VILLAGE, new PlacedFeature(context.lookup(Registries.CONFIGURED_FEATURE).getOrThrow(PATCH_RASPBERRY_BUSH)));
 		// bootstrapContextIn.register(PATCH_STRAWBERRY_BUSH_VILLAGE, new PlacedFeature(context.lookup(Registries.CONFIGURED_FEATURE).getOrThrow(PATCH_STRAWBERRY_BUSH)));
-		
+
 		/*
 		 * ORE
 		 */
-		
+
 		bootstrapContextIn.register(TechnologicaPlacedFeatures.ORE_SPODUMENE_PLACED, new PlacedFeature(oreSpodumene, commonOrePlacement(10, HeightRangePlacement.uniform(VerticalAnchor.absolute(48), VerticalAnchor.top()))));
 		bootstrapContextIn.register(TechnologicaPlacedFeatures.ORE_BORAX_PLACED, new PlacedFeature(oreBorax, commonOrePlacement(10, HeightRangePlacement.uniform(VerticalAnchor.absolute(48), VerticalAnchor.absolute(64)))));
 		bootstrapContextIn.register(TechnologicaPlacedFeatures.ORE_MAGNESITE_PLACED, new PlacedFeature(oreMagnesite, commonOrePlacement(10, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top()))));
@@ -176,11 +178,11 @@ public class PlacedFeatureProvider {
 		bootstrapContextIn.register(TechnologicaPlacedFeatures.ORE_RUBY_PLACED, new PlacedFeature(oreRuby, commonOrePlacement(100, HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(480)))));
 		bootstrapContextIn.register(TechnologicaPlacedFeatures.ORE_SAPPHIRE_PLACED, new PlacedFeature(oreSapphire, commonOrePlacement(100, HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(480)))));
 		bootstrapContextIn.register(TechnologicaPlacedFeatures.ORE_TOPAZ_PLACED, new PlacedFeature(oreTopaz, commonOrePlacement(100, HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(480)))));
-		
+
 		/*
 		 * TREE
 		 */
-		
+
 		bootstrapContextIn.register(TechnologicaPlacedFeatures.APRICOT_CHECKED, new PlacedFeature(holder, treePlacement(PlacementUtils.filteredByBlockSurvival(TechnologicaBlocks.APRICOT_SAPLING.get()))));
 		bootstrapContextIn.register(TechnologicaPlacedFeatures.ASPEN_CHECKED, new PlacedFeature(holder1, treePlacement(PlacementUtils.filteredByBlockSurvival(TechnologicaBlocks.ASPEN_SAPLING.get()))));
 		bootstrapContextIn.register(TechnologicaPlacedFeatures.AVOCADO_CHECKED, new PlacedFeature(holder2, treePlacement(PlacementUtils.filteredByBlockSurvival(TechnologicaBlocks.AVOCADO_SAPLING.get()))));
@@ -215,11 +217,11 @@ public class PlacedFeatureProvider {
 		bootstrapContextIn.register(TechnologicaPlacedFeatures.THUNDEROUS_CONDUCTOR_CHECKED, new PlacedFeature(holder31, treePlacement(PlacementUtils.filteredByBlockSurvival(TechnologicaBlocks.THUNDEROUS_CONDUCTOR_SAPLING.get()))));
 		bootstrapContextIn.register(TechnologicaPlacedFeatures.TOWERING_INFERNO_CHECKED, new PlacedFeature(holder32, treePlacement(PlacementUtils.filteredByBlockSurvival(TechnologicaBlocks.TOWERING_INFERNO_SAPLING.get()))));
 		bootstrapContextIn.register(TechnologicaPlacedFeatures.OVERGROWTH_CHECKED, new PlacedFeature(holder33, List.of()));
-		
+
 		/*
 		 * VEGETATION
 		 */
-		
+
 		bootstrapContextIn.register(TechnologicaPlacedFeatures.TREES_MODIFIED_SAVANNA_PLACED, new PlacedFeature(treesModifiedSavanna, vegetationPlacement(PlacementUtils.countExtra(1, 0.1F, 1))));
 		bootstrapContextIn.register(TechnologicaPlacedFeatures.TREES_MODIFIED_JUNGLE_PLACED, new PlacedFeature(treesModifiedJungle, vegetationPlacement(PlacementUtils.countExtra(1, 0.1F, 1))));
 		bootstrapContextIn.register(TechnologicaPlacedFeatures.TREES_MODIFIED_JUNGLE_EDGE_PLACED, new PlacedFeature(treesModifiedJungleEdge, vegetationPlacement(PlacementUtils.countExtra(1, 0.1F, 1))));
@@ -243,11 +245,11 @@ public class PlacedFeatureProvider {
 		bootstrapContextIn.register(TechnologicaPlacedFeatures.PATCH_PEPPERCORNS_PLACED, new PlacedFeature(patchPeppercornBush, List.of(RarityFilter.onAverageOnceEvery(5), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
 		bootstrapContextIn.register(TechnologicaPlacedFeatures.OVERGROWTH_PLACED, new PlacedFeature(mangroveVegetation, List.of(CountOnEveryLayerPlacement.of(6), BiomeFilter.biome())));
 	}
-	
+
 	private static List<PlacementModifier> commonOrePlacement(int p_195344_, PlacementModifier p_195345_) {
 		return orePlacement(CountPlacement.of(p_195344_), p_195345_);
 	}
-	
+
 	private static List<PlacementModifier> orePlacement(PlacementModifier p_195347_, PlacementModifier p_195348_) {
 		return List.of(p_195347_, InSquarePlacement.spread(), p_195348_, BiomeFilter.biome());
 	}
@@ -255,7 +257,7 @@ public class PlacedFeatureProvider {
 	private static List<PlacementModifier> treePlacement(PlacementModifier p_195345_) {
 		return List.of(p_195345_);
 	}
-	
+
 	private static ImmutableList.Builder<PlacementModifier> treePlacementBase(PlacementModifier p_195485_) {
 		return ImmutableList.<PlacementModifier>builder().add(p_195485_).add(InSquarePlacement.spread()).add(TREE_THRESHOLD).add(PlacementUtils.HEIGHTMAP_OCEAN_FLOOR).add(BiomeFilter.biome());
 	}

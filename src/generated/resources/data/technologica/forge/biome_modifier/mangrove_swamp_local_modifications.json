@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "minecraft:mangrove_swamp",
+  "features": "technologica:natural_gas_deposit",
+  "step": "local_modifications"
+}

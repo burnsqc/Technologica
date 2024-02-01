@@ -16,9 +16,10 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
  */
 public final class TechnologicaPlacedFeatures extends MasterKeyCreator {
 	public static final ResourceKey<PlacedFeature> BRINE_POOL_PLACED = placedFeature("brine_pool");
+	public static final ResourceKey<PlacedFeature> NATURAL_GAS_DEPOSIT_PLACED = placedFeature("natural_gas_deposit");
 	public static final ResourceKey<PlacedFeature> OASIS_PLACED = placedFeature("oasis");
 	public static final ResourceKey<PlacedFeature> OIL_WELL_PLACED = placedFeature("oil_well");
-	//TODO: Can't remember why I left these here.  Surely I had a reason for keeping them.
+	// TODO: Can't remember why I left these here. Surely I had a reason for keeping them.
 	// public static final ResourceKey<PlacedFeature> PATCH_BLACKBERRY_BUSH_VILLAGE = placedFeature("patch_blackberry_bush");
 	// public static final ResourceKey<PlacedFeature> PATCH_BLUEBERRY_BUSH_VILLAGE = placedFeature("patch_blueberry_bush");
 	// public static final ResourceKey<PlacedFeature> PATCH_RASPBERRY_BUSH_VILLAGE = placedFeature("patch_raspberry_bush");

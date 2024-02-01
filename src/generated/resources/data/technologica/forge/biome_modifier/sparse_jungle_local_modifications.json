@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "minecraft:sparse_jungle",
+  "features": "technologica:natural_gas_deposit",
+  "step": "local_modifications"
+}

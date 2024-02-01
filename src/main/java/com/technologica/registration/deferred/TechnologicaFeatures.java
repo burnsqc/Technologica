@@ -4,8 +4,10 @@ import com.technologica.Technologica;
 import com.technologica.registration.deferred.util.MasterDeferredRegistrar;
 import com.technologica.world.level.levelgen.feature.CraterFeature;
 import com.technologica.world.level.levelgen.feature.DecoratedOreFeature;
+import com.technologica.world.level.levelgen.feature.NaturalGasDepositFeature;
 import com.technologica.world.level.levelgen.feature.OasisFeature;
 import com.technologica.world.level.levelgen.feature.OilWellFeature;
+import com.technologica.world.level.levelgen.feature.RadioactiveOreFeature;
 
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.LakeFeature;
@@ -24,15 +26,16 @@ import net.minecraftforge.registries.RegistryObject;
  */
 @SuppressWarnings("deprecation")
 public class TechnologicaFeatures extends MasterDeferredRegistrar {
-	
+
 	public static int init() {
 		FEATURES.register(Technologica.MOD_EVENT_BUS);
 		return FEATURES.getEntries().size();
 	}
 
-	//TODO: Really need to get rid of the call to {@link LakeFeature} before the rug gets pulled out from under me.  Maybe just clone it to my own class.
+	// TODO: Really need to get rid of the call to {@link LakeFeature} before the rug gets pulled out from under me. Maybe just clone it to my own class.
 	public static final RegistryObject<Feature<LakeFeature.Configuration>> BRINE_POOL = FEATURES.register("brine_pool", () -> new LakeFeature(LakeFeature.Configuration.CODEC));
 	public static final RegistryObject<Feature<BlockStateConfiguration>> OASIS = FEATURES.register("oasis", () -> new OasisFeature(BlockStateConfiguration.CODEC));
+	public static final RegistryObject<Feature<GeodeConfiguration>> NATURAL_GAS_DEPOSIT = FEATURES.register("natural_gas_deposit", () -> new NaturalGasDepositFeature(GeodeConfiguration.CODEC));
 	public static final RegistryObject<Feature<GeodeConfiguration>> OIL_WELL = FEATURES.register("oil_well", () -> new OilWellFeature(GeodeConfiguration.CODEC));
 	public static final RegistryObject<Feature<BlockStateConfiguration>> CRATER = FEATURES.register("crater", () -> new CraterFeature(BlockStateConfiguration.CODEC));
 	public static final RegistryObject<Feature<OreConfiguration>> AQUAMARINE_DECORATED_ORE = FEATURES.register("aquamarine_decorated_ore", () -> new DecoratedOreFeature(OreConfiguration.CODEC, TechnologicaBlocks.AQUAMARINE_CRYSTAL));
@@ -53,7 +56,7 @@ public class TechnologicaFeatures extends MasterDeferredRegistrar {
 	public static final RegistryObject<Feature<OreConfiguration>> STIBNITE_DECORATED_ORE = FEATURES.register("stibnite_decorated_ore", () -> new DecoratedOreFeature(OreConfiguration.CODEC, TechnologicaBlocks.STIBNITE_CRYSTAL));
 	public static final RegistryObject<Feature<OreConfiguration>> STRONTIANITE_DECORATED_ORE = FEATURES.register("strontianite_decorated_ore", () -> new DecoratedOreFeature(OreConfiguration.CODEC, TechnologicaBlocks.STRONTIANITE_CRYSTAL));
 	public static final RegistryObject<Feature<OreConfiguration>> RUTILE_DECORATED_ORE = FEATURES.register("rutile_decorated_ore", () -> new DecoratedOreFeature(OreConfiguration.CODEC, TechnologicaBlocks.RUTILE_CRYSTAL));
-	public static final RegistryObject<Feature<OreConfiguration>> AUTUNITE_DECORATED_ORE = FEATURES.register("autunite_decorated_ore", () -> new DecoratedOreFeature(OreConfiguration.CODEC, TechnologicaBlocks.AUTUNITE_CRYSTAL));
+	public static final RegistryObject<Feature<OreConfiguration>> AUTUNITE_DECORATED_ORE = FEATURES.register("autunite_decorated_ore", () -> new RadioactiveOreFeature(OreConfiguration.CODEC, TechnologicaBlocks.AUTUNITE_CRYSTAL));
 	public static final RegistryObject<Feature<OreConfiguration>> BARYTE_DECORATED_ORE = FEATURES.register("baryte_decorated_ore", () -> new DecoratedOreFeature(OreConfiguration.CODEC, TechnologicaBlocks.BARYTE_CRYSTAL));
 	public static final RegistryObject<Feature<OreConfiguration>> POLLUCITE_DECORATED_ORE = FEATURES.register("pollucite_decorated_ore", () -> new DecoratedOreFeature(OreConfiguration.CODEC, TechnologicaBlocks.POLLUCITE_CRYSTAL));
 	public static final RegistryObject<Feature<OreConfiguration>> WULFENITE_DECORATED_ORE = FEATURES.register("wulfenite_decorated_ore", () -> new DecoratedOreFeature(OreConfiguration.CODEC, TechnologicaBlocks.WULFENITE_CRYSTAL));
