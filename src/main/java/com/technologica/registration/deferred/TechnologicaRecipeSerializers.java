@@ -16,9 +16,8 @@ import net.minecraftforge.registries.RegistryObject;
  * @tl.status GREEN
  */
 public final class TechnologicaRecipeSerializers extends MasterDeferredRegistrar {
-	
+
 	public static int init() {
-		RECIPE_SERIALIZERS.register(Technologica.MOD_EVENT_BUS);
 		return RECIPE_SERIALIZERS.getEntries().size();
 	}
 

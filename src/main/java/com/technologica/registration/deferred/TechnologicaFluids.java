@@ -36,9 +36,8 @@ import net.minecraftforge.registries.RegistryObject;
  * @tl.status GREEN
  */
 public final class TechnologicaFluids extends MasterDeferredRegistrar {
-	
+
 	public static int init() {
-		FLUIDS.register(Technologica.MOD_EVENT_BUS);
 		return FLUIDS.getEntries().size();
 	}
 

@@ -21,9 +21,8 @@ import net.minecraftforge.registries.RegistryObject;
  * @tl.status GREEN
  */
 public final class TechnologicaFoliagePlacerTypes extends MasterDeferredRegistrar {
-	
+
 	public static int init() {
-		FOLIAGE_PLACER_TYPES.register(Technologica.MOD_EVENT_BUS);
 		return FOLIAGE_PLACER_TYPES.getEntries().size();
 	}
 

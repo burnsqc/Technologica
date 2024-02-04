@@ -65,7 +65,7 @@ import net.minecraftforge.registries.RegisterEvent;
  */
 public abstract class MasterDeferredRegistrar {
 
-	private static Map<ResourceKey<? extends Registry<?>>, int[]> registries = new HashMap<>();
+	private static Map<ResourceKey<? extends Registry<?>>, long[]> registries = new HashMap<>();
 
 	public static final DeferredRegister<Attribute> ATTRIBUTES = addRegister(ForgeRegistries.Keys.ATTRIBUTES, Technologica.MOD_ID);
 	public static final DeferredRegister<Block> BLOCKS = addRegister(ForgeRegistries.Keys.BLOCKS, Technologica.MOD_ID);
@@ -90,76 +90,76 @@ public abstract class MasterDeferredRegistrar {
 
 	public static <B> DeferredRegister<B> addRegister(ResourceKey<? extends Registry<B>> key, String modid) {
 		DeferredRegister<B> deferredRegister = DeferredRegister.create(key, modid);
-		registries.put(key, new int[] { 0, 0 });
+		registries.put(key, new long[] { 0, 0 });
+		deferredRegister.register(Technologica.MOD_EVENT_BUS);
 		return deferredRegister;
 	}
 
 	public static void initDeferredRegisters() {
-		registries.computeIfPresent(ATTRIBUTES.getRegistryKey(), (k, t) -> new int[] { TechnologicaAttributes.init(), 0 });
+		registries.computeIfPresent(ATTRIBUTES.getRegistryKey(), (k, t) -> new long[] { TechnologicaAttributes.init(), 0 });
 		Technologica.LOGGER.info("INITIALIZATION - " + TextUtil.stringToAllCapsName(ATTRIBUTES.getRegistryName().getPath()) + " - " + Array.get(registries.get(ATTRIBUTES.getRegistryKey()), 0));
-		registries.computeIfPresent(BLOCKS.getRegistryKey(), (k, t) -> new int[] { TechnologicaBlocks.init(), 0 });
+		registries.computeIfPresent(BLOCKS.getRegistryKey(), (k, t) -> new long[] { TechnologicaBlocks.init(), 0 });
 		Technologica.LOGGER.info("INITIALIZATION - " + TextUtil.stringToAllCapsName(BLOCKS.getRegistryName().getPath()) + " - " + Array.get(registries.get(BLOCKS.getRegistryKey()), 0));
-		registries.computeIfPresent(BLOCK_ENTITY_TYPES.getRegistryKey(), (k, t) -> new int[] { TechnologicaBlockEntityTypes.init(), 0 });
+		registries.computeIfPresent(BLOCK_ENTITY_TYPES.getRegistryKey(), (k, t) -> new long[] { TechnologicaBlockEntityTypes.init(), 0 });
 		Technologica.LOGGER.info("INITIALIZATION - " + TextUtil.stringToAllCapsName(BLOCK_ENTITY_TYPES.getRegistryName().getPath()) + " - " + Array.get(registries.get(BLOCK_ENTITY_TYPES.getRegistryKey()), 0));
-		registries.computeIfPresent(CREATIVE_MODE_TABS.getRegistryKey(), (k, t) -> new int[] { TechnologicaCreativeModeTabs.init(), 0 });
+		registries.computeIfPresent(CREATIVE_MODE_TABS.getRegistryKey(), (k, t) -> new long[] { TechnologicaCreativeModeTabs.init(), 0 });
 		Technologica.LOGGER.info("INITIALIZATION - " + TextUtil.stringToAllCapsName(CREATIVE_MODE_TABS.getRegistryName().getPath()) + " - " + Array.get(registries.get(CREATIVE_MODE_TABS.getRegistryKey()), 0));
-		registries.computeIfPresent(ENTITY_TYPES.getRegistryKey(), (k, t) -> new int[] { TechnologicaEntityTypes.init(), 0 });
+		registries.computeIfPresent(ENTITY_TYPES.getRegistryKey(), (k, t) -> new long[] { TechnologicaEntityTypes.init(), 0 });
 		Technologica.LOGGER.info("INITIALIZATION - " + TextUtil.stringToAllCapsName(ENTITY_TYPES.getRegistryName().getPath()) + " - " + Array.get(registries.get(ENTITY_TYPES.getRegistryKey()), 0));
-		registries.computeIfPresent(FEATURES.getRegistryKey(), (k, t) -> new int[] { TechnologicaFeatures.init(), 0 });
+		registries.computeIfPresent(FEATURES.getRegistryKey(), (k, t) -> new long[] { TechnologicaFeatures.init(), 0 });
 		Technologica.LOGGER.info("INITIALIZATION - " + TextUtil.stringToAllCapsName(FEATURES.getRegistryName().getPath()) + " - " + Array.get(registries.get(FEATURES.getRegistryKey()), 0));
-		registries.computeIfPresent(FLUIDS.getRegistryKey(), (k, t) -> new int[] { TechnologicaFluids.init(), 0 });
+		registries.computeIfPresent(FLUIDS.getRegistryKey(), (k, t) -> new long[] { TechnologicaFluids.init(), 0 });
 		Technologica.LOGGER.info("INITIALIZATION - " + TextUtil.stringToAllCapsName(FLUIDS.getRegistryName().getPath()) + " - " + Array.get(registries.get(FLUIDS.getRegistryKey()), 0));
-		registries.computeIfPresent(FLUID_TYPES.getRegistryKey(), (k, t) -> new int[] { TechnologicaFluidTypes.init(), 0 });
+		registries.computeIfPresent(FLUID_TYPES.getRegistryKey(), (k, t) -> new long[] { TechnologicaFluidTypes.init(), 0 });
 		Technologica.LOGGER.info("INITIALIZATION - " + TextUtil.stringToAllCapsName(FLUID_TYPES.getRegistryName().getPath()) + " - " + Array.get(registries.get(FLUID_TYPES.getRegistryKey()), 0));
-		registries.computeIfPresent(FOLIAGE_PLACER_TYPES.getRegistryKey(), (k, t) -> new int[] { TechnologicaFoliagePlacerTypes.init(), 0 });
+		registries.computeIfPresent(FOLIAGE_PLACER_TYPES.getRegistryKey(), (k, t) -> new long[] { TechnologicaFoliagePlacerTypes.init(), 0 });
 		Technologica.LOGGER.info("INITIALIZATION - " + TextUtil.stringToAllCapsName(FOLIAGE_PLACER_TYPES.getRegistryName().getPath()) + " - " + Array.get(registries.get(FOLIAGE_PLACER_TYPES.getRegistryKey()), 0));
-		registries.computeIfPresent(GLOBAL_LOOT_MODIFIER_SERIALIZERS.getRegistryKey(), (k, t) -> new int[] { TechnologicaGlobalLootModifierSerializers.init(), 0 });
+		registries.computeIfPresent(GLOBAL_LOOT_MODIFIER_SERIALIZERS.getRegistryKey(), (k, t) -> new long[] { TechnologicaGlobalLootModifierSerializers.init(), 0 });
 		Technologica.LOGGER.info("INITIALIZATION - " + TextUtil.stringToAllCapsName(GLOBAL_LOOT_MODIFIER_SERIALIZERS.getRegistryName().getPath()) + " - " + Array.get(registries.get(GLOBAL_LOOT_MODIFIER_SERIALIZERS.getRegistryKey()), 0));
-		registries.computeIfPresent(ITEMS.getRegistryKey(), (k, t) -> new int[] { TechnologicaItems.init(), 0 });
+		registries.computeIfPresent(ITEMS.getRegistryKey(), (k, t) -> new long[] { TechnologicaItems.init(), 0 });
 		Technologica.LOGGER.info("INITIALIZATION - " + TextUtil.stringToAllCapsName(ITEMS.getRegistryName().getPath()) + " - " + Array.get(registries.get(ITEMS.getRegistryKey()), 0));
-		registries.computeIfPresent(MENU_TYPES.getRegistryKey(), (k, t) -> new int[] { TechnologicaMenuTypes.init(), 0 });
+		registries.computeIfPresent(MENU_TYPES.getRegistryKey(), (k, t) -> new long[] { TechnologicaMenuTypes.init(), 0 });
 		Technologica.LOGGER.info("INITIALIZATION - " + TextUtil.stringToAllCapsName(MENU_TYPES.getRegistryName().getPath()) + " - " + Array.get(registries.get(MENU_TYPES.getRegistryKey()), 0));
-		registries.computeIfPresent(MOB_EFFECTS.getRegistryKey(), (k, t) -> new int[] { TechnologicaMobEffects.init(), 0 });
+		registries.computeIfPresent(MOB_EFFECTS.getRegistryKey(), (k, t) -> new long[] { TechnologicaMobEffects.init(), 0 });
 		Technologica.LOGGER.info("INITIALIZATION - " + TextUtil.stringToAllCapsName(MOB_EFFECTS.getRegistryName().getPath()) + " - " + Array.get(registries.get(MOB_EFFECTS.getRegistryKey()), 0));
-		registries.computeIfPresent(PAINTING_VARIANTS.getRegistryKey(), (k, t) -> new int[] { TechnologicaPaintingVariant.init(), 0 });
+		registries.computeIfPresent(PAINTING_VARIANTS.getRegistryKey(), (k, t) -> new long[] { TechnologicaPaintingVariant.init(), 0 });
 		Technologica.LOGGER.info("INITIALIZATION - " + TextUtil.stringToAllCapsName(PAINTING_VARIANTS.getRegistryName().getPath()) + " - " + Array.get(registries.get(PAINTING_VARIANTS.getRegistryKey()), 0));
-		registries.computeIfPresent(PARTICLE_TYPES.getRegistryKey(), (k, t) -> new int[] { TechnologicaParticleTypes.init(), 0 });
+		registries.computeIfPresent(PARTICLE_TYPES.getRegistryKey(), (k, t) -> new long[] { TechnologicaParticleTypes.init(), 0 });
 		Technologica.LOGGER.info("INITIALIZATION - " + TextUtil.stringToAllCapsName(PARTICLE_TYPES.getRegistryName().getPath()) + " - " + Array.get(registries.get(PARTICLE_TYPES.getRegistryKey()), 0));
-		registries.computeIfPresent(RECIPE_SERIALIZERS.getRegistryKey(), (k, t) -> new int[] { TechnologicaRecipeSerializers.init(), 0 });
+		registries.computeIfPresent(RECIPE_SERIALIZERS.getRegistryKey(), (k, t) -> new long[] { TechnologicaRecipeSerializers.init(), 0 });
 		Technologica.LOGGER.info("INITIALIZATION - " + TextUtil.stringToAllCapsName(RECIPE_SERIALIZERS.getRegistryName().getPath()) + " - " + Array.get(registries.get(RECIPE_SERIALIZERS.getRegistryKey()), 0));
-		registries.computeIfPresent(RECIPE_TYPES.getRegistryKey(), (k, t) -> new int[] { TechnologicaRecipeTypes.init(), 0 });
+		registries.computeIfPresent(RECIPE_TYPES.getRegistryKey(), (k, t) -> new long[] { TechnologicaRecipeTypes.init(), 0 });
 		Technologica.LOGGER.info("INITIALIZATION - " + TextUtil.stringToAllCapsName(RECIPE_TYPES.getRegistryName().getPath()) + " - " + Array.get(registries.get(RECIPE_TYPES.getRegistryKey()), 0));
-		registries.computeIfPresent(SOUND_EVENTS.getRegistryKey(), (k, t) -> new int[] { TechnologicaSoundEvents.init(), 0 });
+		registries.computeIfPresent(SOUND_EVENTS.getRegistryKey(), (k, t) -> new long[] { TechnologicaSoundEvents.init(), 0 });
 		Technologica.LOGGER.info("INITIALIZATION - " + TextUtil.stringToAllCapsName(SOUND_EVENTS.getRegistryName().getPath()) + " - " + Array.get(registries.get(SOUND_EVENTS.getRegistryKey()), 0));
-		registries.computeIfPresent(STRUCTURE_TYPES.getRegistryKey(), (k, t) -> new int[] { TechnologicaStructureTypes.init(), 0 });
+		registries.computeIfPresent(STRUCTURE_TYPES.getRegistryKey(), (k, t) -> new long[] { TechnologicaStructureTypes.init(), 0 });
 		Technologica.LOGGER.info("INITIALIZATION - " + TextUtil.stringToAllCapsName(STRUCTURE_TYPES.getRegistryName().getPath()) + " - " + Array.get(registries.get(STRUCTURE_TYPES.getRegistryKey()), 0));
-		registries.computeIfPresent(TRUNK_PLACER_TYPES.getRegistryKey(), (k, t) -> new int[] { TechnologicaTrunkPlacerTypes.init(), 0 });
+		registries.computeIfPresent(TRUNK_PLACER_TYPES.getRegistryKey(), (k, t) -> new long[] { TechnologicaTrunkPlacerTypes.init(), 0 });
 		Technologica.LOGGER.info("INITIALIZATION - " + TextUtil.stringToAllCapsName(TRUNK_PLACER_TYPES.getRegistryName().getPath()) + " - " + Array.get(registries.get(TRUNK_PLACER_TYPES.getRegistryKey()), 0));
 	}
 
 	public static void onRegisterEvent(final RegisterEvent event) {
-		int required = 0;
+		long initialized = 0;
+		long registered = 0;
 
 		if (registries.containsKey(event.getRegistryKey())) {
-			required = (int) Array.get(registries.get(event.getRegistryKey()), 0);
+			initialized = (long) Array.get(registries.get(event.getRegistryKey()), 0);
 		}
 
 		if (event.getForgeRegistry() != null) {
-			long count = event.getForgeRegistry().getEntries().stream().filter((entry) -> {
+			registered = event.getForgeRegistry().getEntries().stream().filter((entry) -> {
 				return entry.getKey().location().getNamespace() == Technologica.MOD_ID;
 			}).count();
-			Technologica.LOGGER.info("REGISTRATION - " + TextUtil.stringToAllCapsName(TextUtil.getPath(event.getRegistryKey())) + " - " + count + " OF " + required);
-			if (count != required) {
-				Technologica.LOGGER.error("REGISTRATION ERROR - " + TextUtil.stringToAllCapsName(TextUtil.getPath(event.getRegistryKey())) + " - MISSING " + (required - count));
-			}
 		} else if (event.getVanillaRegistry() != null) {
-			long count = event.getVanillaRegistry().entrySet().stream().filter((entry) -> {
+			registered = event.getVanillaRegistry().entrySet().stream().filter((entry) -> {
 				return entry.getKey().location().getNamespace() == Technologica.MOD_ID;
 			}).count();
-			Technologica.LOGGER.info("REGISTRATION - " + TextUtil.stringToAllCapsName(TextUtil.getPath(event.getRegistryKey())) + " - " + count + " OF " + required);
-			if (count != required) {
-				Technologica.LOGGER.error("REGISTRATION ERROR - " + TextUtil.stringToAllCapsName(TextUtil.getPath(event.getRegistryKey())) + " - MISSING " + (required - count));
-			}
+
+		}
+
+		Technologica.LOGGER.info("REGISTRATION - " + TextUtil.stringToAllCapsName(TextUtil.getPath(event.getRegistryKey())) + " - " + registered + " OF " + initialized);
+		if (registered != initialized) {
+			Technologica.LOGGER.error("REGISTRATION ERROR - " + TextUtil.stringToAllCapsName(TextUtil.getPath(event.getRegistryKey())) + " - MISSING " + (initialized - registered));
 		}
 
 	}

@@ -15,9 +15,8 @@ import net.minecraftforge.registries.RegistryObject;
  * @tl.status GREEN
  */
 public final class TechnologicaParticleTypes extends MasterDeferredRegistrar {
-	
+
 	public static int init() {
-		PARTICLE_TYPES.register(Technologica.MOD_EVENT_BUS);
 		return PARTICLE_TYPES.getEntries().size();
 	}
 

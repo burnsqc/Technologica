@@ -89,4 +89,9 @@ public class SawmillRecipe extends SingleItemRecipe {
 			buffer.writeItem(recipe.result2);
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "sawmill";
+	}
 }

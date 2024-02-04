@@ -18,7 +18,7 @@ public class TechnologicaFoods {
 	public static final FoodProperties CHERRY = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 	public static final FoodProperties CHESTNUT = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 	public static final FoodProperties CHILI_PEPPER = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
-	
+
 	public static final FoodProperties COCONUT = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 	public static final FoodProperties CORN = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 	public static final FoodProperties CRANBERRY = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
@@ -38,17 +38,17 @@ public class TechnologicaFoods {
 	public static final FoodProperties PEACH = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 	public static final FoodProperties PEANUT = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 	public static final FoodProperties PEAR = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
-	
+
 	public static final FoodProperties PINEAPPLE = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 	public static final FoodProperties PLUM = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 	public static final FoodProperties PURPLE_CABBAGE = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 	public static final FoodProperties RADISH = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 	public static final FoodProperties RASPBERRY = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
-	
+
 	public static final FoodProperties SQUASH = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 	public static final FoodProperties SWEET_POTATO = (new FoodProperties.Builder().nutrition(1).saturationMod(0.3F).build());
 	public static final FoodProperties STRAWBERRY = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
-	
+
 	public static final FoodProperties TOMATO = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 	public static final FoodProperties TURNIP = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
 	public static final FoodProperties WALNUT = (new FoodProperties.Builder().nutrition(4).saturationMod(0.1F).alwaysEat().build());
@@ -85,6 +85,7 @@ public class TechnologicaFoods {
 	public static final FoodProperties OLIVE_OIL = (new FoodProperties.Builder().build());
 
 	public static final FoodProperties IODINE_PILL = (new FoodProperties.Builder().alwaysEat().fast().build());
+	public static final FoodProperties PERSISTENT_GLARE = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.0F).effect(() -> new MobEffectInstance(TechnologicaMobEffects.LIFESIGHT.get(), 200, 0), 1.0F).alwaysEat().build();
 
 	public static final FoodProperties BATRACHOTOXIN_SAC = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.0F).effect(() -> new MobEffectInstance(TechnologicaMobEffects.HALLUCINIATION.get(), 1200, 0), 1.0F).alwaysEat().build();
 	public static final FoodProperties HEMOTOXIN_SAC = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.0F).effect(() -> new MobEffectInstance(TechnologicaMobEffects.HEMORRHAGE.get(), 1200, 9), 1.0F).alwaysEat().build();

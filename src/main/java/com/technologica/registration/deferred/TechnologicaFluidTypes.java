@@ -20,7 +20,6 @@ import net.minecraftforge.registries.RegistryObject;
 public final class TechnologicaFluidTypes extends MasterDeferredRegistrar {
 
 	public static int init() {
-		FLUID_TYPES.register(Technologica.MOD_EVENT_BUS);
 		return FLUID_TYPES.getEntries().size();
 	}
 

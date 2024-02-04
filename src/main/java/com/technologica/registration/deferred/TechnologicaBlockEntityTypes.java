@@ -33,7 +33,6 @@ import net.minecraftforge.registries.RegistryObject;
 public final class TechnologicaBlockEntityTypes extends MasterDeferredRegistrar {
 
 	public static int init() {
-		BLOCK_ENTITY_TYPES.register(Technologica.MOD_EVENT_BUS);
 		return BLOCK_ENTITY_TYPES.getEntries().size();
 	}
 

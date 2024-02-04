@@ -23,7 +23,6 @@ import net.minecraftforge.registries.RegistryObject;
 public final class TechnologicaMenuTypes extends MasterDeferredRegistrar {
 
 	public static int init() {
-		MENU_TYPES.register(Technologica.MOD_EVENT_BUS);
 		return MENU_TYPES.getEntries().size();
 	}
 

@@ -28,7 +28,6 @@ import net.minecraftforge.registries.RegistryObject;
 public class TechnologicaFeatures extends MasterDeferredRegistrar {
 
 	public static int init() {
-		FEATURES.register(Technologica.MOD_EVENT_BUS);
 		return FEATURES.getEntries().size();
 	}
 

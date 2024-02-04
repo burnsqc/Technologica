@@ -60,7 +60,6 @@ import net.minecraftforge.registries.RegistryObject;
 public final class TechnologicaItems extends MasterDeferredRegistrar {
 
 	public static int init() {
-		ITEMS.register(Technologica.MOD_EVENT_BUS);
 		return ITEMS.getEntries().size();
 	}
 
@@ -1255,6 +1254,6 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> DECK_OF_PUNCHED_CARDS = ITEMS.register("deck_of_punched_cards", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> MAGNETIC_TAPE_BLANK = ITEMS.register("magnetic_tape_blank", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> MAGNETIC_TAPE_WRITTEN = ITEMS.register("magnetic_tape_written", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> PERSISTENT_GLARE = ITEMS.register("persistent_glare", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> PERSISTENT_GLARE = ITEMS.register("persistent_glare", () -> new Item(new Item.Properties().food(TechnologicaFoods.PERSISTENT_GLARE)));
 	public static final RegistryObject<Item> SINGULARITY_GRANULE = ITEMS.register("singularity_granule", () -> new Item(new Item.Properties()));
 }

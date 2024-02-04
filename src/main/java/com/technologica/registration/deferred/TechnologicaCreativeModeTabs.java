@@ -20,7 +20,6 @@ import net.minecraftforge.registries.RegistryObject;
 public final class TechnologicaCreativeModeTabs extends MasterDeferredRegistrar {
 
 	public static int init() {
-		CREATIVE_MODE_TABS.register(Technologica.MOD_EVENT_BUS);
 		return CREATIVE_MODE_TABS.getEntries().size();
 	}
 

@@ -23,9 +23,8 @@ import net.minecraftforge.registries.RegistryObject;
  * @tl.status GREEN
  */
 public final class TechnologicaGlobalLootModifierSerializers extends MasterDeferredRegistrar {
-	
+
 	public static int init() {
-		GLOBAL_LOOT_MODIFIER_SERIALIZERS.register(Technologica.MOD_EVENT_BUS);
 		return GLOBAL_LOOT_MODIFIER_SERIALIZERS.getEntries().size();
 	}
 

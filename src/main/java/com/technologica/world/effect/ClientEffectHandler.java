@@ -10,5 +10,4 @@ public class ClientEffectHandler {
 		Minecraft mc = Minecraft.getInstance();
 		mc.mouseHandler.releaseMouse();
 	}
-
 }

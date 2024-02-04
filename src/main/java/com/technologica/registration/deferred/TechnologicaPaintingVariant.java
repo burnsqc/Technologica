@@ -17,7 +17,6 @@ import net.minecraftforge.registries.RegistryObject;
 public final class TechnologicaPaintingVariant extends MasterDeferredRegistrar {
 
 	public static int init() {
-		PAINTING_VARIANTS.register(Technologica.MOD_EVENT_BUS);
 		return PAINTING_VARIANTS.getEntries().size();
 	}
 

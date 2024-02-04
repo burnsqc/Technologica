@@ -114,7 +114,6 @@ import net.minecraftforge.registries.RegistryObject;
 public final class TechnologicaBlocks extends MasterDeferredRegistrar {
 
 	public static int init() {
-		BLOCKS.register(Technologica.MOD_EVENT_BUS);
 		return BLOCKS.getEntries().size();
 	}
 
