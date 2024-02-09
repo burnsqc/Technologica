@@ -40,7 +40,7 @@ public class VultureModel<T extends Entity> extends ListModel<T> {
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = QuadrupedModel.createBodyMesh(6, CubeDeformation.NONE);
 		PartDefinition root = meshdefinition.getRoot();
-		PartDefinition body = root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-2.5F, -2.0F, -8.0F, 5.0F, 3.0F, 9.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+		PartDefinition body = root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-2.5F, -2.0F, -8.0F, 5.0F, 3.0F, 9.0F), PartPose.offset(0.0F, 20.0F, 0.0F));
 		PartDefinition neck_lower = body.addOrReplaceChild("neck_lower", CubeListBuilder.create().texOffs(19, 0).addBox(-1.0F, 0.0F, -5.0F, 2.0F, 2.0F, 5.0F), PartPose.offset(0.0F, -2.0F, -8.0F));
 		PartDefinition neck = neck_lower.addOrReplaceChild("neck", CubeListBuilder.create().texOffs(33, 0).addBox(-1.0F, -2.0F, -5.0F, 2.0F, 2.0F, 5.0F), PartPose.offset(0.0F, 2.0F, -5.0F));
 		PartDefinition head = neck.addOrReplaceChild("head", CubeListBuilder.create().texOffs(47, 0).addBox(-1.5F, 0.0F, -3.0F, 3.0F, 3.0F, 3.0F), PartPose.offset(0.0F, -2.0F, -5.0F));

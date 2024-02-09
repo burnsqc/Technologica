@@ -32,7 +32,7 @@ public class CottonmouthModel<T extends Entity> extends ListModel<T> {
 	private final ModelPart body12;
 	private final ModelPart body13;
 	private final ModelPart body14;
-	
+
 	public CottonmouthModel(ModelPart modelPartIn) {
 		this.headLower = modelPartIn.getChild("headLower");
 		this.headUpper = headLower.getChild("headUpper");
@@ -56,7 +56,7 @@ public class CottonmouthModel<T extends Entity> extends ListModel<T> {
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = QuadrupedModel.createBodyMesh(6, CubeDeformation.NONE);
 		PartDefinition partdefinition = meshdefinition.getRoot();
-		PartDefinition headLower = partdefinition.addOrReplaceChild("headLower", CubeListBuilder.create().texOffs(0, 4).addBox(-1.5F, 0.0F, -3.0F, 3.0F, 1.0F, 3.0F), PartPose.offset(0.0F, 23.0F, 0.0F));
+		PartDefinition headLower = partdefinition.addOrReplaceChild("headLower", CubeListBuilder.create().texOffs(0, 4).addBox(-1.5F, 0.0F, -3.0F, 3.0F, 1.0F, 3.0F), PartPose.offset(0.0F, 23.0F, -12.0F));
 		PartDefinition headUpper = headLower.addOrReplaceChild("headUpper", CubeListBuilder.create().texOffs(0, 0).addBox(-1.5F, -1.0F, -3.0F, 3.0F, 1.0F, 3.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
 		headUpper.addOrReplaceChild("fangs", CubeListBuilder.create().texOffs(0, 8).addBox(-1.0F, -0.5F, -0.5F, 2.0F, 1.0F, 1.0F), PartPose.offset(0.0F, 0.0F, -2.0F));
 		PartDefinition body1 = headLower.addOrReplaceChild("body1", CubeListBuilder.create().texOffs(12, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
@@ -75,7 +75,7 @@ public class CottonmouthModel<T extends Entity> extends ListModel<T> {
 		body13.addOrReplaceChild("body14", CubeListBuilder.create().texOffs(20, 19).addBox(-0.5F, -1.0F, 0.0F, 1.0F, 1.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 2.0F));
 		return LayerDefinition.create(meshdefinition, 32, 32);
 	}
-	
+
 	@Override
 	public Iterable<ModelPart> parts() {
 		return ImmutableList.of(this.headLower);
@@ -83,24 +83,24 @@ public class CottonmouthModel<T extends Entity> extends ListModel<T> {
 
 	@Override
 	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.headUpper.xRot = (float) (-(Math.sin(ageInTicks / 10) * Math.sin(ageInTicks / 10))/2);
-		this.fangs.xRot = (float) Math.PI/4;
+		this.headUpper.xRot = (float) (-(Math.sin(ageInTicks / 10) * Math.sin(ageInTicks / 10)) / 2);
+		this.fangs.xRot = (float) Math.PI / 4;
 	}
-	
+
 	@Override
 	public void prepareMobModel(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
-		this.body2.yRot = Mth.sin(limbSwing/2) / 3;
-		this.body3.yRot = Mth.sin(limbSwing/2) / 3;
-		this.body4.yRot = -Mth.sin(limbSwing/2) / 3;
-		this.body5.yRot = -Mth.sin(limbSwing/2) / 3;
-		this.body6.yRot = -Mth.sin(limbSwing/2) / 3;
-		this.body7.yRot = -Mth.sin(limbSwing/2) / 3;
-		this.body8.yRot = Mth.sin(limbSwing/2) / 3;
-		this.body9.yRot = Mth.sin(limbSwing/2) / 3;
-		this.body10.yRot = Mth.sin(limbSwing/2) / 3;
-		this.body11.yRot = Mth.sin(limbSwing/2) / 3;
-		this.body12.yRot = -Mth.sin(limbSwing/2) / 3;
-		this.body13.yRot = -Mth.sin(limbSwing/2) / 3;
-		this.body14.yRot = -Mth.sin(limbSwing/2) / 3;
+		this.body2.yRot = Mth.sin(limbSwing / 2) / 3;
+		this.body3.yRot = Mth.sin(limbSwing / 2) / 3;
+		this.body4.yRot = -Mth.sin(limbSwing / 2) / 3;
+		this.body5.yRot = -Mth.sin(limbSwing / 2) / 3;
+		this.body6.yRot = -Mth.sin(limbSwing / 2) / 3;
+		this.body7.yRot = -Mth.sin(limbSwing / 2) / 3;
+		this.body8.yRot = Mth.sin(limbSwing / 2) / 3;
+		this.body9.yRot = Mth.sin(limbSwing / 2) / 3;
+		this.body10.yRot = Mth.sin(limbSwing / 2) / 3;
+		this.body11.yRot = Mth.sin(limbSwing / 2) / 3;
+		this.body12.yRot = -Mth.sin(limbSwing / 2) / 3;
+		this.body13.yRot = -Mth.sin(limbSwing / 2) / 3;
+		this.body14.yRot = -Mth.sin(limbSwing / 2) / 3;
 	}
 }
