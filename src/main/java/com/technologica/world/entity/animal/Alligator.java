@@ -11,8 +11,8 @@ import net.minecraft.world.level.Level;
 
 public class Alligator extends Animal {
 
-	public Alligator(EntityType<? extends Alligator> typeIn, Level worldIn) {
-		super(typeIn, worldIn);
+	public Alligator(EntityType<? extends Alligator> entity, Level level) {
+		super(entity, level);
 	}
 
 	@Override

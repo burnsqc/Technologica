@@ -58,8 +58,8 @@ public class Beaver extends Animal {
 	private int currentMoveTypeDuration;
 	private int carrotTicks;
 
-	public Beaver(EntityType<? extends Beaver> p_i50247_1_, Level p_i50247_2_) {
-		super(p_i50247_1_, p_i50247_2_);
+	public Beaver(EntityType<? extends Beaver> entity, Level level) {
+		super(entity, level);
 		this.moveControl = new Beaver.MoveHelperController(this);
 		this.setMovementSpeed(0.0D);
 	}

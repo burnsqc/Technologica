@@ -199,6 +199,9 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> FUR = ITEMS.register("fur", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> IVORY = ITEMS.register("ivory", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> NARWHAL_TUSK = ITEMS.register("narwhal_tusk", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> DUCK_EGG = ITEMS.register("duck_egg", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> OSTRICH_EGG = ITEMS.register("ostrich_egg", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> TURKEY_EGG = ITEMS.register("turkey_egg", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> BATRACHOTOXIN_SAC = ITEMS.register("batrachotoxin_sac", () -> new Item(new Item.Properties().food(TechnologicaFoods.BATRACHOTOXIN_SAC)));
 	public static final RegistryObject<Item> HEMOTOXIN_SAC = ITEMS.register("hemotoxin_sac", () -> new Item(new Item.Properties().food(TechnologicaFoods.HEMOTOXIN_SAC)));
 	public static final RegistryObject<Item> NECROTOXIN_SAC = ITEMS.register("necrotoxin_sac", () -> new Item(new Item.Properties().food(TechnologicaFoods.NECROTOXIN_SAC)));

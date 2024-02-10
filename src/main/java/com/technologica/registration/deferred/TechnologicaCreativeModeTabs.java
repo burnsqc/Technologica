@@ -105,6 +105,9 @@ public final class TechnologicaCreativeModeTabs extends MasterDeferredRegistrar 
 		items.accept(TechnologicaItems.FUR.get());
 		items.accept(TechnologicaItems.IVORY.get());
 		items.accept(TechnologicaItems.NARWHAL_TUSK.get());
+		items.accept(TechnologicaItems.DUCK_EGG.get());
+		items.accept(TechnologicaItems.OSTRICH_EGG.get());
+		items.accept(TechnologicaItems.TURKEY_EGG.get());
 		items.accept(TechnologicaItems.BATRACHOTOXIN_SAC.get());
 		items.accept(TechnologicaItems.HEMOTOXIN_SAC.get());
 		items.accept(TechnologicaItems.NECROTOXIN_SAC.get());

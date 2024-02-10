@@ -50,7 +50,7 @@ public class Giraffe extends AbstractHorse {
 	}
 
 	// Register Attributes, Goals, and Data
-	// Attributes are registered inside AbstractHourseEntity with method
+	// Attributes are registered inside AbstractHorseEntity with method
 	// createBaseHorseAttributes
 	@Override
 	protected void defineSynchedData() {

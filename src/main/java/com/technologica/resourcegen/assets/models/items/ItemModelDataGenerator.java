@@ -133,6 +133,9 @@ public class ItemModelDataGenerator extends ItemModelProvider {
 		simpleItem(TechnologicaItems.FUR.get());
 		simpleItem(TechnologicaItems.IVORY.get());
 		simpleItem(TechnologicaItems.NARWHAL_TUSK.get());
+		simpleItem(TechnologicaItems.DUCK_EGG.get());
+		simpleItem(TechnologicaItems.OSTRICH_EGG.get());
+		simpleItem(TechnologicaItems.TURKEY_EGG.get());
 		simpleItem(TechnologicaItems.BATRACHOTOXIN_SAC.get());
 		simpleItem(TechnologicaItems.HEMOTOXIN_SAC.get());
 		simpleItem(TechnologicaItems.NECROTOXIN_SAC.get());

@@ -1,6 +1,7 @@
 package com.technologica.world.entity.animal;
 
 import com.technologica.registration.deferred.TechnologicaEntityTypes;
+import com.technologica.registration.deferred.TechnologicaItems;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -97,13 +98,10 @@ public class Turkey extends Animal {
 		this.wingRotation += this.wingRotDelta * 2.0F;
 		if (!this.level().isClientSide && this.isAlive() && !this.isBaby() && !this.isChickenJockey() && --this.timeUntilNextEgg <= 0) {
 			this.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
-			this.spawnAtLocation(Items.EGG);
+			this.spawnAtLocation(TechnologicaItems.TURKEY_EGG.get());
 			this.timeUntilNextEgg = this.random.nextInt(6000) + 6000;
 		}
-
 	}
-
-	
 
 	@Override
 	protected SoundEvent getAmbientSound() {
@@ -137,8 +135,6 @@ public class Turkey extends Animal {
 	public boolean isFood(ItemStack stack) {
 		return TEMPTATION_ITEMS.test(stack);
 	}
-
-	
 
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.

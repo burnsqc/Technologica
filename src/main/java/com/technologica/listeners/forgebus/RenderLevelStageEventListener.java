@@ -40,22 +40,23 @@ public class RenderLevelStageEventListener {
 		LevelRenderer levelRenderer = event.getLevelRenderer();
 		Camera camera = event.getCamera();
 		Frustum frustum = event.getFrustum();
-		MultiBufferSource.BufferSource multibuffersource$buffersource = renderBuffers.bufferSource();
 
 		if (localPlayer.hasEffect(TechnologicaMobEffects.LIFESIGHT.get())) {
-			if (event.getStage() == Stage.AFTER_ENTITIES) {
+			if (event.getStage() == Stage.AFTER_PARTICLES) {
 				for (Entity entity : level.entitiesForRendering()) {
-					multibuffersource$buffersource.endLastBatch();
-					renderBuffers.outlineBufferSource().endOutlineBatch();
 					if ((entityRenderDispatcher.shouldRender(entity, frustum, d0, d1, d2) || entity.hasIndirectPassenger(minecraft.player)) && entity instanceof LivingEntity) {
 						BlockPos blockpos = entity.blockPosition();
 						if ((level.isOutsideBuildHeight(blockpos.getY()) || levelRenderer.isChunkCompiled(blockpos)) && (entity != camera.getEntity() || camera.isDetached() || camera.getEntity() instanceof LivingEntity && ((LivingEntity) camera.getEntity()).isSleeping()) && (!(entity instanceof LocalPlayer) || camera.getEntity() == entity || (entity == minecraft.player && !minecraft.player.isSpectator()))) {
-
+							if (entity.tickCount == 0) {
+								entity.xOld = entity.getX();
+								entity.yOld = entity.getY();
+								entity.zOld = entity.getZ();
+							}
+							MultiBufferSource multibuffersource;
 							OutlineBufferSource outlinebuffersource = renderBuffers.outlineBufferSource();
-
-							outlinebuffersource.setColor(255, 0, 255, 255);
-
-							this.renderEntity(entity, d0, d1, d2, partialTick, poseStack, outlinebuffersource, entityRenderDispatcher);
+							multibuffersource = outlinebuffersource;
+							outlinebuffersource.setColor((int) (255 * (Mth.sin((event.getRenderTick() + partialTick) / 10) + 1) / 2), 0, (int) (255 * (Mth.sin((event.getRenderTick() + partialTick) / 10) + 1) / 2), 50);
+							this.renderEntity(entity, d0, d1, d2, partialTick, poseStack, multibuffersource, entityRenderDispatcher);
 						}
 					}
 				}

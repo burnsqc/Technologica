@@ -85,13 +85,13 @@ public class TechnologicaEntityAttributes {
 
 		event.put(TechnologicaEntityTypes.ALLIGATOR.get(), Alligator.registerAttributes().build());
 		event.put(TechnologicaEntityTypes.BEAVER.get(), Beaver.registerAttributes().build());
-		event.put(TechnologicaEntityTypes.BUFFALO.get(), Buffalo.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.BUFFALO.get(), Buffalo.createAttributes().build());
 		event.put(TechnologicaEntityTypes.COBRA.get(), Cobra.registerAttributes().build());
 		event.put(TechnologicaEntityTypes.COTTONMOUTH.get(), Cottonmouth.registerAttributes().build());
 		event.put(TechnologicaEntityTypes.COYOTE.get(), Coyote.createAttributes().build());
 		event.put(TechnologicaEntityTypes.CRAB.get(), Crab.registerAttributes().build());
 		event.put(TechnologicaEntityTypes.DEER.get(), Deer.registerAttributes().build());
-		event.put(TechnologicaEntityTypes.DUCK.get(), Duck.registerAttributes().build());
+		event.put(TechnologicaEntityTypes.DUCK.get(), Duck.createAttributes().build());
 		event.put(TechnologicaEntityTypes.ELEPHANT.get(), Elephant.registerAttributes().build());
 		event.put(TechnologicaEntityTypes.FLAMINGO.get(), Flamingo.registerAttributes().build());
 		event.put(TechnologicaEntityTypes.FIGURE_EIGHT_PUFFERFISH.get(), Frog.registerAttributes().build());
