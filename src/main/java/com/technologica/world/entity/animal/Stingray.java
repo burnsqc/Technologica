@@ -128,7 +128,7 @@ public class Stingray extends WaterAnimal implements NeutralMob {
 
 	@Override
 	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
-		return 0.3F;
+		return 0.1F;
 	}
 
 	/**

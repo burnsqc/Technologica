@@ -23,9 +23,9 @@ public class DuckRenderer extends MobRenderer<Duck, ChickenModel<Duck>> {
 	}
 
 	@Override
-	protected float getBob(Duck duckIn, float partialTicksIn) {
-		float f = Mth.lerp(partialTicksIn, duckIn.getoFlap(), duckIn.getWingRotation());
-		float f1 = Mth.lerp(partialTicksIn, duckIn.getoFlapSpeed(), duckIn.getDestPos());
+	protected float getBob(Duck entity, float partialTicksIn) {
+		float f = Mth.lerp(partialTicksIn, entity.oFlap, entity.flap);
+		float f1 = Mth.lerp(partialTicksIn, entity.oFlapSpeed, entity.flapSpeed);
 		return (Mth.sin(f) + 1.0F) * f1;
 	}
 }

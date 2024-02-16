@@ -1,5 +1,7 @@
 package com.technologica.world.entity.animal;
 
+import javax.annotation.Nullable;
+
 import com.technologica.registration.deferred.TechnologicaEntityTypes;
 import com.technologica.registration.deferred.TechnologicaItems;
 
@@ -32,21 +34,31 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.Vec3;
 
+/**
+ * <p>
+ * This class contains all of the behavior logic for turkeys.
+ * <p>
+ * Turkeys are very similar to chickens. The key difference is that turkeys lay turkey eggs.
+ * </p>
+ * 
+ * @tl.status GREEN
+ */
 public class Turkey extends Animal {
-	private static final Ingredient TEMPTATION_ITEMS = Ingredient.of(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
-	public float wingRotation;
-	public float destPos;
+	private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS, Items.TORCHFLOWER_SEEDS, Items.PITCHER_POD);
+	public float flap;
+	public float flapSpeed;
 	public float oFlapSpeed;
 	public float oFlap;
-	public float wingRotDelta = 1.0F;
-	public int timeUntilNextEgg = this.random.nextInt(6000) + 6000;
-	public boolean chickenJockey;
+	public float flapping = 1.0F;
+	private float nextFlap = 1.0F;
+	public int eggTime = this.random.nextInt(6000) + 6000;
 
-	public Turkey(EntityType<? extends Turkey> type, Level worldIn) {
-		super(type, worldIn);
+	public Turkey(EntityType<? extends Turkey> turkey, Level level) {
+		super(turkey, level);
 		this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
 	}
 
@@ -55,52 +67,57 @@ public class Turkey extends Animal {
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.4D));
 		this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
-		this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, TEMPTATION_ITEMS, false));
+		this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, FOOD_ITEMS, false));
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
 	}
 
-	public static AttributeSupplier.Builder registerAttributes() {
-		return AttributeSupplier.builder().add(Attributes.MAX_HEALTH, 8.0D).add(Attributes.MOVEMENT_SPEED, 0.25D).add(Attributes.FOLLOW_RANGE, 16.0D).add(Attributes.ATTACK_KNOCKBACK).add(Attributes.KNOCKBACK_RESISTANCE).add(Attributes.ARMOR).add(Attributes.ARMOR_TOUGHNESS).add(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get()).add(net.minecraftforge.common.ForgeMod.NAMETAG_DISTANCE.get()).add(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get());
-	}
-
 	@Override
-	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
-		return this.isBaby() ? sizeIn.height * 0.85F : sizeIn.height * 0.92F;
+	protected float getStandingEyeHeight(Pose pose, EntityDimensions size) {
+		return this.isBaby() ? size.height * 0.85F : size.height * 0.92F;
 	}
 
-	public static AttributeSupplier.Builder createAttributes() { // NO_UCD (unused code)
+	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 4.0D).add(Attributes.MOVEMENT_SPEED, 0.25D);
 	}
 
-	/**
-	 * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
-	 */
 	@Override
 	public void aiStep() {
 		super.aiStep();
-		this.oFlap = this.wingRotation;
-		this.oFlapSpeed = this.destPos;
-		this.destPos = (float) (this.destPos + (this.onGround() ? -1 : 4) * 0.3D);
-		this.destPos = Mth.clamp(this.destPos, 0.0F, 1.0F);
-		if (!this.onGround() && this.wingRotDelta < 1.0F) {
-			this.wingRotDelta = 1.0F;
+		this.oFlap = this.flap;
+		this.oFlapSpeed = this.flapSpeed;
+		this.flapSpeed += (this.onGround() ? -1.0F : 4.0F) * 0.3F;
+		this.flapSpeed = Mth.clamp(this.flapSpeed, 0.0F, 1.0F);
+		if (!this.onGround() && this.flapping < 1.0F) {
+			this.flapping = 1.0F;
 		}
 
-		this.wingRotDelta = (float) (this.wingRotDelta * 0.9D);
-		Vec3 vector3d = this.getDeltaMovement();
-		if (!this.onGround() && vector3d.y < 0.0D) {
-			this.setDeltaMovement(vector3d.multiply(1.0D, 0.6D, 1.0D));
+		this.flapping *= 0.9F;
+		Vec3 vec3 = this.getDeltaMovement();
+		if (!this.onGround() && vec3.y < 0.0D) {
+			this.setDeltaMovement(vec3.multiply(1.0D, 0.6D, 1.0D));
 		}
 
-		this.wingRotation += this.wingRotDelta * 2.0F;
-		if (!this.level().isClientSide && this.isAlive() && !this.isBaby() && !this.isChickenJockey() && --this.timeUntilNextEgg <= 0) {
+		this.flap += this.flapping * 2.0F;
+		if (!this.level().isClientSide && this.isAlive() && !this.isBaby() && --this.eggTime <= 0) {
 			this.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 			this.spawnAtLocation(TechnologicaItems.TURKEY_EGG.get());
-			this.timeUntilNextEgg = this.random.nextInt(6000) + 6000;
+			this.gameEvent(GameEvent.ENTITY_PLACE);
+			this.eggTime = this.random.nextInt(6000) + 6000;
 		}
+
+	}
+
+	@Override
+	protected boolean isFlapping() {
+		return this.flyDist > this.nextFlap;
+	}
+
+	@Override
+	protected void onFlap() {
+		this.nextFlap = this.flyDist + this.flapSpeed / 2.0F;
 	}
 
 	@Override
@@ -109,7 +126,7 @@ public class Turkey extends Animal {
 	}
 
 	@Override
-	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+	protected SoundEvent getHurtSound(DamageSource damageSource) {
 		return SoundEvents.CHICKEN_HURT;
 	}
 
@@ -119,58 +136,32 @@ public class Turkey extends Animal {
 	}
 
 	@Override
-	protected void playStepSound(BlockPos pos, BlockState blockIn) {
+	protected void playStepSound(BlockPos blockPos, BlockState blockState) {
 		this.playSound(SoundEvents.CHICKEN_STEP, 0.15F, 1.0F);
 	}
 
 	@Override
-	public Turkey getBreedOffspring(ServerLevel world, AgeableMob mate) {
-		return TechnologicaEntityTypes.TURKEY.get().create(world);
+	@Nullable
+	public Turkey getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {
+		return TechnologicaEntityTypes.TURKEY.get().create(serverLevel);
 	}
 
-	/**
-	 * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on the animal type)
-	 */
 	@Override
-	public boolean isFood(ItemStack stack) {
-		return TEMPTATION_ITEMS.test(stack);
+	public boolean isFood(ItemStack itemStack) {
+		return FOOD_ITEMS.test(itemStack);
 	}
 
-	/**
-	 * (abstract) Protected helper method to read subclass entity data from NBT.
-	 */
 	@Override
-	public void readAdditionalSaveData(CompoundTag compound) {
-		super.readAdditionalSaveData(compound);
-		this.chickenJockey = compound.getBoolean("IsChickenJockey");
-		if (compound.contains("EggLayTime")) {
-			this.timeUntilNextEgg = compound.getInt("EggLayTime");
+	public void readAdditionalSaveData(CompoundTag compoundTag) {
+		super.readAdditionalSaveData(compoundTag);
+		if (compoundTag.contains("EggLayTime")) {
+			this.eggTime = compoundTag.getInt("EggLayTime");
 		}
 	}
 
 	@Override
-	public void addAdditionalSaveData(CompoundTag compound) {
-		super.addAdditionalSaveData(compound);
-		compound.putBoolean("IsChickenJockey", this.chickenJockey);
-		compound.putInt("EggLayTime", this.timeUntilNextEgg);
-	}
-
-	@Override
-	public boolean removeWhenFarAway(double distanceToClosestPlayer) {
-		return this.isChickenJockey();
-	}
-
-	/**
-	 * Determines if this chicken is a jokey with a zombie riding it.
-	 */
-	public boolean isChickenJockey() {
-		return this.chickenJockey;
-	}
-
-	/**
-	 * Sets whether this chicken is a jockey or not.
-	 */
-	public void setChickenJockey(boolean jockey) {
-		this.chickenJockey = jockey;
+	public void addAdditionalSaveData(CompoundTag compoundTag) {
+		super.addAdditionalSaveData(compoundTag);
+		compoundTag.putInt("EggLayTime", this.eggTime);
 	}
 }

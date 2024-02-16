@@ -11,6 +11,7 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.animal.Animal;
 
 public class FlamingoModel<T extends Animal> extends AgeableListModel<T> {
@@ -23,6 +24,8 @@ public class FlamingoModel<T extends Animal> extends AgeableListModel<T> {
 	private final ModelPart body;
 	private final ModelPart legRight;
 	private final ModelPart legLeft;
+	private final ModelPart legRightLower;
+	private final ModelPart legLeftLower;
 	private final ModelPart wingRight;
 	private final ModelPart wingLeft;
 	private final ModelPart tail;
@@ -37,6 +40,8 @@ public class FlamingoModel<T extends Animal> extends AgeableListModel<T> {
 		this.head = neck5.getChild("head");
 		this.legRight = modelPartIn.getChild("leg_right");
 		this.legLeft = modelPartIn.getChild("leg_left");
+		this.legRightLower = legRight.getChild("right_leg_lower");
+		this.legLeftLower = legLeft.getChild("left_leg_lower");
 		this.wingRight = modelPartIn.getChild("wing_right");
 		this.wingLeft = modelPartIn.getChild("wing_left");
 		this.tail = modelPartIn.getChild("tail");
@@ -82,5 +87,18 @@ public class FlamingoModel<T extends Animal> extends AgeableListModel<T> {
 		this.neck5.xRot = (float) Math.PI / 4;
 		this.head.xRot = (float) Math.PI / 4;
 		this.tail.xRot = 6 * (float) Math.PI / 8;
+
+		this.head.xRot = headPitch * ((float) Math.PI / 180F) + (float) Math.PI / 4;
+		this.neck1.yRot = netHeadYaw * ((float) Math.PI / 180F);
+		this.legRight.xRot = (1 + Mth.sin(limbSwing * 0.6662F) * 1.4F) * limbSwingAmount;
+		this.legLeft.xRot = (1 + Mth.sin(limbSwing * 0.6662F + (float) Math.PI) * 1.4F) * limbSwingAmount;
+		this.legRightLower.xRot = (1 + Mth.cos(limbSwing * 0.6662F) * 1.4F - (float) Math.PI) * limbSwingAmount;
+		this.legLeftLower.xRot = -(1 + Mth.cos(limbSwing * 0.6662F) * 1.4F) * limbSwingAmount;
+		this.wingRight.zRot = ageInTicks;
+		this.wingLeft.zRot = -ageInTicks;
+		if (limbSwing < 0.1F) {
+			this.legLeft.xRot = (float) Math.max(this.legLeft.xRot + 0.01, 1.3F);
+			this.legLeftLower.xRot += -2.6F;
+		}
 	}
 }

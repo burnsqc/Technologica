@@ -77,7 +77,7 @@ public class Beaver extends Animal {
 		this.goalSelector.addGoal(11, new LookAtPlayerGoal(this, Player.class, 10.0F));
 	}
 
-	public static AttributeSupplier.Builder registerAttributes() {
+	public static AttributeSupplier.Builder createAttributes() {
 		return AttributeSupplier.builder().add(Attributes.MAX_HEALTH, 10.0D).add(Attributes.MOVEMENT_SPEED, 0.25D).add(Attributes.FOLLOW_RANGE, 16.0D).add(Attributes.ATTACK_KNOCKBACK).add(Attributes.KNOCKBACK_RESISTANCE).add(Attributes.ARMOR).add(Attributes.ARMOR_TOUGHNESS).add(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get()).add(net.minecraftforge.common.ForgeMod.NAMETAG_DISTANCE.get()).add(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get());
 	}
 

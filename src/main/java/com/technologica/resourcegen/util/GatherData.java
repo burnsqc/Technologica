@@ -12,6 +12,7 @@ import com.technologica.resourcegen.data.lootmodifiers.chests.ChestLootModifierD
 import com.technologica.resourcegen.data.loottables.LootTableDataGenerator;
 import com.technologica.resourcegen.data.recipes.RecipeDataGenerator;
 import com.technologica.resourcegen.data.tags.blocks.BlockTagProvider;
+import com.technologica.resourcegen.data.tags.entity.EntityTagProvider;
 import com.technologica.resourcegen.data.tags.fluids.FluidTagDataGenerator;
 import com.technologica.resourcegen.data.tags.items.ItemTagProvider;
 import com.technologica.resourcegen.data.tags.paintingvariant.PaintingVariantTagProvider;
@@ -65,6 +66,7 @@ public class GatherData extends MasterResourceProvider {
 		DamageTypeProvider damageTypeProvider = new DamageTypeProvider(packOutput, lookupProvider, registrySetBuilder);
 
 		BlockTagProvider blockTagProvider = new BlockTagProvider(packOutput, lookupProvider, helper);
+		EntityTagProvider entityTagProvider = new EntityTagProvider(packOutput, lookupProvider, helper);
 		FluidTagDataGenerator fluidTagProvider = new FluidTagDataGenerator(packOutput, lookupProvider, helper);
 		ItemTagProvider itemTagProvider = new ItemTagProvider(packOutput, lookupProvider, blockTagProvider.contentsGetter(), helper);
 		BiomeTagProvider biomeTagProvider = new BiomeTagProvider(packOutput, lookupProvider, helper);
@@ -77,7 +79,7 @@ public class GatherData extends MasterResourceProvider {
 		addDataProvider(new LootTableDataGenerator(packOutput));
 		// addDataProvider(new TechnologicaDatapackBuiltinEntriesProvider(packOutput, lookupProvider));
 		addDataProvider(new RecipeDataGenerator(packOutput));
-		addIntermediateDataProvider(new TagIntermediateDataGenerator(blockTagProvider, fluidTagProvider, itemTagProvider, biomeTagProvider, paintingVariantTagProvider));
+		addIntermediateDataProvider(new TagIntermediateDataGenerator(blockTagProvider, entityTagProvider, fluidTagProvider, itemTagProvider, biomeTagProvider, paintingVariantTagProvider));
 
 		addDataProvider(advancementProvider);
 		// addDataProvider(chatTypeProvider);

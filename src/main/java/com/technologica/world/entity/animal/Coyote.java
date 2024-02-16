@@ -73,13 +73,22 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.Vec3;
 
+/**
+ * <p>
+ * This class contains all of the behavior logic for coyotes.
+ * <p>
+ * Coyotes are very similar to wolves. Key differences are that coyotes attack scorpions rather than turtles, and do not avoid llamas.
+ * </p>
+ * 
+ * @tl.status GREEN
+ */
 public class Coyote extends TamableAnimal implements NeutralMob {
 	private static final EntityDataAccessor<Boolean> DATA_INTERESTED_ID = SynchedEntityData.defineId(Coyote.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Integer> DATA_COLLAR_COLOR = SynchedEntityData.defineId(Coyote.class, EntityDataSerializers.INT);
 	private static final EntityDataAccessor<Integer> DATA_REMAINING_ANGER_TIME = SynchedEntityData.defineId(Coyote.class, EntityDataSerializers.INT);
-	public static final Predicate<LivingEntity> PREY_SELECTOR = (p_30437_) -> {
-		EntityType<?> entitytype = p_30437_.getType();
-		return entitytype == EntityType.SHEEP || entitytype == EntityType.RABBIT || entitytype == EntityType.FOX;
+	public static final Predicate<LivingEntity> PREY_SELECTOR = (prey) -> {
+		EntityType<?> entitytype = prey.getType();
+		return entitytype == EntityType.SHEEP || entitytype == EntityType.RABBIT || entitytype == TechnologicaEntityTypes.SCORPION.get();
 	};
 	private float interestedAngle;
 	private float interestedAngleO;
@@ -91,8 +100,8 @@ public class Coyote extends TamableAnimal implements NeutralMob {
 	@Nullable
 	private UUID persistentAngerTarget;
 
-	public Coyote(EntityType<? extends Coyote> type, Level worldIn) {
-		super(type, worldIn);
+	public Coyote(EntityType<? extends Coyote> coyote, Level level) {
+		super(coyote, level);
 		this.setTame(false);
 		this.setPathfindingMalus(BlockPathTypes.POWDER_SNOW, -1.0F);
 		this.setPathfindingMalus(BlockPathTypes.DANGER_POWDER_SNOW, -1.0F);
@@ -101,6 +110,7 @@ public class Coyote extends TamableAnimal implements NeutralMob {
 	@Override
 	protected void registerGoals() {
 		this.goalSelector.addGoal(1, new FloatGoal(this));
+		this.goalSelector.addGoal(1, new Coyote.CoyotePanicGoal(1.5D));
 		this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
 		this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.4F));
 		this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.0D, true));
@@ -111,7 +121,7 @@ public class Coyote extends TamableAnimal implements NeutralMob {
 		this.goalSelector.addGoal(10, new RandomLookAroundGoal(this));
 		this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
 		this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
-		this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
+		this.targetSelector.addGoal(3, new HurtByTargetGoal(this).setAlertOthers());
 		this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt));
 		this.targetSelector.addGoal(5, new NonTameRandomTargetGoal<>(this, Animal.class, false, PREY_SELECTOR));
 		this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, AbstractSkeleton.class, false));
@@ -131,25 +141,25 @@ public class Coyote extends TamableAnimal implements NeutralMob {
 	}
 
 	@Override
-	protected void playStepSound(BlockPos p_30415_, BlockState p_30416_) {
+	protected void playStepSound(BlockPos blockPos, BlockState blockState) {
 		this.playSound(SoundEvents.WOLF_STEP, 0.15F, 1.0F);
 	}
 
 	@Override
-	public void addAdditionalSaveData(CompoundTag p_30418_) {
-		super.addAdditionalSaveData(p_30418_);
-		p_30418_.putByte("CollarColor", (byte) this.getCollarColor().getId());
-		this.addPersistentAngerSaveData(p_30418_);
+	public void addAdditionalSaveData(CompoundTag compoundTag) {
+		super.addAdditionalSaveData(compoundTag);
+		compoundTag.putByte("CollarColor", (byte) this.getCollarColor().getId());
+		this.addPersistentAngerSaveData(compoundTag);
 	}
 
 	@Override
-	public void readAdditionalSaveData(CompoundTag p_30402_) {
-		super.readAdditionalSaveData(p_30402_);
-		if (p_30402_.contains("CollarColor", 99)) {
-			this.setCollarColor(DyeColor.byId(p_30402_.getInt("CollarColor")));
+	public void readAdditionalSaveData(CompoundTag compoundTag) {
+		super.readAdditionalSaveData(compoundTag);
+		if (compoundTag.contains("CollarColor", 99)) {
+			this.setCollarColor(DyeColor.byId(compoundTag.getInt("CollarColor")));
 		}
 
-		this.readPersistentAngerSaveData(this.level(), p_30402_);
+		this.readPersistentAngerSaveData(this.level(), compoundTag);
 	}
 
 	@Override
@@ -164,7 +174,7 @@ public class Coyote extends TamableAnimal implements NeutralMob {
 	}
 
 	@Override
-	protected SoundEvent getHurtSound(DamageSource p_30424_) {
+	protected SoundEvent getHurtSound(DamageSource damageSource) {
 		return SoundEvents.WOLF_HURT;
 	}
 
@@ -249,12 +259,12 @@ public class Coyote extends TamableAnimal implements NeutralMob {
 	}
 
 	@Override
-	public void die(DamageSource p_30384_) {
+	public void die(DamageSource damageSource) {
 		this.isWet = false;
 		this.isShaking = false;
 		this.shakeAnimO = 0.0F;
 		this.shakeAnim = 0.0F;
-		super.die(p_30384_);
+		super.die(damageSource);
 	}
 
 	public boolean isWet() {
@@ -281,8 +291,8 @@ public class Coyote extends TamableAnimal implements NeutralMob {
 	}
 
 	@Override
-	protected float getStandingEyeHeight(Pose p_30409_, EntityDimensions p_30410_) {
-		return p_30410_.height * 0.8F;
+	protected float getStandingEyeHeight(Pose pose, EntityDimensions size) {
+		return size.height * 0.8F;
 	}
 
 	@Override
@@ -291,37 +301,37 @@ public class Coyote extends TamableAnimal implements NeutralMob {
 	}
 
 	@Override
-	public boolean hurt(DamageSource p_30386_, float p_30387_) {
-		if (this.isInvulnerableTo(p_30386_)) {
+	public boolean hurt(DamageSource damageSource, float amount) {
+		if (this.isInvulnerableTo(damageSource)) {
 			return false;
 		} else {
-			Entity entity = p_30386_.getEntity();
+			Entity entity = damageSource.getEntity();
 			if (!this.level().isClientSide) {
 				this.setOrderedToSit(false);
 			}
 
 			if (entity != null && !(entity instanceof Player) && !(entity instanceof AbstractArrow)) {
-				p_30387_ = (p_30387_ + 1.0F) / 2.0F;
+				amount = (amount + 1.0F) / 2.0F;
 			}
 
-			return super.hurt(p_30386_, p_30387_);
+			return super.hurt(damageSource, amount);
 		}
 	}
 
 	@Override
-	public boolean doHurtTarget(Entity p_30372_) {
-		boolean flag = p_30372_.hurt(this.damageSources().mobAttack(this), ((int) this.getAttributeValue(Attributes.ATTACK_DAMAGE)));
+	public boolean doHurtTarget(Entity entity) {
+		boolean flag = entity.hurt(this.damageSources().mobAttack(this), ((int) this.getAttributeValue(Attributes.ATTACK_DAMAGE)));
 		if (flag) {
-			this.doEnchantDamageEffects(this, p_30372_);
+			this.doEnchantDamageEffects(this, entity);
 		}
 
 		return flag;
 	}
 
 	@Override
-	public void setTame(boolean p_30443_) {
-		super.setTame(p_30443_);
-		if (p_30443_) {
+	public void setTame(boolean isTame) {
+		super.setTame(isTame);
+		if (isTame) {
 			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20.0D);
 			this.setHealth(20.0F);
 		} else {
@@ -338,58 +348,61 @@ public class Coyote extends TamableAnimal implements NeutralMob {
 		if (this.level().isClientSide) {
 			boolean flag = this.isOwnedBy(p_30412_) || this.isTame() || itemstack.is(Items.BONE) && !this.isTame() && !this.isAngry();
 			return flag ? InteractionResult.CONSUME : InteractionResult.PASS;
-		} else {
-			if (this.isTame()) {
-				if (this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
-					if (!p_30412_.getAbilities().instabuild) {
-						itemstack.shrink(1);
-					}
-
-					this.heal(itemstack.getFoodProperties(this).getNutrition());
-					this.gameEvent(GameEvent.EAT, this);
-					return InteractionResult.SUCCESS;
-				}
-
-				if (!(item instanceof DyeItem)) {
-					InteractionResult interactionresult = super.mobInteract(p_30412_, p_30413_);
-					if ((!interactionresult.consumesAction() || this.isBaby()) && this.isOwnedBy(p_30412_)) {
-						this.setOrderedToSit(!this.isOrderedToSit());
-						this.jumping = false;
-						this.navigation.stop();
-						this.setTarget((LivingEntity) null);
-						return InteractionResult.SUCCESS;
-					}
-
-					return interactionresult;
-				}
-
-				DyeColor dyecolor = ((DyeItem) item).getDyeColor();
-				if (dyecolor != this.getCollarColor()) {
-					this.setCollarColor(dyecolor);
-					if (!p_30412_.getAbilities().instabuild) {
-						itemstack.shrink(1);
-					}
-
-					return InteractionResult.SUCCESS;
-				}
-			} else if (itemstack.is(Items.BONE) && !this.isAngry()) {
+		} else if (this.isTame()) {
+			if (this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
+				this.heal(itemstack.getFoodProperties(this).getNutrition());
 				if (!p_30412_.getAbilities().instabuild) {
 					itemstack.shrink(1);
 				}
 
-				if (this.random.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, p_30412_)) {
-					this.tame(p_30412_);
-					this.navigation.stop();
-					this.setTarget((LivingEntity) null);
-					this.setOrderedToSit(true);
-					this.level().broadcastEntityEvent(this, (byte) 7);
-				} else {
-					this.level().broadcastEntityEvent(this, (byte) 6);
+				this.gameEvent(GameEvent.EAT, this);
+				return InteractionResult.SUCCESS;
+			} else {
+				if (item instanceof DyeItem) {
+					DyeItem dyeitem = (DyeItem) item;
+					if (this.isOwnedBy(p_30412_)) {
+						DyeColor dyecolor = dyeitem.getDyeColor();
+						if (dyecolor != this.getCollarColor()) {
+							this.setCollarColor(dyecolor);
+							if (!p_30412_.getAbilities().instabuild) {
+								itemstack.shrink(1);
+							}
+
+							return InteractionResult.SUCCESS;
+						}
+
+						return super.mobInteract(p_30412_, p_30413_);
+					}
 				}
 
-				return InteractionResult.SUCCESS;
+				InteractionResult interactionresult = super.mobInteract(p_30412_, p_30413_);
+				if ((!interactionresult.consumesAction() || this.isBaby()) && this.isOwnedBy(p_30412_)) {
+					this.setOrderedToSit(!this.isOrderedToSit());
+					this.jumping = false;
+					this.navigation.stop();
+					this.setTarget((LivingEntity) null);
+					return InteractionResult.SUCCESS;
+				} else {
+					return interactionresult;
+				}
+			}
+		} else if (itemstack.is(Items.BONE) && !this.isAngry()) {
+			if (!p_30412_.getAbilities().instabuild) {
+				itemstack.shrink(1);
 			}
 
+			if (this.random.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, p_30412_)) {
+				this.tame(p_30412_);
+				this.navigation.stop();
+				this.setTarget((LivingEntity) null);
+				this.setOrderedToSit(true);
+				this.level().broadcastEntityEvent(this, (byte) 7);
+			} else {
+				this.level().broadcastEntityEvent(this, (byte) 6);
+			}
+
+			return InteractionResult.SUCCESS;
+		} else {
 			return super.mobInteract(p_30412_, p_30413_);
 		}
 	}
@@ -462,12 +475,15 @@ public class Coyote extends TamableAnimal implements NeutralMob {
 	}
 
 	@Override
+	@Nullable
 	public Coyote getBreedOffspring(ServerLevel p_149088_, AgeableMob p_149089_) {
 		Coyote coyote = TechnologicaEntityTypes.COYOTE.get().create(p_149088_);
-		UUID uuid = this.getOwnerUUID();
-		if (uuid != null) {
-			coyote.setOwnerUUID(uuid);
-			coyote.setTame(true);
+		if (coyote != null) {
+			UUID uuid = this.getOwnerUUID();
+			if (uuid != null) {
+				coyote.setOwnerUUID(uuid);
+				coyote.setTame(true);
+			}
 		}
 
 		return coyote;
@@ -529,8 +545,8 @@ public class Coyote extends TamableAnimal implements NeutralMob {
 		return new Vec3(0.0D, 0.6F * this.getEyeHeight(), this.getBbWidth() * 0.4F);
 	}
 
-	public static boolean checkCoyoteSpawnRules(EntityType<Coyote> p_186244_, LevelAccessor p_186245_, MobSpawnType p_186246_, BlockPos p_186247_, RandomSource p_186248_) {
-		return p_186245_.getBlockState(p_186247_.below()).is(BlockTags.WOLVES_SPAWNABLE_ON) && isBrightEnoughToSpawn(p_186245_, p_186247_);
+	public static boolean checkWolfSpawnRules(EntityType<Coyote> p_218292_, LevelAccessor p_218293_, MobSpawnType p_218294_, BlockPos p_218295_, RandomSource p_218296_) {
+		return p_218293_.getBlockState(p_218295_.below()).is(BlockTags.WOLVES_SPAWNABLE_ON) && isBrightEnoughToSpawn(p_218293_, p_218295_);
 	}
 
 	class CoyoteAvoidEntityGoal<T extends LivingEntity> extends AvoidEntityGoal<T> {

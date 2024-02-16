@@ -9,11 +9,10 @@ import com.technologica.world.entity.vehicle.TechnologicaBoat;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 
 public class TechnologicaModelLayers {
-	private static final Set<ModelLayerLocation> ALL_MODELS = Sets.newHashSet();
+	public static final Set<ModelLayerLocation> ALL_MODELS = Sets.newHashSet();
 	public static final ModelLayerLocation ALLIGATOR = register("alligator");
 	public static final ModelLayerLocation BEAVER = register("beaver");
 	public static final ModelLayerLocation BUFFALO = register("buffalo");
-	public static final ModelLayerLocation CAMEL = register("camel");
 	public static final ModelLayerLocation COBRA = register("cobra");
 	public static final ModelLayerLocation COTTONMOUTH = register("cottonmouth");
 	public static final ModelLayerLocation COYOTE = register("coyote");
@@ -82,8 +81,8 @@ public class TechnologicaModelLayers {
 		return new ModelLayerLocation(new TechnologicaLocation(p_171301_), p_171302_);
 	}
 
-	private static ModelLayerLocation register(String p_171294_) {
-		return register(p_171294_, "main");
+	private static ModelLayerLocation register(String name) {
+		return register(name, "main");
 	}
 
 	private static ModelLayerLocation register(String p_171296_, String p_171297_) {

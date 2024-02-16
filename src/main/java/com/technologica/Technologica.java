@@ -88,7 +88,7 @@ public class Technologica {
 		MOD_EVENT_BUS.addListener(MasterDeferredRegistrar::onRegisterEvent);
 		MOD_EVENT_BUS.addListener(TechnologicaEntityAttributes::onEntityAttributeCreationEvent);
 		MOD_EVENT_BUS.addListener(CommonSetup::onFMLCommonSetupEvent);
-		MOD_EVENT_BUS.addListener(TechnologicaCapabilities::register);
+		MOD_EVENT_BUS.addListener(TechnologicaCapabilities::onRegisterCapabilitiesEvent);
 
 		FORGE_EVENT_BUS.addListener(TechnologicaCommands::register);
 		FORGE_EVENT_BUS.addGenericListener(Entity.class, AttachCapabilities::onAttachCapabilitiesEvent);

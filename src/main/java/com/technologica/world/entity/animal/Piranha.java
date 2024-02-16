@@ -4,52 +4,48 @@ import java.util.function.Predicate;
 
 import com.technologica.registration.deferred.TechnologicaItems;
 import com.technologica.world.entity.ai.goal.AttackIfSwimmingGoal;
-import com.technologica.world.entity.ai.goal.SwimGoal;
 
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.TryFindWaterGoal;
-import net.minecraft.world.entity.ai.goal.FollowFlockLeaderGoal;
+import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.AbstractSchoolingFish;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.Level;
 
+/**
+ * <p>
+ * This class contains all of the behavior logic for piranhas.
+ * <p>
+ * Piranhas are very similar to other schooling fish. Key differences are piranhas attack players and do not avoid players.
+ * </p>
+ * 
+ * @tl.status GREEN
+ */
 public class Piranha extends AbstractSchoolingFish {
 
-	public Piranha(EntityType<? extends Piranha> typeIn, Level worldIn) {
-		super(typeIn, worldIn);
+	public Piranha(EntityType<? extends Piranha> entity, Level level) {
+		super(entity, level);
 	}
 
 	@Override
 	protected void registerGoals() {
-		this.goalSelector.addGoal(0, new TryFindWaterGoal(this));
-		this.goalSelector.addGoal(1, new AttackIfSwimmingGoal(this));
-		this.goalSelector.addGoal(4, new SwimGoal(this));
-		this.goalSelector.addGoal(3, new FollowFlockLeaderGoal(this));
+		super.registerGoals();
+		this.goalSelector.removeGoal(new AvoidEntityGoal<>(this, Player.class, 8.0F, 1.6D, 1.4D, EntitySelector.NO_SPECTATORS::test));
+		this.goalSelector.addGoal(0, new AttackIfSwimmingGoal(this));
 		this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, true, (Predicate<LivingEntity>) null));
 	}
 
-	
-	public static AttributeSupplier.Builder registerAttributes() {
+	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 3.0D).add(Attributes.ATTACK_DAMAGE, 1.0D);
-	}
-	
-	@Override
-	public int getMaxSchoolSize() {
-		return 10;
-	}
-
-	@Override
-	public ItemStack getBucketItemStack() {
-		return new ItemStack(TechnologicaItems.PIRANHA_BUCKET.get());
 	}
 
 	@Override
@@ -63,7 +59,7 @@ public class Piranha extends AbstractSchoolingFish {
 	}
 
 	@Override
-	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+	protected SoundEvent getHurtSound(DamageSource damageSource) {
 		return SoundEvents.SALMON_HURT;
 	}
 
@@ -72,4 +68,8 @@ public class Piranha extends AbstractSchoolingFish {
 		return SoundEvents.SALMON_FLOP;
 	}
 
+	@Override
+	public ItemStack getBucketItemStack() {
+		return new ItemStack(TechnologicaItems.PIRANHA_BUCKET.get());
+	}
 }

@@ -23,9 +23,9 @@ public final class TurkeyRenderer extends MobRenderer<Turkey, TurkeyModel<Turkey
 	}
 
 	@Override
-	protected float getBob(Turkey turkeyIn, float partialTicksIn) {
-		float f = Mth.lerp(partialTicksIn, turkeyIn.oFlap, turkeyIn.wingRotation);
-		float f1 = Mth.lerp(partialTicksIn, turkeyIn.oFlapSpeed, turkeyIn.destPos);
+	protected float getBob(Turkey entity, float partialTicksIn) {
+		float f = Mth.lerp(partialTicksIn, entity.oFlap, entity.flap);
+		float f1 = Mth.lerp(partialTicksIn, entity.oFlapSpeed, entity.flapSpeed);
 		return (Mth.sin(f) + 1.0F) * f1;
 	}
 }

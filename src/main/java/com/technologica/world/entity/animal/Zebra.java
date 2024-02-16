@@ -37,6 +37,15 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.SoundType;
 
+/**
+ * <p>
+ * This class contains all of the behavior logic for zebras.
+ * <p>
+ * Zebras are intended to be the same as horses.
+ * </p>
+ * 
+ * @tl.status GREEN
+ */
 public class Zebra extends AbstractHorse {
 	private static final UUID ARMOR_MODIFIER_UUID = UUID.fromString("556E1665-8B10-40C8-8F9D-CF9B1667F295");
 	private static final EntityDataAccessor<Integer> HORSE_VARIANT = SynchedEntityData.defineId(Zebra.class, EntityDataSerializers.INT);
@@ -46,14 +55,12 @@ public class Zebra extends AbstractHorse {
 	}
 
 	@Override
-	public void randomizeAttributes(RandomSource p_218815_) {
-		this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(generateMaxHealth(p_218815_::nextInt));
-		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(generateSpeed(p_218815_::nextDouble));
-		this.getAttribute(Attributes.JUMP_STRENGTH).setBaseValue(generateJumpStrength(p_218815_::nextDouble));
+	public void randomizeAttributes(RandomSource random) {
+		this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(generateMaxHealth(random::nextInt));
+		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(generateSpeed(random::nextDouble));
+		this.getAttribute(Attributes.JUMP_STRENGTH).setBaseValue(generateJumpStrength(random::nextDouble));
 	}
 
-	// Register Attributes, Goals, and Data
-	// Attributes are registered inside AbstractHourseEntity with method createBaseHorseAttributes
 	@Override
 	protected void defineSynchedData() {
 		super.defineSynchedData();
@@ -112,9 +119,6 @@ public class Zebra extends AbstractHorse {
 
 	}
 
-	/**
-	 * Called by InventoryBasic.onInventoryChanged() on a array that is never filled.
-	 */
 	@Override
 	public void containerChanged(Container invBasic) {
 		ItemStack itemstack = this.getArmor();
@@ -211,15 +215,6 @@ public class Zebra extends AbstractHorse {
 			return InteractionResult.sidedSuccess(this.level().isClientSide);
 		}
 	}
-
-	// public boolean canMateWith(AnimalEntity otherAnimal) {
-	// if (otherAnimal == this) {
-	// return false;
-	// } else if (!(otherAnimal instanceof DonkeyEntity) && !(otherAnimal instanceof ZebraEntity)) {
-	// return false;
-	// return this.canMate() && ((AbstractHorseEntity)otherAnimal).canMate();
-	// }
-	// }
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob mate) {

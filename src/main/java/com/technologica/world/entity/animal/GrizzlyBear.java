@@ -33,15 +33,10 @@ import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.FollowParentGoal;
-import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
-import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.TemptGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
 import net.minecraft.world.entity.animal.Bee;
+import net.minecraft.world.entity.animal.Fox;
 import net.minecraft.world.entity.animal.PolarBear;
 import net.minecraft.world.entity.animal.Salmon;
 import net.minecraft.world.entity.player.Player;
@@ -52,6 +47,15 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 
+/**
+ * <p>
+ * This class contains all of the behavior logic for grizzly bears.
+ * <p>
+ * Grizzly bears are very similar to polar bears. Key differences are that grizzly bears attack salmon instead of foxes and run from bees.
+ * </p>
+ * 
+ * @tl.status GREEN
+ */
 public class GrizzlyBear extends PolarBear implements NeutralMob {
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.of(Items.SALMON);
 	private static final EntityDataAccessor<Boolean> IS_STANDING = SynchedEntityData.defineId(GrizzlyBear.class, EntityDataSerializers.BOOLEAN);
@@ -66,40 +70,27 @@ public class GrizzlyBear extends PolarBear implements NeutralMob {
 		super(type, worldIn);
 	}
 
-	// Spawning
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel serverWorldIn, AgeableMob mate) {
 		return TechnologicaEntityTypes.GRIZZLY_BEAR.get().create(serverWorldIn);
 	}
 
-	// Breeding
 	@Override
 	public boolean isFood(ItemStack stack) {
 		return false;
 	}
 
-	// Register Attributes, Goals, and Data
-	public static AttributeSupplier.Builder registerAttributes() {
+	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 30.0D).add(Attributes.FOLLOW_RANGE, 20.0D).add(Attributes.MOVEMENT_SPEED, 0.25D).add(Attributes.ATTACK_DAMAGE, 6.0D);
 	}
 
 	@Override
 	protected void registerGoals() {
 		super.registerGoals();
-		this.goalSelector.addGoal(0, new FloatGoal(this));
-		this.goalSelector.addGoal(1, new GrizzlyBear.MeleeAttackGoal());
-		this.goalSelector.addGoal(1, new GrizzlyBear.PanicGoal());
 		this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, TEMPTATION_ITEMS, false));
-		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
-		this.goalSelector.addGoal(5, new RandomStrollGoal(this, 1.0D));
-		this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0F));
-		this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
-		this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, Bee.class, 8.0F, 1.5D, 1.5D));
-		this.targetSelector.addGoal(1, new GrizzlyBear.HurtByTargetGoal());
-		this.targetSelector.addGoal(2, new GrizzlyBear.AttackPlayerGoal());
-		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt));
+		this.goalSelector.addGoal(0, new AvoidEntityGoal<>(this, Bee.class, 8.0F, 1.5D, 1.5D));
+		this.targetSelector.removeGoal(new NearestAttackableTargetGoal<>(this, Fox.class, 10, true, true, (Predicate<LivingEntity>) null));
 		this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Salmon.class, 10, true, true, (Predicate<LivingEntity>) null));
-		this.targetSelector.addGoal(5, new ResetUniversalAngerTargetGoal<>(this, false));
 	}
 
 	@Override
@@ -108,7 +99,6 @@ public class GrizzlyBear extends PolarBear implements NeutralMob {
 		this.entityData.define(IS_STANDING, false);
 	}
 
-	// Anger
 	@Override
 	public void startPersistentAngerTimer() {
 		this.setRemainingPersistentAngerTime(angerTimeRange.sample(this.random));
@@ -134,7 +124,6 @@ public class GrizzlyBear extends PolarBear implements NeutralMob {
 		return this.angerTarget;
 	}
 
-	// Audio
 	@Override
 	protected SoundEvent getAmbientSound() {
 		return this.isBaby() ? SoundEvents.POLAR_BEAR_AMBIENT_BABY : SoundEvents.POLAR_BEAR_AMBIENT;
@@ -332,7 +321,6 @@ public class GrizzlyBear extends PolarBear implements NeutralMob {
 		}
 	}
 
-	// NBT
 	@Override
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);

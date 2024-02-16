@@ -9,8 +9,7 @@ import com.technologica.listeners.modbus.ClientSetup;
 import com.technologica.setup.config.TechnologicaConfigClient;
 import com.technologica.setup.listeners.TechnologicaColorHandlers;
 import com.technologica.setup.listeners.TechnologicaDimensionSpecialEffects;
-import com.technologica.setup.listeners.TechnologicaEntityRenderers;
-import com.technologica.setup.listeners.TechnologicaLayerDefinitions;
+import com.technologica.setup.listeners.EntityRenderersEventListener;
 import com.technologica.setup.listeners.TechnologicaModels;
 import com.technologica.setup.listeners.TechnologicaParticleProviders;
 
@@ -22,11 +21,11 @@ public class SetupClient {
 		ModLoadingContext.get().registerConfig(Type.CLIENT, TechnologicaConfigClient.CLIENT_SPEC, "technologica-client.toml");
 		Technologica.MOD_EVENT_BUS.addListener(TechnologicaColorHandlers::onRegisterColorHandlersBlock);
 		Technologica.MOD_EVENT_BUS.addListener(TechnologicaParticleProviders::onRegisterParticleProvidersEvent);
-		Technologica.MOD_EVENT_BUS.addListener(TechnologicaEntityRenderers::onRegisterRenderers);
+		Technologica.MOD_EVENT_BUS.addListener(EntityRenderersEventListener::onRegisterRenderers);
 		Technologica.MOD_EVENT_BUS.addListener(TechnologicaDimensionSpecialEffects::onRegisterDimensionSpecialEffectsEvent);
 		Technologica.MOD_EVENT_BUS.addListener(ClientSetup::onFMLClientSetupEvent);
 		Technologica.MOD_EVENT_BUS.addListener(TechnologicaModels::onRegisterAdditional);
-		Technologica.MOD_EVENT_BUS.addListener(TechnologicaLayerDefinitions::onRegisterLayerDefinitions);
+		Technologica.MOD_EVENT_BUS.addListener(EntityRenderersEventListener::onRegisterLayerDefinitions);
 		Technologica.FORGE_EVENT_BUS.register(new MovementInputUpdateEventListener());
 		Technologica.FORGE_EVENT_BUS.addListener(RenderGuiOverlayEventListener::onRenderGameOverlayEventPre);
 		Technologica.FORGE_EVENT_BUS.register(new RenderLevelStageEventListener());

@@ -32,10 +32,18 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.SoundType;
 
+/**
+ * <p>
+ * This class contains all of the behavior logic for giraffes.
+ * <p>
+ * Giraffes are very similar to horses. The key difference is that giraffes eat acacia leaves.
+ * </p>
+ * 
+ * @tl.status GREEN
+ */
 public class Giraffe extends AbstractHorse {
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.of(Items.ACACIA_LEAVES);
 	private static final UUID ARMOR_MODIFIER_UUID = UUID.fromString("556E1665-8B10-40C8-8F9D-CF9B1667F295");
-
 	public int earCounter;
 
 	public Giraffe(EntityType<? extends Giraffe> type, Level worldIn) {
@@ -49,9 +57,6 @@ public class Giraffe extends AbstractHorse {
 		this.getAttribute(Attributes.JUMP_STRENGTH).setBaseValue(generateJumpStrength(p_218815_::nextDouble));
 	}
 
-	// Register Attributes, Goals, and Data
-	// Attributes are registered inside AbstractHorseEntity with method
-	// createBaseHorseAttributes
 	@Override
 	protected void defineSynchedData() {
 		super.defineSynchedData();
