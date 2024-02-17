@@ -367,6 +367,10 @@ public final class TechnologicaCreativeModeTabs extends MasterDeferredRegistrar 
 		items.accept(TechnologicaItems.TELLURIUM_CHUNK.get());
 		items.accept(TechnologicaItems.IODINE_CHUNK.get());
 		items.accept(TechnologicaItems.ASTATINE_CHUNK.get());
+		items.accept(TechnologicaItems.RAW_ARGENTITE.get());
+		items.accept(TechnologicaItems.RAW_PLATINUM.get());
+		items.accept(TechnologicaItems.RAW_OSMIRIDIUM.get());
+		items.accept(TechnologicaItems.RAW_SYLVANITE.get());
 		items.accept(TechnologicaItems.RUBY.get());
 		items.accept(TechnologicaItems.SAPPHIRE.get());
 		items.accept(TechnologicaItems.TOPAZ.get());

@@ -249,6 +249,10 @@ public class ItemModelDataGenerator extends ItemModelProvider {
 		simpleItem(TechnologicaItems.TELLURIUM_CHUNK.get());
 		simpleItem(TechnologicaItems.IODINE_CHUNK.get());
 		radioactiveItem(TechnologicaItems.ASTATINE_CHUNK.get());
+		simpleItem(TechnologicaItems.RAW_ARGENTITE.get());
+		simpleItem(TechnologicaItems.RAW_OSMIRIDIUM.get());
+		simpleItem(TechnologicaItems.RAW_PLATINUM.get());
+		simpleItem(TechnologicaItems.RAW_SYLVANITE.get());
 		simpleItem(TechnologicaItems.RUBY.get());
 		simpleItem(TechnologicaItems.SAPPHIRE.get());
 		simpleItem(TechnologicaItems.TOPAZ.get());

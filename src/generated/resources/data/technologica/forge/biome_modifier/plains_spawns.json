@@ -3,8 +3,8 @@
   "biomes": "minecraft:plains",
   "spawners": {
     "type": "technologica:buffalo",
-    "maxCount": 2,
-    "minCount": 1,
-    "weight": 100
+    "maxCount": 12,
+    "minCount": 4,
+    "weight": 8
   }
 }

@@ -413,6 +413,10 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> TELLURIUM_CHUNK = ITEMS.register("tellurium_chunk", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> IODINE_CHUNK = ITEMS.register("iodine_chunk", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> ASTATINE_CHUNK = ITEMS.register("astatine_chunk", () -> new RadioactiveItem(new Properties(), "astatine_chunk"));
+	public static final RegistryObject<Item> RAW_ARGENTITE = ITEMS.register("raw_argentite", () -> new Item(new Properties()));
+	public static final RegistryObject<Item> RAW_PLATINUM = ITEMS.register("raw_platinum", () -> new Item(new Properties()));
+	public static final RegistryObject<Item> RAW_OSMIRIDIUM = ITEMS.register("raw_osmiridium", () -> new Item(new Properties()));
+	public static final RegistryObject<Item> RAW_SYLVANITE = ITEMS.register("raw_sylvanite", () -> new Item(new Properties()));
 	public static final RegistryObject<Item> RUBY = ITEMS.register("ruby", () -> new Item(new Properties()));
 	public static final RegistryObject<Item> SAPPHIRE = ITEMS.register("sapphire", () -> new Item(new Properties()));
 	public static final RegistryObject<Item> TOPAZ = ITEMS.register("topaz", () -> new Item(new Properties()));

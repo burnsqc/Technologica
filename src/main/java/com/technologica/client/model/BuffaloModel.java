@@ -10,6 +10,7 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.util.Mth;
 
 public class BuffaloModel<T extends Buffalo> extends QuadrupedModel<T> {
 	protected ModelPart mane;
@@ -31,7 +32,7 @@ public class BuffaloModel<T extends Buffalo> extends QuadrupedModel<T> {
 		root.addOrReplaceChild("left_hind_leg", CubeListBuilder.create().texOffs(0, 16).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F), PartPose.offset(4.0F, 12.0F, 12.0F));
 		root.addOrReplaceChild("right_front_leg", CubeListBuilder.create().texOffs(0, 16).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F), PartPose.offset(-4.0F, 12.0F, -8.0F));
 		root.addOrReplaceChild("left_front_leg", CubeListBuilder.create().texOffs(0, 16).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F), PartPose.offset(4.0F, 12.0F, -8.0F));
-		body.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(0, 32).addBox(-1.0F, -2.0F, 14.0F, 2.0F, 14.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+		body.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(0, 32).addBox(-1.0F, -2.0F, 1.0F, 2.0F, 14.0F, 2.0F), PartPose.offset(0.0F, -5.0F, 12.0F));
 		return LayerDefinition.create(meshdefinition, 128, 128);
 	}
 
@@ -39,5 +40,17 @@ public class BuffaloModel<T extends Buffalo> extends QuadrupedModel<T> {
 	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		super.setupAnim(entityIn, limbSwing, limbSwingAmount / 4, ageInTicks, netHeadYaw, headPitch);
 		tail.xRot = (float) (Math.PI / 8);
+	}
+
+	@Override
+	public void prepareMobModel(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
+		float f9 = entityIn.tickCount + partialTick;
+		boolean tailWagging = entityIn.tailCounter != 0;
+
+		if (tailWagging) {
+			this.tail.yRot = Mth.cos(f9);
+		} else {
+			this.tail.yRot = 0.0F;
+		}
 	}
 }
