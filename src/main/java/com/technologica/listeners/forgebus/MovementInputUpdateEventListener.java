@@ -10,10 +10,10 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 public class MovementInputUpdateEventListener {
 
 	@SubscribeEvent
-	public void onMovementInputUpdateEvent(MovementInputUpdateEvent event) {
+	public void onMovementInputUpdateEvent(final MovementInputUpdateEvent event) {
 		if (event.getEntity().hasEffect(TechnologicaMobEffects.NEUROPATHY.get())) {
 			Input originalInput = event.getInput();
-			Input invertedInput = event.getInput();
+			Input invertedInput = originalInput;
 			invertedInput.leftImpulse = -originalInput.leftImpulse;
 			invertedInput.forwardImpulse = -originalInput.forwardImpulse;
 			LocalPlayer lp = (LocalPlayer) event.getEntity();

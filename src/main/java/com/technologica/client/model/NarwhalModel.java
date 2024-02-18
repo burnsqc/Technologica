@@ -16,17 +16,21 @@ import net.minecraft.world.entity.Entity;
 
 public class NarwhalModel<T extends Entity> extends ListModel<T> {
 	private final ModelPart body;
+	private final ModelPart head;
 	private final ModelPart flipperLeft;
 	private final ModelPart flipperRight;
 	private final ModelPart tail;
+	private final ModelPart tail2;
 	private final ModelPart tailFinLeft;
 	private final ModelPart tailFinRight;
 
 	public NarwhalModel(ModelPart modelPartIn) {
 		this.body = modelPartIn.getChild("body");
+		this.head = body.getChild("head");
 		this.flipperLeft = body.getChild("flipper_left");
 		this.flipperRight = body.getChild("flipper_right");
 		this.tail = body.getChild("tail");
+		this.tail2 = tail.getChild("tail2");
 		this.tailFinLeft = tail.getChild("tail_fin_left");
 		this.tailFinRight = tail.getChild("tail_fin_right");
 	}
@@ -60,10 +64,10 @@ public class NarwhalModel<T extends Entity> extends ListModel<T> {
 		this.body.xRot = headPitch * ((float) Math.PI / 180F);
 		this.body.yRot = netHeadYaw * ((float) Math.PI / 180F);
 		if (entityIn.getDeltaMovement().horizontalDistanceSqr() > 1.0E-7D) {
-			this.body.xRot += -0.05F + -0.05F * Mth.cos(ageInTicks * 0.3F);
-			this.tail.yRot = -0.1F * Mth.cos(ageInTicks * 0.3F);
-			this.tailFinLeft.yRot = -0.2F * Mth.cos(ageInTicks * 0.3F);
-			this.tailFinRight.yRot = -0.2F * Mth.cos(ageInTicks * 0.3F);
+			this.body.xRot += -0.05F + -0.1F * Mth.cos(ageInTicks * 0.3F);
+			this.head.xRot = 0.05F * Mth.cos(ageInTicks * 0.3F);
+			this.tail.xRot = -0.1F * Mth.cos(ageInTicks * 0.3F);
+			this.tail2.xRot = -0.1F * Mth.cos(ageInTicks * 0.3F);
 		}
 		this.tailFinLeft.yRot = 0.5F;
 		this.tailFinRight.yRot = -0.5F;

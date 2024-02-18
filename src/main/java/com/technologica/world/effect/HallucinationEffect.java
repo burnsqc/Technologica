@@ -11,7 +11,6 @@ public class HallucinationEffect extends MobEffect {
 
 	@Override
 	public void applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
-		super.applyEffectTick(pLivingEntity, pAmplifier);
 	}
 
 	@Override

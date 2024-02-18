@@ -10,14 +10,14 @@
     },
     {
       "type": "technologica:raccoon",
-      "maxCount": 2,
-      "minCount": 1,
+      "maxCount": 5,
+      "minCount": 3,
       "weight": 100
     },
     {
       "type": "technologica:turkey",
-      "maxCount": 2,
-      "minCount": 1,
+      "maxCount": 5,
+      "minCount": 3,
       "weight": 100
     }
   ]

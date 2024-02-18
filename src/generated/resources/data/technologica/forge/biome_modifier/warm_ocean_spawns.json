@@ -3,7 +3,7 @@
   "biomes": "minecraft:warm_ocean",
   "spawners": {
     "type": "technologica:octopus",
-    "maxCount": 2,
+    "maxCount": 1,
     "minCount": 1,
     "weight": 100
   }

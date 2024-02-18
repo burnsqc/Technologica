@@ -116,6 +116,32 @@ public class BiomeModifierProvider {
 		Reference<PlacedFeature> ore_uraninite = biomeModifier.lookup(Registries.PLACED_FEATURE).getOrThrow(TechnologicaPlacedFeatures.ORE_URANINITE_PLACED);
 		Reference<PlacedFeature> ore_wolframite = biomeModifier.lookup(Registries.PLACED_FEATURE).getOrThrow(TechnologicaPlacedFeatures.ORE_WOLFRAMITE_PLACED);
 
+		SpawnerData beaver = new SpawnerData(TechnologicaEntityTypes.BEAVER.get(), 100, 1, 2);
+		SpawnerData buffalo = new SpawnerData(TechnologicaEntityTypes.BUFFALO.get(), 8, 4, 12);
+		SpawnerData cobra = new SpawnerData(TechnologicaEntityTypes.COBRA.get(), 100, 1, 2);
+		SpawnerData coyote = new SpawnerData(TechnologicaEntityTypes.COYOTE.get(), 100, 1, 2);
+		SpawnerData crab = new SpawnerData(TechnologicaEntityTypes.CRAB.get(), 100, 1, 2);
+		SpawnerData deer = new SpawnerData(TechnologicaEntityTypes.DEER.get(), 100, 1, 2);
+		SpawnerData duck = new SpawnerData(TechnologicaEntityTypes.DUCK.get(), 100, 1, 2);
+		SpawnerData figure_eight_pufferfish = new SpawnerData(TechnologicaEntityTypes.FIGURE_EIGHT_PUFFERFISH.get(), 100, 1, 3);
+		SpawnerData gorilla = new SpawnerData(TechnologicaEntityTypes.GORILLA.get(), 100, 1, 2);
+		SpawnerData grizzly_bear = new SpawnerData(TechnologicaEntityTypes.GRIZZLY_BEAR.get(), 100, 1, 2);
+		SpawnerData jaguar = new SpawnerData(TechnologicaEntityTypes.JAGUAR.get(), 100, 1, 2);
+		SpawnerData lizard = new SpawnerData(TechnologicaEntityTypes.LIZARD.get(), 100, 3, 5);
+		SpawnerData moose = new SpawnerData(TechnologicaEntityTypes.MOOSE.get(), 100, 1, 2);
+		SpawnerData mummy = new SpawnerData(TechnologicaEntityTypes.MUMMY.get(), 100, 1, 1);
+		SpawnerData nawhal = new SpawnerData(TechnologicaEntityTypes.NARWHAL.get(), 100, 1, 1);
+		SpawnerData octopus = new SpawnerData(TechnologicaEntityTypes.OCTOPUS.get(), 100, 1, 1);
+		SpawnerData owl = new SpawnerData(TechnologicaEntityTypes.OWL.get(), 100, 1, 2);
+		SpawnerData penguin = new SpawnerData(TechnologicaEntityTypes.PENGUIN.get(), 100, 3, 5);
+		SpawnerData piranha = new SpawnerData(TechnologicaEntityTypes.PIRANHA.get(), 100, 3, 5);
+		SpawnerData raccoon = new SpawnerData(TechnologicaEntityTypes.RACCOON.get(), 100, 3, 5);
+		SpawnerData scorpion = new SpawnerData(TechnologicaEntityTypes.SCORPION.get(), 100, 1, 2);
+		SpawnerData shark = new SpawnerData(TechnologicaEntityTypes.SHARK.get(), 100, 1, 2);
+		SpawnerData sloth = new SpawnerData(TechnologicaEntityTypes.SLOTH.get(), 100, 1, 2);
+		SpawnerData turkey = new SpawnerData(TechnologicaEntityTypes.TURKEY.get(), 100, 3, 5);
+		SpawnerData vulture = new SpawnerData(TechnologicaEntityTypes.VULTURE.get(), 100, 1, 2);
+
 		/*
 		 * FLUID SPRINGS
 		 */
@@ -218,28 +244,31 @@ public class BiomeModifierProvider {
 		/*
 		 * SPAWNS
 		 */
-		biomeModifier.register(TechnologicaBiomeModifiers.BADLANDS_SPAWNS, new AddSpawnsBiomeModifier(badlands, List.of(new SpawnerData(TechnologicaEntityTypes.COYOTE.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.LIZARD.get(), 100, 3, 5), new SpawnerData(TechnologicaEntityTypes.SCORPION.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.VULTURE.get(), 100, 1, 2))));
-		biomeModifier.register(TechnologicaBiomeModifiers.BEACH_SPAWNS, new AddSpawnsBiomeModifier(beach, List.of(new SpawnerData(TechnologicaEntityTypes.CRAB.get(), 100, 1, 2))));
-		biomeModifier.register(TechnologicaBiomeModifiers.BIRCH_FOREST_SPAWNS, new AddSpawnsBiomeModifier(birch_forest, List.of(new SpawnerData(TechnologicaEntityTypes.DEER.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.RACCOON.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.TURKEY.get(), 100, 1, 2))));
-		biomeModifier.register(TechnologicaBiomeModifiers.DESERT_SPAWNS, new AddSpawnsBiomeModifier(desert, List.of(new SpawnerData(TechnologicaEntityTypes.COBRA.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.MUMMY.get(), 100, 1, 1))));
-		biomeModifier.register(TechnologicaBiomeModifiers.FOREST_SPAWNS, new AddSpawnsBiomeModifier(forest, List.of(new SpawnerData(TechnologicaEntityTypes.BEAVER.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.DEER.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.GRIZZLY_BEAR.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.RACCOON.get(), 100, 1, 2))));
-		biomeModifier.register(TechnologicaBiomeModifiers.FROZEN_OCEAN_SPAWNS, new AddSpawnsBiomeModifier(frozen_ocean, List.of(new SpawnerData(TechnologicaEntityTypes.KING_CRAB.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.LEOPARD_SEAL.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.NARWHAL.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.WALRUS.get(), 100, 1, 2))));
-		biomeModifier.register(TechnologicaBiomeModifiers.ICE_SPIKES_SPAWNS, new AddSpawnsBiomeModifier(ice_spikes, List.of(new SpawnerData(TechnologicaEntityTypes.PENGUIN.get(), 100, 3, 5))));
-		biomeModifier.register(TechnologicaBiomeModifiers.JUNGLE_SPAWNS, new AddSpawnsBiomeModifier(jungle, List.of(new SpawnerData(TechnologicaEntityTypes.GORILLA.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.SLOTH.get(), 100, 1, 2))));
-		biomeModifier.register(TechnologicaBiomeModifiers.MANGROVE_SWAMP_SPAWNS, new AddSpawnsBiomeModifier(mangrove_swamp, List.of(new SpawnerData(TechnologicaEntityTypes.FIGURE_EIGHT_PUFFERFISH.get(), 5, 1, 3), new SpawnerData(TechnologicaEntityTypes.JAGUAR.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.POISON_DART_FROG.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.STINGRAY.get(), 100, 1, 2))));
-		biomeModifier.register(TechnologicaBiomeModifiers.OCEAN_SPAWNS, new AddSpawnsBiomeModifier(ocean, List.of(new SpawnerData(TechnologicaEntityTypes.SHARK.get(), 100, 1, 2))));
-		biomeModifier.register(TechnologicaBiomeModifiers.PLAINS_SPAWNS, new AddSpawnsBiomeModifier(plains, List.of(new SpawnerData(TechnologicaEntityTypes.BUFFALO.get(), 8, 4, 12))));
+		biomeModifier.register(TechnologicaBiomeModifiers.BADLANDS_SPAWNS, new AddSpawnsBiomeModifier(badlands, List.of(coyote, lizard, scorpion, vulture)));
+		biomeModifier.register(TechnologicaBiomeModifiers.BEACH_SPAWNS, new AddSpawnsBiomeModifier(beach, List.of(crab)));
+		biomeModifier.register(TechnologicaBiomeModifiers.BIRCH_FOREST_SPAWNS, new AddSpawnsBiomeModifier(birch_forest, List.of(deer, raccoon, turkey)));
 
-		biomeModifier.register(TechnologicaBiomeModifiers.RIVER_SPAWNS, new AddSpawnsBiomeModifier(river, List.of(new SpawnerData(TechnologicaEntityTypes.BEAVER.get(), 5, 1, 2), new SpawnerData(TechnologicaEntityTypes.DUCK.get(), 5, 1, 2), new SpawnerData(TechnologicaEntityTypes.PIRANHA.get(), 5, 3, 5))));
-
+		biomeModifier.register(TechnologicaBiomeModifiers.DEEP_FROZEN_OCEAN_SPAWNS, new AddSpawnsBiomeModifier(deep_frozen_ocean, List.of(new SpawnerData(TechnologicaEntityTypes.KING_CRAB.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.LEOPARD_SEAL.get(), 100, 1, 2), nawhal, new SpawnerData(TechnologicaEntityTypes.WALRUS.get(), 100, 1, 2))));
+		biomeModifier.register(TechnologicaBiomeModifiers.DESERT_SPAWNS, new AddSpawnsBiomeModifier(desert, List.of(cobra, mummy)));
+		biomeModifier.register(TechnologicaBiomeModifiers.ERODED_BADLANDS_SPAWNS, new AddSpawnsBiomeModifier(eroded_badlands, List.of(coyote)));
+		biomeModifier.register(TechnologicaBiomeModifiers.FOREST_SPAWNS, new AddSpawnsBiomeModifier(forest, List.of(beaver, deer, grizzly_bear, raccoon)));
+		biomeModifier.register(TechnologicaBiomeModifiers.FROZEN_OCEAN_SPAWNS, new AddSpawnsBiomeModifier(frozen_ocean, List.of(new SpawnerData(TechnologicaEntityTypes.KING_CRAB.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.LEOPARD_SEAL.get(), 100, 1, 2), nawhal, new SpawnerData(TechnologicaEntityTypes.WALRUS.get(), 100, 1, 2))));
+		biomeModifier.register(TechnologicaBiomeModifiers.ICE_SPIKES_SPAWNS, new AddSpawnsBiomeModifier(ice_spikes, List.of(penguin)));
+		biomeModifier.register(TechnologicaBiomeModifiers.JUNGLE_SPAWNS, new AddSpawnsBiomeModifier(jungle, List.of(gorilla, sloth)));
+		biomeModifier.register(TechnologicaBiomeModifiers.MANGROVE_SWAMP_SPAWNS, new AddSpawnsBiomeModifier(mangrove_swamp, List.of(figure_eight_pufferfish, jaguar, new SpawnerData(TechnologicaEntityTypes.POISON_DART_FROG.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.STINGRAY.get(), 100, 1, 2))));
+		biomeModifier.register(TechnologicaBiomeModifiers.OCEAN_SPAWNS, new AddSpawnsBiomeModifier(ocean, List.of(shark)));
+		biomeModifier.register(TechnologicaBiomeModifiers.PLAINS_SPAWNS, new AddSpawnsBiomeModifier(plains, List.of(buffalo)));
+		biomeModifier.register(TechnologicaBiomeModifiers.RIVER_SPAWNS, new AddSpawnsBiomeModifier(river, List.of(beaver, duck, piranha)));
 		biomeModifier.register(TechnologicaBiomeModifiers.SAVANNA_SPAWNS, new AddSpawnsBiomeModifier(savanna, List.of(new SpawnerData(TechnologicaEntityTypes.ELEPHANT.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.GIRAFFE.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.LION.get(), 100, 3, 5), new SpawnerData(TechnologicaEntityTypes.OSTRICH.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.ZEBRA.get(), 100, 1, 2))));
-		biomeModifier.register(TechnologicaBiomeModifiers.SNOWY_SLOPES_SPAWNS, new AddSpawnsBiomeModifier(snowy_slopes, List.of(new SpawnerData(TechnologicaEntityTypes.BEAVER.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.DEER.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.GRIZZLY_BEAR.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.TURKEY.get(), 100, 1, 2))));
-		biomeModifier.register(TechnologicaBiomeModifiers.SNOWY_TAIGA_SPAWNS, new AddSpawnsBiomeModifier(snowy_taiga, List.of(new SpawnerData(TechnologicaEntityTypes.BEAVER.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.DEER.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.GRIZZLY_BEAR.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.TURKEY.get(), 100, 1, 2))));
-		biomeModifier.register(TechnologicaBiomeModifiers.STONY_PEAKS_SPAWNS, new AddSpawnsBiomeModifier(stony_peaks, List.of(new SpawnerData(TechnologicaEntityTypes.BEAVER.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.DEER.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.GRIZZLY_BEAR.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.TURKEY.get(), 100, 1, 2))));
+		biomeModifier.register(TechnologicaBiomeModifiers.SNOWY_SLOPES_SPAWNS, new AddSpawnsBiomeModifier(snowy_slopes, List.of(beaver, deer, grizzly_bear, turkey)));
+		biomeModifier.register(TechnologicaBiomeModifiers.SNOWY_TAIGA_SPAWNS, new AddSpawnsBiomeModifier(snowy_taiga, List.of(beaver, deer, grizzly_bear, turkey)));
+		biomeModifier.register(TechnologicaBiomeModifiers.STONY_PEAKS_SPAWNS, new AddSpawnsBiomeModifier(stony_peaks, List.of(beaver, deer, grizzly_bear, turkey)));
+		biomeModifier.register(TechnologicaBiomeModifiers.SUNFLOWER_PLAINS_SPAWNS, new AddSpawnsBiomeModifier(sunflower_plains, List.of(buffalo)));
 		biomeModifier.register(TechnologicaBiomeModifiers.SWAMP_SPAWNS, new AddSpawnsBiomeModifier(swamp, List.of(new SpawnerData(TechnologicaEntityTypes.ALLIGATOR.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.COTTONMOUTH.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.FLAMINGO.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.STINGRAY.get(), 100, 1, 2))));
-		biomeModifier.register(TechnologicaBiomeModifiers.TAIGA_SPAWNS, new AddSpawnsBiomeModifier(taiga, List.of(new SpawnerData(TechnologicaEntityTypes.BEAVER.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.DEER.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.GRIZZLY_BEAR.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.TURKEY.get(), 100, 1, 2))));
-		biomeModifier.register(TechnologicaBiomeModifiers.WARM_OCEAN_SPAWNS, new AddSpawnsBiomeModifier(warm_ocean, List.of(new SpawnerData(TechnologicaEntityTypes.OCTOPUS.get(), 100, 1, 2))));
-		biomeModifier.register(TechnologicaBiomeModifiers.WINDSWEPT_FOREST_SPAWNS, new AddSpawnsBiomeModifier(windswept_forest, List.of(new SpawnerData(TechnologicaEntityTypes.BEAVER.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.DEER.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.GRIZZLY_BEAR.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.TURKEY.get(), 100, 1, 2))));
-		biomeModifier.register(TechnologicaBiomeModifiers.WINDSWEPT_HILLS_SPAWNS, new AddSpawnsBiomeModifier(windswept_hills, List.of(new SpawnerData(TechnologicaEntityTypes.BEAVER.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.GRIZZLY_BEAR.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.MOOSE.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.OWL.get(), 100, 1, 2))));
+		biomeModifier.register(TechnologicaBiomeModifiers.TAIGA_SPAWNS, new AddSpawnsBiomeModifier(taiga, List.of(beaver, deer, grizzly_bear, turkey)));
+		biomeModifier.register(TechnologicaBiomeModifiers.WARM_OCEAN_SPAWNS, new AddSpawnsBiomeModifier(warm_ocean, List.of(octopus)));
+		biomeModifier.register(TechnologicaBiomeModifiers.WINDSWEPT_FOREST_SPAWNS, new AddSpawnsBiomeModifier(windswept_forest, List.of(beaver, deer, grizzly_bear, turkey)));
+		biomeModifier.register(TechnologicaBiomeModifiers.WINDSWEPT_HILLS_SPAWNS, new AddSpawnsBiomeModifier(windswept_hills, List.of(beaver, grizzly_bear, moose, owl)));
+		biomeModifier.register(TechnologicaBiomeModifiers.WOODED_BADLANDS_SPAWNS, new AddSpawnsBiomeModifier(wooded_badlands, List.of(coyote)));
 	}
 }

@@ -1,6 +1,7 @@
 package com.technologica.client.model;
 
 import com.google.common.collect.ImmutableList;
+import com.technologica.world.entity.animal.LeopardSeal;
 
 import net.minecraft.client.model.ListModel;
 import net.minecraft.client.model.QuadrupedModel;
@@ -22,6 +23,8 @@ public class LeopardSealModel<T extends Entity> extends ListModel<T> {
 	private final ModelPart tail;
 	private final ModelPart tailFlipperLeft;
 	private final ModelPart tailFlipperRight;
+	private final ModelPart flipperLeft;
+	private final ModelPart flipperRight;
 
 	public LeopardSealModel(ModelPart modelPartIn) {
 		this.body = modelPartIn.getChild("body");
@@ -29,6 +32,8 @@ public class LeopardSealModel<T extends Entity> extends ListModel<T> {
 		this.head = neck.getChild("head");
 		this.jaw = head.getChild("jaw");
 		this.tail = body.getChild("tail");
+		this.flipperLeft = body.getChild("flipper_left");
+		this.flipperRight = body.getChild("flipper_right");
 		this.tailFlipperLeft = tail.getChild("tail_flipper_left");
 		this.tailFlipperRight = tail.getChild("tail_flipper_right");
 	}
@@ -56,18 +61,39 @@ public class LeopardSealModel<T extends Entity> extends ListModel<T> {
 
 	@Override
 	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.jaw.xRot = (Mth.sin(ageInTicks / 10) * Mth.sin(ageInTicks / 10)) / 2;
-		this.neck.xRot = -(float) (Math.PI / 4);
-		this.head.xRot = (float) (Math.PI / 4);
+		this.jaw.xRot = 0.0F;
 		this.tailFlipperLeft.yRot = (float) Math.PI / 8;
 		this.tailFlipperRight.yRot = -(float) Math.PI / 8;
-		this.body.xRot = headPitch * ((float) Math.PI / 180F);
-		this.body.yRot = netHeadYaw * ((float) Math.PI / 180F);
-		if (entityIn.getDeltaMovement().horizontalDistanceSqr() > 1.0E-7D) {
-			this.body.xRot += -0.05F + -0.05F * Mth.cos(ageInTicks * 0.3F);
-			this.tail.yRot = -0.1F * Mth.cos(ageInTicks * 0.3F);
-			this.tailFlipperLeft.yRot = -0.2F * Mth.cos(ageInTicks * 0.3F);
-			this.tailFlipperRight.yRot = -0.2F * Mth.cos(ageInTicks * 0.3F);
+		this.body.yRot = 0.0F;
+		this.tail.yRot = 0.0F;
+		this.flipperLeft.yRot = 0.0F;
+		this.flipperRight.yRot = 0.0F;
+
+		if (entityIn.isInWater()) {
+			this.neck.z = -2.0F;
+			this.neck.xRot = 0.0F;
+			this.head.xRot = 0.0F;
+			if (entityIn.getDeltaMovement().horizontalDistanceSqr() > 1.0E-7D) {
+				this.body.yRot += -0.1F + -0.1F * Mth.cos(ageInTicks * 0.3F);
+				this.neck.yRot = 0.15F * Mth.sin(ageInTicks * 0.3F);
+				this.head.yRot = 0.15F * Mth.cos(ageInTicks * 0.3F);
+				this.flipperLeft.yRot = 0.3F + 0.3F * Mth.cos(ageInTicks * 0.3F);
+				this.flipperRight.yRot = -0.3F - 0.3F * Mth.cos(ageInTicks * 0.3F);
+				this.tail.yRot = -0.15F * Mth.cos(ageInTicks * 0.3F);
+				this.tailFlipperLeft.yRot = 0.3F + 0.3F * Mth.sin(ageInTicks * 0.3F);
+				this.tailFlipperRight.yRot = -0.3F - 0.3F * Mth.sin(ageInTicks * 0.3F);
+
+			}
+		} else {
+			this.neck.z = -7.0F;
+			this.neck.xRot = -(float) (Math.PI / 4) + headPitch * ((float) Math.PI / 180F);
+			this.head.xRot = (float) (Math.PI / 4);
+			this.neck.yRot = 0.0F;
+			this.head.yRot = 0.0F;
+		}
+
+		if (((LeopardSeal) entityIn).isAggressive()) {
+			this.jaw.xRot = 0.3F + 0.3F * Mth.sin(ageInTicks * 0.3F);
 		}
 	}
 }

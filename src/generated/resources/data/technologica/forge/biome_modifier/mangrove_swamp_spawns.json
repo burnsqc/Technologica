@@ -4,7 +4,7 @@
   "spawners": [
     {
       "type": "technologica:figure_eight_pufferfish",
-      "maxCount": 2,
+      "maxCount": 3,
       "minCount": 1,
       "weight": 100
     },

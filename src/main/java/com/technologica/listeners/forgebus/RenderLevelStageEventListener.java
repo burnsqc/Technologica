@@ -14,6 +14,7 @@ import net.minecraft.client.renderer.RenderBuffers;
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -62,6 +63,19 @@ public class RenderLevelStageEventListener {
 				}
 			}
 		}
+
+		if (localPlayer.hasEffect(TechnologicaMobEffects.HALLUCINIATION.get())) {
+			if (minecraft.gameRenderer.currentEffect() == null) {
+				minecraft.gameRenderer.loadEffect(new ResourceLocation("shaders/post/invert.json"));
+			}
+		} else {
+			if (minecraft.gameRenderer.currentEffect() != null) {
+				if (minecraft.gameRenderer.currentEffect().getName().equals(new ResourceLocation("shaders/post/invert.json").toString())) {
+					minecraft.gameRenderer.shutdownEffect();
+				}
+			}
+		}
+
 	}
 
 	private void renderEntity(Entity entity, double cameraX, double cameraY, double cameraZ, float partialTick, PoseStack poseStack, MultiBufferSource multiBufferSource, EntityRenderDispatcher entityRenderDispatcher) {

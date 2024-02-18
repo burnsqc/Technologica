@@ -90,7 +90,10 @@ public final class TechnologicaBiomeModifiers extends MasterKeyCreator {
 	public static final ResourceKey<BiomeModifier> BADLANDS_SPAWNS = biomeModifier("badlands_spawns");
 	public static final ResourceKey<BiomeModifier> BEACH_SPAWNS = biomeModifier("beach_spawns");
 	public static final ResourceKey<BiomeModifier> BIRCH_FOREST_SPAWNS = biomeModifier("birch_forest_spawns");
+	public static final ResourceKey<BiomeModifier> DEEP_COLD_OCEAN_SPAWNS = biomeModifier("deep_cold_ocean_spawns");
+	public static final ResourceKey<BiomeModifier> DEEP_FROZEN_OCEAN_SPAWNS = biomeModifier("deep_frozen_ocean_spawns");
 	public static final ResourceKey<BiomeModifier> DESERT_SPAWNS = biomeModifier("desert_spawns");
+	public static final ResourceKey<BiomeModifier> ERODED_BADLANDS_SPAWNS = biomeModifier("eroded_badlands_spawns");
 	public static final ResourceKey<BiomeModifier> FOREST_SPAWNS = biomeModifier("forest_spawns");
 	public static final ResourceKey<BiomeModifier> FROZEN_OCEAN_SPAWNS = biomeModifier("frozen_ocean_spawns");
 	public static final ResourceKey<BiomeModifier> ICE_SPIKES_SPAWNS = biomeModifier("ice_spikes_spawns");
@@ -103,11 +106,13 @@ public final class TechnologicaBiomeModifiers extends MasterKeyCreator {
 	public static final ResourceKey<BiomeModifier> SNOWY_SLOPES_SPAWNS = biomeModifier("snowy_slopes_spawns");
 	public static final ResourceKey<BiomeModifier> SNOWY_TAIGA_SPAWNS = biomeModifier("snowy_tagia_spawns");
 	public static final ResourceKey<BiomeModifier> STONY_PEAKS_SPAWNS = biomeModifier("stony_peaks_spawns");
+	public static final ResourceKey<BiomeModifier> SUNFLOWER_PLAINS_SPAWNS = biomeModifier("sunflowe_plains_spawns");
 	public static final ResourceKey<BiomeModifier> SWAMP_SPAWNS = biomeModifier("swamp_spawns");
 	public static final ResourceKey<BiomeModifier> TAIGA_SPAWNS = biomeModifier("tagia_spawns");
 	public static final ResourceKey<BiomeModifier> WARM_OCEAN_SPAWNS = biomeModifier("warm_ocean_spawns");
 	public static final ResourceKey<BiomeModifier> WINDSWEPT_FOREST_SPAWNS = biomeModifier("windswept_forest_spawns");
 	public static final ResourceKey<BiomeModifier> WINDSWEPT_HILLS_SPAWNS = biomeModifier("windswept_hills_spawns");
+	public static final ResourceKey<BiomeModifier> WOODED_BADLANDS_SPAWNS = biomeModifier("wooded_badlands_spawns");
 
 	public static final ResourceKey<BiomeModifier> BADLANDS_LOCAL_MODIFICATIONS = biomeModifier("badlands_local_modifications");
 	public static final ResourceKey<BiomeModifier> BAMBOO_JUNGLE_LOCAL_MODIFICATIONS = biomeModifier("bamboo_jungle_local_modifications");

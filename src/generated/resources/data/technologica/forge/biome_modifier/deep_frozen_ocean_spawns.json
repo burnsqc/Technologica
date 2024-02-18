@@ -1,29 +1,29 @@
 {
   "type": "forge:add_spawns",
-  "biomes": "minecraft:windswept_forest",
+  "biomes": "minecraft:deep_frozen_ocean",
   "spawners": [
     {
-      "type": "technologica:beaver",
+      "type": "technologica:king_crab",
       "maxCount": 2,
       "minCount": 1,
       "weight": 100
     },
     {
-      "type": "technologica:deer",
+      "type": "technologica:leopard_seal",
       "maxCount": 2,
       "minCount": 1,
       "weight": 100
     },
     {
-      "type": "technologica:grizzly_bear",
-      "maxCount": 2,
+      "type": "technologica:narwhal",
+      "maxCount": 1,
       "minCount": 1,
       "weight": 100
     },
     {
-      "type": "technologica:turkey",
-      "maxCount": 5,
-      "minCount": 3,
+      "type": "technologica:walrus",
+      "maxCount": 2,
+      "minCount": 1,
       "weight": 100
     }
   ]
