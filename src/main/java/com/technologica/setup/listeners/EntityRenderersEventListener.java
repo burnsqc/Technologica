@@ -118,11 +118,9 @@ import net.minecraft.client.model.ZombieModel;
 import net.minecraft.client.model.geom.LayerDefinitions;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
-import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 
 /**
@@ -158,7 +156,7 @@ public final class EntityRenderersEventListener {
 	 * @param event EntityRenderersEvent.RegisterLayerDefinitions
 	 */
 	public static void onRegisterLayerDefinitions(final EntityRenderersEvent.RegisterLayerDefinitions event) {
-		modelLayersRequired = TechnologicaModelLayers.ALL_MODELS.stream().filter(entity -> !ForgeHooksClient.layerDefinitions.containsKey(entity)).count();
+		// modelLayersRequired = TechnologicaModelLayers.ALL_MODELS.stream().filter(entity -> !ForgeHooksClient.layerDefinitions.containsKey(entity)).count();
 
 		event.registerLayerDefinition(TechnologicaModelLayers.ALLIGATOR, AlligatorModel::createBodyLayer);
 		event.registerLayerDefinition(TechnologicaModelLayers.BEAVER, BeaverModel::createBodyLayer);
@@ -218,7 +216,7 @@ public final class EntityRenderersEventListener {
 			event.registerLayerDefinition(TechnologicaModelLayers.createBoatModelName(boat$type), () -> BoatModel.createBodyModel());
 		}
 
-		modelLayersCompleted = TechnologicaModelLayers.ALL_MODELS.stream().filter(entity -> ForgeHooksClient.layerDefinitions.containsKey(entity)).count();
+		// modelLayersCompleted = TechnologicaModelLayers.ALL_MODELS.stream().filter(entity -> ForgeHooksClient.layerDefinitions.containsKey(entity)).count();
 		Technologica.LOGGER.info("SETUP - LAYER DEFINITIONS - " + modelLayersCompleted + " OF " + modelLayersRequired);
 		if (modelLayersCompleted != modelLayersRequired) {
 			Technologica.LOGGER.error("LAYER DEFINITION MAPPING FAILED: " + (modelLayersRequired - modelLayersCompleted) + " MISSING");
@@ -306,7 +304,7 @@ public final class EntityRenderersEventListener {
 			Technologica.LOGGER.error("ENTITY RENDERER MAPPING FAILED: " + (entitiesRequired - entitiesCompleted) + " MISSING");
 		}
 
-		blockEntitiesRequired = TechnologicaBlockEntityTypes.BLOCK_ENTITY_TYPES.getEntries().stream().filter(blockEntity -> !BlockEntityRenderers.PROVIDERS.containsKey(blockEntity.get())).count();
+		// blockEntitiesRequired = TechnologicaBlockEntityTypes.BLOCK_ENTITY_TYPES.getEntries().stream().filter(blockEntity -> !BlockEntityRenderers.PROVIDERS.containsKey(blockEntity.get())).count();
 
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.ANNUNCIATOR_TILE.get(), AnnunciatorRenderer::new);
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.MONITOR_TILE.get(), MonitorRenderer::new);
@@ -321,7 +319,7 @@ public final class EntityRenderersEventListener {
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.WINDMILL.get(), WindmillRenderer::new);
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.LAND_MINE_TILE.get(), LandMineRenderer::new);
 
-		blockEntitiesCompleted = TechnologicaBlockEntityTypes.BLOCK_ENTITY_TYPES.getEntries().stream().filter(blockEntity -> BlockEntityRenderers.PROVIDERS.containsKey(blockEntity.get())).count();
+		// blockEntitiesCompleted = TechnologicaBlockEntityTypes.BLOCK_ENTITY_TYPES.getEntries().stream().filter(blockEntity -> BlockEntityRenderers.PROVIDERS.containsKey(blockEntity.get())).count();
 		Technologica.LOGGER.info("SETUP - BLOCK ENTITY RENDERERS - " + blockEntitiesCompleted + " OF " + blockEntitiesRequired);
 		if (blockEntitiesCompleted != blockEntitiesRequired) {
 			Technologica.LOGGER.error("BLOCK ENTITY RENDERER MAPPING FAILED: " + (blockEntitiesRequired - blockEntitiesCompleted) + " MISSING");
