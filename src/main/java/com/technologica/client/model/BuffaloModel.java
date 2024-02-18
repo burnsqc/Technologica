@@ -38,7 +38,7 @@ public class BuffaloModel<T extends Buffalo> extends QuadrupedModel<T> {
 
 	@Override
 	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		super.setupAnim(entityIn, limbSwing, limbSwingAmount / 4, ageInTicks, netHeadYaw, headPitch);
+		super.setupAnim(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 		tail.xRot = (float) (Math.PI / 8);
 	}
 

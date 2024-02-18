@@ -43,6 +43,7 @@ public class LanguageDataGenerator extends LanguageProvider {
 		add("effect.technologica.hemorrhage", "Hemorrhage");
 		add("effect.technologica.lifesight", "Lifesight");
 		add("effect.technologica.necrosis", "Necrosis");
+		add("effect.technologica.neuropathy", "Neuropathy");
 		add("effect.technologica.paralysis", "Paralysis");
 		add("effect.technologica.radiation", "Radiation");
 
