@@ -26,7 +26,7 @@ public class JaguarModel<T extends Jaguar> extends AgeableListModel<T> {
 	private ModelPart earRight;
 	private ModelPart earLeft;
 	protected int state = 1;
-	
+
 	public JaguarModel(ModelPart modelPartIn) {
 		super(true, 10.0F, 4.0F);
 		this.body = modelPartIn.getChild("body");
@@ -54,10 +54,10 @@ public class JaguarModel<T extends Jaguar> extends AgeableListModel<T> {
 		root.addOrReplaceChild("legFrontLeft", CubeListBuilder.create().texOffs(32, 12).addBox(-1.0F, 0.0F, 0.0F, 3.0F, 8.0F, 3.0F), PartPose.offset(2.0F, 16.0F, -8.0F));
 		root.addOrReplaceChild("legFrontRight", CubeListBuilder.create().texOffs(32, 12).addBox(-1.0F, 0.0F, 0.0F, 3.0F, 8.0F, 3.0F), PartPose.offset(-3.0F, 16.0F, -8.0F));
 		PartDefinition tail = root.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(56, 0).addBox(-1.0F, 0.0F, -2.0F, 2.0F, 8.0F, 2.0F), PartPose.offset(0.0F, 8.0F, 8.0F));
-		tail.addOrReplaceChild("tail2", CubeListBuilder.create().texOffs(56, 10).addBox(-1.0F, 0.0F, 0.0F, 2.0F, 8.0F, 2.0F), PartPose.offset(0.0F, 8.0F, -2.0F));
+		tail.addOrReplaceChild("tail2", CubeListBuilder.create().texOffs(56, 10).addBox(-0.99F, 0.0F, 0.0F, 1.98F, 8.0F, 2.0F), PartPose.offset(0.0F, 8.0F, -2.0F));
 		return LayerDefinition.create(meshdefinition, 64, 32);
 	}
-	
+
 	@Override
 	protected Iterable<ModelPart> headParts() {
 		return ImmutableList.of(this.head);
@@ -92,14 +92,15 @@ public class JaguarModel<T extends Jaguar> extends AgeableListModel<T> {
 				}
 			}
 		}
-		
+
 		this.earLeft.zRot = -3 * (float) Math.PI / 4;
 		this.earRight.zRot = 3 * (float) Math.PI / 4;
 	}
-	
+
 	@Override
 	public void prepareMobModel(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
 		this.tail.xRot = 0.9F;
+		boolean earsFlapping = ((Jaguar) entityIn).earCounter != 0;
 		if (entityIn.isCrouching()) {
 			++this.body.y;
 			this.head.y += 2.0F;
@@ -108,12 +109,20 @@ public class JaguarModel<T extends Jaguar> extends AgeableListModel<T> {
 			this.tail2.xRot = ((float) Math.PI / 2F);
 			this.state = 0;
 		} else if (entityIn.isSprinting()) {
-			
+
 			this.tail.xRot = ((float) Math.PI / 2F);
 			this.tail2.xRot = ((float) Math.PI / 2F);
 			this.state = 2;
 		} else {
 			this.state = 1;
+		}
+
+		if (earsFlapping) {
+			this.earLeft.yRot = Mth.cos(entityIn.tickCount + partialTick);
+			this.earRight.yRot = -Mth.cos(entityIn.tickCount + partialTick);
+		} else {
+			this.earLeft.yRot = 0.0F;
+			this.earRight.yRot = 0.0F;
 		}
 	}
 }

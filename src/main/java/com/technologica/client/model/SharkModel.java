@@ -1,6 +1,7 @@
 package com.technologica.client.model;
 
 import com.google.common.collect.ImmutableList;
+import com.technologica.world.entity.animal.Shark;
 
 import net.minecraft.client.model.ListModel;
 import net.minecraft.client.model.QuadrupedModel;
@@ -67,7 +68,7 @@ public class SharkModel<T extends Entity> extends ListModel<T> {
 	@Override
 	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.nose.yRot = ((float) Math.PI / 4F);
-		this.jaw.xRot = (Mth.sin(ageInTicks / 10) * Mth.sin(ageInTicks / 10));
+		this.jaw.xRot = 0.1F;
 		this.dorsalFin.xRot = ((float) Math.PI / 3F);
 		this.pectoralFinLeft.xRot = -1.3F;
 		this.pectoralFinLeft.zRot = -1.3F;
@@ -85,6 +86,10 @@ public class SharkModel<T extends Entity> extends ListModel<T> {
 			this.tail.yRot = -0.1F * Mth.cos(ageInTicks * 0.3F);
 			this.tailFinTop.yRot = -0.2F * Mth.cos(ageInTicks * 0.3F);
 			this.tailFinBottom.yRot = -0.2F * Mth.cos(ageInTicks * 0.3F);
+		}
+
+		if (((Shark) entityIn).isAggressive()) {
+			this.jaw.xRot = 0.3F + 0.3F * Mth.sin(ageInTicks * 0.3F);
 		}
 	}
 }

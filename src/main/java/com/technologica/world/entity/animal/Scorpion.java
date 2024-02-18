@@ -2,6 +2,8 @@ package com.technologica.world.entity.animal;
 
 import javax.annotation.Nullable;
 
+import com.technologica.registration.deferred.TechnologicaMobEffects;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvent;
@@ -56,7 +58,7 @@ public class Scorpion extends Monster {
 					i = 15;
 				}
 				if (i > 0) {
-					((LivingEntity) entityIn).addEffect(new MobEffectInstance(MobEffects.POISON, i * 20, 0));
+					((LivingEntity) entityIn).addEffect(new MobEffectInstance(TechnologicaMobEffects.NEUROPATHY.get(), i * 20, 0));
 				}
 			}
 			return true;
@@ -171,8 +173,8 @@ public class Scorpion extends Monster {
 	}
 
 	static class AttackGoal extends MeleeAttackGoal {
-		public AttackGoal(Scorpion spider) {
-			super(spider, 1.0D, true);
+		public AttackGoal(Scorpion scorpion) {
+			super(scorpion, 1.0D, true);
 		}
 
 		@Override

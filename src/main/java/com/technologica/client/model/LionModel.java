@@ -37,7 +37,10 @@ public class LionModel<T extends Lion> extends QuadrupedModel<T> {
 		partdefinition1.addOrReplaceChild("real_head", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, -1.0F, -9.0F, 4.0F, 5.0F, 2.0F), PartPose.ZERO);
 		partdefinition1.addOrReplaceChild("earRight", CubeListBuilder.create().texOffs(0, 7).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 1.0F), PartPose.offset(-4.0F, -4.0F, -5.0F));
 		partdefinition1.addOrReplaceChild("earLeft", CubeListBuilder.create().texOffs(0, 7).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 1.0F), PartPose.offset(4.0F, -4.0F, -5.0F));
-		partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-5.0F, -5.0F, -10.0F, 10.0F, 10.0F, 20.0F).texOffs(0, 30).addBox(-6.0F, -7.0F, -12.0F, 12.0F, 12.0F, 3.0F).texOffs(30, 30).addBox(-6.5F, -8.0F, -11.0F, 13.0F, 14.0F, 4.0F).texOffs(30, 48).addBox(-6.0F, -6.0F, -9.0F, 12.0F, 12.0F, 4.0F), PartPose.offset(0.0F, 11.0F, 0.0F));
+		partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-5.0F, -5.0F, -10.0F, 10.0F, 10.0F, 20.0F), PartPose.offset(0.0F, 11.0F, 0.0F));
+		partdefinition1.addOrReplaceChild("mane", CubeListBuilder.create().texOffs(0, 30).addBox(-6.0F, -7.0F, -12.0F, 12.0F, 12.0F, 3.0F), PartPose.offset(0.0F, 2.0F, 8.0F));
+		partdefinition1.addOrReplaceChild("mane1", CubeListBuilder.create().texOffs(30, 30).addBox(-6.5F, -8.0F, -11.0F, 13.0F, 14.0F, 4.0F), PartPose.offset(0.0F, 2.0F, 8.0F));
+		partdefinition1.addOrReplaceChild("mane2", CubeListBuilder.create().texOffs(30, 48).addBox(-6.0F, -6.0F, -9.0F, 12.0F, 12.0F, 4.0F), PartPose.offset(0.0F, 2.0F, 8.0F));
 		partdefinition.addOrReplaceChild("right_hind_leg", CubeListBuilder.create().texOffs(40, 0).addBox(-2.0F, 0.0F, -4.0F, 4.0F, 8.0F, 4.0F), PartPose.offset(-3.0F, 16.0F, 10.0F));
 		partdefinition.addOrReplaceChild("left_hind_leg", CubeListBuilder.create().texOffs(40, 0).addBox(-2.0F, 0.0F, -4.0F, 4.0F, 8.0F, 4.0F), PartPose.offset(3.0F, 16.0F, 10.0F));
 		partdefinition.addOrReplaceChild("right_front_leg", CubeListBuilder.create().texOffs(40, 0).addBox(-2.0F, 0.0F, 0.0F, 4.0F, 8.0F, 4.0F), PartPose.offset(-3.0F, 16.0F, -10.0F));
@@ -79,6 +82,8 @@ public class LionModel<T extends Lion> extends QuadrupedModel<T> {
 
 	@Override
 	public void prepareMobModel(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
+		boolean tailWagging = entityIn.tailCounter != 0;
+		boolean earsFlapping = ((Lion) entityIn).earCounter != 0;
 		this.tail.xRot = (float) Math.PI / 6;
 		if (entityIn.isCrouching()) {
 			++this.body.y;
@@ -91,6 +96,20 @@ public class LionModel<T extends Lion> extends QuadrupedModel<T> {
 			this.state = 2;
 		} else {
 			this.state = 1;
+		}
+		float f9 = entityIn.tickCount + partialTick;
+		if (tailWagging) {
+			this.tail.yRot = Mth.cos(f9);
+		} else {
+			this.tail.yRot = 0.0F;
+		}
+
+		if (earsFlapping) {
+			this.earLeft.yRot = Mth.cos(f9);
+			this.earRight.yRot = -Mth.cos(f9);
+		} else {
+			this.earLeft.yRot = 0.0F;
+			this.earRight.yRot = 0.0F;
 		}
 	}
 }

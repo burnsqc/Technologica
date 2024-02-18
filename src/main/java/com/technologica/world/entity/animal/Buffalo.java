@@ -115,7 +115,6 @@ public class Buffalo extends AbstractPackAnimal {
 				this.alertOthers();
 				this.stop();
 			}
-
 		}
 
 		@Override
@@ -123,7 +122,6 @@ public class Buffalo extends AbstractPackAnimal {
 			if (mob instanceof Buffalo && !mob.isBaby()) {
 				super.alertOther(mob, p_29581_);
 			}
-
 		}
 	}
 }

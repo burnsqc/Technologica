@@ -10,6 +10,7 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.util.Mth;
 
 public class ElephantModel<T extends Elephant> extends QuadrupedModel<T> {
 	protected ModelPart forehead;
@@ -59,14 +60,34 @@ public class ElephantModel<T extends Elephant> extends QuadrupedModel<T> {
 
 	@Override
 	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		super.setupAnim(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 		this.tuskLeft.xRot = -(float) Math.PI / 10.0F;
 		this.tuskRight.xRot = -(float) Math.PI / 10.0F;
 		this.tail.xRot = (float) Math.PI / 10.0F;
 		this.trunk1.xRot = 0;
 		this.trunk2.xRot = 0;
 		this.trunk3.xRot = 0;
-		this.earLeft.yRot = (float) Math.PI / 5.0F;
-		this.earRight.yRot = -(float) Math.PI / 5.0F;
 		this.forehead.xRot = -(float) (Math.PI / 4.0F);
+	}
+
+	@Override
+	public void prepareMobModel(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
+		float f9 = entityIn.tickCount + partialTick;
+		boolean tailWagging = entityIn.tailCounter != 0;
+		boolean earsFlapping = ((Elephant) entityIn).earCounter != 0;
+
+		if (tailWagging) {
+			this.tail.yRot = Mth.cos(f9);
+		} else {
+			this.tail.yRot = 0.0F;
+		}
+
+		if (earsFlapping) {
+			this.earLeft.yRot = Mth.cos(entityIn.tickCount + partialTick);
+			this.earRight.yRot = -Mth.cos(entityIn.tickCount + partialTick);
+		} else {
+			this.earLeft.yRot = (float) Math.PI / 5.0F;
+			this.earRight.yRot = -(float) Math.PI / 5.0F;
+		}
 	}
 }
