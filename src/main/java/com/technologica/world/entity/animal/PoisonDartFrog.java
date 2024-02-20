@@ -11,10 +11,10 @@ import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Dynamic;
 import com.technologica.registration.deferred.TechnologicaEntityTypes;
 import com.technologica.registration.deferred.TechnologicaMobEffects;
+import com.technologica.registration.deferred.TechnologicaPoisonDartFrogVariant;
 import com.technologica.world.entity.ai.PoisonDartFrogAi;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.DebugPackets;
@@ -25,7 +25,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.Mth;
@@ -66,7 +65,6 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.AmphibiousNodeEvaluator;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
@@ -114,7 +112,7 @@ public class PoisonDartFrog extends Animal implements VariantHolder<FrogVariant>
 	@Override
 	protected void defineSynchedData() {
 		super.defineSynchedData();
-		this.entityData.define(DATA_VARIANT_ID, FrogVariant.TEMPERATE);
+		this.entityData.define(DATA_VARIANT_ID, TechnologicaPoisonDartFrogVariant.VARIANT1.get());
 		this.entityData.define(DATA_TONGUE_TARGET_ID, OptionalInt.empty());
 	}
 
@@ -266,13 +264,18 @@ public class PoisonDartFrog extends Animal implements VariantHolder<FrogVariant>
 
 	@Override
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_218488_, DifficultyInstance p_218489_, MobSpawnType p_218490_, @Nullable SpawnGroupData p_218491_, @Nullable CompoundTag p_218492_) {
-		Holder<Biome> holder = p_218488_.getBiome(this.blockPosition());
-		if (holder.is(BiomeTags.SPAWNS_COLD_VARIANT_FROGS)) {
-			this.setVariant(FrogVariant.COLD);
-		} else if (holder.is(BiomeTags.SPAWNS_WARM_VARIANT_FROGS)) {
-			this.setVariant(FrogVariant.WARM);
+		int variant = this.random.nextInt(5);
+
+		if (variant == 0) {
+			this.setVariant(TechnologicaPoisonDartFrogVariant.VARIANT1.get());
+		} else if (variant == 1) {
+			this.setVariant(TechnologicaPoisonDartFrogVariant.VARIANT2.get());
+		} else if (variant == 2) {
+			this.setVariant(TechnologicaPoisonDartFrogVariant.VARIANT3.get());
+		} else if (variant == 3) {
+			this.setVariant(TechnologicaPoisonDartFrogVariant.VARIANT4.get());
 		} else {
-			this.setVariant(FrogVariant.TEMPERATE);
+			this.setVariant(TechnologicaPoisonDartFrogVariant.VARIANT5.get());
 		}
 
 		PoisonDartFrogAi.initMemories(this, p_218488_.getRandom());
