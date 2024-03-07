@@ -5,10 +5,8 @@ import java.util.function.Supplier;
 import com.technologica.Technologica;
 import com.technologica.capabilities.entity.airMeter.IAir;
 import com.technologica.client.multiplayer.TechnologicaClientLevel;
-import com.technologica.listeners.forgebus.RenderGuiOverlayEventListener;
 import com.technologica.network.packets.ClientboundSetMeteorStorm;
 import com.technologica.network.packets.ClientboundSetMeteorStormLevel;
-import com.technologica.network.packets.ClientboundTriggerEnvironmentTitleCardPacket;
 import com.technologica.network.packets.ClientboundUpdateAirCapabilityPacket;
 import com.technologica.setup.listeners.TechnologicaCapabilities;
 
@@ -25,16 +23,6 @@ public class ClientboundPacketHandlers {
 		Player player = minecraft.player;
 		IAir airCapability2 = player.getCapability(TechnologicaCapabilities.AIR_METER_INSTANCE).orElseThrow(NullPointerException::new);
 		airCapability2.setNewMaxAir(packet.getAir());
-	}
-
-	public static void handleTriggerEnvironmentTitleCard(ClientboundTriggerEnvironmentTitleCardPacket packet, final Supplier<NetworkEvent.Context> context) {
-		Technologica.LOGGER.debug("HANDLING PACKET - CLIENTBOUND - TRIGGER ENVIRONMENT TITLE CARD");
-
-		if (packet.getDimensionOrBiome()) {
-			RenderGuiOverlayEventListener.triggerBiomeTitleCard();
-		} else {
-			RenderGuiOverlayEventListener.triggerDimensionTitleCard();
-		}
 	}
 
 	public static void handleSetMeteorStorm(ClientboundSetMeteorStorm packet, final Supplier<NetworkEvent.Context> context) {

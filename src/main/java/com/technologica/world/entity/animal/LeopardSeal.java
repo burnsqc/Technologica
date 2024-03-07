@@ -51,7 +51,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
@@ -177,10 +176,6 @@ public class LeopardSeal extends Animal {
 		this.setHomePos(this.blockPosition());
 		this.setTravelPos(BlockPos.ZERO);
 		return super.finalizeSpawn(p_30153_, p_30154_, p_30155_, p_30156_, p_30157_);
-	}
-
-	public static boolean checkTurtleSpawnRules(EntityType<LeopardSeal> p_218277_, LevelAccessor p_218278_, MobSpawnType p_218279_, BlockPos p_218280_, RandomSource p_218281_) {
-		return p_218280_.getY() < p_218278_.getSeaLevel() + 4 && TurtleEggBlock.onSand(p_218278_, p_218280_) && isBrightEnoughToSpawn(p_218278_, p_218280_);
 	}
 
 	@Override
@@ -450,7 +445,6 @@ public class LeopardSeal extends Animal {
 	}
 
 	static class TurtleGoToWaterGoal extends MoveToBlockGoal {
-		private static final int GIVE_UP_TICKS = 1200;
 		private final LeopardSeal turtle;
 
 		TurtleGoToWaterGoal(LeopardSeal p_30262_, double p_30263_) {
@@ -655,8 +649,6 @@ public class LeopardSeal extends Animal {
 
 		@Override
 		public void start() {
-			int i = 512;
-			int j = 4;
 			RandomSource randomsource = this.turtle.random;
 			int k = randomsource.nextInt(1025) - 512;
 			int l = randomsource.nextInt(9) - 4;
@@ -683,7 +675,6 @@ public class LeopardSeal extends Animal {
 				if (vec31 != null) {
 					int i = Mth.floor(vec31.x);
 					int j = Mth.floor(vec31.z);
-					int k = 34;
 					if (!this.turtle.level().hasChunksAt(i - 34, j - 34, i + 34, j + 34)) {
 						vec31 = null;
 					}

@@ -27,7 +27,6 @@ import com.technologica.listeners.forgebus.WandererTradesEventListener;
 import com.technologica.listeners.modbus.CommonSetup;
 import com.technologica.network.packets.ClientboundSetMeteorStorm;
 import com.technologica.network.packets.ClientboundSetMeteorStormLevel;
-import com.technologica.network.packets.ClientboundTriggerEnvironmentTitleCardPacket;
 import com.technologica.network.packets.ClientboundUpdateAirCapabilityPacket;
 import com.technologica.network.packets.ServerboundUpdateAnnunciatorPacket;
 import com.technologica.network.packets.ServerboundUpdateMonitorPacket;
@@ -70,9 +69,8 @@ public class Technologica {
 	public TechnologicaClientLevel clientLevel;
 
 	public Technologica() {
-		instance = this;
 		LOGGER.info("TECHNOLOGICA NOW LOADING FOR DISTRIBUTION - " + FMLEnvironment.dist.toString());
-
+		instance = this;
 		MasterDeferredRegistrar.initDeferredRegisters();
 
 		LOGGER.info("SETUP - COMMON");
@@ -81,7 +79,6 @@ public class Technologica {
 		CHANNEL.registerMessage(PACKET_ID++, ServerboundUpdateAnnunciatorPacket.class, ServerboundUpdateAnnunciatorPacket::encode, ServerboundUpdateAnnunciatorPacket::decode, ServerboundUpdateAnnunciatorPacket::handle);
 		CHANNEL.registerMessage(PACKET_ID++, ServerboundUpdateMonitorPacket.class, ServerboundUpdateMonitorPacket::encode, ServerboundUpdateMonitorPacket::decode, ServerboundUpdateMonitorPacket::handle);
 		CHANNEL.registerMessage(PACKET_ID++, ClientboundUpdateAirCapabilityPacket.class, ClientboundUpdateAirCapabilityPacket::encode, ClientboundUpdateAirCapabilityPacket::decode, ClientboundUpdateAirCapabilityPacket::handle);
-		CHANNEL.registerMessage(PACKET_ID++, ClientboundTriggerEnvironmentTitleCardPacket.class, ClientboundTriggerEnvironmentTitleCardPacket::encode, ClientboundTriggerEnvironmentTitleCardPacket::decode, ClientboundTriggerEnvironmentTitleCardPacket::handle);
 		CHANNEL.registerMessage(PACKET_ID++, ClientboundSetMeteorStorm.class, ClientboundSetMeteorStorm::encode, ClientboundSetMeteorStorm::decode, ClientboundSetMeteorStorm::handle);
 		CHANNEL.registerMessage(PACKET_ID++, ClientboundSetMeteorStormLevel.class, ClientboundSetMeteorStormLevel::encode, ClientboundSetMeteorStormLevel::decode, ClientboundSetMeteorStormLevel::handle);
 

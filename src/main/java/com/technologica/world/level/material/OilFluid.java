@@ -30,7 +30,6 @@ import net.minecraft.world.level.block.LiquidBlockContainer;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
@@ -64,22 +63,22 @@ public abstract class OilFluid extends FlowingFluid {
 			}
 		}
 	}
-	
+
 	@Override
 	protected void spreadTo(LevelAccessor p_76005_, BlockPos p_76006_, BlockState p_76007_, Direction p_76008_, FluidState p_76009_) {
-		if (p_76007_.getBlock().equals(Blocks.FIRE)) {  
+		if (p_76007_.getBlock().equals(Blocks.FIRE)) {
 			return;
 		} else if (p_76007_.getBlock() instanceof LiquidBlockContainer) {
-	         ((LiquidBlockContainer)p_76007_.getBlock()).placeLiquid(p_76005_, p_76006_, p_76007_, p_76009_);
-	      } else {
-	         if (!p_76007_.isAir()) {
-	            this.beforeDestroyingBlock(p_76005_, p_76006_, p_76007_);
-	         }
+			((LiquidBlockContainer) p_76007_.getBlock()).placeLiquid(p_76005_, p_76006_, p_76007_, p_76009_);
+		} else {
+			if (!p_76007_.isAir()) {
+				this.beforeDestroyingBlock(p_76005_, p_76006_, p_76007_);
+			}
 
-	         p_76005_.setBlock(p_76006_, p_76009_.createLegacyBlock(), 3);
-	      }
+			p_76005_.setBlock(p_76006_, p_76009_.createLegacyBlock(), 3);
+		}
 
-	   }
+	}
 
 	@Override
 	@Nullable
