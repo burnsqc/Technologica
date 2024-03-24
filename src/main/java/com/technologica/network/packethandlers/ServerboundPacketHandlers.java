@@ -3,8 +3,8 @@ package com.technologica.network.packethandlers;
 import java.util.function.Supplier;
 
 import com.technologica.Technologica;
-import com.technologica.network.packets.ServerboundUpdateAnnunciatorPacket;
-import com.technologica.network.packets.ServerboundUpdateMonitorPacket;
+import com.technologica.network.packets.serverbound.UpdateAnnunciator;
+import com.technologica.network.packets.serverbound.UpdateMonitor;
 import com.technologica.world.level.block.entity.AnnunciatorBlockEntity;
 import com.technologica.world.level.block.entity.MonitorBlockEntity;
 
@@ -16,7 +16,7 @@ import net.minecraftforge.network.NetworkEvent;
 
 public class ServerboundPacketHandlers {
 
-	public static void handleUpdateAnnunciatorPacket(ServerboundUpdateAnnunciatorPacket packet, final Supplier<NetworkEvent.Context> context) {
+	public static void handleUpdateAnnunciator(UpdateAnnunciator packet, final Supplier<NetworkEvent.Context> context) {
 		Technologica.LOGGER.debug("HANDLING PACKET - SERVERBOUND - UPDATE ANNUNCIATOR");
 		Level world = context.get().getSender().level();
 		BlockEntity tileentity = world.getBlockEntity(packet.getPos());
@@ -31,7 +31,7 @@ public class ServerboundPacketHandlers {
 		}
 	}
 
-	public static void handleUpdateMonitorPacket(ServerboundUpdateMonitorPacket packet, final Supplier<NetworkEvent.Context> context) {
+	public static void handleUpdateMonitor(UpdateMonitor packet, final Supplier<NetworkEvent.Context> context) {
 		Technologica.LOGGER.debug("HANDLING PACKET - SERVERBOUND - UPDATE MONITOR");
 		Level world = context.get().getSender().level();
 		BlockEntity tileentity = world.getBlockEntity(packet.getPos());

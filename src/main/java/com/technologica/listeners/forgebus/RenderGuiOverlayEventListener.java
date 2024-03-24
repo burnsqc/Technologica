@@ -1,8 +1,6 @@
 package com.technologica.listeners.forgebus;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.technologica.capabilities.entity.airMeter.IAir;
-import com.technologica.setup.listeners.TechnologicaCapabilities;
 import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.client.Minecraft;
@@ -18,21 +16,17 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 public class RenderGuiOverlayEventListener {
 	private static final ResourceLocation GUI_ICONS_LOCATION = new TechnologicaLocation("textures/gui/technologica_icons.png");
 	private static final ResourceLocation AIR_SPRITE = new ResourceLocation("textures/gui/icons.png");
-	private static int fadeDimensionTimer;
-	private static int fadeBiomeTimer;
 
 	@SubscribeEvent
-	public static void onRenderGameOverlayEventPre(RenderGuiOverlayEvent.Pre event) {
+	public static void onPre(final RenderGuiOverlayEvent.Pre event) {
 		Minecraft minecraft = Minecraft.getInstance();
 		Player player = (Player) minecraft.getCameraEntity();
 
 		if (event.getOverlay() == VanillaGuiOverlay.AIR_LEVEL.type()) {
 			GuiGraphics guiGraphics = event.getGuiGraphics();
+			int maxAir = player.getMaxAirSupply();
 
-			IAir airCapability = player.getCapability(TechnologicaCapabilities.AIR_METER_INSTANCE).orElseThrow(NullPointerException::new);
-			int newMaxAir = airCapability.getNewMaxAir();
-
-			if (newMaxAir == 600) {
+			if (maxAir == 600) {
 				event.setCanceled(true);
 
 				int left = minecraft.getWindow().getGuiScaledWidth() / 2 + 91;
@@ -51,7 +45,7 @@ public class RenderGuiOverlayEventListener {
 				}
 				RenderSystem.disableBlend();
 
-			} else if (newMaxAir >= 3000) {
+			} else if (maxAir >= 3000) {
 				event.setCanceled(true);
 				minecraft.getTextureManager().bindForSetup(GUI_ICONS_LOCATION);
 
@@ -60,8 +54,8 @@ public class RenderGuiOverlayEventListener {
 				int air = player.getAirSupply();
 
 				RenderSystem.enableBlend();
-				if (player.isEyeInFluidType(ForgeMod.WATER_TYPE.get()) || air < newMaxAir) {
-					float remaining = air / (float) newMaxAir * 81;
+				if (player.isEyeInFluidType(ForgeMod.WATER_TYPE.get()) || air < maxAir) {
+					float remaining = air / (float) maxAir * 81;
 					guiGraphics.blit(GUI_ICONS_LOCATION, left - 81, top, -90, 0, 9, (int) (remaining), 9, 256, 256);
 					guiGraphics.blit(GUI_ICONS_LOCATION, left - 81, top, -90, 0, 0, 81, 9, 256, 256);
 				}

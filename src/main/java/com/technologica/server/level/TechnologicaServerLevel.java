@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 import com.technologica.Technologica;
-import com.technologica.network.packets.ClientboundSetMeteorStorm;
-import com.technologica.network.packets.ClientboundSetMeteorStormLevel;
+import com.technologica.network.packets.clientbound.SetMeteorStorm;
+import com.technologica.network.packets.clientbound.SetMeteorStormLevel;
 import com.technologica.registration.key.TechnologicaDimensionTypes;
 import com.technologica.world.entity.projectile.Meteor;
 import com.technologica.world.level.TechnologicaLevel;
@@ -110,18 +110,18 @@ public class TechnologicaServerLevel extends TechnologicaLevel {
 		}
 
 		if (this.oMeteorStormLevel != this.meteorStormLevel) {
-			Technologica.CHANNEL.send(PacketDistributor.DIMENSION.with(() -> this.level.dimension()), new ClientboundSetMeteorStormLevel(this.meteorStormLevel));
+			Technologica.CHANNEL.send(PacketDistributor.DIMENSION.with(() -> this.level.dimension()), new SetMeteorStormLevel(this.meteorStormLevel));
 		}
 
 		if (flag != this.isMeteorStorming()) {
 			if (flag) {
 				Technologica.LOGGER.debug("STOPPING METEOR STORM");
-				Technologica.CHANNEL.send(PacketDistributor.DIMENSION.with(() -> this.level.dimension()), new ClientboundSetMeteorStorm(false));
+				Technologica.CHANNEL.send(PacketDistributor.DIMENSION.with(() -> this.level.dimension()), new SetMeteorStorm(false));
 			} else {
 				Technologica.LOGGER.debug("STARTING METEOR STORM");
-				Technologica.CHANNEL.send(PacketDistributor.DIMENSION.with(() -> this.level.dimension()), new ClientboundSetMeteorStorm(true));
+				Technologica.CHANNEL.send(PacketDistributor.DIMENSION.with(() -> this.level.dimension()), new SetMeteorStorm(true));
 			}
-			Technologica.CHANNEL.send(PacketDistributor.DIMENSION.with(() -> this.level.dimension()), new ClientboundSetMeteorStormLevel(this.meteorStormLevel));
+			Technologica.CHANNEL.send(PacketDistributor.DIMENSION.with(() -> this.level.dimension()), new SetMeteorStormLevel(this.meteorStormLevel));
 		}
 	}
 

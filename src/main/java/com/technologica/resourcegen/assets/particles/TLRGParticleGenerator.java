@@ -2,17 +2,21 @@ package com.technologica.resourcegen.assets.particles;
 
 import com.technologica.Technologica;
 import com.technologica.registration.deferred.TechnologicaParticleTypes;
+import com.technologica.resourcegen.util.TLRGMasterResourceGenerator;
 import com.technologica.util.text.TechnologicaLocation;
 
-import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.common.data.ParticleDescriptionProvider;
 
-public class ParticleProvider extends ParticleDescriptionProvider {
+public class TLRGParticleGenerator extends ParticleDescriptionProvider {
 
-	public ParticleProvider(PackOutput output, ExistingFileHelper fileHelper) {
-		super(output, fileHelper);
+	public TLRGParticleGenerator() {
+		super(TLRGMasterResourceGenerator.packOutput, TLRGMasterResourceGenerator.helper);
+	}
+
+	@Override
+	public String getName() {
+		return "TLRG - assets." + Technologica.MOD_ID + ".particles";
 	}
 
 	@Override
@@ -55,9 +59,4 @@ public class ParticleProvider extends ParticleDescriptionProvider {
 		sprite(TechnologicaParticleTypes.SUBMERGED_RUBBER_RESIN.get(), new ResourceLocation("generic_0"));
 		sprite(TechnologicaParticleTypes.FLYING_RADIATION.get(), new ResourceLocation("drip_fall"));
 	}
-	
-	@Override
-    public String getName() {
-        return "Particles: " + Technologica.MOD_ID;
-    }
 }

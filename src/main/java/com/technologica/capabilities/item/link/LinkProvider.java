@@ -2,37 +2,33 @@ package com.technologica.capabilities.item.link;
 
 import javax.annotation.Nonnull;
 
+import org.jetbrains.annotations.Nullable;
+
+import com.technologica.setup.listeners.TechnologicaCapabilities;
+
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.LazyOptional;
 
-public class LinkProvider implements ICapabilitySerializable<Tag> {
-	public static final Capability<ILink> LINK_CAP = null;
-	private static final LazyOptional<ILink> instance = LazyOptional.of(Link::new);
+public class LinkProvider implements ICapabilitySerializable<CompoundTag> {
+	private final Link link = new Link();
+	private final LazyOptional<Link> optionalData = LazyOptional.of(() -> link);
 
 	@Nonnull
 	@Override
-	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, Direction side) {
-		return cap == LINK_CAP ? instance.cast() : LazyOptional.empty();
-	}
-
-	@Nonnull
-	@Override
-	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap) {
-		return getCapability(cap, null);
+	public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction direction) {
+		return TechnologicaCapabilities.LINK_INSTANCE.orEmpty(capability, optionalData);
 	}
 
 	@Override
-	public Tag serializeNBT() {
-		CompoundTag nbt = new CompoundTag();
-		return nbt;
+	public CompoundTag serializeNBT() {
+		return link.serializeNBT();
 	}
 
 	@Override
-	public void deserializeNBT(Tag nbt) {
-
+	public void deserializeNBT(CompoundTag compoundTag) {
+		link.deserializeNBT(compoundTag);
 	}
 }

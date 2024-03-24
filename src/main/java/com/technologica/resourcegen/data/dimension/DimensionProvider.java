@@ -18,7 +18,6 @@ import net.minecraft.world.level.biome.BiomeSource;
 import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.biome.MultiNoiseBiomeSource;
 import net.minecraft.world.level.chunk.ChunkGenerator;
-import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.dimension.LevelStem;
 import net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator;
 import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
@@ -28,38 +27,9 @@ public class DimensionProvider {
 
 	public static void bootstrap(BootstapContext<LevelStem> bootstrapContextIn) {
 		bootstrapContext = bootstrapContextIn;
-		bootstrapContext.register(TechnologicaDimensions.MOON_STEM, moon());
-		bootstrapContext.register(TechnologicaDimensions.CHALLENGER_DEEP_STEM, challengerDeep());
-		bootstrapContext.register(TechnologicaDimensions.OVERGROWTH_STEM, overgrowth());
-	}
-
-	private static LevelStem moon() {
-		return dimension(
-			TechnologicaDimensionTypes.MOON, 
-			chunkGenerator(
-				"noise", 
-				new BiomeSourceBuilder(
-					"multi_noise")
-						.add(biome(TechnologicaBiomes.SILENT_EXPANSES, parameters(0.0F, 0.0F, 1.0F, 0.0F, 0.0F, 0.0F, 0.0F)))
-						.add(biome(TechnologicaBiomes.CRATER_FIELDS, parameters(-1.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, -1.0F)))
-						.add(biome(TechnologicaBiomes.SHATTERED_CORRIDORS, parameters(1.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 1.0F))).build(), 
-			TechnologicaNoiseGeneratorSettings.MOON));
-	}
-
-	private static LevelStem challengerDeep() {
-		return dimension(
-			TechnologicaDimensionTypes.CHALLENGER_DEEP, 
-			chunkGenerator(
-				"noise", 
-				new BiomeSourceBuilder("multi_noise").add(biome(TechnologicaBiomes.MISTY_MIRE, parameters(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F))).add(biome(TechnologicaBiomes.CRATER_FIELDS, parameters(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F))).build(), TechnologicaNoiseGeneratorSettings.CHALLENGER_DEEP));
-	}
-
-	private static LevelStem overgrowth() {
-		return dimension(TechnologicaDimensionTypes.OVERGROWTH, chunkGenerator("noise", new BiomeSourceBuilder("multi_noise").add(biome(TechnologicaBiomes.MISTY_MIRE, parameters(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F))).add(biome(TechnologicaBiomes.BRAMBLE, parameters(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F))).build(), TechnologicaNoiseGeneratorSettings.OVERGROWTH));
-	}
-
-	private static LevelStem dimension(ResourceKey<DimensionType> type, ChunkGenerator generator) {
-		return new LevelStem(bootstrapContext.lookup(Registries.DIMENSION_TYPE).getOrThrow(type), generator);
+		bootstrapContext.register(TechnologicaDimensions.MOON_STEM, new LevelStem(bootstrapContext.lookup(Registries.DIMENSION_TYPE).getOrThrow(TechnologicaDimensionTypes.MOON), chunkGenerator("noise", new BiomeSourceBuilder("multi_noise").add(biome(TechnologicaBiomes.SILENT_EXPANSES, parameters(0.0F, 0.0F, 1.0F, 0.0F, 0.0F, 0.0F, 0.0F))).add(biome(TechnologicaBiomes.CRATER_FIELDS, parameters(-1.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, -1.0F))).add(biome(TechnologicaBiomes.SHATTERED_CORRIDORS, parameters(1.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 1.0F))).build(), TechnologicaNoiseGeneratorSettings.MOON)));
+		bootstrapContext.register(TechnologicaDimensions.CHALLENGER_DEEP_STEM, new LevelStem(bootstrapContext.lookup(Registries.DIMENSION_TYPE).getOrThrow(TechnologicaDimensionTypes.CHALLENGER_DEEP), chunkGenerator("noise", new BiomeSourceBuilder("multi_noise").add(biome(TechnologicaBiomes.MISTY_MIRE, parameters(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F))).add(biome(TechnologicaBiomes.CRATER_FIELDS, parameters(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F))).build(), TechnologicaNoiseGeneratorSettings.CHALLENGER_DEEP)));
+		bootstrapContext.register(TechnologicaDimensions.OVERGROWTH_STEM, new LevelStem(bootstrapContext.lookup(Registries.DIMENSION_TYPE).getOrThrow(TechnologicaDimensionTypes.OVERGROWTH), chunkGenerator("noise", new BiomeSourceBuilder("multi_noise").add(biome(TechnologicaBiomes.MISTY_MIRE, parameters(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F))).add(biome(TechnologicaBiomes.BRAMBLE, parameters(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F))).build(), TechnologicaNoiseGeneratorSettings.OVERGROWTH)));
 	}
 
 	private static ChunkGenerator chunkGenerator(String type, BiomeSource biomeSource, ResourceKey<NoiseGeneratorSettings> settings) {

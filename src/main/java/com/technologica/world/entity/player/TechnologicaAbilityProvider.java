@@ -1,4 +1,4 @@
-package com.technologica.capabilities.entity.airMeter;
+package com.technologica.world.entity.player;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -10,22 +10,22 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.LazyOptional;
 
-public class AirMeterProvider implements ICapabilitySerializable<CompoundTag> {
-	private final AirMeter airMeter = new AirMeter();
-	private final LazyOptional<AirMeter> optionalData = LazyOptional.of(() -> airMeter);
+public class TechnologicaAbilityProvider implements ICapabilitySerializable<CompoundTag> {
+	private final TechnologicaAbilities diver = new TechnologicaAbilities();
+	private final LazyOptional<TechnologicaAbilities> optionalData = LazyOptional.of(() -> diver);
 
 	@Override
 	public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction direction) {
-		return TechnologicaCapabilities.AIR_METER_INSTANCE.orEmpty(capability, optionalData);
+		return TechnologicaCapabilities.DIVER_INSTANCE.orEmpty(capability, optionalData);
 	}
 
 	@Override
 	public CompoundTag serializeNBT() {
-		return airMeter.serializeNBT();
+		return diver.serializeNBT();
 	}
 
 	@Override
-	public void deserializeNBT(CompoundTag compundTag) {
-		airMeter.deserializeNBT(compundTag);
+	public void deserializeNBT(CompoundTag compoundTag) {
+		diver.deserializeNBT(compoundTag);
 	}
 }

@@ -2,6 +2,7 @@ package com.technologica.resourcegen.assets.blockstates;
 
 import com.technologica.Technologica;
 import com.technologica.registration.deferred.TechnologicaBlocks;
+import com.technologica.resourcegen.util.TLRGMasterResourceGenerator;
 import com.technologica.util.AnnunciatorOverlay;
 import com.technologica.util.MiddleEnd;
 import com.technologica.util.Radius;
@@ -14,7 +15,6 @@ import com.technologica.world.level.block.VineCropBlock;
 import com.technologica.world.level.block.state.properties.TechnologicaBlockStateProperties;
 
 import net.minecraft.core.Direction;
-import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.BeetrootBlock;
 import net.minecraft.world.level.block.Block;
@@ -40,12 +40,17 @@ import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class BlockStateDataGenerator extends BlockStateProvider {
-	public BlockStateDataGenerator(PackOutput generatorIn, ExistingFileHelper helperIn) {
-		super(generatorIn, Technologica.MOD_ID, helperIn);
+public class TLRGBlockStateGenerator extends BlockStateProvider {
+
+	public TLRGBlockStateGenerator() {
+		super(TLRGMasterResourceGenerator.packOutput, Technologica.MOD_ID, TLRGMasterResourceGenerator.helper);
+	}
+
+	@Override
+	public String getName() {
+		return "TLRG - assets." + Technologica.MOD_ID + ".blockstates";
 	}
 
 	@Override

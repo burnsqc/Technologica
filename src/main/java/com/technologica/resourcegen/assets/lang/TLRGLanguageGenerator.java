@@ -6,17 +6,22 @@ import java.util.function.Supplier;
 import com.technologica.Technologica;
 import com.technologica.registration.deferred.TechnologicaEntityTypes;
 import com.technologica.registration.deferred.TechnologicaItems;
+import com.technologica.resourcegen.util.TLRGMasterResourceGenerator;
 
-import net.minecraft.data.PackOutput;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.minecraftforge.registries.RegistryObject;
 
-public class LanguageDataGenerator extends LanguageProvider {
+public class TLRGLanguageGenerator extends LanguageProvider {
 
-	public LanguageDataGenerator(PackOutput generatorIn) {
-		super(generatorIn, Technologica.MOD_ID, "en_us");
+	public TLRGLanguageGenerator() {
+		super(TLRGMasterResourceGenerator.packOutput, Technologica.MOD_ID, "en_us");
+	}
+
+	@Override
+	public String getName() {
+		return "TLRG - assets." + Technologica.MOD_ID + ".lang";
 	}
 
 	@Override
@@ -91,10 +96,5 @@ public class LanguageDataGenerator extends LanguageProvider {
 			name += first.toUpperCase() + afterFirst + " ";
 		}
 		return name.trim();
-	}
-
-	@Override
-	public String getName() {
-		return "Languages - en_us: " + Technologica.MOD_ID;
 	}
 }

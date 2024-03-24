@@ -2,20 +2,24 @@ package com.technologica.resourcegen.assets.models.items;
 
 import com.technologica.Technologica;
 import com.technologica.registration.deferred.TechnologicaItems;
+import com.technologica.resourcegen.util.TLRGMasterResourceGenerator;
 
 import net.minecraft.client.renderer.block.model.BlockModel.GuiLight;
-import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class ItemModelDataGenerator extends ItemModelProvider {
+public class TLRGModelItemGenerator extends ItemModelProvider {
 
-	public ItemModelDataGenerator(PackOutput generatorIn, ExistingFileHelper helperIn) {
-		super(generatorIn, Technologica.MOD_ID, helperIn);
+	public TLRGModelItemGenerator() {
+		super(TLRGMasterResourceGenerator.packOutput, Technologica.MOD_ID, TLRGMasterResourceGenerator.helper);
+	}
+
+	@Override
+	public String getName() {
+		return "TLRG - assets." + Technologica.MOD_ID + ".models.item";
 	}
 
 	@Override
@@ -501,10 +505,5 @@ public class ItemModelDataGenerator extends ItemModelProvider {
 		ResourceLocation location = ForgeRegistries.ITEMS.getKey(item);
 		this.getBuilder(location.getPath()).parent(new ModelFile.UncheckedModelFile("builtin/entity")).guiLight(GuiLight.FRONT).texture("layer0", new ResourceLocation(location.getNamespace(), ITEM_FOLDER + "/" + location.getPath()));
 		this.getBuilder(location.getPath() + "_base").parent(new ModelFile.UncheckedModelFile("item/generated")).texture("layer0", new ResourceLocation(location.getNamespace(), ITEM_FOLDER + "/" + location.getPath()));
-	}
-
-	@Override
-	public String getName() {
-		return "Models - Items: " + Technologica.MOD_ID;
 	}
 }

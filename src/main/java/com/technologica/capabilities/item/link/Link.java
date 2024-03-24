@@ -20,8 +20,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.common.util.INBTSerializable;
 
-public class Link implements ILink, INBTSerializable<CompoundTag> {
-	public static final String BOOLEAN_LINKING_KEY = "linking";
+public class Link implements INBTSerializable<CompoundTag> {
 	private boolean linking = false;
 	private Level world;
 	private BlockPos linkPos1 = BlockPos.ZERO;
@@ -36,17 +35,14 @@ public class Link implements ILink, INBTSerializable<CompoundTag> {
 	private Player player;
 	private String message;
 
-	@Override
 	public boolean getLinking() {
 		return this.linking;
 	}
 
-	@Override
 	public BlockPos getLinkAnchorPos() {
 		return this.linkPos1;
 	}
 
-	@Override
 	public void startLink(Level worldIn, BlockPos posIn, BlockState stateIn, Player playerIn) {
 		this.linking = true;
 		this.world = worldIn;
@@ -57,14 +53,12 @@ public class Link implements ILink, INBTSerializable<CompoundTag> {
 		this.player.displayClientMessage(Component.literal(this.message), true);
 	}
 
-	@Override
 	public void stopLink(BlockPos posIn, BlockState stateIn) {
 		this.linking = false;
 		this.linkPos2 = posIn;
 		this.linkState2 = stateIn;
 	}
 
-	@Override
 	public boolean checkAxis() {
 		if (this.linkState1.getValue(TwelveDirectionBlock.AXIS).equals(this.linkState2.getValue(TwelveDirectionBlock.AXIS))) {
 			this.axis = this.linkState1.getValue(TwelveDirectionBlock.AXIS);
@@ -76,7 +70,6 @@ public class Link implements ILink, INBTSerializable<CompoundTag> {
 		}
 	}
 
-	@Override
 	public boolean checkInlinePos() {
 		boolean bool = false;
 		switch (this.axis) {
@@ -103,7 +96,6 @@ public class Link implements ILink, INBTSerializable<CompoundTag> {
 		return bool;
 	}
 
-	@Override
 	public boolean checkPlanarPos() {
 		boolean bool = false;
 		switch (this.axis) {
@@ -130,7 +122,6 @@ public class Link implements ILink, INBTSerializable<CompoundTag> {
 		return bool;
 	}
 
-	@Override
 	public boolean checkObstructed() {
 		boolean bool = true;
 		for (int k = 1; k < this.distance; k++) {
@@ -145,7 +136,6 @@ public class Link implements ILink, INBTSerializable<CompoundTag> {
 		return bool;
 	}
 
-	@Override
 	public boolean checkDistance() {
 		boolean bool1 = false;
 		boolean bool2 = false;
@@ -162,7 +152,6 @@ public class Link implements ILink, INBTSerializable<CompoundTag> {
 		return bool1 && bool2;
 	}
 
-	@Override
 	public boolean checkMaterial() {
 		Inventory inv = this.player.getInventory();
 		this.linkTile1 = this.world.getBlockEntity(this.linkPos1);
@@ -189,7 +178,6 @@ public class Link implements ILink, INBTSerializable<CompoundTag> {
 		return bool;
 	}
 
-	@Override
 	public void createLineShaft() {
 		((LineShaftHangerTileEntity) this.linkTile1).setShaft(true);
 		((LineShaftHangerTileEntity) this.linkTile2).setShaft(true);
@@ -204,7 +192,6 @@ public class Link implements ILink, INBTSerializable<CompoundTag> {
 		this.player.displayClientMessage(Component.literal(this.message), true);
 	}
 
-	@Override
 	public void createBelt() {
 		this.linkTile1 = this.world.getBlockEntity(this.linkPos1);
 		this.linkTile2 = this.world.getBlockEntity(this.linkPos2);
@@ -219,12 +206,12 @@ public class Link implements ILink, INBTSerializable<CompoundTag> {
 	@Override
 	public CompoundTag serializeNBT() {
 		CompoundTag nbt = new CompoundTag();
-		nbt.putBoolean(BOOLEAN_LINKING_KEY, this.linking);
+		nbt.putBoolean("linking", this.linking);
 		return nbt;
 	}
 
 	@Override
 	public void deserializeNBT(CompoundTag nbt) {
-		this.linking = nbt.getBoolean(BOOLEAN_LINKING_KEY);
+		this.linking = nbt.getBoolean("linking");
 	}
 }

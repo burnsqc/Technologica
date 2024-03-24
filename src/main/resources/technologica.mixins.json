@@ -1,0 +1,15 @@
+{
+	"required": true,
+	"package": "com.technologica.mixin",
+	"compatibilityLevel": "JAVA_8",
+	"refmap": "technologica.mixins.refmap.json",
+	"mixins": [
+		"MixinNegateFluidMovement",
+		"MixinPlayerMaxAirSupply",
+		"MixinLifesightOrEntityGlow",
+		"MixinLifesightTeamColor"
+	],
+	"client": [
+	],
+	"minVersion": "0.8"
+}

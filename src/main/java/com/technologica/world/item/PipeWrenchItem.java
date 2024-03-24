@@ -2,9 +2,10 @@ package com.technologica.world.item;
 
 import javax.annotation.Nullable;
 
-import com.technologica.capabilities.item.link.ILink;
+import com.technologica.capabilities.item.link.Link;
 import com.technologica.capabilities.item.link.LinkProvider;
 import com.technologica.registration.deferred.TechnologicaBlocks;
+import com.technologica.setup.listeners.TechnologicaCapabilities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -44,7 +45,7 @@ public class PipeWrenchItem extends DiggerItem {
 			if (state.is(TechnologicaBlocks.LINE_SHAFT_HANGER.get())) {
 				Player player = context.getPlayer();
 				ItemStack stack = player.getItemInHand(context.getHand());
-				ILink linkCapability = stack.getCapability(LinkProvider.LINK_CAP).orElseThrow(NullPointerException::new);
+				Link linkCapability = stack.getCapability(TechnologicaCapabilities.LINK_INSTANCE).orElseThrow(NullPointerException::new);
 				if (!linkCapability.getLinking()) {
 					linkCapability.startLink(world, pos, state, player);
 				} else {

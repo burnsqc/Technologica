@@ -23,11 +23,11 @@ import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraftforge.common.data.DatapackBuiltinEntriesProvider;
 
 public class DimensionTypeProvider extends DatapackBuiltinEntriesProvider {
-	
+
 	public DimensionTypeProvider(PackOutput output, CompletableFuture<Provider> registries, RegistrySetBuilder builder) {
 		super(output, registries, builder, Set.of(Technologica.MOD_ID));
 	}
-	
+
 	public static void bootstrap(BootstapContext<DimensionType> bootstrapContextIn) {
 		bootstrapContextIn.register(TechnologicaDimensionTypes.MOON, moon());
 		bootstrapContextIn.register(TechnologicaDimensionTypes.CHALLENGER_DEEP, challengerDeep());
@@ -35,59 +35,15 @@ public class DimensionTypeProvider extends DatapackBuiltinEntriesProvider {
 	}
 
 	private static DimensionType moon() {
-		return dimensionType(
-			0.0F, 
-			true, 
-			1.0D, 
-			TechnologicaDimensionTypes.MOON_EFFECTS, 
-			OptionalLong.empty(), 
-			false, 
-			false, 
-			true, 
-			384, 
-			BlockTags.INFINIBURN_OVERWORLD, 
-			384, 
-			-64, 
-			0, 
-			monsterSpawnLightLevel("uniform", 7, 0), 
-			true, 
-			false, 
-			false, 
-			false);
+		return TLRGTemplates.TLRGDimensionType(0.0F, true, 1.0D, TechnologicaDimensionTypes.MOON_EFFECTS, OptionalLong.empty(), false, false, true, 384, BlockTags.INFINIBURN_OVERWORLD, 384, -64, 0, monsterSpawnLightLevel("uniform", 7, 0), true, false, false, false);
 	}
 
 	private static DimensionType challengerDeep() {
-		return dimensionType(
-			0.0F, 
-			true, 
-			1.0D, 
-			TechnologicaDimensionTypes.MOON_EFFECTS, 
-			OptionalLong.empty(), 
-			true, 
-			false, 
-			false, 384, BlockTags.INFINIBURN_OVERWORLD, 384, -64, 0, monsterSpawnLightLevel("uniform", 7, 0), true, false, false, false);
+		return dimensionType(0.0F, true, 1.0D, TechnologicaDimensionTypes.MOON_EFFECTS, OptionalLong.empty(), true, false, false, 384, BlockTags.INFINIBURN_OVERWORLD, 384, -64, 0, monsterSpawnLightLevel("uniform", 7, 0), true, false, false, false);
 	}
 
 	private static DimensionType overgrowth() {
-		return dimensionType(
-			0.1F, 
-			true, 
-			1.0D, 
-			BuiltinDimensionTypes.NETHER_EFFECTS, 
-			OptionalLong.of(18000L), 
-			true, 
-			false, 
-			true, 
-			384, 
-			BlockTags.INFINIBURN_OVERWORLD, 
-			384, 
-			-64, 
-			0, 
-			TLRGTemplates.TLRGMonsterSpawnLightLevel(UniformInt.class, 7, 0), 
-			true, 
-			false, 
-			false, 
-			false);
+		return dimensionType(0.1F, true, 1.0D, BuiltinDimensionTypes.NETHER_EFFECTS, OptionalLong.of(18000L), true, false, true, 384, BlockTags.INFINIBURN_OVERWORLD, 384, -64, 0, TLRGTemplates.TLRGMonsterSpawnLightLevel(UniformInt.class, 7, 0), true, false, false, false);
 	}
 
 	private static DimensionType dimensionType(float ambientLight, boolean bedWorks, double coordinateScale, ResourceLocation effects, OptionalLong fixedTime, boolean hasCeiling, boolean hasRaids, boolean hasSkylight, int height, TagKey<Block> infiniburn, int logicalHeight, int minY, int monsterSpawnBlockLightLimit, IntProvider monsterSpawnLightLevel, boolean natural, boolean piglinSafe, boolean respawnAnchorWorks, boolean ultraWarm) {
@@ -97,7 +53,7 @@ public class DimensionTypeProvider extends DatapackBuiltinEntriesProvider {
 	private static IntProvider monsterSpawnLightLevel(String type, int maxInclusive, int minInclusive) {
 		return UniformInt.of(minInclusive, maxInclusive);
 	}
-	
+
 	@Override
 	public String getName() {
 		return "Dimension Types";

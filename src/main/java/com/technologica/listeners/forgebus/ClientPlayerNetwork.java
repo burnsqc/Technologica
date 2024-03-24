@@ -7,7 +7,7 @@ import com.technologica.client.multiplayer.TechnologicaClientLevel.TechnologicaC
 import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-public class ClientPlayerNetworkEventListener {
+public class ClientPlayerNetwork {
 
 	@SubscribeEvent
 	public void onClone(final ClientPlayerNetworkEvent.Clone event) {

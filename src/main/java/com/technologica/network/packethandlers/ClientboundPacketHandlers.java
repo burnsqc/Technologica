@@ -3,33 +3,28 @@ package com.technologica.network.packethandlers;
 import java.util.function.Supplier;
 
 import com.technologica.Technologica;
-import com.technologica.capabilities.entity.airMeter.IAir;
 import com.technologica.client.multiplayer.TechnologicaClientLevel;
-import com.technologica.network.packets.ClientboundSetMeteorStorm;
-import com.technologica.network.packets.ClientboundSetMeteorStormLevel;
-import com.technologica.network.packets.ClientboundUpdateAirCapabilityPacket;
+import com.technologica.network.packets.clientbound.SetMeteorStorm;
+import com.technologica.network.packets.clientbound.SetMeteorStormLevel;
+import com.technologica.network.packets.clientbound.UpdateDiverCapability;
 import com.technologica.setup.listeners.TechnologicaCapabilities;
+import com.technologica.world.entity.player.TechnologicaAbilities;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraftforge.network.NetworkEvent;
 
 public class ClientboundPacketHandlers {
 
-	public static void handleUpdateAirCapability(ClientboundUpdateAirCapabilityPacket packet, final Supplier<NetworkEvent.Context> context) {
-		Technologica.LOGGER.debug("HANDLING PACKET - CLIENTBOUND - UPDATE AIR");
-
+	public static void handleUpdateDiverCapability(UpdateDiverCapability packet, final Supplier<NetworkEvent.Context> context) {
 		Minecraft minecraft = Minecraft.getInstance();
-		Player player = minecraft.player;
-		IAir airCapability2 = player.getCapability(TechnologicaCapabilities.AIR_METER_INSTANCE).orElseThrow(NullPointerException::new);
-		airCapability2.setNewMaxAir(packet.getAir());
+		LocalPlayer player = minecraft.player;
+		TechnologicaAbilities diver = player.getCapability(TechnologicaCapabilities.DIVER_INSTANCE).orElseThrow(NullPointerException::new);
+		diver.setDiver(packet.getDiver());
 	}
 
-	public static void handleSetMeteorStorm(ClientboundSetMeteorStorm packet, final Supplier<NetworkEvent.Context> context) {
-		// Technologica.LOGGER.debug("HANDLING PACKET - CLIENTBOUND - SET METEOR STORM ");
-
+	public static void handleSetMeteorStorm(SetMeteorStorm packet, final Supplier<NetworkEvent.Context> context) {
 		TechnologicaClientLevel level = Technologica.getInstance().clientLevel;
-
 		if (packet.getStorm()) {
 			level.getLevelData().setMeteorStorming(true);
 			level.setMeteorStormLevel(0.0F);
@@ -39,11 +34,8 @@ public class ClientboundPacketHandlers {
 		}
 	}
 
-	public static void handleSetMeteorStormLevel(ClientboundSetMeteorStormLevel packet, final Supplier<NetworkEvent.Context> context) {
-		// Technologica.LOGGER.debug("HANDLING PACKET - CLIENTBOUND - SET METEOR STORM LEVEL");
-
+	public static void handleSetMeteorStormLevel(SetMeteorStormLevel packet, final Supplier<NetworkEvent.Context> context) {
 		TechnologicaClientLevel level = Technologica.getInstance().clientLevel;
-
 		level.setMeteorStormLevel(packet.getStormLevel());
 	}
 }
