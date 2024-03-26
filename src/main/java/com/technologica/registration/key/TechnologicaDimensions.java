@@ -1,7 +1,7 @@
 package com.technologica.registration.key;
 
 import com.technologica.registration.key.util.MasterKeyCreator;
-import com.technologica.resourcegen.data.dimension.DimensionProvider;
+import com.technologica.resourcegen.data.dimension.TLDimensionGenerator;
 
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.Level;
@@ -10,7 +10,7 @@ import net.minecraft.world.level.dimension.LevelStem;
 /**
  * <p>
  * This class contains Resource Keys for Dimensions.
- * The corresponding Dimensions are created in json format during Data Generation in {@link DimensionProvider}.
+ * The corresponding Dimensions are created in json format during Data Generation in {@link TLDimensionGenerator}.
  * </p>
  * 
  * @tl.status GREEN

@@ -30,11 +30,6 @@ import com.technologica.network.packets.clientbound.UpdateDiverCapability;
 import com.technologica.network.packets.serverbound.UpdateAnnunciator;
 import com.technologica.network.packets.serverbound.UpdateMonitor;
 import com.technologica.registration.deferred.util.MasterDeferredRegistrar;
-import com.technologica.resourcegen.assets.blockstates.TLRGBlockStateGenerator;
-import com.technologica.resourcegen.assets.lang.TLRGLanguageGenerator;
-import com.technologica.resourcegen.assets.models.items.TLRGModelItemGenerator;
-import com.technologica.resourcegen.assets.particles.TLRGParticleGenerator;
-import com.technologica.resourcegen.util.TLRGMasterResourceGenerator;
 import com.technologica.server.level.TechnologicaServerLevel;
 import com.technologica.setup.SetupClient;
 import com.technologica.setup.config.TechnologicaConfigCommon;
@@ -76,7 +71,23 @@ public class Technologica {
 		LOGGER.info("TECHNOLOGICA NOW LOADING FOR DISTRIBUTION - " + FMLEnvironment.dist.toString());
 		instance = this;
 		MasterDeferredRegistrar.initDeferredRegisters();
-		TLRGMasterResourceGenerator.setGenerators(() -> new TLRGBlockStateGenerator(), () -> new TLRGLanguageGenerator(), () -> new TLRGModelItemGenerator(), () -> new TLRGParticleGenerator());
+		/*
+		 * TLRGMasterResourceGenerator.setGenerators(
+		 * () -> new TLBlockStateGenerator(),
+		 * () -> new TLLanguageGenerator(),
+		 * () -> new TLModelItemGenerator(),
+		 * () -> new TLParticleGenerator(),
+		 * () -> new TLSoundsGenerator(),
+		 * () -> new TLRGAdvancementGenerator(),
+		 * () -> new TLDamageTypeGenerator(),
+		 * () -> new TLDimensionGenerator(),
+		 * () -> new TLDimensionTypeGenerator(),
+		 * () -> new TLRecipeGenerator(),
+		 * () -> new TLTagBlocksGenerator(),
+		 * () -> new TLTagEntityTypeGenerator(),
+		 * () -> new TLTagItemsGenerator()
+		 * );
+		 */
 
 		LOGGER.info("SETUP - COMMON");
 		ModLoadingContext.get().registerConfig(Type.COMMON, TechnologicaConfigCommon.COMMON_SPEC, "technologica-common.toml");

@@ -1,0 +1,9 @@
+{
+  "type": "technologica:zombie_villager",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:entities/zombie_villager"
+    }
+  ]
+}

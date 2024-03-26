@@ -1,6 +1,13 @@
 {
   "entries": [
-    "technologica:chests/technologica_modifier"
+    "technologica:entities/zombie",
+    "technologica:blocks/fern",
+    "technologica:blocks/large_fern",
+    "technologica:blocks/tall_grass",
+    "technologica:entities/zombie_villager",
+    "technologica:blocks/grass",
+    "technologica:chests/technologica_modifier",
+    "technologica:entities/husk"
   ],
   "replace": false
 }

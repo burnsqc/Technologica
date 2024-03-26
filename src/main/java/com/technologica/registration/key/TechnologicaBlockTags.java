@@ -1,7 +1,7 @@
 package com.technologica.registration.key;
 
 import com.technologica.registration.key.util.MasterKeyCreator;
-import com.technologica.resourcegen.data.tags.blocks.BlockTagProvider;
+import com.technologica.resourcegen.data.tags.blocks.TLTagBlocksGenerator;
 
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.Block;
 /**
  * <p>
  * This class contains Tag Keys for Blocks.
- * The corresponding Block Tags are created in json format during Data Generation in {@link BlockTagProvider}.
+ * The corresponding Block Tags are created in json format during Data Generation in {@link TLTagBlocksGenerator}.
  * </p>
  * 
  * @tl.status GREEN

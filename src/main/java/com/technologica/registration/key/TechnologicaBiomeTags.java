@@ -1,7 +1,7 @@
 package com.technologica.registration.key;
 
 import com.technologica.registration.key.util.MasterKeyCreator;
-import com.technologica.resourcegen.data.tags.worldgen.biome.BiomeTagProvider;
+import com.technologica.resourcegen.data.tags.worldgen.biome.TLTagWorldgenBiomeGenerator;
 
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
@@ -9,7 +9,7 @@ import net.minecraft.world.level.biome.Biome;
 /**
  * <p>
  * This class contains Tag Keys for Biomes.  
- * The corresponding Biome Tags are created in json format during Data Generation in {@link BiomeTagProvider}.
+ * The corresponding Biome Tags are created in json format during Data Generation in {@link TLTagWorldgenBiomeGenerator}.
  * </p>
  * 
  * @tl.status GREEN

@@ -1,4 +1,4 @@
-package com.technologica.resourcegen.data.loottables;
+package com.technologica.api.tlrg.resourcegen;
 
 import java.util.List;
 import java.util.Map;
@@ -7,7 +7,6 @@ import java.util.Set;
 import com.technologica.resourcegen.data.loottables.blocks.TLLootTablesBlocksGenerator;
 import com.technologica.resourcegen.data.loottables.entities.EntityLootDataGenerator;
 
-import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.data.loot.packs.VanillaLootTableProvider;
 import net.minecraft.resources.ResourceLocation;
@@ -15,18 +14,18 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.ValidationContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 
-public class LootTableDataGenerator extends LootTableProvider {
+public class TLRGLootTablesGenerator extends LootTableProvider {
 	private final List<SubProviderEntry> subProviders = List.of(new LootTableProvider.SubProviderEntry(TLLootTablesBlocksGenerator::new, LootContextParamSets.BLOCK), new LootTableProvider.SubProviderEntry(EntityLootDataGenerator::new, LootContextParamSets.ENTITY));
-	
-	public LootTableDataGenerator (PackOutput packOutput) {
-		super(packOutput, Set.of(), VanillaLootTableProvider.create(packOutput).getTables());
+
+	public TLRGLootTablesGenerator() {
+		super(TLRGMasterResourceGenerator.packOutput, Set.of(), VanillaLootTableProvider.create(TLRGMasterResourceGenerator.packOutput).getTables());
 	}
-	
+
 	@Override
 	public List<LootTableProvider.SubProviderEntry> getTables() {
 		return subProviders;
 	}
-	
+
 	@Override
 	protected void validate(Map<ResourceLocation, LootTable> map, ValidationContext validationtracker) {
 	}

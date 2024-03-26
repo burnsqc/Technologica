@@ -1,7 +1,7 @@
 package com.technologica.registration.key;
 
 import com.technologica.registration.key.util.MasterKeyCreator;
-import com.technologica.resourcegen.data.damagetype.DamageTypeProvider;
+import com.technologica.resourcegen.data.damagetype.TLDamageTypeGenerator;
 
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.damagesource.DamageType;
@@ -9,7 +9,7 @@ import net.minecraft.world.damagesource.DamageType;
 /**
  * <p>
  * This class contains Resource Keys for Damage Types.
- * The corresponding Damage Types are created in json format during Data Generation in {@link DamageTypeProvider}.
+ * The corresponding Damage Types are created in json format during Data Generation in {@link TLDamageTypeGenerator}.
  * </p>
  * 
  * @tl.status GREEN

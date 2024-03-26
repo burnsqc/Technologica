@@ -1,7 +1,7 @@
 package com.technologica.registration.key;
 
 import com.technologica.registration.key.util.MasterKeyCreator;
-import com.technologica.resourcegen.data.tags.items.ItemTagProvider;
+import com.technologica.resourcegen.data.tags.items.TLTagItemsGenerator;
 
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -9,7 +9,7 @@ import net.minecraft.world.item.Item;
 /**
  * <p>
  * This class contains Tag Keys for Items.
- * The corresponding Item Tags are created in json format during Data Generation in {@link ItemTagProvider}.
+ * The corresponding Item Tags are created in json format during Data Generation in {@link TLTagItemsGenerator}.
  * </p>
  * 
  * @tl.status GREEN
