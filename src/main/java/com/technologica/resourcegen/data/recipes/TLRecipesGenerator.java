@@ -2,7 +2,7 @@ package com.technologica.resourcegen.data.recipes;
 
 import java.util.function.Consumer;
 
-import com.technologica.api.tlrg.resourcegen.TLRGRecipeGenerator;
+import com.technologica.api.tlregen.resourcegen.TLRGRecipeGenerator;
 import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.registration.deferred.TechnologicaItems;
 import com.technologica.registration.deferred.TechnologicaRecipeSerializers;

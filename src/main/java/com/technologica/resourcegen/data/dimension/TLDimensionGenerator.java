@@ -3,7 +3,7 @@ package com.technologica.resourcegen.data.dimension;
 import java.util.ArrayList;
 
 import com.mojang.datafixers.util.Pair;
-import com.technologica.api.tlrg.resourcegen.TLRGDimensionGenerator;
+import com.technologica.api.tlregen.resourcegen.TLReGenDimension;
 import com.technologica.registration.key.TechnologicaBiomes;
 import com.technologica.registration.key.TechnologicaDimensionTypes;
 import com.technologica.registration.key.TechnologicaDimensions;
@@ -23,12 +23,12 @@ import net.minecraft.world.level.dimension.LevelStem;
 import net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator;
 import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
 
-public class TLDimensionGenerator extends TLRGDimensionGenerator {
+public class TLDimensionGenerator extends TLReGenDimension {
 	private static BootstapContext<LevelStem> dimension;
 
 	public static void bootstrap(BootstapContext<LevelStem> bootstrapContextIn) {
 		dimension = bootstrapContextIn;
-		dimension.register(TechnologicaDimensions.MOON_STEM, new LevelStem(dimension.lookup(Registries.DIMENSION_TYPE).getOrThrow(TechnologicaDimensionTypes.MOON), chunkGenerator("noise", new BiomeSourceBuilder("multi_noise").add(biome(TechnologicaBiomes.SILENT_EXPANSES, parameters(0.0F, 0.0F, 1.0F, 0.0F, 0.0F, 0.0F, 0.0F))).add(biome(TechnologicaBiomes.CRATER_FIELDS, parameters(-1.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, -1.0F))).add(biome(TechnologicaBiomes.SHATTERED_CORRIDORS, parameters(1.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 1.0F))).build(), TechnologicaNoiseGeneratorSettings.MOON)));
+		dimension.register(TechnologicaDimensions.MOON_STEM, Dimension(bootstrapContextIn, TechnologicaDimensionTypes.MOON, chunkGenerator("noise", new BiomeSourceBuilder("multi_noise").add(biome(TechnologicaBiomes.SILENT_EXPANSES, parameters(0.0F, 0.0F, 1.0F, 0.0F, 0.0F, 0.0F, 0.0F))).add(biome(TechnologicaBiomes.CRATER_FIELDS, parameters(-1.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, -1.0F))).add(biome(TechnologicaBiomes.SHATTERED_CORRIDORS, parameters(1.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 1.0F))).build(), TechnologicaNoiseGeneratorSettings.MOON)));
 		dimension.register(TechnologicaDimensions.CHALLENGER_DEEP_STEM, new LevelStem(dimension.lookup(Registries.DIMENSION_TYPE).getOrThrow(TechnologicaDimensionTypes.CHALLENGER_DEEP), chunkGenerator("noise", new BiomeSourceBuilder("multi_noise").add(biome(TechnologicaBiomes.MISTY_MIRE, parameters(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F))).add(biome(TechnologicaBiomes.CRATER_FIELDS, parameters(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F))).build(), TechnologicaNoiseGeneratorSettings.CHALLENGER_DEEP)));
 		dimension.register(TechnologicaDimensions.OVERGROWTH_STEM, new LevelStem(dimension.lookup(Registries.DIMENSION_TYPE).getOrThrow(TechnologicaDimensionTypes.OVERGROWTH), chunkGenerator("noise", new BiomeSourceBuilder("multi_noise").add(biome(TechnologicaBiomes.MISTY_MIRE, parameters(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F))).add(biome(TechnologicaBiomes.BRAMBLE, parameters(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F))).build(), TechnologicaNoiseGeneratorSettings.OVERGROWTH)));
 	}

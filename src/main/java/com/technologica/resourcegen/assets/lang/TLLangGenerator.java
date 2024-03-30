@@ -4,43 +4,50 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 import com.technologica.Technologica;
-import com.technologica.api.tlrg.resourcegen.TLRGLanguageGenerator;
+import com.technologica.api.tlregen.resourcegen.TLReGenAssetsLang;
+import com.technologica.registration.deferred.TechnologicaCreativeModeTabs;
 import com.technologica.registration.deferred.TechnologicaEntityTypes;
 import com.technologica.registration.deferred.TechnologicaItems;
+import com.technologica.registration.deferred.TechnologicaMobEffects;
 
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.RegistryObject;
 
-public class TLLangGenerator extends TLRGLanguageGenerator {
+public class TLLangGenerator extends TLReGenAssetsLang {
 	@Override
-	protected void addTranslations() {
+	protected void populate() {
 		addItems(TechnologicaItems.ITEMS.getEntries());
 		addEntities(TechnologicaEntityTypes.ENTITY_TYPES.getEntries());
-		add("item_group." + Technologica.MOD_ID + ".flora", "Flora");
-		add("item_group." + Technologica.MOD_ID + ".fauna", "Fauna");
-		add("item_group." + Technologica.MOD_ID + ".mineral", "Mineral");
-		add("item_group." + Technologica.MOD_ID + ".food", "Food");
-		add("item_group." + Technologica.MOD_ID + ".construction", "Construction");
-		add("item_group." + Technologica.MOD_ID + ".machinery", "Machinery");
-		add("item_group." + Technologica.MOD_ID + ".decorative", "Decorative");
-		add("item_group." + Technologica.MOD_ID + ".armory", "Armory");
-		add("item_group." + Technologica.MOD_ID + ".cryptica", "Cryptica");
-		add("death.attack.jostled_the_nitro", "%1$s jostled the nitro");
+
+		add("ddeath.attack.jostled_the_nitro", "%1$s jostled the nitro");
 		add("death.attack.jostled_the_nitro.player", "%1$s jostled the nitro whilst fighting %2$s");
 		add("death.attack.bled_out", "%1$s bled out");
 		add("death.attack.bled_out.player", "%1$s bled out whilst fighting %2$s");
-		add("effect.technologica.hallucination", "Hallucination");
-		add("effect.technologica.hemorrhage", "Hemorrhage");
-		add("effect.technologica.lifesight", "Lifesight");
-		add("effect.technologica.necrosis", "Necrosis");
-		add("effect.technologica.neuropathy", "Neuropathy");
-		add("effect.technologica.paralysis", "Paralysis");
-		add("effect.technologica.radiation", "Radiation");
+
+		addEffect(TechnologicaMobEffects.HALLUCINIATION, "Hallucination");
+		addEffect(TechnologicaMobEffects.HEMORRHAGE, "Hemorrhage");
+		addEffect(TechnologicaMobEffects.LIFESIGHT, "Lifesight");
+		addEffect(TechnologicaMobEffects.NECROSIS, "Necrosis");
+		addEffect(TechnologicaMobEffects.NEUROPATHY, "Neuropathy");
+		addEffect(TechnologicaMobEffects.PARALYSIS, "Paralysis");
+		addEffect(TechnologicaMobEffects.RADIATION, "Radiation");
+
+		addItemGroup(TechnologicaCreativeModeTabs.FLORA, "Flora");
+		addItemGroup(TechnologicaCreativeModeTabs.FAUNA, "Fauna");
+		addItemGroup(TechnologicaCreativeModeTabs.MINERAL, "Mineral");
+		addItemGroup(TechnologicaCreativeModeTabs.FOOD, "Food");
+		addItemGroup(TechnologicaCreativeModeTabs.CONSTRUCTION, "Construction");
+		addItemGroup(TechnologicaCreativeModeTabs.MACHINERY, "Machinery");
+		addItemGroup(TechnologicaCreativeModeTabs.DECORATIVE, "Decorative");
+		addItemGroup(TechnologicaCreativeModeTabs.ARMORY, "Armory");
+		addItemGroup(TechnologicaCreativeModeTabs.CRYPTICA, "Cryptica");
+
 		add("advancements.tribulation.root.title", "Tribulation");
 		add("advancements.tribulation.root.description", "May you maintain your resolve in the face of great adversity");
 		add("advancements.tribulation.a_sign_of_things_to_come.title", "A Sign of Things to Come");
 		add("advancements.tribulation.a_sign_of_things_to_come.description", "This first lesson is to set your expectations.");
+
 		add("commands.weather.set.meteor_storm", "Set the weather to meteor storm");
 	}
 

@@ -1,6 +1,6 @@
 package com.technologica.resourcegen.assets.models.items;
 
-import com.technologica.api.tlrg.resourcegen.TLRGModelItemGenerator;
+import com.technologica.api.tlregen.resourcegen.TLReGenModelsItem;
 import com.technologica.registration.deferred.TechnologicaItems;
 
 import net.minecraft.client.renderer.block.model.BlockModel.GuiLight;
@@ -9,7 +9,7 @@ import net.minecraft.world.item.Item;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class TLModelsItemGenerator extends TLRGModelItemGenerator {
+public class TLModelsItemGenerator extends TLReGenModelsItem {
 	@Override
 	protected void registerModels() {
 		simpleItem(TechnologicaItems.BARLEY_SEEDS.get());

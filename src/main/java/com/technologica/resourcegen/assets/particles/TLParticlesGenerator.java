@@ -1,12 +1,12 @@
 package com.technologica.resourcegen.assets.particles;
 
-import com.technologica.api.tlrg.resourcegen.TLRGParticleGenerator;
+import com.technologica.api.tlregen.resourcegen.TLReGenParticle;
 import com.technologica.registration.deferred.TechnologicaParticleTypes;
 import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.resources.ResourceLocation;
 
-public class TLParticlesGenerator extends TLRGParticleGenerator {
+public class TLParticlesGenerator extends TLReGenParticle {
 	@Override
 	protected void addDescriptions() {
 		sprite(TechnologicaParticleTypes.DRIPPING_BRINE.get(), new ResourceLocation("drip_hang"));

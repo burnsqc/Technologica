@@ -2,7 +2,7 @@ package com.technologica.resourcegen.data.advancements;
 
 import java.util.List;
 
-import com.technologica.api.tlrg.resourcegen.TLRGMasterResourceGenerator;
+import com.technologica.api.tlregen.resourcegen.TLRGMasterResourceGenerator;
 import com.technologica.resourcegen.data.advancements.dominion.DominionAdvancementDataGenerator;
 import com.technologica.resourcegen.data.advancements.husbandry.HusbandryAdvancementDataGenerator;
 import com.technologica.resourcegen.data.advancements.technology.TechnologyAdvancementDataProvider;

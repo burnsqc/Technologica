@@ -1,7 +1,7 @@
 package com.technologica.registration.key;
 
 import com.technologica.registration.key.util.MasterKeyCreator;
-import com.technologica.resourcegen.data.worldgen.structuresets.StructureSetProvider;
+import com.technologica.resourcegen.data.worldgen.structuresets.TLWorldgenStructureSetGenerator;
 
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.structure.StructureSet;
@@ -9,7 +9,7 @@ import net.minecraft.world.level.levelgen.structure.StructureSet;
 /**
  * <p>
  * This class contains Resource Keys for Structure Sets.
- * The corresponding Structure Sets are created in json format during Data Generation in {@link StructureSetProvider}.
+ * The corresponding Structure Sets are created in json format during Data Generation in {@link TLWorldgenStructureSetGenerator}.
  * </p>
  * 
  * @tl.status GREEN

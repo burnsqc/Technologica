@@ -1,7 +1,7 @@
 package com.technologica.registration.key;
 
 import com.technologica.registration.key.util.MasterKeyCreator;
-import com.technologica.resourcegen.data.worldgen.biome.BiomeProvider;
+import com.technologica.resourcegen.data.worldgen.biome.TLWorldgenBiomeGenerator;
 
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
@@ -9,7 +9,7 @@ import net.minecraft.world.level.biome.Biome;
 /**
  * <p>
  * This class contains Resource Keys for Biomes.
- * The corresponding Biomes are created in json format during Data Generation in {@link BiomeProvider}.
+ * The corresponding Biomes are created in json format during Data Generation in {@link TLWorldgenBiomeGenerator}.
  * </p>
  * 
  * @tl.status GREEN

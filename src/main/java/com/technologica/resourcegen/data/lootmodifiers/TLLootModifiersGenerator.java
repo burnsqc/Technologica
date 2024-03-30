@@ -1,6 +1,6 @@
 package com.technologica.resourcegen.data.lootmodifiers;
 
-import com.technologica.api.tlrg.resourcegen.TLRGLootModifierGenerator;
+import com.technologica.api.tlregen.resourcegen.TLRGLootModifierGenerator;
 import com.technologica.listeners.lootmodifiers.TechnologicaChestLootModifier;
 import com.technologica.listeners.lootmodifiers.blocks.FernLootModifier;
 import com.technologica.listeners.lootmodifiers.blocks.GrassLootModifier;

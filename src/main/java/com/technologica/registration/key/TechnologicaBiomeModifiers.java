@@ -1,7 +1,7 @@
 package com.technologica.registration.key;
 
 import com.technologica.registration.key.util.MasterKeyCreator;
-import com.technologica.resourcegen.data.worldgen.biome.BiomeModifierProvider;
+import com.technologica.resourcegen.data.worldgen.biome.TLForgeBiomeModifierGenerator;
 
 import net.minecraft.resources.ResourceKey;
 import net.minecraftforge.common.world.BiomeModifier;
@@ -9,7 +9,7 @@ import net.minecraftforge.common.world.BiomeModifier;
 /**
  * <p>
  * This class contains Resource Keys for Biome Modifiers.
- * The corresponding Biome Modifiers are created in json format during Data Generation in {@link BiomeModifierProvider}.
+ * The corresponding Biome Modifiers are created in json format during Data Generation in {@link TLForgeBiomeModifierGenerator}.
  * </p>
  * 
  * @tl.status GREEN

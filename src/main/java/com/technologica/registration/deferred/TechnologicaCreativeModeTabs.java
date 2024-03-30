@@ -23,7 +23,7 @@ public final class TechnologicaCreativeModeTabs extends MasterDeferredRegistrar 
 		return CREATIVE_MODE_TABS.getEntries().size();
 	}
 
-	public static final RegistryObject<CreativeModeTab> FLORA = CREATIVE_MODE_TABS.register("flora", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.ASPEN_SAPLING_ITEM.get())).withBackgroundLocation(new TechnologicaLocation("textures/gui/container/creative_inventory/tab_flora.png")).withLabelColor(0).title(Component.literal("Flora")).displayItems((p_270425_, items) -> {
+	public static final RegistryObject<CreativeModeTab> FLORA = CREATIVE_MODE_TABS.register("flora", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.ASPEN_SAPLING_ITEM.get())).withBackgroundLocation(new TechnologicaLocation("textures/gui/container/creative_inventory/tab_flora.png")).withLabelColor(0).title(Component.translatable("itemGroup.flora")).displayItems((p_270425_, items) -> {
 		items.accept(TechnologicaItems.BARLEY_SEEDS.get());
 		items.accept(TechnologicaItems.OATS_SEEDS.get());
 		items.accept(TechnologicaItems.RYE_SEEDS.get());

@@ -4,6 +4,7 @@ import com.technologica.Technologica;
 import com.technologica.listeners.forgebus.ClientPlayerNetwork;
 import com.technologica.listeners.forgebus.MovementInputUpdateEventListener;
 import com.technologica.listeners.forgebus.RenderGuiOverlayEventListener;
+import com.technologica.listeners.forgebus.RenderLevelStageEventListener;
 import com.technologica.listeners.modbus.ClientSetup;
 import com.technologica.setup.listeners.EntityRenderersEventListener;
 import com.technologica.setup.listeners.TechnologicaColorHandlers;
@@ -22,7 +23,7 @@ public class SetupClient {
 		Technologica.MOD_EVENT_BUS.addListener(EntityRenderersEventListener::onRegisterLayerDefinitions);
 		Technologica.FORGE_EVENT_BUS.register(new MovementInputUpdateEventListener());
 		Technologica.FORGE_EVENT_BUS.addListener(RenderGuiOverlayEventListener::onPre);
-		// Technologica.FORGE_EVENT_BUS.register(new RenderLevelStageEventListener());
+		Technologica.FORGE_EVENT_BUS.register(new RenderLevelStageEventListener());
 		Technologica.FORGE_EVENT_BUS.register(new ClientPlayerNetwork());
 	}
 }

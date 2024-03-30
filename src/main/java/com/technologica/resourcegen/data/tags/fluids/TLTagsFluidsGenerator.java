@@ -1,6 +1,6 @@
 package com.technologica.resourcegen.data.tags.fluids;
 
-import com.technologica.api.tlrg.resourcegen.TLRGTagsFluidsGenerator;
+import com.technologica.api.tlregen.resourcegen.TLRGTagsFluidsGenerator;
 import com.technologica.registration.deferred.TechnologicaFluids;
 
 import net.minecraft.core.HolderLookup;

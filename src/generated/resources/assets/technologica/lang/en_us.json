@@ -1,4 +1,12 @@
 {
+  "Armory": "Armory",
+  "Construction": "Construction",
+  "Cryptica": "Cryptica",
+  "Decorative": "Decorative",
+  "Fauna": "Fauna",
+  "Food": "Food",
+  "Machinery": "Machinery",
+  "Mineral": "Mineral",
   "advancements.tribulation.a_sign_of_things_to_come.description": "This first lesson is to set your expectations.",
   "advancements.tribulation.a_sign_of_things_to_come.title": "A Sign of Things to Come",
   "advancements.tribulation.root.description": "May you maintain your resolve in the face of great adversity",
@@ -805,9 +813,9 @@
   "block.technologica.zebrawood_wood": "Zebrawood Wood",
   "block.technologica.zircon_crystal": "Zircon Crystal",
   "commands.weather.set.meteor_storm": "Set the weather to meteor storm",
+  "ddeath.attack.jostled_the_nitro": "%1$s jostled the nitro",
   "death.attack.bled_out": "%1$s bled out",
   "death.attack.bled_out.player": "%1$s bled out whilst fighting %2$s",
-  "death.attack.jostled_the_nitro": "%1$s jostled the nitro",
   "death.attack.jostled_the_nitro.player": "%1$s jostled the nitro whilst fighting %2$s",
   "effect.technologica.hallucination": "Hallucination",
   "effect.technologica.hemorrhage": "Hemorrhage",
@@ -1268,13 +1276,5 @@
   "item.technologica.zirconium_ingot": "Zirconium Ingot",
   "item.technologica.zucchini": "Zucchini",
   "item.technologica.zucchini_seeds": "Zucchini Seeds",
-  "item_group.technologica.armory": "Armory",
-  "item_group.technologica.construction": "Construction",
-  "item_group.technologica.cryptica": "Cryptica",
-  "item_group.technologica.decorative": "Decorative",
-  "item_group.technologica.fauna": "Fauna",
-  "item_group.technologica.flora": "Flora",
-  "item_group.technologica.food": "Food",
-  "item_group.technologica.machinery": "Machinery",
-  "item_group.technologica.mineral": "Mineral"
+  "itemGroup.flora": "Flora"
 }

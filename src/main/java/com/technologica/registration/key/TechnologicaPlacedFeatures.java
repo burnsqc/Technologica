@@ -1,7 +1,7 @@
 package com.technologica.registration.key;
 
 import com.technologica.registration.key.util.MasterKeyCreator;
-import com.technologica.resourcegen.data.worldgen.placedfeature.PlacedFeatureProvider;
+import com.technologica.resourcegen.data.worldgen.placedfeature.TLWorldgenPlacedFeatureGenerator;
 
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
@@ -9,7 +9,7 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 /**
  * <p>
  * This class contains Resource Keys for Placed Features.
- * The corresponding Placed Features are created in json format during Data Generation in {@link PlacedFeatureProvider}.
+ * The corresponding Placed Features are created in json format during Data Generation in {@link TLWorldgenPlacedFeatureGenerator}.
  * </p>
  * 
  * @tl.status YELLOW

@@ -1,6 +1,6 @@
 package com.technologica.resourcegen.data.tags.worldgen.biome;
 
-import com.technologica.api.tlrg.resourcegen.TLRGTagsWorldgenBiomeGenerator;
+import com.technologica.api.tlregen.resourcegen.TLRGTagsWorldgenBiomeGenerator;
 import com.technologica.registration.key.TechnologicaBiomeTags;
 import com.technologica.registration.key.TechnologicaBiomes;
 

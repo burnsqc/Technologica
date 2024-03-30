@@ -1,7 +1,7 @@
 package com.technologica.registration.key;
 
 import com.technologica.registration.key.util.MasterKeyCreator;
-import com.technologica.resourcegen.data.worldgen.configuredfeature.ConfiguredFeatureProvider;
+import com.technologica.resourcegen.data.worldgen.configuredfeature.TLWorldgenConfiguredFeatureGenerator;
 
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
@@ -9,7 +9,7 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 /**
  * <p>
  * This class contains Resource Keys for Configured Features.
- * The corresponding Configured Features are created in json format during Data Generation in {@link ConfiguredFeatureProvider}.
+ * The corresponding Configured Features are created in json format during Data Generation in {@link TLWorldgenConfiguredFeatureGenerator}.
  * </p>
  * 
  * @tl.status GREEN

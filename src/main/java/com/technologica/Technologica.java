@@ -2,9 +2,9 @@ package com.technologica;
 
 import javax.annotation.Nullable;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
 
+import com.mojang.logging.LogUtils;
 import com.technologica.client.multiplayer.TechnologicaClientLevel;
 import com.technologica.listeners.forgebus.AttachCapabilities;
 import com.technologica.listeners.forgebus.EntityJoinLevelEventListener;
@@ -56,7 +56,7 @@ import net.minecraftforge.network.simple.SimpleChannel;
 public class Technologica {
 	public static Technologica instance;
 	public static final String MOD_ID = "technologica";
-	public static final Logger LOGGER = LogManager.getLogger();
+	public static final Logger LOGGER = LogUtils.getLogger();
 	public static final IEventBus MOD_EVENT_BUS = FMLJavaModLoadingContext.get().getModEventBus();
 	public static final IEventBus FORGE_EVENT_BUS = MinecraftForge.EVENT_BUS;
 	public static final String PROTOCOL_VERSION = "1";
