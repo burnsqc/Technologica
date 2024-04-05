@@ -10,6 +10,7 @@ import com.technologica.world.item.CoconutBazookaItem;
 import com.technologica.world.item.CropSeedItem;
 import com.technologica.world.item.DivingHelmetItem;
 import com.technologica.world.item.DodgeballItem;
+import com.technologica.world.item.Excitation;
 import com.technologica.world.item.FertilizerItem;
 import com.technologica.world.item.GlueBottleItem;
 import com.technologica.world.item.HammerItem;
@@ -1263,4 +1264,5 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> MAGNETIC_TAPE_WRITTEN = ITEMS.register("magnetic_tape_written", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> PERSISTENT_GLARE = ITEMS.register("persistent_glare", () -> new Item(new Item.Properties().food(TechnologicaFoods.PERSISTENT_GLARE)));
 	public static final RegistryObject<Item> SINGULARITY_GRANULE = ITEMS.register("singularity_granule", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> EXCITATION_OF_STRIKE = ITEMS.register("excitation_of_strike", () -> new Excitation(new Item.Properties(), "excitation_of_strike"));
 }

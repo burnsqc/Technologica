@@ -1,6 +1,6 @@
 package com.technologica.resourcegen.data.tags.paintingvariant;
 
-import com.technologica.api.tlregen.resourcegen.TLRGTagsPaintingVariantGenerator;
+import com.technologica.api.tlregen.resourcegen.data.TLRGTagsPaintingVariantGenerator;
 import com.technologica.registration.key.TechnologicaPaintingVariants;
 
 import net.minecraft.core.HolderLookup.Provider;

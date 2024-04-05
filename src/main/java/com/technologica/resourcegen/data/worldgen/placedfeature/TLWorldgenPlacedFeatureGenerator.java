@@ -2,7 +2,7 @@ package com.technologica.resourcegen.data.worldgen.placedfeature;
 
 import java.util.List;
 
-import com.technologica.api.tlregen.resourcegen.TLRGWorldgenPlacedFeatureGenerator;
+import com.technologica.api.tlregen.resourcegen.data.TLRGWorldgenPlacedFeatureGenerator;
 import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.registration.key.TechnologicaConfiguredFeatures;
 import com.technologica.registration.key.TechnologicaPlacedFeatures;

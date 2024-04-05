@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 import com.technologica.Technologica;
-import com.technologica.api.tlregen.resourcegen.TLReGenAssetsLang;
+import com.technologica.api.tlregen.resourcegen.assets.TLReGenLang;
 import com.technologica.registration.deferred.TechnologicaCreativeModeTabs;
 import com.technologica.registration.deferred.TechnologicaEntityTypes;
 import com.technologica.registration.deferred.TechnologicaItems;
@@ -14,7 +14,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.RegistryObject;
 
-public class TLLangGenerator extends TLReGenAssetsLang {
+public class TLLangGenerator extends TLReGenLang {
 	@Override
 	protected void populate() {
 		addItems(TechnologicaItems.ITEMS.getEntries());

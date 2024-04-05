@@ -3,7 +3,7 @@ package com.technologica.resourcegen.data.worldgen.noisesettings;
 import java.util.List;
 import java.util.stream.Stream;
 
-import com.technologica.api.tlregen.resourcegen.TLRGWorldgenNoiseSettingsGenerator;
+import com.technologica.api.tlregen.resourcegen.data.TLRGWorldgenNoiseSettingsGenerator;
 import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.registration.key.TechnologicaNoiseGeneratorSettings;
 import com.technologica.resourcegen.data.worldgen.TechnologicaSurfaceRuleData;

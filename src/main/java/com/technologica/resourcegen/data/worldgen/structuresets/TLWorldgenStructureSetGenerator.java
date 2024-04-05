@@ -1,6 +1,6 @@
 package com.technologica.resourcegen.data.worldgen.structuresets;
 
-import com.technologica.api.tlregen.resourcegen.TLRGWorldgenStructureSetGenerator;
+import com.technologica.api.tlregen.resourcegen.data.TLRGWorldgenStructureSetGenerator;
 import com.technologica.registration.key.TechnologicaStructureSets;
 import com.technologica.registration.key.TechnologicaStructures;
 

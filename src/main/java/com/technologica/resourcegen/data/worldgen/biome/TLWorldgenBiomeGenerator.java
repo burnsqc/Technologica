@@ -1,6 +1,6 @@
 package com.technologica.resourcegen.data.worldgen.biome;
 
-import com.technologica.api.tlregen.resourcegen.TLRGWorldgenBiomeGenerator;
+import com.technologica.api.tlregen.resourcegen.data.TLRGWorldgenBiomeGenerator;
 import com.technologica.registration.deferred.TechnologicaEntityTypes;
 import com.technologica.registration.key.TechnologicaBiomes;
 import com.technologica.registration.key.TechnologicaPlacedFeatures;

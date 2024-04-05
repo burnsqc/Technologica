@@ -1,6 +1,6 @@
 package com.technologica.resourcegen.data.tags.blocks;
 
-import com.technologica.api.tlregen.resourcegen.TLRGTagsBlocksGenerator;
+import com.technologica.api.tlregen.resourcegen.data.TLRGTagsBlocksGenerator;
 import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.registration.key.TechnologicaBlockTags;
 

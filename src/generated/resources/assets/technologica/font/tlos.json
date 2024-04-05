@@ -1,0 +1,24 @@
+{
+  "providers": [
+    {
+      "type": "bitmap",
+      "ascent": 1,
+      "chars": [
+        "\u0000\u0000",
+        "\u0000\u0000"
+      ],
+      "file": "technologica:tlos.png",
+      "height": 1
+    },
+    {
+      "type": "bitmap",
+      "ascent": 1,
+      "chars": [
+        "\u0000\u0000",
+        "\u0000\u0000"
+      ],
+      "file": "technologica:tlos.png",
+      "height": 1
+    }
+  ]
+}

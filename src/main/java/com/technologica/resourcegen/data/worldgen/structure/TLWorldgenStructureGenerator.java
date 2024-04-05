@@ -2,7 +2,7 @@ package com.technologica.resourcegen.data.worldgen.structure;
 
 import java.util.Map;
 
-import com.technologica.api.tlregen.resourcegen.TLRGWorldgenStructureGenerator;
+import com.technologica.api.tlregen.resourcegen.data.TLRGWorldgenStructureGenerator;
 import com.technologica.registration.key.TechnologicaBiomeTags;
 import com.technologica.registration.key.TechnologicaStructureTemplatePools;
 import com.technologica.registration.key.TechnologicaStructures;

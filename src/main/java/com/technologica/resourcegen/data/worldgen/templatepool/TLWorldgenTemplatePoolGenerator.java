@@ -3,7 +3,7 @@ package com.technologica.resourcegen.data.worldgen.templatepool;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import com.technologica.Technologica;
-import com.technologica.api.tlregen.resourcegen.TLRGWorldgenTemplatePoolGenerator;
+import com.technologica.api.tlregen.resourcegen.data.TLRGWorldgenTemplatePoolGenerator;
 import com.technologica.registration.key.TechnologicaStructureTemplatePools;
 
 import net.minecraft.core.Holder;

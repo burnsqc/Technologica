@@ -1,6 +1,6 @@
 package com.technologica.resourcegen.data.tags.entity;
 
-import com.technologica.api.tlregen.resourcegen.TLRGTagsEntityTypesGenerator;
+import com.technologica.api.tlregen.resourcegen.data.TLRGTagsEntityTypesGenerator;
 import com.technologica.registration.deferred.TechnologicaEntityTypes;
 
 import net.minecraft.core.HolderLookup.Provider;

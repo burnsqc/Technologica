@@ -2,7 +2,7 @@ package com.technologica.resourcegen.data.worldgen.biome;
 
 import java.util.List;
 
-import com.technologica.api.tlregen.resourcegen.TLRGForgeBiomeModifierGenerator;
+import com.technologica.api.tlregen.resourcegen.data.TLRGForgeBiomeModifierGenerator;
 import com.technologica.registration.deferred.TechnologicaEntityTypes;
 import com.technologica.registration.key.TechnologicaBiomeModifiers;
 import com.technologica.registration.key.TechnologicaPlacedFeatures;

@@ -112,7 +112,7 @@ public class PoisonDartFrog extends Animal implements VariantHolder<FrogVariant>
 	@Override
 	protected void defineSynchedData() {
 		super.defineSynchedData();
-		this.entityData.define(DATA_VARIANT_ID, TechnologicaPoisonDartFrogVariant.VARIANT1.get());
+		this.entityData.define(DATA_VARIANT_ID, TechnologicaPoisonDartFrogVariant.RED.get());
 		this.entityData.define(DATA_TONGUE_TARGET_ID, OptionalInt.empty());
 	}
 
@@ -267,15 +267,15 @@ public class PoisonDartFrog extends Animal implements VariantHolder<FrogVariant>
 		int variant = this.random.nextInt(5);
 
 		if (variant == 0) {
-			this.setVariant(TechnologicaPoisonDartFrogVariant.VARIANT1.get());
+			this.setVariant(TechnologicaPoisonDartFrogVariant.RED.get());
 		} else if (variant == 1) {
-			this.setVariant(TechnologicaPoisonDartFrogVariant.VARIANT2.get());
+			this.setVariant(TechnologicaPoisonDartFrogVariant.ORANGE.get());
 		} else if (variant == 2) {
-			this.setVariant(TechnologicaPoisonDartFrogVariant.VARIANT3.get());
+			this.setVariant(TechnologicaPoisonDartFrogVariant.YELLOW.get());
 		} else if (variant == 3) {
-			this.setVariant(TechnologicaPoisonDartFrogVariant.VARIANT4.get());
+			this.setVariant(TechnologicaPoisonDartFrogVariant.GREEN.get());
 		} else {
-			this.setVariant(TechnologicaPoisonDartFrogVariant.VARIANT5.get());
+			this.setVariant(TechnologicaPoisonDartFrogVariant.BLUE.get());
 		}
 
 		PoisonDartFrogAi.initMemories(this, p_218488_.getRandom());

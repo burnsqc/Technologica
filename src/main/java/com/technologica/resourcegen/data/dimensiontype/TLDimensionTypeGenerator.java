@@ -2,7 +2,7 @@ package com.technologica.resourcegen.data.dimensiontype;
 
 import java.util.OptionalLong;
 
-import com.technologica.api.tlregen.resourcegen.TLRGDimensionTypeGenerator;
+import com.technologica.api.tlregen.resourcegen.data.TLRGDimensionTypeGenerator;
 import com.technologica.registration.key.TechnologicaDimensionTypes;
 
 import net.minecraft.data.worldgen.BootstapContext;

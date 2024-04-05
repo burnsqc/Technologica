@@ -1233,5 +1233,6 @@ public final class TechnologicaCreativeModeTabs extends MasterDeferredRegistrar 
 		items.accept(TechnologicaItems.BENEVOLENT_APOTHECARY_SAPLING_ITEM.get());
 		items.accept(TechnologicaItems.MALEVOLENT_APOTHECARY_SAPLING_ITEM.get());
 		items.accept(TechnologicaItems.NECROTIC_SAPLING_ITEM.get());
+		items.accept(TechnologicaItems.EXCITATION_OF_STRIKE.get());
 	}).build());
 }

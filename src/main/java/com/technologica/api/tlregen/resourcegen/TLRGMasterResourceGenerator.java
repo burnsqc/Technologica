@@ -4,10 +4,25 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 
 import com.technologica.Technologica;
+import com.technologica.api.tlregen.resourcegen.assets.TLReGenBlockstates;
+import com.technologica.api.tlregen.resourcegen.assets.TLReGenLang;
+import com.technologica.api.tlregen.resourcegen.assets.TLReGenModelsItem;
+import com.technologica.api.tlregen.resourcegen.assets.TLReGenParticles;
+import com.technologica.api.tlregen.resourcegen.assets.TLReGenSounds;
+import com.technologica.api.tlregen.resourcegen.data.TLRGDimensionTypeGenerator;
+import com.technologica.api.tlregen.resourcegen.data.TLRGLootTablesGenerator;
+import com.technologica.api.tlregen.resourcegen.data.TLRGRecipeGenerator;
+import com.technologica.api.tlregen.resourcegen.data.TLRGTagsBlocksGenerator;
+import com.technologica.api.tlregen.resourcegen.data.TLRGTagsEntityTypesGenerator;
+import com.technologica.api.tlregen.resourcegen.data.TLRGTagsItemsGenerator;
+import com.technologica.api.tlregen.resourcegen.data.TLReGenDamageType;
+import com.technologica.api.tlregen.resourcegen.data.TLReGenDimension;
+import com.technologica.resourcegen.assets.TLAtlasesGenerator;
+import com.technologica.resourcegen.assets.TLFontGenerator;
 import com.technologica.resourcegen.assets.TLSoundsGenerator;
-import com.technologica.resourcegen.assets.blockstates.TLBlockStatesGenerator;
+import com.technologica.resourcegen.assets.blockstates.TLBlockstatesGenerator;
 import com.technologica.resourcegen.assets.lang.TLLangGenerator;
-import com.technologica.resourcegen.assets.models.items.TLModelsItemGenerator;
+import com.technologica.resourcegen.assets.models.items.TLModelsGenerator;
 import com.technologica.resourcegen.assets.particles.TLParticlesGenerator;
 import com.technologica.resourcegen.data.advancements.TLRGAdvancementGenerator;
 import com.technologica.resourcegen.data.damagetype.TLDamageTypeGenerator;
@@ -32,7 +47,6 @@ import com.technologica.resourcegen.data.worldgen.templatepool.TLWorldgenTemplat
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
@@ -52,10 +66,10 @@ public abstract class TLRGMasterResourceGenerator {
 	public static RegistrySetBuilder registrySetBuilder;
 	public static String modid = Technologica.MOD_ID;
 
-	protected static Supplier<TLReGenAssetsBlockStates> BlockStateGenerator;
-	protected static Supplier<TLReGenAssetsLang> LanguageGenerator;
+	protected static Supplier<TLReGenBlockstates> BlockStateGenerator;
+	protected static Supplier<TLReGenLang> LanguageGenerator;
 	protected static Supplier<TLReGenModelsItem> ModelItemGenerator;
-	protected static Supplier<TLReGenParticle> ParticleGenerator;
+	protected static Supplier<TLReGenParticles> ParticleGenerator;
 	protected static Supplier<TLReGenSounds> SoundsGenerator;
 
 	protected static Supplier<TLRGAdvancementGenerator> AdvancementGenerator;
@@ -64,13 +78,11 @@ public abstract class TLRGMasterResourceGenerator {
 	protected static Supplier<TLRGDimensionTypeGenerator> DimensionTypeGenerator;
 	protected static Supplier<TLRGRecipeGenerator> RecipeGenerator;
 	protected static Supplier<TLRGTagsBlocksGenerator> TagBlocksGenerator;
-	protected static TLRGTagsBlocksGenerator TagBlocks;
+	public static TLRGTagsBlocksGenerator TagBlocks;
 	protected static Supplier<TLRGTagsEntityTypesGenerator> TagEntityTypeGenerator;
 	protected static Supplier<TLRGTagsItemsGenerator> TagItemGenerator;
 
-	protected static RegistrySetBuilder rsb;
-
-	public static void setGenerators(Supplier<TLReGenAssetsBlockStates> TLRGBlockStateDataGenerator, Supplier<TLReGenAssetsLang> TLRGLanguageDataGenerator, Supplier<TLReGenModelsItem> TLRGItemModelDataGenerator, Supplier<TLReGenParticle> TLRGParticleGenerator, Supplier<TLReGenSounds> TLRGSoundsGenerator, Supplier<TLRGAdvancementGenerator> TLRGAdvancementGenerator, Supplier<TLReGenDamageType> TLRGDamageTypeGenerator, Supplier<TLReGenDimension> TLRGDimensionGenerator, Supplier<TLRGDimensionTypeGenerator> TLRGDimensionTypeGenerator, Supplier<TLRGRecipeGenerator> TLRGRecipeGenerator, Supplier<TLRGTagsBlocksGenerator> TLRGTagBlocksGenerator, Supplier<TLRGTagsEntityTypesGenerator> TLRGTagEntityTypeGenerator, Supplier<TLRGTagsItemsGenerator> TLRGTagItemsGenerator) {
+	public static void setGenerators(Supplier<TLReGenBlockstates> TLRGBlockStateDataGenerator, Supplier<TLReGenLang> TLRGLanguageDataGenerator, Supplier<TLReGenModelsItem> TLRGItemModelDataGenerator, Supplier<TLReGenParticles> TLRGParticleGenerator, Supplier<TLReGenSounds> TLRGSoundsGenerator, Supplier<TLRGAdvancementGenerator> TLRGAdvancementGenerator, Supplier<TLReGenDamageType> TLRGDamageTypeGenerator, Supplier<TLReGenDimension> TLRGDimensionGenerator, Supplier<TLRGDimensionTypeGenerator> TLRGDimensionTypeGenerator, Supplier<TLRGRecipeGenerator> TLRGRecipeGenerator, Supplier<TLRGTagsBlocksGenerator> TLRGTagBlocksGenerator, Supplier<TLRGTagsEntityTypesGenerator> TLRGTagEntityTypeGenerator, Supplier<TLRGTagsItemsGenerator> TLRGTagItemsGenerator) {
 
 	}
 
@@ -92,15 +104,14 @@ public abstract class TLRGMasterResourceGenerator {
 
 	private static void setGenerators() {
 		TagBlocks = new TLTagBlocksGenerator();
-		rsb = registrySetBuilder.add(Registries.DIMENSION_TYPE, TLDimensionTypeGenerator::bootstrap);
 	}
 
 	private static void addGenerators() {
-		// atlases
-		addAssetGenerator(new TLBlockStatesGenerator());
-		// font
+		addAssetGenerator(new TLAtlasesGenerator());
+		addAssetGenerator(new TLBlockstatesGenerator());
+		addAssetGenerator(new TLFontGenerator());
 		addAssetGenerator(new TLLangGenerator());
-		addAssetGenerator(new TLModelsItemGenerator());
+		addAssetGenerator(new TLModelsGenerator());
 		addAssetGenerator(new TLParticlesGenerator());
 		// shaders
 		// texts

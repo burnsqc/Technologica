@@ -1,6 +1,6 @@
 package com.technologica.resourcegen.data.damagetype;
 
-import com.technologica.api.tlregen.resourcegen.TLReGenDamageType;
+import com.technologica.api.tlregen.resourcegen.data.TLReGenDamageType;
 import com.technologica.registration.key.TechnologicaDamageTypes;
 
 import net.minecraft.data.worldgen.BootstapContext;

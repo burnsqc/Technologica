@@ -34,7 +34,7 @@ public abstract class MixinDataGeneratorLogger {
 	@Unique
 	private int previousWrites;
 	@Unique
-	private int priorCount;
+	private long priorCount;
 	@Unique
 	private int finalCount;
 	@Unique
@@ -53,25 +53,25 @@ public abstract class MixinDataGeneratorLogger {
 		Technologica.LOGGER.info(String.format(format, "PATH", " PRIOR ", " FINAL ", "CREATED", "DELETED", "CHANGED", "TIME"));
 		Technologica.LOGGER.info("------------------------------------------------------------+-------+-------+-------+-------+-------+-------");
 
-		this.providersToRun.forEach((p_254418_, p_253750_) -> {
-			if (!this.alwaysGenerate && !hashcache.shouldRunInThisVersion(p_254418_)) {
-				Technologica.LOGGER.debug("Generator {} already run for version {}", p_254418_, this.version.getName());
+		this.providersToRun.forEach((path, provider) -> {
+			if (!this.alwaysGenerate && !hashcache.shouldRunInThisVersion(path)) {
+				Technologica.LOGGER.debug("Generator {} already run for version {}", path, this.version.getName());
 			} else {
-				net.minecraftforge.fml.StartupMessageManager.addModMessage("Generating: " + p_254418_);
+				net.minecraftforge.fml.StartupMessageManager.addModMessage("Generating: " + path);
 
-				priorCount = hashcache.caches.get(p_254418_).count();
+				priorCount = hashcache.caches.get(path).count();
 
 				stopwatch1.start();
-				hashcache.applyUpdate(hashcache.generateUpdate(p_254418_, p_253750_::run).join());
+				hashcache.applyUpdate(hashcache.generateUpdate(path, provider::run).join());
 				stopwatch1.stop();
 
-				finalCount = hashcache.caches.get(p_254418_).count();
+				finalCount = hashcache.caches.get(path).count();
 
-				created = Math.max(finalCount - priorCount, 0);
-				deleted = Math.max(priorCount - finalCount, 0);
+				created = (int) Math.max(finalCount - priorCount, 0);
+				deleted = (int) Math.max(priorCount - finalCount, 0);
 				changed = hashcache.writes - previousWrites - created;
 
-				Technologica.LOGGER.info(String.format(format, p_254418_, priorCount, finalCount, created, deleted, changed, stopwatch1.elapsed(TimeUnit.MILLISECONDS) + "ms"));
+				Technologica.LOGGER.info(String.format(format, path, priorCount, finalCount, created, deleted, changed, stopwatch1.elapsed(TimeUnit.MILLISECONDS) + "ms"));
 				previousWrites = hashcache.writes;
 
 				// previousWrites = hashcache.initialCount;

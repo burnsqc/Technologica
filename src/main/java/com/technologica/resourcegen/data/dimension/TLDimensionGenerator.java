@@ -3,7 +3,7 @@ package com.technologica.resourcegen.data.dimension;
 import java.util.ArrayList;
 
 import com.mojang.datafixers.util.Pair;
-import com.technologica.api.tlregen.resourcegen.TLReGenDimension;
+import com.technologica.api.tlregen.resourcegen.data.TLReGenDimension;
 import com.technologica.registration.key.TechnologicaBiomes;
 import com.technologica.registration.key.TechnologicaDimensionTypes;
 import com.technologica.registration.key.TechnologicaDimensions;
@@ -23,7 +23,7 @@ import net.minecraft.world.level.dimension.LevelStem;
 import net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator;
 import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
 
-public class TLDimensionGenerator extends TLReGenDimension {
+public final class TLDimensionGenerator extends TLReGenDimension {
 	private static BootstapContext<LevelStem> dimension;
 
 	public static void bootstrap(BootstapContext<LevelStem> bootstrapContextIn) {

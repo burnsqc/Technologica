@@ -2,7 +2,7 @@ package com.technologica.resourcegen.data.worldgen.configuredfeature;
 
 import java.util.List;
 
-import com.technologica.api.tlregen.resourcegen.TLRGWorldgenConfiguredFeatureGenerator;
+import com.technologica.api.tlregen.resourcegen.data.TLRGWorldgenConfiguredFeatureGenerator;
 import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.registration.deferred.TechnologicaFeatures;
 import com.technologica.registration.key.TechnologicaConfiguredFeatures;
