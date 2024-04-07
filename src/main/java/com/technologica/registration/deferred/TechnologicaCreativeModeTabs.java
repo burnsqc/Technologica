@@ -1221,6 +1221,7 @@ public final class TechnologicaCreativeModeTabs extends MasterDeferredRegistrar 
 		items.accept(TechnologicaItems.SPACE_PANTS.get());
 		items.accept(TechnologicaItems.SPACE_BOOTS.get());
 		items.accept(TechnologicaItems.SLEEPING_BAG.get());
+		items.accept(TechnologicaItems.SUBMERSIBLE.get());
 	}).build());
 	public static final RegistryObject<CreativeModeTab> CRYPTICA = CREATIVE_MODE_TABS.register("cryptica", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.PERSISTENT_GLARE.get())).withBackgroundLocation(new TechnologicaLocation("textures/gui/container/creative_inventory/tab_cryptica.png")).withLabelColor(0).title(Component.literal("Cryptica")).displayItems((p_270425_, items) -> {
 		items.accept(TechnologicaItems.PERSISTENT_GLARE.get());
@@ -1233,6 +1234,8 @@ public final class TechnologicaCreativeModeTabs extends MasterDeferredRegistrar 
 		items.accept(TechnologicaItems.BENEVOLENT_APOTHECARY_SAPLING_ITEM.get());
 		items.accept(TechnologicaItems.MALEVOLENT_APOTHECARY_SAPLING_ITEM.get());
 		items.accept(TechnologicaItems.NECROTIC_SAPLING_ITEM.get());
+		items.accept(TechnologicaItems.IGNITION_OF_COMBUSTION.get());
 		items.accept(TechnologicaItems.EXCITATION_OF_STRIKE.get());
+		items.accept(TechnologicaItems.SUBMERSION_OF_SUPPRESSION.get());
 	}).build());
 }

@@ -443,7 +443,9 @@ public class TLModelsGenerator extends TLReGenModelsItem {
 		simpleItem(TechnologicaItems.PERSISTENT_GLARE.get());
 		simpleItem(TechnologicaItems.SINGULARITY_GRANULE.get());
 		simpleItem(TechnologicaItems.SLEEPING_BAG.get());
+		excitedItem(TechnologicaItems.IGNITION_OF_COMBUSTION.get());
 		excitedItem(TechnologicaItems.EXCITATION_OF_STRIKE.get());
+		excitedItem(TechnologicaItems.SUBMERSION_OF_SUPPRESSION.get());
 	}
 
 	public void simpleItem(Item item) {

@@ -46,5 +46,6 @@ public class TLParticlesGenerator extends TLReGenParticles {
 		sprite(TechnologicaParticleTypes.STICKING_RUBBER_RESIN.get(), new ResourceLocation("drip_land"));
 		sprite(TechnologicaParticleTypes.SUBMERGED_RUBBER_RESIN.get(), new ResourceLocation("generic_0"));
 		sprite(TechnologicaParticleTypes.FLYING_RADIATION.get(), new ResourceLocation("drip_fall"));
+		sprite(TechnologicaParticleTypes.FLYING_SONAR.get(), new ResourceLocation("drip_fall"));
 	}
 }

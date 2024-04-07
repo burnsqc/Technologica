@@ -6,5 +6,84 @@
         "name": "technologica:dodgeball"
       }
     ]
+  },
+  "entity.buffalo.ambient": {
+    "sounds": [
+      "technologica:mob/buffalo/say1",
+      "technologica:mob/buffalo/say2",
+      "technologica:mob/buffalo/say3",
+      "technologica:mob/buffalo/say4"
+    ]
+  },
+  "entity.buffalo.death": {
+    "sounds": [
+      "technologica:mob/buffalo/hurt1",
+      "technologica:mob/buffalo/hurt2",
+      "technologica:mob/buffalo/hurt3"
+    ]
+  },
+  "entity.buffalo.hurt": {
+    "sounds": [
+      "technologica:mob/buffalo/hurt1",
+      "technologica:mob/buffalo/hurt2",
+      "technologica:mob/buffalo/hurt3"
+    ]
+  },
+  "entity.duck.ambient": {
+    "sounds": [
+      "technologica:mob/duck/say1",
+      "technologica:mob/duck/say2",
+      "technologica:mob/duck/say3"
+    ]
+  },
+  "entity.duck.death": {
+    "sounds": [
+      "technologica:mob/duck/hurt1",
+      "technologica:mob/duck/hurt2"
+    ]
+  },
+  "entity.duck.hurt": {
+    "sounds": [
+      "technologica:mob/duck/hurt1",
+      "technologica:mob/duck/hurt2"
+    ]
+  },
+  "entity.flamingo.ambient": {
+    "sounds": [
+      "technologica:mob/flamingo/say1",
+      "technologica:mob/flamingo/say2",
+      "technologica:mob/flamingo/say3"
+    ]
+  },
+  "entity.flamingo.death": {
+    "sounds": [
+      "technologica:mob/flamingo/hurt1",
+      "technologica:mob/flamingo/hurt2"
+    ]
+  },
+  "entity.flamingo.hurt": {
+    "sounds": [
+      "technologica:mob/flamingo/hurt1",
+      "technologica:mob/flamingo/hurt2"
+    ]
+  },
+  "entity.turkey.ambient": {
+    "sounds": [
+      "technologica:mob/turkey/say1",
+      "technologica:mob/turkey/say2",
+      "technologica:mob/turkey/say3"
+    ]
+  },
+  "entity.turkey.death": {
+    "sounds": [
+      "technologica:mob/turkey/hurt1",
+      "technologica:mob/turkey/hurt2"
+    ]
+  },
+  "entity.turkey.hurt": {
+    "sounds": [
+      "technologica:mob/turkey/hurt1",
+      "technologica:mob/turkey/hurt2"
+    ]
   }
 }

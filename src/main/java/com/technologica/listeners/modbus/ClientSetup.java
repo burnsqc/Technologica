@@ -2,9 +2,13 @@ package com.technologica.listeners.modbus;
 
 import static com.technologica.Technologica.LOGGER;
 
+import java.util.SortedMap;
+
+import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.technologica.client.gui.screens.inventory.AnnunciatorScreen;
 import com.technologica.client.gui.screens.inventory.MonitorScreen;
 import com.technologica.client.gui.screens.inventory.SawmillScreen;
+import com.technologica.client.renderer.TechnologicaRenderType;
 import com.technologica.client.renderer.block.TechnologicaLiquidBlockRenderer;
 import com.technologica.registration.deferred.TechnologicaFluids;
 import com.technologica.registration.deferred.TechnologicaMenuTypes;
@@ -12,8 +16,10 @@ import com.technologica.registration.deferred.TechnologicaMenuTypes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderBuffers;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 
 /**
  * <p>
@@ -32,6 +38,7 @@ public class ClientSetup {
 			setTechnologicaFluidRenderTypes();
 			Minecraft mc = Minecraft.getInstance();
 			mc.getBlockRenderer().liquidBlockRenderer = new TechnologicaLiquidBlockRenderer();
+			addTechnologicaRenderTypes();
 		});
 	}
 
@@ -82,5 +89,13 @@ public class ClientSetup {
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.COOLANT.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_COOLANT.get(), RenderType.translucent());
 		LOGGER.info("FLUID RENDER TYPES SET: 38 OF 38");
+	}
+
+	private static void addTechnologicaRenderTypes() {
+		SortedMap<RenderType, BufferBuilder> fixedBuffers = ObfuscationReflectionHelper.getPrivateValue(RenderBuffers.class, Minecraft.getInstance().renderBuffers(), "f_110093_");
+		fixedBuffers.put(TechnologicaRenderType.excitation(), new BufferBuilder(TechnologicaRenderType.excitation().bufferSize()));
+		fixedBuffers.put(TechnologicaRenderType.ignition(), new BufferBuilder(TechnologicaRenderType.ignition().bufferSize()));
+		fixedBuffers.put(TechnologicaRenderType.radiation(), new BufferBuilder(TechnologicaRenderType.radiation().bufferSize()));
+		fixedBuffers.put(TechnologicaRenderType.submersion(), new BufferBuilder(TechnologicaRenderType.submersion().bufferSize()));
 	}
 }

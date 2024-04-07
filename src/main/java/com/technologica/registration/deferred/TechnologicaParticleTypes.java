@@ -57,4 +57,5 @@ public final class TechnologicaParticleTypes extends MasterDeferredRegistrar {
 	public static final RegistryObject<SimpleParticleType> STICKING_RUBBER_RESIN = PARTICLE_TYPES.register("sticking_rubber_resin", () -> new SimpleParticleType(false));
 	public static final RegistryObject<SimpleParticleType> SUBMERGED_RUBBER_RESIN = PARTICLE_TYPES.register("submerged_rubber_resin", () -> new SimpleParticleType(false));
 	public static final RegistryObject<SimpleParticleType> FLYING_RADIATION = PARTICLE_TYPES.register("flying_radiation", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> FLYING_SONAR = PARTICLE_TYPES.register("flying_sonar", () -> new SimpleParticleType(false));
 }

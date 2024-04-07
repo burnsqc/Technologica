@@ -1,5 +1,7 @@
 package com.technologica.world.entity.animal;
 
+import com.technologica.registration.deferred.TechnologicaSoundEvents;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
@@ -55,17 +57,17 @@ public class Buffalo extends AbstractPackAnimal {
 
 	@Override
 	protected SoundEvent getAmbientSound() {
-		return SoundEvents.COW_AMBIENT;
+		return TechnologicaSoundEvents.BUFFALO_AMBIENT.get();
 	}
 
 	@Override
 	protected SoundEvent getHurtSound(DamageSource damageSource) {
-		return SoundEvents.COW_HURT;
+		return TechnologicaSoundEvents.BUFFALO_HURT.get();
 	}
 
 	@Override
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.COW_DEATH;
+		return TechnologicaSoundEvents.BUFFALO_DEATH.get();
 	}
 
 	@Override

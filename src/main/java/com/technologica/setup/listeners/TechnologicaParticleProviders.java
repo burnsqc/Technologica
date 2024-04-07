@@ -2,6 +2,7 @@ package com.technologica.setup.listeners;
 
 import com.technologica.Technologica;
 import com.technologica.client.particle.RadiationParticle;
+import com.technologica.client.particle.SonarParticle;
 import com.technologica.client.particle.TechnologicaDripParticle;
 import com.technologica.client.particle.TechnologicaSplashParticle;
 import com.technologica.client.particle.TechnologicaSuspendParticle;
@@ -57,6 +58,7 @@ public final class TechnologicaParticleProviders {
 		event.registerSprite(TechnologicaParticleTypes.STICKING_RUBBER_RESIN.get(), TechnologicaDripParticle::createRubberResinStickParticle);
 		event.registerSpriteSet(TechnologicaParticleTypes.SUBMERGED_RUBBER_RESIN.get(), TechnologicaSuspendParticle.RubberResinProvider::new);
 		event.registerSpriteSet(TechnologicaParticleTypes.FLYING_RADIATION.get(), RadiationParticle.FlyingFactory::new);
+		event.registerSpriteSet(TechnologicaParticleTypes.FLYING_SONAR.get(), SonarParticle.FlyingFactory::new);
 		/**
 		 * TODO: Determine how to count how many Technologica Particle Providers actually got registered and replace the hard-coded value in the logger message. Trying to avoid Access Transformers, but could open up private final Map {@link ParticleEngine} providers.
 		 */

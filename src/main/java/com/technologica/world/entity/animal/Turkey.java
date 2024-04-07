@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import com.technologica.registration.deferred.TechnologicaEntityTypes;
 import com.technologica.registration.deferred.TechnologicaItems;
+import com.technologica.registration.deferred.TechnologicaSoundEvents;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -122,17 +123,17 @@ public class Turkey extends Animal {
 
 	@Override
 	protected SoundEvent getAmbientSound() {
-		return SoundEvents.CHICKEN_AMBIENT;
+		return TechnologicaSoundEvents.TURKEY_AMBIENT.get();
 	}
 
 	@Override
 	protected SoundEvent getHurtSound(DamageSource damageSource) {
-		return SoundEvents.CHICKEN_HURT;
+		return TechnologicaSoundEvents.TURKEY_HURT.get();
 	}
 
 	@Override
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.CHICKEN_DEATH;
+		return TechnologicaSoundEvents.TURKEY_DEATH.get();
 	}
 
 	@Override

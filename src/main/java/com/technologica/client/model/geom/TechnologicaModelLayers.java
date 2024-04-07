@@ -62,6 +62,7 @@ public class TechnologicaModelLayers {
 	public static final ModelLayerLocation NAVAL_MINE = register("naval_mine");
 	public static final ModelLayerLocation WINDMILL = register("windmill");
 	public static final ModelLayerLocation ROCKET = register("rocket");
+	public static final ModelLayerLocation SUBMERSIBLE = register("submersible");
 
 	public static final ModelLayerLocation COCONUT_BAZOOKA = register("coconut_bazooka");
 	public static final ModelLayerLocation SPEAR_GUN = register("spear_gun");

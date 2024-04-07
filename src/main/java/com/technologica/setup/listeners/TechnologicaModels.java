@@ -53,6 +53,8 @@ public final class TechnologicaModels {
 		event.register(new TechnologicaLocation("item/oganesson_ingot_base"));
 		event.register(new TechnologicaLocation("item/astatine_chunk_base"));
 		event.register(new TechnologicaLocation("item/excitation_of_strike_base"));
+		event.register(new TechnologicaLocation("item/ignition_of_combustion_base"));
+		event.register(new TechnologicaLocation("item/submersion_of_suppression_base"));
 		/**
 		 * TODO: Determine how to count how many Technologica Models actually got registered and replace the hard-coded value in the logger message.
 		 */

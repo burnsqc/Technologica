@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import com.technologica.registration.deferred.TechnologicaEntityTypes;
 import com.technologica.registration.deferred.TechnologicaItems;
+import com.technologica.registration.deferred.TechnologicaSoundEvents;
 import com.technologica.world.entity.ai.goal.FloatSurfaceGoal;
 
 import net.minecraft.core.BlockPos;
@@ -135,17 +136,17 @@ public class Duck extends Animal {
 
 	@Override
 	protected SoundEvent getAmbientSound() {
-		return SoundEvents.CHICKEN_AMBIENT;
+		return TechnologicaSoundEvents.DUCK_AMBIENT.get();
 	}
 
 	@Override
 	protected SoundEvent getHurtSound(DamageSource damageSource) {
-		return SoundEvents.CHICKEN_HURT;
+		return TechnologicaSoundEvents.DUCK_HURT.get();
 	}
 
 	@Override
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.CHICKEN_DEATH;
+		return TechnologicaSoundEvents.DUCK_DEATH.get();
 	}
 
 	@Override

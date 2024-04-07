@@ -20,29 +20,28 @@ import net.minecraftforge.common.data.SoundDefinition;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public abstract class TLReGenSounds extends TLRGMasterResourceGenerator implements DataProvider {
-	private final Map<String, SoundDefinition> data = new LinkedHashMap<>();
+	private final Map<String, SoundDefinition> entries = new LinkedHashMap<>();
 
 	protected TLReGenSounds() {
 	}
 
 	@Override
 	public CompletableFuture<?> run(CachedOutput cache) {
-		data.clear();
+		entries.clear();
 		populate();
+		validate();
 
-		this.validate();
-
-		if (!this.data.isEmpty()) {
-			JsonObject obj = new JsonObject();
-			data.forEach((k, v) -> obj.add(k, v.serialize()));
-			return DataProvider.saveStable(cache, obj, packOutput.getOutputFolder(PackOutput.Target.RESOURCE_PACK).resolve(modid).resolve("sounds.json"));
+		if (!entries.isEmpty()) {
+			JsonObject json = new JsonObject();
+			entries.forEach((key, value) -> json.add(key, value.serialize()));
+			return DataProvider.saveStable(cache, json, packOutput.getOutputFolder(PackOutput.Target.RESOURCE_PACK).resolve(modid).resolve("sounds.json"));
 		}
 
 		return CompletableFuture.allOf();
 	}
 
 	private void validate() {
-		final List<String> notValid = data.entrySet().stream().filter(it -> !this.validate(it.getKey(), it.getValue())).map(Map.Entry::getKey).map(it -> modid + ":" + it).toList();
+		final List<String> notValid = entries.entrySet().stream().filter(it -> !validate(it.getKey(), it.getValue())).map(Map.Entry::getKey).map(it -> modid + ":" + it).toList();
 		if (!notValid.isEmpty()) {
 			throw new IllegalStateException("Found invalid sound events: " + notValid);
 		}
@@ -72,7 +71,7 @@ public abstract class TLReGenSounds extends TLRGMasterResourceGenerator implemen
 	}
 
 	private boolean validateEvent(final String soundName, final ResourceLocation name) {
-		final boolean valid = data.containsKey(soundName) || ForgeRegistries.SOUND_EVENTS.containsKey(name);
+		final boolean valid = entries.containsKey(soundName) || ForgeRegistries.SOUND_EVENTS.containsKey(name);
 		if (!valid) {
 			LOGGER.warn("Unable to find event '{}' referenced from '{}'", name, soundName);
 		}
@@ -103,20 +102,56 @@ public abstract class TLReGenSounds extends TLRGMasterResourceGenerator implemen
 	}
 
 	private void addSounds(final String soundEvent, final SoundDefinition definition) {
-		if (data.put(soundEvent, definition) != null) {
+		if (entries.put(soundEvent, definition) != null) {
 			throw new IllegalStateException("Sound event '" + modid + ":" + soundEvent + "' already exists");
 		}
 	}
 
-	protected static SoundDefinition definition() {
-		return SoundDefinition.definition();
-	}
-
 	protected static SoundDefinition.Sound sound(final ResourceLocation name) {
-		return sound(name, SoundDefinition.SoundType.SOUND);
+		return SoundDefinition.Sound.sound(name, SoundDefinition.SoundType.SOUND);
 	}
 
-	protected static SoundDefinition.Sound sound(final ResourceLocation name, final SoundDefinition.SoundType type) {
-		return SoundDefinition.Sound.sound(name, type);
+	/*
+	 * HELPER METHODS
+	 */
+
+	/**
+	 * Single Sound
+	 * 
+	 * @param name
+	 * @return
+	 */
+	protected static SoundDefinition sounds(ResourceLocation name) {
+		return SoundDefinition.definition().with(sound(name));
+	}
+
+	/**
+	 * Single Sound with attenuation_distance
+	 * 
+	 * @param attenuationDistance
+	 * @param name
+	 * @return
+	 */
+	protected static SoundDefinition sounds(int attenuationDistance, ResourceLocation name) {
+		return SoundDefinition.definition().with(sound(name).attenuationDistance(attenuationDistance));
+	}
+
+	/**
+	 * Single Sound with volume
+	 * 
+	 * @param name
+	 * @param volume
+	 * @return
+	 */
+	protected static SoundDefinition sounds(ResourceLocation name, float volume) {
+		return SoundDefinition.definition().with(sound(name).volume(volume));
+	}
+
+	protected static SoundDefinition sounds(ResourceLocation... sounds) {
+		SoundDefinition definition = SoundDefinition.definition();
+		for (ResourceLocation sound : sounds) {
+			definition.with(sound(sound));
+		}
+		return definition;
 	}
 }

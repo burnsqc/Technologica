@@ -1,6 +1,7 @@
 package com.technologica.world.item;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
@@ -12,7 +13,7 @@ public class CropSeedItem extends ItemNameBlockItem implements IPlantable {
 	private Block crop;
 
 	public CropSeedItem(Block p_41579_, Properties p_41580_) {
-		super(p_41579_, p_41580_);
+		super(p_41579_, new Item.Properties());
 		this.crop = p_41579_;
 	}
 
