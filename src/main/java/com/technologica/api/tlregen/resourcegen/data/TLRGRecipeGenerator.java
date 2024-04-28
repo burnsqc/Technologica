@@ -12,6 +12,6 @@ public abstract class TLRGRecipeGenerator extends RecipeProvider {
 
 	@Override
 	public final String getName() {
-		return "TLRG - data." + Technologica.MOD_ID + ".recipes";
+		return "data." + Technologica.MOD_ID + ".recipes";
 	}
 }

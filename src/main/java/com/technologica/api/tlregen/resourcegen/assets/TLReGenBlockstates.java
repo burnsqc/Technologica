@@ -1,16 +1,21 @@
 package com.technologica.api.tlregen.resourcegen.assets;
 
-import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
 import com.google.common.base.Preconditions;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.google.gson.JsonObject;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.technologica.Technologica;
 import com.technologica.api.tlregen.resourcegen.TLRGMasterResourceGenerator;
+import com.technologica.api.tlregen.resourcegen.util.TLReGenConfiguredModel;
+import com.technologica.api.tlregen.resourcegen.util.TLReGenVariantBlockStateBuilder;
 
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
@@ -44,19 +49,16 @@ import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.block.state.properties.StairsShape;
 import net.minecraft.world.level.block.state.properties.WallSide;
-import net.minecraftforge.client.model.generators.BlockModelProvider;
-import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.IGeneratedBlockState;
-import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.client.model.generators.ModelProvider;
 import net.minecraftforge.client.model.generators.MultiPartBlockStateBuilder;
-import net.minecraftforge.client.model.generators.VariantBlockStateBuilder;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator implements DataProvider {
-	protected final Map<Block, IGeneratedBlockState> registeredBlocks = new LinkedHashMap<>();
-	private final BlockModelProvider blockModels = new BlockModelProvider(packOutput, modid, helper) {
+	protected final Map<Block, IGeneratedBlockState> blockStates = new LinkedHashMap<>();
+
+	private final TLReGenModelsBlock blockModels = new TLReGenModelsBlock() {
 		@Override
 		public CompletableFuture<?> run(CachedOutput cache) {
 			return CompletableFuture.allOf();
@@ -66,50 +68,46 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 		protected void registerModels() {
 		}
 	};
-	private final ItemModelProvider itemModels = new ItemModelProvider(packOutput, modid, this.blockModels.existingFileHelper) {
-		@Override
-		protected void registerModels() {
-		}
 
+	private final TLReGenModelsItem itemModels = new TLReGenModelsItem() {
 		@Override
 		public CompletableFuture<?> run(CachedOutput cache) {
 			return CompletableFuture.allOf();
 		}
+
+		@Override
+		protected void registerModels() {
+		}
 	};
 
-	public TLReGenBlockstates() {
-	}
+	/**
+	 * OVERRIDE ME TO ADD BLOCKSTATES
+	 */
+	protected abstract void populate();
 
 	@Override
 	public final CompletableFuture<?> run(CachedOutput cache) {
 		blockModels().clear();
 		itemModels().clear();
-		registeredBlocks.clear();
+		blockStates.clear();
 
 		populate();
-		CompletableFuture<?>[] futures = new CompletableFuture<?>[2 + this.registeredBlocks.size()];
+		CompletableFuture<?>[] futures = new CompletableFuture<?>[2 + this.blockStates.size()];
 		int i = 0;
 		futures[i++] = blockModels().generateAll(cache);
 		futures[i++] = itemModels().generateAll(cache);
-		for (Map.Entry<Block, IGeneratedBlockState> entry : registeredBlocks.entrySet()) {
-			futures[i++] = saveBlockState(cache, entry.getValue().toJson(), entry.getKey());
+		for (Map.Entry<Block, IGeneratedBlockState> entry : blockStates.entrySet()) {
+			ResourceLocation blockName = Preconditions.checkNotNull(ForgeRegistries.BLOCKS.getKey(entry.getKey()));
+			futures[i++] = DataProvider.saveStable(cache, entry.getValue().toJson(), packOutput.getOutputFolder(PackOutput.Target.RESOURCE_PACK).resolve(blockName.getNamespace()).resolve("blockstates").resolve(blockName.getPath() + ".json"));
 		}
 		return CompletableFuture.allOf(futures);
 	}
 
-	protected abstract void populate();
-
-	private CompletableFuture<?> saveBlockState(CachedOutput cache, JsonObject stateJson, Block owner) {
-		ResourceLocation blockName = Preconditions.checkNotNull(ForgeRegistries.BLOCKS.getKey(owner));
-		Path outputPath = packOutput.getOutputFolder(PackOutput.Target.RESOURCE_PACK).resolve(blockName.getNamespace()).resolve("blockstates").resolve(blockName.getPath() + ".json");
-		return DataProvider.saveStable(cache, stateJson, outputPath);
-	}
-
-	public BlockModelProvider blockModels() {
+	public TLReGenModelsBlock blockModels() {
 		return blockModels;
 	}
 
-	public ItemModelProvider itemModels() {
+	public TLReGenModelsItem itemModels() {
 		return itemModels;
 	}
 
@@ -118,30 +116,63 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 		return "assets." + Technologica.MOD_ID + ".blockstates";
 	}
 
+	public static class ConfiguredModelList {
+		private final List<TLReGenConfiguredModel> models;
+
+		private ConfiguredModelList(List<TLReGenConfiguredModel> models) {
+			Preconditions.checkArgument(!models.isEmpty());
+			this.models = models;
+		}
+
+		public ConfiguredModelList(TLReGenConfiguredModel model) {
+			this(ImmutableList.of(model));
+		}
+
+		public ConfiguredModelList(TLReGenConfiguredModel... models) {
+			this(Arrays.asList(models));
+		}
+
+		public JsonElement toJSON() {
+			if (models.size() == 1) {
+				return models.get(0).toJSON(false);
+			} else {
+				JsonArray ret = new JsonArray();
+				for (TLReGenConfiguredModel m : models) {
+					ret.add(m.toJSON(true));
+				}
+				return ret;
+			}
+		}
+
+		public ConfiguredModelList append(TLReGenConfiguredModel... models) {
+			return new ConfiguredModelList(ImmutableList.<TLReGenConfiguredModel>builder().addAll(this.models).add(models).build());
+		}
+	}
+
 	/*
 	 * HELPER METHODS
 	 */
 
-	public VariantBlockStateBuilder getVariantBuilder(Block b) {
-		if (registeredBlocks.containsKey(b)) {
-			IGeneratedBlockState old = registeredBlocks.get(b);
-			Preconditions.checkState(old instanceof VariantBlockStateBuilder);
-			return (VariantBlockStateBuilder) old;
+	public TLReGenVariantBlockStateBuilder getVariantBuilder(Block b) {
+		if (blockStates.containsKey(b)) {
+			IGeneratedBlockState old = blockStates.get(b);
+			Preconditions.checkState(old instanceof TLReGenVariantBlockStateBuilder);
+			return (TLReGenVariantBlockStateBuilder) old;
 		} else {
-			VariantBlockStateBuilder ret = new VariantBlockStateBuilder(b);
-			registeredBlocks.put(b, ret);
+			TLReGenVariantBlockStateBuilder ret = new TLReGenVariantBlockStateBuilder(b);
+			blockStates.put(b, ret);
 			return ret;
 		}
 	}
 
 	public MultiPartBlockStateBuilder getMultipartBuilder(Block b) {
-		if (registeredBlocks.containsKey(b)) {
-			IGeneratedBlockState old = registeredBlocks.get(b);
+		if (blockStates.containsKey(b)) {
+			IGeneratedBlockState old = blockStates.get(b);
 			Preconditions.checkState(old instanceof MultiPartBlockStateBuilder);
 			return (MultiPartBlockStateBuilder) old;
 		} else {
 			MultiPartBlockStateBuilder ret = new MultiPartBlockStateBuilder(b);
-			registeredBlocks.put(b, ret);
+			blockStates.put(b, ret);
 			return ret;
 		}
 	}
@@ -179,12 +210,12 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 		simpleBlock(block, cubeAll(block));
 	}
 
-	public void simpleBlock(Block block, Function<ModelFile, ConfiguredModel[]> expander) {
+	public void simpleBlock(Block block, Function<ModelFile, TLReGenConfiguredModel[]> expander) {
 		simpleBlock(block, expander.apply(cubeAll(block)));
 	}
 
 	public void simpleBlock(Block block, ModelFile model) {
-		simpleBlock(block, new ConfiguredModel(model));
+		simpleBlock(block, new TLReGenConfiguredModel(model));
 	}
 
 	public void simpleBlockItem(Block block, ModelFile model) {
@@ -196,7 +227,7 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 		simpleBlockItem(block, model);
 	}
 
-	public void simpleBlock(Block block, ConfiguredModel... models) {
+	public void simpleBlock(Block block, TLReGenConfiguredModel... models) {
 		getVariantBuilder(block).partialState().setModels(models);
 	}
 
@@ -271,7 +302,7 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 	}
 
 	public void horizontalBlock(Block block, Function<BlockState, ModelFile> modelFunc, int angleOffset) {
-		getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(modelFunc.apply(state)).rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + angleOffset) % 360).build());
+		getVariantBuilder(block).forAllStates(state -> TLReGenConfiguredModel.builder().modelFile(modelFunc.apply(state)).rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + angleOffset) % 360).build());
 	}
 
 	public void horizontalFaceBlock(Block block, ModelFile model) {
@@ -287,7 +318,7 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 	}
 
 	public void horizontalFaceBlock(Block block, Function<BlockState, ModelFile> modelFunc, int angleOffset) {
-		getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(modelFunc.apply(state)).rotationX(state.getValue(BlockStateProperties.ATTACH_FACE).ordinal() * 90).rotationY((((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + angleOffset) + (state.getValue(BlockStateProperties.ATTACH_FACE) == AttachFace.CEILING ? 180 : 0)) % 360).build());
+		getVariantBuilder(block).forAllStates(state -> TLReGenConfiguredModel.builder().modelFile(modelFunc.apply(state)).rotationX(state.getValue(BlockStateProperties.ATTACH_FACE).ordinal() * 90).rotationY((((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + angleOffset) + (state.getValue(BlockStateProperties.ATTACH_FACE) == AttachFace.CEILING ? 180 : 0)) % 360).build());
 	}
 
 	public void directionalBlock(Block block, ModelFile model) {
@@ -305,7 +336,7 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 	public void directionalBlock(Block block, Function<BlockState, ModelFile> modelFunc, int angleOffset) {
 		getVariantBuilder(block).forAllStates(state -> {
 			Direction dir = state.getValue(BlockStateProperties.FACING);
-			return ConfiguredModel.builder().modelFile(modelFunc.apply(state)).rotationX(dir == Direction.DOWN ? 180 : dir.getAxis().isHorizontal() ? 90 : 0).rotationY(dir.getAxis().isVertical() ? 0 : (((int) dir.toYRot()) + angleOffset) % 360).build();
+			return TLReGenConfiguredModel.builder().modelFile(modelFunc.apply(state)).rotationX(dir == Direction.DOWN ? 180 : dir.getAxis().isHorizontal() ? 90 : 0).rotationY(dir.getAxis().isVertical() ? 0 : (((int) dir.toYRot()) + angleOffset) % 360).build();
 		});
 	}
 
@@ -385,7 +416,7 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 			}
 			yRot %= 360;
 			boolean uvlock = yRot != 0 || half == Half.TOP; // Don't set uvlock for states that have no rotation
-			return ConfiguredModel.builder().modelFile(shape == StairsShape.STRAIGHT ? stairs : shape == StairsShape.INNER_LEFT || shape == StairsShape.INNER_RIGHT ? stairsInner : stairsOuter).rotationX(half == Half.BOTTOM ? 0 : 180).rotationY(yRot).uvLock(uvlock).build();
+			return TLReGenConfiguredModel.builder().modelFile(shape == StairsShape.STRAIGHT ? stairs : shape == StairsShape.INNER_LEFT || shape == StairsShape.INNER_RIGHT ? stairsInner : stairsOuter).rotationX(half == Half.BOTTOM ? 0 : 180).rotationY(yRot).uvLock(uvlock).build();
 		}, StairBlock.WATERLOGGED);
 	}
 
@@ -398,7 +429,7 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 	}
 
 	public void slabBlock(SlabBlock block, ModelFile bottom, ModelFile top, ModelFile doubleslab) {
-		getVariantBuilder(block).partialState().with(SlabBlock.TYPE, SlabType.BOTTOM).addModels(new ConfiguredModel(bottom)).partialState().with(SlabBlock.TYPE, SlabType.TOP).addModels(new ConfiguredModel(top)).partialState().with(SlabBlock.TYPE, SlabType.DOUBLE).addModels(new ConfiguredModel(doubleslab));
+		getVariantBuilder(block).partialState().with(SlabBlock.TYPE, SlabType.BOTTOM).addModels(new TLReGenConfiguredModel(bottom)).partialState().with(SlabBlock.TYPE, SlabType.TOP).addModels(new TLReGenConfiguredModel(top)).partialState().with(SlabBlock.TYPE, SlabType.DOUBLE).addModels(new TLReGenConfiguredModel(doubleslab));
 	}
 
 	public void buttonBlock(ButtonBlock block, ResourceLocation texture) {
@@ -413,7 +444,7 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 			AttachFace face = state.getValue(ButtonBlock.FACE);
 			boolean powered = state.getValue(ButtonBlock.POWERED);
 
-			return ConfiguredModel.builder().modelFile(powered ? buttonPressed : button).rotationX(face == AttachFace.FLOOR ? 0 : (face == AttachFace.WALL ? 90 : 180)).rotationY((int) (face == AttachFace.CEILING ? facing : facing.getOpposite()).toYRot()).uvLock(face == AttachFace.WALL).build();
+			return TLReGenConfiguredModel.builder().modelFile(powered ? buttonPressed : button).rotationX(face == AttachFace.FLOOR ? 0 : (face == AttachFace.WALL ? 90 : 180)).rotationY((int) (face == AttachFace.CEILING ? facing : facing.getOpposite()).toYRot()).uvLock(face == AttachFace.WALL).build();
 		});
 	}
 
@@ -424,7 +455,7 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 	}
 
 	public void pressurePlateBlock(PressurePlateBlock block, ModelFile pressurePlate, ModelFile pressurePlateDown) {
-		getVariantBuilder(block).partialState().with(PressurePlateBlock.POWERED, true).addModels(new ConfiguredModel(pressurePlateDown)).partialState().with(PressurePlateBlock.POWERED, false).addModels(new ConfiguredModel(pressurePlate));
+		getVariantBuilder(block).partialState().with(PressurePlateBlock.POWERED, true).addModels(new TLReGenConfiguredModel(pressurePlateDown)).partialState().with(PressurePlateBlock.POWERED, false).addModels(new TLReGenConfiguredModel(pressurePlate));
 	}
 
 	public void signBlock(StandingSignBlock signBlock, WallSignBlock wallSignBlock, ResourceLocation texture) {
@@ -527,7 +558,7 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 			if (state.getValue(FenceGateBlock.OPEN)) {
 				model = model == gateWall ? gateWallOpen : gateOpen;
 			}
-			return ConfiguredModel.builder().modelFile(model).rotationY((int) state.getValue(FenceGateBlock.FACING).toYRot()).uvLock(true).build();
+			return TLReGenConfiguredModel.builder().modelFile(model).rotationY((int) state.getValue(FenceGateBlock.FACING).toYRot()).uvLock(true).build();
 		}, FenceGateBlock.POWERED);
 	}
 
@@ -714,7 +745,7 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 				model = topLeft;
 			}
 
-			return ConfiguredModel.builder().modelFile(model).rotationY(yRot).build();
+			return TLReGenConfiguredModel.builder().modelFile(model).rotationY(yRot).build();
 		}, DoorBlock.POWERED);
 	}
 
@@ -769,7 +800,7 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 				yRot = 0;
 			}
 			yRot %= 360;
-			return ConfiguredModel.builder().modelFile(isOpen ? open : state.getValue(TrapDoorBlock.HALF) == Half.TOP ? top : bottom).rotationX(xRot).rotationY(yRot).build();
+			return TLReGenConfiguredModel.builder().modelFile(isOpen ? open : state.getValue(TrapDoorBlock.HALF) == Half.TOP ? top : bottom).rotationX(xRot).rotationY(yRot).build();
 		}, TrapDoorBlock.POWERED, TrapDoorBlock.WATERLOGGED);
 	}
 }

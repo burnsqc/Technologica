@@ -2,7 +2,7 @@ package com.technologica.resourcegen.data.worldgen.configuredfeature;
 
 import java.util.List;
 
-import com.technologica.api.tlregen.resourcegen.data.TLRGWorldgenConfiguredFeatureGenerator;
+import com.technologica.api.tlregen.resourcegen.data.worldgen.TLReGenWorldgenConfiguredFeature;
 import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.registration.deferred.TechnologicaFeatures;
 import com.technologica.registration.key.TechnologicaConfiguredFeatures;
@@ -49,7 +49,7 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 
 @SuppressWarnings("deprecation")
-public class TLWorldgenConfiguredFeatureGenerator extends TLRGWorldgenConfiguredFeatureGenerator {
+public class TLWorldgenConfiguredFeatureGenerator extends TLReGenWorldgenConfiguredFeature {
 
 	public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> bootstrapContextIn) {
 		RuleTest ruletest1 = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);

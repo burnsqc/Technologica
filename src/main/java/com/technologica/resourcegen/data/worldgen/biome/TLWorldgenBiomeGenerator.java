@@ -1,6 +1,6 @@
 package com.technologica.resourcegen.data.worldgen.biome;
 
-import com.technologica.api.tlregen.resourcegen.data.TLRGWorldgenBiomeGenerator;
+import com.technologica.api.tlregen.resourcegen.data.worldgen.TLReGenWorldgenBiome;
 import com.technologica.registration.deferred.TechnologicaEntityTypes;
 import com.technologica.registration.key.TechnologicaBiomes;
 import com.technologica.registration.key.TechnologicaPlacedFeatures;
@@ -22,7 +22,7 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
-public final class TLWorldgenBiomeGenerator extends TLRGWorldgenBiomeGenerator {
+public final class TLWorldgenBiomeGenerator extends TLReGenWorldgenBiome {
 	private static HolderGetter<PlacedFeature> placedFeature;
 	private static HolderGetter<ConfiguredWorldCarver<?>> configuredWorldCarver;;
 

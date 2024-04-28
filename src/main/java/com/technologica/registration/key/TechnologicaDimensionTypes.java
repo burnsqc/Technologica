@@ -1,7 +1,7 @@
 package com.technologica.registration.key;
 
 import com.technologica.registration.key.util.MasterKeyCreator;
-import com.technologica.resourcegen.data.dimensiontype.TLDimensionTypeGenerator;
+import com.technologica.resourcegen.data.dimensiontype.TLDimensionTypes;
 import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.resources.ResourceKey;
@@ -11,7 +11,7 @@ import net.minecraft.world.level.dimension.DimensionType;
 /**
  * <p>
  * This class contains Resource Keys for Dimension Types.
- * The corresponding Dimension Types are created in json format during Data Generation in {@link TLDimensionTypeGenerator}.
+ * The corresponding Dimension Types are created in json format during Data Generation in {@link TLDimensionTypes}.
  * </p>
  * 
  * @tl.status YELLOW

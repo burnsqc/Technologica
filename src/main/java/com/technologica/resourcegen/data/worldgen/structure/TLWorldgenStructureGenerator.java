@@ -2,7 +2,7 @@ package com.technologica.resourcegen.data.worldgen.structure;
 
 import java.util.Map;
 
-import com.technologica.api.tlregen.resourcegen.data.TLRGWorldgenStructureGenerator;
+import com.technologica.api.tlregen.resourcegen.data.worldgen.TLReGenWorldgenStructure;
 import com.technologica.registration.key.TechnologicaBiomeTags;
 import com.technologica.registration.key.TechnologicaStructureTemplatePools;
 import com.technologica.registration.key.TechnologicaStructures;
@@ -24,7 +24,7 @@ import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.structure.structures.JigsawStructure;
 import net.minecraft.world.level.levelgen.structure.structures.NetherFortressStructure;
 
-public final class TLWorldgenStructureGenerator extends TLRGWorldgenStructureGenerator {
+public final class TLWorldgenStructureGenerator extends TLReGenWorldgenStructure {
 	public static void bootstrap(BootstapContext<Structure> boostrapContextIn) {
 		HolderGetter<Biome> biomes = boostrapContextIn.lookup(Registries.BIOME);
 		HolderGetter<StructureTemplatePool> templates = boostrapContextIn.lookup(Registries.TEMPLATE_POOL);

@@ -2,7 +2,7 @@ package com.technologica.resourcegen.data.worldgen.biome;
 
 import java.util.List;
 
-import com.technologica.api.tlregen.resourcegen.data.TLRGForgeBiomeModifierGenerator;
+import com.technologica.api.tlregen.resourcegen.data.TLReGenForgeBiomeModifier;
 import com.technologica.registration.deferred.TechnologicaEntityTypes;
 import com.technologica.registration.key.TechnologicaBiomeModifiers;
 import com.technologica.registration.key.TechnologicaPlacedFeatures;
@@ -21,7 +21,7 @@ import net.minecraftforge.common.world.BiomeModifier;
 import net.minecraftforge.common.world.ForgeBiomeModifiers.AddFeaturesBiomeModifier;
 import net.minecraftforge.common.world.ForgeBiomeModifiers.AddSpawnsBiomeModifier;
 
-public class TLForgeBiomeModifierGenerator extends TLRGForgeBiomeModifierGenerator {
+public class TLForgeBiomeModifierGenerator extends TLReGenForgeBiomeModifier {
 
 	public static void bootstrap(BootstapContext<BiomeModifier> biomeModifier) {
 		Direct<Biome> badlands = HolderSet.direct(biomeModifier.lookup(Registries.BIOME).getOrThrow(Biomes.BADLANDS));

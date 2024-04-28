@@ -3,7 +3,7 @@ package com.technologica.resourcegen.data.worldgen.templatepool;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import com.technologica.Technologica;
-import com.technologica.api.tlregen.resourcegen.data.TLRGWorldgenTemplatePoolGenerator;
+import com.technologica.api.tlregen.resourcegen.data.worldgen.TLReGenWorldgenTemplatePool;
 import com.technologica.registration.key.TechnologicaStructureTemplatePools;
 
 import net.minecraft.core.Holder;
@@ -16,7 +16,7 @@ import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorList;
 
-public class TLWorldgenTemplatePoolGenerator extends TLRGWorldgenTemplatePoolGenerator {
+public class TLWorldgenTemplatePoolGenerator extends TLReGenWorldgenTemplatePool {
 	public static void bootstrap(BootstapContext<StructureTemplatePool> boostrapContextIn) {
 		HolderGetter<StructureTemplatePool> holdergetter1 = boostrapContextIn.lookup(Registries.TEMPLATE_POOL);
 		Holder<StructureTemplatePool> holder1 = holdergetter1.getOrThrow(Pools.EMPTY);

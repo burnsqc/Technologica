@@ -9,7 +9,7 @@ import net.minecraft.world.damagesource.DamageType;
 
 public final class TLDamageTypeGenerator extends TLReGenDamageType {
 	public static void bootstrap(BootstapContext<DamageType> damageType) {
-		damageType.register(TechnologicaDamageTypes.BLEED, new DamageType("bled_out", 0.1F));
-		damageType.register(TechnologicaDamageTypes.NITRO_BLAST, new DamageType("jostled_the_nitro", DamageScaling.ALWAYS, 0.1F));
+		damageType.register(TechnologicaDamageTypes.BLEED, new DamageType("bleed", 0.1F));
+		damageType.register(TechnologicaDamageTypes.NITRO_BLAST, new DamageType("nitro_blast", DamageScaling.ALWAYS, 0.1F));
 	}
 }

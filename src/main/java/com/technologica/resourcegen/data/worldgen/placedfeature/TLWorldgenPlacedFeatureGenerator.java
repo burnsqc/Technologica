@@ -2,7 +2,7 @@ package com.technologica.resourcegen.data.worldgen.placedfeature;
 
 import java.util.List;
 
-import com.technologica.api.tlregen.resourcegen.data.TLRGWorldgenPlacedFeatureGenerator;
+import com.technologica.api.tlregen.resourcegen.data.worldgen.TLReGenWorldgenPlacedFeature;
 import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.registration.key.TechnologicaConfiguredFeatures;
 import com.technologica.registration.key.TechnologicaPlacedFeatures;
@@ -24,7 +24,7 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.placement.RarityFilter;
 
 @SuppressWarnings("deprecation")
-public final class TLWorldgenPlacedFeatureGenerator extends TLRGWorldgenPlacedFeatureGenerator {
+public final class TLWorldgenPlacedFeatureGenerator extends TLReGenWorldgenPlacedFeature {
 	public static void bootstrap(BootstapContext<PlacedFeature> bootstrapContextIn) {
 		HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = bootstrapContextIn.lookup(Registries.CONFIGURED_FEATURE);
 		Holder<ConfiguredFeature<?, ?>> brinePool = configuredFeatures.getOrThrow(TechnologicaConfiguredFeatures.BRINE_POOL_CONFIGURED);

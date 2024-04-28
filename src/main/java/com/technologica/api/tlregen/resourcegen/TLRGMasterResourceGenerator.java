@@ -9,25 +9,26 @@ import com.technologica.api.tlregen.resourcegen.assets.TLReGenLang;
 import com.technologica.api.tlregen.resourcegen.assets.TLReGenModelsItem;
 import com.technologica.api.tlregen.resourcegen.assets.TLReGenParticles;
 import com.technologica.api.tlregen.resourcegen.assets.TLReGenSounds;
-import com.technologica.api.tlregen.resourcegen.data.TLRGDimensionTypeGenerator;
+import com.technologica.api.tlregen.resourcegen.data.TLReGenDimensionType;
+import com.technologica.api.tlregen.resourcegen.data.tags.TLReGenTagsEntityTypes;
+import com.technologica.api.tlregen.resourcegen.data.tags.TLRGTagsItemsGenerator;
+import com.technologica.api.tlregen.resourcegen.data.tags.TLReGenTagsBlocks;
 import com.technologica.api.tlregen.resourcegen.data.TLRGLootTablesGenerator;
 import com.technologica.api.tlregen.resourcegen.data.TLRGRecipeGenerator;
-import com.technologica.api.tlregen.resourcegen.data.TLRGTagsBlocksGenerator;
-import com.technologica.api.tlregen.resourcegen.data.TLRGTagsEntityTypesGenerator;
-import com.technologica.api.tlregen.resourcegen.data.TLRGTagsItemsGenerator;
 import com.technologica.api.tlregen.resourcegen.data.TLReGenDamageType;
 import com.technologica.api.tlregen.resourcegen.data.TLReGenDimension;
-import com.technologica.resourcegen.assets.TLAtlasesGenerator;
-import com.technologica.resourcegen.assets.TLFontGenerator;
-import com.technologica.resourcegen.assets.TLSoundsGenerator;
+import com.technologica.api.tlregen.resourcegen.mirrors.TLReGenRegistrySetBuilder;
+import com.technologica.resourcegen.assets.TLAtlases;
+import com.technologica.resourcegen.assets.TLFont;
+import com.technologica.resourcegen.assets.TLParticles;
+import com.technologica.resourcegen.assets.TLSounds;
 import com.technologica.resourcegen.assets.blockstates.TLBlockstatesGenerator;
-import com.technologica.resourcegen.assets.lang.TLLangGenerator;
+import com.technologica.resourcegen.assets.lang.TLLang;
 import com.technologica.resourcegen.assets.models.items.TLModelsGenerator;
-import com.technologica.resourcegen.assets.particles.TLParticlesGenerator;
 import com.technologica.resourcegen.data.advancements.TLRGAdvancementGenerator;
 import com.technologica.resourcegen.data.damagetype.TLDamageTypeGenerator;
-import com.technologica.resourcegen.data.dimension.TLDimensionGenerator;
-import com.technologica.resourcegen.data.dimensiontype.TLDimensionTypeGenerator;
+import com.technologica.resourcegen.data.dimension.TLDimensions;
+import com.technologica.resourcegen.data.dimensiontype.TLDimensionTypes;
 import com.technologica.resourcegen.data.lootmodifiers.TLLootModifiersGenerator;
 import com.technologica.resourcegen.data.recipes.TLRecipesGenerator;
 import com.technologica.resourcegen.data.tags.blocks.TLTagBlocksGenerator;
@@ -39,7 +40,7 @@ import com.technologica.resourcegen.data.tags.worldgen.biome.TLTagWorldgenBiomeG
 import com.technologica.resourcegen.data.worldgen.biome.TLForgeBiomeModifierGenerator;
 import com.technologica.resourcegen.data.worldgen.biome.TLWorldgenBiomeGenerator;
 import com.technologica.resourcegen.data.worldgen.configuredfeature.TLWorldgenConfiguredFeatureGenerator;
-import com.technologica.resourcegen.data.worldgen.noisesettings.TLWorldgenNoiseSettingsGenerator;
+import com.technologica.resourcegen.data.worldgen.noisesettings.TLWorldgenNoiseSettings;
 import com.technologica.resourcegen.data.worldgen.placedfeature.TLWorldgenPlacedFeatureGenerator;
 import com.technologica.resourcegen.data.worldgen.structure.TLWorldgenStructureGenerator;
 import com.technologica.resourcegen.data.worldgen.structuresets.TLWorldgenStructureSetGenerator;
@@ -64,6 +65,8 @@ public abstract class TLRGMasterResourceGenerator {
 	public static ExistingFileHelper helper;
 	public static CompletableFuture<HolderLookup.Provider> lookupProvider;
 	public static RegistrySetBuilder registrySetBuilder;
+	public static TLReGenRegistrySetBuilder registrySetBuilder2;
+	public static TLReGenRegistrySetBuilder registrySetBuilder3;
 	public static String modid = Technologica.MOD_ID;
 
 	protected static Supplier<TLReGenBlockstates> BlockStateGenerator;
@@ -75,16 +78,12 @@ public abstract class TLRGMasterResourceGenerator {
 	protected static Supplier<TLRGAdvancementGenerator> AdvancementGenerator;
 	protected static Supplier<TLReGenDamageType> DamageTypeGenerator;
 	protected static Supplier<TLReGenDimension> DimensionGenerator;
-	protected static Supplier<TLRGDimensionTypeGenerator> DimensionTypeGenerator;
+	protected static Supplier<TLReGenDimensionType> DimensionTypeGenerator;
 	protected static Supplier<TLRGRecipeGenerator> RecipeGenerator;
-	protected static Supplier<TLRGTagsBlocksGenerator> TagBlocksGenerator;
-	public static TLRGTagsBlocksGenerator TagBlocks;
-	protected static Supplier<TLRGTagsEntityTypesGenerator> TagEntityTypeGenerator;
+	protected static Supplier<TLReGenTagsBlocks> TagBlocksGenerator;
+	public static TLReGenTagsBlocks TagBlocks;
+	protected static Supplier<TLReGenTagsEntityTypes> TagEntityTypeGenerator;
 	protected static Supplier<TLRGTagsItemsGenerator> TagItemGenerator;
-
-	public static void setGenerators(Supplier<TLReGenBlockstates> TLRGBlockStateDataGenerator, Supplier<TLReGenLang> TLRGLanguageDataGenerator, Supplier<TLReGenModelsItem> TLRGItemModelDataGenerator, Supplier<TLReGenParticles> TLRGParticleGenerator, Supplier<TLReGenSounds> TLRGSoundsGenerator, Supplier<TLRGAdvancementGenerator> TLRGAdvancementGenerator, Supplier<TLReGenDamageType> TLRGDamageTypeGenerator, Supplier<TLReGenDimension> TLRGDimensionGenerator, Supplier<TLRGDimensionTypeGenerator> TLRGDimensionTypeGenerator, Supplier<TLRGRecipeGenerator> TLRGRecipeGenerator, Supplier<TLRGTagsBlocksGenerator> TLRGTagBlocksGenerator, Supplier<TLRGTagsEntityTypesGenerator> TLRGTagEntityTypeGenerator, Supplier<TLRGTagsItemsGenerator> TLRGTagItemsGenerator) {
-
-	}
 
 	@SubscribeEvent
 	public static void addGenerators(final GatherDataEvent eventIn) {
@@ -100,6 +99,8 @@ public abstract class TLRGMasterResourceGenerator {
 		helper = event.getExistingFileHelper();
 		lookupProvider = event.getLookupProvider();
 		registrySetBuilder = new RegistrySetBuilder();
+		registrySetBuilder2 = new TLReGenRegistrySetBuilder();
+		registrySetBuilder3 = new TLReGenRegistrySetBuilder();
 	}
 
 	private static void setGenerators() {
@@ -107,22 +108,22 @@ public abstract class TLRGMasterResourceGenerator {
 	}
 
 	private static void addGenerators() {
-		addAssetGenerator(new TLAtlasesGenerator());
+		addAssetGenerator(new TLAtlases());
 		addAssetGenerator(new TLBlockstatesGenerator());
-		addAssetGenerator(new TLFontGenerator());
-		addAssetGenerator(new TLLangGenerator());
+		addAssetGenerator(new TLFont());
+		addAssetGenerator(new TLLang());
 		addAssetGenerator(new TLModelsGenerator());
-		addAssetGenerator(new TLParticlesGenerator());
+		addAssetGenerator(new TLParticles());
 		// shaders
 		// texts
-		addAssetGenerator(new TLSoundsGenerator());
+		addAssetGenerator(new TLSounds());
 
 		addDataGenerator(new TLRGAdvancementGenerator());
 		// chat_type
 		addDataGenerator(new TLDamageTypeGenerator());
 		// datapacks
-		addDataGenerator(new TLDimensionGenerator());
-		addDataGenerator(new TLDimensionTypeGenerator());
+		addDataGenerator(new TLDimensions());
+		addDataGenerator(new TLDimensionTypes());
 		addDataGenerator(new TLForgeBiomeModifierGenerator());
 		addDataGenerator(new TLLootModifiersGenerator());
 		addDataGenerator(new TLRGLootTablesGenerator());
@@ -138,7 +139,7 @@ public abstract class TLRGMasterResourceGenerator {
 		// trim_pattern
 		addDataGenerator(new TLWorldgenBiomeGenerator());
 		addDataGenerator(new TLWorldgenConfiguredFeatureGenerator());
-		addDataGenerator(new TLWorldgenNoiseSettingsGenerator());
+		addDataGenerator(new TLWorldgenNoiseSettings());
 		addDataGenerator(new TLWorldgenPlacedFeatureGenerator());
 		addDataGenerator(new TLWorldgenStructureGenerator());
 		addDataGenerator(new TLWorldgenStructureSetGenerator());

@@ -1,6 +1,7 @@
 package com.technologica.resourcegen.assets.blockstates;
 
 import com.technologica.api.tlregen.resourcegen.assets.TLReGenBlockstates;
+import com.technologica.api.tlregen.resourcegen.util.TLReGenConfiguredModel;
 import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.util.AnnunciatorOverlay;
 import com.technologica.util.MiddleEnd;
@@ -72,9 +73,9 @@ public class TLBlockstatesGenerator extends TLReGenBlockstates {
 		simpleBlock(TechnologicaBlocks.DISPLAY_CASE.get(), displayModel(TechnologicaBlocks.DISPLAY_CASE.get()));
 		twelveDirectionBlockState(TechnologicaBlocks.LINE_SHAFT_HANGER.get(), lineShaftHangerModel(TechnologicaBlocks.LINE_SHAFT_HANGER.get()), lineShaftHangerModel2(TechnologicaBlocks.LINE_SHAFT_HANGER.get()), lineShaftHangerModel3(TechnologicaBlocks.LINE_SHAFT_HANGER.get()), lineShaftHangerModel4(TechnologicaBlocks.LINE_SHAFT_HANGER.get()));
 		lineShaftBlockState(TechnologicaBlocks.LINE_SHAFT.get(), lineShaftNoPulleyModel(TechnologicaBlocks.LINE_SHAFT.get()), lineShaftSmallPulleyModel(TechnologicaBlocks.LINE_SHAFT.get()), lineShaftMediumPulleyModel(TechnologicaBlocks.LINE_SHAFT.get()), lineShaftLargePulleyModel(TechnologicaBlocks.LINE_SHAFT.get()));
-		getVariantBuilder(TechnologicaBlocks.SMALL_PULLEY.get()).partialState().setModels(new ConfiguredModel(blockModels().withExistingParent(ResourceLocationHelper.getPath(TechnologicaBlocks.SMALL_PULLEY.get()), new TechnologicaLocation(ResourceLocationHelper.getPath(TechnologicaBlocks.SMALL_PULLEY.get()) + "_model")).texture("pulley", new TechnologicaLocation("block/pulley"))));
-		getVariantBuilder(TechnologicaBlocks.MEDIUM_PULLEY.get()).partialState().setModels(new ConfiguredModel(blockModels().withExistingParent(ResourceLocationHelper.getPath(TechnologicaBlocks.MEDIUM_PULLEY.get()), new TechnologicaLocation(ResourceLocationHelper.getPath(TechnologicaBlocks.MEDIUM_PULLEY.get()) + "_model")).texture("pulley", new TechnologicaLocation("block/pulley"))));
-		getVariantBuilder(TechnologicaBlocks.LARGE_PULLEY.get()).partialState().setModels(new ConfiguredModel(blockModels().withExistingParent(ResourceLocationHelper.getPath(TechnologicaBlocks.LARGE_PULLEY.get()), new TechnologicaLocation(ResourceLocationHelper.getPath(TechnologicaBlocks.LARGE_PULLEY.get()) + "_model")).texture("pulley", new TechnologicaLocation("block/pulley"))));
+		getVariantBuilder(TechnologicaBlocks.SMALL_PULLEY.get()).partialState().setModels(new TLReGenConfiguredModel(blockModels().withExistingParent(ResourceLocationHelper.getPath(TechnologicaBlocks.SMALL_PULLEY.get()), new TechnologicaLocation(ResourceLocationHelper.getPath(TechnologicaBlocks.SMALL_PULLEY.get()) + "_model")).texture("pulley", new TechnologicaLocation("block/pulley"))));
+		getVariantBuilder(TechnologicaBlocks.MEDIUM_PULLEY.get()).partialState().setModels(new TLReGenConfiguredModel(blockModels().withExistingParent(ResourceLocationHelper.getPath(TechnologicaBlocks.MEDIUM_PULLEY.get()), new TechnologicaLocation(ResourceLocationHelper.getPath(TechnologicaBlocks.MEDIUM_PULLEY.get()) + "_model")).texture("pulley", new TechnologicaLocation("block/pulley"))));
+		getVariantBuilder(TechnologicaBlocks.LARGE_PULLEY.get()).partialState().setModels(new TLReGenConfiguredModel(blockModels().withExistingParent(ResourceLocationHelper.getPath(TechnologicaBlocks.LARGE_PULLEY.get()), new TechnologicaLocation(ResourceLocationHelper.getPath(TechnologicaBlocks.LARGE_PULLEY.get()) + "_model")).texture("pulley", new TechnologicaLocation("block/pulley"))));
 		twentyFourDirectionBlockState(TechnologicaBlocks.MOTOR_1HP.get(), motorModel(TechnologicaBlocks.MOTOR_1HP.get()), motor2Model(TechnologicaBlocks.MOTOR_1HP.get()));
 		twentyFourDirectionBlockState(TechnologicaBlocks.MOTOR_5HP.get(), motorModel(TechnologicaBlocks.MOTOR_5HP.get()), motor2Model(TechnologicaBlocks.MOTOR_5HP.get()));
 		twentyFourDirectionBlockState(TechnologicaBlocks.MOTOR_20HP.get(), motorModel(TechnologicaBlocks.MOTOR_20HP.get()), motor2Model(TechnologicaBlocks.MOTOR_20HP.get()));
@@ -1714,27 +1715,27 @@ public class TLBlockstatesGenerator extends TLReGenBlockstates {
 	}
 
 	private void fluidBlocks() {
-		getVariantBuilder(TechnologicaBlocks.HYDROGEN.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.HYDROGEN.get())));
-		getVariantBuilder(TechnologicaBlocks.HELIUM.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.HELIUM.get())));
-		getVariantBuilder(TechnologicaBlocks.NITROGEN.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.NITROGEN.get())));
-		getVariantBuilder(TechnologicaBlocks.OXYGEN.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.OXYGEN.get())));
-		getVariantBuilder(TechnologicaBlocks.FLUORINE.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.FLUORINE.get())));
-		getVariantBuilder(TechnologicaBlocks.NEON.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.NEON.get())));
-		getVariantBuilder(TechnologicaBlocks.CHLORINE.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.CHLORINE.get())));
-		getVariantBuilder(TechnologicaBlocks.ARGON.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.ARGON.get())));
-		getVariantBuilder(TechnologicaBlocks.KRYPTON.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.KRYPTON.get())));
-		getVariantBuilder(TechnologicaBlocks.XENON.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.XENON.get())));
-		getVariantBuilder(TechnologicaBlocks.RADON.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.RADON.get())));
-		getVariantBuilder(TechnologicaBlocks.BROMINE.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.BROMINE.get())));
-		getVariantBuilder(TechnologicaBlocks.MERCURY.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.MERCURY.get())));
-		getVariantBuilder(TechnologicaBlocks.BRINE.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.BRINE.get())));
-		getVariantBuilder(TechnologicaBlocks.OIL.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.OIL.get())));
-		getVariantBuilder(TechnologicaBlocks.NATURAL_GAS.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.NATURAL_GAS.get())));
-		getVariantBuilder(TechnologicaBlocks.MAPLE_SYRUP.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.MAPLE_SYRUP.get())));
-		getVariantBuilder(TechnologicaBlocks.RUBBER_RESIN.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.RUBBER_RESIN.get())));
-		getVariantBuilder(TechnologicaBlocks.GASOLINE.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.GASOLINE.get())));
-		getVariantBuilder(TechnologicaBlocks.MACHINE_OIL.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.MACHINE_OIL.get())));
-		getVariantBuilder(TechnologicaBlocks.COOLANT.get()).partialState().setModels(new ConfiguredModel(fluid(TechnologicaBlocks.COOLANT.get())));
+		getVariantBuilder(TechnologicaBlocks.HYDROGEN.get()).partialState().setModels(new TLReGenConfiguredModel(fluid(TechnologicaBlocks.HYDROGEN.get())));
+		getVariantBuilder(TechnologicaBlocks.HELIUM.get()).partialState().setModels(new TLReGenConfiguredModel(fluid(TechnologicaBlocks.HELIUM.get())));
+		getVariantBuilder(TechnologicaBlocks.NITROGEN.get()).partialState().setModels(new TLReGenConfiguredModel(fluid(TechnologicaBlocks.NITROGEN.get())));
+		getVariantBuilder(TechnologicaBlocks.OXYGEN.get()).partialState().setModels(new TLReGenConfiguredModel(fluid(TechnologicaBlocks.OXYGEN.get())));
+		getVariantBuilder(TechnologicaBlocks.FLUORINE.get()).partialState().setModels(new TLReGenConfiguredModel(fluid(TechnologicaBlocks.FLUORINE.get())));
+		getVariantBuilder(TechnologicaBlocks.NEON.get()).partialState().setModels(new TLReGenConfiguredModel(fluid(TechnologicaBlocks.NEON.get())));
+		getVariantBuilder(TechnologicaBlocks.CHLORINE.get()).partialState().setModels(new TLReGenConfiguredModel(fluid(TechnologicaBlocks.CHLORINE.get())));
+		getVariantBuilder(TechnologicaBlocks.ARGON.get()).partialState().setModels(new TLReGenConfiguredModel(fluid(TechnologicaBlocks.ARGON.get())));
+		getVariantBuilder(TechnologicaBlocks.KRYPTON.get()).partialState().setModels(new TLReGenConfiguredModel(fluid(TechnologicaBlocks.KRYPTON.get())));
+		getVariantBuilder(TechnologicaBlocks.XENON.get()).partialState().setModels(new TLReGenConfiguredModel(fluid(TechnologicaBlocks.XENON.get())));
+		getVariantBuilder(TechnologicaBlocks.RADON.get()).partialState().setModels(new TLReGenConfiguredModel(fluid(TechnologicaBlocks.RADON.get())));
+		getVariantBuilder(TechnologicaBlocks.BROMINE.get()).partialState().setModels(new TLReGenConfiguredModel(fluid(TechnologicaBlocks.BROMINE.get())));
+		getVariantBuilder(TechnologicaBlocks.MERCURY.get()).partialState().setModels(new TLReGenConfiguredModel(fluid(TechnologicaBlocks.MERCURY.get())));
+		getVariantBuilder(TechnologicaBlocks.BRINE.get()).partialState().setModels(new TLReGenConfiguredModel(fluid(TechnologicaBlocks.BRINE.get())));
+		getVariantBuilder(TechnologicaBlocks.OIL.get()).partialState().setModels(new TLReGenConfiguredModel(fluid(TechnologicaBlocks.OIL.get())));
+		getVariantBuilder(TechnologicaBlocks.NATURAL_GAS.get()).partialState().setModels(new TLReGenConfiguredModel(fluid(TechnologicaBlocks.NATURAL_GAS.get())));
+		getVariantBuilder(TechnologicaBlocks.MAPLE_SYRUP.get()).partialState().setModels(new TLReGenConfiguredModel(fluid(TechnologicaBlocks.MAPLE_SYRUP.get())));
+		getVariantBuilder(TechnologicaBlocks.RUBBER_RESIN.get()).partialState().setModels(new TLReGenConfiguredModel(fluid(TechnologicaBlocks.RUBBER_RESIN.get())));
+		getVariantBuilder(TechnologicaBlocks.GASOLINE.get()).partialState().setModels(new TLReGenConfiguredModel(fluid(TechnologicaBlocks.GASOLINE.get())));
+		getVariantBuilder(TechnologicaBlocks.MACHINE_OIL.get()).partialState().setModels(new TLReGenConfiguredModel(fluid(TechnologicaBlocks.MACHINE_OIL.get())));
+		getVariantBuilder(TechnologicaBlocks.COOLANT.get()).partialState().setModels(new TLReGenConfiguredModel(fluid(TechnologicaBlocks.COOLANT.get())));
 	}
 
 	public ModelFile glueModel(String name, ResourceLocation particle, ResourceLocation face) {

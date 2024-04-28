@@ -370,14 +370,14 @@ public class Submersible extends Entity {
 				}
 
 				if (lp.input.up) {
-					this.throttle = Mth.clamp(this.throttle + 0.01F, 0.0F, 1.0F);
+					this.throttle = Mth.clamp(this.throttle + 0.1F, 0.0F, 1.0F);
 				}
 
 				if (lp.input.down) {
-					this.throttle = Mth.clamp(this.throttle - 0.01F, 0.0F, 1.0F);
+					this.throttle = Mth.clamp(this.throttle - 0.1F, 0.0F, 1.0F);
 				}
 
-				Vec3 steer = (this.getDeltaMovement().add(lp.getLookAngle().multiply(0.25F, 0.25F, 0.25F))).normalize().multiply(this.throttle, this.throttle, this.throttle);
+				Vec3 steer = (this.getDeltaMovement().add(lp.getLookAngle().multiply(0.55F, 0.55F, 0.55F))).normalize().multiply(this.throttle, this.throttle, this.throttle);
 				this.setDeltaMovement(steer);
 
 				float rotation = (float) Mth.clamp(Math.atan2(this.getDeltaMovement().z, this.getDeltaMovement().x) + Math.PI, 0, 2 * Math.PI);

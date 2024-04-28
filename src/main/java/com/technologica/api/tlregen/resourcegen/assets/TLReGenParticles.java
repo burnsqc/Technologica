@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import com.google.common.base.Preconditions;
@@ -14,7 +15,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.technologica.api.tlregen.resourcegen.TLRGMasterResourceGenerator;
 
-import net.minecraft.Util;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
@@ -24,21 +24,37 @@ import net.minecraft.server.packs.PackType;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public abstract class TLReGenParticles extends TLRGMasterResourceGenerator implements DataProvider {
-	private final Map<ResourceLocation, List<String>> data = new HashMap<>();
+	private final Map<ResourceLocation, List<String>> particles = new HashMap<>();
+	private boolean performValidation = true;
 
-	protected TLReGenParticles() {
-	}
+	/**
+	 * OVERRIDE ME TO ADD PARTICLES
+	 */
+	protected abstract void populate();
 
 	@Override
-	public final CompletableFuture<?> run(CachedOutput cache) {
-		populate();
+	public final CompletableFuture<?> run(final CachedOutput cache) {
+		CompletableFuture<?> completable = CompletableFuture.allOf();
 
-		return CompletableFuture.allOf(data.entrySet().stream().map(entry -> {
-			var textures = new JsonArray();
-			entry.getValue().forEach(textures::add);
-			JsonObject json = Util.make(new JsonObject(), obj -> obj.add("textures", textures));
-			return DataProvider.saveStable(cache, json, packOutput.createPathProvider(PackOutput.Target.RESOURCE_PACK, "particles").json(entry.getKey()));
-		}).toArray(CompletableFuture[]::new));
+		particles.clear();
+		populate();
+		if (performValidation) {
+			// validate();
+		}
+
+		if (!particles.isEmpty()) {
+			List<CompletableFuture<?>> list = new ArrayList<CompletableFuture<?>>();
+			particles.forEach((key, value) -> {
+				JsonObject json = new JsonObject();
+				JsonArray textures = new JsonArray();
+				value.forEach(textures::add);
+				json.add("textures", textures);
+				list.add(DataProvider.saveStable(cache, json, packOutput.createPathProvider(PackOutput.Target.RESOURCE_PACK, "particles").json(key)));
+			});
+			completable = CompletableFuture.allOf(list.toArray(CompletableFuture[]::new));
+		}
+
+		return completable;
 	}
 
 	@Override
@@ -46,37 +62,35 @@ public abstract class TLReGenParticles extends TLRGMasterResourceGenerator imple
 		return "assets." + modid + ".particles";
 	}
 
-	protected abstract void populate();
-
 	/*
 	 * HELPER METHODS
 	 */
 
-	protected final void sprite(ParticleType<?> type, ResourceLocation texture) {
-		this.spriteSet(type, texture);
+	protected final void sprite(Supplier<? extends ParticleType<?>> type, ResourceLocation texture) {
+		spriteSet(type.get(), texture);
 	}
 
-	protected final void spriteSet(ParticleType<?> type, ResourceLocation baseName, int numOfTextures, boolean reverse) {
+	protected final void spriteSet(Supplier<? extends ParticleType<?>> type, ResourceLocation baseName, int numOfTextures, boolean reverse) {
 		Preconditions.checkArgument(numOfTextures > 0, "The number of textures to generate must be positive");
-		this.spriteSet(type, () -> new Iterator<>() {
+		spriteSet(type.get(), () -> new Iterator<>() {
 			private int counter = 0;
 
 			@Override
 			public boolean hasNext() {
-				return this.counter < numOfTextures;
+				return counter < numOfTextures;
 			}
 
 			@Override
 			public ResourceLocation next() {
-				var texture = baseName.withSuffix("_" + (reverse ? numOfTextures - this.counter - 1 : this.counter));
-				this.counter++;
+				var texture = baseName.withSuffix("_" + (reverse ? numOfTextures - counter - 1 : counter));
+				counter++;
 				return texture;
 			}
 		});
 	}
 
 	protected final void spriteSet(ParticleType<?> type, ResourceLocation texture, ResourceLocation... textures) {
-		this.spriteSet(type, Stream.concat(Stream.of(texture), Arrays.stream(textures))::iterator);
+		spriteSet(type, Stream.concat(Stream.of(texture), Arrays.stream(textures))::iterator);
 	}
 
 	protected final void spriteSet(ParticleType<?> type, Iterable<ResourceLocation> textures) {
@@ -89,7 +103,7 @@ public abstract class TLReGenParticles extends TLRGMasterResourceGenerator imple
 		}
 		Preconditions.checkArgument(desc.size() > 0, "The particle type '%s' must have one texture", particle);
 
-		if (data.putIfAbsent(particle, desc) != null) {
+		if (particles.putIfAbsent(particle, desc) != null) {
 			throw new IllegalArgumentException(String.format("The particle type '%s' already has a description associated with it", particle));
 		}
 	}

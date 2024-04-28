@@ -1,15 +1,15 @@
 package com.technologica.resourcegen.data.tags.blocks;
 
-import com.technologica.api.tlregen.resourcegen.data.TLRGTagsBlocksGenerator;
+import com.technologica.api.tlregen.resourcegen.data.tags.TLReGenTagsBlocks;
 import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.registration.key.TechnologicaBlockTags;
 
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.tags.BlockTags;
 
-public class TLTagBlocksGenerator extends TLRGTagsBlocksGenerator {
+public class TLTagBlocksGenerator extends TLReGenTagsBlocks {
 	@Override
-	protected void addTags(Provider providerIn) {
+	protected void populate(Provider providerIn) {
 		tag(BlockTags.BEE_GROWABLES).add(TechnologicaBlocks.BLACKBERRY_BUSH.get(), TechnologicaBlocks.BLUEBERRY_BUSH.get(), TechnologicaBlocks.RASPBERRY_BUSH.get(), TechnologicaBlocks.STRAWBERRY_BUSH.get());
 		tag(BlockTags.CROPS).add(TechnologicaBlocks.ASPARAGUS.get(), TechnologicaBlocks.BARLEY.get(), TechnologicaBlocks.BROCCOLI.get(), TechnologicaBlocks.CELERY.get(), TechnologicaBlocks.CHILI_PEPPERS.get(), TechnologicaBlocks.COFFEE.get(), TechnologicaBlocks.CORN.get(), TechnologicaBlocks.CRANBERRY_CROP.get(), TechnologicaBlocks.CUCUMBERS.get(), TechnologicaBlocks.GARLIC.get(), TechnologicaBlocks.GINGER.get(), TechnologicaBlocks.GRAPES.get(), TechnologicaBlocks.LETTUCE.get(), TechnologicaBlocks.MUSTARD_GREENS.get(), TechnologicaBlocks.OATS.get(), TechnologicaBlocks.ONIONS.get(), TechnologicaBlocks.PEAS.get(), TechnologicaBlocks.PEANUTS.get(), TechnologicaBlocks.PEPPERCORNS.get(), TechnologicaBlocks.PINEAPPLES.get(), TechnologicaBlocks.PURPLE_CABBAGE.get(), TechnologicaBlocks.RADISHES.get(), TechnologicaBlocks.RED_BEANS.get(), TechnologicaBlocks.RICE.get(), TechnologicaBlocks.RYE.get(), TechnologicaBlocks.SOY_BEANS.get(), TechnologicaBlocks.SQUASH.get(), TechnologicaBlocks.SWEET_POTATOES.get(), TechnologicaBlocks.TEA.get(), TechnologicaBlocks.TOMATOES.get(), TechnologicaBlocks.TURNIPS.get(), TechnologicaBlocks.ZUCCHINI.get());
 		tag(BlockTags.ENDERMAN_HOLDABLE).add(TechnologicaBlocks.LITHIUM_CLAY.get());
