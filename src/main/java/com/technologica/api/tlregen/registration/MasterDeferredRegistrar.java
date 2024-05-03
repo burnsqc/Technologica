@@ -1,4 +1,4 @@
-package com.technologica.registration.deferred.util;
+package com.technologica.api.tlregen.registration;
 
 import java.lang.reflect.Array;
 import java.util.HashMap;
@@ -68,7 +68,6 @@ import net.minecraftforge.registries.RegisterEvent;
 public abstract class MasterDeferredRegistrar {
 
 	private static Map<ResourceKey<? extends Registry<?>>, long[]> registries = new HashMap<>();
-	protected static Item.Properties emptyProperties = new Item.Properties();
 
 	public static final DeferredRegister<Attribute> ATTRIBUTES = addRegister(ForgeRegistries.Keys.ATTRIBUTES, Technologica.MOD_ID);
 	public static final DeferredRegister<Block> BLOCKS = addRegister(ForgeRegistries.Keys.BLOCKS, Technologica.MOD_ID);

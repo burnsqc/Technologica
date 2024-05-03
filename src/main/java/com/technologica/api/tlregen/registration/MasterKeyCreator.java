@@ -1,4 +1,4 @@
-package com.technologica.registration.key.util;
+package com.technologica.api.tlregen.registration;
 
 import com.technologica.util.text.TechnologicaLocation;
 
@@ -63,6 +63,10 @@ public abstract class MasterKeyCreator {
 		return ResourceKey.create(Registries.NOISE_SETTINGS, new TechnologicaLocation(path));
 	}
 
+	protected static ResourceKey<PaintingVariant> paintingVariant(String path) {
+		return ResourceKey.create(Registries.PAINTING_VARIANT, new TechnologicaLocation(path));
+	}
+
 	protected static ResourceKey<PlacedFeature> placedFeature(String name) {
 		return ResourceKey.create(Registries.PLACED_FEATURE, new TechnologicaLocation(name));
 	}
@@ -89,9 +93,5 @@ public abstract class MasterKeyCreator {
 
 	protected static TagKey<Item> itemTag(String path) {
 		return TagKey.create(Registries.ITEM, new TechnologicaLocation(path));
-	}
-
-	protected static ResourceKey<PaintingVariant> paintingVariantTag(String path) {
-		return ResourceKey.create(Registries.PAINTING_VARIANT, new TechnologicaLocation(path));
 	}
 }

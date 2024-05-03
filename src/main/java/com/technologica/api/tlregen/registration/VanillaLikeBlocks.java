@@ -1,4 +1,4 @@
-package com.technologica.registration.deferred.util;
+package com.technologica.api.tlregen.registration;
 
 import java.util.function.Supplier;
 

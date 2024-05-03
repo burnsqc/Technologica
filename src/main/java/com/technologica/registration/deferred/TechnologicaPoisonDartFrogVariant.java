@@ -1,6 +1,6 @@
 package com.technologica.registration.deferred;
 
-import com.technologica.registration.deferred.util.MasterDeferredRegistrar;
+import com.technologica.api.tlregen.registration.MasterDeferredRegistrar;
 import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.world.entity.animal.FrogVariant;

@@ -30,6 +30,8 @@ public abstract class MixinNegateFluidMovement extends LivingEntity implements I
 	/**
 	 * STOP FLUID PUSHING
 	 * 
+	 * @author burnsqc
+	 * @reason cuz
 	 * @return
 	 */
 	@Override
@@ -39,6 +41,13 @@ public abstract class MixinNegateFluidMovement extends LivingEntity implements I
 		return !((Player) (Object) this).getAbilities().flying && !diver.getDiver();
 	}
 
+	/**
+	 * STOP FLUID PUSHING
+	 * 
+	 * @author burnsqc
+	 * @reason cuz
+	 * @return
+	 */
 	@Override
 	@Overwrite
 	public boolean isAffectedByFluids() {
@@ -78,6 +87,13 @@ public abstract class MixinNegateFluidMovement extends LivingEntity implements I
 		self().setDeltaMovement(self().getDeltaMovement().add(0.0D, -0.04F * self().getAttributeValue(ForgeMod.SWIM_SPEED.get()), 0.0D));
 	}
 
+	/**
+	 * STOP FLUID PUSHING
+	 * 
+	 * @author burnsqc
+	 * @reason cuz
+	 * @return
+	 */
 	@Override
 	@Overwrite
 	public boolean isSwimming() {

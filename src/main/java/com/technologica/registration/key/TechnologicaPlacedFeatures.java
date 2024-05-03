@@ -1,6 +1,6 @@
 package com.technologica.registration.key;
 
-import com.technologica.registration.key.util.MasterKeyCreator;
+import com.technologica.api.tlregen.registration.MasterKeyCreator;
 import com.technologica.resourcegen.data.worldgen.placedfeature.TLWorldgenPlacedFeatureGenerator;
 
 import net.minecraft.resources.ResourceKey;

@@ -2,6 +2,7 @@ package com.technologica.registration.deferred;
 
 import com.mojang.serialization.Codec;
 import com.technologica.Technologica;
+import com.technologica.api.tlregen.registration.MasterDeferredRegistrar;
 import com.technologica.listeners.lootmodifiers.TechnologicaChestLootModifier;
 import com.technologica.listeners.lootmodifiers.blocks.FernLootModifier;
 import com.technologica.listeners.lootmodifiers.blocks.GrassLootModifier;
@@ -10,7 +11,6 @@ import com.technologica.listeners.lootmodifiers.blocks.TallGrassLootModifier;
 import com.technologica.listeners.lootmodifiers.entities.HuskLootModifier;
 import com.technologica.listeners.lootmodifiers.entities.ZombieLootModifier;
 import com.technologica.listeners.lootmodifiers.entities.ZombieVillagerLootModifier;
-import com.technologica.registration.deferred.util.MasterDeferredRegistrar;
 
 import net.minecraftforge.registries.RegistryObject;
 

@@ -1,7 +1,7 @@
 package com.technologica.registration.deferred;
 
 import com.technologica.Technologica;
-import com.technologica.registration.deferred.util.MasterDeferredRegistrar;
+import com.technologica.api.tlregen.registration.MasterDeferredRegistrar;
 import com.technologica.world.entity.vehicle.Rocket;
 import com.technologica.world.entity.vehicle.TechnologicaBoat;
 import com.technologica.world.food.TechnologicaFoods;

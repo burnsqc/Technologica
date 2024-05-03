@@ -1,7 +1,7 @@
 package com.technologica.registration.deferred;
 
 import com.technologica.Technologica;
-import com.technologica.registration.deferred.util.MasterDeferredRegistrar;
+import com.technologica.api.tlregen.registration.MasterDeferredRegistrar;
 import com.technologica.world.level.material.ArgonFluid;
 import com.technologica.world.level.material.BrineFluid;
 import com.technologica.world.level.material.BromineFluid;

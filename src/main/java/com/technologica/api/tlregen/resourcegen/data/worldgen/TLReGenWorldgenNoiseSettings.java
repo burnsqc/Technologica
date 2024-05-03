@@ -98,8 +98,11 @@ public abstract class TLReGenWorldgenNoiseSettings extends TLRGMasterResourceGen
 	 * HELPER METHODS (SURFACE RULES)
 	 */
 
+	public static SurfaceRules.RuleSource ifTrue(SurfaceRules.ConditionSource ifTrue, SurfaceRules.RuleSource thenRun) {
+		return SurfaceRules.ifTrue(ifTrue, thenRun);
+	}
+
 	public static SurfaceRules.ConditionSource verticalGradient(VerticalAnchor falseAtAndAbove, String randomName, VerticalAnchor trueAtAndBelow) {
 		return SurfaceRules.verticalGradient(randomName, trueAtAndBelow, falseAtAndAbove);
-
 	}
 }

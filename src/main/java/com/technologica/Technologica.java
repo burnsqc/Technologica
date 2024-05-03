@@ -5,6 +5,7 @@ import javax.annotation.Nullable;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
+import com.technologica.api.tlregen.registration.MasterDeferredRegistrar;
 import com.technologica.client.multiplayer.TechnologicaClientLevel;
 import com.technologica.listeners.forgebus.AttachCapabilities;
 import com.technologica.listeners.forgebus.EntityJoinLevelEventListener;
@@ -29,7 +30,6 @@ import com.technologica.network.packets.clientbound.SetMeteorStormLevel;
 import com.technologica.network.packets.clientbound.UpdateDiverCapability;
 import com.technologica.network.packets.serverbound.UpdateAnnunciator;
 import com.technologica.network.packets.serverbound.UpdateMonitor;
-import com.technologica.registration.deferred.util.MasterDeferredRegistrar;
 import com.technologica.server.level.TechnologicaServerLevel;
 import com.technologica.setup.SetupClient;
 import com.technologica.setup.config.TechnologicaConfigCommon;

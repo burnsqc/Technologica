@@ -1,8 +1,8 @@
 package com.technologica.registration.deferred;
 
 import com.technologica.Technologica;
-import com.technologica.registration.deferred.util.MasterDeferredRegistrar;
-import com.technologica.registration.deferred.util.VanillaLikeBlocks;
+import com.technologica.api.tlregen.registration.MasterDeferredRegistrar;
+import com.technologica.api.tlregen.registration.VanillaLikeBlocks;
 import com.technologica.world.level.block.AnnunciatorBlock;
 import com.technologica.world.level.block.AquaticCropBlock;
 import com.technologica.world.level.block.BasinEmptyBlock;

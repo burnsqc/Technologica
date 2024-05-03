@@ -1,7 +1,7 @@
 package com.technologica.registration.deferred;
 
 import com.technologica.Technologica;
-import com.technologica.registration.deferred.util.MasterDeferredRegistrar;
+import com.technologica.api.tlregen.registration.MasterDeferredRegistrar;
 
 import net.minecraft.world.entity.decoration.PaintingVariant;
 import net.minecraftforge.registries.RegistryObject;

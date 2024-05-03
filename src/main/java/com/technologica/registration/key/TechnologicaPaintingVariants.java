@@ -1,6 +1,6 @@
 package com.technologica.registration.key;
 
-import com.technologica.registration.key.util.MasterKeyCreator;
+import com.technologica.api.tlregen.registration.MasterKeyCreator;
 import com.technologica.resourcegen.data.worldgen.biome.TLWorldgenBiomeGenerator;
 
 import net.minecraft.resources.ResourceKey;
@@ -15,5 +15,5 @@ import net.minecraft.world.entity.decoration.PaintingVariant;
  * @tl.status GREEN
  */
 public final class TechnologicaPaintingVariants extends MasterKeyCreator {
-	public static final ResourceKey<PaintingVariant> AMNESIA = paintingVariantTag("amnesia");
+	public static final ResourceKey<PaintingVariant> AMNESIA = paintingVariant("amnesia");
 }
