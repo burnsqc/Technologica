@@ -20,6 +20,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -30,6 +31,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class RenderLevelStageEventListener {
 	private VertexBuffer sonarBuffer;
+	private static int timer;
 
 	@SubscribeEvent
 	public void onRenderLevelStageEvent(final RenderLevelStageEvent event) {
@@ -48,7 +50,7 @@ public class RenderLevelStageEventListener {
 			}
 		}
 
-		if (event.getStage() == Stage.AFTER_SOLID_BLOCKS) {
+		if (event.getStage() == Stage.AFTER_SOLID_BLOCKS && timer > 0) {
 			MultiBufferSource.BufferSource multibuffersource$buffersource = minecraft.renderBuffers().bufferSource();
 			VertexConsumer vertexConsumer = multibuffersource$buffersource.getBuffer(RenderType.lines());
 			BufferBuilder bufferbuilder = Tesselator.getInstance().getBuilder();
@@ -67,51 +69,57 @@ public class RenderLevelStageEventListener {
 				this.sonarBuffer.drawWithShader(event.getPoseStack().last().pose(), event.getProjectionMatrix(), shaderinstance);
 			}
 		}
+		timer--;
 	}
 
 	private RenderedBuffer buildSonar(BufferBuilder bufferBuilder, VertexConsumer vertexConsumer, PoseStack poseStack, Entity entity, final RenderLevelStageEvent event) {
+		int radius = 16;
 		Minecraft mc = Minecraft.getInstance();
-		BlockPos pos = event.getCamera().getBlockPosition();
+		BlockPos pos = entity.blockPosition();
 		Vec3 vec3 = event.getCamera().getPosition();
 		double d0 = vec3.x();
 		double d1 = vec3.y();
 		double d2 = vec3.z();
 		bufferBuilder.begin(VertexFormat.Mode.LINES, DefaultVertexFormat.POSITION_COLOR_NORMAL);
 
-		for (int posX = pos.getX() - 10; posX < pos.getX() + 10; posX++) {
-			for (int posY = pos.getY() - 10; posY < pos.getY() + 10; posY++) {
-				for (int posZ = pos.getZ() - 10; posZ < pos.getZ() + 10; posZ++) {
+		for (int posX = pos.getX() - radius; posX < pos.getX() + radius; posX++) {
+			for (int posY = pos.getY() - radius; posY < pos.getY() + radius; posY++) {
+				for (int posZ = pos.getZ() - radius; posZ < pos.getZ() + radius; posZ++) {
 
 					BlockPos blockPos = new BlockPos(posX, posY, posZ);
 					BlockState blockState = mc.level.getBlockState(blockPos);
+					if (blockState.getRenderShape() != RenderShape.INVISIBLE) {
+						PoseStack.Pose posestack$pose = poseStack.last();
+						VoxelShape voxelShape = blockState.getShape(mc.level, blockPos, CollisionContext.of(entity));
 
-					PoseStack.Pose posestack$pose = poseStack.last();
-					VoxelShape voxelShape = blockState.getShape(mc.level, blockPos, CollisionContext.of(entity));
+						double posX2 = blockPos.getX() - d0;
+						double posY2 = blockPos.getY() - d1;
+						double posZ2 = blockPos.getZ() - d2;
 
-					double posX2 = blockPos.getX() - d0;
-					double posY2 = blockPos.getY() - d1;
-					double posZ2 = blockPos.getZ() - d2;
+						float distance = (float) Math.sqrt((posX - pos.getX()) * (posX - pos.getX()) + (posY - pos.getY()) * (posY - pos.getY()) + (posZ - pos.getZ()) * (posZ - pos.getZ()));
+						if (distance < radius) {
+							float alpha = Mth.clamp(distance + (timer - mc.getPartialTick() - 4800) / 50 < 1 ? distance + (timer - mc.getPartialTick() - 4800) / 50 : -distance + (-timer - mc.getPartialTick() + 5001) / 50, 0.0F, 1.0F) * (1 - distance / radius);
 
-					float red = 0.0F;
-					float green = 1.0F;
-					float blue = 0.0F;
-					float alpha = 1.0F;
-
-					voxelShape.forAllEdges((p_234280_, p_234281_, p_234282_, p_234283_, p_234284_, p_234285_) -> {
-						float f = (float) (p_234283_ - p_234280_);
-						float f1 = (float) (p_234284_ - p_234281_);
-						float f2 = (float) (p_234285_ - p_234282_);
-						float f3 = Mth.sqrt(f * f + f1 * f1 + f2 * f2);
-						f /= f3;
-						f1 /= f3;
-						f2 /= f3;
-						bufferBuilder.vertex(posestack$pose.pose(), (float) (p_234280_ + posX2), (float) (p_234281_ + posY2), (float) (p_234282_ + posZ2)).color(1, 0, 0, alpha).normal(posestack$pose.normal(), f, f1, f2).endVertex();
-						vertexConsumer.vertex(posestack$pose.pose(), (float) (p_234283_ + posX2), (float) (p_234284_ + posY2), (float) (p_234285_ + posZ2)).color(red, green, blue, alpha).normal(posestack$pose.normal(), f, f1, f2).endVertex();
-					});
-
+							voxelShape.forAllEdges((p_234280_, p_234281_, p_234282_, p_234283_, p_234284_, p_234285_) -> {
+								float f = (float) (p_234283_ - p_234280_);
+								float f1 = (float) (p_234284_ - p_234281_);
+								float f2 = (float) (p_234285_ - p_234282_);
+								float f3 = Mth.sqrt(f * f + f1 * f1 + f2 * f2);
+								f /= f3;
+								f1 /= f3;
+								f2 /= f3;
+								vertexConsumer.vertex(posestack$pose.pose(), (float) (p_234280_ + posX2), (float) (p_234281_ + posY2), (float) (p_234282_ + posZ2)).color(0, 1, 0, alpha).normal(posestack$pose.normal(), f, f1, f2).endVertex();
+								vertexConsumer.vertex(posestack$pose.pose(), (float) (p_234283_ + posX2), (float) (p_234284_ + posY2), (float) (p_234285_ + posZ2)).color(0, 1, 0, alpha).normal(posestack$pose.normal(), f, f1, f2).endVertex();
+							});
+						}
+					}
 				}
 			}
 		}
 		return bufferBuilder.end();
+	}
+
+	public static void setTime() {
+		timer = 5000;
 	}
 }

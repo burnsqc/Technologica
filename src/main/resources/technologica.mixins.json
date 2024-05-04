@@ -4,8 +4,6 @@
 	"compatibilityLevel": "JAVA_8",
 	"refmap": "technologica.mixins.refmap.json",
 	"mixins": [
-	"MixinBlockOutline",
-		
 		"MixinNegateFluidMovement",
 		"MixinPlayerMaxAirSupply",
 		"MixinMouseHandler",
