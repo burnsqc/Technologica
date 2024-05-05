@@ -1,5 +1,7 @@
 package com.technologica.util.math;
 
+import net.minecraft.util.Mth;
+
 public class MathHelper {
 
 	public static float[] circleTangents(float x1, float y1, float x2, float y2, float r1, float r2) {
@@ -49,4 +51,9 @@ public class MathHelper {
 		}
 		return coords;
 	}
+
+	public static float trueBlockPosDistance(int posX1, int posY1, int posZ1, int posX2, int posY2, int posZ2) {
+		return Mth.sqrt((posX2 - posX1) * (posX2 - posX1) + (posY2 - posY1) * (posY2 - posY1) + (posZ2 - posZ1) * (posZ2 - posZ1));
+	}
+
 }

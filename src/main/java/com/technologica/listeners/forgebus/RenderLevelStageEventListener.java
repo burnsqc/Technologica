@@ -9,7 +9,9 @@ import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexBuffer;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.VertexFormat;
+import com.technologica.Technologica;
 import com.technologica.registration.deferred.TechnologicaMobEffects;
+import com.technologica.util.math.MathHelper;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
@@ -73,53 +75,71 @@ public class RenderLevelStageEventListener {
 	}
 
 	private RenderedBuffer buildSonar(BufferBuilder bufferBuilder, VertexConsumer vertexConsumer, PoseStack poseStack, Entity entity, final RenderLevelStageEvent event) {
-		int radius = 16;
-		Minecraft mc = Minecraft.getInstance();
-		BlockPos pos = entity.blockPosition();
+		int maxDistance = 32;
+		Minecraft minecraft = Minecraft.getInstance();
+		BlockPos playerPos = entity.blockPosition();
 		Vec3 vec3 = event.getCamera().getPosition();
 		double d0 = vec3.x();
 		double d1 = vec3.y();
 		double d2 = vec3.z();
 		bufferBuilder.begin(VertexFormat.Mode.LINES, DefaultVertexFormat.POSITION_COLOR_NORMAL);
 
-		for (int posX = pos.getX() - radius; posX < pos.getX() + radius; posX++) {
-			for (int posY = pos.getY() - radius; posY < pos.getY() + radius; posY++) {
-				for (int posZ = pos.getZ() - radius; posZ < pos.getZ() + radius; posZ++) {
+		int totalpos = 0;
+		int visible = 0;
+		int inFrustum = 0;
+		int inRange = 0;
+		int outline = 0;
 
+		for (int posX = playerPos.getX() - maxDistance; posX < playerPos.getX() + maxDistance; posX++) {
+			for (int posY = playerPos.getY() - maxDistance; posY < playerPos.getY() + maxDistance; posY++) {
+				for (int posZ = playerPos.getZ() - maxDistance; posZ < playerPos.getZ() + maxDistance; posZ++) {
 					BlockPos blockPos = new BlockPos(posX, posY, posZ);
-					BlockState blockState = mc.level.getBlockState(blockPos);
+					BlockState blockState = minecraft.level.getBlockState(blockPos);
+
 					if (blockState.getRenderShape() != RenderShape.INVISIBLE) {
-						PoseStack.Pose posestack$pose = poseStack.last();
-						VoxelShape voxelShape = blockState.getShape(mc.level, blockPos, CollisionContext.of(entity));
+						VoxelShape voxelShape = blockState.getShape(minecraft.level, blockPos, CollisionContext.of(entity));
+						if (event.getFrustum().isVisible(voxelShape.bounds().move(blockPos))) {
+							float distance = MathHelper.trueBlockPosDistance(blockPos.getX(), blockPos.getY(), blockPos.getZ(), playerPos.getX(), playerPos.getY(), playerPos.getZ());
 
-						double posX2 = blockPos.getX() - d0;
-						double posY2 = blockPos.getY() - d1;
-						double posZ2 = blockPos.getZ() - d2;
+							if (distance < maxDistance) {
+								float alpha = Mth.clamp(distance + (timer - minecraft.getPartialTick() - 2800) / 50 < 1 ? distance + (timer - minecraft.getPartialTick() - 2800) / 50 : -distance + (-timer - minecraft.getPartialTick() + 3001) / 50, 0.0F, 1.0F) * (1 - distance / maxDistance);
+								if (alpha > 0) {
+									PoseStack.Pose posestack$pose = poseStack.last();
+									double posX2 = blockPos.getX() - d0;
+									double posY2 = blockPos.getY() - d1;
+									double posZ2 = blockPos.getZ() - d2;
 
-						float distance = (float) Math.sqrt((posX - pos.getX()) * (posX - pos.getX()) + (posY - pos.getY()) * (posY - pos.getY()) + (posZ - pos.getZ()) * (posZ - pos.getZ()));
-						if (distance < radius) {
-							float alpha = Mth.clamp(distance + (timer - mc.getPartialTick() - 4800) / 50 < 1 ? distance + (timer - mc.getPartialTick() - 4800) / 50 : -distance + (-timer - mc.getPartialTick() + 5001) / 50, 0.0F, 1.0F) * (1 - distance / radius);
+									voxelShape.forAllEdges((voxelX1, voxelY1, voxelZ1, voxelX2, voxelY2, voxelZ2) -> {
+										float lengthX = (float) (voxelX2 - voxelX1);
+										float lengthY = (float) (voxelY2 - voxelY1);
+										float lengthZ = (float) (voxelZ2 - voxelZ1);
+										float length = Mth.sqrt(lengthX * lengthX + lengthY * lengthY + lengthZ * lengthZ);
 
-							voxelShape.forAllEdges((p_234280_, p_234281_, p_234282_, p_234283_, p_234284_, p_234285_) -> {
-								float f = (float) (p_234283_ - p_234280_);
-								float f1 = (float) (p_234284_ - p_234281_);
-								float f2 = (float) (p_234285_ - p_234282_);
-								float f3 = Mth.sqrt(f * f + f1 * f1 + f2 * f2);
-								f /= f3;
-								f1 /= f3;
-								f2 /= f3;
-								vertexConsumer.vertex(posestack$pose.pose(), (float) (p_234280_ + posX2), (float) (p_234281_ + posY2), (float) (p_234282_ + posZ2)).color(0, 1, 0, alpha).normal(posestack$pose.normal(), f, f1, f2).endVertex();
-								vertexConsumer.vertex(posestack$pose.pose(), (float) (p_234283_ + posX2), (float) (p_234284_ + posY2), (float) (p_234285_ + posZ2)).color(0, 1, 0, alpha).normal(posestack$pose.normal(), f, f1, f2).endVertex();
-							});
+										lengthX /= length;
+										lengthY /= length;
+										lengthZ /= length;
+
+										vertexConsumer.vertex(posestack$pose.pose(), (float) (voxelX1 + posX2), (float) (voxelY1 + posY2), (float) (voxelZ1 + posZ2)).color(0, 1, 0, alpha).normal(posestack$pose.normal(), lengthX, lengthY, lengthZ).endVertex();
+										vertexConsumer.vertex(posestack$pose.pose(), (float) (voxelX2 + posX2), (float) (voxelY2 + posY2), (float) (voxelZ2 + posZ2)).color(0, 1, 0, alpha).normal(posestack$pose.normal(), lengthX, lengthY, lengthZ).endVertex();
+									});
+									outline++;
+								}
+								inRange++;
+							}
+							inFrustum++;
 						}
+						visible++;
 					}
+					totalpos++;
 				}
 			}
 		}
+
+		Technologica.LOGGER.info("{} positions   {} visible   {} in frustum   {} in range   {} to outline", totalpos, visible, inFrustum, inRange, outline);
 		return bufferBuilder.end();
 	}
 
 	public static void setTime() {
-		timer = 5000;
+		timer = 3000;
 	}
 }
