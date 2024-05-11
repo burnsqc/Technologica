@@ -28,18 +28,18 @@ public class NavalMine extends Entity {
 	private static final EntityDataAccessor<Integer> CHAINS = SynchedEntityData.defineId(NavalMine.class, EntityDataSerializers.INT);
 	private int armingFuse = 100;
 	private boolean detonate = false;
-	private int chains = 10;
+	private int chains;
 
 	public NavalMine(EntityType<? extends NavalMine> type, Level worldIn) {
 		super(type, worldIn);
-		this.blocksBuilding = true;
+		blocksBuilding = true;
 	}
 
-	public NavalMine(Level worldIn, double x, double y, double z) {
+	public NavalMine(Level worldIn, double x, double y, double z, int chains) {
 		this(TechnologicaEntityTypes.NAVAL_MINE.get(), worldIn);
 		this.setPos(x, y, z);
 		this.setFuse(100);
-		this.setChains(10);
+		this.setChains(chains);
 		this.xo = x;
 		this.yo = y;
 		this.zo = z;
@@ -49,7 +49,7 @@ public class NavalMine extends Entity {
 	protected void defineSynchedData() {
 		this.entityData.define(FUSE, 100);
 		this.entityData.define(DETONATE, false);
-		this.entityData.define(CHAINS, 10);
+		this.entityData.define(CHAINS, chains);
 	}
 
 	@Override
@@ -64,40 +64,43 @@ public class NavalMine extends Entity {
 
 	@Override
 	public void tick() {
-		Level level = this.level();
-		if (this.getDetonate()) {
-			this.discard();
-			if (!level.isClientSide) {
-				this.explode();
+		if (getDetonate()) {
+			discard();
+			if (!level().isClientSide) {
+				explode();
+				if (level().getBlockState(blockPosition()).getBlock() instanceof NavalMineChainBlock chain) {
+					level().scheduleTick(blockPosition(), chain, 1);
+				}
 			}
+
 		} else {
-			if (this.getFuse() > 0) {
-				--this.armingFuse;
+			if (getFuse() > 0) {
+				--armingFuse;
 			} else {
-				List<Entity> list = this.level().getEntities(this, this.getBoundingBox().inflate(0.2F, -0.01F, 0.2F));
-				for (Entity entry : list) {
-					if (!(entry instanceof ItemEntity)) {
+				List<Entity> list = level().getEntities(this, getBoundingBox().inflate(0.2F, 0.2F, 0.2F));
+				for (Entity entity : list) {
+					if (!(entity instanceof ItemEntity)) {
 						// double check this, maybe exclude things
-						this.setDetonate(true);
+						setDetonate(true);
 					}
 				}
 			}
 		}
 
 		// out of chains but free floating
-		if (this.getChains() == 0 && !(level.getBlockState(this.blockPosition()).getBlock() instanceof NavalMineChainBlock) && level.getBlockState(this.blockPosition().above()).getFluidState().is(FluidTags.WATER)) {
+		if (this.getChains() == 0 && !(level().getBlockState(this.blockPosition()).getBlock() instanceof NavalMineChainBlock) && level().getBlockState(this.blockPosition().above()).getFluidState().is(FluidTags.WATER)) {
 			Vec3 vector3d = this.getDeltaMovement().add(0.0D, 0.1D, 0.0D);
 			this.move(MoverType.SELF, vector3d);
 		}
 
 		// has chains and ascending
-		if (this.getChains() > 0 && level.getBlockState(this.blockPosition().above()).getFluidState().is(FluidTags.WATER)) {
+		if (this.getChains() > 0 && level().getBlockState(this.blockPosition().above()).getFluidState().is(FluidTags.WATER)) {
 			Vec3 vector3d = this.getDeltaMovement().add(0.0D, 0.1D, 0.0D);
 			this.move(MoverType.SELF, vector3d);
 
-			if (!(level.getBlockState(this.blockPosition()).getBlock() instanceof NavalMineChainBlock)) {
-				level.setBlockAndUpdate(this.blockPosition(), TechnologicaBlocks.NAVAL_MINE_CHAIN.get().defaultBlockState());
-				level.sendBlockUpdated(this.blockPosition(), level.getBlockState(this.blockPosition()), TechnologicaBlocks.NAVAL_MINE_CHAIN.get().defaultBlockState(), 3);
+			if (!(level().getBlockState(this.blockPosition()).getBlock() instanceof NavalMineChainBlock)) {
+				level().setBlockAndUpdate(this.blockPosition(), TechnologicaBlocks.NAVAL_MINE_CHAIN.get().defaultBlockState());
+				level().sendBlockUpdated(this.blockPosition(), level().getBlockState(this.blockPosition()), TechnologicaBlocks.NAVAL_MINE_CHAIN.get().defaultBlockState(), 3);
 				this.setChains(this.getChains() - 1);
 			}
 		}

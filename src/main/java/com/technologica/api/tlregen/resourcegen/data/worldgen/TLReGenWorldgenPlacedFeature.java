@@ -14,7 +14,7 @@ import com.mojang.serialization.Encoder;
 import com.mojang.serialization.JsonOps;
 import com.technologica.api.tlregen.resourcegen.TLRGMasterResourceGenerator;
 import com.technologica.api.tlregen.resourcegen.mirrors.TLReGenRegistrySetBuilder;
-import com.technologica.resourcegen.data.worldgen.placedfeature.TLWorldgenPlacedFeatureGenerator;
+import com.technologica.resourcegen.data.worldgen.placedfeature.TLPlacedFeatures;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.Registry;
@@ -37,7 +37,7 @@ import net.minecraftforge.registries.DataPackRegistriesHooks;
 
 public abstract class TLReGenWorldgenPlacedFeature extends TLRGMasterResourceGenerator implements DataProvider {
 	protected static final PlacementModifier TREE_THRESHOLD = SurfaceWaterDepthFilter.forMaxDepth(0);
-	private final CompletableFuture<HolderLookup.Provider> damageTypes = lookupProvider.thenApply(r -> constructRegistries(r, new TLReGenRegistrySetBuilder().add(Registries.PLACED_FEATURE, TLWorldgenPlacedFeatureGenerator::bootstrap)));
+	private final CompletableFuture<HolderLookup.Provider> damageTypes = lookupProvider.thenApply(r -> constructRegistries(r, new TLReGenRegistrySetBuilder().add(Registries.PLACED_FEATURE, TLPlacedFeatures::bootstrap)));
 	private final java.util.function.Predicate<String> namespacePredicate = Set.of(modid) == null ? namespace -> true : Set.of(modid)::contains;
 
 	@Override

@@ -7,15 +7,14 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.ChainBlock;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class NavalMineChainBlock extends ChainBlock {
 
-	public NavalMineChainBlock() {
-		super(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.CHAIN).noOcclusion());
-		this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, true).setValue(AXIS, Direction.Axis.Y));
+	public NavalMineChainBlock(BlockBehaviour.Properties properties) {
+		super(properties);
+		registerDefaultState(stateDefinition.any().setValue(WATERLOGGED, true).setValue(AXIS, Direction.Axis.Y));
 	}
 
 	@Override

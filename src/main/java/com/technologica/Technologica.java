@@ -39,6 +39,7 @@ import com.technologica.setup.listeners.TechnologicaEntityAttributes;
 import com.technologica.util.DisablePlankConditionFactory;
 import com.technologica.util.EnablePlankConditionFactory;
 import com.technologica.util.text.TechnologicaLocation;
+import com.technologica.world.entity.TechnologicaMobCategory;
 
 import net.minecraft.world.entity.Entity;
 import net.minecraftforge.common.MinecraftForge;
@@ -125,6 +126,7 @@ public class Technologica {
 		// TODO: Determine best place for this. Maybe it's right here but that's unconfirmed.
 		CraftingHelper.register(DisablePlankConditionFactory.Serializer.INSTANCE);
 		CraftingHelper.register(EnablePlankConditionFactory.Serializer.INSTANCE);
+		TechnologicaMobCategory.bootstrap();
 
 		if (FMLEnvironment.dist.isClient()) {
 			LOGGER.info("SETUP - CLIENT");

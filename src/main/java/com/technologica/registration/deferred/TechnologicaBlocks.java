@@ -1142,7 +1142,7 @@ public final class TechnologicaBlocks extends MasterDeferredRegistrar {
 	public static final RegistryObject<Block> KEYBOARD = BLOCKS.register("keyboard", () -> new FourDirectionBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.METAL).noOcclusion()));
 	public static final RegistryObject<Block> LAND_MINE = BLOCKS.register("land_mine", LandMineBlock::new);
 	public static final RegistryObject<Block> NITROGLYCERIN = BLOCKS.register("nitroglycerin", () -> new NitroBlock(BlockBehaviour.Properties.of().noCollission().instabreak().sound(SoundType.GRASS)));
-	public static final RegistryObject<Block> NAVAL_MINE_CHAIN = BLOCKS.register("naval_mine_chain", NavalMineChainBlock::new);
+	public static final RegistryObject<Block> NAVAL_MINE_CHAIN = BLOCKS.register("naval_mine_chain", () -> new NavalMineChainBlock(BlockBehaviour.Properties.copy(Blocks.CHAIN)));
 	public static final RegistryObject<Block> LIGHT = BLOCKS.register("light", () -> new LightBlock(BlockBehaviour.Properties.of().noCollission().noLootTable().air().lightLevel((p_50874_) -> {
 		return 15;
 	})));

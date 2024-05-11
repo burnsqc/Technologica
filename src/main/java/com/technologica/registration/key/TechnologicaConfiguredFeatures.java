@@ -1,7 +1,7 @@
 package com.technologica.registration.key;
 
 import com.technologica.api.tlregen.registration.MasterKeyCreator;
-import com.technologica.resourcegen.data.worldgen.configuredfeature.TLWorldgenConfiguredFeatureGenerator;
+import com.technologica.resourcegen.data.worldgen.configuredfeature.TLConfiguredFeatures;
 
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
@@ -9,7 +9,7 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 /**
  * <p>
  * This class contains Resource Keys for Configured Features.
- * The corresponding Configured Features are created in json format during Data Generation in {@link TLWorldgenConfiguredFeatureGenerator}.
+ * The corresponding Configured Features are created in json format during Data Generation in {@link TLConfiguredFeatures}.
  * </p>
  * 
  * @tl.status GREEN
@@ -103,4 +103,5 @@ public final class TechnologicaConfiguredFeatures extends MasterKeyCreator {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_STRAWBERRY_BUSH = configuredFeature("patch_strawberry_bush");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_COTTON_BUSH = configuredFeature("patch_cotton_bush");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_PEPPERCORN_BUSH = configuredFeature("patch_peppercorn_bush");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> NAVAL_MINE = configuredFeature("naval_mine");
 }

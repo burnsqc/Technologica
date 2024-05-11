@@ -1,7 +1,7 @@
 package com.technologica.registration.key;
 
 import com.technologica.api.tlregen.registration.MasterKeyCreator;
-import com.technologica.resourcegen.data.worldgen.placedfeature.TLWorldgenPlacedFeatureGenerator;
+import com.technologica.resourcegen.data.worldgen.placedfeature.TLPlacedFeatures;
 
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
@@ -9,7 +9,7 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 /**
  * <p>
  * This class contains Resource Keys for Placed Features.
- * The corresponding Placed Features are created in json format during Data Generation in {@link TLWorldgenPlacedFeatureGenerator}.
+ * The corresponding Placed Features are created in json format during Data Generation in {@link TLPlacedFeatures}.
  * </p>
  * 
  * @tl.status YELLOW
@@ -114,4 +114,5 @@ public final class TechnologicaPlacedFeatures extends MasterKeyCreator {
 	public static final ResourceKey<PlacedFeature> PATCH_COTTON_PLACED = placedFeature("patch_cotton");
 	public static final ResourceKey<PlacedFeature> PATCH_PEPPERCORNS_PLACED = placedFeature("patch_peppercorns");
 	public static final ResourceKey<PlacedFeature> OVERGROWTH_PLACED = placedFeature("overgrowth_placed");
+	public static final ResourceKey<PlacedFeature> NAVAL_MINE = placedFeature("naval_mine");
 }

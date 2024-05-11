@@ -5,6 +5,7 @@ import com.technologica.api.tlregen.registration.MasterDeferredRegistrar;
 import com.technologica.world.level.levelgen.feature.CraterFeature;
 import com.technologica.world.level.levelgen.feature.DecoratedOreFeature;
 import com.technologica.world.level.levelgen.feature.NaturalGasDepositFeature;
+import com.technologica.world.level.levelgen.feature.NavalMineFeature;
 import com.technologica.world.level.levelgen.feature.OasisFeature;
 import com.technologica.world.level.levelgen.feature.OilWellFeature;
 import com.technologica.world.level.levelgen.feature.RadioactiveOreFeature;
@@ -13,6 +14,7 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.LakeFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.GeodeConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -59,4 +61,5 @@ public class TechnologicaFeatures extends MasterDeferredRegistrar {
 	public static final RegistryObject<Feature<OreConfiguration>> BARYTE_DECORATED_ORE = FEATURES.register("baryte_decorated_ore", () -> new DecoratedOreFeature(OreConfiguration.CODEC, TechnologicaBlocks.BARYTE_CRYSTAL));
 	public static final RegistryObject<Feature<OreConfiguration>> POLLUCITE_DECORATED_ORE = FEATURES.register("pollucite_decorated_ore", () -> new DecoratedOreFeature(OreConfiguration.CODEC, TechnologicaBlocks.POLLUCITE_CRYSTAL));
 	public static final RegistryObject<Feature<OreConfiguration>> WULFENITE_DECORATED_ORE = FEATURES.register("wulfenite_decorated_ore", () -> new DecoratedOreFeature(OreConfiguration.CODEC, TechnologicaBlocks.WULFENITE_CRYSTAL));
+	public static final RegistryObject<Feature<NoneFeatureConfiguration>> NAVAL_MINE = FEATURES.register("naval_mine", () -> new NavalMineFeature());
 }

@@ -38,10 +38,10 @@ import com.technologica.resourcegen.data.tags.items.TLTagItemsGenerator;
 import com.technologica.resourcegen.data.tags.paintingvariant.TLTagsPaintingVariantGenerator;
 import com.technologica.resourcegen.data.tags.worldgen.biome.TLTagWorldgenBiomeGenerator;
 import com.technologica.resourcegen.data.worldgen.biome.TLForgeBiomeModifierGenerator;
-import com.technologica.resourcegen.data.worldgen.biome.TLWorldgenBiomeGenerator;
-import com.technologica.resourcegen.data.worldgen.configuredfeature.TLWorldgenConfiguredFeatureGenerator;
+import com.technologica.resourcegen.data.worldgen.biome.TLBiomes;
+import com.technologica.resourcegen.data.worldgen.configuredfeature.TLConfiguredFeatures;
 import com.technologica.resourcegen.data.worldgen.noisesettings.TLWorldgenNoiseSettings;
-import com.technologica.resourcegen.data.worldgen.placedfeature.TLWorldgenPlacedFeatureGenerator;
+import com.technologica.resourcegen.data.worldgen.placedfeature.TLPlacedFeatures;
 import com.technologica.resourcegen.data.worldgen.structure.TLWorldgenStructureGenerator;
 import com.technologica.resourcegen.data.worldgen.structuresets.TLWorldgenStructureSetGenerator;
 import com.technologica.resourcegen.data.worldgen.templatepool.TLWorldgenTemplatePoolGenerator;
@@ -137,10 +137,10 @@ public abstract class TLRGMasterResourceGenerator {
 		addDataGenerator(new TLTagWorldgenBiomeGenerator());
 		// trim_material
 		// trim_pattern
-		addDataGenerator(new TLWorldgenBiomeGenerator());
-		addDataGenerator(new TLWorldgenConfiguredFeatureGenerator());
+		addDataGenerator(new TLBiomes());
+		addDataGenerator(new TLConfiguredFeatures());
 		addDataGenerator(new TLWorldgenNoiseSettings());
-		addDataGenerator(new TLWorldgenPlacedFeatureGenerator());
+		addDataGenerator(new TLPlacedFeatures());
 		addDataGenerator(new TLWorldgenStructureGenerator());
 		addDataGenerator(new TLWorldgenStructureSetGenerator());
 		addDataGenerator(new TLWorldgenTemplatePoolGenerator());

@@ -4,6 +4,7 @@ import com.technologica.api.tlregen.resourcegen.data.worldgen.TLReGenWorldgenBio
 import com.technologica.registration.deferred.TechnologicaEntityTypes;
 import com.technologica.registration.key.TechnologicaBiomes;
 import com.technologica.registration.key.TechnologicaPlacedFeatures;
+import com.technologica.world.entity.TechnologicaMobCategory;
 
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
@@ -22,7 +23,7 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
-public final class TLWorldgenBiomeGenerator extends TLReGenWorldgenBiome {
+public final class TLBiomes extends TLReGenWorldgenBiome {
 	private static HolderGetter<PlacedFeature> placedFeature;
 	private static HolderGetter<ConfiguredWorldCarver<?>> configuredWorldCarver;;
 
@@ -34,6 +35,7 @@ public final class TLWorldgenBiomeGenerator extends TLReGenWorldgenBiome {
 		biome.register(TechnologicaBiomes.SHATTERED_CORRIDORS, shatteredCorridors());
 		biome.register(TechnologicaBiomes.MISTY_MIRE, mistyMire());
 		biome.register(TechnologicaBiomes.BRAMBLE, bramble());
+		biome.register(TechnologicaBiomes.RUSTING_GROUNDS, biome(Carvers.CAVE, 0.0F, effects(12638463, 9285927, BiomeSpecialEffects.GrassColorModifier.SWAMP, AmbientMoodSettings.LEGACY_CAVE_SETTINGS, 8103167, -15787726, -15787726), new FeatureBuilder().localModifications(TechnologicaPlacedFeatures.NAVAL_MINE).build(), true, new SpawnerBuilder().waterCreature(TechnologicaEntityTypes.SHARK.get(), 1, 1, 1).build(), 0.5F));
 	}
 
 	private static Biome silentExpanses() {
@@ -80,6 +82,11 @@ public final class TLWorldgenBiomeGenerator extends TLReGenWorldgenBiome {
 			return this;
 		}
 
+		private FeatureBuilder localModifications(ResourceKey<PlacedFeature> feature) {
+			this.builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, feature);
+			return this;
+		}
+
 		private BiomeGenerationSettings.Builder build() {
 			return this.builder;
 		}
@@ -92,13 +99,13 @@ public final class TLWorldgenBiomeGenerator extends TLReGenWorldgenBiome {
 			this.builder = new MobSpawnSettings.Builder();
 		}
 
-		private SpawnerBuilder ambient(EntityType<?> entity, int weight, int maxCount, int minCount) {
-			this.builder.addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(entity, weight, maxCount, minCount));
+		private SpawnerBuilder monster(EntityType<?> entity, int weight, int maxCount, int minCount) {
+			this.builder.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(entity, weight, maxCount, minCount));
 			return this;
 		}
 
-		private SpawnerBuilder monster(EntityType<?> entity, int weight, int maxCount, int minCount) {
-			this.builder.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(entity, weight, maxCount, minCount));
+		private SpawnerBuilder waterCreature(EntityType<?> entity, int weight, int maxCount, int minCount) {
+			this.builder.addSpawn(TechnologicaMobCategory.SHARK, new MobSpawnSettings.SpawnerData(entity, weight, maxCount, minCount));
 			return this;
 		}
 

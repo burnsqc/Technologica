@@ -24,7 +24,7 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.placement.RarityFilter;
 
 @SuppressWarnings("deprecation")
-public final class TLWorldgenPlacedFeatureGenerator extends TLReGenWorldgenPlacedFeature {
+public final class TLPlacedFeatures extends TLReGenWorldgenPlacedFeature {
 	public static void bootstrap(BootstapContext<PlacedFeature> bootstrapContextIn) {
 		HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = bootstrapContextIn.lookup(Registries.CONFIGURED_FEATURE);
 		Holder<ConfiguredFeature<?, ?>> brinePool = configuredFeatures.getOrThrow(TechnologicaConfiguredFeatures.BRINE_POOL_CONFIGURED);
@@ -117,6 +117,7 @@ public final class TLWorldgenPlacedFeatureGenerator extends TLReGenWorldgenPlace
 		Holder<ConfiguredFeature<?, ?>> patchCottonBush = configuredFeatures.getOrThrow(TechnologicaConfiguredFeatures.PATCH_COTTON_BUSH);
 		Holder<ConfiguredFeature<?, ?>> patchPeppercornBush = configuredFeatures.getOrThrow(TechnologicaConfiguredFeatures.PATCH_PEPPERCORN_BUSH);
 		Holder<ConfiguredFeature<?, ?>> mangroveVegetation = configuredFeatures.getOrThrow(VegetationFeatures.MANGROVE_VEGETATION);
+		Holder<ConfiguredFeature<?, ?>> navalMine = configuredFeatures.getOrThrow(TechnologicaConfiguredFeatures.NAVAL_MINE);
 		bootstrapContextIn.register(TechnologicaPlacedFeatures.BRINE_POOL_PLACED, new PlacedFeature(brinePool, List.of(RarityFilter.onAverageOnceEvery(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
 		bootstrapContextIn.register(TechnologicaPlacedFeatures.NATURAL_GAS_DEPOSIT_PLACED, new PlacedFeature(natural_gas_deposit, List.of(RarityFilter.onAverageOnceEvery(50), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(6), VerticalAnchor.absolute(30)), BiomeFilter.biome())));
 		bootstrapContextIn.register(TechnologicaPlacedFeatures.OASIS_PLACED, new PlacedFeature(oasis, List.of(RarityFilter.onAverageOnceEvery(200), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(192)), BiomeFilter.biome())));
@@ -215,5 +216,6 @@ public final class TLWorldgenPlacedFeatureGenerator extends TLReGenWorldgenPlace
 		bootstrapContextIn.register(TechnologicaPlacedFeatures.PATCH_COTTON_PLACED, new PlacedFeature(patchCottonBush, List.of(RarityFilter.onAverageOnceEvery(32), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
 		bootstrapContextIn.register(TechnologicaPlacedFeatures.PATCH_PEPPERCORNS_PLACED, new PlacedFeature(patchPeppercornBush, List.of(RarityFilter.onAverageOnceEvery(5), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
 		bootstrapContextIn.register(TechnologicaPlacedFeatures.OVERGROWTH_PLACED, new PlacedFeature(mangroveVegetation, List.of(CountOnEveryLayerPlacement.of(6), BiomeFilter.biome())));
+		bootstrapContextIn.register(TechnologicaPlacedFeatures.NAVAL_MINE, new PlacedFeature(navalMine, List.of(CountOnEveryLayerPlacement.of(4), BiomeFilter.biome())));
 	}
 }

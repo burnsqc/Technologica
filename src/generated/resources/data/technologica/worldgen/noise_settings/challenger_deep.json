@@ -12,8 +12,8 @@
   "disable_mob_generation": false,
   "legacy_random_source": false,
   "noise": {
-    "height": 384,
-    "min_y": -64,
+    "height": 256,
+    "min_y": 0,
     "size_horizontal": 1,
     "size_vertical": 2
   },
@@ -41,7 +41,7 @@
                   "from_value": 0.0,
                   "from_y": -8,
                   "to_value": 1.0,
-                  "to_y": 24
+                  "to_y": 4
                 },
                 "argument2": {
                   "type": "minecraft:add",
@@ -54,9 +54,9 @@
                       "argument1": {
                         "type": "minecraft:y_clamped_gradient",
                         "from_value": 1.0,
-                        "from_y": 104,
+                        "from_y": 242,
                         "to_value": 0.0,
-                        "to_y": 128
+                        "to_y": 256
                       },
                       "argument2": {
                         "type": "minecraft:add",
@@ -100,7 +100,7 @@
     "vein_toggle": 0.0
   },
   "ore_veins_enabled": false,
-  "sea_level": 384,
+  "sea_level": 256,
   "spawn_target": [],
   "surface_rule": {
     "type": "minecraft:sequence",
@@ -196,7 +196,7 @@
                 "then_run": {
                   "type": "minecraft:block",
                   "result_state": {
-                    "Name": "minecraft:glass"
+                    "Name": "minecraft:stone"
                   }
                 }
               }

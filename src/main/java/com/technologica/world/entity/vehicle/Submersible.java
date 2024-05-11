@@ -47,16 +47,12 @@ public class Submersible extends Entity {
 	private static final EntityDataAccessor<Integer> DATA_ID_HURT = SynchedEntityData.defineId(Submersible.class, EntityDataSerializers.INT);
 	private static final EntityDataAccessor<Integer> DATA_ID_HURTDIR = SynchedEntityData.defineId(Submersible.class, EntityDataSerializers.INT);
 	private static final EntityDataAccessor<Float> DATA_ID_DAMAGE = SynchedEntityData.defineId(Submersible.class, EntityDataSerializers.FLOAT);
-	private static final EntityDataAccessor<Integer> DATA_ID_TYPE = SynchedEntityData.defineId(Submersible.class, EntityDataSerializers.INT);
 	private static final EntityDataAccessor<Boolean> DATA_ID_PADDLE_LEFT = SynchedEntityData.defineId(Submersible.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> DATA_ID_PADDLE_RIGHT = SynchedEntityData.defineId(Submersible.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Integer> DATA_ID_BUBBLE_TIME = SynchedEntityData.defineId(Submersible.class, EntityDataSerializers.INT);
 	public static final int PADDLE_LEFT = 0;
 	public static final int PADDLE_RIGHT = 1;
 	public static final double PADDLE_SOUND_TIME = (float) Math.PI / 4F;
 	public static final int BUBBLE_TIME = 60;
-	private final float[] paddlePositions = new float[2];
-
 	private float outOfControlTicks;
 	private float deltaRotation;
 	private int lerpSteps;
@@ -65,21 +61,11 @@ public class Submersible extends Entity {
 	private double lerpZ;
 	private double lerpYRot;
 	private double lerpXRot;
-	private boolean inputLeft;
-	private boolean inputRight;
-	private boolean inputUp;
-	private boolean inputDown;
-	private double waterLevel;
-	private float landFriction;
 	private Submersible.Status status;
-	private Submersible.Status oldStatus;
-	private double lastYd;
-	private boolean isAboveBubbleColumn;
-	private boolean bubbleColumnDirectionIsDown;
-	private float bubbleMultiplier;
 	private float bubbleAngle;
 	private float bubbleAngleO;
 	public float roll;
+	public float rollO;
 	public float throttle;
 
 	public Submersible(EntityType<? extends Submersible> p_38290_, Level p_38291_) {
@@ -128,7 +114,7 @@ public class Submersible extends Entity {
 
 	@Override
 	public boolean isPushable() {
-		return true;
+		return false;
 	}
 
 	@Override
@@ -219,7 +205,7 @@ public class Submersible extends Entity {
 
 	@Override
 	public void tick() {
-		this.oldStatus = this.status;
+		this.rollO = this.roll;
 		this.status = this.getStatus();
 		if (this.status != Submersible.Status.UNDER_WATER && this.status != Submersible.Status.UNDER_FLOWING_WATER) {
 			this.outOfControlTicks = 0.0F;
@@ -289,24 +275,15 @@ public class Submersible extends Entity {
 		}
 	}
 
-	public void setPaddleState(boolean p_38340_, boolean p_38341_) {
-	}
-
-	public float getRowingTime(int p_38316_, float p_38317_) {
-		return this.getPaddleState(p_38316_) ? Mth.clampedLerp(this.paddlePositions[p_38316_] - ((float) Math.PI / 8F), this.paddlePositions[p_38316_], p_38317_) : 0.0F;
-	}
-
 	private Submersible.Status getStatus() {
 		Submersible.Status boat$status = this.isUnderwater();
 		if (boat$status != null) {
-			this.waterLevel = this.getBoundingBox().maxY;
 			return boat$status;
 		} else if (this.checkInWater()) {
 			return Submersible.Status.IN_WATER;
 		} else {
 			float f = this.getGroundFriction();
 			if (f > 0.0F) {
-				this.landFriction = f;
 				return Submersible.Status.ON_LAND;
 			} else {
 				return Submersible.Status.IN_AIR;
@@ -514,14 +491,6 @@ public class Submersible extends Entity {
 
 	public int getHurtTime() {
 		return this.entityData.get(DATA_ID_HURT);
-	}
-
-	private void setBubbleTime(int p_38367_) {
-		this.entityData.set(DATA_ID_BUBBLE_TIME, p_38367_);
-	}
-
-	private int getBubbleTime() {
-		return this.entityData.get(DATA_ID_BUBBLE_TIME);
 	}
 
 	public float getBubbleAngle(float p_38353_) {
