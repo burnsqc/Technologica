@@ -102,6 +102,12 @@ public abstract class TLReGenDimension extends TLRGMasterResourceGenerator imple
 		return new LevelStem(dimension.lookup(Registries.DIMENSION_TYPE).getOrThrow(type), generator);
 	}
 
+	/*
+	 * TEMPLATES
+	 */
+	public record TLReGenChunkGenerator() {
+	}
+
 	protected static ChunkGenerator chunkGenerator(String type, BiomeSource biomeSource, ResourceKey<NoiseGeneratorSettings> settings) {
 		return new NoiseBasedChunkGenerator(biomeSource, dimension.lookup(Registries.NOISE_SETTINGS).getOrThrow(settings));
 	}

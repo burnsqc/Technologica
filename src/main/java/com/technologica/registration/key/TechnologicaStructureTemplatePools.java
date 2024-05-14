@@ -16,4 +16,5 @@ import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
  */
 public final class TechnologicaStructureTemplatePools extends MasterKeyCreator {
 	public static final ResourceKey<StructureTemplatePool> DOME = structureTemplatePool("dome");
+	public static final ResourceKey<StructureTemplatePool> WHALE_CARCASS = structureTemplatePool("whale_carcass");
 }

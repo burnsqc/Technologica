@@ -1,12 +1,15 @@
 package com.technologica.api.tlregen.resourcegen.data.worldgen;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 import com.google.gson.JsonElement;
+import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.DynamicOps;
 import com.mojang.serialization.Encoder;
 import com.mojang.serialization.JsonOps;
@@ -14,6 +17,7 @@ import com.technologica.api.tlregen.resourcegen.TLRGMasterResourceGenerator;
 import com.technologica.api.tlregen.resourcegen.mirrors.TLReGenRegistrySetBuilder;
 import com.technologica.resourcegen.data.worldgen.templatepool.TLWorldgenTemplatePoolGenerator;
 
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
@@ -25,6 +29,8 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.RegistryDataLoader;
 import net.minecraft.resources.RegistryOps;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
+import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraftforge.registries.DataPackRegistriesHooks;
 
 public abstract class TLReGenWorldgenTemplatePool extends TLRGMasterResourceGenerator implements DataProvider {
@@ -72,5 +78,20 @@ public abstract class TLReGenWorldgenTemplatePool extends TLRGMasterResourceGene
 		DataPackRegistriesHooks.getDataPackRegistriesWithDimensions().filter(data -> !builderKeys.contains(data.key())).forEach(data -> datapackEntriesBuilder.add(data.key(), context -> {
 		}));
 		return datapackEntriesBuilder.buildPatch(RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY), original);
+	}
+
+	/*
+	 * HELPER METHODS
+	 */
+
+	protected static StructureTemplatePool templatePool(List<TLReGenElement> elements, Holder<StructureTemplatePool> fallback) {
+		List<Pair<StructurePoolElement, Integer>> list = new ArrayList<>();
+		for (TLReGenElement element : elements) {
+			list.add(Pair.of(element.element, element.weight));
+		}
+		return new StructureTemplatePool(fallback, list);
+	}
+
+	public record TLReGenElement(StructurePoolElement element, int weight) {
 	}
 }

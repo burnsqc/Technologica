@@ -1,7 +1,5 @@
 {
-  "carvers": {
-    "air": "minecraft:cave"
-  },
+  "carvers": {},
   "downfall": 0.0,
   "effects": {
     "fog_color": 12638463,
@@ -18,6 +16,11 @@
     "water_fog_color": -15787726
   },
   "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
     [],
     [],
     [

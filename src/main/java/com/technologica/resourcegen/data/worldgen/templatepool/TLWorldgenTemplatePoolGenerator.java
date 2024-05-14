@@ -1,27 +1,26 @@
 package com.technologica.resourcegen.data.worldgen.templatepool;
 
-import com.google.common.collect.ImmutableList;
-import com.mojang.datafixers.util.Pair;
-import com.technologica.Technologica;
+import java.util.List;
+
 import com.technologica.api.tlregen.resourcegen.data.worldgen.TLReGenWorldgenTemplatePool;
+import com.technologica.api.tlregen.resourcegen.mirrors.TLReGenSinglePoolElement;
 import com.technologica.registration.key.TechnologicaStructureTemplatePools;
+import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.core.Holder;
-import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.Pools;
 import net.minecraft.data.worldgen.ProcessorLists;
-import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorList;
 
 public class TLWorldgenTemplatePoolGenerator extends TLReGenWorldgenTemplatePool {
-	public static void bootstrap(BootstapContext<StructureTemplatePool> boostrapContextIn) {
-		HolderGetter<StructureTemplatePool> holdergetter1 = boostrapContextIn.lookup(Registries.TEMPLATE_POOL);
-		Holder<StructureTemplatePool> holder1 = holdergetter1.getOrThrow(Pools.EMPTY);
-		HolderGetter<StructureProcessorList> processors = boostrapContextIn.lookup(Registries.PROCESSOR_LIST);
-		Holder<StructureProcessorList> empty = processors.getOrThrow(ProcessorLists.EMPTY);
-		boostrapContextIn.register(TechnologicaStructureTemplatePools.DOME, new StructureTemplatePool(holder1, ImmutableList.of(Pair.of(StructurePoolElement.single(Technologica.MOD_ID + ":dome", empty), 1)), StructureTemplatePool.Projection.RIGID));
+	public static void bootstrap(BootstapContext<StructureTemplatePool> templatePool) {
+		Holder<StructureTemplatePool> fallback = templatePool.lookup(Registries.TEMPLATE_POOL).getOrThrow(Pools.EMPTY);
+		Holder<StructureProcessorList> empty = templatePool.lookup(Registries.PROCESSOR_LIST).getOrThrow(ProcessorLists.EMPTY);
+
+		templatePool.register(TechnologicaStructureTemplatePools.DOME, templatePool(List.of(new TLReGenElement(new TLReGenSinglePoolElement(new TechnologicaLocation("dome"), empty, StructureTemplatePool.Projection.RIGID), 1)), fallback));
+		templatePool.register(TechnologicaStructureTemplatePools.WHALE_CARCASS, templatePool(List.of(new TLReGenElement(new TLReGenSinglePoolElement(new TechnologicaLocation("whale_carcass"), empty, StructureTemplatePool.Projection.RIGID), 1)), fallback));
 	}
 }

@@ -248,7 +248,6 @@ public class TLForgeBiomeModifierGenerator extends TLReGenForgeBiomeModifier {
 		biomeModifier.register(TechnologicaBiomeModifiers.BADLANDS_SPAWNS, new AddSpawnsBiomeModifier(badlands, List.of(coyote, lizard, scorpion, vulture)));
 		biomeModifier.register(TechnologicaBiomeModifiers.BEACH_SPAWNS, new AddSpawnsBiomeModifier(beach, List.of(crab)));
 		biomeModifier.register(TechnologicaBiomeModifiers.BIRCH_FOREST_SPAWNS, new AddSpawnsBiomeModifier(birch_forest, List.of(deer, raccoon, turkey)));
-
 		biomeModifier.register(TechnologicaBiomeModifiers.DEEP_FROZEN_OCEAN_SPAWNS, new AddSpawnsBiomeModifier(deep_frozen_ocean, List.of(new SpawnerData(TechnologicaEntityTypes.KING_CRAB.get(), 100, 1, 2), new SpawnerData(TechnologicaEntityTypes.LEOPARD_SEAL.get(), 100, 1, 2), nawhal, new SpawnerData(TechnologicaEntityTypes.WALRUS.get(), 100, 1, 2))));
 		biomeModifier.register(TechnologicaBiomeModifiers.DESERT_SPAWNS, new AddSpawnsBiomeModifier(desert, List.of(cobra, mummy)));
 		biomeModifier.register(TechnologicaBiomeModifiers.ERODED_BADLANDS_SPAWNS, new AddSpawnsBiomeModifier(eroded_badlands, List.of(coyote)));

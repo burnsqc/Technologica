@@ -8,7 +8,7 @@ import net.minecraft.world.level.biome.Biome;
 
 /**
  * <p>
- * This class contains Tag Keys for Biomes.  
+ * This class contains Tag Keys for Biomes.
  * The corresponding Biome Tags are created in json format during Data Generation in {@link TLTagWorldgenBiomeGenerator}.
  * </p>
  * 
@@ -17,4 +17,5 @@ import net.minecraft.world.level.biome.Biome;
 public final class TechnologicaBiomeTags extends MasterKeyCreator {
 	public static final TagKey<Biome> HAS_EL_DORADO = biomeTag("has_el_dorado");
 	public static final TagKey<Biome> HAS_DOME = biomeTag("has_dome");
+	public static final TagKey<Biome> HAS_WHALE_CARCASS = biomeTag("has_whale_carcass");
 }

@@ -2,6 +2,7 @@ package com.technologica.api.tlregen.resourcegen.data.worldgen;
 
 import java.nio.file.Path;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
@@ -25,6 +26,8 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.RegistryDataLoader;
 import net.minecraft.resources.RegistryOps;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.levelgen.structure.StructureSet;
+import net.minecraft.world.level.levelgen.structure.placement.StructurePlacement;
 import net.minecraftforge.registries.DataPackRegistriesHooks;
 
 public abstract class TLReGenWorldgenStructureSet extends TLRGMasterResourceGenerator implements DataProvider {
@@ -72,5 +75,13 @@ public abstract class TLReGenWorldgenStructureSet extends TLRGMasterResourceGene
 		DataPackRegistriesHooks.getDataPackRegistriesWithDimensions().filter(data -> !builderKeys.contains(data.key())).forEach(data -> datapackEntriesBuilder.add(data.key(), context -> {
 		}));
 		return datapackEntriesBuilder.buildPatch(RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY), original);
+	}
+
+	/*
+	 * HELPER METHODS
+	 */
+
+	protected static StructureSet structureSet(StructurePlacement placement, List<StructureSet.StructureSelectionEntry> structures) {
+		return new StructureSet(structures, placement);
 	}
 }

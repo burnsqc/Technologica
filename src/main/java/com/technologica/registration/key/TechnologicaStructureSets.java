@@ -17,4 +17,5 @@ import net.minecraft.world.level.levelgen.structure.StructureSet;
 public final class TechnologicaStructureSets extends MasterKeyCreator {
 	public static final ResourceKey<StructureSet> EL_DORADO = structureSet("el_dorado");
 	public static final ResourceKey<StructureSet> DOME = structureSet("dome");
+	public static final ResourceKey<StructureSet> WHALE_CARCASS = structureSet("whale_carcass");
 }
