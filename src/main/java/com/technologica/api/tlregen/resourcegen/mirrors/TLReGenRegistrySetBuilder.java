@@ -43,8 +43,8 @@ public class TLReGenRegistrySetBuilder {
 		return this;
 	}
 
-	public <T> TLReGenRegistrySetBuilder add(ResourceKey<? extends Registry<T>> p_256261_, TLReGenRegistrySetBuilder.RegistryBootstrap<T> p_256010_) {
-		return this.add(p_256261_, Lifecycle.stable(), p_256010_);
+	public <T> TLReGenRegistrySetBuilder add(ResourceKey<? extends Registry<T>> registry, TLReGenRegistrySetBuilder.RegistryBootstrap<T> bootstrap) {
+		return this.add(registry, Lifecycle.stable(), bootstrap);
 	}
 
 	public List<? extends ResourceKey<? extends Registry<?>>> getEntryKeys() {
