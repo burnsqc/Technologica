@@ -86,7 +86,7 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> COTTON = ITEMS.register("cotton", () -> new ItemNameBlockItem(TechnologicaBlocks.COTTON_BUSH.get(), new Item.Properties()));
 	public static final RegistryObject<Item> GRAPE_SEEDS = ITEMS.register("grape_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.GRAPES.get(), new Item.Properties()));
 	public static final RegistryObject<Item> TOMATO_SEEDS = ITEMS.register("tomato_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.TOMATOES.get(), new Item.Properties()));
-	public static final RegistryObject<Item> CRANBERRY_SEEDS = ITEMS.register("cranberry_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.CRANBERRY_CROP.get(), new Item.Properties()));
+	public static final RegistryObject<Item> CRANBERRY_SEEDS = ITEMS.register("cranberry_seeds", () -> new ItemNameBlockItem(TechnologicaBlocks.CRANBERRIES.get(), new Item.Properties()));
 	public static final RegistryObject<Item> RICE_SEEDS = ITEMS.register("rice_seeds", () -> new CropSeedItem(TechnologicaBlocks.RICE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> APRICOT_SAPLING_ITEM = ITEMS.register("apricot_sapling", () -> new BlockItem(TechnologicaBlocks.APRICOT_SAPLING.get(), new Item.Properties()));
 	public static final RegistryObject<Item> ASPEN_SAPLING_ITEM = ITEMS.register("aspen_sapling", () -> new BlockItem(TechnologicaBlocks.ASPEN_SAPLING.get(), new Item.Properties()));
@@ -455,7 +455,7 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> BLOCK_OF_OSMIUM = ITEMS.register("block_of_osmium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_OSMIUM.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_IRIDIUM = ITEMS.register("block_of_iridium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_IRIDIUM.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_PLATINUM = ITEMS.register("block_of_platinum", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_PLATINUM.get(), new Item.Properties()));
-	public static final RegistryObject<Item> BLOCK_OF_THALLUIM = ITEMS.register("block_of_thallium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_THALLUIM.get(), new Item.Properties()));
+	public static final RegistryObject<Item> BLOCK_OF_THALLUIM = ITEMS.register("block_of_thallium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_THALLIUM.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_LEAD = ITEMS.register("block_of_lead", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_LEAD.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_BISMUTH = ITEMS.register("block_of_bismuth", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_BISMUTH.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_POLONIUM = ITEMS.register("block_of_polonium", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_POLONIUM.get(), new Item.Properties()));

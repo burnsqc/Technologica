@@ -1,13 +1,13 @@
 package com.technologica.api.tlregen.resourcegen.data;
 
 import com.technologica.Technologica;
-import com.technologica.api.tlregen.resourcegen.TLRGMasterResourceGenerator;
+import com.technologica.api.tlregen.resourcegen.TLReGenMasterResourceGenerator;
 
 import net.minecraftforge.common.data.GlobalLootModifierProvider;
 
 public abstract class TLRGLootModifierGenerator extends GlobalLootModifierProvider {
 	public TLRGLootModifierGenerator() {
-		super(TLRGMasterResourceGenerator.packOutput, Technologica.MOD_ID);
+		super(TLReGenMasterResourceGenerator.packOutput, Technologica.MOD_ID);
 	}
 
 	@Override

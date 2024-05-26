@@ -218,4 +218,10 @@ public final class TLPlacedFeatures extends TLReGenWorldgenPlacedFeature {
 		bootstrapContextIn.register(TechnologicaPlacedFeatures.OVERGROWTH_PLACED, new PlacedFeature(mangroveVegetation, List.of(CountOnEveryLayerPlacement.of(6), BiomeFilter.biome())));
 		bootstrapContextIn.register(TechnologicaPlacedFeatures.NAVAL_MINE, new PlacedFeature(navalMine, List.of(CountOnEveryLayerPlacement.of(4), BiomeFilter.biome())));
 	}
+
+	@Override
+	protected void populate() {
+		// TODO Auto-generated method stub
+
+	}
 }

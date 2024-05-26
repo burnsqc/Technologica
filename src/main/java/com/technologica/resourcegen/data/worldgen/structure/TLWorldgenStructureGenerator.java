@@ -31,4 +31,10 @@ public final class TLWorldgenStructureGenerator extends TLReGenWorldgenStructure
 		boostrapContextIn.register(TechnologicaStructures.DOME, new JigsawStructure(new Structure.StructureSettings(biomes.getOrThrow(TechnologicaBiomeTags.HAS_DOME), Map.of(), GenerationStep.Decoration.SURFACE_STRUCTURES, TerrainAdjustment.BEARD_THIN), templates.getOrThrow(TechnologicaStructureTemplatePools.DOME), 6, ConstantHeight.of(VerticalAnchor.absolute(0)), false, Heightmap.Types.WORLD_SURFACE_WG));
 		boostrapContextIn.register(TechnologicaStructures.WHALE_CARCASS, new JigsawStructure(new Structure.StructureSettings(biomes.getOrThrow(TechnologicaBiomeTags.HAS_WHALE_CARCASS), Map.of(), GenerationStep.Decoration.UNDERGROUND_STRUCTURES, TerrainAdjustment.NONE), templates.getOrThrow(TechnologicaStructureTemplatePools.WHALE_CARCASS), 6, UniformHeight.of(VerticalAnchor.absolute(6), VerticalAnchor.absolute(32)), false, Heightmap.Types.OCEAN_FLOOR_WG));
 	}
+
+	@Override
+	protected void populate() {
+		// TODO Auto-generated method stub
+
+	}
 }

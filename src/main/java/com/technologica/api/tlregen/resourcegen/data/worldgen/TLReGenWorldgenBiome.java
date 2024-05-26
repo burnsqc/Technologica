@@ -13,7 +13,7 @@ import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.DynamicOps;
 import com.mojang.serialization.Encoder;
 import com.mojang.serialization.JsonOps;
-import com.technologica.api.tlregen.resourcegen.TLRGMasterResourceGenerator;
+import com.technologica.api.tlregen.resourcegen.TLReGenMasterResourceGenerator;
 import com.technologica.api.tlregen.resourcegen.mirrors.TLReGenRegistrySetBuilder;
 import com.technologica.resourcegen.data.worldgen.biome.TLBiomes;
 
@@ -40,7 +40,7 @@ import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraftforge.registries.DataPackRegistriesHooks;
 
-public abstract class TLReGenWorldgenBiome extends TLRGMasterResourceGenerator implements DataProvider {
+public abstract class TLReGenWorldgenBiome extends TLReGenMasterResourceGenerator implements DataProvider {
 	private final CompletableFuture<HolderLookup.Provider> damageTypes = lookupProvider.thenApply(r -> constructRegistries(r, new TLReGenRegistrySetBuilder().add(Registries.BIOME, TLBiomes::bootstrap)));
 	private final java.util.function.Predicate<String> namespacePredicate = Set.of(modid) == null ? namespace -> true : Set.of(modid)::contains;
 	protected static HolderGetter<PlacedFeature> placedFeature;

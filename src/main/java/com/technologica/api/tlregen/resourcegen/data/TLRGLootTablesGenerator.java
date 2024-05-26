@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.technologica.api.tlregen.resourcegen.TLRGMasterResourceGenerator;
+import com.technologica.api.tlregen.resourcegen.TLReGenMasterResourceGenerator;
 import com.technologica.resourcegen.data.loottables.blocks.TLLootTablesBlocksGenerator;
 import com.technologica.resourcegen.data.loottables.entities.EntityLootDataGenerator;
 
@@ -19,7 +19,7 @@ public class TLRGLootTablesGenerator extends LootTableProvider {
 	private final List<SubProviderEntry> subProviders = List.of(new LootTableProvider.SubProviderEntry(TLLootTablesBlocksGenerator::new, LootContextParamSets.BLOCK), new LootTableProvider.SubProviderEntry(EntityLootDataGenerator::new, LootContextParamSets.ENTITY));
 
 	public TLRGLootTablesGenerator() {
-		super(TLRGMasterResourceGenerator.packOutput, Set.of(), VanillaLootTableProvider.create(TLRGMasterResourceGenerator.packOutput).getTables());
+		super(TLReGenMasterResourceGenerator.packOutput, Set.of(), VanillaLootTableProvider.create(TLReGenMasterResourceGenerator.packOutput).getTables());
 	}
 
 	@Override

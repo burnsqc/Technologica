@@ -13,53 +13,40 @@ import java.util.stream.Stream;
 import com.google.common.base.Preconditions;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.technologica.api.tlregen.resourcegen.TLRGMasterResourceGenerator;
+import com.technologica.api.tlregen.resourcegen.TLReGenAssetGenerator;
 
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
-import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public abstract class TLReGenParticles extends TLRGMasterResourceGenerator implements DataProvider {
-	private final Map<ResourceLocation, List<String>> particles = new HashMap<>();
-	private boolean performValidation = true;
-
-	/**
-	 * OVERRIDE ME TO ADD PARTICLES
-	 */
-	protected abstract void populate();
+public abstract class TLReGenParticles extends TLReGenAssetGenerator {
+	private final Map<ResourceLocation, List<String>> resources = new HashMap<>();
 
 	@Override
 	public final CompletableFuture<?> run(final CachedOutput cache) {
-		CompletableFuture<?> completable = CompletableFuture.allOf();
-
-		particles.clear();
+		resources.clear();
 		populate();
-		if (performValidation) {
-			// validate();
-		}
-
-		if (!particles.isEmpty()) {
+		if (resources.isEmpty()) {
+			return CompletableFuture.allOf();
+		} else {
 			List<CompletableFuture<?>> list = new ArrayList<CompletableFuture<?>>();
-			particles.forEach((key, value) -> {
+			resources.forEach((key, value) -> {
 				JsonObject json = new JsonObject();
 				JsonArray textures = new JsonArray();
 				value.forEach(textures::add);
 				json.add("textures", textures);
-				list.add(DataProvider.saveStable(cache, json, packOutput.createPathProvider(PackOutput.Target.RESOURCE_PACK, "particles").json(key)));
+				list.add(DataProvider.saveStable(cache, json, packOutput.createPathProvider(target, "particles").json(key)));
 			});
-			completable = CompletableFuture.allOf(list.toArray(CompletableFuture[]::new));
+			return CompletableFuture.allOf(list.toArray(CompletableFuture[]::new));
 		}
-
-		return completable;
 	}
 
 	@Override
 	public final String getName() {
-		return "assets." + modid + ".particles";
+		return super.getName() + ".particles";
 	}
 
 	/*
@@ -103,7 +90,7 @@ public abstract class TLReGenParticles extends TLRGMasterResourceGenerator imple
 		}
 		Preconditions.checkArgument(desc.size() > 0, "The particle type '%s' must have one texture", particle);
 
-		if (particles.putIfAbsent(particle, desc) != null) {
+		if (resources.putIfAbsent(particle, desc) != null) {
 			throw new IllegalArgumentException(String.format("The particle type '%s' already has a description associated with it", particle));
 		}
 	}

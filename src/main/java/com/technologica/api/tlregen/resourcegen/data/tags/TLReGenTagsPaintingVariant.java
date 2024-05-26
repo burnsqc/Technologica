@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 
 import com.google.gson.JsonObject;
 import com.mojang.serialization.JsonOps;
-import com.technologica.api.tlregen.resourcegen.TLRGMasterResourceGenerator;
+import com.technologica.api.tlregen.resourcegen.TLReGenMasterResourceGenerator;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.Registry;
@@ -32,7 +32,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.tags.TagManager;
 import net.minecraft.world.entity.decoration.PaintingVariant;
 
-public abstract class TLReGenTagsPaintingVariant extends TLRGMasterResourceGenerator implements DataProvider {
+public abstract class TLReGenTagsPaintingVariant extends TLReGenMasterResourceGenerator implements DataProvider {
 	private final Map<ResourceLocation, TagBuilder> blockTags = new HashMap<>();
 
 	/*

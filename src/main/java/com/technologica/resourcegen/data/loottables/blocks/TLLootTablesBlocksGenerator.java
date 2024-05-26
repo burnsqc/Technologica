@@ -108,7 +108,7 @@ public final class TLLootTablesBlocksGenerator extends BlockLootSubProvider {
 		});
 
 		add(TechnologicaBlocks.COTTON_BUSH.get(), createCropDrops(TechnologicaBlocks.COTTON_BUSH.get(), TechnologicaItems.COTTON.get(), TechnologicaBlocks.COTTON_BUSH.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.COTTON_BUSH.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
-		add(TechnologicaBlocks.CRANBERRY_CROP.get(), createCropDrops(TechnologicaBlocks.CRANBERRY_CROP.get(), TechnologicaItems.CRANBERRY.get(), TechnologicaBlocks.CRANBERRY_CROP.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.CRANBERRY_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
+		add(TechnologicaBlocks.CRANBERRIES.get(), createCropDrops(TechnologicaBlocks.CRANBERRIES.get(), TechnologicaItems.CRANBERRY.get(), TechnologicaBlocks.CRANBERRIES.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.CRANBERRIES.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
 		add(TechnologicaBlocks.GRAPES.get(), createCropDrops(TechnologicaBlocks.GRAPES.get(), TechnologicaItems.GRAPE.get(), TechnologicaBlocks.GRAPES.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.GRAPES.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
 		add(TechnologicaBlocks.PEPPERCORNS.get(), createCropDrops(TechnologicaBlocks.PEPPERCORNS.get(), TechnologicaItems.PEPPERCORNS.get(), TechnologicaBlocks.PEPPERCORNS.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.PEPPERCORNS.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
 		add(TechnologicaBlocks.TOMATOES.get(), createCropDrops(TechnologicaBlocks.TOMATOES.get(), TechnologicaItems.TOMATO.get(), TechnologicaBlocks.TOMATOES.get().asItem(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(TechnologicaBlocks.TOMATOES.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
@@ -378,7 +378,7 @@ public final class TLLootTablesBlocksGenerator extends BlockLootSubProvider {
 		dropSelf(TechnologicaBlocks.BLOCK_OF_IRIDIUM.get());
 		dropSelf(TechnologicaBlocks.BLOCK_OF_PLATINUM.get());
 
-		dropSelf(TechnologicaBlocks.BLOCK_OF_THALLUIM.get());
+		dropSelf(TechnologicaBlocks.BLOCK_OF_THALLIUM.get());
 		dropSelf(TechnologicaBlocks.BLOCK_OF_LEAD.get());
 		dropSelf(TechnologicaBlocks.BLOCK_OF_BISMUTH.get());
 		dropSelf(TechnologicaBlocks.BLOCK_OF_POLONIUM.get());

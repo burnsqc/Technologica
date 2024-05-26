@@ -218,4 +218,10 @@ public class TLConfiguredFeatures extends TLReGenWorldgenConfiguredFeature {
 		bootstrapContextIn.register(TechnologicaConfiguredFeatures.PATCH_COTTON_BUSH, new ConfiguredFeature<>(Feature.RANDOM_PATCH, FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(TechnologicaBlocks.COTTON_BUSH.get().defaultBlockState().setValue(SweetBerryBushBlock.AGE, Integer.valueOf(3)))), List.of(Blocks.GRASS_BLOCK))));
 		bootstrapContextIn.register(TechnologicaConfiguredFeatures.PATCH_PEPPERCORN_BUSH, new ConfiguredFeature<>(Feature.RANDOM_PATCH, FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(TechnologicaBlocks.PEPPERCORNS.get().defaultBlockState().setValue(CropBlock.AGE, Integer.valueOf(3)))), List.of(Blocks.GRASS_BLOCK))));
 	}
+
+	@Override
+	protected void populate() {
+		// TODO Auto-generated method stub
+
+	}
 }

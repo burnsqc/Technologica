@@ -12,4 +12,10 @@ public final class TLDamageTypeGenerator extends TLReGenDamageType {
 		damageType.register(TechnologicaDamageTypes.BLEED, new DamageType("bleed", 0.1F));
 		damageType.register(TechnologicaDamageTypes.NITRO_BLAST, new DamageType("nitro_blast", DamageScaling.ALWAYS, 0.1F));
 	}
+
+	@Override
+	protected void populate() {
+		// TODO Auto-generated method stub
+
+	}
 }

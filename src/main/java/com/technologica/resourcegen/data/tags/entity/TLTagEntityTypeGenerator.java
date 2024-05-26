@@ -11,4 +11,10 @@ public class TLTagEntityTypeGenerator extends TLReGenTagsEntityTypes {
 	protected void populate(Provider providerIn) {
 		tag(EntityTypeTags.FALL_DAMAGE_IMMUNE).add(TechnologicaEntityTypes.DUCK.get());
 	}
+
+	@Override
+	protected void populate() {
+		// TODO Auto-generated method stub
+
+	}
 }

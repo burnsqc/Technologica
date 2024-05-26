@@ -6,43 +6,37 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 
 import com.google.gson.JsonObject;
-import com.technologica.api.tlregen.resourcegen.TLRGMasterResourceGenerator;
+import com.technologica.api.tlregen.resourcegen.TLReGenAssetGenerator;
 
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
-import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 
-public abstract class TLReGenLang extends TLRGMasterResourceGenerator implements DataProvider {
-	private final Map<String, String> entries = new TreeMap<>();
-
-	/**
-	 * OVERRIDE ME TO ADD TRANSLATIONS
-	 */
-	protected abstract void populate();
+public abstract class TLReGenLang extends TLReGenAssetGenerator {
+	private final Map<String, String> resources = new TreeMap<>();
 
 	@Override
-	public final CompletableFuture<?> run(CachedOutput cache) {
-		entries.clear();
+	public final CompletableFuture<?> run(final CachedOutput cache) {
+		resources.clear();
 		populate();
-
-		if (!entries.isEmpty()) {
+		if (resources.isEmpty()) {
+			return CompletableFuture.allOf();
+		} else {
 			JsonObject json = new JsonObject();
-			entries.forEach(json::addProperty);
-			return DataProvider.saveStable(cache, json, packOutput.getOutputFolder(PackOutput.Target.RESOURCE_PACK).resolve(modid).resolve("lang").resolve("en_us.json"));
+			resources.forEach(json::addProperty);
+			return DataProvider.saveStable(cache, json, packOutput.createPathProvider(target, "lang").json(new ResourceLocation(modid, "en_us")));
 		}
-
-		return CompletableFuture.allOf();
 	}
 
 	@Override
 	public final String getName() {
-		return "assets." + modid + ".lang";
+		return super.getName() + ".lang";
 	}
 
 	/*
@@ -75,7 +69,7 @@ public abstract class TLReGenLang extends TLRGMasterResourceGenerator implements
 	}
 
 	protected final void add(String key, String value) {
-		if (entries.put(key, value) != null) {
+		if (resources.put(key, value) != null) {
 			throw new IllegalStateException("Duplicate translation key " + key);
 		}
 	}

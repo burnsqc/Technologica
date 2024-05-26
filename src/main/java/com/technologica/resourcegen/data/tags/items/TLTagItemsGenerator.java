@@ -57,4 +57,10 @@ public class TLTagItemsGenerator extends TLRGTagsItemsGenerator {
 		copy(TechnologicaBlockTags.INFERNAL_LOGS, TechnologicaItemTags.INFERNAL_LOGS);
 		copy(TechnologicaBlockTags.MALEVOLENT_LOGS, TechnologicaItemTags.MALEVOLENT_LOGS);
 	}
+
+	@Override
+	protected void populate() {
+		// TODO Auto-generated method stub
+
+	}
 }

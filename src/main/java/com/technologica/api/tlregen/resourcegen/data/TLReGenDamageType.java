@@ -10,7 +10,7 @@ import com.google.gson.JsonElement;
 import com.mojang.serialization.DynamicOps;
 import com.mojang.serialization.Encoder;
 import com.mojang.serialization.JsonOps;
-import com.technologica.api.tlregen.resourcegen.TLRGMasterResourceGenerator;
+import com.technologica.api.tlregen.resourcegen.TLReGenMasterResourceGenerator;
 import com.technologica.api.tlregen.resourcegen.mirrors.TLReGenRegistrySetBuilder;
 import com.technologica.resourcegen.data.damagetype.TLDamageTypeGenerator;
 
@@ -27,7 +27,7 @@ import net.minecraft.resources.RegistryOps;
 import net.minecraft.resources.ResourceKey;
 import net.minecraftforge.registries.DataPackRegistriesHooks;
 
-public abstract class TLReGenDamageType extends TLRGMasterResourceGenerator implements DataProvider {
+public abstract class TLReGenDamageType extends TLReGenMasterResourceGenerator implements DataProvider {
 	private final CompletableFuture<HolderLookup.Provider> damageTypes = lookupProvider.thenApply(r -> constructRegistries(r, new TLReGenRegistrySetBuilder().add(Registries.DAMAGE_TYPE, TLDamageTypeGenerator::bootstrap)));
 	private final java.util.function.Predicate<String> namespacePredicate = Set.of(modid) == null ? namespace -> true : Set.of(modid)::contains;
 

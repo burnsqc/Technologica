@@ -94,7 +94,7 @@ public class TLReGenRegistrySetBuilder {
 		return holderlookup$provider;
 	}
 
-	static record BuildState(TLReGenRegistrySetBuilder.CompositeOwner owner, TLReGenRegistrySetBuilder.UniversalLookup lookup, Map<ResourceLocation, HolderGetter<?>> registries, Map<ResourceKey<?>, TLReGenRegistrySetBuilder.RegisteredValue<?>> registeredValues, List<RuntimeException> errors) {
+	public static record BuildState(TLReGenRegistrySetBuilder.CompositeOwner owner, TLReGenRegistrySetBuilder.UniversalLookup lookup, Map<ResourceLocation, HolderGetter<?>> registries, Map<ResourceKey<?>, TLReGenRegistrySetBuilder.RegisteredValue<?>> registeredValues, List<RuntimeException> errors) {
 		public static TLReGenRegistrySetBuilder.BuildState create(RegistryAccess p_255995_, Stream<ResourceKey<? extends Registry<?>>> p_256495_) {
 			TLReGenRegistrySetBuilder.CompositeOwner registrysetbuilder$compositeowner = new TLReGenRegistrySetBuilder.CompositeOwner();
 			List<RuntimeException> list = new ArrayList<>();
@@ -186,7 +186,7 @@ public class TLReGenRegistrySetBuilder {
 		}
 	}
 
-	static class CompositeOwner implements HolderOwner<Object> {
+	public static class CompositeOwner implements HolderOwner<Object> {
 		private final Set<HolderOwner<?>> owners = Sets.newIdentityHashSet();
 
 		@Override
@@ -289,7 +289,7 @@ public class TLReGenRegistrySetBuilder {
 		}
 	}
 
-	static class UniversalLookup extends TLReGenRegistrySetBuilder.EmptyTagLookup<Object> {
+	public static class UniversalLookup extends TLReGenRegistrySetBuilder.EmptyTagLookup<Object> {
 		final Map<ResourceKey<Object>, Holder.Reference<Object>> holders = new HashMap<>();
 
 		public UniversalLookup(HolderOwner<Object> p_256629_) {
@@ -301,7 +301,7 @@ public class TLReGenRegistrySetBuilder {
 			return Optional.of(this.getOrCreate(p_256303_));
 		}
 
-		<T> Holder.Reference<T> getOrCreate(ResourceKey<T> p_256298_) {
+		public <T> Holder.Reference<T> getOrCreate(ResourceKey<T> p_256298_) {
 			return (Holder.Reference<T>) this.holders.computeIfAbsent((ResourceKey<Object>) p_256298_, (p_256154_) -> {
 				return Holder.Reference.createStandAlone(this.owner, p_256154_);
 			});

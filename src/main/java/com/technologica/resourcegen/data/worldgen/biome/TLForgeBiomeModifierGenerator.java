@@ -271,4 +271,10 @@ public class TLForgeBiomeModifierGenerator extends TLReGenForgeBiomeModifier {
 		biomeModifier.register(TechnologicaBiomeModifiers.WINDSWEPT_HILLS_SPAWNS, new AddSpawnsBiomeModifier(windswept_hills, List.of(beaver, grizzly_bear, moose, owl)));
 		biomeModifier.register(TechnologicaBiomeModifiers.WOODED_BADLANDS_SPAWNS, new AddSpawnsBiomeModifier(wooded_badlands, List.of(coyote)));
 	}
+
+	@Override
+	protected void populate() {
+		// TODO Auto-generated method stub
+
+	}
 }

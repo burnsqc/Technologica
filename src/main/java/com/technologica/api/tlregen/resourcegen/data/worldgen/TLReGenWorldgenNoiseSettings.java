@@ -11,7 +11,7 @@ import com.google.gson.JsonElement;
 import com.mojang.serialization.DynamicOps;
 import com.mojang.serialization.Encoder;
 import com.mojang.serialization.JsonOps;
-import com.technologica.api.tlregen.resourcegen.TLRGMasterResourceGenerator;
+import com.technologica.api.tlregen.resourcegen.TLReGenMasterResourceGenerator;
 import com.technologica.api.tlregen.resourcegen.mirrors.TLReGenRegistrySetBuilder;
 import com.technologica.resourcegen.data.worldgen.noisesettings.TLWorldgenNoiseSettings;
 
@@ -35,7 +35,7 @@ import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraftforge.registries.DataPackRegistriesHooks;
 
-public abstract class TLReGenWorldgenNoiseSettings extends TLRGMasterResourceGenerator implements DataProvider {
+public abstract class TLReGenWorldgenNoiseSettings extends TLReGenMasterResourceGenerator implements DataProvider {
 	private final CompletableFuture<HolderLookup.Provider> damageTypes = lookupProvider.thenApply(r -> constructRegistries(r, new TLReGenRegistrySetBuilder().add(Registries.NOISE_SETTINGS, TLWorldgenNoiseSettings::bootstrap)));
 	private final java.util.function.Predicate<String> namespacePredicate = Set.of(modid) == null ? namespace -> true : Set.of(modid)::contains;
 

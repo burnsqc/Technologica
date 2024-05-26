@@ -3,28 +3,32 @@ package com.technologica.api.tlregen.resourcegen;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 
+import com.google.gson.JsonElement;
+import com.mojang.serialization.DynamicOps;
+import com.mojang.serialization.JsonOps;
 import com.technologica.Technologica;
 import com.technologica.api.tlregen.resourcegen.assets.TLReGenBlockstates;
 import com.technologica.api.tlregen.resourcegen.assets.TLReGenLang;
 import com.technologica.api.tlregen.resourcegen.assets.TLReGenModelsItem;
 import com.technologica.api.tlregen.resourcegen.assets.TLReGenParticles;
 import com.technologica.api.tlregen.resourcegen.assets.TLReGenSounds;
-import com.technologica.api.tlregen.resourcegen.data.TLReGenDimensionType;
-import com.technologica.api.tlregen.resourcegen.data.tags.TLReGenTagsEntityTypes;
-import com.technologica.api.tlregen.resourcegen.data.tags.TLRGTagsItemsGenerator;
-import com.technologica.api.tlregen.resourcegen.data.tags.TLReGenTagsBlocks;
 import com.technologica.api.tlregen.resourcegen.data.TLRGLootTablesGenerator;
 import com.technologica.api.tlregen.resourcegen.data.TLRGRecipeGenerator;
 import com.technologica.api.tlregen.resourcegen.data.TLReGenDamageType;
 import com.technologica.api.tlregen.resourcegen.data.TLReGenDimension;
+import com.technologica.api.tlregen.resourcegen.data.TLReGenDimensionType;
+import com.technologica.api.tlregen.resourcegen.data.tags.TLRGTagsItemsGenerator;
+import com.technologica.api.tlregen.resourcegen.data.tags.TLReGenTagsBlocks;
+import com.technologica.api.tlregen.resourcegen.data.tags.TLReGenTagsEntityTypes;
 import com.technologica.api.tlregen.resourcegen.mirrors.TLReGenRegistrySetBuilder;
 import com.technologica.resourcegen.assets.TLAtlases;
+import com.technologica.resourcegen.assets.TLBlockstates;
 import com.technologica.resourcegen.assets.TLFont;
+import com.technologica.resourcegen.assets.TLLang;
+import com.technologica.resourcegen.assets.TLModelsBlock;
+import com.technologica.resourcegen.assets.TLModelsItem;
 import com.technologica.resourcegen.assets.TLParticles;
 import com.technologica.resourcegen.assets.TLSounds;
-import com.technologica.resourcegen.assets.blockstates.TLBlockstatesGenerator;
-import com.technologica.resourcegen.assets.lang.TLLang;
-import com.technologica.resourcegen.assets.models.items.TLModelsGenerator;
 import com.technologica.resourcegen.data.advancements.TLRGAdvancementGenerator;
 import com.technologica.resourcegen.data.damagetype.TLDamageTypeGenerator;
 import com.technologica.resourcegen.data.dimension.TLDimensions;
@@ -37,8 +41,8 @@ import com.technologica.resourcegen.data.tags.fluids.TLTagsFluidsGenerator;
 import com.technologica.resourcegen.data.tags.items.TLTagItemsGenerator;
 import com.technologica.resourcegen.data.tags.paintingvariant.TLTagsPaintingVariantGenerator;
 import com.technologica.resourcegen.data.tags.worldgen.biome.TLTagWorldgenBiomeGenerator;
-import com.technologica.resourcegen.data.worldgen.biome.TLForgeBiomeModifierGenerator;
 import com.technologica.resourcegen.data.worldgen.biome.TLBiomes;
+import com.technologica.resourcegen.data.worldgen.biome.TLForgeBiomeModifierGenerator;
 import com.technologica.resourcegen.data.worldgen.configuredfeature.TLConfiguredFeatures;
 import com.technologica.resourcegen.data.worldgen.noisesettings.TLWorldgenNoiseSettings;
 import com.technologica.resourcegen.data.worldgen.placedfeature.TLPlacedFeatures;
@@ -58,7 +62,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @Mod.EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
-public abstract class TLRGMasterResourceGenerator {
+public abstract class TLReGenMasterResourceGenerator implements DataProvider {
 	private static GatherDataEvent event;
 	private static DataGenerator generator;
 	public static PackOutput packOutput;
@@ -68,6 +72,7 @@ public abstract class TLRGMasterResourceGenerator {
 	public static TLReGenRegistrySetBuilder registrySetBuilder2;
 	public static TLReGenRegistrySetBuilder registrySetBuilder3;
 	public static String modid = Technologica.MOD_ID;
+	protected final DynamicOps<JsonElement> dynamicOps = JsonOps.INSTANCE;
 
 	protected static Supplier<TLReGenBlockstates> BlockStateGenerator;
 	protected static Supplier<TLReGenLang> LanguageGenerator;
@@ -109,10 +114,11 @@ public abstract class TLRGMasterResourceGenerator {
 
 	private static void addGenerators() {
 		addAssetGenerator(new TLAtlases());
-		addAssetGenerator(new TLBlockstatesGenerator());
+		addAssetGenerator(new TLBlockstates());
 		addAssetGenerator(new TLFont());
 		addAssetGenerator(new TLLang());
-		addAssetGenerator(new TLModelsGenerator());
+		addAssetGenerator(new TLModelsBlock());
+		addAssetGenerator(new TLModelsItem());
 		addAssetGenerator(new TLParticles());
 		// shaders
 		// texts
@@ -152,5 +158,27 @@ public abstract class TLRGMasterResourceGenerator {
 
 	private static void addDataGenerator(DataProvider provider) {
 		generator.addProvider(event.includeServer(), provider);
+	}
+
+	/**
+	 * OVERRIDE ME TO ADD RESOURCES
+	 */
+	protected abstract void populate();
+
+	public static enum ValidationLevel {
+		MIN("minimum"),
+		MED("medium"),
+		MAX("maximum");
+
+		final String level;
+
+		private ValidationLevel(String level) {
+			this.level = level;
+		}
+	}
+
+	@Override
+	public String getName() {
+		return modid;
 	}
 }

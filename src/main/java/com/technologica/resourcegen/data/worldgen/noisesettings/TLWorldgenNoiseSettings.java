@@ -27,49 +27,7 @@ import net.minecraft.world.level.levelgen.synth.NormalNoise;
 public class TLWorldgenNoiseSettings extends TLReGenWorldgenNoiseSettings {
 	public static void bootstrap(BootstapContext<NoiseGeneratorSettings> noiseSettings) {
 		noiseSettings.register(TechnologicaNoiseGeneratorSettings.MOON, noiseSettings(false, TechnologicaBlocks.MOON_ROCK.get().defaultBlockState(), Blocks.WATER.defaultBlockState(), false, false, noise(384, -64, 1, 2), TLNoiseRouterData.moon(noiseSettings.lookup(Registries.DENSITY_FUNCTION), noiseSettings.lookup(Registries.NOISE), true, true), false, -64, List.of(), TLSurfaceRuleData.MOON));
-		noiseSettings.register(TechnologicaNoiseGeneratorSettings.CHALLENGER_DEEP, 
-			noiseSettings(
-				false, 
-				Blocks.STONE.defaultBlockState(), 
-				Blocks.WATER.defaultBlockState(), 
-				false, 
-				false, 
-				noise(256, 0, 1, 2), 
-				TLNoiseRouterData.noiseRouter(
-					DensityFunctions.zero(), 
-					DensityFunctions.zero(), 
-					DensityFunctions.zero(), 
-					DensityFunctions.zero(), 
-					DensityFunctions.mul(
-						DensityFunctions.interpolated(
-							DensityFunctions.blendDensity(
-								DensityFunctions.lerp(
-									DensityFunctions.yClampedGradient(-8, 4, 0.0D, 1.0D), 
-									2.5D, 
-									DensityFunctions.lerp(
-										DensityFunctions.yClampedGradient(242, 256, 1.0D, 0.0D), 
-										0.9375D, 
-										new DensityFunctions.HolderHolder(noiseSettings.lookup(Registries.DENSITY_FUNCTION).getOrThrow(TLNoiseRouterData.BASE_3D_NOISE_NETHER))
-									)
-								)
-							)
-						), 
-						DensityFunctions.constant(0.64D)
-					).squeeze(), 
-					DensityFunctions.zero(), 
-					DensityFunctions.zero(), 
-					DensityFunctions.zero(), 
-					DensityFunctions.zero(), 
-					DensityFunctions.zero(), 
-					DensityFunctions.shiftedNoise2d(new DensityFunctions.HolderHolder(noiseSettings.lookup(Registries.DENSITY_FUNCTION).getOrThrow(TLNoiseRouterData.SHIFT_X)), new DensityFunctions.HolderHolder(noiseSettings.lookup(Registries.DENSITY_FUNCTION).getOrThrow(TLNoiseRouterData.SHIFT_Z)), 0.25D, noiseSettings.lookup(Registries.NOISE).getOrThrow(Noises.TEMPERATURE)), 
-					DensityFunctions.shiftedNoise2d(new DensityFunctions.HolderHolder(noiseSettings.lookup(Registries.DENSITY_FUNCTION).getOrThrow(TLNoiseRouterData.SHIFT_X)), new DensityFunctions.HolderHolder(noiseSettings.lookup(Registries.DENSITY_FUNCTION).getOrThrow(TLNoiseRouterData.SHIFT_Z)), 0.25D, noiseSettings.lookup(Registries.NOISE).getOrThrow(Noises.VEGETATION)), 
-					DensityFunctions.zero(), 
-					DensityFunctions.zero(), 
-					DensityFunctions.zero()), 
-				false, 
-				256, 
-				List.of(), 
-				TLSurfaceRuleData.CHALLENGER_DEEP));
+		noiseSettings.register(TechnologicaNoiseGeneratorSettings.CHALLENGER_DEEP, noiseSettings(false, Blocks.STONE.defaultBlockState(), Blocks.WATER.defaultBlockState(), false, false, noise(256, 0, 1, 2), TLNoiseRouterData.noiseRouter(DensityFunctions.zero(), DensityFunctions.zero(), DensityFunctions.zero(), DensityFunctions.zero(), DensityFunctions.mul(DensityFunctions.interpolated(DensityFunctions.blendDensity(DensityFunctions.lerp(DensityFunctions.yClampedGradient(-8, 4, 0.0D, 1.0D), 2.5D, DensityFunctions.lerp(DensityFunctions.yClampedGradient(242, 256, 1.0D, 0.0D), 0.9375D, new DensityFunctions.HolderHolder(noiseSettings.lookup(Registries.DENSITY_FUNCTION).getOrThrow(TLNoiseRouterData.BASE_3D_NOISE_NETHER)))))), DensityFunctions.constant(0.64D)).squeeze(), DensityFunctions.zero(), DensityFunctions.zero(), DensityFunctions.zero(), DensityFunctions.zero(), DensityFunctions.zero(), DensityFunctions.shiftedNoise2d(new DensityFunctions.HolderHolder(noiseSettings.lookup(Registries.DENSITY_FUNCTION).getOrThrow(TLNoiseRouterData.SHIFT_X)), new DensityFunctions.HolderHolder(noiseSettings.lookup(Registries.DENSITY_FUNCTION).getOrThrow(TLNoiseRouterData.SHIFT_Z)), 0.25D, noiseSettings.lookup(Registries.NOISE).getOrThrow(Noises.TEMPERATURE)), DensityFunctions.shiftedNoise2d(new DensityFunctions.HolderHolder(noiseSettings.lookup(Registries.DENSITY_FUNCTION).getOrThrow(TLNoiseRouterData.SHIFT_X)), new DensityFunctions.HolderHolder(noiseSettings.lookup(Registries.DENSITY_FUNCTION).getOrThrow(TLNoiseRouterData.SHIFT_Z)), 0.25D, noiseSettings.lookup(Registries.NOISE).getOrThrow(Noises.VEGETATION)), DensityFunctions.zero(), DensityFunctions.zero(), DensityFunctions.zero()), false, 256, List.of(), TLSurfaceRuleData.CHALLENGER_DEEP));
 		noiseSettings.register(TechnologicaNoiseGeneratorSettings.OVERGROWTH, noiseSettings(false, Blocks.DIRT.defaultBlockState(), Blocks.WATER.defaultBlockState(), false, false, noise(128, 0, 1, 2), TLNoiseRouterData.noiseRouter(DensityFunctions.zero(), DensityFunctions.zero(), DensityFunctions.zero(), DensityFunctions.zero(), DensityFunctions.mul(DensityFunctions.interpolated(DensityFunctions.blendDensity(DensityFunctions.lerp(DensityFunctions.yClampedGradient(0 + -8, 0 + 24, 0.0D, 1.0D), 2.5D, DensityFunctions.lerp(DensityFunctions.yClampedGradient(0 + 128 - 24, 0 + 128 - 0, 1.0D, 0.0D), 0.9375D, new DensityFunctions.HolderHolder(noiseSettings.lookup(Registries.DENSITY_FUNCTION).getOrThrow(TLNoiseRouterData.BASE_3D_NOISE_NETHER)))))), DensityFunctions.constant(0.64D)).squeeze(), DensityFunctions.zero(), DensityFunctions.zero(), DensityFunctions.zero(), DensityFunctions.zero(), DensityFunctions.zero(), DensityFunctions.shiftedNoise2d(new DensityFunctions.HolderHolder(noiseSettings.lookup(Registries.DENSITY_FUNCTION).getOrThrow(TLNoiseRouterData.SHIFT_X)), new DensityFunctions.HolderHolder(noiseSettings.lookup(Registries.DENSITY_FUNCTION).getOrThrow(TLNoiseRouterData.SHIFT_Z)), 0.25D, noiseSettings.lookup(Registries.NOISE).getOrThrow(Noises.TEMPERATURE)), DensityFunctions.shiftedNoise2d(new DensityFunctions.HolderHolder(noiseSettings.lookup(Registries.DENSITY_FUNCTION).getOrThrow(TLNoiseRouterData.SHIFT_X)), new DensityFunctions.HolderHolder(noiseSettings.lookup(Registries.DENSITY_FUNCTION).getOrThrow(TLNoiseRouterData.SHIFT_Z)), 0.25D, noiseSettings.lookup(Registries.NOISE).getOrThrow(Noises.VEGETATION)), DensityFunctions.zero(), DensityFunctions.zero(), DensityFunctions.zero()), false, 32, List.of(), TLSurfaceRuleData.OVERGROWTH));
 	}
 
@@ -173,5 +131,11 @@ public class TLWorldgenNoiseSettings extends TLReGenWorldgenNoiseSettings {
 				this.maxY = p_209688_;
 			}
 		}
+	}
+
+	@Override
+	protected void populate() {
+		// TODO Auto-generated method stub
+
 	}
 }

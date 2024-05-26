@@ -11,7 +11,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mojang.serialization.DynamicOps;
 import com.mojang.serialization.JsonOps;
-import com.technologica.api.tlregen.resourcegen.TLRGMasterResourceGenerator;
+import com.technologica.api.tlregen.resourcegen.TLReGenMasterResourceGenerator;
 
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
@@ -23,9 +23,26 @@ import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.dimension.DimensionType;
 
-public abstract class TLReGenDimensionType extends TLRGMasterResourceGenerator implements DataProvider {
+public abstract class TLReGenDimensionType extends TLReGenMasterResourceGenerator implements DataProvider {
 	private final Map<ResourceKey<DimensionType>, DimensionType> dimensionTypes = new LinkedHashMap<>();
+	private final String name = "data." + modid + ".dimension_type";
 	protected final DynamicOps<JsonElement> dynamicOps = JsonOps.INSTANCE;
+
+	@Override
+	public final CompletableFuture<?> run(final CachedOutput cache) {
+		dimensionTypes.clear();
+		populate();
+		if (dimensionTypes.isEmpty()) {
+			return CompletableFuture.allOf();
+		} else {
+			List<CompletableFuture<?>> list = new ArrayList<CompletableFuture<?>>();
+			dimensionTypes.forEach((key, value) -> {
+				JsonObject json = DimensionType.DIRECT_CODEC.encodeStart(dynamicOps, value).getOrThrow(false, msg -> LOGGER.error("Failed to encode")).getAsJsonObject();
+				list.add(DataProvider.saveStable(cache, json, packOutput.createPathProvider(PackOutput.Target.DATA_PACK, "dimension_type").json(key.location())));
+			});
+			return CompletableFuture.allOf(list.toArray(CompletableFuture[]::new));
+		}
+	}
 
 	/**
 	 * OVERRIDE ME TO ADD DIMENSION TYPES
@@ -33,27 +50,8 @@ public abstract class TLReGenDimensionType extends TLRGMasterResourceGenerator i
 	protected abstract void populate();
 
 	@Override
-	public CompletableFuture<?> run(final CachedOutput cache) {
-		CompletableFuture<?> completable = CompletableFuture.allOf();
-
-		dimensionTypes.clear();
-		populate();
-
-		if (!dimensionTypes.isEmpty()) {
-			List<CompletableFuture<?>> list = new ArrayList<CompletableFuture<?>>();
-			dimensionTypes.forEach((key, value) -> {
-				JsonObject json = DimensionType.DIRECT_CODEC.encodeStart(this.dynamicOps, value).getOrThrow(false, msg -> LOGGER.error("Failed to encode")).getAsJsonObject();
-				list.add(DataProvider.saveStable(cache, json, packOutput.createPathProvider(PackOutput.Target.DATA_PACK, "dimension_type").json(key.location())));
-			});
-			completable = CompletableFuture.allOf(list.toArray(CompletableFuture[]::new));
-		}
-
-		return completable;
-	}
-
-	@Override
 	public final String getName() {
-		return "data." + modid + ".dimension_type";
+		return name;
 	}
 
 	protected final void dimensionType(ResourceKey<DimensionType> name, DimensionType type) {

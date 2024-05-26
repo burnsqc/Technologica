@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 
 import com.google.gson.JsonObject;
 import com.mojang.serialization.JsonOps;
-import com.technologica.api.tlregen.resourcegen.TLRGMasterResourceGenerator;
+import com.technologica.api.tlregen.resourcegen.TLReGenMasterResourceGenerator;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.Registry;
@@ -34,7 +34,7 @@ import net.minecraft.tags.TagManager;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
-public abstract class TLRGTagsItemsGenerator extends TLRGMasterResourceGenerator implements DataProvider {
+public abstract class TLRGTagsItemsGenerator extends TLReGenMasterResourceGenerator implements DataProvider {
 	private final CompletableFuture<TagsProvider.TagLookup<Block>> blockTags = TagBlocks.contentsGetter();
 	private final Map<ResourceLocation, TagBuilder> itemTags = new HashMap<>();
 	private final Map<TagKey<Block>, TagKey<Item>> tagsToCopy = new HashMap<>();

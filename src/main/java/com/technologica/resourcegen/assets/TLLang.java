@@ -1,4 +1,4 @@
-package com.technologica.resourcegen.assets.lang;
+package com.technologica.resourcegen.assets;
 
 import java.util.Collection;
 import java.util.function.Supplier;

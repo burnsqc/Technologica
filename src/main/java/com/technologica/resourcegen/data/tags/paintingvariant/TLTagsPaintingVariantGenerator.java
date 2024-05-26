@@ -11,4 +11,10 @@ public final class TLTagsPaintingVariantGenerator extends TLReGenTagsPaintingVar
 	protected void populate(Provider p_256380_) {
 		tag(PaintingVariantTags.PLACEABLE).add(TechnologicaPaintingVariants.AMNESIA);
 	}
+
+	@Override
+	protected void populate() {
+		// TODO Auto-generated method stub
+
+	}
 }

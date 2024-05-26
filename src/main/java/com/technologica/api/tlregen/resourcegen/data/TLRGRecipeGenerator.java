@@ -1,13 +1,13 @@
 package com.technologica.api.tlregen.resourcegen.data;
 
 import com.technologica.Technologica;
-import com.technologica.api.tlregen.resourcegen.TLRGMasterResourceGenerator;
+import com.technologica.api.tlregen.resourcegen.TLReGenMasterResourceGenerator;
 
 import net.minecraft.data.recipes.RecipeProvider;
 
 public abstract class TLRGRecipeGenerator extends RecipeProvider {
 	public TLRGRecipeGenerator() {
-		super(TLRGMasterResourceGenerator.packOutput);
+		super(TLReGenMasterResourceGenerator.packOutput);
 	}
 
 	@Override

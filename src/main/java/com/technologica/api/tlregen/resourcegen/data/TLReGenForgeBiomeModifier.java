@@ -10,7 +10,7 @@ import com.google.gson.JsonElement;
 import com.mojang.serialization.DynamicOps;
 import com.mojang.serialization.Encoder;
 import com.mojang.serialization.JsonOps;
-import com.technologica.api.tlregen.resourcegen.TLRGMasterResourceGenerator;
+import com.technologica.api.tlregen.resourcegen.TLReGenMasterResourceGenerator;
 import com.technologica.api.tlregen.resourcegen.mirrors.TLReGenRegistrySetBuilder;
 import com.technologica.resourcegen.data.worldgen.biome.TLForgeBiomeModifierGenerator;
 
@@ -27,7 +27,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraftforge.registries.DataPackRegistriesHooks;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public abstract class TLReGenForgeBiomeModifier extends TLRGMasterResourceGenerator implements DataProvider {
+public abstract class TLReGenForgeBiomeModifier extends TLReGenMasterResourceGenerator implements DataProvider {
 	private final CompletableFuture<HolderLookup.Provider> damageTypes = lookupProvider.thenApply(r -> constructRegistries(r, new TLReGenRegistrySetBuilder().add(ForgeRegistries.Keys.BIOME_MODIFIERS, TLForgeBiomeModifierGenerator::bootstrap)));
 	private final java.util.function.Predicate<String> namespacePredicate = Set.of(modid) == null ? namespace -> true : Set.of(modid)::contains;
 

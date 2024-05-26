@@ -6,62 +6,45 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.mojang.serialization.DynamicOps;
-import com.mojang.serialization.JsonOps;
-import com.technologica.api.tlregen.resourcegen.TLRGMasterResourceGenerator;
+import com.technologica.api.tlregen.resourcegen.TLReGenAssetGenerator;
 
 import net.minecraft.client.renderer.texture.atlas.SpriteSource;
 import net.minecraft.client.renderer.texture.atlas.SpriteSources;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
-import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 
-public abstract class TLReGenAtlases extends TLRGMasterResourceGenerator implements DataProvider {
-	private final Map<ResourceLocation, SourceList> atlases = new HashMap<>();
-	protected final DynamicOps<JsonElement> dynamicOps = JsonOps.INSTANCE;
-	private boolean performValidation = true;
-
-	/**
-	 * OVERRIDE ME TO ADD ATLASES
-	 */
-	protected abstract void populate();
+public abstract class TLReGenAtlases extends TLReGenAssetGenerator {
+	private final Map<ResourceLocation, SourceList> resources = new HashMap<>();
 
 	@Override
-	public CompletableFuture<?> run(final CachedOutput cache) {
-		CompletableFuture<?> completable = CompletableFuture.allOf();
-
-		atlases.clear();
+	public final CompletableFuture<?> run(final CachedOutput cache) {
+		resources.clear();
 		populate();
-		if (performValidation) {
-			// validate();
-		}
-
-		if (!atlases.isEmpty()) {
+		if (resources.isEmpty()) {
+			return CompletableFuture.allOf();
+		} else {
 			List<CompletableFuture<?>> list = new ArrayList<CompletableFuture<?>>();
-			atlases.forEach((key, value) -> {
-				JsonObject json = SpriteSources.FILE_CODEC.encodeStart(dynamicOps, value.sources).getOrThrow(false, msg -> LOGGER.error("")).getAsJsonObject();
-				list.add(DataProvider.saveStable(cache, json, packOutput.createPathProvider(PackOutput.Target.RESOURCE_PACK, "atlases").json(key)));
+			resources.forEach((key, value) -> {
+				JsonObject json = SpriteSources.FILE_CODEC.encodeStart(dynamicOps, value.sources).getOrThrow(false, msg -> LOGGER.error("Failed to encode")).getAsJsonObject();
+				list.add(DataProvider.saveStable(cache, json, packOutput.createPathProvider(target, "atlases").json(key)));
 			});
-			completable = CompletableFuture.allOf(list.toArray(CompletableFuture[]::new));
+			return CompletableFuture.allOf(list.toArray(CompletableFuture[]::new));
 		}
-
-		return completable;
 	}
 
 	@Override
 	public final String getName() {
-		return "assets." + modid + ".atlases";
+		return super.getName() + ".atlases";
 	}
 
 	/*
-	 * INTERNAL MECHANICS
+	 * HELPER METHODS
 	 */
 
 	protected final SourceList atlas(ResourceLocation atlas) {
-		return atlases.computeIfAbsent(atlas, $ -> new SourceList());
+		return resources.computeIfAbsent(atlas, $ -> new SourceList());
 	}
 
 	protected static final class SourceList {

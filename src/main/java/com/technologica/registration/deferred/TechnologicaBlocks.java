@@ -170,7 +170,7 @@ public final class TechnologicaBlocks extends MasterDeferredRegistrar {
 	public static final RegistryObject<Block> PEPPERCORNS = BLOCKS.register("peppercorns", () -> new TallBushCropBlock(TechnologicaItems.PEPPERCORNS));
 	public static final RegistryObject<Block> GRAPES = BLOCKS.register("grapes", () -> new VineCropBlock(TechnologicaItems.GRAPE_SEEDS, TechnologicaItems.GRAPE));
 	public static final RegistryObject<Block> TOMATOES = BLOCKS.register("tomatoes", () -> new VineCropBlock(TechnologicaItems.TOMATO_SEEDS, TechnologicaItems.TOMATO));
-	public static final RegistryObject<Block> CRANBERRY_CROP = BLOCKS.register("cranberry", () -> new AquaticCropBlock(TechnologicaItems.CRANBERRY_SEEDS));
+	public static final RegistryObject<Block> CRANBERRIES = BLOCKS.register("cranberry", () -> new AquaticCropBlock(TechnologicaItems.CRANBERRY_SEEDS));
 	public static final RegistryObject<Block> RICE = BLOCKS.register("rice", () -> new AquaticCropBlock(TechnologicaItems.RICE_SEEDS));
 	public static final RegistryObject<Block> APRICOT_SAPLING = BLOCKS.register("apricot_sapling", () -> new SaplingBlock(new ApricotTreeGrower(), BlockBehaviour.Properties.of().noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
 	public static final RegistryObject<Block> ASPEN_SAPLING = BLOCKS.register("aspen_sapling", () -> new SaplingBlock(new AspenTreeGrower(), BlockBehaviour.Properties.of().noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
@@ -451,7 +451,7 @@ public final class TechnologicaBlocks extends MasterDeferredRegistrar {
 	public static final RegistryObject<Block> BLOCK_OF_OSMIUM = BLOCKS.register("block_of_osmium", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
 	public static final RegistryObject<Block> BLOCK_OF_IRIDIUM = BLOCKS.register("block_of_iridium", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
 	public static final RegistryObject<Block> BLOCK_OF_PLATINUM = BLOCKS.register("block_of_platinum", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
-	public static final RegistryObject<Block> BLOCK_OF_THALLUIM = BLOCKS.register("block_of_thallium", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
+	public static final RegistryObject<Block> BLOCK_OF_THALLIUM = BLOCKS.register("block_of_thallium", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
 	public static final RegistryObject<Block> BLOCK_OF_LEAD = BLOCKS.register("block_of_lead", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
 	public static final RegistryObject<Block> BLOCK_OF_BISMUTH = BLOCKS.register("block_of_bismuth", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
 	public static final RegistryObject<Block> BLOCK_OF_POLONIUM = BLOCKS.register("block_of_polonium", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));

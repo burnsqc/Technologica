@@ -1,7 +1,7 @@
 package com.technologica.api.tlregen.resourcegen.assets;
 
 import java.util.Arrays;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
@@ -12,8 +12,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.technologica.Technologica;
-import com.technologica.api.tlregen.resourcegen.TLRGMasterResourceGenerator;
+import com.technologica.api.tlregen.resourcegen.TLReGenAssetGenerator;
 import com.technologica.api.tlregen.resourcegen.util.TLReGenConfiguredModel;
 import com.technologica.api.tlregen.resourcegen.util.TLReGenVariantBlockStateBuilder;
 
@@ -21,7 +20,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
-import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ButtonBlock;
@@ -55,66 +53,30 @@ import net.minecraftforge.client.model.generators.ModelProvider;
 import net.minecraftforge.client.model.generators.MultiPartBlockStateBuilder;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator implements DataProvider {
-	protected final Map<Block, IGeneratedBlockState> blockStates = new LinkedHashMap<>();
-
-	private final TLReGenModelsBlock blockModels = new TLReGenModelsBlock() {
-		@Override
-		public CompletableFuture<?> run(CachedOutput cache) {
-			return CompletableFuture.allOf();
-		}
-
-		@Override
-		protected void registerModels() {
-		}
-	};
-
-	private final TLReGenModelsItem itemModels = new TLReGenModelsItem() {
-		@Override
-		public CompletableFuture<?> run(CachedOutput cache) {
-			return CompletableFuture.allOf();
-		}
-
-		@Override
-		protected void registerModels() {
-		}
-	};
-
-	/**
-	 * OVERRIDE ME TO ADD BLOCKSTATES
-	 */
-	protected abstract void populate();
+public abstract class TLReGenBlockstates extends TLReGenAssetGenerator {
+	protected final static Map<Block, IGeneratedBlockState> resources = new HashMap<>();
 
 	@Override
-	public final CompletableFuture<?> run(CachedOutput cache) {
-		blockModels().clear();
-		itemModels().clear();
-		blockStates.clear();
-
+	public final CompletableFuture<?> run(final CachedOutput cache) {
+		resources.clear();
 		populate();
-		CompletableFuture<?>[] futures = new CompletableFuture<?>[2 + this.blockStates.size()];
+		CompletableFuture<?>[] futures = new CompletableFuture<?>[resources.size()];
 		int i = 0;
-		futures[i++] = blockModels().generateAll(cache);
-		futures[i++] = itemModels().generateAll(cache);
-		for (Map.Entry<Block, IGeneratedBlockState> entry : blockStates.entrySet()) {
+		for (Map.Entry<Block, IGeneratedBlockState> entry : resources.entrySet()) {
 			ResourceLocation blockName = Preconditions.checkNotNull(ForgeRegistries.BLOCKS.getKey(entry.getKey()));
-			futures[i++] = DataProvider.saveStable(cache, entry.getValue().toJson(), packOutput.getOutputFolder(PackOutput.Target.RESOURCE_PACK).resolve(blockName.getNamespace()).resolve("blockstates").resolve(blockName.getPath() + ".json"));
+			futures[i++] = DataProvider.saveStable(cache, entry.getValue().toJson(), packOutput.getOutputFolder(target).resolve(modid).resolve("blockstates").resolve(blockName.getPath() + ".json"));
 		}
 		return CompletableFuture.allOf(futures);
 	}
 
-	public TLReGenModelsBlock blockModels() {
-		return blockModels;
-	}
-
-	public TLReGenModelsItem itemModels() {
-		return itemModels;
-	}
-
 	@Override
-	public String getName() {
-		return "assets." + Technologica.MOD_ID + ".blockstates";
+	public final String getName() {
+		return super.getName() + ".blockstates";
 	}
+
+	/*
+	 * HELPER METHODS
+	 */
 
 	public static class ConfiguredModelList {
 		private final List<TLReGenConfiguredModel> models;
@@ -149,35 +111,31 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 		}
 	}
 
-	/*
-	 * HELPER METHODS
-	 */
-
-	public TLReGenVariantBlockStateBuilder getVariantBuilder(Block b) {
-		if (blockStates.containsKey(b)) {
-			IGeneratedBlockState old = blockStates.get(b);
+	public static TLReGenVariantBlockStateBuilder getVariantBuilder(Block b) {
+		if (resources.containsKey(b)) {
+			IGeneratedBlockState old = resources.get(b);
 			Preconditions.checkState(old instanceof TLReGenVariantBlockStateBuilder);
 			return (TLReGenVariantBlockStateBuilder) old;
 		} else {
 			TLReGenVariantBlockStateBuilder ret = new TLReGenVariantBlockStateBuilder(b);
-			blockStates.put(b, ret);
+			resources.put(b, ret);
 			return ret;
 		}
 	}
 
 	public MultiPartBlockStateBuilder getMultipartBuilder(Block b) {
-		if (blockStates.containsKey(b)) {
-			IGeneratedBlockState old = blockStates.get(b);
+		if (resources.containsKey(b)) {
+			IGeneratedBlockState old = resources.get(b);
 			Preconditions.checkState(old instanceof MultiPartBlockStateBuilder);
 			return (MultiPartBlockStateBuilder) old;
 		} else {
 			MultiPartBlockStateBuilder ret = new MultiPartBlockStateBuilder(b);
-			blockStates.put(b, ret);
+			resources.put(b, ret);
 			return ret;
 		}
 	}
 
-	public ResourceLocation modLoc(String name) {
+	public static ResourceLocation modLoc(String name) {
 		return new ResourceLocation(modid, name);
 	}
 
@@ -185,15 +143,15 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 		return new ResourceLocation(name);
 	}
 
-	private ResourceLocation key(Block block) {
+	private static ResourceLocation key(Block block) {
 		return ForgeRegistries.BLOCKS.getKey(block);
 	}
 
-	private String name(Block block) {
+	private static String name(Block block) {
 		return key(block).getPath();
 	}
 
-	public ResourceLocation blockTexture(Block block) {
+	public static ResourceLocation blockTexture(Block block) {
 		ResourceLocation name = key(block);
 		return new ResourceLocation(name.getNamespace(), ModelProvider.BLOCK_FOLDER + "/" + name.getPath());
 	}
@@ -202,8 +160,16 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 		return new ResourceLocation(rl.getNamespace(), rl.getPath() + suffix);
 	}
 
-	public ModelFile cubeAll(Block block) {
-		return blockModels().cubeAll(name(block), blockTexture(block));
+	public static void simpleBlock(Block block, ModelFile model) {
+		simpleBlock(block, new TLReGenConfiguredModel(model));
+	}
+
+	public static void simpleBlockWithItem(Block block, ModelFile model) {
+		simpleBlock(block, model);
+	}
+
+	public static ModelFile cubeAll(Block block) {
+		return TLReGenModelsBlock.cubeAll(name(block), blockTexture(block));
 	}
 
 	public void simpleBlock(Block block) {
@@ -214,20 +180,7 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 		simpleBlock(block, expander.apply(cubeAll(block)));
 	}
 
-	public void simpleBlock(Block block, ModelFile model) {
-		simpleBlock(block, new TLReGenConfiguredModel(model));
-	}
-
-	public void simpleBlockItem(Block block, ModelFile model) {
-		itemModels().getBuilder(key(block).getPath()).parent(model);
-	}
-
-	public void simpleBlockWithItem(Block block, ModelFile model) {
-		simpleBlock(block, model);
-		simpleBlockItem(block, model);
-	}
-
-	public void simpleBlock(Block block, TLReGenConfiguredModel... models) {
+	public static void simpleBlock(Block block, TLReGenConfiguredModel... models) {
 		getVariantBuilder(block).partialState().setModels(models);
 	}
 
@@ -244,7 +197,7 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 	}
 
 	public void axisBlock(RotatedPillarBlock block, ResourceLocation side, ResourceLocation end) {
-		axisBlock(block, blockModels().cubeColumn(name(block), side, end), blockModels().cubeColumnHorizontal(name(block) + "_horizontal", side, end));
+		axisBlock(block, TLReGenModelsBlock.cubeColumn(name(block), side, end), TLReGenModelsBlock.cubeColumnHorizontal(name(block) + "_horizontal", side, end));
 	}
 
 	public void axisBlockWithRenderType(RotatedPillarBlock block, String renderType) {
@@ -260,7 +213,7 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 	}
 
 	public void axisBlockWithRenderType(RotatedPillarBlock block, ResourceLocation side, ResourceLocation end, String renderType) {
-		axisBlock(block, blockModels().cubeColumn(name(block), side, end).renderType(renderType), blockModels().cubeColumnHorizontal(name(block) + "_horizontal", side, end).renderType(renderType));
+		axisBlock(block, TLReGenModelsBlock.cubeColumn(name(block), side, end).renderType(renderType), TLReGenModelsBlock.cubeColumnHorizontal(name(block) + "_horizontal", side, end).renderType(renderType));
 	}
 
 	public void axisBlockWithRenderType(RotatedPillarBlock block, ResourceLocation renderType) {
@@ -276,7 +229,7 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 	}
 
 	public void axisBlockWithRenderType(RotatedPillarBlock block, ResourceLocation side, ResourceLocation end, ResourceLocation renderType) {
-		axisBlock(block, blockModels().cubeColumn(name(block), side, end).renderType(renderType), blockModels().cubeColumnHorizontal(name(block) + "_horizontal", side, end).renderType(renderType));
+		axisBlock(block, TLReGenModelsBlock.cubeColumn(name(block), side, end).renderType(renderType), TLReGenModelsBlock.cubeColumnHorizontal(name(block) + "_horizontal", side, end).renderType(renderType));
 	}
 
 	public void axisBlock(RotatedPillarBlock block, ModelFile vertical, ModelFile horizontal) {
@@ -286,7 +239,7 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 	private static final int DEFAULT_ANGLE_OFFSET = 180;
 
 	public void horizontalBlock(Block block, ResourceLocation side, ResourceLocation front, ResourceLocation top) {
-		horizontalBlock(block, blockModels().orientable(name(block), side, front, top));
+		horizontalBlock(block, TLReGenModelsBlock.orientable(name(block), side, front, top));
 	}
 
 	public void horizontalBlock(Block block, ModelFile model) {
@@ -389,16 +342,16 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 	}
 
 	private void stairsBlockInternal(StairBlock block, String baseName, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
-		ModelFile stairs = blockModels().stairs(baseName, side, bottom, top);
-		ModelFile stairsInner = blockModels().stairsInner(baseName + "_inner", side, bottom, top);
-		ModelFile stairsOuter = blockModels().stairsOuter(baseName + "_outer", side, bottom, top);
+		ModelFile stairs = TLReGenModelsBlock.stairs(baseName, side, bottom, top);
+		ModelFile stairsInner = TLReGenModelsBlock.stairsInner(baseName + "_inner", side, bottom, top);
+		ModelFile stairsOuter = TLReGenModelsBlock.stairsOuter(baseName + "_outer", side, bottom, top);
 		stairsBlock(block, stairs, stairsInner, stairsOuter);
 	}
 
 	private void stairsBlockInternalWithRenderType(StairBlock block, String baseName, ResourceLocation side, ResourceLocation bottom, ResourceLocation top, ResourceLocation renderType) {
-		ModelFile stairs = blockModels().stairs(baseName, side, bottom, top).renderType(renderType);
-		ModelFile stairsInner = blockModels().stairsInner(baseName + "_inner", side, bottom, top).renderType(renderType);
-		ModelFile stairsOuter = blockModels().stairsOuter(baseName + "_outer", side, bottom, top).renderType(renderType);
+		ModelFile stairs = TLReGenModelsBlock.stairs(baseName, side, bottom, top).renderType(renderType);
+		ModelFile stairsInner = TLReGenModelsBlock.stairsInner(baseName + "_inner", side, bottom, top).renderType(renderType);
+		ModelFile stairsOuter = TLReGenModelsBlock.stairsOuter(baseName + "_outer", side, bottom, top).renderType(renderType);
 		stairsBlock(block, stairs, stairsInner, stairsOuter);
 	}
 
@@ -425,7 +378,7 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 	}
 
 	public void slabBlock(SlabBlock block, ResourceLocation doubleslab, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
-		slabBlock(block, blockModels().slab(name(block), side, bottom, top), blockModels().slabTop(name(block) + "_top", side, bottom, top), blockModels().getExistingFile(doubleslab));
+		slabBlock(block, TLReGenModelsBlock.slab(name(block), side, bottom, top), TLReGenModelsBlock.slabTop(name(block) + "_top", side, bottom, top), TLReGenModelsBlock.getExistingFile(doubleslab));
 	}
 
 	public void slabBlock(SlabBlock block, ModelFile bottom, ModelFile top, ModelFile doubleslab) {
@@ -433,8 +386,8 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 	}
 
 	public void buttonBlock(ButtonBlock block, ResourceLocation texture) {
-		ModelFile button = blockModels().button(name(block), texture);
-		ModelFile buttonPressed = blockModels().buttonPressed(name(block) + "_pressed", texture);
+		ModelFile button = TLReGenModelsBlock.button(name(block), texture);
+		ModelFile buttonPressed = TLReGenModelsBlock.buttonPressed(name(block) + "_pressed", texture);
 		buttonBlock(block, button, buttonPressed);
 	}
 
@@ -443,14 +396,13 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 			Direction facing = state.getValue(ButtonBlock.FACING);
 			AttachFace face = state.getValue(ButtonBlock.FACE);
 			boolean powered = state.getValue(ButtonBlock.POWERED);
-
 			return TLReGenConfiguredModel.builder().modelFile(powered ? buttonPressed : button).rotationX(face == AttachFace.FLOOR ? 0 : (face == AttachFace.WALL ? 90 : 180)).rotationY((int) (face == AttachFace.CEILING ? facing : facing.getOpposite()).toYRot()).uvLock(face == AttachFace.WALL).build();
 		});
 	}
 
 	public void pressurePlateBlock(PressurePlateBlock block, ResourceLocation texture) {
-		ModelFile pressurePlate = blockModels().pressurePlate(name(block), texture);
-		ModelFile pressurePlateDown = blockModels().pressurePlateDown(name(block) + "_down", texture);
+		ModelFile pressurePlate = TLReGenModelsBlock.pressurePlate(name(block), texture);
+		ModelFile pressurePlateDown = TLReGenModelsBlock.pressurePlateDown(name(block) + "_down", texture);
 		pressurePlateBlock(block, pressurePlate, pressurePlateDown);
 	}
 
@@ -458,8 +410,14 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 		getVariantBuilder(block).partialState().with(PressurePlateBlock.POWERED, true).addModels(new TLReGenConfiguredModel(pressurePlateDown)).partialState().with(PressurePlateBlock.POWERED, false).addModels(new TLReGenConfiguredModel(pressurePlate));
 	}
 
+	public void pressurePlateBlockWithRenderType(PressurePlateBlock block, ResourceLocation texture, String renderType) {
+		ModelFile pressurePlate = TLReGenModelsBlock.pressurePlate(name(block), texture).renderType(renderType);
+		ModelFile pressurePlateDown = TLReGenModelsBlock.pressurePlateDown(name(block) + "_down", texture).renderType(renderType);
+		pressurePlateBlock(block, pressurePlate, pressurePlateDown);
+	}
+
 	public void signBlock(StandingSignBlock signBlock, WallSignBlock wallSignBlock, ResourceLocation texture) {
-		ModelFile sign = blockModels().sign(name(signBlock), texture);
+		ModelFile sign = TLReGenModelsBlock.sign(name(signBlock), texture);
 		signBlock(signBlock, wallSignBlock, sign);
 	}
 
@@ -484,29 +442,29 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 
 	public void fenceBlock(FenceBlock block, ResourceLocation texture) {
 		String baseName = key(block).toString();
-		fourWayBlock(block, blockModels().fencePost(baseName + "_post", texture), blockModels().fenceSide(baseName + "_side", texture));
+		fourWayBlock(block, TLReGenModelsBlock.fencePost(baseName + "_post", texture), TLReGenModelsBlock.fenceSide(baseName + "_side", texture));
 	}
 
 	public void fenceBlock(FenceBlock block, String name, ResourceLocation texture) {
-		fourWayBlock(block, blockModels().fencePost(name + "_fence_post", texture), blockModels().fenceSide(name + "_fence_side", texture));
+		fourWayBlock(block, TLReGenModelsBlock.fencePost(name + "_fence_post", texture), TLReGenModelsBlock.fenceSide(name + "_fence_side", texture));
 	}
 
 	public void fenceBlockWithRenderType(FenceBlock block, ResourceLocation texture, String renderType) {
 		String baseName = key(block).toString();
-		fourWayBlock(block, blockModels().fencePost(baseName + "_post", texture).renderType(renderType), blockModels().fenceSide(baseName + "_side", texture).renderType(renderType));
+		fourWayBlock(block, TLReGenModelsBlock.fencePost(baseName + "_post", texture).renderType(renderType), TLReGenModelsBlock.fenceSide(baseName + "_side", texture).renderType(renderType));
 	}
 
 	public void fenceBlockWithRenderType(FenceBlock block, String name, ResourceLocation texture, String renderType) {
-		fourWayBlock(block, blockModels().fencePost(name + "_fence_post", texture).renderType(renderType), blockModels().fenceSide(name + "_fence_side", texture).renderType(renderType));
+		fourWayBlock(block, TLReGenModelsBlock.fencePost(name + "_fence_post", texture).renderType(renderType), TLReGenModelsBlock.fenceSide(name + "_fence_side", texture).renderType(renderType));
 	}
 
 	public void fenceBlockWithRenderType(FenceBlock block, ResourceLocation texture, ResourceLocation renderType) {
 		String baseName = key(block).toString();
-		fourWayBlock(block, blockModels().fencePost(baseName + "_post", texture).renderType(renderType), blockModels().fenceSide(baseName + "_side", texture).renderType(renderType));
+		fourWayBlock(block, TLReGenModelsBlock.fencePost(baseName + "_post", texture).renderType(renderType), TLReGenModelsBlock.fenceSide(baseName + "_side", texture).renderType(renderType));
 	}
 
 	public void fenceBlockWithRenderType(FenceBlock block, String name, ResourceLocation texture, ResourceLocation renderType) {
-		fourWayBlock(block, blockModels().fencePost(name + "_fence_post", texture).renderType(renderType), blockModels().fenceSide(name + "_fence_side", texture).renderType(renderType));
+		fourWayBlock(block, TLReGenModelsBlock.fencePost(name + "_fence_post", texture).renderType(renderType), TLReGenModelsBlock.fenceSide(name + "_fence_side", texture).renderType(renderType));
 	}
 
 	public void fenceGateBlock(FenceGateBlock block, ResourceLocation texture) {
@@ -534,18 +492,18 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 	}
 
 	private void fenceGateBlockInternal(FenceGateBlock block, String baseName, ResourceLocation texture) {
-		ModelFile gate = blockModels().fenceGate(baseName, texture);
-		ModelFile gateOpen = blockModels().fenceGateOpen(baseName + "_open", texture);
-		ModelFile gateWall = blockModels().fenceGateWall(baseName + "_wall", texture);
-		ModelFile gateWallOpen = blockModels().fenceGateWallOpen(baseName + "_wall_open", texture);
+		ModelFile gate = TLReGenModelsBlock.fenceGate(baseName, texture);
+		ModelFile gateOpen = TLReGenModelsBlock.fenceGateOpen(baseName + "_open", texture);
+		ModelFile gateWall = TLReGenModelsBlock.fenceGateWall(baseName + "_wall", texture);
+		ModelFile gateWallOpen = TLReGenModelsBlock.fenceGateWallOpen(baseName + "_wall_open", texture);
 		fenceGateBlock(block, gate, gateOpen, gateWall, gateWallOpen);
 	}
 
 	private void fenceGateBlockInternalWithRenderType(FenceGateBlock block, String baseName, ResourceLocation texture, ResourceLocation renderType) {
-		ModelFile gate = blockModels().fenceGate(baseName, texture).renderType(renderType);
-		ModelFile gateOpen = blockModels().fenceGateOpen(baseName + "_open", texture).renderType(renderType);
-		ModelFile gateWall = blockModels().fenceGateWall(baseName + "_wall", texture).renderType(renderType);
-		ModelFile gateWallOpen = blockModels().fenceGateWallOpen(baseName + "_wall_open", texture).renderType(renderType);
+		ModelFile gate = TLReGenModelsBlock.fenceGate(baseName, texture).renderType(renderType);
+		ModelFile gateOpen = TLReGenModelsBlock.fenceGateOpen(baseName + "_open", texture).renderType(renderType);
+		ModelFile gateWall = TLReGenModelsBlock.fenceGateWall(baseName + "_wall", texture).renderType(renderType);
+		ModelFile gateWallOpen = TLReGenModelsBlock.fenceGateWallOpen(baseName + "_wall_open", texture).renderType(renderType);
 		fenceGateBlock(block, gate, gateOpen, gateWall, gateWallOpen);
 	}
 
@@ -587,11 +545,11 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 	}
 
 	private void wallBlockInternal(WallBlock block, String baseName, ResourceLocation texture) {
-		wallBlock(block, blockModels().wallPost(baseName + "_post", texture), blockModels().wallSide(baseName + "_side", texture), blockModels().wallSideTall(baseName + "_side_tall", texture));
+		wallBlock(block, TLReGenModelsBlock.wallPost(baseName + "_post", texture), TLReGenModelsBlock.wallSide(baseName + "_side", texture), TLReGenModelsBlock.wallSideTall(baseName + "_side_tall", texture));
 	}
 
 	private void wallBlockInternalWithRenderType(WallBlock block, String baseName, ResourceLocation texture, ResourceLocation renderType) {
-		wallBlock(block, blockModels().wallPost(baseName + "_post", texture).renderType(renderType), blockModels().wallSide(baseName + "_side", texture).renderType(renderType), blockModels().wallSideTall(baseName + "_side_tall", texture).renderType(renderType));
+		wallBlock(block, TLReGenModelsBlock.wallPost(baseName + "_post", texture).renderType(renderType), TLReGenModelsBlock.wallSide(baseName + "_side", texture).renderType(renderType), TLReGenModelsBlock.wallSideTall(baseName + "_side_tall", texture).renderType(renderType));
 	}
 
 	public static final ImmutableMap<Direction, Property<WallSide>> WALL_PROPS = ImmutableMap.<Direction, Property<WallSide>>builder().put(Direction.EAST, BlockStateProperties.EAST_WALL).put(Direction.NORTH, BlockStateProperties.NORTH_WALL).put(Direction.SOUTH, BlockStateProperties.SOUTH_WALL).put(Direction.WEST, BlockStateProperties.WEST_WALL).build();
@@ -633,20 +591,20 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 	}
 
 	private void paneBlockInternal(IronBarsBlock block, String baseName, ResourceLocation pane, ResourceLocation edge) {
-		ModelFile post = blockModels().panePost(baseName + "_post", pane, edge);
-		ModelFile side = blockModels().paneSide(baseName + "_side", pane, edge);
-		ModelFile sideAlt = blockModels().paneSideAlt(baseName + "_side_alt", pane, edge);
-		ModelFile noSide = blockModels().paneNoSide(baseName + "_noside", pane);
-		ModelFile noSideAlt = blockModels().paneNoSideAlt(baseName + "_noside_alt", pane);
+		ModelFile post = TLReGenModelsBlock.panePost(baseName + "_post", pane, edge);
+		ModelFile side = TLReGenModelsBlock.paneSide(baseName + "_side", pane, edge);
+		ModelFile sideAlt = TLReGenModelsBlock.paneSideAlt(baseName + "_side_alt", pane, edge);
+		ModelFile noSide = TLReGenModelsBlock.paneNoSide(baseName + "_noside", pane);
+		ModelFile noSideAlt = TLReGenModelsBlock.paneNoSideAlt(baseName + "_noside_alt", pane);
 		paneBlock(block, post, side, sideAlt, noSide, noSideAlt);
 	}
 
 	private void paneBlockInternalWithRenderType(IronBarsBlock block, String baseName, ResourceLocation pane, ResourceLocation edge, ResourceLocation renderType) {
-		ModelFile post = blockModels().panePost(baseName + "_post", pane, edge).renderType(renderType);
-		ModelFile side = blockModels().paneSide(baseName + "_side", pane, edge).renderType(renderType);
-		ModelFile sideAlt = blockModels().paneSideAlt(baseName + "_side_alt", pane, edge).renderType(renderType);
-		ModelFile noSide = blockModels().paneNoSide(baseName + "_noside", pane).renderType(renderType);
-		ModelFile noSideAlt = blockModels().paneNoSideAlt(baseName + "_noside_alt", pane).renderType(renderType);
+		ModelFile post = TLReGenModelsBlock.panePost(baseName + "_post", pane, edge).renderType(renderType);
+		ModelFile side = TLReGenModelsBlock.paneSide(baseName + "_side", pane, edge).renderType(renderType);
+		ModelFile sideAlt = TLReGenModelsBlock.paneSideAlt(baseName + "_side_alt", pane, edge).renderType(renderType);
+		ModelFile noSide = TLReGenModelsBlock.paneNoSide(baseName + "_noside", pane).renderType(renderType);
+		ModelFile noSideAlt = TLReGenModelsBlock.paneNoSideAlt(baseName + "_noside_alt", pane).renderType(renderType);
 		paneBlock(block, post, side, sideAlt, noSide, noSideAlt);
 	}
 
@@ -686,26 +644,26 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 	}
 
 	private void doorBlockInternal(DoorBlock block, String baseName, ResourceLocation bottom, ResourceLocation top) {
-		ModelFile bottomLeft = blockModels().doorBottomLeft(baseName + "_bottom_left", bottom, top);
-		ModelFile bottomLeftOpen = blockModels().doorBottomLeftOpen(baseName + "_bottom_left_open", bottom, top);
-		ModelFile bottomRight = blockModels().doorBottomRight(baseName + "_bottom_right", bottom, top);
-		ModelFile bottomRightOpen = blockModels().doorBottomRightOpen(baseName + "_bottom_right_open", bottom, top);
-		ModelFile topLeft = blockModels().doorTopLeft(baseName + "_top_left", bottom, top);
-		ModelFile topLeftOpen = blockModels().doorTopLeftOpen(baseName + "_top_left_open", bottom, top);
-		ModelFile topRight = blockModels().doorTopRight(baseName + "_top_right", bottom, top);
-		ModelFile topRightOpen = blockModels().doorTopRightOpen(baseName + "_top_right_open", bottom, top);
+		ModelFile bottomLeft = TLReGenModelsBlock.doorBottomLeft(baseName + "_bottom_left", bottom, top);
+		ModelFile bottomLeftOpen = TLReGenModelsBlock.doorBottomLeftOpen(baseName + "_bottom_left_open", bottom, top);
+		ModelFile bottomRight = TLReGenModelsBlock.doorBottomRight(baseName + "_bottom_right", bottom, top);
+		ModelFile bottomRightOpen = TLReGenModelsBlock.doorBottomRightOpen(baseName + "_bottom_right_open", bottom, top);
+		ModelFile topLeft = TLReGenModelsBlock.doorTopLeft(baseName + "_top_left", bottom, top);
+		ModelFile topLeftOpen = TLReGenModelsBlock.doorTopLeftOpen(baseName + "_top_left_open", bottom, top);
+		ModelFile topRight = TLReGenModelsBlock.doorTopRight(baseName + "_top_right", bottom, top);
+		ModelFile topRightOpen = TLReGenModelsBlock.doorTopRightOpen(baseName + "_top_right_open", bottom, top);
 		doorBlock(block, bottomLeft, bottomLeftOpen, bottomRight, bottomRightOpen, topLeft, topLeftOpen, topRight, topRightOpen);
 	}
 
 	private void doorBlockInternalWithRenderType(DoorBlock block, String baseName, ResourceLocation bottom, ResourceLocation top, ResourceLocation renderType) {
-		ModelFile bottomLeft = blockModels().doorBottomLeft(baseName + "_bottom_left", bottom, top).renderType(renderType);
-		ModelFile bottomLeftOpen = blockModels().doorBottomLeftOpen(baseName + "_bottom_left_open", bottom, top).renderType(renderType);
-		ModelFile bottomRight = blockModels().doorBottomRight(baseName + "_bottom_right", bottom, top).renderType(renderType);
-		ModelFile bottomRightOpen = blockModels().doorBottomRightOpen(baseName + "_bottom_right_open", bottom, top).renderType(renderType);
-		ModelFile topLeft = blockModels().doorTopLeft(baseName + "_top_left", bottom, top).renderType(renderType);
-		ModelFile topLeftOpen = blockModels().doorTopLeftOpen(baseName + "_top_left_open", bottom, top).renderType(renderType);
-		ModelFile topRight = blockModels().doorTopRight(baseName + "_top_right", bottom, top).renderType(renderType);
-		ModelFile topRightOpen = blockModels().doorTopRightOpen(baseName + "_top_right_open", bottom, top).renderType(renderType);
+		ModelFile bottomLeft = TLReGenModelsBlock.doorBottomLeft(baseName + "_bottom_left", bottom, top).renderType(renderType);
+		ModelFile bottomLeftOpen = TLReGenModelsBlock.doorBottomLeftOpen(baseName + "_bottom_left_open", bottom, top).renderType(renderType);
+		ModelFile bottomRight = TLReGenModelsBlock.doorBottomRight(baseName + "_bottom_right", bottom, top).renderType(renderType);
+		ModelFile bottomRightOpen = TLReGenModelsBlock.doorBottomRightOpen(baseName + "_bottom_right_open", bottom, top).renderType(renderType);
+		ModelFile topLeft = TLReGenModelsBlock.doorTopLeft(baseName + "_top_left", bottom, top).renderType(renderType);
+		ModelFile topLeftOpen = TLReGenModelsBlock.doorTopLeftOpen(baseName + "_top_left_open", bottom, top).renderType(renderType);
+		ModelFile topRight = TLReGenModelsBlock.doorTopRight(baseName + "_top_right", bottom, top).renderType(renderType);
+		ModelFile topRightOpen = TLReGenModelsBlock.doorTopRightOpen(baseName + "_top_right_open", bottom, top).renderType(renderType);
 		doorBlock(block, bottomLeft, bottomLeftOpen, bottomRight, bottomRightOpen, topLeft, topLeftOpen, topRight, topRightOpen);
 	}
 
@@ -774,16 +732,16 @@ public abstract class TLReGenBlockstates extends TLRGMasterResourceGenerator imp
 	}
 
 	private void trapdoorBlockInternal(TrapDoorBlock block, String baseName, ResourceLocation texture, boolean orientable) {
-		ModelFile bottom = orientable ? blockModels().trapdoorOrientableBottom(baseName + "_bottom", texture) : blockModels().trapdoorBottom(baseName + "_bottom", texture);
-		ModelFile top = orientable ? blockModels().trapdoorOrientableTop(baseName + "_top", texture) : blockModels().trapdoorTop(baseName + "_top", texture);
-		ModelFile open = orientable ? blockModels().trapdoorOrientableOpen(baseName + "_open", texture) : blockModels().trapdoorOpen(baseName + "_open", texture);
+		ModelFile bottom = orientable ? TLReGenModelsBlock.trapdoorOrientableBottom(baseName + "_bottom", texture) : TLReGenModelsBlock.trapdoorBottom(baseName + "_bottom", texture);
+		ModelFile top = orientable ? TLReGenModelsBlock.trapdoorOrientableTop(baseName + "_top", texture) : TLReGenModelsBlock.trapdoorTop(baseName + "_top", texture);
+		ModelFile open = orientable ? TLReGenModelsBlock.trapdoorOrientableOpen(baseName + "_open", texture) : TLReGenModelsBlock.trapdoorOpen(baseName + "_open", texture);
 		trapdoorBlock(block, bottom, top, open, orientable);
 	}
 
 	private void trapdoorBlockInternalWithRenderType(TrapDoorBlock block, String baseName, ResourceLocation texture, boolean orientable, ResourceLocation renderType) {
-		ModelFile bottom = orientable ? blockModels().trapdoorOrientableBottom(baseName + "_bottom", texture).renderType(renderType) : blockModels().trapdoorBottom(baseName + "_bottom", texture).renderType(renderType);
-		ModelFile top = orientable ? blockModels().trapdoorOrientableTop(baseName + "_top", texture).renderType(renderType) : blockModels().trapdoorTop(baseName + "_top", texture).renderType(renderType);
-		ModelFile open = orientable ? blockModels().trapdoorOrientableOpen(baseName + "_open", texture).renderType(renderType) : blockModels().trapdoorOpen(baseName + "_open", texture).renderType(renderType);
+		ModelFile bottom = orientable ? TLReGenModelsBlock.trapdoorOrientableBottom(baseName + "_bottom", texture).renderType(renderType) : TLReGenModelsBlock.trapdoorBottom(baseName + "_bottom", texture).renderType(renderType);
+		ModelFile top = orientable ? TLReGenModelsBlock.trapdoorOrientableTop(baseName + "_top", texture).renderType(renderType) : TLReGenModelsBlock.trapdoorTop(baseName + "_top", texture).renderType(renderType);
+		ModelFile open = orientable ? TLReGenModelsBlock.trapdoorOrientableOpen(baseName + "_open", texture).renderType(renderType) : TLReGenModelsBlock.trapdoorOpen(baseName + "_open", texture).renderType(renderType);
 		trapdoorBlock(block, bottom, top, open, orientable);
 	}
 

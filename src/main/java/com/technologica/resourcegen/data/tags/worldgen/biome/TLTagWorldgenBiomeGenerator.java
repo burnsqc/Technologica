@@ -13,4 +13,10 @@ public final class TLTagWorldgenBiomeGenerator extends TLReGenTagsWorldgenBiome 
 		tag(TechnologicaBiomeTags.HAS_DOME).addOptional(TechnologicaBiomes.SILENT_EXPANSES.location());
 		tag(TechnologicaBiomeTags.HAS_WHALE_CARCASS).addOptional(TechnologicaBiomes.RUSTING_GROUNDS.location());
 	}
+
+	@Override
+	protected void populate() {
+		// TODO Auto-generated method stub
+
+	}
 }

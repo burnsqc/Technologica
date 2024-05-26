@@ -13,7 +13,7 @@ import com.mojang.serialization.DynamicOps;
 import com.mojang.serialization.Encoder;
 import com.mojang.serialization.JsonOps;
 import com.technologica.Technologica;
-import com.technologica.api.tlregen.resourcegen.TLRGMasterResourceGenerator;
+import com.technologica.api.tlregen.resourcegen.TLReGenMasterResourceGenerator;
 import com.technologica.api.tlregen.resourcegen.mirrors.TLReGenRegistrySetBuilder;
 import com.technologica.resourcegen.data.dimension.TLDimensions;
 
@@ -42,7 +42,7 @@ import net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator;
 import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
 import net.minecraftforge.registries.DataPackRegistriesHooks;
 
-public abstract class TLReGenDimension extends TLRGMasterResourceGenerator implements DataProvider {
+public abstract class TLReGenDimension extends TLReGenMasterResourceGenerator implements DataProvider {
 	private final CompletableFuture<HolderLookup.Provider> damageTypes = lookupProvider.thenApply(r -> constructRegistries(r, new TLReGenRegistrySetBuilder().add(Registries.LEVEL_STEM, TLDimensions::bootstrap)));
 	private final java.util.function.Predicate<String> namespacePredicate = Set.of(modid) == null ? namespace -> true : Set.of(modid)::contains;
 	protected static BootstapContext<LevelStem> dimension;

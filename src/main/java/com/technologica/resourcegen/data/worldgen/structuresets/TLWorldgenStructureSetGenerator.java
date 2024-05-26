@@ -23,4 +23,10 @@ public class TLWorldgenStructureSetGenerator extends TLReGenWorldgenStructureSet
 		structureSet.register(TechnologicaStructureSets.DOME, structureSet(new RandomSpreadStructurePlacement(24, 8, RandomSpreadType.LINEAR, 20083232), List.of(new StructureSelectionEntry(structures.getOrThrow(TechnologicaStructures.DOME), 1))));
 		structureSet.register(TechnologicaStructureSets.WHALE_CARCASS, structureSet(new RandomSpreadStructurePlacement(2, 1, RandomSpreadType.LINEAR, 74784298), List.of(new StructureSelectionEntry(structures.getOrThrow(TechnologicaStructures.WHALE_CARCASS), 1))));
 	}
+
+	@Override
+	protected void populate() {
+		// TODO Auto-generated method stub
+
+	}
 }
