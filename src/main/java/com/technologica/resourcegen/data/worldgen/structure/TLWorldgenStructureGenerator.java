@@ -6,6 +6,7 @@ import com.technologica.api.tlregen.resourcegen.data.worldgen.TLReGenWorldgenStr
 import com.technologica.registration.key.TechnologicaBiomeTags;
 import com.technologica.registration.key.TechnologicaStructureTemplatePools;
 import com.technologica.registration.key.TechnologicaStructures;
+import com.technologica.world.level.levelgen.structure.structures.DeepSeaStructure;
 import com.technologica.world.level.levelgen.structure.structures.ElDoradoStructure;
 
 import net.minecraft.core.HolderGetter;
@@ -28,8 +29,35 @@ public final class TLWorldgenStructureGenerator extends TLReGenWorldgenStructure
 		HolderGetter<StructureTemplatePool> templates = boostrapContextIn.lookup(Registries.TEMPLATE_POOL);
 
 		boostrapContextIn.register(TechnologicaStructures.EL_DORADO, new ElDoradoStructure(new Structure.StructureSettings(biomes.getOrThrow(TechnologicaBiomeTags.HAS_EL_DORADO), Map.of(), GenerationStep.Decoration.UNDERGROUND_DECORATION, TerrainAdjustment.NONE)));
-		boostrapContextIn.register(TechnologicaStructures.DOME, new JigsawStructure(new Structure.StructureSettings(biomes.getOrThrow(TechnologicaBiomeTags.HAS_DOME), Map.of(), GenerationStep.Decoration.SURFACE_STRUCTURES, TerrainAdjustment.BEARD_THIN), templates.getOrThrow(TechnologicaStructureTemplatePools.DOME), 6, ConstantHeight.of(VerticalAnchor.absolute(0)), false, Heightmap.Types.WORLD_SURFACE_WG));
-		boostrapContextIn.register(TechnologicaStructures.WHALE_CARCASS, new JigsawStructure(new Structure.StructureSettings(biomes.getOrThrow(TechnologicaBiomeTags.HAS_WHALE_CARCASS), Map.of(), GenerationStep.Decoration.UNDERGROUND_STRUCTURES, TerrainAdjustment.NONE), templates.getOrThrow(TechnologicaStructureTemplatePools.WHALE_CARCASS), 6, UniformHeight.of(VerticalAnchor.absolute(6), VerticalAnchor.absolute(32)), false, Heightmap.Types.OCEAN_FLOOR_WG));
+		boostrapContextIn.register(TechnologicaStructures.DOME, 
+			new JigsawStructure(
+				new Structure.StructureSettings(
+					biomes.getOrThrow(TechnologicaBiomeTags.HAS_DOME), 
+					Map.of(), 
+					GenerationStep.Decoration.SURFACE_STRUCTURES, 
+					TerrainAdjustment.BEARD_THIN
+				), 
+				templates.getOrThrow(TechnologicaStructureTemplatePools.DOME), 
+				6, 
+				ConstantHeight.of(VerticalAnchor.absolute(0)), 
+				false, 
+				Heightmap.Types.WORLD_SURFACE_WG
+			)
+		);
+		boostrapContextIn.register(TechnologicaStructures.WHALE_CARCASS, 
+			new DeepSeaStructure(
+				new Structure.StructureSettings(
+					biomes.getOrThrow(TechnologicaBiomeTags.HAS_WHALE_CARCASS), 
+					Map.of(), 
+					GenerationStep.Decoration.UNDERGROUND_STRUCTURES, 
+					TerrainAdjustment.NONE
+				), 
+				UniformHeight.of(
+					VerticalAnchor.absolute(6), 
+					VerticalAnchor.absolute(32)
+				)
+			)
+		);
 	}
 
 	@Override

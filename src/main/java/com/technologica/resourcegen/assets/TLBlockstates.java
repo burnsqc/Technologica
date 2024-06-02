@@ -68,7 +68,7 @@ public class TLBlockstates extends TLReGenBlockstates {
 		oreBlocks();
 		crystalBlocks();
 		fluidBlocks();
-		simpleBlock(TechnologicaBlocks.MULCH.get(), TLReGenModelsBlock.cubeBottomTop(ResourceLocationHelper.getPath(TechnologicaBlocks.MULCH.get()), modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.MULCH.get()) + "_side"), mcLoc("block/dirt"), modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.MULCH.get()) + "_top")));
+		simpleBlock(TechnologicaBlocks.MULCH.get(), TLReGenModelsBlock.cubeBottomTop(ResourceLocationHelper.getPath(TechnologicaBlocks.MULCH.get()), new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.MULCH.get()) + "_side"), new ResourceLocation("block/dirt"), new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.MULCH.get()) + "_top")));
 		tallBlock(TechnologicaBlocks.TRELLIS.get(), trellis(TechnologicaBlocks.TRELLIS.get(), blockTexture(TechnologicaBlocks.TRELLIS.get())));
 		simpleBlock(TechnologicaBlocks.DISPLAY_CASE.get(), displayModel(TechnologicaBlocks.DISPLAY_CASE.get()));
 		twelveDirectionBlockState(TechnologicaBlocks.LINE_SHAFT_HANGER.get(), lineShaftHangerModel(TechnologicaBlocks.LINE_SHAFT_HANGER.get()), lineShaftHangerModel2(TechnologicaBlocks.LINE_SHAFT_HANGER.get()), lineShaftHangerModel3(TechnologicaBlocks.LINE_SHAFT_HANGER.get()), lineShaftHangerModel4(TechnologicaBlocks.LINE_SHAFT_HANGER.get()));
@@ -84,7 +84,7 @@ public class TLBlockstates extends TLReGenBlockstates {
 		sawmillBlockState(TechnologicaBlocks.SAWMILL.get());
 		annunciatorBlockState(TechnologicaBlocks.ANNUNCIATOR.get());
 		createHopper(TechnologicaBlocks.FAST_HOPPER.get());
-		simpleBlock(TechnologicaBlocks.NITROGLYCERIN.get(), TLReGenModelsBlock.cubeBottomTop(ResourceLocationHelper.getPath(TechnologicaBlocks.NITROGLYCERIN.get()), modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.NITROGLYCERIN.get()) + "_side"), modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.NITROGLYCERIN.get()) + "_bottom"), modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.NITROGLYCERIN.get()) + "_top")));
+		simpleBlock(TechnologicaBlocks.NITROGLYCERIN.get(), TLReGenModelsBlock.cubeBottomTop(ResourceLocationHelper.getPath(TechnologicaBlocks.NITROGLYCERIN.get()), new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.NITROGLYCERIN.get()) + "_side"), new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.NITROGLYCERIN.get()) + "_bottom"), new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.NITROGLYCERIN.get()) + "_top")));
 		axisBlock((RotatedPillarBlock) TechnologicaBlocks.NAVAL_MINE_CHAIN.get(), TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(TechnologicaBlocks.NAVAL_MINE_CHAIN.get()), "block/chain").renderType("cutout_mipped"), TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(TechnologicaBlocks.NAVAL_MINE_CHAIN.get()), "block/chain").renderType("cutout_mipped"));
 		sleepingBag(TechnologicaBlocks.SLEEPING_BAG.get(), panel("block/sleeping_bag_top_head", "block/sleeping_bag_top_head", "block/sleeping_bag_side", "block/sleeping_bag_bottom"), panel("block/sleeping_bag_top", "block/sleeping_bag_top", "block/sleeping_bag_side", "block/sleeping_bag_bottom"));
 		fourDirectionTallBlockState(TechnologicaBlocks.TAPE_DRIVE.get(), tapeDriveLowerModel(TechnologicaBlocks.TAPE_DRIVE.get()), tapeDriveUpperModel(TechnologicaBlocks.TAPE_DRIVE.get()));
@@ -179,39 +179,39 @@ public class TLBlockstates extends TLReGenBlockstates {
 	}
 
 	private void pottedSaplingBlocks() {
-		simpleBlock(TechnologicaBlocks.POTTED_APRICOT_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_APRICOT_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_APRICOT_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
-		simpleBlock(TechnologicaBlocks.POTTED_ASPEN_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_ASPEN_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_ASPEN_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
-		simpleBlock(TechnologicaBlocks.POTTED_AVOCADO_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_AVOCADO_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_AVOCADO_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
-		simpleBlock(TechnologicaBlocks.POTTED_BANANA_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_BANANA_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_BANANA_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
-		simpleBlock(TechnologicaBlocks.POTTED_CHERRY_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_CHERRY_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_CHERRY_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
-		simpleBlock(TechnologicaBlocks.POTTED_CHESTNUT_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_CHESTNUT_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_CHESTNUT_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
-		simpleBlock(TechnologicaBlocks.POTTED_CINNAMON_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_CINNAMON_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_CINNAMON_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
-		simpleBlock(TechnologicaBlocks.POTTED_COCONUT_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_COCONUT_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_COCONUT_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
-		simpleBlock(TechnologicaBlocks.POTTED_EBONY_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_EBONY_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_EBONY_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
-		simpleBlock(TechnologicaBlocks.POTTED_KIWI_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_KIWI_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_KIWI_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
-		simpleBlock(TechnologicaBlocks.POTTED_LEMON_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_LEMON_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_LEMON_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
-		simpleBlock(TechnologicaBlocks.POTTED_LIME_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_LIME_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_LIME_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
-		simpleBlock(TechnologicaBlocks.POTTED_MAHOGANY_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_MAHOGANY_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_MAHOGANY_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
-		simpleBlock(TechnologicaBlocks.POTTED_MAPLE_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_MAPLE_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_MAPLE_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
-		simpleBlock(TechnologicaBlocks.POTTED_OLIVE_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_OLIVE_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_OLIVE_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
-		simpleBlock(TechnologicaBlocks.POTTED_ORANGE_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_ORANGE_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_ORANGE_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
-		simpleBlock(TechnologicaBlocks.POTTED_PEACH_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_PEACH_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_PEACH_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
-		simpleBlock(TechnologicaBlocks.POTTED_PEAR_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_PEAR_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_PEAR_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
-		simpleBlock(TechnologicaBlocks.POTTED_PLUM_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_PLUM_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_PLUM_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
-		simpleBlock(TechnologicaBlocks.POTTED_REDWOOD_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_REDWOOD_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_REDWOOD_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
-		simpleBlock(TechnologicaBlocks.POTTED_ROSEWOOD_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_ROSEWOOD_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_ROSEWOOD_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
-		simpleBlock(TechnologicaBlocks.POTTED_RUBBER_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_RUBBER_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_RUBBER_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
-		simpleBlock(TechnologicaBlocks.POTTED_TEAK_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_TEAK_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_TEAK_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
-		simpleBlock(TechnologicaBlocks.POTTED_WALNUT_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_WALNUT_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_WALNUT_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
-		simpleBlock(TechnologicaBlocks.POTTED_ZEBRAWOOD_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_ZEBRAWOOD_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_ZEBRAWOOD_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
-		simpleBlock(TechnologicaBlocks.POTTED_ANCIENT_AMBROSIA_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_ANCIENT_AMBROSIA_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_ANCIENT_AMBROSIA_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
-		simpleBlock(TechnologicaBlocks.POTTED_CRYOGENIC_SPIRE_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_CRYOGENIC_SPIRE_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_CRYOGENIC_SPIRE_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
-		simpleBlock(TechnologicaBlocks.POTTED_THUNDEROUS_CONDUCTOR_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_THUNDEROUS_CONDUCTOR_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_THUNDEROUS_CONDUCTOR_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
-		simpleBlock(TechnologicaBlocks.POTTED_TOWERING_INFERNO_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_TOWERING_INFERNO_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_TOWERING_INFERNO_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
-		simpleBlock(TechnologicaBlocks.POTTED_SERENDIPITOUS_APOTHECARY_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_SERENDIPITOUS_APOTHECARY_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_SERENDIPITOUS_APOTHECARY_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
-		simpleBlock(TechnologicaBlocks.POTTED_BENEVOLENT_APOTHECARY_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_BENEVOLENT_APOTHECARY_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_BENEVOLENT_APOTHECARY_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
-		simpleBlock(TechnologicaBlocks.POTTED_MALEVOLENT_APOTHECARY_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_MALEVOLENT_APOTHECARY_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_MALEVOLENT_APOTHECARY_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
-		simpleBlock(TechnologicaBlocks.POTTED_NECROTIC_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_NECROTIC_SAPLING.get()), mcLoc("flower_pot_cross"), "plant", modLoc("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_NECROTIC_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_APRICOT_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_APRICOT_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_APRICOT_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_ASPEN_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_ASPEN_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_ASPEN_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_AVOCADO_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_AVOCADO_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_AVOCADO_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_BANANA_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_BANANA_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_BANANA_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_CHERRY_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_CHERRY_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_CHERRY_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_CHESTNUT_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_CHESTNUT_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_CHESTNUT_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_CINNAMON_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_CINNAMON_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_CINNAMON_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_COCONUT_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_COCONUT_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_COCONUT_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_EBONY_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_EBONY_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_EBONY_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_KIWI_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_KIWI_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_KIWI_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_LEMON_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_LEMON_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_LEMON_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_LIME_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_LIME_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_LIME_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_MAHOGANY_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_MAHOGANY_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_MAHOGANY_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_MAPLE_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_MAPLE_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_MAPLE_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_OLIVE_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_OLIVE_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_OLIVE_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_ORANGE_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_ORANGE_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_ORANGE_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_PEACH_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_PEACH_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_PEACH_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_PEAR_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_PEAR_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_PEAR_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_PLUM_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_PLUM_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_PLUM_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_REDWOOD_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_REDWOOD_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_REDWOOD_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_ROSEWOOD_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_ROSEWOOD_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_ROSEWOOD_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_RUBBER_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_RUBBER_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_RUBBER_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_TEAK_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_TEAK_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_TEAK_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_WALNUT_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_WALNUT_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_WALNUT_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_ZEBRAWOOD_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_ZEBRAWOOD_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_ZEBRAWOOD_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_ANCIENT_AMBROSIA_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_ANCIENT_AMBROSIA_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_ANCIENT_AMBROSIA_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_CRYOGENIC_SPIRE_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_CRYOGENIC_SPIRE_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_CRYOGENIC_SPIRE_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_THUNDEROUS_CONDUCTOR_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_THUNDEROUS_CONDUCTOR_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_THUNDEROUS_CONDUCTOR_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_TOWERING_INFERNO_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_TOWERING_INFERNO_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_TOWERING_INFERNO_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_SERENDIPITOUS_APOTHECARY_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_SERENDIPITOUS_APOTHECARY_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_SERENDIPITOUS_APOTHECARY_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_BENEVOLENT_APOTHECARY_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_BENEVOLENT_APOTHECARY_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_BENEVOLENT_APOTHECARY_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_MALEVOLENT_APOTHECARY_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_MALEVOLENT_APOTHECARY_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_MALEVOLENT_APOTHECARY_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
+		simpleBlock(TechnologicaBlocks.POTTED_NECROTIC_SAPLING.get(), TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_NECROTIC_SAPLING.get()), new ResourceLocation("flower_pot_cross"), "plant", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.POTTED_NECROTIC_SAPLING.get()).replaceAll("potted_", ""))).renderType("cutout_mipped"));
 	}
 
 	private void plankBlocks() {
@@ -797,26 +797,26 @@ public class TLBlockstates extends TLReGenBlockstates {
 	}
 
 	private void chairBlocks() {
-		fourDirectionBlockState(TechnologicaBlocks.ACACIA_CHAIR.get(), chairModel(TechnologicaBlocks.ACACIA_CHAIR.get(), mcLoc(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ACACIA_CHAIR.get()).getPath(), "chair", "planks")), "solid"));
+		fourDirectionBlockState(TechnologicaBlocks.ACACIA_CHAIR.get(), chairModel(TechnologicaBlocks.ACACIA_CHAIR.get(), new ResourceLocation(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ACACIA_CHAIR.get()).getPath(), "chair", "planks")), "solid"));
 		fourDirectionBlockState(TechnologicaBlocks.APRICOT_CHAIR.get(), chairModel(TechnologicaBlocks.APRICOT_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_CHAIR.get()), "chair", "planks"), "solid"));
 		fourDirectionBlockState(TechnologicaBlocks.ASPEN_CHAIR.get(), chairModel(TechnologicaBlocks.ASPEN_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ASPEN_CHAIR.get()), "chair", "planks"), "solid"));
 		fourDirectionBlockState(TechnologicaBlocks.AVOCADO_CHAIR.get(), chairModel(TechnologicaBlocks.AVOCADO_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.AVOCADO_CHAIR.get()), "chair", "planks"), "solid"));
 		fourDirectionBlockState(TechnologicaBlocks.BANANA_CHAIR.get(), chairModel(TechnologicaBlocks.BANANA_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.BANANA_CHAIR.get()), "chair", "planks"), "solid"));
-		fourDirectionBlockState(TechnologicaBlocks.BIRCH_CHAIR.get(), chairModel(TechnologicaBlocks.BIRCH_CHAIR.get(), mcLoc(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.BIRCH_CHAIR.get()).getPath(), "chair", "planks")), "solid"));
+		fourDirectionBlockState(TechnologicaBlocks.BIRCH_CHAIR.get(), chairModel(TechnologicaBlocks.BIRCH_CHAIR.get(), new ResourceLocation(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.BIRCH_CHAIR.get()).getPath(), "chair", "planks")), "solid"));
 		fourDirectionBlockState(TechnologicaBlocks.CHERRY_CHAIR.get(), chairModel(TechnologicaBlocks.CHERRY_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.CHERRY_CHAIR.get()), "chair", "planks"), "solid"));
 		fourDirectionBlockState(TechnologicaBlocks.CHESTNUT_CHAIR.get(), chairModel(TechnologicaBlocks.CHESTNUT_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.CHESTNUT_CHAIR.get()), "chair", "planks"), "solid"));
 		fourDirectionBlockState(TechnologicaBlocks.CINNAMON_CHAIR.get(), chairModel(TechnologicaBlocks.CINNAMON_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.CINNAMON_CHAIR.get()), "chair", "planks"), "solid"));
 		fourDirectionBlockState(TechnologicaBlocks.COCONUT_CHAIR.get(), chairModel(TechnologicaBlocks.COCONUT_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.COCONUT_CHAIR.get()), "chair", "planks"), "solid"));
-		fourDirectionBlockState(TechnologicaBlocks.CRIMSON_CHAIR.get(), chairModel(TechnologicaBlocks.CRIMSON_CHAIR.get(), mcLoc(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.CRIMSON_CHAIR.get()).getPath(), "chair", "planks")), "solid"));
-		fourDirectionBlockState(TechnologicaBlocks.DARK_OAK_CHAIR.get(), chairModel(TechnologicaBlocks.DARK_OAK_CHAIR.get(), mcLoc(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.DARK_OAK_CHAIR.get()).getPath(), "chair", "planks")), "solid"));
+		fourDirectionBlockState(TechnologicaBlocks.CRIMSON_CHAIR.get(), chairModel(TechnologicaBlocks.CRIMSON_CHAIR.get(), new ResourceLocation(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.CRIMSON_CHAIR.get()).getPath(), "chair", "planks")), "solid"));
+		fourDirectionBlockState(TechnologicaBlocks.DARK_OAK_CHAIR.get(), chairModel(TechnologicaBlocks.DARK_OAK_CHAIR.get(), new ResourceLocation(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.DARK_OAK_CHAIR.get()).getPath(), "chair", "planks")), "solid"));
 		fourDirectionBlockState(TechnologicaBlocks.EBONY_CHAIR.get(), chairModel(TechnologicaBlocks.EBONY_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.EBONY_CHAIR.get()), "chair", "planks"), "solid"));
-		fourDirectionBlockState(TechnologicaBlocks.JUNGLE_CHAIR.get(), chairModel(TechnologicaBlocks.JUNGLE_CHAIR.get(), mcLoc(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.JUNGLE_CHAIR.get()).getPath(), "chair", "planks")), "solid"));
+		fourDirectionBlockState(TechnologicaBlocks.JUNGLE_CHAIR.get(), chairModel(TechnologicaBlocks.JUNGLE_CHAIR.get(), new ResourceLocation(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.JUNGLE_CHAIR.get()).getPath(), "chair", "planks")), "solid"));
 		fourDirectionBlockState(TechnologicaBlocks.KIWI_CHAIR.get(), chairModel(TechnologicaBlocks.KIWI_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.KIWI_CHAIR.get()), "chair", "planks"), "solid"));
 		fourDirectionBlockState(TechnologicaBlocks.LEMON_CHAIR.get(), chairModel(TechnologicaBlocks.LEMON_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.LEMON_CHAIR.get()), "chair", "planks"), "solid"));
 		fourDirectionBlockState(TechnologicaBlocks.LIME_CHAIR.get(), chairModel(TechnologicaBlocks.LIME_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.LIME_CHAIR.get()), "chair", "planks"), "solid"));
 		fourDirectionBlockState(TechnologicaBlocks.MAHOGANY_CHAIR.get(), chairModel(TechnologicaBlocks.MAHOGANY_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.MAHOGANY_CHAIR.get()), "chair", "planks"), "solid"));
 		fourDirectionBlockState(TechnologicaBlocks.MAPLE_CHAIR.get(), chairModel(TechnologicaBlocks.MAPLE_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.MAPLE_CHAIR.get()), "chair", "planks"), "solid"));
-		fourDirectionBlockState(TechnologicaBlocks.OAK_CHAIR.get(), chairModel(TechnologicaBlocks.OAK_CHAIR.get(), mcLoc(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.OAK_CHAIR.get()).getPath(), "chair", "planks")), "solid"));
+		fourDirectionBlockState(TechnologicaBlocks.OAK_CHAIR.get(), chairModel(TechnologicaBlocks.OAK_CHAIR.get(), new ResourceLocation(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.OAK_CHAIR.get()).getPath(), "chair", "planks")), "solid"));
 		fourDirectionBlockState(TechnologicaBlocks.OLIVE_CHAIR.get(), chairModel(TechnologicaBlocks.OLIVE_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.OLIVE_CHAIR.get()), "chair", "planks"), "solid"));
 		fourDirectionBlockState(TechnologicaBlocks.ORANGE_CHAIR.get(), chairModel(TechnologicaBlocks.ORANGE_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ORANGE_CHAIR.get()), "chair", "planks"), "solid"));
 		fourDirectionBlockState(TechnologicaBlocks.PEACH_CHAIR.get(), chairModel(TechnologicaBlocks.PEACH_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.PEACH_CHAIR.get()), "chair", "planks"), "solid"));
@@ -825,10 +825,10 @@ public class TLBlockstates extends TLReGenBlockstates {
 		fourDirectionBlockState(TechnologicaBlocks.REDWOOD_CHAIR.get(), chairModel(TechnologicaBlocks.REDWOOD_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.REDWOOD_CHAIR.get()), "chair", "planks"), "solid"));
 		fourDirectionBlockState(TechnologicaBlocks.ROSEWOOD_CHAIR.get(), chairModel(TechnologicaBlocks.ROSEWOOD_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ROSEWOOD_CHAIR.get()), "chair", "planks"), "solid"));
 		fourDirectionBlockState(TechnologicaBlocks.RUBBER_CHAIR.get(), chairModel(TechnologicaBlocks.RUBBER_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.RUBBER_CHAIR.get()), "chair", "planks"), "solid"));
-		fourDirectionBlockState(TechnologicaBlocks.SPRUCE_CHAIR.get(), chairModel(TechnologicaBlocks.SPRUCE_CHAIR.get(), mcLoc(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.SPRUCE_CHAIR.get()).getPath(), "chair", "planks")), "solid"));
+		fourDirectionBlockState(TechnologicaBlocks.SPRUCE_CHAIR.get(), chairModel(TechnologicaBlocks.SPRUCE_CHAIR.get(), new ResourceLocation(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.SPRUCE_CHAIR.get()).getPath(), "chair", "planks")), "solid"));
 		fourDirectionBlockState(TechnologicaBlocks.TEAK_CHAIR.get(), chairModel(TechnologicaBlocks.TEAK_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.TEAK_CHAIR.get()), "chair", "planks"), "solid"));
 		fourDirectionBlockState(TechnologicaBlocks.WALNUT_CHAIR.get(), chairModel(TechnologicaBlocks.WALNUT_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.WALNUT_CHAIR.get()), "chair", "planks"), "solid"));
-		fourDirectionBlockState(TechnologicaBlocks.WARPED_CHAIR.get(), chairModel(TechnologicaBlocks.WARPED_CHAIR.get(), mcLoc(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.WARPED_CHAIR.get()).getPath(), "chair", "planks")), "solid"));
+		fourDirectionBlockState(TechnologicaBlocks.WARPED_CHAIR.get(), chairModel(TechnologicaBlocks.WARPED_CHAIR.get(), new ResourceLocation(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.WARPED_CHAIR.get()).getPath(), "chair", "planks")), "solid"));
 		fourDirectionBlockState(TechnologicaBlocks.ZEBRAWOOD_CHAIR.get(), chairModel(TechnologicaBlocks.ZEBRAWOOD_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ZEBRAWOOD_CHAIR.get()), "chair", "planks"), "solid"));
 		fourDirectionBlockState(TechnologicaBlocks.FRUITFUL_CHAIR.get(), chairModel(TechnologicaBlocks.FRUITFUL_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.FRUITFUL_CHAIR.get()), "chair", "planks"), "solid"));
 		fourDirectionBlockState(TechnologicaBlocks.FROSTBITTEN_CHAIR.get(), chairModel(TechnologicaBlocks.FROSTBITTEN_CHAIR.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.FROSTBITTEN_CHAIR.get()), "chair", "planks"), "translucent"));
@@ -841,26 +841,26 @@ public class TLBlockstates extends TLReGenBlockstates {
 	}
 
 	private void tableBlocks() {
-		simpleBlock(TechnologicaBlocks.ACACIA_TABLE.get(), tableModel(TechnologicaBlocks.ACACIA_TABLE.get(), mcLoc(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ACACIA_TABLE.get()).getPath(), "table", "planks")), "solid"));
+		simpleBlock(TechnologicaBlocks.ACACIA_TABLE.get(), tableModel(TechnologicaBlocks.ACACIA_TABLE.get(), new ResourceLocation(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ACACIA_TABLE.get()).getPath(), "table", "planks")), "solid"));
 		simpleBlock(TechnologicaBlocks.APRICOT_TABLE.get(), tableModel(TechnologicaBlocks.APRICOT_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.APRICOT_TABLE.get()), "table", "planks"), "solid"));
 		simpleBlock(TechnologicaBlocks.ASPEN_TABLE.get(), tableModel(TechnologicaBlocks.ASPEN_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ASPEN_TABLE.get()), "table", "planks"), "solid"));
 		simpleBlock(TechnologicaBlocks.AVOCADO_TABLE.get(), tableModel(TechnologicaBlocks.AVOCADO_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.AVOCADO_TABLE.get()), "table", "planks"), "solid"));
 		simpleBlock(TechnologicaBlocks.BANANA_TABLE.get(), tableModel(TechnologicaBlocks.BANANA_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.BANANA_TABLE.get()), "table", "planks"), "solid"));
-		simpleBlock(TechnologicaBlocks.BIRCH_TABLE.get(), tableModel(TechnologicaBlocks.BIRCH_TABLE.get(), mcLoc(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.BIRCH_TABLE.get()).getPath(), "table", "planks")), "solid"));
+		simpleBlock(TechnologicaBlocks.BIRCH_TABLE.get(), tableModel(TechnologicaBlocks.BIRCH_TABLE.get(), new ResourceLocation(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.BIRCH_TABLE.get()).getPath(), "table", "planks")), "solid"));
 		simpleBlock(TechnologicaBlocks.CHERRY_TABLE.get(), tableModel(TechnologicaBlocks.CHERRY_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.CHERRY_TABLE.get()), "table", "planks"), "solid"));
 		simpleBlock(TechnologicaBlocks.CHESTNUT_TABLE.get(), tableModel(TechnologicaBlocks.CHESTNUT_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.CHESTNUT_TABLE.get()), "table", "planks"), "solid"));
 		simpleBlock(TechnologicaBlocks.CINNAMON_TABLE.get(), tableModel(TechnologicaBlocks.CINNAMON_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.CINNAMON_TABLE.get()), "table", "planks"), "solid"));
 		simpleBlock(TechnologicaBlocks.COCONUT_TABLE.get(), tableModel(TechnologicaBlocks.COCONUT_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.COCONUT_TABLE.get()), "table", "planks"), "solid"));
-		simpleBlock(TechnologicaBlocks.CRIMSON_TABLE.get(), tableModel(TechnologicaBlocks.CRIMSON_TABLE.get(), mcLoc(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.CRIMSON_TABLE.get()).getPath(), "table", "planks")), "solid"));
-		simpleBlock(TechnologicaBlocks.DARK_OAK_TABLE.get(), tableModel(TechnologicaBlocks.DARK_OAK_TABLE.get(), mcLoc(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.DARK_OAK_TABLE.get()).getPath(), "table", "planks")), "solid"));
+		simpleBlock(TechnologicaBlocks.CRIMSON_TABLE.get(), tableModel(TechnologicaBlocks.CRIMSON_TABLE.get(), new ResourceLocation(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.CRIMSON_TABLE.get()).getPath(), "table", "planks")), "solid"));
+		simpleBlock(TechnologicaBlocks.DARK_OAK_TABLE.get(), tableModel(TechnologicaBlocks.DARK_OAK_TABLE.get(), new ResourceLocation(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.DARK_OAK_TABLE.get()).getPath(), "table", "planks")), "solid"));
 		simpleBlock(TechnologicaBlocks.EBONY_TABLE.get(), tableModel(TechnologicaBlocks.EBONY_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.EBONY_TABLE.get()), "table", "planks"), "solid"));
-		simpleBlock(TechnologicaBlocks.JUNGLE_TABLE.get(), tableModel(TechnologicaBlocks.JUNGLE_TABLE.get(), mcLoc(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.JUNGLE_TABLE.get()).getPath(), "table", "planks")), "solid"));
+		simpleBlock(TechnologicaBlocks.JUNGLE_TABLE.get(), tableModel(TechnologicaBlocks.JUNGLE_TABLE.get(), new ResourceLocation(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.JUNGLE_TABLE.get()).getPath(), "table", "planks")), "solid"));
 		simpleBlock(TechnologicaBlocks.KIWI_TABLE.get(), tableModel(TechnologicaBlocks.KIWI_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.KIWI_TABLE.get()), "table", "planks"), "solid"));
 		simpleBlock(TechnologicaBlocks.LEMON_TABLE.get(), tableModel(TechnologicaBlocks.LEMON_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.LEMON_TABLE.get()), "table", "planks"), "solid"));
 		simpleBlock(TechnologicaBlocks.LIME_TABLE.get(), tableModel(TechnologicaBlocks.LIME_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.LIME_TABLE.get()), "table", "planks"), "solid"));
 		simpleBlock(TechnologicaBlocks.MAHOGANY_TABLE.get(), tableModel(TechnologicaBlocks.MAHOGANY_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.MAHOGANY_TABLE.get()), "table", "planks"), "solid"));
 		simpleBlock(TechnologicaBlocks.MAPLE_TABLE.get(), tableModel(TechnologicaBlocks.MAPLE_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.MAPLE_TABLE.get()), "table", "planks"), "solid"));
-		simpleBlock(TechnologicaBlocks.OAK_TABLE.get(), tableModel(TechnologicaBlocks.OAK_TABLE.get(), mcLoc(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.OAK_TABLE.get()).getPath(), "table", "planks")), "solid"));
+		simpleBlock(TechnologicaBlocks.OAK_TABLE.get(), tableModel(TechnologicaBlocks.OAK_TABLE.get(), new ResourceLocation(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.OAK_TABLE.get()).getPath(), "table", "planks")), "solid"));
 		simpleBlock(TechnologicaBlocks.OLIVE_TABLE.get(), tableModel(TechnologicaBlocks.OLIVE_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.OLIVE_TABLE.get()), "table", "planks"), "solid"));
 		simpleBlock(TechnologicaBlocks.ORANGE_TABLE.get(), tableModel(TechnologicaBlocks.ORANGE_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ORANGE_TABLE.get()), "table", "planks"), "solid"));
 		simpleBlock(TechnologicaBlocks.PEACH_TABLE.get(), tableModel(TechnologicaBlocks.PEACH_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.PEACH_TABLE.get()), "table", "planks"), "solid"));
@@ -869,10 +869,10 @@ public class TLBlockstates extends TLReGenBlockstates {
 		simpleBlock(TechnologicaBlocks.REDWOOD_TABLE.get(), tableModel(TechnologicaBlocks.REDWOOD_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.REDWOOD_TABLE.get()), "table", "planks"), "solid"));
 		simpleBlock(TechnologicaBlocks.ROSEWOOD_TABLE.get(), tableModel(TechnologicaBlocks.ROSEWOOD_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ROSEWOOD_TABLE.get()), "table", "planks"), "solid"));
 		simpleBlock(TechnologicaBlocks.RUBBER_TABLE.get(), tableModel(TechnologicaBlocks.RUBBER_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.RUBBER_TABLE.get()), "table", "planks"), "solid"));
-		simpleBlock(TechnologicaBlocks.SPRUCE_TABLE.get(), tableModel(TechnologicaBlocks.SPRUCE_TABLE.get(), mcLoc(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.SPRUCE_TABLE.get()).getPath(), "table", "planks")), "solid"));
+		simpleBlock(TechnologicaBlocks.SPRUCE_TABLE.get(), tableModel(TechnologicaBlocks.SPRUCE_TABLE.get(), new ResourceLocation(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.SPRUCE_TABLE.get()).getPath(), "table", "planks")), "solid"));
 		simpleBlock(TechnologicaBlocks.TEAK_TABLE.get(), tableModel(TechnologicaBlocks.TEAK_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.TEAK_TABLE.get()), "table", "planks"), "solid"));
 		simpleBlock(TechnologicaBlocks.WALNUT_TABLE.get(), tableModel(TechnologicaBlocks.WALNUT_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.WALNUT_TABLE.get()), "table", "planks"), "solid"));
-		simpleBlock(TechnologicaBlocks.WARPED_TABLE.get(), tableModel(TechnologicaBlocks.WARPED_TABLE.get(), mcLoc(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.WARPED_TABLE.get()).getPath(), "table", "planks")), "solid"));
+		simpleBlock(TechnologicaBlocks.WARPED_TABLE.get(), tableModel(TechnologicaBlocks.WARPED_TABLE.get(), new ResourceLocation(ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.WARPED_TABLE.get()).getPath(), "table", "planks")), "solid"));
 		simpleBlock(TechnologicaBlocks.ZEBRAWOOD_TABLE.get(), tableModel(TechnologicaBlocks.ZEBRAWOOD_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.ZEBRAWOOD_TABLE.get()), "table", "planks"), "solid"));
 		simpleBlock(TechnologicaBlocks.FRUITFUL_TABLE.get(), tableModel(TechnologicaBlocks.FRUITFUL_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.FRUITFUL_TABLE.get()), "table", "planks"), "solid"));
 		simpleBlock(TechnologicaBlocks.FROSTBITTEN_TABLE.get(), tableModel(TechnologicaBlocks.FROSTBITTEN_TABLE.get(), ResourceLocationHelper.replace(blockTexture(TechnologicaBlocks.FROSTBITTEN_TABLE.get()), "table", "planks"), "translucent"));
@@ -1079,43 +1079,43 @@ public class TLBlockstates extends TLReGenBlockstates {
 	}
 
 	public ModelFile glueModel(String name, ResourceLocation particle, ResourceLocation face) {
-		return TLReGenModelsBlock.withExistingParent(name, modLoc("block/glue_model")).texture("particle", particle).texture("face", face);
+		return TLReGenModelsBlock.withExistingParent(name, new TechnologicaLocation("block/glue_model")).texture("particle", particle).texture("face", face);
 	}
 
 	public ModelFile cubeEachFace(String name, ResourceLocation down, ResourceLocation up, ResourceLocation north, ResourceLocation east, ResourceLocation south, ResourceLocation west) {
-		return TLReGenModelsBlock.withExistingParent(name, modLoc("block/cube_each_face")).texture("particle", down).texture("down", down).texture("up", up).texture("north", north).texture("east", east).texture("south", south).texture("west", west);
+		return TLReGenModelsBlock.withExistingParent(name, new TechnologicaLocation("block/cube_each_face")).texture("particle", down).texture("down", down).texture("up", up).texture("north", north).texture("east", east).texture("south", south).texture("west", west);
 	}
 
 	public ModelFile stem(String name, ResourceLocation stem, int growth) {
-		return TLReGenModelsBlock.withExistingParent(name, mcLoc("stem_growth" + growth)).renderType("cutout").texture("stem", stem);
+		return TLReGenModelsBlock.withExistingParent(name, new ResourceLocation("stem_growth" + growth)).renderType("cutout").texture("stem", stem);
 	}
 
 	public ModelFile attachedStem(String name, ResourceLocation stem, ResourceLocation upperStem) {
-		return TLReGenModelsBlock.withExistingParent(name, modLoc("stem_gourd")).renderType("cutout").texture("stem", stem).texture("upperstem", upperStem);
+		return TLReGenModelsBlock.withExistingParent(name, new TechnologicaLocation("stem_gourd")).renderType("cutout").texture("stem", stem).texture("upperstem", upperStem);
 	}
 
 	public ModelFile gourdCropModel(Block block) {
-		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block), modLoc("gourd")).renderType("cutout_mipped").texture("gourd", blockTexture(block));
+		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block), new TechnologicaLocation("gourd")).renderType("cutout_mipped").texture("gourd", blockTexture(block));
 	}
 
 	public ModelFile hopper(String name, String top, String side, String inside) {
-		return TLReGenModelsBlock.withExistingParent(name, modLoc("technologica_hopper")).texture("particle", side).texture("top", top).texture("side", side).texture("inside", inside);
+		return TLReGenModelsBlock.withExistingParent(name, new TechnologicaLocation("technologica_hopper")).texture("particle", side).texture("top", top).texture("side", side).texture("inside", inside);
 	}
 
 	public ModelFile basin(String name, String top, String bottom, String side) {
-		return TLReGenModelsBlock.withExistingParent(name, modLoc("basin_model")).texture("particle", side).texture("top", top).texture("bottom", bottom).texture("side", side).texture("inside", bottom);
+		return TLReGenModelsBlock.withExistingParent(name, new TechnologicaLocation("basin_model")).texture("particle", side).texture("top", top).texture("bottom", bottom).texture("side", side).texture("inside", bottom);
 	}
 
 	public ModelFile basinFilled(String name, String level, String top, String bottom, String side, String content) {
-		return TLReGenModelsBlock.withExistingParent(name + "_level" + level, modLoc("basin_filled_model_level" + level)).texture("particle", side).texture("top", top).texture("bottom", bottom).texture("side", side).texture("inside", bottom).texture("content", content);
+		return TLReGenModelsBlock.withExistingParent(name + "_level" + level, new TechnologicaLocation("basin_filled_model_level" + level)).texture("particle", side).texture("top", top).texture("bottom", bottom).texture("side", side).texture("inside", bottom).texture("content", content);
 	}
 
 	public ModelFile panel(String name, String top, String side, String bottom) {
-		return TLReGenModelsBlock.withExistingParent(name, modLoc("panel")).texture("particle", side).texture("top", top).texture("side", side).texture("bottom", bottom);
+		return TLReGenModelsBlock.withExistingParent(name, new TechnologicaLocation("panel")).texture("particle", side).texture("top", top).texture("side", side).texture("bottom", bottom);
 	}
 
 	public ModelFile hopperSide(String name, String top, String side, String inside) {
-		return TLReGenModelsBlock.withExistingParent(name, modLoc("technologica_hopper_side")).texture("particle", side).texture("top", top).texture("side", side).texture("inside", inside);
+		return TLReGenModelsBlock.withExistingParent(name, new TechnologicaLocation("technologica_hopper_side")).texture("particle", side).texture("top", top).texture("side", side).texture("inside", inside);
 	}
 
 	public ModelFile buttonInventoryModel(Block block, String renderType) {
@@ -1123,107 +1123,107 @@ public class TLBlockstates extends TLReGenBlockstates {
 	}
 
 	public ModelFile trellis(Block block, ResourceLocation texture) {
-		return TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(block), modLoc("trellis_model"), texture).renderType("cutout");
+		return TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(block), new TechnologicaLocation("trellis_model"), texture).renderType("cutout");
 	}
 
 	public static ModelFile chairModel(Block block, ResourceLocation texture, String renderType) {
-		return TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(block), modLoc("chair"), "planks", texture).renderType(renderType);
+		return TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(block), new TechnologicaLocation("chair"), "planks", texture).renderType(renderType);
 	}
 
 	public ModelFile tapeDriveLowerModel(Block block) {
-		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block) + "_lower", modLoc(ResourceLocationHelper.getPath(block) + "_lower_model"));
+		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block) + "_lower", new TechnologicaLocation(ResourceLocationHelper.getPath(block) + "_lower_model"));
 	}
 
 	public ModelFile tapeDriveUpperModel(Block block) {
-		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block) + "_upper", modLoc(ResourceLocationHelper.getPath(block) + "_upper_model"));
+		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block) + "_upper", new TechnologicaLocation(ResourceLocationHelper.getPath(block) + "_upper_model"));
 	}
 
 	public ModelFile tableModel(Block block, ResourceLocation texture, String renderType) {
-		return TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(block), modLoc("table"), "planks", texture).renderType(renderType);
+		return TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(block), new TechnologicaLocation("table"), "planks", texture).renderType(renderType);
 	}
 
 	public ModelFile hexagonalCrystalModel(Block block) {
 		ResourceLocation location = ForgeRegistries.BLOCKS.getKey(block);
-		return TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(block), modLoc("hexagonal_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath())).renderType("translucent");
+		return TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(block), new TechnologicaLocation("hexagonal_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath())).renderType("translucent");
 	}
 
 	public ModelFile cubicCrystalModel(Block block) {
 		ResourceLocation location = ForgeRegistries.BLOCKS.getKey(block);
-		return TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(block), modLoc("cubic_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath())).renderType("translucent");
+		return TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(block), new TechnologicaLocation("cubic_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath())).renderType("translucent");
 	}
 
 	public ModelFile spikyCrystalModel(Block block) {
 		ResourceLocation location = ForgeRegistries.BLOCKS.getKey(block);
-		return TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(block), modLoc("spiky_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath())).renderType("translucent");
+		return TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(block), new TechnologicaLocation("spiky_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath())).renderType("translucent");
 	}
 
 	public ModelFile leafyCrystalModel(Block block) {
 		ResourceLocation location = ForgeRegistries.BLOCKS.getKey(block);
-		return TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(block), modLoc("leafy_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath())).renderType("translucent");
+		return TLReGenModelsBlock.singleTexture(ResourceLocationHelper.getPath(block), new TechnologicaLocation("leafy_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath())).renderType("translucent");
 	}
 
 	public ModelFile smallPulleyModel(Block block) {
-		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block), modLoc(ResourceLocationHelper.getPath(block))).texture("0", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(block)));
+		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block), new TechnologicaLocation(ResourceLocationHelper.getPath(block))).texture("0", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(block)));
 	}
 
 	public ModelFile lineShaftNoPulleyModel(Block block) {
-		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block) + "_no_pulley", modLoc("line_shaft_no_pulley_model"));
+		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block) + "_no_pulley", new TechnologicaLocation("line_shaft_no_pulley_model"));
 	}
 
 	public ModelFile lineShaftSmallPulleyModel(Block block) {
-		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block) + "_small_pulley", modLoc("line_shaft_small_pulley_model"));
+		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block) + "_small_pulley", new TechnologicaLocation("line_shaft_small_pulley_model"));
 	}
 
 	public ModelFile lineShaftMediumPulleyModel(Block block) {
-		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block) + "_medium_pulley", modLoc("line_shaft_medium_pulley_model"));
+		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block) + "_medium_pulley", new TechnologicaLocation("line_shaft_medium_pulley_model"));
 	}
 
 	public ModelFile lineShaftLargePulleyModel(Block block) {
-		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block) + "_large_pulley", modLoc("line_shaft_large_pulley_model"));
+		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block) + "_large_pulley", new TechnologicaLocation("line_shaft_large_pulley_model"));
 	}
 
 	public ModelFile lineShaftHangerModel(Block block) {
-		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block), modLoc("line_shaft_hanger_model"));
+		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block), new TechnologicaLocation("line_shaft_hanger_model"));
 	}
 
 	public ModelFile lineShaftHangerModel2(Block block) {
-		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block) + "2", modLoc("line_shaft_hanger2_model"));
+		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block) + "2", new TechnologicaLocation("line_shaft_hanger2_model"));
 	}
 
 	public ModelFile lineShaftHangerModel3(Block block) {
-		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block) + "_shaft", modLoc("line_shaft_hanger_shaft_model"));
+		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block) + "_shaft", new TechnologicaLocation("line_shaft_hanger_shaft_model"));
 	}
 
 	public ModelFile lineShaftHangerModel4(Block block) {
-		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block) + "2_shaft", modLoc("line_shaft_hanger2_shaft_model"));
+		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block) + "2_shaft", new TechnologicaLocation("line_shaft_hanger2_shaft_model"));
 	}
 
 	public ModelFile motorModel(Block block) {
-		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block), modLoc("motor")).texture("motor", blockTexture(block));
+		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block), new TechnologicaLocation("motor")).texture("motor", blockTexture(block));
 	}
 
 	public ModelFile motor2Model(Block block) {
-		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block) + "2", modLoc("motor2")).texture("motor", blockTexture(block));
+		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block) + "2", new TechnologicaLocation("motor2")).texture("motor", blockTexture(block));
 	}
 
 	public ModelFile treeTapModel(Block block) {
-		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block), modLoc("tap")).texture("tree_tap", blockTexture(block));
+		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block), new TechnologicaLocation("tap")).texture("tree_tap", blockTexture(block));
 	}
 
 	public ModelFile monitorModel(Block block) {
-		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block), modLoc(ResourceLocationHelper.getPath(block) + "_model"));
+		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block), new TechnologicaLocation(ResourceLocationHelper.getPath(block) + "_model"));
 	}
 
 	public ModelFile keyboardModel(Block block) {
-		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block), modLoc(ResourceLocationHelper.getPath(block) + "_model"));
+		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block), new TechnologicaLocation(ResourceLocationHelper.getPath(block) + "_model"));
 	}
 
 	public ModelFile displayModel(Block block) {
-		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block), modLoc("display")).texture("case", blockTexture(block)).texture("base", new ResourceLocation("block/black_wool")).renderType("cutout_mipped");
+		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block), new TechnologicaLocation("display")).texture("case", blockTexture(block)).texture("base", new ResourceLocation("block/black_wool")).renderType("cutout_mipped");
 	}
 
 	public ModelFile tallCrop(String name, ResourceLocation crop) {
-		return TLReGenModelsBlock.withExistingParent(name, modLoc("tall_crop")).texture("crop", crop);
+		return TLReGenModelsBlock.withExistingParent(name, new TechnologicaLocation("tall_crop")).texture("crop", crop);
 	}
 
 	public ModelFile fluid(Block block) {
@@ -1232,7 +1232,7 @@ public class TLBlockstates extends TLReGenBlockstates {
 	}
 
 	public ModelFile hollowLogModel(Block block) {
-		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block), modLoc("hollow_log")).texture("side", blockTexture(TechnologicaBlocks.FROSTBITTEN_LOG.get())).texture("end", blockTexture(TechnologicaBlocks.FROSTBITTEN_LOG.get()) + "_top").texture("inside", blockTexture(TechnologicaBlocks.STRIPPED_FROSTBITTEN_LOG.get()) + "_solid").renderType("translucent");
+		return TLReGenModelsBlock.withExistingParent(ResourceLocationHelper.getPath(block), new TechnologicaLocation("hollow_log")).texture("side", blockTexture(TechnologicaBlocks.FROSTBITTEN_LOG.get())).texture("end", blockTexture(TechnologicaBlocks.FROSTBITTEN_LOG.get()) + "_top").texture("inside", blockTexture(TechnologicaBlocks.STRIPPED_FROSTBITTEN_LOG.get()) + "_solid").renderType("translucent");
 	}
 
 	private void simpleBlockWithRenderType(Block block, String renderType) {
@@ -1243,6 +1243,7 @@ public class TLBlockstates extends TLReGenBlockstates {
 		slabBlock(block, TLReGenModelsBlock.slab(name(block), side, bottom, top).renderType(renderType), TLReGenModelsBlock.slabTop(name(block) + "_top", side, bottom, top).renderType(renderType), TLReGenModelsBlock.getExistingFile(doubleslab));
 	}
 
+	@Override
 	public void pressurePlateBlockWithRenderType(PressurePlateBlock block, ResourceLocation texture, String renderType) {
 		ModelFile pressurePlate = TLReGenModelsBlock.pressurePlate(name(block), texture).renderType(renderType);
 		ModelFile pressurePlateDown = TLReGenModelsBlock.pressurePlateDown(name(block) + "_down", texture).renderType(renderType);

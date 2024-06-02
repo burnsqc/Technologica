@@ -1,6 +1,7 @@
 package com.technologica.client.model.geom;
 
 import java.util.Set;
+import java.util.stream.Stream;
 
 import com.google.common.collect.Sets;
 import com.technologica.util.text.TechnologicaLocation;
@@ -49,7 +50,6 @@ public class TechnologicaModelLayers {
 	public static final ModelLayerLocation VULTURE = register("vulture");
 	public static final ModelLayerLocation WALRUS = register("walrus");
 	public static final ModelLayerLocation ZEBRA = register("zebra");
-
 	public static final ModelLayerLocation ATOMIC_CREEPER = register("atomic_creeper");
 	public static final ModelLayerLocation MUMMY = register("mummy");
 	public static final ModelLayerLocation PEEPER = register("peeper");
@@ -58,17 +58,31 @@ public class TechnologicaModelLayers {
 	public static final ModelLayerLocation WEEPER = register("weeper");
 	public static final ModelLayerLocation SWEEPER = register("sweeper");
 	public static final ModelLayerLocation DUST_DEVIL = register("dust_devil");
-
 	public static final ModelLayerLocation NAVAL_MINE = register("naval_mine");
 	public static final ModelLayerLocation WINDMILL = register("windmill");
 	public static final ModelLayerLocation ROCKET = register("rocket");
 	public static final ModelLayerLocation SUBMERSIBLE = register("submersible");
-
 	public static final ModelLayerLocation COCONUT_BAZOOKA = register("coconut_bazooka");
 	public static final ModelLayerLocation SPEAR_GUN = register("spear_gun");
-
 	public static final ModelLayerLocation MINING_HELMET = register("mining_helmet");
 	public static final ModelLayerLocation DIVING_HELMET = register("diving_helmet");
+
+	private static ModelLayerLocation register(String location) {
+		return register(location, "main");
+	}
+
+	private static ModelLayerLocation register(String location, String layer) {
+		ModelLayerLocation modellayerlocation = createLocation(location, layer);
+		if (!ALL_MODELS.add(modellayerlocation)) {
+			throw new IllegalStateException("Duplicate registration for " + modellayerlocation);
+		} else {
+			return modellayerlocation;
+		}
+	}
+
+	private static ModelLayerLocation createLocation(String location, String layer) {
+		return new ModelLayerLocation(new TechnologicaLocation(location), layer);
+	}
 
 	public static ModelLayerLocation createBoatModelName(TechnologicaBoat.Type type) {
 		return createLocation("boat/" + type.getName(), "main");
@@ -78,20 +92,7 @@ public class TechnologicaModelLayers {
 		return createLocation("chest_boat/" + type.getName(), "main");
 	}
 
-	private static ModelLayerLocation createLocation(String p_171301_, String p_171302_) {
-		return new ModelLayerLocation(new TechnologicaLocation(p_171301_), p_171302_);
-	}
-
-	private static ModelLayerLocation register(String name) {
-		return register(name, "main");
-	}
-
-	private static ModelLayerLocation register(String p_171296_, String p_171297_) {
-		ModelLayerLocation modellayerlocation = createLocation(p_171296_, p_171297_);
-		if (!ALL_MODELS.add(modellayerlocation)) {
-			throw new IllegalStateException("Duplicate registration for " + modellayerlocation);
-		} else {
-			return modellayerlocation;
-		}
+	public static Stream<ModelLayerLocation> getKnownLocations() {
+		return ALL_MODELS.stream();
 	}
 }

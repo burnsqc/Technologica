@@ -1,9 +1,7 @@
 package com.technologica.api.tlregen.resourcegen.util;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
-import java.util.stream.IntStream;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -17,34 +15,14 @@ import net.minecraft.client.resources.model.BlockModelRotation;
 import net.minecraftforge.client.model.generators.ModelFile;
 
 public final class TLReGenConfiguredModel {
-	public static final int DEFAULT_WEIGHT = 1;
-	public final ModelFile model;
-	public final int rotationX;
-	public final int rotationY;
-	public final boolean uvLock;
-	public final int weight;
+	private static final int DEFAULT_WEIGHT = 1;
+	private final ModelFile model;
+	private final int rotationX;
+	private final int rotationY;
+	private final boolean uvLock;
+	private final int weight;
 
-	private static IntStream validRotations() {
-		return IntStream.range(0, 4).map(i -> i * 90);
-	}
-
-	public static TLReGenConfiguredModel[] allYRotations(ModelFile model, int x, boolean uvlock) {
-		return allYRotations(model, x, uvlock, DEFAULT_WEIGHT);
-	}
-
-	public static TLReGenConfiguredModel[] allYRotations(ModelFile model, int x, boolean uvlock, int weight) {
-		return validRotations().mapToObj(y -> new TLReGenConfiguredModel(model, x, y, uvlock, weight)).toArray(TLReGenConfiguredModel[]::new);
-	}
-
-	public static TLReGenConfiguredModel[] allRotations(ModelFile model, boolean uvlock) {
-		return allRotations(model, uvlock, DEFAULT_WEIGHT);
-	}
-
-	public static TLReGenConfiguredModel[] allRotations(ModelFile model, boolean uvlock, int weight) {
-		return validRotations().mapToObj(x -> allYRotations(model, x, uvlock, weight)).flatMap(Arrays::stream).toArray(TLReGenConfiguredModel[]::new);
-	}
-
-	public TLReGenConfiguredModel(ModelFile model, int rotationX, int rotationY, boolean uvLock, int weight) {
+	private TLReGenConfiguredModel(ModelFile model, int rotationX, int rotationY, boolean uvLock, int weight) {
 		Preconditions.checkNotNull(model);
 		this.model = model;
 		checkRotation(rotationX, rotationY);
@@ -55,7 +33,7 @@ public final class TLReGenConfiguredModel {
 		this.weight = weight;
 	}
 
-	public TLReGenConfiguredModel(ModelFile model, int rotationX, int rotationY, boolean uvLock) {
+	private TLReGenConfiguredModel(ModelFile model, int rotationX, int rotationY, boolean uvLock) {
 		this(model, rotationX, rotationY, uvLock, DEFAULT_WEIGHT);
 	}
 
@@ -63,11 +41,11 @@ public final class TLReGenConfiguredModel {
 		this(model, 0, 0, false);
 	}
 
-	static void checkRotation(int rotationX, int rotationY) {
+	private static void checkRotation(int rotationX, int rotationY) {
 		Preconditions.checkArgument(BlockModelRotation.by(rotationX, rotationY) != null, "Invalid model rotation x=%d, y=%d", rotationX, rotationY);
 	}
 
-	static void checkWeight(int weight) {
+	private static void checkWeight(int weight) {
 		Preconditions.checkArgument(weight >= 1, "Model weight must be greater than or equal to 1. Found: %d", weight);
 	}
 
@@ -115,7 +93,7 @@ public final class TLReGenConfiguredModel {
 			this(null, ImmutableList.of());
 		}
 
-		Builder(@Nullable Function<TLReGenConfiguredModel[], T> callback, List<TLReGenConfiguredModel> otherModels) {
+		private Builder(@Nullable Function<TLReGenConfiguredModel[], T> callback, List<TLReGenConfiguredModel> otherModels) {
 			this.callback = callback;
 			this.otherModels = otherModels;
 		}
@@ -143,13 +121,7 @@ public final class TLReGenConfiguredModel {
 			return this;
 		}
 
-		public Builder<T> weight(int value) {
-			checkWeight(value);
-			weight = value;
-			return this;
-		}
-
-		public TLReGenConfiguredModel buildLast() {
+		private TLReGenConfiguredModel buildLast() {
 			return new TLReGenConfiguredModel(model, rotationX, rotationY, uvLock, weight);
 		}
 
@@ -160,10 +132,6 @@ public final class TLReGenConfiguredModel {
 		public T addModel() {
 			Preconditions.checkNotNull(callback, "Cannot use addModel() without an owning builder present");
 			return callback.apply(build());
-		}
-
-		public Builder<T> nextModel() {
-			return new Builder<>(callback, Arrays.asList(build()));
 		}
 	}
 }

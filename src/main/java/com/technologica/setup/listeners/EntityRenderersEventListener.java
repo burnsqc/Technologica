@@ -1,6 +1,5 @@
 package com.technologica.setup.listeners;
 
-import com.technologica.Technologica;
 import com.technologica.client.model.AlligatorModel;
 import com.technologica.client.model.BeaverModel;
 import com.technologica.client.model.BiPlaneModel;
@@ -122,45 +121,18 @@ import net.minecraft.client.model.geom.LayerDefinitions;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
-import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-/**
- * <p>
- * This class listens for EntityRenderersEvent.RegisterLayerDefinitions and EntityRenderersEvent.RegisterRenderers which are fired on the mod-specific event bus on the client side.
- * <p>
- * When RegisterLayerDefinitions is intercepted, ModelLayerLocations are mapped to LayerDefinition suppliers.
- * <p>
- * When RegisterRenderers is intercepted, EntityTypes are mapped to EntityRendererProviders and BlockEntityTypes are mapped to BlockEntityRendererProviders.
- * </p>
- * 
- * @tl.status BLUE
- */
+@Mod.EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public final class EntityRenderersEventListener {
-	private static long modelLayersRequired;
-	private static long modelLayersCompleted;
-	private static long entitiesRequired;
-	private static long entitiesCompleted;
-	private static long blockEntitiesRequired;
-	private static long blockEntitiesCompleted;
 
-	/**
-	 * <p>
-	 * Map ModelLayerLocations to LayerDefinition suppliers in 3 steps:
-	 * <p>
-	 * 1. Count how many Technologica ModelLayerLocations do not yet have LayerDefinition suppliers and log.
-	 * <p>
-	 * 2. Map ModelLayerLocations to LayerDefinition suppliers.
-	 * <p>
-	 * 3. Count how many Technologica EntityTypes now have LayerDefinition suppliers and log.
-	 * </p>
-	 * 
-	 * @param event EntityRenderersEvent.RegisterLayerDefinitions
-	 */
+	@SubscribeEvent
 	public static void onRegisterLayerDefinitions(final EntityRenderersEvent.RegisterLayerDefinitions event) {
-		// modelLayersRequired = TechnologicaModelLayers.ALL_MODELS.stream().filter(entity -> !ForgeHooksClient.layerDefinitions.containsKey(entity)).count();
-
 		event.registerLayerDefinition(TechnologicaModelLayers.ALLIGATOR, AlligatorModel::createBodyLayer);
 		event.registerLayerDefinition(TechnologicaModelLayers.BEAVER, BeaverModel::createBodyLayer);
 		event.registerLayerDefinition(TechnologicaModelLayers.BUFFALO, BuffaloModel::createBodyLayer);
@@ -219,36 +191,10 @@ public final class EntityRenderersEventListener {
 		for (TechnologicaBoat.Type boat$type : TechnologicaBoat.Type.values()) {
 			event.registerLayerDefinition(TechnologicaModelLayers.createBoatModelName(boat$type), () -> BoatModel.createBodyModel());
 		}
-
-		// modelLayersCompleted = TechnologicaModelLayers.ALL_MODELS.stream().filter(entity -> ForgeHooksClient.layerDefinitions.containsKey(entity)).count();
-		Technologica.LOGGER.info("SETUP - LAYER DEFINITIONS - " + modelLayersCompleted + " OF " + modelLayersRequired);
-		if (modelLayersCompleted != modelLayersRequired) {
-			Technologica.LOGGER.error("LAYER DEFINITION MAPPING FAILED: " + (modelLayersRequired - modelLayersCompleted) + " MISSING");
-		}
 	}
 
-	/**
-	 * <p>
-	 * Map EntityTypes to EntityRendererProviders and map BlockEntityTypes to BlockEntityRendererProviders in 6 steps:
-	 * <p>
-	 * 1. Count how many Technologica EntityTypes do not yet have EntityRendererProviders and log.
-	 * <p>
-	 * 2. Map EntityTypes to EntityRendererProviders.
-	 * <p>
-	 * 3. Count how many Technologica EntityTypes now have EntityRendererProviders and log.
-	 * </p>
-	 * 4. Count how many Technologica BlockEntityTypes do not yet have BlockEntityRendererProviders and log.
-	 * <p>
-	 * 5. Map BlockEntityTypes to BlockEntityRendererProviders.
-	 * <p>
-	 * 6. Count how many Technologica BlockEntityTypes now have BlockEntityRendererProviders and log.
-	 * </p>
-	 * 
-	 * @param event EntityRenderersEvent.RegisterRenderers
-	 */
+	@SubscribeEvent
 	public static void onRegisterRenderers(final EntityRenderersEvent.RegisterRenderers event) {
-		entitiesRequired = TechnologicaEntityTypes.ENTITY_TYPES.getEntries().stream().filter(entity -> !EntityRenderers.PROVIDERS.containsKey(entity.get())).count();
-
 		event.registerEntityRenderer(TechnologicaEntityTypes.TECHNOLOGICA_BOAT.get(), context -> new TechnologicaBoatRenderer(context, false));
 		event.registerEntityRenderer(TechnologicaEntityTypes.INVISIBLE_SEAT.get(), InvisibleRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityTypes.COCONUT.get(), renderManager -> new ThrownItemRenderer<>(renderManager, 1.0F, true));
@@ -304,14 +250,6 @@ public final class EntityRenderersEventListener {
 		event.registerEntityRenderer(TechnologicaEntityTypes.MAGIC_LIGHTNING.get(), MagicLightningBoltRenderer::new);
 		event.registerEntityRenderer(TechnologicaEntityTypes.SUBMERSIBLE.get(), context -> new SubmersibleRenderer(context));
 
-		entitiesCompleted = TechnologicaEntityTypes.ENTITY_TYPES.getEntries().stream().filter(entity -> EntityRenderers.PROVIDERS.containsKey(entity.get())).count();
-		Technologica.LOGGER.info("SETUP - ENTITY RENDERERS - " + entitiesCompleted + " OF " + entitiesRequired);
-		if (entitiesCompleted != entitiesRequired) {
-			Technologica.LOGGER.error("ENTITY RENDERER MAPPING FAILED: " + (entitiesRequired - entitiesCompleted) + " MISSING");
-		}
-
-		// blockEntitiesRequired = TechnologicaBlockEntityTypes.BLOCK_ENTITY_TYPES.getEntries().stream().filter(blockEntity -> !BlockEntityRenderers.PROVIDERS.containsKey(blockEntity.get())).count();
-
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.ANNUNCIATOR_TILE.get(), AnnunciatorRenderer::new);
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.MONITOR_TILE.get(), MonitorRenderer::new);
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.VANILLA_SIGN.get(), SignRenderer::new);
@@ -324,11 +262,5 @@ public final class EntityRenderersEventListener {
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.SAWMILL_TILE.get(), SawmillRenderer::new);
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.WINDMILL.get(), WindmillRenderer::new);
 		event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.LAND_MINE_TILE.get(), LandMineRenderer::new);
-
-		// blockEntitiesCompleted = TechnologicaBlockEntityTypes.BLOCK_ENTITY_TYPES.getEntries().stream().filter(blockEntity -> BlockEntityRenderers.PROVIDERS.containsKey(blockEntity.get())).count();
-		Technologica.LOGGER.info("SETUP - BLOCK ENTITY RENDERERS - " + blockEntitiesCompleted + " OF " + blockEntitiesRequired);
-		if (blockEntitiesCompleted != blockEntitiesRequired) {
-			Technologica.LOGGER.error("BLOCK ENTITY RENDERER MAPPING FAILED: " + (blockEntitiesRequired - blockEntitiesCompleted) + " MISSING");
-		}
 	}
 }

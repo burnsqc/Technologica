@@ -16,7 +16,7 @@ import net.minecraft.data.DataProvider;
 import net.minecraft.resources.ResourceLocation;
 
 public abstract class TLReGenAtlases extends TLReGenAssetGenerator {
-	private final Map<ResourceLocation, SourceList> resources = new HashMap<>();
+	private final Map<ResourceLocation, List<SpriteSource>> resources = new HashMap<>();
 
 	@Override
 	public final CompletableFuture<?> run(final CachedOutput cache) {
@@ -27,7 +27,7 @@ public abstract class TLReGenAtlases extends TLReGenAssetGenerator {
 		} else {
 			List<CompletableFuture<?>> list = new ArrayList<CompletableFuture<?>>();
 			resources.forEach((key, value) -> {
-				JsonObject json = SpriteSources.FILE_CODEC.encodeStart(dynamicOps, value.sources).getOrThrow(false, msg -> LOGGER.error("Failed to encode")).getAsJsonObject();
+				JsonObject json = SpriteSources.FILE_CODEC.encodeStart(dynamicOps, value).getOrThrow(false, msg -> LOGGER.error("Failed to encode")).getAsJsonObject();
 				list.add(DataProvider.saveStable(cache, json, packOutput.createPathProvider(target, "atlases").json(key)));
 			});
 			return CompletableFuture.allOf(list.toArray(CompletableFuture[]::new));
@@ -39,20 +39,22 @@ public abstract class TLReGenAtlases extends TLReGenAssetGenerator {
 		return super.getName() + ".atlases";
 	}
 
-	/*
-	 * HELPER METHODS
-	 */
-
-	protected final SourceList atlas(ResourceLocation atlas) {
-		return resources.computeIfAbsent(atlas, $ -> new SourceList());
+	public final void atlas(ResourceLocation atlas, List<SpriteSource> sources) {
+		resources.put(atlas, sources);
 	}
 
-	protected static final class SourceList {
-		private final List<SpriteSource> sources = new ArrayList<>();
-
-		public SourceList addSource(SpriteSource source) {
-			sources.add(source);
-			return this;
-		}
+	protected class VanillaAtlases {
+		public final static ResourceLocation ARMOR_TRIMS = new ResourceLocation("armor_trims");
+		public final static ResourceLocation BANNER_PATTERNS = new ResourceLocation("banner_patterns");
+		public final static ResourceLocation BEDS = new ResourceLocation("beds");
+		public final static ResourceLocation BLOCKS = new ResourceLocation("blocks");
+		public final static ResourceLocation CHESTS = new ResourceLocation("chests");
+		public final static ResourceLocation DECORATED_POT = new ResourceLocation("decorated_pot");
+		public final static ResourceLocation MOB_EFFECTS = new ResourceLocation("mob_effects");
+		public final static ResourceLocation PAINTINGS = new ResourceLocation("paintings");
+		public final static ResourceLocation PARTICLES = new ResourceLocation("particles");
+		public final static ResourceLocation SHIELD_PATTERNS = new ResourceLocation("shield_patterns");
+		public final static ResourceLocation SHULKER_BOXES = new ResourceLocation("shulker_boxes");
+		public final static ResourceLocation SIGNS = new ResourceLocation("chests");
 	}
 }

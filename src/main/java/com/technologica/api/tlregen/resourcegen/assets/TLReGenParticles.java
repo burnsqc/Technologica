@@ -76,11 +76,11 @@ public abstract class TLReGenParticles extends TLReGenAssetGenerator {
 		});
 	}
 
-	protected final void spriteSet(ParticleType<?> type, ResourceLocation texture, ResourceLocation... textures) {
+	private final void spriteSet(ParticleType<?> type, ResourceLocation texture, ResourceLocation... textures) {
 		spriteSet(type, Stream.concat(Stream.of(texture), Arrays.stream(textures))::iterator);
 	}
 
-	protected final void spriteSet(ParticleType<?> type, Iterable<ResourceLocation> textures) {
+	private final void spriteSet(ParticleType<?> type, Iterable<ResourceLocation> textures) {
 		var particle = Preconditions.checkNotNull(ForgeRegistries.PARTICLE_TYPES.getKey(type), "The particle type is not registered");
 
 		List<String> desc = new ArrayList<>();

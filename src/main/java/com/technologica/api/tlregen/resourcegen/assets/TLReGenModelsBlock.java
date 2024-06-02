@@ -72,20 +72,12 @@ public abstract class TLReGenModelsBlock extends TLReGenAssetGenerator {
 	 * MODELS
 	 */
 
-	public static ResourceLocation modLoc(String name) {
-		return new ResourceLocation(modid, name);
-	}
-
 	public static ModelBuilder<BlockModelBuilder> withExistingParent(String name, String parent) {
 		return withExistingParent(name, new ResourceLocation(parent));
 	}
 
 	public static ModelBuilder<BlockModelBuilder> withExistingParent(String name, ResourceLocation parent) {
 		return getBuilder(name).parent(getExistingFile(parent));
-	}
-
-	public static ModelBuilder<BlockModelBuilder> cube(String name, ResourceLocation down, ResourceLocation up, ResourceLocation north, ResourceLocation south, ResourceLocation east, ResourceLocation west) {
-		return withExistingParent(name, "cube").texture("down", down).texture("up", up).texture("north", north).texture("south", south).texture("east", east).texture("west", west);
 	}
 
 	private static ModelBuilder<BlockModelBuilder> singleTexture(String name, String parent, ResourceLocation texture) {
@@ -108,10 +100,6 @@ public abstract class TLReGenModelsBlock extends TLReGenAssetGenerator {
 		return singleTexture(name, "block/cube_all", "all", texture);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> cubeTop(String name, ResourceLocation side, ResourceLocation top) {
-		return withExistingParent(name, "block/cube_top").texture("side", side).texture("top", top);
-	}
-
 	private static ModelBuilder<BlockModelBuilder> sideBottomTop(String name, String parent, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
 		return withExistingParent(name, parent).texture("side", side).texture("bottom", bottom).texture("top", top);
 	}
@@ -124,16 +112,8 @@ public abstract class TLReGenModelsBlock extends TLReGenAssetGenerator {
 		return withExistingParent(name, "block/cube_column").texture("side", side).texture("end", end);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> cubeColumnHorizontal(String name, ResourceLocation side, ResourceLocation end) {
+	static ModelBuilder<BlockModelBuilder> cubeColumnHorizontal(String name, ResourceLocation side, ResourceLocation end) {
 		return withExistingParent(name, "block/cube_column_horizontal").texture("side", side).texture("end", end);
-	}
-
-	public static ModelBuilder<BlockModelBuilder> orientableVertical(String name, ResourceLocation side, ResourceLocation front) {
-		return withExistingParent(name, "block/orientable_vertical").texture("side", side).texture("front", front);
-	}
-
-	public static ModelBuilder<BlockModelBuilder> orientableWithBottom(String name, ResourceLocation side, ResourceLocation front, ResourceLocation bottom, ResourceLocation top) {
-		return withExistingParent(name, "block/orientable_with_bottom").texture("side", side).texture("front", front).texture("bottom", bottom).texture("top", top);
 	}
 
 	public static ModelBuilder<BlockModelBuilder> orientable(String name, ResourceLocation side, ResourceLocation front, ResourceLocation top) {
@@ -152,11 +132,11 @@ public abstract class TLReGenModelsBlock extends TLReGenAssetGenerator {
 		return sideBottomTop(name, "block/stairs", side, bottom, top);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> stairsOuter(String name, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
+	static ModelBuilder<BlockModelBuilder> stairsOuter(String name, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
 		return sideBottomTop(name, "block/outer_stairs", side, bottom, top);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> stairsInner(String name, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
+	static ModelBuilder<BlockModelBuilder> stairsInner(String name, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
 		return sideBottomTop(name, "block/inner_stairs", side, bottom, top);
 	}
 
@@ -176,10 +156,6 @@ public abstract class TLReGenModelsBlock extends TLReGenAssetGenerator {
 		return singleTexture(name, "block/button_pressed", texture);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> buttonInventory(String name, ResourceLocation texture) {
-		return singleTexture(name, "block/button_inventory", texture);
-	}
-
 	public static ModelBuilder<BlockModelBuilder> pressurePlate(String name, ResourceLocation texture) {
 		return singleTexture(name, "block/pressure_plate_up", texture);
 	}
@@ -192,11 +168,11 @@ public abstract class TLReGenModelsBlock extends TLReGenAssetGenerator {
 		return getBuilder(name).texture("particle", texture);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> fencePost(String name, ResourceLocation texture) {
+	static ModelBuilder<BlockModelBuilder> fencePost(String name, ResourceLocation texture) {
 		return singleTexture(name, "block/fence_post", texture);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> fenceSide(String name, ResourceLocation texture) {
+	static ModelBuilder<BlockModelBuilder> fenceSide(String name, ResourceLocation texture) {
 		return singleTexture(name, "block/fence_side", texture);
 	}
 
@@ -208,103 +184,63 @@ public abstract class TLReGenModelsBlock extends TLReGenAssetGenerator {
 		return singleTexture(name, "block/template_fence_gate", texture);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> fenceGateOpen(String name, ResourceLocation texture) {
+	static ModelBuilder<BlockModelBuilder> fenceGateOpen(String name, ResourceLocation texture) {
 		return singleTexture(name, "block/template_fence_gate_open", texture);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> fenceGateWall(String name, ResourceLocation texture) {
+	static ModelBuilder<BlockModelBuilder> fenceGateWall(String name, ResourceLocation texture) {
 		return singleTexture(name, "block/template_fence_gate_wall", texture);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> fenceGateWallOpen(String name, ResourceLocation texture) {
+	static ModelBuilder<BlockModelBuilder> fenceGateWallOpen(String name, ResourceLocation texture) {
 		return singleTexture(name, "block/template_fence_gate_wall_open", texture);
-	}
-
-	public static ModelBuilder<BlockModelBuilder> wallPost(String name, ResourceLocation wall) {
-		return singleTexture(name, "block/template_wall_post", "wall", wall);
-	}
-
-	public static ModelBuilder<BlockModelBuilder> wallSide(String name, ResourceLocation wall) {
-		return singleTexture(name, "block/template_wall_side", "wall", wall);
-	}
-
-	public static ModelBuilder<BlockModelBuilder> wallSideTall(String name, ResourceLocation wall) {
-		return singleTexture(name, "block/template_wall_side_tall", "wall", wall);
-	}
-
-	public static ModelBuilder<BlockModelBuilder> wallInventory(String name, ResourceLocation wall) {
-		return singleTexture(name, "block/wall_inventory", "wall", wall);
-	}
-
-	private static ModelBuilder<BlockModelBuilder> pane(String name, String parent, ResourceLocation pane, ResourceLocation edge) {
-		return withExistingParent(name, "block/" + parent).texture("pane", pane).texture("edge", edge);
-	}
-
-	public static ModelBuilder<BlockModelBuilder> panePost(String name, ResourceLocation pane, ResourceLocation edge) {
-		return pane(name, "template_glass_pane_post", pane, edge);
-	}
-
-	public static ModelBuilder<BlockModelBuilder> paneSide(String name, ResourceLocation pane, ResourceLocation edge) {
-		return pane(name, "template_glass_pane_side", pane, edge);
-	}
-
-	public static ModelBuilder<BlockModelBuilder> paneSideAlt(String name, ResourceLocation pane, ResourceLocation edge) {
-		return pane(name, "template_glass_pane_side_alt", pane, edge);
-	}
-
-	public static ModelBuilder<BlockModelBuilder> paneNoSide(String name, ResourceLocation pane) {
-		return singleTexture(name, "block/template_glass_pane_noside", "pane", pane);
-	}
-
-	public static ModelBuilder<BlockModelBuilder> paneNoSideAlt(String name, ResourceLocation pane) {
-		return singleTexture(name, "block/template_glass_pane_noside_alt", "pane", pane);
 	}
 
 	private static ModelBuilder<BlockModelBuilder> door(String name, String model, ResourceLocation bottom, ResourceLocation top) {
 		return withExistingParent(name, "block/" + model).texture("bottom", bottom).texture("top", top);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> doorBottomLeft(String name, ResourceLocation bottom, ResourceLocation top) {
+	static ModelBuilder<BlockModelBuilder> doorBottomLeft(String name, ResourceLocation bottom, ResourceLocation top) {
 		return door(name, "door_bottom_left", bottom, top);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> doorBottomLeftOpen(String name, ResourceLocation bottom, ResourceLocation top) {
+	static ModelBuilder<BlockModelBuilder> doorBottomLeftOpen(String name, ResourceLocation bottom, ResourceLocation top) {
 		return door(name, "door_bottom_left_open", bottom, top);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> doorBottomRight(String name, ResourceLocation bottom, ResourceLocation top) {
+	static ModelBuilder<BlockModelBuilder> doorBottomRight(String name, ResourceLocation bottom, ResourceLocation top) {
 		return door(name, "door_bottom_right", bottom, top);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> doorBottomRightOpen(String name, ResourceLocation bottom, ResourceLocation top) {
+	static ModelBuilder<BlockModelBuilder> doorBottomRightOpen(String name, ResourceLocation bottom, ResourceLocation top) {
 		return door(name, "door_bottom_right_open", bottom, top);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> doorTopLeft(String name, ResourceLocation bottom, ResourceLocation top) {
+	static ModelBuilder<BlockModelBuilder> doorTopLeft(String name, ResourceLocation bottom, ResourceLocation top) {
 		return door(name, "door_top_left", bottom, top);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> doorTopLeftOpen(String name, ResourceLocation bottom, ResourceLocation top) {
+	static ModelBuilder<BlockModelBuilder> doorTopLeftOpen(String name, ResourceLocation bottom, ResourceLocation top) {
 		return door(name, "door_top_left_open", bottom, top);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> doorTopRight(String name, ResourceLocation bottom, ResourceLocation top) {
+	static ModelBuilder<BlockModelBuilder> doorTopRight(String name, ResourceLocation bottom, ResourceLocation top) {
 		return door(name, "door_top_right", bottom, top);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> doorTopRightOpen(String name, ResourceLocation bottom, ResourceLocation top) {
+	static ModelBuilder<BlockModelBuilder> doorTopRightOpen(String name, ResourceLocation bottom, ResourceLocation top) {
 		return door(name, "door_top_right_open", bottom, top);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> trapdoorBottom(String name, ResourceLocation texture) {
+	static ModelBuilder<BlockModelBuilder> trapdoorBottom(String name, ResourceLocation texture) {
 		return singleTexture(name, "block/template_trapdoor_bottom", texture);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> trapdoorTop(String name, ResourceLocation texture) {
+	static ModelBuilder<BlockModelBuilder> trapdoorTop(String name, ResourceLocation texture) {
 		return singleTexture(name, "block/template_trapdoor_top", texture);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> trapdoorOpen(String name, ResourceLocation texture) {
+	static ModelBuilder<BlockModelBuilder> trapdoorOpen(String name, ResourceLocation texture) {
 		return singleTexture(name, "block/template_trapdoor_open", texture);
 	}
 
@@ -312,31 +248,19 @@ public abstract class TLReGenModelsBlock extends TLReGenAssetGenerator {
 		return singleTexture(name, "block/template_orientable_trapdoor_bottom", texture);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> trapdoorOrientableTop(String name, ResourceLocation texture) {
+	static ModelBuilder<BlockModelBuilder> trapdoorOrientableTop(String name, ResourceLocation texture) {
 		return singleTexture(name, "block/template_orientable_trapdoor_top", texture);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> trapdoorOrientableOpen(String name, ResourceLocation texture) {
+	static ModelBuilder<BlockModelBuilder> trapdoorOrientableOpen(String name, ResourceLocation texture) {
 		return singleTexture(name, "block/template_orientable_trapdoor_open", texture);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> torch(String name, ResourceLocation torch) {
-		return singleTexture(name, "block/template_torch", "torch", torch);
-	}
-
-	public static ModelBuilder<BlockModelBuilder> torchWall(String name, ResourceLocation torch) {
-		return singleTexture(name, "block/template_torch_wall", "torch", torch);
-	}
-
-	public static ModelBuilder<BlockModelBuilder> carpet(String name, ResourceLocation wool) {
-		return singleTexture(name, "block/carpet", "wool", wool);
-	}
-
 	public static ModelBuilder<BlockModelBuilder> hollowLogModel(Block block) {
-		return withExistingParent(ResourceLocationHelper.getPath(block), modLoc("hollow_log")).texture("side", blockTexture(TechnologicaBlocks.FROSTBITTEN_LOG.get())).texture("end", blockTexture(TechnologicaBlocks.FROSTBITTEN_LOG.get()) + "_top").texture("inside", blockTexture(TechnologicaBlocks.STRIPPED_FROSTBITTEN_LOG.get()) + "_solid").renderType("translucent");
+		return withExistingParent(ResourceLocationHelper.getPath(block), new TechnologicaLocation("hollow_log")).texture("side", blockTexture(TechnologicaBlocks.FROSTBITTEN_LOG.get())).texture("end", blockTexture(TechnologicaBlocks.FROSTBITTEN_LOG.get()) + "_top").texture("inside", blockTexture(TechnologicaBlocks.STRIPPED_FROSTBITTEN_LOG.get()) + "_solid").renderType("translucent");
 	}
 
-	public static ResourceLocation blockTexture(Block block) {
+	private static ResourceLocation blockTexture(Block block) {
 		ResourceLocation name = key(block);
 		return new ResourceLocation(name.getNamespace(), ModelProvider.BLOCK_FOLDER + "/" + name.getPath());
 	}
@@ -346,11 +270,11 @@ public abstract class TLReGenModelsBlock extends TLReGenAssetGenerator {
 	}
 
 	public static ModelFile tableModel(Block block, ResourceLocation texture, String renderType) {
-		return singleTexture(ResourceLocationHelper.getPath(block), modLoc("table"), "planks", texture).renderType(renderType);
+		return singleTexture(ResourceLocationHelper.getPath(block), new TechnologicaLocation("table"), "planks", texture).renderType(renderType);
 	}
 
 	public static ModelFile displayModel(Block block) {
-		return withExistingParent(ResourceLocationHelper.getPath(block), modLoc("display")).texture("case", blockTexture(block)).texture("base", new ResourceLocation("block/black_wool")).renderType("cutout_mipped");
+		return withExistingParent(ResourceLocationHelper.getPath(block), new TechnologicaLocation("display")).texture("case", blockTexture(block)).texture("base", new ResourceLocation("block/black_wool")).renderType("cutout_mipped");
 	}
 
 	public static ModelFile buttonInventoryModel(Block block, String renderType) {
@@ -362,27 +286,27 @@ public abstract class TLReGenModelsBlock extends TLReGenAssetGenerator {
 	}
 
 	public static ModelFile basin(String name, String top, String bottom, String side) {
-		return withExistingParent(name, modLoc("basin_model")).texture("particle", side).texture("top", top).texture("bottom", bottom).texture("side", side).texture("inside", bottom);
+		return withExistingParent(name, new TechnologicaLocation("basin_model")).texture("particle", side).texture("top", top).texture("bottom", bottom).texture("side", side).texture("inside", bottom);
 	}
 
 	public static ModelFile leafyCrystalModel(Block block) {
 		ResourceLocation location = ForgeRegistries.BLOCKS.getKey(block);
-		return singleTexture(ResourceLocationHelper.getPath(block), modLoc("leafy_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath())).renderType("translucent");
+		return singleTexture(ResourceLocationHelper.getPath(block), new TechnologicaLocation("leafy_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath())).renderType("translucent");
 	}
 
 	public static ModelFile hexagonalCrystalModel(Block block) {
 		ResourceLocation location = ForgeRegistries.BLOCKS.getKey(block);
-		return singleTexture(ResourceLocationHelper.getPath(block), modLoc("hexagonal_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath())).renderType("translucent");
+		return singleTexture(ResourceLocationHelper.getPath(block), new TechnologicaLocation("hexagonal_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath())).renderType("translucent");
 	}
 
 	public static ModelFile cubicCrystalModel(Block block) {
 		ResourceLocation location = ForgeRegistries.BLOCKS.getKey(block);
-		return singleTexture(ResourceLocationHelper.getPath(block), modLoc("cubic_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath())).renderType("translucent");
+		return singleTexture(ResourceLocationHelper.getPath(block), new TechnologicaLocation("cubic_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath())).renderType("translucent");
 	}
 
 	public static ModelFile spikyCrystalModel(Block block) {
 		ResourceLocation location = ForgeRegistries.BLOCKS.getKey(block);
-		return singleTexture(ResourceLocationHelper.getPath(block), modLoc("spiky_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath())).renderType("translucent");
+		return singleTexture(ResourceLocationHelper.getPath(block), new TechnologicaLocation("spiky_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath())).renderType("translucent");
 	}
 
 	public static ModelFile.ExistingModelFile getExistingFile(ResourceLocation path) {
@@ -405,20 +329,20 @@ public abstract class TLReGenModelsBlock extends TLReGenAssetGenerator {
 		buttonInventory(block, texture, renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> button(Block block, ResourceLocation texture, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> button(Block block, ResourceLocation texture, String renderType) {
 		return withExistingParent(name(block), "block/button").texture("texture", texture).renderType(renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> buttonPressed(Block block, ResourceLocation texture, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> buttonPressed(Block block, ResourceLocation texture, String renderType) {
 		return withExistingParent(name(block) + "_pressed", "block/button_pressed").texture("texture", texture).renderType(renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> buttonInventory(Block block, ResourceLocation texture, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> buttonInventory(Block block, ResourceLocation texture, String renderType) {
 		return withExistingParent(name(block) + "_inventory", "block/button_inventory").texture("texture", texture).renderType(renderType);
 	}
 
 	public static ModelBuilder<BlockModelBuilder> chair(Block block, ResourceLocation texture, String renderType) {
-		return singleTexture(ResourceLocationHelper.getPath(block), modLoc("chair"), "planks", texture).renderType(renderType);
+		return singleTexture(ResourceLocationHelper.getPath(block), new TechnologicaLocation("chair"), "planks", texture).renderType(renderType);
 	}
 
 	public static ModelBuilder<BlockModelBuilder> hexagonalCrystal(Block block, ResourceLocation texture) {
@@ -463,15 +387,15 @@ public abstract class TLReGenModelsBlock extends TLReGenAssetGenerator {
 		bushTop(block, 7, texture, renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> bush(Block block, int stage, ResourceLocation texture, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> bush(Block block, int stage, ResourceLocation texture, String renderType) {
 		return withExistingParent(name(block) + "_stage" + stage, "block/cross").texture("cross", texture + "_stage" + stage).renderType(renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> bushBottom(Block block, int stage, ResourceLocation texture, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> bushBottom(Block block, int stage, ResourceLocation texture, String renderType) {
 		return withExistingParent(name(block) + "_bottom_stage" + stage, "block/cross").texture("cross", texture + "_bottom_stage" + stage).renderType(renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> bushTop(Block block, int stage, ResourceLocation texture, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> bushTop(Block block, int stage, ResourceLocation texture, String renderType) {
 		return withExistingParent(name(block) + "_top_stage" + stage, "block/cross").texture("cross", texture + "_top_stage" + stage).renderType(renderType);
 	}
 
@@ -512,15 +436,15 @@ public abstract class TLReGenModelsBlock extends TLReGenAssetGenerator {
 		cropTop(block, 7, texture, renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> crop(Block block, int stage, ResourceLocation texture, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> crop(Block block, int stage, ResourceLocation texture, String renderType) {
 		return withExistingParent(name(block) + "_stage" + stage, "block/crop").texture("crop", texture + "_stage" + stage).renderType(renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> cropBottom(Block block, int stage, ResourceLocation texture, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> cropBottom(Block block, int stage, ResourceLocation texture, String renderType) {
 		return withExistingParent(name(block) + "_bottom_stage" + stage, "block/crop").texture("crop", texture + "_bottom_stage" + stage).renderType(renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> cropTop(Block block, int stage, ResourceLocation texture, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> cropTop(Block block, int stage, ResourceLocation texture, String renderType) {
 		return withExistingParent(name(block) + "_top_stage" + stage, "block/crop").texture("crop", texture + "_top_stage" + stage).renderType(renderType);
 	}
 
@@ -535,7 +459,7 @@ public abstract class TLReGenModelsBlock extends TLReGenAssetGenerator {
 		gourdStem(block, 7, texture, renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> gourdStem(Block block, int stage, ResourceLocation texture, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> gourdStem(Block block, int stage, ResourceLocation texture, String renderType) {
 		return withExistingParent(name(block) + "_stage" + stage, "block/stem_growth" + stage).texture("stem", texture).renderType(renderType);
 	}
 
@@ -565,11 +489,11 @@ public abstract class TLReGenModelsBlock extends TLReGenAssetGenerator {
 		return withExistingParent(name(block), "block/cube_column").texture("side", side).texture("end", end).renderType(renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> cubeColumnHorizontal(Block block, ResourceLocation side, ResourceLocation end) {
+	private static ModelBuilder<BlockModelBuilder> cubeColumnHorizontal(Block block, ResourceLocation side, ResourceLocation end) {
 		return withExistingParent(name(block) + "_horizontal", "block/cube_column_horizontal").texture("side", side).texture("end", end).renderType("solid");
 	}
 
-	public static ModelBuilder<BlockModelBuilder> cubeColumnHorizontal(Block block, ResourceLocation side, ResourceLocation end, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> cubeColumnHorizontal(Block block, ResourceLocation side, ResourceLocation end, String renderType) {
 		return withExistingParent(name(block) + "_horizontal", "block/cube_column_horizontal").texture("side", side).texture("end", end).renderType(renderType);
 	}
 
@@ -584,35 +508,35 @@ public abstract class TLReGenModelsBlock extends TLReGenAssetGenerator {
 		doorTopRightOpen(block, bottom, top, renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> doorBottomLeft(Block block, ResourceLocation bottom, ResourceLocation top, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> doorBottomLeft(Block block, ResourceLocation bottom, ResourceLocation top, String renderType) {
 		return withExistingParent(name(block) + "_bottom_left", "block/door_bottom_left").texture("bottom", bottom).texture("top", top).renderType(renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> doorBottomLeftOpen(Block block, ResourceLocation bottom, ResourceLocation top, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> doorBottomLeftOpen(Block block, ResourceLocation bottom, ResourceLocation top, String renderType) {
 		return withExistingParent(name(block) + "_bottom_left_open", "block/door_bottom_left_open").texture("bottom", bottom).texture("top", top).renderType(renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> doorBottomRight(Block block, ResourceLocation bottom, ResourceLocation top, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> doorBottomRight(Block block, ResourceLocation bottom, ResourceLocation top, String renderType) {
 		return withExistingParent(name(block) + "_bottom_right", "block/door_bottom_right").texture("bottom", bottom).texture("top", top).renderType(renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> doorBottomRightOpen(Block block, ResourceLocation bottom, ResourceLocation top, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> doorBottomRightOpen(Block block, ResourceLocation bottom, ResourceLocation top, String renderType) {
 		return withExistingParent(name(block) + "_bottom_right_open", "block/door_bottom_right_open").texture("bottom", bottom).texture("top", top).renderType(renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> doorTopLeft(Block block, ResourceLocation bottom, ResourceLocation top, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> doorTopLeft(Block block, ResourceLocation bottom, ResourceLocation top, String renderType) {
 		return withExistingParent(name(block) + "_top_left", "block/door_top_left").texture("bottom", bottom).texture("top", top).renderType(renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> doorTopLeftOpen(Block block, ResourceLocation bottom, ResourceLocation top, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> doorTopLeftOpen(Block block, ResourceLocation bottom, ResourceLocation top, String renderType) {
 		return withExistingParent(name(block) + "_top_left_open", "block/door_top_left_open").texture("bottom", bottom).texture("top", top).renderType(renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> doorTopRight(Block block, ResourceLocation bottom, ResourceLocation top, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> doorTopRight(Block block, ResourceLocation bottom, ResourceLocation top, String renderType) {
 		return withExistingParent(name(block) + "_top_right", "block/door_top_right").texture("bottom", bottom).texture("top", top).renderType(renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> doorTopRightOpen(Block block, ResourceLocation bottom, ResourceLocation top, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> doorTopRightOpen(Block block, ResourceLocation bottom, ResourceLocation top, String renderType) {
 		return withExistingParent(name(block) + "_top_right_open", "block/door_top_right_open").texture("bottom", bottom).texture("top", top).renderType(renderType);
 	}
 
@@ -622,15 +546,15 @@ public abstract class TLReGenModelsBlock extends TLReGenAssetGenerator {
 		fenceInventory(block, texture, renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> fencePost(Block block, ResourceLocation texture, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> fencePost(Block block, ResourceLocation texture, String renderType) {
 		return singleTexture(ResourceLocationHelper.getPath(block) + "_post", new ResourceLocation("fence_post"), texture).renderType(renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> fenceSide(Block block, ResourceLocation texture, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> fenceSide(Block block, ResourceLocation texture, String renderType) {
 		return singleTexture(ResourceLocationHelper.getPath(block) + "_side", new ResourceLocation("fence_side"), texture).renderType(renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> fenceInventory(Block block, ResourceLocation texture, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> fenceInventory(Block block, ResourceLocation texture, String renderType) {
 		return singleTexture(ResourceLocationHelper.getPath(block) + "_inventory", new ResourceLocation("fence_inventory"), texture).renderType(renderType);
 	}
 
@@ -641,19 +565,19 @@ public abstract class TLReGenModelsBlock extends TLReGenAssetGenerator {
 		fenceGateWallOpen(block, texture, renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> fenceGate(Block block, ResourceLocation texture, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> fenceGate(Block block, ResourceLocation texture, String renderType) {
 		return singleTexture(ResourceLocationHelper.getPath(block), new ResourceLocation("template_fence_gate"), texture).renderType(renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> fenceGateOpen(Block block, ResourceLocation texture, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> fenceGateOpen(Block block, ResourceLocation texture, String renderType) {
 		return singleTexture(ResourceLocationHelper.getPath(block) + "_open", new ResourceLocation("template_fence_gate_open"), texture).renderType(renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> fenceGateWall(Block block, ResourceLocation texture, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> fenceGateWall(Block block, ResourceLocation texture, String renderType) {
 		return singleTexture(ResourceLocationHelper.getPath(block) + "_wall", new ResourceLocation("template_fence_gate_wall"), texture).renderType(renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> fenceGateWallOpen(Block block, ResourceLocation texture, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> fenceGateWallOpen(Block block, ResourceLocation texture, String renderType) {
 		return singleTexture(ResourceLocationHelper.getPath(block) + "_wall_open", new ResourceLocation("template_fence_gate_wall_open"), texture).renderType(renderType);
 	}
 
@@ -670,11 +594,11 @@ public abstract class TLReGenModelsBlock extends TLReGenAssetGenerator {
 		return withExistingParent(name(block), "block/flower_pot_cross").texture("plant", plant).renderType(renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> pressurePlate(Block block, ResourceLocation texture, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> pressurePlate(Block block, ResourceLocation texture, String renderType) {
 		return singleTexture(ResourceLocationHelper.getPath(block), new ResourceLocation("pressure_plate_up"), texture).renderType(renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> pressurePlateDown(Block block, ResourceLocation texture, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> pressurePlateDown(Block block, ResourceLocation texture, String renderType) {
 		return singleTexture(ResourceLocationHelper.getPath(block) + "_down", new ResourceLocation("pressure_plate_down"), texture).renderType(renderType);
 	}
 
@@ -691,11 +615,11 @@ public abstract class TLReGenModelsBlock extends TLReGenAssetGenerator {
 		slabTop(block, bottom, side, top, renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> slab(Block block, ResourceLocation bottom, ResourceLocation side, ResourceLocation top, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> slab(Block block, ResourceLocation bottom, ResourceLocation side, ResourceLocation top, String renderType) {
 		return withExistingParent(name(block), "block/slab").texture("bottom", bottom).texture("side", side).texture("top", top).renderType(renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> slabTop(Block block, ResourceLocation bottom, ResourceLocation side, ResourceLocation top, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> slabTop(Block block, ResourceLocation bottom, ResourceLocation side, ResourceLocation top, String renderType) {
 		return withExistingParent(name(block) + "_top", "block/slab_top").texture("bottom", bottom).texture("side", side).texture("top", top).renderType(renderType);
 	}
 
@@ -705,15 +629,15 @@ public abstract class TLReGenModelsBlock extends TLReGenAssetGenerator {
 		stairsOuter(block, bottom, side, top, renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> stairs(Block block, ResourceLocation bottom, ResourceLocation side, ResourceLocation top, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> stairs(Block block, ResourceLocation bottom, ResourceLocation side, ResourceLocation top, String renderType) {
 		return withExistingParent(name(block), "block/stairs").texture("bottom", bottom).texture("side", side).texture("top", top).renderType(renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> stairsInner(Block block, ResourceLocation bottom, ResourceLocation side, ResourceLocation top, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> stairsInner(Block block, ResourceLocation bottom, ResourceLocation side, ResourceLocation top, String renderType) {
 		return withExistingParent(name(block) + "_inner", "block/inner_stairs").texture("bottom", bottom).texture("side", side).texture("top", top).renderType(renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> stairsOuter(Block block, ResourceLocation bottom, ResourceLocation side, ResourceLocation top, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> stairsOuter(Block block, ResourceLocation bottom, ResourceLocation side, ResourceLocation top, String renderType) {
 		return withExistingParent(name(block) + "_outer", "block/outer_stairs").texture("bottom", bottom).texture("side", side).texture("top", top).renderType(renderType);
 	}
 
@@ -727,15 +651,15 @@ public abstract class TLReGenModelsBlock extends TLReGenAssetGenerator {
 		trapdoorTop(block, texture, renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> trapdoorBottom(Block block, ResourceLocation texture, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> trapdoorBottom(Block block, ResourceLocation texture, String renderType) {
 		return singleTexture(ResourceLocationHelper.getPath(block) + "_bottom", new ResourceLocation("template_orientable_trapdoor_bottom"), texture).renderType(renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> trapdoorOpen(Block block, ResourceLocation texture, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> trapdoorOpen(Block block, ResourceLocation texture, String renderType) {
 		return singleTexture(ResourceLocationHelper.getPath(block) + "_open", new ResourceLocation("template_orientable_trapdoor_open"), texture).renderType(renderType);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> trapdoorTop(Block block, ResourceLocation texture, String renderType) {
+	private static ModelBuilder<BlockModelBuilder> trapdoorTop(Block block, ResourceLocation texture, String renderType) {
 		return singleTexture(ResourceLocationHelper.getPath(block) + "_top", new ResourceLocation("template_orientable_trapdoor_top"), texture).renderType(renderType);
 	}
 }

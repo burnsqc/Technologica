@@ -45,7 +45,7 @@ import net.minecraftforge.registries.DataPackRegistriesHooks;
 public abstract class TLReGenDimension extends TLReGenMasterResourceGenerator implements DataProvider {
 	private final CompletableFuture<HolderLookup.Provider> damageTypes = lookupProvider.thenApply(r -> constructRegistries(r, new TLReGenRegistrySetBuilder().add(Registries.LEVEL_STEM, TLDimensions::bootstrap)));
 	private final java.util.function.Predicate<String> namespacePredicate = Set.of(modid) == null ? namespace -> true : Set.of(modid)::contains;
-	protected static BootstapContext<LevelStem> dimension;
+	private static BootstapContext<LevelStem> dimension;
 
 	@Override
 	public CompletableFuture<?> run(final CachedOutput cache) {
@@ -105,20 +105,16 @@ public abstract class TLReGenDimension extends TLReGenMasterResourceGenerator im
 	/*
 	 * TEMPLATES
 	 */
-	public record TLReGenChunkGenerator() {
-	}
 
 	protected static ChunkGenerator chunkGenerator(String type, BiomeSource biomeSource, ResourceKey<NoiseGeneratorSettings> settings) {
 		return new NoiseBasedChunkGenerator(biomeSource, dimension.lookup(Registries.NOISE_SETTINGS).getOrThrow(settings));
 	}
 
 	protected static class BiomeSourceBuilder {
-		private String type;
 		private ArrayList<Pair<Climate.ParameterPoint, Holder<Biome>>> biomes;
 
 		public BiomeSourceBuilder(String type) {
 			biomes = new ArrayList<>();
-			this.type = type;
 		}
 
 		public BiomeSourceBuilder add(Pair<Climate.ParameterPoint, Holder<Biome>> biomes) {

@@ -26,7 +26,7 @@ import net.minecraft.world.level.dimension.DimensionType;
 public abstract class TLReGenDimensionType extends TLReGenMasterResourceGenerator implements DataProvider {
 	private final Map<ResourceKey<DimensionType>, DimensionType> dimensionTypes = new LinkedHashMap<>();
 	private final String name = "data." + modid + ".dimension_type";
-	protected final DynamicOps<JsonElement> dynamicOps = JsonOps.INSTANCE;
+	private final DynamicOps<JsonElement> dynamicOps = JsonOps.INSTANCE;
 
 	@Override
 	public final CompletableFuture<?> run(final CachedOutput cache) {
@@ -47,6 +47,7 @@ public abstract class TLReGenDimensionType extends TLReGenMasterResourceGenerato
 	/**
 	 * OVERRIDE ME TO ADD DIMENSION TYPES
 	 */
+	@Override
 	protected abstract void populate();
 
 	@Override

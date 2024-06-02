@@ -41,7 +41,7 @@ public abstract class TLReGenTagsBlocks extends TLReGenMasterResourceGenerator i
 	 */
 	private final CompletableFuture<Void> contentsDone = new CompletableFuture<>();
 	private final CompletableFuture<TagsProvider.TagLookup<Block>> parentProvider = CompletableFuture.completedFuture(TagsProvider.TagLookup.empty());
-	protected final ResourceKey<? extends Registry<Block>> registryKey = Registries.BLOCK;
+	private final ResourceKey<? extends Registry<Block>> registryKey = Registries.BLOCK;
 	private final net.minecraftforge.common.data.ExistingFileHelper.IResourceType resourceType = new net.minecraftforge.common.data.ExistingFileHelper.ResourceType(net.minecraft.server.packs.PackType.SERVER_DATA, ".json", TagManager.getTagDir(Registries.BLOCK));
 	private final net.minecraftforge.common.data.ExistingFileHelper.IResourceType elementResourceType = new net.minecraftforge.common.data.ExistingFileHelper.ResourceType(net.minecraft.server.packs.PackType.SERVER_DATA, ".json", net.minecraftforge.common.ForgeHooks.prefixNamespace(Registries.BLOCK.location()));
 	@SuppressWarnings("deprecation")

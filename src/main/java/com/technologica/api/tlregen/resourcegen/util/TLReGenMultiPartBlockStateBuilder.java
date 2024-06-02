@@ -18,7 +18,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraftforge.client.model.generators.IGeneratedBlockState;
 
-public final class TLReGenMultiPartBlockStateBuilder implements IGeneratedBlockState {
+final class TLReGenMultiPartBlockStateBuilder implements IGeneratedBlockState {
 
 	private final List<PartBuilder> parts = new ArrayList<>();
 	private final Block owner;

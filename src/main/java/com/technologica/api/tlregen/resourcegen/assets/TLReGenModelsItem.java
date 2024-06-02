@@ -54,7 +54,7 @@ public abstract class TLReGenModelsItem extends TLReGenAssetGenerator {
 	 * HELPER METHODS
 	 */
 
-	public ItemModelBuilder getBuilder(String path) {
+	private ItemModelBuilder getBuilder(String path) {
 		ResourceLocation outputLoc = extendWithFolder(path.contains(":") ? new ResourceLocation(path) : new ResourceLocation(modid, path));
 		helper.trackGenerated(outputLoc, new ResourceType(PackType.CLIENT_RESOURCES, ".json", "models"));
 		return resources.computeIfAbsent(outputLoc, loc -> bifunc.apply(loc, helper));
@@ -121,13 +121,6 @@ public abstract class TLReGenModelsItem extends TLReGenAssetGenerator {
 	 */
 	public void item3DModel(Block block, ModelFile model) {
 		getBuilder(ForgeRegistries.BLOCKS.getKey(block).getPath()).parent(model);
-	}
-
-	/*
-	 * KEEP
-	 */
-	public void item3DModelRenderType(Block block, ModelFile model, String renderType) {
-		getBuilder(ForgeRegistries.BLOCKS.getKey(block).getPath()).parent(model).renderType(renderType);
 	}
 
 	/*

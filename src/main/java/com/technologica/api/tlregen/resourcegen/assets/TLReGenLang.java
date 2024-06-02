@@ -43,10 +43,6 @@ public abstract class TLReGenLang extends TLReGenAssetGenerator {
 	 * HELPER METHODS
 	 */
 
-	protected final void addCommand(Supplier<? extends MobEffect> key, String name) {
-		add(key.get().getDescriptionId(), name);
-	}
-
 	protected final void addDeath(ResourceKey<DamageType> damageType, String translation) {
 		add("death.attack." + damageType.location().getPath(), "%1$s " + translation);
 		add("death.attack." + damageType.location().getPath() + ".player", "%1$s " + translation + " whilst fighting %2$s");
