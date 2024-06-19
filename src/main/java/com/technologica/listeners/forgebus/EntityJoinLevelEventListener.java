@@ -29,13 +29,16 @@ import net.minecraft.world.entity.schedule.Activity;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
+@Mod.EventBusSubscriber(bus = EventBusSubscriber.Bus.FORGE)
 public class EntityJoinLevelEventListener {
 	private static final UUID LUNAR_GRAVITY_ID = UUID.fromString("297dcaec-6b7d-11ee-b962-0242ac120002");
 	private static final AttributeModifier LUNAR_GRAVITY = new AttributeModifier(LUNAR_GRAVITY_ID, "Lunar gravity reduction", -0.07, AttributeModifier.Operation.ADDITION);
 
 	@SubscribeEvent
-	public void onEntityJoinLevelEvent(EntityJoinLevelEvent event) {
+	public static void onEntityJoinLevelEvent(EntityJoinLevelEvent event) {
 		Entity entity = event.getEntity();
 
 		if (entity instanceof Bee) {

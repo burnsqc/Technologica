@@ -5,7 +5,7 @@ import javax.annotation.Nullable;
 import com.technologica.capabilities.item.link.Link;
 import com.technologica.capabilities.item.link.LinkProvider;
 import com.technologica.registration.deferred.TechnologicaBlocks;
-import com.technologica.setup.listeners.TechnologicaCapabilities;
+import com.technologica.setup.common.RegisterCapabilitiesEventListener;
 import com.technologica.util.Radius;
 import com.technologica.world.level.block.LineShaftBlock;
 
@@ -35,7 +35,7 @@ public class PulleyBeltItem extends Item {
 			if (state.is(TechnologicaBlocks.LINE_SHAFT.get()) && state.getValue(LineShaftBlock.RADIUS) != Radius.NONE) {
 				Player player = context.getPlayer();
 				ItemStack stack = player.getItemInHand(context.getHand());
-				Link linkCapability = stack.getCapability(TechnologicaCapabilities.LINK_INSTANCE).orElseThrow(NullPointerException::new);
+				Link linkCapability = stack.getCapability(RegisterCapabilitiesEventListener.LINK_INSTANCE).orElseThrow(NullPointerException::new);
 				if (!linkCapability.getLinking()) {
 					linkCapability.startLink(world, pos, state, player);
 				} else {

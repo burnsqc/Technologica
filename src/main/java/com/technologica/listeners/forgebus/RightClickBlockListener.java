@@ -9,12 +9,15 @@ import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.ForgeRegistries;
 
+@Mod.EventBusSubscriber(bus = EventBusSubscriber.Bus.FORGE)
 public class RightClickBlockListener {
 
 	@SubscribeEvent
-	public void onRightClickBlock(RightClickBlock event) { // NO_UCD (unused code)
+	public static void onRightClickBlock(RightClickBlock event) { // NO_UCD (unused code)
 		if (event.getItemStack().getItem() instanceof AxeItem && event.getLevel().getBlockState(event.getPos()).is(BlockTags.LOGS) && !ForgeRegistries.BLOCKS.getKey(event.getLevel().getBlockState(event.getPos()).getBlock()).getPath().contains("stripped")) {
 			ItemStack bark;
 
@@ -27,6 +30,6 @@ public class RightClickBlockListener {
 			BlockPos freePos = event.getPos().relative(event.getFace());
 			ItemEntity drop = new ItemEntity(event.getLevel(), freePos.getX() + 0.5f, freePos.getY() + 0.5f, freePos.getZ() + 0.5f, bark);
 			event.getLevel().addFreshEntity(drop);
-		} 
+		}
 	}
 }

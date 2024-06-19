@@ -210,6 +210,7 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> NECROTOXIN_SAC = ITEMS.register("necrotoxin_sac", () -> new Item(new Item.Properties().food(TechnologicaFoods.NECROTOXIN_SAC)));
 	public static final RegistryObject<Item> NEUROTOXIN_SAC = ITEMS.register("neurotoxin_sac", () -> new Item(new Item.Properties().food(TechnologicaFoods.NEUROTOXIN_SAC)));
 	public static final RegistryObject<Item> TETRODOTOXIN_SAC = ITEMS.register("tetrodotoxin_sac", () -> new Item(new Item.Properties().food(TechnologicaFoods.TETRODOTOXIN_SAC)));
+	public static final RegistryObject<Item> BARNACLE = ITEMS.register("barnacle", () -> new BlockItem(TechnologicaBlocks.BARNACLE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> SALT_ITEM = ITEMS.register("salt", () -> new BlockItem(TechnologicaBlocks.SALT.get(), new Item.Properties()));
 	public static final RegistryObject<Item> LITHIUM_CLAY_ITEM = ITEMS.register("lithium_clay", () -> new BlockItem(TechnologicaBlocks.LITHIUM_CLAY.get(), new Item.Properties()));
 	public static final RegistryObject<Item> OILY_COARSE_DIRT_ITEM = ITEMS.register("oily_coarse_dirt", () -> new BlockItem(TechnologicaBlocks.OILY_COARSE_DIRT.get(), new Item.Properties()));
@@ -514,6 +515,7 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> GASOLINE_BUCKET = ITEMS.register("gasoline_bucket", () -> new BucketItem(TechnologicaFluids.GASOLINE, new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item> MACHINE_OIL_BUCKET = ITEMS.register("machine_oil_bucket", () -> new BucketItem(TechnologicaFluids.MACHINE_OIL, new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item> COOLANT_BUCKET = ITEMS.register("coolant_bucket", () -> new BucketItem(TechnologicaFluids.COOLANT, new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item> MOLTEN_CORE_BUCKET = ITEMS.register("molten_core_bucket", () -> new BucketItem(TechnologicaFluids.MOLTEN_CORE, new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item> BARLEY = ITEMS.register("barley", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> OATS = ITEMS.register("oats", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> RYE = ITEMS.register("rye", () -> new Item(new Item.Properties()));

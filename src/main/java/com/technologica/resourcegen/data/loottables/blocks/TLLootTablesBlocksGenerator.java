@@ -1,5 +1,6 @@
 package com.technologica.resourcegen.data.loottables.blocks;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -20,6 +21,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.PotatoBlock;
+import net.minecraft.world.level.block.SeaPickleBlock;
 import net.minecraft.world.level.block.SweetBerryBushBlock;
 import net.minecraft.world.level.block.state.properties.BedPart;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -219,6 +221,12 @@ public final class TLLootTablesBlocksGenerator extends BlockLootSubProvider {
 
 		dropOther(TechnologicaBlocks.MULCH.get(), Blocks.DIRT);
 		dropSelf(TechnologicaBlocks.TRELLIS.get());
+
+		add(TechnologicaBlocks.BARNACLE.get(), (p_248918_) -> {
+			return LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(this.applyExplosionDecay(TechnologicaBlocks.BARNACLE.get(), LootItem.lootTableItem(p_248918_).apply(List.of(2, 3, 4), (p_251952_) -> {
+				return SetItemCountFunction.setCount(ConstantValue.exactly(p_251952_.intValue())).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(p_248918_).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SeaPickleBlock.PICKLES, p_251952_)));
+			}))));
+		});
 
 		dropSelf(TechnologicaBlocks.SALT.get());
 		add(TechnologicaBlocks.LITHIUM_CLAY.get(), (clay) -> createSingleItemTableWithSilkTouch(clay, TechnologicaItems.LITHIUM_CLAY_BALL.get(), ConstantValue.exactly(4)));

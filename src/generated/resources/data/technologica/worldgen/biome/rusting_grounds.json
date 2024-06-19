@@ -1,6 +1,6 @@
 {
   "carvers": {},
-  "downfall": 0.0,
+  "downfall": 1.0,
   "effects": {
     "fog_color": 12638463,
     "foliage_color": 9285927,
@@ -27,7 +27,7 @@
       "technologica:naval_mine"
     ]
   ],
-  "has_precipitation": true,
+  "has_precipitation": false,
   "spawn_costs": {},
   "spawners": {
     "ambient": [],

@@ -4,6 +4,7 @@ import com.technologica.Technologica;
 import com.technologica.api.tlregen.registration.MasterDeferredRegistrar;
 import com.technologica.world.level.material.GasFluidType;
 import com.technologica.world.level.material.MetalFluidType;
+import com.technologica.world.level.material.MoltenFluidType;
 import com.technologica.world.level.material.OpaqueFluidType;
 
 import net.minecraftforge.fluids.FluidType;
@@ -44,4 +45,5 @@ public final class TechnologicaFluidTypes extends MasterDeferredRegistrar {
 	public static final RegistryObject<FluidType> GASOLINE_TYPE = FLUID_TYPES.register("gasoline", () -> new GasFluidType(FluidType.Properties.create(), -2833815));
 	public static final RegistryObject<FluidType> MACHINE_OIL_TYPE = FLUID_TYPES.register("machine_oil", () -> new OpaqueFluidType(FluidType.Properties.create(), -106));
 	public static final RegistryObject<FluidType> COOLANT_TYPE = FLUID_TYPES.register("coolant", () -> new OpaqueFluidType(FluidType.Properties.create(), -4196524));
+	public static final RegistryObject<FluidType> MOLTEN_CORE = FLUID_TYPES.register("molten_core", () -> new MoltenFluidType());
 }

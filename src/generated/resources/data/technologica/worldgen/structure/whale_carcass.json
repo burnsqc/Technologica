@@ -11,5 +11,5 @@
     }
   },
   "spawn_overrides": {},
-  "step": "underground_structures"
+  "step": "surface_structures"
 }

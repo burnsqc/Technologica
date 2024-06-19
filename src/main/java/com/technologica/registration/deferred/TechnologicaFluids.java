@@ -15,6 +15,7 @@ import com.technologica.world.level.material.KryptonFluid;
 import com.technologica.world.level.material.MachineOilFluid;
 import com.technologica.world.level.material.MapleSyrupFluid;
 import com.technologica.world.level.material.MercuryFluid;
+import com.technologica.world.level.material.MoltenCoreFluid;
 import com.technologica.world.level.material.NaturalGasFluid;
 import com.technologica.world.level.material.NeonFluid;
 import com.technologica.world.level.material.NitrogenFluid;
@@ -83,4 +84,6 @@ public final class TechnologicaFluids extends MasterDeferredRegistrar {
 	public static final RegistryObject<FlowingFluid> MACHINE_OIL = FLUIDS.register("machine_oil", MachineOilFluid.Source::new);
 	public static final RegistryObject<FlowingFluid> FLOWING_COOLANT = FLUIDS.register("flowing_coolant", CoolantFluid.Flowing::new);
 	public static final RegistryObject<FlowingFluid> COOLANT = FLUIDS.register("coolant", CoolantFluid.Source::new);
+	public static final RegistryObject<FlowingFluid> FLOWING_MOLTEN_CORE = FLUIDS.register("flowing_molten_core", MoltenCoreFluid.Flowing::new);
+	public static final RegistryObject<FlowingFluid> MOLTEN_CORE = FLUIDS.register("molten_core", MoltenCoreFluid.Source::new);
 }

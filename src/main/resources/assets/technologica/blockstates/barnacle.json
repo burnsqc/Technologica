@@ -1,0 +1,140 @@
+{
+  "variants": {
+    "pickles=1,waterlogged=false": [
+      {
+        "model": "technologica:block/dead_barnacle"
+      },
+      {
+        "model": "technologica:block/dead_barnacle",
+        "y": 90
+      },
+      {
+        "model": "technologica:block/dead_barnacle",
+        "y": 180
+      },
+      {
+        "model": "technologica:block/dead_barnacle",
+        "y": 270
+      }
+    ],
+    "pickles=1,waterlogged=true": [
+      {
+        "model": "technologica:block/barnacle"
+      },
+      {
+        "model": "technologica:block/barnacle",
+        "y": 90
+      },
+      {
+        "model": "technologica:block/barnacle",
+        "y": 180
+      },
+      {
+        "model": "technologica:block/barnacle",
+        "y": 270
+      }
+    ],
+    "pickles=2,waterlogged=false": [
+      {
+        "model": "technologica:block/two_dead_barnacles"
+      },
+      {
+        "model": "technologica:block/two_dead_barnacles",
+        "y": 90
+      },
+      {
+        "model": "technologica:block/two_dead_barnacles",
+        "y": 180
+      },
+      {
+        "model": "technologica:block/two_dead_barnacles",
+        "y": 270
+      }
+    ],
+    "pickles=2,waterlogged=true": [
+      {
+        "model": "technologica:block/two_barnacles"
+      },
+      {
+        "model": "technologica:block/two_barnacles",
+        "y": 90
+      },
+      {
+        "model": "technologica:block/two_barnacles",
+        "y": 180
+      },
+      {
+        "model": "technologica:block/two_barnacles",
+        "y": 270
+      }
+    ],
+    "pickles=3,waterlogged=false": [
+      {
+        "model": "technologica:block/three_dead_barnacles"
+      },
+      {
+        "model": "technologica:block/three_dead_barnacles",
+        "y": 90
+      },
+      {
+        "model": "technologica:block/three_dead_barnacles",
+        "y": 180
+      },
+      {
+        "model": "technologica:block/three_dead_barnacles",
+        "y": 270
+      }
+    ],
+    "pickles=3,waterlogged=true": [
+      {
+        "model": "technologica:block/three_barnacles"
+      },
+      {
+        "model": "technologica:block/three_barnacles",
+        "y": 90
+      },
+      {
+        "model": "technologica:block/three_barnacles",
+        "y": 180
+      },
+      {
+        "model": "technologica:block/three_barnacles",
+        "y": 270
+      }
+    ],
+    "pickles=4,waterlogged=false": [
+      {
+        "model": "technologica:block/four_dead_barnacles"
+      },
+      {
+        "model": "technologica:block/four_dead_barnacles",
+        "y": 90
+      },
+      {
+        "model": "technologica:block/four_dead_barnacles",
+        "y": 180
+      },
+      {
+        "model": "technologica:block/four_dead_barnacles",
+        "y": 270
+      }
+    ],
+    "pickles=4,waterlogged=true": [
+      {
+        "model": "technologica:block/four_barnacles"
+      },
+      {
+        "model": "technologica:block/four_barnacles",
+        "y": 90
+      },
+      {
+        "model": "technologica:block/four_barnacles",
+        "y": 180
+      },
+      {
+        "model": "technologica:block/four_barnacles",
+        "y": 270
+      }
+    ]
+  }
+}

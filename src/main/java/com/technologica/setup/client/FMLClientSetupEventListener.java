@@ -1,0 +1,98 @@
+package com.technologica.setup.client;
+
+import static com.technologica.Technologica.LOGGER;
+
+import java.util.SortedMap;
+
+import com.mojang.blaze3d.vertex.BufferBuilder;
+import com.technologica.client.gui.screens.inventory.AnnunciatorScreen;
+import com.technologica.client.gui.screens.inventory.MonitorScreen;
+import com.technologica.client.gui.screens.inventory.SawmillScreen;
+import com.technologica.client.renderer.TechnologicaRenderType;
+import com.technologica.client.renderer.block.TechnologicaLiquidBlockRenderer;
+import com.technologica.registration.deferred.TechnologicaFluids;
+import com.technologica.registration.deferred.TechnologicaMenuTypes;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderBuffers;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
+
+@Mod.EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+public class FMLClientSetupEventListener {
+
+	@SubscribeEvent
+	public static void onFMLClientSetupEvent(final FMLClientSetupEvent event) {
+		event.enqueueWork(() -> {
+			addToMenuScreens();
+			setTechnologicaFluidRenderTypes();
+			Minecraft mc = Minecraft.getInstance();
+			mc.getBlockRenderer().liquidBlockRenderer = new TechnologicaLiquidBlockRenderer();
+			addTechnologicaRenderTypes();
+		});
+	}
+
+	private static void addToMenuScreens() {
+		MenuScreens.register(TechnologicaMenuTypes.ANNUNCIATOR.get(), AnnunciatorScreen::new);
+		MenuScreens.register(TechnologicaMenuTypes.MONITOR.get(), MonitorScreen::new);
+		MenuScreens.register(TechnologicaMenuTypes.SAWMILL.get(), SawmillScreen::new);
+		LOGGER.info("FML CLIENT SETUP - MENU SCREENS - 3");
+	}
+
+	private static void setTechnologicaFluidRenderTypes() {
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.HYDROGEN.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_HYDROGEN.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.HELIUM.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_HELIUM.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.NITROGEN.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_NITROGEN.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.OXYGEN.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_OXYGEN.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLUORINE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_FLUORINE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.NEON.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_NEON.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.CHLORINE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_CHLORINE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.ARGON.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_ARGON.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.KRYPTON.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_KRYPTON.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.XENON.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_XENON.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.RADON.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_RADON.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.BROMINE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_BROMINE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.BRINE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_BRINE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.NATURAL_GAS.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_NATURAL_GAS.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.MAPLE_SYRUP.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_MAPLE_SYRUP.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.RUBBER_RESIN.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_RUBBER_RESIN.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.GASOLINE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_GASOLINE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.MACHINE_OIL.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_MACHINE_OIL.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.COOLANT.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TechnologicaFluids.FLOWING_COOLANT.get(), RenderType.translucent());
+		LOGGER.info("FLUID RENDER TYPES SET: 38 OF 38");
+	}
+
+	private static void addTechnologicaRenderTypes() {
+		SortedMap<RenderType, BufferBuilder> fixedBuffers = ObfuscationReflectionHelper.getPrivateValue(RenderBuffers.class, Minecraft.getInstance().renderBuffers(), "f_110093_");
+		fixedBuffers.put(TechnologicaRenderType.excitation(), new BufferBuilder(TechnologicaRenderType.excitation().bufferSize()));
+		fixedBuffers.put(TechnologicaRenderType.ignition(), new BufferBuilder(TechnologicaRenderType.ignition().bufferSize()));
+		fixedBuffers.put(TechnologicaRenderType.radiation(), new BufferBuilder(TechnologicaRenderType.radiation().bufferSize()));
+		fixedBuffers.put(TechnologicaRenderType.submersion(), new BufferBuilder(TechnologicaRenderType.submersion().bufferSize()));
+	}
+}

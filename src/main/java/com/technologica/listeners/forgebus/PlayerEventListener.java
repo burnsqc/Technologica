@@ -1,7 +1,7 @@
 package com.technologica.listeners.forgebus;
 
-import com.technologica.setup.config.TechnologicaConfigCommon;
-import com.technologica.setup.listeners.TechnologicaCapabilities;
+import com.technologica.setup.common.RegisterCapabilitiesEventListener;
+import com.technologica.setup.common.TechnologicaConfigCommon;
 import com.technologica.world.entity.player.TechnologicaAbilities;
 
 import net.minecraft.tags.BlockTags;
@@ -11,7 +11,10 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
+@Mod.EventBusSubscriber(bus = EventBusSubscriber.Bus.FORGE)
 public class PlayerEventListener {
 
 	/**
@@ -20,7 +23,7 @@ public class PlayerEventListener {
 	 * @param event
 	 */
 	@SubscribeEvent
-	public void onHarvestCheck(final PlayerEvent.HarvestCheck event) {
+	public static void onHarvestCheck(final PlayerEvent.HarvestCheck event) {
 		if (TechnologicaConfigCommon.DISABLE_VANILLA_LOG_HARVESTING.get()) {
 			if (event.getTargetBlock().is(BlockTags.LOGS) && !(event.getEntity().getMainHandItem().getItem() instanceof AxeItem)) {
 				event.setCanHarvest(false);
@@ -34,11 +37,11 @@ public class PlayerEventListener {
 	 * @param event
 	 */
 	@SubscribeEvent
-	public void onBreakSpeed(final PlayerEvent.BreakSpeed event) {
+	public static void onBreakSpeed(final PlayerEvent.BreakSpeed event) {
 		Player player = event.getEntity();
 		float speed = event.getOriginalSpeed();
 		if (player.isEyeInFluidType(ForgeMod.WATER_TYPE.get()) && !EnchantmentHelper.hasAquaAffinity(player)) {
-			TechnologicaAbilities diver = player.getCapability(TechnologicaCapabilities.DIVER_INSTANCE).orElseThrow(NullPointerException::new);
+			TechnologicaAbilities diver = player.getCapability(RegisterCapabilitiesEventListener.DIVER_INSTANCE).orElseThrow(NullPointerException::new);
 			if (diver.getDiver()) {
 				event.setNewSpeed(speed *= 5.0F);
 			}

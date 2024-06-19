@@ -21,12 +21,11 @@ public class TLWorldgenTemplatePoolGenerator extends TLReGenWorldgenTemplatePool
 		Holder<StructureProcessorList> empty = templatePool.lookup(Registries.PROCESSOR_LIST).getOrThrow(ProcessorLists.EMPTY);
 
 		templatePool.register(TechnologicaStructureTemplatePools.DOME, templatePool(List.of(new TLReGenElement(new TLReGenSinglePoolElement(new TechnologicaLocation("dome"), empty, StructureTemplatePool.Projection.RIGID), 1)), fallback));
-		templatePool.register(TechnologicaStructureTemplatePools.WHALE_CARCASS, templatePool(List.of(new TLReGenElement(new TLReGenSinglePoolElement(new TechnologicaLocation("whale_carcass"), empty, StructureTemplatePool.Projection.RIGID), 1)), fallback));
+		// templatePool.register(TechnologicaStructureTemplatePools.WHALE_CARCASS, templatePool(List.of(new TLReGenElement(new TLReGenSinglePoolElement(new TechnologicaLocation("whale_carcass"), empty, StructureTemplatePool.Projection.RIGID), 1)), fallback));
 	}
 
 	@Override
 	protected void populate() {
 		// TODO Auto-generated method stub
-
 	}
 }

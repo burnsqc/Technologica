@@ -27,16 +27,20 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderLevelStageEvent;
 import net.minecraftforge.client.event.RenderLevelStageEvent.Stage;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
+@Mod.EventBusSubscriber(bus = EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class RenderLevelStageEventListener {
-	private VertexBuffer sonarBuffer;
+	private static VertexBuffer sonarBuffer;
 	private static int timer;
 
 	@SubscribeEvent
-	public void onRenderLevelStageEvent(final RenderLevelStageEvent event) {
+	public static void onRenderLevelStageEvent(final RenderLevelStageEvent event) {
 		Minecraft minecraft = Minecraft.getInstance();
 		LocalPlayer localPlayer = minecraft.player;
 
@@ -56,25 +60,25 @@ public class RenderLevelStageEventListener {
 			MultiBufferSource.BufferSource multibuffersource$buffersource = minecraft.renderBuffers().bufferSource();
 			VertexConsumer vertexConsumer = multibuffersource$buffersource.getBuffer(RenderType.lines());
 			BufferBuilder bufferbuilder = Tesselator.getInstance().getBuilder();
-			if (this.sonarBuffer != null) {
-				this.sonarBuffer.close();
+			if (sonarBuffer != null) {
+				sonarBuffer.close();
 			}
-			this.sonarBuffer = new VertexBuffer(VertexBuffer.Usage.STATIC);
-			BufferBuilder.RenderedBuffer bufferbuilder$renderedbuffer = this.buildSonar(bufferbuilder, vertexConsumer, event.getPoseStack(), event.getCamera().getEntity(), event);
-			this.sonarBuffer.bind();
-			this.sonarBuffer.upload(bufferbuilder$renderedbuffer);
+			sonarBuffer = new VertexBuffer(VertexBuffer.Usage.STATIC);
+			BufferBuilder.RenderedBuffer bufferbuilder$renderedbuffer = buildSonar(bufferbuilder, vertexConsumer, event.getPoseStack(), event.getCamera().getEntity(), event);
+			sonarBuffer.bind();
+			sonarBuffer.upload(bufferbuilder$renderedbuffer);
 			VertexBuffer.unbind();
 
-			if (this.sonarBuffer != null) {
-				this.sonarBuffer.bind();
+			if (sonarBuffer != null) {
+				sonarBuffer.bind();
 				ShaderInstance shaderinstance = RenderSystem.getShader();
-				this.sonarBuffer.drawWithShader(event.getPoseStack().last().pose(), event.getProjectionMatrix(), shaderinstance);
+				sonarBuffer.drawWithShader(event.getPoseStack().last().pose(), event.getProjectionMatrix(), shaderinstance);
 			}
 		}
 		timer--;
 	}
 
-	private RenderedBuffer buildSonar(BufferBuilder bufferBuilder, VertexConsumer vertexConsumer, PoseStack poseStack, Entity entity, final RenderLevelStageEvent event) {
+	private static RenderedBuffer buildSonar(BufferBuilder bufferBuilder, VertexConsumer vertexConsumer, PoseStack poseStack, Entity entity, final RenderLevelStageEvent event) {
 		int maxDistance = 32;
 		Minecraft minecraft = Minecraft.getInstance();
 		BlockPos playerPos = entity.blockPosition();

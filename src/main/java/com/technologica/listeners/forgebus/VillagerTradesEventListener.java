@@ -16,11 +16,14 @@ import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
+@Mod.EventBusSubscriber(bus = EventBusSubscriber.Bus.FORGE)
 public class VillagerTradesEventListener {
 
 	@SubscribeEvent
-	public void onVillagerTradesEvent(final VillagerTradesEvent event) { // NO_UCD (unused code)
+	public static void onVillagerTradesEvent(final VillagerTradesEvent event) {
 		if (event.getType() == VillagerProfession.FARMER) {
 			Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
 			trades.get(1).add(new EmeraldForItems(TechnologicaItems.BARLEY.get(), 20, 16, 2));

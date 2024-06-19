@@ -2,16 +2,10 @@ package com.technologica.listeners.forgebus;
 
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-/**
- * <p>
- * This class listens for LivingFallEvent which is fired on the Forge event bus.
- * When the event is intercepted, the Lunar Low Grav feature is invoked.
- * </p>
- * 
- * @tl.status GREEN
- */
-
+@Mod.EventBusSubscriber(bus = EventBusSubscriber.Bus.FORGE)
 public class LivingFallEventListener {
 
 	/**
@@ -22,7 +16,7 @@ public class LivingFallEventListener {
 	 * @param event LivingFallEvent
 	 */
 	@SubscribeEvent
-	public void lunarLowGrav(final LivingFallEvent event) {
+	public static void lunarLowGrav(final LivingFallEvent event) {
 		if (event.getEntity().level().dimension().toString().contains("technologica:moon")) {
 			event.setDamageMultiplier(0.0F);
 		}

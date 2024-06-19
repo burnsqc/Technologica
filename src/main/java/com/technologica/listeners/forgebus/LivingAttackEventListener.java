@@ -2,7 +2,7 @@ package com.technologica.listeners.forgebus;
 
 import com.technologica.registration.deferred.TechnologicaItems;
 import com.technologica.registration.key.TechnologicaDamageTypes;
-import com.technologica.setup.config.TechnologicaConfigCommon;
+import com.technologica.setup.common.TechnologicaConfigCommon;
 import com.technologica.util.InventoryUtil;
 
 import net.minecraft.server.level.ServerPlayer;
@@ -12,15 +12,10 @@ import net.minecraft.world.level.ExplosionDamageCalculator;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-/**
- * <p>
- * This class listens for LivingAttackEvent which is fired on the Forge event bus.
- * When the event is intercepted, the Nitro Jostle feature is invoked.
- * </p>
- * 
- * @tl.status GREEN
- */
+@Mod.EventBusSubscriber(bus = EventBusSubscriber.Bus.FORGE)
 public class LivingAttackEventListener {
 
 	/**
@@ -32,7 +27,7 @@ public class LivingAttackEventListener {
 	 * @param event LivingAttackEvent
 	 */
 	@SubscribeEvent
-	public void onLivingDamageEvent(final LivingAttackEvent event) {
+	public static void onLivingDamageEvent(final LivingAttackEvent event) {
 		if (TechnologicaConfigCommon.NITRO_JOSTLE.get()) {
 			if (event.getEntity() instanceof ServerPlayer) {
 				Player player = (Player) event.getEntity();

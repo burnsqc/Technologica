@@ -9,6 +9,7 @@ import com.technologica.registration.deferred.TechnologicaStructureTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.NoiseColumn;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.WorldGenerationContext;
 import net.minecraft.world.level.levelgen.WorldgenRandom;
@@ -51,9 +52,10 @@ public final class DeepSeaStructure extends Structure {
 		if (l <= k) {
 			return Optional.empty();
 		} else {
+			Rotation rotation = Rotation.getRandom(p_228576_.random());
 			BlockPos blockpos = new BlockPos(i, l, j);
 			return Optional.of(new Structure.GenerationStub(blockpos, (p_228581_) -> {
-				WhaleCarcassPieces.addPieces(p_228576_.structureTemplateManager(), p_228581_, worldgenrandom, blockpos);
+				WhaleCarcassPieces.addPieces(p_228576_.structureTemplateManager(), blockpos, rotation, p_228581_, worldgenrandom);
 			}));
 		}
 	}

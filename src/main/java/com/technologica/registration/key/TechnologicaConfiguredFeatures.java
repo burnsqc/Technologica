@@ -1,7 +1,7 @@
 package com.technologica.registration.key;
 
 import com.technologica.api.tlregen.registration.MasterKeyCreator;
-import com.technologica.resourcegen.data.worldgen.configuredfeature.TLConfiguredFeatures;
+import com.technologica.resourcegen.data.worldgen.configuredfeature.TLWorldgenConfiguredFeatures;
 
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
@@ -9,7 +9,7 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 /**
  * <p>
  * This class contains Resource Keys for Configured Features.
- * The corresponding Configured Features are created in json format during Data Generation in {@link TLConfiguredFeatures}.
+ * The corresponding Configured Features are created in json format during Data Generation in {@link TLWorldgenConfiguredFeatures}.
  * </p>
  * 
  * @tl.status GREEN
@@ -104,4 +104,9 @@ public final class TechnologicaConfiguredFeatures extends MasterKeyCreator {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_COTTON_BUSH = configuredFeature("patch_cotton_bush");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_PEPPERCORN_BUSH = configuredFeature("patch_peppercorn_bush");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> NAVAL_MINE = configuredFeature("naval_mine");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> DEEP_KELP = configuredFeature("deep_kelp");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> DEEP_SEAGRASS = configuredFeature("deep_seagrass");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> DEEP_BASALT_PILLAR = configuredFeature("deep_basalt_pillar");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> HYDROTHERMAL_VENT = configuredFeature("hydrothermal_vent");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> DEEP_BASALT_BLOB = configuredFeature("deep_basalt_blob");
 }

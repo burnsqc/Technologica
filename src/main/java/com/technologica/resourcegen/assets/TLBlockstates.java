@@ -1076,6 +1076,7 @@ public class TLBlockstates extends TLReGenBlockstates {
 		getVariantBuilder(TechnologicaBlocks.GASOLINE.get()).partialState().setModels(new TLReGenConfiguredModel(fluid(TechnologicaBlocks.GASOLINE.get())));
 		getVariantBuilder(TechnologicaBlocks.MACHINE_OIL.get()).partialState().setModels(new TLReGenConfiguredModel(fluid(TechnologicaBlocks.MACHINE_OIL.get())));
 		getVariantBuilder(TechnologicaBlocks.COOLANT.get()).partialState().setModels(new TLReGenConfiguredModel(fluid(TechnologicaBlocks.COOLANT.get())));
+		getVariantBuilder(TechnologicaBlocks.MOLTEN_CORE.get()).partialState().setModels(new TLReGenConfiguredModel(fluid(TechnologicaBlocks.MOLTEN_CORE.get())));
 	}
 
 	public ModelFile glueModel(String name, ResourceLocation particle, ResourceLocation face) {

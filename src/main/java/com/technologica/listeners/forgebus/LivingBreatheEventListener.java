@@ -3,11 +3,14 @@ package com.technologica.listeners.forgebus;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingBreatheEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
+@Mod.EventBusSubscriber(bus = EventBusSubscriber.Bus.FORGE)
 public class LivingBreatheEventListener {
 
 	@SubscribeEvent
-	public void onLivingBreatheEvent(final LivingBreatheEvent event) {
+	public static void onLivingBreatheEvent(final LivingBreatheEvent event) {
 		if (event.getEntity() instanceof Player player) {
 			int maxAir = player.getMaxAirSupply();
 			if (maxAir == 600) {

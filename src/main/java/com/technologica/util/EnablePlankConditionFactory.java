@@ -1,7 +1,7 @@
 package com.technologica.util;
 
 import com.google.gson.JsonObject;
-import com.technologica.setup.config.TechnologicaConfigCommon;
+import com.technologica.setup.common.TechnologicaConfigCommon;
 import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.resources.ResourceLocation;

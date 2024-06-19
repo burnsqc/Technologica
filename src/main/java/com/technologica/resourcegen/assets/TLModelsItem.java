@@ -53,6 +53,7 @@ public class TLModelsItem extends TLReGenModelsItem {
 		item2D(TechnologicaItems.NECROTOXIN_SAC.get());
 		item2D(TechnologicaItems.NEUROTOXIN_SAC.get());
 		item2D(TechnologicaItems.TETRODOTOXIN_SAC.get());
+		item2D(TechnologicaItems.BARNACLE.get());
 
 		item2D(TechnologicaItems.LITHIUM_CLAY_BALL.get());
 		item2D(TechnologicaItems.BORON_CHUNK.get());
@@ -99,6 +100,7 @@ public class TLModelsItem extends TLReGenModelsItem {
 		item2D(TechnologicaItems.GASOLINE_BUCKET.get());
 		item2D(TechnologicaItems.MACHINE_OIL_BUCKET.get());
 		item2D(TechnologicaItems.COOLANT_BUCKET.get());
+		item2D(TechnologicaItems.MOLTEN_CORE_BUCKET.get());
 		item2D(TechnologicaItems.APRICOT.get());
 		item2D(TechnologicaItems.ASPARAGUS.get());
 		item2D(TechnologicaItems.AVOCADO.get());

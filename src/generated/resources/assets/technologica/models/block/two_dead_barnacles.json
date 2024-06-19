@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/two_dead_sea_pickles",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "all": "technologica:block/barnacle"
+  }
+}

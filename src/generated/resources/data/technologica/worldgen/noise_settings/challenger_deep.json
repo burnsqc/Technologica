@@ -20,7 +20,7 @@
   "noise_router": {
     "barrier": 0.0,
     "continents": 0.0,
-    "depth": 0.0,
+    "depth": "technologica:challenger_deep/depth",
     "erosion": 0.0,
     "final_density": {
       "type": "minecraft:squeeze",
@@ -39,9 +39,9 @@
                 "argument1": {
                   "type": "minecraft:y_clamped_gradient",
                   "from_value": 0.0,
-                  "from_y": -8,
+                  "from_y": 0,
                   "to_value": 1.0,
-                  "to_y": 4
+                  "to_y": 12
                 },
                 "argument2": {
                   "type": "minecraft:add",
@@ -199,6 +199,69 @@
                     "Name": "minecraft:stone"
                   }
                 }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "minecraft:condition",
+        "if_true": {
+          "type": "minecraft:biome",
+          "biome_is": [
+            "technologica:sunken_forest",
+            "technologica:forgotten_reef"
+          ]
+        },
+        "then_run": {
+          "type": "minecraft:sequence",
+          "sequence": [
+            {
+              "type": "minecraft:condition",
+              "if_true": {
+                "type": "minecraft:stone_depth",
+                "add_surface_depth": true,
+                "offset": 0,
+                "secondary_depth_range": 0,
+                "surface_type": "ceiling"
+              },
+              "then_run": {
+                "type": "minecraft:sequence",
+                "sequence": [
+                  {
+                    "type": "minecraft:block",
+                    "result_state": {
+                      "Name": "minecraft:stone"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "minecraft:condition",
+              "if_true": {
+                "type": "minecraft:stone_depth",
+                "add_surface_depth": true,
+                "offset": 0,
+                "secondary_depth_range": 0,
+                "surface_type": "floor"
+              },
+              "then_run": {
+                "type": "minecraft:sequence",
+                "sequence": [
+                  {
+                    "type": "minecraft:block",
+                    "result_state": {
+                      "Name": "minecraft:stone"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "minecraft:block",
+              "result_state": {
+                "Name": "minecraft:sand"
               }
             }
           ]

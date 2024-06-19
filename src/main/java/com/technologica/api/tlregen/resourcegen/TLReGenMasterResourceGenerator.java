@@ -41,11 +41,13 @@ import com.technologica.resourcegen.data.tags.fluids.TLTagsFluidsGenerator;
 import com.technologica.resourcegen.data.tags.items.TLTagItemsGenerator;
 import com.technologica.resourcegen.data.tags.paintingvariant.TLTagsPaintingVariantGenerator;
 import com.technologica.resourcegen.data.tags.worldgen.biome.TLTagWorldgenBiomeGenerator;
-import com.technologica.resourcegen.data.worldgen.biome.TLBiomes;
 import com.technologica.resourcegen.data.worldgen.biome.TLForgeBiomeModifierGenerator;
-import com.technologica.resourcegen.data.worldgen.configuredfeature.TLConfiguredFeatures;
+import com.technologica.resourcegen.data.worldgen.biome.TLWorldgenBiomes;
+import com.technologica.resourcegen.data.worldgen.configuredfeature.TLWorldgenConfiguredFeatures;
+import com.technologica.resourcegen.data.worldgen.densityfunction.TLWorldgenDensityFunctions;
+import com.technologica.resourcegen.data.worldgen.noise.TLWorldgenNoise;
 import com.technologica.resourcegen.data.worldgen.noisesettings.TLWorldgenNoiseSettings;
-import com.technologica.resourcegen.data.worldgen.placedfeature.TLPlacedFeatures;
+import com.technologica.resourcegen.data.worldgen.placedfeature.TLWorldgenPlacedFeatures;
 import com.technologica.resourcegen.data.worldgen.structure.TLWorldgenStructureGenerator;
 import com.technologica.resourcegen.data.worldgen.structuresets.TLWorldgenStructureSetGenerator;
 import com.technologica.resourcegen.data.worldgen.templatepool.TLWorldgenTemplatePoolGenerator;
@@ -143,10 +145,12 @@ public abstract class TLReGenMasterResourceGenerator implements DataProvider {
 		addDataGenerator(new TLTagWorldgenBiomeGenerator());
 		// trim_material
 		// trim_pattern
-		addDataGenerator(new TLBiomes());
-		addDataGenerator(new TLConfiguredFeatures());
+		addDataGenerator(new TLWorldgenBiomes());
+		addDataGenerator(new TLWorldgenConfiguredFeatures());
+		addDataGenerator(new TLWorldgenDensityFunctions());
+		addDataGenerator(new TLWorldgenNoise());
 		addDataGenerator(new TLWorldgenNoiseSettings());
-		addDataGenerator(new TLPlacedFeatures());
+		addDataGenerator(new TLWorldgenPlacedFeatures());
 		addDataGenerator(new TLWorldgenStructureGenerator());
 		addDataGenerator(new TLWorldgenStructureSetGenerator());
 		addDataGenerator(new TLWorldgenTemplatePoolGenerator());

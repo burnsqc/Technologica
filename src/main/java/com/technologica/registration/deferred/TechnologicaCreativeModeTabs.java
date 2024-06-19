@@ -159,6 +159,7 @@ public final class TechnologicaCreativeModeTabs extends MasterDeferredRegistrar 
 		items.accept(TechnologicaItems.WEEPER_SPAWN_EGG.get());
 		items.accept(TechnologicaItems.SWEEPER_SPAWN_EGG.get());
 		items.accept(TechnologicaItems.DUST_DEVIL_SPAWN_EGG.get());
+		items.accept(TechnologicaItems.BARNACLE.get());
 	}).build());
 	public static final RegistryObject<CreativeModeTab> MINERAL = CREATIVE_MODE_TABS.register("mineral", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.GERMANIUM_CHUNK.get())).withBackgroundLocation(new TechnologicaLocation("textures/gui/container/creative_inventory/tab_mineral.png")).withLabelColor(0).title(Component.translatable("itemGroup.mineral")).displayItems((p_270425_, items) -> {
 		items.accept(TechnologicaItems.SALT_ITEM.get());
@@ -461,6 +462,7 @@ public final class TechnologicaCreativeModeTabs extends MasterDeferredRegistrar 
 		items.accept(TechnologicaItems.GASOLINE_BUCKET.get());
 		items.accept(TechnologicaItems.MACHINE_OIL_BUCKET.get());
 		items.accept(TechnologicaItems.COOLANT_BUCKET.get());
+		items.accept(TechnologicaItems.MOLTEN_CORE_BUCKET.get());
 	}).build());
 	public static final RegistryObject<CreativeModeTab> FOOD = CREATIVE_MODE_TABS.register("food", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.BANANA.get())).withBackgroundLocation(new TechnologicaLocation("textures/gui/container/creative_inventory/tab_food.png")).withLabelColor(0).title(Component.translatable("itemGroup.food")).displayItems((p_270425_, items) -> {
 		items.accept(TechnologicaItems.BARLEY.get());

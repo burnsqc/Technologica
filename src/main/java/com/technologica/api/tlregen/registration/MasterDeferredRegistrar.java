@@ -21,6 +21,7 @@ import com.technologica.registration.deferred.TechnologicaMenuTypes;
 import com.technologica.registration.deferred.TechnologicaMobEffects;
 import com.technologica.registration.deferred.TechnologicaPaintingVariant;
 import com.technologica.registration.deferred.TechnologicaParticleTypes;
+import com.technologica.registration.deferred.TechnologicaPlacementModifierTypes;
 import com.technologica.registration.deferred.TechnologicaPoisonDartFrogVariant;
 import com.technologica.registration.deferred.TechnologicaRecipeSerializers;
 import com.technologica.registration.deferred.TechnologicaRecipeTypes;
@@ -50,23 +51,21 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
+import net.minecraft.world.level.levelgen.placement.PlacementModifierType;
 import net.minecraft.world.level.levelgen.structure.StructureType;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceType;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.common.loot.IGlobalLootModifier;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fluids.FluidType;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegisterEvent;
 
-/**
- * <p>
- * This class contains definitions of Deferred Registers.
- * This class is to be extended by any subclasses that solely define Registry Objects.
- * </p>
- * 
- * @tl.status GREEN
- */
+@Mod.EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
 public abstract class MasterDeferredRegistrar {
 
 	private static Map<ResourceKey<? extends Registry<?>>, long[]> registries = new HashMap<>();
@@ -86,6 +85,7 @@ public abstract class MasterDeferredRegistrar {
 	public static final DeferredRegister<MobEffect> MOB_EFFECTS = addRegister(ForgeRegistries.Keys.MOB_EFFECTS, Technologica.MOD_ID);
 	public static final DeferredRegister<PaintingVariant> PAINTING_VARIANTS = addRegister(ForgeRegistries.Keys.PAINTING_VARIANTS, Technologica.MOD_ID);
 	public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = addRegister(ForgeRegistries.Keys.PARTICLE_TYPES, Technologica.MOD_ID);
+	public static final DeferredRegister<PlacementModifierType<?>> PLACEMENT_MODIFIER_TYPES = addRegister(Registries.PLACEMENT_MODIFIER_TYPE, Technologica.MOD_ID);
 	public static final DeferredRegister<FrogVariant> POSION_DART_FROG_VARIANTS = addRegister(Registries.FROG_VARIANT, Technologica.MOD_ID);
 	public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = addRegister(ForgeRegistries.Keys.RECIPE_SERIALIZERS, Technologica.MOD_ID);
 	public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = addRegister(ForgeRegistries.Keys.RECIPE_TYPES, Technologica.MOD_ID);
@@ -97,7 +97,7 @@ public abstract class MasterDeferredRegistrar {
 	public static <B> DeferredRegister<B> addRegister(ResourceKey<? extends Registry<B>> key, String modid) {
 		DeferredRegister<B> deferredRegister = DeferredRegister.create(key, modid);
 		registries.put(key, new long[] { 0, 0 });
-		deferredRegister.register(Technologica.MOD_EVENT_BUS);
+		deferredRegister.register(FMLJavaModLoadingContext.get().getModEventBus());
 		return deferredRegister;
 	}
 
@@ -132,6 +132,8 @@ public abstract class MasterDeferredRegistrar {
 		Technologica.LOGGER.info("INITIALIZATION - " + TextUtil.stringToAllCapsName(PAINTING_VARIANTS.getRegistryName().getPath()) + " - " + Array.get(registries.get(PAINTING_VARIANTS.getRegistryKey()), 0));
 		registries.computeIfPresent(PARTICLE_TYPES.getRegistryKey(), (k, t) -> new long[] { TechnologicaParticleTypes.init(), 0 });
 		Technologica.LOGGER.info("INITIALIZATION - " + TextUtil.stringToAllCapsName(PARTICLE_TYPES.getRegistryName().getPath()) + " - " + Array.get(registries.get(PARTICLE_TYPES.getRegistryKey()), 0));
+		registries.computeIfPresent(PLACEMENT_MODIFIER_TYPES.getRegistryKey(), (k, t) -> new long[] { TechnologicaPlacementModifierTypes.init(), 0 });
+		Technologica.LOGGER.info("INITIALIZATION - " + TextUtil.stringToAllCapsName(PLACEMENT_MODIFIER_TYPES.getRegistryName().getPath()) + " - " + Array.get(registries.get(PLACEMENT_MODIFIER_TYPES.getRegistryKey()), 0));
 		registries.computeIfPresent(POSION_DART_FROG_VARIANTS.getRegistryKey(), (k, t) -> new long[] { TechnologicaPoisonDartFrogVariant.init(), 0 });
 		Technologica.LOGGER.info("INITIALIZATION - " + TextUtil.stringToAllCapsName(POSION_DART_FROG_VARIANTS.getRegistryName().getPath()) + " - " + Array.get(registries.get(POSION_DART_FROG_VARIANTS.getRegistryKey()), 0));
 		registries.computeIfPresent(RECIPE_SERIALIZERS.getRegistryKey(), (k, t) -> new long[] { TechnologicaRecipeSerializers.init(), 0 });
@@ -148,6 +150,7 @@ public abstract class MasterDeferredRegistrar {
 		Technologica.LOGGER.info("INITIALIZATION - " + TextUtil.stringToAllCapsName(TRUNK_PLACER_TYPES.getRegistryName().getPath()) + " - " + Array.get(registries.get(TRUNK_PLACER_TYPES.getRegistryKey()), 0));
 	}
 
+	@SubscribeEvent
 	public static void onRegisterEvent(final RegisterEvent event) {
 		long initialized = 0;
 		long registered = 0;
@@ -171,6 +174,5 @@ public abstract class MasterDeferredRegistrar {
 		if (registered != initialized) {
 			Technologica.LOGGER.error("REGISTRATION ERROR - " + TextUtil.stringToAllCapsName(TextUtil.getPath(event.getRegistryKey())) + " - MISSING " + (initialized - registered));
 		}
-
 	}
 }

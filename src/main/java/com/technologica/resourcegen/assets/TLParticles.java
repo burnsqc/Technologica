@@ -46,6 +46,6 @@ public class TLParticles extends TLReGenParticles {
 		sprite(TechnologicaParticleTypes.STICKING_RUBBER_RESIN, new ResourceLocation("drip_land"));
 		sprite(TechnologicaParticleTypes.SUBMERGED_RUBBER_RESIN, new ResourceLocation("generic_0"));
 		sprite(TechnologicaParticleTypes.FLYING_RADIATION, new ResourceLocation("drip_fall"));
-		sprite(TechnologicaParticleTypes.FLYING_SONAR, new ResourceLocation("drip_fall"));
+		spriteSet(TechnologicaParticleTypes.SMOKE_COLUMN_UP, new ResourceLocation("generic"), 8, false);
 	}
 }

@@ -182,6 +182,15 @@ public class TLModelsBlock extends TLReGenModelsBlock {
 		withExistingParent(name(TechnologicaBlocks.TREE_TAP.get()), new TechnologicaLocation("block/tap")).texture("tree_tap", new TechnologicaLocation("block/tree_tap"));
 
 		withExistingParent(name(TechnologicaBlocks.TRELLIS.get()), new TechnologicaLocation("block/trellis_model")).texture("texture", new TechnologicaLocation("block/trellis")).renderType("cutout");
+
+		withExistingParent("dead_" + name(TechnologicaBlocks.BARNACLE.get()), new ResourceLocation("block/dead_sea_pickle")).texture("all", new TechnologicaLocation("block/barnacle")).renderType("cutout");
+		withExistingParent(name(TechnologicaBlocks.BARNACLE.get()), new ResourceLocation("block/sea_pickle")).texture("all", new TechnologicaLocation("block/barnacle")).renderType("cutout");
+		withExistingParent("two_dead_" + name(TechnologicaBlocks.BARNACLE.get()) + "s", new ResourceLocation("block/two_dead_sea_pickles")).texture("all", new TechnologicaLocation("block/barnacle")).renderType("cutout");
+		withExistingParent("two_" + name(TechnologicaBlocks.BARNACLE.get()) + "s", new ResourceLocation("block/two_sea_pickles")).texture("all", new TechnologicaLocation("block/barnacle")).renderType("cutout");
+		withExistingParent("three_dead_" + name(TechnologicaBlocks.BARNACLE.get()) + "s", new ResourceLocation("block/three_dead_sea_pickles")).texture("all", new TechnologicaLocation("block/barnacle")).renderType("cutout");
+		withExistingParent("three_" + name(TechnologicaBlocks.BARNACLE.get()) + "s", new ResourceLocation("block/three_sea_pickles")).texture("all", new TechnologicaLocation("block/barnacle")).renderType("cutout");
+		withExistingParent("four_dead_" + name(TechnologicaBlocks.BARNACLE.get()) + "s", new ResourceLocation("block/four_dead_sea_pickles")).texture("all", new TechnologicaLocation("block/barnacle")).renderType("cutout");
+		withExistingParent("four_" + name(TechnologicaBlocks.BARNACLE.get()) + "s", new ResourceLocation("block/four_sea_pickles")).texture("all", new TechnologicaLocation("block/barnacle")).renderType("cutout");
 	}
 
 	private void blocksOfMetal() {
@@ -627,6 +636,7 @@ public class TLModelsBlock extends TLReGenModelsBlock {
 		fluid(TechnologicaBlocks.RADON.get());
 		fluid(TechnologicaBlocks.RUBBER_RESIN.get());
 		fluid(TechnologicaBlocks.XENON.get());
+		fluid(TechnologicaBlocks.MOLTEN_CORE.get());
 	}
 
 	private void leaves() {

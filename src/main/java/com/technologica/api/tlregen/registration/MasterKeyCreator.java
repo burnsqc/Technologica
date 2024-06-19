@@ -13,12 +13,14 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.dimension.LevelStem;
+import net.minecraft.world.level.levelgen.DensityFunction;
 import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureSet;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
+import net.minecraft.world.level.levelgen.synth.NormalNoise.NoiseParameters;
 import net.minecraftforge.common.world.BiomeModifier;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -47,6 +49,10 @@ public abstract class MasterKeyCreator {
 		return ResourceKey.create(Registries.DAMAGE_TYPE, new TechnologicaLocation(path));
 	}
 
+	protected static ResourceKey<DensityFunction> densityFunction(String path) {
+		return ResourceKey.create(Registries.DENSITY_FUNCTION, new TechnologicaLocation(path));
+	}
+
 	protected static ResourceKey<Level> dimension(String path) {
 		return ResourceKey.create(Registries.DIMENSION, new TechnologicaLocation(path));
 	}
@@ -57,6 +63,10 @@ public abstract class MasterKeyCreator {
 
 	protected static ResourceKey<DimensionType> dimensionType(String path) {
 		return ResourceKey.create(Registries.DIMENSION_TYPE, new TechnologicaLocation(path));
+	}
+
+	protected static ResourceKey<NoiseParameters> noise(String path) {
+		return ResourceKey.create(Registries.NOISE, new TechnologicaLocation(path));
 	}
 
 	protected static ResourceKey<NoiseGeneratorSettings> noiseGeneratorSettings(String path) {

@@ -14,11 +14,14 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
+@Mod.EventBusSubscriber(bus = EventBusSubscriber.Bus.FORGE)
 public class WandererTradesEventListener {
 
 	@SubscribeEvent
-	public void onVillagerTradesEvent(WandererTradesEvent event) { // NO_UCD (unused code)
+	public static void onWandererTradesEvent(final WandererTradesEvent event) {
 		List<ItemListing> trades = event.getGenericTrades();
 		trades.add(new ItemsForEmeralds(TechnologicaItems.BARLEY_SEEDS.get(), 1, 1, 12, 1));
 		trades.add(new ItemsForEmeralds(TechnologicaItems.OATS_SEEDS.get(), 1, 1, 12, 1));

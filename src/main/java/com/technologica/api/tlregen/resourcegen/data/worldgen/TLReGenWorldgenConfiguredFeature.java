@@ -12,7 +12,7 @@ import com.mojang.serialization.Encoder;
 import com.mojang.serialization.JsonOps;
 import com.technologica.api.tlregen.resourcegen.TLReGenMasterResourceGenerator;
 import com.technologica.api.tlregen.resourcegen.mirrors.TLReGenRegistrySetBuilder;
-import com.technologica.resourcegen.data.worldgen.configuredfeature.TLConfiguredFeatures;
+import com.technologica.resourcegen.data.worldgen.configuredfeature.TLWorldgenConfiguredFeatures;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.Registry;
@@ -28,7 +28,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraftforge.registries.DataPackRegistriesHooks;
 
 public abstract class TLReGenWorldgenConfiguredFeature extends TLReGenMasterResourceGenerator implements DataProvider {
-	private final CompletableFuture<HolderLookup.Provider> damageTypes = lookupProvider.thenApply(r -> constructRegistries(r, new TLReGenRegistrySetBuilder().add(Registries.CONFIGURED_FEATURE, (TLReGenRegistrySetBuilder.RegistryBootstrap) TLConfiguredFeatures::bootstrap)));
+	private final CompletableFuture<HolderLookup.Provider> damageTypes = lookupProvider.thenApply(r -> constructRegistries(r, new TLReGenRegistrySetBuilder().add(Registries.CONFIGURED_FEATURE, (TLReGenRegistrySetBuilder.RegistryBootstrap) TLWorldgenConfiguredFeatures::bootstrap)));
 	private final java.util.function.Predicate<String> namespacePredicate = Set.of(modid) == null ? namespace -> true : Set.of(modid)::contains;
 
 	@Override

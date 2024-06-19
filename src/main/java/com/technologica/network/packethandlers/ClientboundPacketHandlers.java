@@ -7,7 +7,7 @@ import com.technologica.client.multiplayer.TechnologicaClientLevel;
 import com.technologica.network.packets.clientbound.SetMeteorStorm;
 import com.technologica.network.packets.clientbound.SetMeteorStormLevel;
 import com.technologica.network.packets.clientbound.UpdateDiverCapability;
-import com.technologica.setup.listeners.TechnologicaCapabilities;
+import com.technologica.setup.common.RegisterCapabilitiesEventListener;
 import com.technologica.world.entity.player.TechnologicaAbilities;
 
 import net.minecraft.client.Minecraft;
@@ -19,7 +19,7 @@ public class ClientboundPacketHandlers {
 	public static void handleUpdateDiverCapability(UpdateDiverCapability packet, final Supplier<NetworkEvent.Context> context) {
 		Minecraft minecraft = Minecraft.getInstance();
 		LocalPlayer player = minecraft.player;
-		TechnologicaAbilities diver = player.getCapability(TechnologicaCapabilities.DIVER_INSTANCE).orElseThrow(NullPointerException::new);
+		TechnologicaAbilities diver = player.getCapability(RegisterCapabilitiesEventListener.DIVER_INSTANCE).orElseThrow(NullPointerException::new);
 		diver.setDiver(packet.getDiver());
 	}
 

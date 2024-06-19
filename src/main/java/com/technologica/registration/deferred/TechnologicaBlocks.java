@@ -22,6 +22,7 @@ import com.technologica.world.level.block.LightBlock;
 import com.technologica.world.level.block.LineShaftBlock;
 import com.technologica.world.level.block.LineShaftHangerBlock;
 import com.technologica.world.level.block.MagicLeavesBlock;
+import com.technologica.world.level.block.MoltenBlock;
 import com.technologica.world.level.block.MonitorBlock;
 import com.technologica.world.level.block.MotorBlock;
 import com.technologica.world.level.block.MulchBlock;
@@ -34,6 +35,7 @@ import com.technologica.world.level.block.SapLogBlock;
 import com.technologica.world.level.block.SawmillBlock;
 import com.technologica.world.level.block.SawmillCoreBlock;
 import com.technologica.world.level.block.SleepingBagBlock;
+import com.technologica.world.level.block.SmokeColumnBlock;
 import com.technologica.world.level.block.TableBlock;
 import com.technologica.world.level.block.TallBushCropBlock;
 import com.technologica.world.level.block.TallCropBlock;
@@ -93,6 +95,7 @@ import net.minecraft.world.level.block.PressurePlateBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SandBlock;
 import net.minecraft.world.level.block.SaplingBlock;
+import net.minecraft.world.level.block.SeaPickleBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.StairBlock;
@@ -100,6 +103,7 @@ import net.minecraft.world.level.block.StemGrownBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -275,6 +279,7 @@ public final class TechnologicaBlocks extends MasterDeferredRegistrar {
 	public static final RegistryObject<Block> BASIN = BLOCKS.register("basin", () -> new BasinEmptyBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(2.0F).noOcclusion()));
 	public static final RegistryObject<Block> MAPLE_SYRUP_BASIN = BLOCKS.register("maple_syrup_basin", () -> new BasinFilledBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(2.0F).noOcclusion(), TechnologicaFluids.MAPLE_SYRUP.get()));
 	public static final RegistryObject<Block> RUBBER_RESIN_BASIN = BLOCKS.register("rubber_resin_basin", () -> new BasinFilledBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(2.0F).noOcclusion(), TechnologicaFluids.RUBBER_RESIN.get()));
+	public static final RegistryObject<Block> BARNACLE = BLOCKS.register("barnacle", () -> new SeaPickleBlock(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).sound(SoundType.CALCITE).noOcclusion().pushReaction(PushReaction.DESTROY)));
 	public static final RegistryObject<Block> SALT = BLOCKS.register("salt", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F)));
 	public static final RegistryObject<Block> LITHIUM_CLAY = BLOCKS.register("lithium_clay", () -> new Block(BlockBehaviour.Properties.of().strength(0.6F).sound(SoundType.GRAVEL)));
 	public static final RegistryObject<Block> OILY_COARSE_DIRT = BLOCKS.register("oily_coarse_dirt", () -> new OilyBlock(BlockBehaviour.Properties.of().strength(0.6F).sound(SoundType.GRAVEL)));
@@ -504,6 +509,9 @@ public final class TechnologicaBlocks extends MasterDeferredRegistrar {
 	public static final RegistryObject<LiquidBlock> GASOLINE = BLOCKS.register("gasoline", () -> new LiquidBlock(TechnologicaFluids.GASOLINE, BlockBehaviour.Properties.of().noCollission().replaceable().pushReaction(PushReaction.DESTROY).strength(100.0F).noLootTable()));
 	public static final RegistryObject<LiquidBlock> MACHINE_OIL = BLOCKS.register("machine_oil", () -> new LiquidBlock(TechnologicaFluids.MACHINE_OIL, BlockBehaviour.Properties.of().noCollission().replaceable().pushReaction(PushReaction.DESTROY).strength(100.0F).noLootTable()));
 	public static final RegistryObject<LiquidBlock> COOLANT = BLOCKS.register("coolant", () -> new LiquidBlock(TechnologicaFluids.COOLANT, BlockBehaviour.Properties.of().noCollission().replaceable().pushReaction(PushReaction.DESTROY).strength(100.0F).noLootTable()));
+	public static final RegistryObject<LiquidBlock> MOLTEN_CORE = BLOCKS.register("molten_core", () -> new MoltenBlock(TechnologicaFluids.MOLTEN_CORE, BlockBehaviour.Properties.of().noCollission().replaceable().pushReaction(PushReaction.DESTROY).strength(100.0F).noLootTable().lightLevel((blockState) -> {
+		return 15;
+	})));
 	public static final RegistryObject<Block> APRICOT_LOG = BLOCKS.register("apricot_log", FruitingLogBlock::new);
 	public static final RegistryObject<Block> ASPEN_LOG = BLOCKS.register("aspen_log", () -> VanillaLikeBlocks.logBlock());
 	public static final RegistryObject<Block> AVOCADO_LOG = BLOCKS.register("avocado_log", FruitingLogBlock::new);
@@ -1147,4 +1155,6 @@ public final class TechnologicaBlocks extends MasterDeferredRegistrar {
 		return 15;
 	})));
 	public static final RegistryObject<Block> SLEEPING_BAG = BLOCKS.register("sleeping_bag", () -> new SleepingBagBlock(DyeColor.RED, BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(0.2F).noOcclusion()));
+
+	public static final RegistryObject<Block> SMOKE_COLUMN = BLOCKS.register("smoke_column", () -> new SmokeColumnBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WATER).replaceable().noCollission().noLootTable().pushReaction(PushReaction.DESTROY).liquid().sound(SoundType.EMPTY)));
 }

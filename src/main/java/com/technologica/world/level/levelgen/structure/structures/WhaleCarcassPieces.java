@@ -24,10 +24,9 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlac
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager;
 
 public class WhaleCarcassPieces {
-	private static final ResourceLocation[] FOSSILS = new ResourceLocation[] { new TechnologicaLocation("whale_carcass") };
+	private static final ResourceLocation[] FOSSILS = new ResourceLocation[] { new TechnologicaLocation("whale_carcass"), new ResourceLocation("nether_fossils/fossil_1"), new ResourceLocation("nether_fossils/fossil_2"), new ResourceLocation("nether_fossils/fossil_3"), new ResourceLocation("nether_fossils/fossil_4"), new ResourceLocation("nether_fossils/fossil_5"), new ResourceLocation("nether_fossils/fossil_6"), new ResourceLocation("nether_fossils/fossil_7"), new ResourceLocation("nether_fossils/fossil_8"), new ResourceLocation("nether_fossils/fossil_9"), new ResourceLocation("nether_fossils/fossil_10"), new ResourceLocation("nether_fossils/fossil_11"), new ResourceLocation("nether_fossils/fossil_12"), new ResourceLocation("nether_fossils/fossil_13"), new ResourceLocation("nether_fossils/fossil_14") };
 
-	public static void addPieces(StructureTemplateManager structureTemplateManager, StructurePieceAccessor structurePieceAccessor, RandomSource random, BlockPos blockPos) {
-		Rotation rotation = Rotation.getRandom(random);
+	public static void addPieces(StructureTemplateManager structureTemplateManager, BlockPos blockPos, Rotation rotation, StructurePieceAccessor structurePieceAccessor, RandomSource random) {
 		structurePieceAccessor.addPiece(new WhaleCarcassPieces.WhaleCarcassPiece(structureTemplateManager, Util.getRandom(FOSSILS, random), blockPos, rotation));
 	}
 
@@ -36,9 +35,9 @@ public class WhaleCarcassPieces {
 			super(TechnologicaStructurePieceTypes.WHALE_CARCASS.get(), 0, structureTemplateManager, p_228541_, p_228541_.toString(), makeSettings(rotation), blockPos);
 		}
 
-		public WhaleCarcassPiece(StructureTemplateManager p_228545_, CompoundTag p_228546_) {
-			super(TechnologicaStructurePieceTypes.WHALE_CARCASS.get(), p_228546_, p_228545_, (p_228568_) -> {
-				return makeSettings(Rotation.valueOf(p_228546_.getString("Rot")));
+		public WhaleCarcassPiece(StructureTemplateManager structureTemplateManager, CompoundTag compoundTag) {
+			super(TechnologicaStructurePieceTypes.WHALE_CARCASS.get(), compoundTag, structureTemplateManager, (resourceLocation) -> {
+				return makeSettings(Rotation.valueOf(compoundTag.getString("Rot")));
 			});
 		}
 
@@ -47,19 +46,17 @@ public class WhaleCarcassPieces {
 		}
 
 		@Override
-		protected void addAdditionalSaveData(StructurePieceSerializationContext p_228558_, CompoundTag p_228559_) {
-			super.addAdditionalSaveData(p_228558_, p_228559_);
-			p_228559_.putString("Rot", this.placeSettings.getRotation().name());
+		protected void addAdditionalSaveData(StructurePieceSerializationContext structurePieceSerializationContext, CompoundTag compoundTag) {
+			super.addAdditionalSaveData(structurePieceSerializationContext, compoundTag);
+			compoundTag.putString("Rot", this.placeSettings.getRotation().name());
 		}
 
 		@Override
 		protected void handleDataMarker(String p_228561_, BlockPos p_228562_, ServerLevelAccessor p_228563_, RandomSource p_228564_, BoundingBox p_228565_) {
 		}
 
-		@SuppressWarnings("deprecation")
 		@Override
 		public void postProcess(WorldGenLevel p_228548_, StructureManager p_228549_, ChunkGenerator p_228550_, RandomSource p_228551_, BoundingBox p_228552_, ChunkPos p_228553_, BlockPos p_228554_) {
-			p_228552_.encapsulate(this.template.getBoundingBox(this.placeSettings, this.templatePosition));
 			super.postProcess(p_228548_, p_228549_, p_228550_, p_228551_, p_228552_, p_228553_, p_228554_);
 		}
 	}

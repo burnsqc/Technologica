@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/sea_pickle",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "all": "technologica:block/barnacle"
+  }
+}

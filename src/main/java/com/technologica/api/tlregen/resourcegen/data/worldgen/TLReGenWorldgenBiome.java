@@ -15,7 +15,7 @@ import com.mojang.serialization.Encoder;
 import com.mojang.serialization.JsonOps;
 import com.technologica.api.tlregen.resourcegen.TLReGenMasterResourceGenerator;
 import com.technologica.api.tlregen.resourcegen.mirrors.TLReGenRegistrySetBuilder;
-import com.technologica.resourcegen.data.worldgen.biome.TLBiomes;
+import com.technologica.resourcegen.data.worldgen.biome.TLWorldgenBiomes;
 
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
@@ -41,7 +41,7 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraftforge.registries.DataPackRegistriesHooks;
 
 public abstract class TLReGenWorldgenBiome extends TLReGenMasterResourceGenerator implements DataProvider {
-	private final CompletableFuture<HolderLookup.Provider> damageTypes = lookupProvider.thenApply(r -> constructRegistries(r, new TLReGenRegistrySetBuilder().add(Registries.BIOME, TLBiomes::bootstrap)));
+	private final CompletableFuture<HolderLookup.Provider> damageTypes = lookupProvider.thenApply(r -> constructRegistries(r, new TLReGenRegistrySetBuilder().add(Registries.BIOME, TLWorldgenBiomes::bootstrap)));
 	private final java.util.function.Predicate<String> namespacePredicate = Set.of(modid) == null ? namespace -> true : Set.of(modid)::contains;
 	protected static HolderGetter<PlacedFeature> placedFeature;
 	protected static HolderGetter<ConfiguredWorldCarver<?>> configuredWorldCarver;
@@ -247,6 +247,17 @@ public abstract class TLReGenWorldgenBiome extends TLReGenMasterResourceGenerato
 	public record TLReGenFeatures(List<ResourceKey<PlacedFeature>> rawGeneration, List<ResourceKey<PlacedFeature>> lakes, List<ResourceKey<PlacedFeature>> localModifications, List<ResourceKey<PlacedFeature>> undergroundStructures, List<ResourceKey<PlacedFeature>> surfaceStructures, List<ResourceKey<PlacedFeature>> strongholds, List<ResourceKey<PlacedFeature>> undergroundOres, List<ResourceKey<PlacedFeature>> undergroundDecoration, List<ResourceKey<PlacedFeature>> fluidSprings, List<ResourceKey<PlacedFeature>> vegetalDecoration, List<ResourceKey<PlacedFeature>> topLayerModification) {
 	}
 
+	/**
+	 * @param ambient
+	 * @param axolotls
+	 * @param creature
+	 * @param misc
+	 * @param monster
+	 * @param undergroundWaterCreature
+	 * @param waterAmbient
+	 * @param waterCreature
+	 * @param custom
+	 */
 	public record TLReGenSpawners(List<MobSpawnSettings.SpawnerData> ambient, List<MobSpawnSettings.SpawnerData> axolotls, List<MobSpawnSettings.SpawnerData> creature, List<MobSpawnSettings.SpawnerData> misc, List<MobSpawnSettings.SpawnerData> monster, List<MobSpawnSettings.SpawnerData> undergroundWaterCreature, List<MobSpawnSettings.SpawnerData> waterAmbient, List<MobSpawnSettings.SpawnerData> waterCreature, List<Pair<MobCategory, List<MobSpawnSettings.SpawnerData>>> custom) {
 	}
 }
