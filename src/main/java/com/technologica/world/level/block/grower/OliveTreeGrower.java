@@ -10,6 +10,6 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 public class OliveTreeGrower extends AbstractTreeGrower {
 	@Override
 	protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(RandomSource randomIn, boolean largeHiveIn) {
-		return TechnologicaConfiguredFeatures.OLIVE;
+		return TechnologicaConfiguredFeatures.OLIVE.key();
 	}
 }

@@ -17,7 +17,6 @@ import com.technologica.setup.common.TechnologicaConfigCommon;
 import com.technologica.util.DisablePlankConditionFactory;
 import com.technologica.util.EnablePlankConditionFactory;
 import com.technologica.util.text.TechnologicaLocation;
-import com.technologica.world.entity.TechnologicaMobCategory;
 
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -56,7 +55,6 @@ public class Technologica {
 		// TODO: Determine best place for this. Maybe it's right here but that's unconfirmed.
 		CraftingHelper.register(DisablePlankConditionFactory.Serializer.INSTANCE);
 		CraftingHelper.register(EnablePlankConditionFactory.Serializer.INSTANCE);
-		TechnologicaMobCategory.bootstrap();
 	}
 
 	public static Technologica getInstance() {

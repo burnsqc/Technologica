@@ -10,6 +10,6 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 public class SerendipitousApothecaryTreeGrower extends AbstractTreeGrower {
 	@Override
 	protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(RandomSource randomIn, boolean largeHiveIn) {
-		return TechnologicaConfiguredFeatures.SERENDIPITOUS_APOTHECARY;
+		return TechnologicaConfiguredFeatures.SERENDIPITOUS_APOTHECARY.key();
 	}
 }

@@ -13,7 +13,10 @@ public final class TLTagWorldgenBiomeGenerator extends TLReGenTagsWorldgenBiome 
 		tag(TechnologicaBiomeTags.HAS_EL_DORADO).addOptional(TechnologicaBiomes.MISTY_MIRE.location());
 		tag(TechnologicaBiomeTags.HAS_DOME).addOptional(TechnologicaBiomes.SILENT_EXPANSES.location());
 		tag(TechnologicaBiomeTags.HAS_WHALE_CARCASS).addOptional(TechnologicaBiomes.NAVAL_GRAVEYARD.location());
-		tag(BiomeTags.ALLOWS_TROPICAL_FISH_SPAWNS_AT_ANY_HEIGHT).addOptional(TechnologicaBiomes.FORGOTTEN_REEF.location());
+		tag(BiomeTags.ALLOWS_TROPICAL_FISH_SPAWNS_AT_ANY_HEIGHT).addOptional(TechnologicaBiomes.VIBRANT_REEF.location());
+		tag(TechnologicaBiomeTags.ALLOWS_PUFFERFISH_SPAWNS_AT_ANY_HEIGHT).addOptional(TechnologicaBiomes.VIBRANT_REEF.location()).addOptional(TechnologicaBiomes.SUNKEN_FOREST.location());
+		tag(TechnologicaBiomeTags.ALLOWS_SQUID_SPAWNS_AT_ANY_HEIGHT).addOptional(TechnologicaBiomes.VIBRANT_REEF.location());
+		tag(TechnologicaBiomeTags.ALLOWS_TURTLE_SPAWNS_AT_ANY_HEIGHT).addOptional(TechnologicaBiomes.SUNKEN_FOREST.location());
 	}
 
 	@Override

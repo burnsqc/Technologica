@@ -38,30 +38,26 @@ public class TLReGenRegistrySetBuilder {
 		};
 	}
 
-	public <T> TLReGenRegistrySetBuilder add(ResourceKey<? extends Registry<T>> p_256446_, Lifecycle p_256394_, TLReGenRegistrySetBuilder.RegistryBootstrap<T> p_256638_) {
-		this.entries.add(new TLReGenRegistrySetBuilder.RegistryStub<>(p_256446_, p_256394_, p_256638_));
-		return this;
-	}
-
 	public <T> TLReGenRegistrySetBuilder add(ResourceKey<? extends Registry<T>> registry, TLReGenRegistrySetBuilder.RegistryBootstrap<T> bootstrap) {
-		return this.add(registry, Lifecycle.stable(), bootstrap);
+		this.entries.add(new TLReGenRegistrySetBuilder.RegistryStub<>(registry, Lifecycle.stable(), bootstrap));
+		return this;
 	}
 
 	public List<? extends ResourceKey<? extends Registry<?>>> getEntryKeys() {
 		return this.entries.stream().map(TLReGenRegistrySetBuilder.RegistryStub::key).toList();
 	}
 
-	private TLReGenRegistrySetBuilder.BuildState createState(RegistryAccess p_256400_) {
-		TLReGenRegistrySetBuilder.BuildState registrysetbuilder$buildstate = TLReGenRegistrySetBuilder.BuildState.create(p_256400_, this.entries.stream().map(TLReGenRegistrySetBuilder.RegistryStub::key));
-		this.entries.forEach((p_255629_) -> {
-			p_255629_.apply(registrysetbuilder$buildstate);
+	private TLReGenRegistrySetBuilder.BuildState createState(RegistryAccess registryAccess) {
+		TLReGenRegistrySetBuilder.BuildState registrysetbuilder$buildstate = TLReGenRegistrySetBuilder.BuildState.create(registryAccess, this.entries.stream().map(TLReGenRegistrySetBuilder.RegistryStub::key));
+		this.entries.forEach((registryStub) -> {
+			registryStub.apply(registrysetbuilder$buildstate);
 		});
 		return registrysetbuilder$buildstate;
 	}
 
-	public HolderLookup.Provider build(RegistryAccess p_256112_) {
-		TLReGenRegistrySetBuilder.BuildState registrysetbuilder$buildstate = this.createState(p_256112_);
-		Stream<HolderLookup.RegistryLookup<?>> stream = p_256112_.registries().map((p_258195_) -> {
+	public HolderLookup.Provider build(RegistryAccess registryAccess) {
+		TLReGenRegistrySetBuilder.BuildState registrysetbuilder$buildstate = this.createState(registryAccess);
+		Stream<HolderLookup.RegistryLookup<?>> stream = registryAccess.registries().map((p_258195_) -> {
 			return p_258195_.value().asLookup();
 		});
 		Stream<HolderLookup.RegistryLookup<?>> stream1 = this.entries.stream().map((p_255700_) -> {
@@ -73,20 +69,16 @@ public class TLReGenRegistrySetBuilder {
 		return holderlookup$provider;
 	}
 
-	public HolderLookup.Provider buildPatch(RegistryAccess p_255676_, HolderLookup.Provider p_255900_) {
-		TLReGenRegistrySetBuilder.BuildState registrysetbuilder$buildstate = this.createState(p_255676_);
+	public HolderLookup.Provider buildPatch(RegistryAccess registryAccess, HolderLookup.Provider p_255900_) {
+		TLReGenRegistrySetBuilder.BuildState registrysetbuilder$buildstate = this.createState(registryAccess);
 		Map<ResourceKey<? extends Registry<?>>, TLReGenRegistrySetBuilder.RegistryContents<?>> map = new HashMap<>();
-		registrysetbuilder$buildstate.collectReferencedRegistries().forEach((p_272339_) -> {
-			map.put(p_272339_.key, p_272339_);
-		});
+		registrysetbuilder$buildstate.collectReferencedRegistries().forEach((p_272339_) -> map.put(p_272339_.key, p_272339_));
 		this.entries.stream().map((p_272337_) -> {
 			return p_272337_.collectChanges(registrysetbuilder$buildstate);
 		}).forEach((p_272341_) -> {
 			map.put(p_272341_.key, p_272341_);
 		});
-		Stream<HolderLookup.RegistryLookup<?>> stream = p_255676_.registries().map((p_258194_) -> {
-			return p_258194_.value().asLookup();
-		});
+		Stream<HolderLookup.RegistryLookup<?>> stream = registryAccess.registries().map((registryEntry) -> registryEntry.value().asLookup());
 		HolderLookup.Provider holderlookup$provider = HolderLookup.Provider.create(Stream.concat(stream, map.values().stream().map(TLReGenRegistrySetBuilder.RegistryContents::buildAsLookup).peek(registrysetbuilder$buildstate::addOwner)));
 		registrysetbuilder$buildstate.fillMissingHolders(p_255900_);
 		// registrysetbuilder$buildstate.reportRemainingUnreferencedValues();
@@ -225,9 +217,7 @@ public class TLReGenRegistrySetBuilder {
 			return new HolderLookup.RegistryLookup<T>() {
 				private final Map<ResourceKey<T>, Holder.Reference<T>> entries = RegistryContents.this.values.entrySet().stream().collect(Collectors.toUnmodifiableMap(Map.Entry::getKey, (p_256193_) -> {
 					TLReGenRegistrySetBuilder.ValueAndHolder<T> valueandholder = p_256193_.getValue();
-					Holder.Reference<T> reference = valueandholder.holder().orElseGet(() -> {
-						return Holder.Reference.createStandAlone(this, p_256193_.getKey());
-					});
+					Holder.Reference<T> reference = valueandholder.holder().orElseGet(() -> Holder.Reference.createStandAlone(this, p_256193_.getKey()));
 					reference.bindValue(valueandholder.value().value());
 					return reference;
 				}));

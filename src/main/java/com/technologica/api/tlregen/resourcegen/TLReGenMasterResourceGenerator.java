@@ -1,11 +1,14 @@
 package com.technologica.api.tlregen.resourcegen;
 
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 import com.google.gson.JsonElement;
 import com.mojang.serialization.DynamicOps;
 import com.mojang.serialization.JsonOps;
+import com.mojang.serialization.Lifecycle;
 import com.technologica.Technologica;
 import com.technologica.api.tlregen.resourcegen.assets.TLReGenBlockstates;
 import com.technologica.api.tlregen.resourcegen.assets.TLReGenLang;
@@ -21,6 +24,7 @@ import com.technologica.api.tlregen.resourcegen.data.tags.TLRGTagsItemsGenerator
 import com.technologica.api.tlregen.resourcegen.data.tags.TLReGenTagsBlocks;
 import com.technologica.api.tlregen.resourcegen.data.tags.TLReGenTagsEntityTypes;
 import com.technologica.api.tlregen.resourcegen.mirrors.TLReGenRegistrySetBuilder;
+import com.technologica.registration.key.TechnologicaConfiguredFeatures;
 import com.technologica.resourcegen.assets.TLAtlases;
 import com.technologica.resourcegen.assets.TLBlockstates;
 import com.technologica.resourcegen.assets.TLFont;
@@ -52,11 +56,19 @@ import com.technologica.resourcegen.data.worldgen.structure.TLWorldgenStructureG
 import com.technologica.resourcegen.data.worldgen.structuresets.TLWorldgenStructureSetGenerator;
 import com.technologica.resourcegen.data.worldgen.templatepool.TLWorldgenTemplatePoolGenerator;
 
+import net.minecraft.core.Holder.Reference;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.HolderOwner;
+import net.minecraft.core.HolderSet.Named;
+import net.minecraft.core.Registry;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -92,6 +104,72 @@ public abstract class TLReGenMasterResourceGenerator implements DataProvider {
 	protected static Supplier<TLReGenTagsEntityTypes> TagEntityTypeGenerator;
 	protected static Supplier<TLRGTagsItemsGenerator> TagItemGenerator;
 
+	protected static HolderOwner<PlacedFeature> ho = new HolderLookup.RegistryLookup<PlacedFeature>() {
+
+		@Override
+		public Stream<Reference<PlacedFeature>> listElements() {
+			return null;
+		}
+
+		@Override
+		public Stream<Named<PlacedFeature>> listTags() {
+			return null;
+		}
+
+		@Override
+		public Optional<Reference<PlacedFeature>> get(ResourceKey<PlacedFeature> p_255645_) {
+			return Optional.empty();
+		}
+
+		@Override
+		public Optional<Named<PlacedFeature>> get(TagKey<PlacedFeature> p_256283_) {
+			return Optional.empty();
+		}
+
+		@Override
+		public ResourceKey<? extends Registry<? extends PlacedFeature>> key() {
+			return null;
+		}
+
+		@Override
+		public Lifecycle registryLifecycle() {
+			return null;
+		}
+	};
+
+	protected static HolderOwner<ConfiguredFeature<?, ?>> ho2 = new HolderLookup.RegistryLookup<ConfiguredFeature<?, ?>>() {
+
+		@Override
+		public Stream<Reference<ConfiguredFeature<?, ?>>> listElements() {
+			return null;
+		}
+
+		@Override
+		public Stream<Named<ConfiguredFeature<?, ?>>> listTags() {
+			return null;
+		}
+
+		@Override
+		public Optional<Reference<ConfiguredFeature<?, ?>>> get(ResourceKey<ConfiguredFeature<?, ?>> p_255645_) {
+			return Optional.empty();
+		}
+
+		@Override
+		public Optional<Named<ConfiguredFeature<?, ?>>> get(TagKey<ConfiguredFeature<?, ?>> p_256283_) {
+			return Optional.empty();
+		}
+
+		@Override
+		public ResourceKey<? extends Registry<? extends ConfiguredFeature<?, ?>>> key() {
+			return null;
+		}
+
+		@Override
+		public Lifecycle registryLifecycle() {
+			return null;
+		}
+	};
+
 	@SubscribeEvent
 	public static void addGenerators(final GatherDataEvent eventIn) {
 		setup(eventIn);
@@ -108,6 +186,8 @@ public abstract class TLReGenMasterResourceGenerator implements DataProvider {
 		registrySetBuilder = new RegistrySetBuilder();
 		registrySetBuilder2 = new TLReGenRegistrySetBuilder();
 		registrySetBuilder3 = new TLReGenRegistrySetBuilder();
+		TechnologicaConfiguredFeatures.bootstrap();
+		// TechnologicaPlacedFeatures.bootstrap();
 	}
 
 	private static void setGenerators() {

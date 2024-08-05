@@ -14,7 +14,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.dimension.DimensionType;
@@ -57,7 +56,7 @@ public class TLWorldgenNoiseSettings extends TLReGenWorldgenNoiseSettings {
 						SurfaceRules.ifTrue(
 							SurfaceRules.hole(), 
 							STONE)))),
-			SurfaceRules.ifTrue(SurfaceRules.isBiome(TechnologicaBiomes.SUNKEN_FOREST, TechnologicaBiomes.FORGOTTEN_REEF), 
+			SurfaceRules.ifTrue(SurfaceRules.isBiome(TechnologicaBiomes.SUNKEN_FOREST, TechnologicaBiomes.VIBRANT_REEF), 
 				SurfaceRules.sequence(
 					SurfaceRules.ifTrue(SurfaceRules.UNDER_CEILING, SurfaceRules.sequence(STONE)), 
 					SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, SurfaceRules.sequence(STONE)),

@@ -10,6 +10,6 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 public class ThunderousConductorTreeGrower extends AbstractTreeGrower {
 	@Override
 	protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(RandomSource randomIn, boolean largeHiveIn) {
-		return TechnologicaConfiguredFeatures.THUNDEROUS_CONDUCTOR;
+		return TechnologicaConfiguredFeatures.THUNDEROUS_CONDUCTOR.key();
 	}
 }

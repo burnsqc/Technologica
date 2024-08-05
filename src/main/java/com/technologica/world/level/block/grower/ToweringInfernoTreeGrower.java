@@ -10,6 +10,6 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 public class ToweringInfernoTreeGrower extends AbstractTreeGrower {
 	@Override
 	protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(RandomSource randomIn, boolean largeHiveIn) {
-		return TechnologicaConfiguredFeatures.TOWERING_INFERNO;
+		return TechnologicaConfiguredFeatures.TOWERING_INFERNO.key();
 	}
 }

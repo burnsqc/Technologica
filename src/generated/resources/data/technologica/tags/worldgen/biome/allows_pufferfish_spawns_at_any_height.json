@@ -3,6 +3,10 @@
     {
       "id": "technologica:vibrant_reef",
       "required": false
+    },
+    {
+      "id": "technologica:sunken_forest",
+      "required": false
     }
   ]
 }

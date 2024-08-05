@@ -18,11 +18,11 @@ public final class TLDimensions extends TLReGenDimension {
 				"noise", 
 				new BiomeSourceBuilder("multi_noise")
 				.add(biome(TechnologicaBiomes.RUSTING_GROUNDS, parameters(0.0F, 1.0F, 0.0F, 0.0F, 0.0F, 0.5F, 0.0F)))
-				.add(biome(TechnologicaBiomes.FORGOTTEN_REEF, parameters(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.5F, 0.0F)))
+				.add(biome(TechnologicaBiomes.VIBRANT_REEF, parameters(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.5F, 0.0F)))
 				.add(biome(TechnologicaBiomes.NAVAL_GRAVEYARD, parameters(0.0F, 1.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F)))
 				.add(biome(TechnologicaBiomes.SUNKEN_FOREST, parameters(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 1.0F, 0.0F)))
 				.add(biome(TechnologicaBiomes.HYDROTHERMAL_CAVERN, parameters(0.0F, 1.0F, 0.0F, 0.0F, 0.0F, 1.0F, 0.0F)))
-				.add(biome(TechnologicaBiomes.ABYSSAL_DEPTHS, parameters(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F)))
+				.add(biome(TechnologicaBiomes.ECHOSCAPE, parameters(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F)))
 				.build(), TechnologicaNoiseGeneratorSettings.CHALLENGER_DEEP)));
 		dimension.register(TechnologicaDimensions.OVERGROWTH_STEM, dimension(TechnologicaDimensionTypes.OVERGROWTH, chunkGenerator("noise", new BiomeSourceBuilder("multi_noise").add(biome(TechnologicaBiomes.MISTY_MIRE, parameters(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F))).add(biome(TechnologicaBiomes.BRAMBLE, parameters(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F))).build(), TechnologicaNoiseGeneratorSettings.OVERGROWTH)));
 	}

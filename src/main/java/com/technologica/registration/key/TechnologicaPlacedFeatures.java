@@ -1,10 +1,16 @@
 package com.technologica.registration.key;
 
+import java.util.List;
+
 import com.technologica.api.tlregen.registration.MasterKeyCreator;
+import com.technologica.api.tlregen.resourcegen.util.DynamicRegistryObject;
+import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.resourcegen.data.worldgen.placedfeature.TLWorldgenPlacedFeatures;
 
+import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraft.world.level.levelgen.placement.PlacementModifier;
 
 /**
  * <p>
@@ -15,6 +21,10 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
  * @tl.status YELLOW
  */
 public final class TechnologicaPlacedFeatures extends MasterKeyCreator {
+
+	public static void bootstrap() {
+	};
+
 	public static final ResourceKey<PlacedFeature> BRINE_POOL_PLACED = placedFeature("brine_pool");
 	public static final ResourceKey<PlacedFeature> NATURAL_GAS_DEPOSIT_PLACED = placedFeature("natural_gas_deposit");
 	public static final ResourceKey<PlacedFeature> OASIS_PLACED = placedFeature("oasis");
@@ -66,7 +76,7 @@ public final class TechnologicaPlacedFeatures extends MasterKeyCreator {
 	public static final ResourceKey<PlacedFeature> CHESTNUT_CHECKED = placedFeature("chestnut_checked");
 	public static final ResourceKey<PlacedFeature> CINNAMON_CHECKED = placedFeature("cinnamon_checked");
 	public static final ResourceKey<PlacedFeature> COCONUT_CHECKED = placedFeature("coconut_checked");
-	public static final ResourceKey<PlacedFeature> EBONY_CHECKED = placedFeature("ebony_checked");
+	public static final DynamicRegistryObject<PlacedFeature> EBONY_CHECKED = placedFeature("zebrawood_checked", () -> new PlacedFeature(TechnologicaConfiguredFeatures.EBONY.holder(), treePlacement(PlacementUtils.filteredByBlockSurvival(TechnologicaBlocks.EBONY_SAPLING.get()))));
 	public static final ResourceKey<PlacedFeature> KIWI_CHECKED = placedFeature("kiwi_checked");
 	public static final ResourceKey<PlacedFeature> LEMON_CHECKED = placedFeature("lemon_checked");
 	public static final ResourceKey<PlacedFeature> LIME_CHECKED = placedFeature("lime_checked");
@@ -82,7 +92,7 @@ public final class TechnologicaPlacedFeatures extends MasterKeyCreator {
 	public static final ResourceKey<PlacedFeature> RUBBER_CHECKED = placedFeature("rubber_checked");
 	public static final ResourceKey<PlacedFeature> TEAK_CHECKED = placedFeature("teak_checked");
 	public static final ResourceKey<PlacedFeature> WALNUT_CHECKED = placedFeature("walnut_checked");
-	public static final ResourceKey<PlacedFeature> ZEBRAWOOD_CHECKED = placedFeature("zebrawood_checked");
+	// public static final DynamicRegistryObject<PlacedFeature> ZEBRAWOOD_CHECKED = placedFeature("zebrawood_checked", new PlacedFeature(TechnologicaConfiguredFeatures.ZEBRAWOOD.holder(), treePlacement(PlacementUtils.filteredByBlockSurvival(TechnologicaBlocks.ZEBRAWOOD_SAPLING.get()))));
 	public static final ResourceKey<PlacedFeature> ANCIENT_AMBROSIA_CHECKED = placedFeature("ancient_ambrosia_checked");
 	public static final ResourceKey<PlacedFeature> BENEVOLENT_APOTHECARY_CHECKED = placedFeature("benevolent_apothecary_checked");
 	public static final ResourceKey<PlacedFeature> CRYOGENIC_SPIRE_CHECKED = placedFeature("cryogenic_spire_checked");
@@ -121,4 +131,8 @@ public final class TechnologicaPlacedFeatures extends MasterKeyCreator {
 	public static final ResourceKey<PlacedFeature> DEEP_BASALT_PILLAR = placedFeature("deep_basalt_pillar");
 	public static final ResourceKey<PlacedFeature> HYDROTHERMAL_VENT = placedFeature("hydrothermal_vent");
 	public static final ResourceKey<PlacedFeature> DEEP_BASALT_BLOB = placedFeature("deep_basalt_blob");
+
+	protected static List<PlacementModifier> treePlacement(PlacementModifier p_195345_) {
+		return List.of(p_195345_);
+	}
 }

@@ -18,4 +18,7 @@ public final class TechnologicaBiomeTags extends MasterKeyCreator {
 	public static final TagKey<Biome> HAS_EL_DORADO = biomeTag("has_el_dorado");
 	public static final TagKey<Biome> HAS_DOME = biomeTag("has_dome");
 	public static final TagKey<Biome> HAS_WHALE_CARCASS = biomeTag("has_whale_carcass");
+	public static final TagKey<Biome> ALLOWS_PUFFERFISH_SPAWNS_AT_ANY_HEIGHT = biomeTag("allows_pufferfish_spawns_at_any_height");
+	public static final TagKey<Biome> ALLOWS_SQUID_SPAWNS_AT_ANY_HEIGHT = biomeTag("allows_squid_spawns_at_any_height");
+	public static final TagKey<Biome> ALLOWS_TURTLE_SPAWNS_AT_ANY_HEIGHT = biomeTag("allows_turtle_spawns_at_any_height");
 }

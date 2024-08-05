@@ -210,7 +210,7 @@
           "type": "minecraft:biome",
           "biome_is": [
             "technologica:sunken_forest",
-            "technologica:forgotten_reef"
+            "technologica:vibrant_reef"
           ]
         },
         "then_run": {

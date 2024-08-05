@@ -12,8 +12,8 @@
       "tick_delay": 6000
     },
     "sky_color": 0,
-    "water_color": 3832426,
-    "water_fog_color": 5077600
+    "water_color": 4020182,
+    "water_fog_color": 329011
   },
   "features": [
     [],
@@ -35,20 +35,27 @@
   "spawners": {
     "ambient": [],
     "axolotls": [],
-    "creature": [],
-    "misc": [],
-    "monster": [],
-    "shark": [],
-    "underground_water_creature": [],
-    "water_ambient": [],
-    "water_creature": [
+    "creature": [
       {
         "type": "minecraft:turtle",
         "maxCount": 1,
         "minCount": 1,
         "weight": 1
       }
-    ]
+    ],
+    "misc": [],
+    "monster": [],
+    "shark": [],
+    "underground_water_creature": [],
+    "water_ambient": [
+      {
+        "type": "technologica:figure_eight_pufferfish",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 1
+      }
+    ],
+    "water_creature": []
   },
   "temperature": 0.5
 }

@@ -1,5 +1,8 @@
 package com.technologica.api.tlregen.registration;
 
+import java.util.function.Supplier;
+
+import com.technologica.api.tlregen.resourcegen.util.DynamicRegistryObject;
 import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.core.registries.Registries;
@@ -41,8 +44,8 @@ public abstract class MasterKeyCreator {
 		return ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new TechnologicaLocation(path));
 	}
 
-	protected static ResourceKey<ConfiguredFeature<?, ?>> configuredFeature(String name) {
-		return ResourceKey.create(Registries.CONFIGURED_FEATURE, new TechnologicaLocation(name));
+	protected static DynamicRegistryObject<ConfiguredFeature<?, ?>> configuredFeature(String name, Supplier<ConfiguredFeature<?, ?>> configuredFeature) {
+		return new DynamicRegistryObject<ConfiguredFeature<?, ?>>(ResourceKey.create(Registries.CONFIGURED_FEATURE, new TechnologicaLocation(name)), configuredFeature);
 	}
 
 	protected static ResourceKey<DamageType> damageType(String path) {
@@ -79,6 +82,10 @@ public abstract class MasterKeyCreator {
 
 	protected static ResourceKey<PlacedFeature> placedFeature(String name) {
 		return ResourceKey.create(Registries.PLACED_FEATURE, new TechnologicaLocation(name));
+	}
+
+	protected static DynamicRegistryObject<PlacedFeature> placedFeature(String name, Supplier<PlacedFeature> placedFeature) {
+		return new DynamicRegistryObject<PlacedFeature>(ResourceKey.create(Registries.PLACED_FEATURE, new TechnologicaLocation(name)), placedFeature, 2);
 	}
 
 	protected static ResourceKey<Structure> structure(String path) {

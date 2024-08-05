@@ -10,6 +10,6 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 public class CryogenicSpireTreeGrower extends AbstractTreeGrower {
 	@Override
 	protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(RandomSource randomIn, boolean largeHiveIn) {
-		return TechnologicaConfiguredFeatures.CRYOGENIC_SPIRE;
+		return TechnologicaConfiguredFeatures.CRYOGENIC_SPIRE.key();
 	}
 }

@@ -23,9 +23,9 @@ public final class TechnologicaBiomes extends MasterKeyCreator {
 	public static final ResourceKey<Biome> BRAMBLE = biome("bramble");
 
 	public static final ResourceKey<Biome> RUSTING_GROUNDS = biome("rusting_grounds");
-	public static final ResourceKey<Biome> FORGOTTEN_REEF = biome("forgotten_reef");
+	public static final ResourceKey<Biome> VIBRANT_REEF = biome("vibrant_reef");
 	public static final ResourceKey<Biome> NAVAL_GRAVEYARD = biome("naval_graveyard");
 	public static final ResourceKey<Biome> SUNKEN_FOREST = biome("sunken_forest");
 	public static final ResourceKey<Biome> HYDROTHERMAL_CAVERN = biome("hydrothermal_cavern");
-	public static final ResourceKey<Biome> ABYSSAL_DEPTHS = biome("abyssal_depths");
+	public static final ResourceKey<Biome> ECHOSCAPE = biome("echoscape");
 }

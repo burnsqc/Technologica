@@ -106,7 +106,7 @@ public class SmokeColumnBlock extends Block implements BucketPickup {
 	}
 
 	private static boolean canExistIn(BlockState blockState) {
-		return blockState.is(TechnologicaBlocks.SMOKE_COLUMN.get()) || blockState.is(Blocks.WATER) && blockState.getFluidState().getAmount() >= 8 && blockState.getFluidState().isSource();
+		return blockState.is(TechnologicaBlocks.SMOKE_COLUMN.get()) || blockState.is(Blocks.WATER) && blockState.getFluidState().getAmount() >= 8;
 	}
 
 	private static BlockState getColumnState(BlockState blockStateBelow) {

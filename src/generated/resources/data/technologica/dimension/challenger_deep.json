@@ -18,7 +18,7 @@
           }
         },
         {
-          "biome": "technologica:forgotten_reef",
+          "biome": "technologica:vibrant_reef",
           "parameters": {
             "continentalness": 0.0,
             "depth": 0.0,
@@ -66,7 +66,7 @@
           }
         },
         {
-          "biome": "technologica:abyssal_depths",
+          "biome": "technologica:echoscape",
           "parameters": {
             "continentalness": 0.0,
             "depth": 0.0,
