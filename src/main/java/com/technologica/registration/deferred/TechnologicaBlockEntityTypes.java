@@ -3,6 +3,7 @@ package com.technologica.registration.deferred;
 import com.technologica.Technologica;
 import com.technologica.api.tlregen.registration.MasterDeferredRegistrar;
 import com.technologica.world.level.block.entity.AnnunciatorBlockEntity;
+import com.technologica.world.level.block.entity.CarpentryWorkbenchBlockEntity;
 import com.technologica.world.level.block.entity.DisplayCaseBlockEntity;
 import com.technologica.world.level.block.entity.FastHopperBlockEntity;
 import com.technologica.world.level.block.entity.FruitBlockEntity;
@@ -16,6 +17,7 @@ import com.technologica.world.level.block.entity.PotionTileEntity;
 import com.technologica.world.level.block.entity.RadioactiveOreBlockEntity;
 import com.technologica.world.level.block.entity.SawmillBlockEntity;
 import com.technologica.world.level.block.entity.TechnologicaSignBlockEntity;
+import com.technologica.world.level.block.entity.TechnologicaSkullBlockEntity;
 import com.technologica.world.level.block.entity.VanillaSignBlockEntity;
 import com.technologica.world.level.block.entity.WindmillBlockEntity;
 
@@ -24,8 +26,10 @@ import net.minecraftforge.registries.RegistryObject;
 
 /**
  * <p>
- * This class contains Registry Objects for Block Entity Types.
- * The {@link #init} method is called by {@link Technologica#initDeferredRegisters} and returns a head-count to later be checked during registration and other setup activities.
+ * This class contains Registry Objects for Block Entity Types. The
+ * {@link #init} method is called by {@link Technologica#initDeferredRegisters}
+ * and returns a head-count to later be checked during registration and other
+ * setup activities.
  * </p>
  * 
  * @tl.status GREEN
@@ -52,4 +56,6 @@ public final class TechnologicaBlockEntityTypes extends MasterDeferredRegistrar 
 	public static final RegistryObject<BlockEntityType<RadioactiveOreBlockEntity>> RADIOACTIVE_ORE_BLOCK_ENTITY = BLOCK_ENTITY_TYPES.register("radioactive_ore_block_entity", () -> BlockEntityType.Builder.of(RadioactiveOreBlockEntity::new, TechnologicaBlocks.THORIANITE_ORE.get(), TechnologicaBlocks.DEEPSLATE_THORIANITE_ORE.get(), TechnologicaBlocks.URANINITE_ORE.get(), TechnologicaBlocks.DEEPSLATE_URANINITE_ORE.get()).build(null));
 	public static final RegistryObject<BlockEntityType<FastHopperBlockEntity>> FAST_HOPPER_BLOCK_ENTITY = BLOCK_ENTITY_TYPES.register("fast_hopper_block_entity", () -> BlockEntityType.Builder.of(FastHopperBlockEntity::new, TechnologicaBlocks.FAST_HOPPER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<LightBlockEntity>> LIGHT_BLOCK_ENTITY = BLOCK_ENTITY_TYPES.register("light_block_entity", () -> BlockEntityType.Builder.of(LightBlockEntity::new, TechnologicaBlocks.LIGHT.get()).build(null));
+	public static final RegistryObject<BlockEntityType<TechnologicaSkullBlockEntity>> SKULL = BLOCK_ENTITY_TYPES.register("technologica_skull", () -> BlockEntityType.Builder.of(TechnologicaSkullBlockEntity::new, TechnologicaBlocks.BEEPER_HEAD.get(), TechnologicaBlocks.PEEPER_HEAD.get(), TechnologicaBlocks.SLEEPER_HEAD.get(), TechnologicaBlocks.SWEEPER_HEAD.get(), TechnologicaBlocks.WEEPER_HEAD.get()).build(null));
+	public static final RegistryObject<BlockEntityType<CarpentryWorkbenchBlockEntity>> CARPENTY_WORKBENCH = BLOCK_ENTITY_TYPES.register("carpentry_workbench", () -> BlockEntityType.Builder.of(CarpentryWorkbenchBlockEntity::new, TechnologicaBlocks.CARPENTRY_WORKBENCH.get()).build(null));
 }

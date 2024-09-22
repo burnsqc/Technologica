@@ -26,8 +26,10 @@ import net.minecraftforge.registries.RegistryObject;
 
 /**
  * <p>
- * This class contains Registry Objects for Features.
- * The {@link #init} method is called by {@link Technologica#initDeferredRegisters} and returns a head-count to later be checked during registration and other setup activities.
+ * This class contains Registry Objects for Features. The {@link #init} method
+ * is called by {@link Technologica#initDeferredRegisters} and returns a
+ * head-count to later be checked during registration and other setup
+ * activities.
  * </p>
  * 
  * @tl.status YELLOW
@@ -39,7 +41,8 @@ public class TechnologicaFeatures extends MasterDeferredRegistrar {
 		return FEATURES.getEntries().size();
 	}
 
-	// TODO: Really need to get rid of the call to {@link LakeFeature} before the rug gets pulled out from under me. Maybe just clone it to my own class.
+	// TODO: Really need to get rid of the call to {@link LakeFeature} before the
+	// rug gets pulled out from under me. Maybe just clone it to my own class.
 	public static final RegistryObject<Feature<LakeFeature.Configuration>> BRINE_POOL = FEATURES.register("brine_pool", () -> new LakeFeature(LakeFeature.Configuration.CODEC));
 	public static final RegistryObject<Feature<BlockStateConfiguration>> OASIS = FEATURES.register("oasis", () -> new OasisFeature(BlockStateConfiguration.CODEC));
 	public static final RegistryObject<Feature<GeodeConfiguration>> NATURAL_GAS_DEPOSIT = FEATURES.register("natural_gas_deposit", () -> new NaturalGasDepositFeature(GeodeConfiguration.CODEC));

@@ -2,7 +2,7 @@ package com.technologica.world.entity.player;
 
 import org.jetbrains.annotations.Nullable;
 
-import com.technologica.setup.common.RegisterCapabilitiesEventListener;
+import com.technologica.listeners.mod.common.RegisterCapabilitiesEventListener;
 
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;

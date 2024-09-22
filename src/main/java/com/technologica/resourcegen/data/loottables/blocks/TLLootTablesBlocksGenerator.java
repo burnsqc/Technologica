@@ -216,6 +216,12 @@ public final class TLLootTablesBlocksGenerator extends BlockLootSubProvider {
 		add(TechnologicaBlocks.MALEVOLENT_LEAVES.get(), createLeavesDrops(TechnologicaBlocks.MALEVOLENT_LEAVES.get(), TechnologicaBlocks.MALEVOLENT_APOTHECARY_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES));
 		add(TechnologicaBlocks.CURSED_LEAVES.get(), createLeavesDrops(TechnologicaBlocks.CURSED_LEAVES.get(), TechnologicaBlocks.NECROTIC_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES));
 
+		dropSelf(TechnologicaBlocks.BEEPER_HEAD.get());
+		dropSelf(TechnologicaBlocks.PEEPER_HEAD.get());
+		dropSelf(TechnologicaBlocks.SLEEPER_HEAD.get());
+		dropSelf(TechnologicaBlocks.SWEEPER_HEAD.get());
+		dropSelf(TechnologicaBlocks.WEEPER_HEAD.get());
+
 		add(TechnologicaBlocks.GLUE.get(), noDrop());
 		add(TechnologicaBlocks.LAND_MINE.get(), noDrop());
 

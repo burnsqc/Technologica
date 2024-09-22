@@ -42,10 +42,10 @@ public class MonitorScreen extends AbstractContainerScreen<MonitorMenu> {
 	protected int imageWidth = 224;
 
 	public MonitorScreen(MonitorMenu screenContainerIn, Inventory playerInventoryIn, Component titleIn) {
-		super(screenContainerIn, playerInventoryIn, Component.literal("Monitor"));
-		this.imageHeight = 231;
+		super(screenContainerIn, playerInventoryIn, titleIn);
+		imageHeight = 231;
 		this.inventoryLabelY = 137;
-		this.tileEntity = (MonitorBlockEntity) screenContainerIn.getTileEntity();
+		this.tileEntity = screenContainerIn.getTileEntity();
 		this.multiLineText = IntStream.range(0, 16).mapToObj(tileEntity::getText).map(Component::getString).toArray((p_243354_0_) -> {
 			return new String[p_243354_0_];
 		});

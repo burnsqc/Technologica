@@ -170,6 +170,7 @@ public class TLRecipesGenerator extends TLRGRecipeGenerator {
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, TechnologicaItems.PRIMITIVE_HOE.get()).define('T', Items.STICK).define('F', Items.FLINT).define('S', Items.STRING).pattern("FF ").pattern(" TS").pattern(" T ").unlockedBy("has_flint", has(Items.FLINT)).save(consumer, new TechnologicaLocation("primitive_hoe"));
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, TechnologicaItems.PRIMITIVE_DAGGER.get()).define('T', Items.STICK).define('F', Items.FLINT).define('S', Items.STRING).pattern("F ").pattern("FS").pattern("T ").unlockedBy("has_flint", has(Items.FLINT)).save(consumer, new TechnologicaLocation("primitive_dagger"));
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TechnologicaItems.TRELLIS.get()).define('S', Items.STRING).define('B', Items.IRON_BARS).pattern("SBS").pattern("SBS").unlockedBy("has_iron_bars", has(Items.IRON_BARS)).save(consumer, new TechnologicaLocation("trellis"));
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, TechnologicaItems.SAW.get()).define('S', Items.STICK).define('I', Items.IRON_INGOT).pattern("SII").unlockedBy("has_iron", has(Items.IRON_INGOT)).save(consumer, new TechnologicaLocation("saw"));
 		sawmillRecipe(Ingredient.of(Items.OAK_LOG), Items.STRIPPED_OAK_LOG, 1, TechnologicaItems.MULCH.get(), 1).save(consumer, new TechnologicaLocation("stripped_oak_log_from_oak_log_sawmill"));
 		sawmillRecipe(Ingredient.of(Items.SPRUCE_LOG), Items.STRIPPED_SPRUCE_LOG, 1, TechnologicaItems.MULCH.get(), 1).save(consumer, new TechnologicaLocation("stripped_spruce_log_from_spruce_log_sawmill"));
 		sawmillRecipe(Ingredient.of(Items.BIRCH_LOG), Items.STRIPPED_BIRCH_LOG, 1, TechnologicaItems.MULCH.get(), 1).save(consumer, new TechnologicaLocation("stripped_birch_log_from_birch_log_sawmill"));
@@ -319,7 +320,7 @@ public class TLRecipesGenerator extends TLRGRecipeGenerator {
 		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 4).define('#', input).pattern("#  ").pattern("## ").pattern("###").group("wooden_stairs").unlockedBy("has_planks", has(input)).save(consumer2)).addCondition(new DisablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 1).requires(input).requires(TechnologicaItems.CHISEL.get()).group("wooden_slab").unlockedBy("has_chisel", has(TechnologicaItems.CHISEL.get())).save(consumer2)).build(recipeConsumer, new TechnologicaLocation(ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
 	}
 
-	public static MultipleOutputRecipeBuilder sawmillRecipe(Ingredient ingredientIn, ItemLike output, int countIn, ItemLike output2, int count2) {
+	private static MultipleOutputRecipeBuilder sawmillRecipe(Ingredient ingredientIn, ItemLike output, int countIn, ItemLike output2, int count2) {
 		return new MultipleOutputRecipeBuilder(RecipeCategory.BUILDING_BLOCKS, TechnologicaRecipeSerializers.SAWMILL.get(), ingredientIn, output, countIn, output2, count2).unlockedBy("has_logs", has(TechnologicaItemTags.APRICOT_LOGS));
 	}
 }

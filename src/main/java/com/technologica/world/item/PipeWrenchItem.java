@@ -4,8 +4,8 @@ import javax.annotation.Nullable;
 
 import com.technologica.capabilities.item.link.Link;
 import com.technologica.capabilities.item.link.LinkProvider;
+import com.technologica.listeners.mod.common.RegisterCapabilitiesEventListener;
 import com.technologica.registration.deferred.TechnologicaBlocks;
-import com.technologica.setup.common.RegisterCapabilitiesEventListener;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;

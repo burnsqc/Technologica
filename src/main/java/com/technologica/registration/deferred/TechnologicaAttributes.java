@@ -9,8 +9,10 @@ import net.minecraftforge.registries.RegistryObject;
 
 /**
  * <p>
- * This class contains Registry Objects for Attributes.
- * The {@link #init} method is called by {@link Technologica#initDeferredRegisters} and returns a head-count to later be checked during registration and other setup activities.
+ * This class contains Registry Objects for Attributes. The {@link #init} method
+ * is called by {@link Technologica#initDeferredRegisters} and returns a
+ * head-count to later be checked during registration and other setup
+ * activities.
  * </p>
  * 
  * @tl.status GREEN

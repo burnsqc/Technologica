@@ -1,7 +1,7 @@
 package com.technologica.server.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
-import com.technologica.listeners.forgebus.RenderLevelStageEventListener;
+import com.technologica.listeners.forge.RenderLevelStageEventListener;
 
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;

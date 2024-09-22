@@ -8,7 +8,11 @@ import com.technologica.util.text.TechnologicaLocation;
 import com.technologica.world.entity.vehicle.TechnologicaBoat;
 
 import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.model.geom.ModelLayers;
 
+/**
+ * Effectively a copy of {@link ModelLayers}
+ */
 public class TechnologicaModelLayers {
 	public static final Set<ModelLayerLocation> ALL_MODELS = Sets.newHashSet();
 	public static final ModelLayerLocation ALLIGATOR = register("alligator");
@@ -52,11 +56,16 @@ public class TechnologicaModelLayers {
 	public static final ModelLayerLocation ZEBRA = register("zebra");
 	public static final ModelLayerLocation ATOMIC_CREEPER = register("atomic_creeper");
 	public static final ModelLayerLocation MUMMY = register("mummy");
-	public static final ModelLayerLocation PEEPER = register("peeper");
 	public static final ModelLayerLocation BEEPER = register("beeper");
+	public static final ModelLayerLocation BEEPER_HEAD = register("beeper_head");
+	public static final ModelLayerLocation PEEPER = register("peeper");
+	public static final ModelLayerLocation PEEPER_HEAD = register("peeper_head");
 	public static final ModelLayerLocation SLEEPER = register("sleeper");
-	public static final ModelLayerLocation WEEPER = register("weeper");
+	public static final ModelLayerLocation SLEEPER_HEAD = register("sleeper_head");
 	public static final ModelLayerLocation SWEEPER = register("sweeper");
+	public static final ModelLayerLocation SWEEPER_HEAD = register("sweeper_head");
+	public static final ModelLayerLocation WEEPER = register("weeper");
+	public static final ModelLayerLocation WEEPER_HEAD = register("weeper_head");
 	public static final ModelLayerLocation DUST_DEVIL = register("dust_devil");
 	public static final ModelLayerLocation NAVAL_MINE = register("naval_mine");
 	public static final ModelLayerLocation WINDMILL = register("windmill");

@@ -7,6 +7,7 @@ import com.technologica.world.level.block.AnnunciatorBlock;
 import com.technologica.world.level.block.AquaticCropBlock;
 import com.technologica.world.level.block.BasinEmptyBlock;
 import com.technologica.world.level.block.BasinFilledBlock;
+import com.technologica.world.level.block.CarpentryWorkbenchBlock;
 import com.technologica.world.level.block.ChairBlock;
 import com.technologica.world.level.block.DisplayCaseBlock;
 import com.technologica.world.level.block.FastHopper;
@@ -40,6 +41,7 @@ import com.technologica.world.level.block.TableBlock;
 import com.technologica.world.level.block.TallBushCropBlock;
 import com.technologica.world.level.block.TallCropBlock;
 import com.technologica.world.level.block.TapeDriveBlock;
+import com.technologica.world.level.block.TechnologicaSkullBlock;
 import com.technologica.world.level.block.TreeTapBlock;
 import com.technologica.world.level.block.TrellisBlock;
 import com.technologica.world.level.block.TwentyFourDirectionBlock;
@@ -103,14 +105,16 @@ import net.minecraft.world.level.block.StemGrownBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.registries.RegistryObject;
 
 /**
  * <p>
- * This class contains Registry Objects for Blocks.
- * The {@link #init} method is called by {@link Technologica#initDeferredRegisters} and returns a head-count to later be checked during registration and other setup activities.
+ * This class contains Registry Objects for Blocks. The {@link #init} method is
+ * called by {@link Technologica#initDeferredRegisters} and returns a head-count
+ * to later be checked during registration and other setup activities.
  * </p>
  * 
  * @tl.status GREEN
@@ -146,26 +150,14 @@ public final class TechnologicaBlocks extends MasterDeferredRegistrar {
 	public static final RegistryObject<Block> TEA = BLOCKS.register("tea", () -> VanillaLikeBlocks.seededCropBlock(TechnologicaItems.TEA_SEEDS));
 	public static final RegistryObject<Block> TURNIPS = BLOCKS.register("turnips", () -> VanillaLikeBlocks.seededCropBlock(TechnologicaItems.TURNIP_SEEDS));
 	public static final RegistryObject<Block> CUCUMBERS = BLOCKS.register("cucumbers", () -> new GourdCropBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noOcclusion(), 0));
-	public static final RegistryObject<Block> ATTACHED_CUCUMBER_STEM = BLOCKS.register("attached_cucumber_stem", () -> new AttachedStemBlock((StemGrownBlock) CUCUMBERS.get(), () -> {
-		return TechnologicaItems.CUCUMBER_SEEDS.get();
-	}, BlockBehaviour.Properties.of().noCollission().instabreak().sound(SoundType.WOOD)));
-	public static final RegistryObject<Block> CUCUMBER_STEM = BLOCKS.register("cucumber_stem", () -> new GourdStemBlock((StemGrownBlock) CUCUMBERS.get(), () -> {
-		return TechnologicaItems.CUCUMBER_SEEDS.get();
-	}, BlockBehaviour.Properties.of().noCollission().randomTicks().instabreak().sound(SoundType.HARD_CROP)));
+	public static final RegistryObject<Block> ATTACHED_CUCUMBER_STEM = BLOCKS.register("attached_cucumber_stem", () -> new AttachedStemBlock((StemGrownBlock) CUCUMBERS.get(), () -> TechnologicaItems.CUCUMBER_SEEDS.get(), BlockBehaviour.Properties.of().noCollission().instabreak().sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> CUCUMBER_STEM = BLOCKS.register("cucumber_stem", () -> new GourdStemBlock((StemGrownBlock) CUCUMBERS.get(), () -> TechnologicaItems.CUCUMBER_SEEDS.get(), BlockBehaviour.Properties.of().noCollission().randomTicks().instabreak().sound(SoundType.HARD_CROP)));
 	public static final RegistryObject<Block> SQUASH = BLOCKS.register("squash", () -> new GourdCropBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noOcclusion(), 1));
-	public static final RegistryObject<Block> ATTACHED_SQUASH_STEM = BLOCKS.register("attached_squash_stem", () -> new AttachedStemBlock((StemGrownBlock) SQUASH.get(), () -> {
-		return TechnologicaItems.SQUASH_SEEDS.get();
-	}, BlockBehaviour.Properties.of().noCollission().instabreak().sound(SoundType.WOOD)));
-	public static final RegistryObject<Block> SQUASH_STEM = BLOCKS.register("squash_stem", () -> new GourdStemBlock((StemGrownBlock) SQUASH.get(), () -> {
-		return TechnologicaItems.SQUASH_SEEDS.get();
-	}, BlockBehaviour.Properties.of().noCollission().randomTicks().instabreak().sound(SoundType.HARD_CROP)));
+	public static final RegistryObject<Block> ATTACHED_SQUASH_STEM = BLOCKS.register("attached_squash_stem", () -> new AttachedStemBlock((StemGrownBlock) SQUASH.get(), () -> TechnologicaItems.SQUASH_SEEDS.get(), BlockBehaviour.Properties.of().noCollission().instabreak().sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> SQUASH_STEM = BLOCKS.register("squash_stem", () -> new GourdStemBlock((StemGrownBlock) SQUASH.get(), () -> TechnologicaItems.SQUASH_SEEDS.get(), BlockBehaviour.Properties.of().noCollission().randomTicks().instabreak().sound(SoundType.HARD_CROP)));
 	public static final RegistryObject<Block> ZUCCHINI = BLOCKS.register("zucchini", () -> new GourdCropBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noOcclusion(), 2));
-	public static final RegistryObject<Block> ATTACHED_ZUCCHINI_STEM = BLOCKS.register("attached_zucchini_stem", () -> new AttachedStemBlock((StemGrownBlock) ZUCCHINI.get(), () -> {
-		return TechnologicaItems.ZUCCHINI_SEEDS.get();
-	}, BlockBehaviour.Properties.of().noCollission().instabreak().sound(SoundType.WOOD)));
-	public static final RegistryObject<Block> ZUCCHINI_STEM = BLOCKS.register("zucchini_stem", () -> new GourdStemBlock((StemGrownBlock) ZUCCHINI.get(), () -> {
-		return TechnologicaItems.ZUCCHINI_SEEDS.get();
-	}, BlockBehaviour.Properties.of().noCollission().randomTicks().instabreak().sound(SoundType.HARD_CROP)));
+	public static final RegistryObject<Block> ATTACHED_ZUCCHINI_STEM = BLOCKS.register("attached_zucchini_stem", () -> new AttachedStemBlock((StemGrownBlock) ZUCCHINI.get(), () -> TechnologicaItems.ZUCCHINI_SEEDS.get(), BlockBehaviour.Properties.of().noCollission().instabreak().sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> ZUCCHINI_STEM = BLOCKS.register("zucchini_stem", () -> new GourdStemBlock((StemGrownBlock) ZUCCHINI.get(), () -> TechnologicaItems.ZUCCHINI_SEEDS.get(), BlockBehaviour.Properties.of().noCollission().randomTicks().instabreak().sound(SoundType.HARD_CROP)));
 	public static final RegistryObject<Block> BLACKBERRY_BUSH = BLOCKS.register("blackberry_bush", () -> VanillaLikeBlocks.bushCropBlock(TechnologicaItems.BLACKBERRY));
 	public static final RegistryObject<Block> BLUEBERRY_BUSH = BLOCKS.register("blueberry_bush", () -> VanillaLikeBlocks.bushCropBlock(TechnologicaItems.BLUEBERRY));
 	public static final RegistryObject<Block> RASPBERRY_BUSH = BLOCKS.register("raspberry_bush", () -> VanillaLikeBlocks.bushCropBlock(TechnologicaItems.RASPBERRY));
@@ -279,6 +271,11 @@ public final class TechnologicaBlocks extends MasterDeferredRegistrar {
 	public static final RegistryObject<Block> BASIN = BLOCKS.register("basin", () -> new BasinEmptyBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(2.0F).noOcclusion()));
 	public static final RegistryObject<Block> MAPLE_SYRUP_BASIN = BLOCKS.register("maple_syrup_basin", () -> new BasinFilledBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(2.0F).noOcclusion(), TechnologicaFluids.MAPLE_SYRUP.get()));
 	public static final RegistryObject<Block> RUBBER_RESIN_BASIN = BLOCKS.register("rubber_resin_basin", () -> new BasinFilledBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(2.0F).noOcclusion(), TechnologicaFluids.RUBBER_RESIN.get()));
+	public static final RegistryObject<Block> BEEPER_HEAD = BLOCKS.register("beeper_head", () -> new TechnologicaSkullBlock(TechnologicaSkullBlock.Types.BEEPER, BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.CREEPER).strength(1.0F).pushReaction(PushReaction.DESTROY)));
+	public static final RegistryObject<Block> PEEPER_HEAD = BLOCKS.register("peeper_head", () -> new TechnologicaSkullBlock(TechnologicaSkullBlock.Types.PEEPER, BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.CREEPER).strength(1.0F).pushReaction(PushReaction.DESTROY)));
+	public static final RegistryObject<Block> SLEEPER_HEAD = BLOCKS.register("sleeper_head", () -> new TechnologicaSkullBlock(TechnologicaSkullBlock.Types.SLEEPER, BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.CREEPER).strength(1.0F).pushReaction(PushReaction.DESTROY)));
+	public static final RegistryObject<Block> SWEEPER_HEAD = BLOCKS.register("sweeper_head", () -> new TechnologicaSkullBlock(TechnologicaSkullBlock.Types.SWEEPER, BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.CREEPER).strength(1.0F).pushReaction(PushReaction.DESTROY)));
+	public static final RegistryObject<Block> WEEPER_HEAD = BLOCKS.register("weeper_head", () -> new TechnologicaSkullBlock(TechnologicaSkullBlock.Types.WEEPER, BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.CREEPER).strength(1.0F).pushReaction(PushReaction.DESTROY)));
 	public static final RegistryObject<Block> BARNACLE = BLOCKS.register("barnacle", () -> new SeaPickleBlock(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).sound(SoundType.CALCITE).noOcclusion().pushReaction(PushReaction.DESTROY)));
 	public static final RegistryObject<Block> SALT = BLOCKS.register("salt", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F)));
 	public static final RegistryObject<Block> LITHIUM_CLAY = BLOCKS.register("lithium_clay", () -> new Block(BlockBehaviour.Properties.of().strength(0.6F).sound(SoundType.GRAVEL)));
@@ -509,9 +506,7 @@ public final class TechnologicaBlocks extends MasterDeferredRegistrar {
 	public static final RegistryObject<LiquidBlock> GASOLINE = BLOCKS.register("gasoline", () -> new LiquidBlock(TechnologicaFluids.GASOLINE, BlockBehaviour.Properties.of().noCollission().replaceable().pushReaction(PushReaction.DESTROY).strength(100.0F).noLootTable()));
 	public static final RegistryObject<LiquidBlock> MACHINE_OIL = BLOCKS.register("machine_oil", () -> new LiquidBlock(TechnologicaFluids.MACHINE_OIL, BlockBehaviour.Properties.of().noCollission().replaceable().pushReaction(PushReaction.DESTROY).strength(100.0F).noLootTable()));
 	public static final RegistryObject<LiquidBlock> COOLANT = BLOCKS.register("coolant", () -> new LiquidBlock(TechnologicaFluids.COOLANT, BlockBehaviour.Properties.of().noCollission().replaceable().pushReaction(PushReaction.DESTROY).strength(100.0F).noLootTable()));
-	public static final RegistryObject<LiquidBlock> MOLTEN_CORE = BLOCKS.register("molten_core", () -> new MoltenBlock(TechnologicaFluids.MOLTEN_CORE, BlockBehaviour.Properties.of().noCollission().replaceable().pushReaction(PushReaction.DESTROY).strength(100.0F).noLootTable().lightLevel((blockState) -> {
-		return 15;
-	})));
+	public static final RegistryObject<LiquidBlock> MOLTEN_CORE = BLOCKS.register("molten_core", () -> new MoltenBlock(TechnologicaFluids.MOLTEN_CORE, BlockBehaviour.Properties.of().noCollission().replaceable().pushReaction(PushReaction.DESTROY).strength(100.0F).noLootTable().lightLevel((blockState) -> 15)));
 	public static final RegistryObject<Block> APRICOT_LOG = BLOCKS.register("apricot_log", FruitingLogBlock::new);
 	public static final RegistryObject<Block> ASPEN_LOG = BLOCKS.register("aspen_log", () -> VanillaLikeBlocks.logBlock());
 	public static final RegistryObject<Block> AVOCADO_LOG = BLOCKS.register("avocado_log", FruitingLogBlock::new);
@@ -1058,6 +1053,7 @@ public final class TechnologicaBlocks extends MasterDeferredRegistrar {
 	public static final RegistryObject<Block> TREE_TAP = BLOCKS.register("tree_tap", TreeTapBlock::new);
 	public static final RegistryObject<Block> SAWMILL_CORE = BLOCKS.register("sawmill_core", SawmillCoreBlock::new);
 	public static final RegistryObject<Block> SAWMILL = BLOCKS.register("sawmill", SawmillBlock::new);
+	public static final RegistryObject<Block> CARPENTRY_WORKBENCH = BLOCKS.register("carpentry_workbench", CarpentryWorkbenchBlock::new);
 	public static final RegistryObject<Block> WINDMILL = BLOCKS.register("windmill", WindmillBlock::new);
 	public static final RegistryObject<Block> GLUE = BLOCKS.register("glue", () -> new GlueBlock(BlockBehaviour.Properties.of().noCollission().randomTicks().strength(0.2F).sound(SoundType.SLIME_BLOCK)));
 	public static final RegistryObject<Block> FAST_HOPPER = BLOCKS.register("fast_hopper", () -> new FastHopper(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(3.0F, 4.8F).sound(SoundType.METAL).noOcclusion()));
@@ -1151,10 +1147,7 @@ public final class TechnologicaBlocks extends MasterDeferredRegistrar {
 	public static final RegistryObject<Block> LAND_MINE = BLOCKS.register("land_mine", LandMineBlock::new);
 	public static final RegistryObject<Block> NITROGLYCERIN = BLOCKS.register("nitroglycerin", () -> new NitroBlock(BlockBehaviour.Properties.of().noCollission().instabreak().sound(SoundType.GRASS)));
 	public static final RegistryObject<Block> NAVAL_MINE_CHAIN = BLOCKS.register("naval_mine_chain", () -> new NavalMineChainBlock(BlockBehaviour.Properties.copy(Blocks.CHAIN)));
-	public static final RegistryObject<Block> LIGHT = BLOCKS.register("light", () -> new LightBlock(BlockBehaviour.Properties.of().noCollission().noLootTable().air().lightLevel((p_50874_) -> {
-		return 15;
-	})));
+	public static final RegistryObject<Block> LIGHT = BLOCKS.register("light", () -> new LightBlock(BlockBehaviour.Properties.of().noCollission().noLootTable().air().lightLevel((p_50874_) -> 15)));
 	public static final RegistryObject<Block> SLEEPING_BAG = BLOCKS.register("sleeping_bag", () -> new SleepingBagBlock(DyeColor.RED, BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(0.2F).noOcclusion()));
-
 	public static final RegistryObject<Block> SMOKE_COLUMN = BLOCKS.register("smoke_column", () -> new SmokeColumnBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WATER).replaceable().noCollission().noLootTable().pushReaction(PushReaction.DESTROY).liquid().sound(SoundType.EMPTY)));
 }

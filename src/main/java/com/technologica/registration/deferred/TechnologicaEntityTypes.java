@@ -65,8 +65,10 @@ import net.minecraftforge.registries.RegistryObject;
 
 /**
  * <p>
- * This class contains Registry Objects for Entity Types.
- * The {@link #init} method is called by {@link Technologica#initDeferredRegisters} and returns a head-count to later be checked during registration and other setup activities.
+ * This class contains Registry Objects for Entity Types. The {@link #init}
+ * method is called by {@link Technologica#initDeferredRegisters} and returns a
+ * head-count to later be checked during registration and other setup
+ * activities.
  * </p>
  * 
  * @tl.status GREEN
@@ -122,8 +124,7 @@ public final class TechnologicaEntityTypes extends MasterDeferredRegistrar {
 	public static final RegistryObject<EntityType<Weeper>> WEEPER = ENTITY_TYPES.register("weeper", () -> EntityType.Builder.<Weeper>of(Weeper::new, MobCategory.MONSTER).sized(0.6F, 1.7F).clientTrackingRange(16).build("weeper"));
 	public static final RegistryObject<EntityType<Sweeper>> SWEEPER = ENTITY_TYPES.register("sweeper", () -> EntityType.Builder.<Sweeper>of(Sweeper::new, MobCategory.MONSTER).sized(0.6F, 1.7F).clientTrackingRange(8).build("sweeper"));
 	public static final RegistryObject<EntityType<DustDevil>> DUST_DEVIL = ENTITY_TYPES.register("dust_devil", () -> EntityType.Builder.<DustDevil>of(DustDevil::new, MobCategory.MONSTER).sized(1.0F, 3.0F).clientTrackingRange(8).build("dust_devil"));
-
-	public static final RegistryObject<EntityType<TechnologicaBoat>> TECHNOLOGICA_BOAT = ENTITY_TYPES.register("technologica_boat", () -> EntityType.Builder.<TechnologicaBoat>of(TechnologicaBoat::new, MobCategory.MISC).sized(1.375F, 0.5625F).build("technologica_boat")); // .setCustomClientFactory((spawnEntity, world) -> new TechnologicaBoat(world, 0, 0, 0)).clientTrackingRange(10)
+	public static final RegistryObject<EntityType<TechnologicaBoat>> TECHNOLOGICA_BOAT = ENTITY_TYPES.register("technologica_boat", () -> EntityType.Builder.<TechnologicaBoat>of(TechnologicaBoat::new, MobCategory.MISC).sized(1.375F, 0.5625F).build("technologica_boat"));
 	public static final RegistryObject<EntityType<Rocket>> ROCKET = ENTITY_TYPES.register("rocket", () -> EntityType.Builder.<Rocket>of(Rocket::new, MobCategory.MISC).sized(1.375F, 0.5625F).setCustomClientFactory((spawnEntity, world) -> new Rocket(world, 0, 0, 0)).clientTrackingRange(10).build("rocket"));
 	public static final RegistryObject<EntityType<Coconut>> COCONUT = ENTITY_TYPES.register("coconut", () -> EntityType.Builder.<Coconut>of(Coconut::new, MobCategory.MISC).sized(0.25F, 0.25F).setCustomClientFactory((spawnEntity, world) -> new Coconut(world, 0, 0, 0)).clientTrackingRange(4).updateInterval(10).build("coconut"));
 	public static final RegistryObject<EntityType<Dodgeball>> DODGEBALL = ENTITY_TYPES.register("dodgeball", () -> EntityType.Builder.<Dodgeball>of(Dodgeball::new, MobCategory.MISC).sized(0.25F, 0.25F).setCustomClientFactory((spawnEntity, world) -> new Dodgeball(world, 0, 0, 0)).clientTrackingRange(4).updateInterval(10).build("dodgeball"));
@@ -131,8 +132,6 @@ public final class TechnologicaEntityTypes extends MasterDeferredRegistrar {
 	public static final RegistryObject<EntityType<InvisibleSeat>> INVISIBLE_SEAT = ENTITY_TYPES.register("invisible_seat", () -> EntityType.Builder.<InvisibleSeat>of(InvisibleSeat::new, MobCategory.MISC).sized(0.1F, 0.1F).setCustomClientFactory((spawnEntity, world) -> new InvisibleSeat(world, 0, 0, 0)).clientTrackingRange(10).build("invisible_seat_entity"));
 	public static final RegistryObject<EntityType<NavalMine>> NAVAL_MINE = ENTITY_TYPES.register("naval_mine", () -> EntityType.Builder.<NavalMine>of(NavalMine::new, MobCategory.MISC).sized(2.0F, 2.0F).setCustomClientFactory((spawnEntity, world) -> new NavalMine(world, 0, 0, 0, 0)).clientTrackingRange(10).build("naval_mine_entity"));
 	public static final RegistryObject<EntityType<Meteor>> METEOR = ENTITY_TYPES.register("meteor", () -> EntityType.Builder.<Meteor>of(Meteor::new, MobCategory.MISC).sized(1.0F, 1.0F).clientTrackingRange(4).updateInterval(10).build("meteor"));
-
 	public static final RegistryObject<EntityType<MagicLightningBolt>> MAGIC_LIGHTNING = ENTITY_TYPES.register("magic_lightning_bolt", () -> EntityType.Builder.<MagicLightningBolt>of(MagicLightningBolt::new, MobCategory.MISC).noSave().sized(0.0F, 0.0F).clientTrackingRange(16).updateInterval(Integer.MAX_VALUE).build("magic_lightning_bolt"));
-
 	public static final RegistryObject<EntityType<Submersible>> SUBMERSIBLE = ENTITY_TYPES.register("submersible", () -> EntityType.Builder.<Submersible>of(Submersible::new, MobCategory.MISC).sized(1.375F, 0.5625F).build("submersible"));
 }

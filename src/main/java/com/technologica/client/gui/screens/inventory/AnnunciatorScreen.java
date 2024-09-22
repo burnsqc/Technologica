@@ -38,10 +38,10 @@ public class AnnunciatorScreen extends AbstractContainerScreen<AnnunciatorMenu> 
 	private int updateCounter;
 
 	public AnnunciatorScreen(AnnunciatorMenu screenContainerIn, Inventory playerInventoryIn, Component titleIn) {
-		super(screenContainerIn, playerInventoryIn, Component.literal("Annunciator"));
-		this.imageHeight = 231;
+		super(screenContainerIn, playerInventoryIn, titleIn);
+		imageHeight = 231;
 		this.inventoryLabelY = 137;
-		this.tileEntity = (AnnunciatorBlockEntity) screenContainerIn.getTileEntity();
+		this.tileEntity = screenContainerIn.getTileEntity();
 		this.multiLineText = IntStream.range(0, 8).mapToObj(tileEntity::getText).map(Component::getString).toArray((p_243354_0_) -> {
 			return new String[p_243354_0_];
 		});
@@ -206,9 +206,9 @@ public class AnnunciatorScreen extends AbstractContainerScreen<AnnunciatorMenu> 
 	protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int x, int y) {
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
-		int i = (this.width - this.imageWidth) / 2;
-		int j = (this.height - this.imageHeight) / 2;
-		guiGraphics.blit(BACKGROUND_TEXTURE, i, j, 0, 0, this.imageWidth, 125);
-		guiGraphics.blit(BACKGROUND_TEXTURE, i, j + 125, 0, 126, this.imageWidth, 105);
+		int startX = (this.width - this.imageWidth) / 2;
+		int startY = (this.height - this.imageHeight) / 2;
+		guiGraphics.blit(BACKGROUND_TEXTURE, startX, startY, 0, 0, this.imageWidth, 125);
+		guiGraphics.blit(BACKGROUND_TEXTURE, startX, startY + 125, 0, 126, this.imageWidth, 105);
 	}
 }

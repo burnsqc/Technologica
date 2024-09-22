@@ -30,10 +30,11 @@ import com.technologica.world.item.SleepingBagItem;
 import com.technologica.world.item.SpearGunItem;
 import com.technologica.world.item.SubmersibleItem;
 import com.technologica.world.item.Submersion;
-import com.technologica.world.item.TechnologicaArmorMaterial;
+import com.technologica.world.item.TechnologicaArmorMaterials;
 import com.technologica.world.item.TechnologicaBoatItem;
-import com.technologica.world.item.TechnologicaItemTier;
+import com.technologica.world.item.TechnologicaTiers;
 
+import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.AxeItem;
@@ -44,18 +45,22 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.MobBucketItem;
 import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.SignItem;
+import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tiers;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.registries.RegistryObject;
 
 /**
  * <p>
- * This class contains Registry Objects for Items.
- * The {@link #init} method is called by {@link Technologica#initDeferredRegisters} and returns a head-count to later be checked during registration and other setup activities.
+ * This class contains Registry Objects for Items. The {@link #init} method is
+ * called by {@link Technologica#initDeferredRegisters} and returns a head-count
+ * to later be checked during registration and other setup activities.
  * </p>
  * 
  * @tl.status GREEN
@@ -153,6 +158,7 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> CONDUCTIVE_LEAVES_ITEM = ITEMS.register("conductive_leaves", () -> new BlockItem(TechnologicaBlocks.CONDUCTIVE_LEAVES.get(), new Item.Properties()));
 	public static final RegistryObject<Item> FROSTBITTEN_LEAVES_ITEM = ITEMS.register("frostbitten_leaves", () -> new BlockItem(TechnologicaBlocks.FROSTBITTEN_LEAVES.get(), new Item.Properties()));
 	public static final RegistryObject<Item> CURSED_LEAVES_ITEM = ITEMS.register("cursed_leaves", () -> new BlockItem(TechnologicaBlocks.CURSED_LEAVES.get(), new Item.Properties()));
+
 	public static final RegistryObject<Item> ALLIGATOR_SPAWN_EGG = ITEMS.register("alligator_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.ALLIGATOR, 0x2b4536, 0xbccf8a, new Item.Properties()));
 	public static final RegistryObject<Item> BEAVER_SPAWN_EGG = ITEMS.register("beaver_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.BEAVER, 0x5d420c, 0x2c1f04, new Item.Properties()));
 	public static final RegistryObject<Item> BUFFALO_SPAWN_EGG = ITEMS.register("buffalo_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.BUFFALO, 0x5d4a3a, 0x735338, new Item.Properties()));
@@ -211,6 +217,13 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> NEUROTOXIN_SAC = ITEMS.register("neurotoxin_sac", () -> new Item(new Item.Properties().food(TechnologicaFoods.NEUROTOXIN_SAC)));
 	public static final RegistryObject<Item> TETRODOTOXIN_SAC = ITEMS.register("tetrodotoxin_sac", () -> new Item(new Item.Properties().food(TechnologicaFoods.TETRODOTOXIN_SAC)));
 	public static final RegistryObject<Item> BARNACLE = ITEMS.register("barnacle", () -> new BlockItem(TechnologicaBlocks.BARNACLE.get(), new Item.Properties()));
+
+	public static final RegistryObject<Item> BEEPER_HEAD = ITEMS.register("beeper_head", () -> new StandingAndWallBlockItem(TechnologicaBlocks.BEEPER_HEAD.get(), Blocks.CREEPER_WALL_HEAD, (new Item.Properties()).rarity(Rarity.UNCOMMON), Direction.DOWN));
+	public static final RegistryObject<Item> PEEPER_HEAD = ITEMS.register("peeper_head", () -> new StandingAndWallBlockItem(TechnologicaBlocks.PEEPER_HEAD.get(), Blocks.CREEPER_WALL_HEAD, (new Item.Properties()).rarity(Rarity.UNCOMMON), Direction.DOWN));
+	public static final RegistryObject<Item> SLEEPER_HEAD = ITEMS.register("sleeper_head", () -> new StandingAndWallBlockItem(TechnologicaBlocks.SLEEPER_HEAD.get(), Blocks.CREEPER_WALL_HEAD, (new Item.Properties()).rarity(Rarity.UNCOMMON), Direction.DOWN));
+	public static final RegistryObject<Item> SWEEPER_HEAD = ITEMS.register("sweeper_head", () -> new StandingAndWallBlockItem(TechnologicaBlocks.SWEEPER_HEAD.get(), Blocks.CREEPER_WALL_HEAD, (new Item.Properties()).rarity(Rarity.UNCOMMON), Direction.DOWN));
+	public static final RegistryObject<Item> WEEPER_HEAD = ITEMS.register("weeper_head", () -> new StandingAndWallBlockItem(TechnologicaBlocks.WEEPER_HEAD.get(), Blocks.CREEPER_WALL_HEAD, (new Item.Properties()).rarity(Rarity.UNCOMMON), Direction.DOWN));
+
 	public static final RegistryObject<Item> SALT_ITEM = ITEMS.register("salt", () -> new BlockItem(TechnologicaBlocks.SALT.get(), new Item.Properties()));
 	public static final RegistryObject<Item> LITHIUM_CLAY_ITEM = ITEMS.register("lithium_clay", () -> new BlockItem(TechnologicaBlocks.LITHIUM_CLAY.get(), new Item.Properties()));
 	public static final RegistryObject<Item> OILY_COARSE_DIRT_ITEM = ITEMS.register("oily_coarse_dirt", () -> new BlockItem(TechnologicaBlocks.OILY_COARSE_DIRT.get(), new Item.Properties()));
@@ -1134,6 +1147,7 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> MOTOR_20HP_ITEM = ITEMS.register("motor_20hp", () -> new BlockItem(TechnologicaBlocks.MOTOR_20HP.get(), new Item.Properties()));
 	public static final RegistryObject<Item> SAWBLADE = ITEMS.register("sawblade", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> SAWMILL_ITEM = ITEMS.register("sawmill", () -> new BlockItem(TechnologicaBlocks.SAWMILL.get(), new Item.Properties()));
+	public static final RegistryObject<Item> CARPENTRY_WORKBENCH = ITEMS.register("carpentry_workbench", () -> new BlockItem(TechnologicaBlocks.CARPENTRY_WORKBENCH.get(), new Item.Properties()));
 	public static final RegistryObject<Item> WINDMILL_ITEM = ITEMS.register("windmill", () -> new BlockItem(TechnologicaBlocks.WINDMILL.get(), new Item.Properties()));
 	public static final RegistryObject<Item> ANNUNCIATOR_ITEM = ITEMS.register("annunciator", () -> new BlockItem(TechnologicaBlocks.ANNUNCIATOR.get(), new Item.Properties()));
 	public static final RegistryObject<Item> OVERLAY_PASS_ITEM = ITEMS.register("overlay_pass", () -> new Item(new Item.Properties()));
@@ -1210,49 +1224,49 @@ public final class TechnologicaItems extends MasterDeferredRegistrar {
 	public static final RegistryObject<Item> WARPED_TABLE_ITEM = ITEMS.register("warped_table", () -> new BlockItem(TechnologicaBlocks.WARPED_TABLE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> ZEBRAWOOD_TABLE_ITEM = ITEMS.register("zebrawood_table", () -> new BlockItem(TechnologicaBlocks.ZEBRAWOOD_TABLE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> FROSTBITTEN_TABLE_ITEM = ITEMS.register("frostbitten_table", () -> new BlockItem(TechnologicaBlocks.FROSTBITTEN_TABLE.get(), new Item.Properties()));
-	public static final RegistryObject<Item> PRIMITIVE_DAGGER = ITEMS.register("primitive_dagger", () -> new SwordItem(TechnologicaItemTier.FLINT, 6, -3.2F, (new Item.Properties())));
-	public static final RegistryObject<Item> PRIMITIVE_PICKAXE = ITEMS.register("primitive_pickaxe", () -> new PickaxeItem(TechnologicaItemTier.FLINT, 6, -3.2F, (new Item.Properties())));
-	public static final RegistryObject<Item> PRIMITIVE_HOE = ITEMS.register("primitive_hoe", () -> new HoeItem(TechnologicaItemTier.FLINT, 6, -3.2F, (new Item.Properties())));
-	public static final RegistryObject<Item> PRIMITIVE_SHOVEL = ITEMS.register("primitive_shovel", () -> new ShovelItem(TechnologicaItemTier.FLINT, 6.0F, -3.2F, (new Item.Properties())));
-	public static final RegistryObject<Item> PRIMITIVE_HATCHET = ITEMS.register("primitive_hatchet", () -> new AxeItem(TechnologicaItemTier.FLINT, 6.0F, -3.2F, (new Item.Properties())));
-	public static final RegistryObject<Item> BRONZE_SWORD = ITEMS.register("bronze_sword", () -> new SwordItem(TechnologicaItemTier.BRONZE, 6, -3.2F, (new Item.Properties())));
-	public static final RegistryObject<Item> BRONZE_PICKAXE = ITEMS.register("bronze_pickaxe", () -> new PickaxeItem(TechnologicaItemTier.BRONZE, 6, -3.2F, (new Item.Properties())));
-	public static final RegistryObject<Item> BRONZE_HOE = ITEMS.register("bronze_hoe", () -> new HoeItem(TechnologicaItemTier.BRONZE, 6, -3.2F, (new Item.Properties())));
-	public static final RegistryObject<Item> BRONZE_SHOVEL = ITEMS.register("bronze_shovel", () -> new ShovelItem(TechnologicaItemTier.BRONZE, 6.0F, -3.2F, (new Item.Properties())));
-	public static final RegistryObject<Item> BRONZE_AXE = ITEMS.register("bronze_axe", () -> new AxeItem(TechnologicaItemTier.BRONZE, 6.0F, -3.2F, (new Item.Properties())));
-	public static final RegistryObject<Item> BRONZE_HELMET = ITEMS.register("bronze_helmet", () -> new ArmorItem(TechnologicaArmorMaterial.BRONZE, ArmorItem.Type.HELMET, (new Item.Properties())));
-	public static final RegistryObject<Item> BRONZE_CHESTPLATE = ITEMS.register("bronze_chestplate", () -> new ArmorItem(TechnologicaArmorMaterial.BRONZE, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
-	public static final RegistryObject<Item> BRONZE_LEGGINGS = ITEMS.register("bronze_leggings", () -> new ArmorItem(TechnologicaArmorMaterial.BRONZE, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
-	public static final RegistryObject<Item> BRONZE_BOOTS = ITEMS.register("bronze_boots", () -> new ArmorItem(TechnologicaArmorMaterial.BRONZE, ArmorItem.Type.BOOTS, (new Item.Properties())));
-	public static final RegistryObject<Item> BRASS_HELMET = ITEMS.register("brass_helmet", () -> new ArmorItem(TechnologicaArmorMaterial.BRASS, ArmorItem.Type.HELMET, (new Item.Properties())));
-	public static final RegistryObject<Item> BRASS_CHESTPLATE = ITEMS.register("brass_chestplate", () -> new ArmorItem(TechnologicaArmorMaterial.BRASS, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
-	public static final RegistryObject<Item> BRASS_LEGGINGS = ITEMS.register("brass_leggings", () -> new ArmorItem(TechnologicaArmorMaterial.BRASS, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
-	public static final RegistryObject<Item> BRASS_BOOTS = ITEMS.register("brass_boots", () -> new ArmorItem(TechnologicaArmorMaterial.BRASS, ArmorItem.Type.BOOTS, (new Item.Properties())));
+	public static final RegistryObject<Item> PRIMITIVE_DAGGER = ITEMS.register("primitive_dagger", () -> new SwordItem(TechnologicaTiers.FLINT, 3, -2.4F, (new Item.Properties())));
+	public static final RegistryObject<Item> PRIMITIVE_PICKAXE = ITEMS.register("primitive_pickaxe", () -> new PickaxeItem(TechnologicaTiers.FLINT, 1, -2.8F, (new Item.Properties())));
+	public static final RegistryObject<Item> PRIMITIVE_HOE = ITEMS.register("primitive_hoe", () -> new HoeItem(TechnologicaTiers.FLINT, 0, -3.0F, (new Item.Properties())));
+	public static final RegistryObject<Item> PRIMITIVE_SHOVEL = ITEMS.register("primitive_shovel", () -> new ShovelItem(TechnologicaTiers.FLINT, 1.5F, -3.0F, (new Item.Properties())));
+	public static final RegistryObject<Item> PRIMITIVE_HATCHET = ITEMS.register("primitive_hatchet", () -> new AxeItem(TechnologicaTiers.FLINT, 6, -3.2F, (new Item.Properties())));
+	public static final RegistryObject<Item> BRONZE_SWORD = ITEMS.register("bronze_sword", () -> new SwordItem(TechnologicaTiers.BRONZE, 6, -3.2F, (new Item.Properties())));
+	public static final RegistryObject<Item> BRONZE_PICKAXE = ITEMS.register("bronze_pickaxe", () -> new PickaxeItem(TechnologicaTiers.BRONZE, 6, -3.2F, (new Item.Properties())));
+	public static final RegistryObject<Item> BRONZE_HOE = ITEMS.register("bronze_hoe", () -> new HoeItem(TechnologicaTiers.BRONZE, 6, -3.2F, (new Item.Properties())));
+	public static final RegistryObject<Item> BRONZE_SHOVEL = ITEMS.register("bronze_shovel", () -> new ShovelItem(TechnologicaTiers.BRONZE, 6.0F, -3.2F, (new Item.Properties())));
+	public static final RegistryObject<Item> BRONZE_AXE = ITEMS.register("bronze_axe", () -> new AxeItem(TechnologicaTiers.BRONZE, 6.0F, -3.2F, (new Item.Properties())));
+	public static final RegistryObject<Item> BRONZE_HELMET = ITEMS.register("bronze_helmet", () -> new ArmorItem(TechnologicaArmorMaterials.BRONZE, ArmorItem.Type.HELMET, (new Item.Properties())));
+	public static final RegistryObject<Item> BRONZE_CHESTPLATE = ITEMS.register("bronze_chestplate", () -> new ArmorItem(TechnologicaArmorMaterials.BRONZE, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
+	public static final RegistryObject<Item> BRONZE_LEGGINGS = ITEMS.register("bronze_leggings", () -> new ArmorItem(TechnologicaArmorMaterials.BRONZE, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
+	public static final RegistryObject<Item> BRONZE_BOOTS = ITEMS.register("bronze_boots", () -> new ArmorItem(TechnologicaArmorMaterials.BRONZE, ArmorItem.Type.BOOTS, (new Item.Properties())));
+	public static final RegistryObject<Item> BRASS_HELMET = ITEMS.register("brass_helmet", () -> new ArmorItem(TechnologicaArmorMaterials.BRASS, ArmorItem.Type.HELMET, (new Item.Properties())));
+	public static final RegistryObject<Item> BRASS_CHESTPLATE = ITEMS.register("brass_chestplate", () -> new ArmorItem(TechnologicaArmorMaterials.BRASS, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
+	public static final RegistryObject<Item> BRASS_LEGGINGS = ITEMS.register("brass_leggings", () -> new ArmorItem(TechnologicaArmorMaterials.BRASS, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
+	public static final RegistryObject<Item> BRASS_BOOTS = ITEMS.register("brass_boots", () -> new ArmorItem(TechnologicaArmorMaterials.BRASS, ArmorItem.Type.BOOTS, (new Item.Properties())));
 	public static final RegistryObject<Item> COCONUT_BAZOOKA_ITEM = ITEMS.register("coconut_bazooka", () -> new CoconutBazookaItem((new Item.Properties()).durability(384)));
 	public static final RegistryObject<Item> DODGEBALL_ITEM = ITEMS.register("dodgeball", () -> new DodgeballItem((new Item.Properties()).stacksTo(1)));
 	public static final RegistryObject<Item> SPEAR_GUN_ITEM = ITEMS.register("spear_gun", () -> new SpearGunItem((new Item.Properties()).durability(384)));
 	public static final RegistryObject<Item> HARPOON = ITEMS.register("harpoon", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> SPACE_HELMET = ITEMS.register("space_helmet", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, ArmorItem.Type.HELMET, (new Item.Properties())));
-	public static final RegistryObject<Item> SPACE_SUIT = ITEMS.register("space_suit", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
-	public static final RegistryObject<Item> SPACE_PANTS = ITEMS.register("space_pants", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
-	public static final RegistryObject<Item> SPACE_BOOTS = ITEMS.register("space_boots", () -> new ArmorItem(TechnologicaArmorMaterial.SPACE, ArmorItem.Type.BOOTS, (new Item.Properties())));
-	public static final RegistryObject<Item> SNORKEL_HELMET = ITEMS.register("snorkel_helmet", () -> new ArmorItem(TechnologicaArmorMaterial.SNORKEL, ArmorItem.Type.HELMET, (new Item.Properties())));
-	public static final RegistryObject<Item> SNORKEL_SUIT = ITEMS.register("snorkel_suit", () -> new ArmorItem(TechnologicaArmorMaterial.SNORKEL, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
-	public static final RegistryObject<Item> SNORKEL_PANTS = ITEMS.register("snorkel_pants", () -> new ArmorItem(TechnologicaArmorMaterial.SNORKEL, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
-	public static final RegistryObject<Item> SNORKEL_BOOTS = ITEMS.register("snorkel_boots", () -> new ArmorItem(TechnologicaArmorMaterial.SNORKEL, ArmorItem.Type.BOOTS, (new Item.Properties())));
-	public static final RegistryObject<Item> DIVE_HELMET = ITEMS.register("dive_helmet", () -> new DivingHelmetItem(TechnologicaArmorMaterial.DIVE, ArmorItem.Type.HELMET, (new Item.Properties())));
-	public static final RegistryObject<Item> DIVE_SUIT = ITEMS.register("dive_suit", () -> new ArmorItem(TechnologicaArmorMaterial.DIVE, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
-	public static final RegistryObject<Item> DIVE_PANTS = ITEMS.register("dive_pants", () -> new ArmorItem(TechnologicaArmorMaterial.DIVE, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
-	public static final RegistryObject<Item> DIVE_BOOTS = ITEMS.register("dive_boots", () -> new ArmorItem(TechnologicaArmorMaterial.DIVE, ArmorItem.Type.BOOTS, (new Item.Properties())));
-	public static final RegistryObject<Item> SCUBA_HELMET = ITEMS.register("scuba_helmet", () -> new ArmorItem(TechnologicaArmorMaterial.SCUBA, ArmorItem.Type.HELMET, (new Item.Properties())));
-	public static final RegistryObject<Item> SCUBA_SUIT = ITEMS.register("scuba_suit", () -> new ArmorItem(TechnologicaArmorMaterial.SCUBA, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
-	public static final RegistryObject<Item> SCUBA_PANTS = ITEMS.register("scuba_pants", () -> new ArmorItem(TechnologicaArmorMaterial.SCUBA, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
-	public static final RegistryObject<Item> SCUBA_BOOTS = ITEMS.register("scuba_boots", () -> new ArmorItem(TechnologicaArmorMaterial.SCUBA, ArmorItem.Type.BOOTS, (new Item.Properties())));
-	public static final RegistryObject<Item> HAZMAT_HOOD = ITEMS.register("hazmat_hood", () -> new ArmorItem(TechnologicaArmorMaterial.HAZMAT, ArmorItem.Type.HELMET, (new Item.Properties())));
-	public static final RegistryObject<Item> HAZMAT_SUIT = ITEMS.register("hazmat_suit", () -> new ArmorItem(TechnologicaArmorMaterial.HAZMAT, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
-	public static final RegistryObject<Item> HAZMAT_PANTS = ITEMS.register("hazmat_pants", () -> new ArmorItem(TechnologicaArmorMaterial.HAZMAT, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
-	public static final RegistryObject<Item> HAZMAT_BOOTS = ITEMS.register("hazmat_boots", () -> new ArmorItem(TechnologicaArmorMaterial.HAZMAT, ArmorItem.Type.BOOTS, (new Item.Properties())));
-	public static final RegistryObject<Item> MINING_HELMET = ITEMS.register("mining_helmet", () -> new MiningHelmetItem(TechnologicaArmorMaterial.MINING, ArmorItem.Type.HELMET, (new Item.Properties())));
+	public static final RegistryObject<Item> SPACE_HELMET = ITEMS.register("space_helmet", () -> new ArmorItem(TechnologicaArmorMaterials.SPACE, ArmorItem.Type.HELMET, (new Item.Properties())));
+	public static final RegistryObject<Item> SPACE_SUIT = ITEMS.register("space_suit", () -> new ArmorItem(TechnologicaArmorMaterials.SPACE, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
+	public static final RegistryObject<Item> SPACE_PANTS = ITEMS.register("space_pants", () -> new ArmorItem(TechnologicaArmorMaterials.SPACE, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
+	public static final RegistryObject<Item> SPACE_BOOTS = ITEMS.register("space_boots", () -> new ArmorItem(TechnologicaArmorMaterials.SPACE, ArmorItem.Type.BOOTS, (new Item.Properties())));
+	public static final RegistryObject<Item> SNORKEL_HELMET = ITEMS.register("snorkel_helmet", () -> new ArmorItem(TechnologicaArmorMaterials.SNORKEL, ArmorItem.Type.HELMET, (new Item.Properties())));
+	public static final RegistryObject<Item> SNORKEL_SUIT = ITEMS.register("snorkel_suit", () -> new ArmorItem(TechnologicaArmorMaterials.SNORKEL, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
+	public static final RegistryObject<Item> SNORKEL_PANTS = ITEMS.register("snorkel_pants", () -> new ArmorItem(TechnologicaArmorMaterials.SNORKEL, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
+	public static final RegistryObject<Item> SNORKEL_BOOTS = ITEMS.register("snorkel_boots", () -> new ArmorItem(TechnologicaArmorMaterials.SNORKEL, ArmorItem.Type.BOOTS, (new Item.Properties())));
+	public static final RegistryObject<Item> DIVE_HELMET = ITEMS.register("dive_helmet", () -> new DivingHelmetItem(TechnologicaArmorMaterials.DIVE, ArmorItem.Type.HELMET, (new Item.Properties())));
+	public static final RegistryObject<Item> DIVE_SUIT = ITEMS.register("dive_suit", () -> new ArmorItem(TechnologicaArmorMaterials.DIVE, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
+	public static final RegistryObject<Item> DIVE_PANTS = ITEMS.register("dive_pants", () -> new ArmorItem(TechnologicaArmorMaterials.DIVE, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
+	public static final RegistryObject<Item> DIVE_BOOTS = ITEMS.register("dive_boots", () -> new ArmorItem(TechnologicaArmorMaterials.DIVE, ArmorItem.Type.BOOTS, (new Item.Properties())));
+	public static final RegistryObject<Item> SCUBA_HELMET = ITEMS.register("scuba_helmet", () -> new ArmorItem(TechnologicaArmorMaterials.SCUBA, ArmorItem.Type.HELMET, (new Item.Properties())));
+	public static final RegistryObject<Item> SCUBA_SUIT = ITEMS.register("scuba_suit", () -> new ArmorItem(TechnologicaArmorMaterials.SCUBA, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
+	public static final RegistryObject<Item> SCUBA_PANTS = ITEMS.register("scuba_pants", () -> new ArmorItem(TechnologicaArmorMaterials.SCUBA, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
+	public static final RegistryObject<Item> SCUBA_BOOTS = ITEMS.register("scuba_boots", () -> new ArmorItem(TechnologicaArmorMaterials.SCUBA, ArmorItem.Type.BOOTS, (new Item.Properties())));
+	public static final RegistryObject<Item> HAZMAT_HOOD = ITEMS.register("hazmat_hood", () -> new ArmorItem(TechnologicaArmorMaterials.HAZMAT, ArmorItem.Type.HELMET, (new Item.Properties())));
+	public static final RegistryObject<Item> HAZMAT_SUIT = ITEMS.register("hazmat_suit", () -> new ArmorItem(TechnologicaArmorMaterials.HAZMAT, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
+	public static final RegistryObject<Item> HAZMAT_PANTS = ITEMS.register("hazmat_pants", () -> new ArmorItem(TechnologicaArmorMaterials.HAZMAT, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
+	public static final RegistryObject<Item> HAZMAT_BOOTS = ITEMS.register("hazmat_boots", () -> new ArmorItem(TechnologicaArmorMaterials.HAZMAT, ArmorItem.Type.BOOTS, (new Item.Properties())));
+	public static final RegistryObject<Item> MINING_HELMET = ITEMS.register("mining_helmet", () -> new MiningHelmetItem(TechnologicaArmorMaterials.MINING, ArmorItem.Type.HELMET, (new Item.Properties())));
 	public static final RegistryObject<Item> LAND_MINE = ITEMS.register("land_mine", () -> new LandMineItem(new Item.Properties()));
 	public static final RegistryObject<Item> NITROGLYCERIN_ITEM = ITEMS.register("nitroglycerin", () -> new BlockItem(TechnologicaBlocks.NITROGLYCERIN.get(), new Item.Properties()));
 	public static final RegistryObject<Item> NAVAL_MINE = ITEMS.register("naval_mine", () -> new NavalMineItem(new Item.Properties()));

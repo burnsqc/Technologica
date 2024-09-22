@@ -26,6 +26,12 @@ public class TLModelsItem extends TLReGenModelsItem {
 		tables();
 		crystals();
 
+		item3DModel(TechnologicaBlocks.BEEPER_HEAD.get(), new ModelFile.UncheckedModelFile(new ResourceLocation("item/template_skull")));
+		item3DModel(TechnologicaBlocks.PEEPER_HEAD.get(), new ModelFile.UncheckedModelFile(new ResourceLocation("item/template_skull")));
+		item3DModel(TechnologicaBlocks.SLEEPER_HEAD.get(), new ModelFile.UncheckedModelFile(new ResourceLocation("item/template_skull")));
+		item3DModel(TechnologicaBlocks.SWEEPER_HEAD.get(), new ModelFile.UncheckedModelFile(new ResourceLocation("item/template_skull")));
+		item3DModel(TechnologicaBlocks.WEEPER_HEAD.get(), new ModelFile.UncheckedModelFile(new ResourceLocation("item/template_skull")));
+
 		item3DModel(TechnologicaBlocks.ANNUNCIATOR.get(), TLReGenModelsBlock.orientable(ForgeRegistries.BLOCKS.getKey(TechnologicaBlocks.ANNUNCIATOR.get()).getPath(), new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(TechnologicaBlocks.ANNUNCIATOR.get()).getPath() + "_side"), new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(TechnologicaBlocks.ANNUNCIATOR.get()).getPath() + "_lit_info"), new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(TechnologicaBlocks.ANNUNCIATOR.get()).getPath() + "_side")));
 		item3DModel(TechnologicaBlocks.BASIN.get(), TLReGenModelsBlock.basin(name(TechnologicaBlocks.BASIN.get()), "block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.BASIN.get()) + "_top", "block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.BASIN.get()) + "_bottom", "block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.BASIN.get()) + "_side"));
 		item3DModel(TechnologicaBlocks.KEYBOARD.get(), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/keyboard")));

@@ -11,8 +11,10 @@ import net.minecraftforge.registries.RegistryObject;
 
 /**
  * <p>
- * This class contains Registry Objects for Creative Mode Tabs.
- * The {@link #init} method is called by {@link Technologica#initDeferredRegisters} and returns a head-count to later be checked during registration and other setup activities.
+ * This class contains Registry Objects for Creative Mode Tabs. The
+ * {@link #init} method is called by {@link Technologica#initDeferredRegisters}
+ * and returns a head-count to later be checked during registration and other
+ * setup activities.
  * </p>
  * 
  * @tl.status GREEN
@@ -160,6 +162,11 @@ public final class TechnologicaCreativeModeTabs extends MasterDeferredRegistrar 
 		items.accept(TechnologicaItems.SWEEPER_SPAWN_EGG.get());
 		items.accept(TechnologicaItems.DUST_DEVIL_SPAWN_EGG.get());
 		items.accept(TechnologicaItems.BARNACLE.get());
+		items.accept(TechnologicaItems.BEEPER_HEAD.get());
+		items.accept(TechnologicaItems.PEEPER_HEAD.get());
+		items.accept(TechnologicaItems.SLEEPER_HEAD.get());
+		items.accept(TechnologicaItems.SWEEPER_HEAD.get());
+		items.accept(TechnologicaItems.WEEPER_HEAD.get());
 	}).build());
 	public static final RegistryObject<CreativeModeTab> MINERAL = CREATIVE_MODE_TABS.register("mineral", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.GERMANIUM_CHUNK.get())).withBackgroundLocation(new TechnologicaLocation("textures/gui/container/creative_inventory/tab_mineral.png")).withLabelColor(0).title(Component.translatable("itemGroup.mineral")).displayItems((p_270425_, items) -> {
 		items.accept(TechnologicaItems.SALT_ITEM.get());
@@ -1076,6 +1083,7 @@ public final class TechnologicaCreativeModeTabs extends MasterDeferredRegistrar 
 		items.accept(TechnologicaItems.MOTOR_5HP_ITEM.get());
 		items.accept(TechnologicaItems.MOTOR_20HP_ITEM.get());
 		items.accept(TechnologicaItems.SAWMILL_ITEM.get());
+		items.accept(TechnologicaItems.CARPENTRY_WORKBENCH.get());
 		items.accept(TechnologicaItems.WINDMILL_ITEM.get());
 		items.accept(TechnologicaItems.ANNUNCIATOR_ITEM.get());
 		items.accept(TechnologicaItems.STEEL_SHAFT.get());

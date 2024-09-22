@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import com.technologica.setup.common.RegisterCapabilitiesEventListener;
+import com.technologica.listeners.mod.common.RegisterCapabilitiesEventListener;
 import com.technologica.world.entity.player.TechnologicaAbilities;
 
 import net.minecraft.world.entity.EntityType;
@@ -37,8 +37,12 @@ public abstract class MixinNegateFluidMovement extends LivingEntity implements I
 	@Override
 	@Overwrite
 	public boolean isPushedByFluid() {
-		TechnologicaAbilities diver = ((Player) (Object) this).getCapability(RegisterCapabilitiesEventListener.DIVER_INSTANCE).orElseThrow(NullPointerException::new);
-		return !((Player) (Object) this).getAbilities().flying && !diver.getDiver();
+		TechnologicaAbilities diver = ((Player) (Object) this).getCapability(RegisterCapabilitiesEventListener.DIVER_INSTANCE).orElse(null);
+		boolean divercap = true;
+		if (diver != null) {
+			divercap = diver.getDiver();
+		}
+		return !((Player) (Object) this).getAbilities().flying && !divercap;
 	}
 
 	/**
@@ -97,7 +101,11 @@ public abstract class MixinNegateFluidMovement extends LivingEntity implements I
 	@Override
 	@Overwrite
 	public boolean isSwimming() {
-		TechnologicaAbilities diver = ((Player) (Object) this).getCapability(RegisterCapabilitiesEventListener.DIVER_INSTANCE).orElseThrow(NullPointerException::new);
-		return !((Player) (Object) this).getAbilities().flying && !((Player) (Object) this).isSpectator() && !diver.getDiver() && super.isSwimming();
+		TechnologicaAbilities diver = ((Player) (Object) this).getCapability(RegisterCapabilitiesEventListener.DIVER_INSTANCE).orElse(null);
+		boolean divercap = true;
+		if (diver != null) {
+			divercap = diver.getDiver();
+		}
+		return !((Player) (Object) this).getAbilities().flying && !((Player) (Object) this).isSpectator() && divercap && super.isSwimming();
 	}
 }

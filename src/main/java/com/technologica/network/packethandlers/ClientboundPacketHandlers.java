@@ -4,10 +4,10 @@ import java.util.function.Supplier;
 
 import com.technologica.Technologica;
 import com.technologica.client.multiplayer.TechnologicaClientLevel;
+import com.technologica.listeners.mod.common.RegisterCapabilitiesEventListener;
 import com.technologica.network.packets.clientbound.SetMeteorStorm;
 import com.technologica.network.packets.clientbound.SetMeteorStormLevel;
 import com.technologica.network.packets.clientbound.UpdateDiverCapability;
-import com.technologica.setup.common.RegisterCapabilitiesEventListener;
 import com.technologica.world.entity.player.TechnologicaAbilities;
 
 import net.minecraft.client.Minecraft;
