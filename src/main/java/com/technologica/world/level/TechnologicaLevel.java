@@ -1,6 +1,6 @@
 package com.technologica.world.level;
 
-import com.technologica.registration.key.TechnologicaBiomes;
+import com.technologica.registration.dynamic.TechnologicaBiomes;
 import com.technologica.world.level.storage.TechnologicaLevelData;
 
 import net.minecraft.core.BlockPos;

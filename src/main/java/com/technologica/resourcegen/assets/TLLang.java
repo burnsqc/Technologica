@@ -9,7 +9,7 @@ import com.technologica.registration.deferred.TechnologicaCreativeModeTabs;
 import com.technologica.registration.deferred.TechnologicaEntityTypes;
 import com.technologica.registration.deferred.TechnologicaItems;
 import com.technologica.registration.deferred.TechnologicaMobEffects;
-import com.technologica.registration.key.TechnologicaDamageTypes;
+import com.technologica.registration.dynamic.TechnologicaDamageTypes;
 
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;

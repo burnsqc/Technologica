@@ -16,11 +16,6 @@ import net.minecraftforge.registries.RegistryObject;
  * @tl.status GREEN
  */
 public final class TechnologicaRecipeTypes extends MasterDeferredRegistrar {
-
-	public static int init() {
-		return RECIPE_TYPES.getEntries().size();
-	}
-
 	public static final RegistryObject<RecipeType<SawmillRecipe>> SAWMILL = RECIPE_TYPES.register("sawmill", () -> new RecipeType<SawmillRecipe>() {
 	});
 }

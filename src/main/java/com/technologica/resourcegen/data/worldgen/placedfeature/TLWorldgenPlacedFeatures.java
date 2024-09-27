@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.technologica.api.tlregen.resourcegen.data.worldgen.TLReGenWorldgenPlacedFeature;
 import com.technologica.registration.deferred.TechnologicaBlocks;
-import com.technologica.registration.key.TechnologicaConfiguredFeatures;
-import com.technologica.registration.key.TechnologicaPlacedFeatures;
+import com.technologica.registration.dynamic.TechnologicaConfiguredFeatures;
+import com.technologica.registration.dynamic.TechnologicaPlacedFeatures;
 import com.technologica.world.level.levelgen.placement.BoundedHeightmap;
 
 import net.minecraft.core.Holder;

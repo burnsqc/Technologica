@@ -74,11 +74,6 @@ import net.minecraftforge.registries.RegistryObject;
  * @tl.status GREEN
  */
 public final class TechnologicaEntityTypes extends MasterDeferredRegistrar {
-
-	public static int init() {
-		return ENTITY_TYPES.getEntries().size();
-	}
-
 	public static final RegistryObject<EntityType<Alligator>> ALLIGATOR = ENTITY_TYPES.register("alligator", () -> EntityType.Builder.<Alligator>of(Alligator::new, MobCategory.CREATURE).sized(1.5F, 0.5F).clientTrackingRange(10).build("alligator"));
 	public static final RegistryObject<EntityType<Beaver>> BEAVER = ENTITY_TYPES.register("beaver", () -> EntityType.Builder.<Beaver>of(Beaver::new, MobCategory.CREATURE).sized(0.6F, 0.5F).clientTrackingRange(10).build("beaver"));
 	public static final RegistryObject<EntityType<Buffalo>> BUFFALO = ENTITY_TYPES.register("buffalo", () -> EntityType.Builder.<Buffalo>of(Buffalo::new, MobCategory.CREATURE).sized(1.5F, 1.7F).clientTrackingRange(10).build("buffalo"));

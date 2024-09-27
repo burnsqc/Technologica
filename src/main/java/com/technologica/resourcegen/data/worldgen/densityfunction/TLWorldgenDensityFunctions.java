@@ -1,7 +1,7 @@
 package com.technologica.resourcegen.data.worldgen.densityfunction;
 
 import com.technologica.api.tlregen.resourcegen.data.worldgen.TLReGenWorldgenDensityFunction;
-import com.technologica.registration.key.TechnologicaDensityFunctions;
+import com.technologica.registration.dynamic.TechnologicaDensityFunctions;
 
 import net.minecraft.world.level.levelgen.DensityFunctions;
 

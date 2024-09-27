@@ -6,7 +6,7 @@ import com.google.common.collect.Lists;
 import com.technologica.Technologica;
 import com.technologica.network.packets.clientbound.SetMeteorStorm;
 import com.technologica.network.packets.clientbound.SetMeteorStormLevel;
-import com.technologica.registration.key.TechnologicaDimensionTypes;
+import com.technologica.registration.dynamic.TechnologicaDimensionTypes;
 import com.technologica.world.entity.projectile.Meteor;
 import com.technologica.world.level.TechnologicaLevel;
 import com.technologica.world.level.storage.TechnologicaServerLevelData;

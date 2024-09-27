@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.technologica.api.tlregen.resourcegen.data.worldgen.TLReGenWorldgenTemplatePool;
 import com.technologica.api.tlregen.resourcegen.mirrors.TLReGenSinglePoolElement;
-import com.technologica.registration.key.TechnologicaStructureTemplatePools;
+import com.technologica.registration.dynamic.TechnologicaStructureTemplatePools;
 import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.core.Holder;

@@ -3,8 +3,8 @@ package com.technologica.resourcegen.data.worldgen.structuresets;
 import java.util.List;
 
 import com.technologica.api.tlregen.resourcegen.data.worldgen.TLReGenWorldgenStructureSet;
-import com.technologica.registration.key.TechnologicaStructureSets;
-import com.technologica.registration.key.TechnologicaStructures;
+import com.technologica.registration.dynamic.TechnologicaStructureSets;
+import com.technologica.registration.dynamic.TechnologicaStructures;
 
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;

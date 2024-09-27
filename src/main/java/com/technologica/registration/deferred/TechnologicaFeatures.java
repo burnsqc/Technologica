@@ -36,11 +36,6 @@ import net.minecraftforge.registries.RegistryObject;
  */
 @SuppressWarnings("deprecation")
 public class TechnologicaFeatures extends MasterDeferredRegistrar {
-
-	public static int init() {
-		return FEATURES.getEntries().size();
-	}
-
 	// TODO: Really need to get rid of the call to {@link LakeFeature} before the
 	// rug gets pulled out from under me. Maybe just clone it to my own class.
 	public static final RegistryObject<Feature<LakeFeature.Configuration>> BRINE_POOL = FEATURES.register("brine_pool", () -> new LakeFeature(LakeFeature.Configuration.CODEC));

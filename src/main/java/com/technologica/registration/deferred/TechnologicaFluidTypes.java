@@ -19,11 +19,6 @@ import net.minecraftforge.registries.RegistryObject;
  * @tl.status GREEN
  */
 public final class TechnologicaFluidTypes extends MasterDeferredRegistrar {
-
-	public static int init() {
-		return FLUID_TYPES.getEntries().size();
-	}
-
 	public static final RegistryObject<FluidType> HYDROGEN_TYPE = FLUID_TYPES.register("hyrdrogen", () -> new GasFluidType(FluidType.Properties.create().density(0), 1680343295));
 	public static final RegistryObject<FluidType> HELIUM_TYPE = FLUID_TYPES.register("helium", () -> new GasFluidType(FluidType.Properties.create().density(0), 1687570373));
 	public static final RegistryObject<FluidType> NITROGEN_TYPE = FLUID_TYPES.register("nitrogen", () -> new GasFluidType(FluidType.Properties.create().density(0), 1692829175));

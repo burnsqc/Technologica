@@ -20,11 +20,6 @@ import net.minecraftforge.registries.RegistryObject;
  * @tl.status GREEN
  */
 public final class TechnologicaCreativeModeTabs extends MasterDeferredRegistrar {
-
-	public static int init() {
-		return CREATIVE_MODE_TABS.getEntries().size();
-	}
-
 	public static final RegistryObject<CreativeModeTab> FLORA = CREATIVE_MODE_TABS.register("flora", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.ASPEN_SAPLING_ITEM.get())).withBackgroundLocation(new TechnologicaLocation("textures/gui/container/creative_inventory/tab_flora.png")).withLabelColor(0).title(Component.translatable("itemGroup.flora")).displayItems((p_270425_, items) -> {
 		items.accept(TechnologicaItems.BARLEY_SEEDS.get());
 		items.accept(TechnologicaItems.OATS_SEEDS.get());

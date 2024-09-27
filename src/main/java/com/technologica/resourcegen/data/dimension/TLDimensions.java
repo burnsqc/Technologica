@@ -1,10 +1,10 @@
 package com.technologica.resourcegen.data.dimension;
 
 import com.technologica.api.tlregen.resourcegen.data.TLReGenDimension;
-import com.technologica.registration.key.TechnologicaBiomes;
-import com.technologica.registration.key.TechnologicaDimensionTypes;
-import com.technologica.registration.key.TechnologicaDimensions;
-import com.technologica.registration.key.TechnologicaNoiseGeneratorSettings;
+import com.technologica.registration.dynamic.TechnologicaBiomes;
+import com.technologica.registration.dynamic.TechnologicaDimensionTypes;
+import com.technologica.registration.dynamic.TechnologicaDimensions;
+import com.technologica.registration.dynamic.TechnologicaNoiseGeneratorSettings;
 
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.world.level.dimension.LevelStem;

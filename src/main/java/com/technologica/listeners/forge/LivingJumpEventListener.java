@@ -1,7 +1,7 @@
 package com.technologica.listeners.forge;
 
 import com.technologica.registration.deferred.TechnologicaItems;
-import com.technologica.registration.key.TechnologicaDamageTypes;
+import com.technologica.registration.dynamic.TechnologicaDamageTypes;
 import com.technologica.setup.common.TechnologicaConfigCommon;
 import com.technologica.util.InventoryUtil;
 

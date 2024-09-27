@@ -1,6 +1,6 @@
 package com.technologica.world.effect;
 
-import com.technologica.registration.key.TechnologicaDamageTypes;
+import com.technologica.registration.dynamic.TechnologicaDamageTypes;
 
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;

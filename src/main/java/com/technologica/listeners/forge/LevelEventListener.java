@@ -1,7 +1,7 @@
 package com.technologica.listeners.forge;
 
 import com.technologica.Technologica;
-import com.technologica.registration.key.TechnologicaDimensions;
+import com.technologica.registration.dynamic.TechnologicaDimensions;
 import com.technologica.server.level.TechnologicaServerLevel;
 import com.technologica.world.level.storage.TechnologicaServerLevelData;
 

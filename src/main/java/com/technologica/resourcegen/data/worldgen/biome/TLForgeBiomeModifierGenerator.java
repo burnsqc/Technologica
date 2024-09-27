@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.technologica.api.tlregen.resourcegen.data.TLReGenForgeBiomeModifier;
 import com.technologica.registration.deferred.TechnologicaEntityTypes;
-import com.technologica.registration.key.TechnologicaBiomeModifiers;
-import com.technologica.registration.key.TechnologicaPlacedFeatures;
+import com.technologica.registration.dynamic.TechnologicaBiomeModifiers;
+import com.technologica.registration.dynamic.TechnologicaPlacedFeatures;
 
 import net.minecraft.core.Holder.Reference;
 import net.minecraft.core.HolderSet;

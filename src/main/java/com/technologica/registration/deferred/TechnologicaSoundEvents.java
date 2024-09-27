@@ -16,11 +16,6 @@ import net.minecraftforge.registries.RegistryObject;
  * @tl.status GREEN
  */
 public final class TechnologicaSoundEvents extends MasterDeferredRegistrar {
-
-	public static int init() {
-		return SOUND_EVENTS.getEntries().size();
-	}
-
 	public static final RegistryObject<SoundEvent> DODGEBALL = SOUND_EVENTS.register("dodgeball", () -> SoundEvent.createVariableRangeEvent(new TechnologicaLocation("dodgeball")));
 
 	public static final RegistryObject<SoundEvent> DUCK_AMBIENT = SOUND_EVENTS.register("entity.duck.ambient", () -> SoundEvent.createVariableRangeEvent(new TechnologicaLocation("entity.duck.ambient")));

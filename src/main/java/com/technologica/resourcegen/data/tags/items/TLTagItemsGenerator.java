@@ -2,8 +2,8 @@ package com.technologica.resourcegen.data.tags.items;
 
 import com.technologica.api.tlregen.resourcegen.data.tags.TLRGTagsItemsGenerator;
 import com.technologica.registration.deferred.TechnologicaItems;
-import com.technologica.registration.key.TechnologicaBlockTags;
-import com.technologica.registration.key.TechnologicaItemTags;
+import com.technologica.registration.dynamic.TechnologicaBlockTags;
+import com.technologica.registration.dynamic.TechnologicaItemTags;
 
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.tags.ItemTags;

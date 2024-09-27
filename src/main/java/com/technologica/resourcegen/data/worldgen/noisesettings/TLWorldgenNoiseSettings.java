@@ -5,9 +5,9 @@ import java.util.stream.Stream;
 
 import com.technologica.api.tlregen.resourcegen.data.worldgen.TLReGenWorldgenNoiseSettings;
 import com.technologica.registration.deferred.TechnologicaBlocks;
-import com.technologica.registration.key.TechnologicaBiomes;
-import com.technologica.registration.key.TechnologicaDensityFunctions;
-import com.technologica.registration.key.TechnologicaNoiseGeneratorSettings;
+import com.technologica.registration.dynamic.TechnologicaBiomes;
+import com.technologica.registration.dynamic.TechnologicaDensityFunctions;
+import com.technologica.registration.dynamic.TechnologicaNoiseGeneratorSettings;
 
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;

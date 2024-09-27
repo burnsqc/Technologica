@@ -15,11 +15,6 @@ import net.minecraftforge.registries.RegistryObject;
  * @tl.status GREEN
  */
 public final class TechnologicaParticleTypes extends MasterDeferredRegistrar {
-
-	public static int init() {
-		return PARTICLE_TYPES.getEntries().size();
-	}
-
 	public static final RegistryObject<SimpleParticleType> DRIPPING_BRINE = PARTICLE_TYPES.register("dripping_brine", () -> new SimpleParticleType(false));
 	public static final RegistryObject<SimpleParticleType> FALLING_BRINE = PARTICLE_TYPES.register("falling_brine", () -> new SimpleParticleType(false));
 	public static final RegistryObject<SimpleParticleType> SPLASHING_BRINE = PARTICLE_TYPES.register("splashing_brine", () -> new SimpleParticleType(false));

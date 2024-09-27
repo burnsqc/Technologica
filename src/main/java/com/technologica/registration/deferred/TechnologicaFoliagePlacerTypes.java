@@ -21,11 +21,6 @@ import net.minecraftforge.registries.RegistryObject;
  * @tl.status GREEN
  */
 public final class TechnologicaFoliagePlacerTypes extends MasterDeferredRegistrar {
-
-	public static int init() {
-		return FOLIAGE_PLACER_TYPES.getEntries().size();
-	}
-
 	public static final RegistryObject<FoliagePlacerType<?>> CONICAL = FOLIAGE_PLACER_TYPES.register("conical_foliage_placer", () -> new FoliagePlacerType<>(ConicalFoliagePlacer.conicalCodec));
 	public static final RegistryObject<FoliagePlacerType<?>> CYLINDRICAL = FOLIAGE_PLACER_TYPES.register("cylindrical_foliage_placer", () -> new FoliagePlacerType<>(CylindricalFoliagePlacer.cylindricalCodec));
 	public static final RegistryObject<FoliagePlacerType<?>> DISH = FOLIAGE_PLACER_TYPES.register("dish_foliage_placer", () -> new FoliagePlacerType<>(DishFoliagePlacer.dishCodec));

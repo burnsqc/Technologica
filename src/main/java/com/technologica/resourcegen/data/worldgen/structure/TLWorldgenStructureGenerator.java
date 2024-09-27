@@ -3,9 +3,9 @@ package com.technologica.resourcegen.data.worldgen.structure;
 import java.util.Map;
 
 import com.technologica.api.tlregen.resourcegen.data.worldgen.TLReGenWorldgenStructure;
-import com.technologica.registration.key.TechnologicaBiomeTags;
-import com.technologica.registration.key.TechnologicaStructureTemplatePools;
-import com.technologica.registration.key.TechnologicaStructures;
+import com.technologica.registration.dynamic.TechnologicaBiomeTags;
+import com.technologica.registration.dynamic.TechnologicaStructureTemplatePools;
+import com.technologica.registration.dynamic.TechnologicaStructures;
 import com.technologica.world.level.levelgen.structure.structures.DeepSeaStructure;
 import com.technologica.world.level.levelgen.structure.structures.ElDoradoStructure;
 

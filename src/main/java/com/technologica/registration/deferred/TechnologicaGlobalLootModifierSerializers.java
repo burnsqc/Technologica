@@ -23,11 +23,6 @@ import net.minecraftforge.registries.RegistryObject;
  * @tl.status GREEN
  */
 public final class TechnologicaGlobalLootModifierSerializers extends MasterDeferredRegistrar {
-
-	public static int init() {
-		return GLOBAL_LOOT_MODIFIER_SERIALIZERS.getEntries().size();
-	}
-
 	public static final RegistryObject<Codec<FernLootModifier>> FERN_LOOT_MODIFIER = GLOBAL_LOOT_MODIFIER_SERIALIZERS.register("blocks/fern", FernLootModifier.CODEC);
 	public static final RegistryObject<Codec<GrassLootModifier>> GRASS_LOOT_MODIFIER = GLOBAL_LOOT_MODIFIER_SERIALIZERS.register("blocks/grass", GrassLootModifier.CODEC);
 	public static final RegistryObject<Codec<LargeFernLootModifier>> LARGE_FERN_LOOT_MODIFIER = GLOBAL_LOOT_MODIFIER_SERIALIZERS.register("blocks/large_fern", LargeFernLootModifier.CODEC);

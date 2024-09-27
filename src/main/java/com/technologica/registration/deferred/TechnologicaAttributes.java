@@ -18,10 +18,5 @@ import net.minecraftforge.registries.RegistryObject;
  * @tl.status GREEN
  */
 public final class TechnologicaAttributes extends MasterDeferredRegistrar {
-
-	public static int init() {
-		return ATTRIBUTES.getEntries().size();
-	}
-
 	public static final RegistryObject<Attribute> DIVER = ATTRIBUTES.register("diver", () -> new RangedAttribute("diver", 0, 0, 1).setSyncable(true));
 }

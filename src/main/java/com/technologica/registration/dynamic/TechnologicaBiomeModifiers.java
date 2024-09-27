@@ -1,4 +1,4 @@
-package com.technologica.registration.key;
+package com.technologica.registration.dynamic;
 
 import com.technologica.api.tlregen.registration.MasterKeyCreator;
 import com.technologica.resourcegen.data.worldgen.biome.TLForgeBiomeModifierGenerator;
@@ -106,7 +106,7 @@ public final class TechnologicaBiomeModifiers extends MasterKeyCreator {
 	public static final ResourceKey<BiomeModifier> SNOWY_SLOPES_SPAWNS = biomeModifier("snowy_slopes_spawns");
 	public static final ResourceKey<BiomeModifier> SNOWY_TAIGA_SPAWNS = biomeModifier("snowy_tagia_spawns");
 	public static final ResourceKey<BiomeModifier> STONY_PEAKS_SPAWNS = biomeModifier("stony_peaks_spawns");
-	public static final ResourceKey<BiomeModifier> SUNFLOWER_PLAINS_SPAWNS = biomeModifier("sunflowe_plains_spawns");
+	public static final ResourceKey<BiomeModifier> SUNFLOWER_PLAINS_SPAWNS = biomeModifier("sunflower_plains_spawns");
 	public static final ResourceKey<BiomeModifier> SWAMP_SPAWNS = biomeModifier("swamp_spawns");
 	public static final ResourceKey<BiomeModifier> TAIGA_SPAWNS = biomeModifier("tagia_spawns");
 	public static final ResourceKey<BiomeModifier> WARM_OCEAN_SPAWNS = biomeModifier("warm_ocean_spawns");

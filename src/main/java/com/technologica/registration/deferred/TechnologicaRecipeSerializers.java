@@ -16,10 +16,5 @@ import net.minecraftforge.registries.RegistryObject;
  * @tl.status GREEN
  */
 public final class TechnologicaRecipeSerializers extends MasterDeferredRegistrar {
-
-	public static int init() {
-		return RECIPE_SERIALIZERS.getEntries().size();
-	}
-
 	public static final RegistryObject<RecipeSerializer<SawmillRecipe>> SAWMILL = RECIPE_SERIALIZERS.register("sawmill", SawmillRecipe.Serializer::new);
 }

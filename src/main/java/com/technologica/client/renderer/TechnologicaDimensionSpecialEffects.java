@@ -1,7 +1,7 @@
 package com.technologica.client.renderer;
 
 import com.technologica.Technologica;
-import com.technologica.registration.key.TechnologicaDimensionTypes;
+import com.technologica.registration.dynamic.TechnologicaDimensionTypes;
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;

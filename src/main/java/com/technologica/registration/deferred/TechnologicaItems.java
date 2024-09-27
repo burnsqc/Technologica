@@ -66,11 +66,6 @@ import net.minecraftforge.registries.RegistryObject;
  * @tl.status GREEN
  */
 public final class TechnologicaItems extends MasterDeferredRegistrar {
-
-	public static int init() {
-		return ITEMS.getEntries().size();
-	}
-
 	public static final RegistryObject<Item> BARLEY_SEEDS = ITEMS.register("barley_seeds", () -> new CropSeedItem(TechnologicaBlocks.BARLEY.get(), new Item.Properties()));
 	public static final RegistryObject<Item> OATS_SEEDS = ITEMS.register("oats_seeds", () -> new CropSeedItem(TechnologicaBlocks.OATS.get(), new Item.Properties()));
 	public static final RegistryObject<Item> RYE_SEEDS = ITEMS.register("rye_seeds", () -> new CropSeedItem(TechnologicaBlocks.RYE.get(), new Item.Properties()));

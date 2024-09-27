@@ -1,6 +1,6 @@
 package com.technologica.world.level.block.grower;
 
-import com.technologica.registration.key.TechnologicaConfiguredFeatures;
+import com.technologica.registration.dynamic.TechnologicaConfiguredFeatures;
 
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.RandomSource;

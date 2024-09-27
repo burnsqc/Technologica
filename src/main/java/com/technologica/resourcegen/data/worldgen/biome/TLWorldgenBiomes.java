@@ -5,8 +5,8 @@ import java.util.List;
 import com.mojang.datafixers.util.Pair;
 import com.technologica.api.tlregen.resourcegen.data.worldgen.TLReGenWorldgenBiome;
 import com.technologica.registration.deferred.TechnologicaEntityTypes;
-import com.technologica.registration.key.TechnologicaBiomes;
-import com.technologica.registration.key.TechnologicaPlacedFeatures;
+import com.technologica.registration.dynamic.TechnologicaBiomes;
+import com.technologica.registration.dynamic.TechnologicaPlacedFeatures;
 import com.technologica.world.entity.TechnologicaMobCategory;
 
 import net.minecraft.core.registries.Registries;

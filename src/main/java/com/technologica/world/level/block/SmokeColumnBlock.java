@@ -5,8 +5,8 @@ import java.util.Optional;
 import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.registration.deferred.TechnologicaFeatures;
 import com.technologica.registration.deferred.TechnologicaParticleTypes;
-import com.technologica.registration.key.TechnologicaBiomes;
-import com.technologica.registration.key.TechnologicaDimensions;
+import com.technologica.registration.dynamic.TechnologicaBiomes;
+import com.technologica.registration.dynamic.TechnologicaDimensions;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

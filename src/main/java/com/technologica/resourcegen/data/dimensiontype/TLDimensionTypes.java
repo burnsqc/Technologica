@@ -3,7 +3,7 @@ package com.technologica.resourcegen.data.dimensiontype;
 import java.util.OptionalLong;
 
 import com.technologica.api.tlregen.resourcegen.data.TLReGenDimensionType;
-import com.technologica.registration.key.TechnologicaDimensionTypes;
+import com.technologica.registration.dynamic.TechnologicaDimensionTypes;
 
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.UniformInt;

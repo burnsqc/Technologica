@@ -16,10 +16,6 @@ import net.minecraftforge.registries.RegistryObject;
  * @tl.status GREEN
  */
 public final class TechnologicaTrunkPlacerTypes extends MasterDeferredRegistrar {
-
-	public static int init() {
-		return TRUNK_PLACER_TYPES.getEntries().size();
-	}
-
+	private TechnologicaTrunkPlacerTypes() {}
 	public static final RegistryObject<TrunkPlacerType<?>> HUGE_TRUNK_PLACER = TRUNK_PLACER_TYPES.register("huge", () -> new TrunkPlacerType<>(HugeTrunkPlacer.CODEC));;
 }

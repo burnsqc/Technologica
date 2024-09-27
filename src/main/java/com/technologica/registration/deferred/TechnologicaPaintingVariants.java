@@ -14,11 +14,6 @@ import net.minecraftforge.registries.RegistryObject;
  * 
  * @tl.status GREEN
  */
-public final class TechnologicaPaintingVariant extends MasterDeferredRegistrar {
-
-	public static int init() {
-		return PAINTING_VARIANTS.getEntries().size();
-	}
-
+public final class TechnologicaPaintingVariants extends MasterDeferredRegistrar {
 	public static final RegistryObject<PaintingVariant> AMNESIA = PAINTING_VARIANTS.register("amnesia", () -> new PaintingVariant(32, 32));
 }

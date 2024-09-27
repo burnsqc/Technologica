@@ -1,8 +1,8 @@
 package com.technologica.resourcegen.data.tags.worldgen.biome;
 
 import com.technologica.api.tlregen.resourcegen.data.tags.TLReGenTagsWorldgenBiome;
-import com.technologica.registration.key.TechnologicaBiomeTags;
-import com.technologica.registration.key.TechnologicaBiomes;
+import com.technologica.registration.dynamic.TechnologicaBiomeTags;
+import com.technologica.registration.dynamic.TechnologicaBiomes;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.tags.BiomeTags;

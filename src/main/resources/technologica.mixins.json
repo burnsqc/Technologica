@@ -1,7 +1,7 @@
 {
 	"required": true,
 	"package": "com.technologica.mixin",
-	"compatibilityLevel": "JAVA_8",
+	"compatibilityLevel": "JAVA_17",
 	"refmap": "technologica.mixins.refmap.json",
 	"mixins": [
 		"MixinDataGeneratorLogger",

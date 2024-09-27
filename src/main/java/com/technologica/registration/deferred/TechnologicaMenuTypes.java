@@ -22,11 +22,6 @@ import net.minecraftforge.registries.RegistryObject;
  * @tl.status GREEN
  */
 public final class TechnologicaMenuTypes extends MasterDeferredRegistrar {
-
-	public static int init() {
-		return MENU_TYPES.getEntries().size();
-	}
-
 	public static final RegistryObject<MenuType<AnnunciatorMenu>> ANNUNCIATOR = MENU_TYPES.register("annunciator_container", () -> IForgeMenuType.create((windowId, inv, data) -> new AnnunciatorMenu(windowId, inv.player.getCommandSenderWorld(), data.readBlockPos(), inv)));
 	public static final RegistryObject<MenuType<MonitorMenu>> MONITOR = MENU_TYPES.register("monitor_container", () -> IForgeMenuType.create((windowId, inv, data) -> new MonitorMenu(windowId, inv.player.getCommandSenderWorld(), data.readBlockPos(), inv)));
 	public static final RegistryObject<MenuType<SawmillMenu>> SAWMILL = MENU_TYPES.register("sawmill_container", () -> IForgeMenuType.create((windowId, inv, data) -> new SawmillMenu(windowId, inv.player.getCommandSenderWorld(), data.readBlockPos(), inv)));

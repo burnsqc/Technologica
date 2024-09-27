@@ -1,4 +1,4 @@
-package com.technologica.registration.key;
+package com.technologica.registration.dynamic;
 
 import com.technologica.api.tlregen.registration.MasterKeyCreator;
 import com.technologica.resourcegen.data.worldgen.structure.TLWorldgenStructureGenerator;
