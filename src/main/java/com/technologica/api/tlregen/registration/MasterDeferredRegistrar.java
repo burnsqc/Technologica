@@ -4,6 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
+import javax.swing.UnsupportedLookAndFeelException;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.Marker;
+import org.apache.logging.log4j.MarkerManager;
+
 import com.mojang.serialization.Codec;
 import com.technologica.Technologica;
 import com.technologica.registration.deferred.TechnologicaAttributes;
@@ -68,6 +75,8 @@ import net.minecraftforge.registries.RegistryObject;
 
 @Mod.EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
 public abstract class MasterDeferredRegistrar {
+	private static final Logger LOGGER = LogManager.getLogger("TLREGEN");
+	private static final Marker MARKER = MarkerManager.getMarker("REGISTRATION");
 	private static Map<ResourceKey<? extends Registry<?>>, RegistrationTracker<?>> registries = new HashMap<>();
 
 	public static final DeferredRegister<Attribute> ATTRIBUTES = addRegister(ForgeRegistries.Keys.ATTRIBUTES, () -> TechnologicaAttributes.DIVER);
@@ -96,8 +105,7 @@ public abstract class MasterDeferredRegistrar {
 
 	public static <R> DeferredRegister<R> addRegister(ResourceKey<? extends Registry<R>> key, Supplier<RegistryObject<?>> bootstrap) {
 		DeferredRegister<R> deferredRegister = DeferredRegister.create(key, Technologica.MOD_ID);
-		deferredRegister.register(FMLJavaModLoadingContext.get().getModEventBus());
-		
+		deferredRegister.register(FMLJavaModLoadingContext.get().getModEventBus());	
 		registries.put(key, new RegistrationTracker<R>(deferredRegister, bootstrap, 0, 0));
 		return deferredRegister;
 	}
@@ -106,17 +114,17 @@ public abstract class MasterDeferredRegistrar {
 		registries.forEach((reg, counter) -> { 
 			counter.bootstrap.get();
 			counter.initialized =  counter.deferredRegister.getEntries().size();
-			Technologica.LOGGER.info("INITIALIZATION - " + TextUtil.stringToAllCapsName(reg.toString()) + " - " + counter.initialized, 0);
+			LOGGER.info(MARKER, "INITIALIZATION - " + TextUtil.stringToAllCapsName(reg.location().toString()) + " - " + counter.initialized);
 		});
 	}
 
 	@SubscribeEvent
-	public static void onRegisterEvent(final RegisterEvent event) {
+	public static void onRegisterEvent(final RegisterEvent event) throws UnsupportedLookAndFeelException {
 		long initialized = 0;
 		long registered = 0;
 
 		if (registries.containsKey(event.getRegistryKey())) {
-			initialized = (long) registries.get(event.getRegistryKey()).initialized;
+			initialized = (long) registries.get(event.getRegistryKey()).initialized + 1;
 		}
 
 		if (event.getForgeRegistry() != null) {
@@ -130,14 +138,11 @@ public abstract class MasterDeferredRegistrar {
 
 		}
 
-		Technologica.LOGGER.info("REGISTRATION - " + TextUtil.stringToAllCapsName(TextUtil.getPath(event.getRegistryKey())) + " - " + registered + " OF " + initialized);
+		LOGGER.fatal(MARKER, "REGISTRATION - " + TextUtil.stringToAllCapsName(event.getRegistryKey().location().toString()) + " - " + registered + " OF " + initialized);
 		if (registered != initialized) {
-			Technologica.LOGGER.error("REGISTRATION ERROR - " + TextUtil.stringToAllCapsName(TextUtil.getPath(event.getRegistryKey())) + " - MISSING " + (initialized - registered));
+			LOGGER.error(MARKER, "REGISTRATION ERROR - " + TextUtil.stringToAllCapsName(event.getRegistryKey().location().toString()) + " - MISSING " + (initialized - registered));
+			throw new UnsupportedLookAndFeelException("REGISTRATION ERROR");
 		}
-	}
-	
-	protected static int init() {
-		return 0;
 	}
 	
 	public static class RegistrationTracker<R> {
