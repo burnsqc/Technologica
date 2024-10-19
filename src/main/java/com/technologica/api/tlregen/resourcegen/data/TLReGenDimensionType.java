@@ -11,7 +11,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mojang.serialization.DynamicOps;
 import com.mojang.serialization.JsonOps;
-import com.technologica.api.tlregen.resourcegen.TLReGenMasterResourceGenerator;
+import com.technologica.api.tlregen.resourcegen.MasterResourceGenerator;
 
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
@@ -23,7 +23,7 @@ import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.dimension.DimensionType;
 
-public abstract class TLReGenDimensionType extends TLReGenMasterResourceGenerator implements DataProvider {
+public abstract class TLReGenDimensionType extends MasterResourceGenerator implements DataProvider {
 	private final Map<ResourceKey<DimensionType>, DimensionType> dimensionTypes = new LinkedHashMap<>();
 	private final String name = "data." + modid + ".dimension_type";
 	private final DynamicOps<JsonElement> dynamicOps = JsonOps.INSTANCE;

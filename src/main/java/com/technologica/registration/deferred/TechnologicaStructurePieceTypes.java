@@ -2,7 +2,7 @@ package com.technologica.registration.deferred;
 
 import java.util.Locale;
 
-import com.technologica.api.tlregen.registration.MasterDeferredRegistrar;
+import com.technologica.Technologica;
 import com.technologica.world.level.levelgen.structure.structures.WhaleCarcassPieces;
 
 import net.minecraft.core.Registry;
@@ -10,8 +10,8 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceType;
 import net.minecraftforge.registries.RegistryObject;
 
-public final class TechnologicaStructurePieceTypes extends MasterDeferredRegistrar {
-	public static final RegistryObject<StructurePieceType> WHALE_CARCASS = STRUCTURE_PIECE_TYPES.register("whale_carcass", () -> setTemplatePieceId(WhaleCarcassPieces.WhaleCarcassPiece::new, "CDWC"));
+public final class TechnologicaStructurePieceTypes {
+	public static final RegistryObject<StructurePieceType> WHALE_CARCASS = Technologica.STRUCTURE_PIECE_TYPES.register("whale_carcass", () -> setTemplatePieceId(WhaleCarcassPieces.WhaleCarcassPiece::new, "CDWC"));
 
 	private static StructurePieceType setTemplatePieceId(StructurePieceType.StructureTemplateType p_210156_, String p_210157_) {
 		return setFullContextPieceId(p_210156_, p_210157_);

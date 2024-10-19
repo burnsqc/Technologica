@@ -1,6 +1,5 @@
 package com.technologica.listeners.forge;
 
-import com.technologica.listeners.mod.common.RegisterCapabilitiesEventListener;
 import com.technologica.setup.common.TechnologicaConfigCommon;
 import com.technologica.world.entity.player.TechnologicaAbilities;
 
@@ -41,7 +40,7 @@ public class PlayerEventListener {
 		Player player = event.getEntity();
 		float speed = event.getOriginalSpeed();
 		if (player.isEyeInFluidType(ForgeMod.WATER_TYPE.get()) && !EnchantmentHelper.hasAquaAffinity(player)) {
-			TechnologicaAbilities diver = player.getCapability(RegisterCapabilitiesEventListener.DIVER_INSTANCE).orElseThrow(NullPointerException::new);
+			TechnologicaAbilities diver = player.getCapability(TechnologicaAbilities.DIVER_INSTANCE).orElseThrow(NullPointerException::new);
 			if (diver.getDiver()) {
 				event.setNewSpeed(speed *= 5.0F);
 			}
@@ -52,8 +51,8 @@ public class PlayerEventListener {
 	public static void onClone(final PlayerEvent.Clone event) {
 		if (event.isWasDeath()) {
 			event.getOriginal().reviveCaps();
-			TechnologicaAbilities diverOld = event.getOriginal().getCapability(RegisterCapabilitiesEventListener.DIVER_INSTANCE).orElseThrow(NullPointerException::new);
-			TechnologicaAbilities diverNew = event.getEntity().getCapability(RegisterCapabilitiesEventListener.DIVER_INSTANCE).orElseThrow(NullPointerException::new);
+			TechnologicaAbilities diverOld = event.getOriginal().getCapability(TechnologicaAbilities.DIVER_INSTANCE).orElseThrow(NullPointerException::new);
+			TechnologicaAbilities diverNew = event.getEntity().getCapability(TechnologicaAbilities.DIVER_INSTANCE).orElseThrow(NullPointerException::new);
 			diverNew.setDiver(diverOld.getDiver());
 			event.getOriginal().invalidateCaps();
 		}

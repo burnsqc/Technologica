@@ -4,7 +4,6 @@ import javax.annotation.Nullable;
 
 import com.technologica.capabilities.item.link.Link;
 import com.technologica.capabilities.item.link.LinkProvider;
-import com.technologica.listeners.mod.common.RegisterCapabilitiesEventListener;
 import com.technologica.registration.deferred.TechnologicaBlocks;
 
 import net.minecraft.core.BlockPos;
@@ -45,7 +44,7 @@ public class PipeWrenchItem extends DiggerItem {
 			if (state.is(TechnologicaBlocks.LINE_SHAFT_HANGER.get())) {
 				Player player = context.getPlayer();
 				ItemStack stack = player.getItemInHand(context.getHand());
-				Link linkCapability = stack.getCapability(RegisterCapabilitiesEventListener.LINK_INSTANCE).orElseThrow(NullPointerException::new);
+				Link linkCapability = stack.getCapability(Link.LINK_INSTANCE).orElseThrow(NullPointerException::new);
 				if (!linkCapability.getLinking()) {
 					linkCapability.startLink(world, pos, state, player);
 				} else {

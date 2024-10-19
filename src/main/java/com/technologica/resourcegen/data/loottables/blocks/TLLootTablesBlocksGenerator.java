@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.technologica.Technologica;
 import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.registration.deferred.TechnologicaItems;
 
@@ -1222,10 +1223,11 @@ public final class TLLootTablesBlocksGenerator extends BlockLootSubProvider {
 		dropSelf(TechnologicaBlocks.BASIN.get());
 		dropSelf(TechnologicaBlocks.MAPLE_SYRUP_BASIN.get());
 		dropSelf(TechnologicaBlocks.RUBBER_RESIN_BASIN.get());
+		dropSelf(TechnologicaBlocks.CARPENTRY_WORKBENCH.get());
 	}
 
 	@Override
 	protected Iterable<Block> getKnownBlocks() {
-		return TechnologicaBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
+		return Technologica.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
 	}
 }

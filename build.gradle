@@ -8,24 +8,21 @@ plugins {
 
 version = '0.0.12'
 group = 'com.technologica'
-
-base {
-    archivesName = 'technologica'
-}
+base {archivesName = 'technologica'}
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
+
 minecraft {
     mappings channel: 'official', version: '1.20.1'
     copyIdeResources = true
-    // makeObfSourceJar = false 
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
     runs {
         configureEach {
             workingDirectory project.file('run')
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            //property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
 
             mods {
@@ -54,14 +51,16 @@ minecraft {
     }
 }
 
-sourceSets.main.resources { 
-	srcDir 'src/generated/resources' 
-}
+sourceSets.main.resources {srcDir 'src/generated/resources'}
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.20.1-47.3.7'
-    // Apply Mixin AP
+    implementation  'com.tlregen:TLReGen:0.0.1'
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+}
+
+repositories {
+	maven {url "file://${project.projectDir}/maven"}
 }
 
 mixin {
@@ -83,23 +82,12 @@ tasks.named('jar', Jar).configure {
             "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
-
     finalizedBy 'reobfJar'
 }
 
 publishing {
-    publications {
-        register('mavenJava', MavenPublication) {
-            artifact jar
-        }
-    }
-    repositories {
-        maven {
-            url "file://${project.projectDir}/mcmodsrepo"
-        }
-    }
+    publications {register('mavenJava', MavenPublication) {artifact jar}}
+    repositories {maven {url "file://${project.projectDir}/maven"}}
 }
 
-tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8'
-}
+tasks.withType(JavaCompile).configureEach {options.encoding = 'UTF-8'}

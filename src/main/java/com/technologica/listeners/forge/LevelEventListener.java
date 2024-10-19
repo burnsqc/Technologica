@@ -5,6 +5,7 @@ import com.technologica.registration.dynamic.TechnologicaDimensions;
 import com.technologica.server.level.TechnologicaServerLevel;
 import com.technologica.world.level.storage.TechnologicaServerLevelData;
 
+import net.minecraft.core.registries.Registries;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -19,7 +20,7 @@ public class LevelEventListener {
 		if (!event.getLevel().isClientSide()) {
 			MinecraftServer mc = event.getLevel().getServer();
 			TechnologicaServerLevelData data = TechnologicaServerLevelData.getData(mc);
-			Technologica.getInstance().setServerLevel(new TechnologicaServerLevel(mc.getLevel(TechnologicaDimensions.MOON), data));
+			Technologica.getInstance().setServerLevel(new TechnologicaServerLevel(mc.getLevel(Registries.levelStemToLevel(TechnologicaDimensions.MOON_STEM)), data));
 		}
 	}
 }

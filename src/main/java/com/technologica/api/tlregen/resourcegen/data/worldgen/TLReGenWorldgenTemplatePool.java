@@ -13,7 +13,7 @@ import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.DynamicOps;
 import com.mojang.serialization.Encoder;
 import com.mojang.serialization.JsonOps;
-import com.technologica.api.tlregen.resourcegen.TLReGenMasterResourceGenerator;
+import com.technologica.api.tlregen.resourcegen.MasterResourceGenerator;
 import com.technologica.api.tlregen.resourcegen.mirrors.TLReGenRegistrySetBuilder;
 import com.technologica.resourcegen.data.worldgen.templatepool.TLWorldgenTemplatePoolGenerator;
 
@@ -33,7 +33,7 @@ import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraftforge.registries.DataPackRegistriesHooks;
 
-public abstract class TLReGenWorldgenTemplatePool extends TLReGenMasterResourceGenerator implements DataProvider {
+public abstract class TLReGenWorldgenTemplatePool extends MasterResourceGenerator implements DataProvider {
 	private final CompletableFuture<HolderLookup.Provider> damageTypes = lookupProvider.thenApply(r -> constructRegistries(r, new TLReGenRegistrySetBuilder().add(Registries.TEMPLATE_POOL, TLWorldgenTemplatePoolGenerator::bootstrap)));
 	private final java.util.function.Predicate<String> namespacePredicate = Set.of(modid) == null ? namespace -> true : Set.of(modid)::contains;
 

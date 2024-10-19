@@ -6,8 +6,6 @@ import java.util.function.Supplier;
 import com.technologica.Technologica;
 import com.technologica.api.tlregen.resourcegen.assets.TLReGenLang;
 import com.technologica.registration.deferred.TechnologicaCreativeModeTabs;
-import com.technologica.registration.deferred.TechnologicaEntityTypes;
-import com.technologica.registration.deferred.TechnologicaItems;
 import com.technologica.registration.deferred.TechnologicaMobEffects;
 import com.technologica.registration.dynamic.TechnologicaDamageTypes;
 
@@ -36,9 +34,9 @@ public class TLLang extends TLReGenLang {
 		addEffect(TechnologicaMobEffects.PARALYSIS, "Paralysis");
 		addEffect(TechnologicaMobEffects.RADIATION, "Radiation");
 
-		addEntities(TechnologicaEntityTypes.ENTITY_TYPES.getEntries());
+		addEntities(Technologica.ENTITY_TYPES.getEntries());
 
-		addItems(TechnologicaItems.ITEMS.getEntries());
+		addItems(Technologica.ITEMS.getEntries());
 
 		addItemGroup(TechnologicaCreativeModeTabs.FLORA, "Flora");
 		addItemGroup(TechnologicaCreativeModeTabs.FAUNA, "Fauna");

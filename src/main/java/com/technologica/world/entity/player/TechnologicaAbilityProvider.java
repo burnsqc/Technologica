@@ -2,8 +2,6 @@ package com.technologica.world.entity.player;
 
 import org.jetbrains.annotations.Nullable;
 
-import com.technologica.listeners.mod.common.RegisterCapabilitiesEventListener;
-
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.common.capabilities.Capability;
@@ -16,7 +14,7 @@ public class TechnologicaAbilityProvider implements ICapabilitySerializable<Comp
 
 	@Override
 	public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction direction) {
-		return RegisterCapabilitiesEventListener.DIVER_INSTANCE.orEmpty(capability, optionalData);
+		return TechnologicaAbilities.DIVER_INSTANCE.orEmpty(capability, optionalData);
 	}
 
 	@Override

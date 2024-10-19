@@ -18,6 +18,9 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.common.capabilities.CapabilityToken;
 import net.minecraftforge.common.util.INBTSerializable;
 
 public class Link implements INBTSerializable<CompoundTag> {
@@ -34,6 +37,8 @@ public class Link implements INBTSerializable<CompoundTag> {
 	private int distance;
 	private Player player;
 	private String message;
+	public static final Capability<Link> LINK_INSTANCE = CapabilityManager.get(new CapabilityToken<>() {
+	});
 
 	public boolean getLinking() {
 		return this.linking;

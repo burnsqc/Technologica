@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 
 import com.google.gson.JsonObject;
 import com.mojang.serialization.JsonOps;
-import com.technologica.api.tlregen.resourcegen.TLReGenMasterResourceGenerator;
+import com.technologica.api.tlregen.resourcegen.MasterResourceGenerator;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.Registry;
@@ -32,7 +32,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.tags.TagManager;
 import net.minecraft.world.level.biome.Biome;
 
-public abstract class TLReGenTagsWorldgenBiome extends TLReGenMasterResourceGenerator implements DataProvider {
+public abstract class TLReGenTagsWorldgenBiome extends MasterResourceGenerator implements DataProvider {
 	private final Map<ResourceLocation, TagBuilder> blockTags = new HashMap<>();
 
 	/*

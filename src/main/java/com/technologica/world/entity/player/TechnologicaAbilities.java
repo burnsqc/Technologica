@@ -1,11 +1,16 @@
 package com.technologica.world.entity.player;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.common.capabilities.CapabilityToken;
 import net.minecraftforge.common.util.INBTSerializable;
 
 public class TechnologicaAbilities implements INBTSerializable<CompoundTag> {
 	private boolean diver;
 	private boolean doubleJump;
+	public static final Capability<TechnologicaAbilities> DIVER_INSTANCE = CapabilityManager.get(new CapabilityToken<>() {
+	});
 
 	public boolean getDiver() {
 		return this.diver;

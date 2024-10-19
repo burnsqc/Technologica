@@ -13,6 +13,13 @@ license="All Rights Reserved"
     An ambitious mod aiming to provide a primarily technical progression with considerable breadth and depth.  Technologica adds new trees, crops, minerals, and creatures both fantastical and real to the overworld.'''
 
 [[dependencies.technologica]] 
+    modId="tlregen" 
+    mandatory=true
+    versionRange="[0.0.1]"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.technologica]] 
     modId="forge" 
     mandatory=true
     versionRange="[47,)"

@@ -64,7 +64,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @Mod.EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
-public abstract class TLReGenMasterResourceGenerator implements DataProvider {
+public abstract class MasterResourceGenerator implements DataProvider {
 	private static GatherDataEvent event;
 	private static DataGenerator generator;
 	public static PackOutput packOutput;
@@ -94,12 +94,6 @@ public abstract class TLReGenMasterResourceGenerator implements DataProvider {
 
 	@SubscribeEvent
 	public static void addGenerators(final GatherDataEvent eventIn) {
-		setup(eventIn);
-		setGenerators();
-		addGenerators();
-	}
-
-	private static void setup(final GatherDataEvent eventIn) {
 		event = eventIn;
 		generator = event.getGenerator();
 		packOutput = generator.getPackOutput();
@@ -108,13 +102,7 @@ public abstract class TLReGenMasterResourceGenerator implements DataProvider {
 		registrySetBuilder = new RegistrySetBuilder();
 		registrySetBuilder2 = new TLReGenRegistrySetBuilder();
 		registrySetBuilder3 = new TLReGenRegistrySetBuilder();
-	}
-
-	private static void setGenerators() {
 		TagBlocks = new TLTagBlocksGenerator();
-	}
-
-	private static void addGenerators() {
 		addAssetGenerator(new TLAtlases());
 		addAssetGenerator(new TLBlockstates());
 		addAssetGenerator(new TLFont());
@@ -170,9 +158,7 @@ public abstract class TLReGenMasterResourceGenerator implements DataProvider {
 	protected abstract void populate();
 
 	public static enum ValidationLevel {
-		MIN("minimum"),
-		MED("medium"),
-		MAX("maximum");
+		MIN("minimum"), MED("medium"), MAX("maximum");
 
 		final String level;
 

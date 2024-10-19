@@ -3,7 +3,6 @@ package com.technologica.listeners.forge;
 import java.util.UUID;
 
 import com.technologica.Technologica;
-import com.technologica.listeners.mod.common.RegisterCapabilitiesEventListener;
 import com.technologica.network.packets.clientbound.UpdateDiverCapability;
 import com.technologica.util.InventoryUtil;
 import com.technologica.util.mixininterfaces.IMixinMaxAir;
@@ -41,7 +40,7 @@ public class LivingEquipmentChange {
 
 			if (InventoryUtil.fullArmorSet(serverPlayer, TechnologicaArmorMaterials.DIVE)) {
 				((IMixinMaxAir) serverPlayer).setMaxAirSupply(6000);
-				TechnologicaAbilities diver = serverPlayer.getCapability(RegisterCapabilitiesEventListener.DIVER_INSTANCE).orElseThrow(NullPointerException::new);
+				TechnologicaAbilities diver = serverPlayer.getCapability(TechnologicaAbilities.DIVER_INSTANCE).orElseThrow(NullPointerException::new);
 				diver.setDiver(true);
 				Technologica.CHANNEL.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new UpdateDiverCapability(true));
 				return;
@@ -62,7 +61,7 @@ public class LivingEquipmentChange {
 			if (serverPlayer.getAttribute(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get()).hasModifier(SCUBA_SPEED)) {
 				serverPlayer.getAttribute(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get()).removeModifier(SCUBA_SPEED);
 			}
-			TechnologicaAbilities diver = serverPlayer.getCapability(RegisterCapabilitiesEventListener.DIVER_INSTANCE).orElseThrow(NullPointerException::new);
+			TechnologicaAbilities diver = serverPlayer.getCapability(TechnologicaAbilities.DIVER_INSTANCE).orElseThrow(NullPointerException::new);
 			diver.setDiver(false);
 			Technologica.CHANNEL.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new UpdateDiverCapability(false));
 		}

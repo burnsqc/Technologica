@@ -1,21 +1,12 @@
 package com.technologica.registration.dynamic;
 
-import com.technologica.api.tlregen.registration.MasterKeyCreator;
-import com.technologica.resourcegen.data.worldgen.structuresets.TLWorldgenStructureSetGenerator;
+import com.technologica.Technologica;
 
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.structure.StructureSet;
 
-/**
- * <p>
- * This class contains Resource Keys for Structure Sets.
- * The corresponding Structure Sets are created in json format during Data Generation in {@link TLWorldgenStructureSetGenerator}.
- * </p>
- * 
- * @tl.status GREEN
- */
-public final class TechnologicaStructureSets extends MasterKeyCreator {
-	public static final ResourceKey<StructureSet> EL_DORADO = structureSet("el_dorado");
-	public static final ResourceKey<StructureSet> DOME = structureSet("dome");
-	public static final ResourceKey<StructureSet> WHALE_CARCASS = structureSet("whale_carcass");
+public final class TechnologicaStructureSets {
+	public static final ResourceKey<StructureSet> EL_DORADO = Technologica.STRUCTURE_SETS.register("el_dorado");
+	public static final ResourceKey<StructureSet> DOME = Technologica.STRUCTURE_SETS.register("dome");
+	public static final ResourceKey<StructureSet> WHALE_CARCASS = Technologica.STRUCTURE_SETS.register("whale_carcass");
 }

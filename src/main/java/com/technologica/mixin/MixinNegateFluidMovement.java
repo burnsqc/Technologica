@@ -7,7 +7,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import com.technologica.listeners.mod.common.RegisterCapabilitiesEventListener;
 import com.technologica.world.entity.player.TechnologicaAbilities;
 
 import net.minecraft.world.entity.EntityType;
@@ -31,13 +30,15 @@ public abstract class MixinNegateFluidMovement extends LivingEntity implements I
 	 * STOP FLUID PUSHING
 	 * 
 	 * @author burnsqc
+	 * 
 	 * @reason cuz
+	 * 
 	 * @return
 	 */
 	@Override
 	@Overwrite
 	public boolean isPushedByFluid() {
-		TechnologicaAbilities diver = ((Player) (Object) this).getCapability(RegisterCapabilitiesEventListener.DIVER_INSTANCE).orElse(null);
+		TechnologicaAbilities diver = ((Player) (Object) this).getCapability(TechnologicaAbilities.DIVER_INSTANCE).orElse(null);
 		boolean divercap = true;
 		if (diver != null) {
 			divercap = diver.getDiver();
@@ -49,7 +50,9 @@ public abstract class MixinNegateFluidMovement extends LivingEntity implements I
 	 * STOP FLUID PUSHING
 	 * 
 	 * @author burnsqc
+	 * 
 	 * @reason cuz
+	 * 
 	 * @return
 	 */
 	@Override
@@ -60,7 +63,7 @@ public abstract class MixinNegateFluidMovement extends LivingEntity implements I
 
 	@Inject(method = "travel(Lnet/minecraft/world/phys/Vec3;)V", at = @At("HEAD"))
 	private void negateFluidMovement(CallbackInfo info) {
-		TechnologicaAbilities diver = ((Player) (Object) this).getCapability(RegisterCapabilitiesEventListener.DIVER_INSTANCE).orElseThrow(NullPointerException::new);
+		TechnologicaAbilities diver = ((Player) (Object) this).getCapability(TechnologicaAbilities.DIVER_INSTANCE).orElseThrow(NullPointerException::new);
 		flag = !diver.getDiver();
 	}
 
@@ -71,7 +74,7 @@ public abstract class MixinNegateFluidMovement extends LivingEntity implements I
 
 	@Override
 	public void jumpInFluid(FluidType type) {
-		TechnologicaAbilities diver = ((Player) (Object) this).getCapability(RegisterCapabilitiesEventListener.DIVER_INSTANCE).orElseThrow(NullPointerException::new);
+		TechnologicaAbilities diver = ((Player) (Object) this).getCapability(TechnologicaAbilities.DIVER_INSTANCE).orElseThrow(NullPointerException::new);
 		if (diver.getDiver()) {
 			if (((Player) (Object) this).onGround() && ((Player) (Object) this).noJumpDelay == 0) {
 				((Player) (Object) this).jumpFromGround();
@@ -84,7 +87,7 @@ public abstract class MixinNegateFluidMovement extends LivingEntity implements I
 
 	@Override
 	public void sinkInFluid(FluidType type) {
-		TechnologicaAbilities diver = ((Player) (Object) this).getCapability(RegisterCapabilitiesEventListener.DIVER_INSTANCE).orElseThrow(NullPointerException::new);
+		TechnologicaAbilities diver = ((Player) (Object) this).getCapability(TechnologicaAbilities.DIVER_INSTANCE).orElseThrow(NullPointerException::new);
 		if (diver.getDiver()) {
 			return;
 		}
@@ -95,13 +98,15 @@ public abstract class MixinNegateFluidMovement extends LivingEntity implements I
 	 * STOP FLUID PUSHING
 	 * 
 	 * @author burnsqc
+	 * 
 	 * @reason cuz
+	 * 
 	 * @return
 	 */
 	@Override
 	@Overwrite
 	public boolean isSwimming() {
-		TechnologicaAbilities diver = ((Player) (Object) this).getCapability(RegisterCapabilitiesEventListener.DIVER_INSTANCE).orElse(null);
+		TechnologicaAbilities diver = ((Player) (Object) this).getCapability(TechnologicaAbilities.DIVER_INSTANCE).orElse(null);
 		boolean divercap = true;
 		if (diver != null) {
 			divercap = diver.getDiver();

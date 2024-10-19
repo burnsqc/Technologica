@@ -10,7 +10,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mojang.serialization.DynamicOps;
 import com.mojang.serialization.JsonOps;
-import com.technologica.api.tlregen.resourcegen.TLReGenMasterResourceGenerator;
+import com.technologica.api.tlregen.resourcegen.MasterResourceGenerator;
 
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
@@ -18,7 +18,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.DensityFunction;
 
-public abstract class TLReGenWorldgenDensityFunction extends TLReGenMasterResourceGenerator implements DataProvider {
+public abstract class TLReGenWorldgenDensityFunction extends MasterResourceGenerator implements DataProvider {
 	private final Map<ResourceKey<DensityFunction>, DensityFunction> densityFunctions = new LinkedHashMap<>();
 	private final String name = "data." + modid + ".worldgen.density_function";
 	private final DynamicOps<JsonElement> dynamicOps = JsonOps.INSTANCE;

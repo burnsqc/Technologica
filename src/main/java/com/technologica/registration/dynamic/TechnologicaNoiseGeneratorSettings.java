@@ -1,21 +1,12 @@
 package com.technologica.registration.dynamic;
 
-import com.technologica.api.tlregen.registration.MasterKeyCreator;
-import com.technologica.resourcegen.data.worldgen.noisesettings.TLWorldgenNoiseSettings;
+import com.technologica.Technologica;
 
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
 
-/**
- * <p>
- * This class contains Resource Keys for Noise Generator Settings.
- * The corresponding Noise Generator Settings are created in json format during Data Generation in {@link TLWorldgenNoiseSettings}.
- * </p>
- * 
- * @tl.status GREEN
- */
-public final class TechnologicaNoiseGeneratorSettings extends MasterKeyCreator {
-	public static final ResourceKey<NoiseGeneratorSettings> MOON = noiseGeneratorSettings("moon");
-	public static final ResourceKey<NoiseGeneratorSettings> CHALLENGER_DEEP = noiseGeneratorSettings("challenger_deep");
-	public static final ResourceKey<NoiseGeneratorSettings> OVERGROWTH = noiseGeneratorSettings("overgrowth");
+public final class TechnologicaNoiseGeneratorSettings {
+	public static final ResourceKey<NoiseGeneratorSettings> MOON = Technologica.NOISE_GENERATOR_SETTINGS.register("moon");
+	public static final ResourceKey<NoiseGeneratorSettings> CHALLENGER_DEEP = Technologica.NOISE_GENERATOR_SETTINGS.register("challenger_deep");
+	public static final ResourceKey<NoiseGeneratorSettings> OVERGROWTH = Technologica.NOISE_GENERATOR_SETTINGS.register("overgrowth");
 }

@@ -2,7 +2,6 @@ package com.technologica.listeners.mod.client;
 
 import com.technologica.client.model.geom.TechnologicaLayerDefinitions;
 import com.technologica.client.renderer.blockentity.TechnologicaBlockEntityRenderers;
-import com.technologica.client.renderer.blockentity.TechnologicaSkullBlockRenderer;
 import com.technologica.client.renderer.entity.TechnologicaEntityRenderers;
 
 import net.minecraftforge.api.distmarker.Dist;
@@ -13,11 +12,6 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @Mod.EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public final class EntityRenderersEventListener {
-
-	@SubscribeEvent
-	public static final void onEntityRenderersEvent$CreateSkullModels(final EntityRenderersEvent.CreateSkullModels event) {
-		TechnologicaSkullBlockRenderer.createSkullRenderers(event.getEntityModelSet()).forEach((k, v) -> event.registerSkullModel(k, v));
-	}
 
 	@SubscribeEvent
 	public static final void onEntityRenderersEvent$RegisterLayerDefinitions(final EntityRenderersEvent.RegisterLayerDefinitions event) {

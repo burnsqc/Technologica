@@ -2,6 +2,7 @@ package com.technologica.resourcegen.data.loottables.entities;
 
 import java.util.stream.Stream;
 
+import com.technologica.Technologica;
 import com.technologica.registration.deferred.TechnologicaEntityTypes;
 import com.technologica.registration.deferred.TechnologicaItems;
 
@@ -78,7 +79,7 @@ public class EntityLootDataGenerator extends EntityLootSubProvider {
 
 	@Override
 	protected Stream<EntityType<?>> getKnownEntityTypes() {
-		Stream<EntityType<?>> technologicaEntityStream = TechnologicaEntityTypes.ENTITY_TYPES.getEntries().stream().map(RegistryObject::get);
+		Stream<EntityType<?>> technologicaEntityStream = Technologica.ENTITY_TYPES.getEntries().stream().map(RegistryObject::get);
 		return technologicaEntityStream;
 
 	}
