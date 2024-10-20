@@ -13,6 +13,7 @@ import net.minecraft.world.entity.EntityType;
 public class TechnologicaEntityRenderers {
 	public static final Map<EntityType<? extends Entity>, EntityRendererProvider<Entity>> PROVIDERS = Maps.newHashMap();
 
+	@SuppressWarnings("unchecked")
 	public static <T extends Entity> void register(EntityType<? extends T> entity, EntityRendererProvider<T> renderer) {
 		PROVIDERS.put((EntityType<? extends T>) entity, (EntityRendererProvider<Entity>) renderer);
 	}

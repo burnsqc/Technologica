@@ -15,9 +15,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 
 /**
- * <p>
- * This class contains the necessary logic to effectively extend {@link DripParticle} for additional fluids.
- * </p>
+ * <p>This class contains the necessary logic to effectively extend {@link DripParticle} for additional fluids.</p>
  * 
  * @tl.status GREEN
  */
@@ -87,49 +85,49 @@ public class TechnologicaDripParticle extends TextureSheetParticle {
 		dripparticle.setColor(0.66667F, 0.86275F, 1.00000F);
 		return dripparticle;
 	}
-	
+
 	public static TextureSheetParticle createBromineHangParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double p_272880_, double p_273725_, double p_273051_) {
 		TechnologicaDripParticle dripparticle = new TechnologicaDripParticle.HangThenFallParticle(clientLevel, posX, posY, posZ, TechnologicaFluids.BROMINE.get(), TechnologicaParticleTypes.FALLING_BROMINE.get());
 		dripparticle.setColor(0.66667F, 0.21960F, 0.07450F);
 		return dripparticle;
 	}
-	
+
 	public static TextureSheetParticle createCoolantHangParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double p_272880_, double p_273725_, double p_273051_) {
 		TechnologicaDripParticle dripparticle = new TechnologicaDripParticle.HangThenFallParticle(clientLevel, posX, posY, posZ, TechnologicaFluids.COOLANT.get(), TechnologicaParticleTypes.FALLING_COOLANT.get());
 		dripparticle.setColor(0.74901F, 0.96862F, 0.32941F);
 		return dripparticle;
 	}
-	
+
 	public static TextureSheetParticle createGasolineHangParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double p_272880_, double p_273725_, double p_273051_) {
 		TechnologicaDripParticle dripparticle = new TechnologicaDripParticle.HangThenFallParticle(clientLevel, posX, posY, posZ, TechnologicaFluids.GASOLINE.get(), TechnologicaParticleTypes.FALLING_GASOLINE.get());
 		dripparticle.setColor(0.83137F, 0.76078F, 0.41176F);
 		return dripparticle;
 	}
-	
+
 	public static TextureSheetParticle createMachineOilHangParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double p_272880_, double p_273725_, double p_273051_) {
 		TechnologicaDripParticle dripparticle = new TechnologicaDripParticle.HangThenFallParticle(clientLevel, posX, posY, posZ, TechnologicaFluids.MACHINE_OIL.get(), TechnologicaParticleTypes.FALLING_MACHINE_OIL.get());
 		dripparticle.setColor(1.00000F, 1.00000F, 0.58823F);
 		return dripparticle;
 	}
-	
+
 	public static TextureSheetParticle createMapleSyrupHangParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double p_272880_, double p_273725_, double p_273051_) {
 		TechnologicaDripParticle dripparticle = new TechnologicaDripParticle.HangThenFallParticle(clientLevel, posX, posY, posZ, TechnologicaFluids.MAPLE_SYRUP.get(), TechnologicaParticleTypes.FALLING_MAPLE_SYRUP.get());
 		dripparticle.setColor(0.35294F, 0.16863F, 0.09412F);
 		return dripparticle;
 	}
-	
+
 	public static TextureSheetParticle createMercuryHangParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double p_272880_, double p_273725_, double p_273051_) {
 		TechnologicaDripParticle dripparticle = new TechnologicaDripParticle.HangThenFallParticle(clientLevel, posX, posY, posZ, TechnologicaFluids.MERCURY.get(), TechnologicaParticleTypes.FALLING_MERCURY.get());
 		dripparticle.setColor(0.88235F, 0.88235F, 0.88235F);
 		return dripparticle;
 	}
-	
+
 	public static TextureSheetParticle createOilHangParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double p_272880_, double p_273725_, double p_273051_) {
 		TechnologicaDripParticle dripparticle = new TechnologicaDripParticle.HangThenFallParticle(clientLevel, posX, posY, posZ, TechnologicaFluids.OIL.get(), TechnologicaParticleTypes.FALLING_OIL.get());
 		dripparticle.setColor(0.19607F, 0.19607F, 0.19607F);
 		return dripparticle;
 	}
-	
+
 	public static TextureSheetParticle createRubberResinHangParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double p_272880_, double p_273725_, double p_273051_) {
 		TechnologicaDripParticle dripparticle = new TechnologicaDripParticle.HangThenFallParticle(clientLevel, posX, posY, posZ, TechnologicaFluids.RUBBER_RESIN.get(), TechnologicaParticleTypes.FALLING_RUBBER_RESIN.get());
 		dripparticle.setColor(0.94118F, 0.94118F, 0.81569F);
@@ -141,76 +139,76 @@ public class TechnologicaDripParticle extends TextureSheetParticle {
 		dripparticle.setColor(0.66667F, 0.86275F, 1.00000F);
 		return dripparticle;
 	}
-	
+
 	public static TextureSheetParticle createBromineFallParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double p_273177_, double p_273537_, double p_272846_) {
 		TechnologicaDripParticle dripparticle = new TechnologicaDripParticle.FallThenLandParticle(clientLevel, posX, posY, posZ, TechnologicaFluids.BROMINE.get(), TechnologicaParticleTypes.SPLASHING_BROMINE.get());
 		dripparticle.setColor(0.66667F, 0.21960F, 0.07450F);
 		return dripparticle;
 	}
-	
+
 	public static TextureSheetParticle createCoolantFallParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double p_273177_, double p_273537_, double p_272846_) {
 		TechnologicaDripParticle dripparticle = new TechnologicaDripParticle.FallThenLandParticle(clientLevel, posX, posY, posZ, TechnologicaFluids.COOLANT.get(), TechnologicaParticleTypes.SPLASHING_COOLANT.get());
 		dripparticle.setColor(0.74901F, 0.96862F, 0.32941F);
 		return dripparticle;
 	}
-	
+
 	public static TextureSheetParticle createGasolineFallParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double p_273177_, double p_273537_, double p_272846_) {
 		TechnologicaDripParticle dripparticle = new TechnologicaDripParticle.FallThenLandParticle(clientLevel, posX, posY, posZ, TechnologicaFluids.GASOLINE.get(), TechnologicaParticleTypes.SPLASHING_GASOLINE.get());
 		dripparticle.setColor(0.83137F, 0.76078F, 0.41176F);
 		return dripparticle;
 	}
-	
+
 	public static TextureSheetParticle createMachineOilFallParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double p_273177_, double p_273537_, double p_272846_) {
 		TechnologicaDripParticle dripparticle = new TechnologicaDripParticle.FallThenLandParticle(clientLevel, posX, posY, posZ, TechnologicaFluids.MACHINE_OIL.get(), TechnologicaParticleTypes.SPLASHING_MACHINE_OIL.get());
 		dripparticle.setColor(1.00000F, 1.00000F, 0.58823F);
 		return dripparticle;
 	}
-	
+
 	public static TextureSheetParticle createMapleSyrupFallParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double p_273177_, double p_273537_, double p_272846_) {
 		TechnologicaDripParticle dripparticle = new TechnologicaDripParticle.FallThenLandParticle(clientLevel, posX, posY, posZ, TechnologicaFluids.MAPLE_SYRUP.get(), TechnologicaParticleTypes.STICKING_MAPLE_SYRUP.get());
 		dripparticle.setColor(0.35294F, 0.16863F, 0.09412F);
 		return dripparticle;
 	}
-	
+
 	public static TextureSheetParticle createMercuryFallParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double p_273177_, double p_273537_, double p_272846_) {
 		TechnologicaDripParticle dripparticle = new TechnologicaDripParticle.FallThenLandParticle(clientLevel, posX, posY, posZ, TechnologicaFluids.MERCURY.get(), TechnologicaParticleTypes.SPLASHING_MERCURY.get());
 		dripparticle.setColor(0.88235F, 0.88235F, 0.88235F);
 		return dripparticle;
 	}
-	
+
 	public static TextureSheetParticle createOilFallParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double p_273177_, double p_273537_, double p_272846_) {
 		TechnologicaDripParticle dripparticle = new TechnologicaDripParticle.FallThenLandParticle(clientLevel, posX, posY, posZ, TechnologicaFluids.OIL.get(), TechnologicaParticleTypes.STICKING_OIL.get());
 		dripparticle.setColor(0.19607F, 0.19607F, 0.19607F);
 		return dripparticle;
 	}
-	
+
 	public static TextureSheetParticle createRubberResinFallParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double p_273177_, double p_273537_, double p_272846_) {
 		TechnologicaDripParticle dripparticle = new TechnologicaDripParticle.FallThenLandParticle(clientLevel, posX, posY, posZ, TechnologicaFluids.RUBBER_RESIN.get(), TechnologicaParticleTypes.STICKING_RUBBER_RESIN.get());
 		dripparticle.setColor(0.94118F, 0.94118F, 0.81569F);
 		return dripparticle;
 	}
-	
+
 	public static TextureSheetParticle createMapleSyrupStickParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double p_273614_, double p_273085_, double p_273097_) {
 		TechnologicaDripParticle dripparticle = new TechnologicaDripParticle.StickingParticle(clientLevel, posX, posY, posZ, TechnologicaFluids.MAPLE_SYRUP.get());
-	    dripparticle.lifetime = (int)(128.0D / (Math.random() * 0.8D + 0.2D));
-	    dripparticle.setColor(0.35294F, 0.16863F, 0.09412F);
-	    return dripparticle;
+		dripparticle.lifetime = (int) (128.0D / (Math.random() * 0.8D + 0.2D));
+		dripparticle.setColor(0.35294F, 0.16863F, 0.09412F);
+		return dripparticle;
 	}
-	
+
 	public static TextureSheetParticle createOilStickParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double p_273614_, double p_273085_, double p_273097_) {
 		TechnologicaDripParticle dripparticle = new TechnologicaDripParticle.StickingParticle(clientLevel, posX, posY, posZ, TechnologicaFluids.OIL.get());
-	    dripparticle.lifetime = (int)(128.0D / (Math.random() * 0.8D + 0.2D));
-	    dripparticle.setColor(0.19607F, 0.19607F, 0.19607F);
-	    return dripparticle;
+		dripparticle.lifetime = (int) (128.0D / (Math.random() * 0.8D + 0.2D));
+		dripparticle.setColor(0.19607F, 0.19607F, 0.19607F);
+		return dripparticle;
 	}
-	
+
 	public static TextureSheetParticle createRubberResinStickParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double p_273614_, double p_273085_, double p_273097_) {
 		TechnologicaDripParticle dripparticle = new TechnologicaDripParticle.StickingParticle(clientLevel, posX, posY, posZ, TechnologicaFluids.RUBBER_RESIN.get());
-	    dripparticle.lifetime = (int)(128.0D / (Math.random() * 0.8D + 0.2D));
-	    dripparticle.setColor(0.94118F, 0.94118F, 0.81569F);
-	    return dripparticle;
+		dripparticle.lifetime = (int) (128.0D / (Math.random() * 0.8D + 0.2D));
+		dripparticle.setColor(0.94118F, 0.94118F, 0.81569F);
+		return dripparticle;
 	}
-	
+
 	static class HangThenFallParticle extends TechnologicaDripParticle {
 		private final ParticleOptions fallingParticle;
 
@@ -272,11 +270,11 @@ public class TechnologicaDripParticle extends TextureSheetParticle {
 			}
 		}
 	}
-	
+
 	static class StickingParticle extends TechnologicaDripParticle {
 		StickingParticle(ClientLevel clientLevel, double posX, double posY, double posZ, Fluid fluid) {
 			super(clientLevel, posX, posY, posZ, fluid);
-			this.lifetime = (int)(16.0D / (Math.random() * 0.8D + 0.2D));
+			this.lifetime = (int) (16.0D / (Math.random() * 0.8D + 0.2D));
 		}
 	}
 }

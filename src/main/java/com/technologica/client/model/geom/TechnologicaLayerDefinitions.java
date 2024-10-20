@@ -49,7 +49,6 @@ import com.technologica.client.model.WalrusModel;
 import com.technologica.client.model.WindmillModel;
 import com.technologica.client.model.armor.DivingHelmetModel;
 import com.technologica.client.model.armor.MiningHelmetModel;
-import com.technologica.listeners.mod.client.EntityRenderersEventListener;
 import com.technologica.world.entity.vehicle.TechnologicaBoat;
 
 import net.minecraft.client.model.BoatModel;
@@ -64,13 +63,6 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 
-/**
- * Effectively a copy of {@link LayerDefinitions}. {@link #createRoots} gets
- * called by
- * {@link EntityRenderersEventListener#onEntityRenderersEvent$RegisterLayerDefinitions}
- * with the intent of keeping the listener method itself concise and providing a
- * higher fidelity mirror of vanilla code.
- */
 public class TechnologicaLayerDefinitions {
 
 	public static Map<ModelLayerLocation, LayerDefinition> createRoots() {

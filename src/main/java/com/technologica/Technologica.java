@@ -9,8 +9,18 @@ import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
 import com.mojang.serialization.Codec;
 import com.technologica.capabilities.item.link.Link;
+import com.technologica.client.gui.screens.TechnologicaMenuScreens;
+import com.technologica.client.model.AdditionalModels;
+import com.technologica.client.model.geom.TechnologicaLayerDefinitions;
 import com.technologica.client.multiplayer.TechnologicaClientLevel;
+import com.technologica.client.particle.TechnologicaParticleProviders;
+import com.technologica.client.renderer.BlockColorHandlers;
+import com.technologica.client.renderer.TechnologicaDimensionSpecialEffects;
+import com.technologica.client.renderer.TechnologicaItemBlockRenderTypes;
+import com.technologica.client.renderer.TechnologicaRenderBuffers;
+import com.technologica.client.renderer.blockentity.TechnologicaBlockEntityRenderers;
 import com.technologica.client.renderer.blockentity.TechnologicaSkullBlockRenderer;
+import com.technologica.client.renderer.entity.TechnologicaEntityRenderers;
 import com.technologica.network.packets.clientbound.SetMeteorStorm;
 import com.technologica.network.packets.clientbound.SetMeteorStormLevel;
 import com.technologica.network.packets.clientbound.UpdateDiverCapability;
@@ -59,7 +69,6 @@ import com.technologica.setup.common.TechnologicaConfigCommon;
 import com.technologica.util.DisablePlankConditionFactory;
 import com.technologica.util.EnablePlankConditionFactory;
 import com.technologica.util.text.TechnologicaLocation;
-import com.technologica.world.entity.TechnologicaMobCategory;
 import com.technologica.world.entity.ai.attributes.TechnologicaDefaultAttributes;
 import com.technologica.world.entity.ai.attributes.TechnologicaVillageTrades;
 import com.technologica.world.entity.ai.attributes.TechnologicaVillagerWantedItems;
@@ -190,7 +199,6 @@ public class Technologica {
 		// TODO: Determine best place for this. Maybe it's right here but that's unconfirmed.
 		CraftingHelper.register(DisablePlankConditionFactory.Serializer.INSTANCE);
 		CraftingHelper.register(EnablePlankConditionFactory.Serializer.INSTANCE);
-		TechnologicaMobCategory.bootstrap();
 
 		MASTER_SETUP_EXECUTOR.addEntityAttributes(() -> TechnologicaDefaultAttributes.SUPPLIERS);
 		MASTER_SETUP_EXECUTOR.addCapabilities(List.of(TechnologicaAbilities.class, Link.class));
@@ -202,7 +210,19 @@ public class Technologica {
 		MASTER_SETUP_EXECUTOR.addToVillagerWantedItems(() -> TechnologicaVillagerWantedItems.WANTED_ITEMS);
 		MASTER_SETUP_EXECUTOR.addToWanderingTraderGenericTrades(() -> TechnologicaWanderingTraderTrades.WANDERING_TRADER_TRADES_GENERIC);
 
-		MASTER_SETUP_EXECUTOR.addToSkulls(() -> TechnologicaSkullBlockRenderer.createSkullRenderers());
+		MASTER_SETUP_EXECUTOR.addSkullModels(() -> TechnologicaSkullBlockRenderer.createSkullRenderers());
+		MASTER_SETUP_EXECUTOR.addLayerDefinitions(() -> TechnologicaLayerDefinitions.createRoots());
+		MASTER_SETUP_EXECUTOR.registerEntityRenderers(() -> TechnologicaEntityRenderers.PROVIDERS);
+		MASTER_SETUP_EXECUTOR.registerBlockEntityRenderers(() -> TechnologicaBlockEntityRenderers.PROVIDERS);
+		MASTER_SETUP_EXECUTOR.registerAdditionalModels(() -> AdditionalModels.MODELS);
+		MASTER_SETUP_EXECUTOR.registerColorHandlersBlock(() -> BlockColorHandlers.HANDLERS);
+		MASTER_SETUP_EXECUTOR.registerDimensionSpecialEffects(() -> TechnologicaDimensionSpecialEffects.EFFECTS);
+		MASTER_SETUP_EXECUTOR.registerParticleProvidersSprites(() -> TechnologicaParticleProviders.SPRITES);
+		MASTER_SETUP_EXECUTOR.registerParticleProvidersSpriteSets(() -> TechnologicaParticleProviders.SPRITE_SETS);
+		MASTER_SETUP_EXECUTOR.registerScreens(() -> TechnologicaMenuScreens.SCREENS);
+		MASTER_SETUP_EXECUTOR.registerSkullTextures(() -> TechnologicaSkullBlockRenderer.SKIN_BY_TYPE);
+		MASTER_SETUP_EXECUTOR.setFluidRenderTypes(() -> TechnologicaItemBlockRenderTypes.FLUID_RENDER_TYPES);
+		MASTER_SETUP_EXECUTOR.addRenderTypes(() -> TechnologicaRenderBuffers.FIXED_BUFFERS);
 	}
 
 	public static Technologica getInstance() {

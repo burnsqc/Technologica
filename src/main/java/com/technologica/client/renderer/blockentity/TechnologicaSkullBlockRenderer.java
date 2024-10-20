@@ -5,20 +5,14 @@ import java.util.Map;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.technologica.client.model.geom.TechnologicaModelLayers;
-import com.technologica.listeners.mod.client.EntityRenderersEventListener;
-import com.technologica.listeners.mod.client.FMLClientSetupEventListener;
 import com.technologica.util.text.TechnologicaLocation;
 import com.technologica.world.level.block.TechnologicaSkullBlock;
 
 import net.minecraft.Util;
 import net.minecraft.client.model.geom.ModelLayerLocation;
-import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.SkullBlock;
 
-/**
- * A sort of fake copy of {@link SkullBlockRenderer}. {@link #createSkullRenderers} gets called by {@link EntityRenderersEventListener#onEntityRenderersEvent$CreateSkullModels} with the intent of keeping the listener method itself concise and providing a higher fidelity mirror of vanilla code. {@link #SKIN_BY_TYPE} gets called by {@link FMLClientSetupEventListener#onFMLClientSetupEvent}.
- */
 public class TechnologicaSkullBlockRenderer {
 	public static final Map<SkullBlock.Type, ResourceLocation> SKIN_BY_TYPE = Util.make(Maps.newHashMap(), (hashMap) -> {
 		hashMap.put(TechnologicaSkullBlock.Types.BEEPER, new TechnologicaLocation("textures/entity/beeper.png"));
