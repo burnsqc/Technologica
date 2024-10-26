@@ -10,9 +10,10 @@ import com.google.gson.JsonElement;
 import com.mojang.serialization.DynamicOps;
 import com.mojang.serialization.Encoder;
 import com.mojang.serialization.JsonOps;
+import com.technologica.Technologica;
 import com.technologica.api.tlregen.resourcegen.MasterResourceGenerator;
 import com.technologica.api.tlregen.resourcegen.mirrors.TLReGenRegistrySetBuilder;
-import com.technologica.resourcegen.data.worldgen.configuredfeature.TLWorldgenConfiguredFeatures;
+import com.tlregen.api.registration.DynamicRegister;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.Registry;
@@ -22,21 +23,34 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.RegistryDataLoader;
 import net.minecraft.resources.RegistryOps;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraftforge.registries.DataPackRegistriesHooks;
 
-public abstract class TLReGenWorldgenConfiguredFeature extends MasterResourceGenerator implements DataProvider {
-	private final CompletableFuture<HolderLookup.Provider> damageTypes = lookupProvider.thenApply(r -> constructRegistries(r, new TLReGenRegistrySetBuilder().add(Registries.CONFIGURED_FEATURE, (TLReGenRegistrySetBuilder.RegistryBootstrap) TLWorldgenConfiguredFeatures::bootstrap)));
+public class TLReGenWorldgenConfiguredFeature extends MasterResourceGenerator implements DataProvider {
+	private final CompletableFuture<HolderLookup.Provider> completables = lookupProvider.thenApply(r -> constructRegistries(r, new TLReGenRegistrySetBuilder().add(Registries.CONFIGURED_FEATURE, TLReGenWorldgenConfiguredFeature::bootstrap)));
 	private final java.util.function.Predicate<String> namespacePredicate = Set.of(modid) == null ? namespace -> true : Set.of(modid)::contains;
+	public static BootstapContext<ConfiguredFeature<?, ?>> bootstrapContext;
+	public static DynamicRegister<ConfiguredFeature<?, ?>> dynamicRegister;
+
+	public TLReGenWorldgenConfiguredFeature(DynamicRegister<ConfiguredFeature<?, ?>> dynReg) {
+		dynamicRegister = dynReg;
+	}
+
+	public static void bootstrap(final BootstapContext<ConfiguredFeature<?, ?>> bootstrapContext) {
+		TLReGenWorldgenConfiguredFeature.setBootstrapContext(bootstrapContext);
+		dynamicRegister.getEntries().forEach((k, v) -> bootstrapContext.register(k, v.second.get()));
+	}
 
 	@Override
-	public CompletableFuture<?> run(CachedOutput p_255785_) {
-		return damageTypes.thenCompose((p_256533_) -> {
+	public CompletableFuture<?> run(final CachedOutput cache) {
+		return completables.thenCompose((p_256533_) -> {
 			DynamicOps<JsonElement> dynamicops = RegistryOps.create(JsonOps.INSTANCE, p_256533_);
 			return CompletableFuture.allOf(net.minecraftforge.registries.DataPackRegistriesHooks.getDataPackRegistriesWithDimensions().flatMap((p_256552_) -> {
-				return dumpRegistryCap(p_255785_, p_256533_, dynamicops, p_256552_).stream();
+				return dumpRegistryCap(cache, p_256533_, dynamicops, p_256552_).stream();
 			}).toArray((p_255809_) -> {
 				return new CompletableFuture[p_255809_];
 			}));
@@ -63,8 +77,8 @@ public abstract class TLReGenWorldgenConfiguredFeature extends MasterResourceGen
 	}
 
 	@Override
-	public String getName() {
-		return "data." + modid + ".worldgen.configured_feature";
+	public final String getName() {
+		return "data." + Technologica.MOD_ID + ".worldgen.configured_feature";
 	}
 
 	private static HolderLookup.Provider constructRegistries(HolderLookup.Provider original, TLReGenRegistrySetBuilder datapackEntriesBuilder) {
@@ -72,5 +86,9 @@ public abstract class TLReGenWorldgenConfiguredFeature extends MasterResourceGen
 		DataPackRegistriesHooks.getDataPackRegistriesWithDimensions().filter(data -> !builderKeys.contains(data.key())).forEach(data -> datapackEntriesBuilder.add(data.key(), context -> {
 		}));
 		return datapackEntriesBuilder.buildPatch(RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY), original);
+	}
+
+	protected static void setBootstrapContext(BootstapContext<ConfiguredFeature<?, ?>> bootstrapContextIn) {
+		bootstrapContext = bootstrapContextIn;
 	}
 }

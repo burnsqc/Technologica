@@ -20,7 +20,11 @@ import com.technologica.api.tlregen.resourcegen.data.TLReGenDimensionType;
 import com.technologica.api.tlregen.resourcegen.data.tags.TLRGTagsItemsGenerator;
 import com.technologica.api.tlregen.resourcegen.data.tags.TLReGenTagsBlocks;
 import com.technologica.api.tlregen.resourcegen.data.tags.TLReGenTagsEntityTypes;
-import com.technologica.api.tlregen.resourcegen.mirrors.TLReGenRegistrySetBuilder;
+import com.technologica.api.tlregen.resourcegen.data.worldgen.TLReGenWorldgenBiome;
+import com.technologica.api.tlregen.resourcegen.data.worldgen.TLReGenWorldgenConfiguredFeature;
+import com.technologica.api.tlregen.resourcegen.data.worldgen.TLReGenWorldgenDensityFunction;
+import com.technologica.api.tlregen.resourcegen.data.worldgen.TLReGenWorldgenPlacedFeature;
+import com.technologica.api.tlregen.resourcegen.data.worldgen.TLReGenWorldgenStructure;
 import com.technologica.resourcegen.assets.TLAtlases;
 import com.technologica.resourcegen.assets.TLBlockstates;
 import com.technologica.resourcegen.assets.TLFont;
@@ -30,9 +34,6 @@ import com.technologica.resourcegen.assets.TLModelsItem;
 import com.technologica.resourcegen.assets.TLParticles;
 import com.technologica.resourcegen.assets.TLSounds;
 import com.technologica.resourcegen.data.advancements.TLRGAdvancementGenerator;
-import com.technologica.resourcegen.data.damagetype.TLDamageTypeGenerator;
-import com.technologica.resourcegen.data.dimension.TLDimensions;
-import com.technologica.resourcegen.data.dimensiontype.TLDimensionTypes;
 import com.technologica.resourcegen.data.lootmodifiers.TLLootModifiersGenerator;
 import com.technologica.resourcegen.data.recipes.TLRecipesGenerator;
 import com.technologica.resourcegen.data.tags.blocks.TLTagBlocksGenerator;
@@ -42,18 +43,12 @@ import com.technologica.resourcegen.data.tags.items.TLTagItemsGenerator;
 import com.technologica.resourcegen.data.tags.paintingvariant.TLTagsPaintingVariantGenerator;
 import com.technologica.resourcegen.data.tags.worldgen.biome.TLTagWorldgenBiomeGenerator;
 import com.technologica.resourcegen.data.worldgen.biome.TLForgeBiomeModifierGenerator;
-import com.technologica.resourcegen.data.worldgen.biome.TLWorldgenBiomes;
-import com.technologica.resourcegen.data.worldgen.configuredfeature.TLWorldgenConfiguredFeatures;
-import com.technologica.resourcegen.data.worldgen.densityfunction.TLWorldgenDensityFunctions;
 import com.technologica.resourcegen.data.worldgen.noise.TLWorldgenNoise;
 import com.technologica.resourcegen.data.worldgen.noisesettings.TLWorldgenNoiseSettings;
-import com.technologica.resourcegen.data.worldgen.placedfeature.TLWorldgenPlacedFeatures;
-import com.technologica.resourcegen.data.worldgen.structure.TLWorldgenStructureGenerator;
 import com.technologica.resourcegen.data.worldgen.structuresets.TLWorldgenStructureSetGenerator;
 import com.technologica.resourcegen.data.worldgen.templatepool.TLWorldgenTemplatePoolGenerator;
 
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
@@ -70,9 +65,6 @@ public abstract class MasterResourceGenerator implements DataProvider {
 	public static PackOutput packOutput;
 	public static ExistingFileHelper helper;
 	public static CompletableFuture<HolderLookup.Provider> lookupProvider;
-	public static RegistrySetBuilder registrySetBuilder;
-	public static TLReGenRegistrySetBuilder registrySetBuilder2;
-	public static TLReGenRegistrySetBuilder registrySetBuilder3;
 	public static String modid = Technologica.MOD_ID;
 	protected final DynamicOps<JsonElement> dynamicOps = JsonOps.INSTANCE;
 
@@ -99,9 +91,6 @@ public abstract class MasterResourceGenerator implements DataProvider {
 		packOutput = generator.getPackOutput();
 		helper = event.getExistingFileHelper();
 		lookupProvider = event.getLookupProvider();
-		registrySetBuilder = new RegistrySetBuilder();
-		registrySetBuilder2 = new TLReGenRegistrySetBuilder();
-		registrySetBuilder3 = new TLReGenRegistrySetBuilder();
 		TagBlocks = new TLTagBlocksGenerator();
 		addAssetGenerator(new TLAtlases());
 		addAssetGenerator(new TLBlockstates());
@@ -116,10 +105,10 @@ public abstract class MasterResourceGenerator implements DataProvider {
 
 		addDataGenerator(new TLRGAdvancementGenerator());
 		// chat_type
-		addDataGenerator(new TLDamageTypeGenerator());
+		addDataGenerator(new TLReGenDamageType(Technologica.DAMAGE_TYPES));
 		// datapacks
-		addDataGenerator(new TLDimensions());
-		addDataGenerator(new TLDimensionTypes());
+		addDataGenerator(new TLReGenDimension(Technologica.DIMENSIONS));
+		addDataGenerator(new TLReGenDimensionType(Technologica.DIMENSION_TYPES));
 		addDataGenerator(new TLForgeBiomeModifierGenerator());
 		addDataGenerator(new TLLootModifiersGenerator());
 		addDataGenerator(new TLRGLootTablesGenerator());
@@ -133,13 +122,13 @@ public abstract class MasterResourceGenerator implements DataProvider {
 		addDataGenerator(new TLTagWorldgenBiomeGenerator());
 		// trim_material
 		// trim_pattern
-		addDataGenerator(new TLWorldgenBiomes());
-		addDataGenerator(new TLWorldgenConfiguredFeatures());
-		addDataGenerator(new TLWorldgenDensityFunctions());
+		addDataGenerator(new TLReGenWorldgenBiome(Technologica.BIOMES));
+		addDataGenerator(new TLReGenWorldgenConfiguredFeature(Technologica.CONFIGURED_FEATURES));
+		addDataGenerator(new TLReGenWorldgenDensityFunction(Technologica.DENSITY_FUNCTIONS));
 		addDataGenerator(new TLWorldgenNoise());
 		addDataGenerator(new TLWorldgenNoiseSettings());
-		addDataGenerator(new TLWorldgenPlacedFeatures());
-		addDataGenerator(new TLWorldgenStructureGenerator());
+		addDataGenerator(new TLReGenWorldgenPlacedFeature(Technologica.PLACED_FEATURES));
+		addDataGenerator(new TLReGenWorldgenStructure(Technologica.STRUCTURES));
 		addDataGenerator(new TLWorldgenStructureSetGenerator());
 		addDataGenerator(new TLWorldgenTemplatePoolGenerator());
 	}
@@ -155,7 +144,8 @@ public abstract class MasterResourceGenerator implements DataProvider {
 	/**
 	 * OVERRIDE ME TO ADD RESOURCES
 	 */
-	protected abstract void populate();
+	protected void populate() {
+	};
 
 	public static enum ValidationLevel {
 		MIN("minimum"), MED("medium"), MAX("maximum");

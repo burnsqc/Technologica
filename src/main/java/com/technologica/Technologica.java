@@ -209,7 +209,6 @@ public class Technologica {
 		MASTER_SETUP_EXECUTOR.addToVillageFarmerTrades(() -> TechnologicaVillageTrades.TRADES_FARMER);
 		MASTER_SETUP_EXECUTOR.addToVillagerWantedItems(() -> TechnologicaVillagerWantedItems.WANTED_ITEMS);
 		MASTER_SETUP_EXECUTOR.addToWanderingTraderGenericTrades(() -> TechnologicaWanderingTraderTrades.WANDERING_TRADER_TRADES_GENERIC);
-
 		MASTER_SETUP_EXECUTOR.addSkullModels(() -> TechnologicaSkullBlockRenderer.createSkullRenderers());
 		MASTER_SETUP_EXECUTOR.addLayerDefinitions(() -> TechnologicaLayerDefinitions.createRoots());
 		MASTER_SETUP_EXECUTOR.registerEntityRenderers(() -> TechnologicaEntityRenderers.PROVIDERS);

@@ -12,7 +12,7 @@ import com.mojang.serialization.Encoder;
 import com.mojang.serialization.JsonOps;
 import com.technologica.api.tlregen.resourcegen.MasterResourceGenerator;
 import com.technologica.api.tlregen.resourcegen.mirrors.TLReGenRegistrySetBuilder;
-import com.technologica.resourcegen.data.damagetype.TLDamageTypeGenerator;
+import com.tlregen.api.registration.DynamicRegister;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.Registry;
@@ -22,21 +22,34 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.RegistryDataLoader;
 import net.minecraft.resources.RegistryOps;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraftforge.registries.DataPackRegistriesHooks;
 
-public abstract class TLReGenDamageType extends MasterResourceGenerator implements DataProvider {
-	private final CompletableFuture<HolderLookup.Provider> damageTypes = lookupProvider.thenApply(r -> constructRegistries(r, new TLReGenRegistrySetBuilder().add(Registries.DAMAGE_TYPE, TLDamageTypeGenerator::bootstrap)));
+public class TLReGenDamageType extends MasterResourceGenerator implements DataProvider {
+	private final CompletableFuture<HolderLookup.Provider> completables = lookupProvider.thenApply(r -> constructRegistries(r, new TLReGenRegistrySetBuilder().add(Registries.DAMAGE_TYPE, TLReGenDamageType::bootstrap)));
 	private final java.util.function.Predicate<String> namespacePredicate = Set.of(modid) == null ? namespace -> true : Set.of(modid)::contains;
+	public static BootstapContext<DamageType> bootstrapContext;
+	public static DynamicRegister<DamageType> dynamicRegister;
+
+	public TLReGenDamageType(DynamicRegister<DamageType> dynReg) {
+		dynamicRegister = dynReg;
+	}
+
+	public static void bootstrap(final BootstapContext<DamageType> bootstrapContext) {
+		TLReGenDamageType.setBootstrapContext(bootstrapContext);
+		dynamicRegister.getEntries().forEach((k, v) -> bootstrapContext.register(k, v.second.get()));
+	}
 
 	@Override
-	public CompletableFuture<?> run(CachedOutput p_255785_) {
-		return damageTypes.thenCompose((p_256533_) -> {
+	public CompletableFuture<?> run(final CachedOutput cache) {
+		return completables.thenCompose((p_256533_) -> {
 			DynamicOps<JsonElement> dynamicops = RegistryOps.create(JsonOps.INSTANCE, p_256533_);
 			return CompletableFuture.allOf(net.minecraftforge.registries.DataPackRegistriesHooks.getDataPackRegistriesWithDimensions().flatMap((p_256552_) -> {
-				return dumpRegistryCap(p_255785_, p_256533_, dynamicops, p_256552_).stream();
+				return dumpRegistryCap(cache, p_256533_, dynamicops, p_256552_).stream();
 			}).toArray((p_255809_) -> {
 				return new CompletableFuture[p_255809_];
 			}));
@@ -63,7 +76,7 @@ public abstract class TLReGenDamageType extends MasterResourceGenerator implemen
 	}
 
 	@Override
-	public String getName() {
+	public final String getName() {
 		return "data." + modid + ".damage_type";
 	}
 
@@ -72,5 +85,9 @@ public abstract class TLReGenDamageType extends MasterResourceGenerator implemen
 		DataPackRegistriesHooks.getDataPackRegistriesWithDimensions().filter(data -> !builderKeys.contains(data.key())).forEach(data -> datapackEntriesBuilder.add(data.key(), context -> {
 		}));
 		return datapackEntriesBuilder.buildPatch(RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY), original);
+	}
+
+	protected static void setBootstrapContext(BootstapContext<DamageType> bootstrapContextIn) {
+		bootstrapContext = bootstrapContextIn;
 	}
 }

@@ -2,19 +2,17 @@ package com.technologica.api.tlregen.resourcegen.data.worldgen;
 
 import java.nio.file.Path;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-import com.google.common.collect.ImmutableList;
 import com.google.gson.JsonElement;
 import com.mojang.serialization.DynamicOps;
 import com.mojang.serialization.Encoder;
 import com.mojang.serialization.JsonOps;
 import com.technologica.api.tlregen.resourcegen.MasterResourceGenerator;
 import com.technologica.api.tlregen.resourcegen.mirrors.TLReGenRegistrySetBuilder;
-import com.technologica.resourcegen.data.worldgen.placedfeature.TLWorldgenPlacedFeatures;
+import com.tlregen.api.registration.DynamicRegister;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.Registry;
@@ -24,28 +22,34 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.worldgen.placement.PlacementUtils;
+import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.RegistryDataLoader;
 import net.minecraft.resources.RegistryOps;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.level.levelgen.placement.BiomeFilter;
-import net.minecraft.world.level.levelgen.placement.CountPlacement;
-import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
-import net.minecraft.world.level.levelgen.placement.PlacementModifier;
-import net.minecraft.world.level.levelgen.placement.SurfaceWaterDepthFilter;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraftforge.registries.DataPackRegistriesHooks;
 
-public abstract class TLReGenWorldgenPlacedFeature extends MasterResourceGenerator implements DataProvider {
-	protected static final PlacementModifier TREE_THRESHOLD = SurfaceWaterDepthFilter.forMaxDepth(0);
-	private final CompletableFuture<HolderLookup.Provider> damageTypes = lookupProvider.thenApply(r -> constructRegistries(r, new TLReGenRegistrySetBuilder().add(Registries.PLACED_FEATURE, TLWorldgenPlacedFeatures::bootstrap)));
+public class TLReGenWorldgenPlacedFeature extends MasterResourceGenerator implements DataProvider {
+	private final CompletableFuture<HolderLookup.Provider> completables = lookupProvider.thenApply(r -> constructRegistries(r, new TLReGenRegistrySetBuilder().add(Registries.PLACED_FEATURE, TLReGenWorldgenPlacedFeature::bootstrap)));
 	private final java.util.function.Predicate<String> namespacePredicate = Set.of(modid) == null ? namespace -> true : Set.of(modid)::contains;
+	public static BootstapContext<PlacedFeature> bootstrapContext;
+	public static DynamicRegister<PlacedFeature> dynamicRegister;
+
+	public TLReGenWorldgenPlacedFeature(DynamicRegister<PlacedFeature> dynReg) {
+		dynamicRegister = dynReg;
+	}
+
+	public static void bootstrap(final BootstapContext<PlacedFeature> bootstrapContext) {
+		TLReGenWorldgenPlacedFeature.setBootstrapContext(bootstrapContext);
+		dynamicRegister.getEntries().forEach((k, v) -> bootstrapContext.register(k, v.second.get()));
+	}
 
 	@Override
-	public CompletableFuture<?> run(CachedOutput p_255785_) {
-		return damageTypes.thenCompose((p_256533_) -> {
+	public CompletableFuture<?> run(final CachedOutput cache) {
+		return completables.thenCompose((p_256533_) -> {
 			DynamicOps<JsonElement> dynamicops = RegistryOps.create(JsonOps.INSTANCE, p_256533_);
 			return CompletableFuture.allOf(net.minecraftforge.registries.DataPackRegistriesHooks.getDataPackRegistriesWithDimensions().flatMap((p_256552_) -> {
-				return dumpRegistryCap(p_255785_, p_256533_, dynamicops, p_256552_).stream();
+				return dumpRegistryCap(cache, p_256533_, dynamicops, p_256552_).stream();
 			}).toArray((p_255809_) -> {
 				return new CompletableFuture[p_255809_];
 			}));
@@ -72,7 +76,7 @@ public abstract class TLReGenWorldgenPlacedFeature extends MasterResourceGenerat
 	}
 
 	@Override
-	public String getName() {
+	public final String getName() {
 		return "data." + modid + ".worldgen.placed_feature";
 	}
 
@@ -83,23 +87,7 @@ public abstract class TLReGenWorldgenPlacedFeature extends MasterResourceGenerat
 		return datapackEntriesBuilder.buildPatch(RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY), original);
 	}
 
-	protected static List<PlacementModifier> commonOrePlacement(int p_195344_, PlacementModifier p_195345_) {
-		return orePlacement(CountPlacement.of(p_195344_), p_195345_);
-	}
-
-	private static List<PlacementModifier> orePlacement(PlacementModifier p_195347_, PlacementModifier p_195348_) {
-		return List.of(p_195347_, InSquarePlacement.spread(), p_195348_, BiomeFilter.biome());
-	}
-
-	protected static List<PlacementModifier> treePlacement(PlacementModifier p_195345_) {
-		return List.of(p_195345_);
-	}
-
-	private static ImmutableList.Builder<PlacementModifier> treePlacementBase(PlacementModifier p_195485_) {
-		return ImmutableList.<PlacementModifier>builder().add(p_195485_).add(InSquarePlacement.spread()).add(TREE_THRESHOLD).add(PlacementUtils.HEIGHTMAP_OCEAN_FLOOR).add(BiomeFilter.biome());
-	}
-
-	public static List<PlacementModifier> vegetationPlacement(PlacementModifier p_195480_) {
-		return treePlacementBase(p_195480_).build();
+	protected static void setBootstrapContext(BootstapContext<PlacedFeature> bootstrapContextIn) {
+		bootstrapContext = bootstrapContextIn;
 	}
 }
