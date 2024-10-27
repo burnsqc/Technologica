@@ -1,8 +1,8 @@
 package com.technologica.listeners.forge;
 
+import com.technologica.config.TechnologicaConfigCommon;
 import com.technologica.registration.deferred.TechnologicaItems;
 import com.technologica.registration.dynamic.TechnologicaDamageTypes;
-import com.technologica.setup.common.TechnologicaConfigCommon;
 import com.technologica.util.InventoryUtil;
 
 import net.minecraft.server.level.ServerPlayer;
@@ -19,10 +19,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class LivingAttackEventListener {
 
 	/**
-	 * <p>
-	 * Explode if the player takes damage from anything fire related, lightning, or an explosion.
-	 * With a 25% chance, explode from any damage source that is not drowning, freezing, or starving.
-	 * </p>
+	 * <p>Explode if the player takes damage from anything fire related, lightning, or an explosion. With a 25% chance, explode from any damage source that is not drowning, freezing, or starving.</p>
 	 * 
 	 * @param event LivingAttackEvent
 	 */

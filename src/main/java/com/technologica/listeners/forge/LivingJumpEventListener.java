@@ -1,8 +1,8 @@
 package com.technologica.listeners.forge;
 
+import com.technologica.config.TechnologicaConfigCommon;
 import com.technologica.registration.deferred.TechnologicaItems;
 import com.technologica.registration.dynamic.TechnologicaDamageTypes;
-import com.technologica.setup.common.TechnologicaConfigCommon;
 import com.technologica.util.InventoryUtil;
 
 import net.minecraft.server.level.ServerPlayer;
@@ -18,9 +18,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class LivingJumpEventListener {
 
 	/**
-	 * <p>
-	 * With a 25% chance, explode when jumping if this feature is enabled in the common config.
-	 * </p>
+	 * <p>With a 25% chance, explode when jumping if this feature is enabled in the common config.</p>
 	 * 
 	 * @param event LivingJumpEvent
 	 */

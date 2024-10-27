@@ -1,6 +1,6 @@
 package com.technologica.listeners.forge;
 
-import com.technologica.setup.common.TechnologicaConfigCommon;
+import com.technologica.config.TechnologicaConfigCommon;
 import com.technologica.world.entity.player.TechnologicaAbilities;
 
 import net.minecraft.tags.BlockTags;

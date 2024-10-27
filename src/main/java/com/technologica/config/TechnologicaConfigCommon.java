@@ -1,4 +1,4 @@
-package com.technologica.setup.common;
+package com.technologica.config;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 

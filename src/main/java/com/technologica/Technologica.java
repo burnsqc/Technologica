@@ -21,6 +21,7 @@ import com.technologica.client.renderer.TechnologicaRenderBuffers;
 import com.technologica.client.renderer.blockentity.TechnologicaBlockEntityRenderers;
 import com.technologica.client.renderer.blockentity.TechnologicaSkullBlockRenderer;
 import com.technologica.client.renderer.entity.TechnologicaEntityRenderers;
+import com.technologica.config.TechnologicaConfigCommon;
 import com.technologica.network.packets.clientbound.SetMeteorStorm;
 import com.technologica.network.packets.clientbound.SetMeteorStormLevel;
 import com.technologica.network.packets.clientbound.UpdateDiverCapability;
@@ -84,7 +85,6 @@ import com.technologica.resourcegen.data.tags.paintingvariant.TLTagsPaintingVari
 import com.technologica.resourcegen.data.tags.worldgen.biome.TLTagWorldgenBiomeGenerator;
 import com.technologica.server.commands.TechnologicaCommands;
 import com.technologica.server.level.TechnologicaServerLevel;
-import com.technologica.setup.common.TechnologicaConfigCommon;
 import com.technologica.util.DisablePlankConditionFactory;
 import com.technologica.util.EnablePlankConditionFactory;
 import com.technologica.util.text.TechnologicaLocation;
