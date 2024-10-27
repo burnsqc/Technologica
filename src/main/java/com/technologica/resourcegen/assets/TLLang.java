@@ -4,10 +4,10 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 import com.technologica.Technologica;
-import com.technologica.api.tlregen.resourcegen.assets.TLReGenLang;
 import com.technologica.registration.deferred.TechnologicaCreativeModeTabs;
 import com.technologica.registration.deferred.TechnologicaMobEffects;
 import com.technologica.registration.dynamic.TechnologicaDamageTypes;
+import com.tlregen.api.resourcegen.assets.TLReGenLang;
 
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;

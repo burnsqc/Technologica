@@ -1,8 +1,8 @@
 package com.technologica.resourcegen.assets;
 
-import com.technologica.api.tlregen.resourcegen.assets.TLReGenSounds;
 import com.technologica.registration.deferred.TechnologicaSoundEvents;
 import com.technologica.util.text.TechnologicaLocation;
+import com.tlregen.api.resourcegen.assets.TLReGenSounds;
 
 public class TLSounds extends TLReGenSounds {
 	@Override

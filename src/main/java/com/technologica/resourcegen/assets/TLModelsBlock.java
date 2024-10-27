@@ -1,8 +1,8 @@
 package com.technologica.resourcegen.assets;
 
-import com.technologica.api.tlregen.resourcegen.assets.TLReGenModelsBlock;
 import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.util.text.TechnologicaLocation;
+import com.tlregen.api.resourcegen.assets.TLReGenModelsBlock;
 
 import net.minecraft.resources.ResourceLocation;
 

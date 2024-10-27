@@ -1,6 +1,5 @@
 package com.technologica.resourcegen.data.lootmodifiers;
 
-import com.technologica.api.tlregen.resourcegen.data.TLRGLootModifierGenerator;
 import com.technologica.listeners.lootmodifiers.TechnologicaChestLootModifier;
 import com.technologica.listeners.lootmodifiers.blocks.FernLootModifier;
 import com.technologica.listeners.lootmodifiers.blocks.GrassLootModifier;
@@ -9,6 +8,7 @@ import com.technologica.listeners.lootmodifiers.blocks.TallGrassLootModifier;
 import com.technologica.listeners.lootmodifiers.entities.HuskLootModifier;
 import com.technologica.listeners.lootmodifiers.entities.ZombieLootModifier;
 import com.technologica.listeners.lootmodifiers.entities.ZombieVillagerLootModifier;
+import com.tlregen.api.resourcegen.data.TLRGLootModifierGenerator;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;

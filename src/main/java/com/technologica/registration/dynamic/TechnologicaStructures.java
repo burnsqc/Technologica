@@ -3,9 +3,9 @@ package com.technologica.registration.dynamic;
 import java.util.Map;
 
 import com.technologica.Technologica;
-import com.technologica.api.tlregen.resourcegen.data.worldgen.TLReGenWorldgenStructure;
 import com.technologica.world.level.levelgen.structure.structures.DeepSeaStructure;
 import com.technologica.world.level.levelgen.structure.structures.ElDoradoStructure;
+import com.tlregen.api.resourcegen.data.worldgen.TLReGenWorldgenStructure;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;

@@ -1,9 +1,9 @@
 package com.technologica.resourcegen.data.tags.items;
 
-import com.technologica.api.tlregen.resourcegen.data.tags.TLRGTagsItemsGenerator;
 import com.technologica.registration.deferred.TechnologicaItems;
 import com.technologica.registration.dynamic.TechnologicaBlockTags;
 import com.technologica.registration.dynamic.TechnologicaItemTags;
+import com.tlregen.api.resourcegen.data.tags.TLRGTagsItemsGenerator;
 
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.tags.ItemTags;
@@ -56,11 +56,5 @@ public class TLTagItemsGenerator extends TLRGTagsItemsGenerator {
 		copy(TechnologicaBlockTags.FRUITFUL_LOGS, TechnologicaItemTags.FRUITFUL_LOGS);
 		copy(TechnologicaBlockTags.INFERNAL_LOGS, TechnologicaItemTags.INFERNAL_LOGS);
 		copy(TechnologicaBlockTags.MALEVOLENT_LOGS, TechnologicaItemTags.MALEVOLENT_LOGS);
-	}
-
-	@Override
-	protected void populate() {
-		// TODO Auto-generated method stub
-
 	}
 }

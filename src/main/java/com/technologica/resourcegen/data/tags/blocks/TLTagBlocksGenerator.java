@@ -1,8 +1,8 @@
 package com.technologica.resourcegen.data.tags.blocks;
 
-import com.technologica.api.tlregen.resourcegen.data.tags.TLReGenTagsBlocks;
 import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.registration.dynamic.TechnologicaBlockTags;
+import com.tlregen.api.resourcegen.data.tags.TLReGenTagsBlocks;
 
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.tags.BlockTags;
@@ -74,11 +74,5 @@ public class TLTagBlocksGenerator extends TLReGenTagsBlocks {
 		tag(TechnologicaBlockTags.SAPPHIRE_ORES).add(TechnologicaBlocks.SAPPHIRE_ORE.get(), TechnologicaBlocks.DEEPSLATE_SAPPHIRE_ORE.get());
 		tag(TechnologicaBlockTags.TOPAZ_ORES).add(TechnologicaBlocks.TOPAZ_ORE.get(), TechnologicaBlocks.DEEPSLATE_TOPAZ_ORE.get());
 		tag(TechnologicaBlockTags.CRYSTAL_ORES).add(TechnologicaBlocks.AQUAMARINE_CRYSTAL.get(), TechnologicaBlocks.AUTUNITE_CRYSTAL.get(), TechnologicaBlocks.BARYTE_CRYSTAL.get(), TechnologicaBlocks.BISMITHUNITE_CRYSTAL.get(), TechnologicaBlocks.CELESTINE_CRYSTAL.get(), TechnologicaBlocks.COLUMBITE_CRYSTAL.get(), TechnologicaBlocks.DOLOMITE_CRYSTAL.get(), TechnologicaBlocks.FLUORITE_CRYSTAL.get(), TechnologicaBlocks.HUTCHINSONITE_CRYSTAL.get(), TechnologicaBlocks.MONAZITE_CRYSTAL.get(), TechnologicaBlocks.POLLUCITE_CRYSTAL.get(), TechnologicaBlocks.RUTILE_CRYSTAL.get(), TechnologicaBlocks.SCHEELITE_CRYSTAL.get(), TechnologicaBlocks.SPHALERITE_CRYSTAL.get(), TechnologicaBlocks.STIBNITE_CRYSTAL.get(), TechnologicaBlocks.STRONTIANITE_CRYSTAL.get(), TechnologicaBlocks.TELLURITE_CRYSTAL.get(), TechnologicaBlocks.ULEXITE_CRYSTAL.get(), TechnologicaBlocks.VANADINITE_CRYSTAL.get(), TechnologicaBlocks.WULFENITE_CRYSTAL.get(), TechnologicaBlocks.XENOTIME_CRYSTAL.get(), TechnologicaBlocks.ZIRCON_CRYSTAL.get());
-	}
-
-	@Override
-	protected void populate() {
-		// TODO Auto-generated method stub
-
 	}
 }

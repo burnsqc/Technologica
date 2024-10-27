@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.google.common.collect.ImmutableList;
 import com.technologica.Technologica;
-import com.technologica.api.tlregen.resourcegen.data.worldgen.TLReGenWorldgenPlacedFeature;
 import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.world.level.levelgen.placement.BoundedHeightmap;
+import com.tlregen.api.resourcegen.data.worldgen.TLReGenWorldgenPlacedFeature;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.features.AquaticFeatures;

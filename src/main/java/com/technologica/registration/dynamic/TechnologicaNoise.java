@@ -6,5 +6,5 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.synth.NormalNoise.NoiseParameters;
 
 public final class TechnologicaNoise {
-	public static final ResourceKey<NoiseParameters> TEST = Technologica.NOISE.register("test");
+	public static final ResourceKey<NoiseParameters> TEST = Technologica.NOISE.register("test", () -> new NoiseParameters(1, 1.0));
 }

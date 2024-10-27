@@ -5,9 +5,9 @@ import java.util.OptionalInt;
 
 import com.mojang.datafixers.util.Pair;
 import com.technologica.Technologica;
-import com.technologica.api.tlregen.resourcegen.data.worldgen.TLReGenWorldgenBiome;
 import com.technologica.registration.deferred.TechnologicaEntityTypes;
 import com.technologica.world.entity.TechnologicaMobCategory;
+import com.tlregen.api.resourcegen.data.worldgen.TLReGenWorldgenBiome;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.placement.CavePlacements;

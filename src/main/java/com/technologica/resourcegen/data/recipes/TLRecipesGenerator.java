@@ -2,7 +2,6 @@ package com.technologica.resourcegen.data.recipes;
 
 import java.util.function.Consumer;
 
-import com.technologica.api.tlregen.resourcegen.data.TLRGRecipeGenerator;
 import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.registration.deferred.TechnologicaItems;
 import com.technologica.registration.deferred.TechnologicaRecipeSerializers;
@@ -10,6 +9,7 @@ import com.technologica.registration.dynamic.TechnologicaItemTags;
 import com.technologica.util.DisablePlankConditionFactory;
 import com.technologica.util.EnablePlankConditionFactory;
 import com.technologica.util.text.TechnologicaLocation;
+import com.tlregen.api.resourcegen.data.TLRGRecipeGenerator;
 
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;

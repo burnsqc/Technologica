@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.mojang.datafixers.util.Pair;
 import com.technologica.Technologica;
-import com.technologica.api.tlregen.resourcegen.data.TLReGenDimension;
+import com.tlregen.api.resourcegen.data.TLReGenDimension;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;

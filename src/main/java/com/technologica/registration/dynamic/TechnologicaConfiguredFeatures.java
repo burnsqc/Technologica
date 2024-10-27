@@ -3,7 +3,6 @@ package com.technologica.registration.dynamic;
 import java.util.List;
 
 import com.technologica.Technologica;
-import com.technologica.api.tlregen.resourcegen.data.worldgen.TLReGenWorldgenConfiguredFeature;
 import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.registration.deferred.TechnologicaFeatures;
 import com.technologica.world.level.levelgen.feature.foliageplacers.ConicalFoliagePlacer;
@@ -12,6 +11,7 @@ import com.technologica.world.level.levelgen.feature.foliageplacers.PalmFoliageP
 import com.technologica.world.level.levelgen.feature.foliageplacers.RedwoodFoliagePlacer;
 import com.technologica.world.level.levelgen.feature.foliageplacers.TeardropFoliagePlacer;
 import com.technologica.world.level.levelgen.feature.trunkplacers.HugeTrunkPlacer;
+import com.tlregen.api.resourcegen.data.worldgen.TLReGenWorldgenConfiguredFeature;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.features.FeatureUtils;

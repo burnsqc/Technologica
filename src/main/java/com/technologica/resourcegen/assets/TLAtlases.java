@@ -3,8 +3,8 @@ package com.technologica.resourcegen.assets;
 import java.util.List;
 import java.util.Optional;
 
-import com.technologica.api.tlregen.resourcegen.assets.TLReGenAtlases;
 import com.technologica.util.text.TechnologicaLocation;
+import com.tlregen.api.resourcegen.assets.TLReGenAtlases;
 
 import net.minecraft.client.renderer.texture.atlas.sources.SingleFile;
 import net.minecraft.resources.ResourceLocation;

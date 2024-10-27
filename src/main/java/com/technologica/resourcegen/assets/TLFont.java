@@ -1,7 +1,7 @@
 package com.technologica.resourcegen.assets;
 
-import com.technologica.api.tlregen.resourcegen.assets.TLReGenFont;
 import com.technologica.util.text.TechnologicaLocation;
+import com.tlregen.api.resourcegen.assets.TLReGenFont;
 
 import net.minecraft.client.gui.font.providers.BitmapProvider;
 import net.minecraft.resources.ResourceLocation;

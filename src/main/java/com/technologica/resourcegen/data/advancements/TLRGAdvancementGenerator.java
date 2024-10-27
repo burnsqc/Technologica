@@ -2,11 +2,11 @@ package com.technologica.resourcegen.data.advancements;
 
 import java.util.List;
 
-import com.technologica.api.tlregen.resourcegen.MasterResourceGenerator;
 import com.technologica.resourcegen.data.advancements.dominion.DominionAdvancementDataGenerator;
 import com.technologica.resourcegen.data.advancements.husbandry.HusbandryAdvancementDataGenerator;
 import com.technologica.resourcegen.data.advancements.technology.TechnologyAdvancementDataProvider;
 import com.technologica.resourcegen.data.advancements.tribulation.TribulationAdvancementDataGenerator;
+import com.tlregen.api.resourcegen.MasterResourceGenerator;
 
 import net.minecraftforge.common.data.ForgeAdvancementProvider;
 

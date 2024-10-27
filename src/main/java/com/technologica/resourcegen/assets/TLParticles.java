@@ -1,8 +1,8 @@
 package com.technologica.resourcegen.assets;
 
-import com.technologica.api.tlregen.resourcegen.assets.TLReGenParticles;
 import com.technologica.registration.deferred.TechnologicaParticleTypes;
 import com.technologica.util.text.TechnologicaLocation;
+import com.tlregen.api.resourcegen.assets.TLReGenParticles;
 
 import net.minecraft.resources.ResourceLocation;
 
