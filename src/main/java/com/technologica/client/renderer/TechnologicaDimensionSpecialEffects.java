@@ -28,7 +28,7 @@ public abstract class TechnologicaDimensionSpecialEffects {
 
 		@Override
 		public boolean isFoggyAt(int p_108898_, int p_108899_) {
-			return true;
+			return false;
 		}
 	}
 }
