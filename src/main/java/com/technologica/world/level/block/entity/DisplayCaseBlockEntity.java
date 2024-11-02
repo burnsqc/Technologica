@@ -15,7 +15,7 @@ public class DisplayCaseBlockEntity extends BlockEntity {
 	private ItemStack stack = ItemStack.EMPTY;
 
 	public DisplayCaseBlockEntity(BlockPos p_155700_, BlockState p_155701_) {
-		super(TechnologicaBlockEntityTypes.DISPLAY_TILE.get(), p_155700_, p_155701_);
+		super(TechnologicaBlockEntityTypes.DISPLAY_CASE.get(), p_155700_, p_155701_);
 	}
 
 	public ItemStack getDisplayStack() {

@@ -13,11 +13,6 @@ import net.minecraft.world.entity.EntityType;
 public class TechnologicaEntityRenderers {
 	public static final Map<EntityType<? extends Entity>, EntityRendererProvider<Entity>> PROVIDERS = Maps.newHashMap();
 
-	@SuppressWarnings("unchecked")
-	public static <T extends Entity> void register(EntityType<? extends T> entity, EntityRendererProvider<T> renderer) {
-		PROVIDERS.put((EntityType<? extends T>) entity, (EntityRendererProvider<Entity>) renderer);
-	}
-
 	static {
 		register(TechnologicaEntityTypes.TECHNOLOGICA_BOAT.get(), context -> new TechnologicaBoatRenderer(context, false));
 		register(TechnologicaEntityTypes.INVISIBLE_SEAT.get(), InvisibleRenderer::new);
@@ -73,29 +68,10 @@ public class TechnologicaEntityRenderers {
 		register(TechnologicaEntityTypes.METEOR.get(), renderManager -> new ThrownItemRenderer<>(renderManager, 4.0F, true));
 		register(TechnologicaEntityTypes.MAGIC_LIGHTNING.get(), MagicLightningBoltRenderer::new);
 		register(TechnologicaEntityTypes.SUBMERSIBLE.get(), context -> new SubmersibleRenderer(context));
-		// event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.ANNUNCIATOR_TILE.get(),
-		// AnnunciatorRenderer::new);
-		// event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.MONITOR_TILE.get(),
-		// MonitorRenderer::new);
-		// event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.VANILLA_SIGN.get(),
-		// SignRenderer::new);
-		// event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.TECHNOLOGICA_SIGN.get(),
-		// TechnologicaSignRenderer::new);
-		// event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.FRUIT_CROP.get(),
-		// FruitRenderer::new);
-		// event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.POTION_CROP.get(),
-		// PotionRenderer::new);
-		// event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.DISPLAY_TILE.get(),
-		// DisplayCaseRenderer::new);
-		// event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.LINE_SHAFT_TILE.get(),
-		// LineShaftRenderer::new);
-		// event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.LINE_SHAFT_HANGER_TILE.get(),
-		// LineShaftHangerRenderer::new);
-		// event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.SAWMILL_TILE.get(),
-		// SawmillRenderer::new);
-		// event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.WINDMILL.get(),
-		// WindmillRenderer::new);
-		// event.registerBlockEntityRenderer(TechnologicaBlockEntityTypes.LAND_MINE_TILE.get(),
-		// LandMineRenderer::new);
+	}
+
+	@SuppressWarnings("unchecked")
+	public static <T extends Entity> void register(EntityType<? extends T> entity, EntityRendererProvider<T> renderer) {
+		PROVIDERS.put((EntityType<? extends T>) entity, (EntityRendererProvider<Entity>) renderer);
 	}
 }

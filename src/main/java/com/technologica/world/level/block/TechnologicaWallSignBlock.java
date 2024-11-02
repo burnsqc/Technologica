@@ -1,6 +1,6 @@
 package com.technologica.world.level.block;
 
-import com.technologica.world.level.block.entity.TechnologicaSignBlockEntity;
+import com.technologica.world.level.block.entity.TranslucentSignBlockEntity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.SoundType;
@@ -18,6 +18,6 @@ public class TechnologicaWallSignBlock extends WallSignBlock {
 
 	@Override
 	public BlockEntity newBlockEntity(BlockPos p_154556_, BlockState p_154557_) {
-		return new TechnologicaSignBlockEntity(p_154556_, p_154557_);
+		return new TranslucentSignBlockEntity(p_154556_, p_154557_);
 	}
 }

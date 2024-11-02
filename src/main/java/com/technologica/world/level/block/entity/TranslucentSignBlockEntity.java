@@ -7,14 +7,14 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.SignBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class TechnologicaSignBlockEntity extends SignBlockEntity {
+public class TranslucentSignBlockEntity extends SignBlockEntity {
 
-	public TechnologicaSignBlockEntity(BlockPos p_155700_, BlockState p_155701_) {
-		super(p_155700_, p_155701_);
+	public TranslucentSignBlockEntity(BlockPos blockPos, BlockState blockState) {
+		super(blockPos, blockState);
 	}
 
 	@Override
 	public BlockEntityType<?> getType() {
-		return TechnologicaBlockEntityTypes.TECHNOLOGICA_SIGN.get();
+		return TechnologicaBlockEntityTypes.TRANSLUCENT_SIGN.get();
 	}
 }

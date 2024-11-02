@@ -89,7 +89,7 @@ public class Shark extends WaterAnimal implements NeutralMob {
 	}
 
 	// Register Attributes, Goals, and Data
-	public static AttributeSupplier.Builder registerAttributes() {
+	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.MOVEMENT_SPEED, 1.0F).add(Attributes.ATTACK_DAMAGE, 10.0D);
 	}
 
@@ -133,8 +133,7 @@ public class Shark extends WaterAnimal implements NeutralMob {
 	}
 
 	/**
-	 * Tests if this entity should pickup a weapon or an armor. Entity drops current
-	 * weapon or armor if the new one is better.
+	 * Tests if this entity should pickup a weapon or an armor. Entity drops current weapon or armor if the new one is better.
 	 */
 	@Override
 	protected void pickUpItem(ItemEntity p_28357_) {

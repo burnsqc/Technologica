@@ -14,7 +14,7 @@ public class MulchTileEntity extends BlockEntity {
 	private BlockState previousBlockState = Blocks.AIR.defaultBlockState();
 	
 	public MulchTileEntity(BlockPos p_155700_, BlockState p_155701_) {
-		super(TechnologicaBlockEntityTypes.MULCH_TILE.get(), p_155700_, p_155701_);
+		super(TechnologicaBlockEntityTypes.MULCH.get(), p_155700_, p_155701_);
 	}
 
 	public BlockState getPreviousBlockState() {

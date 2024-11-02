@@ -1,10 +1,8 @@
 package com.technologica.client.model.geom;
 
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
-import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Maps;
 import com.technologica.client.model.AlligatorModel;
 import com.technologica.client.model.BeaverModel;
 import com.technologica.client.model.BiPlaneModel;
@@ -64,82 +62,75 @@ import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 
 public class TechnologicaLayerDefinitions {
+	public static final Map<ModelLayerLocation, LayerDefinition> ROOTS = Maps.newHashMap();
 
-	public static Map<ModelLayerLocation, LayerDefinition> createRoots() {
-		ImmutableMap.Builder<ModelLayerLocation, LayerDefinition> builder = ImmutableMap.builder();
-		builder.put(TechnologicaModelLayers.ALLIGATOR, AlligatorModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.BEAVER, BeaverModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.BUFFALO, BuffaloModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.COBRA, CobraModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.COTTONMOUTH, CottonmouthModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.COYOTE, CoyoteModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.CRAB, CrabModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.DEER, DeerModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.DUCK, ChickenModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.ELEPHANT, ElephantModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.FIGURE_EIGHT_PUFFERFISH_BIG, FigureEightPufferfishBigModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.FIGURE_EIGHT_PUFFERFISH_MEDIUM, FigureEightPufferfishMidModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.FIGURE_EIGHT_PUFFERFISH_SMALL, FigureEightPufferfishSmallModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.FLAMINGO, FlamingoModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.GIRAFFE, GiraffeModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.GORILLA, GorillaModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.GRIZZLY_BEAR, PolarBearModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.JAGUAR, JaguarModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.KING_CRAB, KingCrabModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.LEOPARD_SEAL, LeopardSealModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.LION, LionModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.LIZARD, LizardModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.MOOSE, MooseModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.NARWHAL, NarwhalModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.OCTOPUS, OctopusModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.OSTRICH, OstrichModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.OWL, OwlModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.PENGUIN, PenguinModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.PIRANHA, PiranhaModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.POISON_DART_FROG, PoisonDartFrogModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.RACCOON, RaccoonModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.SCORPION, ScorpionModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.SHARK, SharkModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.SLOTH, SlothModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.STINGRAY, StingrayModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.TURKEY, TurkeyModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.VULTURE, VultureModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.WALRUS, WalrusModel.createBodyLayer());
-		builder.put(TechnologicaModelLayers.ZEBRA, LayerDefinition.create(HorseModel.createBodyMesh(CubeDeformation.NONE), 64, 64));
-		builder.put(TechnologicaModelLayers.ATOMIC_CREEPER, CreeperModel.createBodyLayer(CubeDeformation.NONE));
-		builder.put(TechnologicaModelLayers.MUMMY, LayerDefinition.create(ZombieModel.createMesh(CubeDeformation.NONE, 0.0F), 64, 64));
-		builder.put(TechnologicaModelLayers.BEEPER, CreeperModel.createBodyLayer(CubeDeformation.NONE));
-		builder.put(TechnologicaModelLayers.BEEPER_HEAD, SkullModel.createMobHeadLayer());
-		builder.put(TechnologicaModelLayers.PEEPER, CreeperModel.createBodyLayer(CubeDeformation.NONE));
-		builder.put(TechnologicaModelLayers.PEEPER_HEAD, SkullModel.createMobHeadLayer());
-		builder.put(TechnologicaModelLayers.SLEEPER, CreeperModel.createBodyLayer(CubeDeformation.NONE));
-		builder.put(TechnologicaModelLayers.SLEEPER_HEAD, SkullModel.createMobHeadLayer());
-		builder.put(TechnologicaModelLayers.SWEEPER, CreeperModel.createBodyLayer(CubeDeformation.NONE));
-		builder.put(TechnologicaModelLayers.SWEEPER_HEAD, SkullModel.createMobHeadLayer());
-		builder.put(TechnologicaModelLayers.WEEPER, CreeperModel.createBodyLayer(CubeDeformation.NONE));
-		builder.put(TechnologicaModelLayers.WEEPER_HEAD, SkullModel.createMobHeadLayer());
-		builder.put(TechnologicaModelLayers.DUST_DEVIL, DustDevilModel.createBodyLayer(CubeDeformation.NONE));
-		builder.put(TechnologicaModelLayers.NAVAL_MINE, NavalMineModel.createBodyModel());
-		builder.put(TechnologicaModelLayers.WINDMILL, WindmillModel.createBodyModel());
-		builder.put(TechnologicaModelLayers.ROCKET, BoatModel.createBodyModel());
-		builder.put(TechnologicaModelLayers.SUBMERSIBLE, BiPlaneModel.createBodyModel());
-		builder.put(TechnologicaModelLayers.COCONUT_BAZOOKA, CoconutBazookaModel.createLayer());
-		builder.put(TechnologicaModelLayers.SPEAR_GUN, SpearGunModel.createLayer());
-		builder.put(TechnologicaModelLayers.MINING_HELMET, LayerDefinition.create(MiningHelmetModel.createMesh(LayerDefinitions.OUTER_ARMOR_DEFORMATION, 0.0F), 64, 32));
-		builder.put(TechnologicaModelLayers.DIVING_HELMET, LayerDefinition.create(DivingHelmetModel.createMesh(LayerDefinitions.OUTER_ARMOR_DEFORMATION, 0.0F), 64, 32));
-
+	static {
+		register(TechnologicaModelLayers.ALLIGATOR, AlligatorModel.createBodyLayer());
+		register(TechnologicaModelLayers.BEAVER, BeaverModel.createBodyLayer());
+		register(TechnologicaModelLayers.BUFFALO, BuffaloModel.createBodyLayer());
+		register(TechnologicaModelLayers.COBRA, CobraModel.createBodyLayer());
+		register(TechnologicaModelLayers.COTTONMOUTH, CottonmouthModel.createBodyLayer());
+		register(TechnologicaModelLayers.COYOTE, CoyoteModel.createBodyLayer());
+		register(TechnologicaModelLayers.CRAB, CrabModel.createBodyLayer());
+		register(TechnologicaModelLayers.DEER, DeerModel.createBodyLayer());
+		register(TechnologicaModelLayers.DUCK, ChickenModel.createBodyLayer());
+		register(TechnologicaModelLayers.ELEPHANT, ElephantModel.createBodyLayer());
+		register(TechnologicaModelLayers.FIGURE_EIGHT_PUFFERFISH_BIG, FigureEightPufferfishBigModel.createBodyLayer());
+		register(TechnologicaModelLayers.FIGURE_EIGHT_PUFFERFISH_MEDIUM, FigureEightPufferfishMidModel.createBodyLayer());
+		register(TechnologicaModelLayers.FIGURE_EIGHT_PUFFERFISH_SMALL, FigureEightPufferfishSmallModel.createBodyLayer());
+		register(TechnologicaModelLayers.FLAMINGO, FlamingoModel.createBodyLayer());
+		register(TechnologicaModelLayers.GIRAFFE, GiraffeModel.createBodyLayer());
+		register(TechnologicaModelLayers.GORILLA, GorillaModel.createBodyLayer());
+		register(TechnologicaModelLayers.GRIZZLY_BEAR, PolarBearModel.createBodyLayer());
+		register(TechnologicaModelLayers.JAGUAR, JaguarModel.createBodyLayer());
+		register(TechnologicaModelLayers.KING_CRAB, KingCrabModel.createBodyLayer());
+		register(TechnologicaModelLayers.LEOPARD_SEAL, LeopardSealModel.createBodyLayer());
+		register(TechnologicaModelLayers.LION, LionModel.createBodyLayer());
+		register(TechnologicaModelLayers.LIZARD, LizardModel.createBodyLayer());
+		register(TechnologicaModelLayers.MOOSE, MooseModel.createBodyLayer());
+		register(TechnologicaModelLayers.NARWHAL, NarwhalModel.createBodyLayer());
+		register(TechnologicaModelLayers.OCTOPUS, OctopusModel.createBodyLayer());
+		register(TechnologicaModelLayers.OSTRICH, OstrichModel.createBodyLayer());
+		register(TechnologicaModelLayers.OWL, OwlModel.createBodyLayer());
+		register(TechnologicaModelLayers.PENGUIN, PenguinModel.createBodyLayer());
+		register(TechnologicaModelLayers.PIRANHA, PiranhaModel.createBodyLayer());
+		register(TechnologicaModelLayers.POISON_DART_FROG, PoisonDartFrogModel.createBodyLayer());
+		register(TechnologicaModelLayers.RACCOON, RaccoonModel.createBodyLayer());
+		register(TechnologicaModelLayers.SCORPION, ScorpionModel.createBodyLayer());
+		register(TechnologicaModelLayers.SHARK, SharkModel.createBodyLayer());
+		register(TechnologicaModelLayers.SLOTH, SlothModel.createBodyLayer());
+		register(TechnologicaModelLayers.STINGRAY, StingrayModel.createBodyLayer());
+		register(TechnologicaModelLayers.TURKEY, TurkeyModel.createBodyLayer());
+		register(TechnologicaModelLayers.VULTURE, VultureModel.createBodyLayer());
+		register(TechnologicaModelLayers.WALRUS, WalrusModel.createBodyLayer());
+		register(TechnologicaModelLayers.ZEBRA, LayerDefinition.create(HorseModel.createBodyMesh(CubeDeformation.NONE), 64, 64));
+		register(TechnologicaModelLayers.ATOMIC_CREEPER, CreeperModel.createBodyLayer(CubeDeformation.NONE));
+		register(TechnologicaModelLayers.MUMMY, LayerDefinition.create(ZombieModel.createMesh(CubeDeformation.NONE, 0.0F), 64, 64));
+		register(TechnologicaModelLayers.BEEPER, CreeperModel.createBodyLayer(CubeDeformation.NONE));
+		register(TechnologicaModelLayers.BEEPER_HEAD, SkullModel.createMobHeadLayer());
+		register(TechnologicaModelLayers.PEEPER, CreeperModel.createBodyLayer(CubeDeformation.NONE));
+		register(TechnologicaModelLayers.PEEPER_HEAD, SkullModel.createMobHeadLayer());
+		register(TechnologicaModelLayers.SLEEPER, CreeperModel.createBodyLayer(CubeDeformation.NONE));
+		register(TechnologicaModelLayers.SLEEPER_HEAD, SkullModel.createMobHeadLayer());
+		register(TechnologicaModelLayers.SWEEPER, CreeperModel.createBodyLayer(CubeDeformation.NONE));
+		register(TechnologicaModelLayers.SWEEPER_HEAD, SkullModel.createMobHeadLayer());
+		register(TechnologicaModelLayers.WEEPER, CreeperModel.createBodyLayer(CubeDeformation.NONE));
+		register(TechnologicaModelLayers.WEEPER_HEAD, SkullModel.createMobHeadLayer());
+		register(TechnologicaModelLayers.DUST_DEVIL, DustDevilModel.createBodyLayer(CubeDeformation.NONE));
+		register(TechnologicaModelLayers.NAVAL_MINE, NavalMineModel.createBodyModel());
+		register(TechnologicaModelLayers.WINDMILL, WindmillModel.createBodyModel());
+		register(TechnologicaModelLayers.ROCKET, BoatModel.createBodyModel());
+		register(TechnologicaModelLayers.SUBMERSIBLE, BiPlaneModel.createBodyModel());
+		register(TechnologicaModelLayers.COCONUT_BAZOOKA, CoconutBazookaModel.createLayer());
+		register(TechnologicaModelLayers.SPEAR_GUN, SpearGunModel.createLayer());
+		register(TechnologicaModelLayers.MINING_HELMET, LayerDefinition.create(MiningHelmetModel.createMesh(LayerDefinitions.OUTER_ARMOR_DEFORMATION, 0.0F), 64, 32));
+		register(TechnologicaModelLayers.DIVING_HELMET, LayerDefinition.create(DivingHelmetModel.createMesh(LayerDefinitions.OUTER_ARMOR_DEFORMATION, 0.0F), 64, 32));
 		for (TechnologicaBoat.Type boat$type : TechnologicaBoat.Type.values()) {
-			builder.put(TechnologicaModelLayers.createBoatModelName(boat$type), BoatModel.createBodyModel());
+			register(TechnologicaModelLayers.createBoatModelName(boat$type), BoatModel.createBodyModel());
 		}
+	}
 
-		ImmutableMap<ModelLayerLocation, LayerDefinition> immutablemap = builder.build();
-		List<ModelLayerLocation> list = TechnologicaModelLayers.getKnownLocations().filter((p_171117_) -> {
-			return !immutablemap.containsKey(p_171117_);
-		}).collect(Collectors.toList());
-		if (!list.isEmpty()) {
-			throw new IllegalStateException("Missing layer definitions: " + list);
-		} else {
-			return immutablemap;
-		}
+	private static void register(ModelLayerLocation model, LayerDefinition layer) {
+		ROOTS.put(model, layer);
 	}
 }

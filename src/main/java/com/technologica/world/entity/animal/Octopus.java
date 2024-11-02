@@ -18,7 +18,7 @@ public class Octopus extends WaterAnimal {
 		return null;
 	}
 	
-	public static AttributeSupplier.Builder registerAttributes() {
+	public static AttributeSupplier.Builder createAttributes() {
 		return AttributeSupplier.builder()
 				.add(Attributes.MAX_HEALTH, 10.0D)
 				.add(Attributes.MOVEMENT_SPEED, 0.25D)

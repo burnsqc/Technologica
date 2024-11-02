@@ -24,8 +24,8 @@ public class LandMineBlock extends BaseEntityBlock {
 		super(BlockBehaviour.Properties.of().randomTicks().strength(0.6F).sound(SoundType.GRASS).noOcclusion());
 	}
 
-	public LandMineBlockEntity getTileEntity(Level worldIn, BlockPos posIn) {
-		return (LandMineBlockEntity) worldIn.getBlockEntity(posIn);
+	public LandMineBlockEntity getTileEntity(Level level, BlockPos blockPos) {
+		return (LandMineBlockEntity) level.getBlockEntity(blockPos);
 	}
 
 	@Override
@@ -45,13 +45,13 @@ public class LandMineBlock extends BaseEntityBlock {
 
 	@Override
 	@Nullable
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> type) {
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
 		if (level.isClientSide()) {
 			return null;
 		}
 		return (lvl, pos, blockState2, t) -> {
-			if (t instanceof LandMineBlockEntity tile) {
-				tile.serverTick();
+			if (t instanceof LandMineBlockEntity landMineBlockEntity) {
+				landMineBlockEntity.serverTick();
 			}
 		};
 	}

@@ -42,6 +42,11 @@ public class TLModelsItem extends TLReGenModelsItem {
 		item3DModel(TechnologicaBlocks.SLEEPER_HEAD.get(), new ModelFile.UncheckedModelFile(new ResourceLocation("item/template_skull")));
 		item3DModel(TechnologicaBlocks.SWEEPER_HEAD.get(), new ModelFile.UncheckedModelFile(new ResourceLocation("item/template_skull")));
 		item3DModel(TechnologicaBlocks.WEEPER_HEAD.get(), new ModelFile.UncheckedModelFile(new ResourceLocation("item/template_skull")));
+		item3DModel(TechnologicaBlocks.BEEPER_WALL_HEAD.get(), new ModelFile.UncheckedModelFile(new ResourceLocation("item/template_skull")));
+		item3DModel(TechnologicaBlocks.PEEPER_WALL_HEAD.get(), new ModelFile.UncheckedModelFile(new ResourceLocation("item/template_skull")));
+		item3DModel(TechnologicaBlocks.SLEEPER_WALL_HEAD.get(), new ModelFile.UncheckedModelFile(new ResourceLocation("item/template_skull")));
+		item3DModel(TechnologicaBlocks.SWEEPER_WALL_HEAD.get(), new ModelFile.UncheckedModelFile(new ResourceLocation("item/template_skull")));
+		item3DModel(TechnologicaBlocks.WEEPER_WALL_HEAD.get(), new ModelFile.UncheckedModelFile(new ResourceLocation("item/template_skull")));
 
 		item3DModel(TechnologicaBlocks.ANNUNCIATOR.get(), orientable(ForgeRegistries.BLOCKS.getKey(TechnologicaBlocks.ANNUNCIATOR.get()).getPath(), new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(TechnologicaBlocks.ANNUNCIATOR.get()).getPath() + "_side"), new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(TechnologicaBlocks.ANNUNCIATOR.get()).getPath() + "_lit_info"), new TechnologicaLocation("block/" + ForgeRegistries.BLOCKS.getKey(TechnologicaBlocks.ANNUNCIATOR.get()).getPath() + "_side")));
 		item3DModel(TechnologicaBlocks.BASIN.get(), basin(name(TechnologicaBlocks.BASIN.get()), "block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.BASIN.get()) + "_top", "block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.BASIN.get()) + "_bottom", "block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.BASIN.get()) + "_side"));

@@ -79,6 +79,7 @@ public class TLBlockstates extends TLReGenBlockstates {
 		oreBlocks();
 		crystalBlocks();
 		fluidBlocks();
+		skulls();
 		simpleBlock(TechnologicaBlocks.MULCH.get(), cubeBottomTop(ResourceLocationHelper.getPath(TechnologicaBlocks.MULCH.get()), new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.MULCH.get()) + "_side"), new ResourceLocation("block/dirt"), new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.MULCH.get()) + "_top")));
 		tallBlock(TechnologicaBlocks.TRELLIS.get(), trellis(TechnologicaBlocks.TRELLIS.get(), blockTexture(TechnologicaBlocks.TRELLIS.get())));
 		simpleBlock(TechnologicaBlocks.DISPLAY_CASE.get(), displayModel(TechnologicaBlocks.DISPLAY_CASE.get()));
@@ -105,11 +106,19 @@ public class TLBlockstates extends TLReGenBlockstates {
 		basinFilledBlockState(TechnologicaBlocks.MAPLE_SYRUP_BASIN.get());
 		basinFilledBlockState(TechnologicaBlocks.RUBBER_RESIN_BASIN.get());
 		glueBlock(TechnologicaBlocks.GLUE.get());
+	}
+
+	private void skulls() {
 		getVariantBuilder(TechnologicaBlocks.BEEPER_HEAD.get()).partialState().setModels(new TLReGenConfiguredModel(skull()));
 		getVariantBuilder(TechnologicaBlocks.PEEPER_HEAD.get()).partialState().setModels(new TLReGenConfiguredModel(skull()));
 		getVariantBuilder(TechnologicaBlocks.SLEEPER_HEAD.get()).partialState().setModels(new TLReGenConfiguredModel(skull()));
 		getVariantBuilder(TechnologicaBlocks.SWEEPER_HEAD.get()).partialState().setModels(new TLReGenConfiguredModel(skull()));
 		getVariantBuilder(TechnologicaBlocks.WEEPER_HEAD.get()).partialState().setModels(new TLReGenConfiguredModel(skull()));
+		getVariantBuilder(TechnologicaBlocks.BEEPER_WALL_HEAD.get()).partialState().setModels(new TLReGenConfiguredModel(skull()));
+		getVariantBuilder(TechnologicaBlocks.PEEPER_WALL_HEAD.get()).partialState().setModels(new TLReGenConfiguredModel(skull()));
+		getVariantBuilder(TechnologicaBlocks.SLEEPER_WALL_HEAD.get()).partialState().setModels(new TLReGenConfiguredModel(skull()));
+		getVariantBuilder(TechnologicaBlocks.SWEEPER_WALL_HEAD.get()).partialState().setModels(new TLReGenConfiguredModel(skull()));
+		getVariantBuilder(TechnologicaBlocks.WEEPER_WALL_HEAD.get()).partialState().setModels(new TLReGenConfiguredModel(skull()));
 	}
 
 	private void cropBlocks() {

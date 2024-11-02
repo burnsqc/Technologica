@@ -50,7 +50,6 @@ import net.minecraft.world.item.SignItem;
 import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tiers;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.registries.RegistryObject;
@@ -201,11 +200,13 @@ public final class TechnologicaItems {
 	public static final RegistryObject<Item> NEUROTOXIN_SAC = Technologica.ITEMS.register("neurotoxin_sac", () -> new Item(new Item.Properties().food(TechnologicaFoods.NEUROTOXIN_SAC)));
 	public static final RegistryObject<Item> TETRODOTOXIN_SAC = Technologica.ITEMS.register("tetrodotoxin_sac", () -> new Item(new Item.Properties().food(TechnologicaFoods.TETRODOTOXIN_SAC)));
 	public static final RegistryObject<Item> BARNACLE = Technologica.ITEMS.register("barnacle", () -> new BlockItem(TechnologicaBlocks.BARNACLE.get(), new Item.Properties()));
-	public static final RegistryObject<Item> BEEPER_HEAD = Technologica.ITEMS.register("beeper_head", () -> new StandingAndWallBlockItem(TechnologicaBlocks.BEEPER_HEAD.get(), Blocks.CREEPER_WALL_HEAD, (new Item.Properties()).rarity(Rarity.UNCOMMON), Direction.DOWN));
-	public static final RegistryObject<Item> PEEPER_HEAD = Technologica.ITEMS.register("peeper_head", () -> new StandingAndWallBlockItem(TechnologicaBlocks.PEEPER_HEAD.get(), Blocks.CREEPER_WALL_HEAD, (new Item.Properties()).rarity(Rarity.UNCOMMON), Direction.DOWN));
-	public static final RegistryObject<Item> SLEEPER_HEAD = Technologica.ITEMS.register("sleeper_head", () -> new StandingAndWallBlockItem(TechnologicaBlocks.SLEEPER_HEAD.get(), Blocks.CREEPER_WALL_HEAD, (new Item.Properties()).rarity(Rarity.UNCOMMON), Direction.DOWN));
-	public static final RegistryObject<Item> SWEEPER_HEAD = Technologica.ITEMS.register("sweeper_head", () -> new StandingAndWallBlockItem(TechnologicaBlocks.SWEEPER_HEAD.get(), Blocks.CREEPER_WALL_HEAD, (new Item.Properties()).rarity(Rarity.UNCOMMON), Direction.DOWN));
-	public static final RegistryObject<Item> WEEPER_HEAD = Technologica.ITEMS.register("weeper_head", () -> new StandingAndWallBlockItem(TechnologicaBlocks.WEEPER_HEAD.get(), Blocks.CREEPER_WALL_HEAD, (new Item.Properties()).rarity(Rarity.UNCOMMON), Direction.DOWN));
+
+	public static final RegistryObject<Item> BEEPER_HEAD = Technologica.ITEMS.register("beeper_head", () -> new StandingAndWallBlockItem(TechnologicaBlocks.BEEPER_HEAD.get(), TechnologicaBlocks.BEEPER_WALL_HEAD.get(), (new Item.Properties()).rarity(Rarity.UNCOMMON), Direction.DOWN));
+	public static final RegistryObject<Item> PEEPER_HEAD = Technologica.ITEMS.register("peeper_head", () -> new StandingAndWallBlockItem(TechnologicaBlocks.PEEPER_HEAD.get(), TechnologicaBlocks.PEEPER_WALL_HEAD.get(), (new Item.Properties()).rarity(Rarity.UNCOMMON), Direction.DOWN));
+	public static final RegistryObject<Item> SLEEPER_HEAD = Technologica.ITEMS.register("sleeper_head", () -> new StandingAndWallBlockItem(TechnologicaBlocks.SLEEPER_HEAD.get(), TechnologicaBlocks.SLEEPER_WALL_HEAD.get(), (new Item.Properties()).rarity(Rarity.UNCOMMON), Direction.DOWN));
+	public static final RegistryObject<Item> SWEEPER_HEAD = Technologica.ITEMS.register("sweeper_head", () -> new StandingAndWallBlockItem(TechnologicaBlocks.SWEEPER_HEAD.get(), TechnologicaBlocks.SWEEPER_WALL_HEAD.get(), (new Item.Properties()).rarity(Rarity.UNCOMMON), Direction.DOWN));
+	public static final RegistryObject<Item> WEEPER_HEAD = Technologica.ITEMS.register("weeper_head", () -> new StandingAndWallBlockItem(TechnologicaBlocks.WEEPER_HEAD.get(), TechnologicaBlocks.WEEPER_WALL_HEAD.get(), (new Item.Properties()).rarity(Rarity.UNCOMMON), Direction.DOWN));
+
 	public static final RegistryObject<Item> SALT_ITEM = Technologica.ITEMS.register("salt", () -> new BlockItem(TechnologicaBlocks.SALT.get(), new Item.Properties()));
 	public static final RegistryObject<Item> LITHIUM_CLAY_ITEM = Technologica.ITEMS.register("lithium_clay", () -> new BlockItem(TechnologicaBlocks.LITHIUM_CLAY.get(), new Item.Properties()));
 	public static final RegistryObject<Item> OILY_COARSE_DIRT_ITEM = Technologica.ITEMS.register("oily_coarse_dirt", () -> new BlockItem(TechnologicaBlocks.OILY_COARSE_DIRT.get(), new Item.Properties()));

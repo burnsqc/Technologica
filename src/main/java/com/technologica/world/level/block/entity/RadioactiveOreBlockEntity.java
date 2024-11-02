@@ -26,7 +26,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class RadioactiveOreBlockEntity extends BlockEntity {
 
 	public RadioactiveOreBlockEntity(BlockPos p_155700_, BlockState p_155701_) {
-		super(TechnologicaBlockEntityTypes.RADIOACTIVE_ORE_BLOCK_ENTITY.get(), p_155700_, p_155701_);
+		super(TechnologicaBlockEntityTypes.RADIOACTIVE_ORE.get(), p_155700_, p_155701_);
 	}
 
 	public void serverTick(Level level, BlockState blockStateIn) {

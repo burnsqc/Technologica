@@ -43,7 +43,7 @@ public class AnnunciatorBlockEntity extends BlockEntity {
 	private final FormattedCharSequence[] renderText = new FormattedCharSequence[8];
 
 	public AnnunciatorBlockEntity(BlockPos p_155700_, BlockState p_155701_) {
-		super(TechnologicaBlockEntityTypes.ANNUNCIATOR_TILE.get(), p_155700_, p_155701_);
+		super(TechnologicaBlockEntityTypes.ANNUNCIATOR.get(), p_155700_, p_155701_);
 	}
 
 	private ItemStackHandler createHandler() {
@@ -97,7 +97,7 @@ public class AnnunciatorBlockEntity extends BlockEntity {
 
 	@Override
 	public BlockEntityType<?> getType() {
-		return TechnologicaBlockEntityTypes.ANNUNCIATOR_TILE.get();
+		return TechnologicaBlockEntityTypes.ANNUNCIATOR.get();
 	}
 
 	public void setEditable(boolean isEditableIn) {

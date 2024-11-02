@@ -44,7 +44,7 @@ public class SawmillBlockEntity extends BlockEntity implements WorldlyContainer,
 	private final Object2IntOpenHashMap<ResourceLocation> recipes = new Object2IntOpenHashMap<>();
 
 	public SawmillBlockEntity(BlockPos p_155700_, BlockState p_155701_) {
-		super(TechnologicaBlockEntityTypes.SAWMILL_TILE.get(), p_155700_, p_155701_);
+		super(TechnologicaBlockEntityTypes.SAWMILL.get(), p_155700_, p_155701_);
 	}
 
 	@Override

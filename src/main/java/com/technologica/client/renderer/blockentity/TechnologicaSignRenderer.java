@@ -40,8 +40,6 @@ import net.minecraft.world.level.block.entity.SignText;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class TechnologicaSignRenderer implements BlockEntityRenderer<SignBlockEntity> {
 	private static final int OUTLINE_RENDER_DISTANCE = Mth.square(16);
@@ -49,23 +47,23 @@ public class TechnologicaSignRenderer implements BlockEntityRenderer<SignBlockEn
 	private final Map<WoodType, TechnologicaSignRenderer.SignModel> signModels;
 	private final Font font;
 
-	public TechnologicaSignRenderer(BlockEntityRendererProvider.Context p_173636_) {
-		this.signModels = WoodType.values().collect(ImmutableMap.toImmutableMap((p_173645_) -> {
-			return p_173645_;
-		}, (p_173651_) -> {
-			return new TechnologicaSignRenderer.SignModel(p_173636_.bakeLayer(ModelLayers.createSignModelName(p_173651_)));
+	public TechnologicaSignRenderer(BlockEntityRendererProvider.Context context) {
+		this.signModels = WoodType.values().collect(ImmutableMap.toImmutableMap((woodType) -> {
+			return woodType;
+		}, (woodType) -> {
+			return new TechnologicaSignRenderer.SignModel(context.bakeLayer(ModelLayers.createSignModelName(woodType)));
 		}));
-		this.font = p_173636_.getFont();
+		this.font = context.getFont();
 	}
 
 	@Override
-	public void render(SignBlockEntity p_112497_, float p_112498_, PoseStack p_112499_, MultiBufferSource p_112500_, int p_112501_, int p_112502_) {
-		BlockState blockstate = p_112497_.getBlockState();
+	public void render(SignBlockEntity signBlockEntity, float partialTick, PoseStack poseStack, MultiBufferSource multiBufferSource, int lightColor, int overlayTexture) {
+		BlockState blockstate = signBlockEntity.getBlockState();
 		SignBlock signblock = (SignBlock) blockstate.getBlock();
 		WoodType woodtype = SignBlock.getWoodType(signblock);
 		TechnologicaSignRenderer.SignModel signrenderer$signmodel = this.signModels.get(woodtype);
 		signrenderer$signmodel.stick.visible = blockstate.getBlock() instanceof StandingSignBlock;
-		this.renderSignWithText(p_112497_, p_112499_, p_112500_, p_112501_, p_112502_, blockstate, signblock, woodtype, signrenderer$signmodel);
+		this.renderSignWithText(signBlockEntity, poseStack, multiBufferSource, lightColor, overlayTexture, blockstate, signblock, woodtype, signrenderer$signmodel);
 	}
 
 	public float getSignModelRenderScale() {
@@ -76,41 +74,41 @@ public class TechnologicaSignRenderer implements BlockEntityRenderer<SignBlockEn
 		return 0.6666667F;
 	}
 
-	void renderSignWithText(SignBlockEntity p_279389_, PoseStack p_279331_, MultiBufferSource p_279303_, int p_279396_, int p_279203_, BlockState p_279391_, SignBlock p_279224_, WoodType p_279162_, Model p_279444_) {
-		p_279331_.pushPose();
-		this.translateSign(p_279331_, -p_279224_.getYRotationDegrees(p_279391_), p_279391_);
-		this.renderSign(p_279331_, p_279303_, p_279396_, p_279203_, p_279162_, p_279444_);
-		this.renderSignText(p_279389_.getBlockPos(), p_279389_.getFrontText(), p_279331_, p_279303_, p_279396_, p_279389_.getTextLineHeight(), p_279389_.getMaxTextLineWidth(), true);
-		this.renderSignText(p_279389_.getBlockPos(), p_279389_.getBackText(), p_279331_, p_279303_, p_279396_, p_279389_.getTextLineHeight(), p_279389_.getMaxTextLineWidth(), false);
-		p_279331_.popPose();
+	void renderSignWithText(SignBlockEntity signBlockEntity, PoseStack poseStack, MultiBufferSource multiBufferSource, int lightColor, int overlayTexture, BlockState blockState, SignBlock signBlock, WoodType woodType, Model model) {
+		poseStack.pushPose();
+		this.translateSign(poseStack, -signBlock.getYRotationDegrees(blockState), blockState);
+		this.renderSign(poseStack, multiBufferSource, lightColor, overlayTexture, woodType, model);
+		this.renderSignText(signBlockEntity.getBlockPos(), signBlockEntity.getFrontText(), poseStack, multiBufferSource, lightColor, signBlockEntity.getTextLineHeight(), signBlockEntity.getMaxTextLineWidth(), true);
+		this.renderSignText(signBlockEntity.getBlockPos(), signBlockEntity.getBackText(), poseStack, multiBufferSource, lightColor, signBlockEntity.getTextLineHeight(), signBlockEntity.getMaxTextLineWidth(), false);
+		poseStack.popPose();
 	}
 
-	void translateSign(PoseStack p_278074_, float p_277875_, BlockState p_277559_) {
-		p_278074_.translate(0.5F, 0.75F * this.getSignModelRenderScale(), 0.5F);
-		p_278074_.mulPose(Axis.YP.rotationDegrees(p_277875_));
-		if (!(p_277559_.getBlock() instanceof StandingSignBlock)) {
-			p_278074_.translate(0.0F, -0.3125F, -0.4375F);
+	void translateSign(PoseStack poseStack, float rotY, BlockState blockState) {
+		poseStack.translate(0.5F, 0.75F * this.getSignModelRenderScale(), 0.5F);
+		poseStack.mulPose(Axis.YP.rotationDegrees(rotY));
+		if (!(blockState.getBlock() instanceof StandingSignBlock)) {
+			poseStack.translate(0.0F, -0.3125F, -0.4375F);
 		}
 
 	}
 
-	void renderSign(PoseStack p_279104_, MultiBufferSource p_279408_, int p_279494_, int p_279344_, WoodType p_279170_, Model p_279159_) {
-		p_279104_.pushPose();
+	void renderSign(PoseStack poseStack, MultiBufferSource multiBufferSource, int lightColor, int textLineHeight, WoodType woodType, Model model) {
+		poseStack.pushPose();
 		float f = this.getSignModelRenderScale();
-		p_279104_.scale(f, -f, -f);
-		Material material = this.getSignMaterial(p_279170_);
-		VertexConsumer vertexconsumer = material.buffer(p_279408_, p_279159_::renderType);
-		this.renderSignModel(p_279104_, p_279494_, p_279344_, p_279159_, vertexconsumer);
-		p_279104_.popPose();
+		poseStack.scale(f, -f, -f);
+		Material material = this.getSignMaterial(woodType);
+		VertexConsumer vertexconsumer = material.buffer(multiBufferSource, model::renderType);
+		this.renderSignModel(poseStack, lightColor, textLineHeight, model, vertexconsumer);
+		poseStack.popPose();
 	}
 
-	void renderSignModel(PoseStack p_250252_, int p_249399_, int p_249042_, Model p_250082_, VertexConsumer p_251093_) {
-		// SignRenderer.SignModel signrenderer$signmodel = (SignRenderer.SignModel) p_250082_;
-		// signrenderer$signmodel.root.render(p_250252_, p_251093_, p_249399_, p_249042_);
+	void renderSignModel(PoseStack poseStack, int lightColor, int textLineHeight, Model model, VertexConsumer vertexConsumer) {
+		TechnologicaSignRenderer.SignModel signrenderer$signmodel = (TechnologicaSignRenderer.SignModel) model;
+		signrenderer$signmodel.root.render(poseStack, vertexConsumer, lightColor, textLineHeight);
 	}
 
-	Material getSignMaterial(WoodType p_251961_) {
-		return Sheets.getSignMaterial(p_251961_);
+	Material getSignMaterial(WoodType woodType) {
+		return Sheets.getSignMaterial(woodType);
 	}
 
 	void renderSignText(BlockPos p_279403_, SignText p_279361_, PoseStack p_279234_, MultiBufferSource p_279338_, int p_279300_, int p_279179_, int p_279357_, boolean p_279325_) {
@@ -201,13 +199,12 @@ public class TechnologicaSignRenderer implements BlockEntityRenderer<SignBlockEn
 		return LayerDefinition.create(meshdefinition, 64, 32);
 	}
 
-	@OnlyIn(Dist.CLIENT)
 	public static final class SignModel extends Model {
 		public final ModelPart root;
 		public final ModelPart stick;
 
 		public SignModel(ModelPart p_173657_) {
-			super(RenderType::entityCutoutNoCull);
+			super(RenderType::entityTranslucent);
 			this.root = p_173657_;
 			this.stick = p_173657_.getChild("stick");
 		}

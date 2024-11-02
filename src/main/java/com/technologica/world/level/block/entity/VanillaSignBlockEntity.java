@@ -10,8 +10,8 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 
 public class VanillaSignBlockEntity extends SignBlockEntity {
 	
-	public VanillaSignBlockEntity(BlockPos p_155700_, BlockState p_155701_) {
-		super(p_155700_, p_155701_);
+	public VanillaSignBlockEntity(BlockPos blockPos, BlockState blockState) {
+		super(blockPos, blockState);
 	}
 
 	@Override

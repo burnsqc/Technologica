@@ -15,7 +15,7 @@ public class LineShaftHangerTileEntity extends BlockEntity {
 	private float rpm = 0;
 
 	public LineShaftHangerTileEntity(BlockPos p_155700_, BlockState p_155701_) {
-		super(TechnologicaBlockEntityTypes.LINE_SHAFT_HANGER_TILE.get(), p_155700_, p_155701_);
+		super(TechnologicaBlockEntityTypes.LINE_SHAFT_HANGER.get(), p_155700_, p_155701_);
 	}
 
 	public void setShaft(boolean shaftIn) {

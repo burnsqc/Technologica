@@ -9,8 +9,8 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class TechnologicaSkullBlockEntity extends SkullBlockEntity {
 
-	public TechnologicaSkullBlockEntity(BlockPos p_155700_, BlockState p_155701_) {
-		super(p_155700_, p_155701_);
+	public TechnologicaSkullBlockEntity(BlockPos blockPos, BlockState blockState) {
+		super(blockPos, blockState);
 	}
 
 	@Override

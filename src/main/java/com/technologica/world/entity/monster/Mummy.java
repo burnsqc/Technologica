@@ -81,10 +81,7 @@ public class Mummy extends Zombie {
 	private static final EntityDataAccessor<Integer> DATA_SPECIAL_TYPE_ID = SynchedEntityData.defineId(Mummy.class, EntityDataSerializers.INT);
 	private static final EntityDataAccessor<Boolean> DATA_DROWNED_CONVERSION_ID = SynchedEntityData.defineId(Mummy.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Integer> DATA_PARALYZE_COOLDOWN = SynchedEntityData.defineId(Mummy.class, EntityDataSerializers.INT);
-	
-	
-	
-	
+
 	private static final Predicate<Difficulty> DOOR_BREAKING_PREDICATE = (p_34284_) -> {
 		return p_34284_ == Difficulty.HARD;
 	};
@@ -122,7 +119,7 @@ public class Mummy extends Zombie {
 		this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Turtle.class, 10, true, false, Turtle.BABY_ON_LAND_SELECTOR));
 	}
 
-	public static AttributeSupplier.Builder registerAttributes() {
+	public static AttributeSupplier.Builder createAttributes() {
 		return Monster.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 35.0D).add(Attributes.MOVEMENT_SPEED, 0.23F).add(Attributes.ATTACK_DAMAGE, 3.0D).add(Attributes.ARMOR, 2.0D).add(Attributes.SPAWN_REINFORCEMENTS_CHANCE);
 	}
 

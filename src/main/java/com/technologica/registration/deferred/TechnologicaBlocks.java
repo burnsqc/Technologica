@@ -42,6 +42,7 @@ import com.technologica.world.level.block.TapeDriveBlock;
 import com.technologica.world.level.block.TechnologicaSkullBlock;
 import com.technologica.world.level.block.TechnologicaStandingSignBlock;
 import com.technologica.world.level.block.TechnologicaWallSignBlock;
+import com.technologica.world.level.block.TechnologicaWallSkullBlock;
 import com.technologica.world.level.block.TreeTapBlock;
 import com.technologica.world.level.block.TrellisBlock;
 import com.technologica.world.level.block.TwentyFourDirectionBlock;
@@ -257,15 +258,24 @@ public final class TechnologicaBlocks {
 	public static final RegistryObject<Block> FROSTBITTEN_LEAVES = Technologica.BLOCKS.register("frostbitten_leaves", () -> new MagicLeavesBlock(2));
 	public static final RegistryObject<Block> MULCH = Technologica.BLOCKS.register("mulch", MulchBlock::new);
 	public static final RegistryObject<Block> TRELLIS = Technologica.BLOCKS.register("trellis", TrellisBlock::new);
+
 	public static final RegistryObject<Block> BASIN = Technologica.BLOCKS.register("basin", () -> new BasinEmptyBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(2.0F).noOcclusion()));
 	public static final RegistryObject<Block> MAPLE_SYRUP_BASIN = Technologica.BLOCKS.register("maple_syrup_basin", () -> new BasinFilledBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(2.0F).noOcclusion(), TechnologicaFluids.MAPLE_SYRUP.get()));
 	public static final RegistryObject<Block> RUBBER_RESIN_BASIN = Technologica.BLOCKS.register("rubber_resin_basin", () -> new BasinFilledBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(2.0F).noOcclusion(), TechnologicaFluids.RUBBER_RESIN.get()));
+
 	public static final RegistryObject<Block> BEEPER_HEAD = Technologica.BLOCKS.register("beeper_head", () -> new TechnologicaSkullBlock(TechnologicaSkullBlock.Types.BEEPER, BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.CREEPER).strength(1.0F).pushReaction(PushReaction.DESTROY)));
+	public static final RegistryObject<Block> BEEPER_WALL_HEAD = Technologica.BLOCKS.register("beeper_wall_head", () -> new TechnologicaWallSkullBlock(TechnologicaSkullBlock.Types.BEEPER, BlockBehaviour.Properties.of().strength(1.0F).lootFrom(BEEPER_HEAD).pushReaction(PushReaction.DESTROY)));
 	public static final RegistryObject<Block> PEEPER_HEAD = Technologica.BLOCKS.register("peeper_head", () -> new TechnologicaSkullBlock(TechnologicaSkullBlock.Types.PEEPER, BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.CREEPER).strength(1.0F).pushReaction(PushReaction.DESTROY)));
+	public static final RegistryObject<Block> PEEPER_WALL_HEAD = Technologica.BLOCKS.register("peeper_wall_head", () -> new TechnologicaWallSkullBlock(TechnologicaSkullBlock.Types.PEEPER, BlockBehaviour.Properties.of().strength(1.0F).lootFrom(PEEPER_HEAD).pushReaction(PushReaction.DESTROY)));
 	public static final RegistryObject<Block> SLEEPER_HEAD = Technologica.BLOCKS.register("sleeper_head", () -> new TechnologicaSkullBlock(TechnologicaSkullBlock.Types.SLEEPER, BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.CREEPER).strength(1.0F).pushReaction(PushReaction.DESTROY)));
+	public static final RegistryObject<Block> SLEEPER_WALL_HEAD = Technologica.BLOCKS.register("sleeper_wall_head", () -> new TechnologicaWallSkullBlock(TechnologicaSkullBlock.Types.SLEEPER, BlockBehaviour.Properties.of().strength(1.0F).lootFrom(SLEEPER_HEAD).pushReaction(PushReaction.DESTROY)));
 	public static final RegistryObject<Block> SWEEPER_HEAD = Technologica.BLOCKS.register("sweeper_head", () -> new TechnologicaSkullBlock(TechnologicaSkullBlock.Types.SWEEPER, BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.CREEPER).strength(1.0F).pushReaction(PushReaction.DESTROY)));
+	public static final RegistryObject<Block> SWEEPER_WALL_HEAD = Technologica.BLOCKS.register("sweeper_wall_head", () -> new TechnologicaWallSkullBlock(TechnologicaSkullBlock.Types.SWEEPER, BlockBehaviour.Properties.of().strength(1.0F).lootFrom(SWEEPER_HEAD).pushReaction(PushReaction.DESTROY)));
 	public static final RegistryObject<Block> WEEPER_HEAD = Technologica.BLOCKS.register("weeper_head", () -> new TechnologicaSkullBlock(TechnologicaSkullBlock.Types.WEEPER, BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.CREEPER).strength(1.0F).pushReaction(PushReaction.DESTROY)));
+	public static final RegistryObject<Block> WEEPER_WALL_HEAD = Technologica.BLOCKS.register("weeper_wall_head", () -> new TechnologicaWallSkullBlock(TechnologicaSkullBlock.Types.WEEPER, BlockBehaviour.Properties.of().strength(1.0F).lootFrom(WEEPER_HEAD).pushReaction(PushReaction.DESTROY)));
+
 	public static final RegistryObject<Block> BARNACLE = Technologica.BLOCKS.register("barnacle", () -> new SeaPickleBlock(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).sound(SoundType.CALCITE).noOcclusion().pushReaction(PushReaction.DESTROY)));
+
 	public static final RegistryObject<Block> SALT = Technologica.BLOCKS.register("salt", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F)));
 	public static final RegistryObject<Block> LITHIUM_CLAY = Technologica.BLOCKS.register("lithium_clay", () -> new Block(BlockBehaviour.Properties.of().strength(0.6F).sound(SoundType.GRAVEL)));
 	public static final RegistryObject<Block> OILY_COARSE_DIRT = Technologica.BLOCKS.register("oily_coarse_dirt", () -> new OilyBlock(BlockBehaviour.Properties.of().strength(0.6F).sound(SoundType.GRAVEL)));

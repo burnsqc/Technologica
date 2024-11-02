@@ -17,7 +17,7 @@ public class LineShaftBlockEntity extends BlockEntity {
 	private float torque = 0;
 
 	public LineShaftBlockEntity(BlockPos p_155700_, BlockState p_155701_) {
-		super(TechnologicaBlockEntityTypes.LINE_SHAFT_TILE.get(), p_155700_, p_155701_);
+		super(TechnologicaBlockEntityTypes.LINE_SHAFT.get(), p_155700_, p_155701_);
 	}
 
 	@Override

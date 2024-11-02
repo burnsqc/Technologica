@@ -177,7 +177,7 @@ public class Technologica {
 
 	public static final DeferredRegister<Attribute> ATTRIBUTES = MASTER_DEFERRED_REGISTRAR.addRegister(ForgeRegistries.Keys.ATTRIBUTES, () -> TechnologicaAttributes.DIVER);
 	public static final DeferredRegister<Block> BLOCKS = MASTER_DEFERRED_REGISTRAR.addRegister(ForgeRegistries.Keys.BLOCKS, () -> TechnologicaBlocks.ACACIA_BOOKSHELF);
-	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = MASTER_DEFERRED_REGISTRAR.addRegister(ForgeRegistries.Keys.BLOCK_ENTITY_TYPES, () -> TechnologicaBlockEntityTypes.ANNUNCIATOR_TILE);
+	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = MASTER_DEFERRED_REGISTRAR.addRegister(ForgeRegistries.Keys.BLOCK_ENTITY_TYPES, () -> TechnologicaBlockEntityTypes.ANNUNCIATOR);
 	public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = MASTER_DEFERRED_REGISTRAR.addRegister(Registries.CREATIVE_MODE_TAB, () -> TechnologicaCreativeModeTabs.ARMORY);
 	public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = MASTER_DEFERRED_REGISTRAR.addRegister(ForgeRegistries.Keys.ENTITY_TYPES, () -> TechnologicaEntityTypes.ALLIGATOR);
 	public static final DeferredRegister<Feature<?>> FEATURES = MASTER_DEFERRED_REGISTRAR.addRegister(ForgeRegistries.Keys.FEATURES, () -> TechnologicaFeatures.AQUAMARINE_DECORATED_ORE);
@@ -246,8 +246,8 @@ public class Technologica {
 		MASTER_SETUP_EXECUTOR.addToVillageFarmerTrades(() -> TechnologicaVillageTrades.TRADES_FARMER);
 		MASTER_SETUP_EXECUTOR.addToVillagerWantedItems(() -> TechnologicaVillagerWantedItems.WANTED_ITEMS);
 		MASTER_SETUP_EXECUTOR.addToWanderingTraderGenericTrades(() -> TechnologicaWanderingTraderTrades.WANDERING_TRADER_TRADES_GENERIC);
-		MASTER_SETUP_EXECUTOR.addSkullModels(() -> TechnologicaSkullBlockRenderer.createSkullRenderers());
-		MASTER_SETUP_EXECUTOR.addLayerDefinitions(() -> TechnologicaLayerDefinitions.createRoots());
+		MASTER_SETUP_EXECUTOR.addSkullModels(() -> TechnologicaSkullBlockRenderer.SKULL_RENDERERS);
+		MASTER_SETUP_EXECUTOR.addLayerDefinitions(() -> TechnologicaLayerDefinitions.ROOTS);
 		MASTER_SETUP_EXECUTOR.registerEntityRenderers(() -> TechnologicaEntityRenderers.PROVIDERS);
 		MASTER_SETUP_EXECUTOR.registerBlockEntityRenderers(() -> TechnologicaBlockEntityRenderers.PROVIDERS);
 		MASTER_SETUP_EXECUTOR.registerAdditionalModels(() -> AdditionalModels.MODELS);

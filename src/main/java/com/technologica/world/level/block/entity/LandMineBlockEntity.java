@@ -3,11 +3,15 @@ package com.technologica.world.level.block.entity;
 import com.technologica.registration.deferred.TechnologicaBlockEntityTypes;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -18,7 +22,7 @@ public class LandMineBlockEntity extends BlockEntity {
 	private boolean isArmed = false;
 
 	public LandMineBlockEntity(BlockPos p_155700_, BlockState p_155701_) {
-		super(TechnologicaBlockEntityTypes.LAND_MINE_TILE.get(), p_155700_, p_155701_);
+		super(TechnologicaBlockEntityTypes.LAND_MINE.get(), p_155700_, p_155701_);
 	}
 
 	public BlockState getPreviousBlockState() {
@@ -64,22 +68,24 @@ public class LandMineBlockEntity extends BlockEntity {
 	public void serverTick() {
 		if (isArmed) {
 			if (this.level.getEntities(null, new AABB(this.getBlockPos()).expandTowards(0.0D, 1.0D, 0.0D)).isEmpty()) {
-				level.explode(null, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), 4.0F, Level.ExplosionInteraction.TNT);
+				level.explode(null, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), 2.0F, Level.ExplosionInteraction.TNT);
 			}
 		}
 	}
 
 	@Override
-	public void load(CompoundTag nbt) {
-		super.load(nbt);
-		if (nbt.contains("previousState")) {
-			this.setPreviousBlockState(NbtUtils.readBlockState(null, nbt.getCompound("previousState")));
+	public void load(CompoundTag compoundTag) {
+		super.load(compoundTag);
+		@SuppressWarnings("deprecation")
+		HolderGetter<Block> holdergetter = this.level != null ? this.level.holderLookup(Registries.BLOCK) : BuiltInRegistries.BLOCK.asLookup();
+		if (compoundTag.contains("previousState")) {
+			this.setPreviousBlockState(NbtUtils.readBlockState(holdergetter, compoundTag.getCompound("previousState")));
 		}
 	}
 
 	@Override
-	public void saveAdditional(CompoundTag compound) {
-		super.saveAdditional(compound);
-		compound.put("previousState", NbtUtils.writeBlockState(getPreviousBlockState()));
+	public void saveAdditional(CompoundTag compoundTag) {
+		super.saveAdditional(compoundTag);
+		compoundTag.put("previousState", NbtUtils.writeBlockState(getPreviousBlockState()));
 	}
 }

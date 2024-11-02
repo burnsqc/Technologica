@@ -73,7 +73,7 @@ public class AtomicCreeper extends Monster implements PowerableMob {
 		this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
 	}
 
-	public static AttributeSupplier.Builder registerAttributes() {
+	public static AttributeSupplier.Builder createAttributes() {
 		return Monster.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, 0.25D);
 	}
 

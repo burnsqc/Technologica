@@ -2,7 +2,7 @@ package com.technologica.world.entity.ai.attributes;
 
 import java.util.Map;
 
-import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Maps;
 import com.technologica.registration.deferred.TechnologicaEntityTypes;
 import com.technologica.world.entity.animal.Alligator;
 import com.technologica.world.entity.animal.Beaver;
@@ -55,5 +55,57 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.animal.AbstractFish;
 
 public class TechnologicaDefaultAttributes {
-	public static final Map<EntityType<? extends LivingEntity>, AttributeSupplier> SUPPLIERS = ImmutableMap.<EntityType<? extends LivingEntity>, AttributeSupplier>builder().put(TechnologicaEntityTypes.ALLIGATOR.get(), Alligator.createAttributes().build()).put(TechnologicaEntityTypes.BEAVER.get(), Beaver.createAttributes().build()).put(TechnologicaEntityTypes.BUFFALO.get(), Buffalo.createAttributes().build()).put(TechnologicaEntityTypes.COBRA.get(), Cobra.createAttributes().build()).put(TechnologicaEntityTypes.COTTONMOUTH.get(), Cottonmouth.createAttributes().build()).put(TechnologicaEntityTypes.COYOTE.get(), Coyote.createAttributes().build()).put(TechnologicaEntityTypes.CRAB.get(), Crab.createAttributes().build()).put(TechnologicaEntityTypes.DEER.get(), Deer.createAttributes().build()).put(TechnologicaEntityTypes.DUCK.get(), Duck.createAttributes().build()).put(TechnologicaEntityTypes.ELEPHANT.get(), Elephant.createAttributes().build()).put(TechnologicaEntityTypes.FLAMINGO.get(), Flamingo.createAttributes().build()).put(TechnologicaEntityTypes.FIGURE_EIGHT_PUFFERFISH.get(), AbstractFish.createAttributes().build()).put(TechnologicaEntityTypes.GIRAFFE.get(), Giraffe.createBaseHorseAttributes().build()).put(TechnologicaEntityTypes.GORILLA.get(), Gorilla.registerAttributes().build()).put(TechnologicaEntityTypes.GRIZZLY_BEAR.get(), GrizzlyBear.createAttributes().build()).put(TechnologicaEntityTypes.JAGUAR.get(), Jaguar.createAttributes().build()).put(TechnologicaEntityTypes.KING_CRAB.get(), KingCrab.registerAttributes().build()).put(TechnologicaEntityTypes.LEOPARD_SEAL.get(), LeopardSeal.createAttributes().build()).put(TechnologicaEntityTypes.LION.get(), Lion.createAttributes().build()).put(TechnologicaEntityTypes.LIZARD.get(), Lizard.registerAttributes().build()).put(TechnologicaEntityTypes.MOOSE.get(), Moose.registerAttributes().build()).put(TechnologicaEntityTypes.NARWHAL.get(), Narwhal.createAttributes().build()).put(TechnologicaEntityTypes.OCTOPUS.get(), Octopus.registerAttributes().build()).put(TechnologicaEntityTypes.OSTRICH.get(), Ostrich.createBaseHorseAttributes().build()).put(TechnologicaEntityTypes.OWL.get(), Owl.registerAttributes().build()).put(TechnologicaEntityTypes.PENGUIN.get(), Penguin.registerAttributes().build()).put(TechnologicaEntityTypes.PIRANHA.get(), Piranha.createAttributes().build()).put(TechnologicaEntityTypes.POISON_DART_FROG.get(), PoisonDartFrog.createAttributes().build()).put(TechnologicaEntityTypes.RACCOON.get(), Raccoon.registerAttributes().build()).put(TechnologicaEntityTypes.SCORPION.get(), Scorpion.createAttributes().build()).put(TechnologicaEntityTypes.SHARK.get(), Shark.registerAttributes().build()).put(TechnologicaEntityTypes.SLOTH.get(), Sloth.registerAttributes().build()).put(TechnologicaEntityTypes.STINGRAY.get(), Stingray.registerAttributes().build()).put(TechnologicaEntityTypes.TURKEY.get(), Turkey.createAttributes().build()).put(TechnologicaEntityTypes.VULTURE.get(), Vulture.registerAttributes().build()).put(TechnologicaEntityTypes.WALRUS.get(), Walrus.registerAttributes().build()).put(TechnologicaEntityTypes.ZEBRA.get(), Zebra.createBaseHorseAttributes().build()).put(TechnologicaEntityTypes.ATOMIC_CREEPER.get(), AtomicCreeper.registerAttributes().build()).put(TechnologicaEntityTypes.MUMMY.get(), Mummy.registerAttributes().build()).put(TechnologicaEntityTypes.PEEPER.get(), Peeper.registerAttributes().build()).put(TechnologicaEntityTypes.BEEPER.get(), Beeper.registerAttributes().build()).put(TechnologicaEntityTypes.SLEEPER.get(), Sleeper.registerAttributes().build()).put(TechnologicaEntityTypes.WEEPER.get(), Weeper.registerAttributes().build()).put(TechnologicaEntityTypes.SWEEPER.get(), Sweeper.registerAttributes().build()).put(TechnologicaEntityTypes.DUST_DEVIL.get(), DustDevil.registerAttributes().build()).build();
+	public static final Map<EntityType<? extends LivingEntity>, AttributeSupplier> SUPPLIERS = Maps.newHashMap();
+
+	static {
+		register(TechnologicaEntityTypes.ALLIGATOR.get(), Alligator.createAttributes().build());
+		register(TechnologicaEntityTypes.BEAVER.get(), Beaver.createAttributes().build());
+		register(TechnologicaEntityTypes.BUFFALO.get(), Buffalo.createAttributes().build());
+		register(TechnologicaEntityTypes.COBRA.get(), Cobra.createAttributes().build());
+		register(TechnologicaEntityTypes.COTTONMOUTH.get(), Cottonmouth.createAttributes().build());
+		register(TechnologicaEntityTypes.COYOTE.get(), Coyote.createAttributes().build());
+		register(TechnologicaEntityTypes.CRAB.get(), Crab.createAttributes().build());
+		register(TechnologicaEntityTypes.DEER.get(), Deer.createAttributes().build());
+		register(TechnologicaEntityTypes.DUCK.get(), Duck.createAttributes().build());
+		register(TechnologicaEntityTypes.ELEPHANT.get(), Elephant.createAttributes().build());
+		register(TechnologicaEntityTypes.FLAMINGO.get(), Flamingo.createAttributes().build());
+		register(TechnologicaEntityTypes.FIGURE_EIGHT_PUFFERFISH.get(), AbstractFish.createAttributes().build());
+		register(TechnologicaEntityTypes.GIRAFFE.get(), Giraffe.createBaseHorseAttributes().build());
+		register(TechnologicaEntityTypes.GORILLA.get(), Gorilla.createAttributes().build());
+		register(TechnologicaEntityTypes.GRIZZLY_BEAR.get(), GrizzlyBear.createAttributes().build());
+		register(TechnologicaEntityTypes.JAGUAR.get(), Jaguar.createAttributes().build());
+		register(TechnologicaEntityTypes.KING_CRAB.get(), KingCrab.createAttributes().build());
+		register(TechnologicaEntityTypes.LEOPARD_SEAL.get(), LeopardSeal.createAttributes().build());
+		register(TechnologicaEntityTypes.LION.get(), Lion.createAttributes().build());
+		register(TechnologicaEntityTypes.LIZARD.get(), Lizard.createAttributes().build());
+		register(TechnologicaEntityTypes.MOOSE.get(), Moose.createAttributes().build());
+		register(TechnologicaEntityTypes.NARWHAL.get(), Narwhal.createAttributes().build());
+		register(TechnologicaEntityTypes.OCTOPUS.get(), Octopus.createAttributes().build());
+		register(TechnologicaEntityTypes.OSTRICH.get(), Ostrich.createBaseHorseAttributes().build());
+		register(TechnologicaEntityTypes.OWL.get(), Owl.createAttributes().build());
+		register(TechnologicaEntityTypes.PENGUIN.get(), Penguin.createAttributes().build());
+		register(TechnologicaEntityTypes.PIRANHA.get(), Piranha.createAttributes().build());
+		register(TechnologicaEntityTypes.POISON_DART_FROG.get(), PoisonDartFrog.createAttributes().build());
+		register(TechnologicaEntityTypes.RACCOON.get(), Raccoon.createAttributes().build());
+		register(TechnologicaEntityTypes.SCORPION.get(), Scorpion.createAttributes().build());
+		register(TechnologicaEntityTypes.SHARK.get(), Shark.createAttributes().build());
+		register(TechnologicaEntityTypes.SLOTH.get(), Sloth.createAttributes().build());
+		register(TechnologicaEntityTypes.STINGRAY.get(), Stingray.createAttributes().build());
+		register(TechnologicaEntityTypes.TURKEY.get(), Turkey.createAttributes().build());
+		register(TechnologicaEntityTypes.VULTURE.get(), Vulture.createAttributes().build());
+		register(TechnologicaEntityTypes.WALRUS.get(), Walrus.createAttributes().build());
+		register(TechnologicaEntityTypes.ZEBRA.get(), Zebra.createBaseHorseAttributes().build());
+		register(TechnologicaEntityTypes.ATOMIC_CREEPER.get(), AtomicCreeper.createAttributes().build());
+		register(TechnologicaEntityTypes.BEEPER.get(), Beeper.registerAttributes().build());
+		register(TechnologicaEntityTypes.DUST_DEVIL.get(), DustDevil.registerAttributes().build());
+		register(TechnologicaEntityTypes.MUMMY.get(), Mummy.createAttributes().build());
+		register(TechnologicaEntityTypes.PEEPER.get(), Peeper.registerAttributes().build());
+		register(TechnologicaEntityTypes.SLEEPER.get(), Sleeper.registerAttributes().build());
+		register(TechnologicaEntityTypes.SWEEPER.get(), Sweeper.registerAttributes().build());
+		register(TechnologicaEntityTypes.WEEPER.get(), Weeper.registerAttributes().build());
+	}
+
+	private static void register(EntityType<? extends LivingEntity> entity, AttributeSupplier renderer) {
+		SUPPLIERS.put(entity, renderer);
+	}
 }
