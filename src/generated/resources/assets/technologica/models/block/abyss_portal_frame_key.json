@@ -1,0 +1,10 @@
+{
+  "parent": "technologica:block/abyss_portal_frame_key_model",
+  "textures": {
+    "back": "technologica:block/abyss_portal_frame_back",
+    "end": "technologica:block/abyss_portal_frame_end",
+    "front": "technologica:block/abyss_portal_frame_front",
+    "key": "technologica:block/abyss_portal_frame_key",
+    "side": "technologica:block/abyss_portal_frame_side"
+  }
+}

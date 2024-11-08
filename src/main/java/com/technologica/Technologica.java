@@ -43,6 +43,7 @@ import com.technologica.registration.deferred.TechnologicaMobEffects;
 import com.technologica.registration.deferred.TechnologicaPaintingVariants;
 import com.technologica.registration.deferred.TechnologicaParticleTypes;
 import com.technologica.registration.deferred.TechnologicaPlacementModifierTypes;
+import com.technologica.registration.deferred.TechnologicaPOITypes;
 import com.technologica.registration.deferred.TechnologicaPoisonDartFrogVariant;
 import com.technologica.registration.deferred.TechnologicaRecipeSerializers;
 import com.technologica.registration.deferred.TechnologicaRecipeTypes;
@@ -123,6 +124,7 @@ import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.entity.animal.FrogVariant;
 import net.minecraft.world.entity.decoration.PaintingVariant;
 import net.minecraft.world.inventory.MenuType;
@@ -173,7 +175,7 @@ public class Technologica {
 	private static final MasterDeferredRegistrar MASTER_DEFERRED_REGISTRAR = new MasterDeferredRegistrar(MOD_ID);
 	private static final MasterDynamicRegistrar MASTER_DYNAMIC_REGISTRAR = new MasterDynamicRegistrar(MOD_ID);
 	private static final MasterSetupExecutor MASTER_SETUP_EXECUTOR = new MasterSetupExecutor(MOD_ID);
-	private static final MasterResourceGenerator MASTER_RESOURCE_GENERATOR = new MasterResourceGenerator(MOD_ID);
+	public static final MasterResourceGenerator MASTER_RESOURCE_GENERATOR = new MasterResourceGenerator(MOD_ID);
 
 	public static final DeferredRegister<Attribute> ATTRIBUTES = MASTER_DEFERRED_REGISTRAR.addRegister(ForgeRegistries.Keys.ATTRIBUTES, () -> TechnologicaAttributes.DIVER);
 	public static final DeferredRegister<Block> BLOCKS = MASTER_DEFERRED_REGISTRAR.addRegister(ForgeRegistries.Keys.BLOCKS, () -> TechnologicaBlocks.ACACIA_BOOKSHELF);
@@ -191,6 +193,7 @@ public class Technologica {
 	public static final DeferredRegister<PaintingVariant> PAINTING_VARIANTS = MASTER_DEFERRED_REGISTRAR.addRegister(ForgeRegistries.Keys.PAINTING_VARIANTS, () -> TechnologicaPaintingVariants.AMNESIA);
 	public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = MASTER_DEFERRED_REGISTRAR.addRegister(ForgeRegistries.Keys.PARTICLE_TYPES, () -> TechnologicaParticleTypes.DRIPPING_BRINE);
 	public static final DeferredRegister<PlacementModifierType<?>> PLACEMENT_MODIFIER_TYPES = MASTER_DEFERRED_REGISTRAR.addRegister(Registries.PLACEMENT_MODIFIER_TYPE, () -> TechnologicaPlacementModifierTypes.BOUNDED_HEIGHTMAP);
+	public static final DeferredRegister<PoiType> POINT_OF_INTEREST_TYPES = MASTER_DEFERRED_REGISTRAR.addRegister(ForgeRegistries.Keys.POI_TYPES, () -> TechnologicaPOITypes.ABYSS_PORTAL);
 	public static final DeferredRegister<FrogVariant> POSION_DART_FROG_VARIANTS = MASTER_DEFERRED_REGISTRAR.addRegister(Registries.FROG_VARIANT, () -> TechnologicaPoisonDartFrogVariant.BLUE);
 	public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = MASTER_DEFERRED_REGISTRAR.addRegister(ForgeRegistries.Keys.RECIPE_SERIALIZERS, () -> TechnologicaRecipeSerializers.SAWMILL);
 	public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = MASTER_DEFERRED_REGISTRAR.addRegister(ForgeRegistries.Keys.RECIPE_TYPES, () -> TechnologicaRecipeTypes.SAWMILL);

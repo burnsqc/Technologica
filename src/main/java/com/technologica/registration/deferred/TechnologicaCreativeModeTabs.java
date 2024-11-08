@@ -1231,5 +1231,7 @@ public final class TechnologicaCreativeModeTabs {
 		items.accept(TechnologicaItems.IGNITION_OF_COMBUSTION.get());
 		items.accept(TechnologicaItems.EXCITATION_OF_STRIKE.get());
 		items.accept(TechnologicaItems.SUBMERSION_OF_SUPPRESSION.get());
+		items.accept(TechnologicaItems.SKELETON_KEY.get());
+		items.accept(TechnologicaItems.ABYSS_PORTAL_FRAME.get());
 	}).build());
 }

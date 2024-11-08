@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,key=false": {
+      "model": "technologica:block/abyss_portal_frame",
+      "y": 270
+    },
+    "facing=east,key=true": {
+      "model": "technologica:block/abyss_portal_frame_key",
+      "y": 270
+    },
+    "facing=north,key=false": {
+      "model": "technologica:block/abyss_portal_frame",
+      "y": 180
+    },
+    "facing=north,key=true": {
+      "model": "technologica:block/abyss_portal_frame_key",
+      "y": 180
+    },
+    "facing=south,key=false": {
+      "model": "technologica:block/abyss_portal_frame"
+    },
+    "facing=south,key=true": {
+      "model": "technologica:block/abyss_portal_frame_key"
+    },
+    "facing=west,key=false": {
+      "model": "technologica:block/abyss_portal_frame",
+      "y": 90
+    },
+    "facing=west,key=true": {
+      "model": "technologica:block/abyss_portal_frame_key",
+      "y": 90
+    }
+  }
+}

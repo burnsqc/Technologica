@@ -28,6 +28,7 @@ public final class TechnologicaBlockEntityRenderers {
 		register(TechnologicaBlockEntityTypes.WINDMILL.get(), WindmillRenderer::new);
 		register(TechnologicaBlockEntityTypes.LAND_MINE.get(), LandMineRenderer::new);
 		register(TechnologicaBlockEntityTypes.SKULL.get(), SkullBlockRenderer::new);
+		register(TechnologicaBlockEntityTypes.ABYSS_PORTAL.get(), AbyssPortalRenderer::new);
 	}
 
 	@SuppressWarnings("unchecked")

@@ -5,6 +5,7 @@ import com.technologica.util.MiddleEnd;
 import com.technologica.util.Radius;
 
 import net.minecraft.core.Direction;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
@@ -15,4 +16,5 @@ public class TechnologicaBlockStateProperties {
 	public static final EnumProperty<MiddleEnd> MIDDLE_END = EnumProperty.create("middle_end", MiddleEnd.class);
 	public static final EnumProperty<AnnunciatorOverlay> ANNUNCIATOR_OVERLAY = EnumProperty.create("annunciator_overlay", AnnunciatorOverlay.class);
 	public static final IntegerProperty LEVEL_BASIN = IntegerProperty.create("level", 1, 16);
+	public static final BooleanProperty KEY = BooleanProperty.create("key");
 }

@@ -25,6 +25,7 @@ import com.technologica.world.item.PulleyBeltItem;
 import com.technologica.world.item.RadioactiveItem;
 import com.technologica.world.item.RocketItem;
 import com.technologica.world.item.SawItem;
+import com.technologica.world.item.SkeletonKeyItem;
 import com.technologica.world.item.SleepingBagItem;
 import com.technologica.world.item.SpearGunItem;
 import com.technologica.world.item.SubmersibleItem;
@@ -1269,4 +1270,6 @@ public final class TechnologicaItems {
 	public static final RegistryObject<Item> IGNITION_OF_COMBUSTION = Technologica.ITEMS.register("ignition_of_combustion", () -> new Ignition(new Item.Properties(), "ignition_of_combustion"));
 	public static final RegistryObject<Item> SUBMERSION_OF_SUPPRESSION = Technologica.ITEMS.register("submersion_of_suppression", () -> new Submersion(new Item.Properties(), "submersion_of_suppression"));
 	public static final RegistryObject<Item> SUBMERSIBLE = Technologica.ITEMS.register("submersible", () -> new SubmersibleItem(new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item> SKELETON_KEY = Technologica.ITEMS.register("skeleton_key", () -> new SkeletonKeyItem(new Item.Properties()));
+	public static final RegistryObject<Item> ABYSS_PORTAL_FRAME = Technologica.ITEMS.register("abyss_portal_frame", () -> new BlockItem(TechnologicaBlocks.ABYSS_PORTAL_FRAME.get(), (new Item.Properties())));
 }
