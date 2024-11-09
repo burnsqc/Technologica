@@ -45,7 +45,7 @@ public class AbyssPortalBlock extends BaseEntityBlock {
 	@Override
 	public void entityInside(BlockState blockState, Level level, BlockPos blockPos, Entity entity) {
 		if (level instanceof ServerLevel && entity.canChangeDimensions() && Shapes.joinIsNotEmpty(Shapes.create(entity.getBoundingBox().move((-blockPos.getX()), (-blockPos.getY()), (-blockPos.getZ()))), blockState.getShape(level, blockPos), BooleanOp.AND)) {
-			ResourceKey<Level> resourcekey = level.dimension() == Registries.levelStemToLevel(TechnologicaDimensions.CHALLENGER_DEEP_STEM) ? Level.OVERWORLD : Registries.levelStemToLevel(TechnologicaDimensions.CHALLENGER_DEEP_STEM);
+			ResourceKey<Level> resourcekey = level.dimension() == Registries.levelStemToLevel(TechnologicaDimensions.ABYSS_STEM) ? Level.OVERWORLD : Registries.levelStemToLevel(TechnologicaDimensions.ABYSS_STEM);
 			ServerLevel serverLevel = ((ServerLevel) level).getServer().getLevel(resourcekey);
 			if (serverLevel == null) {
 				return;

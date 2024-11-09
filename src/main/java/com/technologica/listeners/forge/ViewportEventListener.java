@@ -29,7 +29,7 @@ public class ViewportEventListener {
 
 	@SubscribeEvent
 	public static void onComputeFogColor(final ViewportEvent.ComputeFogColor event) {
-		if (event.getCamera().getEntity().level().dimension().equals(TechnologicaDimensions.CHALLENGER_DEEP_STEM)) {
+		if (event.getCamera().getEntity().level().dimension().equals(TechnologicaDimensions.ABYSS_STEM)) {
 			if (event.getCamera().getFluidInCamera() == FogType.WATER) {
 				if (event.getCamera().getEntity().level().getBiome(event.getCamera().getBlockPosition()).is(TechnologicaBiomes.NAVAL_GRAVEYARD)) {
 					event.setRed(Mth.lerp(0.001F, oRed, event.getRed() * 0.05F));

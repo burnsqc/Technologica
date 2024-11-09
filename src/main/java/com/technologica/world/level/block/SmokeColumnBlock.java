@@ -49,7 +49,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
  * <p>
  * Changed {@link SmokeColumnBlock#animateTick} to spawn {@link TechnologicaParticleTypes#SMOKE_COLUMN_UP} and use sound event {@link SoundEvents#CANDLE_EXTINGUISH}.
  * </ul>
- * This class was created to add functionality to the {@link TechnologicaBlocks#MOLTEN_CORE} block primarily when it spawns as part of the {@link TechnologicaFeatures#HYDROTHERMAL_VENT} feature in the {@link TechnologicaBiomes#HYDROTHERMAL_CAVERN} biome of the {@link TechnologicaDimensions#CHALLENGER_DEEP_STEM} dimension.
+ * This class was created to add functionality to the {@link TechnologicaBlocks#MOLTEN_CORE} block primarily when it spawns as part of the {@link TechnologicaFeatures#HYDROTHERMAL_VENT} feature in the {@link TechnologicaBiomes#HYDROTHERMAL_CAVERN} biome of the {@link TechnologicaDimensions#ABYSS_STEM} dimension.
  * 
  * @tl.status BLUE
  */

@@ -69,7 +69,7 @@ public class AbyssPortal implements ITeleporter {
 	protected PortalInfo findDimensionEntryPoint(ServerLevel destinationLevel) {
 		PortalInfo portalinfo = superfindDimensionEntryPoint(destinationLevel);
 		if (portalinfo != null) {
-			if (sourceLevel.dimension() == Level.OVERWORLD && destinationLevel.dimension() == Registries.levelStemToLevel(TechnologicaDimensions.CHALLENGER_DEEP_STEM)) {
+			if (sourceLevel.dimension() == Level.OVERWORLD && destinationLevel.dimension() == Registries.levelStemToLevel(TechnologicaDimensions.ABYSS_STEM)) {
 				Vec3 vec3 = portalinfo.pos.add(0.0D, 10.0D, 0.0D);
 				return new PortalInfo(vec3, Vec3.ZERO, 90.0F, 0.0F);
 			} else {
@@ -87,7 +87,7 @@ public class AbyssPortal implements ITeleporter {
 
 	@Nullable
 	protected PortalInfo superfindDimensionEntryPoint(ServerLevel destinationLevel) {
-		boolean isGoingToAbyss = destinationLevel.dimension() == Registries.levelStemToLevel(TechnologicaDimensions.CHALLENGER_DEEP_STEM);
+		boolean isGoingToAbyss = destinationLevel.dimension() == Registries.levelStemToLevel(TechnologicaDimensions.ABYSS_STEM);
 		// if (sourceLevel.dimension() != Registries.levelStemToLevel(TechnologicaDimensions.CHALLENGER_DEEP_STEM) && !isGoingToAbyss) {
 		// return null;
 		// } else {

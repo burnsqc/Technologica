@@ -13,11 +13,11 @@ import net.minecraft.world.phys.Vec3;
 public abstract class TechnologicaDimensionSpecialEffects {
 	public static final Object2ObjectMap<ResourceLocation, DimensionSpecialEffects> EFFECTS = Util.make(new Object2ObjectArrayMap<>(), (map) -> {
 		map.put(TechnologicaDimensionTypes.MOON_EFFECTS, new MoonRenderer(Technologica.getInstance()));
-		map.put(TechnologicaDimensionTypes.CHALLENGER_DEEP_EFFECTS, new ChallengerDeepEffects());
+		map.put(TechnologicaDimensionTypes.ABYSS_EFFECTS, new AbyssEffects());
 	});
 
-	public static class ChallengerDeepEffects extends DimensionSpecialEffects {
-		public ChallengerDeepEffects() {
+	public static class AbyssEffects extends DimensionSpecialEffects {
+		public AbyssEffects() {
 			super(Float.NaN, true, DimensionSpecialEffects.SkyType.NONE, false, false);
 		}
 
