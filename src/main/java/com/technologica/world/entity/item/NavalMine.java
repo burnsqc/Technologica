@@ -17,18 +17,18 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MoverType;
+import net.minecraft.world.entity.animal.WaterAnimal;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 
 public class NavalMine extends Entity {
-	private static final EntityDataAccessor<Integer> FUSE = SynchedEntityData.defineId(NavalMine.class, EntityDataSerializers.INT);
-	private static final EntityDataAccessor<Boolean> DETONATE = SynchedEntityData.defineId(NavalMine.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Integer> CHAINS = SynchedEntityData.defineId(NavalMine.class, EntityDataSerializers.INT);
-	private int armingFuse = 100;
+	private static final EntityDataAccessor<Boolean> ASCENDING = SynchedEntityData.defineId(NavalMine.class, EntityDataSerializers.BOOLEAN);
+	private boolean ascending = false;
 	private boolean detonate = false;
-	private int chains;
+	private int armingFuse = 100;
+	public int chains;
 
 	public NavalMine(EntityType<? extends NavalMine> type, Level worldIn) {
 		super(type, worldIn);
@@ -38,8 +38,8 @@ public class NavalMine extends Entity {
 	public NavalMine(Level worldIn, double x, double y, double z, int chains) {
 		this(TechnologicaEntityTypes.NAVAL_MINE.get(), worldIn);
 		this.setPos(x, y, z);
-		this.setFuse(100);
-		this.setChains(chains);
+		this.armingFuse = 100;
+		this.chains = chains;
 		this.xo = x;
 		this.yo = y;
 		this.zo = z;
@@ -47,9 +47,7 @@ public class NavalMine extends Entity {
 
 	@Override
 	protected void defineSynchedData() {
-		this.entityData.define(FUSE, 100);
-		this.entityData.define(DETONATE, false);
-		this.entityData.define(CHAINS, chains);
+		this.entityData.define(ASCENDING, false);
 	}
 
 	@Override
@@ -64,52 +62,77 @@ public class NavalMine extends Entity {
 
 	@Override
 	public void tick() {
-		if (getDetonate()) {
-			discard();
-			if (!level().isClientSide) {
+		Level level = this.level();
+		if (!level.isClientSide) {
+			if (detonate) {
+				discard();
 				explode();
 				if (level().getBlockState(blockPosition()).getBlock() instanceof NavalMineChainBlock chain) {
 					level().scheduleTick(blockPosition(), chain, 1);
 				}
-			}
-
-		} else {
-			if (getFuse() > 0) {
-				--armingFuse;
 			} else {
-				List<Entity> list = level().getEntities(this, getBoundingBox().inflate(0.2F, 0.2F, 0.2F));
-				for (Entity entity : list) {
-					if (!(entity instanceof ItemEntity)) {
-						// double check this, maybe exclude things
-						setDetonate(true);
+				if (armingFuse > 0) {
+					--armingFuse;
+				} else {
+					List<Entity> list = level().getEntities(this, getBoundingBox().inflate(0.2F, 0.2F, 0.2F));
+					for (Entity entity : list) {
+						if (!(entity instanceof ItemEntity) && !(entity instanceof WaterAnimal)) {
+							this.detonate = true;
+						}
 					}
 				}
 			}
-		}
 
-		// out of chains but free floating
-		if (this.getChains() == 0 && !(level().getBlockState(this.blockPosition()).getBlock() instanceof NavalMineChainBlock) && level().getBlockState(this.blockPosition().above()).getFluidState().is(FluidTags.WATER)) {
-			Vec3 vector3d = this.getDeltaMovement().add(0.0D, 0.1D, 0.0D);
-			this.move(MoverType.SELF, vector3d);
-		}
+			/*
+			 * Ascension logic
+			 */
+			boolean waterAbove = level().getBlockState(this.blockPosition().above().above()).getFluidState().is(FluidTags.WATER);
+			boolean chainIn = level().getBlockState(this.blockPosition()).is(TechnologicaBlocks.NAVAL_MINE_CHAIN.get());
 
-		// has chains and ascending
-		if (this.getChains() > 0 && level().getBlockState(this.blockPosition().above()).getFluidState().is(FluidTags.WATER)) {
-			Vec3 vector3d = this.getDeltaMovement().add(0.0D, 0.1D, 0.0D);
-			this.move(MoverType.SELF, vector3d);
-
-			if (!(level().getBlockState(this.blockPosition()).getBlock() instanceof NavalMineChainBlock)) {
-				level().setBlockAndUpdate(this.blockPosition(), TechnologicaBlocks.NAVAL_MINE_CHAIN.get().defaultBlockState());
-				level().sendBlockUpdated(this.blockPosition(), level().getBlockState(this.blockPosition()), TechnologicaBlocks.NAVAL_MINE_CHAIN.get().defaultBlockState(), 3);
-				this.setChains(this.getChains() - 1);
+			if (waterAbove) {
+				if (this.chains == 0) { // Out of chains
+					if (chainIn) {
+						this.entityData.set(ASCENDING, false);
+					} else {
+						this.entityData.set(ASCENDING, true);
+					}
+				} else { // Has chains
+					this.entityData.set(ASCENDING, true);
+					if (!chainIn) {
+						level().setBlockAndUpdate(this.blockPosition(), TechnologicaBlocks.NAVAL_MINE_CHAIN.get().defaultBlockState());
+						level().sendBlockUpdated(this.blockPosition(), level().getBlockState(this.blockPosition()), TechnologicaBlocks.NAVAL_MINE_CHAIN.get().defaultBlockState(), 3);
+						this.chains--;
+					}
+				}
+			} else {
+				this.entityData.set(ASCENDING, false);
 			}
 		}
 
+		// Render the ascension smoothly for the client in sync with server
+		if (this.ascending) {
+			Vec3 vector3d = this.getDeltaMovement().add(0.0D, 0.1D, 0.0D);
+			this.move(MoverType.SELF, vector3d);
+		} else if (this.position().y < (this.blockPosition().getY() + 0.5)) { // Round out the final position so it stop in the middle of a block. This is preferred so that too much of the mine won't be above water level.
+			Vec3 vector3d = this.getDeltaMovement().add(0.0D, 0.1D, 0.0D);
+			this.move(MoverType.SELF, vector3d);
+		}
+	}
+
+	@Override
+	public void onSyncedDataUpdated(EntityDataAccessor<?> key) {
+		if (ASCENDING.equals(key)) {
+			this.ascending = this.entityData.get(ASCENDING);
+		}
+	}
+
+	public boolean getAscendingDataManager() {
+		return this.entityData.get(ASCENDING);
 	}
 
 	@Override
 	public boolean hurt(DamageSource source, float amount) {
-		this.setDetonate(true);
+		this.detonate = true;
 		return true;
 	}
 
@@ -119,68 +142,16 @@ public class NavalMine extends Entity {
 
 	@Override
 	protected void addAdditionalSaveData(CompoundTag compound) {
-		compound.putShort("Fuse", (short) this.getFuse());
-		compound.putBoolean("Detonate", this.getDetonate());
-		compound.putShort("Chains", (short) this.getChains());
+		compound.putShort("Fuse", (short) this.armingFuse);
+		compound.putBoolean("Detonate", this.detonate);
+		compound.putShort("Chains", (short) this.chains);
 	}
 
 	@Override
 	protected void readAdditionalSaveData(CompoundTag compound) {
-		this.setFuse(compound.getShort("Fuse"));
-		this.setDetonate(compound.getBoolean("Detonate"));
-		this.setChains(compound.getShort("Chains"));
-	}
-
-	public void setFuse(int fuseIn) {
-		this.entityData.set(FUSE, fuseIn);
-		this.armingFuse = fuseIn;
-	}
-
-	public void setDetonate(boolean detonateIn) {
-		this.entityData.set(DETONATE, detonateIn);
-		this.detonate = detonateIn;
-	}
-
-	public void setChains(int chainsIn) {
-		this.entityData.set(CHAINS, chainsIn);
-		this.chains = chainsIn;
-	}
-
-	@Override
-	public void onSyncedDataUpdated(EntityDataAccessor<?> key) {
-		if (FUSE.equals(key)) {
-			this.armingFuse = this.getFuseDataManager();
-		}
-		if (DETONATE.equals(key)) {
-			this.detonate = this.getDetonateDataManager();
-		}
-		if (CHAINS.equals(key)) {
-			this.chains = this.getChainsDataManager();
-		}
-	}
-
-	public int getFuseDataManager() {
-		return this.entityData.get(FUSE);
-	}
-
-	public boolean getDetonateDataManager() {
-		return this.entityData.get(DETONATE);
-	}
-
-	public int getChainsDataManager() {
-		return this.entityData.get(CHAINS);
-	}
-
-	public int getFuse() {
-		return this.armingFuse;
-	}
-
-	public boolean getDetonate() {
-		return this.detonate;
-	}
-
-	public int getChains() {
-		return this.chains;
+		this.armingFuse = compound.getShort("Fuse");
+		this.detonate = compound.getBoolean("Detonate");
+		this.chains = compound.getShort("Chains");
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package com.technologica.world.item;
 import java.util.Objects;
 
 import com.technologica.registration.deferred.TechnologicaEntityTypes;
+import com.technologica.world.entity.item.NavalMine;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -11,8 +12,6 @@ import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -49,8 +48,10 @@ public class NavalMineItem extends Item {
 				blockpos1 = blockpos.relative(direction);
 			}
 
-			EntityType<?> entitytype = TechnologicaEntityTypes.NAVAL_MINE.get();
-			if (entitytype.spawn((ServerLevel) level, itemstack, p_43223_.getPlayer(), blockpos1, MobSpawnType.SPAWN_EGG, true, !Objects.equals(blockpos, blockpos1) && direction == Direction.UP) != null) {
+			NavalMine navalMine = TechnologicaEntityTypes.NAVAL_MINE.get().spawn((ServerLevel) level, itemstack, p_43223_.getPlayer(), blockpos1, MobSpawnType.SPAWN_EGG, true, !Objects.equals(blockpos, blockpos1) && direction == Direction.UP);
+
+			if (navalMine != null) {
+				navalMine.chains = 8;
 				itemstack.shrink(1);
 				level.gameEvent(p_43223_.getPlayer(), GameEvent.ENTITY_PLACE, blockpos);
 			}
@@ -73,18 +74,18 @@ public class NavalMineItem extends Item {
 			if (!(worldIn.getBlockState(blockpos).getBlock() instanceof LiquidBlock)) {
 				return InteractionResultHolder.pass(itemstack);
 			} else if (worldIn.mayInteract(playerIn, blockpos) && playerIn.mayUseItemAt(blockpos, blockhitresult.getDirection(), itemstack)) {
-				EntityType<?> entitytype = TechnologicaEntityTypes.NAVAL_MINE.get();
-				Entity entity = entitytype.spawn((ServerLevel) worldIn, itemstack, playerIn, blockpos, MobSpawnType.SPAWN_EGG, false, false);
-
-				if (entity == null) {
+				NavalMine navalMine = TechnologicaEntityTypes.NAVAL_MINE.get().spawn((ServerLevel) worldIn, itemstack, playerIn, blockpos, MobSpawnType.SPAWN_EGG, false, false);
+				
+				if (navalMine == null) {
 					return InteractionResultHolder.pass(itemstack);
 				} else {
+					navalMine.chains = 0;
 					if (!playerIn.getAbilities().instabuild) {
 						itemstack.shrink(1);
 					}
 
 					playerIn.awardStat(Stats.ITEM_USED.get(this));
-					worldIn.gameEvent(playerIn, GameEvent.ENTITY_PLACE, entity.position());
+					worldIn.gameEvent(playerIn, GameEvent.ENTITY_PLACE, navalMine.position());
 					return InteractionResultHolder.consume(itemstack);
 				}
 			} else {

@@ -40,10 +40,10 @@ import com.technologica.registration.deferred.TechnologicaGlobalLootModifierSeri
 import com.technologica.registration.deferred.TechnologicaItems;
 import com.technologica.registration.deferred.TechnologicaMenuTypes;
 import com.technologica.registration.deferred.TechnologicaMobEffects;
+import com.technologica.registration.deferred.TechnologicaPOITypes;
 import com.technologica.registration.deferred.TechnologicaPaintingVariants;
 import com.technologica.registration.deferred.TechnologicaParticleTypes;
 import com.technologica.registration.deferred.TechnologicaPlacementModifierTypes;
-import com.technologica.registration.deferred.TechnologicaPOITypes;
 import com.technologica.registration.deferred.TechnologicaPoisonDartFrogVariant;
 import com.technologica.registration.deferred.TechnologicaRecipeSerializers;
 import com.technologica.registration.deferred.TechnologicaRecipeTypes;
@@ -89,6 +89,7 @@ import com.technologica.server.level.TechnologicaServerLevel;
 import com.technologica.util.DisablePlankConditionFactory;
 import com.technologica.util.EnablePlankConditionFactory;
 import com.technologica.util.text.TechnologicaLocation;
+import com.technologica.world.entity.TechnologicaSpawnPlacements;
 import com.technologica.world.entity.ai.attributes.TechnologicaDefaultAttributes;
 import com.technologica.world.entity.ai.attributes.TechnologicaVillageTrades;
 import com.technologica.world.entity.ai.attributes.TechnologicaVillagerWantedItems;
@@ -262,6 +263,7 @@ public class Technologica {
 		MASTER_SETUP_EXECUTOR.registerSkullTextures(() -> TechnologicaSkullBlockRenderer.SKIN_BY_TYPE);
 		MASTER_SETUP_EXECUTOR.setFluidRenderTypes(() -> TechnologicaItemBlockRenderTypes.FLUID_RENDER_TYPES);
 		MASTER_SETUP_EXECUTOR.addRenderTypes(() -> TechnologicaRenderBuffers.FIXED_BUFFERS);
+		MASTER_SETUP_EXECUTOR.registerSpawnPlacements(() -> TechnologicaSpawnPlacements.DATA_BY_TYPE);
 
 		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLAtlases());
 		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLBlockstates());

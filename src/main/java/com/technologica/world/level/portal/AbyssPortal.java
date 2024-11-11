@@ -46,7 +46,7 @@ public class AbyssPortal implements ITeleporter {
 	public AbyssPortal(ServerLevel serverLevel, BlockPos blockPos, Entity entity) {
 		this.sourceLevel = serverLevel;
 		this.portalEntrancePos = blockPos.immutable();
-		this.entity = entity;
+		// this.entity = entity;
 	}
 
 	@Override
@@ -93,7 +93,7 @@ public class AbyssPortal implements ITeleporter {
 		// } else {
 			WorldBorder worldborder = destinationLevel.getWorldBorder();
 			double d0 = DimensionType.getTeleportationScale(sourceLevel.dimensionType(), destinationLevel.dimensionType());
-			BlockPos blockpos1 = worldborder.clampToBounds(entity.getX() * d0, 240, entity.getZ() * d0);
+			BlockPos blockpos1 = worldborder.clampToBounds(entity.getX() * d0, 120, entity.getZ() * d0);
 			return this.getExitPortal(destinationLevel, blockpos1, isGoingToAbyss, worldborder).map((p_258249_) -> {
 				BlockState blockstate = sourceLevel.getBlockState(this.portalEntrancePos);
 				Direction.Axis direction$axis;
@@ -218,7 +218,7 @@ public class AbyssPortal implements ITeleporter {
 			d0 = d1;
 		}
 		if (d0 == -1.0D) {
-			int k1 = Math.max(sourceLevel.getMinBuildHeight() - -1, 246);
+			int k1 = Math.max(sourceLevel.getMinBuildHeight() - -1, 118);
 			int i2 = i - 9;
 			if (i2 < k1) {
 				return Optional.empty();
@@ -259,9 +259,8 @@ public class AbyssPortal implements ITeleporter {
 	}
 
 	private boolean canPortalReplaceBlock(BlockPos.MutableBlockPos mutableBlockPos) {
-		return true;
-		// BlockState blockstate = sourceLevel.getBlockState(mutableBlockPos);
-		// return blockstate.canBeReplaced();
+		BlockState blockstate = sourceLevel.getBlockState(mutableBlockPos);
+		return blockstate.canBeReplaced();
 	}
 
 	@SuppressWarnings("deprecation")
