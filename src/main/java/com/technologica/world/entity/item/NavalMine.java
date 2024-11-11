@@ -113,7 +113,7 @@ public class NavalMine extends Entity {
 		if (this.ascending) {
 			Vec3 vector3d = this.getDeltaMovement().add(0.0D, 0.1D, 0.0D);
 			this.move(MoverType.SELF, vector3d);
-		} else if (this.position().y < (this.blockPosition().getY() + 0.5)) { // Round out the final position so it stop in the middle of a block. This is preferred so that too much of the mine won't be above water level.
+		} else if (this.position().y < (this.blockPosition().getY() + 0.5) && level().getBlockState(this.blockPosition().above()).getFluidState().is(FluidTags.WATER)) { // Round out the final position so it stop in the middle of a block. This is preferred so that too much of the mine won't be above water level.
 			Vec3 vector3d = this.getDeltaMovement().add(0.0D, 0.1D, 0.0D);
 			this.move(MoverType.SELF, vector3d);
 		}

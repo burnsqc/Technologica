@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.technologica.client.model.NavalMineModel;
 import com.technologica.client.model.geom.TechnologicaModelLayers;
+import com.technologica.util.text.TechnologicaLocation;
 import com.technologica.world.entity.item.NavalMine;
 
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -13,7 +14,7 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 
 public final class NavalMineRenderer extends EntityRenderer<NavalMine> {
-	private static final ResourceLocation NAVAL_MINE_TEXTURE = new ResourceLocation("textures/block/gray_concrete.png");
+	private static final ResourceLocation NAVAL_MINE_TEXTURE = new TechnologicaLocation("textures/entity/naval_mine.png");
 	protected final NavalMineModel modelMine;
 
 	public NavalMineRenderer(EntityRendererProvider.Context renderManagerIn) {
