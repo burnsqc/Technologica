@@ -70,6 +70,9 @@ public class NavalMine extends Entity {
 				if (level().getBlockState(blockPosition()).getBlock() instanceof NavalMineChainBlock chain) {
 					level().scheduleTick(blockPosition(), chain, 1);
 				}
+				if (level().getBlockState(blockPosition().below()).getBlock() instanceof NavalMineChainBlock chain) {
+					level().scheduleTick(blockPosition().below(), chain, 1);
+				}
 			} else {
 				if (armingFuse > 0) {
 					--armingFuse;
