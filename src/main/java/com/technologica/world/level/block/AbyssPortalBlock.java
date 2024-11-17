@@ -1,11 +1,11 @@
 package com.technologica.world.level.block;
 
 import com.technologica.capabilities.item.link.PortalHook;
+import com.technologica.registration.deferred.TechnologicaSoundEvents;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
@@ -68,7 +68,7 @@ public class AbyssPortalBlock extends Block {
 	@Override
 	public void animateTick(BlockState blockState, Level level, BlockPos blockPos, RandomSource randomSource) {
 		if (randomSource.nextInt(100) == 0) {
-			level.playLocalSound(blockPos.getX() + 0.5D, blockPos.getY() + 0.5D, blockPos.getZ() + 0.5D, SoundEvents.PORTAL_AMBIENT, SoundSource.BLOCKS, 0.5F, randomSource.nextFloat() * 0.4F + 0.8F, false);
+			level.playLocalSound(blockPos.getX() + 0.5D, blockPos.getY() + 0.5D, blockPos.getZ() + 0.5D, TechnologicaSoundEvents.ABYSS_PORTAL_AMBIENT.get(), SoundSource.BLOCKS, 0.5F, randomSource.nextFloat() * 0.4F + 0.8F, false);
 		}
 		for (int i = 0; i < 4; ++i) {
 			double d0 = blockPos.getX() + randomSource.nextDouble();

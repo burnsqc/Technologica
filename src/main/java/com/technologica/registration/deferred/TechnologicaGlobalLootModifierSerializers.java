@@ -2,6 +2,7 @@ package com.technologica.registration.deferred;
 
 import com.mojang.serialization.Codec;
 import com.technologica.Technologica;
+import com.technologica.listeners.lootmodifiers.SkeletonKeyLootModifier;
 import com.technologica.listeners.lootmodifiers.TechnologicaChestLootModifier;
 import com.technologica.listeners.lootmodifiers.blocks.FernLootModifier;
 import com.technologica.listeners.lootmodifiers.blocks.GrassLootModifier;
@@ -22,4 +23,5 @@ public final class TechnologicaGlobalLootModifierSerializers {
 	public static final RegistryObject<Codec<ZombieLootModifier>> ZOMBIE_LOOT_MODIFIER = Technologica.GLOBAL_LOOT_MODIFIER_SERIALIZERS.register("zombie", ZombieLootModifier.CODEC);
 	public static final RegistryObject<Codec<ZombieVillagerLootModifier>> ZOMBIE_VILLAGER_LOOT_MODIFIER = Technologica.GLOBAL_LOOT_MODIFIER_SERIALIZERS.register("zombie_villager", ZombieVillagerLootModifier.CODEC);
 	public static final RegistryObject<Codec<TechnologicaChestLootModifier>> TECHNOLOGICA_CHEST_LOOT_MODIFIER = Technologica.GLOBAL_LOOT_MODIFIER_SERIALIZERS.register("technologica_chest_loot_modifier", TechnologicaChestLootModifier.CODEC);
+	public static final RegistryObject<Codec<SkeletonKeyLootModifier>> SKELETON_KEY_LOOT_MODIFIER = Technologica.GLOBAL_LOOT_MODIFIER_SERIALIZERS.register("skeleton_key_loot_modifier", SkeletonKeyLootModifier.CODEC);
 }

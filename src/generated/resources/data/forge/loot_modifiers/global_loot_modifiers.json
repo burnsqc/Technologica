@@ -2,6 +2,7 @@
   "entries": [
     "technologica:entities/zombie",
     "technologica:blocks/fern",
+    "technologica:chests/skeleton_key",
     "technologica:blocks/large_fern",
     "technologica:blocks/tall_grass",
     "technologica:entities/zombie_villager",

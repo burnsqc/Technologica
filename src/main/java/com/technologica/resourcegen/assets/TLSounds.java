@@ -7,7 +7,7 @@ import com.tlregen.api.resourcegen.assets.TLReGenSounds;
 public class TLSounds extends TLReGenSounds {
 	@Override
 	public void populate() {
-		add(TechnologicaSoundEvents.DODGEBALL, sounds(32, new TechnologicaLocation("dodgeball")));
+		add(TechnologicaSoundEvents.DODGEBALL, sounds(32, new TechnologicaLocation("random/dodgeball")));
 
 		add(TechnologicaSoundEvents.DUCK_AMBIENT, sounds(new TechnologicaLocation("mob/duck/say1"), new TechnologicaLocation("mob/duck/say2"), new TechnologicaLocation("mob/duck/say3")));
 		add(TechnologicaSoundEvents.DUCK_DEATH, sounds(new TechnologicaLocation("mob/duck/hurt1"), new TechnologicaLocation("mob/duck/hurt2")));
@@ -24,5 +24,8 @@ public class TLSounds extends TLReGenSounds {
 		add(TechnologicaSoundEvents.BUFFALO_AMBIENT, sounds(new TechnologicaLocation("mob/buffalo/say1"), new TechnologicaLocation("mob/buffalo/say2"), new TechnologicaLocation("mob/buffalo/say3"), new TechnologicaLocation("mob/buffalo/say4")));
 		add(TechnologicaSoundEvents.BUFFALO_HURT, sounds(new TechnologicaLocation("mob/buffalo/hurt1"), new TechnologicaLocation("mob/buffalo/hurt2"), new TechnologicaLocation("mob/buffalo/hurt3")));
 		add(TechnologicaSoundEvents.BUFFALO_DEATH, sounds(new TechnologicaLocation("mob/buffalo/hurt1"), new TechnologicaLocation("mob/buffalo/hurt2"), new TechnologicaLocation("mob/buffalo/hurt3")));
+
+		add(TechnologicaSoundEvents.SONAR, sounds(new TechnologicaLocation("random/sonar")));
+		add(TechnologicaSoundEvents.ABYSS_PORTAL_AMBIENT, sounds(10, new TechnologicaLocation("portal/abyss_portal_ambient")));
 	}
 }

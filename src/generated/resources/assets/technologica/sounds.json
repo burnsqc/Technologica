@@ -1,9 +1,17 @@
 {
+  "abyss_portal_ambient": {
+    "sounds": [
+      {
+        "attenuation_distance": 10,
+        "name": "technologica:portal/abyss_portal_ambient"
+      }
+    ]
+  },
   "dodgeball": {
     "sounds": [
       {
         "attenuation_distance": 32,
-        "name": "technologica:dodgeball"
+        "name": "technologica:random/dodgeball"
       }
     ]
   },
@@ -84,6 +92,11 @@
     "sounds": [
       "technologica:mob/turkey/hurt1",
       "technologica:mob/turkey/hurt2"
+    ]
+  },
+  "sonar": {
+    "sounds": [
+      "technologica:random/sonar"
     ]
   }
 }

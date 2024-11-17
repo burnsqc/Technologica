@@ -1,0 +1,9 @@
+{
+  "type": "technologica:skeleton_key_loot_modifier",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:chests/buried_treasure"
+    }
+  ]
+}

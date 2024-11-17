@@ -11,6 +11,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import com.technologica.Technologica;
 import com.technologica.registration.deferred.TechnologicaMobEffects;
+import com.technologica.registration.deferred.TechnologicaSoundEvents;
 import com.technologica.util.math.MathHelper;
 
 import net.minecraft.client.Minecraft;
@@ -75,7 +76,14 @@ public class RenderLevelStageEventListener {
 				sonarBuffer.drawWithShader(event.getPoseStack().last().pose(), event.getProjectionMatrix(), shaderinstance);
 			}
 		}
-		timer--;
+
+		if (timer == 3000) {
+			localPlayer.playSound(TechnologicaSoundEvents.SONAR.get());
+		}
+
+		if (timer > 0) {
+			timer--;
+		}
 	}
 
 	private static RenderedBuffer buildSonar(BufferBuilder bufferBuilder, VertexConsumer vertexConsumer, PoseStack poseStack, Entity entity, final RenderLevelStageEvent event) {
@@ -100,13 +108,18 @@ public class RenderLevelStageEventListener {
 					BlockPos blockPos = new BlockPos(posX, posY, posZ);
 					BlockState blockState = minecraft.level.getBlockState(blockPos);
 
+					// First ignore all "invisible" blocks like water
 					if (blockState.getRenderShape() != RenderShape.INVISIBLE) {
 						VoxelShape voxelShape = blockState.getShape(minecraft.level, blockPos, CollisionContext.of(entity));
+						// Second ignore all blocks outside the player's frustum (field of view)
 						if (event.getFrustum().isVisible(voxelShape.bounds().move(blockPos))) {
 							float distance = MathHelper.trueBlockPosDistance(blockPos.getX(), blockPos.getY(), blockPos.getZ(), playerPos.getX(), playerPos.getY(), playerPos.getZ());
 
+							// Third ignore all blocks too far away to be relevant to the sonar ping
 							if (distance < maxDistance) {
 								float alpha = Mth.clamp(distance + (timer - minecraft.getPartialTick() - 2800) / 50 < 1 ? distance + (timer - minecraft.getPartialTick() - 2800) / 50 : -distance + (-timer - minecraft.getPartialTick() + 3001) / 50, 0.0F, 1.0F) * (1 - distance / maxDistance);
+
+								// Lastly only act upon blocks that are in the sonar wave
 								if (alpha > 0) {
 									PoseStack.Pose posestack$pose = poseStack.last();
 									double posX2 = blockPos.getX() - d0;
