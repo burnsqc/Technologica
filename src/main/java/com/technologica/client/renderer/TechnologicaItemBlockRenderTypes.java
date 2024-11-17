@@ -9,10 +9,10 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.material.Fluid;
 
 public class TechnologicaItemBlockRenderTypes {
-	public static final Map<Fluid, RenderType> FLUID_RENDER_TYPES = Maps.newHashMap();
+	public static final Map<Fluid, RenderType> TYPE_BY_FLUID = Maps.newHashMap();
 
 	public static void register(Fluid fluid, RenderType renderType) {
-		FLUID_RENDER_TYPES.put(fluid, renderType);
+		TYPE_BY_FLUID.put(fluid, renderType);
 	}
 
 	static {

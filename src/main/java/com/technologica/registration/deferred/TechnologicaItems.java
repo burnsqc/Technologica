@@ -1271,5 +1271,4 @@ public final class TechnologicaItems {
 	public static final RegistryObject<Item> SUBMERSION_OF_SUPPRESSION = Technologica.ITEMS.register("submersion_of_suppression", () -> new Submersion(new Item.Properties(), "submersion_of_suppression"));
 	public static final RegistryObject<Item> SUBMERSIBLE = Technologica.ITEMS.register("submersible", () -> new SubmersibleItem(new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item> SKELETON_KEY = Technologica.ITEMS.register("skeleton_key", () -> new SkeletonKeyItem(new Item.Properties()));
-	public static final RegistryObject<Item> ABYSS_PORTAL_FRAME = Technologica.ITEMS.register("abyss_portal_frame", () -> new BlockItem(TechnologicaBlocks.ABYSS_PORTAL_FRAME.get(), (new Item.Properties())));
 }

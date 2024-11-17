@@ -195,9 +195,6 @@ public class TLModelsBlock extends TLReGenModelsBlock {
 		models.withExistingParent("three_" + models.name(TechnologicaBlocks.BARNACLE.get()) + "s", new ResourceLocation("block/three_sea_pickles")).texture("all", new TechnologicaLocation("block/barnacle")).renderType("cutout");
 		models.withExistingParent("four_dead_" + models.name(TechnologicaBlocks.BARNACLE.get()) + "s", new ResourceLocation("block/four_dead_sea_pickles")).texture("all", new TechnologicaLocation("block/barnacle")).renderType("cutout");
 		models.withExistingParent("four_" + models.name(TechnologicaBlocks.BARNACLE.get()) + "s", new ResourceLocation("block/four_sea_pickles")).texture("all", new TechnologicaLocation("block/barnacle")).renderType("cutout");
-
-		models.withExistingParent(models.name(TechnologicaBlocks.ABYSS_PORTAL_FRAME.get()), new TechnologicaLocation("block/abyss_portal_frame_model")).texture("side", new TechnologicaLocation("block/abyss_portal_frame_side")).texture("front", new TechnologicaLocation("block/abyss_portal_frame_front")).texture("back", new TechnologicaLocation("block/abyss_portal_frame_back")).texture("end", new TechnologicaLocation("block/abyss_portal_frame_end"));
-		models.withExistingParent(models.name(TechnologicaBlocks.ABYSS_PORTAL_FRAME.get()) + "_key", new TechnologicaLocation("block/abyss_portal_frame_key_model")).texture("side", new TechnologicaLocation("block/abyss_portal_frame_side")).texture("front", new TechnologicaLocation("block/abyss_portal_frame_front")).texture("back", new TechnologicaLocation("block/abyss_portal_frame_back")).texture("end", new TechnologicaLocation("block/abyss_portal_frame_end")).texture("key", new TechnologicaLocation("block/abyss_portal_frame_key"));
 	}
 
 	private void blocksOfMetal() {

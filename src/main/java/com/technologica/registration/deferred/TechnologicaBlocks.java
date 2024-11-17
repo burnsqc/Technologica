@@ -2,7 +2,6 @@ package com.technologica.registration.deferred;
 
 import com.technologica.Technologica;
 import com.technologica.world.level.block.AbyssPortalBlock;
-import com.technologica.world.level.block.AbyssPortalFrameBlock;
 import com.technologica.world.level.block.AnnunciatorBlock;
 import com.technologica.world.level.block.AquaticCropBlock;
 import com.technologica.world.level.block.BasinEmptyBlock;
@@ -1151,10 +1150,7 @@ public final class TechnologicaBlocks {
 	public static final RegistryObject<Block> LIGHT = Technologica.BLOCKS.register("light", () -> new LightBlock(BlockBehaviour.Properties.of().noCollission().noLootTable().air().lightLevel((p_50874_) -> 15)));
 	public static final RegistryObject<Block> SLEEPING_BAG = Technologica.BLOCKS.register("sleeping_bag", () -> new SleepingBagBlock(DyeColor.RED, BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(0.2F).noOcclusion()));
 	public static final RegistryObject<Block> SMOKE_COLUMN = Technologica.BLOCKS.register("smoke_column", () -> new SmokeColumnBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WATER).replaceable().noCollission().noLootTable().pushReaction(PushReaction.DESTROY).liquid().sound(SoundType.EMPTY)));
-	public static final RegistryObject<Block> ABYSS_PORTAL = Technologica.BLOCKS.register("abyss_portal", () -> new AbyssPortalBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).noCollission().lightLevel((p_152690_) -> {
-		return 15;
-	}).strength(-1.0F, 3600000.0F).noLootTable().pushReaction(PushReaction.BLOCK)));
-	public static final RegistryObject<Block> ABYSS_PORTAL_FRAME = Technologica.BLOCKS.register("abyss_portal_frame", () -> new AbyssPortalFrameBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GREEN).instrument(NoteBlockInstrument.BASEDRUM).sound(SoundType.GLASS).lightLevel((p_50847_) -> {
-		return 1;
-	}).strength(-1.0F, 3600000.0F).noLootTable()));
+	public static final RegistryObject<Block> ABYSS_PORTAL = Technologica.BLOCKS.register("abyss_portal", () -> new AbyssPortalBlock(BlockBehaviour.Properties.of().noCollission().randomTicks().strength(-1.0F).sound(SoundType.GLASS).lightLevel((p_152690_) -> {
+		return 11;
+	}).pushReaction(PushReaction.BLOCK)));
 }

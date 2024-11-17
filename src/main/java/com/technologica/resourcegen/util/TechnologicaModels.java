@@ -210,11 +210,11 @@ public class TechnologicaModels {
 		return withExistingParent(ResourceLocationHelper.getPath(block) + "_inventory", "block/button_inventory").renderType(renderType).texture("texture", ResourceLocationHelper.replace(blockTexture(block), "_button", "_planks"));
 	}
 
-	public static ModelFile abyssPortalModel(Block block) {
-		return withExistingParent(name(TechnologicaBlocks.ABYSS_PORTAL_FRAME.get()), new TechnologicaLocation("block/abyss_portal_frame_model")).texture("side", new TechnologicaLocation("block/abyss_portal_frame_side")).texture("front", new TechnologicaLocation("block/abyss_portal_frame_front")).texture("back", new TechnologicaLocation("block/abyss_portal_frame_back")).texture("end", new TechnologicaLocation("block/abyss_portal_frame_end"));
+	public static ModelFile abyssPortalModelEW(Block block) {
+		return withExistingParent(name(TechnologicaBlocks.ABYSS_PORTAL.get()) + "_ew", new TechnologicaLocation("block/abyss_portal_ew")).texture("particle", new TechnologicaLocation("block/abyss_portal")).texture("portal", new TechnologicaLocation("block/abyss_portal"));
 	}
 
-	public static ModelFile abyssPortalKeyModel(Block block) {
-		return withExistingParent(name(TechnologicaBlocks.ABYSS_PORTAL_FRAME.get()) + "_key", new TechnologicaLocation("block/abyss_portal_frame_key_model")).texture("side", new TechnologicaLocation("block/abyss_portal_frame_side")).texture("front", new TechnologicaLocation("block/abyss_portal_frame_front")).texture("back", new TechnologicaLocation("block/abyss_portal_frame_back")).texture("end", new TechnologicaLocation("block/abyss_portal_frame_end")).texture("key", new TechnologicaLocation("block/abyss_portal_frame_key"));
+	public static ModelFile abyssPortalModelNS(Block block) {
+		return withExistingParent(name(TechnologicaBlocks.ABYSS_PORTAL.get()) + "_ns", new TechnologicaLocation("block/abyss_portal_ns")).texture("particle", new TechnologicaLocation("block/abyss_portal")).texture("portal", new TechnologicaLocation("block/abyss_portal"));
 	}
 }

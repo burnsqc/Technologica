@@ -888,7 +888,6 @@ public class TLModelsItem extends TLReGenModelsItem {
 		item3DModel(TechnologicaBlocks.DISPLAY_CASE.get(), displayModel(TechnologicaBlocks.DISPLAY_CASE.get()));
 		item3DModel(TechnologicaBlocks.NITROGLYCERIN.get(), cubeBottomTop(ResourceLocationHelper.getPath(TechnologicaBlocks.NITROGLYCERIN.get()), new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.NITROGLYCERIN.get()) + "_side"), new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.NITROGLYCERIN.get()) + "_bottom"), new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.NITROGLYCERIN.get()) + "_top")));
 		item2D(TechnologicaItems.SKELETON_KEY.get());
-		item3DModel(TechnologicaBlocks.ABYSS_PORTAL_FRAME.get(), models.withExistingParent(models.name(TechnologicaBlocks.ABYSS_PORTAL_FRAME.get()), new TechnologicaLocation("block/abyss_portal_frame_model")).texture("side", new TechnologicaLocation("block/abyss_portal_frame_side")).texture("front", new TechnologicaLocation("block/abyss_portal_frame_front")).texture("back", new TechnologicaLocation("block/abyss_portal_frame_back")).texture("end", new TechnologicaLocation("block/abyss_portal_frame_end")));
 	}
 
 	private void seeds() {

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "technologica:block/abyss_portal_ns"
+    },
+    "axis=z": {
+      "model": "technologica:block/abyss_portal_ew"
+    }
+  }
+}

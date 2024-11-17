@@ -30,6 +30,7 @@ public class TechnologicaServerLevel extends TechnologicaLevel {
 	private final TechnologicaServerLevelData technologicaServerLevelData;
 	private ServerLevel level;
 
+
 	public TechnologicaServerLevel(ServerLevel level, TechnologicaServerLevelData technologicaServerLevelData) {
 		super(level, technologicaServerLevelData);
 		this.technologicaServerLevelData = technologicaServerLevelData;

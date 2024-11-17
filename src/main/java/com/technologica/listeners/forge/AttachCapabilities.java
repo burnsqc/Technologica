@@ -1,5 +1,6 @@
 package com.technologica.listeners.forge;
 
+import com.technologica.capabilities.item.link.PortalHookProvider;
 import com.technologica.util.text.TechnologicaLocation;
 import com.technologica.world.entity.player.TechnologicaAbilityProvider;
 
@@ -19,5 +20,9 @@ public class AttachCapabilities {
 			final TechnologicaAbilityProvider provider = new TechnologicaAbilityProvider();
 			event.addCapability(new TechnologicaLocation("diver"), provider);
 		}
+		final PortalHookProvider provider = new PortalHookProvider();
+		event.addCapability(new TechnologicaLocation("portal_hook"), provider);
+		// PortalHook portalHook = event.getObject().getCapability(PortalHook.PORTAL_HOOK_INSTANCE).orElseThrow(NullPointerException::new);
+		// portalHook.setEntity(event.getObject());
 	}
 }

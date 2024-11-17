@@ -30,10 +30,10 @@ public class TechnologicaAbilities implements INBTSerializable<CompoundTag> {
 
 	@Override
 	public CompoundTag serializeNBT() {
-		final CompoundTag compundTag = new CompoundTag();
-		compundTag.putBoolean("diver", diver);
-		compundTag.putBoolean("doubleJump", doubleJump);
-		return compundTag;
+		final CompoundTag compoundTag = new CompoundTag();
+		compoundTag.putBoolean("diver", diver);
+		compoundTag.putBoolean("doubleJump", doubleJump);
+		return compoundTag;
 	}
 
 	@Override

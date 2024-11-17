@@ -7,7 +7,7 @@ import com.technologica.util.MiddleEnd;
 import com.technologica.util.Radius;
 import com.technologica.util.text.ResourceLocationHelper;
 import com.technologica.util.text.TechnologicaLocation;
-import com.technologica.world.level.block.AbyssPortalFrameBlock;
+import com.technologica.world.level.block.AbyssPortalBlock;
 import com.technologica.world.level.block.GlueBlock;
 import com.technologica.world.level.block.TallCropBlock;
 import com.technologica.world.level.block.TrellisBlock;
@@ -115,15 +115,7 @@ public class TLBlockstates extends TLReGenBlockstates {
 		basinFilledBlockState(TechnologicaBlocks.MAPLE_SYRUP_BASIN.get());
 		basinFilledBlockState(TechnologicaBlocks.RUBBER_RESIN_BASIN.get());
 		glueBlock(TechnologicaBlocks.GLUE.get());
-		getVariantBuilder(TechnologicaBlocks.ABYSS_PORTAL_FRAME.get())
-		.partialState().with(AbyssPortalFrameBlock.FACING, Direction.NORTH).with(AbyssPortalFrameBlock.HAS_KEY, false).modelForState().modelFile(TechnologicaModels.abyssPortalModel(TechnologicaBlocks.ABYSS_PORTAL_FRAME.get())).rotationY(180).addModel()
-		.partialState().with(AbyssPortalFrameBlock.FACING, Direction.EAST).with(AbyssPortalFrameBlock.HAS_KEY, false).modelForState().modelFile(TechnologicaModels.abyssPortalModel(TechnologicaBlocks.ABYSS_PORTAL_FRAME.get())).rotationY(270).addModel()
-		.partialState().with(AbyssPortalFrameBlock.FACING, Direction.SOUTH).with(AbyssPortalFrameBlock.HAS_KEY, false).modelForState().modelFile(TechnologicaModels.abyssPortalModel(TechnologicaBlocks.ABYSS_PORTAL_FRAME.get())).addModel()
-		.partialState().with(AbyssPortalFrameBlock.FACING, Direction.WEST).with(AbyssPortalFrameBlock.HAS_KEY, false).modelForState().modelFile(TechnologicaModels.abyssPortalModel(TechnologicaBlocks.ABYSS_PORTAL_FRAME.get())).rotationY(90).addModel()
-		.partialState().with(AbyssPortalFrameBlock.FACING, Direction.NORTH).with(AbyssPortalFrameBlock.HAS_KEY, true).modelForState().modelFile(TechnologicaModels.abyssPortalKeyModel(TechnologicaBlocks.ABYSS_PORTAL_FRAME.get())).rotationY(180).addModel()
-		.partialState().with(AbyssPortalFrameBlock.FACING, Direction.EAST).with(AbyssPortalFrameBlock.HAS_KEY, true).modelForState().modelFile(TechnologicaModels.abyssPortalKeyModel(TechnologicaBlocks.ABYSS_PORTAL_FRAME.get())).rotationY(270).addModel()
-		.partialState().with(AbyssPortalFrameBlock.FACING, Direction.SOUTH).with(AbyssPortalFrameBlock.HAS_KEY, true).modelForState().modelFile(TechnologicaModels.abyssPortalKeyModel(TechnologicaBlocks.ABYSS_PORTAL_FRAME.get())).addModel()
-		.partialState().with(AbyssPortalFrameBlock.FACING, Direction.WEST).with(AbyssPortalFrameBlock.HAS_KEY, true).modelForState().modelFile(TechnologicaModels.abyssPortalKeyModel(TechnologicaBlocks.ABYSS_PORTAL_FRAME.get())).rotationY(90).addModel();
+		getVariantBuilder(TechnologicaBlocks.ABYSS_PORTAL.get()).partialState().with(AbyssPortalBlock.AXIS, Axis.X).modelForState().modelFile(TechnologicaModels.abyssPortalModelNS(TechnologicaBlocks.ABYSS_PORTAL.get())).addModel().partialState().with(AbyssPortalBlock.AXIS, Axis.Z).modelForState().modelFile(TechnologicaModels.abyssPortalModelEW(TechnologicaBlocks.ABYSS_PORTAL.get())).addModel();
 	}
 
 	private void skulls() {

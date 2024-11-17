@@ -1224,6 +1224,7 @@ public final class TLLootTablesBlocksGenerator extends BlockLootSubProvider {
 		dropSelf(TechnologicaBlocks.MAPLE_SYRUP_BASIN.get());
 		dropSelf(TechnologicaBlocks.RUBBER_RESIN_BASIN.get());
 		dropSelf(TechnologicaBlocks.CARPENTRY_WORKBENCH.get());
+		add(TechnologicaBlocks.ABYSS_PORTAL.get(), noDrop());
 	}
 
 	@Override
