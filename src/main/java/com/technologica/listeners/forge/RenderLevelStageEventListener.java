@@ -1,6 +1,9 @@
 package com.technologica.listeners.forge;
 
-import com.mojang.blaze3d.systems.RenderSystem;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.BufferBuilder.RenderedBuffer;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
@@ -9,7 +12,6 @@ import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexBuffer;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.VertexFormat;
-import com.technologica.Technologica;
 import com.technologica.registration.deferred.TechnologicaMobEffects;
 import com.technologica.registration.deferred.TechnologicaSoundEvents;
 import com.technologica.util.math.MathHelper;
@@ -18,12 +20,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -39,6 +41,8 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class RenderLevelStageEventListener {
 	private static VertexBuffer sonarBuffer;
 	private static int timer;
+	private static BlockPos[] sonarBlocks;
+	private static BlockPos origin;
 
 	@SubscribeEvent
 	public static void onRenderLevelStageEvent(final RenderLevelStageEvent event) {
@@ -64,99 +68,102 @@ public class RenderLevelStageEventListener {
 			if (sonarBuffer != null) {
 				sonarBuffer.close();
 			}
-			sonarBuffer = new VertexBuffer(VertexBuffer.Usage.STATIC);
-			BufferBuilder.RenderedBuffer bufferbuilder$renderedbuffer = buildSonar(bufferbuilder, vertexConsumer, event.getPoseStack(), event.getCamera().getEntity(), event);
-			sonarBuffer.bind();
-			sonarBuffer.upload(bufferbuilder$renderedbuffer);
-			VertexBuffer.unbind();
+			sonarBuffer = new VertexBuffer(VertexBuffer.Usage.DYNAMIC);
+			if (sonarBlocks != null) {
+				minecraft.getProfiler().push("sonar");
+				BufferBuilder.RenderedBuffer bufferbuilder$renderedbuffer = buildSonar(bufferbuilder, vertexConsumer, event.getPoseStack(), event.getCamera().getEntity(), event);
+				minecraft.getProfiler().pop();
 
-			if (sonarBuffer != null) {
 				sonarBuffer.bind();
-				ShaderInstance shaderinstance = RenderSystem.getShader();
-				sonarBuffer.drawWithShader(event.getPoseStack().last().pose(), event.getProjectionMatrix(), shaderinstance);
+				sonarBuffer.upload(bufferbuilder$renderedbuffer);
+				VertexBuffer.unbind();
+
+				// if (sonarBuffer != null) {
+					// sonarBuffer.bind();
+					// ShaderInstance shaderinstance = RenderSystem.getShader();
+					// sonarBuffer.drawWithShader(event.getPoseStack().last().pose(), event.getProjectionMatrix(), shaderinstance);
+				// }
 			}
 		}
 
-		if (timer == 3000) {
+		if (timer == 1800) {
 			localPlayer.playSound(TechnologicaSoundEvents.SONAR.get());
 		}
 
 		if (timer > 0) {
 			timer--;
 		}
+
+		if (timer == 0) {
+			sonarBlocks = null;
+		}
 	}
 
 	private static RenderedBuffer buildSonar(BufferBuilder bufferBuilder, VertexConsumer vertexConsumer, PoseStack poseStack, Entity entity, final RenderLevelStageEvent event) {
-		int maxDistance = 32;
 		Minecraft minecraft = Minecraft.getInstance();
-		BlockPos playerPos = entity.blockPosition();
-		Vec3 vec3 = event.getCamera().getPosition();
-		double d0 = vec3.x();
-		double d1 = vec3.y();
-		double d2 = vec3.z();
 		bufferBuilder.begin(VertexFormat.Mode.LINES, DefaultVertexFormat.POSITION_COLOR_NORMAL);
 
-		int totalpos = 0;
-		int visible = 0;
-		int inFrustum = 0;
-		int inRange = 0;
-		int outline = 0;
-
-		for (int posX = playerPos.getX() - maxDistance; posX < playerPos.getX() + maxDistance; posX++) {
-			for (int posY = playerPos.getY() - maxDistance; posY < playerPos.getY() + maxDistance; posY++) {
-				for (int posZ = playerPos.getZ() - maxDistance; posZ < playerPos.getZ() + maxDistance; posZ++) {
-					BlockPos blockPos = new BlockPos(posX, posY, posZ);
-					BlockState blockState = minecraft.level.getBlockState(blockPos);
-
-					// First ignore all "invisible" blocks like water
-					if (blockState.getRenderShape() != RenderShape.INVISIBLE) {
-						VoxelShape voxelShape = blockState.getShape(minecraft.level, blockPos, CollisionContext.of(entity));
-						// Second ignore all blocks outside the player's frustum (field of view)
-						if (event.getFrustum().isVisible(voxelShape.bounds().move(blockPos))) {
-							float distance = MathHelper.trueBlockPosDistance(blockPos.getX(), blockPos.getY(), blockPos.getZ(), playerPos.getX(), playerPos.getY(), playerPos.getZ());
-
-							// Third ignore all blocks too far away to be relevant to the sonar ping
-							if (distance < maxDistance) {
-								float alpha = Mth.clamp(distance + (timer - minecraft.getPartialTick() - 2800) / 50 < 1 ? distance + (timer - minecraft.getPartialTick() - 2800) / 50 : -distance + (-timer - minecraft.getPartialTick() + 3001) / 50, 0.0F, 1.0F) * (1 - distance / maxDistance);
-
-								// Lastly only act upon blocks that are in the sonar wave
-								if (alpha > 0) {
-									PoseStack.Pose posestack$pose = poseStack.last();
-									double posX2 = blockPos.getX() - d0;
-									double posY2 = blockPos.getY() - d1;
-									double posZ2 = blockPos.getZ() - d2;
-
-									voxelShape.forAllEdges((voxelX1, voxelY1, voxelZ1, voxelX2, voxelY2, voxelZ2) -> {
-										float lengthX = (float) (voxelX2 - voxelX1);
-										float lengthY = (float) (voxelY2 - voxelY1);
-										float lengthZ = (float) (voxelZ2 - voxelZ1);
-										float length = Mth.sqrt(lengthX * lengthX + lengthY * lengthY + lengthZ * lengthZ);
-
-										lengthX /= length;
-										lengthY /= length;
-										lengthZ /= length;
-
-										vertexConsumer.vertex(posestack$pose.pose(), (float) (voxelX1 + posX2), (float) (voxelY1 + posY2), (float) (voxelZ1 + posZ2)).color(0, 1, 0, alpha).normal(posestack$pose.normal(), lengthX, lengthY, lengthZ).endVertex();
-										vertexConsumer.vertex(posestack$pose.pose(), (float) (voxelX2 + posX2), (float) (voxelY2 + posY2), (float) (voxelZ2 + posZ2)).color(0, 1, 0, alpha).normal(posestack$pose.normal(), lengthX, lengthY, lengthZ).endVertex();
-									});
-									outline++;
-								}
-								inRange++;
-							}
-							inFrustum++;
-						}
-						visible++;
-					}
-					totalpos++;
-				}
+		// First ignore all blocks outside the player's frustum (field of view)
+		minecraft.getProfiler().push("frustum_culling");
+		List<BlockPos> sonarBlocksFrustumCulled = Arrays.stream(sonarBlocks).filter((sonarBlockPos) -> event.getFrustum().isVisible(minecraft.level.getBlockState(sonarBlockPos).getShape(minecraft.level, sonarBlockPos, CollisionContext.of(entity)).bounds().move(sonarBlockPos))).collect(Collectors.toList());
+		minecraft.getProfiler().pop();
+		
+		// Second ignore all blocks that are fully culled
+		minecraft.getProfiler().push("occlusion_culling");
+		List<BlockPos> sonarBlocksOcclusionCulled = sonarBlocksFrustumCulled.stream().filter((sonarBlockPos) -> {
+			boolean occluded = true;
+			for (Direction direction : Direction.values()) {
+				occluded = occluded & !Block.shouldRenderFace(minecraft.level.getBlockState(sonarBlockPos), minecraft.level, sonarBlockPos, direction, sonarBlockPos.relative(direction));
 			}
-		}
+			return !occluded;
+		}).collect(Collectors.toList());
+		minecraft.getProfiler().pop();
+		
+		minecraft.getProfiler().push("sonar_loop");
+		sonarBlocksOcclusionCulled.forEach((sonarBlockPos) -> {
 
-		Technologica.LOGGER.info("{} positions   {} visible   {} in frustum   {} in range   {} to outline", totalpos, visible, inFrustum, inRange, outline);
+			minecraft.getProfiler().push("calculate_distance");
+			float distance = MathHelper.trueBlockPosDistance(sonarBlockPos.getX(), sonarBlockPos.getY(), sonarBlockPos.getZ(), origin.getX(), origin.getY(), origin.getZ());
+			minecraft.getProfiler().pop();
+
+			minecraft.getProfiler().push("calculate_wave");
+			float alpha = Mth.clamp(distance + (timer - minecraft.getPartialTick() - 1650) / 50 < 1 ? distance + (timer - minecraft.getPartialTick() - 1600) / 50 : Mth.clamp(-distance + (-timer - minecraft.getPartialTick() + 1800) / 50, 0.0F, 1.0F), -1.0F, 1.0F) * (1 - distance / 32);
+			minecraft.getProfiler().pop();
+
+			// Third only act upon blocks that are in the sonar wave
+			minecraft.getProfiler().push("render");
+			if (alpha > 0) {
+				PoseStack.Pose posestack$pose = poseStack.last();
+				Vec3 vec3 = event.getCamera().getPosition();
+				double posX2 = sonarBlockPos.getX() - vec3.x();
+				double posY2 = sonarBlockPos.getY() - vec3.y();
+				double posZ2 = sonarBlockPos.getZ() - vec3.z();
+
+				minecraft.getProfiler().push("voxel");
+				BlockState blockState = minecraft.level.getBlockState(sonarBlockPos);
+				VoxelShape voxelShape = blockState.getCollisionShape(minecraft.level, sonarBlockPos, CollisionContext.of(entity));
+				voxelShape.forAllEdges((voxelX1, voxelY1, voxelZ1, voxelX2, voxelY2, voxelZ2) -> {
+					float lengthX = (float) (voxelX2 - voxelX1);
+					float lengthY = (float) (voxelY2 - voxelY1);
+					float lengthZ = (float) (voxelZ2 - voxelZ1);
+					float length = Mth.sqrt(lengthX * lengthX + lengthY * lengthY + lengthZ * lengthZ);
+					lengthX /= length;
+					lengthY /= length;
+					lengthZ /= length;
+					vertexConsumer.vertex(posestack$pose.pose(), (float) (voxelX1 + posX2), (float) (voxelY1 + posY2), (float) (voxelZ1 + posZ2)).color(0, 1, 0, alpha).normal(posestack$pose.normal(), lengthX, lengthY, lengthZ).endVertex();
+					vertexConsumer.vertex(posestack$pose.pose(), (float) (voxelX2 + posX2), (float) (voxelY2 + posY2), (float) (voxelZ2 + posZ2)).color(0, 1, 0, alpha).normal(posestack$pose.normal(), lengthX, lengthY, lengthZ).endVertex();
+				});
+				minecraft.getProfiler().pop();
+			}
+			minecraft.getProfiler().pop();
+		});
+		minecraft.getProfiler().pop();
 		return bufferBuilder.end();
 	}
 
-	public static void setTime() {
-		timer = 3000;
+	public static void setBlocks(BlockPos[] blocks, BlockPos playerPos) {
+		timer = 1800;
+		sonarBlocks = blocks;
+		origin = playerPos;
 	}
 }
