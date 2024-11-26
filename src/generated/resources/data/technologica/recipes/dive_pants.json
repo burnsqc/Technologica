@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "L": {
+      "item": "minecraft:leather"
+    },
+    "P": {
+      "item": "technologica:canvas_pants"
+    }
+  },
+  "pattern": [
+    " P ",
+    "LLL",
+    " L "
+  ],
+  "result": {
+    "item": "technologica:dive_pants"
+  },
+  "show_notification": true
+}

@@ -13,6 +13,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.shapes.CollisionContext;
 
 public class SonarCommand {
 	static final LiteralArgumentBuilder<CommandSourceStack> COMMAND = Commands.literal("sonar").requires((commandSourceStack) -> commandSourceStack.hasPermission(2)).then(Commands.literal("ping").executes((commandContext) -> ping(commandContext.getSource(), -1)));
@@ -29,7 +30,7 @@ public class SonarCommand {
 					BlockState blockState = serverLevel.getBlockState(blockPos);
 
 					// First ignore all "invisible" blocks like water
-					if (blockState.getRenderShape() != RenderShape.INVISIBLE) {
+					if (blockState.getRenderShape() != RenderShape.INVISIBLE && !blockState.getCollisionShape(serverLevel, blockPos, CollisionContext.of(stack.getPlayer())).isEmpty()) {
 						float distance = MathHelper.trueBlockPosDistance(blockPos.getX(), blockPos.getY(), blockPos.getZ(), playerPos.getX(), playerPos.getY(), playerPos.getZ());
 
 						// Second ignore all blocks too far away to be relevant to the sonar ping

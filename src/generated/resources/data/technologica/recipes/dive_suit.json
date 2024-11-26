@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "technologica:brass_ingot"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    },
+    "T": {
+      "item": "technologica:canvas_tunic"
+    }
+  },
+  "pattern": [
+    "L L",
+    "BLB",
+    "LTL"
+  ],
+  "result": {
+    "item": "technologica:dive_suit"
+  },
+  "show_notification": true
+}

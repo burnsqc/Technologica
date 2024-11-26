@@ -8,10 +8,10 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @Mod.EventBusSubscriber(bus = EventBusSubscriber.Bus.FORGE)
-public class LivingHealEventListener {
+public class RadiationHealCancel {
 
 	@SubscribeEvent
-	public static void onLivingHealEvent(LivingHealEvent event) {
+	public static void onLivingHealEvent(final LivingHealEvent event) {
 		if (event.getEntity().hasEffect(TechnologicaMobEffects.RADIATION.get())) {
 			event.setCanceled(true);
 		}

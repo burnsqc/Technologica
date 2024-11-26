@@ -48,10 +48,6 @@ public class KingCrab extends Animal {
 		return null;
 	}
 
-	public static AttributeSupplier.Builder registerAttributes() {
-		return AttributeSupplier.builder().add(Attributes.MAX_HEALTH, 10.0D).add(Attributes.MOVEMENT_SPEED, 0.25D).add(Attributes.FOLLOW_RANGE, 16.0D).add(Attributes.ATTACK_KNOCKBACK).add(Attributes.KNOCKBACK_RESISTANCE).add(Attributes.ARMOR).add(Attributes.ARMOR_TOUGHNESS).add(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get()).add(net.minecraftforge.common.ForgeMod.NAMETAG_DISTANCE.get()).add(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get());
-	}
-
 	@Override
 	protected void registerGoals() {
 		this.goalSelector.addGoal(1, new GoToWaterGoal(this, 1.0D));

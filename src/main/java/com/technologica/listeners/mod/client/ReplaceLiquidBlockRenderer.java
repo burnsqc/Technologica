@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 @Mod.EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-public final class FMLClientSetupEventListener {
+public final class ReplaceLiquidBlockRenderer {
 
 	@SubscribeEvent
 	public static final void onFMLClientSetupEvent(final FMLClientSetupEvent event) {

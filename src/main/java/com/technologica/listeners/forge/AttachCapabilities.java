@@ -15,14 +15,12 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class AttachCapabilities {
 
 	@SubscribeEvent
-	public static void onAttachCapabilitiesEvent(final AttachCapabilitiesEvent<Entity> event) {
+	public static final void onAttachCapabilitiesEvent(final AttachCapabilitiesEvent<Entity> event) {
 		if (event.getObject() instanceof Player) {
 			final TechnologicaAbilityProvider provider = new TechnologicaAbilityProvider();
 			event.addCapability(new TechnologicaLocation("diver"), provider);
 		}
 		final PortalHookProvider provider = new PortalHookProvider();
 		event.addCapability(new TechnologicaLocation("portal_hook"), provider);
-		// PortalHook portalHook = event.getObject().getCapability(PortalHook.PORTAL_HOOK_INSTANCE).orElseThrow(NullPointerException::new);
-		// portalHook.setEntity(event.getObject());
 	}
 }

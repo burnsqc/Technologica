@@ -17,6 +17,7 @@ import net.minecraft.server.level.ChunkMap;
 import net.minecraft.server.level.DistanceManager;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
+import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.ChunkPos;
@@ -44,7 +45,10 @@ public class TechnologicaServerLevel extends TechnologicaLevel {
 	}
 
 	public void tick() {
+		ProfilerFiller profilerfiller = level.getProfiler();
+		profilerfiller.push("technologica_weather");
 		this.advanceWeatherCycle();
+		profilerfiller.pop();
 
 		ChunkMap chunkMap = level.getChunkSource().chunkMap;
 		DistanceManager distanceManager = chunkMap.getDistanceManager();

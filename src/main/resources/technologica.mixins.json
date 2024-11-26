@@ -8,7 +8,8 @@
 		"MixinPlayerMaxAirSupply",
 		"MixinMouseHandler",
 		"MixinLifesightOrEntityGlow",
-		"MixinLifesightTeamColor"
+		"MixinLifesightTeamColor",
+		"MixinOverworldBiomeBuilder"
 	],
 	"client": [	
 	],

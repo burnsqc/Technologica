@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "technologica:cotton"
+    },
+    {
+      "item": "technologica:cotton"
+    },
+    {
+      "item": "technologica:cotton"
+    },
+    {
+      "item": "technologica:cotton"
+    }
+  ],
+  "result": {
+    "item": "technologica:cloth"
+  }
+}

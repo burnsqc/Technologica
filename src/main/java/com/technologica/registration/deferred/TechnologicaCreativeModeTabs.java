@@ -86,6 +86,8 @@ public final class TechnologicaCreativeModeTabs {
 		items.accept(TechnologicaItems.TRELLIS.get());
 		items.accept(TechnologicaItems.MULCH.get());
 		items.accept(TechnologicaItems.BASIN.get());
+		items.accept(TechnologicaItems.CLOTH.get());
+		items.accept(TechnologicaItems.CANVAS.get());
 	}).build());
 	public static final RegistryObject<CreativeModeTab> FAUNA = Technologica.CREATIVE_MODE_TABS.register("fauna", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.FUR.get())).withBackgroundLocation(new TechnologicaLocation("textures/gui/container/creative_inventory/tab_fauna.png")).withLabelColor(0).title(Component.translatable("itemGroup.fauna")).displayItems((p_270425_, items) -> {
 		items.accept(TechnologicaItems.FUR.get());
@@ -151,7 +153,7 @@ public final class TechnologicaCreativeModeTabs {
 		items.accept(TechnologicaItems.SLEEPER_HEAD.get());
 		items.accept(TechnologicaItems.SWEEPER_HEAD.get());
 		items.accept(TechnologicaItems.WEEPER_HEAD.get());
-	}).build());
+	}).withTabsBefore(FLORA.getKey()).build());
 	public static final RegistryObject<CreativeModeTab> MINERAL = Technologica.CREATIVE_MODE_TABS.register("mineral", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.GERMANIUM_CHUNK.get())).withBackgroundLocation(new TechnologicaLocation("textures/gui/container/creative_inventory/tab_mineral.png")).withLabelColor(0).title(Component.translatable("itemGroup.mineral")).displayItems((p_270425_, items) -> {
 		items.accept(TechnologicaItems.SALT_ITEM.get());
 		items.accept(TechnologicaItems.LITHIUM_CLAY_ITEM.get());
@@ -454,7 +456,7 @@ public final class TechnologicaCreativeModeTabs {
 		items.accept(TechnologicaItems.MACHINE_OIL_BUCKET.get());
 		items.accept(TechnologicaItems.COOLANT_BUCKET.get());
 		items.accept(TechnologicaItems.MOLTEN_CORE_BUCKET.get());
-	}).build());
+	}).withTabsBefore(FAUNA.getKey()).build());
 	public static final RegistryObject<CreativeModeTab> FOOD = Technologica.CREATIVE_MODE_TABS.register("food", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.BANANA.get())).withBackgroundLocation(new TechnologicaLocation("textures/gui/container/creative_inventory/tab_food.png")).withLabelColor(0).title(Component.translatable("itemGroup.food")).displayItems((p_270425_, items) -> {
 		items.accept(TechnologicaItems.BARLEY.get());
 		items.accept(TechnologicaItems.OATS.get());
@@ -537,7 +539,7 @@ public final class TechnologicaCreativeModeTabs {
 		items.accept(TechnologicaItems.CINNAMON_ROLL.get());
 		items.accept(TechnologicaItems.OLIVE_OIL.get());
 		items.accept(TechnologicaItems.IODINE_PILL.get());
-	}).build());
+	}).withTabsBefore(MINERAL.getKey()).build());
 	public static final RegistryObject<CreativeModeTab> CONSTRUCTION = Technologica.CREATIVE_MODE_TABS.register("construction", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.GLUE_BOTTLE.get())).withBackgroundLocation(new TechnologicaLocation("textures/gui/container/creative_inventory/tab_construction.png")).title(Component.translatable("itemGroup.construction")).withLabelColor(0).displayItems((p_270425_, items) -> {
 		items.accept(TechnologicaItems.APRICOT_LOG_ITEM.get());
 		items.accept(TechnologicaItems.ASPEN_LOG_ITEM.get());
@@ -1060,7 +1062,7 @@ public final class TechnologicaCreativeModeTabs {
 		items.accept(TechnologicaItems.INFERNAL_BOAT.get());
 		items.accept(TechnologicaItems.MALEVOLENT_BOAT.get());
 		items.accept(TechnologicaItems.GLUE_BOTTLE.get());
-	}).build());
+	}).withTabsBefore(FOOD.getKey()).build());
 	public static final RegistryObject<CreativeModeTab> MACHINERY = Technologica.CREATIVE_MODE_TABS.register("machinery", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.PIPE_WRENCH.get())).withBackgroundLocation(new TechnologicaLocation("textures/gui/container/creative_inventory/tab_machinery.png")).title(Component.translatable("itemGroup.machinery")).withLabelColor(0).displayItems((p_270425_, items) -> {
 		items.accept(TechnologicaItems.LINE_SHAFT_HANGER_ITEM.get());
 		items.accept(TechnologicaItems.MOTOR_1HP_ITEM.get());
@@ -1094,7 +1096,7 @@ public final class TechnologicaCreativeModeTabs {
 		items.accept(TechnologicaItems.DECK_OF_PUNCHED_CARDS.get());
 		items.accept(TechnologicaItems.MAGNETIC_TAPE_BLANK.get());
 		items.accept(TechnologicaItems.MAGNETIC_TAPE_WRITTEN.get());
-	}).build());
+	}).withTabsBefore(CONSTRUCTION.getKey()).build());
 	public static final RegistryObject<CreativeModeTab> DECORATIVE = Technologica.CREATIVE_MODE_TABS.register("decorative", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.DISPLAY_CASE_ITEM.get())).withBackgroundLocation(new TechnologicaLocation("textures/gui/container/creative_inventory/tab_decorative.png")).title(Component.translatable("itemGroup.decorative")).withLabelColor(0).displayItems((p_270425_, items) -> {
 		items.accept(TechnologicaItems.DISPLAY_CASE_ITEM.get());
 		items.accept(TechnologicaItems.ACACIA_CHAIR_ITEM.get());
@@ -1165,7 +1167,7 @@ public final class TechnologicaCreativeModeTabs {
 		items.accept(TechnologicaItems.WARPED_TABLE_ITEM.get());
 		items.accept(TechnologicaItems.ZEBRAWOOD_TABLE_ITEM.get());
 		items.accept(TechnologicaItems.FROSTBITTEN_TABLE_ITEM.get());
-	}).build());
+	}).withTabsBefore(MACHINERY.getKey()).build());
 	public static final RegistryObject<CreativeModeTab> ARMORY = Technologica.CREATIVE_MODE_TABS.register("armory", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.NAVAL_MINE.get())).withBackgroundLocation(new TechnologicaLocation("textures/gui/container/creative_inventory/tab_armory.png")).title(Component.translatable("itemGroup.armory")).withLabelColor(0).displayItems((p_270425_, items) -> {
 		items.accept(TechnologicaItems.PRIMITIVE_DAGGER.get());
 		items.accept(TechnologicaItems.PRIMITIVE_PICKAXE.get());
@@ -1185,6 +1187,8 @@ public final class TechnologicaCreativeModeTabs {
 		items.accept(TechnologicaItems.LAND_MINE.get());
 		items.accept(TechnologicaItems.NAVAL_MINE.get());
 		items.accept(TechnologicaItems.ROCKET.get());
+		items.accept(TechnologicaItems.CANVAS_TUNIC.get());
+		items.accept(TechnologicaItems.CANVAS_PANTS.get());
 		items.accept(TechnologicaItems.BRONZE_HELMET.get());
 		items.accept(TechnologicaItems.BRONZE_CHESTPLATE.get());
 		items.accept(TechnologicaItems.BRONZE_LEGGINGS.get());
@@ -1216,7 +1220,7 @@ public final class TechnologicaCreativeModeTabs {
 		items.accept(TechnologicaItems.SPACE_BOOTS.get());
 		items.accept(TechnologicaItems.SLEEPING_BAG.get());
 		items.accept(TechnologicaItems.SUBMERSIBLE.get());
-	}).build());
+	}).withTabsBefore(DECORATIVE.getKey()).build());
 	public static final RegistryObject<CreativeModeTab> CRYPTICA = Technologica.CREATIVE_MODE_TABS.register("cryptica", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.PERSISTENT_GLARE.get())).withBackgroundLocation(new TechnologicaLocation("textures/gui/container/creative_inventory/tab_cryptica.png")).withLabelColor(0).title(Component.translatable("itemGroup.cryptica")).displayItems((p_270425_, items) -> {
 		items.accept(TechnologicaItems.PERSISTENT_GLARE.get());
 		items.accept(TechnologicaItems.SINGULARITY_GRANULE.get());
@@ -1232,5 +1236,5 @@ public final class TechnologicaCreativeModeTabs {
 		items.accept(TechnologicaItems.EXCITATION_OF_STRIKE.get());
 		items.accept(TechnologicaItems.SUBMERSION_OF_SUPPRESSION.get());
 		items.accept(TechnologicaItems.SKELETON_KEY.get());
-	}).build());
+	}).withTabsBefore(ARMORY.getKey()).build());
 }

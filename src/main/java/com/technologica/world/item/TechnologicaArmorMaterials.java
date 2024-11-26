@@ -45,6 +45,15 @@ public enum TechnologicaArmorMaterials implements StringRepresentable, ArmorMate
 		return Ingredient.of(TechnologicaItems.BRASS_INGOT.get());
 	}),
 
+	CANVAS("canvas", 3, Util.make(new EnumMap<>(ArmorItem.Type.class), (enumMap) -> {
+		enumMap.put(ArmorItem.Type.BOOTS, 1);
+		enumMap.put(ArmorItem.Type.LEGGINGS, 1);
+		enumMap.put(ArmorItem.Type.CHESTPLATE, 2);
+		enumMap.put(ArmorItem.Type.HELMET, 1);
+	}), 9, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> {
+		return Ingredient.of(TechnologicaItems.CANVAS.get());
+	}),
+
 	SPACE("space", 15, Util.make(new EnumMap<>(ArmorItem.Type.class), (enumMap) -> {
 		enumMap.put(ArmorItem.Type.BOOTS, 2);
 		enumMap.put(ArmorItem.Type.LEGGINGS, 5);
@@ -88,7 +97,9 @@ public enum TechnologicaArmorMaterials implements StringRepresentable, ArmorMate
 		enumMap.put(ArmorItem.Type.HELMET, 2);
 	}), 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
 		return Ingredient.of(TechnologicaItems.RUBBER.get());
-	}), MINING("mining", 15, Util.make(new EnumMap<>(ArmorItem.Type.class), (enumMap) -> {
+	}),
+
+	MINING("mining", 15, Util.make(new EnumMap<>(ArmorItem.Type.class), (enumMap) -> {
 		enumMap.put(ArmorItem.Type.BOOTS, 2);
 		enumMap.put(ArmorItem.Type.LEGGINGS, 5);
 		enumMap.put(ArmorItem.Type.CHESTPLATE, 6);

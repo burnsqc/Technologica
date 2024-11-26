@@ -63,6 +63,8 @@ public class TLModelsItem extends TLReGenModelsItem {
 		item3DModel(TechnologicaBlocks.SAWMILL.get(), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/sawmill")));
 
 		item2D(TechnologicaItems.COTTON.get());
+		item2D(TechnologicaItems.CLOTH.get());
+		item2D(TechnologicaItems.CANVAS.get());
 		item2D(TechnologicaItems.PIRANHA_BUCKET.get());
 		item2D(TechnologicaItems.FUR.get());
 		item2D(TechnologicaItems.IVORY.get());

@@ -21,12 +21,9 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -65,11 +62,10 @@ public class RenderLevelStageEventListener {
 			MultiBufferSource.BufferSource multibuffersource$buffersource = minecraft.renderBuffers().bufferSource();
 			VertexConsumer vertexConsumer = multibuffersource$buffersource.getBuffer(RenderType.lines());
 			BufferBuilder bufferbuilder = Tesselator.getInstance().getBuilder();
-			if (sonarBuffer != null) {
-				sonarBuffer.close();
-			}
-			sonarBuffer = new VertexBuffer(VertexBuffer.Usage.DYNAMIC);
+
+			sonarBuffer = new VertexBuffer(VertexBuffer.Usage.STATIC);
 			if (sonarBlocks != null) {
+
 				minecraft.getProfiler().push("sonar");
 				BufferBuilder.RenderedBuffer bufferbuilder$renderedbuffer = buildSonar(bufferbuilder, vertexConsumer, event.getPoseStack(), event.getCamera().getEntity(), event);
 				minecraft.getProfiler().pop();
@@ -77,12 +73,7 @@ public class RenderLevelStageEventListener {
 				sonarBuffer.bind();
 				sonarBuffer.upload(bufferbuilder$renderedbuffer);
 				VertexBuffer.unbind();
-
-				// if (sonarBuffer != null) {
-					// sonarBuffer.bind();
-					// ShaderInstance shaderinstance = RenderSystem.getShader();
-					// sonarBuffer.drawWithShader(event.getPoseStack().last().pose(), event.getProjectionMatrix(), shaderinstance);
-				// }
+				// sonarBuffer.close();
 			}
 		}
 
@@ -112,10 +103,10 @@ public class RenderLevelStageEventListener {
 		minecraft.getProfiler().push("occlusion_culling");
 		List<BlockPos> sonarBlocksOcclusionCulled = sonarBlocksFrustumCulled.stream().filter((sonarBlockPos) -> {
 			boolean occluded = true;
-			for (Direction direction : Direction.values()) {
-				occluded = occluded & !Block.shouldRenderFace(minecraft.level.getBlockState(sonarBlockPos), minecraft.level, sonarBlockPos, direction, sonarBlockPos.relative(direction));
-			}
-			return !occluded;
+			// for (Direction direction : Direction.values()) {
+			// occluded = occluded & !Block.shouldRenderFace(minecraft.level.getBlockState(sonarBlockPos), minecraft.level, sonarBlockPos, direction, sonarBlockPos.relative(direction));
+			// }
+			return occluded;
 		}).collect(Collectors.toList());
 		minecraft.getProfiler().pop();
 		
@@ -133,32 +124,30 @@ public class RenderLevelStageEventListener {
 			// Third only act upon blocks that are in the sonar wave
 			minecraft.getProfiler().push("render");
 			if (alpha > 0) {
-				PoseStack.Pose posestack$pose = poseStack.last();
 				Vec3 vec3 = event.getCamera().getPosition();
-				double posX2 = sonarBlockPos.getX() - vec3.x();
-				double posY2 = sonarBlockPos.getY() - vec3.y();
-				double posZ2 = sonarBlockPos.getZ() - vec3.z();
-
 				minecraft.getProfiler().push("voxel");
-				BlockState blockState = minecraft.level.getBlockState(sonarBlockPos);
-				VoxelShape voxelShape = blockState.getCollisionShape(minecraft.level, sonarBlockPos, CollisionContext.of(entity));
-				voxelShape.forAllEdges((voxelX1, voxelY1, voxelZ1, voxelX2, voxelY2, voxelZ2) -> {
-					float lengthX = (float) (voxelX2 - voxelX1);
-					float lengthY = (float) (voxelY2 - voxelY1);
-					float lengthZ = (float) (voxelZ2 - voxelZ1);
-					float length = Mth.sqrt(lengthX * lengthX + lengthY * lengthY + lengthZ * lengthZ);
-					lengthX /= length;
-					lengthY /= length;
-					lengthZ /= length;
-					vertexConsumer.vertex(posestack$pose.pose(), (float) (voxelX1 + posX2), (float) (voxelY1 + posY2), (float) (voxelZ1 + posZ2)).color(0, 1, 0, alpha).normal(posestack$pose.normal(), lengthX, lengthY, lengthZ).endVertex();
-					vertexConsumer.vertex(posestack$pose.pose(), (float) (voxelX2 + posX2), (float) (voxelY2 + posY2), (float) (voxelZ2 + posZ2)).color(0, 1, 0, alpha).normal(posestack$pose.normal(), lengthX, lengthY, lengthZ).endVertex();
-				});
+				renderOutline(poseStack, vertexConsumer, minecraft.level.getBlockState(sonarBlockPos).getCollisionShape(minecraft.level, sonarBlockPos, CollisionContext.of(entity)), sonarBlockPos.getX() - vec3.x(), sonarBlockPos.getY() - vec3.y(), sonarBlockPos.getZ() - vec3.z(), alpha);
 				minecraft.getProfiler().pop();
 			}
 			minecraft.getProfiler().pop();
 		});
 		minecraft.getProfiler().pop();
 		return bufferBuilder.end();
+	}
+
+	private static void renderOutline(PoseStack poseStack, VertexConsumer vertexConsumer, VoxelShape voxelShape, double posX2, double posY2, double posZ2, float alpha) {
+		PoseStack.Pose posestack$pose = poseStack.last();
+		voxelShape.forAllEdges((voxelX1, voxelY1, voxelZ1, voxelX2, voxelY2, voxelZ2) -> {
+			float lengthX = (float) (voxelX2 - voxelX1);
+			float lengthY = (float) (voxelY2 - voxelY1);
+			float lengthZ = (float) (voxelZ2 - voxelZ1);
+			float length = Mth.sqrt(lengthX * lengthX + lengthY * lengthY + lengthZ * lengthZ);
+			lengthX /= length;
+			lengthY /= length;
+			lengthZ /= length;
+			vertexConsumer.vertex(posestack$pose.pose(), (float) (voxelX1 + posX2), (float) (voxelY1 + posY2), (float) (voxelZ1 + posZ2)).color(0, 1, 0, alpha).normal(posestack$pose.normal(), lengthX, lengthY, lengthZ).endVertex();
+			vertexConsumer.vertex(posestack$pose.pose(), (float) (voxelX2 + posX2), (float) (voxelY2 + posY2), (float) (voxelZ2 + posZ2)).color(0, 1, 0, alpha).normal(posestack$pose.normal(), lengthX, lengthY, lengthZ).endVertex();
+		});
 	}
 
 	public static void setBlocks(BlockPos[] blocks, BlockPos playerPos) {

@@ -7,18 +7,9 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.level.saveddata.SavedData;
 
 public class TechnologicaServerLevelData extends SavedData implements TechnologicaLevelData {
-	private int clearWeatherTime;
 	private boolean meteorStorming;
 	private int meteorStormTime;
-
-	public int getClearWeatherTime() {
-		return this.clearWeatherTime;
-	}
-
-	public void setClearWeatherTime(int p_78517_) {
-		this.clearWeatherTime = p_78517_;
-		this.setDirty();
-	}
+	private int clearWeatherTime;
 
 	@Override
 	public boolean isMeteorStorming() {
@@ -35,8 +26,17 @@ public class TechnologicaServerLevelData extends SavedData implements Technologi
 		return this.meteorStormTime;
 	}
 
-	public void setMeteorStormTime(int p_78592_) {
-		this.meteorStormTime = p_78592_;
+	public void setMeteorStormTime(int meteorStormTime) {
+		this.meteorStormTime = meteorStormTime;
+		this.setDirty();
+	}
+
+	public int getClearWeatherTime() {
+		return this.clearWeatherTime;
+	}
+
+	public void setClearWeatherTime(int clearWeatherTime) {
+		this.clearWeatherTime = clearWeatherTime;
 		this.setDirty();
 	}
 
@@ -44,26 +44,26 @@ public class TechnologicaServerLevelData extends SavedData implements Technologi
 		return new TechnologicaServerLevelData();
 	}
 
-	public static TechnologicaServerLevelData load(CompoundTag tag) {
-		TechnologicaServerLevelData data = create();
-		int clearWeatherTime = tag.getInt("clearWeatherTime");
-		boolean meteorStorming = tag.getBoolean("meteorStorming");
-		int meteorStormTime = tag.getInt("meteorStormTime");
-		data.clearWeatherTime = clearWeatherTime;
-		data.meteorStorming = meteorStorming;
-		data.meteorStormTime = meteorStormTime;
-		return data;
+	public static TechnologicaServerLevelData load(CompoundTag compoundTag) {
+		TechnologicaServerLevelData technologicaServerLevelData = create();
+		boolean meteorStorming = compoundTag.getBoolean("meteorStorming");
+		int meteorStormTime = compoundTag.getInt("meteorStormTime");
+		int clearWeatherTime = compoundTag.getInt("clearWeatherTime");
+		technologicaServerLevelData.clearWeatherTime = clearWeatherTime;
+		technologicaServerLevelData.meteorStorming = meteorStorming;
+		technologicaServerLevelData.meteorStormTime = meteorStormTime;
+		return technologicaServerLevelData;
 	}
 
 	@Override
-	public CompoundTag save(CompoundTag tag) {
-		tag.putInt("clearWeatherTime", clearWeatherTime);
-		tag.putBoolean("meteorStorming", meteorStorming);
-		tag.putInt("meteorStormTime", meteorStormTime);
-		return tag;
+	public CompoundTag save(CompoundTag compoundTag) {
+		compoundTag.putBoolean("meteorStorming", meteorStorming);
+		compoundTag.putInt("meteorStormTime", meteorStormTime);
+		compoundTag.putInt("clearWeatherTime", clearWeatherTime);
+		return compoundTag;
 	}
 
-	public static TechnologicaServerLevelData getData(MinecraftServer server) {
-		return server.overworld().getDataStorage().computeIfAbsent(TechnologicaServerLevelData::load, TechnologicaServerLevelData::create, Technologica.MOD_ID + "_weather");
+	public static TechnologicaServerLevelData getData(MinecraftServer minecraftServer) {
+		return minecraftServer.overworld().getDataStorage().computeIfAbsent(TechnologicaServerLevelData::load, TechnologicaServerLevelData::create, Technologica.MOD_ID + "_weather");
 	}
 }

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "technologica:brass_ingot"
+    },
+    "L": {
+      "item": "technologica:lead_ingot"
+    },
+    "S": {
+      "item": "minecraft:leather_boots"
+    }
+  },
+  "pattern": [
+    "BSB",
+    "L L"
+  ],
+  "result": {
+    "item": "technologica:dive_boots"
+  },
+  "show_notification": true
+}

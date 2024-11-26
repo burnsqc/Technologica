@@ -19,8 +19,8 @@ public class TechnologicaLevel {
 		this.level = level;
 	}
 
-	public float getMeteorStormLevel(float p_46723_) {
-		return Mth.lerp(p_46723_, this.oMeteorStormLevel, this.meteorStormLevel);
+	public float getMeteorStormLevel(float partialTick) {
+		return Mth.lerp(partialTick, this.oMeteorStormLevel, this.meteorStormLevel);
 	}
 
 	public void setMeteorStormLevel(float p_46735_) {

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "technologica:brass_ingot"
+    },
+    "G": {
+      "item": "minecraft:glass_pane"
+    },
+    "H": {
+      "item": "technologica:brass_helmet"
+    }
+  },
+  "pattern": [
+    "BGB",
+    "GHG",
+    "BGB"
+  ],
+  "result": {
+    "item": "technologica:dive_helmet"
+  },
+  "show_notification": true
+}

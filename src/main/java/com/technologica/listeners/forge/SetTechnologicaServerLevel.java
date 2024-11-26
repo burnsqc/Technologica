@@ -13,14 +13,13 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @Mod.EventBusSubscriber(bus = EventBusSubscriber.Bus.FORGE)
-public class LevelEventListener {
+public class SetTechnologicaServerLevel {
 
 	@SubscribeEvent
-	public static void onLoad(final LevelEvent.Load event) {
+	public static final void onLoad(final LevelEvent.Load event) {
 		if (!event.getLevel().isClientSide()) {
-			MinecraftServer mc = event.getLevel().getServer();
-			TechnologicaServerLevelData data = TechnologicaServerLevelData.getData(mc);
-			Technologica.getInstance().setServerLevel(new TechnologicaServerLevel(mc.getLevel(Registries.levelStemToLevel(TechnologicaDimensions.MOON_STEM)), data));
+			MinecraftServer minecraftServer = event.getLevel().getServer();
+			Technologica.getInstance().setServerLevel(new TechnologicaServerLevel(minecraftServer.getLevel(Registries.levelStemToLevel(TechnologicaDimensions.MOON_STEM)), TechnologicaServerLevelData.getData(minecraftServer)));
 		}
 	}
 }
