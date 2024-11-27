@@ -38,7 +38,6 @@ public class ModifyMobGoals {
 		if (!event.getLevel().isClientSide()) {
 			if (event.getEntity() instanceof Mob) {
 				Mob mob = (Mob) event.getEntity();
-				mob.targetSelector.removeGoal(null);
 				if (mob instanceof Bee) {
 					mob.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(mob, GrizzlyBear.class, 10, true, true, (Predicate<LivingEntity>) null));
 				}
