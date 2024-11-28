@@ -116,6 +116,10 @@ import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.registries.RegistryObject;
 
 public final class TechnologicaBlocks {
+	private static final BlockBehaviour.Properties GEM_ORE = BlockBehaviour.Properties.copy(Blocks.EMERALD_ORE);
+	private static final BlockBehaviour.Properties GEM_ORE_DEEPSLATE = BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_EMERALD_ORE);
+	private static final UniformInt GEM_EXP = UniformInt.of(3, 7);
+
 	public static final RegistryObject<Block> BARLEY = Technologica.BLOCKS.register("barley", () -> VanillaLikeBlocks.grainCropBlock(TechnologicaItems.BARLEY_SEEDS));
 	public static final RegistryObject<Block> OATS = Technologica.BLOCKS.register("oats", () -> VanillaLikeBlocks.grainCropBlock(TechnologicaItems.OATS_SEEDS));
 	public static final RegistryObject<Block> RYE = Technologica.BLOCKS.register("rye", () -> VanillaLikeBlocks.grainCropBlock(TechnologicaItems.RYE_SEEDS));
@@ -336,10 +340,6 @@ public final class TechnologicaBlocks {
 	public static final RegistryObject<Block> NETHER_PLATINUM_ORE = Technologica.BLOCKS.register("nether_platinum_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> PYROLUSITE_ORE = Technologica.BLOCKS.register("pyrolusite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> DEEPSLATE_PYROLUSITE_ORE = Technologica.BLOCKS.register("deepslate_pyrolusite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> RUBY_ORE = Technologica.BLOCKS.register("ruby_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(3.0F, 3.0F), UniformInt.of(3, 7)));
-	public static final RegistryObject<Block> DEEPSLATE_RUBY_ORE = Technologica.BLOCKS.register("deepslate_ruby_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(RUBY_ORE.get()).strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE), UniformInt.of(3, 7)));
-	public static final RegistryObject<Block> SAPPHIRE_ORE = Technologica.BLOCKS.register("sapphire_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(3.0F, 3.0F), UniformInt.of(3, 7)));
-	public static final RegistryObject<Block> DEEPSLATE_SAPPHIRE_ORE = Technologica.BLOCKS.register("deepslate_sapphire_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(SAPPHIRE_ORE.get()).strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE), UniformInt.of(3, 7)));
 	public static final RegistryObject<Block> SPODUMENE_ORE = Technologica.BLOCKS.register("spodumene_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> DEEPSLATE_SPODUMENE_ORE = Technologica.BLOCKS.register("deepslate_spodumene_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> SYLVANITE_ORE = Technologica.BLOCKS.register("sylvanite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.STONE)));
@@ -349,12 +349,18 @@ public final class TechnologicaBlocks {
 	public static final RegistryObject<Block> DEEPSLATE_TANTALITE_ORE = Technologica.BLOCKS.register("deepslate_tantalite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> THORIANITE_ORE = Technologica.BLOCKS.register("thorianite_ore", () -> new RadioactiveOreBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> DEEPSLATE_THORIANITE_ORE = Technologica.BLOCKS.register("deepslate_thorianite_ore", () -> new RadioactiveOreBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> TOPAZ_ORE = Technologica.BLOCKS.register("topaz_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(3.0F, 3.0F), UniformInt.of(3, 7)));
-	public static final RegistryObject<Block> DEEPSLATE_TOPAZ_ORE = Technologica.BLOCKS.register("deepslate_topaz_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(TOPAZ_ORE.get()).strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE), UniformInt.of(3, 7)));
 	public static final RegistryObject<Block> URANINITE_ORE = Technologica.BLOCKS.register("uraninite_ore", () -> new RadioactiveOreBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> DEEPSLATE_URANINITE_ORE = Technologica.BLOCKS.register("deepslate_uraninite_ore", () -> new RadioactiveOreBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> WOLFRAMITE_ORE = Technologica.BLOCKS.register("wolframite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> DEEPSLATE_WOLFRAMITE_ORE = Technologica.BLOCKS.register("deepslate_wolframite_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.STONE)));
+
+	public static final RegistryObject<Block> RUBY_ORE = Technologica.BLOCKS.register("ruby_ore", () -> new DropExperienceBlock(GEM_ORE, GEM_EXP));
+	public static final RegistryObject<Block> DEEPSLATE_RUBY_ORE = Technologica.BLOCKS.register("deepslate_ruby_ore", () -> new DropExperienceBlock(GEM_ORE_DEEPSLATE, GEM_EXP));
+	public static final RegistryObject<Block> SAPPHIRE_ORE = Technologica.BLOCKS.register("sapphire_ore", () -> new DropExperienceBlock(GEM_ORE, GEM_EXP));
+	public static final RegistryObject<Block> DEEPSLATE_SAPPHIRE_ORE = Technologica.BLOCKS.register("deepslate_sapphire_ore", () -> new DropExperienceBlock(GEM_ORE_DEEPSLATE, GEM_EXP));
+	public static final RegistryObject<Block> TOPAZ_ORE = Technologica.BLOCKS.register("topaz_ore", () -> new DropExperienceBlock(GEM_ORE, GEM_EXP));
+	public static final RegistryObject<Block> DEEPSLATE_TOPAZ_ORE = Technologica.BLOCKS.register("deepslate_topaz_ore", () -> new DropExperienceBlock(GEM_ORE_DEEPSLATE, GEM_EXP));
+
 	public static final RegistryObject<Block> AUTUNITE_CRYSTAL = Technologica.BLOCKS.register("autunite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
 		return 5;
 	})));

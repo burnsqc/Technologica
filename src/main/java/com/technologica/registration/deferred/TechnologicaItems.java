@@ -269,10 +269,10 @@ public final class TechnologicaItems {
 	public static final RegistryObject<Item> NETHER_PLATINUM_ORE_ITEM = Technologica.ITEMS.register("nether_platinum_ore", () -> new BlockItem(TechnologicaBlocks.NETHER_PLATINUM_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> PYROLUSITE_ORE_ITEM = Technologica.ITEMS.register("pyrolusite_ore", () -> new BlockItem(TechnologicaBlocks.PYROLUSITE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> DEEPSLATE_PYROLUSITE_ORE_ITEM = Technologica.ITEMS.register("deepslate_pyrolusite_ore", () -> new BlockItem(TechnologicaBlocks.DEEPSLATE_PYROLUSITE_ORE.get(), new Item.Properties()));
-	public static final RegistryObject<Item> RUBY_ORE_ITEM = Technologica.ITEMS.register("ruby_ore", () -> new BlockItem(TechnologicaBlocks.RUBY_ORE.get(), new Item.Properties()));
-	public static final RegistryObject<Item> DEEPSLATE_RUBY_ORE_ITEM = Technologica.ITEMS.register("deepslate_ruby_ore", () -> new BlockItem(TechnologicaBlocks.DEEPSLATE_RUBY_ORE.get(), new Item.Properties()));
-	public static final RegistryObject<Item> SAPPHIRE_ORE_ITEM = Technologica.ITEMS.register("sapphire_ore", () -> new BlockItem(TechnologicaBlocks.SAPPHIRE_ORE.get(), new Item.Properties()));
-	public static final RegistryObject<Item> DEEPSLATE_SAPPHIRE_ORE_ITEM = Technologica.ITEMS.register("deepslate_sapphire_ore", () -> new BlockItem(TechnologicaBlocks.DEEPSLATE_SAPPHIRE_ORE.get(), new Item.Properties()));
+	public static final RegistryObject<Item> RUBY_ORE = Technologica.ITEMS.register("ruby_ore", () -> new BlockItem(TechnologicaBlocks.RUBY_ORE.get(), new Item.Properties()));
+	public static final RegistryObject<Item> DEEPSLATE_RUBY_ORE = Technologica.ITEMS.register("deepslate_ruby_ore", () -> new BlockItem(TechnologicaBlocks.DEEPSLATE_RUBY_ORE.get(), new Item.Properties()));
+	public static final RegistryObject<Item> SAPPHIRE_ORE = Technologica.ITEMS.register("sapphire_ore", () -> new BlockItem(TechnologicaBlocks.SAPPHIRE_ORE.get(), new Item.Properties()));
+	public static final RegistryObject<Item> DEEPSLATE_SAPPHIRE_ORE = Technologica.ITEMS.register("deepslate_sapphire_ore", () -> new BlockItem(TechnologicaBlocks.DEEPSLATE_SAPPHIRE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> SPODUMENE_ORE_ITEM = Technologica.ITEMS.register("spodumene_ore", () -> new BlockItem(TechnologicaBlocks.SPODUMENE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> DEEPSLATE_SPODUMENE_ORE_ITEM = Technologica.ITEMS.register("deepslate_spodumene_ore", () -> new BlockItem(TechnologicaBlocks.DEEPSLATE_SPODUMENE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> SYLVANITE_ORE_ITEM = Technologica.ITEMS.register("sylvanite_ore", () -> new BlockItem(TechnologicaBlocks.SYLVANITE_ORE.get(), new Item.Properties()));
@@ -282,8 +282,8 @@ public final class TechnologicaItems {
 	public static final RegistryObject<Item> DEEPSLATE_TANTALITE_ORE_ITEM = Technologica.ITEMS.register("deepslate_tantalite_ore", () -> new BlockItem(TechnologicaBlocks.DEEPSLATE_TANTALITE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> THORIANITE_ORE_ITEM = Technologica.ITEMS.register("thorianite_ore", () -> new BlockItem(TechnologicaBlocks.THORIANITE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> DEEPSLATE_THORIANITE_ORE_ITEM = Technologica.ITEMS.register("deepslate_thorianite_ore", () -> new BlockItem(TechnologicaBlocks.DEEPSLATE_THORIANITE_ORE.get(), new Item.Properties()));
-	public static final RegistryObject<Item> TOPAZ_ORE_ITEM = Technologica.ITEMS.register("topaz_ore", () -> new BlockItem(TechnologicaBlocks.TOPAZ_ORE.get(), new Item.Properties()));
-	public static final RegistryObject<Item> DEEPSLATE_TOPAZ_ORE_ITEM = Technologica.ITEMS.register("deepslate_topaz_ore", () -> new BlockItem(TechnologicaBlocks.DEEPSLATE_TOPAZ_ORE.get(), new Item.Properties()));
+	public static final RegistryObject<Item> TOPAZ_ORE = Technologica.ITEMS.register("topaz_ore", () -> new BlockItem(TechnologicaBlocks.TOPAZ_ORE.get(), new Item.Properties()));
+	public static final RegistryObject<Item> DEEPSLATE_TOPAZ_ORE = Technologica.ITEMS.register("deepslate_topaz_ore", () -> new BlockItem(TechnologicaBlocks.DEEPSLATE_TOPAZ_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> URANINITE_ORE_ITEM = Technologica.ITEMS.register("uraninite_ore", () -> new BlockItem(TechnologicaBlocks.URANINITE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> DEEPSLATE_URANINITE_ORE_ITEM = Technologica.ITEMS.register("deepslate_uraninite_ore", () -> new BlockItem(TechnologicaBlocks.DEEPSLATE_URANINITE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> WOLFRAMITE_ORE_ITEM = Technologica.ITEMS.register("wolframite_ore", () -> new BlockItem(TechnologicaBlocks.WOLFRAMITE_ORE.get(), new Item.Properties()));

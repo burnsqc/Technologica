@@ -2,6 +2,7 @@ package com.technologica.resourcegen.data.recipes;
 
 import java.util.function.Consumer;
 
+import com.google.common.collect.ImmutableList;
 import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.registration.deferred.TechnologicaItems;
 import com.technologica.registration.deferred.TechnologicaRecipeSerializers;
@@ -27,6 +28,10 @@ import net.minecraftforge.common.crafting.ConditionalRecipe;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class TLRecipesGenerator extends TLRGRecipeGenerator {
+	public static final ImmutableList<ItemLike> RUBY_SMELTABLES = ImmutableList.of(TechnologicaItems.RUBY_ORE.get(), TechnologicaItems.DEEPSLATE_RUBY_ORE.get());
+	public static final ImmutableList<ItemLike> SAPPHIRE_SMELTABLES = ImmutableList.of(TechnologicaItems.SAPPHIRE_ORE.get(), TechnologicaItems.DEEPSLATE_SAPPHIRE_ORE.get());
+	public static final ImmutableList<ItemLike> TOPAZ_SMELTABLES = ImmutableList.of(TechnologicaItems.TOPAZ_ORE.get(), TechnologicaItems.DEEPSLATE_TOPAZ_ORE.get());
+
 	@Override
 	protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
 		casualOrProPlanksVanilla(consumer, Blocks.OAK_PLANKS, ItemTags.OAK_LOGS);
@@ -297,6 +302,8 @@ public class TLRecipesGenerator extends TLRGRecipeGenerator {
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TechnologicaItems.CLOTH.get(), 1).requires(TechnologicaItems.COTTON.get(), 4).unlockedBy("has_cotton", has(TechnologicaItems.COTTON.get())).save(consumer, new TechnologicaLocation("cloth"));
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TechnologicaItems.CANVAS.get(), 1).requires(TechnologicaItems.CLOTH.get()).requires(Items.HONEYCOMB).unlockedBy("has_honeycomb", has(Items.HONEYCOMB)).save(consumer, new TechnologicaLocation("canvas"));
 		armorRecipes(consumer);
+		oreSmelting(consumer);
+		nineBlockStorage(consumer);
 	}
 
 	private static void armorRecipes(Consumer<FinishedRecipe> consumer) {
@@ -317,6 +324,22 @@ public class TLRecipesGenerator extends TLRGRecipeGenerator {
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, TechnologicaItems.DIVE_SUIT.get()).define('T', TechnologicaItems.CANVAS_TUNIC.get()).define('B', TechnologicaItems.BRASS_INGOT.get()).define('L', Items.LEATHER).pattern("L L").pattern("BLB").pattern("LTL").unlockedBy("has_canvas_tunic", has(TechnologicaItems.CANVAS_TUNIC.get())).save(consumer, new TechnologicaLocation("dive_suit"));
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, TechnologicaItems.DIVE_PANTS.get()).define('P', TechnologicaItems.CANVAS_PANTS.get()).define('L', Items.LEATHER).pattern(" P ").pattern("LLL").pattern(" L ").unlockedBy("has_canvas_pants", has(TechnologicaItems.CANVAS_PANTS.get())).save(consumer, new TechnologicaLocation("dive_pants"));
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, TechnologicaItems.DIVE_BOOTS.get()).define('S', Items.LEATHER_BOOTS).define('B', TechnologicaItems.BRASS_INGOT.get()).define('L', TechnologicaItems.LEAD_INGOT.get()).pattern("BSB").pattern("L L").unlockedBy("has_lead", has(TechnologicaItems.LEAD_INGOT.get())).save(consumer, new TechnologicaLocation("dive_boots"));
+	}
+
+	private static void oreSmelting(Consumer<FinishedRecipe> consumer) {
+		oreSmelting(consumer, RUBY_SMELTABLES, RecipeCategory.MISC, TechnologicaItems.RUBY.get(), 1.0F, 200, "ruby");
+		oreSmelting(consumer, SAPPHIRE_SMELTABLES, RecipeCategory.MISC, TechnologicaItems.SAPPHIRE.get(), 1.0F, 200, "sapphire");
+		oreSmelting(consumer, TOPAZ_SMELTABLES, RecipeCategory.MISC, TechnologicaItems.TOPAZ.get(), 1.0F, 200, "topaz");
+
+		oreBlasting(consumer, RUBY_SMELTABLES, RecipeCategory.MISC, TechnologicaItems.RUBY.get(), 1.0F, 100, "ruby");
+		oreBlasting(consumer, SAPPHIRE_SMELTABLES, RecipeCategory.MISC, TechnologicaItems.SAPPHIRE.get(), 1.0F, 100, "sapphire");
+		oreBlasting(consumer, TOPAZ_SMELTABLES, RecipeCategory.MISC, TechnologicaItems.TOPAZ.get(), 1.0F, 100, "topaz");
+	}
+
+	private static void nineBlockStorage(Consumer<FinishedRecipe> consumer) {
+		nineBlockStorageRecipes(consumer, RecipeCategory.MISC, TechnologicaItems.RUBY.get(), RecipeCategory.BUILDING_BLOCKS, TechnologicaItems.BLOCK_OF_RUBY.get());
+		nineBlockStorageRecipes(consumer, RecipeCategory.MISC, TechnologicaItems.SAPPHIRE.get(), RecipeCategory.BUILDING_BLOCKS, TechnologicaItems.BLOCK_OF_SAPPHIRE.get());
+		nineBlockStorageRecipes(consumer, RecipeCategory.MISC, TechnologicaItems.TOPAZ.get(), RecipeCategory.BUILDING_BLOCKS, TechnologicaItems.BLOCK_OF_TOPAZ.get());
 	}
 
 	private static void casualOrProPlanksVanilla(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, TagKey<Item> input) {

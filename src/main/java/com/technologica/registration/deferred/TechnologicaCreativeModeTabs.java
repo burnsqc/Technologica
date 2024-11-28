@@ -214,10 +214,10 @@ public final class TechnologicaCreativeModeTabs {
 		items.accept(TechnologicaItems.NETHER_PLATINUM_ORE_ITEM.get());
 		items.accept(TechnologicaItems.PYROLUSITE_ORE_ITEM.get());
 		items.accept(TechnologicaItems.DEEPSLATE_PYROLUSITE_ORE_ITEM.get());
-		items.accept(TechnologicaItems.RUBY_ORE_ITEM.get());
-		items.accept(TechnologicaItems.DEEPSLATE_RUBY_ORE_ITEM.get());
-		items.accept(TechnologicaItems.SAPPHIRE_ORE_ITEM.get());
-		items.accept(TechnologicaItems.DEEPSLATE_SAPPHIRE_ORE_ITEM.get());
+		items.accept(TechnologicaItems.RUBY_ORE.get());
+		items.accept(TechnologicaItems.DEEPSLATE_RUBY_ORE.get());
+		items.accept(TechnologicaItems.SAPPHIRE_ORE.get());
+		items.accept(TechnologicaItems.DEEPSLATE_SAPPHIRE_ORE.get());
 		items.accept(TechnologicaItems.SPODUMENE_ORE_ITEM.get());
 		items.accept(TechnologicaItems.DEEPSLATE_SPODUMENE_ORE_ITEM.get());
 		items.accept(TechnologicaItems.SYLVANITE_ORE_ITEM.get());
@@ -227,8 +227,8 @@ public final class TechnologicaCreativeModeTabs {
 		items.accept(TechnologicaItems.DEEPSLATE_TANTALITE_ORE_ITEM.get());
 		items.accept(TechnologicaItems.THORIANITE_ORE_ITEM.get());
 		items.accept(TechnologicaItems.DEEPSLATE_THORIANITE_ORE_ITEM.get());
-		items.accept(TechnologicaItems.TOPAZ_ORE_ITEM.get());
-		items.accept(TechnologicaItems.DEEPSLATE_TOPAZ_ORE_ITEM.get());
+		items.accept(TechnologicaItems.TOPAZ_ORE.get());
+		items.accept(TechnologicaItems.DEEPSLATE_TOPAZ_ORE.get());
 		items.accept(TechnologicaItems.URANINITE_ORE_ITEM.get());
 		items.accept(TechnologicaItems.DEEPSLATE_URANINITE_ORE_ITEM.get());
 		items.accept(TechnologicaItems.WOLFRAMITE_ORE_ITEM.get());
