@@ -256,8 +256,6 @@ public final class TLLootTablesBlocksGenerator extends BlockLootSubProvider {
 		dropSelf(TechnologicaBlocks.DEEPSLATE_BASTNAESITE_ORE.get());
 		dropSelf(TechnologicaBlocks.BAUXITE_ORE.get());
 		dropSelf(TechnologicaBlocks.DEEPSLATE_BAUXITE_ORE.get());
-		dropSelf(TechnologicaBlocks.BORAX_ORE.get());
-		dropSelf(TechnologicaBlocks.DEEPSLATE_BORAX_ORE.get());
 		dropSelf(TechnologicaBlocks.CASSITERITE_ORE.get());
 		dropSelf(TechnologicaBlocks.DEEPSLATE_CASSITERITE_ORE.get());
 		dropSelf(TechnologicaBlocks.CHROMITE_ORE.get());
@@ -1225,6 +1223,12 @@ public final class TLLootTablesBlocksGenerator extends BlockLootSubProvider {
 		dropSelf(TechnologicaBlocks.RUBBER_RESIN_BASIN.get());
 		dropSelf(TechnologicaBlocks.CARPENTRY_WORKBENCH.get());
 		add(TechnologicaBlocks.ABYSS_PORTAL.get(), noDrop());
+		oreLoot();
+	}
+
+	private final void oreLoot() {
+		this.add(TechnologicaBlocks.BORAX_ORE.get(), (ore) -> createSilkTouchDispatchTable(ore, this.applyExplosionDecay(ore, LootItem.lootTableItem(TechnologicaItems.BORAX.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(4.0F, 9.0F))).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE)))));
+		this.add(TechnologicaBlocks.DEEPSLATE_BORAX_ORE.get(), (ore) -> createSilkTouchDispatchTable(ore, this.applyExplosionDecay(ore, LootItem.lootTableItem(TechnologicaItems.BORAX.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(4.0F, 9.0F))).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE)))));
 	}
 
 	@Override

@@ -80,6 +80,7 @@ public class TLModelsItem extends TLReGenModelsItem {
 		item2D(TechnologicaItems.BARNACLE.get());
 
 		item2D(TechnologicaItems.LITHIUM_CLAY_BALL.get());
+		item2D(TechnologicaItems.BORAX.get());
 		item2D(TechnologicaItems.BORON_CHUNK.get());
 		item2D(TechnologicaItems.CARBON_CHUNK.get());
 		item2D(TechnologicaItems.SILICON_CHUNK.get());

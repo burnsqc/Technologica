@@ -404,6 +404,7 @@ public final class TechnologicaItems {
 	public static final RegistryObject<Item> BRASS_INGOT = Technologica.ITEMS.register("brass_ingot", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> STEEL_INGOT = Technologica.ITEMS.register("steel_ingot", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> LITHIUM_CLAY_BALL = Technologica.ITEMS.register("lithium_clay_ball", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> BORAX = Technologica.ITEMS.register("borax", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> BORON_CHUNK = Technologica.ITEMS.register("boron_chunk", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> CARBON_CHUNK = Technologica.ITEMS.register("carbon_chunk", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> SILICON_CHUNK = Technologica.ITEMS.register("silicon_chunk", () -> new Item(new Item.Properties()));

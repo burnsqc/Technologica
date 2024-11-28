@@ -349,6 +349,7 @@ public final class TechnologicaCreativeModeTabs {
 		items.accept(TechnologicaItems.BRASS_INGOT.get());
 		items.accept(TechnologicaItems.STEEL_INGOT.get());
 		items.accept(TechnologicaItems.LITHIUM_CLAY_BALL.get());
+		items.accept(TechnologicaItems.BORAX.get());
 		items.accept(TechnologicaItems.BORON_CHUNK.get());
 		items.accept(TechnologicaItems.CARBON_CHUNK.get());
 		items.accept(TechnologicaItems.SILICON_CHUNK.get());
