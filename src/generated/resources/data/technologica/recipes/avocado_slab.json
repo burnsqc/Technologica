@@ -41,7 +41,7 @@
             "item": "technologica:avocado_planks"
           },
           {
-            "item": "technologica:saw"
+            "tag": "technologica:saws"
           }
         ],
         "result": {

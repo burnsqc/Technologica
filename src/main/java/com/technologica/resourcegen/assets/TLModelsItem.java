@@ -81,6 +81,17 @@ public class TLModelsItem extends TLReGenModelsItem {
 
 		item2D(TechnologicaItems.LITHIUM_CLAY_BALL.get());
 		item2D(TechnologicaItems.BORAX.get());
+		item2D(TechnologicaItems.CASSITERITE.get());
+		item2D(TechnologicaItems.CINNABAR.get());
+		item2D(TechnologicaItems.CROOKESITE.get());
+		item2D(TechnologicaItems.GARNIERITE.get());
+
+		item2D(TechnologicaItems.APATITE.get());
+		item2D(TechnologicaItems.ILMENITE.get());
+		item2D(TechnologicaItems.LEPIDOLITE.get());
+		item2D(TechnologicaItems.MAGNESITE.get());
+		item2D(TechnologicaItems.SPODUMENE.get());
+
 		item2D(TechnologicaItems.BORON_CHUNK.get());
 		item2D(TechnologicaItems.CARBON_CHUNK.get());
 		item2D(TechnologicaItems.SILICON_CHUNK.get());
@@ -93,13 +104,41 @@ public class TLModelsItem extends TLReGenModelsItem {
 		item2D(TechnologicaItems.TELLURIUM_CHUNK.get());
 		item2D(TechnologicaItems.IODINE_CHUNK.get());
 		item2DGlint(TechnologicaItems.ASTATINE_CHUNK.get());
+
+		item2D(TechnologicaItems.RAW_GALENA.get());
+		item2D(TechnologicaItems.RAW_MOLYBDENITE.get());
+		item2D(TechnologicaItems.RAW_TANTALITE.get());
+		item2D(TechnologicaItems.RAW_WOLFRAMITE.get());
+
+		item2D(TechnologicaItems.RAW_ARSENOPYRITE.get());
+		item2D(TechnologicaItems.RAW_CHROMITE.get());
+		item2D(TechnologicaItems.RAW_COBALTITE.get());
+		item2D(TechnologicaItems.RAW_PATRONITE.get());
+		item2D(TechnologicaItems.RAW_PYROLUSITE.get());
+
 		item2D(TechnologicaItems.RAW_ARGENTITE.get());
 		item2D(TechnologicaItems.RAW_OSMIRIDIUM.get());
 		item2D(TechnologicaItems.RAW_PLATINUM.get());
 		item2D(TechnologicaItems.RAW_SYLVANITE.get());
+
+		item2D(TechnologicaItems.BASTNAESITE.get());
+		item2D(TechnologicaItems.BAUXITE.get());
+		item2D(TechnologicaItems.GADOLINITE.get());
+		item2D(TechnologicaItems.PENTLANDITE.get());
+		item2D(TechnologicaItems.PHOSPHORITE.get());
+
 		item2D(TechnologicaItems.RUBY.get());
 		item2D(TechnologicaItems.SAPPHIRE.get());
 		item2D(TechnologicaItems.TOPAZ.get());
+
+		item2D(TechnologicaItems.RUTHENIUM_NUGGET.get());
+		item2D(TechnologicaItems.RHODIUM_NUGGET.get());
+		item2D(TechnologicaItems.PALLADIUM_NUGGET.get());
+		item2D(TechnologicaItems.SILVER_NUGGET.get());
+		item2D(TechnologicaItems.OSMIUM_NUGGET.get());
+		item2D(TechnologicaItems.IRIDIUM_NUGGET.get());
+		item2D(TechnologicaItems.PLATINUM_NUGGET.get());
+
 		item2D(TechnologicaItems.MULCH.get());
 		item2D(TechnologicaItems.FERTILIZER.get());
 		item2D(TechnologicaItems.SAWDUST.get());
@@ -257,16 +296,20 @@ public class TLModelsItem extends TLReGenModelsItem {
 		item2D(TechnologicaItems.OVERLAY_WARN_ITEM.get());
 		item2D(TechnologicaItems.OVERLAY_FAIL_ITEM.get());
 		item2D(TechnologicaItems.SAWMILL_BLUEPRINT.get());
-		item2D(TechnologicaItems.PRIMITIVE_DAGGER.get());
-		item2D(TechnologicaItems.PRIMITIVE_PICKAXE.get());
-		item2D(TechnologicaItems.PRIMITIVE_HOE.get());
-		item2D(TechnologicaItems.PRIMITIVE_SHOVEL.get());
-		item2D(TechnologicaItems.PRIMITIVE_HATCHET.get());
-		item2D(TechnologicaItems.BRONZE_SWORD.get());
-		item2D(TechnologicaItems.BRONZE_PICKAXE.get());
-		item2D(TechnologicaItems.BRONZE_HOE.get());
-		item2D(TechnologicaItems.BRONZE_SHOVEL.get());
-		item2D(TechnologicaItems.BRONZE_AXE.get());
+
+		item2DModel(TechnologicaItems.CRUDE_SAW.get(), new ModelFile.UncheckedModelFile("item/handheld"));
+		item2DModel(TechnologicaItems.PRIMITIVE_DAGGER.get(), new ModelFile.UncheckedModelFile("item/handheld"));
+		item2DModel(TechnologicaItems.PRIMITIVE_PICKAXE.get(), new ModelFile.UncheckedModelFile("item/handheld"));
+		item2DModel(TechnologicaItems.PRIMITIVE_HOE.get(), new ModelFile.UncheckedModelFile("item/handheld"));
+		item2DModel(TechnologicaItems.PRIMITIVE_SHOVEL.get(), new ModelFile.UncheckedModelFile("item/handheld"));
+		item2DModel(TechnologicaItems.PRIMITIVE_HATCHET.get(), new ModelFile.UncheckedModelFile("item/handheld"));
+
+		item2DModel(TechnologicaItems.BRONZE_SWORD.get(), new ModelFile.UncheckedModelFile("item/handheld"));
+		item2DModel(TechnologicaItems.BRONZE_PICKAXE.get(), new ModelFile.UncheckedModelFile("item/handheld"));
+		item2DModel(TechnologicaItems.BRONZE_HOE.get(), new ModelFile.UncheckedModelFile("item/handheld"));
+		item2DModel(TechnologicaItems.BRONZE_SHOVEL.get(), new ModelFile.UncheckedModelFile("item/handheld"));
+		item2DModel(TechnologicaItems.BRONZE_AXE.get(), new ModelFile.UncheckedModelFile("item/handheld"));
+
 		item2D(TechnologicaItems.DODGEBALL_ITEM.get());
 		item2D(TechnologicaItems.HARPOON.get());
 		item2D(TechnologicaItems.BRONZE_HELMET.get());

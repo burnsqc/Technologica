@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "group": "silver_nugget",
+  "ingredient": {
+    "item": "technologica:raw_argentite"
+  },
+  "result": {
+    "count": 6,
+    "item": "technologica:silver_nugget"
+  }
+}

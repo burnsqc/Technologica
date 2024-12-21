@@ -245,8 +245,6 @@ public final class TLLootTablesBlocksGenerator extends BlockLootSubProvider {
 		dropSelf(TechnologicaBlocks.MOON_ROCK.get());
 		dropSelf(TechnologicaBlocks.MOON_DUST.get());
 
-		dropSelf(TechnologicaBlocks.APATITE_ORE.get());
-		dropSelf(TechnologicaBlocks.DEEPSLATE_APATITE_ORE.get());
 		dropSelf(TechnologicaBlocks.ARGENTITE_ORE.get());
 		dropSelf(TechnologicaBlocks.DEEPSLATE_ARGENTITE_ORE.get());
 		dropSelf(TechnologicaBlocks.NETHER_ARGENTITE_ORE.get());
@@ -272,12 +270,6 @@ public final class TLLootTablesBlocksGenerator extends BlockLootSubProvider {
 		dropSelf(TechnologicaBlocks.DEEPSLATE_GALENA_ORE.get());
 		dropSelf(TechnologicaBlocks.GARNIERITE_ORE.get());
 		dropSelf(TechnologicaBlocks.DEEPSLATE_GARNIERITE_ORE.get());
-		dropSelf(TechnologicaBlocks.ILMENITE_ORE.get());
-		dropSelf(TechnologicaBlocks.DEEPSLATE_ILMENITE_ORE.get());
-		dropSelf(TechnologicaBlocks.LEPIDOLITE_ORE.get());
-		dropSelf(TechnologicaBlocks.DEEPSLATE_LEPIDOLITE_ORE.get());
-		dropSelf(TechnologicaBlocks.MAGNESITE_ORE.get());
-		dropSelf(TechnologicaBlocks.DEEPSLATE_MAGNESITE_ORE.get());
 		dropSelf(TechnologicaBlocks.MOLYBDENITE_ORE.get());
 		dropSelf(TechnologicaBlocks.DEEPSLATE_MOLYBDENITE_ORE.get());
 		dropSelf(TechnologicaBlocks.OSMIRIDIUM_ORE.get());
@@ -294,20 +286,6 @@ public final class TLLootTablesBlocksGenerator extends BlockLootSubProvider {
 		dropSelf(TechnologicaBlocks.NETHER_PLATINUM_ORE.get());
 		dropSelf(TechnologicaBlocks.PYROLUSITE_ORE.get());
 		dropSelf(TechnologicaBlocks.DEEPSLATE_PYROLUSITE_ORE.get());
-		add(TechnologicaBlocks.RUBY_ORE.get(), (block) -> {
-			return createOreDrop(block, TechnologicaItems.RUBY.get());
-		});
-		add(TechnologicaBlocks.DEEPSLATE_RUBY_ORE.get(), (block) -> {
-			return createOreDrop(block, TechnologicaItems.RUBY.get());
-		});
-		add(TechnologicaBlocks.SAPPHIRE_ORE.get(), (block) -> {
-			return createOreDrop(block, TechnologicaItems.SAPPHIRE.get());
-		});
-		add(TechnologicaBlocks.DEEPSLATE_SAPPHIRE_ORE.get(), (block) -> {
-			return createOreDrop(block, TechnologicaItems.SAPPHIRE.get());
-		});
-		dropSelf(TechnologicaBlocks.SPODUMENE_ORE.get());
-		dropSelf(TechnologicaBlocks.DEEPSLATE_SPODUMENE_ORE.get());
 		dropSelf(TechnologicaBlocks.SYLVANITE_ORE.get());
 		dropSelf(TechnologicaBlocks.DEEPSLATE_SYLVANITE_ORE.get());
 		dropSelf(TechnologicaBlocks.NETHER_SYLVANITE_ORE.get());
@@ -315,12 +293,7 @@ public final class TLLootTablesBlocksGenerator extends BlockLootSubProvider {
 		dropSelf(TechnologicaBlocks.DEEPSLATE_TANTALITE_ORE.get());
 		dropSelf(TechnologicaBlocks.THORIANITE_ORE.get());
 		dropSelf(TechnologicaBlocks.DEEPSLATE_THORIANITE_ORE.get());
-		add(TechnologicaBlocks.TOPAZ_ORE.get(), (block) -> {
-			return createOreDrop(block, TechnologicaItems.TOPAZ.get());
-		});
-		add(TechnologicaBlocks.DEEPSLATE_TOPAZ_ORE.get(), (block) -> {
-			return createOreDrop(block, TechnologicaItems.TOPAZ.get());
-		});
+
 		dropSelf(TechnologicaBlocks.URANINITE_ORE.get());
 		dropSelf(TechnologicaBlocks.DEEPSLATE_URANINITE_ORE.get());
 		dropSelf(TechnologicaBlocks.WOLFRAMITE_ORE.get());
@@ -1229,6 +1202,32 @@ public final class TLLootTablesBlocksGenerator extends BlockLootSubProvider {
 	private final void oreLoot() {
 		this.add(TechnologicaBlocks.BORAX_ORE.get(), (ore) -> createSilkTouchDispatchTable(ore, this.applyExplosionDecay(ore, LootItem.lootTableItem(TechnologicaItems.BORAX.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(4.0F, 9.0F))).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE)))));
 		this.add(TechnologicaBlocks.DEEPSLATE_BORAX_ORE.get(), (ore) -> createSilkTouchDispatchTable(ore, this.applyExplosionDecay(ore, LootItem.lootTableItem(TechnologicaItems.BORAX.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(4.0F, 9.0F))).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE)))));
+		this.add(TechnologicaBlocks.CASSITERITE_ORE.get(), (ore) -> createSilkTouchDispatchTable(ore, this.applyExplosionDecay(ore, LootItem.lootTableItem(TechnologicaItems.CASSITERITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(4.0F, 9.0F))).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE)))));
+		this.add(TechnologicaBlocks.DEEPSLATE_CASSITERITE_ORE.get(), (ore) -> createSilkTouchDispatchTable(ore, this.applyExplosionDecay(ore, LootItem.lootTableItem(TechnologicaItems.CASSITERITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(4.0F, 9.0F))).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE)))));
+		this.add(TechnologicaBlocks.CINNABAR_ORE.get(), (ore) -> createSilkTouchDispatchTable(ore, this.applyExplosionDecay(ore, LootItem.lootTableItem(TechnologicaItems.CINNABAR.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(4.0F, 9.0F))).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE)))));
+		this.add(TechnologicaBlocks.DEEPSLATE_CINNABAR_ORE.get(), (ore) -> createSilkTouchDispatchTable(ore, this.applyExplosionDecay(ore, LootItem.lootTableItem(TechnologicaItems.CINNABAR.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(4.0F, 9.0F))).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE)))));
+		this.add(TechnologicaBlocks.CROOKESITE_ORE.get(), (ore) -> createSilkTouchDispatchTable(ore, this.applyExplosionDecay(ore, LootItem.lootTableItem(TechnologicaItems.CROOKESITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(4.0F, 9.0F))).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE)))));
+		this.add(TechnologicaBlocks.DEEPSLATE_CROOKESITE_ORE.get(), (ore) -> createSilkTouchDispatchTable(ore, this.applyExplosionDecay(ore, LootItem.lootTableItem(TechnologicaItems.CROOKESITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(4.0F, 9.0F))).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE)))));
+		this.add(TechnologicaBlocks.GARNIERITE_ORE.get(), (ore) -> createSilkTouchDispatchTable(ore, this.applyExplosionDecay(ore, LootItem.lootTableItem(TechnologicaItems.GARNIERITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(4.0F, 9.0F))).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE)))));
+		this.add(TechnologicaBlocks.DEEPSLATE_GARNIERITE_ORE.get(), (ore) -> createSilkTouchDispatchTable(ore, this.applyExplosionDecay(ore, LootItem.lootTableItem(TechnologicaItems.GARNIERITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(4.0F, 9.0F))).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE)))));
+
+		this.add(TechnologicaBlocks.APATITE_ORE.get(), (ore) -> this.createOreDrop(ore, TechnologicaItems.APATITE.get()));
+		this.add(TechnologicaBlocks.DEEPSLATE_APATITE_ORE.get(), (ore) -> this.createOreDrop(ore, TechnologicaItems.APATITE.get()));
+		this.add(TechnologicaBlocks.ILMENITE_ORE.get(), (ore) -> this.createOreDrop(ore, TechnologicaItems.ILMENITE.get()));
+		this.add(TechnologicaBlocks.DEEPSLATE_ILMENITE_ORE.get(), (ore) -> this.createOreDrop(ore, TechnologicaItems.ILMENITE.get()));
+		this.add(TechnologicaBlocks.LEPIDOLITE_ORE.get(), (ore) -> this.createOreDrop(ore, TechnologicaItems.LEPIDOLITE.get()));
+		this.add(TechnologicaBlocks.DEEPSLATE_LEPIDOLITE_ORE.get(), (ore) -> this.createOreDrop(ore, TechnologicaItems.LEPIDOLITE.get()));
+		this.add(TechnologicaBlocks.MAGNESITE_ORE.get(), (ore) -> this.createOreDrop(ore, TechnologicaItems.MAGNESITE.get()));
+		this.add(TechnologicaBlocks.DEEPSLATE_MAGNESITE_ORE.get(), (ore) -> this.createOreDrop(ore, TechnologicaItems.MAGNESITE.get()));
+		this.add(TechnologicaBlocks.SPODUMENE_ORE.get(), (ore) -> this.createOreDrop(ore, TechnologicaItems.SPODUMENE.get()));
+		this.add(TechnologicaBlocks.DEEPSLATE_SPODUMENE_ORE.get(), (ore) -> this.createOreDrop(ore, TechnologicaItems.SPODUMENE.get()));
+
+		this.add(TechnologicaBlocks.RUBY_ORE.get(), (ore) -> this.createOreDrop(ore, TechnologicaItems.RUBY.get()));
+		this.add(TechnologicaBlocks.DEEPSLATE_RUBY_ORE.get(), (ore) -> this.createOreDrop(ore, TechnologicaItems.RUBY.get()));
+		this.add(TechnologicaBlocks.SAPPHIRE_ORE.get(), (ore) -> this.createOreDrop(ore, TechnologicaItems.SAPPHIRE.get()));
+		this.add(TechnologicaBlocks.DEEPSLATE_SAPPHIRE_ORE.get(), (ore) -> this.createOreDrop(ore, TechnologicaItems.SAPPHIRE.get()));
+		this.add(TechnologicaBlocks.TOPAZ_ORE.get(), (ore) -> this.createOreDrop(ore, TechnologicaItems.TOPAZ.get()));
+		this.add(TechnologicaBlocks.DEEPSLATE_TOPAZ_ORE.get(), (ore) -> this.createOreDrop(ore, TechnologicaItems.TOPAZ.get()));
 	}
 
 	@Override

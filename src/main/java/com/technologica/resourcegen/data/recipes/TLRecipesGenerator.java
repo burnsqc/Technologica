@@ -1,5 +1,6 @@
 package com.technologica.resourcegen.data.recipes;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 import com.google.common.collect.ImmutableList;
@@ -21,7 +22,9 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.crafting.ConditionalRecipe;
@@ -169,6 +172,7 @@ public class TLRecipesGenerator extends TLRGRecipeGenerator {
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TechnologicaItems.TAPENADE.get(), 1).requires(TechnologicaItems.OLIVE.get()).requires(TechnologicaItems.GARLIC.get()).unlockedBy("has_olive", has(TechnologicaItems.OLIVE.get())).save(consumer, new TechnologicaLocation("tapenade"));
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TechnologicaItems.CINNAMON_ROLL.get(), 1).requires(TechnologicaItems.CINNAMON.get()).requires(Items.EGG).requires(Items.SUGAR).requires(Items.MILK_BUCKET).unlockedBy("has_cinnamon", has(TechnologicaItems.CINNAMON.get())).save(consumer, new TechnologicaLocation("cinnamon_roll"));
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TechnologicaItems.OLIVE_OIL.get(), 1).requires(TechnologicaItems.OLIVE.get()).unlockedBy("has_olive", has(TechnologicaItems.OLIVE.get())).save(consumer, new TechnologicaLocation("olive_oil"));
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.TOOLS, TechnologicaItems.CRUDE_SAW.get()).requires(Items.BONE).requires(Items.FLINT).unlockedBy("has_bone", has(Items.BONE)).save(consumer, new TechnologicaLocation("crude_saw"));
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, TechnologicaItems.PRIMITIVE_SHOVEL.get()).define('T', Items.STICK).define('F', Items.FLINT).define('S', Items.STRING).pattern(" F ").pattern(" TS").pattern(" T ").unlockedBy("has_flint", has(Items.FLINT)).save(consumer, new TechnologicaLocation("primitive_shovel"));
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, TechnologicaItems.PRIMITIVE_PICKAXE.get()).define('T', Items.STICK).define('F', Items.FLINT).define('S', Items.STRING).pattern("FFF").pattern(" TS").pattern(" T ").unlockedBy("has_flint", has(Items.FLINT)).save(consumer, new TechnologicaLocation("primitive_pickaxe"));
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, TechnologicaItems.PRIMITIVE_HATCHET.get()).define('T', Items.STICK).define('F', Items.FLINT).define('S', Items.STRING).pattern("FF ").pattern("FTS").pattern(" T ").unlockedBy("has_flint", has(Items.FLINT)).save(consumer, new TechnologicaLocation("primitive_hatchet"));
@@ -331,6 +335,8 @@ public class TLRecipesGenerator extends TLRGRecipeGenerator {
 		oreSmelting(consumer, SAPPHIRE_SMELTABLES, RecipeCategory.MISC, TechnologicaItems.SAPPHIRE.get(), 1.0F, 200, "sapphire");
 		oreSmelting(consumer, TOPAZ_SMELTABLES, RecipeCategory.MISC, TechnologicaItems.TOPAZ.get(), 1.0F, 200, "topaz");
 
+		oreSmelting(consumer, ImmutableList.of(TechnologicaItems.RAW_ARGENTITE.get()), RecipeCategory.MISC, TechnologicaItems.SILVER_NUGGET.get(), 6, 1.0F, 200, "silver_nugget");
+
 		oreBlasting(consumer, RUBY_SMELTABLES, RecipeCategory.MISC, TechnologicaItems.RUBY.get(), 1.0F, 100, "ruby");
 		oreBlasting(consumer, SAPPHIRE_SMELTABLES, RecipeCategory.MISC, TechnologicaItems.SAPPHIRE.get(), 1.0F, 100, "sapphire");
 		oreBlasting(consumer, TOPAZ_SMELTABLES, RecipeCategory.MISC, TechnologicaItems.TOPAZ.get(), 1.0F, 100, "topaz");
@@ -343,19 +349,48 @@ public class TLRecipesGenerator extends TLRGRecipeGenerator {
 	}
 
 	private static void casualOrProPlanksVanilla(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, TagKey<Item> input) {
-		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 4).requires(input).group("planks").unlockedBy("has_log", has(input)).save(consumer2)).addCondition(new DisablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 1).requires(input).requires(TechnologicaItems.SAW.get()).group("planks").unlockedBy("has_saw", has(TechnologicaItems.SAW.get())).save(consumer2)).build(recipeConsumer, new ResourceLocation(ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
+		ConditionalRecipe.builder()
+		.addCondition(new EnablePlankConditionFactory())
+		.addRecipe((consumer2) -> ShapelessRecipeBuilder
+				.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 4)
+				.requires(input)
+				.group("planks")
+				.unlockedBy("has_log", has(input))
+				.save(consumer2))
+		.addCondition(new DisablePlankConditionFactory())
+		.addRecipe((consumer2) -> ShapelessRecipeBuilder
+				.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 1)
+				.requires(input)
+				.requires(TechnologicaItemTags.SAWS)
+				.group("planks")
+				.unlockedBy("has_saw", has(TechnologicaItemTags.SAWS))
+				.save(consumer2)).build(recipeConsumer, new ResourceLocation(ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
 	}
 
 	private static void casualOrProPlanksTechnologica(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, TagKey<Item> input) {
-		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 4).requires(input).group("planks").unlockedBy("has_log", has(input)).save(consumer2)).addCondition(new DisablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 1).requires(input).requires(TechnologicaItems.SAW.get()).group("planks").unlockedBy("has_saw", has(TechnologicaItems.SAW.get())).save(consumer2)).build(recipeConsumer, new TechnologicaLocation(ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
+		ConditionalRecipe.builder()
+		.addCondition(new EnablePlankConditionFactory())
+		.addRecipe((consumer2) -> ShapelessRecipeBuilder
+				.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 4)
+				.requires(input).group("planks")
+				.unlockedBy("has_log", has(input))
+				.save(consumer2))
+		.addCondition(new DisablePlankConditionFactory())
+		.addRecipe((consumer2) -> ShapelessRecipeBuilder
+				.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 1)
+				.requires(input)
+				.requires(TechnologicaItemTags.SAWS)
+				.group("planks")
+				.unlockedBy("has_saw", has(TechnologicaItemTags.SAWS))
+				.save(consumer2)).build(recipeConsumer, new TechnologicaLocation(ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
 	}
 
 	private static void casualOrProSlabsVanilla(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, ItemLike input) {
-		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 6).define('#', input).pattern("###").group("wooden_slab").unlockedBy("has_planks", has(input)).save(consumer2)).addCondition(new DisablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 2).requires(input).requires(TechnologicaItems.SAW.get()).group("wooden_slab").unlockedBy("has_saw", has(TechnologicaItems.SAW.get())).save(consumer2)).build(recipeConsumer, new ResourceLocation(ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
+		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 6).define('#', input).pattern("###").group("wooden_slab").unlockedBy("has_planks", has(input)).save(consumer2)).addCondition(new DisablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 2).requires(input).requires(TechnologicaItemTags.SAWS).group("wooden_slab").unlockedBy("has_saw", has(TechnologicaItemTags.SAWS)).save(consumer2)).build(recipeConsumer, new ResourceLocation(ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
 	}
 
 	private static void casualOrProSlabsTechnologica(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, ItemLike input) {
-		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 6).define('#', input).pattern("###").group("wooden_slab").unlockedBy("has_planks", has(input)).save(consumer2)).addCondition(new DisablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 2).requires(input).requires(TechnologicaItems.SAW.get()).group("wooden_slab").unlockedBy("has_saw", has(TechnologicaItems.SAW.get())).save(consumer2)).build(recipeConsumer, new TechnologicaLocation(ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
+		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 6).define('#', input).pattern("###").group("wooden_slab").unlockedBy("has_planks", has(input)).save(consumer2)).addCondition(new DisablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 2).requires(input).requires(TechnologicaItemTags.SAWS).group("wooden_slab").unlockedBy("has_saw", has(TechnologicaItemTags.SAWS)).save(consumer2)).build(recipeConsumer, new TechnologicaLocation(ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
 	}
 
 	private static void casualOrProStairsVanilla(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, ItemLike input) {
@@ -368,5 +403,20 @@ public class TLRecipesGenerator extends TLRGRecipeGenerator {
 
 	private static MultipleOutputRecipeBuilder sawmillRecipe(Ingredient ingredientIn, ItemLike output, int countIn, ItemLike output2, int count2) {
 		return new MultipleOutputRecipeBuilder(RecipeCategory.BUILDING_BLOCKS, TechnologicaRecipeSerializers.SAWMILL.get(), ingredientIn, output, countIn, output2, count2).unlockedBy("has_logs", has(TechnologicaItemTags.APRICOT_LOGS));
+	}
+
+	protected static void oreSmelting(Consumer<FinishedRecipe> p_250654_, List<ItemLike> p_250172_, RecipeCategory p_250588_, ItemLike p_251868_, int count, float p_250789_, int p_252144_, String p_251687_) {
+		oreCooking(p_250654_, RecipeSerializer.SMELTING_RECIPE, p_250172_, p_250588_, p_251868_, count, p_250789_, p_252144_, p_251687_, "_from_smelting");
+	}
+
+	protected static void oreBlasting(Consumer<FinishedRecipe> p_248775_, List<ItemLike> p_251504_, RecipeCategory p_248846_, ItemLike p_249735_, int count, float p_248783_, int p_250303_, String p_251984_) {
+		oreCooking(p_248775_, RecipeSerializer.BLASTING_RECIPE, p_251504_, p_248846_, p_249735_, count, p_248783_, p_250303_, p_251984_, "_from_blasting");
+	}
+
+	protected static void oreCooking(Consumer<FinishedRecipe> p_250791_, RecipeSerializer<? extends AbstractCookingRecipe> p_251817_, List<ItemLike> p_249619_, RecipeCategory p_251154_, ItemLike p_250066_, int count, float p_251871_, int p_251316_, String p_251450_, String p_249236_) {
+		for (ItemLike itemlike : p_249619_) {
+			SimpleCookingRecipeWithCountBuilder.generic(Ingredient.of(itemlike), p_251154_, p_250066_, count, p_251871_, p_251316_, p_251817_).group(p_251450_).unlockedBy(getHasName(itemlike), has(itemlike)).save(p_250791_, getItemName(p_250066_) + p_249236_ + "_" + getItemName(itemlike));
+		}
+
 	}
 }

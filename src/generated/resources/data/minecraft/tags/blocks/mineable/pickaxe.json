@@ -2,6 +2,14 @@
   "values": [
     "technologica:borax_ore",
     "technologica:deepslate_borax_ore",
+    "technologica:cassiterite_ore",
+    "technologica:deepslate_cassiterite_ore",
+    "technologica:cinnabar_ore",
+    "technologica:deepslate_cinnabar_ore",
+    "technologica:crookesite_ore",
+    "technologica:deepslate_crookesite_ore",
+    "technologica:garnierite_ore",
+    "technologica:deepslate_garnierite_ore",
     "technologica:ruby_ore",
     "technologica:deepslate_ruby_ore",
     "technologica:sapphire_ore",
@@ -10,6 +18,16 @@
     "technologica:deepslate_topaz_ore",
     "technologica:block_of_ruby",
     "technologica:block_of_sapphire",
-    "technologica:block_of_topaz"
+    "technologica:block_of_topaz",
+    "technologica:apatite_ore",
+    "technologica:ilmenite_ore",
+    "technologica:lepidolite_ore",
+    "technologica:magnesite_ore",
+    "technologica:spodumene_ore",
+    "technologica:deepslate_apatite_ore",
+    "technologica:deepslate_ilmenite_ore",
+    "technologica:deepslate_lepidolite_ore",
+    "technologica:deepslate_magnesite_ore",
+    "technologica:deepslate_spodumene_ore"
   ]
 }

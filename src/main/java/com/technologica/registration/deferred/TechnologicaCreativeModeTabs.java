@@ -349,7 +349,19 @@ public final class TechnologicaCreativeModeTabs {
 		items.accept(TechnologicaItems.BRASS_INGOT.get());
 		items.accept(TechnologicaItems.STEEL_INGOT.get());
 		items.accept(TechnologicaItems.LITHIUM_CLAY_BALL.get());
+
 		items.accept(TechnologicaItems.BORAX.get());
+		items.accept(TechnologicaItems.CASSITERITE.get());
+		items.accept(TechnologicaItems.CINNABAR.get());
+		items.accept(TechnologicaItems.CROOKESITE.get());
+		items.accept(TechnologicaItems.GARNIERITE.get());
+
+		items.accept(TechnologicaItems.APATITE.get());
+		items.accept(TechnologicaItems.ILMENITE.get());
+		items.accept(TechnologicaItems.LEPIDOLITE.get());
+		items.accept(TechnologicaItems.MAGNESITE.get());
+		items.accept(TechnologicaItems.SPODUMENE.get());
+
 		items.accept(TechnologicaItems.BORON_CHUNK.get());
 		items.accept(TechnologicaItems.CARBON_CHUNK.get());
 		items.accept(TechnologicaItems.SILICON_CHUNK.get());
@@ -362,13 +374,41 @@ public final class TechnologicaCreativeModeTabs {
 		items.accept(TechnologicaItems.TELLURIUM_CHUNK.get());
 		items.accept(TechnologicaItems.IODINE_CHUNK.get());
 		items.accept(TechnologicaItems.ASTATINE_CHUNK.get());
+
+		items.accept(TechnologicaItems.RAW_GALENA.get());
+		items.accept(TechnologicaItems.RAW_MOLYBDENITE.get());
+		items.accept(TechnologicaItems.RAW_TANTALITE.get());
+		items.accept(TechnologicaItems.RAW_WOLFRAMITE.get());
+
+		items.accept(TechnologicaItems.RAW_ARSENOPYRITE.get());
+		items.accept(TechnologicaItems.RAW_CHROMITE.get());
+		items.accept(TechnologicaItems.RAW_COBALTITE.get());
+		items.accept(TechnologicaItems.RAW_PATRONITE.get());
+		items.accept(TechnologicaItems.RAW_PYROLUSITE.get());
+
 		items.accept(TechnologicaItems.RAW_ARGENTITE.get());
 		items.accept(TechnologicaItems.RAW_PLATINUM.get());
 		items.accept(TechnologicaItems.RAW_OSMIRIDIUM.get());
 		items.accept(TechnologicaItems.RAW_SYLVANITE.get());
+
+		items.accept(TechnologicaItems.BASTNAESITE.get());
+		items.accept(TechnologicaItems.BAUXITE.get());
+		items.accept(TechnologicaItems.GADOLINITE.get());
+		items.accept(TechnologicaItems.PENTLANDITE.get());
+		items.accept(TechnologicaItems.PHOSPHORITE.get());
+
 		items.accept(TechnologicaItems.RUBY.get());
 		items.accept(TechnologicaItems.SAPPHIRE.get());
 		items.accept(TechnologicaItems.TOPAZ.get());
+
+		items.accept(TechnologicaItems.RUTHENIUM_NUGGET.get());
+		items.accept(TechnologicaItems.RHODIUM_NUGGET.get());
+		items.accept(TechnologicaItems.PALLADIUM_NUGGET.get());
+		items.accept(TechnologicaItems.SILVER_NUGGET.get());
+		items.accept(TechnologicaItems.OSMIUM_NUGGET.get());
+		items.accept(TechnologicaItems.IRIDIUM_NUGGET.get());
+		items.accept(TechnologicaItems.PLATINUM_NUGGET.get());
+
 		items.accept(TechnologicaItems.BLOCK_OF_RUBY.get());
 		items.accept(TechnologicaItems.BLOCK_OF_SAPPHIRE.get());
 		items.accept(TechnologicaItems.BLOCK_OF_TOPAZ.get());
@@ -1170,6 +1210,7 @@ public final class TechnologicaCreativeModeTabs {
 		items.accept(TechnologicaItems.FROSTBITTEN_TABLE_ITEM.get());
 	}).withTabsBefore(MACHINERY.getKey()).build());
 	public static final RegistryObject<CreativeModeTab> ARMORY = Technologica.CREATIVE_MODE_TABS.register("armory", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.NAVAL_MINE.get())).withBackgroundLocation(new TechnologicaLocation("textures/gui/container/creative_inventory/tab_armory.png")).title(Component.translatable("itemGroup.armory")).withLabelColor(0).displayItems((p_270425_, items) -> {
+		items.accept(TechnologicaItems.CRUDE_SAW.get());
 		items.accept(TechnologicaItems.PRIMITIVE_DAGGER.get());
 		items.accept(TechnologicaItems.PRIMITIVE_PICKAXE.get());
 		items.accept(TechnologicaItems.PRIMITIVE_HOE.get());

@@ -39,4 +39,5 @@ public final class TechnologicaItemTags {
 	public static final TagKey<Item> FRUITFUL_LOGS = TagKey.create(Registries.ITEM, new TechnologicaLocation("fruitful_logs"));
 	public static final TagKey<Item> INFERNAL_LOGS = TagKey.create(Registries.ITEM, new TechnologicaLocation("infernal_logs"));
 	public static final TagKey<Item> MALEVOLENT_LOGS = TagKey.create(Registries.ITEM, new TechnologicaLocation("malevolent_logs"));
+	public static final TagKey<Item> SAWS = TagKey.create(Registries.ITEM, new TechnologicaLocation("saws"));
 }

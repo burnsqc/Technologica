@@ -41,7 +41,7 @@
             "item": "minecraft:spruce_planks"
           },
           {
-            "item": "technologica:saw"
+            "tag": "technologica:saws"
           }
         ],
         "result": {

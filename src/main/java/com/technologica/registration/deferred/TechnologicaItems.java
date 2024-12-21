@@ -404,7 +404,19 @@ public final class TechnologicaItems {
 	public static final RegistryObject<Item> BRASS_INGOT = Technologica.ITEMS.register("brass_ingot", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> STEEL_INGOT = Technologica.ITEMS.register("steel_ingot", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> LITHIUM_CLAY_BALL = Technologica.ITEMS.register("lithium_clay_ball", () -> new Item(new Item.Properties()));
+
 	public static final RegistryObject<Item> BORAX = Technologica.ITEMS.register("borax", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> CASSITERITE = Technologica.ITEMS.register("cassiterite", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> CINNABAR = Technologica.ITEMS.register("cinnabar", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> CROOKESITE = Technologica.ITEMS.register("crookesite", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> GARNIERITE = Technologica.ITEMS.register("garnierite", () -> new Item(new Item.Properties()));
+
+	public static final RegistryObject<Item> APATITE = Technologica.ITEMS.register("apatite", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> ILMENITE = Technologica.ITEMS.register("ilmenite", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> LEPIDOLITE = Technologica.ITEMS.register("lepidolite", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> MAGNESITE = Technologica.ITEMS.register("magnesite", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> SPODUMENE = Technologica.ITEMS.register("spodumene", () -> new Item(new Item.Properties()));
+
 	public static final RegistryObject<Item> BORON_CHUNK = Technologica.ITEMS.register("boron_chunk", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> CARBON_CHUNK = Technologica.ITEMS.register("carbon_chunk", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> SILICON_CHUNK = Technologica.ITEMS.register("silicon_chunk", () -> new Item(new Item.Properties()));
@@ -417,13 +429,41 @@ public final class TechnologicaItems {
 	public static final RegistryObject<Item> TELLURIUM_CHUNK = Technologica.ITEMS.register("tellurium_chunk", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> IODINE_CHUNK = Technologica.ITEMS.register("iodine_chunk", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> ASTATINE_CHUNK = Technologica.ITEMS.register("astatine_chunk", () -> new RadioactiveItem(new Item.Properties(), "astatine_chunk"));
+
+	public static final RegistryObject<Item> RAW_GALENA = Technologica.ITEMS.register("raw_galena", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> RAW_MOLYBDENITE = Technologica.ITEMS.register("raw_molybdenite", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> RAW_TANTALITE = Technologica.ITEMS.register("raw_tantalite", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> RAW_WOLFRAMITE = Technologica.ITEMS.register("raw_wolframite", () -> new Item(new Item.Properties()));
+
+	public static final RegistryObject<Item> RAW_ARSENOPYRITE = Technologica.ITEMS.register("raw_arsenopyrite", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> RAW_CHROMITE = Technologica.ITEMS.register("raw_chromite", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> RAW_COBALTITE = Technologica.ITEMS.register("raw_cobaltite", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> RAW_PATRONITE = Technologica.ITEMS.register("raw_patronite", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> RAW_PYROLUSITE = Technologica.ITEMS.register("raw_pyrolusite", () -> new Item(new Item.Properties()));
+
 	public static final RegistryObject<Item> RAW_ARGENTITE = Technologica.ITEMS.register("raw_argentite", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> RAW_PLATINUM = Technologica.ITEMS.register("raw_platinum", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> RAW_OSMIRIDIUM = Technologica.ITEMS.register("raw_osmiridium", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> RAW_SYLVANITE = Technologica.ITEMS.register("raw_sylvanite", () -> new Item(new Item.Properties()));
+
+	public static final RegistryObject<Item> BASTNAESITE = Technologica.ITEMS.register("bastnaesite", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> BAUXITE = Technologica.ITEMS.register("bauxite", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> GADOLINITE = Technologica.ITEMS.register("gadolinite", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> PENTLANDITE = Technologica.ITEMS.register("pentlandite", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> PHOSPHORITE = Technologica.ITEMS.register("phosphorite", () -> new Item(new Item.Properties()));
+
 	public static final RegistryObject<Item> RUBY = Technologica.ITEMS.register("ruby", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> SAPPHIRE = Technologica.ITEMS.register("sapphire", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> TOPAZ = Technologica.ITEMS.register("topaz", () -> new Item(new Item.Properties()));
+
+	public static final RegistryObject<Item> RUTHENIUM_NUGGET = Technologica.ITEMS.register("ruthenium_nugget", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> RHODIUM_NUGGET = Technologica.ITEMS.register("rhodium_nugget", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> PALLADIUM_NUGGET = Technologica.ITEMS.register("palladium_nugget", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> SILVER_NUGGET = Technologica.ITEMS.register("silver_nugget", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> OSMIUM_NUGGET = Technologica.ITEMS.register("osmium_nugget", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> IRIDIUM_NUGGET = Technologica.ITEMS.register("iridium_nugget", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> PLATINUM_NUGGET = Technologica.ITEMS.register("platinum_nugget", () -> new Item(new Item.Properties()));
+
 	public static final RegistryObject<Item> BLOCK_OF_RUBY = Technologica.ITEMS.register("block_of_ruby", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_RUBY.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_SAPPHIRE = Technologica.ITEMS.register("block_of_sapphire", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_SAPPHIRE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> BLOCK_OF_TOPAZ = Technologica.ITEMS.register("block_of_topaz", () -> new BlockItem(TechnologicaBlocks.BLOCK_OF_TOPAZ.get(), new Item.Properties()));
@@ -1124,9 +1164,9 @@ public final class TechnologicaItems {
 	public static final RegistryObject<Item> MEDIUM_PULLEY_ITEM = Technologica.ITEMS.register("medium_pulley", () -> new ItemNameBlockItem(TechnologicaBlocks.MEDIUM_PULLEY.get(), new Item.Properties()));
 	public static final RegistryObject<Item> LARGE_PULLEY_ITEM = Technologica.ITEMS.register("large_pulley", () -> new ItemNameBlockItem(TechnologicaBlocks.LARGE_PULLEY.get(), new Item.Properties()));
 	public static final RegistryObject<Item> PULLEY_BELT = Technologica.ITEMS.register("pulley_belt", PulleyBeltItem::new);
-	public static final RegistryObject<Item> CHISEL = Technologica.ITEMS.register("chisel", () -> new SawItem(new Item.Properties()));
+	public static final RegistryObject<Item> CHISEL = Technologica.ITEMS.register("chisel", () -> new SawItem(Tiers.WOOD, 6.0F, -3.2F, new Item.Properties()));
 	public static final RegistryObject<Item> HAMMER = Technologica.ITEMS.register("hammer", () -> new HammerItem(new Item.Properties().stacksTo(1)));
-	public static final RegistryObject<Item> SAW = Technologica.ITEMS.register("saw", () -> new SawItem(new Item.Properties()));
+	public static final RegistryObject<Item> SAW = Technologica.ITEMS.register("saw", () -> new SawItem(Tiers.WOOD, 6.0F, -3.2F, new Item.Properties()));
 	public static final RegistryObject<Item> PIPE_WRENCH = Technologica.ITEMS.register("pipe_wrench", () -> new PipeWrenchItem(Tiers.IRON, 1, -2.8F, (new Item.Properties())));
 	public static final RegistryObject<Item> WRENCH = Technologica.ITEMS.register("wrench", () -> new PickaxeItem(Tiers.IRON, 1, -2.8F, (new Item.Properties())));
 	public static final RegistryObject<Item> MOTOR_1HP_ITEM = Technologica.ITEMS.register("motor_1hp", () -> new BlockItem(TechnologicaBlocks.MOTOR_1HP.get(), new Item.Properties()));
@@ -1211,6 +1251,8 @@ public final class TechnologicaItems {
 	public static final RegistryObject<Item> WARPED_TABLE_ITEM = Technologica.ITEMS.register("warped_table", () -> new BlockItem(TechnologicaBlocks.WARPED_TABLE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> ZEBRAWOOD_TABLE_ITEM = Technologica.ITEMS.register("zebrawood_table", () -> new BlockItem(TechnologicaBlocks.ZEBRAWOOD_TABLE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> FROSTBITTEN_TABLE_ITEM = Technologica.ITEMS.register("frostbitten_table", () -> new BlockItem(TechnologicaBlocks.FROSTBITTEN_TABLE.get(), new Item.Properties()));
+
+	public static final RegistryObject<Item> CRUDE_SAW = Technologica.ITEMS.register("crude_saw", () -> new SawItem(TechnologicaTiers.BONE, 1.0F, -5.0F, new Item.Properties()));
 	public static final RegistryObject<Item> PRIMITIVE_DAGGER = Technologica.ITEMS.register("primitive_dagger", () -> new SwordItem(TechnologicaTiers.FLINT, 3, -2.4F, (new Item.Properties())));
 	public static final RegistryObject<Item> PRIMITIVE_PICKAXE = Technologica.ITEMS.register("primitive_pickaxe", () -> new PickaxeItem(TechnologicaTiers.FLINT, 1, -2.8F, (new Item.Properties())));
 	public static final RegistryObject<Item> PRIMITIVE_HOE = Technologica.ITEMS.register("primitive_hoe", () -> new HoeItem(TechnologicaTiers.FLINT, 0, -3.0F, (new Item.Properties())));
