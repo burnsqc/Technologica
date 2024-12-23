@@ -23,7 +23,7 @@ public class TechnologyAdvancementDataProvider implements AdvancementGenerator {
 	@Override
 	public void generate(Provider p_255680_, Consumer<Advancement> p_251389_, ExistingFileHelper fileHelper) {
 		Advancement advancement = this.createRoot(p_251389_);
-		Advancement.Builder.advancement().parent(advancement).display(TechnologicaItems.PRIMITIVE_DAGGER.get(), Component.translatable("advancements.husbandry.plant_seed.title"), Component.translatable("advancements.husbandry.plant_seed.description"), (ResourceLocation) null, FrameType.TASK, true, true, false).requirements(RequirementsStrategy.OR).addCriterion("has_dagger", InventoryChangeTrigger.TriggerInstance.hasItems(TechnologicaItems.PRIMITIVE_DAGGER.get())).save(p_251389_, new ResourceLocation("technology/test"), fileHelper);
+		Advancement.Builder.advancement().parent(advancement).display(TechnologicaItems.PRIMITIVE_DAGGER.get(), Component.translatable("advancements.technology.plant_seed.title"), Component.translatable("advancements.husbandry.plant_seed.description"), (ResourceLocation) null, FrameType.TASK, true, true, false).requirements(RequirementsStrategy.OR).addCriterion("has_dagger", InventoryChangeTrigger.TriggerInstance.hasItems(TechnologicaItems.PRIMITIVE_DAGGER.get())).save(p_251389_, new ResourceLocation("technology/test"), fileHelper);
 	}
 
 	Advancement createRoot(Consumer<Advancement> p_262142_) {

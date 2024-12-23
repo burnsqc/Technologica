@@ -1,0 +1,41 @@
+{
+  "parent": "minecraft:tribulation/root",
+  "criteria": {
+    "used_wooden_tool": {
+      "conditions": {
+        "item": {
+          "items": [
+            "minecraft:wooden_axe",
+            "minecraft:wooden_hoe",
+            "minecraft:wooden_pickaxe",
+            "minecraft:wooden_shovel",
+            "minecraft:wooden_sword"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.tribulation.hold_your_horses.description"
+    },
+    "frame": "task",
+    "hidden": true,
+    "icon": {
+      "item": "minecraft:wooden_pickaxe",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.tribulation.hold_your_horses.title"
+    }
+  },
+  "requirements": [
+    [
+      "used_wooden_tool"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

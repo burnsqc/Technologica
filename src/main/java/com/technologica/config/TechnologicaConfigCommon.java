@@ -8,6 +8,7 @@ public final class TechnologicaConfigCommon {
 
 	public static final ForgeConfigSpec.ConfigValue<Boolean> DISABLE_VANILLA_LOG_HARVESTING;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> DISABLE_VANILLA_PLANK_RECIPES;
+	public static final ForgeConfigSpec.ConfigValue<Boolean> ADJUST_TOOL_DURABILITY;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> NAUGHTY_NAUTICAL_NANNERS;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> NITRO_JOSTLE;
 
@@ -21,6 +22,10 @@ public final class TechnologicaConfigCommon {
 		BUILDER.push("WOOD HARVESTING AND CRAFTING");
 		DISABLE_VANILLA_LOG_HARVESTING = BUILDER.comment("true - Disable log drops when harvested without appropriate tool.\nfalse - Retain vanilla mechanics when harvesting logs.").define("Disable Vanilla Log Harvesting", true);
 		DISABLE_VANILLA_PLANK_RECIPES = BUILDER.comment("true - Replace all plank recipes to require a saw.\nfalse - Retain vanilla mechanics when crafting planks.").define("Disable Vanilla Plank Recipes", true);
+		BUILDER.pop();
+
+		BUILDER.push("TOOL DURABILITY");
+		ADJUST_TOOL_DURABILITY = BUILDER.comment("true - Adjusts vanilla tool durability.\nfalse - Retain vanilla tool durability.").define("Adjust Vanilla Tool Durability", true);
 		BUILDER.pop();
 
 		BUILDER.push("EASTER EGGS");

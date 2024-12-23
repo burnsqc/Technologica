@@ -60,10 +60,10 @@ dependencies {
 }
 
 repositories {
-	maven {
-        name = 'MinecraftForge'
-        url = 'https://maven.creeperhost.net/'
-    }
+	//maven {
+    //    name = 'MinecraftForge'
+    //    url = 'https://maven.creeperhost.net/'
+    //}
 	maven {url "file://${project.projectDir}/maven"}
 }
 

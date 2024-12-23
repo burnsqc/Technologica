@@ -73,7 +73,9 @@ import com.technologica.resourcegen.assets.TLModelsBlock;
 import com.technologica.resourcegen.assets.TLModelsItem;
 import com.technologica.resourcegen.assets.TLParticles;
 import com.technologica.resourcegen.assets.TLSounds;
+import com.technologica.resourcegen.data.advancements.AttemptedHarvestTrigger;
 import com.technologica.resourcegen.data.advancements.TLRGAdvancementGenerator;
+import com.technologica.resourcegen.data.advancements.TechnologicaCriterionTriggers;
 import com.technologica.resourcegen.data.lootmodifiers.TLLootModifiersGenerator;
 import com.technologica.resourcegen.data.loottables.blocks.TLLootTablesBlocksGenerator;
 import com.technologica.resourcegen.data.loottables.entities.EntityLootDataGenerator;
@@ -117,6 +119,7 @@ import com.tlregen.api.resourcegen.data.worldgen.TLReGenWorldgenStructureSet;
 import com.tlregen.api.resourcegen.data.worldgen.TLReGenWorldgenTemplatePool;
 import com.tlregen.api.setup.MasterSetupExecutor;
 
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.LootTableProvider;
@@ -131,6 +134,7 @@ import net.minecraft.world.entity.decoration.PaintingVariant;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.biome.Biome;
@@ -157,10 +161,13 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.loot.IGlobalLootModifier;
 import net.minecraftforge.common.world.BiomeModifier;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig.Type;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
@@ -296,6 +303,7 @@ public class Technologica {
 		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenStructure(Technologica.STRUCTURES));
 		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenStructureSet(Technologica.STRUCTURE_SETS));
 		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenTemplatePool(Technologica.STRUCTURE_TEMPLATE_POOL));
+		FMLJavaModLoadingContext.get().getModEventBus().register(this);
 	}
 
 	public static Technologica getInstance() {
@@ -308,5 +316,35 @@ public class Technologica {
 
 	public void setClientLevel(TechnologicaClientLevel level) {
 		this.clientLevel = level;
+	}
+
+	@SubscribeEvent
+	protected final void onFMLCommonSetupEvent(final FMLCommonSetupEvent event) {
+		event.enqueueWork(() -> {
+			TechnologicaCriterionTriggers.ATTEMPTED_HARVEST = CriteriaTriggers.register(new AttemptedHarvestTrigger());
+			// TechnologicaCriterionTriggers.USED_WOODEN_TOOL = CriteriaTriggers.register(new ConsumeItemTrigger());
+			if (TechnologicaConfigCommon.ADJUST_TOOL_DURABILITY.get()) {
+				Items.WOODEN_SWORD.maxDamage = 1;
+				Items.WOODEN_SHOVEL.maxDamage = 1;
+				Items.WOODEN_PICKAXE.maxDamage = 1;
+				Items.WOODEN_AXE.maxDamage = 1;
+				Items.WOODEN_HOE.maxDamage = 1;
+				Items.STONE_SWORD.maxDamage = 8;
+				Items.STONE_SHOVEL.maxDamage = 8;
+				Items.STONE_PICKAXE.maxDamage = 8;
+				Items.STONE_AXE.maxDamage = 8;
+				Items.STONE_HOE.maxDamage = 8;
+				Items.IRON_SWORD.maxDamage = 256;
+				Items.IRON_SHOVEL.maxDamage = 256;
+				Items.IRON_PICKAXE.maxDamage = 256;
+				Items.IRON_AXE.maxDamage = 256;
+				Items.IRON_HOE.maxDamage = 256;
+				Items.DIAMOND_SWORD.maxDamage = 1024;
+				Items.DIAMOND_SHOVEL.maxDamage = 1024;
+				Items.DIAMOND_PICKAXE.maxDamage = 1024;
+				Items.DIAMOND_AXE.maxDamage = 1024;
+				Items.DIAMOND_HOE.maxDamage = 1024;
+			}
+		});
 	}
 }

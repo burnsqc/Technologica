@@ -1252,7 +1252,7 @@ public final class TechnologicaItems {
 	public static final RegistryObject<Item> ZEBRAWOOD_TABLE_ITEM = Technologica.ITEMS.register("zebrawood_table", () -> new BlockItem(TechnologicaBlocks.ZEBRAWOOD_TABLE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> FROSTBITTEN_TABLE_ITEM = Technologica.ITEMS.register("frostbitten_table", () -> new BlockItem(TechnologicaBlocks.FROSTBITTEN_TABLE.get(), new Item.Properties()));
 
-	public static final RegistryObject<Item> CRUDE_SAW = Technologica.ITEMS.register("crude_saw", () -> new SawItem(TechnologicaTiers.BONE, 1.0F, -5.0F, new Item.Properties()));
+	public static final RegistryObject<Item> CRUDE_SAW = Technologica.ITEMS.register("crude_saw", () -> new SawItem(TechnologicaTiers.BONE, 1.0F, -3.2F, new Item.Properties()));
 	public static final RegistryObject<Item> PRIMITIVE_DAGGER = Technologica.ITEMS.register("primitive_dagger", () -> new SwordItem(TechnologicaTiers.FLINT, 3, -2.4F, (new Item.Properties())));
 	public static final RegistryObject<Item> PRIMITIVE_PICKAXE = Technologica.ITEMS.register("primitive_pickaxe", () -> new PickaxeItem(TechnologicaTiers.FLINT, 1, -2.8F, (new Item.Properties())));
 	public static final RegistryObject<Item> PRIMITIVE_HOE = Technologica.ITEMS.register("primitive_hoe", () -> new HoeItem(TechnologicaTiers.FLINT, 0, -3.0F, (new Item.Properties())));

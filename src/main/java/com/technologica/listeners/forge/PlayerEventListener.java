@@ -2,6 +2,7 @@ package com.technologica.listeners.forge;
 
 import com.technologica.config.TechnologicaConfigCommon;
 import com.technologica.world.entity.player.TechnologicaAbilities;
+import com.technologica.world.item.SawItem;
 
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.player.Player;
@@ -24,7 +25,7 @@ public class PlayerEventListener {
 	@SubscribeEvent
 	public static void onHarvestCheck(final PlayerEvent.HarvestCheck event) {
 		if (TechnologicaConfigCommon.DISABLE_VANILLA_LOG_HARVESTING.get()) {
-			if (event.getTargetBlock().is(BlockTags.LOGS) && !(event.getEntity().getMainHandItem().getItem() instanceof AxeItem)) {
+			if (event.getTargetBlock().is(BlockTags.LOGS) && !(event.getEntity().getMainHandItem().getItem() instanceof AxeItem || event.getEntity().getMainHandItem().getItem() instanceof SawItem)) {
 				event.setCanHarvest(false);
 			}
 		}

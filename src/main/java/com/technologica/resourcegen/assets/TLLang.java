@@ -18,8 +18,18 @@ public class TLLang extends TLReGenLang {
 	protected void populate() {
 		add("advancements.tribulation.root.title", "Tribulation");
 		add("advancements.tribulation.root.description", "May you maintain your resolve in the face of great adversity");
-		add("advancements.tribulation.a_sign_of_things_to_come.title", "A Sign of Things to Come");
-		add("advancements.tribulation.a_sign_of_things_to_come.description", "This first lesson is to set your expectations.");
+
+		add("advancements.tribulation.not_so_fast.title", "Not So Fast");
+		add("advancements.tribulation.not_so_fast.description", "You can't just punch a tree to get wood!");
+
+		add("advancements.tribulation.humble_beginnings.title", "Humble Beginnings");
+		add("advancements.tribulation.humble_beginnings.description", "Craft a Crude Saw from Bone and Flint");
+
+		add("advancements.tribulation.hold_your_horses.title", "Hold Your Horses");
+		add("advancements.tribulation.hold_your_horses.description", "Did you just try to break stone with wood?");
+
+		add("advancements.tribulation.dawn_of_man.title", "Dawn of Man");
+		add("advancements.tribulation.dawn_of_man.description", "Craft a Primitive tool");
 
 		add("commands.weather.set.meteor_storm", "Set the weather to meteor storm");
 

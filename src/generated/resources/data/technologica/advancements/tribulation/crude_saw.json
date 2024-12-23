@@ -1,12 +1,12 @@
 {
-  "parent": "minecraft:technology/root",
+  "parent": "technologica:tribulation/not_so_fast",
   "criteria": {
-    "has_dagger": {
+    "crafted_crude_saw": {
       "conditions": {
         "items": [
           {
             "items": [
-              "technologica:primitive_dagger"
+              "technologica:crude_saw"
             ]
           }
         ]
@@ -17,22 +17,22 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "translate": "advancements.husbandry.plant_seed.description"
+      "translate": "advancements.tribulation.humble_beginnings.description"
     },
     "frame": "task",
     "hidden": false,
     "icon": {
-      "item": "technologica:primitive_dagger",
+      "item": "technologica:crude_saw",
       "nbt": "{Damage:0}"
     },
     "show_toast": true,
     "title": {
-      "translate": "advancements.technology.plant_seed.title"
+      "translate": "advancements.tribulation.humble_beginnings.title"
     }
   },
   "requirements": [
     [
-      "has_dagger"
+      "crafted_crude_saw"
     ]
   ],
   "sends_telemetry_event": true

@@ -25,13 +25,16 @@ import net.minecraftforge.common.Tags;
 @SuppressWarnings("deprecation")
 public enum TechnologicaTiers implements Tier {
 	BONE(0, 8, 1.0F, 0.0F, 1, () -> {
-		return Ingredient.of(Items.FLINT);
+		return Ingredient.of(Items.BONE);
 	}),
 	FLINT(1, 16, 2.0F, 0.0F, 15, () -> {
 		return Ingredient.of(Items.FLINT);
 	}),
 	BRONZE(2, 64, 5.0F, 1.5F, 15, () -> {
 		return Ingredient.of(TechnologicaItems.BRONZE_INGOT.get());
+	}),
+	BRASS(0, 32, 5.0F, 1.5F, 15, () -> {
+		return Ingredient.of(TechnologicaItems.BRASS_INGOT.get());
 	});
 
 	private final int level;
@@ -86,6 +89,7 @@ public enum TechnologicaTiers implements Tier {
 		case BONE -> Tags.Blocks.NEEDS_WOOD_TOOL;
 		case FLINT -> Tags.Blocks.NEEDS_WOOD_TOOL;
 		case BRONZE -> BlockTags.NEEDS_IRON_TOOL;
+		case BRASS -> BlockTags.NEEDS_IRON_TOOL;
 		};
 	}
 }

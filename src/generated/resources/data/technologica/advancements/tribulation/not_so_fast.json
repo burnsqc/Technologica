@@ -3,21 +3,18 @@
   "criteria": {
     "failed_harvest": {
       "conditions": {
-        "items": [
-          {
-            "items": [
-              "minecraft:oak_log"
-            ]
-          }
-        ]
+        "block": {
+          "tag": "minecraft:logs"
+        },
+        "item": "minecraft:air"
       },
-      "trigger": "minecraft:inventory_changed"
+      "trigger": "minecraft:attempted_harvest"
     }
   },
   "display": {
     "announce_to_chat": true,
     "description": {
-      "translate": "advancements.tribulation.a_sign_of_things_to_come.description"
+      "translate": "advancements.tribulation.not_so_fast.description"
     },
     "frame": "task",
     "hidden": false,
@@ -26,7 +23,7 @@
     },
     "show_toast": true,
     "title": {
-      "translate": "advancements.tribulation.a_sign_of_things_to_come.title"
+      "translate": "advancements.tribulation.not_so_fast.title"
     }
   },
   "requirements": [
