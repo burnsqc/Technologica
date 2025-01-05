@@ -35,6 +35,9 @@ public enum TechnologicaTiers implements Tier {
 	}),
 	BRASS(0, 32, 5.0F, 1.5F, 15, () -> {
 		return Ingredient.of(TechnologicaItems.BRASS_INGOT.get());
+	}),
+	STEEL(3, 1024, 8.0F, 3.0F, 10, () -> {
+		return Ingredient.of(TechnologicaItems.STEEL_INGOT.get());
 	});
 
 	private final int level;
@@ -90,6 +93,7 @@ public enum TechnologicaTiers implements Tier {
 		case FLINT -> Tags.Blocks.NEEDS_WOOD_TOOL;
 		case BRONZE -> BlockTags.NEEDS_IRON_TOOL;
 		case BRASS -> BlockTags.NEEDS_IRON_TOOL;
+		case STEEL -> BlockTags.NEEDS_DIAMOND_TOOL;
 		};
 	}
 }

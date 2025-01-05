@@ -44,6 +44,15 @@ public enum TechnologicaArmorMaterials implements StringRepresentable, ArmorMate
 	}), 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
 		return Ingredient.of(TechnologicaItems.BRASS_INGOT.get());
 	}),
+	
+	STEEL("steel", 15, Util.make(new EnumMap<>(ArmorItem.Type.class), (enumMap) -> {
+		enumMap.put(ArmorItem.Type.BOOTS, 2);
+		enumMap.put(ArmorItem.Type.LEGGINGS, 5);
+		enumMap.put(ArmorItem.Type.CHESTPLATE, 6);
+		enumMap.put(ArmorItem.Type.HELMET, 2);
+	}), 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+		return Ingredient.of(TechnologicaItems.STEEL_INGOT.get());
+	}),
 
 	CANVAS("canvas", 3, Util.make(new EnumMap<>(ArmorItem.Type.class), (enumMap) -> {
 		enumMap.put(ArmorItem.Type.BOOTS, 1);

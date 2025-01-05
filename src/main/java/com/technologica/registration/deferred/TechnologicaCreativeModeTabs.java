@@ -1211,16 +1211,31 @@ public final class TechnologicaCreativeModeTabs {
 	}).withTabsBefore(MACHINERY.getKey()).build());
 	public static final RegistryObject<CreativeModeTab> ARMORY = Technologica.CREATIVE_MODE_TABS.register("armory", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.NAVAL_MINE.get())).withBackgroundLocation(new TechnologicaLocation("textures/gui/container/creative_inventory/tab_armory.png")).title(Component.translatable("itemGroup.armory")).withLabelColor(0).displayItems((p_270425_, items) -> {
 		items.accept(TechnologicaItems.CRUDE_SAW.get());
+		
 		items.accept(TechnologicaItems.PRIMITIVE_DAGGER.get());
 		items.accept(TechnologicaItems.PRIMITIVE_PICKAXE.get());
 		items.accept(TechnologicaItems.PRIMITIVE_HOE.get());
 		items.accept(TechnologicaItems.PRIMITIVE_SHOVEL.get());
 		items.accept(TechnologicaItems.PRIMITIVE_HATCHET.get());
+		
 		items.accept(TechnologicaItems.BRONZE_SWORD.get());
 		items.accept(TechnologicaItems.BRONZE_PICKAXE.get());
 		items.accept(TechnologicaItems.BRONZE_HOE.get());
 		items.accept(TechnologicaItems.BRONZE_SHOVEL.get());
 		items.accept(TechnologicaItems.BRONZE_AXE.get());
+		
+		items.accept(TechnologicaItems.BRASS_SWORD.get());
+		items.accept(TechnologicaItems.BRASS_PICKAXE.get());
+		items.accept(TechnologicaItems.BRASS_HOE.get());
+		items.accept(TechnologicaItems.BRASS_SHOVEL.get());
+		items.accept(TechnologicaItems.BRASS_AXE.get());
+		
+		items.accept(TechnologicaItems.STEEL_SWORD.get());
+		items.accept(TechnologicaItems.STEEL_PICKAXE.get());
+		items.accept(TechnologicaItems.STEEL_HOE.get());
+		items.accept(TechnologicaItems.STEEL_SHOVEL.get());
+		items.accept(TechnologicaItems.STEEL_AXE.get());
+		
 		items.accept(TechnologicaItems.COCONUT_BAZOOKA_ITEM.get());
 		items.accept(TechnologicaItems.SPEAR_GUN_ITEM.get());
 		items.accept(TechnologicaItems.HARPOON.get());
