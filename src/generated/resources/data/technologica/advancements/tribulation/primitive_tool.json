@@ -24,7 +24,7 @@
       "translate": "advancements.tribulation.dawn_of_man.description"
     },
     "frame": "task",
-    "hidden": true,
+    "hidden": false,
     "icon": {
       "item": "technologica:primitive_pickaxe",
       "nbt": "{Damage:0}"

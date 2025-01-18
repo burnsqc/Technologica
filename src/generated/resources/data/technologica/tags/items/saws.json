@@ -1,6 +1,11 @@
 {
   "values": [
     "technologica:crude_saw",
-    "technologica:saw"
+    "technologica:gold_saw",
+    "technologica:silver_saw",
+    "technologica:bronze_saw",
+    "technologica:brass_saw",
+    "technologica:iron_saw",
+    "technologica:steel_saw"
   ]
 }

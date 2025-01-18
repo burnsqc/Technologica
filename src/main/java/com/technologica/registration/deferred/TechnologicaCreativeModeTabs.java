@@ -1125,7 +1125,12 @@ public final class TechnologicaCreativeModeTabs {
 		items.accept(TechnologicaItems.SAWMILL_BLUEPRINT.get());
 		items.accept(TechnologicaItems.CHISEL.get());
 		items.accept(TechnologicaItems.HAMMER.get());
-		items.accept(TechnologicaItems.SAW.get());
+		items.accept(TechnologicaItems.BRONZE_SAW.get());
+		items.accept(TechnologicaItems.BRASS_SAW.get());
+		items.accept(TechnologicaItems.GOLD_SAW.get());
+		items.accept(TechnologicaItems.SILVER_SAW.get());
+		items.accept(TechnologicaItems.IRON_SAW.get());
+		items.accept(TechnologicaItems.STEEL_SAW.get());
 		items.accept(TechnologicaItems.PIPE_WRENCH.get());
 		items.accept(TechnologicaItems.WRENCH.get());
 		items.accept(TechnologicaItems.FAST_HOPPER.get());
@@ -1218,6 +1223,12 @@ public final class TechnologicaCreativeModeTabs {
 		items.accept(TechnologicaItems.PRIMITIVE_SHOVEL.get());
 		items.accept(TechnologicaItems.PRIMITIVE_HATCHET.get());
 		
+		items.accept(TechnologicaItems.SILVER_SWORD.get());
+		items.accept(TechnologicaItems.SILVER_PICKAXE.get());
+		items.accept(TechnologicaItems.SILVER_HOE.get());
+		items.accept(TechnologicaItems.SILVER_SHOVEL.get());
+		items.accept(TechnologicaItems.SILVER_AXE.get());
+
 		items.accept(TechnologicaItems.BRONZE_SWORD.get());
 		items.accept(TechnologicaItems.BRONZE_PICKAXE.get());
 		items.accept(TechnologicaItems.BRONZE_HOE.get());

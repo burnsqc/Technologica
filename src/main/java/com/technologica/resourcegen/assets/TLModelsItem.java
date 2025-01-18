@@ -283,7 +283,14 @@ public class TLModelsItem extends TLReGenModelsItem {
 		item2D(TechnologicaItems.PULLEY_BELT.get());
 		item2D(TechnologicaItems.CHISEL.get());
 		item2D(TechnologicaItems.HAMMER.get());
-		item2D(TechnologicaItems.SAW.get());
+
+		item2D(TechnologicaItems.GOLD_SAW.get());
+		item2D(TechnologicaItems.SILVER_SAW.get());
+		item2D(TechnologicaItems.BRONZE_SAW.get());
+		item2D(TechnologicaItems.BRASS_SAW.get());
+		item2D(TechnologicaItems.IRON_SAW.get());
+		item2D(TechnologicaItems.STEEL_SAW.get());
+
 		item2D(TechnologicaItems.PIPE_WRENCH.get());
 		item2D(TechnologicaItems.WRENCH.get());
 		item2D(TechnologicaItems.SAWBLADE.get());
@@ -298,17 +305,36 @@ public class TLModelsItem extends TLReGenModelsItem {
 		item2D(TechnologicaItems.SAWMILL_BLUEPRINT.get());
 
 		item2DModel(TechnologicaItems.CRUDE_SAW.get(), new ModelFile.UncheckedModelFile("item/handheld"));
+
 		item2DModel(TechnologicaItems.PRIMITIVE_DAGGER.get(), new ModelFile.UncheckedModelFile("item/handheld"));
 		item2DModel(TechnologicaItems.PRIMITIVE_PICKAXE.get(), new ModelFile.UncheckedModelFile("item/handheld"));
 		item2DModel(TechnologicaItems.PRIMITIVE_HOE.get(), new ModelFile.UncheckedModelFile("item/handheld"));
 		item2DModel(TechnologicaItems.PRIMITIVE_SHOVEL.get(), new ModelFile.UncheckedModelFile("item/handheld"));
 		item2DModel(TechnologicaItems.PRIMITIVE_HATCHET.get(), new ModelFile.UncheckedModelFile("item/handheld"));
 
+		item2DModel(TechnologicaItems.SILVER_SWORD.get(), new ModelFile.UncheckedModelFile("item/handheld"));
+		item2DModel(TechnologicaItems.SILVER_PICKAXE.get(), new ModelFile.UncheckedModelFile("item/handheld"));
+		item2DModel(TechnologicaItems.SILVER_HOE.get(), new ModelFile.UncheckedModelFile("item/handheld"));
+		item2DModel(TechnologicaItems.SILVER_SHOVEL.get(), new ModelFile.UncheckedModelFile("item/handheld"));
+		item2DModel(TechnologicaItems.SILVER_AXE.get(), new ModelFile.UncheckedModelFile("item/handheld"));
+
 		item2DModel(TechnologicaItems.BRONZE_SWORD.get(), new ModelFile.UncheckedModelFile("item/handheld"));
 		item2DModel(TechnologicaItems.BRONZE_PICKAXE.get(), new ModelFile.UncheckedModelFile("item/handheld"));
 		item2DModel(TechnologicaItems.BRONZE_HOE.get(), new ModelFile.UncheckedModelFile("item/handheld"));
 		item2DModel(TechnologicaItems.BRONZE_SHOVEL.get(), new ModelFile.UncheckedModelFile("item/handheld"));
 		item2DModel(TechnologicaItems.BRONZE_AXE.get(), new ModelFile.UncheckedModelFile("item/handheld"));
+
+		item2DModel(TechnologicaItems.BRASS_SWORD.get(), new ModelFile.UncheckedModelFile("item/handheld"));
+		item2DModel(TechnologicaItems.BRASS_PICKAXE.get(), new ModelFile.UncheckedModelFile("item/handheld"));
+		item2DModel(TechnologicaItems.BRASS_HOE.get(), new ModelFile.UncheckedModelFile("item/handheld"));
+		item2DModel(TechnologicaItems.BRASS_SHOVEL.get(), new ModelFile.UncheckedModelFile("item/handheld"));
+		item2DModel(TechnologicaItems.BRASS_AXE.get(), new ModelFile.UncheckedModelFile("item/handheld"));
+
+		item2DModel(TechnologicaItems.STEEL_SWORD.get(), new ModelFile.UncheckedModelFile("item/handheld"));
+		item2DModel(TechnologicaItems.STEEL_PICKAXE.get(), new ModelFile.UncheckedModelFile("item/handheld"));
+		item2DModel(TechnologicaItems.STEEL_HOE.get(), new ModelFile.UncheckedModelFile("item/handheld"));
+		item2DModel(TechnologicaItems.STEEL_SHOVEL.get(), new ModelFile.UncheckedModelFile("item/handheld"));
+		item2DModel(TechnologicaItems.STEEL_AXE.get(), new ModelFile.UncheckedModelFile("item/handheld"));
 
 		item2D(TechnologicaItems.DODGEBALL_ITEM.get());
 		item2D(TechnologicaItems.HARPOON.get());

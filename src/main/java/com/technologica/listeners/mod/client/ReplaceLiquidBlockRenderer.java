@@ -1,8 +1,11 @@
 package com.technologica.listeners.mod.client;
 
 import com.technologica.client.renderer.block.TechnologicaLiquidBlockRenderer;
+import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.TitleScreen;
+import net.minecraft.client.renderer.CubeMap;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -16,6 +19,7 @@ public final class ReplaceLiquidBlockRenderer {
 	public static final void onFMLClientSetupEvent(final FMLClientSetupEvent event) {
 		event.enqueueWork(() -> {
 			Minecraft.getInstance().getBlockRenderer().liquidBlockRenderer = new TechnologicaLiquidBlockRenderer();
+			TitleScreen.CUBE_MAP = new CubeMap(new TechnologicaLocation("textures/gui/title/background/rusting_grounds/panorama"));
 		});
 	}
 }

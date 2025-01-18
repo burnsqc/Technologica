@@ -45,9 +45,9 @@ public class CarpentryWorkbenchBlockEntity extends BlockEntity implements Worldl
 			@Override
 			public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
 				if (slot == 0) {
-					return stack.is(TechnologicaItems.SAW.get());
+					return stack.is(TechnologicaItems.IRON_SAW.get());
 				} else if (slot == 1) {
-					return stack.is(TechnologicaItems.SAW.get());
+					return stack.is(TechnologicaItems.IRON_SAW.get());
 				} else if (slot == 2) {
 					return stack.is(TechnologicaItems.CHISEL.get());
 				} else if (slot == 3) {

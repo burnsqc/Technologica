@@ -50,7 +50,6 @@ import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.SignItem;
 import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.Tiers;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.registries.RegistryObject;
@@ -1164,11 +1163,20 @@ public final class TechnologicaItems {
 	public static final RegistryObject<Item> MEDIUM_PULLEY_ITEM = Technologica.ITEMS.register("medium_pulley", () -> new ItemNameBlockItem(TechnologicaBlocks.MEDIUM_PULLEY.get(), new Item.Properties()));
 	public static final RegistryObject<Item> LARGE_PULLEY_ITEM = Technologica.ITEMS.register("large_pulley", () -> new ItemNameBlockItem(TechnologicaBlocks.LARGE_PULLEY.get(), new Item.Properties()));
 	public static final RegistryObject<Item> PULLEY_BELT = Technologica.ITEMS.register("pulley_belt", PulleyBeltItem::new);
-	public static final RegistryObject<Item> CHISEL = Technologica.ITEMS.register("chisel", () -> new SawItem(Tiers.WOOD, 6.0F, -3.2F, new Item.Properties()));
+
+	public static final RegistryObject<Item> CHISEL = Technologica.ITEMS.register("chisel", () -> new SawItem(TechnologicaTiers.IRON, 6.0F, -3.2F, new Item.Properties()));
 	public static final RegistryObject<Item> HAMMER = Technologica.ITEMS.register("hammer", () -> new HammerItem(new Item.Properties().stacksTo(1)));
-	public static final RegistryObject<Item> SAW = Technologica.ITEMS.register("saw", () -> new SawItem(Tiers.WOOD, 6.0F, -3.2F, new Item.Properties()));
-	public static final RegistryObject<Item> PIPE_WRENCH = Technologica.ITEMS.register("pipe_wrench", () -> new PipeWrenchItem(Tiers.IRON, 1, -2.8F, (new Item.Properties())));
-	public static final RegistryObject<Item> WRENCH = Technologica.ITEMS.register("wrench", () -> new PickaxeItem(Tiers.IRON, 1, -2.8F, (new Item.Properties())));
+
+	public static final RegistryObject<Item> GOLD_SAW = Technologica.ITEMS.register("gold_saw", () -> new SawItem(TechnologicaTiers.GOLD, 6.0F, -3.2F, new Item.Properties()));
+	public static final RegistryObject<Item> SILVER_SAW = Technologica.ITEMS.register("silver_saw", () -> new SawItem(TechnologicaTiers.SILVER, 6.0F, -3.2F, new Item.Properties()));
+	public static final RegistryObject<Item> BRONZE_SAW = Technologica.ITEMS.register("bronze_saw", () -> new SawItem(TechnologicaTiers.BRONZE, 6.0F, -3.2F, new Item.Properties()));
+	public static final RegistryObject<Item> BRASS_SAW = Technologica.ITEMS.register("brass_saw", () -> new SawItem(TechnologicaTiers.BRASS, 6.0F, -3.2F, new Item.Properties()));
+	public static final RegistryObject<Item> IRON_SAW = Technologica.ITEMS.register("iron_saw", () -> new SawItem(TechnologicaTiers.IRON, 6.0F, -3.2F, new Item.Properties()));
+	public static final RegistryObject<Item> STEEL_SAW = Technologica.ITEMS.register("steel_saw", () -> new SawItem(TechnologicaTiers.STEEL, 6.0F, -3.2F, new Item.Properties()));
+
+	public static final RegistryObject<Item> PIPE_WRENCH = Technologica.ITEMS.register("pipe_wrench", () -> new PipeWrenchItem(TechnologicaTiers.IRON, 1, -2.8F, (new Item.Properties())));
+	public static final RegistryObject<Item> WRENCH = Technologica.ITEMS.register("wrench", () -> new PickaxeItem(TechnologicaTiers.IRON, 1, -2.8F, (new Item.Properties())));
+
 	public static final RegistryObject<Item> MOTOR_1HP_ITEM = Technologica.ITEMS.register("motor_1hp", () -> new BlockItem(TechnologicaBlocks.MOTOR_1HP.get(), new Item.Properties()));
 	public static final RegistryObject<Item> MOTOR_5HP_ITEM = Technologica.ITEMS.register("motor_5hp", () -> new BlockItem(TechnologicaBlocks.MOTOR_5HP.get(), new Item.Properties()));
 	public static final RegistryObject<Item> MOTOR_20HP_ITEM = Technologica.ITEMS.register("motor_20hp", () -> new BlockItem(TechnologicaBlocks.MOTOR_20HP.get(), new Item.Properties()));
@@ -1260,6 +1268,12 @@ public final class TechnologicaItems {
 	public static final RegistryObject<Item> PRIMITIVE_SHOVEL = Technologica.ITEMS.register("primitive_shovel", () -> new ShovelItem(TechnologicaTiers.FLINT, 1.5F, -3.0F, (new Item.Properties())));
 	public static final RegistryObject<Item> PRIMITIVE_HATCHET = Technologica.ITEMS.register("primitive_hatchet", () -> new AxeItem(TechnologicaTiers.FLINT, 6, -3.2F, (new Item.Properties())));
 	
+	public static final RegistryObject<Item> SILVER_SWORD = Technologica.ITEMS.register("silver_sword", () -> new SwordItem(TechnologicaTiers.SILVER, 6, -3.2F, (new Item.Properties())));
+	public static final RegistryObject<Item> SILVER_PICKAXE = Technologica.ITEMS.register("silver_pickaxe", () -> new PickaxeItem(TechnologicaTiers.SILVER, 6, -3.2F, (new Item.Properties())));
+	public static final RegistryObject<Item> SILVER_HOE = Technologica.ITEMS.register("silver_hoe", () -> new HoeItem(TechnologicaTiers.SILVER, 6, -3.2F, (new Item.Properties())));
+	public static final RegistryObject<Item> SILVER_SHOVEL = Technologica.ITEMS.register("silver_shovel", () -> new ShovelItem(TechnologicaTiers.SILVER, 6.0F, -3.2F, (new Item.Properties())));
+	public static final RegistryObject<Item> SILVER_AXE = Technologica.ITEMS.register("silver_axe", () -> new AxeItem(TechnologicaTiers.SILVER, 6.0F, -3.2F, (new Item.Properties())));
+
 	public static final RegistryObject<Item> BRONZE_SWORD = Technologica.ITEMS.register("bronze_sword", () -> new SwordItem(TechnologicaTiers.BRONZE, 6, -3.2F, (new Item.Properties())));
 	public static final RegistryObject<Item> BRONZE_PICKAXE = Technologica.ITEMS.register("bronze_pickaxe", () -> new PickaxeItem(TechnologicaTiers.BRONZE, 6, -3.2F, (new Item.Properties())));
 	public static final RegistryObject<Item> BRONZE_HOE = Technologica.ITEMS.register("bronze_hoe", () -> new HoeItem(TechnologicaTiers.BRONZE, 6, -3.2F, (new Item.Properties())));

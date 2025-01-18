@@ -101,7 +101,7 @@ public class Shark extends WaterAnimal implements NeutralMob {
 		this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
 		this.goalSelector.addGoal(5, new LookAtPlayerGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(8, new FollowBoatGoal(this));
-		this.targetSelector.addGoal(1, (new HurtByTargetGoal(this, Guardian.class)).setAlertOthers());
+		this.targetSelector.addGoal(1, new HurtByTargetGoal(this, Guardian.class).setAlertOthers());
 		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, TropicalFish.class, 10, true, true, (Predicate<LivingEntity>) null));
 	}
 
