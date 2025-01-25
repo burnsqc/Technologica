@@ -1,0 +1,42 @@
+{
+  "parent": "technologica:stone_age/craft_planks",
+  "criteria": {
+    "boarded_boat": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "vehicle": {
+                "type": "minecraft:boat"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:started_riding"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.stone_age.board_boat.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:oak_boat"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.stone_age.board_boat.title"
+    }
+  },
+  "requirements": [
+    [
+      "boarded_boat"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

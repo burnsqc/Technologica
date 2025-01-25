@@ -1,0 +1,37 @@
+{
+  "parent": "technologica:stone_age/discover_fire",
+  "criteria": {
+    "made_fire": {
+      "conditions": {
+        "item": {
+          "items": [
+            "technologica:bow_drill"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.stone_age.make_fire.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "technologica:bow_drill",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.stone_age.make_fire.title"
+    }
+  },
+  "requirements": [
+    [
+      "made_fire"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

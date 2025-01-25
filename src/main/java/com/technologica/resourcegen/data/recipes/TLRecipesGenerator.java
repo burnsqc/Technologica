@@ -174,6 +174,9 @@ public class TLRecipesGenerator extends TLRGRecipeGenerator {
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TechnologicaItems.CINNAMON_ROLL.get(), 1).requires(TechnologicaItems.CINNAMON.get()).requires(Items.EGG).requires(Items.SUGAR).requires(Items.MILK_BUCKET).unlockedBy("has_cinnamon", has(TechnologicaItems.CINNAMON.get())).save(consumer, new TechnologicaLocation("cinnamon_roll"));
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TechnologicaItems.OLIVE_OIL.get(), 1).requires(TechnologicaItems.OLIVE.get()).unlockedBy("has_olive", has(TechnologicaItems.OLIVE.get())).save(consumer, new TechnologicaLocation("olive_oil"));
 		
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, TechnologicaItems.BOW_DRILL.get()).define('S', Items.STICK).define('T', Items.STRING).pattern("TS").pattern("S ").unlockedBy("has_stick", has(Items.STICK)).save(consumer, new TechnologicaLocation("bow_drill"));
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TechnologicaItems.CLAY_JAR.get()).requires(Items.CLAY_BALL, 2).unlockedBy("has_clay", has(Items.CLAY_BALL)).save(consumer, new TechnologicaLocation("clay_jar"));
+
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.TOOLS, TechnologicaItems.CRUDE_SAW.get()).requires(Items.BONE).requires(Items.FLINT).unlockedBy("has_bone", has(Items.BONE)).save(consumer, new TechnologicaLocation("crude_saw"));
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, TechnologicaItems.PRIMITIVE_SHOVEL.get()).define('T', Items.STICK).define('F', Items.FLINT).define('S', Items.STRING).pattern(" F ").pattern(" TS").pattern(" T ").unlockedBy("has_flint", has(Items.FLINT)).save(consumer, new TechnologicaLocation("primitive_shovel"));
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, TechnologicaItems.PRIMITIVE_PICKAXE.get()).define('T', Items.STICK).define('F', Items.FLINT).define('S', Items.STRING).pattern("FFF").pattern(" TS").pattern(" T ").unlockedBy("has_flint", has(Items.FLINT)).save(consumer, new TechnologicaLocation("primitive_pickaxe"));
@@ -183,6 +186,7 @@ public class TLRecipesGenerator extends TLRGRecipeGenerator {
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TechnologicaItems.TRELLIS.get()).define('S', Items.STRING).define('B', Items.IRON_BARS).pattern("SBS").pattern("SBS").unlockedBy("has_iron_bars", has(Items.IRON_BARS)).save(consumer, new TechnologicaLocation("trellis"));
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, TechnologicaItems.IRON_SAW.get()).define('S', Items.STICK).define('I', Items.IRON_INGOT).pattern("SII").unlockedBy("has_iron", has(Items.IRON_INGOT)).save(consumer, new TechnologicaLocation("saw"));
 		
+
 		sawmillRecipe(Ingredient.of(Items.OAK_LOG), Items.STRIPPED_OAK_LOG, 1, TechnologicaItems.MULCH.get(), 1).save(consumer, new TechnologicaLocation("stripped_oak_log_from_oak_log_sawmill"));
 		sawmillRecipe(Ingredient.of(Items.SPRUCE_LOG), Items.STRIPPED_SPRUCE_LOG, 1, TechnologicaItems.MULCH.get(), 1).save(consumer, new TechnologicaLocation("stripped_spruce_log_from_spruce_log_sawmill"));
 		sawmillRecipe(Ingredient.of(Items.BIRCH_LOG), Items.STRIPPED_BIRCH_LOG, 1, TechnologicaItems.MULCH.get(), 1).save(consumer, new TechnologicaLocation("stripped_birch_log_from_birch_log_sawmill"));
@@ -311,6 +315,7 @@ public class TLRecipesGenerator extends TLRGRecipeGenerator {
 		armorRecipes(consumer);
 		oreSmelting(consumer);
 		nineBlockStorage(consumer);
+		campfireRecipes(consumer);
 	}
 
 	private static void armorRecipes(Consumer<FinishedRecipe> consumer) {
@@ -354,6 +359,10 @@ public class TLRecipesGenerator extends TLRGRecipeGenerator {
 		nineBlockStorageRecipes(consumer, RecipeCategory.MISC, TechnologicaItems.RUBY.get(), RecipeCategory.BUILDING_BLOCKS, TechnologicaItems.BLOCK_OF_RUBY.get());
 		nineBlockStorageRecipes(consumer, RecipeCategory.MISC, TechnologicaItems.SAPPHIRE.get(), RecipeCategory.BUILDING_BLOCKS, TechnologicaItems.BLOCK_OF_SAPPHIRE.get());
 		nineBlockStorageRecipes(consumer, RecipeCategory.MISC, TechnologicaItems.TOPAZ.get(), RecipeCategory.BUILDING_BLOCKS, TechnologicaItems.BLOCK_OF_TOPAZ.get());
+	}
+
+	private static void campfireRecipes(Consumer<FinishedRecipe> consumer) {
+		simpleCookingRecipe(consumer, "campfire_cooking", RecipeSerializer.CAMPFIRE_COOKING_RECIPE, 600, TechnologicaItems.CLAY_JAR.get(), TechnologicaItems.CERAMIC_JAR.get(), 0.35F);
 	}
 
 	private static void casualOrProPlanksVanilla(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, TagKey<Item> input) {

@@ -1,0 +1,36 @@
+{
+  "parent": "technologica:stone_age/crude_saw",
+  "criteria": {
+    "discovered_wood": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "minecraft:logs"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.stone_age.discover_wood.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:oak_log"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.stone_age.discover_wood.title"
+    }
+  },
+  "requirements": [
+    [
+      "discovered_wood"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

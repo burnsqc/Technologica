@@ -1,0 +1,39 @@
+{
+  "parent": "technologica:stone_age/discover_stick",
+  "criteria": {
+    "crafted_crude_saw": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "technologica:crude_saw"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.stone_age.crude_saw.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "technologica:crude_saw",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.stone_age.crude_saw.title"
+    }
+  },
+  "requirements": [
+    [
+      "crafted_crude_saw"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

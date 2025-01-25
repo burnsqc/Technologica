@@ -1215,7 +1215,10 @@ public final class TechnologicaCreativeModeTabs {
 		items.accept(TechnologicaItems.FROSTBITTEN_TABLE_ITEM.get());
 	}).withTabsBefore(MACHINERY.getKey()).build());
 	public static final RegistryObject<CreativeModeTab> ARMORY = Technologica.CREATIVE_MODE_TABS.register("armory", () -> CreativeModeTab.builder().icon(() -> new ItemStack(TechnologicaItems.NAVAL_MINE.get())).withBackgroundLocation(new TechnologicaLocation("textures/gui/container/creative_inventory/tab_armory.png")).title(Component.translatable("itemGroup.armory")).withLabelColor(0).displayItems((p_270425_, items) -> {
+		items.accept(TechnologicaItems.BOW_DRILL.get());
 		items.accept(TechnologicaItems.CRUDE_SAW.get());
+		items.accept(TechnologicaItems.CLAY_JAR.get());
+		items.accept(TechnologicaItems.CERAMIC_JAR.get());
 		
 		items.accept(TechnologicaItems.PRIMITIVE_DAGGER.get());
 		items.accept(TechnologicaItems.PRIMITIVE_PICKAXE.get());

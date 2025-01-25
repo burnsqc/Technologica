@@ -1,0 +1,30 @@
+{
+  "parent": "technologica:stone_age/hunter",
+  "criteria": {
+    "bred_animal": {
+      "conditions": {},
+      "trigger": "minecraft:bred_animals"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.stone_age.breed_animal.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:carrot"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.stone_age.breed_animal.title"
+    }
+  },
+  "requirements": [
+    [
+      "bred_animal"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

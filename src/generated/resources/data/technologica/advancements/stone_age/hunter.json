@@ -1,0 +1,30 @@
+{
+  "parent": "technologica:stone_age/root",
+  "criteria": {
+    "kill_animal": {
+      "conditions": {},
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.stone_age.hunter.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:skeleton_skull"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.stone_age.hunter.title"
+    }
+  },
+  "requirements": [
+    [
+      "kill_animal"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

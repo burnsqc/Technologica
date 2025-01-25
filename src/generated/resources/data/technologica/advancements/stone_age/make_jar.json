@@ -1,0 +1,39 @@
+{
+  "parent": "technologica:stone_age/discover_clay",
+  "criteria": {
+    "made_jar": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "technologica:ceramic_jar"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.stone_age.make_jar.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "technologica:ceramic_jar",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.stone_age.make_jar.title"
+    }
+  },
+  "requirements": [
+    [
+      "made_jar"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

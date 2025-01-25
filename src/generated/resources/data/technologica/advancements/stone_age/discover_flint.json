@@ -1,0 +1,38 @@
+{
+  "parent": "technologica:stone_age/root",
+  "criteria": {
+    "discovered_flint": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:flint"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.stone_age.discover_flint.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:flint"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.stone_age.discover_flint.title"
+    }
+  },
+  "requirements": [
+    [
+      "discovered_flint"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

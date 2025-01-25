@@ -9,7 +9,8 @@
 		"MixinMouseHandler",
 		"MixinLifesightOrEntityGlow",
 		"MixinLifesightTeamColor",
-		"MixinOverworldBiomeBuilder"
+		"MixinOverworldBiomeBuilder",
+		"MixinUnlightCampfires"
 	],
 	"client": [	
 	],

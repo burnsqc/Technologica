@@ -1,0 +1,305 @@
+{
+  "parent": "technologica:stone_age/discover_wood",
+  "criteria": {
+    "acacia_planks": {
+      "conditions": {
+        "recipe_id": "minecraft:acacia_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "alchemical_planks": {
+      "conditions": {
+        "recipe_id": "technologica:alchemical_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "apricot_planks": {
+      "conditions": {
+        "recipe_id": "technologica:apricot_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "aspen_planks": {
+      "conditions": {
+        "recipe_id": "technologica:aspen_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "avocado_planks": {
+      "conditions": {
+        "recipe_id": "technologica:avocado_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "banana_planks": {
+      "conditions": {
+        "recipe_id": "technologica:banana_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "benevolent_planks": {
+      "conditions": {
+        "recipe_id": "technologica:benevolent_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "birch_planks": {
+      "conditions": {
+        "recipe_id": "minecraft:birch_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "cherry_planks": {
+      "conditions": {
+        "recipe_id": "technologica:cherry_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "chestnut_planks": {
+      "conditions": {
+        "recipe_id": "technologica:chestnut_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "cinnamon_planks": {
+      "conditions": {
+        "recipe_id": "technologica:cinnamon_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "coconut_planks": {
+      "conditions": {
+        "recipe_id": "technologica:coconut_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "conductive_planks": {
+      "conditions": {
+        "recipe_id": "technologica:conductive_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "crimson_planks": {
+      "conditions": {
+        "recipe_id": "minecraft:crimson_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "dark_oak_planks": {
+      "conditions": {
+        "recipe_id": "minecraft:dark_oak_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "ebony_planks": {
+      "conditions": {
+        "recipe_id": "technologica:ebony_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "frostbitten_planks": {
+      "conditions": {
+        "recipe_id": "technologica:frostbitten_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "fruitful_planks": {
+      "conditions": {
+        "recipe_id": "technologica:fruitful_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "infernal_planks": {
+      "conditions": {
+        "recipe_id": "technologica:infernal_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "jungle_planks": {
+      "conditions": {
+        "recipe_id": "minecraft:jungle_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "kiwi_planks": {
+      "conditions": {
+        "recipe_id": "technologica:kiwi_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "lemon_planks": {
+      "conditions": {
+        "recipe_id": "technologica:lemon_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "lime_planks": {
+      "conditions": {
+        "recipe_id": "technologica:lime_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "mahogany_planks": {
+      "conditions": {
+        "recipe_id": "technologica:mahogany_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "malevolent_planks": {
+      "conditions": {
+        "recipe_id": "technologica:malevolent_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "maple_planks": {
+      "conditions": {
+        "recipe_id": "technologica:maple_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "necrotic_planks": {
+      "conditions": {
+        "recipe_id": "technologica:necrotic_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "oak_planks": {
+      "conditions": {
+        "recipe_id": "minecraft:oak_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "olive_planks": {
+      "conditions": {
+        "recipe_id": "technologica:olive_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "orange_planks": {
+      "conditions": {
+        "recipe_id": "technologica:orange_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "peach_planks": {
+      "conditions": {
+        "recipe_id": "technologica:peach_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "pear_planks": {
+      "conditions": {
+        "recipe_id": "technologica:pear_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "plum_planks": {
+      "conditions": {
+        "recipe_id": "technologica:plum_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "redwood_planks": {
+      "conditions": {
+        "recipe_id": "technologica:redwood_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "rosewood_planks": {
+      "conditions": {
+        "recipe_id": "technologica:rosewood_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "rubber_planks": {
+      "conditions": {
+        "recipe_id": "technologica:rubber_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "spruce_planks": {
+      "conditions": {
+        "recipe_id": "minecraft:spruce_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "walnut_planks": {
+      "conditions": {
+        "recipe_id": "technologica:walnut_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "warped_planks": {
+      "conditions": {
+        "recipe_id": "minecraft:warped_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "zebrawood_planks": {
+      "conditions": {
+        "recipe_id": "technologica:zebrawood_planks"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.stone_age.craft_planks.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:oak_planks"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.stone_age.craft_planks.title"
+    }
+  },
+  "requirements": [
+    [
+      "acacia_planks",
+      "birch_planks",
+      "crimson_planks",
+      "dark_oak_planks",
+      "jungle_planks",
+      "oak_planks",
+      "spruce_planks",
+      "warped_planks",
+      "apricot_planks",
+      "aspen_planks",
+      "avocado_planks",
+      "banana_planks",
+      "cherry_planks",
+      "chestnut_planks",
+      "cinnamon_planks",
+      "coconut_planks",
+      "ebony_planks",
+      "kiwi_planks",
+      "lemon_planks",
+      "lime_planks",
+      "mahogany_planks",
+      "maple_planks",
+      "olive_planks",
+      "orange_planks",
+      "peach_planks",
+      "pear_planks",
+      "plum_planks",
+      "redwood_planks",
+      "rosewood_planks",
+      "rubber_planks",
+      "walnut_planks",
+      "zebrawood_planks",
+      "alchemical_planks",
+      "benevolent_planks",
+      "conductive_planks",
+      "frostbitten_planks",
+      "fruitful_planks",
+      "infernal_planks",
+      "malevolent_planks",
+      "necrotic_planks"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

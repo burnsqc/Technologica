@@ -1,0 +1,38 @@
+{
+  "parent": "technologica:stone_age/gatherer",
+  "criteria": {
+    "discover_mulch": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "technologica:mulch"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.stone_age.discover_mulch.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "technologica:mulch"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.stone_age.discover_mulch.title"
+    }
+  },
+  "requirements": [
+    [
+      "discover_mulch"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

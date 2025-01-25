@@ -2,13 +2,16 @@ package com.technologica.listeners.forge;
 
 import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.registration.deferred.TechnologicaItems;
+import com.technologica.resourcegen.data.advancements.TechnologicaCriterionTriggers;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AirBlock;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -30,6 +33,9 @@ public class PlayerTickEventListener {
 					level.setBlockAndUpdate(pos, TechnologicaBlocks.LIGHT.get().defaultBlockState());
 				}
 			}
+		}
+		if (level instanceof ServerLevel) {
+			TechnologicaCriterionTriggers.BLOCK_OBSERVED.trigger((ServerPlayer) player, ((BlockHitResult) player.pick(20.0D, 0.0F, false)).getBlockPos());
 		}
 	}
 }

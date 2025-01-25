@@ -74,6 +74,8 @@ import com.technologica.resourcegen.assets.TLModelsItem;
 import com.technologica.resourcegen.assets.TLParticles;
 import com.technologica.resourcegen.assets.TLSounds;
 import com.technologica.resourcegen.data.advancements.AttemptedHarvestTrigger;
+import com.technologica.resourcegen.data.advancements.BlockObservedTrigger;
+import com.technologica.resourcegen.data.advancements.LightCampfireTrigger;
 import com.technologica.resourcegen.data.advancements.TLRGAdvancementGenerator;
 import com.technologica.resourcegen.data.advancements.TechnologicaCriterionTriggers;
 import com.technologica.resourcegen.data.lootmodifiers.TLLootModifiersGenerator;
@@ -323,7 +325,8 @@ public class Technologica {
 	protected final void onFMLCommonSetupEvent(final FMLCommonSetupEvent event) {
 		event.enqueueWork(() -> {
 			TechnologicaCriterionTriggers.ATTEMPTED_HARVEST = CriteriaTriggers.register(new AttemptedHarvestTrigger());
-			// TechnologicaCriterionTriggers.USED_WOODEN_TOOL = CriteriaTriggers.register(new ConsumeItemTrigger());
+			TechnologicaCriterionTriggers.BLOCK_OBSERVED = CriteriaTriggers.register(new BlockObservedTrigger());
+			TechnologicaCriterionTriggers.LIGHT_CAMPFIRE = CriteriaTriggers.register(new LightCampfireTrigger());
 			if (TechnologicaConfigCommon.ADJUST_TOOL_DURABILITY.get()) {
 				Items.WOODEN_SWORD.maxDamage = TechnologicaTiers.WOOD.getUses();
 				Items.WOODEN_SHOVEL.maxDamage = TechnologicaTiers.WOOD.getUses();

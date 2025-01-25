@@ -5,6 +5,7 @@ import com.technologica.world.entity.vehicle.Rocket;
 import com.technologica.world.entity.vehicle.TechnologicaBoat;
 import com.technologica.world.food.TechnologicaFoods;
 import com.technologica.world.item.BlueprintItem;
+import com.technologica.world.item.BowDrillItem;
 import com.technologica.world.item.CoconutBazookaItem;
 import com.technologica.world.item.CropSeedItem;
 import com.technologica.world.item.DivingHelmetItem;
@@ -1260,7 +1261,10 @@ public final class TechnologicaItems {
 	public static final RegistryObject<Item> ZEBRAWOOD_TABLE_ITEM = Technologica.ITEMS.register("zebrawood_table", () -> new BlockItem(TechnologicaBlocks.ZEBRAWOOD_TABLE.get(), new Item.Properties()));
 	public static final RegistryObject<Item> FROSTBITTEN_TABLE_ITEM = Technologica.ITEMS.register("frostbitten_table", () -> new BlockItem(TechnologicaBlocks.FROSTBITTEN_TABLE.get(), new Item.Properties()));
 
+	public static final RegistryObject<Item> BOW_DRILL = Technologica.ITEMS.register("bow_drill", () -> new BowDrillItem(new Item.Properties().durability(4)));
 	public static final RegistryObject<Item> CRUDE_SAW = Technologica.ITEMS.register("crude_saw", () -> new SawItem(TechnologicaTiers.BONE, 1.0F, -3.2F, new Item.Properties()));
+	public static final RegistryObject<Item> CLAY_JAR = Technologica.ITEMS.register("clay_jar", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> CERAMIC_JAR = Technologica.ITEMS.register("ceramic_jar", () -> new BucketItem(() -> Fluids.EMPTY, new Item.Properties().durability(8)));
 	
 	public static final RegistryObject<Item> PRIMITIVE_DAGGER = Technologica.ITEMS.register("primitive_dagger", () -> new SwordItem(TechnologicaTiers.FLINT, 3, -2.4F, (new Item.Properties())));
 	public static final RegistryObject<Item> PRIMITIVE_PICKAXE = Technologica.ITEMS.register("primitive_pickaxe", () -> new PickaxeItem(TechnologicaTiers.FLINT, 1, -2.8F, (new Item.Properties())));
@@ -1357,4 +1361,6 @@ public final class TechnologicaItems {
 	public static final RegistryObject<Item> SUBMERSION_OF_SUPPRESSION = Technologica.ITEMS.register("submersion_of_suppression", () -> new Submersion(new Item.Properties(), "submersion_of_suppression"));
 	public static final RegistryObject<Item> SUBMERSIBLE = Technologica.ITEMS.register("submersible", () -> new SubmersibleItem(new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item> SKELETON_KEY = Technologica.ITEMS.register("skeleton_key", () -> new SkeletonKeyItem(new Item.Properties()));
+
+	public static final RegistryObject<Item> DUMMY_FIRE = Technologica.ITEMS.register("dummy_fire", () -> new Item(new Item.Properties()));
 }

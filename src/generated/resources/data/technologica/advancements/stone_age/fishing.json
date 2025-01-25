@@ -1,0 +1,40 @@
+{
+  "parent": "technologica:stone_age/hunter",
+  "criteria": {
+    "caught_fish": {
+      "conditions": {
+        "item": {
+          "items": [
+            "minecraft:cod",
+            "minecraft:tropical_fish",
+            "minecraft:pufferfish",
+            "minecraft:salmon"
+          ]
+        }
+      },
+      "trigger": "minecraft:fishing_rod_hooked"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.stone_age.fishing.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:fishing_rod",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.stone_age.fishing.title"
+    }
+  },
+  "requirements": [
+    [
+      "caught_fish"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

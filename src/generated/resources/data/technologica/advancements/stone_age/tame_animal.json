@@ -1,0 +1,30 @@
+{
+  "parent": "technologica:stone_age/breed_animal",
+  "criteria": {
+    "tamed_animal": {
+      "conditions": {},
+      "trigger": "minecraft:tame_animal"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.stone_age.tame_animal.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:bone"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.stone_age.tame_animal.title"
+    }
+  },
+  "requirements": [
+    [
+      "tamed_animal"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

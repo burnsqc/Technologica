@@ -1,0 +1,38 @@
+{
+  "parent": "technologica:stone_age/root",
+  "criteria": {
+    "discover_clay": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:clay_ball"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.stone_age.discover_clay.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:clay_ball"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.stone_age.discover_clay.title"
+    }
+  },
+  "requirements": [
+    [
+      "discover_clay"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

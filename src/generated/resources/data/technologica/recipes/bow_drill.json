@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "T": {
+      "item": "minecraft:string"
+    }
+  },
+  "pattern": [
+    "TS",
+    "S "
+  ],
+  "result": {
+    "item": "technologica:bow_drill"
+  },
+  "show_notification": true
+}

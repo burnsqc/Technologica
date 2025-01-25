@@ -2,16 +2,13 @@ package com.technologica.resourcegen.data.advancements;
 
 import java.util.List;
 
-import com.technologica.resourcegen.data.advancements.dominion.DominionAdvancementDataGenerator;
-import com.technologica.resourcegen.data.advancements.husbandry.HusbandryAdvancementDataGenerator;
-import com.technologica.resourcegen.data.advancements.technology.TechnologyAdvancementDataProvider;
-import com.technologica.resourcegen.data.advancements.tribulation.TribulationAdvancementDataGenerator;
+import com.technologica.resourcegen.data.advancements.stoneage.StoneAgeAdvancementDataGenerator;
 import com.tlregen.api.resourcegen.MasterResourceGenerator;
 
 import net.minecraftforge.common.data.ForgeAdvancementProvider;
 
 public class TLRGAdvancementGenerator extends ForgeAdvancementProvider {
-	private final static List<AdvancementGenerator> SUB_GENERATORS = List.of(new DominionAdvancementDataGenerator(), new HusbandryAdvancementDataGenerator(), new TechnologyAdvancementDataProvider(), new TribulationAdvancementDataGenerator());
+	private final static List<AdvancementGenerator> SUB_GENERATORS = List.of(new StoneAgeAdvancementDataGenerator());
 
 	public TLRGAdvancementGenerator() {
 		super(MasterResourceGenerator.packOutput, MasterResourceGenerator.lookupProvider, MasterResourceGenerator.helper, SUB_GENERATORS);

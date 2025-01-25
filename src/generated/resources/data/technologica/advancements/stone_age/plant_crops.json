@@ -1,0 +1,469 @@
+{
+  "parent": "technologica:stone_age/gatherer",
+  "criteria": {
+    "asparagus": {
+      "conditions": {
+        "location": [
+          {
+            "block": "technologica:asparagus",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "barley": {
+      "conditions": {
+        "location": [
+          {
+            "block": "technologica:barley",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "beetroots": {
+      "conditions": {
+        "location": [
+          {
+            "block": "minecraft:beetroots",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "broccoli": {
+      "conditions": {
+        "location": [
+          {
+            "block": "technologica:broccoli",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "carrots": {
+      "conditions": {
+        "location": [
+          {
+            "block": "minecraft:carrots",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "celery": {
+      "conditions": {
+        "location": [
+          {
+            "block": "technologica:celery",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "chili_peppers": {
+      "conditions": {
+        "location": [
+          {
+            "block": "technologica:chili_peppers",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "coffee": {
+      "conditions": {
+        "location": [
+          {
+            "block": "technologica:coffee",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "corn": {
+      "conditions": {
+        "location": [
+          {
+            "block": "technologica:corn",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "cranberries": {
+      "conditions": {
+        "location": [
+          {
+            "block": "technologica:cranberry",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "cucumbers": {
+      "conditions": {
+        "location": [
+          {
+            "block": "technologica:cucumber_stem",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "garlic": {
+      "conditions": {
+        "location": [
+          {
+            "block": "technologica:garlic",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "ginger": {
+      "conditions": {
+        "location": [
+          {
+            "block": "technologica:ginger",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "grapes": {
+      "conditions": {
+        "location": [
+          {
+            "block": "technologica:grapes",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "lettuce": {
+      "conditions": {
+        "location": [
+          {
+            "block": "technologica:lettuce",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "melon_stem": {
+      "conditions": {
+        "location": [
+          {
+            "block": "minecraft:melon_stem",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "mustard_greens": {
+      "conditions": {
+        "location": [
+          {
+            "block": "technologica:mustard_greens",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "oats": {
+      "conditions": {
+        "location": [
+          {
+            "block": "technologica:oats",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "onions": {
+      "conditions": {
+        "location": [
+          {
+            "block": "technologica:onions",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "peanuts": {
+      "conditions": {
+        "location": [
+          {
+            "block": "technologica:peanuts",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "peas": {
+      "conditions": {
+        "location": [
+          {
+            "block": "technologica:peas",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "pineapples": {
+      "conditions": {
+        "location": [
+          {
+            "block": "technologica:pineapples",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "potatoes": {
+      "conditions": {
+        "location": [
+          {
+            "block": "minecraft:potatoes",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "pumpkin_stem": {
+      "conditions": {
+        "location": [
+          {
+            "block": "minecraft:pumpkin_stem",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "purple_cabbage": {
+      "conditions": {
+        "location": [
+          {
+            "block": "technologica:purple_cabbage",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "radishes": {
+      "conditions": {
+        "location": [
+          {
+            "block": "technologica:radishes",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "red_beans": {
+      "conditions": {
+        "location": [
+          {
+            "block": "technologica:red_beans",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "rice": {
+      "conditions": {
+        "location": [
+          {
+            "block": "technologica:rice",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "rye": {
+      "conditions": {
+        "location": [
+          {
+            "block": "technologica:rye",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "soy_beans": {
+      "conditions": {
+        "location": [
+          {
+            "block": "technologica:soy_beans",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "squash": {
+      "conditions": {
+        "location": [
+          {
+            "block": "technologica:squash_stem",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "sweet_potatoes": {
+      "conditions": {
+        "location": [
+          {
+            "block": "technologica:sweet_potatoes",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "tea": {
+      "conditions": {
+        "location": [
+          {
+            "block": "technologica:tea",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "tomatoes": {
+      "conditions": {
+        "location": [
+          {
+            "block": "technologica:tomatoes",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "turnips": {
+      "conditions": {
+        "location": [
+          {
+            "block": "technologica:turnips",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "wheat": {
+      "conditions": {
+        "location": [
+          {
+            "block": "minecraft:wheat",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "zuchinni": {
+      "conditions": {
+        "location": [
+          {
+            "block": "technologica:zucchini_stem",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.stone_age.plant_crops.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:farmland"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.stone_age.plant_crops.title"
+    }
+  },
+  "requirements": [
+    [
+      "wheat",
+      "pumpkin_stem",
+      "melon_stem",
+      "beetroots",
+      "carrots",
+      "potatoes",
+      "barley",
+      "oats",
+      "rye",
+      "corn",
+      "broccoli",
+      "celery",
+      "lettuce",
+      "mustard_greens",
+      "onions",
+      "pineapples",
+      "purple_cabbage",
+      "radishes",
+      "tea",
+      "turnips",
+      "cucumbers",
+      "squash",
+      "zuchinni",
+      "grapes",
+      "tomatoes",
+      "cranberries",
+      "rice",
+      "asparagus",
+      "chili_peppers",
+      "coffee",
+      "garlic",
+      "ginger",
+      "peas",
+      "peanuts",
+      "red_beans",
+      "soy_beans",
+      "sweet_potatoes"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

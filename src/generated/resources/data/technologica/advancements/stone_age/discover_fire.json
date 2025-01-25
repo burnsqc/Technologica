@@ -1,0 +1,50 @@
+{
+  "parent": "technologica:stone_age/root",
+  "criteria": {
+    "discovered_campfire": {
+      "conditions": {
+        "block": {
+          "blocks": [
+            "minecraft:campfire"
+          ],
+          "state": {
+            "lit": "true"
+          }
+        }
+      },
+      "trigger": "minecraft:block_observed"
+    },
+    "discovered_fire": {
+      "conditions": {
+        "block": {
+          "blocks": [
+            "minecraft:fire"
+          ]
+        }
+      },
+      "trigger": "minecraft:block_observed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.stone_age.discover_fire.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "technologica:dummy_fire"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.stone_age.discover_fire.title"
+    }
+  },
+  "requirements": [
+    [
+      "discovered_fire",
+      "discovered_campfire"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

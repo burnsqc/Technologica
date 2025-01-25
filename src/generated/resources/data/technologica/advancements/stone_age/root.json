@@ -1,0 +1,32 @@
+{
+  "criteria": {
+    "exist": {
+      "conditions": {
+        "block": "minecraft:air"
+      },
+      "trigger": "minecraft:enter_block"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "minecraft:textures/block/cobblestone.png",
+    "description": {
+      "translate": "advancements.stone_age.root.description"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:cobblestone"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.stone_age.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "exist"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,60 @@
+{
+  "parent": "technologica:stone_age/light_campfire",
+  "criteria": {
+    "cooked_meat": {
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": [
+                  "minecraft:campfire"
+                ],
+                "state": {
+                  "lit": "true"
+                }
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": [
+                "minecraft:beef",
+                "minecraft:chicken",
+                "minecraft:cod",
+                "minecraft:porkchop",
+                "minecraft:mutton",
+                "minecraft:rabbit",
+                "minecraft:salmon"
+              ]
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:item_used_on_block"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.stone_age.cook_meat.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:cooked_beef"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.stone_age.cook_meat.title"
+    }
+  },
+  "requirements": [
+    [
+      "cooked_meat"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

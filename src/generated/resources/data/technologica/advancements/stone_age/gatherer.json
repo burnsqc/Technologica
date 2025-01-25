@@ -1,0 +1,86 @@
+{
+  "parent": "technologica:stone_age/root",
+  "criteria": {
+    "gather_food": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:apple",
+              "minecraft:beetroot",
+              "minecraft:carrot",
+              "minecraft:glow_berries",
+              "minecraft:melon_slice",
+              "minecraft:potato",
+              "minecraft:sweet_berries",
+              "technologica:apricot",
+              "technologica:asparagus",
+              "technologica:avocado",
+              "technologica:banana",
+              "technologica:broccoli",
+              "technologica:blackberry",
+              "technologica:blueberry",
+              "technologica:celery",
+              "technologica:cherry",
+              "technologica:chestnut",
+              "technologica:chili_pepper",
+              "technologica:coconut",
+              "technologica:corn",
+              "technologica:cranberry",
+              "technologica:cucumber",
+              "technologica:garlic",
+              "technologica:ginger",
+              "technologica:grape",
+              "technologica:kiwi",
+              "technologica:lemon",
+              "technologica:lettuce",
+              "technologica:lime",
+              "technologica:mustard_greens",
+              "technologica:olive",
+              "technologica:onion",
+              "technologica:orange",
+              "technologica:peas",
+              "technologica:peach",
+              "technologica:peanut",
+              "technologica:pear",
+              "technologica:pineapple",
+              "technologica:plum",
+              "technologica:purple_cabbage",
+              "technologica:radish",
+              "technologica:raspberry",
+              "technologica:squash",
+              "technologica:sweet_potato",
+              "technologica:strawberry",
+              "technologica:tomato",
+              "technologica:turnip",
+              "technologica:walnut",
+              "technologica:zucchini"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.stone_age.gatherer.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:sweet_berries"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.stone_age.gatherer.title"
+    }
+  },
+  "requirements": [
+    [
+      "gather_food"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

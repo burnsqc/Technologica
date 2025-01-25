@@ -1,0 +1,36 @@
+{
+  "parent": "technologica:stone_age/make_fire",
+  "criteria": {
+    "lit_campfire": {
+      "conditions": {
+        "item": {
+          "items": [
+            "technologica:bow_drill"
+          ]
+        }
+      },
+      "trigger": "minecraft:lit_campfire"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.stone_age.light_campfire.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:campfire"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.stone_age.light_campfire.title"
+    }
+  },
+  "requirements": [
+    [
+      "lit_campfire"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

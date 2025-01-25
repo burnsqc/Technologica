@@ -1,0 +1,43 @@
+{
+  "parent": "technologica:stone_age/hunter",
+  "criteria": {
+    "kill_animal_with_bow": {
+      "conditions": {
+        "killing_blow": {
+          "direct_entity": {
+            "type": "#minecraft:arrows"
+          },
+          "tags": [
+            {
+              "expected": true,
+              "id": "minecraft:is_projectile"
+            }
+          ]
+        }
+      },
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.stone_age.archery.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:bow",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.stone_age.archery.title"
+    }
+  },
+  "requirements": [
+    [
+      "kill_animal_with_bow"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

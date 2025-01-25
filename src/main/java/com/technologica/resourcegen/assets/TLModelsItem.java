@@ -304,7 +304,10 @@ public class TLModelsItem extends TLReGenModelsItem {
 		item2D(TechnologicaItems.OVERLAY_FAIL_ITEM.get());
 		item2D(TechnologicaItems.SAWMILL_BLUEPRINT.get());
 
+		item2DModel(TechnologicaItems.BOW_DRILL.get(), new ModelFile.UncheckedModelFile("item/handheld"));
 		item2DModel(TechnologicaItems.CRUDE_SAW.get(), new ModelFile.UncheckedModelFile("item/handheld"));
+		item2D(TechnologicaItems.CLAY_JAR.get());
+		item2D(TechnologicaItems.CERAMIC_JAR.get());
 
 		item2DModel(TechnologicaItems.PRIMITIVE_DAGGER.get(), new ModelFile.UncheckedModelFile("item/handheld"));
 		item2DModel(TechnologicaItems.PRIMITIVE_PICKAXE.get(), new ModelFile.UncheckedModelFile("item/handheld"));
@@ -960,6 +963,7 @@ public class TLModelsItem extends TLReGenModelsItem {
 		item3DModel(TechnologicaBlocks.DISPLAY_CASE.get(), displayModel(TechnologicaBlocks.DISPLAY_CASE.get()));
 		item3DModel(TechnologicaBlocks.NITROGLYCERIN.get(), cubeBottomTop(ResourceLocationHelper.getPath(TechnologicaBlocks.NITROGLYCERIN.get()), new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.NITROGLYCERIN.get()) + "_side"), new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.NITROGLYCERIN.get()) + "_bottom"), new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.NITROGLYCERIN.get()) + "_top")));
 		item2D(TechnologicaItems.SKELETON_KEY.get());
+		item2D(TechnologicaItems.DUMMY_FIRE.get());
 	}
 
 	private void seeds() {
