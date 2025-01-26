@@ -38,7 +38,7 @@
     "frame": "goal",
     "hidden": false,
     "icon": {
-      "item": "minecraft:air"
+      "item": "technologica:pear"
     },
     "show_toast": true,
     "title": {
