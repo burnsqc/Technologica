@@ -6,6 +6,7 @@ import com.technologica.world.entity.vehicle.TechnologicaBoat;
 import com.technologica.world.food.TechnologicaFoods;
 import com.technologica.world.item.BlueprintItem;
 import com.technologica.world.item.BowDrillItem;
+import com.technologica.world.item.CeramicJarItem;
 import com.technologica.world.item.CoconutBazookaItem;
 import com.technologica.world.item.CropSeedItem;
 import com.technologica.world.item.DivingHelmetItem;
@@ -1264,7 +1265,8 @@ public final class TechnologicaItems {
 	public static final RegistryObject<Item> BOW_DRILL = Technologica.ITEMS.register("bow_drill", () -> new BowDrillItem(new Item.Properties().durability(4)));
 	public static final RegistryObject<Item> CRUDE_SAW = Technologica.ITEMS.register("crude_saw", () -> new SawItem(TechnologicaTiers.BONE, 1.0F, -3.2F, new Item.Properties()));
 	public static final RegistryObject<Item> CLAY_JAR = Technologica.ITEMS.register("clay_jar", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> CERAMIC_JAR = Technologica.ITEMS.register("ceramic_jar", () -> new BucketItem(() -> Fluids.EMPTY, new Item.Properties().durability(8)));
+	public static final RegistryObject<Item> CERAMIC_JAR = Technologica.ITEMS.register("ceramic_jar", () -> new CeramicJarItem(() -> Fluids.EMPTY, new Item.Properties().durability(8)));
+	public static final RegistryObject<Item> FILLED_CERAMIC_JAR = Technologica.ITEMS.register("filled_ceramic_jar", () -> new CeramicJarItem(() -> Fluids.WATER, new Item.Properties().durability(8)));
 	
 	public static final RegistryObject<Item> PRIMITIVE_DAGGER = Technologica.ITEMS.register("primitive_dagger", () -> new SwordItem(TechnologicaTiers.FLINT, 3, -2.4F, (new Item.Properties())));
 	public static final RegistryObject<Item> PRIMITIVE_PICKAXE = Technologica.ITEMS.register("primitive_pickaxe", () -> new PickaxeItem(TechnologicaTiers.FLINT, 1, -2.8F, (new Item.Properties())));

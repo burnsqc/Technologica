@@ -308,6 +308,7 @@ public class TLModelsItem extends TLReGenModelsItem {
 		item2DModel(TechnologicaItems.CRUDE_SAW.get(), new ModelFile.UncheckedModelFile("item/handheld"));
 		item2D(TechnologicaItems.CLAY_JAR.get());
 		item2D(TechnologicaItems.CERAMIC_JAR.get());
+		item2D(TechnologicaItems.FILLED_CERAMIC_JAR.get());
 
 		item2DModel(TechnologicaItems.PRIMITIVE_DAGGER.get(), new ModelFile.UncheckedModelFile("item/handheld"));
 		item2DModel(TechnologicaItems.PRIMITIVE_PICKAXE.get(), new ModelFile.UncheckedModelFile("item/handheld"));

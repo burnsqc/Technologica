@@ -1,0 +1,37 @@
+{
+  "parent": "technologica:stone_age/make_jar",
+  "criteria": {
+    "filled_jar": {
+      "conditions": {
+        "item": {
+          "items": [
+            "technologica:filled_ceramic_jar"
+          ]
+        }
+      },
+      "trigger": "minecraft:filled_bucket"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.stone_age.fill_jar.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "technologica:filled_ceramic_jar",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.stone_age.fill_jar.title"
+    }
+  },
+  "requirements": [
+    [
+      "filled_jar"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -48,8 +48,8 @@ public class TLLang extends TLReGenLang {
 		add("advancements.stone_age.discover_clay.description", "Discover clay");
 		add("advancements.stone_age.make_jar.title", "Download the jar");
 		add("advancements.stone_age.make_jar.description", "Fire a clay jar into a cermaic jar");
-		add("advancements.stone_age.collect_water.title", "Portable Potables");
-		add("advancements.stone_age.collect_water.description", "Collect water in a ceramic jar");
+		add("advancements.stone_age.fill_jar.title", "Portable Potables");
+		add("advancements.stone_age.fill_jar.description", "Collect water in a ceramic jar");
 
 		add("advancements.stone_age.hunter.title", "Hunter");
 		add("advancements.stone_age.hunter.description", "Slay an animal");
