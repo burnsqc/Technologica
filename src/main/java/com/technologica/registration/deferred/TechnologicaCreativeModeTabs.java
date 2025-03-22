@@ -1113,6 +1113,7 @@ public final class TechnologicaCreativeModeTabs {
 		items.accept(TechnologicaItems.CARPENTRY_WORKBENCH.get());
 		items.accept(TechnologicaItems.WINDMILL_ITEM.get());
 		items.accept(TechnologicaItems.ANNUNCIATOR_ITEM.get());
+		items.accept(TechnologicaItems.DRAFT_FURNACE_ITEM.get());
 		items.accept(TechnologicaItems.STEEL_SHAFT.get());
 		items.accept(TechnologicaItems.SMALL_PULLEY_ITEM.get());
 		items.accept(TechnologicaItems.MEDIUM_PULLEY_ITEM.get());
@@ -1237,6 +1238,7 @@ public final class TechnologicaCreativeModeTabs {
 		items.accept(TechnologicaItems.BRONZE_HOE.get());
 		items.accept(TechnologicaItems.BRONZE_SHOVEL.get());
 		items.accept(TechnologicaItems.BRONZE_AXE.get());
+		items.accept(TechnologicaItems.BRONZE_SPEAR.get());
 		
 		items.accept(TechnologicaItems.BRASS_SWORD.get());
 		items.accept(TechnologicaItems.BRASS_PICKAXE.get());

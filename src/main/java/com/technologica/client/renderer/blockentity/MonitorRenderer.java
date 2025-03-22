@@ -32,9 +32,11 @@ public class MonitorRenderer implements BlockEntityRenderer<MonitorBlockEntity> 
 		matrixStackIn.translate(0.5D, 0.5D, 0.5D);
 		matrixStackIn.mulPose(Axis.YP.rotationDegrees(f1));
 		matrixStackIn.translate(0.0D, 0.24D, 0.376D);
-		matrixStackIn.scale(0.003F, -0.003F, 0.003F);
+		matrixStackIn.scale(0.001F, -0.001F, 0.001F);
+		String[] lines = tileEntityIn.getText();
 		for (int k1 = 0; k1 < 16; ++k1) {
-			Component text = Component.literal(tileEntityIn.getText(k1).getString()).setStyle(FULLSPACE_FONT_STYLE);
+			Component text = Component.nullToEmpty(lines[k1]);
+
 			font.drawInBatch(text, -96.0F, k1 * 10.0F - 20.0F, 0x00FF00, false, matrixStackIn.last().pose(), bufferIn, Font.DisplayMode.POLYGON_OFFSET, 0, combinedLightIn);
 		}
 		matrixStackIn.popPose();

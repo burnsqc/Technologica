@@ -8,8 +8,7 @@ import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.registration.deferred.TechnologicaItems;
 import com.technologica.registration.deferred.TechnologicaRecipeSerializers;
 import com.technologica.registration.dynamic.TechnologicaItemTags;
-import com.technologica.util.DisablePlankConditionFactory;
-import com.technologica.util.EnablePlankConditionFactory;
+import com.technologica.util.BooleanConfigValueCondition;
 import com.technologica.util.text.TechnologicaLocation;
 import com.tlregen.api.resourcegen.data.TLRGRecipeGenerator;
 
@@ -28,6 +27,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.crafting.ConditionalRecipe;
+import net.minecraftforge.common.crafting.conditions.NotCondition;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class TLRecipesGenerator extends TLRGRecipeGenerator {
@@ -37,127 +37,6 @@ public class TLRecipesGenerator extends TLRGRecipeGenerator {
 
 	@Override
 	protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
-		casualOrProPlanksVanilla(consumer, Blocks.OAK_PLANKS, ItemTags.OAK_LOGS);
-		casualOrProPlanksVanilla(consumer, Blocks.SPRUCE_PLANKS, ItemTags.SPRUCE_LOGS);
-		casualOrProPlanksVanilla(consumer, Blocks.BIRCH_PLANKS, ItemTags.BIRCH_LOGS);
-		casualOrProPlanksVanilla(consumer, Blocks.JUNGLE_PLANKS, ItemTags.JUNGLE_LOGS);
-		casualOrProPlanksVanilla(consumer, Blocks.ACACIA_PLANKS, ItemTags.ACACIA_LOGS);
-		casualOrProPlanksVanilla(consumer, Blocks.DARK_OAK_PLANKS, ItemTags.DARK_OAK_LOGS);
-		casualOrProPlanksVanilla(consumer, Blocks.CRIMSON_PLANKS, ItemTags.CRIMSON_STEMS);
-		casualOrProPlanksVanilla(consumer, Blocks.WARPED_PLANKS, ItemTags.WARPED_STEMS);
-		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.APRICOT_PLANKS.get(), TechnologicaItemTags.APRICOT_LOGS);
-		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.ASPEN_PLANKS.get(), TechnologicaItemTags.ASPEN_LOGS);
-		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.AVOCADO_PLANKS.get(), TechnologicaItemTags.AVOCADO_LOGS);
-		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.BANANA_PLANKS.get(), TechnologicaItemTags.BANANA_LOGS);
-		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.CHERRY_PLANKS.get(), TechnologicaItemTags.CHERRY_LOGS);
-		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.CHESTNUT_PLANKS.get(), TechnologicaItemTags.CHESTNUT_LOGS);
-		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.CINNAMON_PLANKS.get(), TechnologicaItemTags.CINNAMON_LOGS);
-		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.COCONUT_PLANKS.get(), TechnologicaItemTags.COCONUT_LOGS);
-		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.EBONY_PLANKS.get(), TechnologicaItemTags.EBONY_LOGS);
-		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.KIWI_PLANKS.get(), TechnologicaItemTags.KIWI_LOGS);
-		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.LEMON_PLANKS.get(), TechnologicaItemTags.LEMON_LOGS);
-		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.LIME_PLANKS.get(), TechnologicaItemTags.LIME_LOGS);
-		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.MAHOGANY_PLANKS.get(), TechnologicaItemTags.MAHOGANY_LOGS);
-		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.MAPLE_PLANKS.get(), TechnologicaItemTags.MAPLE_LOGS);
-		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.OLIVE_PLANKS.get(), TechnologicaItemTags.OLIVE_LOGS);
-		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.ORANGE_PLANKS.get(), TechnologicaItemTags.ORANGE_LOGS);
-		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.PEACH_PLANKS.get(), TechnologicaItemTags.PEACH_LOGS);
-		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.PEAR_PLANKS.get(), TechnologicaItemTags.PEAR_LOGS);
-		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.PLUM_PLANKS.get(), TechnologicaItemTags.PLUM_LOGS);
-		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.REDWOOD_PLANKS.get(), TechnologicaItemTags.REDWOOD_LOGS);
-		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.ROSEWOOD_PLANKS.get(), TechnologicaItemTags.ROSEWOOD_LOGS);
-		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.RUBBER_PLANKS.get(), TechnologicaItemTags.RUBBER_LOGS);
-		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.TEAK_PLANKS.get(), TechnologicaItemTags.TEAK_LOGS);
-		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.WALNUT_PLANKS.get(), TechnologicaItemTags.WALNUT_LOGS);
-		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.ZEBRAWOOD_PLANKS.get(), TechnologicaItemTags.ZEBRAWOOD_LOGS);
-		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.ALCHEMICAL_PLANKS.get(), TechnologicaItemTags.ALCHEMICAL_LOGS);
-		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.BENEVOLENT_PLANKS.get(), TechnologicaItemTags.BENEVOLENT_LOGS);
-		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.CONDUCTIVE_PLANKS.get(), TechnologicaItemTags.CONDUCTIVE_LOGS);
-		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.FROSTBITTEN_PLANKS.get(), TechnologicaItemTags.FROSTBITTEN_LOGS);
-		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.FRUITFUL_PLANKS.get(), TechnologicaItemTags.FRUITFUL_LOGS);
-		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.INFERNAL_PLANKS.get(), TechnologicaItemTags.INFERNAL_LOGS);
-		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.MALEVOLENT_PLANKS.get(), TechnologicaItemTags.MALEVOLENT_LOGS);
-		casualOrProSlabsVanilla(consumer, Blocks.OAK_SLAB, Blocks.OAK_PLANKS);
-		casualOrProSlabsVanilla(consumer, Blocks.SPRUCE_SLAB, Blocks.SPRUCE_PLANKS);
-		casualOrProSlabsVanilla(consumer, Blocks.BIRCH_SLAB, Blocks.BIRCH_PLANKS);
-		casualOrProSlabsVanilla(consumer, Blocks.JUNGLE_SLAB, Blocks.JUNGLE_PLANKS);
-		casualOrProSlabsVanilla(consumer, Blocks.ACACIA_SLAB, Blocks.ACACIA_PLANKS);
-		casualOrProSlabsVanilla(consumer, Blocks.DARK_OAK_SLAB, Blocks.DARK_OAK_PLANKS);
-		casualOrProSlabsVanilla(consumer, Blocks.CRIMSON_SLAB, Blocks.CRIMSON_PLANKS);
-		casualOrProSlabsVanilla(consumer, Blocks.WARPED_SLAB, Blocks.WARPED_PLANKS);
-		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.APRICOT_SLAB.get(), TechnologicaBlocks.APRICOT_PLANKS.get());
-		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.ASPEN_SLAB.get(), TechnologicaBlocks.ASPEN_PLANKS.get());
-		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.AVOCADO_SLAB.get(), TechnologicaBlocks.AVOCADO_PLANKS.get());
-		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.BANANA_SLAB.get(), TechnologicaBlocks.BANANA_PLANKS.get());
-		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.CHERRY_SLAB.get(), TechnologicaBlocks.CHERRY_PLANKS.get());
-		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.CHESTNUT_SLAB.get(), TechnologicaBlocks.CHESTNUT_PLANKS.get());
-		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.CINNAMON_SLAB.get(), TechnologicaBlocks.CINNAMON_PLANKS.get());
-		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.COCONUT_SLAB.get(), TechnologicaBlocks.COCONUT_PLANKS.get());
-		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.EBONY_SLAB.get(), TechnologicaBlocks.EBONY_PLANKS.get());
-		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.KIWI_SLAB.get(), TechnologicaBlocks.KIWI_PLANKS.get());
-		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.LEMON_SLAB.get(), TechnologicaBlocks.LEMON_PLANKS.get());
-		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.LIME_SLAB.get(), TechnologicaBlocks.LIME_PLANKS.get());
-		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.MAHOGANY_SLAB.get(), TechnologicaBlocks.MAHOGANY_PLANKS.get());
-		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.MAPLE_SLAB.get(), TechnologicaBlocks.MAPLE_PLANKS.get());
-		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.OLIVE_SLAB.get(), TechnologicaBlocks.OLIVE_PLANKS.get());
-		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.ORANGE_SLAB.get(), TechnologicaBlocks.ORANGE_PLANKS.get());
-		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.PEACH_SLAB.get(), TechnologicaBlocks.PEACH_PLANKS.get());
-		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.PEAR_SLAB.get(), TechnologicaBlocks.PEAR_PLANKS.get());
-		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.PLUM_SLAB.get(), TechnologicaBlocks.PLUM_PLANKS.get());
-		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.REDWOOD_SLAB.get(), TechnologicaBlocks.REDWOOD_PLANKS.get());
-		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.ROSEWOOD_SLAB.get(), TechnologicaBlocks.ROSEWOOD_PLANKS.get());
-		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.RUBBER_SLAB.get(), TechnologicaBlocks.RUBBER_PLANKS.get());
-		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.TEAK_SLAB.get(), TechnologicaBlocks.TEAK_PLANKS.get());
-		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.WALNUT_SLAB.get(), TechnologicaBlocks.WALNUT_PLANKS.get());
-		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.ZEBRAWOOD_SLAB.get(), TechnologicaBlocks.ZEBRAWOOD_PLANKS.get());
-		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.ALCHEMICAL_SLAB.get(), TechnologicaBlocks.ALCHEMICAL_PLANKS.get());
-		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.BENEVOLENT_SLAB.get(), TechnologicaBlocks.BENEVOLENT_PLANKS.get());
-		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.CONDUCTIVE_SLAB.get(), TechnologicaBlocks.CONDUCTIVE_PLANKS.get());
-		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.FROSTBITTEN_SLAB.get(), TechnologicaBlocks.FROSTBITTEN_PLANKS.get());
-		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.FRUITFUL_SLAB.get(), TechnologicaBlocks.FRUITFUL_PLANKS.get());
-		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.INFERNAL_SLAB.get(), TechnologicaBlocks.INFERNAL_PLANKS.get());
-		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.MALEVOLENT_SLAB.get(), TechnologicaBlocks.MALEVOLENT_PLANKS.get());
-		casualOrProStairsVanilla(consumer, Blocks.OAK_STAIRS, Blocks.OAK_PLANKS);
-		casualOrProStairsVanilla(consumer, Blocks.SPRUCE_STAIRS, Blocks.SPRUCE_PLANKS);
-		casualOrProStairsVanilla(consumer, Blocks.BIRCH_STAIRS, Blocks.BIRCH_PLANKS);
-		casualOrProStairsVanilla(consumer, Blocks.JUNGLE_STAIRS, Blocks.JUNGLE_PLANKS);
-		casualOrProStairsVanilla(consumer, Blocks.ACACIA_STAIRS, Blocks.ACACIA_PLANKS);
-		casualOrProStairsVanilla(consumer, Blocks.DARK_OAK_STAIRS, Blocks.DARK_OAK_PLANKS);
-		casualOrProStairsVanilla(consumer, Blocks.CRIMSON_STAIRS, Blocks.CRIMSON_PLANKS);
-		casualOrProStairsVanilla(consumer, Blocks.WARPED_STAIRS, Blocks.WARPED_PLANKS);
-		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.APRICOT_STAIRS.get(), TechnologicaBlocks.APRICOT_PLANKS.get());
-		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.ASPEN_STAIRS.get(), TechnologicaBlocks.ASPEN_PLANKS.get());
-		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.AVOCADO_STAIRS.get(), TechnologicaBlocks.AVOCADO_PLANKS.get());
-		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.BANANA_STAIRS.get(), TechnologicaBlocks.BANANA_PLANKS.get());
-		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.CHERRY_STAIRS.get(), TechnologicaBlocks.CHERRY_PLANKS.get());
-		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.CHESTNUT_STAIRS.get(), TechnologicaBlocks.CHESTNUT_PLANKS.get());
-		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.CINNAMON_STAIRS.get(), TechnologicaBlocks.CINNAMON_PLANKS.get());
-		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.COCONUT_STAIRS.get(), TechnologicaBlocks.COCONUT_PLANKS.get());
-		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.EBONY_STAIRS.get(), TechnologicaBlocks.EBONY_PLANKS.get());
-		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.KIWI_STAIRS.get(), TechnologicaBlocks.KIWI_PLANKS.get());
-		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.LEMON_STAIRS.get(), TechnologicaBlocks.LEMON_PLANKS.get());
-		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.LIME_STAIRS.get(), TechnologicaBlocks.LIME_PLANKS.get());
-		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.MAHOGANY_STAIRS.get(), TechnologicaBlocks.MAHOGANY_PLANKS.get());
-		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.MAPLE_STAIRS.get(), TechnologicaBlocks.MAPLE_PLANKS.get());
-		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.OLIVE_STAIRS.get(), TechnologicaBlocks.OLIVE_PLANKS.get());
-		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.ORANGE_STAIRS.get(), TechnologicaBlocks.ORANGE_PLANKS.get());
-		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.PEACH_STAIRS.get(), TechnologicaBlocks.PEACH_PLANKS.get());
-		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.PEAR_STAIRS.get(), TechnologicaBlocks.PEAR_PLANKS.get());
-		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.PLUM_STAIRS.get(), TechnologicaBlocks.PLUM_PLANKS.get());
-		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.REDWOOD_STAIRS.get(), TechnologicaBlocks.REDWOOD_PLANKS.get());
-		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.ROSEWOOD_STAIRS.get(), TechnologicaBlocks.ROSEWOOD_PLANKS.get());
-		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.RUBBER_STAIRS.get(), TechnologicaBlocks.RUBBER_PLANKS.get());
-		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.TEAK_STAIRS.get(), TechnologicaBlocks.TEAK_PLANKS.get());
-		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.WALNUT_STAIRS.get(), TechnologicaBlocks.WALNUT_PLANKS.get());
-		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.ZEBRAWOOD_STAIRS.get(), TechnologicaBlocks.ZEBRAWOOD_PLANKS.get());
-		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.ALCHEMICAL_STAIRS.get(), TechnologicaBlocks.ALCHEMICAL_PLANKS.get());
-		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.BENEVOLENT_STAIRS.get(), TechnologicaBlocks.BENEVOLENT_PLANKS.get());
-		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.CONDUCTIVE_STAIRS.get(), TechnologicaBlocks.CONDUCTIVE_PLANKS.get());
-		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.FROSTBITTEN_STAIRS.get(), TechnologicaBlocks.FROSTBITTEN_PLANKS.get());
-		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.FRUITFUL_STAIRS.get(), TechnologicaBlocks.FRUITFUL_PLANKS.get());
-		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.INFERNAL_STAIRS.get(), TechnologicaBlocks.INFERNAL_PLANKS.get());
-		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.MALEVOLENT_STAIRS.get(), TechnologicaBlocks.MALEVOLENT_PLANKS.get());
-		
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TechnologicaItems.BANANAS_FOSTER.get(), 1).requires(TechnologicaItems.BANANA.get()).requires(Items.ICE).requires(Items.MILK_BUCKET).requires(Items.SUGAR).unlockedBy("has_banana", has(TechnologicaItems.BANANA.get())).save(consumer, new TechnologicaLocation("bananas_foster"));
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TechnologicaItems.BLACK_FOREST_CAKE.get(), 1).requires(TechnologicaItems.CHERRY.get()).requires(Items.EGG).requires(Items.MILK_BUCKET).requires(Items.SUGAR).requires(Items.COCOA_BEANS).unlockedBy("has_cherry", has(TechnologicaItems.CHERRY.get())).save(consumer, new TechnologicaLocation("black_forest_cake"));
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TechnologicaItems.BLUEBERRY_CHEESECAKE.get(), 1).requires(TechnologicaItems.BLUEBERRY.get()).requires(Items.COOKIE).requires(Items.MILK_BUCKET).requires(Items.SUGAR).unlockedBy("has_blueberry", has(TechnologicaItems.BLUEBERRY.get())).save(consumer, new TechnologicaLocation("blueberry_cheesecake"));
@@ -186,7 +65,6 @@ public class TLRecipesGenerator extends TLRGRecipeGenerator {
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TechnologicaItems.TRELLIS.get()).define('S', Items.STRING).define('B', Items.IRON_BARS).pattern("SBS").pattern("SBS").unlockedBy("has_iron_bars", has(Items.IRON_BARS)).save(consumer, new TechnologicaLocation("trellis"));
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, TechnologicaItems.IRON_SAW.get()).define('S', Items.STICK).define('I', Items.IRON_INGOT).pattern("SII").unlockedBy("has_iron", has(Items.IRON_INGOT)).save(consumer, new TechnologicaLocation("saw"));
 		
-
 		sawmillRecipe(Ingredient.of(Items.OAK_LOG), Items.STRIPPED_OAK_LOG, 1, TechnologicaItems.MULCH.get(), 1).save(consumer, new TechnologicaLocation("stripped_oak_log_from_oak_log_sawmill"));
 		sawmillRecipe(Ingredient.of(Items.SPRUCE_LOG), Items.STRIPPED_SPRUCE_LOG, 1, TechnologicaItems.MULCH.get(), 1).save(consumer, new TechnologicaLocation("stripped_spruce_log_from_spruce_log_sawmill"));
 		sawmillRecipe(Ingredient.of(Items.BIRCH_LOG), Items.STRIPPED_BIRCH_LOG, 1, TechnologicaItems.MULCH.get(), 1).save(consumer, new TechnologicaLocation("stripped_birch_log_from_birch_log_sawmill"));
@@ -312,10 +190,137 @@ public class TLRecipesGenerator extends TLRGRecipeGenerator {
 		// sawmillRecipe(Ingredient.of(TechnologicaItems.NECROTIC_PLANKS_ITEM.get()), TechnologicaItems.NECROTIC_SLAB_ITEM.get(), 2, TechnologicaItems.SAWDUST.get(), 1).save(consumer, new TechnologicaLocation("necrotic_slabs_from_necrotic_stripped_planks_sawmill"));
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TechnologicaItems.CLOTH.get(), 1).requires(TechnologicaItems.COTTON.get(), 4).unlockedBy("has_cotton", has(TechnologicaItems.COTTON.get())).save(consumer, new TechnologicaLocation("cloth"));
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TechnologicaItems.CANVAS.get(), 1).requires(TechnologicaItems.CLOTH.get()).requires(Items.HONEYCOMB).unlockedBy("has_honeycomb", has(Items.HONEYCOMB)).save(consumer, new TechnologicaLocation("canvas"));
+
+		carpentryRecipes(consumer);
 		armorRecipes(consumer);
-		oreSmelting(consumer);
-		nineBlockStorage(consumer);
+		oreSmeltingRecipes(consumer);
+		nineBlockStorageRecipes(consumer);
 		campfireRecipes(consumer);
+	}
+
+	private static void carpentryRecipes(Consumer<FinishedRecipe> consumer) {
+		casualOrProPlanksVanilla(consumer, Blocks.OAK_PLANKS, ItemTags.OAK_LOGS);
+		casualOrProPlanksVanilla(consumer, Blocks.SPRUCE_PLANKS, ItemTags.SPRUCE_LOGS);
+		casualOrProPlanksVanilla(consumer, Blocks.BIRCH_PLANKS, ItemTags.BIRCH_LOGS);
+		casualOrProPlanksVanilla(consumer, Blocks.JUNGLE_PLANKS, ItemTags.JUNGLE_LOGS);
+		casualOrProPlanksVanilla(consumer, Blocks.ACACIA_PLANKS, ItemTags.ACACIA_LOGS);
+		casualOrProPlanksVanilla(consumer, Blocks.DARK_OAK_PLANKS, ItemTags.DARK_OAK_LOGS);
+		casualOrProPlanksVanilla(consumer, Blocks.CRIMSON_PLANKS, ItemTags.CRIMSON_STEMS);
+		casualOrProPlanksVanilla(consumer, Blocks.WARPED_PLANKS, ItemTags.WARPED_STEMS);
+		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.APRICOT_PLANKS.get(), TechnologicaItemTags.APRICOT_LOGS);
+		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.ASPEN_PLANKS.get(), TechnologicaItemTags.ASPEN_LOGS);
+		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.AVOCADO_PLANKS.get(), TechnologicaItemTags.AVOCADO_LOGS);
+		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.BANANA_PLANKS.get(), TechnologicaItemTags.BANANA_LOGS);
+		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.CHERRY_PLANKS.get(), TechnologicaItemTags.CHERRY_LOGS);
+		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.CHESTNUT_PLANKS.get(), TechnologicaItemTags.CHESTNUT_LOGS);
+		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.CINNAMON_PLANKS.get(), TechnologicaItemTags.CINNAMON_LOGS);
+		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.COCONUT_PLANKS.get(), TechnologicaItemTags.COCONUT_LOGS);
+		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.EBONY_PLANKS.get(), TechnologicaItemTags.EBONY_LOGS);
+		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.KIWI_PLANKS.get(), TechnologicaItemTags.KIWI_LOGS);
+		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.LEMON_PLANKS.get(), TechnologicaItemTags.LEMON_LOGS);
+		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.LIME_PLANKS.get(), TechnologicaItemTags.LIME_LOGS);
+		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.MAHOGANY_PLANKS.get(), TechnologicaItemTags.MAHOGANY_LOGS);
+		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.MAPLE_PLANKS.get(), TechnologicaItemTags.MAPLE_LOGS);
+		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.OLIVE_PLANKS.get(), TechnologicaItemTags.OLIVE_LOGS);
+		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.ORANGE_PLANKS.get(), TechnologicaItemTags.ORANGE_LOGS);
+		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.PEACH_PLANKS.get(), TechnologicaItemTags.PEACH_LOGS);
+		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.PEAR_PLANKS.get(), TechnologicaItemTags.PEAR_LOGS);
+		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.PLUM_PLANKS.get(), TechnologicaItemTags.PLUM_LOGS);
+		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.REDWOOD_PLANKS.get(), TechnologicaItemTags.REDWOOD_LOGS);
+		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.ROSEWOOD_PLANKS.get(), TechnologicaItemTags.ROSEWOOD_LOGS);
+		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.RUBBER_PLANKS.get(), TechnologicaItemTags.RUBBER_LOGS);
+		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.TEAK_PLANKS.get(), TechnologicaItemTags.TEAK_LOGS);
+		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.WALNUT_PLANKS.get(), TechnologicaItemTags.WALNUT_LOGS);
+		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.ZEBRAWOOD_PLANKS.get(), TechnologicaItemTags.ZEBRAWOOD_LOGS);
+		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.ALCHEMICAL_PLANKS.get(), TechnologicaItemTags.ALCHEMICAL_LOGS);
+		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.BENEVOLENT_PLANKS.get(), TechnologicaItemTags.BENEVOLENT_LOGS);
+		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.CONDUCTIVE_PLANKS.get(), TechnologicaItemTags.CONDUCTIVE_LOGS);
+		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.FROSTBITTEN_PLANKS.get(), TechnologicaItemTags.FROSTBITTEN_LOGS);
+		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.FRUITFUL_PLANKS.get(), TechnologicaItemTags.FRUITFUL_LOGS);
+		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.INFERNAL_PLANKS.get(), TechnologicaItemTags.INFERNAL_LOGS);
+		casualOrProPlanksTechnologica(consumer, TechnologicaBlocks.MALEVOLENT_PLANKS.get(), TechnologicaItemTags.MALEVOLENT_LOGS);
+
+		casualOrProSlabsVanilla(consumer, Blocks.OAK_SLAB, Blocks.OAK_PLANKS);
+		casualOrProSlabsVanilla(consumer, Blocks.SPRUCE_SLAB, Blocks.SPRUCE_PLANKS);
+		casualOrProSlabsVanilla(consumer, Blocks.BIRCH_SLAB, Blocks.BIRCH_PLANKS);
+		casualOrProSlabsVanilla(consumer, Blocks.JUNGLE_SLAB, Blocks.JUNGLE_PLANKS);
+		casualOrProSlabsVanilla(consumer, Blocks.ACACIA_SLAB, Blocks.ACACIA_PLANKS);
+		casualOrProSlabsVanilla(consumer, Blocks.DARK_OAK_SLAB, Blocks.DARK_OAK_PLANKS);
+		casualOrProSlabsVanilla(consumer, Blocks.CRIMSON_SLAB, Blocks.CRIMSON_PLANKS);
+		casualOrProSlabsVanilla(consumer, Blocks.WARPED_SLAB, Blocks.WARPED_PLANKS);
+		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.APRICOT_SLAB.get(), TechnologicaBlocks.APRICOT_PLANKS.get());
+		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.ASPEN_SLAB.get(), TechnologicaBlocks.ASPEN_PLANKS.get());
+		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.AVOCADO_SLAB.get(), TechnologicaBlocks.AVOCADO_PLANKS.get());
+		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.BANANA_SLAB.get(), TechnologicaBlocks.BANANA_PLANKS.get());
+		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.CHERRY_SLAB.get(), TechnologicaBlocks.CHERRY_PLANKS.get());
+		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.CHESTNUT_SLAB.get(), TechnologicaBlocks.CHESTNUT_PLANKS.get());
+		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.CINNAMON_SLAB.get(), TechnologicaBlocks.CINNAMON_PLANKS.get());
+		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.COCONUT_SLAB.get(), TechnologicaBlocks.COCONUT_PLANKS.get());
+		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.EBONY_SLAB.get(), TechnologicaBlocks.EBONY_PLANKS.get());
+		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.KIWI_SLAB.get(), TechnologicaBlocks.KIWI_PLANKS.get());
+		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.LEMON_SLAB.get(), TechnologicaBlocks.LEMON_PLANKS.get());
+		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.LIME_SLAB.get(), TechnologicaBlocks.LIME_PLANKS.get());
+		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.MAHOGANY_SLAB.get(), TechnologicaBlocks.MAHOGANY_PLANKS.get());
+		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.MAPLE_SLAB.get(), TechnologicaBlocks.MAPLE_PLANKS.get());
+		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.OLIVE_SLAB.get(), TechnologicaBlocks.OLIVE_PLANKS.get());
+		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.ORANGE_SLAB.get(), TechnologicaBlocks.ORANGE_PLANKS.get());
+		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.PEACH_SLAB.get(), TechnologicaBlocks.PEACH_PLANKS.get());
+		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.PEAR_SLAB.get(), TechnologicaBlocks.PEAR_PLANKS.get());
+		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.PLUM_SLAB.get(), TechnologicaBlocks.PLUM_PLANKS.get());
+		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.REDWOOD_SLAB.get(), TechnologicaBlocks.REDWOOD_PLANKS.get());
+		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.ROSEWOOD_SLAB.get(), TechnologicaBlocks.ROSEWOOD_PLANKS.get());
+		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.RUBBER_SLAB.get(), TechnologicaBlocks.RUBBER_PLANKS.get());
+		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.TEAK_SLAB.get(), TechnologicaBlocks.TEAK_PLANKS.get());
+		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.WALNUT_SLAB.get(), TechnologicaBlocks.WALNUT_PLANKS.get());
+		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.ZEBRAWOOD_SLAB.get(), TechnologicaBlocks.ZEBRAWOOD_PLANKS.get());
+		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.ALCHEMICAL_SLAB.get(), TechnologicaBlocks.ALCHEMICAL_PLANKS.get());
+		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.BENEVOLENT_SLAB.get(), TechnologicaBlocks.BENEVOLENT_PLANKS.get());
+		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.CONDUCTIVE_SLAB.get(), TechnologicaBlocks.CONDUCTIVE_PLANKS.get());
+		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.FROSTBITTEN_SLAB.get(), TechnologicaBlocks.FROSTBITTEN_PLANKS.get());
+		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.FRUITFUL_SLAB.get(), TechnologicaBlocks.FRUITFUL_PLANKS.get());
+		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.INFERNAL_SLAB.get(), TechnologicaBlocks.INFERNAL_PLANKS.get());
+		casualOrProSlabsTechnologica(consumer, TechnologicaBlocks.MALEVOLENT_SLAB.get(), TechnologicaBlocks.MALEVOLENT_PLANKS.get());
+
+		casualOrProStairsVanilla(consumer, Blocks.OAK_STAIRS, Blocks.OAK_PLANKS);
+		casualOrProStairsVanilla(consumer, Blocks.SPRUCE_STAIRS, Blocks.SPRUCE_PLANKS);
+		casualOrProStairsVanilla(consumer, Blocks.BIRCH_STAIRS, Blocks.BIRCH_PLANKS);
+		casualOrProStairsVanilla(consumer, Blocks.JUNGLE_STAIRS, Blocks.JUNGLE_PLANKS);
+		casualOrProStairsVanilla(consumer, Blocks.ACACIA_STAIRS, Blocks.ACACIA_PLANKS);
+		casualOrProStairsVanilla(consumer, Blocks.DARK_OAK_STAIRS, Blocks.DARK_OAK_PLANKS);
+		casualOrProStairsVanilla(consumer, Blocks.CRIMSON_STAIRS, Blocks.CRIMSON_PLANKS);
+		casualOrProStairsVanilla(consumer, Blocks.WARPED_STAIRS, Blocks.WARPED_PLANKS);
+		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.APRICOT_STAIRS.get(), TechnologicaBlocks.APRICOT_PLANKS.get());
+		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.ASPEN_STAIRS.get(), TechnologicaBlocks.ASPEN_PLANKS.get());
+		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.AVOCADO_STAIRS.get(), TechnologicaBlocks.AVOCADO_PLANKS.get());
+		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.BANANA_STAIRS.get(), TechnologicaBlocks.BANANA_PLANKS.get());
+		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.CHERRY_STAIRS.get(), TechnologicaBlocks.CHERRY_PLANKS.get());
+		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.CHESTNUT_STAIRS.get(), TechnologicaBlocks.CHESTNUT_PLANKS.get());
+		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.CINNAMON_STAIRS.get(), TechnologicaBlocks.CINNAMON_PLANKS.get());
+		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.COCONUT_STAIRS.get(), TechnologicaBlocks.COCONUT_PLANKS.get());
+		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.EBONY_STAIRS.get(), TechnologicaBlocks.EBONY_PLANKS.get());
+		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.KIWI_STAIRS.get(), TechnologicaBlocks.KIWI_PLANKS.get());
+		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.LEMON_STAIRS.get(), TechnologicaBlocks.LEMON_PLANKS.get());
+		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.LIME_STAIRS.get(), TechnologicaBlocks.LIME_PLANKS.get());
+		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.MAHOGANY_STAIRS.get(), TechnologicaBlocks.MAHOGANY_PLANKS.get());
+		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.MAPLE_STAIRS.get(), TechnologicaBlocks.MAPLE_PLANKS.get());
+		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.OLIVE_STAIRS.get(), TechnologicaBlocks.OLIVE_PLANKS.get());
+		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.ORANGE_STAIRS.get(), TechnologicaBlocks.ORANGE_PLANKS.get());
+		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.PEACH_STAIRS.get(), TechnologicaBlocks.PEACH_PLANKS.get());
+		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.PEAR_STAIRS.get(), TechnologicaBlocks.PEAR_PLANKS.get());
+		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.PLUM_STAIRS.get(), TechnologicaBlocks.PLUM_PLANKS.get());
+		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.REDWOOD_STAIRS.get(), TechnologicaBlocks.REDWOOD_PLANKS.get());
+		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.ROSEWOOD_STAIRS.get(), TechnologicaBlocks.ROSEWOOD_PLANKS.get());
+		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.RUBBER_STAIRS.get(), TechnologicaBlocks.RUBBER_PLANKS.get());
+		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.TEAK_STAIRS.get(), TechnologicaBlocks.TEAK_PLANKS.get());
+		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.WALNUT_STAIRS.get(), TechnologicaBlocks.WALNUT_PLANKS.get());
+		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.ZEBRAWOOD_STAIRS.get(), TechnologicaBlocks.ZEBRAWOOD_PLANKS.get());
+		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.ALCHEMICAL_STAIRS.get(), TechnologicaBlocks.ALCHEMICAL_PLANKS.get());
+		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.BENEVOLENT_STAIRS.get(), TechnologicaBlocks.BENEVOLENT_PLANKS.get());
+		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.CONDUCTIVE_STAIRS.get(), TechnologicaBlocks.CONDUCTIVE_PLANKS.get());
+		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.FROSTBITTEN_STAIRS.get(), TechnologicaBlocks.FROSTBITTEN_PLANKS.get());
+		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.FRUITFUL_STAIRS.get(), TechnologicaBlocks.FRUITFUL_PLANKS.get());
+		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.INFERNAL_STAIRS.get(), TechnologicaBlocks.INFERNAL_PLANKS.get());
+		casualOrProStairsTechnologica(consumer, TechnologicaBlocks.MALEVOLENT_STAIRS.get(), TechnologicaBlocks.MALEVOLENT_PLANKS.get());
 	}
 
 	private static void armorRecipes(Consumer<FinishedRecipe> consumer) {
@@ -343,7 +348,7 @@ public class TLRecipesGenerator extends TLRGRecipeGenerator {
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, TechnologicaItems.DIVE_BOOTS.get()).define('S', Items.LEATHER_BOOTS).define('B', TechnologicaItems.BRASS_INGOT.get()).define('L', TechnologicaItems.LEAD_INGOT.get()).pattern("BSB").pattern("L L").unlockedBy("has_lead", has(TechnologicaItems.LEAD_INGOT.get())).save(consumer, new TechnologicaLocation("dive_boots"));
 	}
 
-	private static void oreSmelting(Consumer<FinishedRecipe> consumer) {
+	private static void oreSmeltingRecipes(Consumer<FinishedRecipe> consumer) {
 		oreSmelting(consumer, RUBY_SMELTABLES, RecipeCategory.MISC, TechnologicaItems.RUBY.get(), 1.0F, 200, "ruby");
 		oreSmelting(consumer, SAPPHIRE_SMELTABLES, RecipeCategory.MISC, TechnologicaItems.SAPPHIRE.get(), 1.0F, 200, "sapphire");
 		oreSmelting(consumer, TOPAZ_SMELTABLES, RecipeCategory.MISC, TechnologicaItems.TOPAZ.get(), 1.0F, 200, "topaz");
@@ -355,7 +360,7 @@ public class TLRecipesGenerator extends TLRGRecipeGenerator {
 		oreBlasting(consumer, TOPAZ_SMELTABLES, RecipeCategory.MISC, TechnologicaItems.TOPAZ.get(), 1.0F, 100, "topaz");
 	}
 
-	private static void nineBlockStorage(Consumer<FinishedRecipe> consumer) {
+	private static void nineBlockStorageRecipes(Consumer<FinishedRecipe> consumer) {
 		nineBlockStorageRecipes(consumer, RecipeCategory.MISC, TechnologicaItems.RUBY.get(), RecipeCategory.BUILDING_BLOCKS, TechnologicaItems.BLOCK_OF_RUBY.get());
 		nineBlockStorageRecipes(consumer, RecipeCategory.MISC, TechnologicaItems.SAPPHIRE.get(), RecipeCategory.BUILDING_BLOCKS, TechnologicaItems.BLOCK_OF_SAPPHIRE.get());
 		nineBlockStorageRecipes(consumer, RecipeCategory.MISC, TechnologicaItems.TOPAZ.get(), RecipeCategory.BUILDING_BLOCKS, TechnologicaItems.BLOCK_OF_TOPAZ.get());
@@ -367,14 +372,14 @@ public class TLRecipesGenerator extends TLRGRecipeGenerator {
 
 	private static void casualOrProPlanksVanilla(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, TagKey<Item> input) {
 		ConditionalRecipe.builder()
-		.addCondition(new EnablePlankConditionFactory())
+				.addCondition(new NotCondition(new BooleanConfigValueCondition()))
 		.addRecipe((consumer2) -> ShapelessRecipeBuilder
 				.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 4)
 				.requires(input)
 				.group("planks")
 				.unlockedBy("has_log", has(input))
 				.save(consumer2))
-		.addCondition(new DisablePlankConditionFactory())
+				.addCondition(new BooleanConfigValueCondition())
 		.addRecipe((consumer2) -> ShapelessRecipeBuilder
 				.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 1)
 				.requires(input)
@@ -385,37 +390,23 @@ public class TLRecipesGenerator extends TLRGRecipeGenerator {
 	}
 
 	private static void casualOrProPlanksTechnologica(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, TagKey<Item> input) {
-		ConditionalRecipe.builder()
-		.addCondition(new EnablePlankConditionFactory())
-		.addRecipe((consumer2) -> ShapelessRecipeBuilder
-				.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 4)
-				.requires(input).group("planks")
-				.unlockedBy("has_log", has(input))
-				.save(consumer2))
-		.addCondition(new DisablePlankConditionFactory())
-		.addRecipe((consumer2) -> ShapelessRecipeBuilder
-				.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 1)
-				.requires(input)
-				.requires(TechnologicaItemTags.SAWS)
-				.group("planks")
-				.unlockedBy("has_saw", has(TechnologicaItemTags.SAWS))
-				.save(consumer2)).build(recipeConsumer, new TechnologicaLocation(ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
+		ConditionalRecipe.builder().addCondition(new NotCondition(new BooleanConfigValueCondition())).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 4).requires(input).group("planks").unlockedBy("has_log", has(input)).save(consumer2)).addCondition(new BooleanConfigValueCondition()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 1).requires(input).requires(TechnologicaItemTags.SAWS).group("planks").unlockedBy("has_saw", has(TechnologicaItemTags.SAWS)).save(consumer2)).build(recipeConsumer, new TechnologicaLocation(ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
 	}
 
 	private static void casualOrProSlabsVanilla(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, ItemLike input) {
-		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 6).define('#', input).pattern("###").group("wooden_slab").unlockedBy("has_planks", has(input)).save(consumer2)).addCondition(new DisablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 2).requires(input).requires(TechnologicaItemTags.SAWS).group("wooden_slab").unlockedBy("has_saw", has(TechnologicaItemTags.SAWS)).save(consumer2)).build(recipeConsumer, new ResourceLocation(ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
+		ConditionalRecipe.builder().addCondition(new NotCondition(new BooleanConfigValueCondition())).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 6).define('#', input).pattern("###").group("wooden_slab").unlockedBy("has_planks", has(input)).save(consumer2)).addCondition(new BooleanConfigValueCondition()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 2).requires(input).requires(TechnologicaItemTags.SAWS).group("wooden_slab").unlockedBy("has_saw", has(TechnologicaItemTags.SAWS)).save(consumer2)).build(recipeConsumer, new ResourceLocation(ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
 	}
 
 	private static void casualOrProSlabsTechnologica(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, ItemLike input) {
-		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 6).define('#', input).pattern("###").group("wooden_slab").unlockedBy("has_planks", has(input)).save(consumer2)).addCondition(new DisablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 2).requires(input).requires(TechnologicaItemTags.SAWS).group("wooden_slab").unlockedBy("has_saw", has(TechnologicaItemTags.SAWS)).save(consumer2)).build(recipeConsumer, new TechnologicaLocation(ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
+		ConditionalRecipe.builder().addCondition(new NotCondition(new BooleanConfigValueCondition())).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 6).define('#', input).pattern("###").group("wooden_slab").unlockedBy("has_planks", has(input)).save(consumer2)).addCondition(new BooleanConfigValueCondition()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 2).requires(input).requires(TechnologicaItemTags.SAWS).group("wooden_slab").unlockedBy("has_saw", has(TechnologicaItemTags.SAWS)).save(consumer2)).build(recipeConsumer, new TechnologicaLocation(ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
 	}
 
 	private static void casualOrProStairsVanilla(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, ItemLike input) {
-		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 4).define('#', input).pattern("#  ").pattern("## ").pattern("###").group("wooden_stairs").unlockedBy("has_planks", has(input)).save(consumer2)).addCondition(new DisablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 1).requires(input).requires(TechnologicaItems.CHISEL.get()).group("wooden_slab").unlockedBy("has_chisel", has(TechnologicaItems.CHISEL.get())).save(consumer2)).build(recipeConsumer, new ResourceLocation(ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
+		ConditionalRecipe.builder().addCondition(new NotCondition(new BooleanConfigValueCondition())).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 4).define('#', input).pattern("#  ").pattern("## ").pattern("###").group("wooden_stairs").unlockedBy("has_planks", has(input)).save(consumer2)).addCondition(new BooleanConfigValueCondition()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 1).requires(input).requires(TechnologicaItems.CHISEL.get()).group("wooden_slab").unlockedBy("has_chisel", has(TechnologicaItems.CHISEL.get())).save(consumer2)).build(recipeConsumer, new ResourceLocation(ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
 	}
 
 	private static void casualOrProStairsTechnologica(Consumer<FinishedRecipe> recipeConsumer, ItemLike output, ItemLike input) {
-		ConditionalRecipe.builder().addCondition(new EnablePlankConditionFactory()).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 4).define('#', input).pattern("#  ").pattern("## ").pattern("###").group("wooden_stairs").unlockedBy("has_planks", has(input)).save(consumer2)).addCondition(new DisablePlankConditionFactory()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 1).requires(input).requires(TechnologicaItems.CHISEL.get()).group("wooden_slab").unlockedBy("has_chisel", has(TechnologicaItems.CHISEL.get())).save(consumer2)).build(recipeConsumer, new TechnologicaLocation(ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
+		ConditionalRecipe.builder().addCondition(new NotCondition(new BooleanConfigValueCondition())).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 4).define('#', input).pattern("#  ").pattern("## ").pattern("###").group("wooden_stairs").unlockedBy("has_planks", has(input)).save(consumer2)).addCondition(new BooleanConfigValueCondition()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 1).requires(input).requires(TechnologicaItems.CHISEL.get()).group("wooden_slab").unlockedBy("has_chisel", has(TechnologicaItems.CHISEL.get())).save(consumer2)).build(recipeConsumer, new TechnologicaLocation(ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
 	}
 
 	private static MultipleOutputRecipeBuilder sawmillRecipe(Ingredient ingredientIn, ItemLike output, int countIn, ItemLike output2, int count2) {
@@ -434,6 +425,5 @@ public class TLRecipesGenerator extends TLRGRecipeGenerator {
 		for (ItemLike itemlike : p_249619_) {
 			SimpleCookingRecipeWithCountBuilder.generic(Ingredient.of(itemlike), p_251154_, p_250066_, count, p_251871_, p_251316_, p_251817_).group(p_251450_).unlockedBy(getHasName(itemlike), has(itemlike)).save(p_250791_, getItemName(p_250066_) + p_249236_ + "_" + getItemName(itemlike));
 		}
-
 	}
 }

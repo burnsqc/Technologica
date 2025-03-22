@@ -327,6 +327,7 @@ public class TLModelsItem extends TLReGenModelsItem {
 		item2DModel(TechnologicaItems.BRONZE_HOE.get(), new ModelFile.UncheckedModelFile("item/handheld"));
 		item2DModel(TechnologicaItems.BRONZE_SHOVEL.get(), new ModelFile.UncheckedModelFile("item/handheld"));
 		item2DModel(TechnologicaItems.BRONZE_AXE.get(), new ModelFile.UncheckedModelFile("item/handheld"));
+		item2DModel(TechnologicaItems.BRONZE_SPEAR.get(), new ModelFile.UncheckedModelFile("item/handheld"));
 
 		item2DModel(TechnologicaItems.BRASS_SWORD.get(), new ModelFile.UncheckedModelFile("item/handheld"));
 		item2DModel(TechnologicaItems.BRASS_PICKAXE.get(), new ModelFile.UncheckedModelFile("item/handheld"));

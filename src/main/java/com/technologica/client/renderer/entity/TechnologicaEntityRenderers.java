@@ -19,6 +19,7 @@ public class TechnologicaEntityRenderers {
 		register(TechnologicaEntityTypes.COCONUT.get(), renderManager -> new ThrownItemRenderer<>(renderManager, 1.0F, true));
 		register(TechnologicaEntityTypes.DODGEBALL.get(), renderManager -> new ThrownItemRenderer<>(renderManager, 1.0F, true));
 		register(TechnologicaEntityTypes.HARPOON.get(), HarpoonRenderer::new);
+		register(TechnologicaEntityTypes.SPEAR.get(), ThrownSpearRenderer::new);
 		register(TechnologicaEntityTypes.ALLIGATOR.get(), AlligatorRenderer::new);
 		register(TechnologicaEntityTypes.BEAVER.get(), BeaverRenderer::new);
 		register(TechnologicaEntityTypes.BUFFALO.get(), BuffaloRenderer::new);

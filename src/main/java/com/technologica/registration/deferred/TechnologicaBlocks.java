@@ -97,6 +97,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
+import net.minecraft.world.level.block.FurnaceBlock;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.PressurePlateBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
@@ -1151,6 +1152,8 @@ public final class TechnologicaBlocks {
 	public static final RegistryObject<Block> MALEVOLENT_TABLE = Technologica.BLOCKS.register("malevolent_table", TableBlock::new);
 	public static final RegistryObject<Block> NECROTIC_TABLE = Technologica.BLOCKS.register("necrotic_table", TableBlock::new);
 	public static final RegistryObject<Block> DISPLAY_CASE = Technologica.BLOCKS.register("display_case", DisplayCaseBlock::new);
+	public static final RegistryObject<Block> DRAFT_FURNACE = Technologica.BLOCKS.register("draft_furnace", () -> new FurnaceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.5F).lightLevel((abc) -> 13)));
+
 	public static final RegistryObject<Block> ANNUNCIATOR = Technologica.BLOCKS.register("annunciator", AnnunciatorBlock::new);
 	public static final RegistryObject<Block> TAPE_DRIVE = Technologica.BLOCKS.register("tape_drive", () -> new TapeDriveBlock());
 	public static final RegistryObject<Block> MONITOR = Technologica.BLOCKS.register("monitor", () -> new MonitorBlock());
@@ -1161,7 +1164,5 @@ public final class TechnologicaBlocks {
 	public static final RegistryObject<Block> LIGHT = Technologica.BLOCKS.register("light", () -> new LightBlock(BlockBehaviour.Properties.of().noCollission().noLootTable().air().lightLevel((p_50874_) -> 15)));
 	public static final RegistryObject<Block> SLEEPING_BAG = Technologica.BLOCKS.register("sleeping_bag", () -> new SleepingBagBlock(DyeColor.RED, BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(0.2F).noOcclusion()));
 	public static final RegistryObject<Block> SMOKE_COLUMN = Technologica.BLOCKS.register("smoke_column", () -> new SmokeColumnBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WATER).replaceable().noCollission().noLootTable().pushReaction(PushReaction.DESTROY).liquid().sound(SoundType.EMPTY)));
-	public static final RegistryObject<Block> ABYSS_PORTAL = Technologica.BLOCKS.register("abyss_portal", () -> new AbyssPortalBlock(BlockBehaviour.Properties.of().noCollission().randomTicks().strength(-1.0F).sound(SoundType.GLASS).lightLevel((p_152690_) -> {
-		return 11;
-	}).pushReaction(PushReaction.BLOCK)));
+	public static final RegistryObject<Block> ABYSS_PORTAL = Technologica.BLOCKS.register("abyss_portal", () -> new AbyssPortalBlock(BlockBehaviour.Properties.of().noCollission().randomTicks().strength(-1.0F).sound(SoundType.GLASS).lightLevel((p_152690_) -> 11).pushReaction(PushReaction.BLOCK)));
 }

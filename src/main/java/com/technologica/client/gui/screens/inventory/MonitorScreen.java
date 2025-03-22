@@ -1,7 +1,5 @@
 package com.technologica.client.gui.screens.inventory;
 
-import java.util.stream.IntStream;
-
 import org.joml.Matrix4f;
 
 import com.mojang.blaze3d.platform.GlStateManager;
@@ -12,8 +10,6 @@ import com.mojang.blaze3d.vertex.BufferUploader;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexFormat;
-import com.technologica.Technologica;
-import com.technologica.network.packets.serverbound.UpdateMonitor;
 import com.technologica.util.text.TechnologicaLocation;
 import com.technologica.world.inventory.MonitorMenu;
 import com.technologica.world.level.block.entity.MonitorBlockEntity;
@@ -32,12 +28,13 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class MonitorScreen extends AbstractContainerScreen<MonitorMenu> {
 	private static final ResourceLocation BACKGROUND_TEXTURE = new TechnologicaLocation("textures/gui/container/monitor_screen.png");
-	private MonitorBlockEntity tileEntity;
+	private MonitorBlockEntity blockEntity;
 	private TextFieldHelper textInputUtil;
 	private String[] multiLineText;
 	private static final ResourceLocation FULLSPACE_FONT = new TechnologicaLocation("full_space");
 	private static final Style FULLSPACE_FONT_STYLE = Style.EMPTY.withFont(FULLSPACE_FONT);
-	private int editLine;
+	private int editRow;
+	private int editColumn;
 	private int updateCounter;
 	protected int imageWidth = 224;
 
@@ -45,33 +42,27 @@ public class MonitorScreen extends AbstractContainerScreen<MonitorMenu> {
 		super(screenContainerIn, playerInventoryIn, titleIn);
 		imageHeight = 231;
 		this.inventoryLabelY = 137;
-		this.tileEntity = screenContainerIn.getTileEntity();
-		this.multiLineText = IntStream.range(0, 16).mapToObj(tileEntity::getText).map(Component::getString).toArray((p_243354_0_) -> {
-			return new String[p_243354_0_];
-		});
+		this.blockEntity = screenContainerIn.getTileEntity();
+		this.multiLineText = blockEntity.getText();
 	}
 
 	@Override
 	protected void init() {
 		super.init();
-		this.tileEntity.setEditable(false);
-		this.textInputUtil = new TextFieldHelper(() -> {
-			return this.multiLineText[this.editLine];
-		}, (p_238850_1_) -> {
-			this.multiLineText[this.editLine] = p_238850_1_;
-			this.tileEntity.setText(this.editLine, Component.literal(p_238850_1_).setStyle(FULLSPACE_FONT_STYLE));
-		}, TextFieldHelper.createClipboardGetter(this.minecraft), TextFieldHelper.createClipboardSetter(this.minecraft), (p_238848_1_) -> {
-			return this.minecraft.font.width(p_238848_1_) <= 192;
-		});
+		this.blockEntity.setEditable(false);
+		this.textInputUtil = new TextFieldHelper(() -> this.multiLineText[this.editRow], (p_238850_1_) -> {
+			this.multiLineText[this.editRow] = p_238850_1_;
+			this.blockEntity.setText(this.multiLineText);
+		}, TextFieldHelper.createClipboardGetter(this.minecraft), TextFieldHelper.createClipboardSetter(this.minecraft), (p_238848_1_) -> this.multiLineText[this.editRow].length() < 80);
 	}
 
 	@Override
 	public void removed() {
 		Connection clientplaynethandler = this.minecraft.getConnection().getConnection();
 		if (clientplaynethandler != null) {
-			Technologica.CHANNEL.sendToServer(new UpdateMonitor(this.tileEntity.getBlockPos(), this.multiLineText[0], this.multiLineText[1], this.multiLineText[2], this.multiLineText[3], this.multiLineText[4], this.multiLineText[5], this.multiLineText[6], this.multiLineText[7], this.multiLineText[8], this.multiLineText[9], this.multiLineText[10], this.multiLineText[11], this.multiLineText[12], this.multiLineText[13], this.multiLineText[14], this.multiLineText[15]));
+			// Technologica.CHANNEL.sendToServer(new UpdateMonitor(this.tileEntity.getBlockPos(), this.multiLineText[0], this.multiLineText[1], this.multiLineText[2], this.multiLineText[3], this.multiLineText[4], this.multiLineText[5], this.multiLineText[6], this.multiLineText[7], this.multiLineText[8], this.multiLineText[9], this.multiLineText[10], this.multiLineText[11], this.multiLineText[12], this.multiLineText[13], this.multiLineText[14], this.multiLineText[15]));
 		}
-		this.tileEntity.setEditable(true);
+		this.blockEntity.setEditable(true);
 	}
 
 	@Override
@@ -80,7 +71,7 @@ public class MonitorScreen extends AbstractContainerScreen<MonitorMenu> {
 	}
 
 	private void close() {
-		this.tileEntity.setChanged();
+		this.blockEntity.setChanged();
 		this.minecraft.setScreen((Screen) null);
 	}
 
@@ -98,7 +89,7 @@ public class MonitorScreen extends AbstractContainerScreen<MonitorMenu> {
 	@Override
 	public boolean keyPressed(int keyCodeIn, int scanCodeIn, int modifiersIn) {
 		if (keyCodeIn == 265) {
-			this.editLine = this.editLine - 1 & 15;
+			this.editRow = this.editRow - 1 & 15;
 			this.textInputUtil.setCursorToEnd();
 			return true;
 		} else if (keyCodeIn != 264 && keyCodeIn != 257 && keyCodeIn != 335) {
@@ -115,7 +106,7 @@ public class MonitorScreen extends AbstractContainerScreen<MonitorMenu> {
 				}
 			}
 		} else {
-			this.editLine = this.editLine + 1 & 15;
+			this.editRow = this.editRow + 1 & 15;
 			this.textInputUtil.setCursorToEnd();
 			return true;
 		}
@@ -135,11 +126,11 @@ public class MonitorScreen extends AbstractContainerScreen<MonitorMenu> {
 		matrixStack.pose().popPose();
 
 		matrixStack.pose().translate(256.0D, 96.0D, 0.0D);
-
+		char char2 = '\u0044';
 		int color = 0x00FF00;
 		int j = this.textInputUtil.getCursorPos();
 		int k = this.textInputUtil.getSelectionPos();
-		int l = this.editLine * 9 - this.multiLineText.length * 5 + 24;
+		int l = this.editRow * 9 - this.multiLineText.length * 5 + 24;
 		Matrix4f matrix4f = matrixStack.pose().last().pose();
 
 		for (int lineCount = 0; lineCount < this.multiLineText.length; ++lineCount) {
@@ -152,13 +143,13 @@ public class MonitorScreen extends AbstractContainerScreen<MonitorMenu> {
 
 				Component text = Component.literal(s).setStyle(FULLSPACE_FONT_STYLE);
 
-				float posHorizontal = -96;
-				this.minecraft.font.drawInBatch(text, posHorizontal, lineCount * 9 - this.multiLineText.length * 5 + 24, color, false, matrix4f, irendertypebuffer$impl, Font.DisplayMode.POLYGON_OFFSET, 0, 15728880);
+				float posHorizontal = -250;
+				this.minecraft.font.drawInBatch(String.valueOf(char2), posHorizontal, -50, color, false, matrix4f, irendertypebuffer$impl, Font.DisplayMode.POLYGON_OFFSET, 0, 15728880);
 
-				if (lineCount == this.editLine && j >= 0 && flag1) {
+				if (lineCount == this.editRow && j >= 0 && flag1) {
 					int j1 = Math.max(Math.min(j, s.length()) * 6, 0);
-					int k1 = j1 - 96;
-					this.minecraft.font.drawInBatch("▊", k1, l, color, false, matrix4f, irendertypebuffer$impl, Font.DisplayMode.POLYGON_OFFSET, 0, 15728880, false);
+					int k1 = j1 - 250;
+					this.minecraft.font.drawInBatch("_", k1, l, color, false, matrix4f, irendertypebuffer$impl, Font.DisplayMode.POLYGON_OFFSET, 0, 15728880, false);
 				}
 			}
 		}
@@ -168,7 +159,7 @@ public class MonitorScreen extends AbstractContainerScreen<MonitorMenu> {
 		for (int i3 = 0; i3 < this.multiLineText.length; ++i3) {
 			String s1 = this.multiLineText[i3];
 
-			if (s1 != null && i3 == this.editLine && j >= 0) {
+			if (s1 != null && i3 == this.editRow && j >= 0) {
 				if (k != j) {
 					int l3 = Math.min(j, k);
 					int l1 = Math.max(j, k);

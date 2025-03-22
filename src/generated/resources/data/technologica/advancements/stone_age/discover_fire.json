@@ -33,7 +33,8 @@
     "frame": "task",
     "hidden": false,
     "icon": {
-      "item": "technologica:dummy_fire"
+      "item": "technologica:dummy_fire",
+      "nbt": "{Damage:0}"
     },
     "show_toast": true,
     "title": {

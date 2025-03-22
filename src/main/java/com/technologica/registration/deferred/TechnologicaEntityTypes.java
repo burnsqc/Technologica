@@ -54,6 +54,7 @@ import com.technologica.world.entity.projectile.Coconut;
 import com.technologica.world.entity.projectile.Dodgeball;
 import com.technologica.world.entity.projectile.Harpoon;
 import com.technologica.world.entity.projectile.Meteor;
+import com.technologica.world.entity.projectile.ThrownSpear;
 import com.technologica.world.entity.vehicle.Rocket;
 import com.technologica.world.entity.vehicle.Submersible;
 import com.technologica.world.entity.vehicle.TechnologicaBoat;
@@ -113,6 +114,8 @@ public final class TechnologicaEntityTypes {
 	public static final RegistryObject<EntityType<Coconut>> COCONUT = Technologica.ENTITY_TYPES.register("coconut", () -> EntityType.Builder.<Coconut>of(Coconut::new, MobCategory.MISC).sized(0.25F, 0.25F).setCustomClientFactory((spawnEntity, world) -> new Coconut(world, 0, 0, 0)).clientTrackingRange(4).updateInterval(10).build("coconut"));
 	public static final RegistryObject<EntityType<Dodgeball>> DODGEBALL = Technologica.ENTITY_TYPES.register("dodgeball", () -> EntityType.Builder.<Dodgeball>of(Dodgeball::new, MobCategory.MISC).sized(0.25F, 0.25F).setCustomClientFactory((spawnEntity, world) -> new Dodgeball(world, 0, 0, 0)).clientTrackingRange(4).updateInterval(10).build("dodgeball"));
 	public static final RegistryObject<EntityType<Harpoon>> HARPOON = Technologica.ENTITY_TYPES.register("harpoon", () -> EntityType.Builder.<Harpoon>of(Harpoon::new, MobCategory.MISC).sized(0.5F, 0.5F).setCustomClientFactory((spawnEntity, world) -> new Harpoon(world, 0, 0, 0)).clientTrackingRange(4).updateInterval(20).build("harpoon"));
+	public static final RegistryObject<EntityType<ThrownSpear>> SPEAR = Technologica.ENTITY_TYPES.register("spear", () -> EntityType.Builder.<ThrownSpear>of(ThrownSpear::new, MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20).build("spear"));
+
 	public static final RegistryObject<EntityType<InvisibleSeat>> INVISIBLE_SEAT = Technologica.ENTITY_TYPES.register("invisible_seat", () -> EntityType.Builder.<InvisibleSeat>of(InvisibleSeat::new, MobCategory.MISC).sized(0.1F, 0.1F).setCustomClientFactory((spawnEntity, world) -> new InvisibleSeat(world, 0, 0, 0)).clientTrackingRange(10).build("invisible_seat_entity"));
 	public static final RegistryObject<EntityType<NavalMine>> NAVAL_MINE = Technologica.ENTITY_TYPES.register("naval_mine", () -> EntityType.Builder.<NavalMine>of(NavalMine::new, MobCategory.MISC).sized(2.0F, 2.0F).clientTrackingRange(10).build("naval_mine_entity"));
 	public static final RegistryObject<EntityType<Meteor>> METEOR = Technologica.ENTITY_TYPES.register("meteor", () -> EntityType.Builder.<Meteor>of(Meteor::new, MobCategory.MISC).sized(1.0F, 1.0F).clientTrackingRange(4).updateInterval(10).build("meteor"));

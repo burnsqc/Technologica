@@ -1,6 +1,7 @@
 package com.technologica;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Nullable;
 
@@ -73,11 +74,7 @@ import com.technologica.resourcegen.assets.TLModelsBlock;
 import com.technologica.resourcegen.assets.TLModelsItem;
 import com.technologica.resourcegen.assets.TLParticles;
 import com.technologica.resourcegen.assets.TLSounds;
-import com.technologica.resourcegen.data.advancements.AttemptedHarvestTrigger;
-import com.technologica.resourcegen.data.advancements.BlockObservedTrigger;
-import com.technologica.resourcegen.data.advancements.LightCampfireTrigger;
 import com.technologica.resourcegen.data.advancements.TLRGAdvancementGenerator;
-import com.technologica.resourcegen.data.advancements.TechnologicaCriterionTriggers;
 import com.technologica.resourcegen.data.lootmodifiers.TLLootModifiersGenerator;
 import com.technologica.resourcegen.data.loottables.blocks.TLLootTablesBlocksGenerator;
 import com.technologica.resourcegen.data.loottables.entities.EntityLootDataGenerator;
@@ -90,8 +87,7 @@ import com.technologica.resourcegen.data.tags.paintingvariant.TLTagsPaintingVari
 import com.technologica.resourcegen.data.tags.worldgen.biome.TLTagWorldgenBiomeGenerator;
 import com.technologica.server.commands.TechnologicaCommands;
 import com.technologica.server.level.TechnologicaServerLevel;
-import com.technologica.util.DisablePlankConditionFactory;
-import com.technologica.util.EnablePlankConditionFactory;
+import com.technologica.util.BooleanConfigValueCondition;
 import com.technologica.util.text.TechnologicaLocation;
 import com.technologica.world.entity.TechnologicaSpawnPlacements;
 import com.technologica.world.entity.ai.attributes.TechnologicaDefaultAttributes;
@@ -99,7 +95,6 @@ import com.technologica.world.entity.ai.attributes.TechnologicaVillageTrades;
 import com.technologica.world.entity.ai.attributes.TechnologicaVillagerWantedItems;
 import com.technologica.world.entity.ai.attributes.TechnologicaWanderingTraderTrades;
 import com.technologica.world.entity.player.TechnologicaAbilities;
-import com.technologica.world.item.TechnologicaTiers;
 import com.technologica.world.level.block.state.properties.TechnologicaCompostables;
 import com.technologica.world.level.block.state.properties.TechnologicaFlowerPotPlants;
 import com.tlregen.api.registration.DynamicRegister;
@@ -122,7 +117,6 @@ import com.tlregen.api.resourcegen.data.worldgen.TLReGenWorldgenStructureSet;
 import com.tlregen.api.resourcegen.data.worldgen.TLReGenWorldgenTemplatePool;
 import com.tlregen.api.setup.MasterSetupExecutor;
 
-import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.LootTableProvider;
@@ -137,7 +131,6 @@ import net.minecraft.world.entity.decoration.PaintingVariant;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.biome.Biome;
@@ -161,16 +154,12 @@ import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.synth.NormalNoise.NoiseParameters;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
-import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.loot.IGlobalLootModifier;
 import net.minecraftforge.common.world.BiomeModifier;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig.Type;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
@@ -247,10 +236,6 @@ public class Technologica {
 		CHANNEL.registerMessage(PACKET_ID++, SetMeteorStorm.class, SetMeteorStorm::encode, SetMeteorStorm::decode, SetMeteorStorm::handle);
 		CHANNEL.registerMessage(PACKET_ID++, SetMeteorStormLevel.class, SetMeteorStormLevel::encode, SetMeteorStormLevel::decode, SetMeteorStormLevel::handle);
 
-		// TODO: Determine best place for this. Maybe it's right here but that's unconfirmed.
-		CraftingHelper.register(DisablePlankConditionFactory.Serializer.INSTANCE);
-		CraftingHelper.register(EnablePlankConditionFactory.Serializer.INSTANCE);
-
 		MASTER_SETUP_EXECUTOR.addEntityAttributes(() -> TechnologicaDefaultAttributes.SUPPLIERS);
 		MASTER_SETUP_EXECUTOR.addCapabilities(List.of(TechnologicaAbilities.class, Link.class));
 		MASTER_SETUP_EXECUTOR.addCommands(() -> TechnologicaCommands.COMMANDS);
@@ -274,6 +259,7 @@ public class Technologica {
 		MASTER_SETUP_EXECUTOR.setFluidRenderTypes(() -> TechnologicaItemBlockRenderTypes.TYPE_BY_FLUID);
 		MASTER_SETUP_EXECUTOR.addRenderTypes(() -> TechnologicaRenderBuffers.FIXED_BUFFERS);
 		MASTER_SETUP_EXECUTOR.registerSpawnPlacements(() -> TechnologicaSpawnPlacements.DATA_BY_TYPE);
+		MASTER_SETUP_EXECUTOR.addConditionSerializers(() -> Set.of(BooleanConfigValueCondition.Serializer.INSTANCE));
 
 		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLAtlases());
 		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLBlockstates());
@@ -306,7 +292,6 @@ public class Technologica {
 		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenStructure(Technologica.STRUCTURES));
 		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenStructureSet(Technologica.STRUCTURE_SETS));
 		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenTemplatePool(Technologica.STRUCTURE_TEMPLATE_POOL));
-		FMLJavaModLoadingContext.get().getModEventBus().register(this);
 	}
 
 	public static Technologica getInstance() {
@@ -319,36 +304,5 @@ public class Technologica {
 
 	public void setClientLevel(TechnologicaClientLevel level) {
 		this.clientLevel = level;
-	}
-
-	@SubscribeEvent
-	protected final void onFMLCommonSetupEvent(final FMLCommonSetupEvent event) {
-		event.enqueueWork(() -> {
-			TechnologicaCriterionTriggers.ATTEMPTED_HARVEST = CriteriaTriggers.register(new AttemptedHarvestTrigger());
-			TechnologicaCriterionTriggers.BLOCK_OBSERVED = CriteriaTriggers.register(new BlockObservedTrigger());
-			TechnologicaCriterionTriggers.LIGHT_CAMPFIRE = CriteriaTriggers.register(new LightCampfireTrigger());
-			if (TechnologicaConfigCommon.ADJUST_TOOL_DURABILITY.get()) {
-				Items.WOODEN_SWORD.maxDamage = TechnologicaTiers.WOOD.getUses();
-				Items.WOODEN_SHOVEL.maxDamage = TechnologicaTiers.WOOD.getUses();
-				Items.WOODEN_PICKAXE.maxDamage = TechnologicaTiers.WOOD.getUses();
-				Items.WOODEN_AXE.maxDamage = TechnologicaTiers.WOOD.getUses();
-				Items.WOODEN_HOE.maxDamage = TechnologicaTiers.WOOD.getUses();
-				Items.STONE_SWORD.maxDamage = TechnologicaTiers.STONE.getUses();
-				Items.STONE_SHOVEL.maxDamage = TechnologicaTiers.STONE.getUses();
-				Items.STONE_PICKAXE.maxDamage = TechnologicaTiers.STONE.getUses();
-				Items.STONE_AXE.maxDamage = TechnologicaTiers.STONE.getUses();
-				Items.STONE_HOE.maxDamage = TechnologicaTiers.STONE.getUses();
-				Items.IRON_SWORD.maxDamage = TechnologicaTiers.IRON.getUses();
-				Items.IRON_SHOVEL.maxDamage = TechnologicaTiers.IRON.getUses();
-				Items.IRON_PICKAXE.maxDamage = TechnologicaTiers.IRON.getUses();
-				Items.IRON_AXE.maxDamage = TechnologicaTiers.IRON.getUses();
-				Items.IRON_HOE.maxDamage = TechnologicaTiers.IRON.getUses();
-				Items.DIAMOND_SWORD.maxDamage = TechnologicaTiers.DIAMOND.getUses();
-				Items.DIAMOND_SHOVEL.maxDamage = TechnologicaTiers.DIAMOND.getUses();
-				Items.DIAMOND_PICKAXE.maxDamage = TechnologicaTiers.DIAMOND.getUses();
-				Items.DIAMOND_AXE.maxDamage = TechnologicaTiers.DIAMOND.getUses();
-				Items.DIAMOND_HOE.maxDamage = TechnologicaTiers.DIAMOND.getUses();
-			}
-		});
 	}
 }

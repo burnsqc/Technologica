@@ -4,7 +4,10 @@
     {
       "conditions": [
         {
-          "type": "technologica:enable_vanilla_plank_crafting"
+          "type": "forge:not",
+          "value": {
+            "type": "technologica:config_boolean_condition"
+          }
         }
       ],
       "recipe": {
@@ -29,7 +32,7 @@
     {
       "conditions": [
         {
-          "type": "technologica:disable_vanilla_plank_crafting"
+          "type": "technologica:config_boolean_condition"
         }
       ],
       "recipe": {

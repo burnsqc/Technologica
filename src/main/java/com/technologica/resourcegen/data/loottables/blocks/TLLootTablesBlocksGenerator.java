@@ -1183,6 +1183,7 @@ public final class TLLootTablesBlocksGenerator extends BlockLootSubProvider {
 		dropSelf(TechnologicaBlocks.NECROTIC_TABLE.get());
 		dropSelf(TechnologicaBlocks.DISPLAY_CASE.get());
 		dropSelf(TechnologicaBlocks.ANNUNCIATOR.get());
+		dropSelf(TechnologicaBlocks.DRAFT_FURNACE.get());
 		dropSelf(TechnologicaBlocks.NITROGLYCERIN.get());
 		add(TechnologicaBlocks.NAVAL_MINE_CHAIN.get(), noDrop());
 		add(TechnologicaBlocks.SLEEPING_BAG.get(), (p_251275_) -> {

@@ -1,0 +1,32 @@
+{
+  "criteria": {
+    "exist": {
+      "conditions": {
+        "block": "minecraft:air"
+      },
+      "trigger": "minecraft:enter_block"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "minecraft:textures/block/quartz_pillar.png",
+    "description": {
+      "translate": "advancements.bronze_age.root.description"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "technologica:bronze_ingot"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.bronze_age.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "exist"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

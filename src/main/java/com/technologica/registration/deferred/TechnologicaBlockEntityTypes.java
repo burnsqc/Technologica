@@ -21,6 +21,7 @@ import com.technologica.world.level.block.entity.VanillaSignBlockEntity;
 import com.technologica.world.level.block.entity.WindmillBlockEntity;
 
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.FurnaceBlockEntity;
 import net.minecraftforge.registries.RegistryObject;
 
 public final class TechnologicaBlockEntityTypes {
@@ -42,4 +43,5 @@ public final class TechnologicaBlockEntityTypes {
 	public static final RegistryObject<BlockEntityType<LightBlockEntity>> LIGHT = Technologica.BLOCK_ENTITY_TYPES.register("light_block_entity", () -> BlockEntityType.Builder.of(LightBlockEntity::new, TechnologicaBlocks.LIGHT.get()).build(null));
 	public static final RegistryObject<BlockEntityType<TechnologicaSkullBlockEntity>> SKULL = Technologica.BLOCK_ENTITY_TYPES.register("technologica_skull", () -> BlockEntityType.Builder.of(TechnologicaSkullBlockEntity::new, TechnologicaBlocks.BEEPER_HEAD.get(), TechnologicaBlocks.BEEPER_WALL_HEAD.get(), TechnologicaBlocks.PEEPER_HEAD.get(), TechnologicaBlocks.PEEPER_WALL_HEAD.get(), TechnologicaBlocks.SLEEPER_HEAD.get(), TechnologicaBlocks.SLEEPER_WALL_HEAD.get(), TechnologicaBlocks.SWEEPER_HEAD.get(), TechnologicaBlocks.SWEEPER_WALL_HEAD.get(), TechnologicaBlocks.WEEPER_HEAD.get(), TechnologicaBlocks.WEEPER_WALL_HEAD.get()).build(null));
 	public static final RegistryObject<BlockEntityType<CarpentryWorkbenchBlockEntity>> CARPENTY_WORKBENCH = Technologica.BLOCK_ENTITY_TYPES.register("carpentry_workbench", () -> BlockEntityType.Builder.of(CarpentryWorkbenchBlockEntity::new, TechnologicaBlocks.CARPENTRY_WORKBENCH.get()).build(null));
+	public static final RegistryObject<BlockEntityType<FurnaceBlockEntity>> DRAFT_FURNACE = Technologica.BLOCK_ENTITY_TYPES.register("draft_furnace", () -> BlockEntityType.Builder.of(FurnaceBlockEntity::new, TechnologicaBlocks.DRAFT_FURNACE.get()).build(null));
 }

@@ -38,7 +38,7 @@ public class ServerboundPacketHandlers {
 		BlockState blockstate = world.getBlockState(packet.getPos());
 		if (tileentity instanceof MonitorBlockEntity) {
 			for (int i = 0; i < 16; ++i) {
-				((MonitorBlockEntity) tileentity).setText(i, Component.nullToEmpty(packet.getLines()[i]));
+				((MonitorBlockEntity) tileentity).setText(packet.getLines());
 			}
 			tileentity.setChanged();
 			world.sendBlockUpdated(packet.getPos(), blockstate, blockstate, 3);
