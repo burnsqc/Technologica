@@ -2,9 +2,9 @@ package com.technologica.world.level.block;
 
 import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.registration.deferred.TechnologicaItems;
-import com.technologica.util.lineshaftsystem.Manager;
+import com.technologica.util.lineshaftsystem.LineShaftSystemManager;
 import com.technologica.world.level.block.entity.LineShaftBlockEntity;
-import com.technologica.world.level.block.entity.LineShaftHangerTileEntity;
+import com.technologica.world.level.block.entity.LineShaftHangerBlockEntity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -54,19 +54,19 @@ public class MotorBlock extends TwentyFourDirectionBlock {
 			if (worldIn.getBlockEntity(posIn.relative(stateIn.getValue(SUB_FACING))) instanceof LineShaftBlockEntity && worldIn.getBlockState(posIn.relative(stateIn.getValue(SUB_FACING))).getValue(RotatedPillarBlock.AXIS) == stateIn.getValue(SUB_FACING).getAxis()) {
 				tile = worldIn.getBlockEntity(posIn.relative(stateIn.getValue(SUB_FACING)));
 				if (worldIn.hasNeighborSignal(posIn)) {
-					Manager lssManager = new Manager();
+					LineShaftSystemManager lssManager = new LineShaftSystemManager();
 					lssManager.onChanged(tile, maxRPM);
 				} else if (!worldIn.hasNeighborSignal(posIn)) {
-					Manager lssManager = new Manager();
+					LineShaftSystemManager lssManager = new LineShaftSystemManager();
 					lssManager.onChanged(tile, 0.0F);
 				}
-			} else if (worldIn.getBlockEntity(posIn.relative(stateIn.getValue(SUB_FACING))) instanceof LineShaftHangerTileEntity && worldIn.getBlockState(posIn.relative(stateIn.getValue(SUB_FACING))).getValue(RotatedPillarBlock.AXIS) == stateIn.getValue(SUB_FACING).getAxis()) {
+			} else if (worldIn.getBlockEntity(posIn.relative(stateIn.getValue(SUB_FACING))) instanceof LineShaftHangerBlockEntity && worldIn.getBlockState(posIn.relative(stateIn.getValue(SUB_FACING))).getValue(RotatedPillarBlock.AXIS) == stateIn.getValue(SUB_FACING).getAxis()) {
 				tile = worldIn.getBlockEntity(posIn.relative(stateIn.getValue(SUB_FACING)));
 				if (worldIn.hasNeighborSignal(posIn)) {
-					Manager lssManager = new Manager();
+					LineShaftSystemManager lssManager = new LineShaftSystemManager();
 					lssManager.onChanged(tile, maxRPM);
 				} else if (!worldIn.hasNeighborSignal(posIn)) {
-					Manager lssManager = new Manager();
+					LineShaftSystemManager lssManager = new LineShaftSystemManager();
 					lssManager.onChanged(tile, 0.0F);
 				}
 			}

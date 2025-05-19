@@ -9,12 +9,12 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class LineShaftHangerTileEntity extends BlockEntity {
+public class LineShaftHangerBlockEntity extends BlockEntity {
 	private boolean shaft = false;
 	private float torque = 0;
 	private float rpm = 0;
 
-	public LineShaftHangerTileEntity(BlockPos p_155700_, BlockState p_155701_) {
+	public LineShaftHangerBlockEntity(BlockPos p_155700_, BlockState p_155701_) {
 		super(TechnologicaBlockEntityTypes.LINE_SHAFT_HANGER.get(), p_155700_, p_155701_);
 	}
 

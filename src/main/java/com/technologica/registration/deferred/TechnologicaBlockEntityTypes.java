@@ -9,7 +9,7 @@ import com.technologica.world.level.block.entity.FruitBlockEntity;
 import com.technologica.world.level.block.entity.LandMineBlockEntity;
 import com.technologica.world.level.block.entity.LightBlockEntity;
 import com.technologica.world.level.block.entity.LineShaftBlockEntity;
-import com.technologica.world.level.block.entity.LineShaftHangerTileEntity;
+import com.technologica.world.level.block.entity.LineShaftHangerBlockEntity;
 import com.technologica.world.level.block.entity.MonitorBlockEntity;
 import com.technologica.world.level.block.entity.MulchTileEntity;
 import com.technologica.world.level.block.entity.PotionTileEntity;
@@ -31,7 +31,7 @@ public final class TechnologicaBlockEntityTypes {
 	public static final RegistryObject<BlockEntityType<PotionTileEntity>> POTION_CROP = Technologica.BLOCK_ENTITY_TYPES.register("potion_crop", () -> BlockEntityType.Builder.of(PotionTileEntity::new, TechnologicaBlocks.BENEVOLENT_LEAVES.get(), TechnologicaBlocks.MALEVOLENT_LEAVES.get()).build(null));
 	public static final RegistryObject<BlockEntityType<DisplayCaseBlockEntity>> DISPLAY_CASE = Technologica.BLOCK_ENTITY_TYPES.register("display_case", () -> BlockEntityType.Builder.of(DisplayCaseBlockEntity::new, TechnologicaBlocks.DISPLAY_CASE.get()).build(null));
 	public static final RegistryObject<BlockEntityType<LineShaftBlockEntity>> LINE_SHAFT = Technologica.BLOCK_ENTITY_TYPES.register("line_shaft", () -> BlockEntityType.Builder.of(LineShaftBlockEntity::new, TechnologicaBlocks.LINE_SHAFT.get()).build(null));
-	public static final RegistryObject<BlockEntityType<LineShaftHangerTileEntity>> LINE_SHAFT_HANGER = Technologica.BLOCK_ENTITY_TYPES.register("line_shaft_hanger", () -> BlockEntityType.Builder.of(LineShaftHangerTileEntity::new, TechnologicaBlocks.LINE_SHAFT_HANGER.get()).build(null));
+	public static final RegistryObject<BlockEntityType<LineShaftHangerBlockEntity>> LINE_SHAFT_HANGER = Technologica.BLOCK_ENTITY_TYPES.register("line_shaft_hanger", () -> BlockEntityType.Builder.of(LineShaftHangerBlockEntity::new, TechnologicaBlocks.LINE_SHAFT_HANGER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<SawmillBlockEntity>> SAWMILL = Technologica.BLOCK_ENTITY_TYPES.register("sawmill", () -> BlockEntityType.Builder.of(SawmillBlockEntity::new, TechnologicaBlocks.SAWMILL_CORE.get()).build(null));
 	public static final RegistryObject<BlockEntityType<WindmillBlockEntity>> WINDMILL = Technologica.BLOCK_ENTITY_TYPES.register("windmill", () -> BlockEntityType.Builder.of(WindmillBlockEntity::new, TechnologicaBlocks.WINDMILL.get()).build(null));
 	public static final RegistryObject<BlockEntityType<AnnunciatorBlockEntity>> ANNUNCIATOR = Technologica.BLOCK_ENTITY_TYPES.register("annunciator", () -> BlockEntityType.Builder.of(AnnunciatorBlockEntity::new, TechnologicaBlocks.ANNUNCIATOR.get()).build(null));

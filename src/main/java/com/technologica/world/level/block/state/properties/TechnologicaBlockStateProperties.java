@@ -2,7 +2,7 @@ package com.technologica.world.level.block.state.properties;
 
 import com.technologica.util.AnnunciatorOverlay;
 import com.technologica.util.MiddleEnd;
-import com.technologica.util.Radius;
+import com.technologica.util.lineshaftsystem.Radius;
 
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;

@@ -2,7 +2,7 @@ package com.technologica.world.level.block;
 
 import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.registration.deferred.TechnologicaItems;
-import com.technologica.world.level.block.entity.LineShaftHangerTileEntity;
+import com.technologica.world.level.block.entity.LineShaftHangerBlockEntity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -39,8 +39,8 @@ public class LineShaftHangerBlock extends TwelveDirectionBlock implements Entity
 	 * Technologica Methods
 	 */
 
-	public static LineShaftHangerTileEntity getTileEntity(Level worldIn, BlockPos posIn) {
-		return (LineShaftHangerTileEntity) worldIn.getBlockEntity(posIn);
+	public static LineShaftHangerBlockEntity getTileEntity(Level worldIn, BlockPos posIn) {
+		return (LineShaftHangerBlockEntity) worldIn.getBlockEntity(posIn);
 	}
 
 	/*
@@ -49,7 +49,7 @@ public class LineShaftHangerBlock extends TwelveDirectionBlock implements Entity
 
 	@Override
 	public InteractionResult use(BlockState stateIn, Level worldIn, BlockPos posIn, Player playerIn, InteractionHand handIn, BlockHitResult hitIn) {
-		LineShaftHangerTileEntity tile = getTileEntity(worldIn, posIn);
+		LineShaftHangerBlockEntity tile = getTileEntity(worldIn, posIn);
 		Item tool = playerIn.getItemInHand(handIn).getItem();
 
 		if (tool == TechnologicaItems.WRENCH.get() && !tile.getShaft()) {
@@ -85,7 +85,7 @@ public class LineShaftHangerBlock extends TwelveDirectionBlock implements Entity
 
 	@Override
 	public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
-		return new LineShaftHangerTileEntity(p_153215_, p_153216_);
+		return new LineShaftHangerBlockEntity(p_153215_, p_153216_);
 	}
 
 	@Override

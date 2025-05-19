@@ -5,7 +5,7 @@ import javax.annotation.Nullable;
 import com.technologica.capabilities.item.link.Link;
 import com.technologica.capabilities.item.link.LinkProvider;
 import com.technologica.registration.deferred.TechnologicaBlocks;
-import com.technologica.util.Radius;
+import com.technologica.util.lineshaftsystem.Radius;
 import com.technologica.world.level.block.LineShaftBlock;
 
 import net.minecraft.core.BlockPos;

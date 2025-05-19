@@ -25,19 +25,18 @@ public class MonitorRenderer implements BlockEntityRenderer<MonitorBlockEntity> 
 	}
 
 	@Override
-	public void render(MonitorBlockEntity tileEntityIn, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
-		BlockState blockstate = tileEntityIn.getBlockState();
-		float f1 = -blockstate.getValue(MonitorBlock.FACING).toYRot();
+	public void render(MonitorBlockEntity monitorBlockEntity, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
+		BlockState blockstate = monitorBlockEntity.getBlockState();
+		float rotationDegrees = -blockstate.getValue(MonitorBlock.FACING).toYRot();
 		matrixStackIn.pushPose();
 		matrixStackIn.translate(0.5D, 0.5D, 0.5D);
-		matrixStackIn.mulPose(Axis.YP.rotationDegrees(f1));
+		matrixStackIn.mulPose(Axis.YP.rotationDegrees(rotationDegrees));
 		matrixStackIn.translate(0.0D, 0.24D, 0.376D);
-		matrixStackIn.scale(0.001F, -0.001F, 0.001F);
-		String[] lines = tileEntityIn.getText();
-		for (int k1 = 0; k1 < 16; ++k1) {
-			Component text = Component.nullToEmpty(lines[k1]);
-
-			font.drawInBatch(text, -96.0F, k1 * 10.0F - 20.0F, 0x00FF00, false, matrixStackIn.last().pose(), bufferIn, Font.DisplayMode.POLYGON_OFFSET, 0, combinedLightIn);
+		matrixStackIn.scale(0.0013F, -0.0013F, 0.0013F);
+		String[] text = monitorBlockEntity.getText();
+		for (int row = 0; row < text.length; ++row) {
+			Component line = Component.literal(text[row]).setStyle(FULLSPACE_FONT_STYLE);
+			font.drawInBatch(line, -240, -60 + row * 12, 0x00FF00, false, matrixStackIn.last().pose(), bufferIn, Font.DisplayMode.POLYGON_OFFSET, 0, combinedLightIn);
 		}
 		matrixStackIn.popPose();
 	}

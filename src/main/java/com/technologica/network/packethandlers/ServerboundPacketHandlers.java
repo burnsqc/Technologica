@@ -19,29 +19,26 @@ public class ServerboundPacketHandlers {
 	public static void handleUpdateAnnunciator(UpdateAnnunciator packet, final Supplier<NetworkEvent.Context> context) {
 		Technologica.LOGGER.debug("HANDLING PACKET - SERVERBOUND - UPDATE ANNUNCIATOR");
 		Level world = context.get().getSender().level();
-		BlockEntity tileentity = world.getBlockEntity(packet.getPos());
+		BlockEntity blockEntity = world.getBlockEntity(packet.getPos());
 		BlockState blockstate = world.getBlockState(packet.getPos());
-
-		if (tileentity instanceof AnnunciatorBlockEntity) {
+		if (blockEntity instanceof AnnunciatorBlockEntity) {
 			for (int i = 0; i < 8; ++i) {
-				((AnnunciatorBlockEntity) tileentity).setText(i, Component.nullToEmpty(packet.getLines()[i]));
+				((AnnunciatorBlockEntity) blockEntity).setText(i, Component.nullToEmpty(packet.getLines()[i]));
 			}
-			tileentity.setChanged();
+			blockEntity.setChanged();
 			world.sendBlockUpdated(packet.getPos(), blockstate, blockstate, 3);
 		}
 	}
 
 	public static void handleUpdateMonitor(UpdateMonitor packet, final Supplier<NetworkEvent.Context> context) {
 		Technologica.LOGGER.debug("HANDLING PACKET - SERVERBOUND - UPDATE MONITOR");
-		Level world = context.get().getSender().level();
-		BlockEntity tileentity = world.getBlockEntity(packet.getPos());
-		BlockState blockstate = world.getBlockState(packet.getPos());
-		if (tileentity instanceof MonitorBlockEntity) {
-			for (int i = 0; i < 16; ++i) {
-				((MonitorBlockEntity) tileentity).setText(packet.getLines());
-			}
-			tileentity.setChanged();
-			world.sendBlockUpdated(packet.getPos(), blockstate, blockstate, 3);
+		Level level = context.get().getSender().level();
+		BlockEntity blockEntity = level.getBlockEntity(packet.getBlockPos());
+		BlockState blockState = level.getBlockState(packet.getBlockPos());
+		if (blockEntity instanceof MonitorBlockEntity) {
+			((MonitorBlockEntity) blockEntity).setText(packet.getText());
+			blockEntity.setChanged();
+			level.sendBlockUpdated(packet.getBlockPos(), blockState, blockState, 3);
 		}
 	}
 }

@@ -1,4 +1,4 @@
-package com.technologica.util;
+package com.technologica.util.lineshaftsystem;
 
 import net.minecraft.util.StringRepresentable;
 

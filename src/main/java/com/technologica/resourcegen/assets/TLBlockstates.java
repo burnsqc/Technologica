@@ -4,7 +4,7 @@ import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.resourcegen.util.TechnologicaModels;
 import com.technologica.util.AnnunciatorOverlay;
 import com.technologica.util.MiddleEnd;
-import com.technologica.util.Radius;
+import com.technologica.util.lineshaftsystem.Radius;
 import com.technologica.util.text.ResourceLocationHelper;
 import com.technologica.util.text.TechnologicaLocation;
 import com.technologica.world.level.block.AbyssPortalBlock;

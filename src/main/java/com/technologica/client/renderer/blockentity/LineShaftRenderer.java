@@ -7,7 +7,7 @@ import org.joml.Quaternionf;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-import com.technologica.util.Radius;
+import com.technologica.util.lineshaftsystem.Radius;
 import com.technologica.util.math.MathHelper;
 import com.technologica.util.text.TechnologicaLocation;
 import com.technologica.world.level.block.LineShaftBlock;

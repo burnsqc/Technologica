@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.world.level.block.TwelveDirectionBlock;
-import com.technologica.world.level.block.entity.LineShaftHangerTileEntity;
+import com.technologica.world.level.block.entity.LineShaftHangerBlockEntity;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -17,13 +17,13 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.model.data.ModelData;
 
-public class LineShaftHangerRenderer implements BlockEntityRenderer<LineShaftHangerTileEntity> {
+public class LineShaftHangerRenderer implements BlockEntityRenderer<LineShaftHangerBlockEntity> {
 
 	public LineShaftHangerRenderer(BlockEntityRendererProvider.Context rendererDispatcherIn) {
 	}
 
 	@Override
-	public void render(LineShaftHangerTileEntity tileEntity, float partialTicks, PoseStack matrixStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
+	public void render(LineShaftHangerBlockEntity tileEntity, float partialTicks, PoseStack matrixStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
 		if (tileEntity.getShaft()) {
 			long time = System.currentTimeMillis() * 6 * (int) tileEntity.getRPM() / 1000;
 			float angle = time % 360;

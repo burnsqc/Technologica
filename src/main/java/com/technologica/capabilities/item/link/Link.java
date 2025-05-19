@@ -4,7 +4,7 @@ import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.registration.deferred.TechnologicaItems;
 import com.technologica.world.level.block.TwelveDirectionBlock;
 import com.technologica.world.level.block.entity.LineShaftBlockEntity;
-import com.technologica.world.level.block.entity.LineShaftHangerTileEntity;
+import com.technologica.world.level.block.entity.LineShaftHangerBlockEntity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -166,8 +166,8 @@ public class Link implements INBTSerializable<CompoundTag> {
 		int shaft2;
 		boolean bool = false;
 
-		shaft1 = ((LineShaftHangerTileEntity) this.linkTile1).getShaft() ? 0 : 1;
-		shaft2 = ((LineShaftHangerTileEntity) this.linkTile2).getShaft() ? 0 : 1;
+		shaft1 = ((LineShaftHangerBlockEntity) this.linkTile1).getShaft() ? 0 : 1;
+		shaft2 = ((LineShaftHangerBlockEntity) this.linkTile2).getShaft() ? 0 : 1;
 
 		for (int i = 0; i < inv.getContainerSize(); i++) {
 			ItemStack stack = inv.getItem(i);
@@ -184,8 +184,8 @@ public class Link implements INBTSerializable<CompoundTag> {
 	}
 
 	public void createLineShaft() {
-		((LineShaftHangerTileEntity) this.linkTile1).setShaft(true);
-		((LineShaftHangerTileEntity) this.linkTile2).setShaft(true);
+		((LineShaftHangerBlockEntity) this.linkTile1).setShaft(true);
+		((LineShaftHangerBlockEntity) this.linkTile2).setShaft(true);
 		this.world.sendBlockUpdated(this.linkPos1, this.linkState1, this.linkState1, 3);
 		this.world.sendBlockUpdated(this.linkPos2, this.linkState2, this.linkState2, 3);
 

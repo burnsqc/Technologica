@@ -2,7 +2,7 @@ package com.technologica.world.level.block;
 
 import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.registration.deferred.TechnologicaItems;
-import com.technologica.util.Radius;
+import com.technologica.util.lineshaftsystem.Radius;
 import com.technologica.world.level.block.entity.LineShaftBlockEntity;
 import com.technologica.world.level.block.state.properties.TechnologicaBlockStateProperties;
 
@@ -129,6 +129,13 @@ public class LineShaftBlock extends RotatedPillarBlock implements EntityBlock {
 
 		if (tool == TechnologicaItems.PIPE_WRENCH.get()) {
 			worldIn.setBlock(posIn, stateIn.setValue(RADIUS, Radius.NONE), 1);
+			if (tile.getBeltPos() != null) {
+				LineShaftBlockEntity tile2 = getTileEntity(worldIn, tile.getBeltPos());
+				if (tile2 != null) {
+					tile2.setBeltPos(null);
+				}
+				tile.setBeltPos(null);
+			}
 			worldIn.playSound((Player) null, posIn, SoundEvents.ANVIL_PLACE, SoundSource.BLOCKS, 0.25F, 1.0F + worldIn.random.nextFloat() * 0.4F);
 
 		} else if (tile.getBlockState().getValue(RADIUS).getRadius() == 0) {
