@@ -41,7 +41,7 @@ minecraft {
 
         server {
             property 'forge.enabledGameTestNamespaces', 'technologica'
-            args '--nogui'
+            //args '--nogui'
         }
 
         gameTestServer {

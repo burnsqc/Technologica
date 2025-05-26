@@ -52,22 +52,6 @@ public class SimpleCookingRecipeWithCountBuilder implements RecipeBuilder {
 		return new SimpleCookingRecipeWithCountBuilder(p_248815_, determineRecipeCategory(p_250921_, p_249766_), p_249766_, count, p_250999_, p_251320_, p_248693_, p_250921_);
 	}
 
-	public static SimpleCookingRecipeWithCountBuilder campfireCooking(Ingredient p_249393_, RecipeCategory p_249372_, ItemLike p_251516_, int count, float p_252321_, int p_251916_) {
-		return new SimpleCookingRecipeWithCountBuilder(p_249372_, CookingBookCategory.FOOD, p_251516_, count, p_249393_, p_252321_, p_251916_, RecipeSerializer.CAMPFIRE_COOKING_RECIPE);
-	}
-
-	public static SimpleCookingRecipeWithCountBuilder blasting(Ingredient p_252115_, RecipeCategory p_249421_, ItemLike p_251247_, int count, float p_250383_, int p_250476_) {
-		return new SimpleCookingRecipeWithCountBuilder(p_249421_, determineBlastingRecipeCategory(p_251247_), p_251247_, count, p_252115_, p_250383_, p_250476_, RecipeSerializer.BLASTING_RECIPE);
-	}
-
-	public static SimpleCookingRecipeWithCountBuilder smelting(Ingredient p_249223_, RecipeCategory p_251240_, ItemLike p_249551_, int count, float p_249452_, int p_250496_) {
-		return new SimpleCookingRecipeWithCountBuilder(p_251240_, determineSmeltingRecipeCategory(p_249551_), p_249551_, count, p_249223_, p_249452_, p_250496_, RecipeSerializer.SMELTING_RECIPE);
-	}
-
-	public static SimpleCookingRecipeWithCountBuilder smoking(Ingredient p_248930_, RecipeCategory p_250319_, ItemLike p_250377_, int count, float p_252329_, int p_250482_) {
-		return new SimpleCookingRecipeWithCountBuilder(p_250319_, CookingBookCategory.FOOD, p_250377_, count, p_248930_, p_252329_, p_250482_, RecipeSerializer.SMOKING_RECIPE);
-	}
-
 	@Override
 	public SimpleCookingRecipeWithCountBuilder unlockedBy(String p_126255_, CriterionTriggerInstance p_126256_) {
 		this.advancement.addCriterion(p_126255_, p_126256_);

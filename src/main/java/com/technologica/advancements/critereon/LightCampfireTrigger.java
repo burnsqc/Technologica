@@ -1,4 +1,4 @@
-package com.technologica.resourcegen.data.advancements;
+package com.technologica.advancements.critereon;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.gson.JsonObject;

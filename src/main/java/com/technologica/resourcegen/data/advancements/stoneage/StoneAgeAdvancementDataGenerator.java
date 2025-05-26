@@ -2,10 +2,10 @@ package com.technologica.resourcegen.data.advancements.stoneage;
 
 import java.util.function.Consumer;
 
+import com.technologica.advancements.critereon.BlockObservedTrigger;
+import com.technologica.advancements.critereon.LightCampfireTrigger;
 import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.registration.deferred.TechnologicaItems;
-import com.technologica.resourcegen.data.advancements.BlockObservedTrigger;
-import com.technologica.resourcegen.data.advancements.LightCampfireTrigger;
 import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.advancements.Advancement;

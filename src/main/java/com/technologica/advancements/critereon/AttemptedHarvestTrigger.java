@@ -1,4 +1,4 @@
-package com.technologica.resourcegen.data.advancements;
+package com.technologica.advancements.critereon;
 
 import javax.annotation.Nullable;
 

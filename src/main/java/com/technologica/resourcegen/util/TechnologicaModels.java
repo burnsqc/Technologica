@@ -46,10 +46,6 @@ public class TechnologicaModels {
 		return getBuilder(name).parent(getExistingFile(parent));
 	}
 
-	public static ModelBuilder<BlockModelBuilder> withExistingParent(String name, String parent) {
-		return withExistingParent(name, new ResourceLocation(parent));
-	}
-
 	public static ModelBuilder<BlockModelBuilder> singleTexture(String name, ResourceLocation parent, String textureKey, ResourceLocation texture) {
 		return withExistingParent(name, parent).texture(textureKey, texture);
 	}
@@ -64,10 +60,6 @@ public class TechnologicaModels {
 
 	public static ModelFile glueModel(String name, ResourceLocation particle, ResourceLocation face) {
 		return withExistingParent(name, new TechnologicaLocation("block/glue_model")).texture("particle", particle).texture("face", face);
-	}
-
-	public ModelFile tallCrop(String name, ResourceLocation crop) {
-		return withExistingParent(name, new TechnologicaLocation("tall_crop")).texture("crop", crop);
 	}
 
 	public static ModelFile trellis(Block block, ResourceLocation texture) {
@@ -108,10 +100,6 @@ public class TechnologicaModels {
 	public static ModelFile leafyCrystalModel(Block block) {
 		ResourceLocation location = ForgeRegistries.BLOCKS.getKey(block);
 		return singleTexture(ResourceLocationHelper.getPath(block), new TechnologicaLocation("leafy_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath())).renderType("translucent");
-	}
-
-	public static ModelFile smallPulleyModel(Block block) {
-		return withExistingParent(ResourceLocationHelper.getPath(block), new TechnologicaLocation(ResourceLocationHelper.getPath(block))).texture("0", new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(block)));
 	}
 
 	public static ModelFile lineShaftNoPulleyModel(Block block) {
@@ -204,10 +192,6 @@ public class TechnologicaModels {
 
 	public static ModelFile hopperSide(String name, String top, String side, String inside) {
 		return withExistingParent(name, new TechnologicaLocation("technologica_hopper_side")).texture("particle", side).texture("top", top).texture("side", side).texture("inside", inside);
-	}
-
-	public static ModelFile buttonInventoryModel(Block block, String renderType) {
-		return withExistingParent(ResourceLocationHelper.getPath(block) + "_inventory", "block/button_inventory").renderType(renderType).texture("texture", ResourceLocationHelper.replace(blockTexture(block), "_button", "_planks"));
 	}
 
 	public static ModelFile abyssPortalModelEW(Block block) {

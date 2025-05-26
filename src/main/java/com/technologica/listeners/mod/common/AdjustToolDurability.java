@@ -1,9 +1,9 @@
 package com.technologica.listeners.mod.common;
 
+import com.technologica.advancements.critereon.AttemptedHarvestTrigger;
+import com.technologica.advancements.critereon.BlockObservedTrigger;
+import com.technologica.advancements.critereon.LightCampfireTrigger;
 import com.technologica.config.TechnologicaConfigCommon;
-import com.technologica.resourcegen.data.advancements.AttemptedHarvestTrigger;
-import com.technologica.resourcegen.data.advancements.BlockObservedTrigger;
-import com.technologica.resourcegen.data.advancements.LightCampfireTrigger;
 import com.technologica.resourcegen.data.advancements.TechnologicaCriterionTriggers;
 import com.technologica.world.item.TechnologicaTiers;
 
