@@ -49,47 +49,23 @@ public final class TechnologicaBiomes {
 		if (effects.grassColorOverride.isPresent()) {
 			effects2.grassColorOverride(effects.grassColorOverride.getAsInt());
 		}
+		
+		carvers.air.forEach(carver -> settings.addCarver(GenerationStep.Carving.AIR, carver));
+		carvers.liquid.forEach(carver -> settings.addCarver(GenerationStep.Carving.LIQUID, carver));
 
-		for (ResourceKey<ConfiguredWorldCarver<?>> carver : carvers.air) {
-			settings.addCarver(GenerationStep.Carving.AIR, carver);
-		}
-		for (ResourceKey<ConfiguredWorldCarver<?>> carver : carvers.liquid) {
-			settings.addCarver(GenerationStep.Carving.LIQUID, carver);
-		}
+		features.rawGeneration.forEach(feature -> settings.addFeature(GenerationStep.Decoration.RAW_GENERATION, feature));
+		features.lakes.forEach(feature -> settings.addFeature(GenerationStep.Decoration.LAKES, feature));
+		features.localModifications.forEach(feature -> settings.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, feature));
+		features.undergroundStructures.forEach(feature -> settings.addFeature(GenerationStep.Decoration.UNDERGROUND_STRUCTURES, feature));
+		features.surfaceStructures.forEach(feature -> settings.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, feature));
+		features.strongholds.forEach(feature -> settings.addFeature(GenerationStep.Decoration.STRONGHOLDS, feature));
+		features.undergroundOres.forEach(feature -> settings.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, feature));
+		features.undergroundDecoration.forEach(feature -> settings.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, feature));
+		features.vegetalDecoration.forEach(feature -> settings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, feature));
+		features.fluidSprings.forEach(feature -> settings.addFeature(GenerationStep.Decoration.FLUID_SPRINGS, feature));
+		features.topLayerModification.forEach(feature -> settings.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, feature));
+		
 
-		for (ResourceKey<PlacedFeature> feature : features.rawGeneration) {
-			settings.addFeature(GenerationStep.Decoration.RAW_GENERATION, feature);
-		}
-		for (ResourceKey<PlacedFeature> feature : features.lakes) {
-			settings.addFeature(GenerationStep.Decoration.LAKES, feature);
-		}
-		for (ResourceKey<PlacedFeature> feature : features.localModifications) {
-			settings.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, feature);
-		}
-		for (ResourceKey<PlacedFeature> feature : features.undergroundStructures) {
-			settings.addFeature(GenerationStep.Decoration.UNDERGROUND_STRUCTURES, feature);
-		}
-		for (ResourceKey<PlacedFeature> feature : features.surfaceStructures) {
-			settings.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, feature);
-		}
-		for (ResourceKey<PlacedFeature> feature : features.strongholds) {
-			settings.addFeature(GenerationStep.Decoration.STRONGHOLDS, feature);
-		}
-		for (ResourceKey<PlacedFeature> feature : features.undergroundOres) {
-			settings.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, feature);
-		}
-		for (ResourceKey<PlacedFeature> feature : features.undergroundDecoration) {
-			settings.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, feature);
-		}
-		for (ResourceKey<PlacedFeature> feature : features.vegetalDecoration) {
-			settings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, feature);
-		}
-		for (ResourceKey<PlacedFeature> feature : features.fluidSprings) {
-			settings.addFeature(GenerationStep.Decoration.FLUID_SPRINGS, feature);
-		}
-		for (ResourceKey<PlacedFeature> feature : features.topLayerModification) {
-			settings.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, feature);
-		}
 
 		for (MobSpawnSettings.SpawnerData spawner : spawners.ambient) {
 			spawners2.addSpawn(MobCategory.AMBIENT, spawner);
