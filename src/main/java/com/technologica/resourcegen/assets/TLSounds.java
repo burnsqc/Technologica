@@ -1,12 +1,20 @@
 package com.technologica.resourcegen.assets;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Supplier;
+
 import com.technologica.registration.deferred.TechnologicaSoundEvents;
 import com.technologica.util.text.TechnologicaLocation;
-import com.tlregen.api.resourcegen.assets.TLReGenSounds;
+import com.tlregen.api.resourcegen.util.TLReGenSoundDefinition;
+import com.tlregen.api.resourcegen.util.helpers.TLReGenSoundHelper;
 
-public class TLSounds extends TLReGenSounds {
-	@Override
-	public void populate() {
+import net.minecraft.sounds.SoundEvent;
+
+public class TLSounds extends TLReGenSoundHelper {
+	public static final Map<String, TLReGenSoundDefinition> SOUNDS = new HashMap<>();
+
+	static {
 		add(TechnologicaSoundEvents.DODGEBALL, sounds(32, new TechnologicaLocation("random/dodgeball")));
 
 		add(TechnologicaSoundEvents.DUCK_AMBIENT, sounds(new TechnologicaLocation("mob/duck/say1"), new TechnologicaLocation("mob/duck/say2"), new TechnologicaLocation("mob/duck/say3")));
@@ -27,5 +35,13 @@ public class TLSounds extends TLReGenSounds {
 
 		add(TechnologicaSoundEvents.SONAR, sounds(new TechnologicaLocation("random/sonar")));
 		add(TechnologicaSoundEvents.ABYSS_PORTAL_AMBIENT, sounds(10, new TechnologicaLocation("portal/abyss_portal_ambient")));
+	}
+
+	protected static void add(final Supplier<SoundEvent> soundEventSupplier, final TLReGenSoundDefinition definition) {
+		addSounds(soundEventSupplier.get().getLocation().getPath(), definition);
+	}
+
+	private static void addSounds(final String soundEvent, final TLReGenSoundDefinition definition) {
+		SOUNDS.put(soundEvent, definition);
 	}
 }

@@ -1,17 +1,21 @@
 package com.technologica.resourcegen.assets;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import com.technologica.util.text.TechnologicaLocation;
-import com.tlregen.api.resourcegen.assets.TLReGenFont;
 
 import net.minecraft.client.gui.font.providers.BitmapProvider;
+import net.minecraft.client.gui.font.providers.GlyphProviderDefinition;
 import net.minecraft.resources.ResourceLocation;
 
-public class TLFont extends TLReGenFont {
-	protected static final ResourceLocation TLOS_FONT = new TechnologicaLocation("tlos");
-	protected static final ResourceLocation TLOS_FONT_BITMAP = new TechnologicaLocation("tlos.png");
+public class TLFont {
+	public static final Map<ResourceLocation, List<GlyphProviderDefinition>> FONTS = new HashMap<>();
+	private static final ResourceLocation TLOS_FONT = new TechnologicaLocation("tlos");
+	private static final ResourceLocation TLOS_FONT_BITMAP = new TechnologicaLocation("tlos.png");
 
-	@Override
-	public void populate() {
-		font(TLOS_FONT).addProvider(new BitmapProvider.Definition(TLOS_FONT_BITMAP, 1, 1, new int[2][2])).addProvider(new BitmapProvider.Definition(TLOS_FONT_BITMAP, 1, 1, new int[2][2]));
+	static {
+		FONTS.put(TLOS_FONT, List.of(new BitmapProvider.Definition(TLOS_FONT_BITMAP, 1, 1, new int[2][2]), new BitmapProvider.Definition(TLOS_FONT_BITMAP, 1, 1, new int[2][2])));
 	}
 }

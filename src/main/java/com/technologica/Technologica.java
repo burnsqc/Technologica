@@ -101,6 +101,11 @@ import com.tlregen.api.registration.DynamicRegister;
 import com.tlregen.api.registration.MasterDeferredRegistrar;
 import com.tlregen.api.registration.MasterDynamicRegistrar;
 import com.tlregen.api.resourcegen.MasterResourceGenerator;
+import com.tlregen.api.resourcegen.assets.TLReGenAtlases;
+import com.tlregen.api.resourcegen.assets.TLReGenFont;
+import com.tlregen.api.resourcegen.assets.TLReGenLang;
+import com.tlregen.api.resourcegen.assets.TLReGenParticles;
+import com.tlregen.api.resourcegen.assets.TLReGenSounds;
 import com.tlregen.api.resourcegen.data.TLRGLootTablesGenerator;
 import com.tlregen.api.resourcegen.data.TLReGenDamageType;
 import com.tlregen.api.resourcegen.data.TLReGenDimension;
@@ -261,19 +266,20 @@ public class Technologica {
 		MASTER_SETUP_EXECUTOR.registerSpawnPlacements(() -> TechnologicaSpawnPlacements.DATA_BY_TYPE);
 		MASTER_SETUP_EXECUTOR.addConditionSerializers(() -> Set.of(BooleanConfigValueCondition.Serializer.INSTANCE));
 
-		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLAtlases());
+		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLReGenAtlases(TLAtlases.ATLASES));
 		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLBlockstates());
-		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLFont());
-		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLLang());
+		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLReGenFont(TLFont.FONTS));
+		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLReGenLang(TLLang.LANG));
 		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLModelsBlock());
 		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLModelsItem());
-		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLParticles());
-		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLSounds());
+		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLReGenParticles(TLParticles.PARTICLES));
+		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLReGenSounds(TLSounds.SOUNDS));
+
 		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLRGAdvancementGenerator());
-		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenDamageType(Technologica.DAMAGE_TYPES));
-		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenDimension(Technologica.DIMENSIONS));
-		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenDimensionType(Technologica.DIMENSION_TYPES));
-		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenForgeBiomeModifier(Technologica.BIOME_MODIFIERS));
+		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenDamageType(DAMAGE_TYPES));
+		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenDimension(DIMENSIONS));
+		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenDimensionType(DIMENSION_TYPES));
+		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenForgeBiomeModifier(BIOME_MODIFIERS));
 		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLLootModifiersGenerator());
 		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLRGLootTablesGenerator(List.of(new LootTableProvider.SubProviderEntry(TLLootTablesBlocksGenerator::new, LootContextParamSets.BLOCK), new LootTableProvider.SubProviderEntry(EntityLootDataGenerator::new, LootContextParamSets.ENTITY))));
 		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLRecipesGenerator());
@@ -283,15 +289,15 @@ public class Technologica {
 		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLTagItemsGenerator());
 		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLTagsPaintingVariantGenerator());
 		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLTagWorldgenBiomeGenerator());
-		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenBiome(Technologica.BIOMES));
-		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenConfiguredFeature(Technologica.CONFIGURED_FEATURES));
-		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenDensityFunction(Technologica.DENSITY_FUNCTIONS));
-		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenNoise(Technologica.NOISE));
-		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenNoiseSettings(Technologica.NOISE_GENERATOR_SETTINGS));
-		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenPlacedFeature(Technologica.PLACED_FEATURES));
-		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenStructure(Technologica.STRUCTURES));
-		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenStructureSet(Technologica.STRUCTURE_SETS));
-		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenTemplatePool(Technologica.STRUCTURE_TEMPLATE_POOL));
+		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenBiome(BIOMES));
+		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenConfiguredFeature(CONFIGURED_FEATURES));
+		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenDensityFunction(DENSITY_FUNCTIONS));
+		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenNoise(NOISE));
+		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenNoiseSettings(NOISE_GENERATOR_SETTINGS));
+		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenPlacedFeature(PLACED_FEATURES));
+		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenStructure(STRUCTURES));
+		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenStructureSet(STRUCTURE_SETS));
+		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenTemplatePool(STRUCTURE_TEMPLATE_POOL));
 	}
 
 	public static Technologica getInstance() {
