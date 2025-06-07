@@ -1,6 +1,6 @@
 {
   "type": "technologica:el_dorado",
-  "biomes": "#technologica:has_el_dorado",
+  "biomes": "technologica:misty_mire",
   "spawn_overrides": {},
   "step": "underground_decoration"
 }

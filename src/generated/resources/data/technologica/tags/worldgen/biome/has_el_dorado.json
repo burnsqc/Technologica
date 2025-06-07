@@ -1,8 +1,5 @@
 {
   "values": [
-    {
-      "id": "technologica:misty_mire",
-      "required": false
-    }
+    "technologica:misty_mire"
   ]
 }

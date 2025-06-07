@@ -1,8 +1,7 @@
 package com.technologica.world.entity;
 
-import java.util.Map;
+import java.util.HashMap;
 
-import com.google.common.collect.Maps;
 import com.technologica.registration.dynamic.TechnologicaDimensions;
 import com.tlregen.api.setup.util.TLReGenSpawnPlacements;
 
@@ -24,7 +23,7 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent.Operation;
 
 public class TechnologicaSpawnPlacements extends TLReGenSpawnPlacements {
-	public static final Map<EntityType<?>, TLReGenSpawnPlacements.Data> DATA_BY_TYPE = Maps.newHashMap();
+	public static final HashMap<EntityType<?>, TLReGenSpawnPlacements.Data> SPAWN_PLACEMENTS = new HashMap<EntityType<?>, TLReGenSpawnPlacements.Data>();
 
 	static {
 		register(EntityType.DOLPHIN, null, null, TechnologicaSpawnPlacements::checkSurfaceWaterAnimalSpawnRules, Operation.OR);
@@ -32,7 +31,7 @@ public class TechnologicaSpawnPlacements extends TLReGenSpawnPlacements {
 	}
 
 	public static <T extends Mob> void register(EntityType<T> entity, SpawnPlacements.Type placement, Heightmap.Types heightMap, SpawnPredicate<T> predicate, Operation operation) {
-		DATA_BY_TYPE.put(entity, new TLReGenSpawnPlacements.Data(placement, heightMap, predicate, operation));
+		SPAWN_PLACEMENTS.put(entity, new TLReGenSpawnPlacements.Data(placement, heightMap, predicate, operation));
 	}
 
 	public static boolean checkSurfaceWaterAnimalSpawnRules(EntityType<? extends WaterAnimal> entity, LevelAccessor levelAccessor, MobSpawnType mobSpawnType, BlockPos blockPos, RandomSource randomSource) {

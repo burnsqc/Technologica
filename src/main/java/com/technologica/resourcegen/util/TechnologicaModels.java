@@ -1,9 +1,9 @@
 package com.technologica.resourcegen.util;
 
 import com.technologica.registration.deferred.TechnologicaBlocks;
-import com.technologica.util.text.ResourceLocationHelper;
 import com.technologica.util.text.TechnologicaLocation;
 import com.tlregen.api.resourcegen.MasterResourceGenerator;
+import com.tlregen.util.ResourceLocationHelper;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -200,5 +200,9 @@ public class TechnologicaModels {
 
 	public static ModelFile abyssPortalModelNS(Block block) {
 		return withExistingParent(name(TechnologicaBlocks.ABYSS_PORTAL.get()) + "_ns", new TechnologicaLocation("block/abyss_portal_ns")).texture("particle", new TechnologicaLocation("block/abyss_portal")).texture("portal", new TechnologicaLocation("block/abyss_portal"));
+	}
+
+	public static ModelFile cubeBottomTop(String name, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
+		return withExistingParent(name, new ResourceLocation("block/cube_bottom_top")).texture("side", side).texture("bottom", bottom).texture("top", top);
 	}
 }

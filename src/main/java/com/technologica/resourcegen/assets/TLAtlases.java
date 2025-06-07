@@ -13,7 +13,7 @@ import net.minecraft.client.renderer.texture.atlas.sources.SingleFile;
 import net.minecraft.resources.ResourceLocation;
 
 public class TLAtlases {
-	public static final Map<ResourceLocation, List<SpriteSource>> ATLASES = new HashMap<>();
+	public static final Map<ResourceLocation, List<SpriteSource>> ATLASES = new HashMap<ResourceLocation, List<SpriteSource>>();
 	private static final ResourceLocation TEST_ATLAS_1 = new TechnologicaLocation("test_atlas_1");
 	private static final ResourceLocation TEST_ATLAS_2 = new TechnologicaLocation("test_atlas_2");
 
@@ -21,6 +21,5 @@ public class TLAtlases {
 		ATLASES.put(TEST_ATLAS_1, List.of(new SingleFile(new ResourceLocation("forge:white"), Optional.empty())));
 		ATLASES.put(TEST_ATLAS_2, List.of(new SingleFile(new ResourceLocation("forge:white"), Optional.empty())));
 		ATLASES.put(VanillaAtlases.BLOCKS, List.of(new SingleFile(new ResourceLocation("forge:white"), Optional.empty())));
-
 	}
 }

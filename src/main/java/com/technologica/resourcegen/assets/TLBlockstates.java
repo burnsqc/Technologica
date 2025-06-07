@@ -1,11 +1,13 @@
 package com.technologica.resourcegen.assets;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.resourcegen.util.TechnologicaModels;
 import com.technologica.util.AnnunciatorOverlay;
 import com.technologica.util.MiddleEnd;
 import com.technologica.util.lineshaftsystem.Radius;
-import com.technologica.util.text.ResourceLocationHelper;
 import com.technologica.util.text.TechnologicaLocation;
 import com.technologica.world.level.block.AbyssPortalBlock;
 import com.technologica.world.level.block.GlueBlock;
@@ -15,6 +17,8 @@ import com.technologica.world.level.block.VineCropBlock;
 import com.technologica.world.level.block.state.properties.TechnologicaBlockStateProperties;
 import com.tlregen.api.resourcegen.assets.TLReGenBlockstates;
 import com.tlregen.api.resourcegen.util.TLReGenConfiguredModel;
+import com.tlregen.api.resourcegen.util.TLReGenVariantBlockStateBuilder;
+import com.tlregen.util.ResourceLocationHelper;
 
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
@@ -47,11 +51,22 @@ import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.Half;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.block.state.properties.StairsShape;
+import net.minecraftforge.client.model.generators.IGeneratedBlockState;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.client.model.generators.MultiPartBlockStateBuilder;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class TLBlockstates extends TLReGenBlockstates {
+	public static final HashMap<Block, IGeneratedBlockState> BLOCKSTATES = new HashMap<Block, IGeneratedBlockState>();
+
+	public TLBlockstates(Map<Block, IGeneratedBlockState> mapIn) {
+		super(mapIn);
+	}
+
+	static {
+		BLOCKSTATES.put(TechnologicaBlocks.MULCH.get(), new TLReGenVariantBlockStateBuilder(TechnologicaBlocks.MULCH.get()).partialState().setModels(new TLReGenConfiguredModel(TechnologicaModels.cubeBottomTop(ResourceLocationHelper.getPath(TechnologicaBlocks.MULCH.get()), new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.MULCH.get()) + "_side"), new ResourceLocation("block/dirt"), new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.MULCH.get()) + "_top")))));
+		BLOCKSTATES.put(TechnologicaBlocks.DISPLAY_CASE.get(), new TLReGenVariantBlockStateBuilder(TechnologicaBlocks.DISPLAY_CASE.get()).partialState().setModels(new TLReGenConfiguredModel(TechnologicaModels.displayModel(TechnologicaBlocks.DISPLAY_CASE.get()))));
+	}
 
 	@Override
 	protected void populate() {
@@ -81,11 +96,8 @@ public class TLBlockstates extends TLReGenBlockstates {
 		fluidBlocks();
 		skulls();
 
-		getVariantBuilder(TechnologicaBlocks.MULCH.get()).partialState().setModels(new TLReGenConfiguredModel(models.cubeBottomTop(ResourceLocationHelper.getPath(TechnologicaBlocks.MULCH.get()), new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.MULCH.get()) + "_side"), new ResourceLocation("block/dirt"), new TechnologicaLocation("block/" + ResourceLocationHelper.getPath(TechnologicaBlocks.MULCH.get()) + "_top"))));
 
 		tallBlock(TechnologicaBlocks.TRELLIS.get(), TechnologicaModels.trellis(TechnologicaBlocks.TRELLIS.get(), blockTexture(TechnologicaBlocks.TRELLIS.get())));
-
-		getVariantBuilder(TechnologicaBlocks.DISPLAY_CASE.get()).partialState().setModels(new TLReGenConfiguredModel(TechnologicaModels.displayModel(TechnologicaBlocks.DISPLAY_CASE.get())));
 
 		twelveDirectionBlockState(TechnologicaBlocks.LINE_SHAFT_HANGER.get(), TechnologicaModels.lineShaftHangerModel(TechnologicaBlocks.LINE_SHAFT_HANGER.get()), TechnologicaModels.lineShaftHangerModel2(TechnologicaBlocks.LINE_SHAFT_HANGER.get()), TechnologicaModels.lineShaftHangerModel3(TechnologicaBlocks.LINE_SHAFT_HANGER.get()), TechnologicaModels.lineShaftHangerModel4(TechnologicaBlocks.LINE_SHAFT_HANGER.get()));
 		lineShaftBlockState(TechnologicaBlocks.LINE_SHAFT.get(), TechnologicaModels.lineShaftNoPulleyModel(TechnologicaBlocks.LINE_SHAFT.get()), TechnologicaModels.lineShaftSmallPulleyModel(TechnologicaBlocks.LINE_SHAFT.get()), TechnologicaModels.lineShaftMediumPulleyModel(TechnologicaBlocks.LINE_SHAFT.get()), TechnologicaModels.lineShaftLargePulleyModel(TechnologicaBlocks.LINE_SHAFT.get()));
@@ -1276,7 +1288,7 @@ public class TLBlockstates extends TLReGenBlockstates {
 	}
 
 	private void logBlockWithRenderType(RotatedPillarBlock block, String renderType) {
-		axisBlockWithRenderType(block, blockTexture(block), extend(blockTexture(block), "_top"), renderType);
+		axisBlockWithRenderType(block, blockTexture(block), ResourceLocationHelper.extend(blockTexture(block), "_top"), renderType);
 	}
 
 	private void axisBlockWithRenderType(RotatedPillarBlock block, ResourceLocation side, ResourceLocation end, String renderType) {

@@ -6,9 +6,9 @@ import java.util.function.BiFunction;
 
 import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.registration.deferred.TechnologicaItems;
-import com.technologica.util.text.ResourceLocationHelper;
 import com.technologica.util.text.TechnologicaLocation;
 import com.tlregen.api.resourcegen.assets.TLReGenModelsItem;
+import com.tlregen.util.ResourceLocationHelper;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;

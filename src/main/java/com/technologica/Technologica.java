@@ -241,7 +241,7 @@ public class Technologica {
 		CHANNEL.registerMessage(PACKET_ID++, SetMeteorStorm.class, SetMeteorStorm::encode, SetMeteorStorm::decode, SetMeteorStorm::handle);
 		CHANNEL.registerMessage(PACKET_ID++, SetMeteorStormLevel.class, SetMeteorStormLevel::encode, SetMeteorStormLevel::decode, SetMeteorStormLevel::handle);
 
-		MASTER_SETUP_EXECUTOR.addEntityAttributes(() -> TechnologicaDefaultAttributes.SUPPLIERS);
+		MASTER_SETUP_EXECUTOR.addEntityAttributes(() -> TechnologicaDefaultAttributes.DEFAULT_ATTRIBUTES);
 		MASTER_SETUP_EXECUTOR.addCapabilities(List.of(TechnologicaAbilities.class, Link.class));
 		MASTER_SETUP_EXECUTOR.addCommands(() -> TechnologicaCommands.COMMANDS);
 		MASTER_SETUP_EXECUTOR.addToCompostables(() -> TechnologicaCompostables.COMPOSTABLES);
@@ -256,18 +256,18 @@ public class Technologica {
 		MASTER_SETUP_EXECUTOR.registerBlockEntityRenderers(() -> TechnologicaBlockEntityRenderers.PROVIDERS);
 		MASTER_SETUP_EXECUTOR.registerAdditionalModels(() -> AdditionalModels.MODELS);
 		MASTER_SETUP_EXECUTOR.registerColorHandlersBlock(() -> BlockColorHandlers.HANDLERS);
-		MASTER_SETUP_EXECUTOR.registerDimensionSpecialEffects(() -> TechnologicaDimensionSpecialEffects.EFFECTS);
+		MASTER_SETUP_EXECUTOR.registerDimensionSpecialEffects(() -> TechnologicaDimensionSpecialEffects.DIMENSION_SPECIAL_EFFECTS);
 		MASTER_SETUP_EXECUTOR.registerParticleProvidersSprites(() -> TechnologicaParticleProviders.SPRITES);
 		MASTER_SETUP_EXECUTOR.registerParticleProvidersSpriteSets(() -> TechnologicaParticleProviders.SPRITE_SETS);
 		MASTER_SETUP_EXECUTOR.registerScreens(() -> TechnologicaMenuScreens.SCREENS);
 		MASTER_SETUP_EXECUTOR.registerSkullTextures(() -> TechnologicaSkullBlockRenderer.SKIN_BY_TYPE);
 		MASTER_SETUP_EXECUTOR.setFluidRenderTypes(() -> TechnologicaItemBlockRenderTypes.TYPE_BY_FLUID);
 		MASTER_SETUP_EXECUTOR.addRenderTypes(() -> TechnologicaRenderBuffers.FIXED_BUFFERS);
-		MASTER_SETUP_EXECUTOR.registerSpawnPlacements(() -> TechnologicaSpawnPlacements.DATA_BY_TYPE);
+		MASTER_SETUP_EXECUTOR.registerSpawnPlacements(() -> TechnologicaSpawnPlacements.SPAWN_PLACEMENTS);
 		MASTER_SETUP_EXECUTOR.addConditionSerializers(() -> Set.of(BooleanConfigValueCondition.Serializer.INSTANCE));
 
 		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLReGenAtlases(TLAtlases.ATLASES));
-		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLBlockstates());
+		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLBlockstates(TLBlockstates.BLOCKSTATES));
 		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLReGenFont(TLFont.FONTS));
 		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLReGenLang(TLLang.LANG));
 		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLModelsBlock());
