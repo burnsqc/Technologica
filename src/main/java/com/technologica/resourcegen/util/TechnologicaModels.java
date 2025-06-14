@@ -177,11 +177,11 @@ public class TechnologicaModels {
 		return withExistingParent(ResourceLocationHelper.getPath(block), new TechnologicaLocation("gourd")).renderType("cutout_mipped").texture("gourd", blockTexture(block));
 	}
 
-	public static ModelFile hopper(String name, String top, String side, String inside) {
+	public static ModelFile hopperModel(String name, String top, String side, String inside) {
 		return withExistingParent(name, new TechnologicaLocation("technologica_hopper")).texture("particle", side).texture("top", top).texture("side", side).texture("inside", inside);
 	}
 
-	public static ModelFile basin(String name, String top, String bottom, String side) {
+	public static ModelFile basinModel(String name, String top, String bottom, String side) {
 		return withExistingParent(name, new TechnologicaLocation("basin_model")).texture("particle", side).texture("top", top).texture("bottom", bottom).texture("side", side).texture("inside", bottom);
 	}
 
@@ -223,6 +223,10 @@ public class TechnologicaModels {
 
 	public static ModelBuilder<BlockModelBuilder> fluid(Block block) {
 		return getBuilder(ForgeRegistries.BLOCKS.getKey(block).getPath()).texture("particle", "minecraft:block/water_still");
+	}
+
+	public static ModelFile cubeAll(Block block) {
+		return cubeAll(name(block), blockTexture(block));
 	}
 
 	public static ModelBuilder<BlockModelBuilder> cubeAll(String name, ResourceLocation texture) {
@@ -363,5 +367,13 @@ public class TechnologicaModels {
 
 	public static ModelBuilder<BlockModelBuilder> cubeColumnHorizontal(String name, ResourceLocation side, ResourceLocation end) {
 		return withExistingParent(name, "block/cube_column_horizontal").texture("side", side).texture("end", end);
+	}
+
+	public static ModelFile buttonInventoryModel(Block block, String renderType) {
+		return withExistingParent(ResourceLocationHelper.getPath(block) + "_inventory", "block/button_inventory").renderType(renderType);
+	}
+
+	public static ModelBuilder<BlockModelBuilder> fenceInventory(String name, ResourceLocation texture) {
+		return singleTexture(name, "block/fence_inventory", texture);
 	}
 }
