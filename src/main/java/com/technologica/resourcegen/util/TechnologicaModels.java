@@ -3,6 +3,7 @@ package com.technologica.resourcegen.util;
 import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.util.text.TechnologicaLocation;
 import com.tlregen.api.resourcegen.MasterResourceGenerator;
+import com.tlregen.api.resourcegen.util.VanillaModels;
 import com.tlregen.util.ResourceLocationHelper;
 
 import net.minecraft.resources.ResourceLocation;
@@ -16,6 +17,43 @@ import net.minecraftforge.common.data.ExistingFileHelper.ResourceType;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class TechnologicaModels {
+	public static final ModelFile CHAIR = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/chair"));
+	public static final ModelFile TABLE = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/table"));
+	public static final ModelFile CUBIC_CRYSTAL = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/cubic_crystal"));
+	public static final ModelFile HEXAGONAL_CRYSTAL = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/hexagonal_crystal"));
+	public static final ModelFile LEAFY_CRYSTAL = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/leafy_crystal"));
+	public static final ModelFile SPIKY_CRYSTAL = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/spiky_crystal"));
+	public static final ModelFile GOURD = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/gourd"));
+	public static final ModelFile GOURD_STEM = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/stem_gourd"));
+	public static final ModelFile DISPLAY_CASE = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/display"));
+	public static final ModelFile BASIN = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_model"));
+	public static final ModelFile BASIN_FILLED[] = { new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level1")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level2")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level3")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level4")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level5")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level6")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level7")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level8")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level9")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level10")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level11")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level12")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level13")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level14")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level15")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level16")) };
+	public static final ModelFile HOLLOW_LOG = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/hollow_log"));
+	public static final ModelFile HOPPER = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/technologica_hopper"));
+	public static final ModelFile HOPPER_SIDE = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/technologica_hopper_side"));
+	public static final ModelFile GLUE = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/glue_model"));
+	public static final ModelFile MONITOR = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/monitor_model"));
+	public static final ModelFile KEYBOARD = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/keyboard_model"));
+	public static final ModelFile TREE_TAP = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/tap"));
+	public static final ModelFile TRELLIS = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/trellis_model"));
+	public static final ModelFile TAPE_DRIVE_LOWER = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/tape_drive_lower_model"));
+	public static final ModelFile TAPE_DRIVE_UPPER = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/tape_drive_upper_model"));
+	public static final ModelFile SMALL_PULLEY = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/small_pulley_model"));
+	public static final ModelFile MEDIUM_PULLEY = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/medium_pulley_model"));
+	public static final ModelFile LARGE_PULLEY = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/large_pulley_model"));
+	public static final ModelFile LINE_SHAFT_HANGER = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/line_shaft_hanger_model"));
+	public static final ModelFile LINE_SHAFT_HANGER2 = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/line_shaft_hanger2_model"));
+	public static final ModelFile LINE_SHAFT_HANGER_SHAFT = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/line_shaft_hanger_shaft_model"));
+	public static final ModelFile LINE_SHAFT_HANGER2_SHAFT = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/line_shaft_hanger2_shaft_model"));
+	public static final ModelFile LINE_SHAFT_NO_PULLEY = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/line_shaft_no_pulley_model"));
+	public static final ModelFile LINE_SHAFT_SMALL_PULLEY = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/line_shaft_small_pulley_model"));
+	public static final ModelFile LINE_SHAFT_MEDIUM_PULLEY = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/line_shaft_medium_pulley_model"));
+	public static final ModelFile LINE_SHAFT_LARGE_PULLEY = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/line_shaft_large_pulley_model"));
+	public static final ModelFile MOTOR = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/motor"));
+	public static final ModelFile MOTOR2 = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/motor2"));
+	public static final ModelFile PANEL = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/panel"));
+	public static final ModelFile CUBE_EACH_FACE = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/cube_each_face"));
+
 	public static BlockModelBuilder getBuilder(String path) {
 		ResourceLocation outputLoc = extendWithFolder(path.contains(":") ? new ResourceLocation(path) : new ResourceLocation(MasterResourceGenerator.modID, path));
 		MasterResourceGenerator.helper.trackGenerated(outputLoc, new ResourceType(PackType.CLIENT_RESOURCES, ".json", "models"));
@@ -57,8 +95,130 @@ public class TechnologicaModels {
 		return singleTexture(name, parent, "texture", texture);
 	}
 
-	public static ModelFile chairModel(Block block, ResourceLocation texture, String renderType) {
-		return singleTexture(ResourceLocationHelper.getPath(block), new TechnologicaLocation("chair"), "planks", texture).renderType(renderType);
+	private static BlockModelBuilder blockModel(String path) {
+		ResourceLocation outputLoc = extendWithFolderBlock(path.contains(":") ? new ResourceLocation(path) : new ResourceLocation(MasterResourceGenerator.modID, path));
+		BlockModelBuilder blockModelBuilder = new BlockModelBuilder(outputLoc, MasterResourceGenerator.helper);
+		return blockModelBuilder;
+	}
+
+	private static ResourceLocation extendWithFolderBlock(ResourceLocation rl) {
+		return rl.getPath().contains("/") ? rl : new ResourceLocation(rl.getNamespace(), "block/" + rl.getPath());
+	}
+
+	private static String path(Block block) {
+		return ForgeRegistries.BLOCKS.getKey(block).getPath();
+	}
+
+	public static BlockModelBuilder chair(Block block, ResourceLocation texture, ResourceLocation renderType) {
+		return blockModel(path(block)).parent(CHAIR).texture("planks", texture).renderType(renderType);
+	}
+
+	public static BlockModelBuilder table(Block block, ResourceLocation texture, ResourceLocation renderType) {
+		return blockModel(path(block)).parent(TABLE).texture("planks", texture).renderType(renderType);
+	}
+
+	public static BlockModelBuilder cropBottom(Block block, int stage) {
+		return blockModel(path(block) + "_bottom_stage" + stage).parent(VanillaModels.CROP).texture("crop", blockTexture(block) + "_bottom_stage" + stage).renderType(VanillaModels.CUTOUT);
+	}
+
+	public static BlockModelBuilder cropTop(Block block, int stage) {
+		return blockModel(path(block) + "_top_stage" + stage).parent(VanillaModels.CROP).texture("crop", blockTexture(block) + "_top_stage" + stage).renderType(VanillaModels.CUTOUT);
+	}
+
+	public static BlockModelBuilder bushBottom(Block block, int stage) {
+		return blockModel(path(block) + "_bottom_stage" + stage).parent(VanillaModels.CROSS).texture("cross", blockTexture(block) + "_bottom_stage" + stage).renderType(VanillaModels.CUTOUT_MIPPED);
+	}
+
+	public static BlockModelBuilder bushTop(Block block, int stage) {
+		return blockModel(path(block) + "_top_stage" + stage).parent(VanillaModels.CROSS).texture("cross", blockTexture(block) + "_top_stage" + stage).renderType(VanillaModels.CUTOUT_MIPPED);
+	}
+
+	public static BlockModelBuilder cubicCrystal(Block block) {
+		return blockModel(path(block)).parent(CUBIC_CRYSTAL).texture("crystal", blockTexture(block)).renderType(VanillaModels.TRANSLUCENT);
+	}
+
+	public static BlockModelBuilder hexagonalCrystal(Block block) {
+		return blockModel(path(block)).parent(HEXAGONAL_CRYSTAL).texture("crystal", blockTexture(block)).renderType(VanillaModels.TRANSLUCENT);
+	}
+
+	public static BlockModelBuilder leafyCrystal(Block block) {
+		return blockModel(path(block)).parent(LEAFY_CRYSTAL).texture("crystal", blockTexture(block)).renderType(VanillaModels.TRANSLUCENT);
+	}
+
+	public static BlockModelBuilder spikyCrystal(Block block) {
+		return blockModel(path(block)).parent(SPIKY_CRYSTAL).texture("crystal", blockTexture(block)).renderType(VanillaModels.TRANSLUCENT);
+	}
+
+	public static BlockModelBuilder gourd(Block block) {
+		return blockModel(path(block)).parent(GOURD).texture("gourd", blockTexture(block)).renderType(VanillaModels.CUTOUT_MIPPED);
+	}
+
+	public static BlockModelBuilder gourdStem(Block block, ResourceLocation texture) {
+		return blockModel(path(block)).parent(GOURD_STEM).texture("stem", texture).texture("upperstem", blockTexture(block)).renderType(VanillaModels.CUTOUT);
+	}
+
+	public static BlockModelBuilder displayCase(Block block) {
+		return blockModel(path(block)).parent(DISPLAY_CASE).texture("case", blockTexture(block)).texture("base", new ResourceLocation("block/black_wool")).renderType(VanillaModels.CUTOUT_MIPPED);
+	}
+
+	public static BlockModelBuilder basin(Block block) {
+		return blockModel(path(block)).parent(BASIN).texture("bottom", new TechnologicaLocation("block/basin_bottom")).texture("inside", new TechnologicaLocation("block/basin_bottom")).texture("particle", new TechnologicaLocation("block/basin_side")).texture("side", new TechnologicaLocation("block/basin_side")).texture("top", new TechnologicaLocation("block/basin_top"));
+	}
+
+	public static BlockModelBuilder hollowLog(Block block) {
+		return blockModel(path(block)).parent(HOLLOW_LOG).texture("end", new TechnologicaLocation("block/frostbitten_log_top")).texture("inside", new TechnologicaLocation("block/stripped_frostbitten_log_solid")).texture("side", new TechnologicaLocation("block/frostbitten_log")).renderType(VanillaModels.TRANSLUCENT);
+	}
+
+	public static BlockModelBuilder hopper(Block block) {
+		return blockModel(path(block)).parent(HOPPER).texture("inside", new TechnologicaLocation("block/fast_hopper_inside")).texture("particle", new TechnologicaLocation("block/fast_hopper_outside")).texture("side", new TechnologicaLocation("block/fast_hopper_outside")).texture("top", new TechnologicaLocation("block/fast_hopper_top"));
+	}
+	
+	public static BlockModelBuilder hopperSide(Block block) {
+		return blockModel(path(block)).parent(HOPPER_SIDE).texture("inside", new TechnologicaLocation("block/fast_hopper_inside")).texture("particle", new TechnologicaLocation("block/fast_hopper_outside")).texture("side", new TechnologicaLocation("block/fast_hopper_outside")).texture("top", new TechnologicaLocation("block/fast_hopper_top"));
+	}
+
+	public static BlockModelBuilder glue(Block block) {
+		return blockModel(path(block)).parent(GLUE).texture("face", new TechnologicaLocation("block/glue")).texture("particle", new TechnologicaLocation("block/glue"));
+	}
+
+	public static BlockModelBuilder sleepingBagTop(Block block) {
+		return blockModel(path(block)).parent(PANEL).texture("bottom", new TechnologicaLocation("block/sleeping_bag_bottom")).texture("particle", new TechnologicaLocation("block/sleeping_bag_side")).texture("side", new TechnologicaLocation("block/sleeping_bag_side")).texture("top", new TechnologicaLocation("block/sleeping_bag_top"));
+	}
+	
+	public static BlockModelBuilder sleepingBagTopHead(Block block) {
+		return blockModel(path(block)).parent(PANEL).texture("bottom", new TechnologicaLocation("block/sleeping_bag_bottom")).texture("particle", new TechnologicaLocation("block/sleeping_bag_side")).texture("side", new TechnologicaLocation("block/sleeping_bag_side")).texture("top", new TechnologicaLocation("block/sleeping_bag_top_head"));
+	}
+
+	public static BlockModelBuilder cubeEachFace(Block block, ResourceLocation down, ResourceLocation east, ResourceLocation north, ResourceLocation particle, ResourceLocation south, ResourceLocation up, ResourceLocation west) {
+		return blockModel(path(block)).parent(CUBE_EACH_FACE).texture("down", down).texture("east", east).texture("north", north).texture("particle", particle).texture("south", south).texture("up", up).texture("west", west);
+	}
+
+	public static BlockModelBuilder basin(Block block, int level) {
+		return blockModel(ResourceLocationHelper.path(block) + "_level" + level).parent(BASIN_FILLED[level - 1]).texture("bottom", new TechnologicaLocation("block/basin_bottom")).texture("content", new TechnologicaLocation("block/opaque_fluid_still")).texture("inside", new TechnologicaLocation("block/basin_bottom")).texture("particle", new TechnologicaLocation("block/basin_side")).texture("side", new TechnologicaLocation("block/basin_side")).texture("top", new TechnologicaLocation("block/basin_top"));
+	}
+
+	public static BlockModelBuilder byoParent(Block block, ModelFile parent, ResourceLocation texture) {
+		return blockModel(ResourceLocationHelper.path(block)).parent(parent).texture("texture", texture);
+	}
+
+	public static BlockModelBuilder byoParent(ResourceLocation resourceLocation, ModelFile parent, ResourceLocation texture) {
+		return blockModel(resourceLocation.getPath()).parent(parent).texture("texture", texture);
+	}
+
+	public static BlockModelBuilder byoParentNoTexture(Block block, ModelFile parent, ResourceLocation renderType) {
+		return blockModel(ResourceLocationHelper.path(block)).parent(parent).renderType(renderType);
+	}
+
+	public static BlockModelBuilder byoParent(Block block, ModelFile parent, ResourceLocation texture, ResourceLocation renderType) {
+		return blockModel(ResourceLocationHelper.path(block)).parent(parent).texture("texture", texture).renderType(renderType);
+	}
+
+	public static BlockModelBuilder byoParent(Block block, ModelFile parent) {
+		return blockModel(ResourceLocationHelper.path(block)).parent(parent);
+	}
+
+	public static BlockModelBuilder byoParent(ResourceLocation resourceLocation, ModelFile parent) {
+		return blockModel(resourceLocation.getPath()).parent(parent);
 	}
 
 	public static ModelFile glueModel(String name, ResourceLocation particle, ResourceLocation face) {
@@ -66,99 +226,99 @@ public class TechnologicaModels {
 	}
 
 	public static ModelFile trellis(Block block, ResourceLocation texture) {
-		return singleTexture(ResourceLocationHelper.getPath(block), new TechnologicaLocation("trellis_model"), texture).renderType("cutout");
+		return singleTexture(ResourceLocationHelper.path(block), new TechnologicaLocation("trellis_model"), texture).renderType("cutout");
 	}
 
 	public static ModelFile hollowLogModel(Block block) {
-		return withExistingParent(ResourceLocationHelper.getPath(block), new TechnologicaLocation("hollow_log")).texture("side", blockTexture(TechnologicaBlocks.FROSTBITTEN_LOG.get())).texture("end", blockTexture(TechnologicaBlocks.FROSTBITTEN_LOG.get()) + "_top").texture("inside", blockTexture(TechnologicaBlocks.STRIPPED_FROSTBITTEN_LOG.get()) + "_solid").renderType("translucent");
+		return withExistingParent(ResourceLocationHelper.path(block), new TechnologicaLocation("hollow_log")).texture("side", blockTexture(TechnologicaBlocks.FROSTBITTEN_LOG.get())).texture("end", blockTexture(TechnologicaBlocks.FROSTBITTEN_LOG.get()) + "_top").texture("inside", blockTexture(TechnologicaBlocks.STRIPPED_FROSTBITTEN_LOG.get()) + "_solid").renderType("translucent");
 	}
 
 	public static ModelFile tapeDriveLowerModel(Block block) {
-		return withExistingParent(ResourceLocationHelper.getPath(block) + "_lower", new TechnologicaLocation(ResourceLocationHelper.getPath(block) + "_lower_model"));
+		return withExistingParent(ResourceLocationHelper.path(block) + "_lower", new TechnologicaLocation(ResourceLocationHelper.path(block) + "_lower_model"));
 	}
 
 	public static ModelFile tapeDriveUpperModel(Block block) {
-		return withExistingParent(ResourceLocationHelper.getPath(block) + "_upper", new TechnologicaLocation(ResourceLocationHelper.getPath(block) + "_upper_model"));
+		return withExistingParent(ResourceLocationHelper.path(block) + "_upper", new TechnologicaLocation(ResourceLocationHelper.path(block) + "_upper_model"));
 	}
 
 	public static ModelFile tableModel(Block block, ResourceLocation texture, String renderType) {
-		return singleTexture(ResourceLocationHelper.getPath(block), new TechnologicaLocation("table"), "planks", texture).renderType(renderType);
+		return singleTexture(ResourceLocationHelper.path(block), new TechnologicaLocation("table"), "planks", texture).renderType(renderType);
 	}
 
 	public static ModelFile hexagonalCrystalModel(Block block) {
 		ResourceLocation location = ForgeRegistries.BLOCKS.getKey(block);
-		return singleTexture(ResourceLocationHelper.getPath(block), new TechnologicaLocation("hexagonal_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath())).renderType("translucent");
+		return singleTexture(ResourceLocationHelper.path(block), new TechnologicaLocation("hexagonal_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath())).renderType("translucent");
 	}
 
 	public static ModelFile cubicCrystalModel(Block block) {
 		ResourceLocation location = ForgeRegistries.BLOCKS.getKey(block);
-		return singleTexture(ResourceLocationHelper.getPath(block), new TechnologicaLocation("cubic_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath())).renderType("translucent");
+		return singleTexture(ResourceLocationHelper.path(block), new TechnologicaLocation("cubic_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath())).renderType("translucent");
 	}
 
 	public static ModelFile spikyCrystalModel(Block block) {
 		ResourceLocation location = ForgeRegistries.BLOCKS.getKey(block);
-		return singleTexture(ResourceLocationHelper.getPath(block), new TechnologicaLocation("spiky_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath())).renderType("translucent");
+		return singleTexture(ResourceLocationHelper.path(block), new TechnologicaLocation("spiky_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath())).renderType("translucent");
 	}
 
 	public static ModelFile leafyCrystalModel(Block block) {
 		ResourceLocation location = ForgeRegistries.BLOCKS.getKey(block);
-		return singleTexture(ResourceLocationHelper.getPath(block), new TechnologicaLocation("leafy_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath())).renderType("translucent");
+		return singleTexture(ResourceLocationHelper.path(block), new TechnologicaLocation("leafy_crystal"), "crystal", blockTexture(block)).texture("crystal", new ResourceLocation(location.getNamespace(), "block/" + location.getPath())).renderType("translucent");
 	}
 
 	public static ModelFile lineShaftNoPulleyModel(Block block) {
-		return withExistingParent(ResourceLocationHelper.getPath(block) + "_no_pulley", new TechnologicaLocation("line_shaft_no_pulley_model"));
+		return withExistingParent(ResourceLocationHelper.path(block) + "_no_pulley", new TechnologicaLocation("line_shaft_no_pulley_model"));
 	}
 
 	public static ModelFile lineShaftSmallPulleyModel(Block block) {
-		return withExistingParent(ResourceLocationHelper.getPath(block) + "_small_pulley", new TechnologicaLocation("line_shaft_small_pulley_model"));
+		return withExistingParent(ResourceLocationHelper.path(block) + "_small_pulley", new TechnologicaLocation("line_shaft_small_pulley_model"));
 	}
 
 	public static ModelFile lineShaftMediumPulleyModel(Block block) {
-		return withExistingParent(ResourceLocationHelper.getPath(block) + "_medium_pulley", new TechnologicaLocation("line_shaft_medium_pulley_model"));
+		return withExistingParent(ResourceLocationHelper.path(block) + "_medium_pulley", new TechnologicaLocation("line_shaft_medium_pulley_model"));
 	}
 
 	public static ModelFile lineShaftLargePulleyModel(Block block) {
-		return withExistingParent(ResourceLocationHelper.getPath(block) + "_large_pulley", new TechnologicaLocation("line_shaft_large_pulley_model"));
+		return withExistingParent(ResourceLocationHelper.path(block) + "_large_pulley", new TechnologicaLocation("line_shaft_large_pulley_model"));
 	}
 
 	public static ModelFile lineShaftHangerModel(Block block) {
-		return withExistingParent(ResourceLocationHelper.getPath(block), new TechnologicaLocation("line_shaft_hanger_model"));
+		return withExistingParent(ResourceLocationHelper.path(block), new TechnologicaLocation("line_shaft_hanger_model"));
 	}
 
 	public static ModelFile lineShaftHangerModel2(Block block) {
-		return withExistingParent(ResourceLocationHelper.getPath(block) + "2", new TechnologicaLocation("line_shaft_hanger2_model"));
+		return withExistingParent(ResourceLocationHelper.path(block) + "2", new TechnologicaLocation("line_shaft_hanger2_model"));
 	}
 
 	public static ModelFile lineShaftHangerModel3(Block block) {
-		return withExistingParent(ResourceLocationHelper.getPath(block) + "_shaft", new TechnologicaLocation("line_shaft_hanger_shaft_model"));
+		return withExistingParent(ResourceLocationHelper.path(block) + "_shaft", new TechnologicaLocation("line_shaft_hanger_shaft_model"));
 	}
 
 	public static ModelFile lineShaftHangerModel4(Block block) {
-		return withExistingParent(ResourceLocationHelper.getPath(block) + "2_shaft", new TechnologicaLocation("line_shaft_hanger2_shaft_model"));
+		return withExistingParent(ResourceLocationHelper.path(block) + "2_shaft", new TechnologicaLocation("line_shaft_hanger2_shaft_model"));
 	}
 
 	public static ModelFile motorModel(Block block) {
-		return withExistingParent(ResourceLocationHelper.getPath(block), new TechnologicaLocation("motor")).texture("motor", blockTexture(block));
+		return withExistingParent(ResourceLocationHelper.path(block), new TechnologicaLocation("motor")).texture("motor", blockTexture(block));
 	}
 
 	public static ModelFile motor2Model(Block block) {
-		return withExistingParent(ResourceLocationHelper.getPath(block) + "2", new TechnologicaLocation("motor2")).texture("motor", blockTexture(block));
+		return withExistingParent(ResourceLocationHelper.path(block) + "2", new TechnologicaLocation("motor2")).texture("motor", blockTexture(block));
 	}
 
 	public static ModelFile treeTapModel(Block block) {
-		return withExistingParent(ResourceLocationHelper.getPath(block), new TechnologicaLocation("tap")).texture("tree_tap", blockTexture(block));
+		return withExistingParent(ResourceLocationHelper.path(block), new TechnologicaLocation("tap")).texture("tree_tap", blockTexture(block));
 	}
 
 	public static ModelFile monitorModel(Block block) {
-		return withExistingParent(ResourceLocationHelper.getPath(block), new TechnologicaLocation(ResourceLocationHelper.getPath(block) + "_model"));
+		return withExistingParent(ResourceLocationHelper.path(block), new TechnologicaLocation(ResourceLocationHelper.path(block) + "_model"));
 	}
 
 	public static ModelFile keyboardModel(Block block) {
-		return withExistingParent(ResourceLocationHelper.getPath(block), new TechnologicaLocation(ResourceLocationHelper.getPath(block) + "_model"));
+		return withExistingParent(ResourceLocationHelper.path(block), new TechnologicaLocation(ResourceLocationHelper.path(block) + "_model"));
 	}
 
 	public static ModelFile displayModel(Block block) {
-		return withExistingParent(ResourceLocationHelper.getPath(block), new TechnologicaLocation("display")).texture("case", blockTexture(block)).texture("base", new ResourceLocation("block/black_wool")).renderType("cutout_mipped");
+		return withExistingParent(ResourceLocationHelper.path(block), new TechnologicaLocation("display")).texture("case", blockTexture(block)).texture("base", new ResourceLocation("block/black_wool")).renderType("cutout_mipped");
 	}
 
 	public static ModelFile cubeEachFace(String name, ResourceLocation down, ResourceLocation up, ResourceLocation north, ResourceLocation east, ResourceLocation south, ResourceLocation west) {
@@ -174,7 +334,7 @@ public class TechnologicaModels {
 	}
 
 	public static ModelFile gourdCropModel(Block block) {
-		return withExistingParent(ResourceLocationHelper.getPath(block), new TechnologicaLocation("gourd")).renderType("cutout_mipped").texture("gourd", blockTexture(block));
+		return withExistingParent(ResourceLocationHelper.path(block), new TechnologicaLocation("gourd")).renderType("cutout_mipped").texture("gourd", blockTexture(block));
 	}
 
 	public static ModelFile hopperModel(String name, String top, String side, String inside) {
@@ -242,11 +402,11 @@ public class TechnologicaModels {
 	}
 
 	public static ModelBuilder<BlockModelBuilder> pressurePlate(Block block, ResourceLocation texture, String renderType) {
-		return singleTexture(ResourceLocationHelper.getPath(block), new ResourceLocation("pressure_plate_up"), texture).renderType(renderType);
+		return singleTexture(ResourceLocationHelper.path(block), new ResourceLocation("pressure_plate_up"), texture).renderType(renderType);
 	}
 
 	public static ModelBuilder<BlockModelBuilder> pressurePlateDown(Block block, ResourceLocation texture, String renderType) {
-		return singleTexture(ResourceLocationHelper.getPath(block) + "_down", new ResourceLocation("pressure_plate_down"), texture).renderType(renderType);
+		return singleTexture(ResourceLocationHelper.path(block) + "_down", new ResourceLocation("pressure_plate_down"), texture).renderType(renderType);
 	}
 	
 	public static ModelBuilder<BlockModelBuilder> doorBottomLeft(String name, ResourceLocation bottom, ResourceLocation top) {
@@ -370,7 +530,7 @@ public class TechnologicaModels {
 	}
 
 	public static ModelFile buttonInventoryModel(Block block, String renderType) {
-		return withExistingParent(ResourceLocationHelper.getPath(block) + "_inventory", "block/button_inventory").renderType(renderType);
+		return withExistingParent(ResourceLocationHelper.path(block) + "_inventory", "block/button_inventory").renderType(renderType);
 	}
 
 	public static ModelBuilder<BlockModelBuilder> fenceInventory(String name, ResourceLocation texture) {

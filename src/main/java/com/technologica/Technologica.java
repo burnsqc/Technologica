@@ -104,6 +104,7 @@ import com.tlregen.api.resourcegen.MasterResourceGenerator;
 import com.tlregen.api.resourcegen.assets.TLReGenAtlases;
 import com.tlregen.api.resourcegen.assets.TLReGenFont;
 import com.tlregen.api.resourcegen.assets.TLReGenLang;
+import com.tlregen.api.resourcegen.assets.TLReGenModelsBlock;
 import com.tlregen.api.resourcegen.assets.TLReGenModelsItem;
 import com.tlregen.api.resourcegen.assets.TLReGenParticles;
 import com.tlregen.api.resourcegen.assets.TLReGenSounds;
@@ -271,7 +272,7 @@ public class Technologica {
 		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLBlockstates(TLBlockstates.BLOCKSTATES));
 		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLReGenFont(TLFont.FONTS));
 		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLReGenLang(TLLang.LANG));
-		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLModelsBlock());
+		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLReGenModelsBlock(TLModelsBlock.MODELS_BLOCK));
 		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLReGenModelsItem(TLModelsItem.MODELS_ITEM));
 		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLReGenParticles(TLParticles.PARTICLES));
 		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLReGenSounds(TLSounds.SOUNDS));
