@@ -6,7 +6,6 @@ import java.util.Map;
 import com.technologica.registration.deferred.TechnologicaBlocks;
 import com.technologica.resourcegen.util.TechnologicaModels;
 import com.technologica.util.text.TechnologicaLocation;
-import com.tlregen.api.resourcegen.assets.TLReGenModelsBlock;
 import com.tlregen.api.resourcegen.util.VanillaModels;
 import com.tlregen.util.ResourceLocationHelper;
 
@@ -16,12 +15,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.client.model.generators.BlockModelBuilder;
 import net.minecraftforge.client.model.generators.ModelFile;
 
-public class TLModelsBlock extends TLReGenModelsBlock {
+public class TLModelsBlock {
 	public static final Map<ResourceLocation, BlockModelBuilder> MODELS_BLOCK = new HashMap<ResourceLocation, BlockModelBuilder>();
-
-	public TLModelsBlock() {
-		super(MODELS_BLOCK);
-	}
 
 	static {
 		blockModelCubeAll(TechnologicaBlocks.BLOCK_OF_ACTINIUM.get());
@@ -1003,10 +998,6 @@ public class TLModelsBlock extends TLReGenModelsBlock {
 		sleepingBag(TechnologicaBlocks.SLEEPING_BAG.get());
 		sawmill(TechnologicaBlocks.SAWMILL.get());
 		sawmillCore(TechnologicaBlocks.SAWMILL_CORE.get());
-	}
-
-	@Override
-	protected void populate() {
 	}
 
 	private static void blockModelCubeAll(Block block) {

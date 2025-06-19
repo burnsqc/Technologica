@@ -101,27 +101,7 @@ import com.tlregen.api.registration.DynamicRegister;
 import com.tlregen.api.registration.MasterDeferredRegistrar;
 import com.tlregen.api.registration.MasterDynamicRegistrar;
 import com.tlregen.api.resourcegen.MasterResourceGenerator;
-import com.tlregen.api.resourcegen.assets.TLReGenAtlases;
-import com.tlregen.api.resourcegen.assets.TLReGenFont;
-import com.tlregen.api.resourcegen.assets.TLReGenLang;
-import com.tlregen.api.resourcegen.assets.TLReGenModelsBlock;
-import com.tlregen.api.resourcegen.assets.TLReGenModelsItem;
-import com.tlregen.api.resourcegen.assets.TLReGenParticles;
-import com.tlregen.api.resourcegen.assets.TLReGenSounds;
 import com.tlregen.api.resourcegen.data.TLRGLootTablesGenerator;
-import com.tlregen.api.resourcegen.data.TLReGenDamageType;
-import com.tlregen.api.resourcegen.data.TLReGenDimension;
-import com.tlregen.api.resourcegen.data.TLReGenDimensionType;
-import com.tlregen.api.resourcegen.data.TLReGenForgeBiomeModifier;
-import com.tlregen.api.resourcegen.data.worldgen.TLReGenWorldgenBiome;
-import com.tlregen.api.resourcegen.data.worldgen.TLReGenWorldgenConfiguredFeature;
-import com.tlregen.api.resourcegen.data.worldgen.TLReGenWorldgenDensityFunction;
-import com.tlregen.api.resourcegen.data.worldgen.TLReGenWorldgenNoise;
-import com.tlregen.api.resourcegen.data.worldgen.TLReGenWorldgenNoiseSettings;
-import com.tlregen.api.resourcegen.data.worldgen.TLReGenWorldgenPlacedFeature;
-import com.tlregen.api.resourcegen.data.worldgen.TLReGenWorldgenStructure;
-import com.tlregen.api.resourcegen.data.worldgen.TLReGenWorldgenStructureSet;
-import com.tlregen.api.resourcegen.data.worldgen.TLReGenWorldgenTemplatePool;
 import com.tlregen.api.setup.MasterSetupExecutor;
 
 import net.minecraft.core.particles.ParticleType;
@@ -209,8 +189,8 @@ public class Technologica {
 	public static final DeferredRegister<StructurePieceType> STRUCTURE_PIECE_TYPES = MASTER_DEFERRED_REGISTRAR.addRegister(Registries.STRUCTURE_PIECE, () -> TechnologicaStructurePieceTypes.WHALE_CARCASS);
 	public static final DeferredRegister<TrunkPlacerType<?>> TRUNK_PLACER_TYPES = MASTER_DEFERRED_REGISTRAR.addRegister(Registries.TRUNK_PLACER_TYPE, () -> TechnologicaTrunkPlacerTypes.HUGE_TRUNK_PLACER);
 
-	public static final DynamicRegister<BiomeModifier> BIOME_MODIFIERS = MASTER_DYNAMIC_REGISTRAR.addRegister(ForgeRegistries.Keys.BIOME_MODIFIERS, () -> TechnologicaBiomeModifiers.BADLANDS_UNDERGROUND_ORES);
 	public static final DynamicRegister<Biome> BIOMES = MASTER_DYNAMIC_REGISTRAR.addRegister(ForgeRegistries.Keys.BIOMES, () -> TechnologicaBiomes.SILENT_EXPANSES);
+	public static final DynamicRegister<BiomeModifier> BIOME_MODIFIERS = MASTER_DYNAMIC_REGISTRAR.addRegister(ForgeRegistries.Keys.BIOME_MODIFIERS, () -> TechnologicaBiomeModifiers.BADLANDS_UNDERGROUND_ORES);
 	public static final DynamicRegister<ConfiguredFeature<?, ?>> CONFIGURED_FEATURES = MASTER_DYNAMIC_REGISTRAR.addRegister(Registries.CONFIGURED_FEATURE, () -> TechnologicaConfiguredFeatures.BRINE_POOL_CONFIGURED);
 	public static final DynamicRegister<DamageType> DAMAGE_TYPES = MASTER_DYNAMIC_REGISTRAR.addRegister(Registries.DAMAGE_TYPE, () -> TechnologicaDamageTypes.BLEED);
 	public static final DynamicRegister<DensityFunction> DENSITY_FUNCTIONS = MASTER_DYNAMIC_REGISTRAR.addRegister(Registries.DENSITY_FUNCTION, () -> TechnologicaDensityFunctions.CHALLENGER_DEEP_DEPTH);
@@ -220,9 +200,9 @@ public class Technologica {
 	public static final DynamicRegister<NoiseGeneratorSettings> NOISE_GENERATOR_SETTINGS = MASTER_DYNAMIC_REGISTRAR.addRegister(Registries.NOISE_SETTINGS, () -> TechnologicaNoiseGeneratorSettings.MOON);
 	public static final DynamicRegister<PaintingVariant> PAINTING_VARIANTS_DYN = MASTER_DYNAMIC_REGISTRAR.addRegister(Registries.PAINTING_VARIANT, () -> TechnologicaPaintingVariantsDyn.AMNESIA);
 	public static final DynamicRegister<PlacedFeature> PLACED_FEATURES = MASTER_DYNAMIC_REGISTRAR.addRegister(Registries.PLACED_FEATURE, () -> TechnologicaPlacedFeatures.BRINE_POOL_PLACED);
+	public static final DynamicRegister<Structure> STRUCTURES = MASTER_DYNAMIC_REGISTRAR.addRegister(Registries.STRUCTURE, () -> TechnologicaStructures.EL_DORADO);
 	public static final DynamicRegister<StructureSet> STRUCTURE_SETS = MASTER_DYNAMIC_REGISTRAR.addRegister(Registries.STRUCTURE_SET, () -> TechnologicaStructureSets.EL_DORADO);
 	public static final DynamicRegister<StructureTemplatePool> STRUCTURE_TEMPLATE_POOL = MASTER_DYNAMIC_REGISTRAR.addRegister(Registries.TEMPLATE_POOL, () -> TechnologicaStructureTemplatePools.DOME);
-	public static final DynamicRegister<Structure> STRUCTURES = MASTER_DYNAMIC_REGISTRAR.addRegister(Registries.STRUCTURE, () -> TechnologicaStructures.EL_DORADO);
 
 	public static final String PROTOCOL_VERSION = "1";
 	public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(new TechnologicaLocation("main"), () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
@@ -268,20 +248,20 @@ public class Technologica {
 		MASTER_SETUP_EXECUTOR.registerSpawnPlacements(() -> TechnologicaSpawnPlacements.SPAWN_PLACEMENTS);
 		MASTER_SETUP_EXECUTOR.addConditionSerializers(() -> Set.of(BooleanConfigValueCondition.Serializer.INSTANCE));
 
-		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLReGenAtlases(TLAtlases.ATLASES));
-		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLBlockstates(TLBlockstates.BLOCKSTATES));
-		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLReGenFont(TLFont.FONTS));
-		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLReGenLang(TLLang.LANG));
-		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLReGenModelsBlock(TLModelsBlock.MODELS_BLOCK));
-		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLReGenModelsItem(TLModelsItem.MODELS_ITEM));
-		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLReGenParticles(TLParticles.PARTICLES));
-		MASTER_RESOURCE_GENERATOR.addAssetProvider(() -> new TLReGenSounds(TLSounds.SOUNDS));
+		MASTER_RESOURCE_GENERATOR.addAtlases(() -> TLAtlases.ATLASES);
+		MASTER_RESOURCE_GENERATOR.addBlockStates(() -> TLBlockstates.BLOCKSTATES);
+		MASTER_RESOURCE_GENERATOR.addFonts(() -> TLFont.FONTS);
+		MASTER_RESOURCE_GENERATOR.addLang(() -> TLLang.LANG);
+		MASTER_RESOURCE_GENERATOR.addBlockModels(() -> TLModelsBlock.MODELS_BLOCK);
+		MASTER_RESOURCE_GENERATOR.addItemModels(() -> TLModelsItem.MODELS_ITEM);
+		MASTER_RESOURCE_GENERATOR.addParticles(() -> TLParticles.PARTICLES);
+		MASTER_RESOURCE_GENERATOR.addSounds(() -> TLSounds.SOUNDS);
 
 		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLRGAdvancementGenerator());
-		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenDamageType(DAMAGE_TYPES));
-		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenDimension(DIMENSIONS));
-		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenDimensionType(DIMENSION_TYPES));
-		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenForgeBiomeModifier(BIOME_MODIFIERS));
+		MASTER_RESOURCE_GENERATOR.addDamageTypes(() -> DAMAGE_TYPES);
+		MASTER_RESOURCE_GENERATOR.addDimensions(() -> DIMENSIONS);
+		MASTER_RESOURCE_GENERATOR.addDimensionTypes(() -> DIMENSION_TYPES);
+		MASTER_RESOURCE_GENERATOR.addBiomeModifiers(() -> BIOME_MODIFIERS);
 		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLLootModifiersGenerator());
 		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLRGLootTablesGenerator(List.of(new LootTableProvider.SubProviderEntry(TLLootTablesBlocksGenerator::new, LootContextParamSets.BLOCK), new LootTableProvider.SubProviderEntry(EntityLootDataGenerator::new, LootContextParamSets.ENTITY))));
 		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLRecipesGenerator());
@@ -291,15 +271,15 @@ public class Technologica {
 		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLTagItemsGenerator());
 		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLTagsPaintingVariantGenerator());
 		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLTagWorldgenBiomeGenerator());
-		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenBiome(BIOMES));
-		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenConfiguredFeature(CONFIGURED_FEATURES));
-		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenDensityFunction(DENSITY_FUNCTIONS));
-		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenNoise(NOISE));
-		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenNoiseSettings(NOISE_GENERATOR_SETTINGS));
-		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenPlacedFeature(PLACED_FEATURES));
-		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenStructure(STRUCTURES));
-		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenStructureSet(STRUCTURE_SETS));
-		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLReGenWorldgenTemplatePool(STRUCTURE_TEMPLATE_POOL));
+		MASTER_RESOURCE_GENERATOR.addBiomes(() -> BIOMES);
+		MASTER_RESOURCE_GENERATOR.addConfiguredFeatures(() -> CONFIGURED_FEATURES);
+		MASTER_RESOURCE_GENERATOR.addDensityFunctions(() -> DENSITY_FUNCTIONS);
+		MASTER_RESOURCE_GENERATOR.addNoiseParameters(() -> NOISE);
+		MASTER_RESOURCE_GENERATOR.addNoiseGeneratorSettings(() -> NOISE_GENERATOR_SETTINGS);
+		MASTER_RESOURCE_GENERATOR.addPlacedFeatures(() -> PLACED_FEATURES);
+		MASTER_RESOURCE_GENERATOR.addStructures(() -> STRUCTURES);
+		MASTER_RESOURCE_GENERATOR.addStructureSets(() -> STRUCTURE_SETS);
+		MASTER_RESOURCE_GENERATOR.addStructureTemplatePools(() -> STRUCTURE_TEMPLATE_POOL);
 	}
 
 	public static Technologica getInstance() {
