@@ -64,7 +64,6 @@ public class RenderLevelStageEventListener {
 		if (localPlayer.getItemBySlot(EquipmentSlot.HEAD).getItem() == TechnologicaItems.NIGHT_VISION_GOGGLES.get()) {
 			if (minecraft.gameRenderer.currentEffect() == null) {
 				minecraft.gameRenderer.loadEffect(new TechnologicaLocation("shaders/post/night_vision.json"));
-				localPlayer.playSound(TechnologicaSoundEvents.NIGHT_VISION.get());
 			}
 		} else {
 			if (minecraft.gameRenderer.currentEffect() != null) {

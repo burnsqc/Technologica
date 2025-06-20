@@ -5,6 +5,7 @@ import java.util.function.Supplier;
 
 import com.technologica.Technologica;
 import com.technologica.registration.deferred.TechnologicaItems;
+import com.technologica.registration.deferred.TechnologicaSoundEvents;
 
 import net.minecraft.Util;
 import net.minecraft.sounds.SoundEvent;
@@ -68,7 +69,7 @@ public enum TechnologicaArmorMaterials implements StringRepresentable, ArmorMate
 		enumMap.put(ArmorItem.Type.LEGGINGS, 5);
 		enumMap.put(ArmorItem.Type.CHESTPLATE, 6);
 		enumMap.put(ArmorItem.Type.HELMET, 2);
-	}), 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+	}), 9, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> {
 		return Ingredient.of(Items.IRON_INGOT);
 	}),
 
@@ -77,7 +78,7 @@ public enum TechnologicaArmorMaterials implements StringRepresentable, ArmorMate
 		enumMap.put(ArmorItem.Type.LEGGINGS, 5);
 		enumMap.put(ArmorItem.Type.CHESTPLATE, 6);
 		enumMap.put(ArmorItem.Type.HELMET, 2);
-	}), 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+	}), 9, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> {
 		return Ingredient.of(TechnologicaItems.RUBBER.get());
 	}),
 
@@ -95,7 +96,7 @@ public enum TechnologicaArmorMaterials implements StringRepresentable, ArmorMate
 		enumMap.put(ArmorItem.Type.LEGGINGS, 5);
 		enumMap.put(ArmorItem.Type.CHESTPLATE, 6);
 		enumMap.put(ArmorItem.Type.HELMET, 2);
-	}), 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+	}), 9, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> {
 		return Ingredient.of(TechnologicaItems.RUBBER.get());
 	}),
 
@@ -104,24 +105,12 @@ public enum TechnologicaArmorMaterials implements StringRepresentable, ArmorMate
 		enumMap.put(ArmorItem.Type.LEGGINGS, 5);
 		enumMap.put(ArmorItem.Type.CHESTPLATE, 6);
 		enumMap.put(ArmorItem.Type.HELMET, 2);
-	}), 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+	}), 9, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> {
 		return Ingredient.of(TechnologicaItems.RUBBER.get());
 	}),
 
-	MINING("mining", 15, Util.make(new EnumMap<>(ArmorItem.Type.class), (enumMap) -> {
-		enumMap.put(ArmorItem.Type.BOOTS, 2);
-		enumMap.put(ArmorItem.Type.LEGGINGS, 5);
-		enumMap.put(ArmorItem.Type.CHESTPLATE, 6);
-		enumMap.put(ArmorItem.Type.HELMET, 2);
-	}), 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
-		return Ingredient.of(TechnologicaItems.RUBBER.get());
-	}),
-
-	NIGHT_VISION("night_vision", 15, Util.make(new EnumMap<>(ArmorItem.Type.class), (enumMap) -> {
-		enumMap.put(ArmorItem.Type.HELMET, 2);
-	}), 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
-		return Ingredient.of(TechnologicaItems.RUBBER.get());
-	});
+	MINING("mining", 15, Util.make(new EnumMap<>(ArmorItem.Type.class), (enumMap) -> enumMap.put(ArmorItem.Type.HELMET, 2)), 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> Ingredient.of(TechnologicaItems.RUBBER.get())),
+	NIGHT_VISION("night_vision", 15, Util.make(new EnumMap<>(ArmorItem.Type.class), (enumMap) -> enumMap.put(ArmorItem.Type.HELMET, 2)), 9, TechnologicaSoundEvents.NIGHT_VISION.get(), 0.0F, 0.0F, () -> Ingredient.of(TechnologicaItems.RUBBER.get()));
 
 	public static final StringRepresentable.EnumCodec<TechnologicaArmorMaterials> CODEC = StringRepresentable.fromEnum(TechnologicaArmorMaterials::values);
 	private static final EnumMap<ArmorItem.Type, Integer> HEALTH_FUNCTION_FOR_TYPE = Util.make(new EnumMap<>(ArmorItem.Type.class), (enumMap) -> {

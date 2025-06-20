@@ -1188,8 +1188,8 @@ public final class TechnologicaItems {
 	public static final RegistryObject<Item> IRON_SAW = Technologica.ITEMS.register("iron_saw", () -> new SawItem(TechnologicaTiers.IRON, 6.0F, -3.2F, EMPTY));
 	public static final RegistryObject<Item> STEEL_SAW = Technologica.ITEMS.register("steel_saw", () -> new SawItem(TechnologicaTiers.STEEL, 6.0F, -3.2F, EMPTY));
 
-	public static final RegistryObject<Item> PIPE_WRENCH = Technologica.ITEMS.register("pipe_wrench", () -> new PipeWrenchItem(TechnologicaTiers.IRON, 1, -2.8F, (EMPTY)));
-	public static final RegistryObject<Item> WRENCH = Technologica.ITEMS.register("wrench", () -> new PickaxeItem(TechnologicaTiers.IRON, 1, -2.8F, (EMPTY)));
+	public static final RegistryObject<Item> PIPE_WRENCH = Technologica.ITEMS.register("pipe_wrench", () -> new PipeWrenchItem(TechnologicaTiers.IRON, 1, -2.8F, EMPTY));
+	public static final RegistryObject<Item> WRENCH = Technologica.ITEMS.register("wrench", () -> new PickaxeItem(TechnologicaTiers.IRON, 1, -2.8F, EMPTY));
 
 	public static final RegistryObject<Item> MOTOR_1HP_ITEM = Technologica.ITEMS.register("motor_1hp", () -> new BlockItem(TechnologicaBlocks.MOTOR_1HP.get(), EMPTY));
 	public static final RegistryObject<Item> MOTOR_5HP_ITEM = Technologica.ITEMS.register("motor_5hp", () -> new BlockItem(TechnologicaBlocks.MOTOR_5HP.get(), EMPTY));
@@ -1281,91 +1281,91 @@ public final class TechnologicaItems {
 	public static final RegistryObject<Item> CERAMIC_JAR = Technologica.ITEMS.register("ceramic_jar", () -> new CeramicJarItem(() -> Fluids.EMPTY, new Item.Properties().durability(8)));
 	public static final RegistryObject<Item> FILLED_CERAMIC_JAR = Technologica.ITEMS.register("filled_ceramic_jar", () -> new CeramicJarItem(() -> Fluids.WATER, new Item.Properties().durability(8)));
 	
-	public static final RegistryObject<Item> PRIMITIVE_DAGGER = Technologica.ITEMS.register("primitive_dagger", () -> new SwordItem(TechnologicaTiers.FLINT, 3, -2.4F, (EMPTY)));
-	public static final RegistryObject<Item> PRIMITIVE_PICKAXE = Technologica.ITEMS.register("primitive_pickaxe", () -> new PickaxeItem(TechnologicaTiers.FLINT, 1, -2.8F, (EMPTY)));
-	public static final RegistryObject<Item> PRIMITIVE_HOE = Technologica.ITEMS.register("primitive_hoe", () -> new HoeItem(TechnologicaTiers.FLINT, 0, -3.0F, (EMPTY)));
-	public static final RegistryObject<Item> PRIMITIVE_SHOVEL = Technologica.ITEMS.register("primitive_shovel", () -> new ShovelItem(TechnologicaTiers.FLINT, 1.5F, -3.0F, (EMPTY)));
-	public static final RegistryObject<Item> PRIMITIVE_HATCHET = Technologica.ITEMS.register("primitive_hatchet", () -> new AxeItem(TechnologicaTiers.FLINT, 6, -3.2F, (EMPTY)));
+	public static final RegistryObject<Item> PRIMITIVE_DAGGER = Technologica.ITEMS.register("primitive_dagger", () -> new SwordItem(TechnologicaTiers.FLINT, 3, -2.4F, EMPTY));
+	public static final RegistryObject<Item> PRIMITIVE_PICKAXE = Technologica.ITEMS.register("primitive_pickaxe", () -> new PickaxeItem(TechnologicaTiers.FLINT, 1, -2.8F, EMPTY));
+	public static final RegistryObject<Item> PRIMITIVE_HOE = Technologica.ITEMS.register("primitive_hoe", () -> new HoeItem(TechnologicaTiers.FLINT, 0, -3.0F, EMPTY));
+	public static final RegistryObject<Item> PRIMITIVE_SHOVEL = Technologica.ITEMS.register("primitive_shovel", () -> new ShovelItem(TechnologicaTiers.FLINT, 1.5F, -3.0F, EMPTY));
+	public static final RegistryObject<Item> PRIMITIVE_HATCHET = Technologica.ITEMS.register("primitive_hatchet", () -> new AxeItem(TechnologicaTiers.FLINT, 6, -3.2F, EMPTY));
 	
-	public static final RegistryObject<Item> SILVER_SWORD = Technologica.ITEMS.register("silver_sword", () -> new SwordItem(TechnologicaTiers.SILVER, 6, -3.2F, (EMPTY)));
-	public static final RegistryObject<Item> SILVER_PICKAXE = Technologica.ITEMS.register("silver_pickaxe", () -> new PickaxeItem(TechnologicaTiers.SILVER, 6, -3.2F, (EMPTY)));
-	public static final RegistryObject<Item> SILVER_HOE = Technologica.ITEMS.register("silver_hoe", () -> new HoeItem(TechnologicaTiers.SILVER, 6, -3.2F, (EMPTY)));
-	public static final RegistryObject<Item> SILVER_SHOVEL = Technologica.ITEMS.register("silver_shovel", () -> new ShovelItem(TechnologicaTiers.SILVER, 6.0F, -3.2F, (EMPTY)));
-	public static final RegistryObject<Item> SILVER_AXE = Technologica.ITEMS.register("silver_axe", () -> new AxeItem(TechnologicaTiers.SILVER, 6.0F, -3.2F, (EMPTY)));
+	public static final RegistryObject<Item> SILVER_SWORD = Technologica.ITEMS.register("silver_sword", () -> new SwordItem(TechnologicaTiers.SILVER, 6, -3.2F, EMPTY));
+	public static final RegistryObject<Item> SILVER_PICKAXE = Technologica.ITEMS.register("silver_pickaxe", () -> new PickaxeItem(TechnologicaTiers.SILVER, 6, -3.2F, EMPTY));
+	public static final RegistryObject<Item> SILVER_HOE = Technologica.ITEMS.register("silver_hoe", () -> new HoeItem(TechnologicaTiers.SILVER, 6, -3.2F, EMPTY));
+	public static final RegistryObject<Item> SILVER_SHOVEL = Technologica.ITEMS.register("silver_shovel", () -> new ShovelItem(TechnologicaTiers.SILVER, 6.0F, -3.2F, EMPTY));
+	public static final RegistryObject<Item> SILVER_AXE = Technologica.ITEMS.register("silver_axe", () -> new AxeItem(TechnologicaTiers.SILVER, 6.0F, -3.2F, EMPTY));
 
-	public static final RegistryObject<Item> BRONZE_SWORD = Technologica.ITEMS.register("bronze_sword", () -> new SwordItem(TechnologicaTiers.BRONZE, 6, -3.2F, (EMPTY)));
-	public static final RegistryObject<Item> BRONZE_PICKAXE = Technologica.ITEMS.register("bronze_pickaxe", () -> new PickaxeItem(TechnologicaTiers.BRONZE, 6, -3.2F, (EMPTY)));
-	public static final RegistryObject<Item> BRONZE_HOE = Technologica.ITEMS.register("bronze_hoe", () -> new HoeItem(TechnologicaTiers.BRONZE, 6, -3.2F, (EMPTY)));
-	public static final RegistryObject<Item> BRONZE_SHOVEL = Technologica.ITEMS.register("bronze_shovel", () -> new ShovelItem(TechnologicaTiers.BRONZE, 6.0F, -3.2F, (EMPTY)));
-	public static final RegistryObject<Item> BRONZE_AXE = Technologica.ITEMS.register("bronze_axe", () -> new AxeItem(TechnologicaTiers.BRONZE, 6.0F, -3.2F, (EMPTY)));
+	public static final RegistryObject<Item> BRONZE_SWORD = Technologica.ITEMS.register("bronze_sword", () -> new SwordItem(TechnologicaTiers.BRONZE, 6, -3.2F, EMPTY));
+	public static final RegistryObject<Item> BRONZE_PICKAXE = Technologica.ITEMS.register("bronze_pickaxe", () -> new PickaxeItem(TechnologicaTiers.BRONZE, 6, -3.2F, EMPTY));
+	public static final RegistryObject<Item> BRONZE_HOE = Technologica.ITEMS.register("bronze_hoe", () -> new HoeItem(TechnologicaTiers.BRONZE, 6, -3.2F, EMPTY));
+	public static final RegistryObject<Item> BRONZE_SHOVEL = Technologica.ITEMS.register("bronze_shovel", () -> new ShovelItem(TechnologicaTiers.BRONZE, 6.0F, -3.2F, EMPTY));
+	public static final RegistryObject<Item> BRONZE_AXE = Technologica.ITEMS.register("bronze_axe", () -> new AxeItem(TechnologicaTiers.BRONZE, 6.0F, -3.2F, EMPTY));
 	public static final RegistryObject<Item> BRONZE_SPEAR = Technologica.ITEMS.register("bronze_spear", () -> new SpearItem((new Item.Properties().durability(64))));
 
-	public static final RegistryObject<Item> BRASS_SWORD = Technologica.ITEMS.register("brass_sword", () -> new SwordItem(TechnologicaTiers.BRASS, 6, -3.2F, (EMPTY)));
-	public static final RegistryObject<Item> BRASS_PICKAXE = Technologica.ITEMS.register("brass_pickaxe", () -> new PickaxeItem(TechnologicaTiers.BRASS, 6, -3.2F, (EMPTY)));
-	public static final RegistryObject<Item> BRASS_HOE = Technologica.ITEMS.register("brass_hoe", () -> new HoeItem(TechnologicaTiers.BRASS, 6, -3.2F, (EMPTY)));
-	public static final RegistryObject<Item> BRASS_SHOVEL = Technologica.ITEMS.register("brass_shovel", () -> new ShovelItem(TechnologicaTiers.BRASS, 6.0F, -3.2F, (EMPTY)));
-	public static final RegistryObject<Item> BRASS_AXE = Technologica.ITEMS.register("brass_axe", () -> new AxeItem(TechnologicaTiers.BRASS, 6.0F, -3.2F, (EMPTY)));
+	public static final RegistryObject<Item> BRASS_SWORD = Technologica.ITEMS.register("brass_sword", () -> new SwordItem(TechnologicaTiers.BRASS, 6, -3.2F, EMPTY));
+	public static final RegistryObject<Item> BRASS_PICKAXE = Technologica.ITEMS.register("brass_pickaxe", () -> new PickaxeItem(TechnologicaTiers.BRASS, 6, -3.2F, EMPTY));
+	public static final RegistryObject<Item> BRASS_HOE = Technologica.ITEMS.register("brass_hoe", () -> new HoeItem(TechnologicaTiers.BRASS, 6, -3.2F, EMPTY));
+	public static final RegistryObject<Item> BRASS_SHOVEL = Technologica.ITEMS.register("brass_shovel", () -> new ShovelItem(TechnologicaTiers.BRASS, 6.0F, -3.2F, EMPTY));
+	public static final RegistryObject<Item> BRASS_AXE = Technologica.ITEMS.register("brass_axe", () -> new AxeItem(TechnologicaTiers.BRASS, 6.0F, -3.2F, EMPTY));
 	
-	public static final RegistryObject<Item> STEEL_SWORD = Technologica.ITEMS.register("steel_sword", () -> new SwordItem(TechnologicaTiers.STEEL, 6, -3.2F, (EMPTY)));
-	public static final RegistryObject<Item> STEEL_PICKAXE = Technologica.ITEMS.register("steel_pickaxe", () -> new PickaxeItem(TechnologicaTiers.STEEL, 6, -3.2F, (EMPTY)));
-	public static final RegistryObject<Item> STEEL_HOE = Technologica.ITEMS.register("steel_hoe", () -> new HoeItem(TechnologicaTiers.STEEL, 6, -3.2F, (EMPTY)));
-	public static final RegistryObject<Item> STEEL_SHOVEL = Technologica.ITEMS.register("steel_shovel", () -> new ShovelItem(TechnologicaTiers.STEEL, 6.0F, -3.2F, (EMPTY)));
-	public static final RegistryObject<Item> STEEL_AXE = Technologica.ITEMS.register("steel_axe", () -> new AxeItem(TechnologicaTiers.STEEL, 6.0F, -3.2F, (EMPTY)));
+	public static final RegistryObject<Item> STEEL_SWORD = Technologica.ITEMS.register("steel_sword", () -> new SwordItem(TechnologicaTiers.STEEL, 6, -3.2F, EMPTY));
+	public static final RegistryObject<Item> STEEL_PICKAXE = Technologica.ITEMS.register("steel_pickaxe", () -> new PickaxeItem(TechnologicaTiers.STEEL, 6, -3.2F, EMPTY));
+	public static final RegistryObject<Item> STEEL_HOE = Technologica.ITEMS.register("steel_hoe", () -> new HoeItem(TechnologicaTiers.STEEL, 6, -3.2F, EMPTY));
+	public static final RegistryObject<Item> STEEL_SHOVEL = Technologica.ITEMS.register("steel_shovel", () -> new ShovelItem(TechnologicaTiers.STEEL, 6.0F, -3.2F, EMPTY));
+	public static final RegistryObject<Item> STEEL_AXE = Technologica.ITEMS.register("steel_axe", () -> new AxeItem(TechnologicaTiers.STEEL, 6.0F, -3.2F, EMPTY));
 	
-	public static final RegistryObject<Item> CANVAS_TUNIC = Technologica.ITEMS.register("canvas_tunic", () -> new ArmorItem(TechnologicaArmorMaterials.CANVAS, ArmorItem.Type.CHESTPLATE, (EMPTY)));
-	public static final RegistryObject<Item> CANVAS_PANTS = Technologica.ITEMS.register("canvas_pants", () -> new ArmorItem(TechnologicaArmorMaterials.CANVAS, ArmorItem.Type.LEGGINGS, (EMPTY)));
+	public static final RegistryObject<Item> CANVAS_TUNIC = Technologica.ITEMS.register("canvas_tunic", () -> new ArmorItem(TechnologicaArmorMaterials.CANVAS, ArmorItem.Type.CHESTPLATE, EMPTY));
+	public static final RegistryObject<Item> CANVAS_PANTS = Technologica.ITEMS.register("canvas_pants", () -> new ArmorItem(TechnologicaArmorMaterials.CANVAS, ArmorItem.Type.LEGGINGS, EMPTY));
 
-	public static final RegistryObject<Item> BRONZE_HELMET = Technologica.ITEMS.register("bronze_helmet", () -> new ArmorItem(TechnologicaArmorMaterials.BRONZE, ArmorItem.Type.HELMET, (EMPTY)));
-	public static final RegistryObject<Item> BRONZE_CHESTPLATE = Technologica.ITEMS.register("bronze_chestplate", () -> new ArmorItem(TechnologicaArmorMaterials.BRONZE, ArmorItem.Type.CHESTPLATE, (EMPTY)));
-	public static final RegistryObject<Item> BRONZE_LEGGINGS = Technologica.ITEMS.register("bronze_leggings", () -> new ArmorItem(TechnologicaArmorMaterials.BRONZE, ArmorItem.Type.LEGGINGS, (EMPTY)));
-	public static final RegistryObject<Item> BRONZE_BOOTS = Technologica.ITEMS.register("bronze_boots", () -> new ArmorItem(TechnologicaArmorMaterials.BRONZE, ArmorItem.Type.BOOTS, (EMPTY)));
+	public static final RegistryObject<Item> BRONZE_HELMET = Technologica.ITEMS.register("bronze_helmet", () -> new ArmorItem(TechnologicaArmorMaterials.BRONZE, ArmorItem.Type.HELMET, EMPTY));
+	public static final RegistryObject<Item> BRONZE_CHESTPLATE = Technologica.ITEMS.register("bronze_chestplate", () -> new ArmorItem(TechnologicaArmorMaterials.BRONZE, ArmorItem.Type.CHESTPLATE, EMPTY));
+	public static final RegistryObject<Item> BRONZE_LEGGINGS = Technologica.ITEMS.register("bronze_leggings", () -> new ArmorItem(TechnologicaArmorMaterials.BRONZE, ArmorItem.Type.LEGGINGS, EMPTY));
+	public static final RegistryObject<Item> BRONZE_BOOTS = Technologica.ITEMS.register("bronze_boots", () -> new ArmorItem(TechnologicaArmorMaterials.BRONZE, ArmorItem.Type.BOOTS, EMPTY));
 
-	public static final RegistryObject<Item> BRASS_HELMET = Technologica.ITEMS.register("brass_helmet", () -> new ArmorItem(TechnologicaArmorMaterials.BRASS, ArmorItem.Type.HELMET, (EMPTY)));
-	public static final RegistryObject<Item> BRASS_CHESTPLATE = Technologica.ITEMS.register("brass_chestplate", () -> new ArmorItem(TechnologicaArmorMaterials.BRASS, ArmorItem.Type.CHESTPLATE, (EMPTY)));
-	public static final RegistryObject<Item> BRASS_LEGGINGS = Technologica.ITEMS.register("brass_leggings", () -> new ArmorItem(TechnologicaArmorMaterials.BRASS, ArmorItem.Type.LEGGINGS, (EMPTY)));
-	public static final RegistryObject<Item> BRASS_BOOTS = Technologica.ITEMS.register("brass_boots", () -> new ArmorItem(TechnologicaArmorMaterials.BRASS, ArmorItem.Type.BOOTS, (EMPTY)));
+	public static final RegistryObject<Item> BRASS_HELMET = Technologica.ITEMS.register("brass_helmet", () -> new ArmorItem(TechnologicaArmorMaterials.BRASS, ArmorItem.Type.HELMET, EMPTY));
+	public static final RegistryObject<Item> BRASS_CHESTPLATE = Technologica.ITEMS.register("brass_chestplate", () -> new ArmorItem(TechnologicaArmorMaterials.BRASS, ArmorItem.Type.CHESTPLATE, EMPTY));
+	public static final RegistryObject<Item> BRASS_LEGGINGS = Technologica.ITEMS.register("brass_leggings", () -> new ArmorItem(TechnologicaArmorMaterials.BRASS, ArmorItem.Type.LEGGINGS, EMPTY));
+	public static final RegistryObject<Item> BRASS_BOOTS = Technologica.ITEMS.register("brass_boots", () -> new ArmorItem(TechnologicaArmorMaterials.BRASS, ArmorItem.Type.BOOTS, EMPTY));
 
-	public static final RegistryObject<Item> STEEL_HELMET = Technologica.ITEMS.register("steel_helmet", () -> new ArmorItem(TechnologicaArmorMaterials.STEEL, ArmorItem.Type.HELMET, (EMPTY)));
-	public static final RegistryObject<Item> STEEL_CHESTPLATE = Technologica.ITEMS.register("steel_chestplate", () -> new ArmorItem(TechnologicaArmorMaterials.STEEL, ArmorItem.Type.CHESTPLATE, (EMPTY)));
-	public static final RegistryObject<Item> STEEL_LEGGINGS = Technologica.ITEMS.register("steel_leggings", () -> new ArmorItem(TechnologicaArmorMaterials.STEEL, ArmorItem.Type.LEGGINGS, (EMPTY)));
-	public static final RegistryObject<Item> STEEL_BOOTS = Technologica.ITEMS.register("steel_boots", () -> new ArmorItem(TechnologicaArmorMaterials.STEEL, ArmorItem.Type.BOOTS, (EMPTY)));
+	public static final RegistryObject<Item> STEEL_HELMET = Technologica.ITEMS.register("steel_helmet", () -> new ArmorItem(TechnologicaArmorMaterials.STEEL, ArmorItem.Type.HELMET, EMPTY));
+	public static final RegistryObject<Item> STEEL_CHESTPLATE = Technologica.ITEMS.register("steel_chestplate", () -> new ArmorItem(TechnologicaArmorMaterials.STEEL, ArmorItem.Type.CHESTPLATE, EMPTY));
+	public static final RegistryObject<Item> STEEL_LEGGINGS = Technologica.ITEMS.register("steel_leggings", () -> new ArmorItem(TechnologicaArmorMaterials.STEEL, ArmorItem.Type.LEGGINGS, EMPTY));
+	public static final RegistryObject<Item> STEEL_BOOTS = Technologica.ITEMS.register("steel_boots", () -> new ArmorItem(TechnologicaArmorMaterials.STEEL, ArmorItem.Type.BOOTS, EMPTY));
 
 	public static final RegistryObject<Item> COCONUT_BAZOOKA_ITEM = Technologica.ITEMS.register("coconut_bazooka", () -> new CoconutBazookaItem((new Item.Properties()).durability(384)));
 	public static final RegistryObject<Item> DODGEBALL_ITEM = Technologica.ITEMS.register("dodgeball", () -> new DodgeballItem((new Item.Properties()).stacksTo(1)));
 	public static final RegistryObject<Item> SPEAR_GUN_ITEM = Technologica.ITEMS.register("spear_gun", () -> new SpearGunItem((new Item.Properties()).durability(384)));
 	public static final RegistryObject<Item> HARPOON = Technologica.ITEMS.register("harpoon", () -> new Item(EMPTY));
 
-	public static final RegistryObject<Item> SPACE_HELMET = Technologica.ITEMS.register("space_helmet", () -> new ArmorItem(TechnologicaArmorMaterials.SPACE, ArmorItem.Type.HELMET, (EMPTY)));
-	public static final RegistryObject<Item> SPACE_SUIT = Technologica.ITEMS.register("space_suit", () -> new ArmorItem(TechnologicaArmorMaterials.SPACE, ArmorItem.Type.CHESTPLATE, (EMPTY)));
-	public static final RegistryObject<Item> SPACE_PANTS = Technologica.ITEMS.register("space_pants", () -> new ArmorItem(TechnologicaArmorMaterials.SPACE, ArmorItem.Type.LEGGINGS, (EMPTY)));
-	public static final RegistryObject<Item> SPACE_BOOTS = Technologica.ITEMS.register("space_boots", () -> new ArmorItem(TechnologicaArmorMaterials.SPACE, ArmorItem.Type.BOOTS, (EMPTY)));
+	public static final RegistryObject<Item> SPACE_HELMET = Technologica.ITEMS.register("space_helmet", () -> new ArmorItem(TechnologicaArmorMaterials.SPACE, ArmorItem.Type.HELMET, EMPTY));
+	public static final RegistryObject<Item> SPACE_SUIT = Technologica.ITEMS.register("space_suit", () -> new ArmorItem(TechnologicaArmorMaterials.SPACE, ArmorItem.Type.CHESTPLATE, EMPTY));
+	public static final RegistryObject<Item> SPACE_PANTS = Technologica.ITEMS.register("space_pants", () -> new ArmorItem(TechnologicaArmorMaterials.SPACE, ArmorItem.Type.LEGGINGS, EMPTY));
+	public static final RegistryObject<Item> SPACE_BOOTS = Technologica.ITEMS.register("space_boots", () -> new ArmorItem(TechnologicaArmorMaterials.SPACE, ArmorItem.Type.BOOTS, EMPTY));
 
-	public static final RegistryObject<Item> SNORKEL_HELMET = Technologica.ITEMS.register("snorkel_helmet", () -> new ArmorItem(TechnologicaArmorMaterials.SNORKEL, ArmorItem.Type.HELMET, (EMPTY)));
-	public static final RegistryObject<Item> SNORKEL_SUIT = Technologica.ITEMS.register("snorkel_suit", () -> new ArmorItem(TechnologicaArmorMaterials.SNORKEL, ArmorItem.Type.CHESTPLATE, (EMPTY)));
-	public static final RegistryObject<Item> SNORKEL_PANTS = Technologica.ITEMS.register("snorkel_pants", () -> new ArmorItem(TechnologicaArmorMaterials.SNORKEL, ArmorItem.Type.LEGGINGS, (EMPTY)));
-	public static final RegistryObject<Item> SNORKEL_BOOTS = Technologica.ITEMS.register("snorkel_boots", () -> new ArmorItem(TechnologicaArmorMaterials.SNORKEL, ArmorItem.Type.BOOTS, (EMPTY)));
-	public static final RegistryObject<Item> DIVE_HELMET = Technologica.ITEMS.register("dive_helmet", () -> new DivingHelmetItem(TechnologicaArmorMaterials.DIVE, ArmorItem.Type.HELMET, (EMPTY)));
-	public static final RegistryObject<Item> DIVE_SUIT = Technologica.ITEMS.register("dive_suit", () -> new ArmorItem(TechnologicaArmorMaterials.DIVE, ArmorItem.Type.CHESTPLATE, (EMPTY)));
-	public static final RegistryObject<Item> DIVE_PANTS = Technologica.ITEMS.register("dive_pants", () -> new ArmorItem(TechnologicaArmorMaterials.DIVE, ArmorItem.Type.LEGGINGS, (EMPTY)));
-	public static final RegistryObject<Item> DIVE_BOOTS = Technologica.ITEMS.register("dive_boots", () -> new ArmorItem(TechnologicaArmorMaterials.DIVE, ArmorItem.Type.BOOTS, (EMPTY)));
-	public static final RegistryObject<Item> SCUBA_HELMET = Technologica.ITEMS.register("scuba_helmet", () -> new ArmorItem(TechnologicaArmorMaterials.SCUBA, ArmorItem.Type.HELMET, (EMPTY)));
-	public static final RegistryObject<Item> SCUBA_SUIT = Technologica.ITEMS.register("scuba_suit", () -> new ArmorItem(TechnologicaArmorMaterials.SCUBA, ArmorItem.Type.CHESTPLATE, (EMPTY)));
-	public static final RegistryObject<Item> SCUBA_PANTS = Technologica.ITEMS.register("scuba_pants", () -> new ArmorItem(TechnologicaArmorMaterials.SCUBA, ArmorItem.Type.LEGGINGS, (EMPTY)));
-	public static final RegistryObject<Item> SCUBA_BOOTS = Technologica.ITEMS.register("scuba_boots", () -> new ArmorItem(TechnologicaArmorMaterials.SCUBA, ArmorItem.Type.BOOTS, (EMPTY)));
-	public static final RegistryObject<Item> HAZMAT_HOOD = Technologica.ITEMS.register("hazmat_hood", () -> new ArmorItem(TechnologicaArmorMaterials.HAZMAT, ArmorItem.Type.HELMET, (EMPTY)));
-	public static final RegistryObject<Item> HAZMAT_SUIT = Technologica.ITEMS.register("hazmat_suit", () -> new ArmorItem(TechnologicaArmorMaterials.HAZMAT, ArmorItem.Type.CHESTPLATE, (EMPTY)));
-	public static final RegistryObject<Item> HAZMAT_PANTS = Technologica.ITEMS.register("hazmat_pants", () -> new ArmorItem(TechnologicaArmorMaterials.HAZMAT, ArmorItem.Type.LEGGINGS, (EMPTY)));
-	public static final RegistryObject<Item> HAZMAT_BOOTS = Technologica.ITEMS.register("hazmat_boots", () -> new ArmorItem(TechnologicaArmorMaterials.HAZMAT, ArmorItem.Type.BOOTS, (EMPTY)));
-	public static final RegistryObject<Item> MINING_HELMET = Technologica.ITEMS.register("mining_helmet", () -> new MiningHelmetItem(TechnologicaArmorMaterials.MINING, ArmorItem.Type.HELMET, (EMPTY)));
-	public static final RegistryObject<Item> NIGHT_VISION_GOGGLES = Technologica.ITEMS.register("night_vision_goggles", () -> new NightVisionGogglesItem(TechnologicaArmorMaterials.NIGHT_VISION, ArmorItem.Type.HELMET, (EMPTY)));
+	public static final RegistryObject<Item> SNORKEL_HELMET = Technologica.ITEMS.register("snorkel_helmet", () -> new ArmorItem(TechnologicaArmorMaterials.SNORKEL, ArmorItem.Type.HELMET, EMPTY));
+	public static final RegistryObject<Item> SNORKEL_SUIT = Technologica.ITEMS.register("snorkel_suit", () -> new ArmorItem(TechnologicaArmorMaterials.SNORKEL, ArmorItem.Type.CHESTPLATE, EMPTY));
+	public static final RegistryObject<Item> SNORKEL_PANTS = Technologica.ITEMS.register("snorkel_pants", () -> new ArmorItem(TechnologicaArmorMaterials.SNORKEL, ArmorItem.Type.LEGGINGS, EMPTY));
+	public static final RegistryObject<Item> SNORKEL_BOOTS = Technologica.ITEMS.register("snorkel_boots", () -> new ArmorItem(TechnologicaArmorMaterials.SNORKEL, ArmorItem.Type.BOOTS, EMPTY));
+	public static final RegistryObject<Item> DIVE_HELMET = Technologica.ITEMS.register("dive_helmet", () -> new DivingHelmetItem(TechnologicaArmorMaterials.DIVE, ArmorItem.Type.HELMET, EMPTY));
+	public static final RegistryObject<Item> DIVE_SUIT = Technologica.ITEMS.register("dive_suit", () -> new ArmorItem(TechnologicaArmorMaterials.DIVE, ArmorItem.Type.CHESTPLATE, EMPTY));
+	public static final RegistryObject<Item> DIVE_PANTS = Technologica.ITEMS.register("dive_pants", () -> new ArmorItem(TechnologicaArmorMaterials.DIVE, ArmorItem.Type.LEGGINGS, EMPTY));
+	public static final RegistryObject<Item> DIVE_BOOTS = Technologica.ITEMS.register("dive_boots", () -> new ArmorItem(TechnologicaArmorMaterials.DIVE, ArmorItem.Type.BOOTS, EMPTY));
+	public static final RegistryObject<Item> SCUBA_HELMET = Technologica.ITEMS.register("scuba_helmet", () -> new ArmorItem(TechnologicaArmorMaterials.SCUBA, ArmorItem.Type.HELMET, EMPTY));
+	public static final RegistryObject<Item> SCUBA_SUIT = Technologica.ITEMS.register("scuba_suit", () -> new ArmorItem(TechnologicaArmorMaterials.SCUBA, ArmorItem.Type.CHESTPLATE, EMPTY));
+	public static final RegistryObject<Item> SCUBA_PANTS = Technologica.ITEMS.register("scuba_pants", () -> new ArmorItem(TechnologicaArmorMaterials.SCUBA, ArmorItem.Type.LEGGINGS, EMPTY));
+	public static final RegistryObject<Item> SCUBA_BOOTS = Technologica.ITEMS.register("scuba_boots", () -> new ArmorItem(TechnologicaArmorMaterials.SCUBA, ArmorItem.Type.BOOTS, EMPTY));
+	public static final RegistryObject<Item> HAZMAT_HOOD = Technologica.ITEMS.register("hazmat_hood", () -> new ArmorItem(TechnologicaArmorMaterials.HAZMAT, ArmorItem.Type.HELMET, EMPTY));
+	public static final RegistryObject<Item> HAZMAT_SUIT = Technologica.ITEMS.register("hazmat_suit", () -> new ArmorItem(TechnologicaArmorMaterials.HAZMAT, ArmorItem.Type.CHESTPLATE, EMPTY));
+	public static final RegistryObject<Item> HAZMAT_PANTS = Technologica.ITEMS.register("hazmat_pants", () -> new ArmorItem(TechnologicaArmorMaterials.HAZMAT, ArmorItem.Type.LEGGINGS, EMPTY));
+	public static final RegistryObject<Item> HAZMAT_BOOTS = Technologica.ITEMS.register("hazmat_boots", () -> new ArmorItem(TechnologicaArmorMaterials.HAZMAT, ArmorItem.Type.BOOTS, EMPTY));
+	public static final RegistryObject<Item> MINING_HELMET = Technologica.ITEMS.register("mining_helmet", () -> new MiningHelmetItem(TechnologicaArmorMaterials.MINING, ArmorItem.Type.HELMET, EMPTY));
+	public static final RegistryObject<Item> NIGHT_VISION_GOGGLES = Technologica.ITEMS.register("night_vision_goggles", () -> new NightVisionGogglesItem(TechnologicaArmorMaterials.NIGHT_VISION, ArmorItem.Type.HELMET, EMPTY));
 	public static final RegistryObject<Item> LAND_MINE = Technologica.ITEMS.register("land_mine", () -> new LandMineItem(EMPTY));
 	public static final RegistryObject<Item> NITROGLYCERIN_ITEM = Technologica.ITEMS.register("nitroglycerin", () -> new BlockItem(TechnologicaBlocks.NITROGLYCERIN.get(), EMPTY));
 	public static final RegistryObject<Item> NAVAL_MINE = Technologica.ITEMS.register("naval_mine", () -> new NavalMineItem(EMPTY));
 	public static final RegistryObject<Item> ROCKET = Technologica.ITEMS.register("rocket", () -> new RocketItem(Rocket.Type.MALEVOLENT, (new Item.Properties()).stacksTo(1)));
 	public static final RegistryObject<Item> SLEEPING_BAG = Technologica.ITEMS.register("sleeping_bag", () -> new SleepingBagItem(TechnologicaBlocks.SLEEPING_BAG.get(), (new Item.Properties()).stacksTo(1)));
-	public static final RegistryObject<Item> TAPE_DRIVE = Technologica.ITEMS.register("tape_drive", () -> new BlockItem(TechnologicaBlocks.TAPE_DRIVE.get(), (EMPTY)));
-	public static final RegistryObject<Item> MONITOR = Technologica.ITEMS.register("monitor", () -> new BlockItem(TechnologicaBlocks.MONITOR.get(), (EMPTY)));
-	public static final RegistryObject<Item> KEYBOARD = Technologica.ITEMS.register("keyboard", () -> new BlockItem(TechnologicaBlocks.KEYBOARD.get(), (EMPTY)));
+	public static final RegistryObject<Item> TAPE_DRIVE = Technologica.ITEMS.register("tape_drive", () -> new BlockItem(TechnologicaBlocks.TAPE_DRIVE.get(), EMPTY));
+	public static final RegistryObject<Item> MONITOR = Technologica.ITEMS.register("monitor", () -> new BlockItem(TechnologicaBlocks.MONITOR.get(), EMPTY));
+	public static final RegistryObject<Item> KEYBOARD = Technologica.ITEMS.register("keyboard", () -> new BlockItem(TechnologicaBlocks.KEYBOARD.get(), EMPTY));
 	public static final RegistryObject<Item> PUNCH_CARD = Technologica.ITEMS.register("punch_card", () -> new Item(EMPTY));
 	public static final RegistryObject<Item> PUNCHED_CARD = Technologica.ITEMS.register("punched_card", () -> new Item(EMPTY));
 	public static final RegistryObject<Item> DECK_OF_PUNCHED_CARDS = Technologica.ITEMS.register("deck_of_punched_cards", () -> new Item(EMPTY));
