@@ -34,6 +34,8 @@ public class TLSounds extends TLReGenSoundHelper {
 		add(TechnologicaSoundEvents.BUFFALO_DEATH, sounds(new TechnologicaLocation("mob/buffalo/hurt1"), new TechnologicaLocation("mob/buffalo/hurt2"), new TechnologicaLocation("mob/buffalo/hurt3")));
 
 		add(TechnologicaSoundEvents.SONAR, sounds(new TechnologicaLocation("random/sonar")));
+		add(TechnologicaSoundEvents.NIGHT_VISION, sounds(new TechnologicaLocation("random/night_vision")));
+
 		add(TechnologicaSoundEvents.ABYSS_PORTAL_AMBIENT, sounds(10, new TechnologicaLocation("portal/abyss_portal_ambient")));
 	}
 

@@ -385,6 +385,7 @@ public class TLModelsItem {
 		itemModel2(TechnologicaItems.HAZMAT_PANTS.get());
 		itemModel2(TechnologicaItems.HAZMAT_BOOTS.get());
 		itemModel2(TechnologicaItems.MINING_HELMET.get());
+		itemModel2(TechnologicaItems.NIGHT_VISION_GOGGLES.get());
 		itemModel2(TechnologicaItems.GLUE_BOTTLE.get());
 		itemModel2(TechnologicaItems.LAND_MINE.get());
 		itemModel2(TechnologicaItems.NAVAL_MINE.get());

@@ -337,24 +337,24 @@ public class Submersible extends Entity {
 
 	private void controlBoat() {
 		if (this.isVehicle()) {
-			if (this.getControllingPassenger() instanceof LocalPlayer lp) {
-				if (lp.input.left) {
+			if (this.getControllingPassenger() instanceof LocalPlayer localPlayer) {
+				if (localPlayer.input.left) {
 					this.roll = Mth.lerp(0.1F, this.roll, this.roll - 50.0F);
 				}
 
-				if (lp.input.right) {
+				if (localPlayer.input.right) {
 					this.roll = Mth.lerp(0.1F, this.roll, this.roll + 50.0F);
 				}
 
-				if (lp.input.up) {
+				if (localPlayer.input.up) {
 					this.throttle = Mth.clamp(this.throttle + 0.1F, 0.0F, 1.0F);
 				}
 
-				if (lp.input.down) {
+				if (localPlayer.input.down) {
 					this.throttle = Mth.clamp(this.throttle - 0.1F, 0.0F, 1.0F);
 				}
 
-				Vec3 steer = (this.getDeltaMovement().add(lp.getLookAngle().multiply(0.55F, 0.55F, 0.55F))).normalize().multiply(this.throttle, this.throttle, this.throttle);
+				Vec3 steer = (this.getDeltaMovement().add(localPlayer.getLookAngle().multiply(0.55F, 0.55F, 0.55F))).normalize().multiply(this.throttle, this.throttle, this.throttle);
 				this.setDeltaMovement(steer);
 
 				float rotation = (float) Mth.clamp(Math.atan2(this.getDeltaMovement().z, this.getDeltaMovement().x) + Math.PI, 0, 2 * Math.PI);

@@ -75,6 +75,7 @@ public class TechnologicaModelLayers {
 	public static final ModelLayerLocation SPEAR_GUN = register("spear_gun");
 	public static final ModelLayerLocation MINING_HELMET = register("mining_helmet");
 	public static final ModelLayerLocation DIVING_HELMET = register("diving_helmet");
+	public static final ModelLayerLocation NIGHT_VISION_GOGGLES = register("night_vision_goggles");
 
 	private static ModelLayerLocation register(String location) {
 		return register(location, "main");

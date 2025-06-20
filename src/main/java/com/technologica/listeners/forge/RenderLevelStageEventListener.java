@@ -12,9 +12,11 @@ import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexBuffer;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.VertexFormat;
+import com.technologica.registration.deferred.TechnologicaItems;
 import com.technologica.registration.deferred.TechnologicaMobEffects;
 import com.technologica.registration.deferred.TechnologicaSoundEvents;
 import com.technologica.util.math.MathHelper;
+import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
@@ -24,6 +26,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -53,6 +56,19 @@ public class RenderLevelStageEventListener {
 		} else {
 			if (minecraft.gameRenderer.currentEffect() != null) {
 				if (minecraft.gameRenderer.currentEffect().getName().equals(new ResourceLocation("shaders/post/invert.json").toString())) {
+					minecraft.gameRenderer.shutdownEffect();
+				}
+			}
+		}
+
+		if (localPlayer.getItemBySlot(EquipmentSlot.HEAD).getItem() == TechnologicaItems.NIGHT_VISION_GOGGLES.get()) {
+			if (minecraft.gameRenderer.currentEffect() == null) {
+				minecraft.gameRenderer.loadEffect(new TechnologicaLocation("shaders/post/night_vision.json"));
+				localPlayer.playSound(TechnologicaSoundEvents.NIGHT_VISION.get());
+			}
+		} else {
+			if (minecraft.gameRenderer.currentEffect() != null) {
+				if (minecraft.gameRenderer.currentEffect().getName().equals(new TechnologicaLocation("shaders/post/night_vision.json").toString())) {
 					minecraft.gameRenderer.shutdownEffect();
 				}
 			}

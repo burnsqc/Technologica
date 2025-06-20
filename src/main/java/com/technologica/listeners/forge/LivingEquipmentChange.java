@@ -11,6 +11,7 @@ import com.technologica.world.item.TechnologicaArmorMaterials;
 
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -32,8 +33,8 @@ public class LivingEquipmentChange {
 			// Full scuba grants 10x air, 2.0x swim speed, and neutral buoyancy. Buoyancy is handled in PlayerTickEvent.
 			if (InventoryUtil.fullArmorSet(serverPlayer, TechnologicaArmorMaterials.SNORKEL)) {
 				((IMixinMaxAir) serverPlayer).setMaxAirSupply(600);
-				if (!serverPlayer.getAttribute(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get()).hasModifier(SNORKEL_SPEED)) {
-					serverPlayer.getAttribute(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get()).addPermanentModifier(SNORKEL_SPEED);
+				if (!serverPlayer.getAttribute(ForgeMod.SWIM_SPEED.get()).hasModifier(SNORKEL_SPEED)) {
+					serverPlayer.getAttribute(ForgeMod.SWIM_SPEED.get()).addPermanentModifier(SNORKEL_SPEED);
 				}
 				return;
 			}
@@ -48,18 +49,18 @@ public class LivingEquipmentChange {
 
 			if (InventoryUtil.fullArmorSet(serverPlayer, TechnologicaArmorMaterials.SCUBA)) {
 				((IMixinMaxAir) serverPlayer).setMaxAirSupply(3000);
-				if (!serverPlayer.getAttribute(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get()).hasModifier(SCUBA_SPEED)) {
-					serverPlayer.getAttribute(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get()).addPermanentModifier(SCUBA_SPEED);
+				if (!serverPlayer.getAttribute(ForgeMod.SWIM_SPEED.get()).hasModifier(SCUBA_SPEED)) {
+					serverPlayer.getAttribute(ForgeMod.SWIM_SPEED.get()).addPermanentModifier(SCUBA_SPEED);
 				}
 				return;
 			}
 
 			((IMixinMaxAir) serverPlayer).setMaxAirSupply(300);
-			if (serverPlayer.getAttribute(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get()).hasModifier(SNORKEL_SPEED)) {
-				serverPlayer.getAttribute(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get()).removeModifier(SNORKEL_SPEED);
+			if (serverPlayer.getAttribute(ForgeMod.SWIM_SPEED.get()).hasModifier(SNORKEL_SPEED)) {
+				serverPlayer.getAttribute(ForgeMod.SWIM_SPEED.get()).removeModifier(SNORKEL_SPEED);
 			}
-			if (serverPlayer.getAttribute(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get()).hasModifier(SCUBA_SPEED)) {
-				serverPlayer.getAttribute(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get()).removeModifier(SCUBA_SPEED);
+			if (serverPlayer.getAttribute(ForgeMod.SWIM_SPEED.get()).hasModifier(SCUBA_SPEED)) {
+				serverPlayer.getAttribute(ForgeMod.SWIM_SPEED.get()).removeModifier(SCUBA_SPEED);
 			}
 			TechnologicaAbilities diver = serverPlayer.getCapability(TechnologicaAbilities.DIVER_INSTANCE).orElseThrow(NullPointerException::new);
 			diver.setDiver(false);

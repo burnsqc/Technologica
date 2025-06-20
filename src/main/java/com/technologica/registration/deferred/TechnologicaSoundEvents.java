@@ -21,5 +21,6 @@ public final class TechnologicaSoundEvents {
 	public static final RegistryObject<SoundEvent> BUFFALO_HURT = Technologica.SOUND_EVENTS.register("entity.buffalo.hurt", () -> SoundEvent.createVariableRangeEvent(new TechnologicaLocation("entity.buffalo.hurt")));
 	public static final RegistryObject<SoundEvent> BUFFALO_DEATH = Technologica.SOUND_EVENTS.register("entity.buffalo.death", () -> SoundEvent.createVariableRangeEvent(new TechnologicaLocation("entity.buffalo.death")));
 	public static final RegistryObject<SoundEvent> SONAR = Technologica.SOUND_EVENTS.register("sonar", () -> SoundEvent.createVariableRangeEvent(new TechnologicaLocation("sonar")));
+	public static final RegistryObject<SoundEvent> NIGHT_VISION = Technologica.SOUND_EVENTS.register("night_vision", () -> SoundEvent.createVariableRangeEvent(new TechnologicaLocation("night_vision")));
 	public static final RegistryObject<SoundEvent> ABYSS_PORTAL_AMBIENT = Technologica.SOUND_EVENTS.register("abyss_portal_ambient", () -> SoundEvent.createVariableRangeEvent(new TechnologicaLocation("abyss_portal_ambient")));
 }

@@ -94,6 +94,11 @@
       "technologica:mob/turkey/hurt2"
     ]
   },
+  "night_vision": {
+    "sounds": [
+      "technologica:random/night_vision"
+    ]
+  },
   "sonar": {
     "sounds": [
       "technologica:random/sonar"

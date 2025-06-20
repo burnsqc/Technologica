@@ -20,6 +20,7 @@ import com.technologica.world.item.LandMineItem;
 import com.technologica.world.item.MiningHelmetItem;
 import com.technologica.world.item.MulchItem;
 import com.technologica.world.item.NavalMineItem;
+import com.technologica.world.item.NightVisionGogglesItem;
 import com.technologica.world.item.OilBucketItem;
 import com.technologica.world.item.PipeWrenchItem;
 import com.technologica.world.item.PulleyBeltItem;
@@ -1356,6 +1357,7 @@ public final class TechnologicaItems {
 	public static final RegistryObject<Item> HAZMAT_PANTS = Technologica.ITEMS.register("hazmat_pants", () -> new ArmorItem(TechnologicaArmorMaterials.HAZMAT, ArmorItem.Type.LEGGINGS, (EMPTY)));
 	public static final RegistryObject<Item> HAZMAT_BOOTS = Technologica.ITEMS.register("hazmat_boots", () -> new ArmorItem(TechnologicaArmorMaterials.HAZMAT, ArmorItem.Type.BOOTS, (EMPTY)));
 	public static final RegistryObject<Item> MINING_HELMET = Technologica.ITEMS.register("mining_helmet", () -> new MiningHelmetItem(TechnologicaArmorMaterials.MINING, ArmorItem.Type.HELMET, (EMPTY)));
+	public static final RegistryObject<Item> NIGHT_VISION_GOGGLES = Technologica.ITEMS.register("night_vision_goggles", () -> new NightVisionGogglesItem(TechnologicaArmorMaterials.NIGHT_VISION, ArmorItem.Type.HELMET, (EMPTY)));
 	public static final RegistryObject<Item> LAND_MINE = Technologica.ITEMS.register("land_mine", () -> new LandMineItem(EMPTY));
 	public static final RegistryObject<Item> NITROGLYCERIN_ITEM = Technologica.ITEMS.register("nitroglycerin", () -> new BlockItem(TechnologicaBlocks.NITROGLYCERIN.get(), EMPTY));
 	public static final RegistryObject<Item> NAVAL_MINE = Technologica.ITEMS.register("naval_mine", () -> new NavalMineItem(EMPTY));

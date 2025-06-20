@@ -115,6 +115,12 @@ public enum TechnologicaArmorMaterials implements StringRepresentable, ArmorMate
 		enumMap.put(ArmorItem.Type.HELMET, 2);
 	}), 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
 		return Ingredient.of(TechnologicaItems.RUBBER.get());
+	}),
+
+	NIGHT_VISION("night_vision", 15, Util.make(new EnumMap<>(ArmorItem.Type.class), (enumMap) -> {
+		enumMap.put(ArmorItem.Type.HELMET, 2);
+	}), 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+		return Ingredient.of(TechnologicaItems.RUBBER.get());
 	});
 
 	public static final StringRepresentable.EnumCodec<TechnologicaArmorMaterials> CODEC = StringRepresentable.fromEnum(TechnologicaArmorMaterials::values);

@@ -1271,6 +1271,7 @@ public final class TechnologicaCreativeModeTabs {
 		items.accept(TechnologicaItems.BRASS_LEGGINGS.get());
 		items.accept(TechnologicaItems.BRASS_BOOTS.get());
 		items.accept(TechnologicaItems.MINING_HELMET.get());
+		items.accept(TechnologicaItems.NIGHT_VISION_GOGGLES.get());
 		items.accept(TechnologicaItems.SNORKEL_HELMET.get());
 		items.accept(TechnologicaItems.SNORKEL_SUIT.get());
 		items.accept(TechnologicaItems.SNORKEL_PANTS.get());
