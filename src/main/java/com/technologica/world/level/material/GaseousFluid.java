@@ -205,31 +205,31 @@ public abstract class GaseousFluid extends FlowingFluid {
 	}
 
 	@Override
-	protected int getSlopeDistance(LevelReader level, BlockPos p_76028_, int p_76029_, Direction directionIn, BlockState blockState, BlockPos p_76032_, Short2ObjectMap<Pair<BlockState, FluidState>> p_76033_, Short2BooleanMap p_76034_) {
+	protected int getSlopeDistance(LevelReader pLevel, BlockPos pSpreadPos, int pDistance, Direction pDirection, BlockState pCurrentSpreadState, BlockPos pSourcePos, Short2ObjectMap<Pair<BlockState, FluidState>> pStateCache, Short2BooleanMap pWaterHoleCache) {
 		int i = 1000;
 
 		for (Direction direction : Direction.Plane.HORIZONTAL) {
-			if (direction != directionIn) {
-				BlockPos blockpos = p_76028_.relative(direction);
-				short short1 = getCacheKey(p_76032_, blockpos);
-				Pair<BlockState, FluidState> pair = p_76033_.computeIfAbsent(short1, (p_284932_) -> {
-					BlockState blockstate1 = level.getBlockState(blockpos);
+			if (direction != pDirection) {
+				BlockPos blockpos = pSpreadPos.relative(direction);
+				short short1 = getCacheKey(pSourcePos, blockpos);
+				Pair<BlockState, FluidState> pair = pStateCache.computeIfAbsent(short1, (p_284932_) -> {
+					BlockState blockstate1 = pLevel.getBlockState(blockpos);
 					return Pair.of(blockstate1, blockstate1.getFluidState());
 				});
 				BlockState blockstate = pair.getFirst();
 				FluidState fluidstate = pair.getSecond();
-				if (this.canPassThrough(level, this.getFlowing(), p_76028_, blockState, direction, blockpos, blockstate, fluidstate)) {
-					boolean flag = p_76034_.computeIfAbsent(short1, (p_192912_) -> {
+				if (this.canPassThrough(pLevel, this.getFlowing(), pSpreadPos, pCurrentSpreadState, direction, blockpos, blockstate, fluidstate)) {
+					boolean flag = pWaterHoleCache.computeIfAbsent(short1, (p_192912_) -> {
 						BlockPos blockpos1 = blockpos.above();
-						BlockState blockstate1 = level.getBlockState(blockpos1);
-						return this.isWaterHole(level, this.getFlowing(), blockpos, blockstate, blockpos1, blockstate1);
+						BlockState blockstate1 = pLevel.getBlockState(blockpos1);
+						return this.isWaterHole(pLevel, this.getFlowing(), blockpos, blockstate, blockpos1, blockstate1);
 					});
 					if (flag) {
-						return p_76029_;
+						return pDistance;
 					}
 
-					if (p_76029_ < this.getSlopeFindDistance(level)) {
-						int j = this.getSlopeDistance(level, blockpos, p_76029_ + 1, direction.getOpposite(), blockstate, p_76032_, p_76033_, p_76034_);
+					if (pDistance < this.getSlopeFindDistance(pLevel)) {
+						int j = this.getSlopeDistance(pLevel, blockpos, pDistance + 1, direction.getOpposite(), blockstate, pSourcePos, pStateCache, pWaterHoleCache);
 						if (j < i) {
 							i = j;
 						}
