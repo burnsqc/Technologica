@@ -8,11 +8,11 @@
 		"MixinPlayerMaxAirSupply",
 		"MixinMouseHandler",
 		"MixinLifesightOrEntityGlow",
-		"MixinLifesightTeamColor",
 		"MixinOverworldBiomeBuilder",
 		"MixinUnlightCampfires"
 	],
 	"client": [	
+		"MixinLifesightTeamColor"
 	],
 	"minVersion": "0.8"
 }

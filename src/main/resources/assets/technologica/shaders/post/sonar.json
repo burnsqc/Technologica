@@ -1,0 +1,19 @@
+{
+    "targets": [
+        "swap",
+		"final"
+    ],
+    "passes": [
+		
+		{
+		            "name": "outline_soft",
+		            "intarget": "minecraft:main",
+		            "outtarget": "swap"
+		        },
+		        {
+		            "name": "blit",
+		            "intarget": "swap",
+		            "outtarget": "minecraft:main"
+		        }
+    ]
+}

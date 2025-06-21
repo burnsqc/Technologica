@@ -23,7 +23,6 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -51,11 +50,11 @@ public class RenderLevelStageEventListener {
 
 		if (localPlayer.hasEffect(TechnologicaMobEffects.HALLUCINIATION.get())) {
 			if (minecraft.gameRenderer.currentEffect() == null) {
-				minecraft.gameRenderer.loadEffect(new ResourceLocation("shaders/post/invert.json"));
+				minecraft.gameRenderer.loadEffect(new TechnologicaLocation("shaders/post/sonar.json"));
 			}
 		} else {
 			if (minecraft.gameRenderer.currentEffect() != null) {
-				if (minecraft.gameRenderer.currentEffect().getName().equals(new ResourceLocation("shaders/post/invert.json").toString())) {
+				if (minecraft.gameRenderer.currentEffect().getName().equals(new TechnologicaLocation("shaders/post/sonar.json").toString())) {
 					minecraft.gameRenderer.shutdownEffect();
 				}
 			}

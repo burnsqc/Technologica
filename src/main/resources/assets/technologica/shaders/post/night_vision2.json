@@ -1,0 +1,42 @@
+{
+    "targets": [
+        "swap",
+		"night_vision"
+    ],
+    "passes": [
+        {
+            "name": "color_convolve",
+            "intarget": "night_vision",
+            "outtarget": "swap",
+            "uniforms": [
+                {
+                    "name": "RedMatrix",
+                    "values": [ 1.0, 1.0, 1.0 ]
+                },
+                {
+                    "name": "GreenMatrix",
+                    "values": [ 1.5, 1.5, 1.5 ]
+                },
+                {
+                    "name": "BlueMatrix",
+                    "values": [ 1.0, 1.0, 1.0 ]
+                }
+            ]
+        },
+        {
+            "name": "bits",
+            "intarget": "swap",
+            "outtarget": "night_vision",
+            "uniforms": [
+                {
+                    "name": "Resolution",
+                    "values": [ 64.0 ]
+                },
+                {
+                    "name": "MosaicSize",
+                    "values": [ 1.0 ]
+                }
+            ]
+        }
+    ]
+}

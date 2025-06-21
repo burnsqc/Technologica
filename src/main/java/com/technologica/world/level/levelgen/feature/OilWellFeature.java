@@ -148,7 +148,7 @@ public class OilWellFeature extends Feature<GeodeConfiguration> {
 		}
 
 		BlockPos surfacePos = worldgenlevel.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, blockpos);
-		int pressure = Math.min((surfacePos.getY() - blockpos.getY() - 40)/4 + 1, 25);
+		int pressure = Math.max(Math.min((surfacePos.getY() - blockpos.getY() - 40) / 4 + 1, 25), 0);
 
 		for (int stem = 0; stem < surfacePos.getY() - blockpos.getY() - 5; ++stem) {
 			this.safeSetBlock(worldgenlevel, blockpos.offset(0, stem, 0), TechnologicaBlocks.OIL.get().defaultBlockState(), predicate);
