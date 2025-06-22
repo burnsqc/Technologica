@@ -1,9 +1,7 @@
 package com.technologica.listeners.forge;
 
-import com.mojang.blaze3d.pipeline.RenderTarget;
 import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.Screenshot;
@@ -29,16 +27,19 @@ public class KeyPressedEventListener {
 			float xRotOOriginal = minecraft.player.xRotO;
 			float yRotOOriginal = minecraft.player.yRotO;
 
-			minecraft.gameRenderer.shutdownEffect();
-			minecraft.gameRenderer.loadEffect(new TechnologicaLocation("shaders/post/night_vision2.json"));
-			minecraft.gameRenderer.currentEffect().addTempTarget("night_vision", resolution, resolution);
-			RenderTarget rendertarget = minecraft.gameRenderer.currentEffect().getTempTarget("night_vision");
-			minecraft.gameRenderer.setRenderBlockOutline(false);
 			try {
-				minecraft.gameRenderer.setPanoramicMode(true);
-				minecraft.levelRenderer.graphicsChanged();
 				minecraft.getWindow().setWidth(resolution);
 				minecraft.getWindow().setHeight(resolution);
+				minecraft.getMainRenderTarget().resize(resolution, resolution, Minecraft.ON_OSX);
+				if (minecraft.gameRenderer.currentEffect() != null) {
+					minecraft.gameRenderer.currentEffect().resize(resolution, resolution);
+				}
+
+				minecraft.gameRenderer.setPanoramicMode(true);
+				minecraft.gameRenderer.setRenderBlockOutline(false);
+				minecraft.levelRenderer.graphicsChanged();
+
+
 				for (int k = 0; k < 6; ++k) {
 					switch (k) {
 					case 0:
@@ -69,15 +70,19 @@ public class KeyPressedEventListener {
 
 					minecraft.player.yRotO = minecraft.player.getYRot();
 					minecraft.player.xRotO = minecraft.player.getXRot();
-					rendertarget.enableStencil();
-					rendertarget.bindWrite(true);
+
+					minecraft.getMainRenderTarget().bindWrite(true);
 					minecraft.gameRenderer.renderLevel(1.0F, 0L, new PoseStack());
+					if (minecraft.gameRenderer.currentEffect() != null) {
+						minecraft.gameRenderer.currentEffect().process(0);
+					}
+
 					try {
 						Thread.sleep(10L);
 					} catch (InterruptedException interruptedexception) {
 					}
 
-					Screenshot.grab(minecraft.gameDirectory, "panorama_" + k + ".png", rendertarget, (component) -> {
+					Screenshot.grab(minecraft.gameDirectory, "panorama_" + k + ".png", minecraft.getMainRenderTarget(), (component) -> {
 					});
 				}
 			} catch (Exception exception) {
@@ -88,10 +93,15 @@ public class KeyPressedEventListener {
 				minecraft.player.xRotO = xRotOOriginal;
 				minecraft.player.yRotO = yRotOOriginal;
 				minecraft.gameRenderer.setRenderBlockOutline(true);
+
+
+				minecraft.getMainRenderTarget().resize(widthOriginal, heightOriginal, Minecraft.ON_OSX);
 				minecraft.getWindow().setWidth(widthOriginal);
 				minecraft.getWindow().setHeight(heightOriginal);
-				rendertarget.destroyBuffers();
-				minecraft.gameRenderer.shutdownEffect();
+				if (minecraft.gameRenderer.currentEffect() != null) {
+					minecraft.gameRenderer.currentEffect().resize(widthOriginal, heightOriginal);
+				}
+				
 				minecraft.gameRenderer.setPanoramicMode(false);
 				minecraft.levelRenderer.graphicsChanged();
 				minecraft.getMainRenderTarget().bindWrite(true);

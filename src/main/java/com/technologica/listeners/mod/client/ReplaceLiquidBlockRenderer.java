@@ -1,11 +1,14 @@
 package com.technologica.listeners.mod.client;
 
+import java.util.Random;
+
 import com.technologica.client.renderer.block.TechnologicaLiquidBlockRenderer;
 import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraft.client.renderer.CubeMap;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -14,12 +17,13 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 @Mod.EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public final class ReplaceLiquidBlockRenderer {
+	private static final ResourceLocation[] PANORAMAS = { new TechnologicaLocation("textures/gui/title/background/rusting_grounds/panorama"), new TechnologicaLocation("textures/gui/title/background/hydrothermal_cavern/panorama"), new TechnologicaLocation("textures/gui/title/background/naval_graveyard/panorama"), new TechnologicaLocation("textures/gui/title/background/going_dark/panorama"), new TechnologicaLocation("textures/gui/title/background/moon/panorama") };
 
 	@SubscribeEvent
 	public static final void onFMLClientSetupEvent(final FMLClientSetupEvent event) {
 		event.enqueueWork(() -> {
 			Minecraft.getInstance().getBlockRenderer().liquidBlockRenderer = new TechnologicaLiquidBlockRenderer();
-			TitleScreen.CUBE_MAP = new CubeMap(new TechnologicaLocation("textures/gui/title/background/rusting_grounds/panorama"));
+			TitleScreen.CUBE_MAP = new CubeMap(PANORAMAS[new Random().nextInt(PANORAMAS.length)]);
 		});
 	}
 }
