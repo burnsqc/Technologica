@@ -73,6 +73,7 @@ import com.technologica.resourcegen.assets.TLLang;
 import com.technologica.resourcegen.assets.TLModelsBlock;
 import com.technologica.resourcegen.assets.TLModelsItem;
 import com.technologica.resourcegen.assets.TLParticles;
+import com.technologica.resourcegen.assets.TLShadersPost;
 import com.technologica.resourcegen.assets.TLSounds;
 import com.technologica.resourcegen.data.advancements.TLRGAdvancementGenerator;
 import com.technologica.resourcegen.data.lootmodifiers.TLLootModifiersGenerator;
@@ -255,6 +256,7 @@ public class Technologica {
 		MASTER_RESOURCE_GENERATOR.addBlockModels(() -> TLModelsBlock.MODELS_BLOCK);
 		MASTER_RESOURCE_GENERATOR.addItemModels(() -> TLModelsItem.MODELS_ITEM);
 		MASTER_RESOURCE_GENERATOR.addParticles(() -> TLParticles.PARTICLES);
+		MASTER_RESOURCE_GENERATOR.addPostShaders(() -> TLShadersPost.SHADERS_POST);
 		MASTER_RESOURCE_GENERATOR.addSounds(() -> TLSounds.SOUNDS);
 
 		MASTER_RESOURCE_GENERATOR.addDataProvider(() -> new TLRGAdvancementGenerator());
