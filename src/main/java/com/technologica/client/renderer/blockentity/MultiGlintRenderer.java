@@ -3,7 +3,6 @@ package com.technologica.client.renderer.blockentity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.VertexMultiConsumer;
-import com.technologica.client.renderer.TechnologicaRenderType;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.EntityModelSet;
@@ -18,13 +17,15 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.RenderTypeHelper;
 
-public class RadiationRenderer extends BlockEntityWithoutLevelRenderer {
+public class MultiGlintRenderer extends BlockEntityWithoutLevelRenderer {
 	private ResourceLocation BASE_MODEL_LOCATION;
 	private static ItemRenderer renderer = null;
+	private RenderType renderType;
 
-	public RadiationRenderer(BlockEntityRenderDispatcher dispatcher, EntityModelSet modelSet, ResourceLocation baseModelLocation) {
+	public MultiGlintRenderer(BlockEntityRenderDispatcher dispatcher, EntityModelSet modelSet, ResourceLocation baseModelLocation, RenderType renderType) {
 		super(dispatcher, modelSet);
 		BASE_MODEL_LOCATION = baseModelLocation;
+		this.renderType = renderType;
 		if (renderer == null) {
 			renderer = Minecraft.getInstance().getItemRenderer();
 		}
@@ -40,7 +41,7 @@ public class RadiationRenderer extends BlockEntityWithoutLevelRenderer {
 		for (BakedModel model : mainModel.getRenderPasses(stack, true)) {
 			for (RenderType type : model.getRenderTypes(stack, true)) {
 				type = RenderTypeHelper.getEntityRenderType(type, true);
-				VertexConsumer consumer = VertexMultiConsumer.create(buffer.getBuffer(TechnologicaRenderType.radiation()), buffer.getBuffer(type));
+				VertexConsumer consumer = VertexMultiConsumer.create(buffer.getBuffer(renderType), buffer.getBuffer(type));
 				renderer.renderModelLists(model, stack, packedLight, packedOverlay, poseStack, consumer);
 			}
 		}

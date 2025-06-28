@@ -4,7 +4,8 @@ import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-import com.technologica.client.renderer.blockentity.ExcitationRenderer;
+import com.technologica.client.renderer.TechnologicaRenderType;
+import com.technologica.client.renderer.blockentity.MultiGlintRenderer;
 import com.technologica.registration.deferred.TechnologicaEntityTypes;
 import com.technologica.util.text.TechnologicaLocation;
 
@@ -43,7 +44,7 @@ public class Excitation extends Item {
 		consumer.accept(new IClientItemExtensions() {
 			@Override
 			public BlockEntityWithoutLevelRenderer getCustomRenderer() {
-				return new ExcitationRenderer(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels(), BASE_MODEL_LOCATION);
+				return new MultiGlintRenderer(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels(), BASE_MODEL_LOCATION, TechnologicaRenderType.EXCITATION);
 			}
 		});
 	}

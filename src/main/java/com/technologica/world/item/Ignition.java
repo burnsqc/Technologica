@@ -4,7 +4,8 @@ import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-import com.technologica.client.renderer.blockentity.IgnitionRenderer;
+import com.technologica.client.renderer.TechnologicaRenderType;
+import com.technologica.client.renderer.blockentity.MultiGlintRenderer;
 import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.client.Minecraft;
@@ -41,7 +42,7 @@ public class Ignition extends Item {
 		consumer.accept(new IClientItemExtensions() {
 			@Override
 			public BlockEntityWithoutLevelRenderer getCustomRenderer() {
-				return new IgnitionRenderer(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels(), BASE_MODEL_LOCATION);
+				return new MultiGlintRenderer(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels(), BASE_MODEL_LOCATION, TechnologicaRenderType.IGNITION);
 			}
 		});
 	}

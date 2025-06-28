@@ -2,7 +2,8 @@ package com.technologica.world.item;
 
 import java.util.function.Consumer;
 
-import com.technologica.client.renderer.blockentity.RadiationRenderer;
+import com.technologica.client.renderer.TechnologicaRenderType;
+import com.technologica.client.renderer.blockentity.MultiGlintRenderer;
 import com.technologica.util.text.TechnologicaLocation;
 
 import net.minecraft.client.Minecraft;
@@ -31,7 +32,7 @@ public class RadioactiveItem extends Item {
 
 			@Override
 			public BlockEntityWithoutLevelRenderer getCustomRenderer() {
-				return new RadiationRenderer(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels(), BASE_MODEL_LOCATION);
+				return new MultiGlintRenderer(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels(), BASE_MODEL_LOCATION, TechnologicaRenderType.RADIATION);
 			}
 		});
 	}

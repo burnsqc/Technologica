@@ -245,7 +245,7 @@ public class Technologica {
 		MASTER_SETUP_EXECUTOR.registerScreens(() -> TechnologicaMenuScreens.SCREENS);
 		MASTER_SETUP_EXECUTOR.registerSkullTextures(() -> TechnologicaSkullBlockRenderer.SKIN_BY_TYPE);
 		MASTER_SETUP_EXECUTOR.setFluidRenderTypes(() -> TechnologicaItemBlockRenderTypes.TYPE_BY_FLUID);
-		MASTER_SETUP_EXECUTOR.addRenderTypes(() -> TechnologicaRenderBuffers.FIXED_BUFFERS);
+		MASTER_SETUP_EXECUTOR.addRenderTypes(() -> TechnologicaRenderBuffers.RENDER_BUFFERS);
 		MASTER_SETUP_EXECUTOR.registerSpawnPlacements(() -> TechnologicaSpawnPlacements.SPAWN_PLACEMENTS);
 		MASTER_SETUP_EXECUTOR.addConditionSerializers(() -> Set.of(BooleanConfigValueCondition.Serializer.INSTANCE));
 

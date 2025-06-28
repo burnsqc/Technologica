@@ -1,18 +1,19 @@
 package com.technologica.client.renderer;
 
-import java.util.SortedMap;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.mojang.blaze3d.vertex.BufferBuilder;
 
-import it.unimi.dsi.fastutil.objects.Object2ObjectLinkedOpenHashMap;
-import net.minecraft.Util;
 import net.minecraft.client.renderer.RenderType;
 
 public class TechnologicaRenderBuffers {
-	public static final SortedMap<RenderType, BufferBuilder> FIXED_BUFFERS = Util.make(new Object2ObjectLinkedOpenHashMap<>(), (p_269658_) -> {
-		p_269658_.put(TechnologicaRenderType.excitation(), new BufferBuilder(TechnologicaRenderType.excitation().bufferSize()));
-		p_269658_.put(TechnologicaRenderType.ignition(), new BufferBuilder(TechnologicaRenderType.ignition().bufferSize()));
-		p_269658_.put(TechnologicaRenderType.radiation(), new BufferBuilder(TechnologicaRenderType.radiation().bufferSize()));
-		p_269658_.put(TechnologicaRenderType.submersion(), new BufferBuilder(TechnologicaRenderType.submersion().bufferSize()));
-	});
+	public static final Map<RenderType, BufferBuilder> RENDER_BUFFERS = new HashMap<RenderType, BufferBuilder>();
+
+	static {
+		RENDER_BUFFERS.put(TechnologicaRenderType.EXCITATION, new BufferBuilder(TechnologicaRenderType.EXCITATION.bufferSize()));
+		RENDER_BUFFERS.put(TechnologicaRenderType.IGNITION, new BufferBuilder(TechnologicaRenderType.IGNITION.bufferSize()));
+		RENDER_BUFFERS.put(TechnologicaRenderType.RADIATION, new BufferBuilder(TechnologicaRenderType.RADIATION.bufferSize()));
+		RENDER_BUFFERS.put(TechnologicaRenderType.SUBMERSION, new BufferBuilder(TechnologicaRenderType.SUBMERSION.bufferSize()));
+	}
 }
