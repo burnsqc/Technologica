@@ -2,7 +2,7 @@ package com.technologica.client.renderer.blockentity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import com.technologica.world.level.block.entity.PotionTileEntity;
+import com.technologica.world.level.block.entity.PotionBlockEntity;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
@@ -14,13 +14,13 @@ import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 
-public class PotionRenderer implements BlockEntityRenderer<PotionTileEntity> {
+public class PotionRenderer implements BlockEntityRenderer<PotionBlockEntity> {
 
 	public PotionRenderer(BlockEntityRendererProvider.Context rendererDispatcherIn) {
 	}
 
 	@Override
-	public void render(PotionTileEntity tileEntity, float partialTicks, PoseStack matrixStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
+	public void render(PotionBlockEntity tileEntity, float partialTicks, PoseStack matrixStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
 		ItemStack stack = tileEntity.getPotionStack();
 		Minecraft minecraft = Minecraft.getInstance();
 		LocalPlayer clientplayerentity = minecraft.player;

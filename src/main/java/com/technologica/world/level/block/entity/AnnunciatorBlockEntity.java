@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.technologica.registration.deferred.TechnologicaBlockEntityTypes;
+import com.technologica.registration.deferred.TechnologicaItems;
 import com.technologica.util.AnnunciatorOverlay;
 import com.technologica.world.level.block.state.properties.TechnologicaBlockStateProperties;
 
@@ -34,10 +35,9 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class AnnunciatorBlockEntity extends BlockEntity {
-	private Component[] signText = new Component[] { Component.empty(), Component.empty(), Component.empty(), Component.empty(), Component.empty(), Component.empty(), Component.empty(), Component.empty() };
+	private Component[] text = new Component[] { Component.empty(), Component.empty(), Component.empty(), Component.empty(), Component.empty(), Component.empty(), Component.empty(), Component.empty() };
 	private final ItemStackHandler itemHandler = createHandler();
 	private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
 	private final FormattedCharSequence[] renderText = new FormattedCharSequence[8];
@@ -53,35 +53,25 @@ public class AnnunciatorBlockEntity extends BlockEntity {
 				setChanged();
 				BlockState state = level.getBlockState(worldPosition);
 
-				if (this.getStackInSlot(0).isEmpty()) {
+				if (this.getStackInSlot(slot).isEmpty()) {
 					level.setBlock(worldPosition, state.setValue(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.INFO), 7);
-				} else if (ForgeRegistries.ITEMS.getKey(this.getStackInSlot(0).getItem()).getPath().contains("fail")) {
+				} else if (this.getStackInSlot(slot).getItem() == TechnologicaItems.OVERLAY_FAIL_ITEM.get()) {
 					level.setBlock(worldPosition, state.setValue(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.FAIL), 7);
-				} else if (ForgeRegistries.ITEMS.getKey(this.getStackInSlot(0).getItem()).getPath().contains("pass")) {
+				} else if (this.getStackInSlot(slot).getItem() == TechnologicaItems.OVERLAY_PASS_ITEM.get()) {
 					level.setBlock(worldPosition, state.setValue(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.PASS), 7);
-				} else if (ForgeRegistries.ITEMS.getKey(this.getStackInSlot(0).getItem()).getPath().contains("warn")) {
+				} else if (this.getStackInSlot(slot).getItem() == TechnologicaItems.OVERLAY_WARN_ITEM.get()) {
 					level.setBlock(worldPosition, state.setValue(TechnologicaBlockStateProperties.ANNUNCIATOR_OVERLAY, AnnunciatorOverlay.WARN), 7);
 				}
 			}
 
 			@Override
-			public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-				return ForgeRegistries.ITEMS.getKey(stack.getItem()).getPath().contains("overlay");
+			public boolean isItemValid(int slot, ItemStack stack) {
+				return stack.getItem() == TechnologicaItems.OVERLAY_FAIL_ITEM.get() || stack.getItem() == TechnologicaItems.OVERLAY_PASS_ITEM.get() || stack.getItem() == TechnologicaItems.OVERLAY_WARN_ITEM.get();
 			}
 
 			@Override
 			public int getSlotLimit(int slot) {
 				return 1;
-			}
-
-			@Nonnull
-			@Override
-			public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-				if (!isItemValid(slot, stack)) {
-					return stack;
-				}
-
-				return super.insertItem(slot, stack, simulate);
 			}
 		};
 	}
@@ -107,14 +97,14 @@ public class AnnunciatorBlockEntity extends BlockEntity {
 	}
 
 	public void setText(int line, Component signText) {
-		this.signText[line] = signText;
+		this.text[line] = signText;
 		this.renderText[line] = null;
 		this.setChanged();
 		level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 7);
 	}
 
 	public Component getText(int line) {
-		return this.signText[line];
+		return this.text[line];
 	}
 
 	public CommandSourceStack getCommandSource(@Nullable ServerPlayer playerIn) {
@@ -124,8 +114,8 @@ public class AnnunciatorBlockEntity extends BlockEntity {
 	}
 
 	public FormattedCharSequence reorderText(int row, Function<Component, FormattedCharSequence> textProcessorFunction) {
-		if (this.renderText[row] == null && this.signText[row] != null) {
-			this.renderText[row] = textProcessorFunction.apply(this.signText[row]);
+		if (this.renderText[row] == null && this.text[row] != null) {
+			this.renderText[row] = textProcessorFunction.apply(this.text[row]);
 		}
 
 		return this.renderText[row];
@@ -161,12 +151,12 @@ public class AnnunciatorBlockEntity extends BlockEntity {
 			Component itextcomponent = Component.Serializer.fromJson(s.isEmpty() ? "\"\"" : s);
 			if (this.level instanceof ServerLevel) {
 				try {
-					this.signText[i] = ComponentUtils.updateForEntity(this.getCommandSource((ServerPlayer) null), itextcomponent, (Entity) null, 0);
+					this.text[i] = ComponentUtils.updateForEntity(this.getCommandSource((ServerPlayer) null), itextcomponent, (Entity) null, 0);
 				} catch (CommandSyntaxException commandsyntaxexception) {
-					this.signText[i] = itextcomponent;
+					this.text[i] = itextcomponent;
 				}
 			} else {
-				this.signText[i] = itextcomponent;
+				this.text[i] = itextcomponent;
 			}
 			this.renderText[i] = null;
 		}
@@ -178,7 +168,7 @@ public class AnnunciatorBlockEntity extends BlockEntity {
 		compound.put("overlay", itemHandler.serializeNBT());
 
 		for (int i = 0; i < 8; ++i) {
-			String s = Component.Serializer.toJson(this.signText[i]);
+			String s = Component.Serializer.toJson(this.text[i]);
 			compound.putString("Text" + (i + 1), s);
 		}
 	}

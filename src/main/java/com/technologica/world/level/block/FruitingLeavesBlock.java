@@ -33,9 +33,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
-/**
- * Special one-off class for fruiting leaves. Created to add the age property as well as handle player interaction and associated tile entity.
- */
 public class FruitingLeavesBlock extends LeavesBlock implements EntityBlock {
 	public static final IntegerProperty AGE = BlockStateProperties.AGE_15;
 	private Supplier<Item>[] fruit;
@@ -47,17 +44,9 @@ public class FruitingLeavesBlock extends LeavesBlock implements EntityBlock {
 		fruit = fruitIn;
 	}
 
-	/*
-	 * Technologica Methods
-	 */
-
 	public FruitBlockEntity getTileEntity(Level worldIn, BlockPos posIn) {
 		return (FruitBlockEntity) worldIn.getBlockEntity(posIn);
 	}
-
-	/*
-	 * Minecraft Methods
-	 */
 
 	@Override
 	public void onRemove(BlockState stateIn, Level worldIn, BlockPos posIn, BlockState newStateIn, boolean isMovingIn) {
@@ -150,22 +139,18 @@ public class FruitingLeavesBlock extends LeavesBlock implements EntityBlock {
 		super.createBlockStateDefinition(builderIn);
 	}
 
-	/*
-	 * Forge Methods
-	 */
-
 	@Override
-	public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
-		return new FruitBlockEntity(p_153215_, p_153216_);
+	public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState blockState) {
+		return new FruitBlockEntity(p_153215_, blockState);
 	}
 
 	@Override
-	public int getFlammability(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
+	public int getFlammability(BlockState blockState, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
 		return 30;
 	}
 
 	@Override
-	public int getFireSpreadSpeed(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
+	public int getFireSpreadSpeed(BlockState blockState, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
 		return 60;
 	}
 }

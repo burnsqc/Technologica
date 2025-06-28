@@ -1,6 +1,8 @@
 package com.technologica.world.level.block;
 
-import com.technologica.world.level.block.entity.PotionTileEntity;
+import javax.annotation.Nullable;
+
+import com.technologica.world.level.block.entity.PotionBlockEntity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -17,15 +19,14 @@ import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 
-/**
- * Special one-off class for potion leaves. Created to spawn splash potions when player is nearby.
- */
 public class PotionLeavesBlock extends LeavesBlock implements EntityBlock {
 	public static final IntegerProperty AGE = BlockStateProperties.AGE_7;
 	private int potionType;
@@ -36,21 +37,9 @@ public class PotionLeavesBlock extends LeavesBlock implements EntityBlock {
 		potionType = potionIn;
 	}
 
-	/*
-	 * Technologica Methods
-	 */
-
-	public PotionTileEntity getTileEntity(Level worldIn, BlockPos posIn) {
-		return (PotionTileEntity) worldIn.getBlockEntity(posIn);
-	}
-
-	/*
-	 * Minecraft Methods
-	 */
-
 	@Override
 	public void randomTick(BlockState stateIn, ServerLevel worldIn, BlockPos posIn, RandomSource randomIn) {
-		PotionTileEntity tile = getTileEntity(worldIn, posIn);
+		PotionBlockEntity potionBlockEntity = (PotionBlockEntity) worldIn.getBlockEntity(posIn);
 		if (stateIn.getValue(DISTANCE) == 7) {
 			dropResources(stateIn, worldIn, posIn);
 			worldIn.removeBlock(posIn, false);
@@ -60,38 +49,38 @@ public class PotionLeavesBlock extends LeavesBlock implements EntityBlock {
 				if (potionType == 1) {
 					int potionSubType = randomIn.nextInt(11);
 					if (potionSubType == 0) {
-						tile.setPotionStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.LONG_NIGHT_VISION));
+						potionBlockEntity.setPotionStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.LONG_NIGHT_VISION));
 					} else if (potionSubType == 1) {
-						tile.setPotionStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.LONG_INVISIBILITY));
+						potionBlockEntity.setPotionStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.LONG_INVISIBILITY));
 					} else if (potionSubType == 2) {
-						tile.setPotionStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.LONG_LEAPING));
+						potionBlockEntity.setPotionStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.LONG_LEAPING));
 					} else if (potionSubType == 3) {
-						tile.setPotionStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.LONG_FIRE_RESISTANCE));
+						potionBlockEntity.setPotionStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.LONG_FIRE_RESISTANCE));
 					} else if (potionSubType == 4) {
-						tile.setPotionStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.LONG_SWIFTNESS));
+						potionBlockEntity.setPotionStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.LONG_SWIFTNESS));
 					} else if (potionSubType == 5) {
-						tile.setPotionStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.LONG_WATER_BREATHING));
+						potionBlockEntity.setPotionStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.LONG_WATER_BREATHING));
 					} else if (potionSubType == 6) {
-						tile.setPotionStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.STRONG_HEALING));
+						potionBlockEntity.setPotionStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.STRONG_HEALING));
 					} else if (potionSubType == 7) {
-						tile.setPotionStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.LONG_REGENERATION));
+						potionBlockEntity.setPotionStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.LONG_REGENERATION));
 					} else if (potionSubType == 8) {
-						tile.setPotionStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.LONG_STRENGTH));
+						potionBlockEntity.setPotionStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.LONG_STRENGTH));
 					} else if (potionSubType == 9) {
-						tile.setPotionStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.LUCK));
+						potionBlockEntity.setPotionStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.LUCK));
 					} else if (potionSubType == 10) {
-						tile.setPotionStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.LONG_SLOW_FALLING));
+						potionBlockEntity.setPotionStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.LONG_SLOW_FALLING));
 					}
 				} else if (potionType == 2) {
 					int potionSubType = randomIn.nextInt(4) + 11;
 					if (potionSubType == 11) {
-						tile.setPotionStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.LONG_SLOWNESS));
+						potionBlockEntity.setPotionStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.LONG_SLOWNESS));
 					} else if (potionSubType == 12) {
-						tile.setPotionStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.STRONG_HARMING));
+						potionBlockEntity.setPotionStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.STRONG_HARMING));
 					} else if (potionSubType == 13) {
-						tile.setPotionStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.LONG_POISON));
+						potionBlockEntity.setPotionStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.LONG_POISON));
 					} else if (potionSubType == 14) {
-						tile.setPotionStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.LONG_WEAKNESS));
+						potionBlockEntity.setPotionStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.LONG_WEAKNESS));
 					}
 				}
 			}
@@ -109,22 +98,31 @@ public class PotionLeavesBlock extends LeavesBlock implements EntityBlock {
 		super.createBlockStateDefinition(builderIn);
 	}
 
-	/*
-	 * Forge Methods
-	 */
-
 	@Override
-	public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
-		return new PotionTileEntity(p_153215_, p_153216_);
+	public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+		return new PotionBlockEntity(blockPos, blockState);
 	}
 
 	@Override
-	public int getFlammability(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
+	@Nullable
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
+		if (level.isClientSide()) {
+			return null;
+		}
+		return (lvl, pos, blockState2, t) -> {
+			if (t instanceof PotionBlockEntity potionBlockEntity) {
+				potionBlockEntity.tick();
+			}
+		};
+	}
+
+	@Override
+	public int getFlammability(BlockState blockState, BlockGetter worldIn, BlockPos blockPos, Direction faceIn) {
 		return 30;
 	}
 
 	@Override
-	public int getFireSpreadSpeed(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, Direction faceIn) {
+	public int getFireSpreadSpeed(BlockState blockState, BlockGetter worldIn, BlockPos blockPos, Direction faceIn) {
 		return 60;
 	}
 }

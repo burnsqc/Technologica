@@ -1,7 +1,7 @@
 package com.technologica.world.item;
 
 import com.technologica.registration.deferred.TechnologicaBlocks;
-import com.technologica.world.level.block.entity.MulchTileEntity;
+import com.technologica.world.level.block.entity.MulchBlockEntity;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
@@ -32,7 +32,7 @@ public class MulchItem extends Item {
 			if (state.is(Blocks.GRASS_BLOCK) || state.is(Blocks.DIRT) || state.is(Blocks.COARSE_DIRT) || state.is(Blocks.PODZOL)) {
 				CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger(player, pos, context.getItemInHand());
 				world.setBlock(pos, TechnologicaBlocks.MULCH.get().defaultBlockState(), 3);
-				MulchTileEntity mulchTileEntity = (MulchTileEntity) world.getBlockEntity(pos);
+				MulchBlockEntity mulchTileEntity = (MulchBlockEntity) world.getBlockEntity(pos);
 				mulchTileEntity.setPreviousBlockState(state);
 				world.playSound((Player) null, pos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
 				if (!player.getAbilities().instabuild) {

@@ -21,8 +21,8 @@ public class LandMineBlockEntity extends BlockEntity {
 	private BlockState previousBlockState = Blocks.AIR.defaultBlockState();
 	private boolean isArmed = false;
 
-	public LandMineBlockEntity(BlockPos p_155700_, BlockState p_155701_) {
-		super(TechnologicaBlockEntityTypes.LAND_MINE.get(), p_155700_, p_155701_);
+	public LandMineBlockEntity(BlockPos blockPos, BlockState blockState) {
+		super(TechnologicaBlockEntityTypes.LAND_MINE.get(), blockPos, blockState);
 	}
 
 	public BlockState getPreviousBlockState() {

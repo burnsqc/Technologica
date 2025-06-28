@@ -1,6 +1,6 @@
 package com.technologica.world.level.block;
 
-import com.technologica.world.level.block.entity.MulchTileEntity;
+import com.technologica.world.level.block.entity.MulchBlockEntity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -29,13 +29,13 @@ public class MulchBlock extends Block implements EntityBlock {
 	 * Technologica Methods
 	 */
 
-	public MulchTileEntity getTileEntity(Level worldIn, BlockPos posIn) {
-		return (MulchTileEntity) worldIn.getBlockEntity(posIn);
+	public MulchBlockEntity getTileEntity(Level worldIn, BlockPos posIn) {
+		return (MulchBlockEntity) worldIn.getBlockEntity(posIn);
 	}
 
 	@Override
 	public void randomTick(BlockState stateIn, ServerLevel worldIn, BlockPos posIn, RandomSource randomIn) {
-		MulchTileEntity mulchTileEntity = getTileEntity(worldIn, posIn);
+		MulchBlockEntity mulchTileEntity = getTileEntity(worldIn, posIn);
 		boolean grow = false;
 
 		for (int i = -1; i < 2; ++i) {
@@ -87,6 +87,6 @@ public class MulchBlock extends Block implements EntityBlock {
 
 	@Override
 	public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
-		return new MulchTileEntity(p_153215_, p_153216_);
+		return new MulchBlockEntity(p_153215_, p_153216_);
 	}
 }
