@@ -23,6 +23,7 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -42,35 +43,43 @@ public class RenderLevelStageEventListener {
 	private static int timer;
 	private static BlockPos[] sonarBlocks;
 	private static BlockPos origin;
+	private static final ResourceLocation NIGHT_VISION = new TechnologicaLocation("shaders/post/night_vision.json");
+	private static final ResourceLocation INVERSE = new ResourceLocation("shaders/post/invert.json");
 
 	@SubscribeEvent
 	public static void onRenderLevelStageEvent(final RenderLevelStageEvent event) {
 		Minecraft minecraft = Minecraft.getInstance();
 		LocalPlayer localPlayer = minecraft.player;
 
-		if (localPlayer.hasEffect(TechnologicaMobEffects.HALLUCINIATION.get())) {
-			if (minecraft.gameRenderer.currentEffect() == null) {
-				minecraft.gameRenderer.loadEffect(new TechnologicaLocation("shaders/post/sonar.json"));
-			}
-		} else {
-			if (minecraft.gameRenderer.currentEffect() != null) {
-				if (minecraft.gameRenderer.currentEffect().getName().equals(new TechnologicaLocation("shaders/post/sonar.json").toString())) {
-					minecraft.gameRenderer.shutdownEffect();
-				}
-			}
-		}
+//		if (event.getStage() == Stage.AFTER_ENTITIES) {
+//			Vec3 vec3 = event.getCamera().getPosition();
+//			double d0 = vec3.x();
+//			double d1 = vec3.y();
+//			double d2 = vec3.z();
+//			for (Entity entity : minecraft.level.entitiesForRendering()) {
+//				if (entity != localPlayer && entity instanceof LivingEntity) {
+//					if (minecraft.getEntityRenderDispatcher().shouldRender(entity, event.getFrustum(), d0, d1, d2) || entity.hasIndirectPassenger(localPlayer)) {
+//
+//						if (entity.tickCount == 0) {
+//							entity.xOld = entity.getX();
+//							entity.yOld = entity.getY();
+//							entity.zOld = entity.getZ();
+//						}
+//						MultiBufferSource multibuffersource;
+//						OutlineBufferSource outlinebuffersource = minecraft.renderBuffers().outlineBufferSource();
+//						multibuffersource = outlinebuffersource;
+//						int i = entity.getTeamColor();
+//						outlinebuffersource.setColor(FastColor.ARGB32.red(i), FastColor.ARGB32.green(0), FastColor.ARGB32.blue(i), 255);
+//						renderEntity(entity, d0, d1, d2, event.getPartialTick(), event.getPoseStack(), multibuffersource);
+//					}
+//				}
+//			}
+//		}
 
-		if (localPlayer.getItemBySlot(EquipmentSlot.HEAD).getItem() == TechnologicaItems.NIGHT_VISION_GOGGLES.get()) {
-			if (minecraft.gameRenderer.currentEffect() == null) {
-				minecraft.gameRenderer.loadEffect(new TechnologicaLocation("shaders/post/night_vision.json"));
-			}
-		} else {
-			if (minecraft.gameRenderer.currentEffect() != null) {
-				if (minecraft.gameRenderer.currentEffect().getName().equals(new TechnologicaLocation("shaders/post/night_vision.json").toString())) {
-					minecraft.gameRenderer.shutdownEffect();
-				}
-			}
-		}
+
+		// loadEffectOnCondition(minecraft, true, LIFESIGHT);
+		loadEffectOnCondition(minecraft, localPlayer.getItemBySlot(EquipmentSlot.HEAD).getItem() == TechnologicaItems.NIGHT_VISION_GOGGLES.get(), NIGHT_VISION);
+		loadEffectOnCondition(minecraft, localPlayer.hasEffect(TechnologicaMobEffects.HALLUCINIATION.get()), INVERSE);
 
 		if (event.getStage() == Stage.AFTER_SOLID_BLOCKS && timer > 0) {
 			MultiBufferSource.BufferSource multibuffersource$buffersource = minecraft.renderBuffers().bufferSource();
@@ -169,4 +178,26 @@ public class RenderLevelStageEventListener {
 		sonarBlocks = blocks;
 		origin = playerPos;
 	}
+
+	private static void loadEffectOnCondition(Minecraft minecraft, boolean condition, ResourceLocation effect) {
+		if (condition) {
+			if (minecraft.gameRenderer.currentEffect() == null) {
+				minecraft.gameRenderer.loadEffect(effect);
+			}
+		} else {
+			if (minecraft.gameRenderer.currentEffect() != null) {
+				if (minecraft.gameRenderer.currentEffect().getName().equals(effect.toString())) {
+					minecraft.gameRenderer.shutdownEffect();
+				}
+			}
+		}
+	}
+
+//	private static void renderEntity(Entity pEntity, double pCamX, double pCamY, double pCamZ, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBufferSource) {
+//		double d0 = Mth.lerp(pPartialTick, pEntity.xOld, pEntity.getX());
+//		double d1 = Mth.lerp(pPartialTick, pEntity.yOld, pEntity.getY());
+//		double d2 = Mth.lerp(pPartialTick, pEntity.zOld, pEntity.getZ());
+//		float f = Mth.lerp(pPartialTick, pEntity.yRotO, pEntity.getYRot());
+//		Minecraft.getInstance().getEntityRenderDispatcher().render(pEntity, d0 - pCamX, d1 - pCamY, d2 - pCamZ, f, pPartialTick, pPoseStack, pBufferSource, Minecraft.getInstance().getEntityRenderDispatcher().getPackedLightCoords(pEntity, pPartialTick));
+//	}
 }

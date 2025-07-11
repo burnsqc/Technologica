@@ -5,7 +5,7 @@ license="All Rights Reserved"
 
 [[mods]]
 	modId="technologica"
-	version="0.1.0"
+	version="0.2.0"
 	displayName="Technologica"
 	credits="Special thanks to the generous help of the Forge/NeoForge Discord community!"
 	authors="burnsqc"
@@ -15,7 +15,7 @@ license="All Rights Reserved"
 [[dependencies.technologica]] 
     modId="tlregen" 
     mandatory=true
-    versionRange="[0.1.0]"
+    versionRange="[0.2.0]"
     ordering="NONE"
     side="BOTH"
 

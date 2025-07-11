@@ -9,6 +9,7 @@ import com.technologica.world.level.block.BasinFilledBlock;
 import com.technologica.world.level.block.CarpentryWorkbenchBlock;
 import com.technologica.world.level.block.ChairBlock;
 import com.technologica.world.level.block.DisplayCaseBlock;
+import com.technologica.world.level.block.DraftFurnaceBlock;
 import com.technologica.world.level.block.FastHopper;
 import com.technologica.world.level.block.FlammableLiquidBlock;
 import com.technologica.world.level.block.FourDirectionBlock;
@@ -97,7 +98,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraft.world.level.block.FurnaceBlock;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.PressurePlateBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
@@ -1158,7 +1158,7 @@ public final class TechnologicaBlocks {
 	public static final RegistryObject<Block> MALEVOLENT_TABLE = Technologica.BLOCKS.register("malevolent_table", TableBlock::new);
 	public static final RegistryObject<Block> NECROTIC_TABLE = Technologica.BLOCKS.register("necrotic_table", TableBlock::new);
 	public static final RegistryObject<Block> DISPLAY_CASE = Technologica.BLOCKS.register("display_case", DisplayCaseBlock::new);
-	public static final RegistryObject<Block> DRAFT_FURNACE = Technologica.BLOCKS.register("draft_furnace", () -> new FurnaceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.5F).lightLevel((abc) -> 13)));
+	public static final RegistryObject<Block> DRAFT_FURNACE = Technologica.BLOCKS.register("draft_furnace", () -> new DraftFurnaceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.5F).lightLevel((abc) -> 13)));
 
 	public static final RegistryObject<Block> ANNUNCIATOR = Technologica.BLOCKS.register("annunciator", AnnunciatorBlock::new);
 	public static final RegistryObject<Block> TAPE_DRIVE = Technologica.BLOCKS.register("tape_drive", () -> new TapeDriveBlock());

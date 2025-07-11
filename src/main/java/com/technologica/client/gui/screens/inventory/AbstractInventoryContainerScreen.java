@@ -10,14 +10,14 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
 public abstract class AbstractInventoryContainerScreen<T extends AbstractInventoryContainerMenu> extends AbstractContainerScreen<T> {
-	private static ResourceLocation BACKGROUND_TEXTURE;
+	private final ResourceLocation backgroundTexture;
 	protected int startX;
 	protected int startY;
 
 	public AbstractInventoryContainerScreen(T inventoryContainerMenu, Inventory inventory, Component title, int imageHeight, ResourceLocation background) {
 		super(inventoryContainerMenu, inventory, title);
 		this.imageHeight = imageHeight;
-		BACKGROUND_TEXTURE = background;
+		backgroundTexture = background;
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public abstract class AbstractInventoryContainerScreen<T extends AbstractInvento
 	@Override
 	protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int x, int y) {
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-		RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
-		guiGraphics.blit(BACKGROUND_TEXTURE, startX, startY, 0, 0, this.imageWidth, this.imageHeight);
+		RenderSystem.setShaderTexture(0, backgroundTexture);
+		guiGraphics.blit(backgroundTexture, startX, startY, 0, 0, this.imageWidth, this.imageHeight);
 	}
 }

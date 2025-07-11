@@ -971,6 +971,7 @@ public class TLModelsBlock {
 		byoParent(TechnologicaBlocks.KEYBOARD.get(), TechnologicaModels.KEYBOARD);
 		byoParent(new TechnologicaLocation(ResourceLocationHelper.path(TechnologicaBlocks.TAPE_DRIVE.get()) + "_lower"), TechnologicaModels.TAPE_DRIVE_LOWER);
 		byoParent(new TechnologicaLocation(ResourceLocationHelper.path(TechnologicaBlocks.TAPE_DRIVE.get()) + "_upper"), TechnologicaModels.TAPE_DRIVE_UPPER);
+		blockModelCubeAll(TechnologicaBlocks.DRAFT_FURNACE.get());
 
 		annunciator(TechnologicaBlocks.ANNUNCIATOR.get());
 		basin(TechnologicaBlocks.BASIN.get());
