@@ -4,6 +4,7 @@ import java.util.Map;
 
 import com.google.common.collect.Maps;
 import com.technologica.client.model.AlligatorModel;
+import com.technologica.client.model.AxemanModel;
 import com.technologica.client.model.BeaverModel;
 import com.technologica.client.model.BiPlaneModel;
 import com.technologica.client.model.BuffaloModel;
@@ -118,6 +119,7 @@ public class TechnologicaLayerDefinitions {
 		register(TechnologicaModelLayers.WEEPER, CreeperModel.createBodyLayer(CubeDeformation.NONE));
 		register(TechnologicaModelLayers.WEEPER_HEAD, SkullModel.createMobHeadLayer());
 		register(TechnologicaModelLayers.DUST_DEVIL, DustDevilModel.createBodyLayer(CubeDeformation.NONE));
+		register(TechnologicaModelLayers.AXEMAN, AxemanModel.createBodyLayer());
 		register(TechnologicaModelLayers.NAVAL_MINE, NavalMineModel.createBodyModel());
 		register(TechnologicaModelLayers.WINDMILL, WindmillModel.createBodyModel());
 		register(TechnologicaModelLayers.ROCKET, BoatModel.createBodyModel());

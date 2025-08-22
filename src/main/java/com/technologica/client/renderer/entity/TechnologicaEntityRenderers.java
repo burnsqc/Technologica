@@ -65,6 +65,7 @@ public class TechnologicaEntityRenderers {
 		register(TechnologicaEntityTypes.WEEPER.get(), WeeperRenderer::new);
 		register(TechnologicaEntityTypes.SWEEPER.get(), SweeperRenderer::new);
 		register(TechnologicaEntityTypes.DUST_DEVIL.get(), DustDevilRenderer::new);
+		register(TechnologicaEntityTypes.AXEMAN.get(), AxemanRenderer::new);
 		register(TechnologicaEntityTypes.NAVAL_MINE.get(), NavalMineRenderer::new);
 		register(TechnologicaEntityTypes.METEOR.get(), renderManager -> new ThrownItemRenderer<>(renderManager, 4.0F, true));
 		register(TechnologicaEntityTypes.MAGIC_LIGHTNING.get(), MagicLightningBoltRenderer::new);

@@ -198,6 +198,7 @@ public final class TechnologicaItems {
 	public static final RegistryObject<Item> WEEPER_SPAWN_EGG = Technologica.ITEMS.register("weeper_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.WEEPER, 0x193bab, 0x000000, EMPTY));
 	public static final RegistryObject<Item> SWEEPER_SPAWN_EGG = Technologica.ITEMS.register("sweeper_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.SWEEPER, 0xd3be2b, 0x000000, EMPTY));
 	public static final RegistryObject<Item> DUST_DEVIL_SPAWN_EGG = Technologica.ITEMS.register("dust_devil_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.DUST_DEVIL, 0x9b9b9b, 0x9b9b9b, EMPTY));
+	public static final RegistryObject<Item> AXEMAN_SPAWN_EGG = Technologica.ITEMS.register("axeman_spawn_egg", () -> new ForgeSpawnEggItem(TechnologicaEntityTypes.AXEMAN, 0x9b9b9b, 0x9b9b9b, EMPTY));
 
 	public static final RegistryObject<Item> PIRANHA_BUCKET = Technologica.ITEMS.register("bucket_of_piranha", () -> new MobBucketItem(TechnologicaEntityTypes.PIRANHA, () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_FISH, (new Item.Properties()).stacksTo(1)));
 

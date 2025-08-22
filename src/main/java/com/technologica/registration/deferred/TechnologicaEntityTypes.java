@@ -43,6 +43,7 @@ import com.technologica.world.entity.animal.Zebra;
 import com.technologica.world.entity.decoration.InvisibleSeat;
 import com.technologica.world.entity.item.NavalMine;
 import com.technologica.world.entity.monster.AtomicCreeper;
+import com.technologica.world.entity.monster.Axeman;
 import com.technologica.world.entity.monster.Beeper;
 import com.technologica.world.entity.monster.DustDevil;
 import com.technologica.world.entity.monster.Mummy;
@@ -109,6 +110,8 @@ public final class TechnologicaEntityTypes {
 	public static final RegistryObject<EntityType<Weeper>> WEEPER = Technologica.ENTITY_TYPES.register("weeper", () -> EntityType.Builder.<Weeper>of(Weeper::new, MobCategory.MONSTER).sized(0.6F, 1.7F).clientTrackingRange(16).build("weeper"));
 	public static final RegistryObject<EntityType<Sweeper>> SWEEPER = Technologica.ENTITY_TYPES.register("sweeper", () -> EntityType.Builder.<Sweeper>of(Sweeper::new, MobCategory.MONSTER).sized(0.6F, 1.7F).clientTrackingRange(8).build("sweeper"));
 	public static final RegistryObject<EntityType<DustDevil>> DUST_DEVIL = Technologica.ENTITY_TYPES.register("dust_devil", () -> EntityType.Builder.<DustDevil>of(DustDevil::new, MobCategory.MONSTER).sized(1.0F, 3.0F).clientTrackingRange(8).build("dust_devil"));
+	public static final RegistryObject<EntityType<Axeman>> AXEMAN = Technologica.ENTITY_TYPES.register("axeman", () -> EntityType.Builder.<Axeman>of(Axeman::new, MobCategory.MONSTER).sized(1.0F, 3.0F).clientTrackingRange(8).build("axeman"));
+
 	public static final RegistryObject<EntityType<TechnologicaBoat>> TECHNOLOGICA_BOAT = Technologica.ENTITY_TYPES.register("technologica_boat", () -> EntityType.Builder.<TechnologicaBoat>of(TechnologicaBoat::new, MobCategory.MISC).sized(1.375F, 0.5625F).build("technologica_boat"));
 	public static final RegistryObject<EntityType<Rocket>> ROCKET = Technologica.ENTITY_TYPES.register("rocket", () -> EntityType.Builder.<Rocket>of(Rocket::new, MobCategory.MISC).sized(1.375F, 0.5625F).setCustomClientFactory((spawnEntity, world) -> new Rocket(world, 0, 0, 0)).clientTrackingRange(10).build("rocket"));
 	public static final RegistryObject<EntityType<Coconut>> COCONUT = Technologica.ENTITY_TYPES.register("coconut", () -> EntityType.Builder.<Coconut>of(Coconut::new, MobCategory.MISC).sized(0.25F, 0.25F).setCustomClientFactory((spawnEntity, world) -> new Coconut(world, 0, 0, 0)).clientTrackingRange(4).updateInterval(10).build("coconut"));

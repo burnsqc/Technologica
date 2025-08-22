@@ -147,6 +147,7 @@ public final class TechnologicaCreativeModeTabs {
 		items.accept(TechnologicaItems.WEEPER_SPAWN_EGG.get());
 		items.accept(TechnologicaItems.SWEEPER_SPAWN_EGG.get());
 		items.accept(TechnologicaItems.DUST_DEVIL_SPAWN_EGG.get());
+		items.accept(TechnologicaItems.AXEMAN_SPAWN_EGG.get());
 		items.accept(TechnologicaItems.BARNACLE.get());
 		items.accept(TechnologicaItems.BEEPER_HEAD.get());
 		items.accept(TechnologicaItems.PEEPER_HEAD.get());
