@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import com.technologica.client.model.AxemanModel;
 import com.technologica.client.model.geom.TechnologicaModelLayers;
+import com.technologica.client.renderer.entity.layers.AxemanEyesLayer;
 import com.technologica.util.text.TechnologicaLocation;
 import com.technologica.world.entity.monster.Axeman;
 
@@ -17,6 +18,7 @@ public class AxemanRenderer extends MobRenderer<Axeman, AxemanModel<Axeman>> {
 
 	public AxemanRenderer(Context contextIn) {
 		super(contextIn, new AxemanModel<>(contextIn.bakeLayer(TechnologicaModelLayers.AXEMAN)), 0.5F);
+		this.addLayer(new AxemanEyesLayer<>(this));
 	}
 
 	@Override
