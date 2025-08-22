@@ -42,9 +42,9 @@ public class AxemanModel<T extends Mob> extends HumanoidModel<T> {
 				.texOffs(36, 0).addBox(-1.0F, -16.0F, 1.0F, 2.0F, 22.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
 		PartDefinition head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 27).addBox(-5.0F, -24.0F, -6.0F, 10.0F, 6.0F, 10.0F, new CubeDeformation(0.0F))
-		.texOffs(0, 43).addBox(-4.0F, -18.0F, -1.0F, 8.0F, 2.0F, 4.0F, new CubeDeformation(0.0F))
-		.texOffs(29, 54).addBox(-4.0F, -18.0F, -6.0F, 8.0F, 2.0F, 2.0F, new CubeDeformation(0.0F))
-				, PartPose.offset(0.0F, 0.0F, 0.0F));
+				.texOffs(0, 84).addBox(-4.0F, -23.0F, -5.0F, 8.0F, 4.0F, 8.0F, new CubeDeformation(0.0F))
+				.texOffs(0, 43).addBox(-4.0F, -18.0F, -1.0F, 8.0F, 2.0F, 4.0F, new CubeDeformation(0.0F))
+		.texOffs(29, 54).addBox(-4.0F, -18.0F, -6.0F, 8.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
 		PartDefinition jaw = head.addOrReplaceChild("jaw", CubeListBuilder.create().texOffs(0, 49).addBox(-4.0F, 0.0F, -5.0F, 8.0F, 4.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -18.0F, -1.0F));
 
