@@ -60,7 +60,7 @@ public class PortalHook implements INBTSerializable<CompoundTag> {
 	/*
 	 * Entity
 	 */
-	public void handleNetherPortal() {
+	public void handleAbyssPortal() {
 		if (entity.level() instanceof ServerLevel) {
 			int i = entity.getPortalWaitTime();
 			ServerLevel serverlevel = (ServerLevel) entity.level();

@@ -6,7 +6,6 @@ import com.technologica.client.model.FigureEightPufferfishMidModel;
 import com.technologica.client.model.FigureEightPufferfishSmallModel;
 import com.technologica.client.model.geom.TechnologicaModelLayers;
 import com.technologica.util.text.TechnologicaLocation;
-import com.technologica.world.entity.animal.FigureEightPufferfish;
 
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -14,13 +13,14 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.animal.Pufferfish;
 
-public class FigureEightPufferfishRenderer extends MobRenderer<FigureEightPufferfish, EntityModel<FigureEightPufferfish>> {
+public class FigureEightPufferfishRenderer extends MobRenderer<Pufferfish, EntityModel<Pufferfish>> {
 	private static final ResourceLocation FIGURE_EIGHT_PUFFERFISH_TEXTURE = new TechnologicaLocation("textures/entity/fish/figure_eight_pufferfish.png");
 	private int puffStateO = 3;
-	private final EntityModel<FigureEightPufferfish> small;
-	private final EntityModel<FigureEightPufferfish> mid;
-	private final EntityModel<FigureEightPufferfish> big = this.getModel();
+	private final EntityModel<Pufferfish> small;
+	private final EntityModel<Pufferfish> mid;
+	private final EntityModel<Pufferfish> big = this.getModel();
 
 	public FigureEightPufferfishRenderer(Context contextIn) {
 		super(contextIn, new FigureEightPufferfishBigModel<>(contextIn.bakeLayer(TechnologicaModelLayers.FIGURE_EIGHT_PUFFERFISH_BIG)), 0.2F);
@@ -29,12 +29,12 @@ public class FigureEightPufferfishRenderer extends MobRenderer<FigureEightPuffer
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(FigureEightPufferfish figureEightPufferfishIn) {
+	public ResourceLocation getTextureLocation(Pufferfish figureEightPufferfishIn) {
 		return FIGURE_EIGHT_PUFFERFISH_TEXTURE;
 	}
 
 	@Override
-	public void render(FigureEightPufferfish figureEightPufferfishIn, float yawIn, float partialTicksIn, PoseStack poseStackIn, MultiBufferSource bufferIn, int packedLightIn) {
+	public void render(Pufferfish figureEightPufferfishIn, float yawIn, float partialTicksIn, PoseStack poseStackIn, MultiBufferSource bufferIn, int packedLightIn) {
 		int i = figureEightPufferfishIn.getPuffState();
 		if (i != this.puffStateO) {
 			if (i == 0) {
@@ -51,7 +51,7 @@ public class FigureEightPufferfishRenderer extends MobRenderer<FigureEightPuffer
 	}
 
 	@Override
-	protected void setupRotations(FigureEightPufferfish figureEightPufferfishIn, PoseStack poseStackIn, float rotateXIn, float rotateYIn, float rotateZIn) {
+	protected void setupRotations(Pufferfish figureEightPufferfishIn, PoseStack poseStackIn, float rotateXIn, float rotateYIn, float rotateZIn) {
 		poseStackIn.translate(0.0D, Mth.cos(rotateXIn * 0.05F) * 0.08F, 0.0D);
 		super.setupRotations(figureEightPufferfishIn, poseStackIn, rotateXIn, rotateYIn, rotateZIn);
 	}

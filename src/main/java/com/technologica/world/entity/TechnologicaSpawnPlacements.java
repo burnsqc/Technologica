@@ -2,6 +2,7 @@ package com.technologica.world.entity;
 
 import java.util.HashMap;
 
+import com.technologica.registration.deferred.TechnologicaEntityTypes;
 import com.technologica.registration.dynamic.TechnologicaDimensions;
 import com.tlregen.api.setup.util.TLReGenSpawnPlacements;
 
@@ -26,6 +27,7 @@ public class TechnologicaSpawnPlacements extends TLReGenSpawnPlacements {
 	public static final HashMap<EntityType<?>, TLReGenSpawnPlacements.Data> SPAWN_PLACEMENTS = new HashMap<EntityType<?>, TLReGenSpawnPlacements.Data>();
 
 	static {
+		register(TechnologicaEntityTypes.FIGURE_EIGHT_PUFFERFISH.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TechnologicaSpawnPlacements::checkSurfaceWaterAnimalSpawnRules, Operation.REPLACE);
 		register(EntityType.DOLPHIN, null, null, TechnologicaSpawnPlacements::checkSurfaceWaterAnimalSpawnRules, Operation.OR);
 		register(EntityType.TURTLE, SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TechnologicaSpawnPlacements::checkTurtleSpawnRules, Operation.REPLACE);
 	}
