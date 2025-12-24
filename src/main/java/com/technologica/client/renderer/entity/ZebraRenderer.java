@@ -1,6 +1,7 @@
 package com.technologica.client.renderer.entity;
 
 import com.technologica.client.model.geom.TechnologicaModelLayers;
+import com.technologica.client.renderer.entity.layers.ZebraArmorLayer;
 import com.technologica.util.text.TechnologicaLocation;
 import com.technologica.world.entity.animal.Zebra;
 
@@ -12,12 +13,13 @@ import net.minecraft.resources.ResourceLocation;
 public final class ZebraRenderer extends AbstractHorseRenderer<Zebra, HorseModel<Zebra>> {
 	private static final ResourceLocation ZEBRA_TEXTURE = new TechnologicaLocation("textures/entity/zebra.png");
 
-	public ZebraRenderer(Context contextIn) {
-		super(contextIn, new HorseModel<>(contextIn.bakeLayer(TechnologicaModelLayers.ZEBRA)), 1.1F);
+	public ZebraRenderer(Context context) {
+		super(context, new HorseModel<>(context.bakeLayer(TechnologicaModelLayers.ZEBRA)), 1.1F);
+		this.addLayer(new ZebraArmorLayer(this, context.getModelSet()));
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(Zebra zebraIn) {
+	public ResourceLocation getTextureLocation(Zebra zebra) {
 		return ZEBRA_TEXTURE;
 	}
 }
