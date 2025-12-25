@@ -19,19 +19,19 @@ import net.minecraft.world.item.ItemStack;
 public class ZebraArmorLayer extends RenderLayer<Zebra, HorseModel<Zebra>> {
 	private final HorseModel<Zebra> model;
 
-	public ZebraArmorLayer(RenderLayerParent<Zebra, HorseModel<Zebra>> pRenderer, EntityModelSet pModelSet) {
-		super(pRenderer);
-		this.model = new HorseModel<>(pModelSet.bakeLayer(ModelLayers.HORSE_ARMOR));
+	public ZebraArmorLayer(RenderLayerParent<Zebra, HorseModel<Zebra>> renderLayerParent, EntityModelSet entityModelSet) {
+		super(renderLayerParent);
+		this.model = new HorseModel<>(entityModelSet.bakeLayer(ModelLayers.HORSE_ARMOR));
 	}
 
 	@Override
-	public void render(PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, Zebra pLivingEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTicks, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
-		ItemStack itemstack = pLivingEntity.getArmor();
+	public void render(PoseStack poseStack, MultiBufferSource multiBufferSource, int packedLight, Zebra zebra, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+		ItemStack itemstack = zebra.getArmor();
 		if (itemstack.getItem() instanceof HorseArmorItem) {
 			HorseArmorItem horsearmoritem = (HorseArmorItem) itemstack.getItem();
 			this.getParentModel().copyPropertiesTo(this.model);
-			this.model.prepareMobModel(pLivingEntity, pLimbSwing, pLimbSwingAmount, pPartialTicks);
-			this.model.setupAnim(pLivingEntity, pLimbSwing, pLimbSwingAmount, pAgeInTicks, pNetHeadYaw, pHeadPitch);
+			this.model.prepareMobModel(zebra, limbSwing, limbSwingAmount, partialTicks);
+			this.model.setupAnim(zebra, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 			float f;
 			float f1;
 			float f2;
@@ -46,8 +46,8 @@ public class ZebraArmorLayer extends RenderLayer<Zebra, HorseModel<Zebra>> {
 				f2 = 1.0F;
 			}
 
-			VertexConsumer vertexconsumer = pBuffer.getBuffer(RenderType.entityCutoutNoCull(horsearmoritem.getTexture()));
-			this.model.renderToBuffer(pPoseStack, vertexconsumer, pPackedLight, OverlayTexture.NO_OVERLAY, f, f1, f2, 1.0F);
+			VertexConsumer vertexconsumer = multiBufferSource.getBuffer(RenderType.entityCutoutNoCull(horsearmoritem.getTexture()));
+			this.model.renderToBuffer(poseStack, vertexconsumer, packedLight, OverlayTexture.NO_OVERLAY, f, f1, f2, 1.0F);
 		}
 	}
 }

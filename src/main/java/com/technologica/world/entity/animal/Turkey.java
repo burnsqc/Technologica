@@ -39,15 +39,6 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.Vec3;
 
-/**
- * <p>
- * This class contains all of the behavior logic for turkeys.
- * <p>
- * Turkeys are very similar to chickens. The key difference is that turkeys lay turkey eggs.
- * </p>
- * 
- * @tl.status GREEN
- */
 public class Turkey extends Animal {
 	private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS, Items.TORCHFLOWER_SEEDS, Items.PITCHER_POD);
 	public float flap;
@@ -81,9 +72,10 @@ public class Turkey extends Animal {
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 4.0D).add(Attributes.MOVEMENT_SPEED, 0.25D);
+		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 6.0D).add(Attributes.MOVEMENT_SPEED, 0.25D);
 	}
 
+	@SuppressWarnings("resource")
 	@Override
 	public void aiStep() {
 		super.aiStep();
