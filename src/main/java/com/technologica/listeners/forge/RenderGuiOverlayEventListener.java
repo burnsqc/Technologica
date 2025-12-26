@@ -2,6 +2,7 @@ package com.technologica.listeners.forge;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.technologica.util.text.TechnologicaLocation;
+import com.technologica.world.entity.vehicle.Submersible;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -64,6 +65,11 @@ public class RenderGuiOverlayEventListener {
 					guiGraphics.blit(GUI_ICONS_LOCATION, left - 81, top, -90, 0, 0, 81, 9, 256, 256);
 				}
 				RenderSystem.disableBlend();
+			}
+			
+			
+			if (minecraft.player.getControlledVehicle() instanceof Submersible sub) {
+				guiGraphics.drawString(minecraft.font, "THROTTLE: " + String.format("%.2f", sub.throttle), 2, 2, 14737632);
 			}
 		}
 	}
