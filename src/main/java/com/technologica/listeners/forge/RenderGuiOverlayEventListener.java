@@ -2,7 +2,7 @@ package com.technologica.listeners.forge;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.technologica.util.text.TechnologicaLocation;
-import com.technologica.world.entity.vehicle.Submersible;
+import com.technologica.world.entity.vehicle.Aircraft;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -68,8 +68,14 @@ public class RenderGuiOverlayEventListener {
 			}
 			
 			
-			if (minecraft.player.getControlledVehicle() instanceof Submersible sub) {
-				guiGraphics.drawString(minecraft.font, "THROTTLE: " + String.format("%.2f", sub.throttle), 2, 2, 14737632);
+			if (minecraft.player.getControlledVehicle() instanceof Aircraft aircraft) {
+				guiGraphics.drawString(minecraft.font, "THROTTLE REQUESTED: " + String.format("%.0f", aircraft.throttleRequested * 100) + "%", 2, 2, 14737632);
+				guiGraphics.drawString(minecraft.font, "THROTTLE DELIVERED: " + String.format("%.0f", aircraft.throttleDelivered * 100) + "%", 2, 11, 14737632);
+				guiGraphics.drawString(minecraft.font, "STATUS: " + aircraft.status, 2, 20, 14737632);
+				guiGraphics.drawString(minecraft.font, "SPEED: " + String.format("%.3f", aircraft.horizontalSpeed), 2, 29, 14737632);
+				guiGraphics.drawString(minecraft.font, "PITCH: " + String.format("%.3f", aircraft.getXRot()), 2, 38, 14737632);
+				guiGraphics.drawString(minecraft.font, "YAW: " + String.format("%.3f", aircraft.getYRot()), 2, 47, 14737632);
+				guiGraphics.drawString(minecraft.font, "ROLL: " + String.format("%.3f", aircraft.roll), 2, 56, 14737632);
 			}
 		}
 	}

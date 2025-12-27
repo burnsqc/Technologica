@@ -8,6 +8,7 @@ import com.google.common.collect.Lists;
 import com.technologica.registration.deferred.TechnologicaEntityTypes;
 
 import net.minecraft.BlockUtil;
+import net.minecraft.client.player.Input;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -37,23 +38,18 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.WaterlilyBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class Submersible extends Entity {
-	private static final EntityDataAccessor<Integer> DATA_ID_HURT = SynchedEntityData.defineId(Submersible.class, EntityDataSerializers.INT);
-	private static final EntityDataAccessor<Integer> DATA_ID_HURTDIR = SynchedEntityData.defineId(Submersible.class, EntityDataSerializers.INT);
-	private static final EntityDataAccessor<Float> DATA_ID_DAMAGE = SynchedEntityData.defineId(Submersible.class, EntityDataSerializers.FLOAT);
-	private static final EntityDataAccessor<Boolean> DATA_ID_PADDLE_LEFT = SynchedEntityData.defineId(Submersible.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> DATA_ID_PADDLE_RIGHT = SynchedEntityData.defineId(Submersible.class, EntityDataSerializers.BOOLEAN);
-	public static final int PADDLE_LEFT = 0;
-	public static final int PADDLE_RIGHT = 1;
-	public static final double PADDLE_SOUND_TIME = (float) Math.PI / 4F;
-	public static final int BUBBLE_TIME = 60;
-	private float outOfControlTicks;
+public class Aircraft extends Entity {
+	private static final EntityDataAccessor<Integer> DATA_ID_HURT = SynchedEntityData.defineId(Aircraft.class, EntityDataSerializers.INT);
+	private static final EntityDataAccessor<Integer> DATA_ID_HURTDIR = SynchedEntityData.defineId(Aircraft.class, EntityDataSerializers.INT);
+	private static final EntityDataAccessor<Float> DATA_ID_DAMAGE = SynchedEntityData.defineId(Aircraft.class, EntityDataSerializers.FLOAT);
+
 	private float deltaRotation;
 	private int lerpSteps;
 	private double lerpX;
@@ -61,19 +57,20 @@ public class Submersible extends Entity {
 	private double lerpZ;
 	private double lerpYRot;
 	private double lerpXRot;
-	private Submersible.Status status;
-	private float bubbleAngle;
-	private float bubbleAngleO;
+	public Aircraft.Status status;
+
 	public float roll;
 	public float rollO;
-	public float throttle;
+	public float throttleRequested;
+	public float throttleDelivered;
+	public float horizontalSpeed;
 
-	public Submersible(EntityType<? extends Submersible> p_38290_, Level p_38291_) {
+	public Aircraft(EntityType<? extends Aircraft> p_38290_, Level p_38291_) {
 		super(p_38290_, p_38291_);
 		this.blocksBuilding = true;
 	}
 
-	public Submersible(Level p_38293_, double p_38294_, double p_38295_, double p_38296_) {
+	public Aircraft(Level p_38293_, double p_38294_, double p_38295_, double p_38296_) {
 		this(TechnologicaEntityTypes.SUBMERSIBLE.get(), p_38293_);
 		this.setPos(p_38294_, p_38295_, p_38296_);
 		this.xo = p_38294_;
@@ -113,18 +110,13 @@ public class Submersible extends Entity {
 	}
 
 	@Override
-	public boolean isPushable() {
-		return false;
-	}
-
-	@Override
 	protected Vec3 getRelativePortalPosition(Direction.Axis p_38335_, BlockUtil.FoundRectangle p_38336_) {
 		return LivingEntity.resetForwardDirectionOfRelativePortalPosition(super.getRelativePortalPosition(p_38335_, p_38336_));
 	}
 
 	@Override
 	public double getPassengersRidingOffset() {
-		return -0.9D;
+		return 0.0D;
 	}
 
 	@Override
@@ -157,12 +149,8 @@ public class Submersible extends Entity {
 	}
 
 	@Override
-	public void onAboveBubbleCol(boolean p_38381_) {
-	}
-
-	@Override
 	public void push(Entity p_38373_) {
-		if (p_38373_ instanceof Submersible) {
+		if (p_38373_ instanceof Aircraft) {
 			if (p_38373_.getBoundingBox().minY < this.getBoundingBox().maxY) {
 				super.push(p_38373_);
 			}
@@ -199,38 +187,19 @@ public class Submersible extends Entity {
 	}
 
 	@Override
-	public Direction getMotionDirection() {
-		return this.getDirection().getClockWise();
-	}
-
-	@Override
 	public void tick() {
-		this.rollO = this.roll;
 		this.status = this.getStatus();
-		if (this.status != Submersible.Status.UNDER_WATER && this.status != Submersible.Status.UNDER_FLOWING_WATER) {
-			this.outOfControlTicks = 0.0F;
-		} else {
-			++this.outOfControlTicks;
-		}
-
-		if (!this.level().isClientSide && this.outOfControlTicks >= 60.0F) {
-			this.ejectPassengers();
-		}
-
-		if (this.getHurtTime() > 0) {
-			this.setHurtTime(this.getHurtTime() - 1);
-		}
-
-		if (this.getDamage() > 0.0F) {
-			this.setDamage(this.getDamage() - 1.0F);
-		}
 
 		super.tick();
+
 		this.tickLerp();
 		if (this.isControlledByLocalInstance()) {
+			this.applyGravityWhenUnpiloted();
 			if (this.level().isClientSide) {
-				this.controlBoat();
+				this.controlAircraft();
 			}
+			
+
 
 			this.move(MoverType.SELF, this.getDeltaMovement());
 		} else {
@@ -256,6 +225,37 @@ public class Submersible extends Entity {
 
 	}
 
+	private Status getStatus() {
+		if (this.checkInWater()) {
+			return Status.IN_WATER;
+		} else {
+			float f = this.getGroundFriction();
+			if (f > 0.0F) {
+				return Status.ON_LAND;
+			} else {
+				return Status.IN_AIR;
+			}
+		}
+	}
+
+	private boolean checkInWater() {
+		AABB aabb = this.getBoundingBox();
+		boolean flag = false;
+		BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+
+		for (int posX = Mth.floor(aabb.minX); posX < Mth.ceil(aabb.maxX); ++posX) {
+			for (int posY = Mth.floor(aabb.minY); posY < Mth.ceil(aabb.minY + 0.001D); ++posY) {
+				for (int posZ = Mth.floor(aabb.minZ); posZ < Mth.ceil(aabb.maxZ); ++posZ) {
+					blockpos$mutableblockpos.set(posX, posY, posZ);
+					FluidState fluidstate = this.level().getFluidState(blockpos$mutableblockpos);
+					float f = posY + fluidstate.getHeight(this.level(), blockpos$mutableblockpos);
+					flag |= aabb.minY < f;
+				}
+			}
+		}
+		return flag;
+	}
+
 	private void tickLerp() {
 		if (this.isControlledByLocalInstance()) {
 			this.lerpSteps = 0;
@@ -272,22 +272,6 @@ public class Submersible extends Entity {
 			--this.lerpSteps;
 			this.setPos(d0, d1, d2);
 			this.setRot(this.getYRot(), this.getXRot());
-		}
-	}
-
-	private Submersible.Status getStatus() {
-		Submersible.Status boat$status = this.isUnderwater();
-		if (boat$status != null) {
-			return boat$status;
-		} else if (this.checkInWater()) {
-			return Submersible.Status.IN_WATER;
-		} else {
-			float f = this.getGroundFriction();
-			if (f > 0.0F) {
-				return Submersible.Status.ON_LAND;
-			} else {
-				return Submersible.Status.IN_AIR;
-			}
 		}
 	}
 
@@ -326,46 +310,68 @@ public class Submersible extends Entity {
 		return f / k1;
 	}
 
-	private boolean checkInWater() {
-		return true;
+	private void applyGravityWhenUnpiloted() {
+		if (this.throttleDelivered < 0.5F) {
+			this.setDeltaMovement(this.getDeltaMovement().add(0, -0.04F, 0));
+		}
 	}
 
-	@Nullable
-	private Submersible.Status isUnderwater() {
-		return Submersible.Status.IN_WATER;
-	}
+	private void controlAircraft() {
+		float lerpAmount = 0.01F;
+		if (this.isVehicle() && this.getControllingPassenger() instanceof LocalPlayer localPlayer) {
+			Input input = localPlayer.input;
 
-	private void controlBoat() {
-		if (this.isVehicle()) {
-			if (this.getControllingPassenger() instanceof LocalPlayer localPlayer) {
-				if (localPlayer.input.left) {
-					this.roll = Mth.lerp(0.1F, this.roll, this.roll - 50.0F);
+
+				if (input.left) {
+					this.roll = this.roll - 5.0F;
 				}
 
-				if (localPlayer.input.right) {
-					this.roll = Mth.lerp(0.1F, this.roll, this.roll + 50.0F);
+				if (input.right) {
+					this.roll = this.roll + 5.0F;
 				}
 
-				if (localPlayer.input.up) {
-					this.throttle = Mth.clamp(this.throttle + 0.1F, 0.0F, 1.0F);
+				if (input.up) {
+					this.throttleRequested = Mth.clamp(this.throttleRequested + 0.01F, 0.0F, 1.0F);
+					if (throttleRequested == 1.0F && throttleDelivered > 0.9F) {
+						lerpAmount = 0.1F;
+					}
 				}
 
-				if (localPlayer.input.down) {
-					this.throttle = Mth.clamp(this.throttle - 0.1F, 0.0F, 1.0F);
+				if (input.down) {
+					this.throttleRequested = Mth.clamp(this.throttleRequested - 0.01F, 0.0F, 1.0F);
+					if (throttleRequested == 0.0F && throttleDelivered < 0.1F) {
+						lerpAmount = 0.1F;
+					}
 				}
 
-				Vec3 steer = (this.getDeltaMovement().add(localPlayer.getLookAngle().multiply(0.55F, 0.55F, 0.55F))).normalize().multiply(this.throttle, this.throttle, this.throttle);
+				float lift = 0.0f;
+				if (throttleDelivered > 0.5F) {
+					lift = 0.1F;
+				}
+
+				float turn = 0.005F;
+				if (this.status != Status.ON_LAND) {
+					turn = 0.1F;
+				}
+
+				Vec3 dulledPlayerLookAngle = localPlayer.getLookAngle().multiply(turn, lift, turn);
+				Vec3 steer = this.getDeltaMovement().add(dulledPlayerLookAngle).normalize().multiply(this.throttleDelivered, this.throttleDelivered, this.throttleDelivered);
 				this.setDeltaMovement(steer);
 
-				float rotation = (float) Mth.clamp(Math.atan2(this.getDeltaMovement().z, this.getDeltaMovement().x) + Math.PI, 0, 2 * Math.PI);
-				float rotation2 = (float) Mth.clamp(Math.atan2(Math.sqrt(this.getDeltaMovement().z * this.getDeltaMovement().z + this.getDeltaMovement().x * this.getDeltaMovement().x), this.getDeltaMovement().y) + Math.PI, 0, 2 * Math.PI);
-
-				if (throttle > 0) {
-					this.setYRot((float) (rotation * 180F / Math.PI) + 90.0F);
-					this.setXRot((float) (rotation2 * 180F / Math.PI) + 90.0F);
+				if (throttleDelivered > 0) {
+					// this.setYRot((float) ((Math.atan2(this.getDeltaMovement().z, this.getDeltaMovement().x) + Math.PI) * 180F / Math.PI) + 90.0F);
+					this.setYRot(Mth.lerp(0.1F, this.yRotO, localPlayer.yRotO));
 				}
-			}
+
+				if (this.status != Status.ON_LAND) {
+					this.setXRot((float) (Mth.clamp(Math.atan2(Math.sqrt(this.getDeltaMovement().z * this.getDeltaMovement().z + this.getDeltaMovement().x * this.getDeltaMovement().x), this.getDeltaMovement().y) + Math.PI, 0, 2 * Math.PI) * 180F / Math.PI) + 90.0F);
+				} else {
+					this.setXRot(0.0F);
+				}
+
 		}
+		throttleDelivered = Mth.lerp(lerpAmount, throttleDelivered, throttleRequested);
+		horizontalSpeed = (float) this.getDeltaMovement().length();
 	}
 
 	protected float getSinglePassengerXOffset() {
@@ -377,32 +383,32 @@ public class Submersible extends Entity {
 	}
 
 	@Override
-	protected void positionRider(Entity p_289552_, Entity.MoveFunction p_289571_) {
-		if (this.hasPassenger(p_289552_)) {
+	protected void positionRider(Entity entity, Entity.MoveFunction p_289571_) {
+		if (this.hasPassenger(entity)) {
 			float f = this.getSinglePassengerXOffset();
-			float f1 = (float) ((this.isRemoved() ? (double) 0.01F : this.getPassengersRidingOffset()) + p_289552_.getMyRidingOffset());
+			float f1 = (float) ((this.isRemoved() ? (double) 0.01F : this.getPassengersRidingOffset()) + entity.getMyRidingOffset());
 			if (this.getPassengers().size() > 1) {
-				int i = this.getPassengers().indexOf(p_289552_);
+				int i = this.getPassengers().indexOf(entity);
 				if (i == 0) {
 					f = 0.2F;
 				} else {
 					f = -0.6F;
 				}
 
-				if (p_289552_ instanceof Animal) {
+				if (entity instanceof Animal) {
 					f += 0.2F;
 				}
 			}
 
 			Vec3 vec3 = (new Vec3(f, 0.0D, 0.0D)).yRot(-this.getYRot() * ((float) Math.PI / 180F) - ((float) Math.PI / 2F));
-			p_289571_.accept(p_289552_, this.getX() + vec3.x, this.getY() + f1, this.getZ() + vec3.z);
-			p_289552_.setYRot(p_289552_.getYRot() + this.deltaRotation);
-			p_289552_.setYHeadRot(p_289552_.getYHeadRot() + this.deltaRotation);
-			this.clampRotation(p_289552_);
-			if (p_289552_ instanceof Animal && this.getPassengers().size() == this.getMaxPassengers()) {
-				int j = p_289552_.getId() % 2 == 0 ? 90 : 270;
-				p_289552_.setYBodyRot(((Animal) p_289552_).yBodyRot + j);
-				p_289552_.setYHeadRot(p_289552_.getYHeadRot() + j);
+			p_289571_.accept(entity, this.getX() + vec3.x, this.getY() + f1, this.getZ() + vec3.z);
+			entity.setYRot(entity.getYRot() + this.deltaRotation);
+			entity.setYHeadRot(entity.getYHeadRot() + this.deltaRotation);
+			this.clampRotation(entity);
+			if (entity instanceof Animal && this.getPassengers().size() == this.getMaxPassengers()) {
+				int j = entity.getId() % 2 == 0 ? 90 : 270;
+				entity.setYBodyRot(((Animal) entity).yBodyRot + j);
+				entity.setYHeadRot(entity.getYHeadRot() + j);
 			}
 
 		}
@@ -440,41 +446,37 @@ public class Submersible extends Entity {
 		return super.getDismountLocationForPassenger(p_38357_);
 	}
 
-	protected void clampRotation(Entity p_38322_) {
-		p_38322_.setYBodyRot(this.getYRot());
-		float f = Mth.wrapDegrees(p_38322_.getYRot() - this.getYRot());
+	private void clampRotation(Entity entity) {
+		entity.setYBodyRot(this.getYRot());
+		float f = Mth.wrapDegrees(entity.getYRot() - this.getYRot());
 		float f1 = Mth.clamp(f, -105.0F, 105.0F);
-		p_38322_.yRotO += f1 - f;
-		p_38322_.setYRot(p_38322_.getYRot() + f1 - f);
-		p_38322_.setYHeadRot(p_38322_.getYRot());
+		entity.yRotO += f1 - f;
+		entity.setYRot(entity.getYRot() + f1 - f);
+		entity.setYHeadRot(entity.getYRot());
 	}
 
 	@Override
-	public void onPassengerTurned(Entity p_38383_) {
-		this.clampRotation(p_38383_);
+	public void onPassengerTurned(Entity entity) {
+		this.clampRotation(entity);
 	}
 
+	@SuppressWarnings("resource")
 	@Override
-	public InteractionResult interact(Player p_38330_, InteractionHand p_38331_) {
-		if (p_38330_.isSecondaryUseActive()) {
+	public InteractionResult interact(Player player, InteractionHand interactionHand) {
+		if (player.isSecondaryUseActive()) {
 			return InteractionResult.PASS;
-		} else if (this.outOfControlTicks < 60.0F) {
+		} else {
 			if (!this.level().isClientSide) {
-				return p_38330_.startRiding(this) ? InteractionResult.CONSUME : InteractionResult.PASS;
+				return player.startRiding(this) ? InteractionResult.CONSUME : InteractionResult.PASS;
 			} else {
 				return InteractionResult.SUCCESS;
 			}
-		} else {
-			return InteractionResult.PASS;
 		}
 	}
 
 	@Override
 	protected void checkFallDamage(double p_38307_, boolean p_38308_, BlockState p_38309_, BlockPos p_38310_) {
-	}
 
-	public boolean getPaddleState(int p_38314_) {
-		return this.entityData.<Boolean>get(p_38314_ == 0 ? DATA_ID_PADDLE_LEFT : DATA_ID_PADDLE_RIGHT) && this.getControllingPassenger() != null;
 	}
 
 	public void setDamage(float p_38312_) {
@@ -493,10 +495,6 @@ public class Submersible extends Entity {
 		return this.entityData.get(DATA_ID_HURT);
 	}
 
-	public float getBubbleAngle(float p_38353_) {
-		return Mth.lerp(p_38353_, this.bubbleAngleO, this.bubbleAngle);
-	}
-
 	public void setHurtDir(int p_38363_) {
 		this.entityData.set(DATA_ID_HURTDIR, p_38363_);
 	}
@@ -506,7 +504,7 @@ public class Submersible extends Entity {
 	}
 
 	@Override
-	protected boolean canAddPassenger(Entity p_38390_) {
+	protected boolean canAddPassenger(Entity passenger) {
 		return this.getPassengers().size() < this.getMaxPassengers();
 	}
 
@@ -517,20 +515,7 @@ public class Submersible extends Entity {
 	@Override
 	@Nullable
 	public LivingEntity getControllingPassenger() {
-		Entity entity = this.getFirstPassenger();
-		LivingEntity livingentity1;
-		if (entity instanceof LivingEntity livingentity) {
-			livingentity1 = livingentity;
-		} else {
-			livingentity1 = null;
-		}
-
-		return livingentity1;
-	}
-
-	@Override
-	public boolean isUnderWater() {
-		return this.status == Submersible.Status.UNDER_WATER || this.status == Submersible.Status.UNDER_FLOWING_WATER;
+		return this.getFirstPassenger() instanceof LivingEntity ? (LivingEntity) this.getFirstPassenger() : null;
 	}
 
 	@Override
@@ -544,21 +529,17 @@ public class Submersible extends Entity {
 
 	public static enum Status {
 		IN_WATER,
-		UNDER_WATER,
-		UNDER_FLOWING_WATER,
 		ON_LAND,
 		IN_AIR;
 	}
 
 	@Override
-	protected void readAdditionalSaveData(CompoundTag p_20052_) {
+	protected void readAdditionalSaveData(CompoundTag compoundTag) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
-	protected void addAdditionalSaveData(CompoundTag p_20139_) {
+	protected void addAdditionalSaveData(CompoundTag compoundTag) {
 		// TODO Auto-generated method stub
-
 	}
 }

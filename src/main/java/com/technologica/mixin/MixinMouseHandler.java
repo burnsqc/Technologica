@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import com.technologica.world.entity.vehicle.Submersible;
+import com.technologica.world.entity.vehicle.Aircraft;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.MouseHandler;
@@ -22,7 +22,7 @@ public abstract class MixinMouseHandler {
 	private void technologica_accountForRoll(CallbackInfo ci) {
 		Minecraft mc = Minecraft.getInstance();
 		if (mc.player != null) {
-			if (mc.player.getControlledVehicle() instanceof Submersible sub) {
+			if (mc.player.getControlledVehicle() instanceof Aircraft sub) {
 				double xorig = accumulatedDX;
 				double yorig = accumulatedDY;
 				double angle = sub.roll * Math.PI / 180;

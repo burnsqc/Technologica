@@ -55,8 +55,8 @@ import com.technologica.world.entity.projectile.Dodgeball;
 import com.technologica.world.entity.projectile.Harpoon;
 import com.technologica.world.entity.projectile.Meteor;
 import com.technologica.world.entity.projectile.ThrownSpear;
+import com.technologica.world.entity.vehicle.Aircraft;
 import com.technologica.world.entity.vehicle.Rocket;
-import com.technologica.world.entity.vehicle.Submersible;
 import com.technologica.world.entity.vehicle.TechnologicaBoat;
 
 import net.minecraft.world.entity.EntityType;
@@ -123,5 +123,5 @@ public final class TechnologicaEntityTypes {
 	public static final RegistryObject<EntityType<NavalMine>> NAVAL_MINE = Technologica.ENTITY_TYPES.register("naval_mine", () -> EntityType.Builder.<NavalMine>of(NavalMine::new, MobCategory.MISC).sized(2.0F, 2.0F).clientTrackingRange(10).build("naval_mine_entity"));
 	public static final RegistryObject<EntityType<Meteor>> METEOR = Technologica.ENTITY_TYPES.register("meteor", () -> EntityType.Builder.<Meteor>of(Meteor::new, MobCategory.MISC).sized(1.0F, 1.0F).clientTrackingRange(4).updateInterval(10).build("meteor"));
 	public static final RegistryObject<EntityType<MagicLightningBolt>> MAGIC_LIGHTNING = Technologica.ENTITY_TYPES.register("magic_lightning_bolt", () -> EntityType.Builder.<MagicLightningBolt>of(MagicLightningBolt::new, MobCategory.MISC).noSave().sized(0.0F, 0.0F).clientTrackingRange(16).updateInterval(Integer.MAX_VALUE).build("magic_lightning_bolt"));
-	public static final RegistryObject<EntityType<Submersible>> SUBMERSIBLE = Technologica.ENTITY_TYPES.register("submersible", () -> EntityType.Builder.<Submersible>of(Submersible::new, MobCategory.MISC).sized(1.375F, 0.5625F).build("submersible"));
+	public static final RegistryObject<EntityType<Aircraft>> SUBMERSIBLE = Technologica.ENTITY_TYPES.register("submersible", () -> EntityType.Builder.<Aircraft>of(Aircraft::new, MobCategory.MISC).sized(3.0F, 2.0F).build("submersible"));
 }

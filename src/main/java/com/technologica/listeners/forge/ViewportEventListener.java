@@ -2,7 +2,7 @@ package com.technologica.listeners.forge;
 
 import com.technologica.registration.dynamic.TechnologicaBiomes;
 import com.technologica.registration.dynamic.TechnologicaDimensions;
-import com.technologica.world.entity.vehicle.Submersible;
+import com.technologica.world.entity.vehicle.Aircraft;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.Mth;
@@ -22,8 +22,8 @@ public class ViewportEventListener {
 	@SubscribeEvent
 	public static void onComputeCameraAngles(final ViewportEvent.ComputeCameraAngles event) {
 		Minecraft mc = Minecraft.getInstance();
-		if (mc.player.getControlledVehicle() instanceof Submersible sub) {
-			event.setRoll(Mth.lerp(0.001F, sub.rollO, sub.roll));
+		if (mc.player.getControlledVehicle() instanceof Aircraft sub) {
+			event.setRoll(sub.roll);
 		}
 	}
 

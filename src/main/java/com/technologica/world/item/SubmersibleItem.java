@@ -3,7 +3,7 @@ package com.technologica.world.item;
 import java.util.List;
 import java.util.function.Predicate;
 
-import com.technologica.world.entity.vehicle.Submersible;
+import com.technologica.world.entity.vehicle.Aircraft;
 
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
@@ -47,7 +47,7 @@ public class SubmersibleItem extends Item {
 			}
 
 			if (raytraceresult.getType() == HitResult.Type.BLOCK) {
-				Submersible modBoatEntity = new Submersible(worldIn, raytraceresult.getLocation().x, raytraceresult.getLocation().y, raytraceresult.getLocation().z);
+				Aircraft modBoatEntity = new Aircraft(worldIn, raytraceresult.getLocation().x, raytraceresult.getLocation().y, raytraceresult.getLocation().z);
 				modBoatEntity.setYRot(playerIn.getYRot());
 				if (!worldIn.noCollision(modBoatEntity, modBoatEntity.getBoundingBox().inflate(-0.1D))) {
 					return InteractionResultHolder.fail(itemstack);
