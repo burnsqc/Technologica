@@ -12,12 +12,12 @@ import net.minecraftforge.common.util.LazyOptional;
 
 public class PortalHookProvider implements ICapabilitySerializable<CompoundTag> {
 	private final PortalHook portalHook = new PortalHook();
-	private final LazyOptional<PortalHook> optionalData = LazyOptional.of(() -> portalHook);
+	private final LazyOptional<PortalHook> lazyOptional = LazyOptional.of(() -> portalHook);
 
 	@Nonnull
 	@Override
 	public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction direction) {
-		return PortalHook.PORTAL_HOOK_INSTANCE.orEmpty(capability, optionalData);
+		return PortalHook.PORTAL_HOOK_INSTANCE.orEmpty(capability, lazyOptional);
 	}
 
 	@Override

@@ -24,53 +24,50 @@ import net.minecraftforge.common.capabilities.CapabilityToken;
 import net.minecraftforge.common.util.INBTSerializable;
 
 public class Link implements INBTSerializable<CompoundTag> {
-	private boolean linking = false;
-	private Level world;
-	private BlockPos linkPos1 = BlockPos.ZERO;
-	private BlockPos linkPos2 = BlockPos.ZERO;
-	private BlockState linkState1;
-	private BlockState linkState2;
-	private BlockEntity linkTile1;
-	private BlockEntity linkTile2;
+	private boolean isLinking = false;
+	private Level level;
+	private BlockPos blockPos1 = BlockPos.ZERO;
+	private BlockPos blockPos2 = BlockPos.ZERO;
+	private BlockState blockState1;
+	private BlockState blockState2;
+	private BlockEntity blockEntity1;
+	private BlockEntity blockEntity2;
 	private Direction.Axis axis;
 	private Direction direction;
 	private int distance;
 	private Player player;
-	private String message;
 	public static final Capability<Link> LINK_INSTANCE = CapabilityManager.get(new CapabilityToken<>() {
 	});
 
 	public boolean getLinking() {
-		return this.linking;
+		return this.isLinking;
 	}
 
 	public BlockPos getLinkAnchorPos() {
-		return this.linkPos1;
+		return this.blockPos1;
 	}
 
-	public void startLink(Level worldIn, BlockPos posIn, BlockState stateIn, Player playerIn) {
-		this.linking = true;
-		this.world = worldIn;
-		this.linkPos1 = posIn;
-		this.linkState1 = stateIn;
-		this.player = playerIn;
-		this.message = "LINK STARTED";
-		this.player.displayClientMessage(Component.literal(this.message), true);
+	public void startLink(Level level, BlockPos blockPos, BlockState blockState, Player player) {
+		this.isLinking = true;
+		this.level = level;
+		this.blockPos1 = blockPos;
+		this.blockState1 = blockState;
+		this.player = player;
+		this.player.displayClientMessage(Component.literal("LINK STARTED"), true);
 	}
 
-	public void stopLink(BlockPos posIn, BlockState stateIn) {
-		this.linking = false;
-		this.linkPos2 = posIn;
-		this.linkState2 = stateIn;
+	public void stopLink(BlockPos blockPos, BlockState blockState) {
+		this.isLinking = false;
+		this.blockPos2 = blockPos;
+		this.blockState2 = blockState;
 	}
 
-	public boolean checkAxis() {
-		if (this.linkState1.getValue(TwelveDirectionBlock.AXIS).equals(this.linkState2.getValue(TwelveDirectionBlock.AXIS))) {
-			this.axis = this.linkState1.getValue(TwelveDirectionBlock.AXIS);
+	public boolean checkAxisAlignment() {
+		if (this.blockState1.getValue(TwelveDirectionBlock.AXIS).equals(this.blockState2.getValue(TwelveDirectionBlock.AXIS))) {
+			this.axis = this.blockState1.getValue(TwelveDirectionBlock.AXIS);
 			return true;
 		} else {
-			this.message = "LINK FAILED: AXIS MISALIGNMENT";
-			this.player.displayClientMessage(Component.literal(this.message), true);
+			this.player.displayClientMessage(Component.literal("LINK FAILED: AXIS MISALIGNMENT"), true);
 			return false;
 		}
 	}
@@ -78,25 +75,26 @@ public class Link implements INBTSerializable<CompoundTag> {
 	public boolean checkInlinePos() {
 		boolean bool = false;
 		switch (this.axis) {
-		case X:
-			bool = this.linkPos1.getY() == this.linkPos2.getY() && this.linkPos1.getZ() == this.linkPos2.getZ();
-			this.direction = this.linkPos1.getX() > this.linkPos2.getX() ? Direction.WEST : Direction.EAST;
-			this.distance = Math.abs(this.linkPos1.getX() - this.linkPos2.getX());
-			break;
-		case Y:
-			bool = this.linkPos1.getX() == this.linkPos2.getX() && this.linkPos1.getZ() == this.linkPos2.getZ();
-			this.direction = this.linkPos1.getY() > this.linkPos2.getY() ? Direction.DOWN : Direction.UP;
-			this.distance = Math.abs(this.linkPos1.getY() - this.linkPos2.getY());
-			break;
-		case Z:
-			bool = this.linkPos1.getX() == this.linkPos2.getX() && this.linkPos1.getY() == this.linkPos2.getY();
-			this.direction = this.linkPos1.getZ() > this.linkPos2.getZ() ? Direction.NORTH : Direction.SOUTH;
-			this.distance = Math.abs(this.linkPos1.getZ() - this.linkPos2.getZ());
-			break;
+			case X -> {
+				bool = this.blockPos1.getY() == this.blockPos2.getY() && this.blockPos1.getZ() == this.blockPos2.getZ();
+				this.direction = this.blockPos1.getX() > this.blockPos2.getX() ? Direction.WEST : Direction.EAST;
+				this.distance = Math.abs(this.blockPos1.getX() - this.blockPos2.getX());
+			}
+			case Y -> {
+				bool = this.blockPos1.getX() == this.blockPos2.getX() && this.blockPos1.getZ() == this.blockPos2.getZ();
+				this.direction = this.blockPos1.getY() > this.blockPos2.getY() ? Direction.DOWN : Direction.UP;
+				this.distance = Math.abs(this.blockPos1.getY() - this.blockPos2.getY());
+			}
+			case Z -> {
+				bool = this.blockPos1.getX() == this.blockPos2.getX() && this.blockPos1.getY() == this.blockPos2.getY();
+				this.direction = this.blockPos1.getZ() > this.blockPos2.getZ() ? Direction.NORTH : Direction.SOUTH;
+				this.distance = Math.abs(this.blockPos1.getZ() - this.blockPos2.getZ());
+			}
+			default -> {
+			}
 		}
 		if (!bool) {
-			this.message = "LINK FAILED: POSITION MISALIGNMENT";
-			this.player.displayClientMessage(Component.literal(this.message), true);
+			this.player.displayClientMessage(Component.literal("LINK FAILED: POSITION MISALIGNMENT"), true);
 		}
 		return bool;
 	}
@@ -104,25 +102,26 @@ public class Link implements INBTSerializable<CompoundTag> {
 	public boolean checkPlanarPos() {
 		boolean bool = false;
 		switch (this.axis) {
-		case X:
-			bool = this.linkPos1.getX() == this.linkPos2.getX();
-			this.direction = this.linkPos1.getX() > this.linkPos2.getX() ? Direction.WEST : Direction.EAST;
-			this.distance = Math.abs(this.linkPos1.getX() - this.linkPos2.getX());
-			break;
-		case Y:
-			bool = this.linkPos1.getY() == this.linkPos2.getY();
-			this.direction = this.linkPos1.getY() > this.linkPos2.getY() ? Direction.DOWN : Direction.UP;
-			this.distance = Math.abs(this.linkPos1.getY() - this.linkPos2.getY());
-			break;
-		case Z:
-			bool = this.linkPos1.getZ() == this.linkPos2.getZ();
-			this.direction = this.linkPos1.getZ() > this.linkPos2.getZ() ? Direction.NORTH : Direction.SOUTH;
-			this.distance = Math.abs(this.linkPos1.getZ() - this.linkPos2.getZ());
-			break;
+			case X:
+				bool = this.blockPos1.getX() == this.blockPos2.getX();
+				this.direction = this.blockPos1.getX() > this.blockPos2.getX() ? Direction.WEST : Direction.EAST;
+				this.distance = Math.abs(this.blockPos1.getX() - this.blockPos2.getX());
+				break;
+			case Y:
+				bool = this.blockPos1.getY() == this.blockPos2.getY();
+				this.direction = this.blockPos1.getY() > this.blockPos2.getY() ? Direction.DOWN : Direction.UP;
+				this.distance = Math.abs(this.blockPos1.getY() - this.blockPos2.getY());
+				break;
+			case Z:
+				bool = this.blockPos1.getZ() == this.blockPos2.getZ();
+				this.direction = this.blockPos1.getZ() > this.blockPos2.getZ() ? Direction.NORTH : Direction.SOUTH;
+				this.distance = Math.abs(this.blockPos1.getZ() - this.blockPos2.getZ());
+				break;
+			default:
+				break;
 		}
 		if (!bool) {
-			this.message = "LINK FAILED: POSITION MISALIGNMENT";
-			this.player.displayClientMessage(Component.literal(this.message), true);
+			this.player.displayClientMessage(Component.literal("LINK FAILED: POSITION MISALIGNMENT"), true);
 		}
 		return bool;
 	}
@@ -130,13 +129,12 @@ public class Link implements INBTSerializable<CompoundTag> {
 	public boolean checkObstructed() {
 		boolean bool = true;
 		for (int k = 1; k < this.distance; k++) {
-			if (!this.world.isEmptyBlock(this.linkPos1.relative(this.direction, k))) {
+			if (!this.level.isEmptyBlock(this.blockPos1.relative(this.direction, k))) {
 				bool = false;
 			}
 		}
 		if (!bool) {
-			this.message = "LINK FAILED: OBSTRUCTED";
-			this.player.displayClientMessage(Component.literal(this.message), true);
+			this.player.displayClientMessage(Component.literal("LINK FAILED: OBSTRUCTED"), true);
 		}
 		return bool;
 	}
@@ -148,75 +146,70 @@ public class Link implements INBTSerializable<CompoundTag> {
 		bool1 = this.distance < 10;
 		bool2 = this.distance > 1;
 		if (!bool1) {
-			this.message = "LINK FAILED: DISTANCE TOO FAR";
-			this.player.displayClientMessage(Component.literal(this.message), true);
+			this.player.displayClientMessage(Component.literal("LINK FAILED: DISTANCE TOO FAR"), true);
 		} else if (!bool2) {
-			this.message = "LINK FAILED: DISTANCE TOO SHORT";
-			this.player.displayClientMessage(Component.literal(this.message), true);
+			this.player.displayClientMessage(Component.literal("LINK FAILED: DISTANCE TOO SHORT"), true);
 		}
 		return bool1 && bool2;
 	}
 
 	public boolean checkMaterial() {
-		Inventory inv = this.player.getInventory();
-		this.linkTile1 = this.world.getBlockEntity(this.linkPos1);
-		this.linkTile2 = this.world.getBlockEntity(this.linkPos2);
+		this.blockEntity1 = this.level.getBlockEntity(this.blockPos1);
+		this.blockEntity2 = this.level.getBlockEntity(this.blockPos2);
 		int count = 0;
 		int shaft1;
 		int shaft2;
-		boolean bool = false;
 
-		shaft1 = ((LineShaftHangerBlockEntity) this.linkTile1).getShaft() ? 0 : 1;
-		shaft2 = ((LineShaftHangerBlockEntity) this.linkTile2).getShaft() ? 0 : 1;
-
-		for (int i = 0; i < inv.getContainerSize(); i++) {
-			ItemStack stack = inv.getItem(i);
+		shaft1 = ((LineShaftHangerBlockEntity) this.blockEntity1).getShaft() ? 0 : 1;
+		shaft2 = ((LineShaftHangerBlockEntity) this.blockEntity2).getShaft() ? 0 : 1;
+		Inventory inventory = this.player.getInventory();
+		for (int i = 0; i < inventory.getContainerSize(); i++) {
+			ItemStack stack = inventory.getItem(i);
 			if (stack.getItem() == TechnologicaItems.STEEL_SHAFT.get()) {
 				count = count + stack.getCount();
 			}
 		}
+
+		boolean bool = false;
 		bool = this.distance - 1 + shaft1 + shaft2 <= count;
 		if (!bool) {
-			this.message = "LINK FAILED: MATERIAL SHORTAGE";
-			this.player.displayClientMessage(Component.literal(this.message), true);
+			this.player.displayClientMessage(Component.literal("LINK FAILED: MATERIAL SHORTAGE"), true);
 		}
 		return bool;
 	}
 
 	public void createLineShaft() {
-		((LineShaftHangerBlockEntity) this.linkTile1).setShaft(true);
-		((LineShaftHangerBlockEntity) this.linkTile2).setShaft(true);
-		this.world.sendBlockUpdated(this.linkPos1, this.linkState1, this.linkState1, 3);
-		this.world.sendBlockUpdated(this.linkPos2, this.linkState2, this.linkState2, 3);
+		((LineShaftHangerBlockEntity) this.blockEntity1).setShaft(true);
+		((LineShaftHangerBlockEntity) this.blockEntity2).setShaft(true);
+		this.level.sendBlockUpdated(this.blockPos1, this.blockState1, this.blockState1, 3);
+		this.level.sendBlockUpdated(this.blockPos2, this.blockState2, this.blockState2, 3);
 
 		for (int k = 1; k < this.distance; k++) {
-			this.world.setBlock(this.linkPos1.relative(this.direction, k), TechnologicaBlocks.LINE_SHAFT.get().defaultBlockState().setValue(BlockStateProperties.AXIS, this.axis), 3);
-			this.world.sendBlockUpdated(this.linkPos1.relative(this.direction, k), Blocks.AIR.defaultBlockState(), TechnologicaBlocks.LINE_SHAFT.get().defaultBlockState().setValue(BlockStateProperties.AXIS, this.axis), 3);
+			this.level.setBlock(this.blockPos1.relative(this.direction, k), TechnologicaBlocks.LINE_SHAFT.get().defaultBlockState().setValue(BlockStateProperties.AXIS, this.axis), 3);
+			this.level.sendBlockUpdated(this.blockPos1.relative(this.direction, k), Blocks.AIR.defaultBlockState(), TechnologicaBlocks.LINE_SHAFT.get().defaultBlockState().setValue(BlockStateProperties.AXIS, this.axis), 3);
 		}
-		this.message = "LINK SUCCESS";
-		this.player.displayClientMessage(Component.literal(this.message), true);
+		this.player.displayClientMessage(Component.literal("LINK SUCCESS"), true);
 	}
 
 	public void createBelt() {
-		this.linkTile1 = this.world.getBlockEntity(this.linkPos1);
-		this.linkTile2 = this.world.getBlockEntity(this.linkPos2);
-		((LineShaftBlockEntity) this.linkTile1).setBeltPos(this.linkPos2);
-		((LineShaftBlockEntity) this.linkTile2).setBeltPos(this.linkPos1);
-		this.world.sendBlockUpdated(this.linkPos1, this.linkState1, this.linkState1, 3);
-		this.world.sendBlockUpdated(this.linkPos2, this.linkState2, this.linkState2, 3);
-		this.message = "LINK SUCCESS";
-		this.player.displayClientMessage(Component.literal(this.message), true);
+		this.blockEntity1 = this.level.getBlockEntity(this.blockPos1);
+		this.blockEntity2 = this.level.getBlockEntity(this.blockPos2);
+		((LineShaftBlockEntity) this.blockEntity1).setBeltPos(this.blockPos2);
+		((LineShaftBlockEntity) this.blockEntity2).setBeltPos(this.blockPos1);
+		this.level.sendBlockUpdated(this.blockPos1, this.blockState1, this.blockState1, 3);
+		this.level.sendBlockUpdated(this.blockPos2, this.blockState2, this.blockState2, 3);
+		this.player.displayClientMessage(Component.literal("LINK SUCCESS"), true);
 	}
 
 	@Override
 	public CompoundTag serializeNBT() {
 		CompoundTag nbt = new CompoundTag();
-		nbt.putBoolean("linking", this.linking);
+		nbt.putBoolean("linking", this.isLinking);
 		return nbt;
 	}
 
 	@Override
-	public void deserializeNBT(CompoundTag nbt) {
-		this.linking = nbt.getBoolean("linking");
+	public void deserializeNBT(CompoundTag compoundTag) {
+		this.isLinking = compoundTag.getBoolean("linking");
 	}
 }

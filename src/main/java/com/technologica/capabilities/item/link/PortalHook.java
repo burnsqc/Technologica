@@ -37,29 +37,23 @@ public class PortalHook implements INBTSerializable<CompoundTag> {
 	private Entity entity;
 	private boolean isInsidePortal;
 	protected int portalTime;
-	protected BlockPos portalEntrancePos;
+	protected BlockPos blockPosEntrance;
 	public static final Capability<PortalHook> PORTAL_HOOK_INSTANCE = CapabilityManager.get(new CapabilityToken<>() {
 	});
 
-	/*
-	 * Entity
-	 */
 	@SuppressWarnings("resource")
 	public void handleInsidePortal(BlockPos blockPos, Entity entity) {
 		this.entity = entity;
 		if (entity.isOnPortalCooldown()) {
 			entity.setPortalCooldown();
 		} else {
-			if (!entity.level().isClientSide && !blockPos.equals(this.portalEntrancePos)) {
-				this.portalEntrancePos = blockPos.immutable();
+			if (!entity.level().isClientSide && !blockPos.equals(this.blockPosEntrance)) {
+				this.blockPosEntrance = blockPos.immutable();
 			}
 			this.isInsidePortal = true;
 		}
 	}
 
-	/*
-	 * Entity
-	 */
 	public void handleAbyssPortal() {
 		if (entity.level() instanceof ServerLevel) {
 			int i = entity.getPortalWaitTime();
@@ -88,44 +82,41 @@ public class PortalHook implements INBTSerializable<CompoundTag> {
 		}
 	}
 
-	/*
-	 * Entity
-	 */
 	@Nullable
-	public PortalInfo findDimensionEntryPoint(ServerLevel destinationServerLevel) {
-		boolean isGoingToAbyss = destinationServerLevel.dimension() == Registries.levelStemToLevel(TechnologicaDimensions.ABYSS_STEM);
+	public PortalInfo findDimensionEntryPoint(ServerLevel serverLevel) {
+		boolean isGoingToAbyss = serverLevel.dimension() == Registries.levelStemToLevel(TechnologicaDimensions.ABYSS_STEM);
 		if (entity.level().dimension() != Registries.levelStemToLevel(TechnologicaDimensions.ABYSS_STEM) && !isGoingToAbyss) {
 			return null;
 		} else {
-			WorldBorder worldborder = destinationServerLevel.getWorldBorder();
-			double d0 = DimensionType.getTeleportationScale(entity.level().dimensionType(), destinationServerLevel.dimensionType());
+			WorldBorder worldborder = serverLevel.getWorldBorder();
+			double d0 = DimensionType.getTeleportationScale(entity.level().dimensionType(), serverLevel.dimensionType());
 			BlockPos blockpos1 = worldborder.clampToBounds(entity.getX() * d0, entity.getY(), entity.getZ() * d0);
-			return this.getExitPortal(destinationServerLevel, blockpos1, isGoingToAbyss, worldborder).map((p_258249_) -> {
-				BlockState blockstate = entity.level().getBlockState(this.portalEntrancePos);
-				Direction.Axis direction$axis;
+			return this.getExitPortal(serverLevel, blockpos1, isGoingToAbyss, worldborder).map((rectangle) -> {
+				BlockState blockState = entity.level().getBlockState(this.blockPosEntrance);
+				Direction.Axis axis;
 				Vec3 vec3;
-				if (blockstate.hasProperty(BlockStateProperties.HORIZONTAL_AXIS)) {
-					direction$axis = blockstate.getValue(BlockStateProperties.HORIZONTAL_AXIS);
-					BlockUtil.FoundRectangle blockutil$foundrectangle = BlockUtil.getLargestRectangleAround(this.portalEntrancePos, direction$axis, 21, Direction.Axis.Y, 21, (p_284700_) -> {
-						return entity.level().getBlockState(p_284700_) == blockstate;
+				if (blockState.hasProperty(BlockStateProperties.HORIZONTAL_AXIS)) {
+					axis = blockState.getValue(BlockStateProperties.HORIZONTAL_AXIS);
+					BlockUtil.FoundRectangle foundRectangle = BlockUtil.getLargestRectangleAround(this.blockPosEntrance, axis, 21, Direction.Axis.Y, 21, (blockPos) -> {
+						return entity.level().getBlockState(blockPos) == blockState;
 					});
-					vec3 = this.getRelativePortalPosition(direction$axis, blockutil$foundrectangle);
+					vec3 = this.getRelativePortalPosition(axis, foundRectangle);
 				} else {
-					direction$axis = Direction.Axis.X;
+					axis = Direction.Axis.X;
 					vec3 = new Vec3(0.5D, 0.0D, 0.0D);
 				}
-				return AbyssPortalShape.createPortalInfo(destinationServerLevel, p_258249_, direction$axis, vec3, entity, entity.getDeltaMovement(), entity.getYRot(), entity.getXRot());
+				return AbyssPortalShape.createPortalInfo(serverLevel, rectangle, axis, vec3, entity, entity.getDeltaMovement(), entity.getYRot(), entity.getXRot());
 			}).orElse((PortalInfo) null);
 		}
 	}
 
-	protected Optional<BlockUtil.FoundRectangle> getExitPortal(ServerLevel destinationServerLevel, BlockPos blockPos, boolean isGoingToAbyss, WorldBorder worldBorder) {
-		Optional<BlockUtil.FoundRectangle> existingPortal = new AbyssPortalForcer(destinationServerLevel).findPortalAround(blockPos, isGoingToAbyss, worldBorder);
+	protected Optional<BlockUtil.FoundRectangle> getExitPortal(ServerLevel serverLevel, BlockPos blockPos, boolean isGoingToAbyss, WorldBorder worldBorder) {
+		Optional<BlockUtil.FoundRectangle> existingPortal = new AbyssPortalForcer(serverLevel).findPortalAround(blockPos, isGoingToAbyss, worldBorder);
 		if (existingPortal.isPresent()) {
 			return existingPortal;
 		} else {
-			Direction.Axis direction$axis = entity.level().getBlockState(this.portalEntrancePos).getOptionalValue(AbyssPortalBlock.AXIS).orElse(Direction.Axis.X);
-			Optional<BlockUtil.FoundRectangle> newPortal = new AbyssPortalForcer(destinationServerLevel).createPortal(blockPos, direction$axis);
+			Direction.Axis axis = entity.level().getBlockState(this.blockPosEntrance).getOptionalValue(AbyssPortalBlock.AXIS).orElse(Direction.Axis.X);
+			Optional<BlockUtil.FoundRectangle> newPortal = new AbyssPortalForcer(serverLevel).createPortal(blockPos, axis);
 			if (!newPortal.isPresent()) {
 				Technologica.LOGGER.error("Unable to create a portal, likely target out of worldborder");
 			}
@@ -133,8 +124,8 @@ public class PortalHook implements INBTSerializable<CompoundTag> {
 		}
 	}
 
-	protected Vec3 getRelativePortalPosition(Direction.Axis p_20045_, BlockUtil.FoundRectangle p_20046_) {
-		return PortalShape.getRelativePosition(p_20046_, p_20045_, entity.position(), entity.getDimensions(entity.getPose()));
+	protected Vec3 getRelativePortalPosition(Direction.Axis axis, BlockUtil.FoundRectangle foundRectangle) {
+		return PortalShape.getRelativePosition(foundRectangle, axis, entity.position(), entity.getDimensions(entity.getPose()));
 	}
 
 	@Override
