@@ -9,7 +9,7 @@
           ]
         }
       },
-      "trigger": "minecraft:lit_campfire"
+      "trigger": "technologica:lit_campfire"
     }
   },
   "display": {

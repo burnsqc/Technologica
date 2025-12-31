@@ -12,7 +12,7 @@
           }
         }
       },
-      "trigger": "minecraft:block_observed"
+      "trigger": "technologica:observed_block"
     },
     "discovered_fire": {
       "conditions": {
@@ -22,7 +22,7 @@
           ]
         }
       },
-      "trigger": "minecraft:block_observed"
+      "trigger": "technologica:observed_block"
     }
   },
   "display": {
