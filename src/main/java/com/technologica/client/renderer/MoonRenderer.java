@@ -64,7 +64,7 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 	}
 
 	@Override
-	public boolean renderSky(ClientLevel level, int ticks, float partialTicks, PoseStack matrixStackIn, Camera camera, Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog) {
+	public boolean renderSky(ClientLevel clientLevel, int ticks, float partialTicks, PoseStack poseStack, Camera camera, Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog) {
 		FogRenderer.setupNoFog();
 		BufferBuilder bufferbuilder = Tesselator.getInstance().getBuilder();
 		RenderSystem.depthMask(false);
@@ -72,16 +72,16 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 		RenderSystem.defaultBlendFunc();
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 
-		matrixStackIn.pushPose();
-		matrixStackIn.mulPose(Axis.YP.rotationDegrees(-90.0F));
-		matrixStackIn.mulPose(Axis.XP.rotationDegrees(-45.0F));
-		Matrix4f earthMatrix = matrixStackIn.last().pose();
-		matrixStackIn.popPose();
+		poseStack.pushPose();
+		poseStack.mulPose(Axis.YP.rotationDegrees(-90.0F));
+		poseStack.mulPose(Axis.XP.rotationDegrees(-45.0F));
+		Matrix4f earthMatrix = poseStack.last().pose();
+		poseStack.popPose();
 
-		matrixStackIn.pushPose();
-		matrixStackIn.mulPose(Axis.YP.rotationDegrees(-90.0F));
-		matrixStackIn.mulPose(Axis.XP.rotationDegrees(level.getTimeOfDay(partialTicks) * 360.0F));
-		Matrix4f sunMatrix = matrixStackIn.last().pose();
+		poseStack.pushPose();
+		poseStack.mulPose(Axis.YP.rotationDegrees(-90.0F));
+		poseStack.mulPose(Axis.XP.rotationDegrees(clientLevel.getTimeOfDay(partialTicks) * 360.0F));
+		Matrix4f sunMatrix = poseStack.last().pose();
 
 		this.starBuffer.bind();
 		this.starBuffer.drawWithShader(sunMatrix, projectionMatrix, GameRenderer.getPositionShader());
@@ -98,7 +98,7 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 		BufferUploader.drawWithShader(bufferbuilder.end());
 
 		RenderSystem.setShaderTexture(0, EARTH_TEXTURES);
-		long time = level.dayTime();
+		long time = clientLevel.dayTime();
 		float eclipseDarken = Mth.clamp(time < 2230 ? 0.95F * (time - 1470) / 620F : 0.95F * -(time - 2990) / 620F, 0.0F, 0.95F);
 		RenderSystem.setShaderColor(1.0F - eclipseDarken, 1.0F - eclipseDarken, 1.0F - eclipseDarken, 1.0F);
 		bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
@@ -110,7 +110,7 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 		BufferUploader.drawWithShader(bufferbuilder.end());
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 
-		matrixStackIn.popPose();
+		poseStack.popPose();
 
 		RenderSystem.disableBlend();
 		RenderSystem.depthMask(true);
@@ -119,28 +119,28 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 	}
 
 	@Override
-	public float[] getSunriseColor(float p_108872_, float p_108873_) {
+	public float[] getSunriseColor(float timeOfDay, float partialTicks) {
 		return null;
 	}
 
 	private void createStars() {
 		Tesselator tesselator = Tesselator.getInstance();
-		BufferBuilder bufferbuilder = tesselator.getBuilder();
+		BufferBuilder bufferBuilder = tesselator.getBuilder();
 		RenderSystem.setShader(GameRenderer::getPositionShader);
 		if (this.starBuffer != null) {
 			this.starBuffer.close();
 		}
 
 		this.starBuffer = new VertexBuffer(VertexBuffer.Usage.STATIC);
-		BufferBuilder.RenderedBuffer bufferbuilder$renderedbuffer = this.drawStars(bufferbuilder);
+		BufferBuilder.RenderedBuffer renderedBuffer = this.drawStars(bufferBuilder);
 		this.starBuffer.bind();
-		this.starBuffer.upload(bufferbuilder$renderedbuffer);
+		this.starBuffer.upload(renderedBuffer);
 		VertexBuffer.unbind();
 	}
 
-	private BufferBuilder.RenderedBuffer drawStars(BufferBuilder p_234260_) {
+	private BufferBuilder.RenderedBuffer drawStars(BufferBuilder bufferBuilder) {
 		RandomSource randomsource = RandomSource.create(10842L);
-		p_234260_.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION);
+		bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION);
 
 		for (int i = 0; i < 1500; ++i) {
 			double d0 = randomsource.nextFloat() * 2.0F - 1.0F;
@@ -175,21 +175,21 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 					double d24 = 0.0D * d12 - d21 * d13;
 					double d25 = d24 * d9 - d22 * d10;
 					double d26 = d22 * d9 + d24 * d10;
-					p_234260_.vertex(d5 + d25, d6 + d23, d7 + d26).endVertex();
+					bufferBuilder.vertex(d5 + d25, d6 + d23, d7 + d26).endVertex();
 				}
 			}
 		}
 
-		return p_234260_.end();
+		return bufferBuilder.end();
 	}
 
 	@Override
-	public Vec3 getBrightnessDependentFogColor(Vec3 p_108878_, float p_108879_) {
-		return p_108878_.scale(0.0F);
+	public Vec3 getBrightnessDependentFogColor(Vec3 fogColor, float brightness) {
+		return fogColor.scale(0.0F);
 	}
 
 	@Override
-	public boolean isFoggyAt(int p_108874_, int p_108875_) {
+	public boolean isFoggyAt(int posX, int posY) {
 		return false;
 	}
 
@@ -216,15 +216,15 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 			int i1 = -1;
 			RenderSystem.setShader(GameRenderer::getParticleShader);
 			RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-			BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+			BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
 
 			for (int j1 = k - l; j1 <= k + l; ++j1) {
 				for (int k1 = i - l; k1 <= i + l; ++k1) {
 					int l1 = (j1 - k + 16) * 32 + k1 - i + 16;
 					double d0 = this.rainSizeX[l1] * 0.2D;
 					double d1 = this.rainSizeZ[l1] * 0.2D;
-					blockpos$mutableblockpos.set(k1, camY, j1);
-					Biome biome = level.getBiome(blockpos$mutableblockpos).value();
+					mutableBlockPos.set(k1, camY, j1);
+					Biome biome = level.getBiome(mutableBlockPos).value();
 					if (biome.hasPrecipitation()) {
 						int i2 = level.getHeight(Heightmap.Types.MOTION_BLOCKING, k1, j1);
 						int j2 = j - l;
@@ -244,8 +244,8 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 
 						if (j2 != k2) {
 							RandomSource randomsource = RandomSource.create(k1 * k1 * 3121 + k1 * 45238971 ^ j1 * j1 * 418711 + j1 * 13761);
-							blockpos$mutableblockpos.set(k1, j2, j1);
-							if (biome.warmEnoughToRain(blockpos$mutableblockpos)) {
+							mutableBlockPos.set(k1, j2, j1);
+							if (biome.warmEnoughToRain(mutableBlockPos)) {
 								if (i1 != 0) {
 									if (i1 >= 0) {
 										tesselator.end();
@@ -262,8 +262,8 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 								double d4 = j1 + 0.5D - camZ;
 								float f3 = (float) Math.sqrt(d2 * d2 + d4 * d4) / l;
 								float f4 = ((1.0F - f3 * f3) * 0.5F + 0.5F) * f;
-								blockpos$mutableblockpos.set(k1, l2, j1);
-								int j3 = getLightColor(level, blockpos$mutableblockpos);
+								mutableBlockPos.set(k1, l2, j1);
+								int j3 = getLightColor(level, mutableBlockPos);
 								bufferbuilder.vertex(k1 - camX - d0 + 0.5D, k2 - camY, j1 - camZ - d1 + 0.5D).uv(0.0F, j2 * 0.1F + f2).color(1.0F, 1.0F, 1.0F, f4).uv2(j3).endVertex();
 								bufferbuilder.vertex(k1 - camX + d0 + 0.5D, k2 - camY, j1 - camZ + d1 + 0.5D).uv(1.0F, j2 * 0.1F + f2).color(1.0F, 1.0F, 1.0F, f4).uv2(j3).endVertex();
 								bufferbuilder.vertex(k1 - camX + d0 + 0.5D, j2 - camY, j1 - camZ + d1 + 0.5D).uv(1.0F, k2 * 0.1F + f2).color(1.0F, 1.0F, 1.0F, f4).uv2(j3).endVertex();
@@ -290,17 +290,17 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 		return true;
 	}
 
-	public static int getLightColor(BlockAndTintGetter p_109542_, BlockPos p_109543_) {
-		return getLightColor(p_109542_, p_109542_.getBlockState(p_109543_), p_109543_);
+	public static int getLightColor(BlockAndTintGetter blockAndTintGetter, BlockPos blockPos) {
+		return getLightColor(blockAndTintGetter, blockAndTintGetter.getBlockState(blockPos), blockPos);
 	}
 
-	public static int getLightColor(BlockAndTintGetter p_109538_, BlockState p_109539_, BlockPos p_109540_) {
-		if (p_109539_.emissiveRendering(p_109538_, p_109540_)) {
+	public static int getLightColor(BlockAndTintGetter blockAndTintGetter, BlockState blockState, BlockPos blockPos) {
+		if (blockState.emissiveRendering(blockAndTintGetter, blockPos)) {
 			return 15728880;
 		} else {
-			int i = p_109538_.getBrightness(LightLayer.SKY, p_109540_);
-			int j = p_109538_.getBrightness(LightLayer.BLOCK, p_109540_);
-			int k = p_109539_.getLightEmission(p_109538_, p_109540_);
+			int i = blockAndTintGetter.getBrightness(LightLayer.SKY, blockPos);
+			int j = blockAndTintGetter.getBrightness(LightLayer.BLOCK, blockPos);
+			int k = blockState.getLightEmission(blockAndTintGetter, blockPos);
 			if (j < k) {
 				j = k;
 			}
@@ -310,8 +310,8 @@ public class MoonRenderer extends DimensionSpecialEffects implements IForgeDimen
 	}
 
 	@Override
-	public void adjustLightmapColors(ClientLevel level, float partialTicks, float skyDarken, float blockLightRedFlicker, float skyLight, int pixelX, int pixelY, Vector3f colors) {
-		long time = level.dayTime();
+	public void adjustLightmapColors(ClientLevel clientLevel, float partialTicks, float skyDarken, float blockLightRedFlicker, float skyLight, int pixelX, int pixelY, Vector3f colors) {
+		long time = clientLevel.dayTime();
 		float eclipseDarken = Mth.clamp(time < 2230 ? 0.9F * (time - 1470) / 620F : 0.9F * -(time - 2990) / 620F, 0.0F, 0.9F);
 		colors.sub(eclipseDarken, eclipseDarken, eclipseDarken);
 
