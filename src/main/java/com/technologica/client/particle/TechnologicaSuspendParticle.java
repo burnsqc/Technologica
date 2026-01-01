@@ -20,8 +20,8 @@ public class TechnologicaSuspendParticle extends TextureSheetParticle {
 		this.gravity = 0.0F;
 	}
 
-	TechnologicaSuspendParticle(ClientLevel clientLevel, SpriteSet spriteSet, double posX, double posY, double posZ, double p_172414_, double p_172415_, double p_172416_) {
-		super(clientLevel, posX, posY - 0.125D, posZ, p_172414_, p_172415_, p_172416_);
+	TechnologicaSuspendParticle(ClientLevel clientLevel, SpriteSet spriteSet, double posX, double posY, double posZ, double speedX, double speedY, double speedZ) {
+		super(clientLevel, posX, posY - 0.125D, posZ, speedX, speedY, speedZ);
 		this.setSize(0.01F, 0.01F);
 		this.pickSprite(spriteSet);
 		this.quadSize *= this.random.nextFloat() * 0.6F + 0.6F;
@@ -44,7 +44,7 @@ public class TechnologicaSuspendParticle extends TextureSheetParticle {
 		}
 
 		@Override
-		public Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double p_108079_, double p_108080_, double p_108081_) {
+		public Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double speedX, double speedY, double speedZ) {
 			TechnologicaSuspendParticle suspendedparticle = new TechnologicaSuspendParticle(clientLevel, this.spriteSet, posX, posY, posZ);
 			suspendedparticle.setColor(0.66667F, 0.86275F, 1.00000F);
 			return suspendedparticle;
@@ -59,7 +59,7 @@ public class TechnologicaSuspendParticle extends TextureSheetParticle {
 		}
 
 		@Override
-		public Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double p_108079_, double p_108080_, double p_108081_) {
+		public Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double speedX, double speedY, double speedZ) {
 			TechnologicaSuspendParticle suspendedparticle = new TechnologicaSuspendParticle(clientLevel, this.spriteSet, posX, posY, posZ);
 			suspendedparticle.setColor(0.66667F, 0.21960F, 0.07450F);
 			return suspendedparticle;
@@ -74,7 +74,7 @@ public class TechnologicaSuspendParticle extends TextureSheetParticle {
 		}
 
 		@Override
-		public Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double p_108079_, double p_108080_, double p_108081_) {
+		public Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double speedX, double speedY, double speedZ) {
 			TechnologicaSuspendParticle suspendedparticle = new TechnologicaSuspendParticle(clientLevel, this.spriteSet, posX, posY, posZ);
 			suspendedparticle.setColor(0.74901F, 0.96862F, 0.32941F);
 			return suspendedparticle;
@@ -89,7 +89,7 @@ public class TechnologicaSuspendParticle extends TextureSheetParticle {
 		}
 
 		@Override
-		public Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double p_108079_, double p_108080_, double p_108081_) {
+		public Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double speedX, double speedY, double speedZ) {
 			TechnologicaSuspendParticle suspendedparticle = new TechnologicaSuspendParticle(clientLevel, this.spriteSet, posX, posY, posZ);
 			suspendedparticle.setColor(0.83137F, 0.76078F, 0.41176F);
 			return suspendedparticle;
@@ -104,7 +104,7 @@ public class TechnologicaSuspendParticle extends TextureSheetParticle {
 		}
 
 		@Override
-		public Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double p_108079_, double p_108080_, double p_108081_) {
+		public Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double speedX, double speedY, double speedZ) {
 			TechnologicaSuspendParticle suspendedparticle = new TechnologicaSuspendParticle(clientLevel, this.spriteSet, posX, posY, posZ);
 			suspendedparticle.setColor(1.00000F, 1.00000F, 0.58823F);
 			return suspendedparticle;
@@ -119,7 +119,7 @@ public class TechnologicaSuspendParticle extends TextureSheetParticle {
 		}
 
 		@Override
-		public Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double p_108079_, double p_108080_, double p_108081_) {
+		public Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double speedX, double speedY, double speedZ) {
 			TechnologicaSuspendParticle suspendedparticle = new TechnologicaSuspendParticle(clientLevel, this.spriteSet, posX, posY, posZ);
 			suspendedparticle.setColor(0.35294F, 0.16863F, 0.09412F);
 			return suspendedparticle;
@@ -134,7 +134,7 @@ public class TechnologicaSuspendParticle extends TextureSheetParticle {
 		}
 
 		@Override
-		public Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double p_108079_, double p_108080_, double p_108081_) {
+		public Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double speedX, double speedY, double speedZ) {
 			TechnologicaSuspendParticle suspendedparticle = new TechnologicaSuspendParticle(clientLevel, this.spriteSet, posX, posY, posZ);
 			suspendedparticle.setColor(0.88235F, 0.88235F, 0.88235F);
 			return suspendedparticle;
@@ -149,7 +149,7 @@ public class TechnologicaSuspendParticle extends TextureSheetParticle {
 		}
 
 		@Override
-		public Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double p_108079_, double p_108080_, double p_108081_) {
+		public Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double speedX, double speedY, double speedZ) {
 			TechnologicaSuspendParticle suspendedparticle = new TechnologicaSuspendParticle(clientLevel, this.spriteSet, posX, posY, posZ);
 			suspendedparticle.setColor(0.19607F, 0.19607F, 0.19607F);
 			return suspendedparticle;
@@ -164,7 +164,7 @@ public class TechnologicaSuspendParticle extends TextureSheetParticle {
 		}
 
 		@Override
-		public Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double p_108079_, double p_108080_, double p_108081_) {
+		public Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double speedX, double speedY, double speedZ) {
 			TechnologicaSuspendParticle suspendedparticle = new TechnologicaSuspendParticle(clientLevel, this.spriteSet, posX, posY, posZ);
 			suspendedparticle.setColor(0.94118F, 0.94118F, 0.81569F);
 			return suspendedparticle;

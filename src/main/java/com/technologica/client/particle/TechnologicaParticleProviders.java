@@ -62,7 +62,7 @@ public class TechnologicaParticleProviders {
 		registerSet(TechnologicaParticleTypes.SUBMERGED_MERCURY.get(), TechnologicaSuspendParticle.MercuryProvider::new);
 		registerSet(TechnologicaParticleTypes.SUBMERGED_OIL.get(), TechnologicaSuspendParticle.OilProvider::new);
 		registerSet(TechnologicaParticleTypes.SUBMERGED_RUBBER_RESIN.get(), TechnologicaSuspendParticle.RubberResinProvider::new);
-		registerSet(TechnologicaParticleTypes.FLYING_RADIATION.get(), RadiationParticle.FlyingFactory::new);
+		registerSet(TechnologicaParticleTypes.FLYING_RADIATION.get(), RadiationParticle.Provider::new);
 		registerSet(TechnologicaParticleTypes.SMOKE_COLUMN_UP.get(), SmokeColumnUpParticle.Provider::new);
 	}
 }

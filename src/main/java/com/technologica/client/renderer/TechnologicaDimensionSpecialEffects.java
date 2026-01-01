@@ -23,12 +23,12 @@ public class TechnologicaDimensionSpecialEffects {
 		}
 
 		@Override
-		public Vec3 getBrightnessDependentFogColor(Vec3 p_108901_, float p_108902_) {
-			return p_108901_;
+		public Vec3 getBrightnessDependentFogColor(Vec3 fogColor, float brightness) {
+			return fogColor;
 		}
 
 		@Override
-		public boolean isFoggyAt(int p_108898_, int p_108899_) {
+		public boolean isFoggyAt(int posX, int posY) {
 			return false;
 		}
 	}

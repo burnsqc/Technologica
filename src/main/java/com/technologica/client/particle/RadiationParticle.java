@@ -12,19 +12,16 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.material.Fluid;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.Vec3;
 
 public class RadiationParticle extends TextureSheetParticle {
 	protected boolean fullbright;
-	protected boolean collided;
 	protected boolean collidedX;
 	protected boolean collidedY;
 	protected boolean collidedZ;
 
-	private RadiationParticle(ClientLevel world, double x, double y, double z, Fluid fluid) {
-		super(world, x, y, z);
+	private RadiationParticle(ClientLevel clientLevel, double posX, double posY, double posZ) {
+		super(clientLevel, posX, posY, posZ);
 		this.setSize(0.01F, 0.01F);
 		this.gravity = 0.0F;
 	}
@@ -61,19 +58,16 @@ public class RadiationParticle extends TextureSheetParticle {
 	}
 
 	@Override
-	public void move(double p_107246_, double p_107247_, double p_107248_) {
-		if (!this.collided) {
-			if (this.hasPhysics && (p_107246_ != 0.0D || p_107247_ != 0.0D || p_107248_ != 0.0D) && p_107246_ * p_107246_ + p_107247_ * p_107247_ + p_107248_ * p_107248_ < 10000.0D) {
-				Vec3 vec3 = Entity.collideBoundingBox((Entity) null, new Vec3(p_107246_, p_107247_, p_107248_), this.getBoundingBox(), this.level, List.of());
-				p_107246_ = vec3.x;
-				p_107247_ = vec3.y;
-				p_107248_ = vec3.z;
-			}
-
-			if (p_107246_ != 0.0D || p_107247_ != 0.0D || p_107248_ != 0.0D) {
-				this.setBoundingBox(this.getBoundingBox().move(p_107246_, p_107247_, p_107248_));
-				this.setLocationFromBoundingbox();
-			}
+	public void move(double posX, double posY, double posZ) {
+		if (this.hasPhysics && (posX != 0.0D || posY != 0.0D || posZ != 0.0D) && posX * posX + posY * posY + posZ * posZ < 10000.0D) {
+			Vec3 vec3 = Entity.collideBoundingBox((Entity) null, new Vec3(posX, posY, posZ), this.getBoundingBox(), this.level, List.of());
+			posX = vec3.x;
+			posY = vec3.y;
+			posZ = vec3.z;
+		}
+		if (posX != 0.0D || posY != 0.0D || posZ != 0.0D) {
+			this.setBoundingBox(this.getBoundingBox().move(posX, posY, posZ));
+			this.setLocationFromBoundingbox();
 		}
 	}
 
@@ -89,9 +83,9 @@ public class RadiationParticle extends TextureSheetParticle {
 	static class Flying extends RadiationParticle {
 		protected final SimpleParticleType particleData;
 
-		private Flying(ClientLevel world, double x, double y, double z, Fluid fluid, SimpleParticleType typeIn) {
-			super(world, x, y, z, fluid);
-			this.particleData = typeIn;
+		private Flying(ClientLevel clientLevel, double posX, double posY, double posZ, SimpleParticleType simpleParticleType) {
+			super(clientLevel, posX, posY, posZ);
+			this.particleData = simpleParticleType;
 		}
 
 		@Override
@@ -114,24 +108,23 @@ public class RadiationParticle extends TextureSheetParticle {
 		}
 	}
 
-	public static class FlyingFactory implements ParticleProvider<SimpleParticleType> {
+	public static class Provider implements ParticleProvider<SimpleParticleType> {
 		protected final SpriteSet spriteSet;
 
-		public FlyingFactory(SpriteSet spriteSet) {
+		public Provider(SpriteSet spriteSet) {
 			this.spriteSet = spriteSet;
 		}
 
 		@Override
-		public Particle createParticle(SimpleParticleType typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-			RadiationParticle dripparticle = new RadiationParticle.Flying(worldIn, x, y, z, Fluids.EMPTY, typeIn);
-			dripparticle.gravity = 0.00F;
-			dripparticle.xd = xSpeed;
-			dripparticle.yd = ySpeed;
-			dripparticle.zd = zSpeed;
-			dripparticle.setAlpha(0.25F);
-			dripparticle.setColor(0.0F, 0.75F, 1.0F);
-			dripparticle.pickSprite(this.spriteSet);
-			return dripparticle;
+		public Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double posX, double posY, double posZ, double speedX, double speedY, double speedZ) {
+			RadiationParticle radiationParticle = new RadiationParticle.Flying(clientLevel, posX, posY, posZ, simpleParticleType);
+			radiationParticle.xd = speedX;
+			radiationParticle.yd = speedY;
+			radiationParticle.zd = speedZ;
+			radiationParticle.setAlpha(0.25F);
+			radiationParticle.setColor(0.0F, 0.75F, 1.0F);
+			radiationParticle.pickSprite(this.spriteSet);
+			return radiationParticle;
 		}
 	}
 }
