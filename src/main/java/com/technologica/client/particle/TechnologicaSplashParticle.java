@@ -33,7 +33,7 @@ public class TechnologicaSplashParticle extends WaterDropParticle {
 			return splashparticle;
 		}
 	}
-	
+
 	public static class BromineProvider implements ParticleProvider<SimpleParticleType> {
 		private final SpriteSet spriteSet;
 
@@ -65,7 +65,7 @@ public class TechnologicaSplashParticle extends WaterDropParticle {
 			return splashparticle;
 		}
 	}
-	
+
 	public static class GasolineProvider implements ParticleProvider<SimpleParticleType> {
 		private final SpriteSet spriteSet;
 
@@ -97,7 +97,7 @@ public class TechnologicaSplashParticle extends WaterDropParticle {
 			return splashparticle;
 		}
 	}
-	
+
 	public static class MercuryProvider implements ParticleProvider<SimpleParticleType> {
 		private final SpriteSet spriteSet;
 
