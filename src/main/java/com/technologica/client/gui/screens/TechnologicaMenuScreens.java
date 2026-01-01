@@ -20,8 +20,9 @@ import net.minecraft.world.inventory.MenuType;
 public class TechnologicaMenuScreens {
 	public static final Map<MenuType<? extends AbstractContainerMenu>, ScreenConstructor<AbstractContainerMenu, ?>> SCREENS = Maps.newHashMap();
 
-	public static <M extends AbstractContainerMenu, U extends Screen & MenuAccess<M>> void register(MenuType<? extends M> menu, MenuScreens.ScreenConstructor<M, U> screen) {
-		SCREENS.put(menu, (ScreenConstructor<AbstractContainerMenu, ?>) screen);
+	@SuppressWarnings("unchecked")
+	public static <M extends AbstractContainerMenu, U extends Screen & MenuAccess<M>> void register(MenuType<? extends M> menuType, MenuScreens.ScreenConstructor<M, U> screenConstructor) {
+		SCREENS.put(menuType, (ScreenConstructor<AbstractContainerMenu, ?>) screenConstructor);
 	}
 
 	static {

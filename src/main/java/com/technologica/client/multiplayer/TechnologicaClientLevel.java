@@ -8,26 +8,26 @@ import net.minecraft.client.multiplayer.ClientLevel;
 public class TechnologicaClientLevel extends TechnologicaLevel {
 	private final TechnologicaClientLevel.TechnologicaClientLevelData technologicaClientLevelData;
 
-	public TechnologicaClientLevel(ClientLevel level, TechnologicaClientLevel.TechnologicaClientLevelData technologicaClientLevelData) {
-		super(level, technologicaClientLevelData);
+	public TechnologicaClientLevel(ClientLevel clientLevel, TechnologicaClientLevelData technologicaClientLevelData) {
+		super(clientLevel, technologicaClientLevelData);
 		this.technologicaClientLevelData = technologicaClientLevelData;
 	}
 
-	public TechnologicaClientLevel.TechnologicaClientLevelData getLevelData() {
+	public TechnologicaClientLevelData getLevelData() {
 		return this.technologicaClientLevelData;
 	}
 
 	public static class TechnologicaClientLevelData implements TechnologicaLevelData {
-		private boolean meteorStorming;
+		private boolean isMeteorStorming;
 
 		@Override
 		public boolean isMeteorStorming() {
-			return this.meteorStorming;
+			return this.isMeteorStorming;
 		}
 
 		@Override
-		public void setMeteorStorming(boolean meteorStorming) {
-			this.meteorStorming = meteorStorming;
+		public void setMeteorStorming(boolean isMeteorStorming) {
+			this.isMeteorStorming = isMeteorStorming;
 		}
 	}
 }
