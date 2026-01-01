@@ -45,7 +45,6 @@ public class ZebraArmorLayer extends RenderLayer<Zebra, HorseModel<Zebra>> {
 				f1 = 1.0F;
 				f2 = 1.0F;
 			}
-
 			VertexConsumer vertexconsumer = multiBufferSource.getBuffer(RenderType.entityCutoutNoCull(horsearmoritem.getTexture()));
 			this.model.renderToBuffer(poseStack, vertexconsumer, packedLight, OverlayTexture.NO_OVERLAY, f, f1, f2, 1.0F);
 		}

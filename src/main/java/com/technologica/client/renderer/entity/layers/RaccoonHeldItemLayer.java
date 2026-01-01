@@ -15,29 +15,29 @@ import net.minecraft.world.item.ItemStack;
 
 public class RaccoonHeldItemLayer extends RenderLayer<Raccoon, RaccoonModel<Raccoon>> {
 
-	public RaccoonHeldItemLayer(RenderLayerParent<Raccoon, RaccoonModel<Raccoon>> p_i50938_1_) {
-		super(p_i50938_1_);
+	public RaccoonHeldItemLayer(RenderLayerParent<Raccoon, RaccoonModel<Raccoon>> renderLayerParent) {
+		super(renderLayerParent);
 	}
 
 	@Override
-	public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, Raccoon entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-		boolean flag1 = entitylivingbaseIn.isBaby();
-		matrixStackIn.pushPose();
-		if (flag1) {
-			matrixStackIn.scale(0.75F, 0.75F, 0.75F);
-			matrixStackIn.translate(0.0D, 1.5D, 0.209375F);
+	public void render(PoseStack poseStack, MultiBufferSource multiBufferSource, int packedLight, Raccoon raccoon, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+		boolean isBaby = raccoon.isBaby();
+		poseStack.pushPose();
+		if (isBaby) {
+			poseStack.scale(0.75F, 0.75F, 0.75F);
+			poseStack.translate(0.0D, 1.5D, 0.209375F);
 		}
-		matrixStackIn.translate(0D, 1.3125D, -0.3125D);
-		matrixStackIn.mulPose(Axis.YP.rotationDegrees(netHeadYaw / 2));
-		matrixStackIn.mulPose(Axis.XP.rotationDegrees(headPitch / 2));
-		if (entitylivingbaseIn.isBaby()) {
-			matrixStackIn.translate(0.06F, 0.26F, -0.6D);
+		poseStack.translate(0D, 1.3125D, -0.3125D);
+		poseStack.mulPose(Axis.YP.rotationDegrees(netHeadYaw / 2));
+		poseStack.mulPose(Axis.XP.rotationDegrees(headPitch / 2));
+		if (isBaby) {
+			poseStack.translate(0.06F, 0.26F, -0.6D);
 		} else {
-			matrixStackIn.translate(0.0D, -0.13D, -0.55D);
+			poseStack.translate(0.0D, -0.13D, -0.55D);
 		}
-		matrixStackIn.mulPose(Axis.XP.rotationDegrees(90.0F));
-		ItemStack itemstack = entitylivingbaseIn.getItemBySlot(EquipmentSlot.MAINHAND);
-		Minecraft.getInstance().getEntityRenderDispatcher().getItemInHandRenderer().renderItem(entitylivingbaseIn, itemstack, ItemDisplayContext.GROUND, false, matrixStackIn, bufferIn, packedLightIn);
-		matrixStackIn.popPose();
+		poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
+		ItemStack itemstack = raccoon.getItemBySlot(EquipmentSlot.MAINHAND);
+		Minecraft.getInstance().getEntityRenderDispatcher().getItemInHandRenderer().renderItem(raccoon, itemstack, ItemDisplayContext.GROUND, false, poseStack, multiBufferSource, packedLight);
+		poseStack.popPose();
 	}
 }

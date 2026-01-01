@@ -14,14 +14,14 @@ import net.minecraft.world.entity.LivingEntity;
 public class MummyEyesLayer<T extends LivingEntity> extends EyesLayer<Mummy, ZombieModel<Mummy>> {
 	private static final RenderType MUMMY_EYES = RenderType.eyes(new TechnologicaLocation("textures/entity/mummy/mummy_eyes.png"));
 
-	public MummyEyesLayer(RenderLayerParent<Mummy, ZombieModel<Mummy>> p_116964_) {
-		super(p_116964_);
+	public MummyEyesLayer(RenderLayerParent<Mummy, ZombieModel<Mummy>> renderLayerParent) {
+		super(renderLayerParent);
 	}
 
 	@Override
-	public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, Mummy mummyIn, float p_116987_, float p_116988_, float p_116989_, float p_116990_, float p_116991_, float p_116992_) {
-		if (mummyIn.getParalyzeCooldown() > 100) {
-			super.render(matrixStackIn, bufferIn, packedLightIn, mummyIn, p_116987_, p_116988_, p_116989_, p_116990_, p_116991_, p_116992_);
+	public void render(PoseStack poseStack, MultiBufferSource multiBufferSource, int packedLight, Mummy mummy, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+		if (mummy.getParalyzeCooldown() > 100) {
+			super.render(poseStack, multiBufferSource, packedLight, mummy, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch);
 		}
 	}
 

@@ -12,19 +12,19 @@ import net.minecraft.client.renderer.entity.layers.EyesLayer;
 import net.minecraft.world.entity.LivingEntity;
 
 public class AxemanEyesLayer<T extends LivingEntity> extends EyesLayer<Axeman, AxemanModel<Axeman>> {
-	private static final RenderType MUMMY_EYES = RenderType.eyes(new TechnologicaLocation("textures/entity/axeman_eyes.png"));
+	private static final RenderType AXEMAN_EYES = RenderType.eyes(new TechnologicaLocation("textures/entity/axeman_eyes.png"));
 
-	public AxemanEyesLayer(RenderLayerParent<Axeman, AxemanModel<Axeman>> p_116964_) {
-		super(p_116964_);
+	public AxemanEyesLayer(RenderLayerParent<Axeman, AxemanModel<Axeman>> renderLayerParent) {
+		super(renderLayerParent);
 	}
 
 	@Override
-	public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, Axeman mummyIn, float p_116987_, float p_116988_, float p_116989_, float p_116990_, float p_116991_, float p_116992_) {
-		super.render(matrixStackIn, bufferIn, packedLightIn, mummyIn, p_116987_, p_116988_, p_116989_, p_116990_, p_116991_, p_116992_);
+	public void render(PoseStack poseStack, MultiBufferSource multiBufferSource, int packedLight, Axeman axeman, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+		super.render(poseStack, multiBufferSource, packedLight, axeman, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch);
 	}
 
 	@Override
 	public RenderType renderType() {
-		return MUMMY_EYES;
+		return AXEMAN_EYES;
 	}
 }
