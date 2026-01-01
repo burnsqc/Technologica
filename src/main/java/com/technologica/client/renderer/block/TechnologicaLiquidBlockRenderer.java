@@ -38,30 +38,30 @@ public class TechnologicaLiquidBlockRenderer extends LiquidBlockRenderer {
 		this.waterOverlay = ModelBakery.WATER_OVERLAY.sprite();
 	}
 
-	private static boolean isNeighborSameFluid(FluidState p_203186_, FluidState p_203187_) {
-		return p_203187_.getType().isSame(p_203186_.getType());
+	private static boolean isNeighborSameFluid(FluidState fluidState, FluidState fluidStateNeighbor) {
+		return fluidStateNeighbor.getType().isSame(fluidState.getType());
 	}
 
-	private static boolean isFaceOccludedByState(BlockGetter p_110979_, Direction p_110980_, float p_110981_, BlockPos p_110982_, BlockState p_110983_) {
-		if (p_110983_.canOcclude()) {
-			VoxelShape voxelshape = Shapes.box(0.0D, 1.0D - p_110981_, 0.0D, 1.0D, 1.0D, 1.0D);
-			VoxelShape voxelshape1 = p_110983_.getOcclusionShape(p_110979_, p_110982_);
-			return Shapes.blockOccudes(voxelshape, voxelshape1, p_110980_);
+	private static boolean isFaceOccludedByState(BlockGetter blockGetter, Direction direction, float height, BlockPos blockPos, BlockState blockState) {
+		if (blockState.canOcclude()) {
+			VoxelShape voxelshape = Shapes.box(0.0D, 1.0D - height, 0.0D, 1.0D, 1.0D, 1.0D);
+			VoxelShape voxelshape1 = blockState.getOcclusionShape(blockGetter, blockPos);
+			return Shapes.blockOccudes(voxelshape, voxelshape1, direction);
 		} else {
 			return false;
 		}
 	}
 
-	private static boolean isFaceOccludedByNeighbor(BlockGetter p_203180_, BlockPos p_203181_, Direction p_203182_, float p_203183_, BlockState p_203184_) {
-		return isFaceOccludedByState(p_203180_, p_203182_, p_203183_, p_203181_.relative(p_203182_), p_203184_);
+	private static boolean isFaceOccludedByNeighbor(BlockGetter blockGetter, BlockPos blockPos, Direction direction, float height, BlockState blockState) {
+		return isFaceOccludedByState(blockGetter, direction, height, blockPos.relative(direction), blockState);
 	}
 
-	private static boolean isFaceOccludedBySelf(BlockGetter p_110960_, BlockPos p_110961_, BlockState p_110962_, Direction p_110963_) {
-		return isFaceOccludedByState(p_110960_, p_110963_.getOpposite(), 1.0F, p_110961_, p_110962_);
+	private static boolean isFaceOccludedBySelf(BlockGetter blockGetter, BlockPos blockPos, BlockState blockState, Direction direction) {
+		return isFaceOccludedByState(blockGetter, direction.getOpposite(), 1.0F, blockPos, blockState);
 	}
 
-	public static boolean shouldRenderFace(BlockAndTintGetter p_203167_, BlockPos p_203168_, FluidState p_203169_, BlockState p_203170_, Direction p_203171_, FluidState p_203172_) {
-		return !isFaceOccludedBySelf(p_203167_, p_203168_, p_203170_, p_203171_) && !isNeighborSameFluid(p_203169_, p_203172_);
+	public static boolean shouldRenderFace(BlockAndTintGetter blockAndTintGetter, BlockPos blockPos, FluidState fluidState, BlockState blockState, Direction direction, FluidState fluidStateNeighbor) {
+		return !isFaceOccludedBySelf(blockAndTintGetter, blockPos, blockState, direction) && !isNeighborSameFluid(fluidState, fluidStateNeighbor);
 	}
 
 	@Override
@@ -263,41 +263,41 @@ public class TechnologicaLiquidBlockRenderer extends LiquidBlockRenderer {
 					boolean shouldRenderHorizontal;
 
 					switch (direction) {
-					case NORTH:
-						heightCorner1 = heightNorthWest;
-						heightCorner2 = heightNorthEast;
-						sectionXShimmed1 = sectionX;
-						sectionXShimmed2 = sectionX + 1.0D;
-						sectionZShimmed1 = sectionZ + 0.001F;
-						sectionZShimmed2 = sectionZ + 0.001F;
-						shouldRenderHorizontal = shouldRenderNorth;
-						break;
-					case SOUTH:
-						heightCorner1 = heightSouthEast;
-						heightCorner2 = heightSouthWest;
-						sectionXShimmed1 = sectionX + 1.0D;
-						sectionXShimmed2 = sectionX;
-						sectionZShimmed1 = sectionZ + 1.0D - 0.001F;
-						sectionZShimmed2 = sectionZ + 1.0D - 0.001F;
-						shouldRenderHorizontal = shouldRenderSouth;
-						break;
-					case WEST:
-						heightCorner1 = heightSouthWest;
-						heightCorner2 = heightNorthWest;
-						sectionXShimmed1 = sectionX + 0.001F;
-						sectionXShimmed2 = sectionX + 0.001F;
-						sectionZShimmed1 = sectionZ + 1.0D;
-						sectionZShimmed2 = sectionZ;
-						shouldRenderHorizontal = shouldRenderWest;
-						break;
-					default:
-						heightCorner1 = heightNorthEast;
-						heightCorner2 = heightSouthEast;
-						sectionXShimmed1 = sectionX + 1.0D - 0.001F;
-						sectionXShimmed2 = sectionX + 1.0D - 0.001F;
-						sectionZShimmed1 = sectionZ;
-						sectionZShimmed2 = sectionZ + 1.0D;
-						shouldRenderHorizontal = shouldRenderEast;
+						case NORTH:
+							heightCorner1 = heightNorthWest;
+							heightCorner2 = heightNorthEast;
+							sectionXShimmed1 = sectionX;
+							sectionXShimmed2 = sectionX + 1.0D;
+							sectionZShimmed1 = sectionZ + 0.001F;
+							sectionZShimmed2 = sectionZ + 0.001F;
+							shouldRenderHorizontal = shouldRenderNorth;
+							break;
+						case SOUTH:
+							heightCorner1 = heightSouthEast;
+							heightCorner2 = heightSouthWest;
+							sectionXShimmed1 = sectionX + 1.0D;
+							sectionXShimmed2 = sectionX;
+							sectionZShimmed1 = sectionZ + 1.0D - 0.001F;
+							sectionZShimmed2 = sectionZ + 1.0D - 0.001F;
+							shouldRenderHorizontal = shouldRenderSouth;
+							break;
+						case WEST:
+							heightCorner1 = heightSouthWest;
+							heightCorner2 = heightNorthWest;
+							sectionXShimmed1 = sectionX + 0.001F;
+							sectionXShimmed2 = sectionX + 0.001F;
+							sectionZShimmed1 = sectionZ + 1.0D;
+							sectionZShimmed2 = sectionZ;
+							shouldRenderHorizontal = shouldRenderWest;
+							break;
+						default:
+							heightCorner1 = heightNorthEast;
+							heightCorner2 = heightSouthEast;
+							sectionXShimmed1 = sectionX + 1.0D - 0.001F;
+							sectionXShimmed2 = sectionX + 1.0D - 0.001F;
+							sectionZShimmed1 = sectionZ;
+							sectionZShimmed2 = sectionZ + 1.0D;
+							shouldRenderHorizontal = shouldRenderEast;
 					}
 
 					if (shouldRenderHorizontal && !isFaceOccludedByNeighbor(blockAndTintGetter, blockPos, direction, Math.max(heightCorner1, heightCorner2), blockAndTintGetter.getBlockState(blockPos.relative(direction)))) {
@@ -338,58 +338,58 @@ public class TechnologicaLiquidBlockRenderer extends LiquidBlockRenderer {
 		}
 	}
 
-	private float calculateAverageHeight(BlockAndTintGetter p_203150_, Fluid p_203151_, float p_203152_, float p_203153_, float p_203154_, BlockPos p_203155_) {
-		if (!(p_203154_ >= 1.0F) && !(p_203153_ >= 1.0F)) {
+	private float calculateAverageHeight(BlockAndTintGetter blockAndTintGetter, Fluid fluid, float height, float height1, float height2, BlockPos blockPos) {
+		if (!(height2 >= 1.0F) && !(height1 >= 1.0F)) {
 			float[] afloat = new float[2];
-			if (p_203154_ > 0.0F || p_203153_ > 0.0F) {
-				float f = this.getHeight(p_203150_, p_203151_, p_203155_);
+			if (height2 > 0.0F || height1 > 0.0F) {
+				float f = this.getHeight(blockAndTintGetter, fluid, blockPos);
 				if (f >= 1.0F) {
 					return 1.0F;
 				}
 				this.addWeightedHeight(afloat, f);
 			}
-			this.addWeightedHeight(afloat, p_203152_);
-			this.addWeightedHeight(afloat, p_203154_);
-			this.addWeightedHeight(afloat, p_203153_);
+			this.addWeightedHeight(afloat, height);
+			this.addWeightedHeight(afloat, height2);
+			this.addWeightedHeight(afloat, height1);
 			return afloat[0] / afloat[1];
 		} else {
 			return 1.0F;
 		}
 	}
 
-	private void addWeightedHeight(float[] p_203189_, float p_203190_) {
-		if (p_203190_ >= 0.8F) {
-			p_203189_[0] += p_203190_ * 10.0F;
-			p_203189_[1] += 10.0F;
-		} else if (p_203190_ >= 0.0F) {
-			p_203189_[0] += p_203190_;
-			p_203189_[1] += 1.0F;
+	private void addWeightedHeight(float[] output, float height) {
+		if (height >= 0.8F) {
+			output[0] += height * 10.0F;
+			output[1] += 10.0F;
+		} else if (height >= 0.0F) {
+			output[0] += height;
+			output[1] += 1.0F;
 		}
 
 	}
 
-	private float getHeight(BlockAndTintGetter p_203157_, Fluid p_203158_, BlockPos p_203159_) {
-		BlockState blockstate = p_203157_.getBlockState(p_203159_);
-		return this.getHeight(p_203157_, p_203158_, p_203159_, blockstate, blockstate.getFluidState());
+	private float getHeight(BlockAndTintGetter blockAndTintGetter, Fluid fluid, BlockPos blockPos) {
+		BlockState blockState = blockAndTintGetter.getBlockState(blockPos);
+		return this.getHeight(blockAndTintGetter, fluid, blockPos, blockState, blockState.getFluidState());
 	}
 
 	@SuppressWarnings("deprecation")
 	private float getHeight(BlockAndTintGetter blockAndTintGetter, Fluid fluid, BlockPos blockPos, BlockState blockState, FluidState fluidState) {
 		if (fluid.isSame(fluidState.getType())) {
-			BlockState blockstate = blockAndTintGetter.getBlockState(blockPos.below());
-			return fluid.isSame(blockstate.getFluidState().getType()) ? 1.0F : fluidState.getOwnHeight();
+			BlockState blockState2 = blockAndTintGetter.getBlockState(blockPos.below());
+			return fluid.isSame(blockState2.getFluidState().getType()) ? 1.0F : fluidState.getOwnHeight();
 		} else {
 			return !blockState.isSolid() ? 0.0F : -1.0F;
 		}
 	}
 
-	private void vertex(VertexConsumer p_110985_, double p_110986_, double p_110987_, double p_110988_, float p_110989_, float p_110990_, float p_110991_, float alpha, float p_110992_, float p_110993_, int p_110994_) {
-		p_110985_.vertex(p_110986_, p_110987_, p_110988_).color(p_110989_, p_110990_, p_110991_, alpha).uv(p_110992_, p_110993_).uv2(p_110994_).normal(0.0F, 1.0F, 0.0F).endVertex();
+	private void vertex(VertexConsumer vertexConsumer, double posX, double posY, double posZ, float red, float green, float blue, float alpha, float u, float v, int packedLight) {
+		vertexConsumer.vertex(posX, posY, posZ).color(red, green, blue, alpha).uv(u, v).uv2(packedLight).normal(0.0F, 1.0F, 0.0F).endVertex();
 	}
 
-	private int getLightColor(BlockAndTintGetter p_110946_, BlockPos p_110947_) {
-		int i = LevelRenderer.getLightColor(p_110946_, p_110947_);
-		int j = LevelRenderer.getLightColor(p_110946_, p_110947_.above());
+	private int getLightColor(BlockAndTintGetter blockAndTintGetter, BlockPos blockPos) {
+		int i = LevelRenderer.getLightColor(blockAndTintGetter, blockPos);
+		int j = LevelRenderer.getLightColor(blockAndTintGetter, blockPos.above());
 		int k = i & 255;
 		int l = j & 255;
 		int i1 = i >> 16 & 255;
