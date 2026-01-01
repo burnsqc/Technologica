@@ -1,6 +1,5 @@
 package com.technologica.capabilities.item.link;
 
-
 import java.util.Optional;
 
 import javax.annotation.Nullable;
