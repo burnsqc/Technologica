@@ -10,19 +10,14 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Mth;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.AreaEffectCloud;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PowerableMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -40,7 +35,6 @@ import net.minecraft.world.entity.animal.Ocelot;
 import net.minecraft.world.entity.animal.goat.Goat;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
@@ -199,8 +193,8 @@ public class AtomicCreeper extends Monster implements PowerableMob {
 		return this.entityData.get(DATA_IS_POWERED);
 	}
 
-	public float getSwelling(float p_32321_) {
-		return Mth.lerp(p_32321_, this.oldSwell, this.swell) / (this.maxSwell - 2);
+	public float getSwelling(float partialTicks) {
+		return Mth.lerp(partialTicks, this.oldSwell, this.swell) / (this.maxSwell - 2);
 	}
 
 	public int getSwellDir() {
@@ -211,30 +205,7 @@ public class AtomicCreeper extends Monster implements PowerableMob {
 		this.entityData.set(DATA_SWELL_DIR, p_32284_);
 	}
 
-	@Override
-	public void thunderHit(ServerLevel p_32286_, LightningBolt p_32287_) {
-		super.thunderHit(p_32286_, p_32287_);
-		this.entityData.set(DATA_IS_POWERED, true);
-	}
-
-	@Override
-	protected InteractionResult mobInteract(Player p_32301_, InteractionHand p_32302_) {
-		ItemStack itemstack = p_32301_.getItemInHand(p_32302_);
-		if (itemstack.is(ItemTags.CREEPER_IGNITERS)) {
-			this.level().playSound(p_32301_, this.getX(), this.getY(), this.getZ(), SoundEvents.FLINTANDSTEEL_USE, this.getSoundSource(), 1.0F, this.random.nextFloat() * 0.4F + 0.8F);
-			if (!this.level().isClientSide) {
-				this.ignite();
-				itemstack.hurtAndBreak(1, p_32301_, (p_32290_) -> {
-					p_32290_.broadcastBreakEvent(p_32302_);
-				});
-			}
-
-			return InteractionResult.sidedSuccess(this.level().isClientSide);
-		} else {
-			return super.mobInteract(p_32301_, p_32302_);
-		}
-	}
-
+	@SuppressWarnings("resource")
 	private void explodeCreeper() {
 		if (!this.level().isClientSide) {
 			this.dead = true;

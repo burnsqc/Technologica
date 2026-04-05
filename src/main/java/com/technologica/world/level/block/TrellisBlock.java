@@ -38,14 +38,14 @@ public class TrellisBlock extends Block {
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public BlockState updateShape(BlockState p_52894_, Direction p_52895_, BlockState p_52896_, LevelAccessor p_52897_, BlockPos p_52898_, BlockPos p_52899_) {
-		DoubleBlockHalf doubleblockhalf = p_52894_.getValue(HALF);
-		if (p_52895_.getAxis() != Direction.Axis.Y || doubleblockhalf == DoubleBlockHalf.LOWER != (p_52895_ == Direction.UP) || p_52896_.is(this) && p_52896_.getValue(HALF) != doubleblockhalf) {
-			return doubleblockhalf == DoubleBlockHalf.LOWER && p_52895_ == Direction.DOWN && !p_52894_.canSurvive(p_52897_, p_52898_) ? Blocks.AIR.defaultBlockState() : super.updateShape(p_52894_, p_52895_, p_52896_, p_52897_, p_52898_, p_52899_);
+	public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockStateNeighbor, LevelAccessor levelAccessor, BlockPos blockPos, BlockPos blockPosNeighbor) {
+		DoubleBlockHalf doubleblockhalf = blockState.getValue(HALF);
+		if (direction.getAxis() != Direction.Axis.Y || doubleblockhalf == DoubleBlockHalf.LOWER != (direction == Direction.UP) || blockStateNeighbor.is(this) && blockStateNeighbor.getValue(HALF) != doubleblockhalf) {
+			return doubleblockhalf == DoubleBlockHalf.LOWER && direction == Direction.DOWN && !blockState.canSurvive(levelAccessor, blockPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(blockState, direction, blockStateNeighbor, levelAccessor, blockPos, blockPosNeighbor);
 		} else {
-			if (p_52897_.getBlockState(p_52898_.below()).getBlock() instanceof VineCropBlock) {
-				if (p_52897_.getBlockState(p_52898_.below()).getValue(VineCropBlock.TRELLIS)) {
-					return super.updateShape(p_52894_, p_52895_, p_52896_, p_52897_, p_52898_, p_52899_);
+			if (levelAccessor.getBlockState(blockPos.below()).getBlock() instanceof VineCropBlock) {
+				if (levelAccessor.getBlockState(blockPos.below()).getValue(VineCropBlock.TRELLIS)) {
+					return super.updateShape(blockState, direction, blockStateNeighbor, levelAccessor, blockPos, blockPosNeighbor);
 				} else {
 					return Blocks.AIR.defaultBlockState();
 				}
@@ -58,28 +58,28 @@ public class TrellisBlock extends Block {
 
 	@Override
 	@Nullable
-	public BlockState getStateForPlacement(BlockPlaceContext p_52863_) {
-		BlockPos blockpos = p_52863_.getClickedPos();
-		Level level = p_52863_.getLevel();
-		return blockpos.getY() < level.getMaxBuildHeight() - 1 && level.getBlockState(blockpos.above()).canBeReplaced(p_52863_) ? super.getStateForPlacement(p_52863_) : null;
+	public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
+		BlockPos blockpos = blockPlaceContext.getClickedPos();
+		Level level = blockPlaceContext.getLevel();
+		return blockpos.getY() < level.getMaxBuildHeight() - 1 && level.getBlockState(blockpos.above()).canBeReplaced(blockPlaceContext) ? super.getStateForPlacement(blockPlaceContext) : null;
 	}
 
 	@Override
-	public void setPlacedBy(Level p_52872_, BlockPos p_52873_, BlockState p_52874_, LivingEntity p_52875_, ItemStack p_52876_) {
-		BlockPos blockpos = p_52873_.above();
-		p_52872_.setBlock(blockpos, this.defaultBlockState().setValue(HALF, DoubleBlockHalf.UPPER), 3);
+	public void setPlacedBy(Level level, BlockPos blockPos, BlockState blockState, LivingEntity livingEntity, ItemStack itemStack) {
+		BlockPos blockpos = blockPos.above();
+		level.setBlock(blockpos, this.defaultBlockState().setValue(HALF, DoubleBlockHalf.UPPER), 3);
 	}
 
 	@Override
-	public boolean canSurvive(BlockState stateIn, LevelReader worldIn, BlockPos posIn) {
-		if (stateIn.getValue(HALF) == DoubleBlockHalf.LOWER) {
-			if (worldIn.getBlockState(posIn.below()).getBlock() == Blocks.FARMLAND) {
+	public boolean canSurvive(BlockState blockState, LevelReader levelReader, BlockPos blockPos) {
+		if (blockState.getValue(HALF) == DoubleBlockHalf.LOWER) {
+			if (levelReader.getBlockState(blockPos.below()).getBlock() == Blocks.FARMLAND) {
 				return true;
 			} else {
 				return false;
 			}
 		} else {
-			if (worldIn.getBlockState(posIn.below()).getBlock() == this) {
+			if (levelReader.getBlockState(blockPos.below()).getBlock() == this) {
 				return true;
 			} else {
 				return false;
@@ -88,57 +88,57 @@ public class TrellisBlock extends Block {
 	}
 
 	@Override
-	public void playerWillDestroy(Level p_52878_, BlockPos p_52879_, BlockState p_52880_, Player p_52881_) {
-		if (!p_52878_.isClientSide) {
-			if (p_52881_.isCreative()) {
-				preventCreativeDropFromBottomPart(p_52878_, p_52879_, p_52880_, p_52881_);
+	public void playerWillDestroy(Level level, BlockPos blockPos, BlockState blockState, Player player) {
+		if (!level.isClientSide) {
+			if (player.isCreative()) {
+				preventCreativeDropFromBottomPart(level, blockPos, blockState, player);
 			} else {
-				dropResources(p_52880_, p_52878_, p_52879_, (BlockEntity) null, p_52881_, p_52881_.getMainHandItem());
+				dropResources(blockState, level, blockPos, (BlockEntity) null, player, player.getMainHandItem());
 			}
 		}
-		super.playerWillDestroy(p_52878_, p_52879_, p_52880_, p_52881_);
+		super.playerWillDestroy(level, blockPos, blockState, player);
 	}
 
 	@Override
-	public void playerDestroy(Level p_52865_, Player p_52866_, BlockPos p_52867_, BlockState p_52868_, @Nullable BlockEntity p_52869_, ItemStack p_52870_) {
-		super.playerDestroy(p_52865_, p_52866_, p_52867_, Blocks.AIR.defaultBlockState(), p_52869_, p_52870_);
+	public void playerDestroy(Level level, Player player, BlockPos blockPos, BlockState blockState, @Nullable BlockEntity blockEntity, ItemStack itemStack) {
+		super.playerDestroy(level, player, blockPos, Blocks.AIR.defaultBlockState(), blockEntity, itemStack);
 	}
 
-	protected static void preventCreativeDropFromBottomPart(Level p_52904_, BlockPos p_52905_, BlockState p_52906_, Player p_52907_) {
-		DoubleBlockHalf doubleblockhalf = p_52906_.getValue(HALF);
+	protected static void preventCreativeDropFromBottomPart(Level level, BlockPos blockPos, BlockState blockState, Player player) {
+		DoubleBlockHalf doubleblockhalf = blockState.getValue(HALF);
 		if (doubleblockhalf == DoubleBlockHalf.UPPER) {
-			BlockPos blockpos = p_52905_.below();
-			BlockState blockstate = p_52904_.getBlockState(blockpos);
-			if (blockstate.is(p_52906_.getBlock()) && blockstate.getValue(HALF) == DoubleBlockHalf.LOWER) {
-				p_52904_.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 35);
-				p_52904_.levelEvent(p_52907_, 2001, blockpos, Block.getId(blockstate));
+			BlockPos blockpos = blockPos.below();
+			BlockState blockstate = level.getBlockState(blockpos);
+			if (blockstate.is(blockState.getBlock()) && blockstate.getValue(HALF) == DoubleBlockHalf.LOWER) {
+				level.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 35);
+				level.levelEvent(player, 2001, blockpos, Block.getId(blockstate));
 			}
 		}
 	}
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public InteractionResult use(BlockState p_57275_, Level p_57276_, BlockPos p_57277_, Player p_57278_, InteractionHand p_57279_, BlockHitResult p_57280_) {
-		if (p_57275_.getValue(HALF) == DoubleBlockHalf.LOWER) {
-			if (p_57278_.getItemInHand(p_57279_).is(TechnologicaItems.GRAPE_SEEDS.get())) {
-				p_57276_.setBlock(p_57277_, TechnologicaBlocks.GRAPES.get().defaultBlockState().setValue(VineCropBlock.TRELLIS, true), 3);
-				p_57276_.setBlock(p_57277_.above(), TechnologicaBlocks.GRAPES.get().defaultBlockState().setValue(VineCropBlock.HALF, DoubleBlockHalf.UPPER).setValue(VineCropBlock.AGE, 0).setValue(VineCropBlock.TRELLIS, true), 3);
+	public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
+		if (blockState.getValue(HALF) == DoubleBlockHalf.LOWER) {
+			if (player.getItemInHand(interactionHand).is(TechnologicaItems.GRAPE_SEEDS.get())) {
+				level.setBlock(blockPos, TechnologicaBlocks.GRAPES.get().defaultBlockState().setValue(VineCropBlock.TRELLIS, true), 3);
+				level.setBlock(blockPos.above(), TechnologicaBlocks.GRAPES.get().defaultBlockState().setValue(VineCropBlock.HALF, DoubleBlockHalf.UPPER).setValue(VineCropBlock.AGE, 0).setValue(VineCropBlock.TRELLIS, true), 3);
 				return InteractionResult.PASS;
-			} else if (p_57278_.getItemInHand(p_57279_).is(TechnologicaItems.TOMATO_SEEDS.get())) {
-				p_57276_.setBlock(p_57277_, TechnologicaBlocks.TOMATOES.get().defaultBlockState().setValue(VineCropBlock.TRELLIS, true), 3);
-				p_57276_.setBlock(p_57277_.above(), TechnologicaBlocks.TOMATOES.get().defaultBlockState().setValue(VineCropBlock.HALF, DoubleBlockHalf.UPPER).setValue(VineCropBlock.AGE, 0).setValue(VineCropBlock.TRELLIS, true), 3);
+			} else if (player.getItemInHand(interactionHand).is(TechnologicaItems.TOMATO_SEEDS.get())) {
+				level.setBlock(blockPos, TechnologicaBlocks.TOMATOES.get().defaultBlockState().setValue(VineCropBlock.TRELLIS, true), 3);
+				level.setBlock(blockPos.above(), TechnologicaBlocks.TOMATOES.get().defaultBlockState().setValue(VineCropBlock.HALF, DoubleBlockHalf.UPPER).setValue(VineCropBlock.AGE, 0).setValue(VineCropBlock.TRELLIS, true), 3);
 				return InteractionResult.PASS;
 			} else {
-				return super.use(p_57275_, p_57276_, p_57277_, p_57278_, p_57279_, p_57280_);
+				return super.use(blockState, level, blockPos, player, interactionHand, blockHitResult);
 			}
 		} else {
-			return super.use(p_57275_, p_57276_, p_57277_, p_57278_, p_57279_, p_57280_);
+			return super.use(blockState, level, blockPos, player, interactionHand, blockHitResult);
 		}
 	}
 
 	@Override
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builderIn) {
-		builderIn.add(HALF);
-		super.createBlockStateDefinition(builderIn);
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+		builder.add(HALF);
+		super.createBlockStateDefinition(builder);
 	}
 }

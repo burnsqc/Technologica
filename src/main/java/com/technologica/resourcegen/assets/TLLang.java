@@ -93,47 +93,47 @@ public class TLLang {
 		addItemGroup(TechnologicaCreativeModeTabs.CRYPTICA, "Cryptica");
 	}
 
-	private final static void addItems(Collection<RegistryObject<Item>> collection) {
+	private static final void addItems(Collection<RegistryObject<Item>> collection) {
 		for (Supplier<? extends Item> item : collection) {
 			addItem(item, keyToValue(item.get().getDescriptionId()));
 		}
 	}
 
-	private final static void addEntities(Collection<RegistryObject<EntityType<?>>> collection) {
+	private static final void addEntities(Collection<RegistryObject<EntityType<?>>> collection) {
 		for (Supplier<? extends EntityType<?>> entity : collection) {
 			addEntityType(entity, keyToValue(entity.get().getDescriptionId()));
 		}
 	}
 
-	protected final static void addDeath(ResourceKey<DamageType> damageType, String translation) {
+	protected static final void addDeath(ResourceKey<DamageType> damageType, String translation) {
 		add("death.attack." + damageType.location().getPath(), "%1$s " + translation);
 		add("death.attack." + damageType.location().getPath() + ".player", "%1$s " + translation + " whilst fighting %2$s");
 	}
 
-	protected final static void addEffect(Supplier<? extends MobEffect> mobEffect, String translation) {
+	protected static final void addEffect(Supplier<? extends MobEffect> mobEffect, String translation) {
 		add(mobEffect.get().getDescriptionId(), translation);
 	}
 
-	protected final static void addEntityType(Supplier<? extends EntityType<?>> entity, String translation) {
+	protected static final void addEntityType(Supplier<? extends EntityType<?>> entity, String translation) {
 		add(entity.get().getDescriptionId(), translation);
 	}
 
-	protected final static void addItem(Supplier<? extends Item> item, String translation) {
+	protected static final void addItem(Supplier<? extends Item> item, String translation) {
 		add(item.get().getDescriptionId(), translation);
 	}
 
-	protected final static void addItemGroup(Supplier<? extends CreativeModeTab> itemGroup, String translation) {
+	protected static final void addItemGroup(Supplier<? extends CreativeModeTab> itemGroup, String translation) {
 		add(itemGroup.get().getDisplayName().getString(), translation);
 	}
 
-	protected final static void add(String key, String value) {
+	protected static final void add(String key, String value) {
 		if (LANG.put(key, value) != null) {
 			throw new IllegalStateException("Duplicate translation key " + key);
 		}
 	}
 
 	private static String keyToValue(String key) {
-		String words[] = key.replaceAll("item." + Technologica.MOD_ID + ".", "").replaceAll("block." + Technologica.MOD_ID + ".", "").replaceAll("entity." + Technologica.MOD_ID + ".", "").split("_");
+		String[] words = key.replaceAll("item." + Technologica.MOD_ID + ".", "").replaceAll("block." + Technologica.MOD_ID + ".", "").replaceAll("entity." + Technologica.MOD_ID + ".", "").split("_");
 		String name = "";
 		for (String word : words) {
 			String first = word.substring(0, 1);

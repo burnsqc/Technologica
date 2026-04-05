@@ -70,7 +70,7 @@ public abstract class MercuryFluid extends FlowingFluid {
 			worldIn.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
 		}
 
-//	      this.flowAround(worldIn, pos, state);
+		// this.flowAround(worldIn, pos, state);
 	}
 
 	@Override

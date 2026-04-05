@@ -24,8 +24,8 @@ public class FourDirectionBlock extends Block {
 	 */
 
 	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext contextIn) {
-		return this.defaultBlockState().setValue(NESW_FACING, contextIn.getHorizontalDirection().getOpposite());
+	public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
+		return this.defaultBlockState().setValue(NESW_FACING, blockPlaceContext.getHorizontalDirection().getOpposite());
 	}
 
 	@Override

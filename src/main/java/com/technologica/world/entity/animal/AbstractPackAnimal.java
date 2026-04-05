@@ -61,6 +61,7 @@ public abstract class AbstractPackAnimal extends Animal {
 		return this.hasFollowers() && this.packSize < this.getMaxPackSize();
 	}
 
+	@SuppressWarnings("resource")
 	@Override
 	public void tick() {
 		super.tick();
@@ -96,15 +97,15 @@ public abstract class AbstractPackAnimal extends Animal {
 
 	@Override
 	@Nullable
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficultyInstance, MobSpawnType p_27530_, @Nullable SpawnGroupData p_27531_, @Nullable CompoundTag p_27532_) {
-		super.finalizeSpawn(level, difficultyInstance, p_27530_, p_27531_, p_27532_);
-		if (p_27531_ == null) {
-			p_27531_ = new AbstractPackAnimal.PackSpawnGroupData(this);
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficultyInstance, MobSpawnType mobSpawnType, @Nullable SpawnGroupData spawnGroupData, @Nullable CompoundTag compoundTag) {
+		super.finalizeSpawn(level, difficultyInstance, mobSpawnType, spawnGroupData, compoundTag);
+		if (spawnGroupData == null) {
+			spawnGroupData = new AbstractPackAnimal.PackSpawnGroupData(this);
 		} else {
-			this.startFollowing(((AbstractPackAnimal.PackSpawnGroupData) p_27531_).leader);
+			this.startFollowing(((AbstractPackAnimal.PackSpawnGroupData) spawnGroupData).leader);
 		}
 
-		return p_27531_;
+		return spawnGroupData;
 	}
 
 	public static class PackSpawnGroupData implements SpawnGroupData {

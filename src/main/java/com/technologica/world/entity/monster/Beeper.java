@@ -49,10 +49,6 @@ public class Beeper extends Monster implements PowerableMob {
 		return Monster.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, 0.25D);
 	}
 
-	/**
-	 * The maximum height from where the entity is alowed to jump (used in
-	 * pathfinder)
-	 */
 	@Override
 	public int getMaxFallDistance() {
 		return this.getTarget() == null ? 3 : 3 + (int) (this.getHealth() - 1.0F);
@@ -79,18 +75,12 @@ public class Beeper extends Monster implements PowerableMob {
 		}
 	}
 
-	/**
-	 * (abstract) Protected helper method to read subclass entity data from NBT.
-	 */
 	@Override
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
 		this.entityData.set(POWERED, compound.getBoolean("powered"));
 	}
 
-	/**
-	 * Called to update the entity's position/logic.
-	 */
 	@Override
 	public void tick() {
 		super.tick();
@@ -130,16 +120,10 @@ public class Beeper extends Monster implements PowerableMob {
 		return this.entityData.get(POWERED);
 	}
 
-	/**
-	 * Returns the current state of creeper, -1 is idle, 1 is 'in fuse'
-	 */
 	public int getCreeperState() {
 		return this.entityData.get(STATE);
 	}
 
-	/**
-	 * Sets the state of creeper, -1 to idle and 1 to be 'in fuse'
-	 */
 	public void setCreeperState(int state) {
 		this.entityData.set(STATE, state);
 	}
@@ -150,6 +134,7 @@ public class Beeper extends Monster implements PowerableMob {
 		this.entityData.set(POWERED, true);
 	}
 
+	@SuppressWarnings("resource")
 	@Override
 	protected InteractionResult mobInteract(Player playerIn, InteractionHand hand) {
 		ItemStack itemstack = playerIn.getItemInHand(hand);
@@ -167,13 +152,6 @@ public class Beeper extends Monster implements PowerableMob {
 		}
 	}
 
-	/**
-	 * Returns true if an entity is able to drop its skull due to being blown up by
-	 * this creeper.
-	 * 
-	 * Does not test if this creeper is charged" the caller must do that. However,
-	 * does test the doMobLoot gamerule.
-	 */
 	public boolean ableToCauseSkullDrop() {
 		return this.isPowered() && this.droppedSkulls < 1;
 	}

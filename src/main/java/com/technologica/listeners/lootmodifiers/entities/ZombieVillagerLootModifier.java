@@ -20,7 +20,7 @@ import net.minecraftforge.common.loot.IGlobalLootModifier;
 import net.minecraftforge.common.loot.LootModifier;
 
 public class ZombieVillagerLootModifier extends LootModifier {
-	private final List<Item> root_vegetables = List.of(Items.CARROT, TechnologicaItems.GARLIC.get(), TechnologicaItems.ONION.get(), TechnologicaItems.RADISH.get(), TechnologicaItems.TURNIP.get());
+	private final List<Item> rootVegetables = List.of(Items.CARROT, TechnologicaItems.GARLIC.get(), TechnologicaItems.ONION.get(), TechnologicaItems.RADISH.get(), TechnologicaItems.TURNIP.get());
 	private final List<Item> tubers = List.of(Items.POTATO, TechnologicaItems.SWEET_POTATO.get());
 
 	public static final Supplier<Codec<ZombieVillagerLootModifier>> CODEC = Suppliers.memoize(() -> RecordCodecBuilder.create(inst -> codecStart(inst).apply(inst, ZombieVillagerLootModifier::new)));
@@ -33,7 +33,7 @@ public class ZombieVillagerLootModifier extends LootModifier {
 	@Override
 	protected ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
 		if (generatedLoot.removeIf((itemStack) -> itemStack.getItem().equals(Items.CARROT))) {
-			generatedLoot.add(new ItemStack(root_vegetables.get(context.getRandom().nextInt(root_vegetables.size()))));
+			generatedLoot.add(new ItemStack(rootVegetables.get(context.getRandom().nextInt(rootVegetables.size()))));
 		} else if (generatedLoot.removeIf((itemStack) -> itemStack.getItem().equals(Items.POTATO))) {
 			generatedLoot.add(new ItemStack(tubers.get(context.getRandom().nextInt(tubers.size()))));
 		}

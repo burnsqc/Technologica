@@ -20,12 +20,12 @@ public class LandMineRenderer implements BlockEntityRenderer<LandMineBlockEntity
 
 	@Override
 	public void render(LandMineBlockEntity landMineBlockEntity, float partialTicks, PoseStack poseStack, MultiBufferSource multiSourceBuffer, int combinedLight, int combinedOverlay) {
-		BlockState state = landMineBlockEntity.getPreviousBlockState();
+		BlockState blockState = landMineBlockEntity.getPreviousBlockState();
 		poseStack.pushPose();
-		BakedModel bakedmodel = Minecraft.getInstance().getBlockRenderer().getBlockModel(state);
-		for (RenderType renderType : bakedmodel.getRenderTypes(state, RandomSource.create(state.getSeed(landMineBlockEntity.getBlockPos())), ModelData.EMPTY)) {
+		BakedModel bakedmodel = Minecraft.getInstance().getBlockRenderer().getBlockModel(blockState);
+		for (RenderType renderType : bakedmodel.getRenderTypes(blockState, RandomSource.create(blockState.getSeed(landMineBlockEntity.getBlockPos())), ModelData.EMPTY)) {
 			VertexConsumer vertexConsumer = multiSourceBuffer.getBuffer(renderType);
-			Minecraft.getInstance().getBlockRenderer().getModelRenderer().tesselateBlock(landMineBlockEntity.getLevel(), bakedmodel, state, landMineBlockEntity.getBlockPos(), poseStack, vertexConsumer, true, RandomSource.create(), state.getSeed(landMineBlockEntity.getBlockPos()), combinedOverlay, ModelData.EMPTY, renderType);
+			Minecraft.getInstance().getBlockRenderer().getModelRenderer().tesselateBlock(landMineBlockEntity.getLevel(), bakedmodel, blockState, landMineBlockEntity.getBlockPos(), poseStack, vertexConsumer, true, RandomSource.create(), blockState.getSeed(landMineBlockEntity.getBlockPos()), combinedOverlay, ModelData.EMPTY, renderType);
 		}
 		poseStack.popPose();
 	}

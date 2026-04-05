@@ -12,8 +12,8 @@ import net.minecraft.world.phys.AABB;
 
 public class WindmillBlockEntity extends BlockEntity {
 
-	public WindmillBlockEntity(BlockPos p_155700_, BlockState p_155701_) {
-		super(TechnologicaBlockEntityTypes.WINDMILL.get(), p_155700_, p_155701_);
+	public WindmillBlockEntity(BlockPos blockPos, BlockState blockState) {
+		super(TechnologicaBlockEntityTypes.WINDMILL.get(), blockPos, blockState);
 	}
 
 	@Override

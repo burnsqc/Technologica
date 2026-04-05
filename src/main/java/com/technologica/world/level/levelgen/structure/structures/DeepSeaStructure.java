@@ -41,10 +41,10 @@ public final class DeepSeaStructure extends Structure {
 		NoiseColumn noisecolumn = p_228576_.chunkGenerator().getBaseColumn(i, j, p_228576_.heightAccessor(), p_228576_.randomState());
 
 		while (l > k) {
-			BlockState blockstate = noisecolumn.getBlock(l);
+			BlockState blockState = noisecolumn.getBlock(l);
 			--l;
-			BlockState blockstate1 = noisecolumn.getBlock(l);
-			if (blockstate.is(Blocks.WATER) && (blockstate1.is(Blocks.STONE))) {
+			BlockState blockStateDown = noisecolumn.getBlock(l);
+			if (blockState.is(Blocks.WATER) && (blockStateDown.is(Blocks.STONE))) {
 				break;
 			}
 		}

@@ -373,72 +373,29 @@ public final class TechnologicaBlocks {
 	public static final RegistryObject<Block> TOPAZ_ORE = Technologica.BLOCKS.register("topaz_ore", () -> new DropExperienceBlock(GEM_ORE, GEM_EXP));
 	public static final RegistryObject<Block> DEEPSLATE_TOPAZ_ORE = Technologica.BLOCKS.register("deepslate_topaz_ore", () -> new DropExperienceBlock(GEM_ORE_DEEPSLATE, GEM_EXP));
 
-	public static final RegistryObject<Block> AUTUNITE_CRYSTAL = Technologica.BLOCKS.register("autunite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
-		return 5;
-	})));
-	public static final RegistryObject<Block> AQUAMARINE_CRYSTAL = Technologica.BLOCKS.register("aquamarine_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
-		return 5;
-	})));
-	public static final RegistryObject<Block> BARYTE_CRYSTAL = Technologica.BLOCKS.register("baryte_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
-		return 5;
-	})));
-	public static final RegistryObject<Block> BISMITHUNITE_CRYSTAL = Technologica.BLOCKS.register("bismithunite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
-		return 5;
-	})));
-	public static final RegistryObject<Block> CELESTINE_CRYSTAL = Technologica.BLOCKS.register("celestine_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
-		return 5;
-	})));
-	public static final RegistryObject<Block> COLUMBITE_CRYSTAL = Technologica.BLOCKS.register("columbite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
-		return 5;
-	})));
-	public static final RegistryObject<Block> DOLOMITE_CRYSTAL = Technologica.BLOCKS.register("dolomite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
-		return 5;
-	})));
-	public static final RegistryObject<Block> FLUORITE_CRYSTAL = Technologica.BLOCKS.register("fluorite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
-		return 5;
-	})));
-	public static final RegistryObject<Block> HUTCHINSONITE_CRYSTAL = Technologica.BLOCKS.register("hutchinsonite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
-		return 5;
-	})));
-	public static final RegistryObject<Block> MONAZITE_CRYSTAL = Technologica.BLOCKS.register("monazite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
-		return 5;
-	})));
-	public static final RegistryObject<Block> POLLUCITE_CRYSTAL = Technologica.BLOCKS.register("pollucite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
-		return 5;
-	})));
-	public static final RegistryObject<Block> RUTILE_CRYSTAL = Technologica.BLOCKS.register("rutile_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
-		return 5;
-	})));
-	public static final RegistryObject<Block> SCHEELITE_CRYSTAL = Technologica.BLOCKS.register("scheelite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
-		return 5;
-	})));
-	public static final RegistryObject<Block> SPHALERITE_CRYSTAL = Technologica.BLOCKS.register("sphalerite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
-		return 5;
-	})));
-	public static final RegistryObject<Block> STIBNITE_CRYSTAL = Technologica.BLOCKS.register("stibnite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
-		return 5;
-	})));
-	public static final RegistryObject<Block> STRONTIANITE_CRYSTAL = Technologica.BLOCKS.register("strontianite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
-		return 5;
-	})));
-	public static final RegistryObject<Block> TELLURITE_CRYSTAL = Technologica.BLOCKS.register("tellurite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
-		return 5;
-	})));
-	public static final RegistryObject<Block> ULEXITE_CRYSTAL = Technologica.BLOCKS.register("ulexite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
-		return 5;
-	})));
-	public static final RegistryObject<Block> VANADINITE_CRYSTAL = Technologica.BLOCKS.register("vanadinite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
-		return 5;
-	})));
-	public static final RegistryObject<Block> WULFENITE_CRYSTAL = Technologica.BLOCKS.register("wulfenite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
-		return 5;
-	})));
-	public static final RegistryObject<Block> XENOTIME_CRYSTAL = Technologica.BLOCKS.register("xenotime_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
-		return 5;
-	})));
-	public static final RegistryObject<Block> ZIRCON_CRYSTAL = Technologica.BLOCKS.register("zircon_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((p_152632_) -> {
-		return 5;
-	})));
+	public static final RegistryObject<Block> AUTUNITE_CRYSTAL = Technologica.BLOCKS.register("autunite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((blockState) -> 5)));
+	public static final RegistryObject<Block> AQUAMARINE_CRYSTAL = Technologica.BLOCKS.register("aquamarine_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((blockState) -> 5)));
+	public static final RegistryObject<Block> BARYTE_CRYSTAL = Technologica.BLOCKS.register("baryte_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((blockState) -> 5)));
+	public static final RegistryObject<Block> BISMITHUNITE_CRYSTAL = Technologica.BLOCKS.register("bismithunite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((blockState) -> 5)));
+	public static final RegistryObject<Block> CELESTINE_CRYSTAL = Technologica.BLOCKS.register("celestine_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((blockState) -> 5)));
+	public static final RegistryObject<Block> COLUMBITE_CRYSTAL = Technologica.BLOCKS.register("columbite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((blockState) -> 5)));
+	public static final RegistryObject<Block> DOLOMITE_CRYSTAL = Technologica.BLOCKS.register("dolomite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((blockState) -> 5)));
+	public static final RegistryObject<Block> FLUORITE_CRYSTAL = Technologica.BLOCKS.register("fluorite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((blockState) -> 5)));
+	public static final RegistryObject<Block> HUTCHINSONITE_CRYSTAL = Technologica.BLOCKS.register("hutchinsonite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((blockState) -> 5)));
+	public static final RegistryObject<Block> MONAZITE_CRYSTAL = Technologica.BLOCKS.register("monazite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((blockState) -> 5)));
+	public static final RegistryObject<Block> POLLUCITE_CRYSTAL = Technologica.BLOCKS.register("pollucite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((blockState) -> 5)));
+	public static final RegistryObject<Block> RUTILE_CRYSTAL = Technologica.BLOCKS.register("rutile_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((blockState) -> 5)));
+	public static final RegistryObject<Block> SCHEELITE_CRYSTAL = Technologica.BLOCKS.register("scheelite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((blockState) -> 5)));
+	public static final RegistryObject<Block> SPHALERITE_CRYSTAL = Technologica.BLOCKS.register("sphalerite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((blockState) -> 5)));
+	public static final RegistryObject<Block> STIBNITE_CRYSTAL = Technologica.BLOCKS.register("stibnite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((blockState) -> 5)));
+	public static final RegistryObject<Block> STRONTIANITE_CRYSTAL = Technologica.BLOCKS.register("strontianite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((blockState) -> 5)));
+	public static final RegistryObject<Block> TELLURITE_CRYSTAL = Technologica.BLOCKS.register("tellurite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((blockState) -> 5)));
+	public static final RegistryObject<Block> ULEXITE_CRYSTAL = Technologica.BLOCKS.register("ulexite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((blockState) -> 5)));
+	public static final RegistryObject<Block> VANADINITE_CRYSTAL = Technologica.BLOCKS.register("vanadinite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((blockState) -> 5)));
+	public static final RegistryObject<Block> WULFENITE_CRYSTAL = Technologica.BLOCKS.register("wulfenite_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((blockState) -> 5)));
+	public static final RegistryObject<Block> XENOTIME_CRYSTAL = Technologica.BLOCKS.register("xenotime_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((blockState) -> 5)));
+	public static final RegistryObject<Block> ZIRCON_CRYSTAL = Technologica.BLOCKS.register("zircon_crystal", () -> new TwentyFourDirectionBlock(BlockBehaviour.Properties.of().strength(6.0F).sound(SoundType.GLASS).noOcclusion().lightLevel((blockState) -> 5)));
+
 	public static final RegistryObject<Block> BLOCK_OF_RUBY = Technologica.BLOCKS.register("block_of_ruby", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
 	public static final RegistryObject<Block> BLOCK_OF_SAPPHIRE = Technologica.BLOCKS.register("block_of_sapphire", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
 	public static final RegistryObject<Block> BLOCK_OF_TOPAZ = Technologica.BLOCKS.register("block_of_topaz", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
@@ -586,7 +543,7 @@ public final class TechnologicaBlocks {
 	public static final RegistryObject<Block> STRIPPED_ALCHEMICAL_LOG = Technologica.BLOCKS.register("stripped_alchemical_log", () -> VanillaLikeBlocks.logBlock());
 	public static final RegistryObject<Block> STRIPPED_BENEVOLENT_LOG = Technologica.BLOCKS.register("stripped_benevolent_log", () -> VanillaLikeBlocks.logBlock());
 	public static final RegistryObject<Block> STRIPPED_CONDUCTIVE_LOG = Technologica.BLOCKS.register("stripped_conductive_log", () -> VanillaLikeBlocks.logBlock());
-	public static final RegistryObject<Block> STRIPPED_FROSTBITTEN_LOG = Technologica.BLOCKS.register("stripped_frostbitten_log", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().friction(0.98F).strength(0.5F).sound(SoundType.GLASS).noOcclusion()));;
+	public static final RegistryObject<Block> STRIPPED_FROSTBITTEN_LOG = Technologica.BLOCKS.register("stripped_frostbitten_log", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().friction(0.98F).strength(0.5F).sound(SoundType.GLASS).noOcclusion()));
 	public static final RegistryObject<Block> STRIPPED_FRUITFUL_LOG = Technologica.BLOCKS.register("stripped_fruitful_log", () -> VanillaLikeBlocks.logBlock());
 	public static final RegistryObject<Block> STRIPPED_INFERNAL_LOG = Technologica.BLOCKS.register("stripped_infernal_log", () -> VanillaLikeBlocks.logBlock());
 	public static final RegistryObject<Block> STRIPPED_MALEVOLENT_LOG = Technologica.BLOCKS.register("stripped_malevolent_log", () -> VanillaLikeBlocks.logBlock());
@@ -811,7 +768,7 @@ public final class TechnologicaBlocks {
 	public static final RegistryObject<Block> MAHOGANY_FENCE = Technologica.BLOCKS.register("mahogany_fence", () -> VanillaLikeBlocks.fenceBlock());
 	public static final RegistryObject<Block> MAPLE_FENCE = Technologica.BLOCKS.register("maple_fence", () -> VanillaLikeBlocks.fenceBlock());
 	public static final RegistryObject<Block> OLIVE_FENCE = Technologica.BLOCKS.register("olive_fence", () -> VanillaLikeBlocks.fenceBlock());
-	public static final RegistryObject<Block> ORANGE_FENCE = Technologica.BLOCKS.register("orange_fence", () -> VanillaLikeBlocks.fenceBlock());;
+	public static final RegistryObject<Block> ORANGE_FENCE = Technologica.BLOCKS.register("orange_fence", () -> VanillaLikeBlocks.fenceBlock());
 	public static final RegistryObject<Block> PEACH_FENCE = Technologica.BLOCKS.register("peach_fence", () -> VanillaLikeBlocks.fenceBlock());
 	public static final RegistryObject<Block> PEAR_FENCE = Technologica.BLOCKS.register("pear_fence", () -> VanillaLikeBlocks.fenceBlock());
 	public static final RegistryObject<Block> PLUM_FENCE = Technologica.BLOCKS.register("plum_fence", () -> VanillaLikeBlocks.fenceBlock());
@@ -1167,8 +1124,8 @@ public final class TechnologicaBlocks {
 	public static final RegistryObject<Block> LAND_MINE = Technologica.BLOCKS.register("land_mine", LandMineBlock::new);
 	public static final RegistryObject<Block> NITROGLYCERIN = Technologica.BLOCKS.register("nitroglycerin", () -> new NitroBlock(BlockBehaviour.Properties.of().noCollission().instabreak().sound(SoundType.GRASS)));
 	public static final RegistryObject<Block> NAVAL_MINE_CHAIN = Technologica.BLOCKS.register("naval_mine_chain", () -> new NavalMineChainBlock(BlockBehaviour.Properties.copy(Blocks.CHAIN)));
-	public static final RegistryObject<Block> LIGHT = Technologica.BLOCKS.register("light", () -> new LightBlock(BlockBehaviour.Properties.of().noCollission().noLootTable().air().lightLevel((p_50874_) -> 15)));
+	public static final RegistryObject<Block> LIGHT = Technologica.BLOCKS.register("light", () -> new LightBlock(BlockBehaviour.Properties.of().noCollission().noLootTable().air().lightLevel((blockState) -> 15)));
 	public static final RegistryObject<Block> SLEEPING_BAG = Technologica.BLOCKS.register("sleeping_bag", () -> new SleepingBagBlock(DyeColor.RED, BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(0.2F).noOcclusion()));
 	public static final RegistryObject<Block> SMOKE_COLUMN = Technologica.BLOCKS.register("smoke_column", () -> new SmokeColumnBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WATER).replaceable().noCollission().noLootTable().pushReaction(PushReaction.DESTROY).liquid().sound(SoundType.EMPTY)));
-	public static final RegistryObject<Block> ABYSS_PORTAL = Technologica.BLOCKS.register("abyss_portal", () -> new AbyssPortalBlock(BlockBehaviour.Properties.of().noCollission().randomTicks().strength(-1.0F).sound(SoundType.GLASS).lightLevel((p_152690_) -> 11).pushReaction(PushReaction.BLOCK)));
+	public static final RegistryObject<Block> ABYSS_PORTAL = Technologica.BLOCKS.register("abyss_portal", () -> new AbyssPortalBlock(BlockBehaviour.Properties.of().noCollission().randomTicks().strength(-1.0F).sound(SoundType.GLASS).lightLevel((blockState) -> 11).pushReaction(PushReaction.BLOCK)));
 }

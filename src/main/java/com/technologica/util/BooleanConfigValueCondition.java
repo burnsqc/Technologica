@@ -22,8 +22,7 @@ public class BooleanConfigValueCondition implements ICondition {
 	}
 	
 	@Override
-    public String toString()
-    {
+	public String toString() {
 		return "boolean_config_value(" + TechnologicaConfigCommon.DISABLE_VANILLA_PLANK_RECIPES.toString() + ")";
     }
 

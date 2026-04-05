@@ -25,25 +25,25 @@ public class TechnologicaWanderingTraderTrades {
 		private final int villagerXp;
 		private final float priceMultiplier;
 
-		public ItemsForEmeralds(Item p_35746_, int p_35747_, int p_35748_, int p_35749_, int p_35750_) {
-			this(new ItemStack(p_35746_), p_35747_, p_35748_, p_35749_, p_35750_);
+		public ItemsForEmeralds(Item item, int p_35747_, int p_35748_, int p_35749_, int p_35750_) {
+			this(new ItemStack(item), p_35747_, p_35748_, p_35749_, p_35750_);
 		}
 
-		public ItemsForEmeralds(ItemStack p_35752_, int p_35753_, int p_35754_, int p_35755_, int p_35756_) {
-			this(p_35752_, p_35753_, p_35754_, p_35755_, p_35756_, 0.05F);
+		public ItemsForEmeralds(ItemStack itemStack, int gemCost, int numberOfItems, int p_35755_, int p_35756_) {
+			this(itemStack, gemCost, numberOfItems, p_35755_, p_35756_, 0.05F);
 		}
 
-		public ItemsForEmeralds(ItemStack p_35758_, int p_35759_, int p_35760_, int p_35761_, int p_35762_, float p_35763_) {
-			this.itemStack = p_35758_;
-			this.gemCost = p_35759_;
-			this.numberOfItems = p_35760_;
-			this.maxUses = p_35761_;
-			this.villagerXp = p_35762_;
-			this.priceMultiplier = p_35763_;
+		public ItemsForEmeralds(ItemStack itemStack, int gemCost, int numberOfItems, int maxUses, int villagerXp, float priceMultiplier) {
+			this.itemStack = itemStack;
+			this.gemCost = gemCost;
+			this.numberOfItems = numberOfItems;
+			this.maxUses = maxUses;
+			this.villagerXp = villagerXp;
+			this.priceMultiplier = priceMultiplier;
 		}
 
 		@Override
-		public MerchantOffer getOffer(Entity p_35771_, RandomSource randomSource) {
+		public MerchantOffer getOffer(Entity entity, RandomSource randomSource) {
 			return new MerchantOffer(new ItemStack(gems.get(randomSource.nextInt(gems.size())), this.gemCost), new ItemStack(this.itemStack.getItem(), this.numberOfItems), this.maxUses, this.villagerXp, this.priceMultiplier);
 		}
 	}

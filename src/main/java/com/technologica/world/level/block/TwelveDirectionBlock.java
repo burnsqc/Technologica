@@ -25,13 +25,13 @@ public class TwelveDirectionBlock extends DirectionalBlock {
 	 */
 
 	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext contextIn) {
+	public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
 		int i = 0;
-		Direction[] adirection = contextIn.getNearestLookingDirections();
-		if (adirection[i] == contextIn.getClickedFace().getOpposite()) {
+		Direction[] adirection = blockPlaceContext.getNearestLookingDirections();
+		if (adirection[i] == blockPlaceContext.getClickedFace().getOpposite()) {
 			i++;
 		}
-		return this.defaultBlockState().setValue(FACING, contextIn.getClickedFace()).setValue(AXIS, adirection[i].getAxis());
+		return this.defaultBlockState().setValue(FACING, blockPlaceContext.getClickedFace()).setValue(AXIS, adirection[i].getAxis());
 	}
 
 	@Override

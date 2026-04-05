@@ -141,10 +141,10 @@ public class DecoratedOreFeature extends Feature<OreConfiguration> {
 														int i3 = SectionPos.sectionRelative(i2);
 														int j3 = SectionPos.sectionRelative(j2);
 														int k3 = SectionPos.sectionRelative(k2);
-														BlockState blockstate = levelchunksection.getBlockState(i3, j3, k3);
+														BlockState blockState = levelchunksection.getBlockState(i3, j3, k3);
 
 														for (OreConfiguration.TargetBlockState oreconfiguration$targetblockstate : p_225174_.targetStates) {
-															if (canPlaceOre(blockstate, bulksectionaccess::getBlockState, p_225173_, p_225174_, oreconfiguration$targetblockstate, blockpos$mutableblockpos)) {
+															if (canPlaceOre(blockState, bulksectionaccess::getBlockState, p_225173_, p_225174_, oreconfiguration$targetblockstate, blockpos$mutableblockpos)) {
 																levelchunksection.setBlockState(i3, j3, k3, oreconfiguration$targetblockstate.state, false);
 
 																BlockPos.MutableBlockPos blockpos$mutableblockpos2 = new BlockPos.MutableBlockPos();
@@ -184,8 +184,8 @@ public class DecoratedOreFeature extends Feature<OreConfiguration> {
 		return i > 0;
 	}
 
-	public static boolean canPlaceOre(BlockState p_225187_, Function<BlockPos, BlockState> p_225188_, RandomSource p_225189_, OreConfiguration p_225190_, OreConfiguration.TargetBlockState p_225191_, BlockPos.MutableBlockPos p_225192_) {
-		if (!p_225191_.target.test(p_225187_, p_225189_)) {
+	public static boolean canPlaceOre(BlockState blockState, Function<BlockPos, BlockState> p_225188_, RandomSource p_225189_, OreConfiguration p_225190_, OreConfiguration.TargetBlockState p_225191_, BlockPos.MutableBlockPos p_225192_) {
+		if (!p_225191_.target.test(blockState, p_225189_)) {
 			return false;
 		} else if (shouldSkipAirCheck(p_225189_, p_225190_.discardChanceOnAirExposure)) {
 			return true;

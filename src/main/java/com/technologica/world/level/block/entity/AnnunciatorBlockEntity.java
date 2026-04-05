@@ -42,8 +42,8 @@ public class AnnunciatorBlockEntity extends BlockEntity {
 	private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
 	private final FormattedCharSequence[] renderText = new FormattedCharSequence[8];
 
-	public AnnunciatorBlockEntity(BlockPos p_155700_, BlockState p_155701_) {
-		super(TechnologicaBlockEntityTypes.ANNUNCIATOR.get(), p_155700_, p_155701_);
+	public AnnunciatorBlockEntity(BlockPos blockPos, BlockState blockState) {
+		super(TechnologicaBlockEntityTypes.ANNUNCIATOR.get(), blockPos, blockState);
 	}
 
 	private ItemStackHandler createHandler() {
@@ -142,12 +142,12 @@ public class AnnunciatorBlockEntity extends BlockEntity {
 	}
 
 	@Override
-	public void load(CompoundTag p_155716_) {
-		super.load(p_155716_);
-		itemHandler.deserializeNBT(p_155716_.getCompound("overlay"));
+	public void load(CompoundTag compoundTag) {
+		super.load(compoundTag);
+		itemHandler.deserializeNBT(compoundTag.getCompound("overlay"));
 
 		for (int i = 0; i < 8; ++i) {
-			String s = p_155716_.getString("Text" + (i + 1));
+			String s = compoundTag.getString("Text" + (i + 1));
 			Component itextcomponent = Component.Serializer.fromJson(s.isEmpty() ? "\"\"" : s);
 			if (this.level instanceof ServerLevel) {
 				try {
@@ -163,13 +163,13 @@ public class AnnunciatorBlockEntity extends BlockEntity {
 	}
 
 	@Override
-	protected void saveAdditional(CompoundTag compound) {
-		super.saveAdditional(compound);
-		compound.put("overlay", itemHandler.serializeNBT());
+	protected void saveAdditional(CompoundTag compoundTag) {
+		super.saveAdditional(compoundTag);
+		compoundTag.put("overlay", itemHandler.serializeNBT());
 
 		for (int i = 0; i < 8; ++i) {
 			String s = Component.Serializer.toJson(this.text[i]);
-			compound.putString("Text" + (i + 1), s);
+			compoundTag.putString("Text" + (i + 1), s);
 		}
 	}
 }

@@ -1,11 +1,9 @@
 package com.technologica.resourcegen.data.advancements;
 
-import com.technologica.advancements.critereon.AttemptedHarvestTrigger;
-import com.technologica.advancements.critereon.BlockObservedTrigger;
-import com.technologica.advancements.critereon.LightCampfireTrigger;
+import com.technologica.advancements.critereon.ObservedBlockTrigger;
+import com.technologica.advancements.critereon.LitCampfireTrigger;
 
 public class TechnologicaCriterionTriggers {
-	public static AttemptedHarvestTrigger ATTEMPTED_HARVEST;
-	public static BlockObservedTrigger BLOCK_OBSERVED;
-	public static LightCampfireTrigger LIGHT_CAMPFIRE;
+	public static ObservedBlockTrigger BLOCK_OBSERVED;
+	public static LitCampfireTrigger LIGHT_CAMPFIRE;
 }

@@ -5,7 +5,7 @@ import net.minecraft.resources.ResourceKey;
 
 public class TextUtil {
 	public static String stringToCapsName(String string) {
-		String words[] = string.split("_");
+		String[] words = string.split("_");
 		String name = "";
 
 		for (String word : words) {
@@ -18,7 +18,7 @@ public class TextUtil {
 	}
 
 	public static String stringToProperName(String string) {
-		String words[] = string.split("_");
+		String[] words = string.split("_");
 		String name = "";
 
 		if (!words[0].equals("the")) {
@@ -35,7 +35,7 @@ public class TextUtil {
 	}
 
 	public static String stringToAllCapsName(String string) {
-		String words[] = string.split("_");
+		String[] words = string.split("_");
 		String name = "";
 
 		for (String word : words) {

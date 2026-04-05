@@ -29,25 +29,25 @@ public class LineShaftHangerRenderer implements BlockEntityRenderer<LineShaftHan
 			float angle = time % 360;
 			BlockRenderDispatcher blockrendererdispatcher = Minecraft.getInstance().getBlockRenderer();
 			ModelBlockRenderer blockModelRenderer = blockrendererdispatcher.getModelRenderer();
-			BlockState state;
+			BlockState blockState;
 			matrixStack.pushPose();
 			if (tileEntity.getBlockState().getValue(TwelveDirectionBlock.AXIS) == Direction.Axis.X) {
-				state = TechnologicaBlocks.LINE_SHAFT.get().defaultBlockState().setValue(TwelveDirectionBlock.AXIS, Direction.Axis.X);
+				blockState = TechnologicaBlocks.LINE_SHAFT.get().defaultBlockState().setValue(TwelveDirectionBlock.AXIS, Direction.Axis.X);
 				matrixStack.translate(0.0, 0.5, 0.5);
 				matrixStack.mulPose(Axis.XP.rotationDegrees(angle));
 				matrixStack.translate(0.0, -0.5, -0.5);
 			} else if (tileEntity.getBlockState().getValue(TwelveDirectionBlock.AXIS) == Direction.Axis.Y) {
-				state = TechnologicaBlocks.LINE_SHAFT.get().defaultBlockState().setValue(TwelveDirectionBlock.AXIS, Direction.Axis.Y);
+				blockState = TechnologicaBlocks.LINE_SHAFT.get().defaultBlockState().setValue(TwelveDirectionBlock.AXIS, Direction.Axis.Y);
 				matrixStack.translate(0.5, 0.0, 0.5);
 				matrixStack.mulPose(Axis.YP.rotationDegrees(angle));
 				matrixStack.translate(-0.5, 0.0, -0.5);
 			} else {
-				state = TechnologicaBlocks.LINE_SHAFT.get().defaultBlockState().setValue(TwelveDirectionBlock.AXIS, Direction.Axis.Z);
+				blockState = TechnologicaBlocks.LINE_SHAFT.get().defaultBlockState().setValue(TwelveDirectionBlock.AXIS, Direction.Axis.Z);
 				matrixStack.translate(0.5, 0.5, 0.0);
 				matrixStack.mulPose(Axis.ZP.rotationDegrees(angle));
 				matrixStack.translate(-0.5, -0.5, 0.0);
 			}
-			blockModelRenderer.renderModel(matrixStack.last(), buffer.getBuffer(RenderType.solid()), state, blockrendererdispatcher.getBlockModel(state), 0.0F, 0.0F, 0.0F, combinedLight, combinedOverlay, ModelData.EMPTY, RenderType.cutoutMipped());
+			blockModelRenderer.renderModel(matrixStack.last(), buffer.getBuffer(RenderType.solid()), blockState, blockrendererdispatcher.getBlockModel(blockState), 0.0F, 0.0F, 0.0F, combinedLight, combinedOverlay, ModelData.EMPTY, RenderType.cutoutMipped());
 			matrixStack.popPose();
 		}
 	}

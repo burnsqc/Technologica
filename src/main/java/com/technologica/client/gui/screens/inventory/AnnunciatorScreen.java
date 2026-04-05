@@ -42,8 +42,8 @@ public class AnnunciatorScreen extends AbstractContainerScreen<AnnunciatorMenu> 
 		imageHeight = 231;
 		this.inventoryLabelY = 137;
 		this.tileEntity = screenContainerIn.getTileEntity();
-		this.multiLineText = IntStream.range(0, 8).mapToObj(tileEntity::getText).map(Component::getString).toArray((p_243354_0_) -> {
-			return new String[p_243354_0_];
+		this.multiLineText = IntStream.range(0, 8).mapToObj(tileEntity::getText).map(Component::getString).toArray((length) -> {
+			return new String[length];
 		});
 	}
 
@@ -53,11 +53,11 @@ public class AnnunciatorScreen extends AbstractContainerScreen<AnnunciatorMenu> 
 		this.tileEntity.setEditable(false);
 		this.textInputUtil = new TextFieldHelper(() -> {
 			return this.multiLineText[this.editLine];
-		}, (p_238850_1_) -> {
-			this.multiLineText[this.editLine] = p_238850_1_;
-			this.tileEntity.setText(this.editLine, Component.literal(p_238850_1_));
-		}, TextFieldHelper.createClipboardGetter(this.minecraft), TextFieldHelper.createClipboardSetter(this.minecraft), (p_238848_1_) -> {
-			return this.minecraft.font.width(p_238848_1_) <= 90;
+		}, (string) -> {
+			this.multiLineText[this.editLine] = string;
+			this.tileEntity.setText(this.editLine, Component.literal(string));
+		}, TextFieldHelper.createClipboardGetter(this.minecraft), TextFieldHelper.createClipboardSetter(this.minecraft), (string) -> {
+			return this.minecraft.font.width(string) <= 90;
 		});
 	}
 
@@ -126,10 +126,10 @@ public class AnnunciatorScreen extends AbstractContainerScreen<AnnunciatorMenu> 
 		Lighting.setupForFlatItems();
 
 		guiGraphics.pose().pushPose();
-		boolean flag1 = this.updateCounter / 6 % 2 == 0;
+
 
 		guiGraphics.pose().pushPose();
-		MultiBufferSource.BufferSource irendertypebuffer$impl = this.minecraft.renderBuffers().bufferSource();
+		MultiBufferSource.BufferSource bufferSource = this.minecraft.renderBuffers().bufferSource();
 		guiGraphics.pose().popPose();
 
 		guiGraphics.pose().translate(256.0D, 96.0D, 0.0D);
@@ -139,7 +139,7 @@ public class AnnunciatorScreen extends AbstractContainerScreen<AnnunciatorMenu> 
 		int k = this.textInputUtil.getSelectionPos();
 		int l = this.editLine * 10 - this.multiLineText.length * 5;
 		Matrix4f matrix4f = guiGraphics.pose().last().pose();
-
+		boolean flag1 = this.updateCounter / 6 % 2 == 0;
 		for (int i1 = 0; i1 < this.multiLineText.length; ++i1) {
 			String s = this.multiLineText[i1];
 
@@ -149,44 +149,44 @@ public class AnnunciatorScreen extends AbstractContainerScreen<AnnunciatorMenu> 
 				}
 
 				float f3 = -this.minecraft.font.width(s) / 2;
-				this.minecraft.font.drawInBatch(s, f3, i1 * 10.0F - this.multiLineText.length * 5.0F, i, false, matrix4f, irendertypebuffer$impl, Font.DisplayMode.POLYGON_OFFSET, 0, 15728880, false);
+				this.minecraft.font.drawInBatch(s, f3, i1 * 10.0F - this.multiLineText.length * 5.0F, i, false, matrix4f, bufferSource, Font.DisplayMode.POLYGON_OFFSET, 0, 15728880, false);
 
 				if (i1 == this.editLine && j >= 0 && flag1) {
 					int j1 = this.minecraft.font.width(s.substring(0, Math.max(Math.min(j, s.length()), 0)));
 					int k1 = j1 - this.minecraft.font.width(s) / 2;
 
 					if (j >= s.length()) {
-						this.minecraft.font.drawInBatch("_", k1, l, i, false, matrix4f, irendertypebuffer$impl, Font.DisplayMode.POLYGON_OFFSET, 0, 15728880, false);
+						this.minecraft.font.drawInBatch("_", k1, l, i, false, matrix4f, bufferSource, Font.DisplayMode.POLYGON_OFFSET, 0, 15728880, false);
 					}
 				}
 			}
 		}
 
-		irendertypebuffer$impl.endBatch();
+		bufferSource.endBatch();
 
 		for (int i3 = 0; i3 < this.multiLineText.length; ++i3) {
 			String s1 = this.multiLineText[i3];
 
 			if (s1 != null && i3 == this.editLine && j >= 0) {
-				int j3 = this.minecraft.font.width(s1.substring(0, Math.max(Math.min(j, s1.length()), 0)));
-				int k3 = j3 - this.minecraft.font.width(s1) / 2;
+				// int j3 = this.minecraft.font.width(s1.substring(0, Math.max(Math.min(j, s1.length()), 0)));
+				// int k3 = j3 - this.minecraft.font.width(s1) / 2;
 
 				if (flag1 && j < s1.length()) {
 					// fill(guiGraphics, k3, l - 1, k3 + 1, l + 9, -16777216 | i);
 				}
 
 				if (k != j) {
-					int l3 = Math.min(j, k);
-					int l1 = Math.max(j, k);
-					int i2 = this.minecraft.font.width(s1.substring(0, l3)) - this.minecraft.font.width(s1) / 2;
-					int j2 = this.minecraft.font.width(s1.substring(0, l1)) - this.minecraft.font.width(s1) / 2;
-					int k2 = Math.min(i2, j2);
-					int l2 = Math.max(i2, j2);
 					Tesselator tessellator = Tesselator.getInstance();
 					BufferBuilder bufferbuilder = tessellator.getBuilder();
 					RenderSystem.enableColorLogicOp();
 					RenderSystem.logicOp(GlStateManager.LogicOp.OR_REVERSE);
+					int l3 = Math.min(j, k);
+					int l1 = Math.max(j, k);
 					bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
+					int i2 = this.minecraft.font.width(s1.substring(0, l3)) - this.minecraft.font.width(s1) / 2;
+					int j2 = this.minecraft.font.width(s1.substring(0, l1)) - this.minecraft.font.width(s1) / 2;
+					int k2 = Math.min(i2, j2);
+					int l2 = Math.max(i2, j2);
 					bufferbuilder.vertex(matrix4f, k2, l + 9, 0.0F).color(0, 0, 255, 255).endVertex();
 					bufferbuilder.vertex(matrix4f, l2, l + 9, 0.0F).color(0, 0, 255, 255).endVertex();
 					bufferbuilder.vertex(matrix4f, l2, l, 0.0F).color(0, 0, 255, 255).endVertex();

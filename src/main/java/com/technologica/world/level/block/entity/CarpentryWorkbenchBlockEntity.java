@@ -145,35 +145,35 @@ public class CarpentryWorkbenchBlockEntity extends BlockEntity implements Worldl
 
 	@Override
 	public int getContainerSize() {
-		// TODO Auto-generated method stub
+
 		return 0;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
+
 		return false;
 	}
 
 	@Override
 	public ItemStack removeItem(int p_18942_, int p_18943_) {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
 	@Override
 	public ItemStack removeItemNoUpdate(int p_18951_) {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
 	@Override
 	public void setItem(int p_18944_, ItemStack p_18945_) {
-		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	public void clearContent() {
-		// TODO Auto-generated method stub
+
 	}
 }

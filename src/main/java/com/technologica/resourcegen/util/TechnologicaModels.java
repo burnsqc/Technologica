@@ -27,7 +27,7 @@ public class TechnologicaModels {
 	public static final ModelFile GOURD_STEM = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/stem_gourd"));
 	public static final ModelFile DISPLAY_CASE = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/display"));
 	public static final ModelFile BASIN = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_model"));
-	public static final ModelFile BASIN_FILLED[] = { new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level1")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level2")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level3")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level4")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level5")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level6")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level7")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level8")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level9")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level10")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level11")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level12")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level13")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level14")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level15")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level16")) };
+	public static final ModelFile[] BASIN_FILLED = { new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level1")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level2")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level3")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level4")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level5")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level6")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level7")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level8")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level9")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level10")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level11")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level12")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level13")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level14")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level15")), new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/basin_filled_model_level16")) };
 	public static final ModelFile HOLLOW_LOG = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/hollow_log"));
 	public static final ModelFile HOPPER = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/technologica_hopper"));
 	public static final ModelFile HOPPER_SIDE = new ModelFile.UncheckedModelFile(new TechnologicaLocation("block/technologica_hopper_side"));
@@ -87,12 +87,24 @@ public class TechnologicaModels {
 		return getBuilder(name).parent(getExistingFile(parent));
 	}
 
+	public static ModelBuilder<BlockModelBuilder> withExistingParent(String name, String parent) {
+		return withExistingParent(name, new ResourceLocation(parent));
+	}
+
 	public static ModelBuilder<BlockModelBuilder> singleTexture(String name, ResourceLocation parent, String textureKey, ResourceLocation texture) {
 		return withExistingParent(name, parent).texture(textureKey, texture);
 	}
 
 	public static ModelBuilder<BlockModelBuilder> singleTexture(String name, ResourceLocation parent, ResourceLocation texture) {
 		return singleTexture(name, parent, "texture", texture);
+	}
+
+	public static ModelBuilder<BlockModelBuilder> singleTexture(String name, String parent, String textureKey, ResourceLocation texture) {
+		return singleTexture(name, new ResourceLocation(parent), textureKey, texture);
+	}
+
+	public static ModelBuilder<BlockModelBuilder> singleTexture(String name, String parent, ResourceLocation texture) {
+		return singleTexture(name, new ResourceLocation(parent), texture);
 	}
 
 	private static BlockModelBuilder blockModel(String path) {
@@ -165,6 +177,10 @@ public class TechnologicaModels {
 		return blockModel(path(block)).parent(BASIN).texture("bottom", new TechnologicaLocation("block/basin_bottom")).texture("inside", new TechnologicaLocation("block/basin_bottom")).texture("particle", new TechnologicaLocation("block/basin_side")).texture("side", new TechnologicaLocation("block/basin_side")).texture("top", new TechnologicaLocation("block/basin_top"));
 	}
 
+	public static BlockModelBuilder basin(Block block, int level) {
+		return blockModel(ResourceLocationHelper.path(block) + "_level" + level).parent(BASIN_FILLED[level - 1]).texture("bottom", new TechnologicaLocation("block/basin_bottom")).texture("content", new TechnologicaLocation("block/opaque_fluid_still")).texture("inside", new TechnologicaLocation("block/basin_bottom")).texture("particle", new TechnologicaLocation("block/basin_side")).texture("side", new TechnologicaLocation("block/basin_side")).texture("top", new TechnologicaLocation("block/basin_top"));
+	}
+
 	public static BlockModelBuilder hollowLog(Block block) {
 		return blockModel(path(block)).parent(HOLLOW_LOG).texture("end", new TechnologicaLocation("block/frostbitten_log_top")).texture("inside", new TechnologicaLocation("block/stripped_frostbitten_log_solid")).texture("side", new TechnologicaLocation("block/frostbitten_log")).renderType(VanillaModels.TRANSLUCENT);
 	}
@@ -175,6 +191,10 @@ public class TechnologicaModels {
 	
 	public static BlockModelBuilder hopperSide(Block block) {
 		return blockModel(path(block)).parent(HOPPER_SIDE).texture("inside", new TechnologicaLocation("block/fast_hopper_inside")).texture("particle", new TechnologicaLocation("block/fast_hopper_outside")).texture("side", new TechnologicaLocation("block/fast_hopper_outside")).texture("top", new TechnologicaLocation("block/fast_hopper_top"));
+	}
+
+	public static ModelFile hopperSide(String name, String top, String side, String inside) {
+		return withExistingParent(name, new TechnologicaLocation("technologica_hopper_side")).texture("particle", side).texture("top", top).texture("side", side).texture("inside", inside);
 	}
 
 	public static BlockModelBuilder glue(Block block) {
@@ -193,32 +213,32 @@ public class TechnologicaModels {
 		return blockModel(path(block)).parent(CUBE_EACH_FACE).texture("down", down).texture("east", east).texture("north", north).texture("particle", particle).texture("south", south).texture("up", up).texture("west", west);
 	}
 
-	public static BlockModelBuilder basin(Block block, int level) {
-		return blockModel(ResourceLocationHelper.path(block) + "_level" + level).parent(BASIN_FILLED[level - 1]).texture("bottom", new TechnologicaLocation("block/basin_bottom")).texture("content", new TechnologicaLocation("block/opaque_fluid_still")).texture("inside", new TechnologicaLocation("block/basin_bottom")).texture("particle", new TechnologicaLocation("block/basin_side")).texture("side", new TechnologicaLocation("block/basin_side")).texture("top", new TechnologicaLocation("block/basin_top"));
-	}
-
-	public static BlockModelBuilder byoParent(Block block, ModelFile parent, ResourceLocation texture) {
-		return blockModel(ResourceLocationHelper.path(block)).parent(parent).texture("texture", texture);
-	}
-
-	public static BlockModelBuilder byoParent(ResourceLocation resourceLocation, ModelFile parent, ResourceLocation texture) {
-		return blockModel(resourceLocation.getPath()).parent(parent).texture("texture", texture);
-	}
-
-	public static BlockModelBuilder byoParentNoTexture(Block block, ModelFile parent, ResourceLocation renderType) {
-		return blockModel(ResourceLocationHelper.path(block)).parent(parent).renderType(renderType);
-	}
-
-	public static BlockModelBuilder byoParent(Block block, ModelFile parent, ResourceLocation texture, ResourceLocation renderType) {
-		return blockModel(ResourceLocationHelper.path(block)).parent(parent).texture("texture", texture).renderType(renderType);
+	public static ModelFile cubeEachFace(String name, ResourceLocation down, ResourceLocation up, ResourceLocation north, ResourceLocation east, ResourceLocation south, ResourceLocation west) {
+		return withExistingParent(name, new TechnologicaLocation("block/cube_each_face")).texture("particle", down).texture("down", down).texture("up", up).texture("north", north).texture("east", east).texture("south", south).texture("west", west);
 	}
 
 	public static BlockModelBuilder byoParent(Block block, ModelFile parent) {
 		return blockModel(ResourceLocationHelper.path(block)).parent(parent);
 	}
 
+	public static BlockModelBuilder byoParent(Block block, ModelFile parent, ResourceLocation texture) {
+		return blockModel(ResourceLocationHelper.path(block)).parent(parent).texture("texture", texture);
+	}
+
 	public static BlockModelBuilder byoParent(ResourceLocation resourceLocation, ModelFile parent) {
 		return blockModel(resourceLocation.getPath()).parent(parent);
+	}
+
+	public static BlockModelBuilder byoParent(ResourceLocation resourceLocation, ModelFile parent, ResourceLocation texture) {
+		return blockModel(resourceLocation.getPath()).parent(parent).texture("texture", texture);
+	}
+
+	public static BlockModelBuilder byoParent(Block block, ModelFile parent, ResourceLocation texture, ResourceLocation renderType) {
+		return blockModel(ResourceLocationHelper.path(block)).parent(parent).texture("texture", texture).renderType(renderType);
+	}
+
+	public static BlockModelBuilder byoParentNoTexture(Block block, ModelFile parent, ResourceLocation renderType) {
+		return blockModel(ResourceLocationHelper.path(block)).parent(parent).renderType(renderType);
 	}
 
 	public static ModelFile glueModel(String name, ResourceLocation particle, ResourceLocation face) {
@@ -321,10 +341,6 @@ public class TechnologicaModels {
 		return withExistingParent(ResourceLocationHelper.path(block), new TechnologicaLocation("display")).texture("case", blockTexture(block)).texture("base", new ResourceLocation("block/black_wool")).renderType("cutout_mipped");
 	}
 
-	public static ModelFile cubeEachFace(String name, ResourceLocation down, ResourceLocation up, ResourceLocation north, ResourceLocation east, ResourceLocation south, ResourceLocation west) {
-		return withExistingParent(name, new TechnologicaLocation("block/cube_each_face")).texture("particle", down).texture("down", down).texture("up", up).texture("north", north).texture("east", east).texture("south", south).texture("west", west);
-	}
-
 	public static ModelFile stem(String name, ResourceLocation stem, int growth) {
 		return withExistingParent(name, new ResourceLocation("stem_growth" + growth)).renderType("cutout").texture("stem", stem);
 	}
@@ -353,10 +369,6 @@ public class TechnologicaModels {
 		return withExistingParent(name, new TechnologicaLocation("panel")).texture("particle", side).texture("top", top).texture("side", side).texture("bottom", bottom);
 	}
 
-	public static ModelFile hopperSide(String name, String top, String side, String inside) {
-		return withExistingParent(name, new TechnologicaLocation("technologica_hopper_side")).texture("particle", side).texture("top", top).texture("side", side).texture("inside", inside);
-	}
-
 	public static ModelFile abyssPortalModelEW(Block block) {
 		return withExistingParent(name(TechnologicaBlocks.ABYSS_PORTAL.get()) + "_ew", new TechnologicaLocation("block/abyss_portal_ew")).texture("particle", new TechnologicaLocation("block/abyss_portal")).texture("portal", new TechnologicaLocation("block/abyss_portal"));
 	}
@@ -377,10 +389,6 @@ public class TechnologicaModels {
 		return singleTexture(name, "block/cross", "cross", cross);
 	}
 
-	public static ModelBuilder<BlockModelBuilder> singleTexture(String name, String parent, String textureKey, ResourceLocation texture) {
-		return singleTexture(name, new ResourceLocation(parent), textureKey, texture);
-	}
-
 	public static ModelBuilder<BlockModelBuilder> fluid(Block block) {
 		return getBuilder(ForgeRegistries.BLOCKS.getKey(block).getPath()).texture("particle", "minecraft:block/water_still");
 	}
@@ -391,10 +399,6 @@ public class TechnologicaModels {
 
 	public static ModelBuilder<BlockModelBuilder> cubeAll(String name, ResourceLocation texture) {
 		return singleTexture(name, "block/cube_all", "all", texture);
-	}
-
-	public static ModelBuilder<BlockModelBuilder> withExistingParent(String name, String parent) {
-		return withExistingParent(name, new ResourceLocation(parent));
 	}
 
 	public static ModelBuilder<BlockModelBuilder> crop(String name, ResourceLocation crop) {
@@ -463,10 +467,6 @@ public class TechnologicaModels {
 
 	public static ModelBuilder<BlockModelBuilder> fenceGateWallOpen(String name, ResourceLocation texture) {
 		return singleTexture(name, "block/template_fence_gate_wall_open", texture);
-	}
-
-	public static ModelBuilder<BlockModelBuilder> singleTexture(String name, String parent, ResourceLocation texture) {
-		return singleTexture(name, new ResourceLocation(parent), texture);
 	}
 
 	public static ModelBuilder<BlockModelBuilder> trapdoorOrientableBottom(String name, ResourceLocation texture) {

@@ -31,8 +31,8 @@ public class WhaleCarcassPieces {
 	}
 
 	public static class WhaleCarcassPiece extends TemplateStructurePiece {
-		public WhaleCarcassPiece(StructureTemplateManager structureTemplateManager, ResourceLocation p_228541_, BlockPos blockPos, Rotation rotation) {
-			super(TechnologicaStructurePieceTypes.WHALE_CARCASS.get(), 0, structureTemplateManager, p_228541_, p_228541_.toString(), makeSettings(rotation), blockPos);
+		public WhaleCarcassPiece(StructureTemplateManager structureTemplateManager, ResourceLocation resourceLocation, BlockPos blockPos, Rotation rotation) {
+			super(TechnologicaStructurePieceTypes.WHALE_CARCASS.get(), 0, structureTemplateManager, resourceLocation, resourceLocation.toString(), makeSettings(rotation), blockPos);
 		}
 
 		public WhaleCarcassPiece(StructureTemplateManager structureTemplateManager, CompoundTag compoundTag) {
@@ -52,12 +52,12 @@ public class WhaleCarcassPieces {
 		}
 
 		@Override
-		protected void handleDataMarker(String p_228561_, BlockPos p_228562_, ServerLevelAccessor p_228563_, RandomSource p_228564_, BoundingBox p_228565_) {
+		protected void handleDataMarker(String string, BlockPos blockPos, ServerLevelAccessor serverLevelAccessor, RandomSource randomSource, BoundingBox boundingBox) {
 		}
 
 		@Override
-		public void postProcess(WorldGenLevel p_228548_, StructureManager p_228549_, ChunkGenerator p_228550_, RandomSource p_228551_, BoundingBox p_228552_, ChunkPos p_228553_, BlockPos p_228554_) {
-			super.postProcess(p_228548_, p_228549_, p_228550_, p_228551_, p_228552_, p_228553_, p_228554_);
+		public void postProcess(WorldGenLevel worldGenLevel, StructureManager structureManager, ChunkGenerator chunkGenerator, RandomSource randomSource, BoundingBox boundingBox, ChunkPos chunkPos, BlockPos blockPos) {
+			super.postProcess(worldGenLevel, structureManager, chunkGenerator, randomSource, boundingBox, chunkPos, blockPos);
 		}
 	}
 }

@@ -12,12 +12,12 @@ import net.minecraft.world.level.block.state.properties.WoodType;
 
 public class VanillaWallSignBlock extends WallSignBlock {
 
-	public VanillaWallSignBlock(WoodType p_56991_) {
-		super(BlockBehaviour.Properties.of().noCollission().strength(1.0F).sound(SoundType.WOOD), p_56991_);
+	public VanillaWallSignBlock(WoodType woodType) {
+		super(BlockBehaviour.Properties.of().noCollission().strength(1.0F).sound(SoundType.WOOD), woodType);
 	}
 
 	@Override
-	public BlockEntity newBlockEntity(BlockPos p_154556_, BlockState p_154557_) {
-		return new VanillaSignBlockEntity(p_154556_, p_154557_);
+	public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+		return new VanillaSignBlockEntity(blockPos, blockState);
 	}
 }

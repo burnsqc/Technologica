@@ -20,13 +20,13 @@ public class ServerboundPacketHandlers {
 		Technologica.LOGGER.debug("HANDLING PACKET - SERVERBOUND - UPDATE ANNUNCIATOR");
 		Level world = context.get().getSender().level();
 		BlockEntity blockEntity = world.getBlockEntity(packet.getPos());
-		BlockState blockstate = world.getBlockState(packet.getPos());
+		BlockState blockState = world.getBlockState(packet.getPos());
 		if (blockEntity instanceof AnnunciatorBlockEntity) {
 			for (int i = 0; i < 8; ++i) {
 				((AnnunciatorBlockEntity) blockEntity).setText(i, Component.nullToEmpty(packet.getLines()[i]));
 			}
 			blockEntity.setChanged();
-			world.sendBlockUpdated(packet.getPos(), blockstate, blockstate, 3);
+			world.sendBlockUpdated(packet.getPos(), blockState, blockState, 3);
 		}
 	}
 

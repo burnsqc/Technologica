@@ -29,10 +29,6 @@ public final class TechnologicaStructureTemplatePools {
 		return new StructureTemplatePool(fallback, list);
 	}
 
-	/**
-	 * @param element An element of type StructurePoolElement
-	 * @param weight
-	 */
 	public record TLReGenElement(StructurePoolElement element, int weight) {
 	}
 }

@@ -112,6 +112,7 @@ public class Vulture extends FlyingMob {
 		return false;
 	}
 
+	@SuppressWarnings("resource")
 	@Override
 	public void tick() {
 		super.tick();
@@ -134,6 +135,7 @@ public class Vulture extends FlyingMob {
 		super.customServerAiStep();
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
 		this.orbitPosition = this.blockPosition().above(5);
@@ -273,9 +275,6 @@ public class Vulture extends FlyingMob {
 			super(entityIn);
 		}
 
-		/**
-		 * Updates look
-		 */
 		@Override
 		public void tick() {
 		}
@@ -313,7 +312,6 @@ public class Vulture extends FlyingMob {
 			f = (float) (f * d1);
 			f2 = (float) (f2 * d1);
 			d0 = Mth.sqrt(f * f + f2 * f2);
-			double d2 = Mth.sqrt(f * f + f2 * f2 + f1 * f1);
 			float f3 = Vulture.this.getYRot();
 			float f4 = (float) Mth.atan2(f2, f);
 			float f5 = Mth.wrapDegrees(Vulture.this.getYRot() + 90.0F);
@@ -329,6 +327,7 @@ public class Vulture extends FlyingMob {
 			float f7 = (float) (-(Mth.atan2((-f1), d0) * (180F / (float) Math.PI)));
 			Vulture.this.setXRot(f7);
 			float f8 = Vulture.this.getYRot() + 90.0F;
+			double d2 = Mth.sqrt(f * f + f2 * f2 + f1 * f1);
 			double d3 = this.speedFactor * Mth.cos(f8 * ((float) Math.PI / 180F)) * Math.abs(f / d2);
 			double d4 = this.speedFactor * Mth.sin(f8 * ((float) Math.PI / 180F)) * Math.abs(f2 / d2);
 			double d5 = this.speedFactor * Mth.sin(f7 * ((float) Math.PI / 180F)) * Math.abs(f1 / d2);
@@ -346,17 +345,11 @@ public class Vulture extends FlyingMob {
 		private OrbitPointGoal() {
 		}
 
-		/**
-		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		 */
 		@Override
 		public boolean canUse() {
 			return Vulture.this.getTarget() == null || Vulture.this.attackPhase == Vulture.AttackPhase.CIRCLE;
 		}
 
-		/**
-		 * Execute a one shot task or start executing a continuous task
-		 */
 		@Override
 		public void start() {
 			this.distance = 5.0F + Vulture.this.random.nextFloat() * 10.0F;
@@ -365,9 +358,6 @@ public class Vulture extends FlyingMob {
 			this.selectNext();
 		}
 
-		/**
-		 * Keep ticking a continuous task that has already been started
-		 */
 		@Override
 		public void tick() {
 			if (Vulture.this.random.nextInt(350) == 0) {
@@ -419,18 +409,12 @@ public class Vulture extends FlyingMob {
 		private PickAttackGoal() {
 		}
 
-		/**
-		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		 */
 		@Override
 		public boolean canUse() {
 			LivingEntity livingentity = Vulture.this.getTarget();
 			return livingentity != null ? Vulture.this.canAttack(Vulture.this.getTarget(), TargetingConditions.DEFAULT) : false;
 		}
 
-		/**
-		 * Execute a one shot task or start executing a continuous task
-		 */
 		@Override
 		public void start() {
 			this.tickDelay = 10;
@@ -438,17 +422,11 @@ public class Vulture extends FlyingMob {
 			this.setAnchorAboveTarget();
 		}
 
-		/**
-		 * Reset the task's internal state. Called when this task is interrupted by another one
-		 */
 		@Override
 		public void stop() {
 			Vulture.this.orbitPosition = Vulture.this.level().getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, Vulture.this.orbitPosition).above(10 + Vulture.this.random.nextInt(20));
 		}
 
-		/**
-		 * Keep ticking a continuous task that has already been started
-		 */
 		@Override
 		public void tick() {
 			if (Vulture.this.attackPhase == Vulture.AttackPhase.CIRCLE) {
@@ -476,17 +454,11 @@ public class Vulture extends FlyingMob {
 		private SweepAttackGoal() {
 		}
 
-		/**
-		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		 */
 		@Override
 		public boolean canUse() {
 			return Vulture.this.getTarget() != null && Vulture.this.attackPhase == Vulture.AttackPhase.SWOOP;
 		}
 
-		/**
-		 * Returns whether an in-progress EntityAIBase should continue executing
-		 */
 		@Override
 		public boolean canContinueToUse() {
 			LivingEntity livingentity = Vulture.this.getTarget();
@@ -516,25 +488,16 @@ public class Vulture extends FlyingMob {
 			}
 		}
 
-		/**
-		 * Execute a one shot task or start executing a continuous task
-		 */
 		@Override
 		public void start() {
 		}
 
-		/**
-		 * Reset the task's internal state. Called when this task is interrupted by another one
-		 */
 		@Override
 		public void stop() {
 			Vulture.this.setTarget((LivingEntity) null);
 			Vulture.this.attackPhase = Vulture.AttackPhase.CIRCLE;
 		}
 
-		/**
-		 * Keep ticking a continuous task that has already been started
-		 */
 		@Override
 		public void tick() {
 			LivingEntity livingentity = Vulture.this.getTarget();

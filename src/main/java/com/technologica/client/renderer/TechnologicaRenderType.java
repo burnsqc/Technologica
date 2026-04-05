@@ -9,7 +9,7 @@ import net.minecraft.client.renderer.RenderStateShard;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 
-public class TechnologicaRenderType extends RenderType {
+public final class TechnologicaRenderType extends RenderType {
 	private static final ResourceLocation EXCITATION_TEXTURE_LOCATION = new TechnologicaLocation("textures/misc/excitation_item_glint.png");
 	private static final ResourceLocation IGNITION_TEXTURE_LOCATION = new TechnologicaLocation("textures/misc/ignition_item_glint.png");
 	private static final ResourceLocation RADIATION_TEXTURE_LOCATION = new TechnologicaLocation("textures/misc/radioactive_item_glint.png");

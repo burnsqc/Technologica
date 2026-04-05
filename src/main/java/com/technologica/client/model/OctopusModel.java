@@ -113,14 +113,14 @@ public class OctopusModel<T extends Entity> extends ListModel<T> {
 		this.legFrontRightLower.xRot = (float) Math.PI / 4;
 		this.legFrontFrontLeftLower.xRot = (float) Math.PI / 4;
 		this.legFrontFrontRightLower.xRot = (float) Math.PI / 4;
-		this.legBackBackLeftLower.zRot = 0;// -(float) Math.PI / 4;
-		this.legBackBackRightLower.zRot = 0;// -(float) Math.PI / 4;
-		this.legBackLeftLower.zRot = 0;// -(float) Math.PI / 4;
-		this.legBackRightLower.zRot = 0;// -(float) Math.PI / 4;
-		this.legFrontLeftLower.zRot = 0;// -(float) Math.PI / 4;
-		this.legFrontRightLower.zRot = 0;// -(float) Math.PI / 4;
-		this.legFrontFrontLeftLower.zRot = 0;// -(float) Math.PI / 4;
-		this.legFrontFrontRightLower.zRot = 0;// -(float) Math.PI / 4;
+		this.legBackBackLeftLower.zRot = 0; // -(float) Math.PI / 4;
+		this.legBackBackRightLower.zRot = 0; // -(float) Math.PI / 4;
+		this.legBackLeftLower.zRot = 0; // -(float) Math.PI / 4;
+		this.legBackRightLower.zRot = 0; // -(float) Math.PI / 4;
+		this.legFrontLeftLower.zRot = 0; // -(float) Math.PI / 4;
+		this.legFrontRightLower.zRot = 0; // -(float) Math.PI / 4;
+		this.legFrontFrontLeftLower.zRot = 0; // -(float) Math.PI / 4;
+		this.legFrontFrontRightLower.zRot = 0; // -(float) Math.PI / 4;
 	}
 
 	public void setRotationAngle(ModelPart modelRenderer, float x, float y, float z) {

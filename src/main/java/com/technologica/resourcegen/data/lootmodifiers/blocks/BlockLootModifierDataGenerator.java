@@ -25,9 +25,9 @@ public class BlockLootModifierDataGenerator extends GlobalLootModifierProvider {
 		add("blocks/large_fern", new LargeFernLootModifier(new LootItemCondition[] { LootTableIdCondition.builder(new ResourceLocation("blocks/large_fern")).build() }));
 		add("blocks/tall_grass", new TallGrassLootModifier(new LootItemCondition[] { LootTableIdCondition.builder(new ResourceLocation("blocks/tall_grass")).build() }));
 	}
-	
+
 	@Override
-    public String getName() {
-        return "Global Loot Modifiers - Blocks: " + Technologica.MOD_ID;
-    }
+	public String getName() {
+		return "Global Loot Modifiers - Blocks: " + Technologica.MOD_ID;
+	}
 }

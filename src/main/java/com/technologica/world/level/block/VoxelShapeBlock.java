@@ -17,7 +17,7 @@ public class VoxelShapeBlock extends Block {
 	}
 
 	@Override
-	public VoxelShape getShape(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, CollisionContext contextIn) {
+	public VoxelShape getShape(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, CollisionContext collisionContext) {
 		return this.voxelShape;
 	}
 }

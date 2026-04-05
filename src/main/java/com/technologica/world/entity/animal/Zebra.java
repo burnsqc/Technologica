@@ -31,8 +31,8 @@ import net.minecraft.world.level.block.SoundType;
 public class Zebra extends AbstractHorse {
 	private static final UUID ARMOR_MODIFIER_UUID = UUID.fromString("E07161C6-FB78-445C-AFB6-17198A2C11B7");
 
-	public Zebra(EntityType<? extends Zebra> randomSource, Level level) {
-		super(randomSource, level);
+	public Zebra(EntityType<? extends Zebra> entityType, Level level) {
+		super(entityType, level);
 	}
 
 	@Override
@@ -40,11 +40,6 @@ public class Zebra extends AbstractHorse {
 		this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(generateMaxHealth(randomSource::nextInt));
 		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(generateSpeed(randomSource::nextDouble));
 		this.getAttribute(Attributes.JUMP_STRENGTH).setBaseValue(generateJumpStrength(randomSource::nextDouble));
-	}
-
-	@Override
-	protected void defineSynchedData() {
-		super.defineSynchedData();
 	}
 
 	public ItemStack getArmor() {

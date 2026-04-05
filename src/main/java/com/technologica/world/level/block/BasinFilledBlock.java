@@ -34,51 +34,51 @@ public class BasinFilledBlock extends AbstractCauldronBlock {
 	private static final VoxelShape OUTER_SHAPE = Shapes.block();
 	private static final VoxelShape SHAPE = Shapes.join(OUTER_SHAPE, Block.box(2.0D, 2.0D, 2.0D, 14.0D, 16.0D, 14.0D), BooleanOp.ONLY_FIRST);
 
-	public BasinFilledBlock(BlockBehaviour.Properties p_51403_, Fluid fluidIn) {
-		super(p_51403_, CauldronInteraction.EMPTY);
-		this.fluid = fluidIn;
+	public BasinFilledBlock(BlockBehaviour.Properties properties, Fluid fluid) {
+		super(properties, CauldronInteraction.EMPTY);
+		this.fluid = fluid;
 	}
 
 	@Override
-	public InteractionResult use(BlockState p_151969_, Level p_151970_, BlockPos p_151971_, Player p_151972_, InteractionHand p_151973_, BlockHitResult p_151974_) {
-		ItemStack itemstack = p_151972_.getItemInHand(p_151973_);
-		if (itemstack.getItem() == Items.BUCKET && p_151969_.getValue(LEVEL) > 0) {
-			p_151972_.setItemInHand(p_151973_, ItemUtils.createFilledResult(itemstack, p_151972_, new ItemStack(fluid.getBucket())));
-			lowerFillLevel(p_151969_, p_151970_, p_151971_);
-			return InteractionResult.sidedSuccess(p_151970_.isClientSide);
+	public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
+		ItemStack itemstack = player.getItemInHand(interactionHand);
+		if (itemstack.getItem() == Items.BUCKET && blockState.getValue(LEVEL) > 0) {
+			player.setItemInHand(interactionHand, ItemUtils.createFilledResult(itemstack, player, new ItemStack(fluid.getBucket())));
+			lowerFillLevel(blockState, level, blockPos);
+			return InteractionResult.sidedSuccess(level.isClientSide);
 		}
 		return InteractionResult.FAIL;
 	}
 
-	public static void lowerFillLevel(BlockState p_153560_, Level p_153561_, BlockPos p_153562_) {
-		int i = p_153560_.getValue(LEVEL) - 1;
-		BlockState blockstate = i == 0 ? TechnologicaBlocks.BASIN.get().defaultBlockState() : p_153560_.setValue(LEVEL, Integer.valueOf(i));
-		p_153561_.setBlockAndUpdate(p_153562_, blockstate);
-		p_153561_.gameEvent(GameEvent.BLOCK_CHANGE, p_153562_, GameEvent.Context.of(blockstate));
+	public static void lowerFillLevel(BlockState blockState, Level level, BlockPos blockPos) {
+		int i = blockState.getValue(LEVEL) - 1;
+		BlockState blockstate = i == 0 ? TechnologicaBlocks.BASIN.get().defaultBlockState() : blockState.setValue(LEVEL, Integer.valueOf(i));
+		level.setBlockAndUpdate(blockPos, blockstate);
+		level.gameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Context.of(blockstate));
 	}
 
 	@Override
-	public VoxelShape getShape(BlockState p_151964_, BlockGetter p_151965_, BlockPos p_151966_, CollisionContext p_151967_) {
+	public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
 		return SHAPE;
 	}
 
 	@Override
-	public VoxelShape getInteractionShape(BlockState p_151955_, BlockGetter p_151956_, BlockPos p_151957_) {
+	public VoxelShape getInteractionShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
 		return OUTER_SHAPE;
 	}
 
 	@Override
-	public VoxelShape getCollisionShape(BlockState p_51990_, BlockGetter p_51991_, BlockPos p_51992_, CollisionContext p_51993_) {
+	public VoxelShape getCollisionShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
 		return SHAPE;
 	}
 
 	@Override
-	public boolean isFull(BlockState p_152947_) {
-		return p_152947_.getValue(LEVEL) == 16;
+	public boolean isFull(BlockState blockState) {
+		return blockState.getValue(LEVEL) == 16;
 	}
 
 	@Override
-	public void handlePrecipitation(BlockState p_152935_, Level p_152936_, BlockPos p_152937_, Biome.Precipitation p_152938_) {
+	public void handlePrecipitation(BlockState blockState, Level level, BlockPos blockPos, Biome.Precipitation precipitation) {
 	}
 
 	@Override
@@ -91,20 +91,20 @@ public class BasinFilledBlock extends AbstractCauldronBlock {
 	}
 
 	@Override
-	protected void receiveStalactiteDrip(BlockState p_152940_, Level p_152941_, BlockPos p_152942_, Fluid p_152943_) {
+	protected void receiveStalactiteDrip(BlockState blockState, Level level, BlockPos blockPos, Fluid fluid) {
 	}
 
-	protected void receiveTreeTapDrip(BlockState p_152940_, Level p_152941_, BlockPos p_152942_, Fluid p_152943_) {
-		if (!this.isFull(p_152940_)) {
-			BlockState blockstate = p_152940_.setValue(LEVEL, Integer.valueOf(p_152940_.getValue(LEVEL) + 1));
-			p_152941_.setBlockAndUpdate(p_152942_, blockstate);
-			p_152941_.gameEvent(GameEvent.BLOCK_CHANGE, p_152942_, GameEvent.Context.of(blockstate));
-			p_152941_.levelEvent(1047, p_152942_, 0);
+	protected void receiveTreeTapDrip(BlockState blockState, Level level, BlockPos blockPos, Fluid fluid) {
+		if (!this.isFull(blockState)) {
+			BlockState blockstate = blockState.setValue(LEVEL, Integer.valueOf(blockState.getValue(LEVEL) + 1));
+			level.setBlockAndUpdate(blockPos, blockstate);
+			level.gameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Context.of(blockstate));
+			level.levelEvent(1047, blockPos, 0);
 		}
 	}
 
 	@Override
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_153549_) {
-		p_153549_.add(LEVEL);
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+		builder.add(LEVEL);
 	}
 }

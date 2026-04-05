@@ -83,11 +83,11 @@ public class SawmillRenderer implements BlockEntityRenderer<SawmillBlockEntity> 
 		}
 		if (!stack.isEmpty()) {
 			matrixStack.pushPose();
-			BlockState state = log.defaultBlockState();
+			BlockState blockState = log.defaultBlockState();
 			double logPos = -2.0D + 4.0D * (sawmillBlockEntityIn.getSawingProgress() / 100.0D);
 
 			if (ForgeRegistries.ITEMS.tags().getTag(ItemTags.LOGS).contains(stack.getItem())) {
-				state = log.defaultBlockState().setValue(RotatedPillarBlock.AXIS, Direction.Axis.X);
+				blockState = log.defaultBlockState().setValue(RotatedPillarBlock.AXIS, Direction.Axis.X);
 			}
 
 			switch (sawmillBlockEntityIn.getBlockState().getValue(SawmillBlock.NESW_FACING)) {
@@ -109,7 +109,7 @@ public class SawmillRenderer implements BlockEntityRenderer<SawmillBlockEntity> 
 			default:
 				break;
 			}
-			blockModelRenderer.renderModel(matrixStack.last(), buffer.getBuffer(RenderType.translucentMovingBlock()), state, blockrendererdispatcher.getBlockModel(state), 0.0F, 0.0F, 0.0F, combinedLight, combinedOverlay, ModelData.EMPTY, RenderType.cutoutMipped());
+			blockModelRenderer.renderModel(matrixStack.last(), buffer.getBuffer(RenderType.translucentMovingBlock()), blockState, blockrendererdispatcher.getBlockModel(blockState), 0.0F, 0.0F, 0.0F, combinedLight, combinedOverlay, ModelData.EMPTY, RenderType.cutoutMipped());
 			matrixStack.popPose();
 		}
 	}

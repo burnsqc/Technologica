@@ -66,7 +66,7 @@ public class CraterFeature extends Feature<BlockStateConfiguration> {
 
 	@Override
 	public boolean place(FeaturePlaceContext<BlockStateConfiguration> p_159749_) {
-		// TODO Auto-generated method stub
+
 		return false;
 	}
 }

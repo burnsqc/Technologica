@@ -15,14 +15,14 @@ import net.minecraft.util.valueproviders.IntProvider;
 public class TechnologicaWeatherCommand {
 	static final LiteralArgumentBuilder<CommandSourceStack> COMMAND = Commands.literal("weather").requires((stack) -> {
 		return stack.hasPermission(2);
-	}).then(Commands.literal("clear").executes((p_264806_) -> {
-		return setClear(p_264806_.getSource(), -1);
-	}).then(Commands.argument("duration", TimeArgument.time(1)).executes((p_264807_) -> {
-		return setClear(p_264807_.getSource(), IntegerArgumentType.getInteger(p_264807_, "duration"));
-	}))).then(Commands.literal("meteor_storm").executes((context) -> {
-		return setMeteorStorm(context.getSource(), -1);
-	}).then(Commands.argument("duration", TimeArgument.time(1)).executes((context) -> {
-		return setMeteorStorm(context.getSource(), IntegerArgumentType.getInteger(context, "duration"));
+	}).then(Commands.literal("clear").executes((commandContext) -> {
+		return setClear(commandContext.getSource(), -1);
+	}).then(Commands.argument("duration", TimeArgument.time(1)).executes((commandContext) -> {
+		return setClear(commandContext.getSource(), IntegerArgumentType.getInteger(commandContext, "duration"));
+	}))).then(Commands.literal("meteor_storm").executes((commandContext) -> {
+		return setMeteorStorm(commandContext.getSource(), -1);
+	}).then(Commands.argument("duration", TimeArgument.time(1)).executes((commandContext) -> {
+		return setMeteorStorm(commandContext.getSource(), IntegerArgumentType.getInteger(commandContext, "duration"));
 	})));
 
 	private static int getDuration(CommandSourceStack stack, int duration, IntProvider intProvider) {

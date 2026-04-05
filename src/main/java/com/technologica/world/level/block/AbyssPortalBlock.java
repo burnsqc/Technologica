@@ -21,7 +21,7 @@ public class AbyssPortalBlock extends NetherPortalBlock {
 	}
 
 	@Override
-	public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
+	public void randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
 
 	}
 

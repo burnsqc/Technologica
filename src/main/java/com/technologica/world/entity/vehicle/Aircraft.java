@@ -55,8 +55,8 @@ public class Aircraft extends Entity {
 	private double lerpX;
 	private double lerpY;
 	private double lerpZ;
-	private double lerpYRot;
-	private double lerpXRot;
+	private double lerpRotY;
+	private double lerpRotX;
 	public Aircraft.Status status;
 
 	public float roll;
@@ -65,13 +65,13 @@ public class Aircraft extends Entity {
 	public float throttleDelivered;
 	public float horizontalSpeed;
 
-	public Aircraft(EntityType<? extends Aircraft> p_38290_, Level p_38291_) {
-		super(p_38290_, p_38291_);
+	public Aircraft(EntityType<? extends Aircraft> aircraft, Level level) {
+		super(aircraft, level);
 		this.blocksBuilding = true;
 	}
 
-	public Aircraft(Level p_38293_, double p_38294_, double p_38295_, double p_38296_) {
-		this(TechnologicaEntityTypes.SUBMERSIBLE.get(), p_38293_);
+	public Aircraft(Level level, double p_38294_, double p_38295_, double p_38296_) {
+		this(TechnologicaEntityTypes.SUBMERSIBLE.get(), level);
 		this.setPos(p_38294_, p_38295_, p_38296_);
 		this.xo = p_38294_;
 		this.yo = p_38295_;
@@ -79,8 +79,8 @@ public class Aircraft extends Entity {
 	}
 
 	@Override
-	protected float getEyeHeight(Pose p_38327_, EntityDimensions p_38328_) {
-		return p_38328_.height;
+	protected float getEyeHeight(Pose pose, EntityDimensions entityDimensions) {
+		return entityDimensions.height;
 	}
 
 	@Override
@@ -144,18 +144,18 @@ public class Aircraft extends Entity {
 		}
 	}
 
-	protected void destroy(DamageSource p_219862_) {
+	protected void destroy(DamageSource damageSource) {
 		this.spawnAtLocation(this.getDropItem());
 	}
 
 	@Override
-	public void push(Entity p_38373_) {
-		if (p_38373_ instanceof Aircraft) {
-			if (p_38373_.getBoundingBox().minY < this.getBoundingBox().maxY) {
-				super.push(p_38373_);
+	public void push(Entity entity) {
+		if (entity instanceof Aircraft) {
+			if (entity.getBoundingBox().minY < this.getBoundingBox().maxY) {
+				super.push(entity);
 			}
-		} else if (p_38373_.getBoundingBox().minY <= this.getBoundingBox().minY) {
-			super.push(p_38373_);
+		} else if (entity.getBoundingBox().minY <= this.getBoundingBox().minY) {
+			super.push(entity);
 		}
 
 	}
@@ -181,8 +181,8 @@ public class Aircraft extends Entity {
 		this.lerpX = p_38299_;
 		this.lerpY = p_38300_;
 		this.lerpZ = p_38301_;
-		this.lerpYRot = p_38302_;
-		this.lerpXRot = p_38303_;
+		this.lerpRotY = p_38302_;
+		this.lerpRotX = p_38303_;
 		this.lerpSteps = 10;
 	}
 
@@ -198,9 +198,6 @@ public class Aircraft extends Entity {
 			if (this.level().isClientSide) {
 				this.controlAircraft();
 			}
-			
-
-
 			this.move(MoverType.SELF, this.getDeltaMovement());
 		} else {
 			this.setDeltaMovement(Vec3.ZERO);
@@ -241,14 +238,14 @@ public class Aircraft extends Entity {
 	private boolean checkInWater() {
 		AABB aabb = this.getBoundingBox();
 		boolean flag = false;
-		BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+		BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
 
 		for (int posX = Mth.floor(aabb.minX); posX < Mth.ceil(aabb.maxX); ++posX) {
 			for (int posY = Mth.floor(aabb.minY); posY < Mth.ceil(aabb.minY + 0.001D); ++posY) {
 				for (int posZ = Mth.floor(aabb.minZ); posZ < Mth.ceil(aabb.maxZ); ++posZ) {
-					blockpos$mutableblockpos.set(posX, posY, posZ);
-					FluidState fluidstate = this.level().getFluidState(blockpos$mutableblockpos);
-					float f = posY + fluidstate.getHeight(this.level(), blockpos$mutableblockpos);
+					mutableBlockPos.set(posX, posY, posZ);
+					FluidState fluidstate = this.level().getFluidState(mutableBlockPos);
+					float f = posY + fluidstate.getHeight(this.level(), mutableBlockPos);
 					flag |= aabb.minY < f;
 				}
 			}
@@ -263,13 +260,13 @@ public class Aircraft extends Entity {
 		}
 
 		if (this.lerpSteps > 0) {
+			double d3 = Mth.wrapDegrees(this.lerpRotY - this.getYRot());
+			this.setYRot(this.getYRot() + (float) d3 / this.lerpSteps);
+			this.setXRot(this.getXRot() + (float) (this.lerpRotX - this.getXRot()) / this.lerpSteps);
+			--this.lerpSteps;
 			double d0 = this.getX() + (this.lerpX - this.getX()) / this.lerpSteps;
 			double d1 = this.getY() + (this.lerpY - this.getY()) / this.lerpSteps;
 			double d2 = this.getZ() + (this.lerpZ - this.getZ()) / this.lerpSteps;
-			double d3 = Mth.wrapDegrees(this.lerpYRot - this.getYRot());
-			this.setYRot(this.getYRot() + (float) d3 / this.lerpSteps);
-			this.setXRot(this.getXRot() + (float) (this.lerpXRot - this.getXRot()) / this.lerpSteps);
-			--this.lerpSteps;
 			this.setPos(d0, d1, d2);
 			this.setRot(this.getYRot(), this.getXRot());
 		}
@@ -287,7 +284,7 @@ public class Aircraft extends Entity {
 		VoxelShape voxelshape = Shapes.create(aabb1);
 		float f = 0.0F;
 		int k1 = 0;
-		BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+		BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
 
 		for (int l1 = i; l1 < j; ++l1) {
 			for (int i2 = i1; i2 < j1; ++i2) {
@@ -295,10 +292,10 @@ public class Aircraft extends Entity {
 				if (j2 != 2) {
 					for (int k2 = k; k2 < l; ++k2) {
 						if (j2 <= 0 || k2 != k && k2 != l - 1) {
-							blockpos$mutableblockpos.set(l1, k2, i2);
-							BlockState blockstate = this.level().getBlockState(blockpos$mutableblockpos);
-							if (!(blockstate.getBlock() instanceof WaterlilyBlock) && Shapes.joinIsNotEmpty(blockstate.getCollisionShape(this.level(), blockpos$mutableblockpos).move(l1, k2, i2), voxelshape, BooleanOp.AND)) {
-								f += blockstate.getFriction(this.level(), blockpos$mutableblockpos, this);
+							mutableBlockPos.set(l1, k2, i2);
+							BlockState blockstate = this.level().getBlockState(mutableBlockPos);
+							if (!(blockstate.getBlock() instanceof WaterlilyBlock) && Shapes.joinIsNotEmpty(blockstate.getCollisionShape(this.level(), mutableBlockPos).move(l1, k2, i2), voxelshape, BooleanOp.AND)) {
+								f += blockstate.getFriction(this.level(), mutableBlockPos, this);
 								++k1;
 							}
 						}
@@ -321,71 +318,70 @@ public class Aircraft extends Entity {
 		if (this.isVehicle() && this.getControllingPassenger() instanceof LocalPlayer localPlayer) {
 			Input input = localPlayer.input;
 
+			if (input.left) {
+				this.roll = this.roll - 5.0F;
+			}
 
-				if (input.left) {
-					this.roll = this.roll - 5.0F;
+			if (input.right) {
+				this.roll = this.roll + 5.0F;
+			}
+
+			if (input.up) {
+				this.throttleRequested = Mth.clamp(this.throttleRequested + 0.01F, 0.0F, 1.0F);
+				if (throttleRequested == 1.0F && throttleDelivered > 0.9F) {
+					lerpAmount = 0.1F;
 				}
+			}
 
-				if (input.right) {
-					this.roll = this.roll + 5.0F;
+			if (input.down) {
+				this.throttleRequested = Mth.clamp(this.throttleRequested - 0.01F, 0.0F, 1.0F);
+				if (throttleRequested == 0.0F && throttleDelivered < 0.1F) {
+					lerpAmount = 0.1F;
 				}
+			}
 
-				if (input.up) {
-					this.throttleRequested = Mth.clamp(this.throttleRequested + 0.01F, 0.0F, 1.0F);
-					if (throttleRequested == 1.0F && throttleDelivered > 0.9F) {
-						lerpAmount = 0.1F;
-					}
-				}
+			float lift = 0.0f;
+			if (throttleDelivered > 0.5F) {
+				lift = 0.1F;
+			}
 
-				if (input.down) {
-					this.throttleRequested = Mth.clamp(this.throttleRequested - 0.01F, 0.0F, 1.0F);
-					if (throttleRequested == 0.0F && throttleDelivered < 0.1F) {
-						lerpAmount = 0.1F;
-					}
-				}
+			float turn = 0.005F;
+			if (this.status != Status.ON_LAND) {
+				turn = 0.1F;
+			}
 
-				float lift = 0.0f;
-				if (throttleDelivered > 0.5F) {
-					lift = 0.1F;
-				}
+			Vec3 dulledPlayerLookAngle = localPlayer.getLookAngle().multiply(turn, lift, turn);
+			Vec3 steer = this.getDeltaMovement().add(dulledPlayerLookAngle).normalize().multiply(this.throttleDelivered, this.throttleDelivered, this.throttleDelivered);
+			this.setDeltaMovement(steer);
 
-				float turn = 0.005F;
-				if (this.status != Status.ON_LAND) {
-					turn = 0.1F;
-				}
+			if (throttleDelivered > 0) {
+				// this.setYRot((float) ((Math.atan2(this.getDeltaMovement().z, this.getDeltaMovement().x) + Math.PI) * 180F / Math.PI) + 90.0F);
+				this.setYRot(Mth.lerp(0.1F, this.yRotO, localPlayer.yRotO));
+			}
 
-				Vec3 dulledPlayerLookAngle = localPlayer.getLookAngle().multiply(turn, lift, turn);
-				Vec3 steer = this.getDeltaMovement().add(dulledPlayerLookAngle).normalize().multiply(this.throttleDelivered, this.throttleDelivered, this.throttleDelivered);
-				this.setDeltaMovement(steer);
-
-				if (throttleDelivered > 0) {
-					// this.setYRot((float) ((Math.atan2(this.getDeltaMovement().z, this.getDeltaMovement().x) + Math.PI) * 180F / Math.PI) + 90.0F);
-					this.setYRot(Mth.lerp(0.1F, this.yRotO, localPlayer.yRotO));
-				}
-
-				if (this.status != Status.ON_LAND) {
-					this.setXRot((float) (Mth.clamp(Math.atan2(Math.sqrt(this.getDeltaMovement().z * this.getDeltaMovement().z + this.getDeltaMovement().x * this.getDeltaMovement().x), this.getDeltaMovement().y) + Math.PI, 0, 2 * Math.PI) * 180F / Math.PI) + 90.0F);
-				} else {
-					this.setXRot(0.0F);
-				}
+			if (this.status != Status.ON_LAND) {
+				this.setXRot((float) (Mth.clamp(Math.atan2(Math.sqrt(this.getDeltaMovement().z * this.getDeltaMovement().z + this.getDeltaMovement().x * this.getDeltaMovement().x), this.getDeltaMovement().y) + Math.PI, 0, 2 * Math.PI) * 180F / Math.PI) + 90.0F);
+			} else {
+				this.setXRot(0.0F);
+			}
 
 		}
 		throttleDelivered = Mth.lerp(lerpAmount, throttleDelivered, throttleRequested);
 		horizontalSpeed = (float) this.getDeltaMovement().length();
 	}
 
-	protected float getSinglePassengerXOffset() {
+	protected float getSinglePassengerOffsetX() {
 		return 0.0F;
 	}
 
-	public boolean hasEnoughSpaceFor(Entity p_273171_) {
-		return p_273171_.getBbWidth() < this.getBbWidth();
+	public boolean hasEnoughSpaceFor(Entity entity) {
+		return entity.getBbWidth() < this.getBbWidth();
 	}
 
 	@Override
-	protected void positionRider(Entity entity, Entity.MoveFunction p_289571_) {
+	protected void positionRider(Entity entity, Entity.MoveFunction moveFunction) {
 		if (this.hasPassenger(entity)) {
-			float f = this.getSinglePassengerXOffset();
+			float f = this.getSinglePassengerOffsetX();
 			float f1 = (float) ((this.isRemoved() ? (double) 0.01F : this.getPassengersRidingOffset()) + entity.getMyRidingOffset());
 			if (this.getPassengers().size() > 1) {
 				int i = this.getPassengers().indexOf(entity);
@@ -401,7 +397,7 @@ public class Aircraft extends Entity {
 			}
 
 			Vec3 vec3 = (new Vec3(f, 0.0D, 0.0D)).yRot(-this.getYRot() * ((float) Math.PI / 180F) - ((float) Math.PI / 2F));
-			p_289571_.accept(entity, this.getX() + vec3.x, this.getY() + f1, this.getZ() + vec3.z);
+			moveFunction.accept(entity, this.getX() + vec3.x, this.getY() + f1, this.getZ() + vec3.z);
 			entity.setYRot(entity.getYRot() + this.deltaRotation);
 			entity.setYHeadRot(entity.getYHeadRot() + this.deltaRotation);
 			this.clampRotation(entity);
@@ -523,7 +519,7 @@ public class Aircraft extends Entity {
 		super.addPassenger(passenger);
 		if (this.isControlledByLocalInstance() && this.lerpSteps > 0) {
 			this.lerpSteps = 0;
-			this.absMoveTo(this.lerpX, this.lerpY, this.lerpZ, (float) this.lerpYRot, (float) this.lerpXRot);
+			this.absMoveTo(this.lerpX, this.lerpY, this.lerpZ, (float) this.lerpRotY, (float) this.lerpRotX);
 		}
 	}
 
@@ -535,11 +531,11 @@ public class Aircraft extends Entity {
 
 	@Override
 	protected void readAdditionalSaveData(CompoundTag compoundTag) {
-		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	protected void addAdditionalSaveData(CompoundTag compoundTag) {
-		// TODO Auto-generated method stub
+
 	}
 }

@@ -23,10 +23,9 @@ public class EntityLootModifierDataGenerator extends GlobalLootModifierProvider 
 		add("entities/zombie", new ZombieLootModifier(new LootItemCondition[] { LootTableIdCondition.builder(new ResourceLocation("entities/zombie")).build() }));
 		add("entities/zombie_villager", new ZombieVillagerLootModifier(new LootItemCondition[] { LootTableIdCondition.builder(new ResourceLocation("entities/zombie_villager")).build() }));
 	}
-	
+
 	@Override
-    public String getName()
-    {
-        return "Global Loot Modifiers - Entities : " + Technologica.MOD_ID;
-    }
+	public String getName() {
+		return "Global Loot Modifiers - Entities : " + Technologica.MOD_ID;
+	}
 }

@@ -1,8 +1,7 @@
 package com.technologica.listeners.mod.common;
 
-import com.technologica.advancements.critereon.AttemptedHarvestTrigger;
-import com.technologica.advancements.critereon.BlockObservedTrigger;
-import com.technologica.advancements.critereon.LightCampfireTrigger;
+import com.technologica.advancements.critereon.ObservedBlockTrigger;
+import com.technologica.advancements.critereon.LitCampfireTrigger;
 import com.technologica.config.TechnologicaConfigCommon;
 import com.technologica.resourcegen.data.advancements.TechnologicaCriterionTriggers;
 import com.technologica.world.item.TechnologicaTiers;
@@ -20,9 +19,8 @@ public final class AdjustToolDurability {
 	@SubscribeEvent
 	protected static final void onFMLCommonSetupEvent(final FMLCommonSetupEvent event) {
 		event.enqueueWork(() -> {
-			TechnologicaCriterionTriggers.ATTEMPTED_HARVEST = CriteriaTriggers.register(new AttemptedHarvestTrigger());
-			TechnologicaCriterionTriggers.BLOCK_OBSERVED = CriteriaTriggers.register(new BlockObservedTrigger());
-			TechnologicaCriterionTriggers.LIGHT_CAMPFIRE = CriteriaTriggers.register(new LightCampfireTrigger());
+			TechnologicaCriterionTriggers.BLOCK_OBSERVED = CriteriaTriggers.register(new ObservedBlockTrigger());
+			TechnologicaCriterionTriggers.LIGHT_CAMPFIRE = CriteriaTriggers.register(new LitCampfireTrigger());
 			if (TechnologicaConfigCommon.ADJUST_TOOL_DURABILITY.get()) {
 				Items.WOODEN_SWORD.maxDamage = TechnologicaTiers.WOOD.getUses();
 				Items.WOODEN_SHOVEL.maxDamage = TechnologicaTiers.WOOD.getUses();

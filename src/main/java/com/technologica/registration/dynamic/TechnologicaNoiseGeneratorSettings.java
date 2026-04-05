@@ -152,7 +152,7 @@ public final class TechnologicaNoiseGeneratorSettings {
 			protected final int minY;
 			protected final int maxY;
 
-			private VeinType(BlockState p_209684_, BlockState p_209685_, BlockState p_209686_, int p_209687_, int p_209688_) {
+			private VeinType(BlockState p_209684_, BlockState blockState, BlockState p_209686_, int p_209687_, int p_209688_) {
 				this.minY = p_209687_;
 				this.maxY = p_209688_;
 			}

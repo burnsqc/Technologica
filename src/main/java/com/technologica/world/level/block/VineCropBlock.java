@@ -86,7 +86,7 @@ public class VineCropBlock extends CropBlock {
 	}
 
 	@Override
-	public VoxelShape getShape(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, CollisionContext contextIn) {
+	public VoxelShape getShape(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, CollisionContext collisionContext) {
 		if (stateIn.getValue(TRELLIS)) {
 			return SHAPE_BY_AGE_LOWER[7];
 		}
@@ -100,8 +100,9 @@ public class VineCropBlock extends CropBlock {
 	@SuppressWarnings("deprecation")
 	@Override
 	public void randomTick(BlockState stateIn, ServerLevel worldIn, BlockPos posIn, RandomSource randomIn) {
-		if (!worldIn.isAreaLoaded(posIn, 1))
+		if (!worldIn.isAreaLoaded(posIn, 1)) {
 			return;
+		}
 		if (worldIn.getRawBrightness(posIn, 0) >= 9) {
 			int i = this.getAge(stateIn);
 			if (i < this.getMaxAge()) {
@@ -124,37 +125,37 @@ public class VineCropBlock extends CropBlock {
 	}
 
 	@Override
-	public void entityInside(BlockState p_57270_, Level p_57271_, BlockPos p_57272_, Entity p_57273_) {
-		p_57273_.makeStuckInBlock(p_57270_, new Vec3(0.8F, 0.75D, 0.8F));
+	public void entityInside(BlockState blockState, Level level, BlockPos blockPos, Entity entity) {
+		entity.makeStuckInBlock(blockState, new Vec3(0.8F, 0.75D, 0.8F));
 	}
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public InteractionResult use(BlockState p_57275_, Level p_57276_, BlockPos p_57277_, Player p_57278_, InteractionHand p_57279_, BlockHitResult p_57280_) {
-		int i = p_57275_.getValue(AGE);
+	public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
+		int i = blockState.getValue(AGE);
 		boolean flag = i == 7;
-		if (!flag && p_57278_.getItemInHand(p_57279_).is(Items.BONE_MEAL)) {
+		if (!flag && player.getItemInHand(interactionHand).is(Items.BONE_MEAL)) {
 			return InteractionResult.PASS;
-		} else if (p_57278_.getItemInHand(p_57279_).is(TechnologicaItems.TRELLIS.get()) && !p_57275_.getValue(TRELLIS)) {
-			p_57276_.setBlock(p_57277_, p_57275_.setValue(TRELLIS, true), 3);
-			return InteractionResult.sidedSuccess(p_57276_.isClientSide);
+		} else if (player.getItemInHand(interactionHand).is(TechnologicaItems.TRELLIS.get()) && !blockState.getValue(TRELLIS)) {
+			level.setBlock(blockPos, blockState.setValue(TRELLIS, true), 3);
+			return InteractionResult.sidedSuccess(level.isClientSide);
 		} else if (i > 6) {
-			int j = 1 + p_57276_.random.nextInt(2);
-			popResource(p_57276_, p_57277_, new ItemStack(yield.get(), j + (flag ? 1 : 0)));
-			p_57276_.playSound((Player) null, p_57277_, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + p_57276_.random.nextFloat() * 0.4F);
-			BlockState blockstate = p_57275_.setValue(AGE, 5);
+			int j = 1 + level.random.nextInt(2);
+			popResource(level, blockPos, new ItemStack(yield.get(), j + (flag ? 1 : 0)));
+			level.playSound((Player) null, blockPos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + level.random.nextFloat() * 0.4F);
+			BlockState blockstate = blockState.setValue(AGE, 5);
 
-			if (p_57275_.getValue(HALF) == DoubleBlockHalf.LOWER) {
-				p_57276_.setBlock(p_57277_.above(), blockstate.setValue(HALF, DoubleBlockHalf.UPPER), 2);
+			if (blockState.getValue(HALF) == DoubleBlockHalf.LOWER) {
+				level.setBlock(blockPos.above(), blockstate.setValue(HALF, DoubleBlockHalf.UPPER), 2);
 			} else {
-				p_57276_.setBlock(p_57277_.below(), blockstate.setValue(HALF, DoubleBlockHalf.LOWER), 2);
+				level.setBlock(blockPos.below(), blockstate.setValue(HALF, DoubleBlockHalf.LOWER), 2);
 			}
 
-			p_57276_.setBlock(p_57277_, blockstate, 2);
-			p_57276_.gameEvent(GameEvent.BLOCK_CHANGE, p_57277_, GameEvent.Context.of(p_57278_, blockstate));
-			return InteractionResult.sidedSuccess(p_57276_.isClientSide);
+			level.setBlock(blockPos, blockstate, 2);
+			level.gameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Context.of(player, blockstate));
+			return InteractionResult.sidedSuccess(level.isClientSide);
 		} else {
-			return super.use(p_57275_, p_57276_, p_57277_, p_57278_, p_57279_, p_57280_);
+			return super.use(blockState, level, blockPos, player, interactionHand, blockHitResult);
 		}
 	}
 

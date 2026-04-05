@@ -34,7 +34,7 @@ public class ChairBlock extends FourDirectionBlock {
 	 */
 
 	@Override
-	public VoxelShape getShape(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, CollisionContext contextIn) {
+	public VoxelShape getShape(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, CollisionContext collisionContext) {
 		return CHAIR_HITBOX;
 	}
 

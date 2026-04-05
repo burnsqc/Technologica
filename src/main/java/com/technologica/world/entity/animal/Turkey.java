@@ -43,8 +43,8 @@ public class Turkey extends Animal {
 	private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS, Items.TORCHFLOWER_SEEDS, Items.PITCHER_POD);
 	public float flap;
 	public float flapSpeed;
-	public float oFlapSpeed;
-	public float oFlap;
+	public float flapSpeedO;
+	public float flapO;
 	public float flapping = 1.0F;
 	private float nextFlap = 1.0F;
 	public int eggTime = this.random.nextInt(6000) + 6000;
@@ -79,8 +79,8 @@ public class Turkey extends Animal {
 	@Override
 	public void aiStep() {
 		super.aiStep();
-		this.oFlap = this.flap;
-		this.oFlapSpeed = this.flapSpeed;
+		this.flapO = this.flap;
+		this.flapSpeedO = this.flapSpeed;
 		this.flapSpeed += (this.onGround() ? -1.0F : 4.0F) * 0.3F;
 		this.flapSpeed = Mth.clamp(this.flapSpeed, 0.0F, 1.0F);
 		if (!this.onGround() && this.flapping < 1.0F) {

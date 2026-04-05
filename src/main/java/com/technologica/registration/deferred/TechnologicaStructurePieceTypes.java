@@ -13,11 +13,11 @@ import net.minecraftforge.registries.RegistryObject;
 public final class TechnologicaStructurePieceTypes {
 	public static final RegistryObject<StructurePieceType> WHALE_CARCASS = Technologica.STRUCTURE_PIECE_TYPES.register("whale_carcass", () -> setTemplatePieceId(WhaleCarcassPieces.WhaleCarcassPiece::new, "CDWC"));
 
-	private static StructurePieceType setTemplatePieceId(StructurePieceType.StructureTemplateType p_210156_, String p_210157_) {
-		return setFullContextPieceId(p_210156_, p_210157_);
+	private static StructurePieceType setTemplatePieceId(StructurePieceType.StructureTemplateType structureTemplateType, String p_210157_) {
+		return setFullContextPieceId(structureTemplateType, p_210157_);
 	}
 
-	private static StructurePieceType setFullContextPieceId(StructurePieceType p_210159_, String p_210160_) {
-		return Registry.register(BuiltInRegistries.STRUCTURE_PIECE, p_210160_.toLowerCase(Locale.ROOT), p_210159_);
+	private static StructurePieceType setFullContextPieceId(StructurePieceType structurePieceType, String p_210160_) {
+		return Registry.register(BuiltInRegistries.STRUCTURE_PIECE, p_210160_.toLowerCase(Locale.ROOT), structurePieceType);
 	}
 }

@@ -24,13 +24,13 @@ public class ThrownSpear extends AbstractArrow {
 	private boolean dealtDamage;
 	public int clientSideReturnTridentTickCount;
 
-	public ThrownSpear(EntityType<? extends ThrownSpear> pEntityType, Level pLevel) {
-		super(pEntityType, pLevel);
+	public ThrownSpear(EntityType<? extends ThrownSpear> entityType, Level level) {
+		super(entityType, level);
 	}
 
-	public ThrownSpear(Level pLevel, LivingEntity pShooter, ItemStack pStack) {
-		super(TechnologicaEntityTypes.SPEAR.get(), pShooter, pLevel);
-		this.tridentItem = pStack.copy();
+	public ThrownSpear(Level level, LivingEntity livingEntity, ItemStack itemStack) {
+		super(TechnologicaEntityTypes.SPEAR.get(), livingEntity, level);
+		this.tridentItem = itemStack.copy();
 
 	}
 
@@ -41,13 +41,13 @@ public class ThrownSpear extends AbstractArrow {
 
 	@Override
 	@Nullable
-	protected EntityHitResult findHitEntity(Vec3 pStartVec, Vec3 pEndVec) {
-		return this.dealtDamage ? null : super.findHitEntity(pStartVec, pEndVec);
+	protected EntityHitResult findHitEntity(Vec3 vecStart, Vec3 vecStop) {
+		return this.dealtDamage ? null : super.findHitEntity(vecStart, vecStop);
 	}
 
 	@Override
-	protected void onHitEntity(EntityHitResult pResult) {
-		Entity entity = pResult.getEntity();
+	protected void onHitEntity(EntityHitResult entityHitResult) {
+		Entity entity = entityHitResult.getEntity();
 		float f = 8.0F;
 		if (entity instanceof LivingEntity livingentity) {
 			f += EnchantmentHelper.getDamageBonus(this.tridentItem, livingentity.getMobType());
@@ -80,8 +80,8 @@ public class ThrownSpear extends AbstractArrow {
 	}
 
 	@Override
-	protected boolean tryPickup(Player pPlayer) {
-		return super.tryPickup(pPlayer) || this.isNoPhysics() && this.ownedBy(pPlayer) && pPlayer.getInventory().add(this.getPickupItem());
+	protected boolean tryPickup(Player player) {
+		return super.tryPickup(player) || this.isNoPhysics() && this.ownedBy(player) && player.getInventory().add(this.getPickupItem());
 	}
 
 	@Override
@@ -90,9 +90,9 @@ public class ThrownSpear extends AbstractArrow {
 	}
 
 	@Override
-	public void playerTouch(Player pEntity) {
-		if (this.ownedBy(pEntity) || this.getOwner() == null) {
-			super.playerTouch(pEntity);
+	public void playerTouch(Player player) {
+		if (this.ownedBy(player) || this.getOwner() == null) {
+			super.playerTouch(player);
 		}
 	}
 

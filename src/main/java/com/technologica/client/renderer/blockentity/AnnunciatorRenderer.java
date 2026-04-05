@@ -22,24 +22,24 @@ public class AnnunciatorRenderer implements BlockEntityRenderer<AnnunciatorBlock
 	}
 
 	@Override
-	public void render(AnnunciatorBlockEntity tileEntityIn, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
-		BlockState blockstate = tileEntityIn.getBlockState();
-		float f1 = -blockstate.getValue(AnnunciatorBlock.FACING).toYRot();
-		matrixStackIn.pushPose();
-		matrixStackIn.translate(0.5D, 0.5D, 0.5D);
-		matrixStackIn.mulPose(Axis.YP.rotationDegrees(f1));
-		matrixStackIn.translate(0.0D, 0.18D, 0.51D);
-		matrixStackIn.scale(0.009F, -0.009F, 0.009F);
+	public void render(AnnunciatorBlockEntity annunciatorBlockEntity, float partialTicks, PoseStack poseStack, MultiBufferSource multiBufferSource, int combinedLightIn, int combinedOverlayIn) {
+		BlockState blockState = annunciatorBlockEntity.getBlockState();
+		float f1 = -blockState.getValue(AnnunciatorBlock.FACING).toYRot();
+		poseStack.pushPose();
+		poseStack.translate(0.5D, 0.5D, 0.5D);
+		poseStack.mulPose(Axis.YP.rotationDegrees(f1));
+		poseStack.translate(0.0D, 0.18D, 0.51D);
+		poseStack.scale(0.009F, -0.009F, 0.009F);
 		for (int k1 = 0; k1 < 8; ++k1) {
-			FormattedCharSequence ireorderingprocessor = tileEntityIn.reorderText(k1, (p_243502_1_) -> {
-				List<FormattedCharSequence> list = font.split(p_243502_1_, 90);
+			FormattedCharSequence ireorderingprocessor = annunciatorBlockEntity.reorderText(k1, (component) -> {
+				List<FormattedCharSequence> list = font.split(component, 90);
 				return list.isEmpty() ? FormattedCharSequence.EMPTY : list.get(0);
 			});
 			if (ireorderingprocessor != null) {
 				float f3 = -font.width(ireorderingprocessor) / 2;
-				font.drawInBatch(ireorderingprocessor, f3, k1 * 10 - 20, 0, false, matrixStackIn.last().pose(), bufferIn, Font.DisplayMode.POLYGON_OFFSET, 0, combinedLightIn);
+				font.drawInBatch(ireorderingprocessor, f3, k1 * 10 - 20, 0, false, poseStack.last().pose(), multiBufferSource, Font.DisplayMode.POLYGON_OFFSET, 0, combinedLightIn);
 			}
 		}
-		matrixStackIn.popPose();
+		poseStack.popPose();
 	}
 }

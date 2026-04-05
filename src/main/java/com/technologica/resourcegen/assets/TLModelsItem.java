@@ -1157,8 +1157,8 @@ public class TLModelsItem {
 		item3D(TechnologicaBlocks.INFERNAL_BUTTON.get(), TechnologicaModels.buttonInventoryModel(TechnologicaBlocks.INFERNAL_BUTTON.get(), "solid"));
 		item3D(TechnologicaBlocks.NECROTIC_BUTTON.get(), TechnologicaModels.buttonInventoryModel(TechnologicaBlocks.NECROTIC_BUTTON.get(), "solid"));
 		item3D(TechnologicaBlocks.APRICOT_PRESSURE_PLATE.get(), TechnologicaModels.pressurePlate(TechnologicaBlocks.APRICOT_PRESSURE_PLATE.get(), blockTexture(TechnologicaBlocks.APRICOT_PLANKS.get()), "solid"));
-		item3D(TechnologicaBlocks.ASPEN_PRESSURE_PLATE.get(), TechnologicaModels.pressurePlate(TechnologicaBlocks.ASPEN_PRESSURE_PLATE.get() , blockTexture(TechnologicaBlocks.ASPEN_PLANKS.get()), "solid"));
-		item3D(TechnologicaBlocks.AVOCADO_PRESSURE_PLATE.get(), TechnologicaModels.pressurePlate(TechnologicaBlocks.AVOCADO_PRESSURE_PLATE.get() , blockTexture(TechnologicaBlocks.AVOCADO_PLANKS.get()), "solid"));
+		item3D(TechnologicaBlocks.ASPEN_PRESSURE_PLATE.get(), TechnologicaModels.pressurePlate(TechnologicaBlocks.ASPEN_PRESSURE_PLATE.get(), blockTexture(TechnologicaBlocks.ASPEN_PLANKS.get()), "solid"));
+		item3D(TechnologicaBlocks.AVOCADO_PRESSURE_PLATE.get(), TechnologicaModels.pressurePlate(TechnologicaBlocks.AVOCADO_PRESSURE_PLATE.get(), blockTexture(TechnologicaBlocks.AVOCADO_PLANKS.get()), "solid"));
 		item3D(TechnologicaBlocks.BANANA_PRESSURE_PLATE.get(), TechnologicaModels.pressurePlate(TechnologicaBlocks.BANANA_PRESSURE_PLATE.get(), blockTexture(TechnologicaBlocks.BANANA_PLANKS.get()), "solid"));
 		item3D(TechnologicaBlocks.CHERRY_PRESSURE_PLATE.get(), TechnologicaModels.pressurePlate(TechnologicaBlocks.CHERRY_PRESSURE_PLATE.get(), blockTexture(TechnologicaBlocks.CHERRY_PLANKS.get()), "solid"));
 		item3D(TechnologicaBlocks.CHESTNUT_PRESSURE_PLATE.get(), TechnologicaModels.pressurePlate(TechnologicaBlocks.CHESTNUT_PRESSURE_PLATE.get(), blockTexture(TechnologicaBlocks.CHESTNUT_PLANKS.get()), "solid"));
@@ -1332,16 +1332,16 @@ public class TLModelsItem {
 		MODELS_ITEM.put(key(item), VanillaModels.item2D(item));
 	}
 
-	private static void itemSpawnEgg(Item item) {
-		MODELS_ITEM.put(key(item), VanillaModels.itemSpawnEgg(item));
-	}
-
 	private static void itemModel2(Item item, ModelFile model) {
 		MODELS_ITEM.put(key(item), VanillaModels.item2DModel(item, model));
 	}
 
 	private static void itemModel2(Item item, String renderType) {
 		MODELS_ITEM.put(key(item), VanillaModels.item2D(item, renderType));
+	}
+
+	private static void itemSpawnEgg(Item item) {
+		MODELS_ITEM.put(key(item), VanillaModels.itemSpawnEgg(item));
 	}
 
 	private static void item2DWithBlockTexture(Item item) {

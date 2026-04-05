@@ -189,8 +189,8 @@ public class RadioactiveOreFeature extends Feature<OreConfiguration> {
 		return i > 0;
 	}
 
-	public static boolean canPlaceOre(BlockState p_225187_, Function<BlockPos, BlockState> p_225188_, RandomSource p_225189_, OreConfiguration p_225190_, OreConfiguration.TargetBlockState p_225191_, BlockPos.MutableBlockPos p_225192_) {
-		if (!p_225191_.target.test(p_225187_, p_225189_)) {
+	public static boolean canPlaceOre(BlockState blockState, Function<BlockPos, BlockState> p_225188_, RandomSource p_225189_, OreConfiguration p_225190_, OreConfiguration.TargetBlockState p_225191_, BlockPos.MutableBlockPos p_225192_) {
+		if (!p_225191_.target.test(blockState, p_225189_)) {
 			return false;
 		} else if (shouldSkipAirCheck(p_225189_, p_225190_.discardChanceOnAirExposure)) {
 			return true;

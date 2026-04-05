@@ -89,32 +89,32 @@ public class PoisonDartFrogAi {
 		})), Pair.of(3, TryFindLand.create(8, 1.5F)), Pair.of(5, new GateBehavior<>(ImmutableMap.of(MemoryModuleType.WALK_TARGET, MemoryStatus.VALUE_ABSENT), ImmutableSet.of(), GateBehavior.OrderPolicy.ORDERED, GateBehavior.RunningPolicy.TRY_ALL, ImmutableList.of(Pair.of(RandomStroll.swim(0.75F), 1), Pair.of(RandomStroll.stroll(1.0F, true), 1), Pair.of(SetWalkTargetFromLookTarget.create(1.0F, 3), 1), Pair.of(BehaviorBuilder.triggerIf(Entity::isInWaterOrBubble), 5))))), ImmutableSet.of(Pair.of(MemoryModuleType.LONG_JUMP_MID_JUMP, MemoryStatus.VALUE_ABSENT), Pair.of(MemoryModuleType.IS_IN_WATER, MemoryStatus.VALUE_PRESENT)));
 	}
 
-	private static void initLaySpawnActivity(Brain<PoisonDartFrog> p_218599_) {
-		p_218599_.addActivityWithConditions(Activity.LAY_SPAWN, ImmutableList.of(Pair.of(0, SetEntityLookTargetSometimes.create(EntityType.PLAYER, 6.0F, UniformInt.of(30, 60))), Pair.of(1, StartAttacking.create(PoisonDartFrogAi::canAttack, (p_218597_) -> {
+	private static void initLaySpawnActivity(Brain<PoisonDartFrog> brain) {
+		brain.addActivityWithConditions(Activity.LAY_SPAWN, ImmutableList.of(Pair.of(0, SetEntityLookTargetSometimes.create(EntityType.PLAYER, 6.0F, UniformInt.of(30, 60))), Pair.of(1, StartAttacking.create(PoisonDartFrogAi::canAttack, (p_218597_) -> {
 			return p_218597_.getBrain().getMemory(MemoryModuleType.NEAREST_ATTACKABLE);
 		})), Pair.of(2, TryFindLandNearWater.create(8, 1.0F)), Pair.of(3, TryLaySpawnOnWaterNearLand.create(Blocks.FROGSPAWN)), Pair.of(4, new RunOne<>(ImmutableList.of(Pair.of(RandomStroll.stroll(1.0F), 2), Pair.of(SetWalkTargetFromLookTarget.create(1.0F, 3), 1), Pair.of(new DartCroak(), 2), Pair.of(BehaviorBuilder.triggerIf(Entity::onGround), 1))))), ImmutableSet.of(Pair.of(MemoryModuleType.LONG_JUMP_MID_JUMP, MemoryStatus.VALUE_ABSENT), Pair.of(MemoryModuleType.IS_PREGNANT, MemoryStatus.VALUE_PRESENT)));
 	}
 
-	private static void initJumpActivity(Brain<PoisonDartFrog> p_218603_) {
-		p_218603_.addActivityWithConditions(Activity.LONG_JUMP, ImmutableList.of(Pair.of(0, new LongJumpMidJump(TIME_BETWEEN_LONG_JUMPS, SoundEvents.FROG_STEP)), Pair.of(1, new LongJumpToPreferredBlock<>(TIME_BETWEEN_LONG_JUMPS, 2, 4, 1.5F, (p_218593_) -> {
+	private static void initJumpActivity(Brain<PoisonDartFrog> brain) {
+		brain.addActivityWithConditions(Activity.LONG_JUMP, ImmutableList.of(Pair.of(0, new LongJumpMidJump(TIME_BETWEEN_LONG_JUMPS, SoundEvents.FROG_STEP)), Pair.of(1, new LongJumpToPreferredBlock<>(TIME_BETWEEN_LONG_JUMPS, 2, 4, 1.5F, (p_218593_) -> {
 			return SoundEvents.FROG_LONG_JUMP;
 		}, BlockTags.FROG_PREFER_JUMP_TO, 0.5F, PoisonDartFrogAi::isAcceptableLandingSpot))), ImmutableSet.of(Pair.of(MemoryModuleType.TEMPTING_PLAYER, MemoryStatus.VALUE_ABSENT), Pair.of(MemoryModuleType.BREED_TARGET, MemoryStatus.VALUE_ABSENT), Pair.of(MemoryModuleType.LONG_JUMP_COOLDOWN_TICKS, MemoryStatus.VALUE_ABSENT), Pair.of(MemoryModuleType.IS_IN_WATER, MemoryStatus.VALUE_ABSENT)));
 	}
 
-	private static void initTongueActivity(Brain<PoisonDartFrog> p_218607_) {
-		p_218607_.addActivityAndRemoveMemoryWhenStopped(Activity.TONGUE, 0, ImmutableList.of(StopAttackingIfTargetInvalid.create(), new DartShootTongue(SoundEvents.FROG_TONGUE, SoundEvents.FROG_EAT)), MemoryModuleType.ATTACK_TARGET);
+	private static void initTongueActivity(Brain<PoisonDartFrog> brain) {
+		brain.addActivityAndRemoveMemoryWhenStopped(Activity.TONGUE, 0, ImmutableList.of(StopAttackingIfTargetInvalid.create(), new DartShootTongue(SoundEvents.FROG_TONGUE, SoundEvents.FROG_EAT)), MemoryModuleType.ATTACK_TARGET);
 	}
 
-	private static <E extends Mob> boolean isAcceptableLandingSpot(E p_249699_, BlockPos p_250057_) {
+	private static <E extends Mob> boolean isAcceptableLandingSpot(E p_249699_, BlockPos blockPos) {
 		Level level = p_249699_.level();
-		BlockPos blockpos = p_250057_.below();
-		if (level.getFluidState(p_250057_).isEmpty() && level.getFluidState(blockpos).isEmpty() && level.getFluidState(p_250057_.above()).isEmpty()) {
-			BlockState blockstate = level.getBlockState(p_250057_);
-			BlockState blockstate1 = level.getBlockState(blockpos);
-			if (!blockstate.is(BlockTags.FROG_PREFER_JUMP_TO) && !blockstate1.is(BlockTags.FROG_PREFER_JUMP_TO)) {
-				BlockPathTypes blockpathtypes = WalkNodeEvaluator.getBlockPathTypeStatic(level, p_250057_.mutable());
-				BlockPathTypes blockpathtypes1 = WalkNodeEvaluator.getBlockPathTypeStatic(level, blockpos.mutable());
-				return blockpathtypes != BlockPathTypes.TRAPDOOR && (!blockstate.isAir() || blockpathtypes1 != BlockPathTypes.TRAPDOOR) ? LongJumpToRandomPos.defaultAcceptableLandingSpot(p_249699_, p_250057_) : true;
+		BlockPos blockPosBelow = blockPos.below();
+		if (level.getFluidState(blockPos).isEmpty() && level.getFluidState(blockPosBelow).isEmpty() && level.getFluidState(blockPos.above()).isEmpty()) {
+			BlockState blockStateBelow = level.getBlockState(blockPos);
+			BlockState blockState = level.getBlockState(blockPosBelow);
+			if (!blockStateBelow.is(BlockTags.FROG_PREFER_JUMP_TO) && !blockState.is(BlockTags.FROG_PREFER_JUMP_TO)) {
+				BlockPathTypes blockpathtypes = WalkNodeEvaluator.getBlockPathTypeStatic(level, blockPos.mutable());
+				BlockPathTypes blockpathtypes1 = WalkNodeEvaluator.getBlockPathTypeStatic(level, blockPosBelow.mutable());
+				return blockpathtypes != BlockPathTypes.TRAPDOOR && (!blockStateBelow.isAir() || blockpathtypes1 != BlockPathTypes.TRAPDOOR) ? LongJumpToRandomPos.defaultAcceptableLandingSpot(p_249699_, blockPos) : true;
 			} else {
 				return true;
 			}
@@ -123,12 +123,12 @@ public class PoisonDartFrogAi {
 		}
 	}
 
-	private static boolean canAttack(PoisonDartFrog p_218589_) {
-		return !BehaviorUtils.isBreeding(p_218589_);
+	private static boolean canAttack(PoisonDartFrog poisonDartFrog) {
+		return !BehaviorUtils.isBreeding(poisonDartFrog);
 	}
 
-	public static void updateActivity(PoisonDartFrog p_218578_) {
-		p_218578_.getBrain().setActiveActivityToFirstValid(ImmutableList.of(Activity.TONGUE, Activity.LAY_SPAWN, Activity.LONG_JUMP, Activity.SWIM, Activity.IDLE));
+	public static void updateActivity(PoisonDartFrog poisonDartFrog) {
+		poisonDartFrog.getBrain().setActiveActivityToFirstValid(ImmutableList.of(Activity.TONGUE, Activity.LAY_SPAWN, Activity.LONG_JUMP, Activity.SWIM, Activity.IDLE));
 	}
 
 	public static Ingredient getTemptations() {

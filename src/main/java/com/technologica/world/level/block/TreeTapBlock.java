@@ -48,7 +48,7 @@ public class TreeTapBlock extends FourDirectionBlock {
 	 */
 
 	@Override
-	public VoxelShape getShape(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, CollisionContext contextIn) {
+	public VoxelShape getShape(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, CollisionContext collisionContext) {
 		return SHAPES.get(stateIn.getValue(FourDirectionBlock.NESW_FACING));
 	}
 
@@ -105,28 +105,28 @@ public class TreeTapBlock extends FourDirectionBlock {
 			BlockState logState = levelIn.getBlockState(posIn.relative(facing.getOpposite()));
 
 			switch (facing) {
-			case EAST:
-				d0 = posIn.getX() + 0.28D;
-				d1 = posIn.getY() + 0.3D;
-				d2 = posIn.getZ() + 0.5D;
-				break;
-			case NORTH:
-				d0 = posIn.getX() + 0.5D;
-				d1 = posIn.getY() + 0.3D;
-				d2 = posIn.getZ() + 0.72D;
-				break;
-			case SOUTH:
-				d0 = posIn.getX() + 0.5D;
-				d1 = posIn.getY() + 0.3D;
-				d2 = posIn.getZ() + 0.28D;
-				break;
-			case WEST:
-				d0 = posIn.getX() + 0.72D;
-				d1 = posIn.getY() + 0.3D;
-				d2 = posIn.getZ() + 0.5D;
-				break;
-			default:
-				break;
+				case EAST:
+					d0 = posIn.getX() + 0.28D;
+					d1 = posIn.getY() + 0.3D;
+					d2 = posIn.getZ() + 0.5D;
+					break;
+				case NORTH:
+					d0 = posIn.getX() + 0.5D;
+					d1 = posIn.getY() + 0.3D;
+					d2 = posIn.getZ() + 0.72D;
+					break;
+				case SOUTH:
+					d0 = posIn.getX() + 0.5D;
+					d1 = posIn.getY() + 0.3D;
+					d2 = posIn.getZ() + 0.28D;
+					break;
+				case WEST:
+					d0 = posIn.getX() + 0.72D;
+					d1 = posIn.getY() + 0.3D;
+					d2 = posIn.getZ() + 0.5D;
+					break;
+				default:
+					break;
 			}
 
 			if (ForgeRegistries.BLOCKS.getKey(logState.getBlock()).getPath().contains("maple")) {
@@ -140,14 +140,10 @@ public class TreeTapBlock extends FourDirectionBlock {
 	}
 
 	@Nullable
-	private static BlockPos findFillableEmptyBasinBelowTreeTapTip(Level levelIn, BlockPos blockPosIn, Fluid fluidIn) {
-		Predicate<BlockState> predicate = (p_154162_) -> {
-			return p_154162_.getBlock() instanceof BasinEmptyBlock && ((BasinEmptyBlock) p_154162_.getBlock()).canReceiveTreeTapDrip(fluidIn);
-		};
-		BiPredicate<BlockPos, BlockState> bipredicate = (p_202034_, p_202035_) -> {
-			return canDripThrough(levelIn, p_202034_, p_202035_);
-		};
-		return findBlockVertical(levelIn, blockPosIn, Direction.DOWN.getAxisDirection(), bipredicate, predicate, 11).orElse((BlockPos) null);
+	private static BlockPos findFillableEmptyBasinBelowTreeTapTip(Level level, BlockPos blockPos, Fluid fluid) {
+		Predicate<BlockState> predicate = (blockState) -> blockState.getBlock() instanceof BasinEmptyBlock && ((BasinEmptyBlock) blockState.getBlock()).canReceiveTreeTapDrip(fluid);
+		BiPredicate<BlockPos, BlockState> bipredicate = (blockPos2, blockState) -> canDripThrough(level, blockPos2, blockState);
+		return findBlockVertical(level, blockPos, Direction.DOWN.getAxisDirection(), bipredicate, predicate, 11).orElse((BlockPos) null);
 	}
 
 	@Nullable
@@ -174,18 +170,18 @@ public class TreeTapBlock extends FourDirectionBlock {
 		}
 	}
 
-	private static Optional<BlockPos> findBlockVertical(LevelAccessor p_202007_, BlockPos p_202008_, Direction.AxisDirection p_202009_, BiPredicate<BlockPos, BlockState> p_202010_, Predicate<BlockState> p_202011_, int p_202012_) {
-		Direction direction = Direction.get(p_202009_, Direction.Axis.Y);
-		BlockPos.MutableBlockPos blockpos$mutableblockpos = p_202008_.mutable();
+	private static Optional<BlockPos> findBlockVertical(LevelAccessor levelAccessor, BlockPos blockPos, Direction.AxisDirection axisDirection, BiPredicate<BlockPos, BlockState> biPredicate, Predicate<BlockState> predicate, int p_202012_) {
+		Direction direction = Direction.get(axisDirection, Direction.Axis.Y);
+		BlockPos.MutableBlockPos mutableBlockPos = blockPos.mutable();
 
 		for (int i = 1; i < p_202012_; ++i) {
-			blockpos$mutableblockpos.move(direction);
-			BlockState blockstate = p_202007_.getBlockState(blockpos$mutableblockpos);
-			if (p_202011_.test(blockstate)) {
-				return Optional.of(blockpos$mutableblockpos.immutable());
+			mutableBlockPos.move(direction);
+			BlockState blockstate = levelAccessor.getBlockState(mutableBlockPos);
+			if (predicate.test(blockstate)) {
+				return Optional.of(mutableBlockPos.immutable());
 			}
 
-			if (p_202007_.isOutsideBuildHeight(blockpos$mutableblockpos.getY()) || !p_202010_.test(blockpos$mutableblockpos, blockstate)) {
+			if (levelAccessor.isOutsideBuildHeight(mutableBlockPos.getY()) || !biPredicate.test(mutableBlockPos, blockstate)) {
 				return Optional.empty();
 			}
 		}

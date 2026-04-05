@@ -13,9 +13,9 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.animal.horse.AbstractHorse;
+import net.minecraft.world.entity.Entity;
 
-public class DeerModel<T extends AbstractHorse> extends AgeableListModel<T> {
+public class DeerModel<T extends Entity> extends AgeableListModel<T> {
 	private final ModelPart head;
 	private final ModelPart earLeft;
 	private final ModelPart earRight;
@@ -109,7 +109,7 @@ public class DeerModel<T extends AbstractHorse> extends AgeableListModel<T> {
 	@Override
 	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.earLeft.zRot = -0.5F;
-		this.earRight.zRot = 0.5F; //
+		this.earRight.zRot = 0.5F;
 		this.tail.xRot = ((float) Math.PI / 8F);
 		this.antlerLeft1.zRot = (float) Math.PI / 3;
 		this.antlerRight1.zRot = -(float) Math.PI / 3;
@@ -139,8 +139,8 @@ public class DeerModel<T extends AbstractHorse> extends AgeableListModel<T> {
 
 	@Override
 	public void prepareMobModel(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
-		float f = Mth.lerp(partialTick, entityIn.yBodyRotO, entityIn.yBodyRot);
-		float f1 = Mth.lerp(partialTick, entityIn.yHeadRotO, entityIn.yHeadRot);
+		float f = 0;
+		float f1 = 0;
 
 		float f3 = f1 - f;
 
@@ -152,11 +152,11 @@ public class DeerModel<T extends AbstractHorse> extends AgeableListModel<T> {
 			f3 = -20.0F;
 		}
 
-		float f6 = entityIn.getStandAnim(partialTick);
+		float f6 = 0;
 		float f9 = entityIn.tickCount + partialTick;
 		float f10 = entityIn.isInWater() ? 0.2F : 1.0F;
 
-		boolean tailWagging = entityIn.tailCounter != 0;
+		boolean tailWagging = ((Deer) entityIn).tailCounter != 0;
 		boolean earsFlapping = ((Deer) entityIn).earCounter != 0;
 		this.neck.xRot = (float) Math.PI / 4 + Mth.sin(f10 * limbSwing * 0.5F) / 10;
 		this.neck.yRot = f3 * (float) Math.PI / 180;

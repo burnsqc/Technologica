@@ -26,8 +26,8 @@ public class MonitorRenderer implements BlockEntityRenderer<MonitorBlockEntity> 
 
 	@Override
 	public void render(MonitorBlockEntity monitorBlockEntity, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
-		BlockState blockstate = monitorBlockEntity.getBlockState();
-		float rotationDegrees = -blockstate.getValue(MonitorBlock.FACING).toYRot();
+		BlockState blockState = monitorBlockEntity.getBlockState();
+		float rotationDegrees = -blockState.getValue(MonitorBlock.FACING).toYRot();
 		matrixStackIn.pushPose();
 		matrixStackIn.translate(0.5D, 0.5D, 0.5D);
 		matrixStackIn.mulPose(Axis.YP.rotationDegrees(rotationDegrees));

@@ -18,7 +18,7 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 public class LootTableDataGenerator extends LootTableProvider {
 	private final List<SubProviderEntry> subProviders = List.of(new LootTableProvider.SubProviderEntry(TLLootTablesBlocksGenerator::new, LootContextParamSets.BLOCK), new LootTableProvider.SubProviderEntry(EntityLootDataGenerator::new, LootContextParamSets.ENTITY));
 	
-	public LootTableDataGenerator (PackOutput packOutput) {
+	public LootTableDataGenerator(PackOutput packOutput) {
 		super(packOutput, Set.of(), VanillaLootTableProvider.create(packOutput).getTables());
 	}
 	

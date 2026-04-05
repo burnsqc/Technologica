@@ -409,17 +409,17 @@ public class TLRecipesGenerator extends TLRGRecipeGenerator {
 		ConditionalRecipe.builder().addCondition(new NotCondition(new BooleanConfigValueCondition())).addRecipe((consumer2) -> ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 4).define('#', input).pattern("#  ").pattern("## ").pattern("###").group("wooden_stairs").unlockedBy("has_planks", has(input)).save(consumer2)).addCondition(new BooleanConfigValueCondition()).addRecipe((consumer2) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 1).requires(input).requires(TechnologicaItems.CHISEL.get()).group("wooden_slab").unlockedBy("has_chisel", has(TechnologicaItems.CHISEL.get())).save(consumer2)).build(recipeConsumer, new TechnologicaLocation(ForgeRegistries.ITEMS.getKey(output.asItem()).getPath()));
 	}
 
-	private static MultipleOutputRecipeBuilder sawmillRecipe(Ingredient ingredientIn, ItemLike output, int countIn, ItemLike output2, int count2) {
-		return new MultipleOutputRecipeBuilder(RecipeCategory.BUILDING_BLOCKS, TechnologicaRecipeSerializers.SAWMILL.get(), ingredientIn, output, countIn, output2, count2).unlockedBy("has_logs", has(TechnologicaItemTags.APRICOT_LOGS));
+	private static MultipleOutputRecipeBuilder sawmillRecipe(Ingredient ingredientIn, ItemLike output, int count, ItemLike output2, int count2) {
+		return new MultipleOutputRecipeBuilder(RecipeCategory.BUILDING_BLOCKS, TechnologicaRecipeSerializers.SAWMILL.get(), ingredientIn, output, count, output2, count2).unlockedBy("has_logs", has(TechnologicaItemTags.APRICOT_LOGS));
 	}
 
-	protected static void oreSmelting(Consumer<FinishedRecipe> p_250654_, List<ItemLike> p_250172_, RecipeCategory p_250588_, ItemLike p_251868_, int count, float p_250789_, int p_252144_, String p_251687_) {
-		oreCooking(p_250654_, RecipeSerializer.SMELTING_RECIPE, p_250172_, p_250588_, p_251868_, count, p_250789_, p_252144_, p_251687_, "_from_smelting");
+	protected static void oreSmelting(Consumer<FinishedRecipe> consumer, List<ItemLike> itemLikes, RecipeCategory recipeCategory, ItemLike itemLike, int count, float p_250789_, int p_252144_, String p_251687_) {
+		oreCooking(consumer, RecipeSerializer.SMELTING_RECIPE, itemLikes, recipeCategory, itemLike, count, p_250789_, p_252144_, p_251687_, "_from_smelting");
 	}
 
-	protected static void oreCooking(Consumer<FinishedRecipe> p_250791_, RecipeSerializer<? extends AbstractCookingRecipe> p_251817_, List<ItemLike> p_249619_, RecipeCategory p_251154_, ItemLike p_250066_, int count, float p_251871_, int p_251316_, String p_251450_, String p_249236_) {
-		for (ItemLike itemlike : p_249619_) {
-			SimpleCookingRecipeWithCountBuilder.generic(Ingredient.of(itemlike), p_251154_, p_250066_, count, p_251871_, p_251316_, p_251817_).group(p_251450_).unlockedBy(getHasName(itemlike), has(itemlike)).save(p_250791_, getItemName(p_250066_) + p_249236_ + "_" + getItemName(itemlike));
+	protected static void oreCooking(Consumer<FinishedRecipe> consumer, RecipeSerializer<? extends AbstractCookingRecipe> recipeSerializer, List<ItemLike> p_249619_, RecipeCategory recipeCategory, ItemLike p_250066_, int count, float p_251871_, int p_251316_, String p_251450_, String p_249236_) {
+		for (ItemLike itemLike : p_249619_) {
+			SimpleCookingRecipeWithCountBuilder.generic(Ingredient.of(itemLike), recipeCategory, p_250066_, count, p_251871_, p_251316_, recipeSerializer).group(p_251450_).unlockedBy(getHasName(itemLike), has(itemLike)).save(consumer, getItemName(p_250066_) + p_249236_ + "_" + getItemName(itemLike));
 		}
 	}
 }

@@ -1,7 +1,6 @@
 package com.technologica.registration.deferred;
 
 import com.technologica.Technologica;
-import com.technologica.world.entity.MagicLightningBolt;
 import com.technologica.world.entity.TechnologicaMobCategory;
 import com.technologica.world.entity.animal.Alligator;
 import com.technologica.world.entity.animal.Beaver;
@@ -41,6 +40,7 @@ import com.technologica.world.entity.animal.Walrus;
 import com.technologica.world.entity.animal.Zebra;
 import com.technologica.world.entity.decoration.InvisibleSeat;
 import com.technologica.world.entity.item.NavalMine;
+import com.technologica.world.entity.magic.MagicLightningBolt;
 import com.technologica.world.entity.monster.AtomicCreeper;
 import com.technologica.world.entity.monster.Axeman;
 import com.technologica.world.entity.monster.Beeper;

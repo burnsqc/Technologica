@@ -53,8 +53,8 @@ public class AbyssPortalShape {
 		if (optional.isPresent()) {
 			return optional;
 		} else {
-			Direction.Axis direction$axis = axis == Direction.Axis.X ? Direction.Axis.Z : Direction.Axis.X;
-			return Optional.of(new AbyssPortalShape(levelAccessor, blockPos, direction$axis)).filter(predicate);
+			Direction.Axis axisOpposite = axis == Direction.Axis.X ? Direction.Axis.Z : Direction.Axis.X;
+			return Optional.of(new AbyssPortalShape(levelAccessor, blockPos, axisOpposite)).filter(predicate);
 		}
 	}
 
@@ -88,18 +88,18 @@ public class AbyssPortalShape {
 	}
 
 	private int getDistanceUntilEdgeAboveFrame(BlockPos blockPos, Direction direction) {
-		BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+		BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
 		for (int i = 0; i <= 21; ++i) {
-			blockpos$mutableblockpos.set(blockPos).move(direction, i);
-			BlockState blockstate = this.level.getBlockState(blockpos$mutableblockpos);
-			if (!isEmpty(blockstate)) {
-				if (FRAME.test(blockstate, this.level, blockpos$mutableblockpos)) {
+			mutableBlockPos.set(blockPos).move(direction, i);
+			BlockState blockState = this.level.getBlockState(mutableBlockPos);
+			if (!isEmpty(blockState)) {
+				if (FRAME.test(blockState, this.level, mutableBlockPos)) {
 					return i;
 				}
 				break;
 			}
-			BlockState blockstate1 = this.level.getBlockState(blockpos$mutableblockpos.move(Direction.DOWN));
-			if (!FRAME.test(blockstate1, this.level, blockpos$mutableblockpos)) {
+			BlockState blockStateDown = this.level.getBlockState(mutableBlockPos.move(Direction.DOWN));
+			if (!FRAME.test(blockStateDown, this.level, mutableBlockPos)) {
 				break;
 			}
 		}
@@ -107,15 +107,15 @@ public class AbyssPortalShape {
 	}
 
 	private int calculateHeight() {
-		BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
-		int i = this.getDistanceUntilTop(blockpos$mutableblockpos);
-		return i >= 3 && i <= 21 && this.hasTopFrame(blockpos$mutableblockpos, i) ? i : 0;
+		BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
+		int i = this.getDistanceUntilTop(mutableBlockPos);
+		return i >= 3 && i <= 21 && this.hasTopFrame(mutableBlockPos, i) ? i : 0;
 	}
 
-	private boolean hasTopFrame(BlockPos.MutableBlockPos mutableBlockPos, int p_77732_) {
+	private boolean hasTopFrame(BlockPos.MutableBlockPos mutableBlockPos, int top) {
 		for (int i = 0; i < this.width; ++i) {
-			BlockPos.MutableBlockPos blockpos$mutableblockpos = mutableBlockPos.set(this.bottomLeft).move(Direction.UP, p_77732_).move(this.rightDir, i);
-			if (!FRAME.test(this.level.getBlockState(blockpos$mutableblockpos), this.level, blockpos$mutableblockpos)) {
+			BlockPos.MutableBlockPos mutableBlockPos2 = mutableBlockPos.set(this.bottomLeft).move(Direction.UP, top).move(this.rightDir, i);
+			if (!FRAME.test(this.level.getBlockState(mutableBlockPos2), this.level, mutableBlockPos2)) {
 				return false;
 			}
 		}
@@ -136,12 +136,12 @@ public class AbyssPortalShape {
 
 			for (int j = 0; j < this.width; ++j) {
 				mutableBlockPos.set(this.bottomLeft).move(Direction.UP, i).move(this.rightDir, j);
-				BlockState blockstate = this.level.getBlockState(mutableBlockPos);
-				if (!isEmpty(blockstate)) {
+				BlockState blockState = this.level.getBlockState(mutableBlockPos);
+				if (!isEmpty(blockState)) {
 					return i;
 				}
 
-				if (blockstate.is(TechnologicaBlocks.ABYSS_PORTAL.get())) {
+				if (blockState.is(TechnologicaBlocks.ABYSS_PORTAL.get())) {
 					++this.numPortalBlocks;
 				}
 			}
@@ -159,9 +159,9 @@ public class AbyssPortalShape {
 	}
 
 	public void createPortalBlocks() {
-		BlockState blockstate = TechnologicaBlocks.ABYSS_PORTAL.get().defaultBlockState().setValue(AbyssPortalBlock.AXIS, this.axis);
-		BlockPos.betweenClosed(this.bottomLeft, this.bottomLeft.relative(Direction.UP, this.height - 1).relative(this.rightDir, this.width - 1)).forEach((p_77725_) -> {
-			this.level.setBlock(p_77725_, blockstate, 18);
+		BlockState blockState = TechnologicaBlocks.ABYSS_PORTAL.get().defaultBlockState().setValue(AbyssPortalBlock.AXIS, this.axis);
+		BlockPos.betweenClosed(this.bottomLeft, this.bottomLeft.relative(Direction.UP, this.height - 1).relative(this.rightDir, this.width - 1)).forEach((blockPos) -> {
+			this.level.setBlock(blockPos, blockState, 18);
 		});
 	}
 
@@ -182,46 +182,46 @@ public class AbyssPortalShape {
 		}
 		double d4;
 		if (d1 > 0.0D) {
-			Direction.Axis direction$axis = Direction.Axis.Y;
-			d4 = Mth.clamp(Mth.inverseLerp(vec3.get(direction$axis) - blockpos.get(direction$axis), 0.0D, d1), 0.0D, 1.0D);
+			Direction.Axis axisY = Direction.Axis.Y;
+			d4 = Mth.clamp(Mth.inverseLerp(vec3.get(axisY) - blockpos.get(axisY), 0.0D, d1), 0.0D, 1.0D);
 		} else {
 			d4 = 0.0D;
 		}
-		Direction.Axis direction$axis1 = axis == Direction.Axis.X ? Direction.Axis.Z : Direction.Axis.X;
-		double d3 = vec3.get(direction$axis1) - (blockpos.get(direction$axis1) + 0.5D);
+		Direction.Axis axisOpposite = axis == Direction.Axis.X ? Direction.Axis.Z : Direction.Axis.X;
+		double d3 = vec3.get(axisOpposite) - (blockpos.get(axisOpposite) + 0.5D);
 		return new Vec3(d2, d4, d3);
 	}
 
-	public static PortalInfo createPortalInfo(ServerLevel serverLevel, BlockUtil.FoundRectangle foundRectangle, Direction.Axis axis, Vec3 p_259630_, Entity entity, Vec3 p_260043_, float p_259853_, float p_259667_) {
+	public static PortalInfo createPortalInfo(ServerLevel serverLevel, BlockUtil.FoundRectangle foundRectangle, Direction.Axis axis, Vec3 relativePortalPosition, Entity entity, Vec3 entityDeltaMovement, float entityRotY, float entityRotX) {
 		BlockPos blockpos = foundRectangle.minCorner;
-		BlockState blockstate = serverLevel.getBlockState(blockpos);
-		Direction.Axis direction$axis = blockstate.getOptionalValue(BlockStateProperties.HORIZONTAL_AXIS).orElse(Direction.Axis.X);
+		BlockState blockState = serverLevel.getBlockState(blockpos);
+		Direction.Axis axisDirection = blockState.getOptionalValue(BlockStateProperties.HORIZONTAL_AXIS).orElse(Direction.Axis.X);
 		double d0 = foundRectangle.axis1Size;
 		double d1 = foundRectangle.axis2Size;
 		EntityDimensions entitydimensions = entity.getDimensions(entity.getPose());
-		int i = axis == direction$axis ? 0 : 90;
-		Vec3 vec3 = axis == direction$axis ? p_260043_ : new Vec3(p_260043_.z, p_260043_.y, -p_260043_.x);
-		double d2 = entitydimensions.width / 2.0D + (d0 - entitydimensions.width) * p_259630_.x();
-		double d3 = (d1 - entitydimensions.height) * p_259630_.y();
-		double d4 = 0.5D + p_259630_.z();
-		boolean flag = direction$axis == Direction.Axis.X;
+		int i = axis == axisDirection ? 0 : 90;
+		Vec3 vec3 = axis == axisDirection ? entityDeltaMovement : new Vec3(entityDeltaMovement.z, entityDeltaMovement.y, -entityDeltaMovement.x);
+		double d2 = entitydimensions.width / 2.0D + (d0 - entitydimensions.width) * relativePortalPosition.x();
+		double d3 = (d1 - entitydimensions.height) * relativePortalPosition.y();
+		double d4 = 0.5D + relativePortalPosition.z();
+		boolean flag = axisDirection == Direction.Axis.X;
 		Vec3 vec31 = new Vec3(blockpos.getX() + (flag ? d2 : d4), blockpos.getY() + d3, blockpos.getZ() + (flag ? d4 : d2));
 		Vec3 vec32 = findCollisionFreePosition(vec31, serverLevel, entity, entitydimensions);
-		return new PortalInfo(vec32, vec3, p_259853_ + i, p_259667_);
+		return new PortalInfo(vec32, vec3, entityRotY + i, entityRotX);
 	}
 
-	private static Vec3 findCollisionFreePosition(Vec3 p_260315_, ServerLevel serverLevel, Entity entity, EntityDimensions entityDimension) {
+	private static Vec3 findCollisionFreePosition(Vec3 vec31, ServerLevel serverLevel, Entity entity, EntityDimensions entityDimension) {
 		if (!(entityDimension.width > 4.0F) && !(entityDimension.height > 4.0F)) {
 			double d0 = entityDimension.height / 2.0D;
-			Vec3 vec3 = p_260315_.add(0.0D, d0, 0.0D);
+			Vec3 vec3 = vec31.add(0.0D, d0, 0.0D);
 			VoxelShape voxelshape = Shapes.create(AABB.ofSize(vec3, entityDimension.width, 0.0D, entityDimension.width).expandTowards(0.0D, 1.0D, 0.0D).inflate(1.0E-6D));
 			Optional<Vec3> optional = serverLevel.findFreePosition(entity, voxelshape, vec3, entityDimension.width, entityDimension.height, entityDimension.width);
-			Optional<Vec3> optional1 = optional.map((p_259019_) -> {
-				return p_259019_.subtract(0.0D, d0, 0.0D);
+			Optional<Vec3> optional1 = optional.map((vec32) -> {
+				return vec32.subtract(0.0D, d0, 0.0D);
 			});
-			return optional1.orElse(p_260315_);
+			return optional1.orElse(vec31);
 		} else {
-			return p_260315_;
+			return vec31;
 		}
 	}
 }

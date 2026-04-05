@@ -1341,11 +1341,11 @@ public class TLModelsBlock {
 		MODELS_BLOCK.put(resourceLocation, TechnologicaModels.byoParent(resourceLocation, parent, texture));
 	}
 
-	private static void byoParentNoTexture(Block block, ModelFile parent, ResourceLocation texture) {
-		MODELS_BLOCK.put(ResourceLocationHelper.key(block), TechnologicaModels.byoParentNoTexture(block, parent, texture));
-	}
-
 	private static void byoParent(Block block, ModelFile parent, ResourceLocation texture, ResourceLocation renderType) {
 		MODELS_BLOCK.put(ResourceLocationHelper.key(block), TechnologicaModels.byoParent(block, parent, texture, renderType));
+	}
+
+	private static void byoParentNoTexture(Block block, ModelFile parent, ResourceLocation texture) {
+		MODELS_BLOCK.put(ResourceLocationHelper.key(block), TechnologicaModels.byoParentNoTexture(block, parent, texture));
 	}
 }

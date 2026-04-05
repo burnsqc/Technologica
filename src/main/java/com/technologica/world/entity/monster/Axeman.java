@@ -36,27 +36,33 @@ public class Axeman extends AbstractSkeleton {
 		this.setPathfindingMalus(BlockPathTypes.LAVA, 8.0F);
 	}
 
+	@Override
 	protected void registerGoals() {
 		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractPiglin.class, true));
 		super.registerGoals();
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound() {
 		return SoundEvents.WITHER_SKELETON_AMBIENT;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource pDamageSource) {
 		return SoundEvents.WITHER_SKELETON_HURT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound() {
 		return SoundEvents.WITHER_SKELETON_DEATH;
 	}
 
+	@Override
 	protected SoundEvent getStepSound() {
 		return SoundEvents.WITHER_SKELETON_STEP;
 	}
 
+	@Override
 	protected void dropCustomDeathLoot(DamageSource pSource, int pLooting, boolean pRecentlyHit) {
 		super.dropCustomDeathLoot(pSource, pLooting, pRecentlyHit);
 		Entity entity = pSource.getEntity();
@@ -69,13 +75,16 @@ public class Axeman extends AbstractSkeleton {
 
 	}
 
+	@Override
 	protected void populateDefaultEquipmentSlots(RandomSource pRandom, DifficultyInstance pDifficulty) {
 		this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.STONE_SWORD));
 	}
 
+	@Override
 	protected void populateDefaultEquipmentEnchantments(RandomSource pRandom, DifficultyInstance pDifficulty) {
 	}
 
+	@Override
 	@Nullable
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pReason, @Nullable SpawnGroupData pSpawnData, @Nullable CompoundTag pDataTag) {
 		SpawnGroupData spawngroupdata = super.finalizeSpawn(pLevel, pDifficulty, pReason, pSpawnData, pDataTag);
@@ -84,32 +93,33 @@ public class Axeman extends AbstractSkeleton {
 		return spawngroupdata;
 	}
 
-	protected float getStandingEyeHeight(Pose pPose, EntityDimensions pSize) {
+	@Override
+	protected float getStandingEyeHeight(Pose pose, EntityDimensions entityDimensions) {
 		return 2.1F;
 	}
 
-	public boolean doHurtTarget(Entity pEntity) {
-		if (!super.doHurtTarget(pEntity)) {
+	@Override
+	public boolean doHurtTarget(Entity entity) {
+		if (!super.doHurtTarget(entity)) {
 			return false;
 		} else {
-			if (pEntity instanceof LivingEntity) {
-				((LivingEntity) pEntity).addEffect(new MobEffectInstance(MobEffects.WITHER, 200), this);
+			if (entity instanceof LivingEntity) {
+				((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.WITHER, 200), this);
 			}
 
 			return true;
 		}
 	}
 
-	/**
-	 * Fires an arrow
-	 */
-	protected AbstractArrow getArrow(ItemStack pArrowStack, float pDistanceFactor) {
-		AbstractArrow abstractarrow = super.getArrow(pArrowStack, pDistanceFactor);
+	@Override
+	protected AbstractArrow getArrow(ItemStack itemStack, float pDistanceFactor) {
+		AbstractArrow abstractarrow = super.getArrow(itemStack, pDistanceFactor);
 		abstractarrow.setSecondsOnFire(100);
 		return abstractarrow;
 	}
 
-	public boolean canBeAffected(MobEffectInstance pPotioneffect) {
-		return pPotioneffect.getEffect() == MobEffects.WITHER ? false : super.canBeAffected(pPotioneffect);
+	@Override
+	public boolean canBeAffected(MobEffectInstance mobEffectInstance) {
+		return mobEffectInstance.getEffect() == MobEffects.WITHER ? false : super.canBeAffected(mobEffectInstance);
 	}
 }

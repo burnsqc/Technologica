@@ -73,7 +73,7 @@ public class LineShaftBlock extends RotatedPillarBlock implements EntityBlock {
 	 */
 
 	@Override
-	public VoxelShape getShape(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, CollisionContext contextIn) {
+	public VoxelShape getShape(BlockState stateIn, BlockGetter worldIn, BlockPos posIn, CollisionContext collisionContext) {
 		if (stateIn.getValue(AXIS) == Direction.Axis.X) {
 			VoxelShape voxelShape;
 			if (stateIn.getValue(RADIUS) == Radius.SMALL) {

@@ -61,11 +61,11 @@ public class TLParticles {
 		spriteSet(TechnologicaParticleTypes.SMOKE_COLUMN_UP, new ResourceLocation("generic"), 8, false);
 	}
 
-	protected final static void sprite(Supplier<? extends ParticleType<?>> type, ResourceLocation texture) {
+	protected static final void sprite(Supplier<? extends ParticleType<?>> type, ResourceLocation texture) {
 		spriteSet(type.get(), texture);
 	}
 
-	protected final static void spriteSet(Supplier<? extends ParticleType<?>> type, ResourceLocation baseName, int numOfTextures, boolean reverse) {
+	protected static final void spriteSet(Supplier<? extends ParticleType<?>> type, ResourceLocation baseName, int numOfTextures, boolean reverse) {
 		Preconditions.checkArgument(numOfTextures > 0, "The number of textures to generate must be positive");
 		spriteSet(type.get(), () -> new Iterator<>() {
 			private int counter = 0;
@@ -84,11 +84,11 @@ public class TLParticles {
 		});
 	}
 
-	private final static void spriteSet(ParticleType<?> type, ResourceLocation texture, ResourceLocation... textures) {
+	private static final void spriteSet(ParticleType<?> type, ResourceLocation texture, ResourceLocation... textures) {
 		spriteSet(type, Stream.concat(Stream.of(texture), Arrays.stream(textures))::iterator);
 	}
 
-	private final static void spriteSet(ParticleType<?> type, Iterable<ResourceLocation> textures) {
+	private static final void spriteSet(ParticleType<?> type, Iterable<ResourceLocation> textures) {
 		var particle = Preconditions.checkNotNull(ForgeRegistries.PARTICLE_TYPES.getKey(type), "The particle type is not registered");
 
 		List<String> desc = new ArrayList<>();

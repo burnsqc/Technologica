@@ -21,7 +21,6 @@ public class BronzeAgeAdvancementDataGenerator implements AdvancementGenerator {
 
 	@Override
 	public void generate(Provider providerIn, Consumer<Advancement> consumerIn, ExistingFileHelper fileHelper) {
-		Advancement bronzeAge = Advancement.Builder.advancement().display(TechnologicaItems.BRONZE_INGOT.get(), Component.translatable("advancements.bronze_age.root.title"), Component.translatable("advancements.bronze_age.root.description"), new ResourceLocation("textures/block/quartz_pillar.png"), FrameType.CHALLENGE, true, true, false).addCriterion("exist", EnterBlockTrigger.TriggerInstance.entersBlock(Blocks.AIR)).save(consumerIn, new TechnologicaLocation("bronze_age/root"), fileHelper);
-
+		Advancement.Builder.advancement().display(TechnologicaItems.BRONZE_INGOT.get(), Component.translatable("advancements.bronze_age.root.title"), Component.translatable("advancements.bronze_age.root.description"), new ResourceLocation("textures/block/quartz_pillar.png"), FrameType.CHALLENGE, true, true, false).addCriterion("exist", EnterBlockTrigger.TriggerInstance.entersBlock(Blocks.AIR)).save(consumerIn, new TechnologicaLocation("bronze_age/root"), fileHelper);
 	}
 }

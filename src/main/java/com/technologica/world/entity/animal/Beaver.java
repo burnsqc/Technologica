@@ -1,25 +1,16 @@
 package com.technologica.world.entity.animal;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.MoveControl;
@@ -30,8 +21,6 @@ import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.entity.ai.goal.TemptGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
-import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
-import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
@@ -42,24 +31,21 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CarrotBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class Beaver extends Animal {
-	private static final EntityDataAccessor<Integer> RABBIT_TYPE = SynchedEntityData.defineId(Beaver.class, EntityDataSerializers.INT);
 	private boolean wasOnGround;
 	private int currentMoveTypeDuration;
 	private int carrotTicks;
 
-	public Beaver(EntityType<? extends Beaver> entity, Level level) {
-		super(entity, level);
+	public Beaver(EntityType<? extends Beaver> entityType, Level level) {
+		super(entityType, level);
 		this.moveControl = new Beaver.MoveHelperController(this);
 		this.setMovementSpeed(0.0D);
 	}
@@ -81,45 +67,9 @@ public class Beaver extends Animal {
 		return AttributeSupplier.builder().add(Attributes.MAX_HEALTH, 10.0D).add(Attributes.MOVEMENT_SPEED, 0.25D).add(Attributes.FOLLOW_RANGE, 16.0D).add(Attributes.ATTACK_KNOCKBACK).add(Attributes.KNOCKBACK_RESISTANCE).add(Attributes.ARMOR).add(Attributes.ARMOR_TOUGHNESS).add(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get()).add(net.minecraftforge.common.ForgeMod.NAMETAG_DISTANCE.get()).add(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get());
 	}
 
-	@Override
-	protected float getJumpPower() {
-		if (!this.horizontalCollision && (!this.moveControl.hasWanted() || !(this.moveControl.getWantedY() > this.getY() + 0.5D))) {
-			Path path = this.navigation.getPath();
-			if (path != null && !path.isDone()) {
-				Vec3 vector3d = path.getNextEntityPos(this);
-				if (vector3d.y > this.getY() + 0.5D) {
-					return 0.5F;
-				}
-			}
-
-			return this.moveControl.getSpeedModifier() <= 0.6D ? 0.2F : 0.3F;
-		} else {
-			return 0.5F;
-		}
-	}
-
-	/**
-	 * Causes this entity to do an upwards motion (jumping).
-	 */
-
 	public void setMovementSpeed(double newSpeed) {
 		this.getNavigation().setSpeedModifier(newSpeed);
 		this.moveControl.setWantedPosition(this.moveControl.getWantedX(), this.moveControl.getWantedY(), this.moveControl.getWantedZ(), newSpeed);
-	}
-
-	@Override
-	public void setJumping(boolean jumping) {
-		super.setJumping(jumping);
-		if (jumping) {
-			this.playSound(this.getJumpSound(), this.getSoundVolume(), ((this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F) * 0.8F);
-		}
-
-	}
-
-	@Override
-	protected void defineSynchedData() {
-		super.defineSynchedData();
-		this.entityData.define(RABBIT_TYPE, 0);
 	}
 
 	@Override
@@ -163,9 +113,6 @@ public class Beaver extends Animal {
 		this.updateMoveTypeDuration();
 	}
 
-	/**
-	 * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
-	 */
 	@Override
 	public void aiStep() {
 		super.aiStep();
@@ -174,17 +121,14 @@ public class Beaver extends Animal {
 	@Override
 	public void addAdditionalSaveData(CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
-		compound.putInt("RabbitType", this.getRabbitType());
+
 		compound.putInt("MoreCarrotTicks", this.carrotTicks);
 	}
 
-	/**
-	 * (abstract) Protected helper method to read subclass entity data from NBT.
-	 */
 	@Override
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
-		this.setRabbitType(compound.getInt("RabbitType"));
+
 		this.carrotTicks = compound.getInt("MoreCarrotTicks");
 	}
 
@@ -207,24 +151,10 @@ public class Beaver extends Animal {
 		return SoundEvents.RABBIT_DEATH;
 	}
 
-	@Override
-	public boolean doHurtTarget(Entity entityIn) {
-		if (this.getRabbitType() == 99) {
-			this.playSound(SoundEvents.RABBIT_ATTACK, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
-			return entityIn.hurt(this.damageSources().mobAttack(this), 8.0F);
-		} else {
-			return entityIn.hurt(this.damageSources().mobAttack(this), 3.0F);
-		}
-	}
 
-	@Override
-	public SoundSource getSoundSource() {
-		return this.getRabbitType() == 99 ? SoundSource.HOSTILE : SoundSource.NEUTRAL;
-	}
 
-	/**
-	 * Called when the entity is attacked.
-	 */
+
+
 	@Override
 	public boolean hurt(DamageSource source, float amount) {
 		return this.isInvulnerableTo(source) ? false : super.hurt(source, amount);
@@ -234,46 +164,9 @@ public class Beaver extends Animal {
 		return itemIn == Items.CARROT || itemIn == Items.GOLDEN_CARROT || itemIn == Blocks.DANDELION.asItem();
 	}
 
-	/**
-	 * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on the animal type)
-	 */
 	@Override
 	public boolean isFood(ItemStack stack) {
 		return this.isRabbitBreedingItem(stack.getItem());
-	}
-
-	public int getRabbitType() {
-		return this.entityData.get(RABBIT_TYPE);
-	}
-
-	public void setRabbitType(int rabbitTypeId) {
-		if (rabbitTypeId == 99) {
-			this.getAttribute(Attributes.ARMOR).setBaseValue(8.0D);
-			this.goalSelector.addGoal(4, new Beaver.EvilAttackGoal(this));
-			this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers());
-			this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
-		}
-
-		this.entityData.set(RABBIT_TYPE, rabbitTypeId);
-	}
-
-	@Override
-	@Nullable
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
-		int i = this.getRandomRabbitType(worldIn);
-		if (spawnDataIn instanceof Beaver.RabbitData) {
-			i = ((Beaver.RabbitData) spawnDataIn).typeData;
-		} else {
-			spawnDataIn = new Beaver.RabbitData(i);
-		}
-
-		this.setRabbitType(i);
-		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
-	}
-
-	private int getRandomRabbitType(LevelAccessor p_213610_1_) {
-		int i = this.random.nextInt(100);
-		return i < 50 ? 0 : (i < 90 ? 5 : 2);
 	}
 
 	public static boolean checkRabbitSpawnRules(EntityType<Beaver> p_223321_0_, LevelAccessor p_223321_1_, MobSpawnType reason, BlockPos p_223321_3_, RandomSource p_223321_4_) {
@@ -314,14 +207,6 @@ public class Beaver extends Animal {
 		public AvoidEntityGoal(Beaver rabbit, Class<T> p_i46403_2_, float p_i46403_3_, double p_i46403_4_, double p_i46403_6_) {
 			super(rabbit, p_i46403_2_, p_i46403_3_, p_i46403_4_, p_i46403_6_);
 			this.rabbit = rabbit;
-		}
-
-		/**
-		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		 */
-		@Override
-		public boolean canUse() {
-			return this.rabbit.getRabbitType() != 99 && super.canUse();
 		}
 	}
 
@@ -376,15 +261,6 @@ public class Beaver extends Animal {
 		public void tick() {
 			super.tick();
 			this.rabbit.setMovementSpeed(this.speedModifier);
-		}
-	}
-
-	public static class RabbitData extends AgeableMob.AgeableMobGroupData {
-		public final int typeData;
-
-		public RabbitData(int type) {
-			super(1.0F);
-			this.typeData = type;
 		}
 	}
 

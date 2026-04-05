@@ -39,7 +39,7 @@ public class PulleyBeltItem extends Item {
 					linkCapability.startLink(world, pos, state, player);
 				} else {
 					linkCapability.stopLink(pos, state);
-					if (linkCapability.checkAxis() && linkCapability.checkPlanarPos()) {
+					if (linkCapability.checkAxisAlignment() && linkCapability.checkPlanarPos()) {
 						linkCapability.createBelt();
 					}
 				}

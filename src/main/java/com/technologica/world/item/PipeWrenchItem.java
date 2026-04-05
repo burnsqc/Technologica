@@ -49,7 +49,7 @@ public class PipeWrenchItem extends DiggerItem {
 					linkCapability.startLink(world, pos, state, player);
 				} else {
 					linkCapability.stopLink(pos, state);
-					if (linkCapability.checkAxis() && linkCapability.checkInlinePos() && linkCapability.checkObstructed() && linkCapability.checkDistance() && linkCapability.checkMaterial()) {
+					if (linkCapability.checkAxisAlignment() && linkCapability.checkInlinePos() && linkCapability.checkObstructed() && linkCapability.checkDistance() && linkCapability.checkMaterial()) {
 						linkCapability.createLineShaft();
 					}
 				}

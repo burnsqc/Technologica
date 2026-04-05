@@ -58,12 +58,12 @@ public class TechnologicaSignRenderer implements BlockEntityRenderer<SignBlockEn
 
 	@Override
 	public void render(SignBlockEntity signBlockEntity, float partialTick, PoseStack poseStack, MultiBufferSource multiBufferSource, int lightColor, int overlayTexture) {
-		BlockState blockstate = signBlockEntity.getBlockState();
-		SignBlock signblock = (SignBlock) blockstate.getBlock();
+		BlockState blockState = signBlockEntity.getBlockState();
+		SignBlock signblock = (SignBlock) blockState.getBlock();
 		WoodType woodtype = SignBlock.getWoodType(signblock);
 		TechnologicaSignRenderer.SignModel signrenderer$signmodel = this.signModels.get(woodtype);
-		signrenderer$signmodel.stick.visible = blockstate.getBlock() instanceof StandingSignBlock;
-		this.renderSignWithText(signBlockEntity, poseStack, multiBufferSource, lightColor, overlayTexture, blockstate, signblock, woodtype, signrenderer$signmodel);
+		signrenderer$signmodel.stick.visible = blockState.getBlock() instanceof StandingSignBlock;
+		this.renderSignWithText(signBlockEntity, poseStack, multiBufferSource, lightColor, overlayTexture, blockState, signblock, woodtype, signrenderer$signmodel);
 	}
 
 	public float getSignModelRenderScale() {

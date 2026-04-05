@@ -69,14 +69,14 @@ public abstract class XenonFluid extends FlowingFluid {
 	}
 
 	@Override
-	protected boolean canConvertToSource(Level p_256670_) {
+	protected boolean canConvertToSource(Level level) {
 		return false;
 	}
 
 	@Override
-	protected void beforeDestroyingBlock(LevelAccessor worldIn, BlockPos pos, BlockState state) {
-		BlockEntity tileentity = state.hasBlockEntity() ? worldIn.getBlockEntity(pos) : null;
-		Block.dropResources(state, worldIn, pos, tileentity);
+	protected void beforeDestroyingBlock(LevelAccessor worldIn, BlockPos pos, BlockState blockState) {
+		BlockEntity tileentity = blockState.hasBlockEntity() ? worldIn.getBlockEntity(pos) : null;
+		Block.dropResources(blockState, worldIn, pos, tileentity);
 	}
 
 	@Override
@@ -95,12 +95,12 @@ public abstract class XenonFluid extends FlowingFluid {
 	}
 
 	@Override
-	public int getDropOff(LevelReader worldIn) {
+	public int getDropOff(LevelReader levelReader) {
 		return 1;
 	}
 
 	@Override
-	public int getTickDelay(LevelReader p_205569_1_) {
+	public int getTickDelay(LevelReader levelReader) {
 		return 3;
 	}
 

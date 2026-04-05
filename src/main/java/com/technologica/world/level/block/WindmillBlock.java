@@ -21,16 +21,16 @@ public class WindmillBlock extends FourDirectionBlock implements EntityBlock {
 	}
 
 	@Override
-	public RenderShape getRenderShape(BlockState stateIn) {
+	public RenderShape getRenderShape(BlockState blockState) {
 		return RenderShape.ENTITYBLOCK_ANIMATED;
 	}
 
-	public WindmillBlockEntity getTileEntity(Level worldIn, BlockPos posIn) {
-		return (WindmillBlockEntity) worldIn.getBlockEntity(posIn);
+	public WindmillBlockEntity getTileEntity(Level level, BlockPos blockPos) {
+		return (WindmillBlockEntity) level.getBlockEntity(blockPos);
 	}
 
 	@Override
-	public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
-		return new WindmillBlockEntity(p_153215_, p_153216_);
+	public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+		return new WindmillBlockEntity(blockPos, blockState);
 	}
 }

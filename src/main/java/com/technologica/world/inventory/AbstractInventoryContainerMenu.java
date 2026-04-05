@@ -28,17 +28,17 @@ public abstract class AbstractInventoryContainerMenu extends AbstractContainerMe
 	 * inventory slots. This will ensure that the menu's slots start at zero, and
 	 * the player's inventory picks up where the menu left off.
 	 */
-	public void addInventorySlots(int xOffset, int yOffset) {
+	public void addInventorySlots(int offsetX, int offsetY) {
 		playerInventoryBegin = slots.size();
 		slotNumber = 0;
 		for (int row = 0; row < 3; ++row) {
 			for (int column = 0; column < 9; ++column) {
-				addSlot(new Slot(inventory, slotNumber++, (column * 18) + xOffset, (row * 18) + yOffset));
+				addSlot(new Slot(inventory, slotNumber++, (column * 18) + offsetX, (row * 18) + offsetY));
 			}
 		}
 		playerHotbarBegin = slots.size() - 1;
 		for (int column = 0; column < 9; ++column) {
-			addSlot(new Slot(inventory, slotNumber++, (column * 18) + xOffset, yOffset + 58));
+			addSlot(new Slot(inventory, slotNumber++, (column * 18) + offsetX, offsetY + 58));
 		}
 		playerInventoryEnd = slots.size() - 1;
 	}

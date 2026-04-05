@@ -50,19 +50,19 @@ public class AnnunciatorBlock extends BaseEntityBlock {
 	}
 
 	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite()).setValue(LIT, Boolean.valueOf(context.getLevel().hasNeighborSignal(context.getClickedPos())));
+	public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
+		return this.defaultBlockState().setValue(FACING, blockPlaceContext.getHorizontalDirection().getOpposite()).setValue(LIT, Boolean.valueOf(blockPlaceContext.getLevel().hasNeighborSignal(blockPlaceContext.getClickedPos())));
 	}
 
 	@Override
-	public void neighborChanged(BlockState p_55666_, Level p_55667_, BlockPos p_55668_, Block p_55669_, BlockPos p_55670_, boolean p_55671_) {
-		if (!p_55667_.isClientSide) {
-			boolean flag = p_55666_.getValue(LIT);
-			if (flag != p_55667_.hasNeighborSignal(p_55668_)) {
+	public void neighborChanged(BlockState blockState, Level level, BlockPos blockPos, Block block, BlockPos blockPos2, boolean bool) {
+		if (!level.isClientSide) {
+			boolean flag = blockState.getValue(LIT);
+			if (flag != level.hasNeighborSignal(blockPos)) {
 				if (flag) {
-					p_55667_.scheduleTick(p_55668_, this, 4);
+					level.scheduleTick(blockPos, this, 4);
 				} else {
-					p_55667_.setBlock(p_55668_, p_55666_.cycle(LIT), 2);
+					level.setBlock(blockPos, blockState.cycle(LIT), 2);
 				}
 			}
 
@@ -114,7 +114,7 @@ public class AnnunciatorBlock extends BaseEntityBlock {
 	}
 
 	@Override
-	public RenderShape getRenderShape(BlockState iBlockState) {
+	public RenderShape getRenderShape(BlockState blockState) {
 		return RenderShape.MODEL;
 	}
 
@@ -125,7 +125,7 @@ public class AnnunciatorBlock extends BaseEntityBlock {
 	}
 
 	@Override
-	public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
-		return new AnnunciatorBlockEntity(p_153215_, p_153216_);
+	public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+		return new AnnunciatorBlockEntity(blockPos, blockState);
 	}
 }

@@ -35,15 +35,15 @@ public class TwentyFourDirectionBlock extends DirectionalBlock implements Simple
 	 */
 
 	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext contextIn) {
-		LevelAccessor levelaccessor = contextIn.getLevel();
-		BlockPos blockpos = contextIn.getClickedPos();
+	public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
+		LevelAccessor levelaccessor = blockPlaceContext.getLevel();
+		BlockPos blockpos = blockPlaceContext.getClickedPos();
 		int i = 0;
-		Direction[] adirection = contextIn.getNearestLookingDirections();
-		if (adirection[i] == contextIn.getClickedFace().getOpposite()) {
+		Direction[] adirection = blockPlaceContext.getNearestLookingDirections();
+		if (adirection[i] == blockPlaceContext.getClickedFace().getOpposite()) {
 			i++;
 		}
-		return this.defaultBlockState().setValue(FACING, contextIn.getClickedFace()).setValue(SUB_FACING, adirection[i]).setValue(WATERLOGGED, Boolean.valueOf(levelaccessor.getFluidState(blockpos).getType() == Fluids.WATER));
+		return this.defaultBlockState().setValue(FACING, blockPlaceContext.getClickedFace()).setValue(SUB_FACING, adirection[i]).setValue(WATERLOGGED, Boolean.valueOf(levelaccessor.getFluidState(blockpos).getType() == Fluids.WATER));
 	}
 
 	@Override
@@ -54,18 +54,17 @@ public class TwentyFourDirectionBlock extends DirectionalBlock implements Simple
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public BlockState updateShape(BlockState p_152036_, Direction p_152037_, BlockState p_152038_, LevelAccessor p_152039_, BlockPos p_152040_, BlockPos p_152041_) {
-		if (p_152036_.getValue(WATERLOGGED)) {
-			p_152039_.scheduleTick(p_152040_, Fluids.WATER, Fluids.WATER.getTickDelay(p_152039_));
+	public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockStateNeighbor, LevelAccessor levelAccessor, BlockPos blockPos, BlockPos blockPosNeighbor) {
+		if (blockState.getValue(WATERLOGGED)) {
+			levelAccessor.scheduleTick(blockPos, Fluids.WATER, Fluids.WATER.getTickDelay(levelAccessor));
 		}
 
-		return p_152037_ == p_152036_.getValue(FACING).getOpposite() && !p_152036_.canSurvive(p_152039_, p_152040_) ? Blocks.AIR.defaultBlockState() : super.updateShape(p_152036_, p_152037_, p_152038_, p_152039_, p_152040_, p_152041_);
+		return direction == blockState.getValue(FACING).getOpposite() && !blockState.canSurvive(levelAccessor, blockPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(blockState, direction, blockStateNeighbor, levelAccessor, blockPos, blockPosNeighbor);
 	}
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public FluidState getFluidState(BlockState p_152045_) {
-		return p_152045_.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(p_152045_);
+	public FluidState getFluidState(BlockState blockState) {
+		return blockState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(blockState);
 	}
-
 }
