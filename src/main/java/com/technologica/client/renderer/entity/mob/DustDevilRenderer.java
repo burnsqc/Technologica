@@ -1,7 +1,5 @@
 package com.technologica.client.renderer.entity.mob;
 
-import javax.annotation.Nullable;
-
 import com.technologica.client.model.DustDevilModel;
 import com.technologica.client.model.geom.TechnologicaModelLayers;
 import com.technologica.world.entity.monster.DustDevil;
@@ -15,7 +13,6 @@ public final class DustDevilRenderer extends TechnologicaMobRenderer<DustDevil, 
 	}
 
 	@Override
-	@Nullable
 	protected RenderType getRenderType(DustDevil dustDevil, boolean bodyVisible, boolean translucent, boolean glowing) {
 		return RenderType.entityTranslucent(getTextureLocation(dustDevil));
 	}

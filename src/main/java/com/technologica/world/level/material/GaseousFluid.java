@@ -31,6 +31,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public abstract class GaseousFluid extends FlowingFluid {
 	private static final ThreadLocal<Object2ByteLinkedOpenHashMap<Block.BlockStatePairKey>> OCCLUSION_CACHE = ThreadLocal.withInitial(() -> {
 		Object2ByteLinkedOpenHashMap<Block.BlockStatePairKey> object2bytelinkedopenhashmap = new Object2ByteLinkedOpenHashMap<Block.BlockStatePairKey>(200) {
+			private static final long serialVersionUID = -5524351918434814789L;
+
 			@Override
 			protected void rehash(int p_76102_) {
 			}

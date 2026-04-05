@@ -66,6 +66,12 @@ public class Deer extends Animal {
 	}
 
 	@Override
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(DATA_ID_FLAGS, (byte) 0);
+	}
+
+	@Override
 	protected SoundEvent getAmbientSound() {
 		return SoundEvents.COW_AMBIENT;
 	}

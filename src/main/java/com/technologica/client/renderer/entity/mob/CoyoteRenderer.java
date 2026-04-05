@@ -21,8 +21,8 @@ public final class CoyoteRenderer extends TechnologicaMobRenderer<Coyote, Coyote
 	@Override
 	public void render(Coyote coyote, float yaw, float partialTicks, PoseStack poseStack, MultiBufferSource multiBufferSource, int packedLight) {
 		if (coyote.isWet()) {
-			float f = coyote.getWetShade(partialTicks);
-			this.model.setColor(f, f, f);
+			float wetShade = coyote.getWetShade(partialTicks);
+			this.model.setColor(wetShade, wetShade, wetShade);
 		}
 		super.render(coyote, yaw, partialTicks, poseStack, multiBufferSource, packedLight);
 		if (coyote.isWet()) {

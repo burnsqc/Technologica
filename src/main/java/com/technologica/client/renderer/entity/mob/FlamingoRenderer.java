@@ -14,8 +14,8 @@ public final class FlamingoRenderer extends TechnologicaMobRenderer<Flamingo, Fl
 
 	@Override
 	protected float getBob(Flamingo flamingo, float partialTicks) {
-		float f = Mth.lerp(partialTicks, flamingo.oFlap, flamingo.flap);
-		float f1 = Mth.lerp(partialTicks, flamingo.oFlapSpeed, flamingo.flapSpeed);
-		return (Mth.sin(f) + 1.0F) * f1;
+		float angle = Mth.lerp(partialTicks, flamingo.oFlap, flamingo.flap);
+		float magnitude = Mth.lerp(partialTicks, flamingo.oFlapSpeed, flamingo.flapSpeed);
+		return (Mth.sin(angle) + 1.0F) * magnitude;
 	}
 }

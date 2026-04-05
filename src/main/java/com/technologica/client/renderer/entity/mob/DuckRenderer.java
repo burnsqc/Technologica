@@ -14,8 +14,8 @@ public final class DuckRenderer extends TechnologicaMobRenderer<Duck, ChickenMod
 
 	@Override
 	protected float getBob(Duck duck, float partialTicks) {
-		float f = Mth.lerp(partialTicks, duck.oFlap, duck.flap);
-		float f1 = Mth.lerp(partialTicks, duck.oFlapSpeed, duck.flapSpeed);
-		return (Mth.sin(f) + 1.0F) * f1;
+		float angle = Mth.lerp(partialTicks, duck.oFlap, duck.flap);
+		float magnitude = Mth.lerp(partialTicks, duck.oFlapSpeed, duck.flapSpeed);
+		return (Mth.sin(angle) + 1.0F) * magnitude;
 	}
 }

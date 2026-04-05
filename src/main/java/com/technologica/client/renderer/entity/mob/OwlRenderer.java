@@ -14,8 +14,8 @@ public final class OwlRenderer extends TechnologicaMobRenderer<Owl, OwlModel<Owl
 
 	@Override
 	public float getBob(Owl owl, float partialTicks) {
-		float f = Mth.lerp(partialTicks, owl.oFlap, owl.flap);
-		float f1 = Mth.lerp(partialTicks, owl.oFlapSpeed, owl.flapSpeed);
-		return (Mth.sin(f) + 1.0F) * f1;
+		float angle = Mth.lerp(partialTicks, owl.oFlap, owl.flap);
+		float magnitude = Mth.lerp(partialTicks, owl.oFlapSpeed, owl.flapSpeed);
+		return (Mth.sin(angle) + 1.0F) * magnitude;
 	}
 }

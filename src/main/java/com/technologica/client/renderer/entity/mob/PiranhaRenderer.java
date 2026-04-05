@@ -17,14 +17,14 @@ public final class PiranhaRenderer extends TechnologicaMobRenderer<Piranha, Pira
 	@Override
 	protected void setupRotations(Piranha piranha, PoseStack poseStack, float ageInTicks, float yaw, float partialTicks) {
 		super.setupRotations(piranha, poseStack, ageInTicks, yaw, partialTicks);
-		float f = 1.0F;
-		float f1 = 1.0F;
+		float magnitude = 1.0F;
+		float angle = 1.0F;
 		if (!piranha.isInWater()) {
-			f = 1.3F;
-			f1 = 1.7F;
+			magnitude = 1.3F;
+			angle = 1.7F;
 		}
-		float f2 = f * 4.3F * Mth.sin(f1 * 0.6F * ageInTicks);
-		poseStack.mulPose(Axis.YP.rotationDegrees(f2));
+		float rotY = magnitude * 4.3F * Mth.sin(angle * 0.6F * ageInTicks);
+		poseStack.mulPose(Axis.YP.rotationDegrees(rotY));
 		poseStack.translate(0.0D, 0.0D, -0.4F);
 		if (!piranha.isInWater()) {
 			poseStack.translate(0.2F, 0.1F, 0.0D);

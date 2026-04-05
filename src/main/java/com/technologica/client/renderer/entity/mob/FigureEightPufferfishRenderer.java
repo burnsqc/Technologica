@@ -26,18 +26,18 @@ public final class FigureEightPufferfishRenderer extends TechnologicaMobRenderer
 
 	@Override
 	public void render(Pufferfish figureEightPufferfish, float yaw, float partialTicks, PoseStack poseStack, MultiBufferSource multiBufferSource, int packedLight) {
-		int i = figureEightPufferfish.getPuffState();
-		if (i != this.puffStateO) {
-			if (i == 0) {
+		int puffState = figureEightPufferfish.getPuffState();
+		if (puffState != this.puffStateO) {
+			if (puffState == 0) {
 				this.model = this.small;
-			} else if (i == 1) {
+			} else if (puffState == 1) {
 				this.model = this.mid;
 			} else {
 				this.model = this.big;
 			}
 		}
-		this.puffStateO = i;
-		this.shadowRadius = 0.1F + 0.1F * i;
+		this.puffStateO = puffState;
+		this.shadowRadius = 0.1F + 0.1F * puffState;
 		super.render(figureEightPufferfish, yaw, partialTicks, poseStack, multiBufferSource, packedLight);
 	}
 

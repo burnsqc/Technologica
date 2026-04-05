@@ -14,8 +14,8 @@ public final class TurkeyRenderer extends TechnologicaMobRenderer<Turkey, Turkey
 
 	@Override
 	protected float getBob(Turkey turkey, float partialTicks) {
-		float f = Mth.lerp(partialTicks, turkey.flapO, turkey.flap);
-		float f1 = Mth.lerp(partialTicks, turkey.flapSpeedO, turkey.flapSpeed);
-		return (Mth.sin(f) + 1.0F) * f1;
+		float angle = Mth.lerp(partialTicks, turkey.flapO, turkey.flap);
+		float magnitude = Mth.lerp(partialTicks, turkey.flapSpeedO, turkey.flapSpeed);
+		return (Mth.sin(angle) + 1.0F) * magnitude;
 	}
 }
