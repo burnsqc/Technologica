@@ -9,7 +9,6 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
-import net.minecraft.util.Mth;
 
 public class AlligatorModel<T extends Alligator> extends QuadrupedModel<T> {
 	protected final ModelPart tail;
@@ -44,6 +43,6 @@ public class AlligatorModel<T extends Alligator> extends QuadrupedModel<T> {
 	@Override
 	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.body.xRot = 0;
-		this.nose.xRot = -(Mth.sin(ageInTicks / 10) * Mth.sin(ageInTicks / 10)) / 2;
+		this.nose.xRot = 0;// -(Mth.sin(ageInTicks / 10) * Mth.sin(ageInTicks / 10)) / 2;
 	}
 }

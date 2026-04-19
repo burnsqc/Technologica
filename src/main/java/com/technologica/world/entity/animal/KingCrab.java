@@ -2,8 +2,6 @@ package com.technologica.world.entity.animal;
 
 import javax.annotation.Nullable;
 
-import com.technologica.world.entity.ai.goal.GoToWaterGoal;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
@@ -50,7 +48,6 @@ public class KingCrab extends Animal {
 
 	@Override
 	protected void registerGoals() {
-		this.goalSelector.addGoal(1, new GoToWaterGoal(this, 1.0D));
 		this.goalSelector.addGoal(7, new RandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 8.0F));
 		this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
